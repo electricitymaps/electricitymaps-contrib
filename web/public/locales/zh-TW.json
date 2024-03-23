@@ -306,7 +306,7 @@
     "legalNotice": "法律聲明",
     "dismiss": "關閉",
     "reload": "重新載入",
-    "slow-loading-text": "Still loading, if this continues try reloading..."
+    "slow-loading-text": "仍在加載中，如果持續如此，請嘗試重新載入..."
   },
   "wind": "風力",
   "windDataError": "目前尚無風力資料",
@@ -361,8 +361,6 @@
     "carbonIntensity-answer": "碳強度是衡量一個地區電力消耗的溫室氣體排放量的一種指標（單位為gCO₂eq/kWh，即每消耗一度電所排放的二氧化碳當量克數）。<br><br>我們測量電力消耗的溫室氣體排放量，亦即生產被一個地區消耗的電力會排放的所有溫室氣體（包含二氧化碳、甲烷等），包含從其他地區進口的電力。我們採用生命週期分析（Life Cycle Analysis），也就是，將發電廠整個生命週期（建造、燃料生產、運作、退役）的碳排量都納入計算。",
     "methodology-question": "你們如何計算這些數值的?",
     "methodology-answer": "我們在 <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a> 上詳細介紹了我們的完整方法論，並在我們的 <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">GitHub Wiki</a> 上提供了額外的文件.",
-    "consumptionFocus-question": "為什麼要計算電力消耗的碳排量，而不是電力生產的碳排量？",
-    "consumptionFocus-answer": "我們認為使用者是為他們消耗的電力負責，而不是為他們所在地生產的電量負責。而且，我們認為使用其他地區生產的不乾淨電力，以塑造自己所在區域低碳排的假象，是不應該的。",
     "renewableLowCarbonDifference-question": "「可再生」和「低碳排」的差異是什麼？",
     "renewableLowCarbonDifference-answer": "「可再生」能源是利用可再生能源發電的發電方式，例如：風力、水力、太陽能、地熱能。「低碳」能源指的是電力生產過少碳排很少的發電方式，例如：核能。",
     "importsAndExports-question": "你們有將電力輸入輸出納入計算嗎？",
@@ -382,12 +380,12 @@
     "groupName": "我們的資料",
     "dataOrigins-question": "你們如何取得資料？",
     "dataOrigins-answer": "我們使用供電網路管理者、公部門提供的公開資料進行計算。點選區域以檢視資料來源資訊。",
+    "regionalEmissionFactors-question": "為什麼不同地區的排放因子會改變？",
+    "regionalEmissionFactors-answer": "對於某些區域，我們能夠獲取比全球平均值更精確的排放因子作為後備。例如，對於美國和歐盟，直接的發電廠排放數據是公開可用的。我們隨後將這些排放數據與發電廠的發電數據相匹配，並計算每個發電廠的排放因子，這些數據在區域層面進行了匯總。詳情見 <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">Wiki上的細節</a>.",
     "dataDownload-question": "可不可以下載你們的資料？",
     "dataDownload-answer": "你可以在我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>購買資料的取得權。",
     "dataIntegration-question": "可以將你們的即時資料整合到我的應用程式或裝置上嗎？",
-    "dataIntegration-answer": "可以！我們也有販賣<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">即時資料的 API</a>，裡面也包含未來預測。",
-    "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
-    "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">details on the Wiki</a>."
+    "dataIntegration-answer": "可以！我們也有販賣<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">即時資料的 API</a>，裡面也包含未來預測。"
   },
   "aboutUs": {
     "groupName": "關於我們",
