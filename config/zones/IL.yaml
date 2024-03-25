@@ -58,6 +58,8 @@ contributors:
   - alixunderplatz
   - jarek
   - yuvalabou
+disclaimer: The data source (Israel Electric Corporation) has been blocking access
+  to real-time production mix data. The data is therefore fully estimated by Electricity Maps.
 emissionFactors:
   direct:
     battery discharge:
