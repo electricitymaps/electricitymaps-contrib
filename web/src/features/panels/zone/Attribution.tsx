@@ -7,24 +7,6 @@ import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
 import { getContributors } from './util';
 
-export function removeDuplicateSources(source: string | undefined) {
-  if (!source) {
-    return [''];
-  }
-
-  const sources = [
-    ...new Set(
-      source
-        .split('","')
-        .flatMap((x) =>
-          x.split(',').map((x) => x.replaceAll('\\', '').replaceAll('"', ''))
-        )
-    ),
-  ];
-
-  return sources;
-}
-
 export default function Attribution({
   data,
   zoneId,
@@ -37,9 +19,8 @@ export default function Attribution({
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
   const dataSources = selectedData?.source;
 
-  // TODO: Handle sources formatting in DBT or app-backend
   const formattedDataSources = useMemo(() => {
-    return formatDataSources(removeDuplicateSources(dataSources), i18n.language);
+    return formatDataSources(dataSources ?? [], i18n.language);
   }, [dataSources, i18n.language]);
 
   return (

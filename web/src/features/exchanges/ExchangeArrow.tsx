@@ -26,14 +26,16 @@ function ExchangeArrow({
   map,
   colorBlindMode,
 }: ExchangeArrowProps) {
-  const mapZoom = map.getZoom();
-  const colorBlindModeEnabled = colorBlindMode;
-  const absFlow = Math.abs(data.netFlow ?? 0);
-  const { co2intensity, lonlat, netFlow, rotation, key } = data;
-  const setIsMoving = useSetAtom(mapMovingAtom);
+  const { ci, lonlat, f, rotation, key } = data;
   if (!lonlat) {
     return null;
   }
+
+  const mapZoom = map.getZoom();
+  const colorBlindModeEnabled = colorBlindMode;
+
+  const absFlow = Math.abs(f);
+  const setIsMoving = useSetAtom(mapMovingAtom);
 
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
@@ -49,11 +51,11 @@ function ExchangeArrow({
 
   const imageSource = useMemo(() => {
     const prefix = colorBlindModeEnabled ? 'colorblind-' : '';
-    const intensity = quantizedCo2IntensityScale(co2intensity);
-    const speed = quantizedExchangeSpeedScale(Math.abs(netFlow));
+    const intensity = quantizedCo2IntensityScale(ci);
+    const speed = quantizedExchangeSpeedScale(Math.abs(f));
     return resolvePath(`images/arrows/${prefix}arrow-${intensity}-animated-${speed}`)
       .pathname;
-  }, [colorBlindModeEnabled, co2intensity, netFlow]);
+  }, [colorBlindModeEnabled, ci, f]);
 
   const projection = map.project(lonlat);
 
@@ -61,7 +63,7 @@ function ExchangeArrow({
     x: projection.x,
     y: projection.y,
     k: 0.04 + (mapZoom - 1.5) * 0.1,
-    r: rotation + (netFlow > 0 ? 180 : 0),
+    r: rotation + (f > 0 ? 180 : 0),
   };
 
   // Don't render if the flow is very low ...

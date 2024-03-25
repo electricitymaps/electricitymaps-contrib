@@ -3,6 +3,7 @@ import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
+  StateZoneData,
   ZoneDetail,
 } from 'types';
 
@@ -16,12 +17,10 @@ export function getZoneFromPath() {
 }
 
 export function getCO2IntensityByMode(
-  zoneData: { co2intensity: number; co2intensityProduction: number },
+  zoneData: StateZoneData,
   electricityMixMode: string
 ) {
-  return electricityMixMode === 'consumption'
-    ? zoneData.co2intensity
-    : zoneData.co2intensityProduction;
+  return electricityMixMode === 'consumption' ? zoneData?.c?.ci : zoneData?.p?.ci;
 }
 
 /**
@@ -67,13 +66,10 @@ export function createToWithState(to: string) {
  * @param fossilFuelRatioProduction - The fossil fuel ratio for production
  */
 export function getFossilFuelRatio(
-  isConsumption: boolean,
-  fossilFuelRatio: number | null | undefined,
-  fossilFuelRatioProduction: number | null | undefined
+  zoneData: StateZoneData,
+  isConsumption: boolean
 ): number {
-  const fossilFuelRatioToUse = isConsumption
-    ? fossilFuelRatio
-    : fossilFuelRatioProduction;
+  const fossilFuelRatioToUse = isConsumption ? zoneData?.c?.fr : zoneData?.p?.fr;
   switch (fossilFuelRatioToUse) {
     case 0: {
       return 1;
@@ -98,25 +94,22 @@ export function getFossilFuelRatio(
  * @param co2intensityProduction - The carbon intensity for production
  */
 export function getCarbonIntensity(
-  isConsumption: boolean,
-  co2intensity: number | null | undefined,
-  co2intensityProduction: number | null | undefined
+  zoneData: StateZoneData,
+  isConsumption: boolean
 ): number {
-  return (isConsumption ? co2intensity : co2intensityProduction) ?? Number.NaN;
+  return (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
 }
 
 /**
  * Returns the renewable ratio of a zone
+ * @param zoneData - The zone data
  * @param isConsumption - Whether the ratio is for consumption or production
- * @param renewableRatio - The renewable ratio for consumption
- * @param renewableRatioProduction - The renewable ratio for production
  */
 export function getRenewableRatio(
-  isConsumption: boolean,
-  renewableRatio: number | null | undefined,
-  renewableRatioProduction: number | null | undefined
+  zoneData: StateZoneData,
+  isConsumption: boolean
 ): number {
-  return (isConsumption ? renewableRatio : renewableRatioProduction) ?? Number.NaN;
+  return (isConsumption ? zoneData?.c?.rr : zoneData?.p?.rr) ?? Number.NaN;
 }
 
 /**
