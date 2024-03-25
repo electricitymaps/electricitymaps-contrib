@@ -59,7 +59,9 @@ def fetch_production(
     minutes = int(re.findall(r"(?<=時)[\d]+(?=分)", time_str)[0])
 
     # parse datetime
-    dt = datetime.strptime(date_str, '%Y%m%d').replace(hour=hours, minute=minutes, tzinfo=TIMEZONE)
+    dt = datetime.strptime(date_str, "%Y%m%d").replace(
+        hour=hours, minute=minutes, tzinfo=TIMEZONE
+    )
     data["datetime"] = dt
 
     # consumption
