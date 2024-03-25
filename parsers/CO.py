@@ -74,11 +74,15 @@ def fetch_live_consumption(
     demand_list = TotalConsumptionList(logger)
 
     for datapoint in demand_data:
+        # Ensure consistent millisecond precision for ISO compliance:
+        # Checks if the 'Fecha' field contains a decimal point (indicating milliseconds)
+        # and if the milliseconds portion is less than three digits. If so, it pads the 'Fecha'
+        # value with zeros to achieve the required ISO standard precision.
         if ("." in datapoint["Fecha"]) and (len(datapoint["Fecha"].split(".")[1]) != 3):
             datapoint["Fecha"] = datapoint["Fecha"].ljust(23, "0")
         demand_list.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(datapoint["Fecha"]).replace(tzinfo=TZ),
+            datetime=datetime.fromisoformat(datapoint["Fecha"]).astimezone(tz=TZ),
             consumption=round(datapoint["Valor"], 1),
             source="xm.com.co",
         )
@@ -93,7 +97,7 @@ def fetch_historical_consumption(
 ) -> list[dict[str, Any]]:
     demand_list = TotalConsumptionList(logger)
     # Convert datetime to local time
-    target_datetime_in_tz = datetime.fromisoformat(target_datetime).replace(tzinfo=TZ)
+    target_datetime_in_tz = target_datetime.astimezone(tz=TZ)
 
     objetoAPI = pydataxm.ReadDB()
 
@@ -108,7 +112,7 @@ def fetch_historical_consumption(
     if not df_consumption.empty:
         hour_columns = [col for col in df_consumption.columns if "Hour" in col]
         for hour_col in hour_columns:
-            target_datetime_in_tz = target_datetime_in_tz.datetime.replace(
+            target_datetime_in_tz = target_datetime_in_tz.replace(
                 hour=int(hour_col[-2:]) - 1
             )
             consumption = float(df_consumption[hour_col]) / 1000
@@ -143,12 +147,12 @@ def fetch_production(
     if target_datetime is None:
         target_datetime_in_tz = datetime.now().replace(
             hour=0, minute=0, second=0, microsecond=0
-        ).replace(tzinfo=TZ) + timedelta(days=-XM_DELAY_MIN)
+        ).astimezone(tz=TZ) - timedelta(days=XM_DELAY_MIN)
         # Allow retries for most recent data
         for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
             target_datetime_in_tz = datetime.now().replace(
                 hour=0, minute=0, second=0, microsecond=0
-            ).replace(tzinfo=TZ) + timedelta(days=-xm_delay)
+            ).astimezone(tz=TZ) - timedelta(days=xm_delay)
 
             # API request list of power plants with ID (column 1) and type (column 7)
             df_recursos = objetoAPI.request_data(
@@ -167,7 +171,7 @@ def fetch_production(
             if not df_generation.empty and not df_recursos.empty:
                 break
     else:
-        target_datetime_in_tz = target_datetime.replace(tzinfo=TZ)
+        target_datetime_in_tz = target_datetime.astimezone(tz=TZ)
 
         # API request list of power plants with ID (column 1) and type (column 7)
         df_recursos = objetoAPI.request_data(
@@ -236,7 +240,7 @@ def fetch_production(
     else:
         raise ParserException(
             parser="CO",
-            message=f"{target_datetime_in_tz.datetime}: no production data available",
+            message=f"{target_datetime_in_tz}: no production data available",
             zone_key=zone_key,
         )
 
@@ -260,7 +264,7 @@ def fetch_price(
         for xm_delay in range(XM_DELAY_MIN, XM_DELAY_MAX + 1):
             target_datetime_in_tz = datetime.now().replace(
                 hour=0, minute=0, second=0, microsecond=0
-            ).replace(tzinfo=TZ) + timedelta(days=-xm_delay)
+            ).astimezone(tz=TZ) - timedelta(days=xm_delay)
 
             df_price = objetoAPI.request_data(
                 "PrecBolsNaci",
@@ -272,9 +276,7 @@ def fetch_price(
             if not df_price.empty:
                 break
     else:
-        target_datetime_in_tz = datetime.fromisoformat(target_datetime).replace(
-            tzinfo=TZ
-        )
+        target_datetime_in_tz = target_datetime.astimezone(tz=TZ)
         # API request consumption
         df_price = objetoAPI.request_data(
             "PrecBolsNaci",
