@@ -52,9 +52,6 @@ def fetch_production(
     # get date
     date_div = soup.find("div", class_="puChangeGraph")
     date_str = re.findall(r"(?<=chart/chart)[\d]+(?=.gif)", str(date_div))[0]
-    year_str = date_str[:4]
-    month_str = date_str[4:6]
-    day_str = date_str[6:]
 
     # get hours and minutes
     time_str = soup.find("p", class_="puProgressNow__time").get_text()
@@ -62,8 +59,7 @@ def fetch_production(
     minutes = int(re.findall(r"(?<=時)[\d]+(?=分)", time_str)[0])
 
     # parse datetime
-    datetime_str = f"{year_str}-{month_str}-{day_str}T{hours:02d}:{minutes:02d}"
-    dt = datetime.fromisoformat(datetime_str).replace(tzinfo=TIMEZONE)
+    dt = datetime.strptime(date_str, '%Y%m%d').replace(hour=hours, minute=minutes, tzinfo=TIMEZONE)
     data["datetime"] = dt
 
     # consumption
