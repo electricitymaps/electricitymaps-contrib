@@ -7,10 +7,7 @@ from requests_mock import GET, Adapter
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.CL import (
-    API_BASE_URL,
-    fetch_production,
-)
+from parsers.CL import API_BASE_URL, fetch_production
 
 
 class TestFetchProduction(TestCase):
