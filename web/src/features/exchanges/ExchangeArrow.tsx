@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/no-null */
 import MobileTooltipWrapper from 'components/tooltips/MobileTooltipWrapper';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import { getHeaderHeight } from 'features/charts/bar-breakdown/utils';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
@@ -31,6 +32,7 @@ function ExchangeArrow({
   const absFlow = Math.abs(data.netFlow ?? 0);
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
   const setIsMoving = useSetAtom(mapMovingAtom);
+  const headerHeight = getHeaderHeight();
   if (!lonlat) {
     return null;
   }
@@ -63,6 +65,11 @@ function ExchangeArrow({
     k: 0.04 + (mapZoom - 1.5) * 0.1,
     r: rotation + (netFlow > 0 ? 180 : 0),
   };
+
+  let tooltipClassNameTest = 'max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex';
+
+  if (transform.y - 76 < headerHeight)
+    {tooltipClassNameTest = 'max-h-[256px] max-w-[512px] top-[76px] hidden md:flex';}
 
   // Don't render if the flow is very low ...
   if (absFlow < 1) {
@@ -119,7 +126,7 @@ function ExchangeArrow({
         </picture>
       </MobileTooltipWrapper>
       <TooltipWrapper
-        tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex"
+        tooltipClassName={tooltipClassNameTest}
         tooltipContent={<ExchangeTooltip exchangeData={data} />}
         side="right"
         sideOffset={10}

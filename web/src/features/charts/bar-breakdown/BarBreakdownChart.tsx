@@ -15,6 +15,7 @@ import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
+import { getHeaderHeight } from './utils';
 
 const X_PADDING = 9;
 
@@ -41,6 +42,8 @@ function BarBreakdownChart({
     x: number;
     y: number;
   } | null>(null);
+
+  const headerHeight = getHeaderHeight();
 
   if (isLoading) {
     return null;
@@ -96,7 +99,7 @@ function BarBreakdownChart({
             className="absolute mt-14 flex h-full w-full flex-col items-center gap-y-1 bg-black/20 sm:mt-auto sm:items-start"
             style={{
               left: tooltipData?.x,
-              top: tooltipData?.y,
+              top: tooltipData?.y <= headerHeight ? headerHeight : tooltipData?.y,
             }}
           >
             <BreakdownChartTooltip

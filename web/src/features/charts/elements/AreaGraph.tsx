@@ -11,6 +11,7 @@ import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
+import { getHeaderHeight } from '../bar-breakdown/utils';
 import { getTimeScale, isEmpty } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
@@ -211,6 +212,8 @@ function AreaGraph({
     [setGraphIndex, setSelectedLayerIndex]
   );
 
+  const headerHeight = getHeaderHeight();
+
   // Don't render the graph at all if no layers are present
   if (isEmpty(layers)) {
     console.error('No layers present in AreaGraph');
@@ -293,6 +296,7 @@ function AreaGraph({
           }
           tooltipSize={tooltipSize}
           isBiggerThanMobile={isBiggerThanMobile}
+          headerHeight={headerHeight}
         >
           {(props) => tooltip(props)}
         </AreaGraphTooltip>
