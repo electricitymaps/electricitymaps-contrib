@@ -47,9 +47,6 @@
     "zone-list-header-subtitle": "Сортированы по интенсивности CO₂ (CO₂эк/кВт⋅ч)",
     "search": "Найти зону"
   },
-  "country-history": {
-    "Getdata": "Доступ к историческим данным и прогнозам через Electricity Maps API"
-  },
   "footer": {
     "foundbugs": "Вы обнаружили ошибку или у Вас есть идея? Сообщите нам о них",
     "here": "здесь",

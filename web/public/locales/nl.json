@@ -31,9 +31,6 @@
     "zone-list-header-subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO₂eq/kWh)",
     "search": "Zoek gebieden"
   },
-  "country-history": {
-    "Getdata": "Krijg toegang tot historische, huidige en voorspelde data via de API"
-  },
   "footer": {
     "foundbugs": "Ondervind je problemen of heb je ideëen? Meld ze",
     "here": "hier"

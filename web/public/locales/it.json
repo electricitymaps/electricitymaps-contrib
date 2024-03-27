@@ -81,9 +81,6 @@
     "zone-list-header-subtitle": "Classificazione per intensità di carbonio dell'elettricità consumata (gCO₂eq/kWh)",
     "search": "Cerca un'area..."
   },
-  "country-history": {
-    "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
-  },
   "footer": {
     "foundbugs": "Hai delle idee o hai trovato dei problemi? Scrivici",
     "faq-text": "Qualcosa non è chiaro? Dai un'occhiata alle nostre",

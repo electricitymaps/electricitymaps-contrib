@@ -50,9 +50,6 @@
     "zone-list-header-subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
     "search": "Otsige piirkondi"
   },
-  "country-history": {
-    "Getdata": "Hangi läbi Electricity Maps API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid"
-  },
   "footer": {
     "foundbugs": "Leidsite vea või teil on idee? Andke nendest teada",
     "faq-text": "Miskit on ebaselge? Vaadake üle",
