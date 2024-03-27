@@ -1,4 +1,5 @@
 import * as Portal from '@radix-ui/react-portal';
+import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
@@ -84,6 +85,17 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
+  const emissionData = [
+    ...new Set(
+      [
+        ...Object.values(currentZoneDetail?.dischargeCo2IntensitySources || {}),
+        ...Object.values(currentZoneDetail?.productionCo2IntensitySources || {}),
+      ].flatMap((item) => item.split('; '))
+    ),
+  ]
+    .filter((item) => !item.startsWith('assumes'))
+    .sort();
+
   return (
     <div className="text-sm" ref={ref}>
       <BySource
@@ -138,8 +150,93 @@ function BarBreakdownChart({
           isMobile={false}
         />
       )}
+      <div className="pt-2">
+        <Accordion title={t('data-sources.title')} className="text-md">
+          <div>
+            {currentZoneDetail?.capacitySources && (
+              <Source
+                title="Installed capacity data"
+                icon={
+                  <div
+                    className={`mt-[2px] h-[16px] w-[16px]  bg-[url('/images/utility-pole_light.svg')] bg-center dark:bg-[url('/images/utility-pole_dark.svg')]`}
+                  />
+                }
+                sources={GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources)}
+              />
+            )}
+            {currentZoneDetail?.source && (
+              <Source
+                title="Power generation data"
+                icon={
+                  <div
+                    className={`mt-[1px] h-[16px] w-[16px] bg-[url('/images/wind-turbine_light.svg')] bg-center dark:bg-[url('/images/wind-turbine_dark.svg')]`}
+                  />
+                }
+                sources={[currentZoneDetail?.source]}
+              />
+            )}
+            {emissionData && (
+              <Source
+                title="Emission factor data"
+                icon={
+                  <div
+                    className={`mt-[1px] h-[16px] w-[16px] bg-[url('/images/industry_light.svg')] bg-center dark:bg-[url('/images/industry_dark.svg')]`}
+                  />
+                }
+                sources={emissionData}
+              />
+            )}
+          </div>
+        </Accordion>
+      </div>
     </div>
   );
 }
 
 export default BarBreakdownChart;
+
+function GetSourceArrayFromDictionary(sourceDict: {
+  [key in ElectricityModeType]: string[] | null;
+}): string[] {
+  const sourceArray: string[] = [];
+  if (sourceDict == null) {
+    return sourceArray;
+  }
+  for (const key of Object.keys(sourceDict)) {
+    const capacitySource = sourceDict?.[key as ElectricityModeType];
+    if (capacitySource != null) {
+      for (const source of capacitySource) {
+        if (!sourceArray.includes(source)) {
+          sourceArray.push(source);
+        }
+      }
+    }
+  }
+  return sourceArray;
+}
+
+function Source({
+  title,
+  icon,
+  sources,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  sources: string[];
+}) {
+  return (
+    <div className="flex flex-col py-2">
+      <div className="flex flex-row pb-2">
+        <div className="mr-1">{icon}</div>
+        <div className="text-md font-semibold">{title}</div>
+      </div>
+      <div className="flex flex-col gap-2">
+        {sources.map((source, index) => (
+          <div key={index} className="text-xm">
+            {source}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
