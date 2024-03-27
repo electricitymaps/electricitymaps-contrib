@@ -22,7 +22,7 @@ def fixture_requests_mock():
 
 
 @freeze_time("2024-01-01 12:00:00")
-def test_fetch_production(fixture_requests_mock):
+def test_fetch_production(fixture_requests_mock, snapshot):
     """That we can fetch the production mix at the current time."""
     mock_api_response = [
         ["АЕЦ 47,31%", 2118.06],
@@ -37,30 +37,22 @@ def test_fetch_production(fixture_requests_mock):
     ]
     fixture_requests_mock.get(SOURCE_API_URL, json=mock_api_response)
 
-    expected_production_mix = {
-        "biomass": 21.58,
-        "coal": 762.85,
-        "gas": 458.2,
-        "geothermal": None,
-        "hydro": 778.79,
-        "nuclear": 2118.06,
-        "oil": None,
-        "solar": 159.23,
-        "unknown": None,
-        "wind": 178.62,
-    }
-    expected_storage_mix = {}
-
     production_breakdowns = fetch_production()
 
-    assert len(production_breakdowns) == 1
-    production_breakdown = production_breakdowns[0]
-    assert production_breakdown["datetime"] == datetime(
-        2024, 1, 1, 12, 0, 0, tzinfo=timezone.utc
+    snapshot.assert_match(
+        [
+            {
+                "datetime": element["datetime"].isoformat(),
+                "zoneKey": element["zoneKey"],
+                "production": element["production"],
+                "storage": element["storage"],
+                "source": element["source"],
+                "sourceType": element["sourceType"].value,
+                "correctedModes": element["correctedModes"],
+            }
+            for element in production_breakdowns
+        ]
     )
-    assert production_breakdown["zoneKey"] == "BG"
-    assert production_breakdown["production"] == expected_production_mix
-    assert production_breakdown["storage"] == expected_storage_mix
 
 
 def test_fetch_production_raises_parser_exception_on_historical_data(
