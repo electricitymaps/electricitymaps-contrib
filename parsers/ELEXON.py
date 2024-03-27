@@ -200,6 +200,7 @@ def parse_production(
     events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
+    breakpoint()
     return events
 
 
@@ -219,7 +220,7 @@ def _create_eso_historical_demand_index(session: Session) -> dict[int, str]:
 
 
 def query_additional_eso_data(
-    target_datetime: datetime, session: Session, logger: Logger
+    target_datetime: datetime, session: Session
 ) -> list[dict[str, Any]]:
     """Fetches embedded wind and solar and hydro storage data from the ESO API."""
     begin = (target_datetime - timedelta(days=2)).strftime("%Y-%m-%d")
@@ -279,7 +280,9 @@ def parse_eso_production(
     return events
 
 
-def parse_eso_hydro_storage(eso_data: list[dict[str, any]], logger: Logger):
+def parse_eso_hydro_storage(
+    eso_data: list[dict[str, any]], logger: Logger
+) -> ProductionBreakdownList:
     """Parses only hydro storage data from the ESO API. This data will be merged with the B1620 data"""
     storage_breakdown = ProductionBreakdownList(logger=logger)
     for event in eso_data:
@@ -322,10 +325,10 @@ def query_production_fuelhh(
 
 def query_and_merge_production_fuelhh_and_eso(
     session: Session, target_datetime: datetime, logger: Logger
-):
+) -> list[dict[str, Any]]:
     events_fuelhh = query_production_fuelhh(session, target_datetime, logger)
     parsed_events_fuelhh = parse_production(events_fuelhh, logger, "FUELHH")
-    events_eso = query_additional_eso_data(target_datetime, session, logger)
+    events_eso = query_additional_eso_data(target_datetime, session)
     parsed_events_eso = parse_eso_production(events_eso, logger)
 
     merged_events = ProductionBreakdownList.merge_production_breakdowns(
@@ -415,16 +418,32 @@ def fetch_production(
             message=f"Production data is not available before {ELEXON_START_DATE.date()}",
         )
 
-    data = query_production(session, target_datetime, logger)
-    if not len(data):
+    data_b1620 = query_production(session, target_datetime, logger)
+
+    if not validate_bmrs_data(data_b1620):
         data = query_and_merge_production_fuelhh_and_eso(
             session, target_datetime, logger
         )
     else:
         # add hydro pumping data from ESO (B1620 only includes pumped storage production (injected on the grid) and not the pumping (withdrawn from the grid)
-        eso_data = query_additional_eso_data(target_datetime, session, logger)
+        eso_data = query_additional_eso_data(target_datetime, session)
+        breakpoint()
         parsed_hydro_storage_data = parse_eso_hydro_storage(eso_data, logger)
         data = ProductionBreakdownList.merge_production_breakdowns(
-            [data, parsed_hydro_storage_data], logger, matching_timestamps_only=True
+            [data_b1620, parsed_hydro_storage_data],
+            logger,
+            matching_timestamps_only=True,
         ).to_list()
     return data
+
+
+def validate_bmrs_data(data: ProductionBreakdownList):
+    """Check if the PowerProductionBreakdown event contains a full power breakdown or just wind and solar or if data is missing."""
+    if not data:
+        return False
+    available_production_modes = []
+    for event in data.to_list():
+        available_production_modes += [*event["production"].keys()]
+    if "gas" not in set(available_production_modes):
+        return False
+    return True
