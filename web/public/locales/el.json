@@ -4,7 +4,7 @@
     "opensource": "Ανοικτού Κώδικα",
     "see": "δείτε τις",
     "datasources": "πηγές δεδομένων",
-    "contribute": "Συνεισφέρετε <a href=\"%s\" target=\"_blank\">προσθέτοντας την περιοχή σας</a>"
+    "contribute": "Συνεισφέρετε <a href=\"{{link}}\" target=\"_blank\">προσθέτοντας την περιοχή σας</a>"
   },
   "mobile-main-menu": {
     "map": "Χάρτης",
@@ -37,41 +37,17 @@
     "electricityconsumption": "Κατανάλωση ηλεκτρικής ενέργειας",
     "bysource": "κατά πηγή",
     "emissions": "Εκπομπές άνθρακα",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">προσθήκη ή επεξεργασία πηγής</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">προσθήκη ή επεξεργασία πηγής</a>",
     "helpfrom": "με συνεισφορά από",
     "noDataAtTimestamp": "Τα δεδομένα για την επιλεγμένη ώρα δεν είναι διαθέσιμα αυτή τη στιγμή",
     "noLiveData": "Τα ζωντανά δεδομένα για την περιοχή αυτή δεν είναι διαθέσιμα αυτή τη στιγμή",
-    "noParserInfo": "Δεν έχουμε ακόμη πληροφορίες σχετικά με αυτή την περιοχή.<br/> Θέλετε να βοηθήσετε να το διορθώσουμε; Μπορείτε να συνεισφέρετε <a href=\"%s\" target=\"_blank\">προσθέτοντας δεδομένα περιοχής</a>.",
+    "noParserInfo": "Δεν έχουμε ακόμη πληροφορίες σχετικά με αυτή την περιοχή.<br/> Θέλετε να βοηθήσετε να το διορθώσουμε; Μπορείτε να συνεισφέρετε <a href=\"{{link}}\" target=\"_blank\">προσθέτοντας δεδομένα περιοχής</a>.",
     "now": "Παρόν"
   },
   "left-panel": {
     "zone-list-header-title": "Κλιματική Επίπτωση ανά Περιοχή",
     "zone-list-header-subtitle": "Ταξινομημένο κατά ένταση άνθρακα της καταναλωθέντας ηλεκτρικής ενέργειας (gCO₂eq/kWh)",
     "search": "Αναζήτηση περιοχών"
-  },
-  "country-history": {
-    "Getdata": "Λάβετε ωριαία ιστορικά και ζωντανά δεδομένα, καθώς και προβλέψεις, με το Electricity Maps API",
-    "carbonintensity": {
-      "hourly": "Ένταση άνθρακα τις τελευταίες 24 ώρες"
-    },
-    "emissionsorigin": {
-      "hourly": "Προέλευση εκπομπών τις τελευταίες 24 ώρες"
-    },
-    "emissionsproduction": {
-      "hourly": "Εκπομπές που παράχθηκαν τις τελευταίες 24 ώρες"
-    },
-    "electricityorigin": {
-      "hourly": "Προέλευση ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες"
-    },
-    "electricityproduction": {
-      "hourly": "Παραγωγή ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες"
-    },
-    "electricityprices": {
-      "hourly": "Τιμές ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες"
-    },
-    "emissions": {
-      "hourly": "Εκπομπές τις τελευταίες 24 ώρες"
-    }
   },
   "footer": {
     "foundbugs": "Βρήκατε σφάλματα ή έχετε ιδέες; Αναφέρετέ τα",
@@ -134,14 +110,14 @@
   "coal": "άνθρακας",
   "oil": "πετρέλαιο",
   "unknown": "άγνωστη",
-  "electricityComesFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> προέρχεται από %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθενται στο/στη(ν) %4$s <b>%2$s</b> προέρχεται από %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> αποθηκεύεται σε %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> αποθηκεύεται σε %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εξάγεται στο/στη(ν) %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εξάγεται στο/στη(ν) %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εισάγεται από %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) %4$s <b>%2$s</b> εισάγεται από %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> προέρχεται από {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθενται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> προέρχεται από {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> αποθηκεύεται σε {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> αποθηκεύεται σε {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> εξάγεται στο/στη(ν) {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> εξάγεται στο/στη(ν) {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> εισάγεται από {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> εισάγεται από {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Ο χάρτης",
     "mapColors-question": "What do the colors on the map mean?",

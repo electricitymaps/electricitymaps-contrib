@@ -4,7 +4,7 @@
     "opensource": "오픈된 정보",
     "see": "보시오",
     "datasources": "데이터 정보",
-    "contribute": "공헌으로<a href=\"%s\" target=\"_blank\">자기 지역을 추가해주세요</a>"
+    "contribute": "공헌으로<a href=\"{{link}}\" target=\"_blank\">자기 지역을 추가해주세요</a>"
   },
   "mobile-main-menu": {
     "map": "전력 지도",
@@ -37,38 +37,17 @@
     "electricityconsumption": "전력 소비",
     "bysource": "발생원에 따라",
     "emissions": "탄소 배출",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">정보를 제공하거나 수정해 주십시오</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">정보를 제공하거나 수정해 주십시오</a>",
     "helpfrom": "의 도움으로",
     "noDataAtTimestamp": "지정된 시간 동안 데이터를 일시적으로 사용할 수 없습니다.",
     "noLiveData": "이 지역의 실시간 정보를 일시적으로 사용할 수 없습니다.",
-    "noParserInfo": "현재 이 지역에 대한 정보를 찾을 수 없습니다. <br/> 더 나은 서비스를 위해 <a href=\"%s\" target=\"_blank\">정보를 제공해 주십시오.</a>.",
+    "noParserInfo": "현재 이 지역에 대한 정보를 찾을 수 없습니다. <br/> 더 나은 서비스를 위해 <a href=\"{{link}}\" target=\"_blank\">정보를 제공해 주십시오.</a>.",
     "now": "현재"
   },
   "left-panel": {
     "zone-list-header-title": "지역에 따른 기후 영향",
     "zone-list-header-subtitle": "전력소비에 따른 탄소 밀집도 순위(gCO₂eq/kWh)",
     "search": "지역 찾기"
-  },
-  "country-history": {
-    "Getdata": "역사적 자료, marginal 그리고 예상된 API.",
-    "carbonintensity": {
-      "hourly": "24시간 내 탄소밀집도"
-    },
-    "emissionsorigin": {
-      "hourly": "24시간 내 배출 원인지역"
-    },
-    "emissionsproduction": {
-      "hourly": "24시간 내 생산된 배출량"
-    },
-    "electricityorigin": {
-      "hourly": "24시간 내 전력 원천"
-    },
-    "electricityproduction": {
-      "hourly": "24시간 동안 전력생산"
-    },
-    "electricityprices": {
-      "hourly": "24시간 동안 전력 사용 요금"
-    }
   },
   "footer": {
     "foundbugs": "버그가 발견되었거나 의견이 있으신가요? 알려주세요",
@@ -127,14 +106,14 @@
   "coal": "석탄",
   "oil": "오일",
   "unknown": "알 수 없음",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is exported to %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "지도",
     "mapColors-question": "지도에서 색은 무엇을 의미 합니까?",

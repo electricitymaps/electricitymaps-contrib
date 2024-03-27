@@ -4,11 +4,47 @@ bounding_box:
   - - 60.34457441500007
     - 26.885972398000035
 capacity:
-  solar: 138
-  wind: 50
+  gas:
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 10544
+    - datetime: '2021-01-01'
+      source: Climatescope
+      value: 9764
+    - datetime: '2022-01-01'
+      source: Climatescope
+      value: 9495
+    - datetime: '2023-01-01'
+      source: Climatescope
+      value: 9044
+  solar:
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 43
+    - datetime: '2021-01-01'
+      source: Climatescope
+      value: 329
+    - datetime: '2022-01-01'
+      source: Climatescope
+      value: 924
+    - datetime: '2023-01-01'
+      source: Climatescope
+      value: 1224
+  wind:
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 49
+  oil:
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 150
 contributors:
   - q--
   - nessie2013
+  - florianscheidl
 parsers:
   consumption: GCCIA.fetch_consumption
+sources:
+  Climatescope:
+    link: https://www.global-climatescope.org/markets/om/
 timezone: Asia/Muscat

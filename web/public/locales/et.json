@@ -4,7 +4,7 @@
     "opensource": "avatud lähtekoodiga",
     "see": "vaadake",
     "datasources": "andmeallikaid",
-    "contribute": "Aidake kaasa <a href=\"%s\" target=\"_blank\">lisades enda piirkond</a>"
+    "contribute": "Aidake kaasa <a href=\"{{link}}\" target=\"_blank\">lisades enda piirkond</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -37,42 +37,18 @@
     "electricityconsumption": "Elektritarbimine",
     "bysource": "allikas",
     "emissions": "Süsinikheitmed",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">lisa või muuda allikat</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lisa või muuda allikat</a>",
     "helpfrom": "koos aitajatega",
     "noDataAtTimestamp": "Andmed pole valitud aja jooksul ajutiselt saadaval",
     "noLiveData": "Muutuvad andmed pole selles piirkonnas ajutiselt saadaval",
-    "dataIsDelayed": "Selle piirkonna andmed võivad viibida kuni %s tundi. Muutuvaid andmeid ei saa kuvada.",
-    "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"%s\" target=\"_blank\">lisades piirkonna andmed</a>.",
+    "dataIsDelayed": "Selle piirkonna andmed võivad viibida kuni {{hours}} tundi. Muutuvaid andmeid ei saa kuvada.",
+    "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"{{link}}\" target=\"_blank\">lisades piirkonna andmed</a>.",
     "now": "Äsja"
   },
   "left-panel": {
     "zone-list-header-title": "Kliimamõju piirkonniti",
     "zone-list-header-subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
     "search": "Otsige piirkondi"
-  },
-  "country-history": {
-    "Getdata": "Hangi läbi Electricity Maps API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid",
-    "carbonintensity": {
-      "hourly": "Süsiniku intensiivsus viimase 24 tunni jooksul"
-    },
-    "emissionsorigin": {
-      "hourly": "Heitkoguste päritolu viimase 24 tunni jooksul"
-    },
-    "emissionsproduction": {
-      "hourly": "Tootmisel tekkinud heitmed viimase 24 tunni jooksul"
-    },
-    "electricityorigin": {
-      "hourly": "Elektrienergia päritolu viimase 24 tunni jooksul"
-    },
-    "electricityproduction": {
-      "hourly": "Elektritootmine viimase 24 tunni jooksul"
-    },
-    "electricityprices": {
-      "hourly": "Elektrihinnad viimase 24 tunni jooksul"
-    },
-    "emissions": {
-      "hourly": "Heitkogused viimase 24 tunni jooksul"
-    }
   },
   "footer": {
     "foundbugs": "Leidsite vea või teil on idee? Andke nendest teada",
@@ -136,14 +112,14 @@
   "coal": "süsi",
   "oil": "õli",
   "unknown": "teadmata",
-  "electricityComesFrom": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> tuleb allikast %3$s",
-  "emissionsComeFrom": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> tuleb allikast %3$s",
-  "electricityStoredUsing": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> hoiustatakse kasutades %3$s",
-  "emissionsStoredUsing": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> hoiustatakse kasutades %3$s",
-  "electricityExportedTo": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> eksporditakse riiki %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> eksporditakse riiki %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektrist <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "%4$s <b>%2$s</b> saadaolevast elektri heitmetest <b>%1$s %%</b> imporditakse riigist %5$s <b>%3$s</b>",
+  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
+  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
+  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
+  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
+  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> imporditakse riigist {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> imporditakse riigist {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Kaart",
     "mapColors-question": "Mida värvid kaardil tähistavad?",

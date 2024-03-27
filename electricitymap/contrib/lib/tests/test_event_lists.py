@@ -114,6 +114,101 @@ class TestExchangeList(unittest.TestCase):
         assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
         assert exchanges.events[0].netFlow == -10
 
+    def test_update_exchange_list(self):
+        exchange_list1 = ExchangeList(logging.Logger("test"))
+        exchange_list1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        exchange_list1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        exchange_list2 = ExchangeList(logging.Logger("test"))
+        exchange_list2.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=2,
+            source="trust.me",
+        )
+        updated_list = ExchangeList.update_exchanges(
+            exchange_list1, exchange_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 2
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].netFlow == 2
+        assert updated_list.events[0].source == "trust.me"
+        assert updated_list.events[1].datetime == datetime(
+            2023, 1, 2, tzinfo=timezone.utc
+        )
+        assert updated_list.events[1].netFlow == 1
+        assert updated_list.events[1].source == "trust.me"
+
+    def test_update_exchange_list_with_different_zoneKey(self):
+        exchange_list1 = ExchangeList(logging.Logger("test"))
+        exchange_list1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        exchange_list2 = ExchangeList(logging.Logger("test"))
+        exchange_list2.append(
+            zoneKey=ZoneKey("DE->DK-DK1"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=2,
+            source="trust.me",
+        )
+        self.assertRaises(
+            ValueError,
+            ExchangeList.update_exchanges,
+            exchange_list1,
+            exchange_list2,
+            logging.Logger("test"),
+        )
+
+    def test_update_exchange_list_with_longer_new_list(self):
+        exchange_list1 = ExchangeList(logging.Logger("test"))
+        exchange_list1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        exchange_list2 = ExchangeList(logging.Logger("test"))
+        exchange_list2.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=2,
+            source="trust.me",
+        )
+        exchange_list2.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+            netFlow=3,
+            source="trust.me",
+        )
+        updated_list = ExchangeList.update_exchanges(
+            exchange_list1, exchange_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 2
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].netFlow == 2
+        assert updated_list.events[0].source == "trust.me"
+        assert updated_list.events[1].datetime == datetime(
+            2023, 1, 2, tzinfo=timezone.utc
+        )
+        assert updated_list.events[1].netFlow == 3
+        assert updated_list.events[1].source == "trust.me"
+
 
 class TestConsumptionList(unittest.TestCase):
     def test_consumption_list(self):
@@ -982,6 +1077,39 @@ class TestProductionBreakdownList(unittest.TestCase):
         output = ProductionBreakdownList.filter_expected_modes(
             production_list, by_passed_modes=["biomass"]
         )
+        assert len(output) == 1
+
+    def test_filter_only_zero_production(self):
+        production_list = ProductionBreakdownList(logging.Logger("test"))
+        production_list.append(
+            ZoneKey("US-NW-PGE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(
+                wind=0,
+                coal=0,
+                solar=0,
+                gas=0,
+                unknown=0,
+                hydro=0,
+                oil=0,
+            ),
+            source="trust.me",
+        )
+        production_list.append(
+            ZoneKey("US-NW-PGE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(
+                wind=0,
+                coal=0,
+                solar=10,
+                gas=0,
+                unknown=0,
+                hydro=0,
+                oil=0,
+            ),
+            source="trust.me",
+        )
+        output = ProductionBreakdownList.filter_only_zero_production(production_list)
         assert len(output) == 1
 
 

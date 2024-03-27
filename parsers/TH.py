@@ -2,11 +2,19 @@ import json
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
 from requests import Session
 
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    PriceList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -85,36 +93,35 @@ def _fetch_data(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "TH",
+    zone_key: ZoneKey = ZoneKey("TH"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     session = session or Session()
     """Request the last known production mix (in MW) of a given country."""
     data = _fetch_data(session, _as_localtime(target_datetime), "actual")
 
-    production = []
+    production_breakdowns = ProductionBreakdownList(logger)
     for item in data:
-        production.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": item["datetime"],
-                # All mapped to 'unknown' because there is no available breakdown.
-                "production": {"unknown": item["generation"]},
-                "source": EGAT_URL,
-            }
+        # All mapped to 'unknown' because there is no available breakdown.
+        mix = ProductionMix(unknown=item["generation"])
+        production_breakdowns.append(
+            zoneKey=zone_key,
+            datetime=item["datetime"],
+            production=mix,
+            source=EGAT_URL,
         )
-    return production
+    return production_breakdowns.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str = "TH",
+    zone_key: ZoneKey = ZoneKey("TH"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """
     Gets consumption for a specified zone.
 
@@ -122,48 +129,49 @@ def fetch_consumption(
     But it would be better to include exchanged electricity data if available.
     """
     session = session or Session()
-    production = fetch_production(
-        session=session, target_datetime=_as_localtime(target_datetime)
-    )
-    consumption = []
-    for item in production:
-        item["consumption"] = item["production"]["unknown"]
-        del item["production"]
-        consumption.append(item)
-    return consumption
+    production_data = _fetch_data(session, _as_localtime(target_datetime), "actual")
+    consumptions = TotalConsumptionList(logger)
+
+    for item in production_data:
+        consumptions.append(
+            zoneKey=zone_key,
+            datetime=item["datetime"],
+            consumption=item["generation"],
+            source=EGAT_URL,
+        )
+    return consumptions.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_generation_forecast(
-    zone_key: str = "TH",
+    zone_key: ZoneKey = ZoneKey("TH"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """Gets generation forecast for specified zone."""
     session = session or Session()
     data = _fetch_data(session, _as_localtime(target_datetime), "plan")
 
-    production = []
+    production_breakdowns = ProductionBreakdownList(logger)
     for item in data:
-        production.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": item["datetime"],
-                # All mapped to unknown as there is no available breakdown
-                "production": {"unknown": item["generation"]},
-                "source": EGAT_URL,
-            }
+        # All mapped to 'unknown' because there is no available breakdown.
+        mix = ProductionMix(unknown=item["generation"])
+        production_breakdowns.append(
+            zoneKey=zone_key,
+            datetime=item["datetime"],
+            production=mix,
+            source=EGAT_URL,
         )
-    return production
+    return production_breakdowns.to_list()
 
 
 def fetch_price(
-    zone_key: str = "TH",
+    zone_key: ZoneKey = ZoneKey("TH"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """
     Fetch the base tariff data from the MEA (Unit in THB). This is then added up with
     Float Time (Ft) rate from another MEA's webpage (Unit in Satang (THB/100)).
@@ -216,14 +224,15 @@ def fetch_price(
         price_ft = ft_rate_table.find_all("td")[curr_ft_month + 13].text
     if "\n" in price_ft:
         price_ft = re.findall(r"\d+\.\d+", price_ft)[0]
-
-    return {
-        "zoneKey": zone_key,
-        "currency": "THB",
-        "datetime": _as_localtime(datetime.now()),
-        "price": float(price_base) * 1000 + float(price_ft) * 10,
-        "source": MEA_URL,
-    }
+    prices = PriceList(logger)
+    prices.append(
+        zoneKey=zone_key,
+        currency="THB",
+        datetime=_as_localtime(datetime.now()),
+        price=float(price_base) * 1000 + float(price_ft) * 10,
+        source=MEA_URL,
+    )
+    return prices.to_list()
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@
     "opensource": "Código Aberto",
     "see": "acessar",
     "datasources": "fonte de dados",
-    "contribute": "Contribua <a href=\"%s\" target=\"_blank\">adicionando seu país ou território</a>"
+    "contribute": "Contribua <a href=\"{{link}}\" target=\"_blank\">adicionando seu país ou território</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -44,58 +44,25 @@
       "total-electricity-consumption": "Consumo total de eletricidade por fonte"
     },
     "emissions": "Emissões de carbono",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">adicionar ou editar fonte de dados</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">adicionar ou editar fonte de dados</a>",
     "helpfrom": "com ajuda de",
     "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
     "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
-    "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
+    "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"{{link}}\" target=\"_blank\">adicionando dados da área</a>.",
     "now": "Agora",
-    "dataIsDelayed": "Dados para essa região podem estar até %s horas atrasados. Dados em tempo real estão indisponíveis.",
+    "dataIsDelayed": "Dados para essa região podem estar até {{hours}} horas atrasados. Dados em tempo real estão indisponíveis.",
     "estimated": "estimado",
     "aggregated": "agregado",
     "dataIsEstimated": "Parte dos dados dessa região são estimados. Leia mais sobre nossa metodologia de estimativas <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">aqui</a>.",
     "exchangesAreMissing": "Trocas são consideradas para os cálculos mas não estão sendo mostradas. Leia mais sobre nossas agregações históricas <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">aqui</a>.",
     "estimatedTooltip": "Os dados em tempo-real para essa zona são estimados e baseados na origem e em suposições do modelo.",
     "aggregatedTooltip": "Os dados para essa zona são agregados e baseados em valores históricos de hora em hora.",
-    "helpUs": "Nos ajude a identificar o problema dando uma olhada nos <a href=\"%s\" target=\"_blank\">registros</a> ou contactando o provedor de dados."
+    "helpUs": "Nos ajude a identificar o problema dando uma olhada nos <a href=\"{{link}}\" target=\"_blank\">registros</a> ou contactando o provedor de dados."
   },
   "left-panel": {
     "zone-list-header-title": "Impacto climático",
     "zone-list-header-subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
     "search": "Pesquise por país ou área"
-  },
-  "country-history": {
-    "Getdata": "Obtenha dados históricos, marginais e de previsão da API",
-    "carbonintensity": {
-      "hourly": "Intensidade da emissão de carbono nas últimas 24 horas",
-      "daily": "Intensidade de carbono no último mês",
-      "monthly": "Intensidade de carbono no último ano",
-      "default": "Intensidade de carbono nas últimas %1$s"
-    },
-    "emissionsorigin": {
-      "hourly": "Origem da emissão de carbono nas últimas 24 horas",
-      "default": "Emissões nas últimas %1$s"
-    },
-    "emissionsproduction": {
-      "hourly": "Emissões de carbono produzida nas últimas 24 horas",
-      "default": "Origem de emissões nas últimas %1$s"
-    },
-    "electricityorigin": {
-      "hourly": "Origem da eletricidade nas últimas 24 horas",
-      "default": "Origem da eletricidade nas últimas %1$s"
-    },
-    "electricityproduction": {
-      "hourly": "Produção de eletricidade nas últimas 24 horas",
-      "default": "Produção de eletricidade nas últimas %1$s"
-    },
-    "electricityprices": {
-      "hourly": "Preço da eletricidade nas últimas 24 horas",
-      "default": "Preço da eletricidade nas últimas %1$s"
-    },
-    "emissions": {
-      "hourly": "Emissões de carbono nas últimas 24 horas",
-      "default": "Emissões nas últimas %1$s"
-    }
   },
   "footer": {
     "foundbugs": "Encontrou erros ou tem alguma sugestão? Contate-nos",
@@ -168,14 +135,14 @@
   "coal": "carvão",
   "oil": "petróleo",
   "unknown": "desconhecida",
-  "electricityComesFrom": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> provém de energia %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> provêm de energia %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> é armazenada utilizando %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são armazenadas utilizando %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> é exportada para %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são exportadas para %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> da eletricidade em %4$s <b>%2$s</b> é importada de %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> das emissões em %4$s <b>%2$s</b> são importadas de %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> da eletricidade em {{zoneFlag}} <b>{{zoneName}}</b> provém de energia {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> das emissões em {{zoneFlag}} <b>{{zoneName}}</b> provêm de energia {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> da eletricidade em {{zoneFlag}} <b>{{zoneName}}</b> é armazenada utilizando {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> das emissões em {{zoneFlag}} <b>{{zoneName}}</b> são armazenadas utilizando {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> da eletricidade em {{zoneFlag}} <b>{{zoneName}}</b> é exportada para {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> das emissões em {{zoneFlag}} <b>{{zoneName}}</b> são exportadas para {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> da eletricidade em {{zoneFlag}} <b>{{zoneName}}</b> é importada de {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> das emissões em {{zoneFlag}} <b>{{zoneName}}</b> são importadas de {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "O mapa",
@@ -1814,7 +1781,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no celular para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios de transição de energia.",
-    "open-source-text": "Esse aplicativo é <a href=\"%s\" target=\"_blank\">de código aberto</a> (<a href=\"%s\" target=\"_blank\">veja fontes de dados</a>) e apoiado pela comunidade.",
+    "open-source-text": "Esse aplicativo é <a href=\"{{link}}\" target=\"_blank\">de código aberto</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">veja fontes de dados</a>) e apoiado pela comunidade.",
     "feedback-button": "Compartilhar Feedback",
     "github-button": "Ver nosso GitHub",
     "twitter-button": "Compartilhar no Twitter",
