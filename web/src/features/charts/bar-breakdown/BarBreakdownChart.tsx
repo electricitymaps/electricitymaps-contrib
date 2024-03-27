@@ -85,6 +85,28 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
+  console.log('source', currentZoneDetail?.source);
+  console.log('capacitysources', currentZoneDetail?.capacitySources);
+  console.log(
+    'dischargeCo2IntensitySources',
+    currentZoneDetail?.dischargeCo2IntensitySources
+  );
+  console.log(
+    'productionCo2IntensitySources',
+    currentZoneDetail?.productionCo2IntensitySources
+  );
+
+  const emissionDataNoSplitOnSemicolon = [
+    ...new Set([
+      ...Object.values(currentZoneDetail?.dischargeCo2IntensitySources),
+      ...Object.values(currentZoneDetail?.productionCo2IntensitySources),
+    ]),
+  ];
+
+  const emissionData = [
+    ...new Set(emissionDataNoSplitOnSemicolon.flatMap((item) => item.split('; '))),
+  ];
+
   return (
     <div className="text-sm" ref={ref}>
       <BySource
@@ -141,7 +163,29 @@ function BarBreakdownChart({
       )}
       <div className="pt-2">
         <Accordion title={t('data-sources.title')} className="text-md">
-          {'blabal'}
+          <div className="py-2">
+            {currentZoneDetail?.capacitySources && (
+              <Source
+                title="Installed capacity data"
+                icon={<HiXMark />}
+                sources={GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources)}
+              />
+            )}
+            {currentZoneDetail?.source && (
+              <Source
+                title="Power generation data"
+                icon={<HiXMark />}
+                sources={[currentZoneDetail?.source]}
+              />
+            )}
+            {emissionData && (
+              <Source
+                title="Emission factor data and exchange data?"
+                icon={<HiXMark />}
+                sources={emissionData}
+              />
+            )}
+          </div>
         </Accordion>
       </div>
     </div>
@@ -149,3 +193,49 @@ function BarBreakdownChart({
 }
 
 export default BarBreakdownChart;
+
+function GetSourceArrayFromDictionary(sourceDict: {
+  [key in ElectricityModeType]: string[] | null;
+}): string[] {
+  const sourceArray: string[] = [];
+  if (sourceDict == null) {
+    return sourceArray;
+  }
+  for (const key of Object.keys(sourceDict)) {
+    const capacitySource = sourceDict?.[key as ElectricityModeType];
+    if (capacitySource != null) {
+      for (const source of capacitySource) {
+        if (!sourceArray.includes(source)) {
+          sourceArray.push(source);
+        }
+      }
+    }
+  }
+  return sourceArray;
+}
+
+function Source({
+  title,
+  icon,
+  sources,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  sources: string[];
+}) {
+  return (
+    <div className="flex flex-col pb-3">
+      <div className="flex flex-row pb-1">
+        <div className="pr-2">{icon}</div>
+        <div className="text-sm font-semibold">{title}</div>
+      </div>
+      <div className="flex flex-col gap-2">
+        {sources.map((source, index) => (
+          <div key={index} className="text-xm">
+            {source}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

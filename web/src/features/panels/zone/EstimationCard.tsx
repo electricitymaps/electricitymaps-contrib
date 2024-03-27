@@ -32,7 +32,6 @@ export default function EstimationCard({
   );
 
   useEffect(() => {
-    console.log('feedbackcard', feedbackCardCollapsedNumber);
     setIsFeedbackCardVisibile(
       feedbackEnabled &&
         showEstimationFeedbackCard(
