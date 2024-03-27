@@ -49,9 +49,6 @@
     "zone-list-header-subtitle": "Hodnotené podľa intezity uhlíka spotrebovanej elektriny (gCO₂eq/kWh)",
     "search": "Hľadaj oblasti"
   },
-  "country-history": {
-    "Getdata": "Získajte historické dáta, menšinové a predpoveď API"
-  },
   "footer": {
     "foundbugs": "Našli ste nedostatky alebo máte nápad? Povedzte nám o nich",
     "faq-text": "Je vám niečo nejasné? Navštívte ",

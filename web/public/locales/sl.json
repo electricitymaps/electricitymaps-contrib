@@ -81,9 +81,6 @@
     "zone-list-header-subtitle": "Razvrščeno glede na ogljično intenzivnost porabljene električne energije (gCO₂eq/kWh)",
     "search": "Območja iskanja"
   },
-  "country-history": {
-    "Getdata": "Z API-jem za zemljevide električne energije pridobite vsako uro zgodovinske podatke, podatke v živo in napovedi"
-  },
   "footer": {
     "foundbugs": "Ste našli hrošča, ali imate idejo? Pišite nam.",
     "faq-text": "Nejasnosti? Oglejte si naša",

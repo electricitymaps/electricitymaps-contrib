@@ -85,7 +85,6 @@
     "search": "Sök efter region"
   },
   "country-history": {
-    "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med Electricity Maps API",
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },
   "footer": {
