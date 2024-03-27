@@ -207,7 +207,6 @@ def parse_production(
     events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
-    breakpoint()
     return events
 
 
@@ -434,7 +433,6 @@ def fetch_production(
     else:
         # add hydro pumping data from ESO (B1620 only includes pumped storage production (injected on the grid) and not the pumping (withdrawn from the grid)
         eso_data = query_additional_eso_data(target_datetime, session)
-        breakpoint()
         parsed_hydro_storage_data = parse_eso_hydro_storage(eso_data, logger)
         data = ProductionBreakdownList.merge_production_breakdowns(
             [data_b1620, parsed_hydro_storage_data],
