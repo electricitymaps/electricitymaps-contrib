@@ -109,7 +109,14 @@ def query_elexon(url: str, session: Session, params: dict) -> list:
     return r.json()
 
 
-def parse_datetime(settlementDate: str, settlementPeriod: int) -> datetime:
+def parse_datetime(
+    settlementDate: str | None, settlementPeriod: int | None
+) -> datetime:
+    if settlementDate is None or settlementPeriod is None:
+        raise ParserException(
+            parser="ELEXON",
+            message="Error fetching data: settlementDate or settlementPeriod is None",
+        )
     parsed_datetime = datetime.strptime(settlementDate, "%Y-%m-%d")
     parsed_datetime += timedelta(hours=(settlementPeriod - 1) / 2)
     return parsed_datetime.replace(tzinfo=timezone.utc)
