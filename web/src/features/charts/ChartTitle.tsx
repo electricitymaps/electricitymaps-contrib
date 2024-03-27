@@ -10,11 +10,7 @@ type Props = {
   badgeText?: string;
 };
 
-export function ChartTitle({
-  translationKey,
-  hasLink = true,
-  badgeText = undefined,
-}: Props) {
+export function ChartTitle({ translationKey, badgeText = undefined }: Props) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   /*

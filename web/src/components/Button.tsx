@@ -38,7 +38,7 @@ export function Button({
     >
       <As
         className={twMerge(
-          `flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold focus:bg-inherit
+          `flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold
         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:text-neutral-400
         disabled:hover:bg-inherit disabled:dark:text-gray-500 ${getSize(
           size,
