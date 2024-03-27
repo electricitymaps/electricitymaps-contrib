@@ -47,7 +47,7 @@ export default function Accordion({
           </div>
           <div className="flex h-fit flex-row gap-2 text-nowrap">
             {badge}
-            <div className="text-lg text-white">
+            <div className="text-lg text-black dark:text-white">
               {isCollapsed ? (
                 <div data-test-id="collapse-down">
                   <HiChevronDown />

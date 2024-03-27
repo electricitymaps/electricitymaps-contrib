@@ -85,27 +85,16 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
-  console.log('source', currentZoneDetail?.source);
-  console.log('capacitysources', currentZoneDetail?.capacitySources);
-  console.log(
-    'dischargeCo2IntensitySources',
-    currentZoneDetail?.dischargeCo2IntensitySources
-  );
-  console.log(
-    'productionCo2IntensitySources',
-    currentZoneDetail?.productionCo2IntensitySources
-  );
-
-  const emissionDataNoSplitOnSemicolon = [
-    ...new Set([
-      ...Object.values(currentZoneDetail?.dischargeCo2IntensitySources),
-      ...Object.values(currentZoneDetail?.productionCo2IntensitySources),
-    ]),
-  ];
-
   const emissionData = [
-    ...new Set(emissionDataNoSplitOnSemicolon.flatMap((item) => item.split('; '))),
-  ];
+    ...new Set(
+      [
+        ...Object.values(currentZoneDetail?.dischargeCo2IntensitySources || {}),
+        ...Object.values(currentZoneDetail?.productionCo2IntensitySources || {}),
+      ].flatMap((item) => item.split('; '))
+    ),
+  ]
+    .filter((item) => !item.startsWith('assumes'))
+    .sort();
 
   return (
     <div className="text-sm" ref={ref}>
@@ -163,25 +152,37 @@ function BarBreakdownChart({
       )}
       <div className="pt-2">
         <Accordion title={t('data-sources.title')} className="text-md">
-          <div className="py-2">
+          <div>
             {currentZoneDetail?.capacitySources && (
               <Source
                 title="Installed capacity data"
-                icon={<HiXMark />}
+                icon={
+                  <div
+                    className={`mt-[2px] h-[16px] w-[16px]  bg-[url('/images/utility-pole_light.svg')] bg-center dark:bg-[url('/images/utility-pole_dark.svg')]`}
+                  />
+                }
                 sources={GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources)}
               />
             )}
             {currentZoneDetail?.source && (
               <Source
                 title="Power generation data"
-                icon={<HiXMark />}
+                icon={
+                  <div
+                    className={`mt-[1px] h-[16px] w-[16px] bg-[url('/images/wind-turbine_light.svg')] bg-center dark:bg-[url('/images/wind-turbine_dark.svg')]`}
+                  />
+                }
                 sources={[currentZoneDetail?.source]}
               />
             )}
             {emissionData && (
               <Source
-                title="Emission factor data and exchange data?"
-                icon={<HiXMark />}
+                title="Emission factor data"
+                icon={
+                  <div
+                    className={`mt-[1px] h-[16px] w-[16px] bg-[url('/images/industry_light.svg')] bg-center dark:bg-[url('/images/industry_dark.svg')]`}
+                  />
+                }
                 sources={emissionData}
               />
             )}
@@ -224,10 +225,10 @@ function Source({
   sources: string[];
 }) {
   return (
-    <div className="flex flex-col pb-3">
-      <div className="flex flex-row pb-1">
-        <div className="pr-2">{icon}</div>
-        <div className="text-sm font-semibold">{title}</div>
+    <div className="flex flex-col py-2">
+      <div className="flex flex-row pb-2">
+        <div className="mr-1">{icon}</div>
+        <div className="text-md font-semibold">{title}</div>
       </div>
       <div className="flex flex-col gap-2">
         {sources.map((source, index) => (
