@@ -99,7 +99,6 @@
     "search": "搜尋地區"
   },
   "country-history": {
-    "Getdata": "使用電力地圖 API 獲取每小時的歷史數據、即時數據和預測數據",
     "not-enough-data": "沒有足夠的數據來顯示圖表"
   },
   "footer": {

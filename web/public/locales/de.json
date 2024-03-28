@@ -144,7 +144,6 @@
     }
   },
   "country-history": {
-    "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
     "not-enough-data": "Für die Diagrammanzeige sind nicht genügend Daten verfügbar"
   },
   "footer": {

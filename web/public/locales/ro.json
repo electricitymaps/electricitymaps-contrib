@@ -50,9 +50,6 @@
     "zone-list-header-subtitle": "În ordinea concentrației de dioxid de carbon a electricității consumate (gCO₂eq/kWh)",
     "search": "Căutați zone"
   },
-  "country-history": {
-    "Getdata": "Acces la date din trecut, la interval de o ora, date în timp real, și predicții cu Electricity Maps API"
-  },
   "footer": {
     "foundbugs": "Ați găsit defecte sau aveți sugestii? Reportați-le",
     "faq-text": "Neclarități? Verificați",

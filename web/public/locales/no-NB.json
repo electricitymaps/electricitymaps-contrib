@@ -31,7 +31,6 @@
   "biomass": "biomasse",
   "coal": "kull",
   "country-history": {
-    "Getdata": "Få sanntids-, historiske- eller framskrivingsdata med Electricity Maps API",
     "not-enough-data": "Ikke tilstrekkelig data for å vise graf"
   },
   "country-panel": {
