@@ -25,15 +25,15 @@ def fixture_requests_mock():
 def test_fetch_production(fixture_requests_mock, snapshot):
     """That we can fetch the production mix at the current time."""
     mock_api_response = [
-        ["АЕЦ 47,31%", 2118.06],
-        ["Кондензационни ТЕЦ 17,04%", 762.85],
-        ["Топлофикационни ТЕЦ 7,63%", 341.76],
-        ["Заводски ТЕЦ 2,60%", 116.44],
-        ["ВЕЦ 11,75%", 525.97],
-        ["Малки ВЕЦ 5,65%", 252.82],
-        ["ВяЕЦ 3,99%", 178.62],
-        ["ФЕЦ 3,56%", 159.23],
-        ["Био ЕЦ 0,48%", 21.58],
+        ["NPP 47,31%", 2118.06],
+        ["CHP 17,04%", 762.85],
+        ["Heating TPPs 7,63%", 341.76],
+        ["Factory TPPs 2,60%", 116.44],
+        ["HPP 11,75%", 525.97],
+        ["Small HPPs 5,65%", 252.82],
+        ["Wind 3,99%", 178.62],
+        ["PV 3,56%", 159.23],
+        ["Bio 0,48%", 21.58],
     ]
     fixture_requests_mock.get(SOURCE_API_URL, json=mock_api_response)
 

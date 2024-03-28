@@ -12,20 +12,18 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 PARSER = "BG.py"
 
 SOURCE = "eso.bg"
-SOURCE_API_URL = "http://www.eso.bg/api/rabota_na_EEC_json.php"
+SOURCE_API_URL = "http://www.eso.bg/api/rabota_na_EEC_json.php?en"
 
 PRODUCTION_TYPE_TO_PRODUCTION_MODE = {
-    "АЕЦ": "nuclear",  # NPP
-    "Кондензационни ТЕЦ": "coal",  # CHP
-    "Топлофикационни ТЕЦ": "gas",  # Heating TPPs
-    "Заводски ТЕЦ": "gas",  # Factory TPPs
-    "ВЕЦ": "hydro",  # HPP
-    "Малки ВЕЦ": "hydro",  # Small HPPs
-    "ВяЕЦ": "wind",  # Wind
-    "ФЕЦ": "solar",  # PV
-    "Био ТЕЦ": "biomass",
-    "Био ЕЦ": "biomass",  # Bio
-    # "Товар на РБ": "consumption",  # Load
+    "NPP": "nuclear",
+    "CHP": "coal",
+    "Heating TPPs": "gas",
+    "Factory TPPs": "gas",
+    "HPP": "hydro",
+    "Small HPPs": "hydro",
+    "Wind": "wind",
+    "PV": "solar",
+    "Bio": "biomass",
 }
 
 
