@@ -5,7 +5,10 @@ from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
-from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
@@ -42,23 +45,20 @@ def _to_local_datetime(dt: datetime) -> datetime:
     return dt.astimezone(TIMEZONE)
 
 
-def extract_exchange(raw_data, exchange) -> float | None:
+def _parse_exchange_data(
+    exchange_data: list[dict], sorted_zone_keys: str
+) -> float | None:
     """Extracts flow value and direction for a given exchange."""
-    search_value = EXCHANGE_JSON_MAPPING[exchange]
+    exchange_name = EXCHANGE_JSON_MAPPING[sorted_zone_keys]
+    net_flow = next(
+        (item["value"] for item in exchange_data if item["nombre"] == exchange_name),
+        None,
+    )
 
-    interconnection = None
-    for datapoint in raw_data:
-        if datapoint["nombre"] == search_value:
-            interconnection = float(datapoint["value"])
+    if net_flow is None:
+        raise ValueError(f"No flow value found for exchange {sorted_zone_keys}")
 
-    if interconnection is None:
-        return None
-
-    # positive and negative flow directions do not always correspond to EM ordering of exchanges
-    if exchange in ["GT->SV", "GT->HN", "HN->SV", "CR->NI", "HN->NI"]:
-        interconnection *= -1
-
-    return interconnection
+    return net_flow
 
 
 @refetch_frequency(timedelta(days=1))
@@ -134,39 +134,47 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1: str = "CR",
-    zone_key2: str = "PA",
+    zone_key1: ZoneKey = ZoneKey("CR"),
+    zone_key2: ZoneKey = ZoneKey("PA"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict]:
     """Gets an exchange pair from the SIEPAC system."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    sorted_zones = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    if sorted_zone_keys not in EXCHANGE_JSON_MAPPING:
+        raise ParserException(
+            PARSER, "This exchange is not implemented", sorted_zone_keys
+        )
 
-    if sorted_zones not in EXCHANGE_JSON_MAPPING:
-        raise NotImplementedError("This exchange is not implemented.")
+    if target_datetime is not None:
+        raise ParserException(
+            PARSER,
+            "This parser is not yet able to parse historical data",
+            sorted_zone_keys,
+        )
 
-    s = session or Session()
-
-    raw_data = s.get(EXCHANGE_URL).json()
-    raw_flow = extract_exchange(raw_data, sorted_zones)
-    if raw_flow is None:
-        raise ValueError(f"No flow value found for exchange {sorted_zones}")
-
-    flow = round(raw_flow, 1)
+    session = session or Session()
     dt = _to_local_datetime(datetime.now()).replace(minute=0)
+    response = session.get(EXCHANGE_URL)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching exchange error code: {response.status_code}: {response.text}",
+            sorted_zone_keys,
+        )
 
-    exchange = {
-        "sortedZoneKeys": sorted_zones,
-        "datetime": dt,
-        "netFlow": flow,
-        "source": "enteoperador.org",
-    }
+    net_flow = _parse_exchange_data(response.json(), sorted_zone_keys=sorted_zone_keys)
 
-    return exchange
+    exchange_list = ExchangeList(logger)
+    exchange_list.append(
+        zoneKey=ZoneKey(sorted_zone_keys),
+        datetime=dt,
+        netFlow=net_flow,
+        source="enteoperador.org",
+    )
+    return exchange_list.to_list()
 
 
 if __name__ == "__main__":
