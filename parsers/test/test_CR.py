@@ -53,8 +53,10 @@ def test_fetch_production_historical(fixture_requests_mock, snapshot):
         mock_json_respose = json.load(f)
     fixture_requests_mock.get(re.compile(PRODUCTION_URL), json=mock_json_respose)
 
-    historical_datetime = datetime(2021, 7, 16, tzinfo=TIMEZONE)
-    production_breakdowns = fetch_production(target_datetime=historical_datetime)
+    historical_datetime = datetime(2021, 7, 16, 10, 20, 30, tzinfo=TIMEZONE)
+    production_breakdowns = fetch_production(
+        target_datetime=historical_datetime.astimezone(timezone.utc)
+    )
 
     snapshot.assert_match(
         [

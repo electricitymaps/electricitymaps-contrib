@@ -6,7 +6,7 @@ snapshots = Snapshot()
 
 snapshots["test_fetch_exchange_now 1"] = [
     {
-        "datetime": "2024-01-01T12:00:00-06:00",
+        "datetime": "2024-01-01T06:00:00-06:00",
         "netFlow": 31.558895,
         "sortedZoneKeys": "CR->PA",
         "source": "enteoperador.org",

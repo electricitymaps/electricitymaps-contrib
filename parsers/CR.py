@@ -1,4 +1,4 @@
-from datetime import datetime, time, timedelta
+from datetime import datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -39,10 +39,13 @@ EXCHANGE_JSON_MAPPING = {
 }
 
 
-def _to_local_datetime(dt: datetime) -> datetime:
-    if dt.tzinfo is None:
-        return dt.replace(tzinfo=TIMEZONE)
-    return dt.astimezone(TIMEZONE)
+def _as_datetime_utc(dt: datetime) -> datetime:
+    """Converts a datetime object to UTC. Assumes naive datetimes to be UTC."""
+    is_naive = dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None
+    if is_naive:
+        dt = dt.replace(tzinfo=timezone.utc)
+
+    return dt.astimezone(timezone.utc)
 
 
 def _parse_exchange_data(
@@ -72,32 +75,30 @@ def fetch_production(
     session = Session()
 
     # if no target_datetime is specified, this defaults to now.
-    target_datetime = target_datetime or datetime.now()
-    local_datetime = _to_local_datetime(target_datetime)
+    now = datetime.now(timezone.utc)
+    target_datetime = (
+        now if target_datetime is None else _as_datetime_utc(target_datetime)
+    )
 
-    # if before 01:30am on the current day then fetch previous day due to
-    # data lag.
-    today = _to_local_datetime(datetime.now()).date()
-    if local_datetime.date() == today:
-        local_datetime = (
-            local_datetime
-            if local_datetime.time() >= time(1, 30)
-            else local_datetime - timedelta(days=1)
-        )
+    # the backend production API works in terms of local times
+    now = now.astimezone(TIMEZONE)
+    target_datetime = target_datetime.astimezone(TIMEZONE)
 
-    cutoff_datetime = _to_local_datetime(datetime(2017, 7, 1))
-    if local_datetime < cutoff_datetime:
-        # data availability limit found by manual trial and error
+    # if before 01:30am on the current day then fetch previous day due to data lag.
+    today = datetime.combine(now, time(), tzinfo=TIMEZONE)  # truncates to day
+    if today <= target_datetime < today + timedelta(days=1, hours=30):
+        target_datetime -= timedelta(days=1)
+
+    # data availability limit found by manual trial and error
+    cutoff_datetime = datetime(2017, 7, 1, tzinfo=TIMEZONE)
+    if target_datetime < cutoff_datetime:
         raise ParserException(
             parser=PARSER,
-            message=f"CR API does not provide data before {cutoff_datetime.isoformat()}, {local_datetime.isoformat()} was requested.",
+            message=f"CR API does not provide data before {cutoff_datetime.isoformat()}, {target_datetime.isoformat()} was requested.",
             zone_key=zone_key,
         )
 
-    day = local_datetime.strftime("%d")
-    month = local_datetime.strftime("%m")
-    year = local_datetime.strftime("%Y")
-    url = f"{PRODUCTION_URL}?anno={year}&mes={month}&dia={day}"
+    url = f"{PRODUCTION_URL}?{target_datetime.strftime('anno=%Y&mes=%m&dia=%d')}"
     response = session.get(url)
     if not response.ok:
         raise ParserException(
@@ -114,9 +115,11 @@ def fetch_production(
         if production_mode not in PRODUCTION_MODES:
             continue
 
-        timestamp = _to_local_datetime(
-            datetime.strptime(hourly_item["fecha"], "%Y-%m-%d %H:%M:%S.%f")
-        )
+        # returned timestamps are missing timezone but are local times
+        timestamp = datetime.strptime(
+            hourly_item["fecha"], "%Y-%m-%d %H:%M:%S.%f"
+        ).replace(tzinfo=TIMEZONE)
+
         production_mix = production_mixes.get(timestamp, ProductionMix())
         production_mix.add_value(production_mode, hourly_item["dato"])
 
@@ -156,7 +159,7 @@ def fetch_exchange(
         )
 
     session = session or Session()
-    dt = _to_local_datetime(datetime.now()).replace(minute=0)
+    dt = datetime.now(TIMEZONE).replace(minute=0, second=0, microsecond=0)
     response = session.get(EXCHANGE_URL)
     if not response.ok:
         raise ParserException(
@@ -175,26 +178,3 @@ def fetch_exchange(
         source="enteoperador.org",
     )
     return exchange_list.to_list()
-
-
-if __name__ == "__main__":
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
-
-    from pprint import pprint
-
-    print("fetch_production() ->")
-    pprint(fetch_production())
-
-    # print('fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
-    # pprint(fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
-
-    # # this should work
-    # print('fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
-    # pprint(fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
-
-    # # this should return None
-    # print('fetch_production(target_datetime=datetime.strptime("2007-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
-    # pprint(fetch_production(target_datetime=datetime.strptime("2007-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
-
-    print("fetch_exchange() ->")
-    print(fetch_exchange())
