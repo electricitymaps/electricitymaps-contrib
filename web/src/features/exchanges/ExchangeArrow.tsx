@@ -1,14 +1,11 @@
-/* eslint-disable unicorn/no-null */
-import MobileTooltipWrapper from 'components/tooltips/MobileTooltipWrapper';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useSetAtom } from 'jotai';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
 
 import ExchangeTooltip from './ExchangeTooltip';
-import MobileExchangeTooltip from './MobileExchangeTooltip';
 import { quantizedCo2IntensityScale, quantizedExchangeSpeedScale } from './scales';
 
 interface ExchangeArrowProps {
@@ -26,14 +23,37 @@ function ExchangeArrow({
   map,
   colorBlindMode,
 }: ExchangeArrowProps) {
-  const mapZoom = map.getZoom();
-  const colorBlindModeEnabled = colorBlindMode;
-  const absFlow = Math.abs(data.netFlow ?? 0);
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
-  const setIsMoving = useSetAtom(mapMovingAtom);
   if (!lonlat) {
     return null;
   }
+
+  const absFlow = Math.abs(netFlow ?? 0);
+  // Don't render if the flow is very low ...
+  if (absFlow < 1) {
+    return null;
+  }
+  const mapZoom = map.getZoom();
+  const projection = map.project(lonlat);
+  const transform = {
+    x: projection.x,
+    y: projection.y,
+    k: 0.04 + (mapZoom - 1.5) * 0.1,
+    r: rotation + (netFlow > 0 ? 180 : 0),
+  };
+
+  if (
+    // or if the arrow would be very tiny
+    transform.k < 0.1 ||
+    // or if it would be rendered outside of viewport.
+    transform.x + 100 * transform.k < 0 ||
+    transform.x - 100 * transform.k > viewportWidth ||
+    transform.y - 100 * transform.k > viewportHeight
+  ) {
+    return null;
+  }
+
+  const setIsMoving = useSetAtom(mapMovingAtom);
 
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
@@ -42,108 +62,43 @@ function ExchangeArrow({
       return;
     }
     exchangeLayer.addEventListener('wheel', cancelWheel, {
-      passive: false,
+      passive: true,
     });
     return () => exchangeLayer.removeEventListener('wheel', cancelWheel);
   }, []);
 
-  const imageSource = useMemo(() => {
-    const prefix = colorBlindModeEnabled ? 'colorblind-' : '';
-    const intensity = quantizedCo2IntensityScale(co2intensity);
-    const speed = quantizedExchangeSpeedScale(Math.abs(netFlow));
-    return resolvePath(`images/arrows/${prefix}arrow-${intensity}-animated-${speed}`)
-      .pathname;
-  }, [colorBlindModeEnabled, co2intensity, netFlow]);
-
-  const projection = map.project(lonlat);
-
-  const transform = {
-    x: projection.x,
-    y: projection.y,
-    k: 0.04 + (mapZoom - 1.5) * 0.1,
-    r: rotation + (netFlow > 0 ? 180 : 0),
-  };
-
-  // Don't render if the flow is very low ...
-  if (absFlow < 1) {
-    return null;
-  }
-
-  // ... or if the arrow would be very tiny ...
-  if (transform.k < 0.1) {
-    return null;
-  }
-
-  // ... or if it would be rendered outside of viewport.
-  if (transform.x + 100 * transform.k < 0) {
-    return null;
-  }
-
-  if (transform.y + 100 * transform.k < 0) {
-    return null;
-  }
-
-  if (transform.x - 100 * transform.k > viewportWidth) {
-    return null;
-  }
-
-  if (transform.y - 100 * transform.k > viewportHeight) {
-    return null;
-  }
+  const prefix = colorBlindMode ? 'colorblind-' : '';
+  const intensity = quantizedCo2IntensityScale(co2intensity);
+  const speed = quantizedExchangeSpeedScale(absFlow);
+  const imageSource = resolvePath(
+    `images/arrows/${prefix}arrow-${intensity}-animated-${speed}`
+  ).pathname;
 
   return (
-    <>
-      <MobileTooltipWrapper
-        tooltipClassName="flex max-h-[256px] max-w-[512px]"
-        tooltipContent={<MobileExchangeTooltip exchangeData={data} />}
-        side="top"
-        sideOffset={10}
+    <TooltipWrapper
+      tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px]"
+      tooltipContent={<ExchangeTooltip exchangeData={data} />}
+      side="right"
+      sideOffset={10}
+    >
+      <picture
+        id={key}
+        style={{
+          transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
+          cursor: 'pointer',
+          overflow: 'hidden',
+          position: 'absolute',
+          pointerEvents: 'all',
+          imageRendering: 'crisp-edges',
+          left: '-25px',
+          top: '-41px',
+        }}
+        onWheel={() => setIsMoving(true)}
       >
-        <picture
-          id={key}
-          className="md:hidden"
-          style={{
-            transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
-            cursor: 'pointer',
-            overflow: 'hidden',
-            position: 'absolute',
-            pointerEvents: 'all',
-            imageRendering: 'crisp-edges',
-            left: '-25px',
-            top: '-41px',
-          }}
-          onWheel={() => setIsMoving(true)}
-        >
-          <source srcSet={`${imageSource}.webp`} type="image/webp" />
-          <img src={`${imageSource}.gif`} alt="" draggable={false} />
-        </picture>
-      </MobileTooltipWrapper>
-      <TooltipWrapper
-        tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex"
-        tooltipContent={<ExchangeTooltip exchangeData={data} />}
-        side="right"
-        sideOffset={10}
-      >
-        <picture
-          id={key}
-          className="hidden md:block"
-          style={{
-            transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
-            cursor: 'pointer',
-            overflow: 'hidden',
-            position: 'absolute',
-            pointerEvents: 'all',
-            imageRendering: 'crisp-edges',
-            left: '-25px',
-            top: '-41px',
-          }}
-          onWheel={() => setIsMoving(true)}
-        >
-          <source srcSet={`${imageSource}.webp`} type="image/webp" />
-          <img src={`${imageSource}.gif`} alt="" draggable={false} />
-        </picture>
-      </TooltipWrapper>
-    </>
+        <source srcSet={`${imageSource}.webp`} type="image/webp" />
+        <img src={`${imageSource}.gif`} alt="" draggable={false} />
+      </picture>
+    </TooltipWrapper>
   );
 }
 

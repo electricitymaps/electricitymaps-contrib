@@ -1,5 +1,5 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface TooltipWrapperProperties {
@@ -14,13 +14,27 @@ export default function TooltipWrapper(
   properties: TooltipWrapperProperties
 ): ReactElement {
   const { tooltipContent, children, side, sideOffset, tooltipClassName } = properties;
+  const [isOpen, setIsOpen] = useState(false);
   if (!tooltipContent) {
     return children;
   }
   return (
-    <Tooltip.Provider disableHoverableContent>
-      <Tooltip.Root delayDuration={0}>
-        <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>
+    <Tooltip.Provider>
+      <Tooltip.Root open={isOpen} delayDuration={0}>
+        <Tooltip.Trigger
+          onMouseEnter={() => {
+            setIsOpen(true);
+          }}
+          onMouseLeave={() => {
+            setIsOpen(false);
+          }}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+          asChild
+        >
+          {children}
+        </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
             className={twMerge(
@@ -29,6 +43,12 @@ export default function TooltipWrapper(
             )}
             sideOffset={sideOffset ?? 3}
             side={side ?? 'left'}
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            onPointerDownOutside={() => {
+              setIsOpen(false);
+            }}
           >
             <div>{tooltipContent}</div>
           </Tooltip.Content>
