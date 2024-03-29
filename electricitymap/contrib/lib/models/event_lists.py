@@ -302,6 +302,7 @@ class ProductionBreakdownList(AggregatableEventList):
         production_breakdowns: "ProductionBreakdownList",
         new_production_breakdowns: "ProductionBreakdownList",
         logger: Logger,
+        matching_timestamps_only: bool = False,
     ) -> "ProductionBreakdownList":
         """Given a new batch of production breakdowns, update the existing ones."""
         if len(new_production_breakdowns) == 0:
@@ -309,13 +310,28 @@ class ProductionBreakdownList(AggregatableEventList):
         elif len(production_breakdowns) == 0:
             return new_production_breakdowns
 
+        updated_production_breakdowns = ProductionBreakdownList(logger)
+
+        if matching_timestamps_only:
+            diff = abs(len(new_production_breakdowns) - len(production_breakdowns))
+            logger.info(
+                f"Filtering production breakdowns to keep only the events where both the production breakdowns have matching datetimes, {diff} events where discarded."
+            )
+
         for new_event in new_production_breakdowns.events:
             if new_event.datetime in production_breakdowns:
                 existing_event = production_breakdowns[new_event.datetime]
                 updated_event = ProductionBreakdown._update(existing_event, new_event)
-                production_breakdowns[new_event.datetime] = updated_event
-            else:
-                production_breakdowns.append(
+                updated_production_breakdowns.append(
+                    updated_event.zoneKey,
+                    updated_event.datetime,
+                    updated_event.source,
+                    updated_event.production,
+                    updated_event.storage,
+                    updated_event.sourceType,
+                )
+            elif matching_timestamps_only is False:
+                updated_production_breakdowns.append(
                     new_event.zoneKey,
                     new_event.datetime,
                     new_event.source,
@@ -324,7 +340,19 @@ class ProductionBreakdownList(AggregatableEventList):
                     new_event.sourceType,
                 )
 
-        return production_breakdowns
+        if matching_timestamps_only is False:
+            for existing_event in production_breakdowns.events:
+                if existing_event.datetime not in new_production_breakdowns:
+                    updated_production_breakdowns.append(
+                        existing_event.zoneKey,
+                        existing_event.datetime,
+                        existing_event.source,
+                        existing_event.production,
+                        existing_event.storage,
+                        existing_event.sourceType,
+                    )
+
+        return updated_production_breakdowns
 
     @staticmethod
     def filter_only_zero_production(
