@@ -3,7 +3,6 @@ from logging import Logger, getLogger
 
 from requests import Session
 
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
@@ -55,9 +54,8 @@ def fetch_production(
     production_mix = ProductionMix()
     for header, value in response_payload:
         production_type, _delimiter, _percentage = header.rpartition(" ")
-        production_mode = PRODUCTION_TYPE_TO_PRODUCTION_MODE.get(production_type)
-        if production_mode in PRODUCTION_MODES:
-            production_mix.add_value(production_mode, value)
+        production_mode = PRODUCTION_TYPE_TO_PRODUCTION_MODE[production_type]
+        production_mix.add_value(production_mode, value)
 
     production_breakdown_list = ProductionBreakdownList(logger)
     production_breakdown_list.append(
