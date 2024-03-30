@@ -1,4 +1,5 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
+import { useDimensions } from 'hooks/dimensions';
 import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -14,23 +15,26 @@ export default function TooltipWrapper(
   properties: TooltipWrapperProperties
 ): ReactElement {
   const { tooltipContent, children, side, sideOffset, tooltipClassName } = properties;
-  const [isOpen, setIsOpen] = useState(false);
   if (!tooltipContent) {
     return children;
   }
+  const [isOpen, setIsOpen] = useState(false);
+  const { isMobile } = useDimensions();
+
+  // Declare the event handlers outside of the JSX to avoid re-creating them on every render.
+  const handleMouseEnter = isMobile ? () => {} : () => setIsOpen(true);
+  const handleMouseLeave = isMobile ? () => {} : () => setIsOpen(false);
+  const handleClick = isMobile ? () => setIsOpen(!isOpen) : () => {};
+  const handleContentClick = isMobile ? () => setIsOpen(false) : () => {};
+  const handleContentPointerDownOutside = isMobile ? () => setIsOpen(false) : () => {};
+
   return (
     <Tooltip.Provider>
       <Tooltip.Root open={isOpen} delayDuration={0}>
         <Tooltip.Trigger
-          onMouseEnter={() => {
-            setIsOpen(true);
-          }}
-          onMouseLeave={() => {
-            setIsOpen(false);
-          }}
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
           asChild
         >
           {children}
@@ -43,14 +47,10 @@ export default function TooltipWrapper(
             )}
             sideOffset={sideOffset ?? 3}
             side={side ?? 'left'}
-            onClick={() => {
-              setIsOpen(false);
-            }}
-            onPointerDownOutside={() => {
-              setIsOpen(false);
-            }}
+            onClick={handleContentClick}
+            onPointerDownOutside={handleContentPointerDownOutside}
           >
-            <div>{tooltipContent}</div>
+            {tooltipContent}
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>
