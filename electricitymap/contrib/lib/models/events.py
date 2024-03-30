@@ -1,4 +1,5 @@
 # pylint: disable=no-member
+import datetime as dt
 import math
 from abc import ABC, abstractmethod
 from collections.abc import Set
@@ -18,9 +19,9 @@ from electricitymap.contrib.lib.types import ZoneKey
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
-def _is_naive(dt: datetime) -> bool:
+def _is_naive(t: dt.datetime) -> bool:
     """Determines if a datetime object is naive."""
-    return dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None
+    return t.tzinfo is None or t.tzinfo.utcoffset(t) is None
 
 
 def _none_safe_round(value: float | None, precision: int = 6) -> float | None:
@@ -300,7 +301,7 @@ class Event(BaseModel, ABC):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v: datetime, values: dict[str, Any]):
+    def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]) -> datetime:
         if _is_naive(v):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
@@ -764,7 +765,7 @@ class Price(Event):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v: datetime) -> datetime:
+    def _validate_datetime(cls, v: dt.datetime) -> datetime:
         """Prices are given for the day ahead, so we should allow them to be in the future."""
         if _is_naive(v):
             raise ValueError(f"Missing timezone: {v}")
