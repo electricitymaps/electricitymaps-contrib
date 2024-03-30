@@ -65,11 +65,6 @@ FUEL_MAPPING = {
 }
 
 
-def _is_naive(dt: datetime) -> bool:
-    """Determines if a datetime object is naive."""
-    return dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None
-
-
 def get_api_subscription_key(session: Session) -> str:
     pjm_settings: Response = session.get(
         "https://dataminer2.pjm.com/config/settings.json"
@@ -221,8 +216,6 @@ def get_miso_exchange(session: Session) -> tuple:
 
     find_timestamp = soup.find("div", {"id": "body_0_divTimeStamp"})
     dt = parser.parse(find_timestamp.text, tzinfos={"EDT": -4 * 3600, "EST": -5 * 3600})
-    if _is_naive(dt):
-        dt = dt.replace(tzinfo=TIMEZONE)
 
     return flow, dt
 
@@ -265,9 +258,10 @@ def get_exchange_data(interface, session: Session) -> list:
 
     converted_flows = []
     for flow in flows:
-        time_of_the_day = datetime.strptime(flow[1], "%I:%M %p").replace(
-            tzinfo=TIMEZONE
-        )
+        time_of_the_day = datetime.strptime(
+            flow[1],
+            "%I:%M %p",  # make sure to use %I and not %H for %p to take effect
+        ).replace(tzinfo=TIMEZONE)
         dt = date.replace(hour=time_of_the_day.hour, minute=time_of_the_day.minute)
         converted_flow = (flow[0], dt)
         converted_flows.append(converted_flow)
