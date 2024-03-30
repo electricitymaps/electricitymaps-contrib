@@ -6,7 +6,6 @@ import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
-import { useDimensions } from 'hooks/dimensions';
 import { useAtom, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
@@ -43,7 +42,8 @@ const MAP_STYLE = {
   layers: [],
   glyphs: 'fonts/{fontstack}/{range}.pbf',
 };
-const { isMobile } = useDimensions();
+
+const isMobile = window.innerWidth < 768;
 
 type MapPageProps = {
   onMapLoad?: (map: maplibregl.Map) => void;
