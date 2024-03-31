@@ -301,7 +301,7 @@ class Event(BaseModel, ABC):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]) -> datetime:
+    def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]) -> dt.datetime:
         if _is_naive(v):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
