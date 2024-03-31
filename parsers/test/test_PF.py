@@ -1,52 +1,58 @@
 from datetime import datetime, timedelta, timezone
+from importlib import resources
 
-import pytest
-import requests_mock
 from freezegun import freeze_time
+from requests import Session
+from requests_mock import ANY, GET, Adapter
+from snapshottest import TestCase
 
-from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from parsers.PF import PRODUCTION_API_URL, fetch_production
-
-
-@pytest.fixture()
-def fixture_requests_mock():
-    with requests_mock.Mocker() as mock_requests:
-        yield mock_requests
+from parsers.lib.exceptions import ParserException
+from parsers.PF import fetch_production
 
 
-@freeze_time("2024-01-01 12:00:00")
-def test_fetch_production_live(fixture_requests_mock, snapshot):
-    """That we can fetch the production mix at the current time."""
-    with open("parsers/test/mocks/PF/production_live.html") as f:
-        mock_api_response = f.read()
-    fixture_requests_mock.get(PRODUCTION_API_URL, text=mock_api_response)
+class TestPF(TestCase):
+    def setUp(self) -> None:
+        super().setUp()
 
-    production_breakdowns = fetch_production()
+        self.session = Session()
+        self.adapter = Adapter()
+        self.session.mount("https://", self.adapter)
 
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production_breakdowns
-        ]
-    )
+    @freeze_time("2024-01-01 12:00:00")
+    def test_fetch_production_live(self):
+        """That we can fetch the production mix at the current time."""
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            text=resources.files("parsers.test.mocks.PF")
+            .joinpath("production_live.html")
+            .read_text(),
+        )
 
+        production = fetch_production(session=self.session)
 
-def test_fetch_production_raises_parser_exception_on_historical_data(
-    fixture_requests_mock,
-):
-    """That a ParserException is raised if requesting historical data (not supported yet)."""
-    fixture_requests_mock.get(PRODUCTION_API_URL, json=[])
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "zoneKey": element["zoneKey"],
+                    "production": element["production"],
+                    "storage": element["storage"],
+                    "source": element["source"],
+                    "sourceType": element["sourceType"].value,
+                    "correctedModes": element["correctedModes"],
+                }
+                for element in production
+            ]
+        )
 
-    with pytest.raises(
-        ParserException, match="This parser is not yet able to parse historical data"
-    ):
-        historical_datetime = datetime.now(timezone.utc) - timedelta(days=1)
-        fetch_production(target_datetime=historical_datetime)
+    def test_fetch_production_raises_parser_exception_on_historical_data(self):
+        """That a ParserException is raised if requesting historical data (not supported yet)."""
+        self.adapter.register_uri(GET, ANY, json=[])
+
+        with self.assertRaisesRegex(
+            ParserException,
+            expected_regex="This parser is not yet able to parse historical data",
+        ):
+            historical_datetime = datetime.now(timezone.utc) - timedelta(days=1)
+            fetch_production(target_datetime=historical_datetime)

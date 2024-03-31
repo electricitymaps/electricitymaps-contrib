@@ -4,7 +4,7 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots["test_fetch_production_live 1"] = [
+snapshots["TestPF::test_fetch_production_live 1"] = [
     {
         "correctedModes": [],
         "datetime": "2024-01-01T02:00:00-10:00",
