@@ -4,7 +4,7 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots["test_fetch_exchange_now 1"] = [
+snapshots["TestCR::test_fetch_exchange_live 1"] = [
     {
         "datetime": "2024-01-01T06:00:00-06:00",
         "netFlow": 31.558895,
@@ -14,7 +14,7 @@ snapshots["test_fetch_exchange_now 1"] = [
     }
 ]
 
-snapshots["test_fetch_production_historical 1"] = [
+snapshots["TestCR::test_fetch_production_historical 1"] = [
     {
         "correctedModes": [],
         "datetime": "2021-07-16T00:00:00-06:00",
@@ -401,7 +401,7 @@ snapshots["test_fetch_production_historical 1"] = [
     },
 ]
 
-snapshots["test_fetch_production_now 1"] = [
+snapshots["TestCR::test_fetch_production_live 1"] = [
     {
         "correctedModes": [],
         "datetime": "2024-01-01T00:00:00-06:00",

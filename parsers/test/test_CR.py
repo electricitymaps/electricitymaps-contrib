@@ -1,110 +1,122 @@
 import json
-import re
 from datetime import datetime, timedelta, timezone
+from importlib import resources
 
-import pytest
-import requests_mock
 from freezegun import freeze_time
+from requests import Session
+from requests_mock import ANY, GET, Adapter
+from snapshottest import TestCase
 
-from parsers.CR import (
-    EXCHANGE_URL,
-    PRODUCTION_URL,
-    TIMEZONE,
-    fetch_exchange,
-    fetch_production,
-)
+from parsers.CR import fetch_exchange, fetch_production
 from parsers.lib.exceptions import ParserException
 
 
-@pytest.fixture()
-def fixture_requests_mock():
-    with requests_mock.Mocker() as mock_requests:
-        yield mock_requests
+class TestCR(TestCase):
+    def setUp(self) -> None:
+        super().setUp()
 
+        self.session = Session()
+        self.adapter = Adapter()
+        self.session.mount("https://", self.adapter)
 
-@freeze_time("2024-01-01 12:00:00")
-def test_fetch_production_now(fixture_requests_mock, snapshot):
-    """That we can fetch energy production values at the current time."""
-    with open("parsers/test/mocks/CR/production_live.json") as f:
-        mock_json_respose = json.load(f)
-    fixture_requests_mock.get(re.compile(PRODUCTION_URL), json=mock_json_respose)
+    @freeze_time("2024-01-01 12:00:00")
+    def test_fetch_production_live(self):
+        """That we can fetch the production mix at the current time."""
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.CR")
+                .joinpath("production_live.json")
+                .read_text()
+            ),
+        )
 
-    production_breakdowns = fetch_production()
+        production = fetch_production(session=self.session)
 
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production_breakdowns
-        ]
-    )
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "zoneKey": element["zoneKey"],
+                    "production": element["production"],
+                    "storage": element["storage"],
+                    "source": element["source"],
+                    "sourceType": element["sourceType"].value,
+                    "correctedModes": element["correctedModes"],
+                }
+                for element in production
+            ]
+        )
 
+    def test_fetch_production_historical(self):
+        """That we can fetch historical energy production values."""
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.CR")
+                .joinpath("production_20210716.json")
+                .read_text()
+            ),
+        )
 
-def test_fetch_production_historical(fixture_requests_mock, snapshot):
-    """That we can fetch historical energy production values."""
-    with open("parsers/test/mocks/CR/production_20210716.json") as f:
-        mock_json_respose = json.load(f)
-    fixture_requests_mock.get(re.compile(PRODUCTION_URL), json=mock_json_respose)
+        historical_datetime = datetime(2021, 7, 16, 16, 20, 30, tzinfo=timezone.utc)
+        production_breakdowns = fetch_production(
+            target_datetime=historical_datetime.astimezone(timezone.utc),
+            session=self.session,
+        )
 
-    historical_datetime = datetime(2021, 7, 16, 10, 20, 30, tzinfo=TIMEZONE)
-    production_breakdowns = fetch_production(
-        target_datetime=historical_datetime.astimezone(timezone.utc)
-    )
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "zoneKey": element["zoneKey"],
+                    "production": element["production"],
+                    "storage": element["storage"],
+                    "source": element["source"],
+                    "sourceType": element["sourceType"].value,
+                    "correctedModes": element["correctedModes"],
+                }
+                for element in production_breakdowns
+            ]
+        )
 
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production_breakdowns
-        ]
-    )
+    @freeze_time("2024-01-01 12:00:00")
+    def test_fetch_exchange_live(self):
+        """That we can fetch the last known power exchanges."""
+        self.adapter.register_uri(
+            GET,
+            ANY,
+            json=json.loads(
+                resources.files("parsers.test.mocks.CR")
+                .joinpath("exchange_live.json")
+                .read_text()
+            ),
+        )
 
+        exchanges = fetch_exchange(session=self.session)
 
-@freeze_time("2024-01-01 12:00:00")
-def test_fetch_exchange_now(fixture_requests_mock, snapshot):
-    """That we can fetch the last known power exchanges."""
-    with open("parsers/test/mocks/CR/exchange_live.json") as f:
-        mock_json_respose = json.load(f)
-    fixture_requests_mock.get(EXCHANGE_URL, json=mock_json_respose)
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in exchanges
+            ]
+        )
 
-    exchanges = fetch_exchange()
+    def test_fetch_exchange_raises_parser_exception_on_historical_data(self):
+        """That a ParserException is raised if requesting historical data (not supported yet)."""
+        self.adapter.register_uri(GET, ANY, json=[])
 
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "sortedZoneKeys": element["sortedZoneKeys"],
-                "netFlow": element["netFlow"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-            }
-            for element in exchanges
-        ]
-    )
-
-
-def test_fetch_exchange_raises_parser_exception_on_historical_data(
-    fixture_requests_mock,
-):
-    """That a ParserException is raised if requesting historical data (not supported yet)."""
-    fixture_requests_mock.get(EXCHANGE_URL, json=[])
-
-    with pytest.raises(
-        ParserException, match="This parser is not yet able to parse historical data"
-    ):
-        historical_datetime = datetime.now(timezone.utc) - timedelta(days=1)
-        fetch_exchange(target_datetime=historical_datetime)
+        with self.assertRaisesRegex(
+            ParserException,
+            expected_regex="This parser is not yet able to parse historical data",
+        ):
+            historical_datetime = datetime.now(timezone.utc) - timedelta(days=1)
+            fetch_exchange(target_datetime=historical_datetime, session=self.session)

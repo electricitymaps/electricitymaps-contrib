@@ -1,10 +1,10 @@
+from collections import defaultdict
 from datetime import datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
 from requests import Session
 
-from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
@@ -20,9 +20,12 @@ TIMEZONE = ZoneInfo("America/Costa_Rica")
 EXCHANGE_URL = (
     "https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic"
 )
+EXCHANGE_SOURCE = "enteoperador.org"
+
 PRODUCTION_URL = (
     "https://apps.grupoice.com/CenceWeb/data/sen/json/EnergiaHorariaFuentePlanta"
 )
+PRODUCTION_SOURCE = "grupoice.com"
 
 SPANISH_TO_ENGLISH = {
     "Bagazo": "biomass",
@@ -37,15 +40,6 @@ EXCHANGE_JSON_MAPPING = {
     "CR->NI": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
     "CR->PA": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW",
 }
-
-
-def _as_datetime_utc(dt: datetime) -> datetime:
-    """Converts a datetime object to UTC. Assumes naive datetimes to be UTC."""
-    is_naive = dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None
-    if is_naive:
-        dt = dt.replace(tzinfo=timezone.utc)
-
-    return dt.astimezone(timezone.utc)
 
 
 def _parse_exchange_data(
@@ -71,14 +65,9 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    # Do not use existing session as some amount of cache is taking place
-    session = Session()
-
     # if no target_datetime is specified, this defaults to now.
     now = datetime.now(timezone.utc)
-    target_datetime = (
-        now if target_datetime is None else _as_datetime_utc(target_datetime)
-    )
+    target_datetime = now if target_datetime is None else target_datetime
 
     # the backend production API works in terms of local times
     now = now.astimezone(TIMEZONE)
@@ -98,6 +87,7 @@ def fetch_production(
             zone_key=zone_key,
         )
 
+    session = session or Session()
     url = f"{PRODUCTION_URL}?{target_datetime.strftime('anno=%Y&mes=%m&dia=%d')}"
     response = session.get(url)
     if not response.ok:
@@ -109,28 +99,28 @@ def fetch_production(
 
     response_payload = response.json()
 
-    production_mixes = {}
+    production_mixes = defaultdict(ProductionMix)
     for hourly_item in response_payload["data"]:
-        production_mode = SPANISH_TO_ENGLISH.get(hourly_item["fuente"])
-        if production_mode not in PRODUCTION_MODES:
-            continue
-
-        # returned timestamps are missing timezone but are local times
+        # returned timestamps are missing timezone but are local (CR) times
         timestamp = datetime.strptime(
             hourly_item["fecha"], "%Y-%m-%d %H:%M:%S.%f"
         ).replace(tzinfo=TIMEZONE)
 
-        production_mix = production_mixes.get(timestamp, ProductionMix())
-        production_mix.add_value(production_mode, hourly_item["dato"])
+        source = hourly_item["fuente"]
+        if source == "Intercambio":
+            continue
 
-        production_mixes[timestamp] = production_mix
+        production_mode = SPANISH_TO_ENGLISH[source]
+        value = hourly_item["dato"]
+
+        production_mixes[timestamp].add_value(production_mode, value)
 
     production_breakdown_list = ProductionBreakdownList(logger)
     for timestamp, production_mix in production_mixes.items():
         production_breakdown_list.append(
             zoneKey=zone_key,
             datetime=timestamp,
-            source="grupoice.com",
+            source=PRODUCTION_SOURCE,
             production=production_mix,
         )
     return production_breakdown_list.to_list()
@@ -159,7 +149,7 @@ def fetch_exchange(
         )
 
     session = session or Session()
-    dt = datetime.now(TIMEZONE).replace(minute=0, second=0, microsecond=0)
+    dt = datetime.now(TIMEZONE)
     response = session.get(EXCHANGE_URL)
     if not response.ok:
         raise ParserException(
@@ -173,8 +163,8 @@ def fetch_exchange(
     exchange_list = ExchangeList(logger)
     exchange_list.append(
         zoneKey=ZoneKey(sorted_zone_keys),
-        datetime=dt,
+        datetime=dt.replace(minute=0, second=0, microsecond=0),
         netFlow=net_flow,
-        source="enteoperador.org",
+        source=EXCHANGE_SOURCE,
     )
     return exchange_list.to_list()
