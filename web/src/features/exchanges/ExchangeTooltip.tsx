@@ -26,7 +26,7 @@ export default function ExchangeTooltip(
   const isHourly = timeAverage === TimeAverages.HOURLY;
   const { isMobile } = useDimensions();
 
-  const divClass = isMobile ? 'flex-col items-center pb-2' : 'flex items-center pb-2';
+  const divClass = `${isMobile ? 'flex-col' : 'flex'} items-center pb-2`;
   return (
     <div className="text-start text-base font-medium">
       {t('tooltips.crossborderexport')}:
