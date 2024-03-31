@@ -4,7 +4,6 @@ from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Session
@@ -119,6 +118,33 @@ PRODUCTION_TYPE_TO_PRODUCTION_MODE = {
     "Térmica": "unknown",
 }
 
+_SPANISH_CALENDAR = {
+    "enero": "01",
+    "febrero": "02",
+    "marzo": "03",
+    "abril": "04",
+    "mayo": "05",
+    "junio": "06",
+    "julio": "07",
+    "agosto": "08",
+    "septiembre": "09",
+    "octubre": "10",
+    "noviembre": "11",
+    "diciembre": "12",
+}
+
+
+def _localise_spanish_date(date: str) -> str:
+    """Localises a date containing full name (lowercase) spanish months, replacing them with zero-padded decimal numbers.
+
+    This avoids having to mess up the global locale to be able to parse the date.
+    """
+    return re.sub(
+        "|".join(_SPANISH_CALENDAR.keys()),
+        lambda m: _SPANISH_CALENDAR[m.group(0)],
+        date,
+    )
+
 
 def extract_pie_chart_data(html):
     """Extracts generation breakdown pie chart data from the source code of the page"""
@@ -191,7 +217,8 @@ def fetch_production(
 
     # Parse the datetime and return a python datetime object
     spanish_date = soup.find("h3", {"class": "sitr-update"}).string
-    date = arrow.get(spanish_date, "DD-MMMM-YYYY H:mm:ss", locale="es", tzinfo=TIMEZONE)
+    english_date = _localise_spanish_date(spanish_date)
+    date = datetime.strptime(english_date, "%d-%m-%Y %H:%M:%S").replace(tzinfo=TIMEZONE)
 
     production_mix = ProductionMix()
     productions = extract_pie_chart_data(html_doc)
@@ -251,7 +278,7 @@ def fetch_production(
     production_breakdown_list = ProductionBreakdownList(logger)
     production_breakdown_list.append(
         zoneKey=zone_key,
-        datetime=date.datetime,
+        datetime=date,
         source=PRODUCTION_SOURCE,
         production=production_mix,
     )
