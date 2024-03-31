@@ -25,7 +25,9 @@ class TestFetchProduction(unittest.TestCase):
             .read_text(),
             status_code=200,
         )
-        result = PA.fetch_production(session=self.session)
+        results = PA.fetch_production(session=self.session)
+        self.assertEqual(len(results), 1)
+        result = results[0]
         self.assertEqual(
             result["datetime"],
             datetime(2021, 12, 30, 9, 58, 37, tzinfo=PA.TIMEZONE),
@@ -41,17 +43,17 @@ class TestFetchProduction(unittest.TestCase):
             .read_text(),
             status_code=200,
         )
-        result = PA.fetch_production(session=self.session)
+        results = PA.fetch_production(session=self.session)
+        self.assertEqual(len(results), 1)
+        result = results[0]
         self.assertEqual(
             result["production"],
             {
                 "biomass": 2.75,
                 "coal": 149.6,
                 "gas": 355.88,
-                "geothermal": 0.0,
                 "hydro": 421.84,
-                "nuclear": 0.0,
-                "oil": 238.19999999999996,
+                "oil": 238.2,
                 "solar": 262.76,
                 "unknown": 0.0,
                 "wind": 115.4,
