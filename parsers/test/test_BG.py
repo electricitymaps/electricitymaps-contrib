@@ -58,4 +58,4 @@ class TestBG(TestCase):
             expected_regex="This parser is not yet able to parse historical data",
         ):
             historical_datetime = datetime.now(timezone.utc) - timedelta(days=1)
-            fetch_production(target_datetime=historical_datetime)
+            fetch_production(target_datetime=historical_datetime, session=self.session)
