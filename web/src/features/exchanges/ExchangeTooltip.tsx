@@ -1,5 +1,6 @@
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { ZoneName } from 'components/ZoneName';
+import { useDimensions } from 'hooks/dimensions';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -23,16 +24,20 @@ export default function ExchangeTooltip(
   const zoneTo = key.split('->')[isExporting ? 1 : 0];
   const [timeAverage] = useAtom(timeAverageAtom);
   const isHourly = timeAverage === TimeAverages.HOURLY;
+  const { isMobile } = useDimensions();
 
+  const divClass = isMobile ? 'flex-col items-center pb-2' : 'flex items-center pb-2';
   return (
     <div className="text-start text-base font-medium">
       {t('tooltips.crossborderexport')}:
       <div>
-        <div className="flex items-center pb-2">
-          <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" /> <p className="mx-2">→</p>{' '}
+        <div className={divClass}>
+          <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" />
+          {isMobile ? <p className="ml-0.5">↓</p> : <p className="mx-2">→</p>}{' '}
           <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
           <b className="font-bold">
-            : {isHourly ? formatPower(roundedNetFlow) : formatEnergy(roundedNetFlow)}
+            {isMobile ? '' : ':'}{' '}
+            {isHourly ? formatPower(roundedNetFlow) : formatEnergy(roundedNetFlow)}
           </b>
         </div>
       </div>

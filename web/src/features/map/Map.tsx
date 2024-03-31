@@ -42,7 +42,6 @@ const MAP_STYLE = {
   layers: [],
   glyphs: 'fonts/{fontstack}/{range}.pbf',
 };
-
 const isMobile = window.innerWidth < 768;
 
 type MapPageProps = {
