@@ -2,7 +2,6 @@ from collections.abc import Mapping
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 
-import arrow
 import pandas as pd
 import requests
 from requests import Session
@@ -66,8 +65,8 @@ SOURCE = "opennem.org.au"
 def dataset_to_df(dataset):
     series = dataset["history"]
     interval = series["interval"]
-    dt_start = arrow.get(series["start"]).datetime
-    dt_end = arrow.get(series["last"]).datetime
+    dt_start = datetime.fromisoformat(series["start"])
+    dt_end = datetime.fromisoformat(series["last"])
     data_type = dataset["data_type"]
     _id = dataset.get("id")
 
@@ -151,7 +150,7 @@ def generate_url(
     if target_datetime:
         network = ZONE_KEY_TO_NETWORK[zone_key]
         # We will fetch since the beginning of the current month
-        month = arrow.get(target_datetime).floor("month").format("YYYY-MM-DD")
+        month = target_datetime.strftime("%Y-%m-%d")
         if is_flow:
             url = (
                 f"http://api.opennem.org.au/stats/flow/network/{network}?month={month}"
@@ -213,7 +212,7 @@ def _fetch_main_df(
 ) -> tuple[pd.DataFrame, list]:
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
-        zone_key=zone_key or sorted_zone_keys[0],
+        zone_key=zone_key or sorted_zone_keys.split("->")[0],
         is_flow=sorted_zone_keys is not None,
         target_datetime=target_datetime,
         logger=logger,
@@ -235,7 +234,7 @@ def _fetch_main_df(
         if sorted_zone_keys:
             filter_region |= (
                 ds.get("id").split(".")[-2]
-                == EXCHANGE_MAPPING_DICTIONARY["->".join(sorted_zone_keys)]["region_id"]
+                == EXCHANGE_MAPPING_DICTIONARY[sorted_zone_keys]["region_id"]
             )
         return filter_data_type and filter_region
 
@@ -258,7 +257,7 @@ def _fetch_main_df(
 def fetch_production(
     zone_key: str | None = None,
     session: Session | None = None,
-    target_datetime: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     df, filtered_datasets = fetch_main_power_df(
@@ -281,7 +280,7 @@ def fetch_production(
     logger.debug("Preparing final objects..")
     objs = [
         {
-            "datetime": arrow.get(dt.to_pydatetime()).datetime,
+            "datetime": dt.to_pydatetime(),
             "production": {  # Unit is MW
                 "coal": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["coal"]),
                 "gas": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["gas"]),
@@ -356,7 +355,7 @@ def fetch_price(
     df = df.loc[~df["PRICE"].isna()]  # Only keep prices that are defined
     return [
         {
-            "datetime": arrow.get(dt.to_pydatetime()).datetime,
+            "datetime": dt.to_pydatetime(),
             "price": sum_vector(row, ["PRICE"]),  # currency / MWh
             "currency": "AUD",
             "source": SOURCE,
@@ -371,41 +370,38 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session | None = None,
-    target_datetime: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    sorted_zone_keys = sorted([zone_key1, zone_key2])
-    key = "->".join(sorted_zone_keys)
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
     df, _ = fetch_main_power_df(
         sorted_zone_keys=sorted_zone_keys,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
     )
-    direction = EXCHANGE_MAPPING_DICTIONARY[key]["direction"]
+    direction = EXCHANGE_MAPPING_DICTIONARY[sorted_zone_keys]["direction"]
 
     # Take the first column (there's only one)
     series = df.iloc[:, 0]
 
     return [
         {
-            "datetime": arrow.get(dt.to_pydatetime()).datetime,
+            "datetime": dt.to_pydatetime(),
             "netFlow": value * direction,
             "source": SOURCE,
-            "sortedZoneKeys": key,
+            "sortedZoneKeys": sorted_zone_keys,
         }
         for dt, value in series.iteritems()
     ]
 
 
 if __name__ == "__main__":
-    """Main method, never used by the electricityMap backend, but handy for testing."""
-    # print(fetch_price('AU-SA'))
-    # print(fetch_production('AU-WA'))
-    # print(fetch_production('AU-SA', target_datetime=arrow.get('2020-01-01T00:00:00Z').datetime))
-    # print(
-    #     fetch_production(
-    #         "AU-SA", target_datetime=arrow.get("2020-01-01T00:00:00Z").datetime
-    #     )
-    # )
+    print(fetch_price("AU-SA"))
+    print(fetch_production("AU-WA"))
+    print(
+        fetch_production(
+            "AU-SA", target_datetime=datetime.fromisoformat("2020-01-01T00:00:00+00:00")
+        )
+    )
     print(fetch_production("AU-NSW"))
