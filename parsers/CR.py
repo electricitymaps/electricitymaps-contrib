@@ -75,7 +75,7 @@ def fetch_production(
 
     # if before 01:30am on the current day then fetch previous day due to data lag.
     today = datetime.combine(now, time(), tzinfo=TIMEZONE)  # truncates to day
-    if today <= target_datetime < today + timedelta(days=1, hours=30):
+    if today <= target_datetime < today + timedelta(hours=1, minutes=30):
         target_datetime -= timedelta(days=1)
 
     # data availability limit found by manual trial and error
@@ -168,3 +168,7 @@ def fetch_exchange(
         source=EXCHANGE_SOURCE,
     )
     return exchange_list.to_list()
+
+
+if __name__ == "__main__":
+    print(fetch_production())
