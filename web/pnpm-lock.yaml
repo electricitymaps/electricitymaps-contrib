@@ -213,7 +213,7 @@ devDependencies:
     version: 4.36.1(@tanstack/react-query@4.36.1)(react-dom@18.2.0)(react@18.2.0)
   '@testing-library/cypress':
     specifier: 10.0.1
-    version: 10.0.1(cypress@13.6.3)
+    version: 10.0.1(cypress@13.7.1)
   '@testing-library/dom':
     specifier: 9.3.4
     version: 9.3.4
@@ -305,8 +305,8 @@ devDependencies:
     specifier: 0.1.2
     version: 0.1.2
   cypress:
-    specifier: 13.6.3
-    version: 13.6.3
+    specifier: 13.7.1
+    version: 13.7.1
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -6567,7 +6567,7 @@ packages:
       react-native: 0.73.6(@babel/core@7.24.0)(@babel/preset-env@7.24.3)(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
 
-  /@testing-library/cypress@10.0.1(cypress@13.6.3):
+  /@testing-library/cypress@10.0.1(cypress@13.7.1):
     resolution: {integrity: sha512-e8uswjTZIBhaIXjzEcrQQ8nHRWHgZH7XBxKuIWxZ/T7FxfWhCR48nFhUX5nfPizjVOKSThEfOSv67jquc1ASkw==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -6575,7 +6575,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.0
       '@testing-library/dom': 9.3.4
-      cypress: 13.6.3
+      cypress: 13.7.1
     dev: true
 
   /@testing-library/dom@9.3.4:
@@ -9979,8 +9979,8 @@ packages:
     resolution: {integrity: sha512-LO/lzYRw134LMDVnLyAf1dHE5tyO6axEFkR3TXjQIOmMkAM9YL6QsiUwuXzZAmFnuDJcs4hayOgyIYtViXFrLw==}
     dev: false
 
-  /cypress@13.6.3:
-    resolution: {integrity: sha512-d/pZvgwjAyZsoyJ3FOsJT5lDsqnxQ/clMqnNc++rkHjbkkiF2h9s0JsZSyyH4QXhVFW3zPFg82jD25roFLOdZA==}
+  /cypress@13.7.1:
+    resolution: {integrity: sha512-4u/rpFNxOFCoFX/Z5h+uwlkBO4mWzAjveURi3vqdSu56HPvVdyGTxGw4XKGWt399Y1JwIn9E1L9uMXQpc0o55w==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
