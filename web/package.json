@@ -178,7 +178,7 @@
     "readline-sync": "^1.4.10",
     "storybook": "^7.6.10",
     "tailwindcss": "3.4.0",
-    "tailwindcss-radix": "^2.8.0",
+    "tailwindcss-radix": "^2.9.0",
     "ts-node": "^10.9.2",
     "typescript": "5.3.2",
     "vite": "4.5.2",
