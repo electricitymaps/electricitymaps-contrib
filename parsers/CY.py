@@ -6,9 +6,6 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import arrow
-
 # BeautifulSoup is used to parse HTML
 from bs4 import BeautifulSoup
 from requests import Session
@@ -66,8 +63,8 @@ class CyprusParser:
             }
             for col, val in zip(columns, values, strict=True):
                 if col == "Timestamp":
-                    datum["datetime"] = (
-                        arrow.get(val).replace(tzinfo="Asia/Nicosia").datetime
+                    datum["datetime"] = datetime.fromisoformat(val).replace(
+                        tzinfo=TIMEZONE
                     )
                 elif col == "Αιολική Παραγωγή":
                     production["wind"] = float(val)
