@@ -43,7 +43,7 @@ EXCHANGE_JSON_MAPPING = {
 
 
 def _parse_exchange_data(
-    exchange_data: list[dict], sorted_zone_keys: str
+    exchange_data: list[dict], sorted_zone_keys: ZoneKey
 ) -> float | None:
     """Extracts flow value and direction for a given exchange."""
     exchange_name = EXCHANGE_JSON_MAPPING[sorted_zone_keys]
@@ -135,7 +135,7 @@ def fetch_exchange(
 ) -> list[dict]:
     """Gets an exchange pair from the SIEPAC system."""
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if sorted_zone_keys not in EXCHANGE_JSON_MAPPING:
         raise ParserException(
             PARSER, "This exchange is not implemented", sorted_zone_keys
@@ -162,7 +162,7 @@ def fetch_exchange(
 
     exchange_list = ExchangeList(logger)
     exchange_list.append(
-        zoneKey=ZoneKey(sorted_zone_keys),
+        zoneKey=sorted_zone_keys,
         datetime=dt.replace(minute=0, second=0, microsecond=0),
         netFlow=net_flow,
         source=EXCHANGE_SOURCE,
