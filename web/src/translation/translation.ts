@@ -9,8 +9,12 @@ export const getFullZoneName = (zoneCode: string) => {
 };
 export const getZoneName = (zoneCode: string) => {
   const displayName = translateIfExists(`zoneShortName.${zoneCode}.displayName`);
+  if (displayName) {
+    return displayName;
+  }
+
   const fullName = getFullZoneName(zoneCode);
-  return displayName || fullName;
+  return fullName;
 };
 
 export const getCountryName = (zoneCode: string) =>
