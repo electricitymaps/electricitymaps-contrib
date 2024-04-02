@@ -26,12 +26,16 @@ describe('translateIfExists', () => {
   expect(translation).to.equal('');
 });
 
-describe.skip('getZoneName', () => {});
-it('...', () => {
-  console.log('TODO');
+// TODO: Mocking these tests is currently not possible or easy due to the translation
+// setup. We should in the future investigate how to better mock translations.
+describe.skip('getZoneName', () => {
+  it('...', () => {
+    console.log('TODO');
+  });
 });
 
-describe.skip('getShortenedZoneNameWithCountry', () => {});
-it('should return the shortened zone name with country', () => {
-  console.log('TODO');
+describe.skip('getShortenedZoneNameWithCountry', () => {
+  it('should return the shortened zone name with country', () => {
+    console.log('TODO');
+  });
 });
