@@ -202,8 +202,7 @@
         ],
         "testing-library/no-manual-cleanup": "error",
         "testing-library/prefer-explicit-assert": "error",
-        "testing-library/prefer-user-event": "error",
-        "testing-library/prefer-wait-for": "error"
+        "testing-library/prefer-user-event": "error"
       }
     }
   ]
