@@ -1,10 +1,9 @@
 import unittest
 
-import arrow
 import numpy as np
 import pandas as pd
 
-from parsers.OPENNEM import filter_production_objs, process_solar_rooftop, sum_vector
+from parsers.OPENNEM import filter_production_item, process_solar_rooftop, sum_vector
 
 
 class TestOPENNEM(unittest.TestCase):
@@ -65,33 +64,14 @@ class TestOPENNEM(unittest.TestCase):
         assert sum_solar_ignore_nans == sum(values_solar[:1])
         assert sum_wind == sum(values_wind)
 
-    def test_filter_production_objs(self):
-        now = arrow.utcnow()
-        objs = [
-            {
-                "datetime": now.shift(hours=-1).datetime,
-                "production": {
-                    "coal": 12,
-                    "solar": 1.0,
-                },
-                "capacity": {
-                    "coal": 12,
-                },
-            },
-            {
-                "datetime": now.shift(hours=-2).datetime,
-                "production": {
-                    "coal": 12,
-                    "solar": None,
-                },
-                "capacity": {
-                    "coal": 12,
-                },
-            },
-        ]
-        filtered_objs = filter_production_objs(objs)
-        # 2nd entry should be filtered out because solar is None
-        assert len(filtered_objs) == 1
+    def test_filter_production_item(self):
+        # item should be filtered out because solar is None
+        problematic_item = ("solar", None)
+        assert filter_production_item(*problematic_item) is True
+
+        # ... otherwise items should not be filtered out
+        regular_item = ("coal", 12)
+        assert filter_production_item(*regular_item) is False
 
 
 if __name__ == "__main__":
