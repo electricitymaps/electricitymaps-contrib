@@ -17,15 +17,13 @@ interface ZoneHeaderTitleProps {
 const MAX_TITLE_LENGTH = 25;
 
 export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
-  const zoneNameShort = getZoneName(zoneId);
+  const zoneName = getZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
-  const zoneName = zoneNameFull.length < MAX_TITLE_LENGTH ? zoneNameFull : zoneNameShort;
-  const showTooltip =
-    zoneName !== zoneNameFull || zoneNameShort.length >= MAX_TITLE_LENGTH;
+  const showTooltip = zoneName !== zoneNameFull || zoneName.length >= MAX_TITLE_LENGTH;
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
-  const showCountryPill = zoneId.includes('-') && !zoneNameShort.includes(countryName);
+  const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
 
   return (
     <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
