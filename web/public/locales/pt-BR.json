@@ -64,9 +64,6 @@
     "zone-list-header-subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
     "search": "Pesquise por país ou área"
   },
-  "country-history": {
-    "Getdata": "Obtenha dados históricos, marginais e de previsão da API"
-  },
   "footer": {
     "foundbugs": "Encontrou erros ou tem alguma sugestão? Contate-nos",
     "faq-text": "Algo não está claro? Acesse nossas",
