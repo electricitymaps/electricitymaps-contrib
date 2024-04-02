@@ -2,7 +2,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">see data sources</a>) and powered by the community.",
+    "open-source-text": "This app is <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">see data sources</a>) and powered by the community.",
     "feedback-button": "Share feedback",
     "github-button": "View our GitHub",
     "twitter-button": "Share on Twitter",
@@ -18,7 +18,7 @@
     "opensource": "Open Source",
     "see": "see",
     "datasources": "data sources",
-    "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
+    "contribute": "Contribute by <a href=\"{{link}}\" target=\"_blank\">adding your territory</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -63,22 +63,22 @@
     "electricityproduction": "Electricity production",
     "electricityconsumption": "Electricity consumption",
     "emissions": "Carbon emissions",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">add or edit source</a>",
     "helpfrom": "with help from",
     "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
     "noLiveData": "Live data is temporarily unavailable for this area",
     "disabledPriceReasons": {
       "licensing": "Electricity prices are unavailable for this area due to licensing terms"
     },
-    "dataIsDelayed": "Data for this region can be up to %s hours delayed. Live data cannot be displayed.",
+    "dataIsDelayed": "Data for this region can be up to {{hours}} hours delayed. Live data cannot be displayed.",
     "estimated": "estimated",
     "aggregated": "aggregated",
     "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">here</a>.",
     "exchangesAreMissing": "Exchanges are accounted for in the calculations but not currently shown. Read more about our historical aggregations <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
     "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
-    "helpUs": "Help us identify the problem by taking a look at the <a href=\"%s\" target=\"_blank\">runtime logs</a> or contact the data provider.",
-    "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
+    "helpUs": "Help us identify the problem by taking a look at the <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> or contact the data provider.",
+    "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"{{link}}\" target=\"_blank\">adding area data</a>.",
     "aggregationDisabled": "Data is not available for the selected time period due to missing granular breakdown. Try a broader time period.",
     "now": "Now",
     "by-source": {
@@ -90,9 +90,27 @@
       "total-electricity-consumption": "Total electricity consumption by source"
     }
   },
+  "estimation-feedback": {
+    "title": {
+      "state-initial": "Help us improve!",
+      "state-success": "Thank you!"
+    },
+    "subtitle": {
+      "state-initial": "Please rate the following statement.",
+      "state-success": "Your response helps us understand and improve the quality of our communication and methodology."
+    },
+    "rate-question": "The description of the data estimation was easy to understand:",
+    "optional": "Optional:",
+    "input-question": "Anything we can do to improve it?",
+    "agree": "Strongly agree",
+    "disagree": "Strongly disagree",
+    "placeholder": "Let us know in a few words...",
+    "submit": "Submit"
+  },
   "estimation-badge": {
     "partially-estimated": "Partially estimated",
-    "fully-estimated": "Estimated"
+    "fully-estimated": "Estimated",
+    "outage": "Unavailable"
   },
   "estimation-card": {
     "link": "Read about our estimation models",
@@ -146,39 +164,67 @@
     }
   },
   "time-controller": {
-    "title": "Display data from the past"
+    "title": "Display data from the past",
+    "daily": "daily",
+    "hourly": "hourly",
+    "monthly": "monthly",
+    "yearly": "yearly"
   },
   "left-panel": {
     "zone-list-header-title": "Climate Impact by Area",
     "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas"
+    "search": "Search areas",
+    "get-data": "See our commercial API offerings"
   },
   "country-history": {
     "carbonintensity": {
-      "default": "Carbon intensity in the last %1$s"
+      "hourly": "Hourly carbon intensity",
+      "daily": "Daily carbon intensity",
+      "monthly": "Monthly carbon intensity",
+      "yearly": "Yearly carbon intensity"
     },
     "emissions": {
-      "default": "Emissions in the last %1$s"
+      "hourly": "Hourly carbon emissions",
+      "daily": "Daily carbon emissions",
+      "monthly": "Monthly carbon emissions",
+      "yearly": "Yearly carbon emissions"
     },
     "emissionsorigin": {
-      "default": "Origin of emissions in the last %1$s"
+      "hourly": "Hourly carbon emission origin",
+      "daily": "Daily carbon emission origin",
+      "monthly": "Monthly carbon emission origin",
+      "yearly": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
-      "default": "Origin of emissions in the last %1$s"
+      "hourly": "Hourly production emissions",
+      "daily": "Daily production emissions",
+      "monthly": "Monthly production emissions",
+      "yearly": "Yearly production emissions"
     },
     "electricityorigin": {
-      "default": "Origin of electricity in the last %1$s"
+      "hourly": "Hourly electricity origin",
+      "daily": "Daily electricity origin",
+      "monthly": "Monthly electricity origin",
+      "yearly": "Yearly electricity origin"
     },
     "electricityproduction": {
-      "default": "Electricity production in the last %1$s"
+      "hourly": "Hourly electricity production",
+      "daily": "Daily electricity production",
+      "monthly": "Monthly electricity production",
+      "yearly": "Yearly electricity production"
     },
     "electricityprices": {
-      "default": "Electricity prices in the last %1$s"
+      "hourly": "Hourly electricity prices",
+      "daily": "Daily electricity prices",
+      "monthly": "Monthly electricity prices",
+      "yearly": "Yearly electricity prices"
     },
     "netExchange": {
-      "default": "Net exchange in the last %1$s"
+      "hourly": "Hourly net exchange",
+      "daily": "Daily net exchange",
+      "monthly": "Monthly net exchange",
+      "yearly": "Yearly net exchange"
     },
-    "Getdata": "Get hourly historical, live, and forecast data with Electricity Maps API",
     "not-enough-data": "Not enough data available to display chart"
   },
   "footer": {
@@ -276,14 +322,14 @@
   "coal": "coal",
   "oil": "oil",
   "unknown": "unknown",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is exported to %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are exported to %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in %4$s <b>%2$s</b> is imported from %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in %4$s <b>%2$s</b> are imported from %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "of CO₂eq",
   "theMap": {
     "groupName": "The map",
@@ -315,6 +361,8 @@
     "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
     "methodology-question": "How did you calculate the numbers?",
     "methodology-answer": "We have detailed our full methodology on <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a>, with additional documentation in <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">our GitHub Wiki</a>.",
+    "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
+    "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">details on the Wiki</a>.",
     "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
     "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
     "importsAndExports-question": "Do you take into account imports and exports of electricity?",
@@ -335,8 +383,6 @@
     "groupName": "Our data",
     "dataOrigins-question": "How do you get your data?",
     "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
-    "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
-    "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">details on the Wiki</a>.",
     "dataDownload-question": "Can I download your data?",
     "dataDownload-answer": "We publish data for the past years for free at our <a href=\"https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Data Portal</a>. For more recent and real-time data you can use <a href=\"https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral\">our API</a>, which is free for non-commercial use and available for purchase for commercial use.",
     "dataIntegration-question": "Can I integrate your data real-time into my application or device?",

@@ -4,6 +4,7 @@ import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
 import { lazy, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
@@ -13,7 +14,6 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { useTranslation } from 'translation/translation';
 
 import { leftPanelOpenAtom } from './panelAtoms';
 
@@ -69,7 +69,7 @@ type CollapseButtonProps = {
 };
 
 function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
     <button
       data-test-id="left-panel-collapse-button"
@@ -78,7 +78,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
       }
       onClick={onCollapse}
       aria-label={
-        isCollapsed ? __('aria.label.showSidePanel') : __('aria.label.hideSidePanel')
+        isCollapsed ? t('aria.label.showSidePanel') : t('aria.label.hideSidePanel')
       }
     >
       {isCollapsed ? <HiChevronRight /> : <HiChevronLeft />}

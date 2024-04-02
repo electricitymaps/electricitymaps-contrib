@@ -53,6 +53,9 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, An
     df = df.copy()
     df = df.loc[df["statusDescription"] == "Operating"]
     df["mode"] = df["technology"].map(TECHNOLOGY_TO_MODE)
+    df["nameplate-capacity-mw"] = pd.to_numeric(
+        df["nameplate-capacity-mw"], errors="coerce"
+    )
     df_aggregated = df.groupby(["mode"])[["nameplate-capacity-mw"]].sum().reset_index()
     capacity_dict = {}
     for mode in CAPACITY_MODES:
@@ -86,7 +89,7 @@ def fetch_production_capacity(
     r: Response = session.get(url)
     json_data = r.json()
 
-    if not json_data.get("response", {}).get("data", []) == []:
+    if json_data.get("response", {}).get("data", []) != []:
         data = pd.DataFrame(json_data["response"]["data"])
         capacity_dict = format_capacity(data, target_datetime)
         logger.info(

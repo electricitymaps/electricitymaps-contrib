@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "se",
     "datasources": "kildekode",
-    "contribute": "Bidrag ved at <a href=\"%s\" target=\"_blank\">tilføje dit område</a>"
+    "contribute": "Bidrag ved at <a href=\"{{link}}\" target=\"_blank\">tilføje dit område</a>"
   },
   "left-panel": {
     "zone-list-header-title": "Klimapåvirkning per region",
@@ -29,38 +29,22 @@
     },
     "emissions": "CO₂-udledning",
     "helpfrom": "med hjælp fra",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">Tilføj eller rediger kilde</a>",
     "noDataAtTimestamp": "Data er midlertidigt utilgængeligt for det valgte tidspunkt",
     "noLiveData": "Realtidsdata er midlertidigt utilgængeligt for dette område",
     "estimated": "anslået",
     "aggregated": "aggregeret",
-    "noParserInfo": "Vi har endnu ingen information om dette område.<br/>Vil du hjælpe med at løse det? Du kan bidrage ved at <a href=\"%s\" target=\"_blank\">tilføje områdedata</a>.",
+    "noParserInfo": "Vi har endnu ingen information om dette område.<br/>Vil du hjælpe med at løse det? Du kan bidrage ved at <a href=\"{{link}}\" target=\"_blank\">tilføje områdedata</a>.",
     "now": "Nu"
   },
   "time-controller": {
-    "title": "Vis historiske data"
+    "title": "Vis historiske data",
+    "daily": "daglig",
+    "hourly": "timevis",
+    "monthly": "månedlig",
+    "yearly": "årlig"
   },
   "country-history": {
-    "carbonintensity": {
-      "default": "CO₂-intensitet i de sidste %1$s"
-    },
-    "emissionsorigin": {
-      "default": "CO₂-udledningens oprindelse i de sidste %1$s"
-    },
-    "emissionsproduction": {
-      "default": "CO₂ udledt i de sidste %1$s"
-    },
-    "electricityorigin": {
-      "default": "Elektricitetens oprindelse i de sidste %1$s"
-    },
-    "electricityproduction": {
-      "default": "Elproduktionen i de sidste %1$s"
-    },
-    "electricityprices": {
-      "default": "Elprisen i de sidste %1$s"
-    },
-    "netExchange": { "default": "Nettoudveksling i de sidste %1$s" },
-    "Getdata": "Få adgang til historisk, real-time og prognoser med Electricity Maps API",
     "not-enough-data": "Ikke nok data tilgængeligt til at vise diagrammet"
   },
   "footer": {
@@ -135,14 +119,14 @@
   "coal": "Kul",
   "oil": "Olie",
   "unknown": "Ukendt",
-  "electricityComesFrom": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> kommer fra %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> kommer fra %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> lagres vha. %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> lagres vha. %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> eksporteres til %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> af elektricitet i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> af CO₂-udledninger i %4$s <b>%2$s</b> importeres fra %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> lagres vha. {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> lagres vha. {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "af CO₂-ækvivalenter",
   "zoneShortName": {
     "AL": {

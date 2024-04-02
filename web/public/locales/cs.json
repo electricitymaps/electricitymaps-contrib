@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "viz",
     "datasources": "zdroje dat",
-    "contribute": "Zapojte se <a href=\"%s\" target=\"_blank\">přidáním své oblasti</a>"
+    "contribute": "Zapojte se <a href=\"{{link}}\" target=\"_blank\">přidáním své oblasti</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -37,11 +37,11 @@
     "electricityconsumption": "Spotřeba elektřiny",
     "bysource": "podle zdroje",
     "emissions": "Uhlíkové emise",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">přidejte nebo upravte zdroj</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">přidejte nebo upravte zdroj</a>",
     "helpfrom": "s pomocí od",
     "noDataAtTimestamp": "Data pro vybraný čas jsou dočasně nedostupná",
     "noLiveData": "Živá data pro tuto oblast jsou dočasně nedostupná",
-    "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href=\"%s\" target=\"_blank\">přidáním dat</a>.",
+    "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href=\"{{link}}\" target=\"_blank\">přidáním dat</a>.",
     "now": "Teď"
   },
   "time-controller": {
@@ -51,27 +51,6 @@
     "zone-list-header-title": "Dopad na klima podle oblasti",
     "zone-list-header-subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO₂eq/kWh)",
     "search": "Hledej oblasti"
-  },
-  "country-history": {
-    "Getdata": "Ziskejte historická a mezní data i předpověď přes API",
-    "carbonintensity": {
-      "hourly": "Uhlíková intenzita za posledních 24 hodin"
-    },
-    "emissionsorigin": {
-      "hourly": "Původ emisí za posledních 24 hodin"
-    },
-    "emissionsproduction": {
-      "hourly": "Emise vyprodukované za posledních 24 hodin"
-    },
-    "electricityorigin": {
-      "hourly": "Původ elektřiny za posledních 24 hodin"
-    },
-    "electricityproduction": {
-      "hourly": "Produkce elektřiny za posledních 24 hodin"
-    },
-    "electricityprices": {
-      "hourly": "Cena elektřiny za posledních 24 hodin"
-    }
   },
   "footer": {
     "foundbugs": "Našli jste nedostatky, nebo máte nápad? Řekněte nám o nich",
@@ -130,14 +109,14 @@
   "coal": "uhlí",
   "oil": "ropa",
   "unknown": "neznámé",
-  "electricityComesFrom": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> pochází z %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> pochází z %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je ukládáno do %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je ukládáno do %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je exportovaných do %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> elektřiny dostupné v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v %4$s <b>%2$s</b> je importovaných z %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> pochází z {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> pochází z {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je ukládáno do {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je ukládáno do {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je importovaných z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je importovaných z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Co znamenají barvy na mapě?",

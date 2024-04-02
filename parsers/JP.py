@@ -159,27 +159,20 @@ def fetch_consumption_df(
     datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
     consumption_url = {
         "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
-        "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
-            datestamp
-        ),
+        "JP-TH": f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{datestamp}.csv",
         "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d-j.csv",
         "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
         "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{datestamp}.csv",
         "JP-SK": "http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv",
-        "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
-            datestamp
-        ),
+        "JP-KY": f"https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{datestamp}.csv",
         "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
 
     # First roughly 40 rows of the consumption files have hourly data,
     # the parser skips to the rows with 5-min actual values
-    if zone_key == "JP-KN":
-        startrow = 57
-    else:
-        startrow = 54
+    startrow = 57 if zone_key == "JP-KN" else 54
 
     try:
         df = pd.read_csv(
@@ -226,25 +219,18 @@ def fetch_consumption_forecast(
 
     consumption_url = {
         "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
-        "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
-            datestamp
-        ),
+        "JP-TH": f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{datestamp}.csv",
         "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv",
         "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
         "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{datestamp}.csv",
         "JP-SK": "http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv",
-        "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
-            datestamp
-        ),
+        "JP-KY": f"https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{datestamp}.csv",
         "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
     # Skip non-tabular data at the start of source files
-    if zone_key == "JP-KN":
-        startrow = 16
-    else:
-        startrow = 13
+    startrow = 16 if zone_key == "JP-KN" else 13
     # Read the 24 hourly values
     df = pd.read_csv(
         consumption_url[zone_key], skiprows=startrow, nrows=24, encoding="shift-jis"

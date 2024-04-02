@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "voir",
     "datasources": "source des données",
-    "contribute": "Contribuez en <a href=\"%s\" target=\"_blank\">ajoutant votre pays</a>"
+    "contribute": "Contribuez en <a href=\"{{link}}\" target=\"_blank\">ajoutant votre pays</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -57,27 +57,28 @@
       "total-electricity-consumption": "Consommation totale d'électricité par source"
     },
     "emissions": "Émissions",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">ajouter ou modifier la source</a>",
+    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">ajouter ou modifier la source</a>",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
-    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"%s\" target=\"_blank\">ajoutant des données de zone</a>.",
+    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
     "disabledPriceReasons": {
       "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
     },
     "now": "Maintenant",
-    "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à %s heures de retard. Les données temps-réel ne peuvent pas être affichées.",
+    "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
     "estimated": "estimé",
     "aggregated": "aggrégé",
     "dataIsEstimated": "Certaines données de cette région sont estimées. En savoir plus sur notre méthodologie d'estimation <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
     "exchangesAreMissing": "Les échanges sont pris en compte dans les calculs mais ne sont pas indiqués actuellement. En savoir plus sur notre agrégation historique  <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
     "estimatedTooltip": "Les données en temps réel pour cette zone sont estimées sur la base des données de la source et des hypothèses du modèle.",
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
-    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"%s\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
+    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
   },
   "estimation-badge": {
     "partially-estimated": "Partiellement estimées",
-    "fully-estimated": "Estimées"
+    "fully-estimated": "Estimées",
+    "outage": "Indisponible"
   },
   "estimation-card": {
     "link": "En savoir plus sur nos modèles d'estimation",
@@ -85,6 +86,40 @@
       "title": "Les données sont momentanément estimées",
       "pill": "Indisponible",
       "body": "Le fournisseur de données ne publie momentanément aucune donnée pour cette zone. Les valeurs affichées sont estimées en fonction des données historiques et seront remplacées par les données consolidées dès qu'elles seront disponibles. Veuillez noter que les valeurs estimées peuvent être inexactes car elles ne tiennent pas compte d'événements météorologiques spécifiques en temps réel."
+    },
+    "estimated_mode_breakdown": {
+      "title": "Données estimées",
+      "pill": "Incomplètes",
+      "body": "Les données relatives à la production d'électricité pour cette zone ne sont que partiellement disponible; les valeurs manquantes ont été calculées à l'aide d'un modèle d'estimation."
+    },
+    "estimated_reconstruct_breakdown": {
+      "title": "Les données sont toujours estimées",
+      "pill": "Incomplètes",
+      "body": "Les données publiées pour cette zone ne reflètent que la production totale. Les sources renouvelables sont estimées à partir des données météorologiques en temps réel, tandis que les sources fossiles sont déduites sur la base des données historiques pour chaque mode de production."
+    },
+    "estimated_generic_method": {
+      "title": "Données estimées",
+      "pill": "Incomplètes",
+      "body": "Les données publiées pour cette zone sont indisponibles ou incomplètes. Les données figurant sur la carte sont estimées au mieux de nos capacités, mais peuvent différer des valeurs réelles."
+    },
+    "estimated_construct_breakdown": {
+      "title": "Les données sont toujours estimées",
+      "pill": "Pas en temps réel",
+      "body": "Les données pour cette zone ne sont pas publiées en temps réel et ne fournissent que la production totale. La production horaire et les sources de production sont estimées sur la base des données historiques pour chaque source de production."
+    },
+    "estimated_construct_zero_breakdown": {
+      "title": "Les données sont toujours estimées",
+      "pill": "Pas en temps réel",
+      "body": "Les données pour cette zone ne sont pas publiées en temps réel et ne fournissent que la production totale. La production horaire et les sources de production sont estimées sur la base des données historiques pour chaque source de production."
+    },
+    "threshold_filtered": {
+      "title": "Données manquantes",
+      "pill": "Panne",
+      "body": "Le fournisseur de données pour cette zone n'a pas été en mesure de publier des données pendant une période prolongée. Nous sommes au courant de la situation et la zone sera mise à jour dès que les données seront à nouveau disponibles."
+    },
+    "outage": {
+      "title": "Problèmes en cours",
+      "pill": "Indisponible"
     },
     "aggregated": {
       "title": "Les données sont agrégées",
@@ -102,38 +137,7 @@
     "search": "Rechercher une zone"
   },
   "country-history": {
-    "Getdata": "Obtenir l’historique et l’API de prévision + marginal",
-    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
-    "carbonintensity": {
-      "hourly": "Intensité carbone des 24 dernières heures",
-      "daily": "Intensité en carbone du dernier mois",
-      "monthly": "Intensité carbone au cours de la dernière année",
-      "default": "Intensité en carbone dans les derniers %1$s"
-    },
-    "emissionsorigin": {
-      "hourly": "Origine des émissions des 24 dernières heures",
-      "default": "Émissions dans les derniers %1$s"
-    },
-    "emissionsproduction": {
-      "hourly": "Émissions produites dans les 24 dernières heures",
-      "default": "Origine des émissions dans les derniers %1$s"
-    },
-    "electricityorigin": {
-      "hourly": "Origine de l’électricité des 24 dernières heures",
-      "default": "Origine de l'électricité dans les derniers %1$s"
-    },
-    "electricityproduction": {
-      "hourly": "Production électrique des 24 dernières heures",
-      "default": "Production d'électricité dans les derniers %1$s"
-    },
-    "electricityprices": {
-      "hourly": "Prix de l’électricité des 24 dernières heures",
-      "default": "Prix de l'électricité dans les derniers %1$s"
-    },
-    "emissions": {
-      "hourly": "Émissions des 24 dernières heures",
-      "default": "Émissions dans les derniers %1$s"
-    }
+    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique"
   },
   "footer": {
     "foundbugs": "Un bug ? Une idée ? Cliquez",
@@ -208,14 +212,14 @@
   "coal": "charbon",
   "oil": "fioul",
   "unknown": "inconnu",
-  "electricityComesFrom": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est produite par %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont produites par %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est stockée par %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont stockées par %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est exportée vers %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont exportées vers %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> de l’électricité disponible en %4$s <b>%2$s</b> est importée depuis %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> des émissions disponibles en %4$s <b>%2$s</b> sont importées depuis %5$s <b>%3$s</b>",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> de l’électricité disponible en {{zoneFlag}} <b>{{zoneName}}</b> est produite par {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> des émissions disponibles en {{zoneFlag}} <b>{{zoneName}}</b> sont produites par {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> de l’électricité disponible en {{zoneFlag}} <b>{{zoneName}}</b> est stockée par {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> des émissions disponibles en {{zoneFlag}} <b>{{zoneName}}</b> sont stockées par {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> de l’électricité disponible en {{zoneFlag}} <b>{{zoneName}}</b> est exportée vers {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> des émissions disponibles en {{zoneFlag}} <b>{{zoneName}}</b> sont exportées vers {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> de l’électricité disponible en {{zoneFlag}} <b>{{zoneName}}</b> est importée depuis {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> des émissions disponibles en {{zoneFlag}} <b>{{zoneName}}</b> sont importées depuis {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "La carte",
@@ -1862,7 +1866,7 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
-    "open-source-text": "Cette application est <a href=\\\"%s\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"%s\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté.",
+    "open-source-text": "Cette application est <a href=\\\"{{link}}\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"{{sourcesLink}}\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté.",
     "feedback-button": "Partagez vos commentaires",
     "github-button": "Visiter notre Github",
     "twitter-button": "Partager sur Twitter",
@@ -1874,7 +1878,11 @@
     "title": "Paramètres"
   },
   "time-controller": {
-    "title": "Afficher les données passées"
+    "title": "Afficher les données passées",
+    "daily": "quotidien",
+    "hourly": "horaire",
+    "monthly": "mensuel",
+    "yearly": "annuel"
   },
   "aggregateButtons": {
     "country": "pays",

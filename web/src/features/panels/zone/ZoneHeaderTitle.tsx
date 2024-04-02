@@ -3,12 +3,7 @@ import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
-import {
-  getCountryName,
-  getFullZoneName,
-  getZoneName,
-  useTranslation,
-} from 'translation/translation';
+import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
 
 import { getDisclaimer } from './util';
@@ -22,7 +17,6 @@ interface ZoneHeaderTitleProps {
 const MAX_TITLE_LENGTH = 25;
 
 export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
-  const { __ } = useTranslation();
   const zoneNameShort = getZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
   const zoneName = zoneNameFull.length < MAX_TITLE_LENGTH ? zoneNameFull : zoneNameShort;

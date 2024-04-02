@@ -1,32 +1,4 @@
-import { useTranslation as useTranslationHook } from 'react-i18next';
-import { vsprintf } from 'sprintf-js';
-
 import i18next from './i18n';
-
-// Todo: We should get rid of vsprintf and use i18next interpolation instead
-const translateWithTranslator = (
-  translator: typeof i18next.t,
-  key: string,
-  ...arguments_: string[]
-) => {
-  const translation = translator(key, '');
-  if (arguments_.length > 0) {
-    return vsprintf(translation, arguments_);
-  }
-  return translation;
-};
-
-// Used for translation outside of React components
-export const translate = (key: string, ...arguments_: string[]) =>
-  translateWithTranslator(i18next.t, key, ...arguments_);
-
-// Hook for translations inside React components
-export const useTranslation = () => {
-  const { t, i18n } = useTranslationHook();
-  const __ = (key: string, ...arguments_: string[]) =>
-    translateWithTranslator(t, key, ...arguments_);
-  return { __, i18n };
-};
 
 export const translateIfExists = (key: string) => {
   return i18next.exists(key) ? i18next.t(key) : '';
