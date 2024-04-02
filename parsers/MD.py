@@ -8,7 +8,6 @@ from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
 from parsers.lib.exceptions import ParserException
@@ -20,11 +19,6 @@ TZ = ZoneInfo("Europe/Chisinau")
 # - type=array for a 2D json-array containing an array for each datapoint
 # - type=html for a HTML-table (default when no type is given)
 archive_base_url = "https://moldelectrica.md/utils/archive2.php?id=table&type=array"
-
-# Format for date and time used in archive-datapoints.
-archive_datetime_format = "YYYY-MM-DD HH:mm"
-# Format for date only used in the archive-url.
-archive_date_format = "DD.MM.YYYY"
 
 # Fields that can be fetched from archive_url in order.
 archive_fields = (
@@ -138,6 +132,11 @@ def get_archive_data(session: Session | None = None, dates=None) -> list:
     Specifying a date-range too high will cause errors with the archive-server.
     If no dates are specified data for the last 24 hours is fetched.
     """
+
+    # Format for date and time used in archive-datapoints.
+    archive_date_format = "%d.%m.%Y"
+    archive_datetime_format = "%Y-%m-%d %H:%M"
+
     s = session or Session()
 
     try:
@@ -147,21 +146,17 @@ def get_archive_data(session: Session | None = None, dates=None) -> list:
 
     archive_url = archive_base_url
     if date1 and date2:
-        archive_url += "&date1={}".format(
-            arrow.get(date1).to("Europe/Chisinau").format(archive_date_format)
-        )
-        archive_url += "&date2={}".format(
-            arrow.get(date2).to("Europe/Chisinau").format(archive_date_format)
-        )
+        date_1_local_time = datetime.fromisoformat(date1).astimezone(TZ)
+        date_2_local_time = datetime.fromisoformat(date2).astimezone(TZ)
+        archive_url += f"&date1={date_1_local_time.strftime(archive_date_format)}"
+        archive_url += f"&date2={date_2_local_time.strftime(archive_date_format)}"
 
     data_response = s.get(archive_url, verify=False)
     data = data_response.json()
     try:
         return [
             ArchiveDatapoint(
-                arrow.get(
-                    entry[0], archive_datetime_format, tzinfo="Europe/Chisinau"
-                ).datetime,
+                datetime.strptime(entry[0], archive_datetime_format).replace(tzinfo=TZ),
                 *map(float, entry[1:]),
             )
             for entry in data
