@@ -9,9 +9,9 @@ export function ZoneName({ zone, textStyle }: { zone: string; textStyle?: string
       <CountryFlag
         zoneId={zone}
         size={18}
-        className="rounded-sm shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+        className="mb-0.5 rounded-sm shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
       />
-      <p className={twMerge('truncate pl-1 text-base', textStyle)}>
+      <p className={twMerge('ml-2 truncate text-base', textStyle)}>
         {getShortenedZoneNameWithCountry(zone)}
       </p>
     </div>
