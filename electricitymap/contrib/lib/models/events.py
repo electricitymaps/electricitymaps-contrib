@@ -19,6 +19,11 @@ from electricitymap.contrib.lib.types import ZoneKey
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
+def _is_naive(t: dt.datetime) -> bool:
+    """Determines if a datetime object is naive."""
+    return t.tzinfo is None or t.tzinfo.utcoffset(t) is None
+
+
 def _none_safe_round(value: float | None, precision: int = 6) -> float | None:
     """
     Rounds a value to the provided precision.
@@ -296,8 +301,8 @@ class Event(BaseModel, ABC):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]):
-        if v.tzinfo is None:
+    def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]) -> dt.datetime:
+        if _is_naive(v):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
@@ -762,7 +767,7 @@ class Price(Event):
     @validator("datetime")
     def _validate_datetime(cls, v: dt.datetime) -> datetime:
         """Prices are given for the day ahead, so we should allow them to be in the future."""
-        if v.tzinfo is None:
+        if _is_naive(v):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
