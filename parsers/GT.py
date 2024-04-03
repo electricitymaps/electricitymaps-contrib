@@ -107,7 +107,7 @@ def fetch_production(
 
 
 def _get_api_data(
-    session: Session,
+    session: Session | None,
     url: str,
     date_time: datetime,
     target: Literal["consumption", "production"],
