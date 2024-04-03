@@ -50,6 +50,7 @@ updates:
         patterns:
           - 'eslint'
           - 'eslint-*'
+          - '*-eslint'
       prettier:
         patterns:
           - 'prettier'

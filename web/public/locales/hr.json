@@ -49,9 +49,6 @@
     "zone-list-header-subtitle": "Poredak po faktoru emisije upotrijebljene struje (gCO₂eq/kWh)",
     "search": "Traži"
   },
-  "country-history": {
-    "Getdata": "Nađi povijesne podatke i API s prognozom"
-  },
   "footer": {
     "foundbugs": "Pronašao si grešku ili imaš ideje? Prijavi ih",
     "faq-text": "Nešto ti je nejasno? Provjeri naša",

@@ -1,19 +1,31 @@
-#!/usr/bin/env python3
-
-
-from datetime import datetime, time, timedelta
+from collections import defaultdict
+from datetime import datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
+PARSER = "CR.py"
 TIMEZONE = ZoneInfo("America/Costa_Rica")
+
 EXCHANGE_URL = (
     "https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic"
 )
+EXCHANGE_SOURCE = "enteoperador.org"
+
+PRODUCTION_URL = (
+    "https://apps.grupoice.com/CenceWeb/data/sen/json/EnergiaHorariaFuentePlanta"
+)
+PRODUCTION_SOURCE = "grupoice.com"
 
 SPANISH_TO_ENGLISH = {
     "Bagazo": "biomass",
@@ -30,161 +42,133 @@ EXCHANGE_JSON_MAPPING = {
 }
 
 
-def _to_local_datetime(dt: datetime) -> datetime:
-    if dt.tzinfo is None:
-        return dt.replace(tzinfo=TIMEZONE)
-    return dt.astimezone(TIMEZONE)
-
-
-def empty_record(zone_key: str):
-    return {
-        "zoneKey": zone_key,
-        "capacity": {},
-        "production": {},
-        "storage": {},
-        "source": "grupoice.com",
-    }
-
-
-def extract_exchange(raw_data, exchange) -> float | None:
+def _parse_exchange_data(
+    exchange_data: list[dict], sorted_zone_keys: ZoneKey
+) -> float | None:
     """Extracts flow value and direction for a given exchange."""
-    search_value = EXCHANGE_JSON_MAPPING[exchange]
+    exchange_name = EXCHANGE_JSON_MAPPING[sorted_zone_keys]
+    net_flow = next(
+        (item["value"] for item in exchange_data if item["nombre"] == exchange_name),
+        None,
+    )
 
-    interconnection = None
-    for datapoint in raw_data:
-        if datapoint["nombre"] == search_value:
-            interconnection = float(datapoint["value"])
+    if net_flow is None:
+        raise ValueError(f"No flow value found for exchange {sorted_zone_keys}")
 
-    if interconnection is None:
-        return None
-
-    # positive and negative flow directions do not always correspond to EM ordering of exchanges
-    if exchange in ["GT->SV", "GT->HN", "HN->SV", "CR->NI", "HN->NI"]:
-        interconnection *= -1
-
-    return interconnection
+    return net_flow
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "CR",
+    zone_key: ZoneKey = ZoneKey("CR"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
+) -> list[dict]:
     # if no target_datetime is specified, this defaults to now.
-    target_datetime = target_datetime or datetime.now()
-    local_datetime = _to_local_datetime(target_datetime)
+    now = datetime.now(timezone.utc)
+    target_datetime = now if target_datetime is None else target_datetime
 
-    # if before 01:30am on the current day then fetch previous day due to
-    # data lag.
-    today = _to_local_datetime(datetime.now()).date()
-    if local_datetime.date() == today:
-        local_datetime = (
-            local_datetime
-            if local_datetime.time() >= time(1, 30)
-            else local_datetime - timedelta(days=1)
-        )
+    # the backend production API works in terms of local times
+    now = now.astimezone(TIMEZONE)
+    target_datetime = target_datetime.astimezone(TIMEZONE)
 
-    cutoff_datetime = _to_local_datetime(datetime(2017, 7, 1))
-    if local_datetime < cutoff_datetime:
-        # data availability limit found by manual trial and error
+    # if before 01:30am on the current day then fetch previous day due to data lag.
+    today = datetime.combine(now, time(), tzinfo=TIMEZONE)  # truncates to day
+    if today <= target_datetime < today + timedelta(hours=1, minutes=30):
+        target_datetime -= timedelta(days=1)
+
+    # data availability limit found by manual trial and error
+    cutoff_datetime = datetime(2017, 7, 1, tzinfo=TIMEZONE)
+    if target_datetime < cutoff_datetime:
         raise ParserException(
-            parser="CR.py",
-            message=f"CR API does not provide data before {cutoff_datetime.isoformat()}, {local_datetime.isoformat()} was requested.",
+            parser=PARSER,
+            message=f"CR API does not provide data before {cutoff_datetime.isoformat()}, {target_datetime.isoformat()} was requested.",
             zone_key=zone_key,
         )
 
-    # Do not use existing session as some amount of cache is taking place
-    r = Session()
-    day = local_datetime.strftime("%d")
-    month = local_datetime.strftime("%m")
-    year = local_datetime.strftime("%Y")
-    url = f"https://apps.grupoice.com/CenceWeb/data/sen/json/EnergiaHorariaFuentePlanta?anno={year}&mes={month}&dia={day}"
-
-    response = r.get(url)
-    resp_data = response.json()["data"]
-
-    results = {}
-    for hourly_item in resp_data:
-        if hourly_item["fuente"] == "Intercambio":
-            continue
-        if hourly_item["fecha"] not in results:
-            results[hourly_item["fecha"]] = empty_record(zone_key)
-
-        results[hourly_item["fecha"]]["datetime"] = _to_local_datetime(
-            datetime.strptime(hourly_item["fecha"], "%Y-%m-%d %H:%M:%S.%f")
+    session = session or Session()
+    url = f"{PRODUCTION_URL}?{target_datetime.strftime('anno=%Y&mes=%m&dia=%d')}"
+    response = session.get(url)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching production error code: {response.status_code}: {response.text}",
+            zone_key,
         )
 
-        if (
-            SPANISH_TO_ENGLISH[hourly_item["fuente"]]
-            not in results[hourly_item["fecha"]]["production"]
-        ):
-            results[hourly_item["fecha"]]["production"][
-                SPANISH_TO_ENGLISH[hourly_item["fuente"]]
-            ] = hourly_item["dato"]
-        else:
-            results[hourly_item["fecha"]]["production"][
-                SPANISH_TO_ENGLISH[hourly_item["fuente"]]
-            ] += hourly_item["dato"]
+    response_payload = response.json()
 
-    return [results[k] for k in sorted(results.keys())]
+    production_mixes = defaultdict(ProductionMix)
+    for hourly_item in response_payload["data"]:
+        # returned timestamps are missing timezone but are local (CR) times
+        timestamp = datetime.strptime(
+            hourly_item["fecha"], "%Y-%m-%d %H:%M:%S.%f"
+        ).replace(tzinfo=TIMEZONE)
+
+        source = hourly_item["fuente"]
+        if source == "Intercambio":
+            continue
+
+        production_mode = SPANISH_TO_ENGLISH[source]
+        value = hourly_item["dato"]
+
+        production_mixes[timestamp].add_value(production_mode, value)
+
+    production_breakdown_list = ProductionBreakdownList(logger)
+    for timestamp, production_mix in production_mixes.items():
+        production_breakdown_list.append(
+            zoneKey=zone_key,
+            datetime=timestamp,
+            source=PRODUCTION_SOURCE,
+            production=production_mix,
+        )
+    return production_breakdown_list.to_list()
 
 
 def fetch_exchange(
-    zone_key1: str = "CR",
-    zone_key2: str = "PA",
+    zone_key1: ZoneKey = ZoneKey("CR"),
+    zone_key2: ZoneKey = ZoneKey("PA"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict]:
     """Gets an exchange pair from the SIEPAC system."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    sorted_zones = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    if sorted_zone_keys not in EXCHANGE_JSON_MAPPING:
+        raise ParserException(
+            PARSER, "This exchange is not implemented", sorted_zone_keys
+        )
 
-    if sorted_zones not in EXCHANGE_JSON_MAPPING:
-        raise NotImplementedError("This exchange is not implemented.")
+    if target_datetime is not None:
+        raise ParserException(
+            PARSER,
+            "This parser is not yet able to parse historical data",
+            sorted_zone_keys,
+        )
 
-    s = session or Session()
+    session = session or Session()
+    dt = datetime.now(TIMEZONE)
+    response = session.get(EXCHANGE_URL)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching exchange error code: {response.status_code}: {response.text}",
+            sorted_zone_keys,
+        )
 
-    raw_data = s.get(EXCHANGE_URL).json()
-    raw_flow = extract_exchange(raw_data, sorted_zones)
-    if raw_flow is None:
-        raise ValueError(f"No flow value found for exchange {sorted_zones}")
+    net_flow = _parse_exchange_data(response.json(), sorted_zone_keys=sorted_zone_keys)
 
-    flow = round(raw_flow, 1)
-    dt = _to_local_datetime(datetime.now()).replace(minute=0)
-
-    exchange = {
-        "sortedZoneKeys": sorted_zones,
-        "datetime": dt.datetime,
-        "netFlow": flow,
-        "source": "enteoperador.org",
-    }
-
-    return exchange
+    exchange_list = ExchangeList(logger)
+    exchange_list.append(
+        zoneKey=sorted_zone_keys,
+        datetime=dt.replace(minute=0, second=0, microsecond=0),
+        netFlow=net_flow,
+        source=EXCHANGE_SOURCE,
+    )
+    return exchange_list.to_list()
 
 
 if __name__ == "__main__":
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
-
-    from pprint import pprint
-
-    print("fetch_production() ->")
-    pprint(fetch_production())
-
-    # print('fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
-    # pprint(fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
-
-    # # this should work
-    # print('fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
-    # pprint(fetch_production(target_datetime=datetime.strptime("2018-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
-
-    # # this should return None
-    # print('fetch_production(target_datetime=datetime.strptime("2007-03-13T12:00Z", "%Y-%m-%dT%H:%MZ") ->')
-    # pprint(fetch_production(target_datetime=datetime.strptime("2007-03-13T12:00Z", "%Y-%m-%dT%H:%MZ")))
-
-    print("fetch_exchange() ->")
-    print(fetch_exchange())
+    print(fetch_production())

@@ -108,3 +108,15 @@ export const zoneDetailMock = {
   totalStorage: 0,
   zoneKey: 'PT',
 };
+
+export const zoneStateMock = {
+  co2intensity: 176.01,
+  co2intensityProduction: 342.58,
+  estimatedPercentage: 0,
+  fossilFuelRatio: 0.1664,
+  fossilFuelRatioProduction: 0.345,
+  renewableRatio: 0.683,
+  renewableRatioProduction: 0.655,
+  stateDatetime: 167_000_000_000,
+  zoneKey: 'DK-DK2',
+};

@@ -173,7 +173,8 @@
   "left-panel": {
     "zone-list-header-title": "Climate Impact by Area",
     "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas"
+    "search": "Search areas",
+    "get-data": "See our commercial API offerings"
   },
   "country-history": {
     "carbonintensity": {
@@ -224,7 +225,6 @@
       "monthly": "Monthly net exchange",
       "yearly": "Yearly net exchange"
     },
-    "Getdata": "Get hourly historical, live, and forecast data with Electricity Maps API",
     "not-enough-data": "Not enough data available to display chart"
   },
   "footer": {
@@ -361,6 +361,8 @@
     "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
     "methodology-question": "How did you calculate the numbers?",
     "methodology-answer": "We have detailed our full methodology on <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a>, with additional documentation in <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">our GitHub Wiki</a>.",
+    "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
+    "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">details on the Wiki</a>.",
     "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
     "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
     "importsAndExports-question": "Do you take into account imports and exports of electricity?",
@@ -381,8 +383,6 @@
     "groupName": "Our data",
     "dataOrigins-question": "How do you get your data?",
     "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
-    "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
-    "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">details on the Wiki</a>.",
     "dataDownload-question": "Can I download your data?",
     "dataDownload-answer": "We publish data for the past years for free at our <a href=\"https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Data Portal</a>. For more recent and real-time data you can use <a href=\"https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral\">our API</a>, which is free for non-commercial use and available for purchase for commercial use.",
     "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
@@ -1951,7 +1951,8 @@
     },
     "US-TEX-ERCO": {
       "countryName": "USA",
-      "zoneName": "Electric Reliability Council of Texas, Inc."
+      "displayName": "ERCOT",
+      "zoneName": "Electric Reliability Council of Texas"
     },
     "UY": {
       "zoneName": "Uruguay"
