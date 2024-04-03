@@ -64,6 +64,7 @@
       "error",
       { "ignoreArrowShorthand": true }
     ],
+    "@typescript-eslint/no-explicit-any": "warn",
     "import/no-deprecated": "error",
     "import/no-unresolved": "off", // Off as TS handles this
     "import/no-extraneous-dependencies": [
@@ -201,8 +202,7 @@
         ],
         "testing-library/no-manual-cleanup": "error",
         "testing-library/prefer-explicit-assert": "error",
-        "testing-library/prefer-user-event": "error",
-        "testing-library/prefer-wait-for": "error"
+        "testing-library/prefer-user-event": "error"
       }
     }
   ]

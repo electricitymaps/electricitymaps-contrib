@@ -1,4 +1,3 @@
-import json
 from datetime import datetime, timedelta, timezone
 from importlib import resources
 
@@ -7,29 +6,27 @@ from requests import Session
 from requests_mock import ANY, GET, Adapter
 from snapshottest import TestCase
 
-from parsers.BG import fetch_production
 from parsers.lib.exceptions import ParserException
+from parsers.PF import fetch_production
 
 
-class TestBG(TestCase):
+class TestPF(TestCase):
     def setUp(self) -> None:
         super().setUp()
 
         self.session = Session()
         self.adapter = Adapter()
-        self.session.mount("http://", self.adapter)
+        self.session.mount("https://", self.adapter)
 
     @freeze_time("2024-01-01 12:00:00")
-    def test_fetch_production(self):
+    def test_fetch_production_live(self):
         """That we can fetch the production mix at the current time."""
         self.adapter.register_uri(
             GET,
             ANY,
-            json=json.loads(
-                resources.files("parsers.test.mocks.BG")
-                .joinpath("production_live.json")
-                .read_text()
-            ),
+            text=resources.files("parsers.test.mocks.PF")
+            .joinpath("production_live.html")
+            .read_text(),
         )
 
         production = fetch_production(session=self.session)
