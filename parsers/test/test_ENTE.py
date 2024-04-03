@@ -42,6 +42,17 @@ class TestENTE(TestCase):
             }
         )
 
+    def test_fetch_exchange_raises_exception_on_exchange_not_implemented(self):
+        with self.assertRaises(
+            NotImplementedError,
+            msg="This exchange is not implemented.",
+        ):
+            fetch_exchange(
+                zone_key1=ZoneKey("FR"),
+                zone_key2=ZoneKey("GB"),
+                session=self.session,
+            )
+
     @freeze_time("2024-04-03 14:00:00")
     def test_fetch_production(self):
         production = fetch_production(
