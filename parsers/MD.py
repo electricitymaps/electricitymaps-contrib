@@ -3,7 +3,6 @@
 """Parser for Moldova."""
 
 from collections import namedtuple
-from collections.abc import Callable
 from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -123,44 +122,26 @@ def template_exchange_response(
     }
 
 
-def get_archive_data(session: Session | None = None, dates=None) -> list:
-    """
-    Returns archive data as a list of ArchiveDatapoint.
+def get_archive_data(
+    target_datetime: datetime, session: Session | None = None
+) -> list[ArchiveDatapoint]:
+    """Returns archive data for the target day as a list of ArchiveDatapoint."""
 
-    Optionally accepts a date to fetch the data for,
-    or two dates specifing the range to fetch the data for.
-    Specifying a date-range too high will cause errors with the archive-server.
-    If no dates are specified data for the last 24 hours is fetched.
-    """
-
-    # Format for date and time used in archive-datapoints.
-    archive_date_format = "%d.%m.%Y"
-    archive_datetime_format = "%Y-%m-%d %H:%M"
+    archive_date = target_datetime.astimezone(TZ).strftime("%d.%m.%Y")
+    archive_url = f"{archive_base_url}&date1={archive_date}&date2={archive_date}"
 
     s = session or Session()
-
-    try:
-        date1, date2 = sorted(dates)
-    except Exception:
-        date1 = date2 = dates
-
-    archive_url = archive_base_url
-    if date1 and date2:
-        date_1_local_time = datetime.fromisoformat(date1).astimezone(TZ)
-        date_2_local_time = datetime.fromisoformat(date2).astimezone(TZ)
-        archive_url += f"&date1={date_1_local_time.strftime(archive_date_format)}"
-        archive_url += f"&date2={date_2_local_time.strftime(archive_date_format)}"
-
     data_response = s.get(archive_url, verify=False)
     data = data_response.json()
     try:
-        return [
+        archive_datapoints = [
             ArchiveDatapoint(
-                datetime.strptime(entry[0], archive_datetime_format).replace(tzinfo=TZ),
+                datetime.strptime(entry[0], "%Y-%m-%d %H:%M").replace(tzinfo=TZ),
                 *map(float, entry[1:]),
             )
             for entry in data
         ]
+        return sorted(archive_datapoints, key=lambda x: x.datetime)
     except Exception as e:
         raise ParserException(
             "MD.py",
@@ -217,7 +198,7 @@ def fetch_consumption(
 ) -> list[dict] | dict:
     """Requests the consumption (in MW) of a given country."""
     if target_datetime:
-        archive_data = get_archive_data(session, target_datetime)
+        archive_data = get_archive_data(target_datetime, session=session)
 
         datapoints = []
         for entry in archive_data:
@@ -246,8 +227,7 @@ def fetch_production(
 ) -> list[dict] | dict:
     """Requests the production mix (in MW) of a given country."""
     if target_datetime:
-        archive_data = get_archive_data(session, target_datetime)
-
+        archive_data = get_archive_data(target_datetime, session=session)
         datapoints = []
         for entry in archive_data:
             production = {
@@ -317,7 +297,7 @@ def fetch_exchange(
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     if target_datetime:
-        archive_data = get_archive_data(session, target_datetime)
+        archive_data = get_archive_data(target_datetime, session=session)
 
         datapoints = []
         for entry in archive_data:
@@ -351,28 +331,23 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
+    # Main method, never used by the Electricity Map backend, but handy for testing.
 
-    def try_print(function: Callable, *args, **kwargs):
-        try:
-            result = function(*args, **kwargs)
-            try:
-                print(f"[{result[0]}, ... ({len(result)} more elements)]")
-            except Exception:
-                print(result)
-        except Exception as e:
-            print(repr(e))
+    print("fetch_price() ->")
+    print(fetch_price())
 
-    for target_datetime in (None, "2021-07-25T15:00"):
+    for target_datetime in (None, datetime.fromisoformat("2021-07-25T15:00+00:00")):
         print(f"For target_datetime {target_datetime}:")
-        print("fetch_price() ->")
-        try_print(fetch_price, target_datetime=target_datetime)
+
         print("fetch_consumption() ->")
-        try_print(fetch_consumption, target_datetime=target_datetime)
+        print(fetch_consumption(target_datetime=target_datetime))
+
         print("fetch_production() ->")
-        try_print(fetch_production, target_datetime=target_datetime)
+        print(fetch_production(target_datetime=target_datetime))
+
         print("fetch_exchange(MD, UA) ->")
-        try_print(fetch_exchange, "MD", "UA", target_datetime=target_datetime)
+        print(fetch_exchange("MD", "UA", target_datetime=target_datetime))
         print("fetch_exchange(MD, RO) ->")
-        try_print(fetch_exchange, "MD", "RO", target_datetime=target_datetime)
+        print(fetch_exchange("MD", "RO", target_datetime=target_datetime))
+
         print("------------")
