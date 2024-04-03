@@ -1,0 +1,161 @@
+{
+  "nodes": [
+    {
+      "from": {
+        "name": "Changuinola",
+        "mw": "-31.78",
+        "mvar": "-11.40"
+      },
+      "to": {
+        "name": "Cahuita",
+        "mw": "32.00",
+        "mvar": "3.04"
+      }
+    },
+    {
+      "from": {
+        "name": "Dominical",
+        "mw": "11.20",
+        "mvar": "16.60"
+      },
+      "to": {
+        "name": "Río Claro",
+        "mw": "-10.37",
+        "mvar": "-22.30"
+      }
+    },
+    {
+      "from": {
+        "name": "Progreso",
+        "mw": "-5.46",
+        "mvar": "-5.70"
+      },
+      "to": {
+        "name": "Río Claro",
+        "mw": "4.21",
+        "mvar": "-5.12"
+      }
+    },
+    {
+      "from": {
+        "name": "Liberia",
+        "mw": "-56.38",
+        "mvar": "5.96"
+      },
+      "to": {
+        "name": "Amayo",
+        "mw": "58.60",
+        "mvar": "1.85"
+      }
+    },
+    {
+      "from": {
+        "name": "Canas",
+        "mw": "-47.86",
+        "mvar": "4.44"
+      },
+      "to": {
+        "name": "Ticuantepe",
+        "mw": "0.00",
+        "mvar": "0.00"
+      }
+    },
+    {
+      "from": {
+        "name": "Los Prados",
+        "mw": "102.60",
+        "mvar": "-22.60"
+      },
+      "to": {
+        "name": "León",
+        "mw": "-102.07",
+        "mvar": "10.48"
+      }
+    },
+    {
+      "from": {
+        "name": "Agua Caliente",
+        "mw": "100.90",
+        "mvar": "-23.70"
+      },
+      "to": {
+        "name": "Sandino",
+        "mw": "-99.26",
+        "mvar": "3.41"
+      }
+    },
+    {
+      "from": {
+        "name": "Nacaome",
+        "mw": "-78.79",
+        "mvar": "16.28"
+      },
+      "to": {
+        "name": "15 Sept.",
+        "mw": "79.23",
+        "mvar": "-39.67"
+      }
+    },
+    {
+      "from": {
+        "name": "Aguas Cal.",
+        "mw": "-59.50",
+        "mvar": "46.60"
+      },
+      "to": {
+        "name": "15 Sept.",
+        "mw": "60.71",
+        "mvar": "-27.41"
+      }
+    },
+    {
+      "from": {
+        "name": "La Entrada",
+        "mw": "-71.47",
+        "mvar": "12.13"
+      },
+      "to": {
+        "name": "Panaluya",
+        "mw": "68.66",
+        "mvar": "-29.44"
+      }
+    },
+    {
+      "from": {
+        "name": "Ahuachapan",
+        "mw": "-39.85",
+        "mvar": "-7.20"
+      },
+      "to": {
+        "name": "Moyuta",
+        "mw": "40.77",
+        "mvar": "-2.22"
+      }
+    },
+    {
+      "from": {
+        "name": "Ahuachapan",
+        "mw": "-45.20",
+        "mvar": "-5.98"
+      },
+      "to": {
+        "name": "Las Vegas 2",
+        "mw": "46.01",
+        "mvar": "-9.39"
+      }
+    },
+    {
+      "from": {
+        "name": "Brillantes",
+        "mw": "-149.80",
+        "mvar": "-46.71"
+      },
+      "to": {
+        "name": "",
+        "mw": "0.00",
+        "mvar": "0.00"
+      }
+    }
+  ],
+  "update": "03-abril-2024 1:31:45"
+}

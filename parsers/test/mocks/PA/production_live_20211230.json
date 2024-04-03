@@ -1,0 +1,1129 @@
+{
+  "pie": [
+    {
+      "name": "Hídrica 421.84 (27.32%)",
+      "value": 421.84,
+      "color": "#99ccee"
+    },
+    {
+      "name": "Térmica 741.51 (48.02%)",
+      "value": 741.51,
+      "color": "#ee8822"
+    },
+    {
+      "name": "Solar 262.76 (17.02%)",
+      "value": 262.76,
+      "color": "#ffff00"
+    },
+    {
+      "name": "Eólica 115.40 (7.47%)",
+      "value": 115.4,
+      "color": "#ceceff"
+    },
+    {
+      "name": "Biogás 2.70 (0.17%)",
+      "value": 2.7,
+      "color": "#ceceff"
+    }
+  ],
+  "pie2": [
+    {
+      "name": "Renovable 802.70 (51.98%)",
+      "value": 802.7,
+      "color": "#98FB98"
+    },
+    {
+      "name": "Térmica 741.51 (48.02%)",
+      "value": 741.51,
+      "color": "#ee8822"
+    }
+  ],
+  "unit": [
+    {
+      "name": "Algarrobos 1",
+      "value": "2.32",
+      "color": "#222"
+    },
+    {
+      "name": "Algarrobos 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Baitún 1",
+      "value": "34.16",
+      "color": "#222"
+    },
+    {
+      "name": "Baitún 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Baitún 4",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bajo del Totuma",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bajo Mina 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bajo Mina 2",
+      "value": "20.10",
+      "color": "#222"
+    },
+    {
+      "name": "Bajo Mina 3",
+      "value": "0.42",
+      "color": "#222"
+    },
+    {
+      "name": "Barro Blanco 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Barro Blanco 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Barro Blanco 3",
+      "value": "1.55",
+      "color": "#222"
+    },
+    {
+      "name": "Bayano 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bayano 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bayano 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bonyic 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bonyic 2",
+      "value": "10.75",
+      "color": "#222"
+    },
+    {
+      "name": "Bonyic 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bugaba I 1",
+      "value": "1.39",
+      "color": "#222"
+    },
+    {
+      "name": "Bugaba I 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bugaba I 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bugaba II 1",
+      "value": "1.60",
+      "color": "#222"
+    },
+    {
+      "name": "Bugaba II 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bugaba II 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Changuinola 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Changuinola 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Changuinola 3",
+      "value": "9.39",
+      "color": "#222"
+    },
+    {
+      "name": "Cochea 1",
+      "value": "6.79",
+      "color": "#222"
+    },
+    {
+      "name": "Cochea 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Concepción 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Concepción 2",
+      "value": "4.72",
+      "color": "#222"
+    },
+    {
+      "name": "Dolega 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Dolega 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Dolega 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Eco Hidro Tizingal",
+      "value": "0.00",
+      "color": "ROYALBLUE"
+    },
+    {
+      "name": "El Alto 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "El Alto 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "El Alto 3",
+      "value": "18.37",
+      "color": "#222"
+    },
+    {
+      "name": "Estí 1",
+      "value": "45.28",
+      "color": "#222"
+    },
+    {
+      "name": "Estí 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Estrella 1",
+      "value": "13.92",
+      "color": "#222"
+    },
+    {
+      "name": "Estrella 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Fortuna 1",
+      "value": "25.54",
+      "color": "#222"
+    },
+    {
+      "name": "Fortuna 2",
+      "value": "29.46",
+      "color": "#222"
+    },
+    {
+      "name": "Fortuna 3",
+      "value": "27.06",
+      "color": "#222"
+    },
+    {
+      "name": "Fraile 1",
+      "value": "2.09",
+      "color": "ROYALBLUE"
+    },
+    {
+      "name": "Fraile 2",
+      "value": "0.00",
+      "color": "ROYALBLUE"
+    },
+    {
+      "name": "Fraile 3",
+      "value": "1.20",
+      "color": "ROYALBLUE"
+    },
+    {
+      "name": "Gatún 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Gatún 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Gatún 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Gatún 4",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Gatún 5",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Gatún 6",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Gualaca 1",
+      "value": "6.24",
+      "color": "#222"
+    },
+    {
+      "name": "Gualaca 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "La Cuchilla 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "La Cuchilla 2",
+      "value": "3.47",
+      "color": "#222"
+    },
+    {
+      "name": "La Potra 1",
+      "value": "9.10",
+      "color": "#222"
+    },
+    {
+      "name": "La Potra 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "La Potra 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "La Potra 4",
+      "value": "1.82",
+      "color": "#222"
+    },
+    {
+      "name": "Las Cruces 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Las Cruces 2",
+      "value": "9.45",
+      "color": "#222"
+    },
+    {
+      "name": "Las Cruces 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Lorena 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Lorena 2",
+      "value": "5.86",
+      "color": "#222"
+    },
+    {
+      "name": "Macano 1",
+      "value": "0.00",
+      "color": "ORCHID"
+    },
+    {
+      "name": "Macano 2",
+      "value": "1.92",
+      "color": "#222"
+    },
+    {
+      "name": "Macano 3",
+      "value": "0.00",
+      "color": "ORCHID"
+    },
+    {
+      "name": "Madden 1",
+      "value": "6.17",
+      "color": "#222"
+    },
+    {
+      "name": "Madden 2",
+      "value": "6.06",
+      "color": "#222"
+    },
+    {
+      "name": "Madden 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Mendre 1",
+      "value": "4.00",
+      "color": "#222"
+    },
+    {
+      "name": "Mendre 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Mendre II 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Mendre II 2",
+      "value": "1.88",
+      "color": "#222"
+    },
+    {
+      "name": "M. Monte 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "M. Monte 2",
+      "value": "1.06",
+      "color": "#222"
+    },
+    {
+      "name": "Monte Lirio 1",
+      "value": "8.43",
+      "color": "#222"
+    },
+    {
+      "name": "Monte Lirio 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Monte Lirio 3",
+      "value": "15.39",
+      "color": "#222"
+    },
+    {
+      "name": "Pando 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Pando 2",
+      "value": "12.07",
+      "color": "#222"
+    },
+    {
+      "name": "Paso Ancho 1",
+      "value": "2.02",
+      "color": "#222"
+    },
+    {
+      "name": "Paso Ancho 2",
+      "value": "2.19",
+      "color": "#222"
+    },
+    {
+      "name": "Pedregalito I 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Pedregalito I 2",
+      "value": "5.00",
+      "color": "#222"
+    },
+    {
+      "name": "Pedregalito I 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Pedregalito II 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Pedregalito II 2",
+      "value": "3.27",
+      "color": "#222"
+    },
+    {
+      "name": "Perlas Norte 1",
+      "value": "0.01",
+      "color": "#222"
+    },
+    {
+      "name": "Perlas Norte 2",
+      "value": "4.50",
+      "color": "#222"
+    },
+    {
+      "name": "Perlas Sur 1",
+      "value": "0.01",
+      "color": "#222"
+    },
+    {
+      "name": "Perlas Sur 2",
+      "value": "4.53",
+      "color": "#222"
+    },
+    {
+      "name": "Planetas I 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Planetas I 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Planetas I 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Planetas II 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Planetas II 2",
+      "value": "2.99",
+      "color": "#222"
+    },
+    {
+      "name": "Prudencia 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Prudencia 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "RP-490 1",
+      "value": "4.95",
+      "color": "#222"
+    },
+    {
+      "name": "RP-490 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Salsipuedes 1",
+      "value": "9.26",
+      "color": "#222"
+    },
+    {
+      "name": "Salsipuedes 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Salsipuedes 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "San Andrés 1",
+      "value": "2.88",
+      "color": "#222"
+    },
+    {
+      "name": "San Andrés 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "San Lorenzo 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "San Lorenzo 2",
+      "value": "3.61",
+      "color": "#222"
+    },
+    {
+      "name": "Valles 1",
+      "value": "19.57",
+      "color": "#222"
+    },
+    {
+      "name": "Valles 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Yeguada 1",
+      "value": "2.59",
+      "color": "#222"
+    },
+    {
+      "name": "Yeguada 2",
+      "value": "2.56",
+      "color": "#222"
+    },
+    {
+      "name": "Yeguada 3",
+      "value": "0.53",
+      "color": "#222"
+    },
+    {
+      "name": "ACP Miraflores 5",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "ACP Miraflores 9",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "ACP Miraflores 10",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "BLM 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "BLM 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "BLM 4",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "BLM 5",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "BLM 6",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "BLM 8",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "BLM 9",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "CADASA 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "CADASA 2",
+      "value": "0.05",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 1",
+      "value": "7.03",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 2",
+      "value": "6.89",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 3",
+      "value": "6.56",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 4",
+      "value": "6.30",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 5",
+      "value": "7.06",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 6",
+      "value": "6.51",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 7",
+      "value": "1.37",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 8",
+      "value": "6.62",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 9",
+      "value": "7.07",
+      "color": "#222"
+    },
+    {
+      "name": "Cativá 10",
+      "value": "6.57",
+      "color": "#222"
+    },
+    {
+      "name": "Cobre Panamá 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Cobre Panamá 2",
+      "value": "149.60",
+      "color": "#222"
+    },
+    {
+      "name": "Costa Norte 1",
+      "value": "75.64",
+      "color": "#222"
+    },
+    {
+      "name": "Costa Norte 2",
+      "value": "127.68",
+      "color": "#222"
+    },
+    {
+      "name": "Costa Norte 3",
+      "value": "76.21",
+      "color": "#222"
+    },
+    {
+      "name": "Costa Norte 4",
+      "value": "76.35",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 1",
+      "value": "15.51",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 2",
+      "value": "15.61",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 3",
+      "value": "15.44",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 4",
+      "value": "15.53",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 5",
+      "value": "15.58",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 6",
+      "value": "15.63",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 7",
+      "value": "16.32",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 8",
+      "value": "16.13",
+      "color": "#222"
+    },
+    {
+      "name": "PanAm 9",
+      "value": "16.21",
+      "color": "#222"
+    },
+    {
+      "name": "Sparkle Power 1",
+      "value": "2.79",
+      "color": "#222"
+    },
+    {
+      "name": "Sparkle Power 2",
+      "value": "2.92",
+      "color": "#222"
+    },
+    {
+      "name": "Sparkle Power 3",
+      "value": "2.93",
+      "color": "#222"
+    },
+    {
+      "name": "Sparkle Power 4",
+      "value": "3.20",
+      "color": "#222"
+    },
+    {
+      "name": "Sparkle Power 5",
+      "value": "7.51",
+      "color": "#222"
+    },
+    {
+      "name": "Sparkle Power 6",
+      "value": "7.49",
+      "color": "#222"
+    },
+    {
+      "name": "Sparkle Power 7",
+      "value": "7.42",
+      "color": "#222"
+    },
+    {
+      "name": "Sparkle Power 8",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Termocolón 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Termocolón 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Termocolón 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Tropitérmica 1",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Tropitérmica 2",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Tropitérmica 3",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Bejuco Solar",
+      "value": "0.60",
+      "color": "#222"
+    },
+    {
+      "name": "Coclé Solar 1",
+      "value": "0.41",
+      "color": "#222"
+    },
+    {
+      "name": "Daconan Solar",
+      "value": "-2.15",
+      "color": "#222"
+    },
+    {
+      "name": "Divisa Solar",
+      "value": "5.73",
+      "color": "#222"
+    },
+    {
+      "name": "Don Félix",
+      "value": "5.95",
+      "color": "#222"
+    },
+    {
+      "name": "Ecosolar",
+      "value": "6.45",
+      "color": "#222"
+    },
+    {
+      "name": "Ecosolar 2",
+      "value": "6.57",
+      "color": "#222"
+    },
+    {
+      "name": "El Espinal",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "El Fraile Solar 1",
+      "value": "0.31",
+      "color": "#222"
+    },
+    {
+      "name": "Estrella Solar",
+      "value": "3.78",
+      "color": "#222"
+    },
+    {
+      "name": "Farallón II",
+      "value": "3.70",
+      "color": "#222"
+    },
+    {
+      "name": "Fotovoltaica Santiago Gen 1",
+      "value": "3.64",
+      "color": "#222"
+    },
+    {
+      "name": "Ikako",
+      "value": "7.93",
+      "color": "#222"
+    },
+    {
+      "name": "Ikako I",
+      "value": "5.76",
+      "color": "#222"
+    },
+    {
+      "name": "Ikako II",
+      "value": "7.27",
+      "color": "#222"
+    },
+    {
+      "name": "Ikako III",
+      "value": "7.67",
+      "color": "#222"
+    },
+    {
+      "name": "Jagüito Solar",
+      "value": "3.95",
+      "color": "#222"
+    },
+    {
+      "name": "La Esperanza Solar 20 MW",
+      "value": "3.42",
+      "color": "#222"
+    },
+    {
+      "name": "Las Mendozas Solar",
+      "value": "2.45",
+      "color": "#222"
+    },
+    {
+      "name": "Macano Solar",
+      "value": "1.53",
+      "color": "#222"
+    },
+    {
+      "name": "Mayorca Solar",
+      "value": "9.62",
+      "color": "#222"
+    },
+    {
+      "name": "Milton Solar",
+      "value": "6.02",
+      "color": "#222"
+    },
+    {
+      "name": "Pacora II",
+      "value": "0.00",
+      "color": "#222"
+    },
+    {
+      "name": "Panasolar",
+      "value": "6.45",
+      "color": "#222"
+    },
+    {
+      "name": "Parque Solar Prudencia",
+      "value": "0.00",
+      "color": "ORCHID"
+    },
+    {
+      "name": "Pesé Solar",
+      "value": "9.03",
+      "color": "#222"
+    },
+    {
+      "name": "Sarigua",
+      "value": "0.53",
+      "color": "#222"
+    },
+    {
+      "name": "Sol de David",
+      "value": "3.72",
+      "color": "#222"
+    },
+    {
+      "name": "Sol Real",
+      "value": "6.66",
+      "color": "#222"
+    },
+    {
+      "name": "Solar Bugaba",
+      "value": "1.30",
+      "color": "#222"
+    },
+    {
+      "name": "Solar Caldera",
+      "value": "2.15",
+      "color": "#222"
+    },
+    {
+      "name": "Solar Chiriquí",
+      "value": "6.39",
+      "color": "#222"
+    },
+    {
+      "name": "Solar Coclé",
+      "value": "7.78",
+      "color": "#222"
+    },
+    {
+      "name": "Solar Fotovoltaica Penonomé",
+      "value": "94.45",
+      "color": "#222"
+    },
+    {
+      "name": "Solar Los Ángeles",
+      "value": "7.84",
+      "color": "#222"
+    },
+    {
+      "name": "Solar Paris",
+      "value": "6.40",
+      "color": "#222"
+    },
+    {
+      "name": "Solar Pocrí",
+      "value": "12.24",
+      "color": "#222"
+    },
+    {
+      "name": "Vista Alegre",
+      "value": "5.14",
+      "color": "#222"
+    },
+    {
+      "name": "Marañón GGC1",
+      "value": "13.60",
+      "color": "#222"
+    },
+    {
+      "name": "Nvo. Chagres I GGC1",
+      "value": "6.50",
+      "color": "#222"
+    },
+    {
+      "name": "Nvo. Chagres I GGC2",
+      "value": "7.90",
+      "color": "#222"
+    },
+    {
+      "name": "Nvo. Chagres I GGC3",
+      "value": "3.60",
+      "color": "#222"
+    },
+    {
+      "name": "Nvo. Chagres II GGC1",
+      "value": "6.70",
+      "color": "#222"
+    },
+    {
+      "name": "Nvo. Chagres II GGC2",
+      "value": "15.50",
+      "color": "#222"
+    },
+    {
+      "name": "Nvo. Chagres II GGC3",
+      "value": "9.60",
+      "color": "#222"
+    },
+    {
+      "name": "Portobelo GGC1",
+      "value": "11.30",
+      "color": "#222"
+    },
+    {
+      "name": "R. Vientos I GGC1",
+      "value": "16.70",
+      "color": "#222"
+    },
+    {
+      "name": "R. Vientos I GGC2",
+      "value": "14.00",
+      "color": "#222"
+    },
+    {
+      "name": "R. Vientos II GGC1",
+      "value": "9.50",
+      "color": "#222"
+    },
+    {
+      "name": "R. Vientos II GGC2",
+      "value": "10.80",
+      "color": "#222"
+    }
+  ],
+  "update": "30-diciembre-2021 9:58:37"
+}
