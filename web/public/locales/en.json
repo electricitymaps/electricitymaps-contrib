@@ -1951,7 +1951,8 @@
     },
     "US-TEX-ERCO": {
       "countryName": "USA",
-      "zoneName": "Electric Reliability Council of Texas, Inc."
+      "displayName": "ERCOT",
+      "zoneName": "Electric Reliability Council of Texas"
     },
     "UY": {
       "zoneName": "Uruguay"
