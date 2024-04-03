@@ -4,9 +4,7 @@ import sys
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
-
-# The arrow library is used to handle datetimes
-import arrow
+from zoneinfo import ZoneInfo
 
 # BeautifulSoup is used to parse HTML
 from bs4 import BeautifulSoup
@@ -14,6 +12,8 @@ from requests import Session
 
 REALTIME_SOURCE = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
 HISTORICAL_SOURCE = "https://tsoc.org.cy/electrical-system/archive-total-daily-system-generation-on-the-transmission-system/?startdt={}&enddt=%2B1days"
+
+TIMEZONE = ZoneInfo("Asia/Nicosia")
 
 
 class CyprusParser:
@@ -63,8 +63,8 @@ class CyprusParser:
             }
             for col, val in zip(columns, values, strict=True):
                 if col == "Timestamp":
-                    datum["datetime"] = (
-                        arrow.get(val).replace(tzinfo="Asia/Nicosia").datetime
+                    datum["datetime"] = datetime.fromisoformat(val).replace(
+                        tzinfo=TIMEZONE
                     )
                 elif col == "Αιολική Παραγωγή":
                     production["wind"] = float(val)
@@ -89,9 +89,7 @@ class CyprusParser:
             url = REALTIME_SOURCE
         else:
             # convert target datetime to local datetime
-            url_date = (
-                arrow.get(target_datetime).to("Asia/Nicosia").format("DD-MM-YYYY")
-            )
+            url_date = target_datetime.astimezone(TIMEZONE).strftime("%d-%m-%Y")
             url = HISTORICAL_SOURCE.format(url_date)
 
         res = self.session.get(url)
