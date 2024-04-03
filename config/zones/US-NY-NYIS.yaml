@@ -8,10 +8,16 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 217.5
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 221.3
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 506.9
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 451.4
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -20,6 +26,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 25158.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 25778.8
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -28,6 +37,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4617.3
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 4604.4
   hydro storage:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -40,10 +52,16 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4065.4
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 3444.4
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 1446.4
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 1521.9
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -52,6 +70,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2526.3
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 2745.6
 comment: New York Independent System Operator
 contributors:
   - systemcatch

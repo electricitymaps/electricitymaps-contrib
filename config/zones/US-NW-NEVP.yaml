@@ -8,6 +8,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 175.0
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 470.0
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -24,6 +27,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 859.7
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 872.7
   hydro:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -44,6 +50,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2795.8
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 3020.8
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov

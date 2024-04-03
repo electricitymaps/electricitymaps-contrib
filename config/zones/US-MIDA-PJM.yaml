@@ -8,18 +8,30 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 316.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 316.3
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2140.3
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 2118.6
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 41332.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 37693.8
   gas:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 103431.3
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 105136.5
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -40,10 +52,16 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4990.7
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 4960.6
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 8720.7
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 11192.8
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -52,6 +70,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 11168.6
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 11271.6
 comment: Pjm Interconnection, Llc
 contributors:
   - systemcatch
