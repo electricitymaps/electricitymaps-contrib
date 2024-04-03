@@ -7,7 +7,7 @@ from requests_mock import GET, Adapter
 from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.ENTE import DATA_URL, fetch_production
+from parsers.ENTE import DATA_URL, fetch_exchange, fetch_production
 
 
 class TestENTE(TestCase):
@@ -15,9 +15,6 @@ class TestENTE(TestCase):
         self.adapter = Adapter()
         self.session = Session()
         self.session.mount("https://", self.adapter)
-
-    @freeze_time("2024-04-03 14:00:00")
-    def test_fetch_production(self):
         self.adapter.register_uri(
             GET,
             DATA_URL,
@@ -28,6 +25,25 @@ class TestENTE(TestCase):
             ),
         )
 
+    @freeze_time("2024-04-03 14:37:00")
+    def test_fetch_exchange(self):
+        exchange = fetch_exchange(
+            zone_key1=ZoneKey("CR"),
+            zone_key2=ZoneKey("NI"),
+            session=self.session,
+        )
+
+        self.assertMatchSnapshot(
+            {
+                "datetime": exchange["datetime"].isoformat(),
+                "sortedZoneKeys": exchange["sortedZoneKeys"],
+                "netFlow": exchange["netFlow"],
+                "source": exchange["source"],
+            }
+        )
+
+    @freeze_time("2024-04-03 14:00:00")
+    def test_fetch_production(self):
         production = fetch_production(
             zone_key=ZoneKey("HN"),
             session=self.session,
