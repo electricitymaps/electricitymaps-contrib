@@ -39,7 +39,7 @@ function TestWrapper({
 }
 
 const meta: Meta<typeof TestWrapper> = {
-  title: 'Modal/MapTooltip',
+  title: 'tooltips/MapTooltip',
   component: TestWrapper,
 };
 
