@@ -161,7 +161,7 @@ function BarBreakdownChart({
                     className={`mt-[2px] h-[16px] w-[16px]  bg-[url('/images/utility-pole_light.svg')] bg-center dark:bg-[url('/images/utility-pole_dark.svg')]`}
                   />
                 }
-                sources={GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources)}
+                sources={[...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources)]}
               />
             )}
             {currentZoneDetail?.source && (
@@ -197,22 +197,20 @@ export default BarBreakdownChart;
 
 function GetSourceArrayFromDictionary(sourceDict: {
   [key in ElectricityModeType]: string[] | null;
-}): string[] {
-  const sourceArray: string[] = [];
+}): Set<string> {
+  const sourcesWithoutDuplicates: Set<string> = new Set();
   if (sourceDict == null) {
-    return sourceArray;
+    return sourcesWithoutDuplicates;
   }
   for (const key of Object.keys(sourceDict)) {
     const capacitySource = sourceDict?.[key as ElectricityModeType];
     if (capacitySource != null) {
       for (const source of capacitySource) {
-        if (!sourceArray.includes(source)) {
-          sourceArray.push(source);
-        }
+        sourcesWithoutDuplicates.add(source);
       }
     }
   }
-  return sourceArray;
+  return sourcesWithoutDuplicates;
 }
 
 function Source({
