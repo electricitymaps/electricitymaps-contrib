@@ -41,7 +41,7 @@ export default function Attribution({ zoneId }: { zoneId: string }) {
         </div>
       )}
       <Button
-        icon={<GithubIcon></GithubIcon>}
+        icon={<GithubIcon/>}
         type="secondary"
         href="https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers"
       >
