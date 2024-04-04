@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
-import { displayByEmissionsAtom } from 'utils/state/atoms';
+import { dataSourcesCollapsed, displayByEmissionsAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
@@ -151,7 +151,11 @@ function BarBreakdownChart({
         />
       )}
       <div className="pt-2">
-        <Accordion title={t('data-sources.title')} className="text-md">
+        <Accordion
+          title={t('data-sources.title')}
+          className="text-md"
+          isCollapsedAtom={dataSourcesCollapsed}
+        >
           <div>
             {currentZoneDetail?.capacitySources && (
               <Source
