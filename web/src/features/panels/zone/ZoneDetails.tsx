@@ -113,7 +113,7 @@ export default function ZoneDetails(): JSX.Element {
             />
           )}
           <Attribution zoneId={zoneId} />
-          {isMobile && (
+          {isMobile ? (
             <Button
               backgroundClasses="mt-3"
               icon={<MdOutlineCloudDownload size={20} />}
@@ -121,8 +121,7 @@ export default function ZoneDetails(): JSX.Element {
             >
               {t('header.get-data')}
             </Button>
-          )}
-          {!isMobile && <div className="p-2" />}
+          ) : <div className="p-2" />}
         </ZoneDetailsContent>
       </div>
     </>
