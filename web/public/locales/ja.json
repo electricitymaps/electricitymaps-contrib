@@ -50,9 +50,6 @@
     "zone-list-header-subtitle": "電力消費に対する炭素強度(gCO₂eq/kWh)でランク分け",
     "search": "エリアを検索"
   },
-  "country-history": {
-    "Getdata": "過去と予想のデータを取得する"
-  },
   "footer": {
     "foundbugs": "バグの発見? ご報告ください",
     "faq-text": "不明な点がありますか? ",
