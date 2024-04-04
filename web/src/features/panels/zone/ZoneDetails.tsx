@@ -121,7 +121,9 @@ export default function ZoneDetails(): JSX.Element {
             >
               {t('header.get-data')}
             </Button>
-          ) : <div className="p-2" />}
+          ) : (
+            <div className="p-2" />
+          )}
         </ZoneDetailsContent>
       </div>
     </>
