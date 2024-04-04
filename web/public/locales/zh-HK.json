@@ -11,8 +11,7 @@
     "carbonintensity": "碳強度",
     "electricityproduction": "電力生產",
     "bysource": "按來源",
-    "emissions": "碳排放量",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">新增或編輯來源</a>"
+    "emissions": "碳排放量"
   },
   "footer": {
     "foundbugs": "發現錯誤或有其他想法？請回報",

@@ -37,7 +37,6 @@
     "electricityconsumption": "Upotreba struje",
     "bysource": "prema izvoru",
     "emissions": "Emisije",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">dodaj ili promijeni izvor</a>",
     "helpfrom": "uz pomoć",
     "noDataAtTimestamp": "Podaci su trenutno nedostupni za odabrano vrijeme",
     "noLiveData": "Podaci uživo su trenutno nedostupni za odabrano područje",
