@@ -112,7 +112,7 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
-          <Attribution data={data} zoneId={zoneId} />
+          <Attribution zoneId={zoneId} />
           {isMobile && (
             <Button
               backgroundClasses="mt-3"
@@ -122,7 +122,7 @@ export default function ZoneDetails(): JSX.Element {
               {t('header.get-data')}
             </Button>
           )}
-          {!isMobile && <div className="p-1" />}
+          {!isMobile && <div className="p-2" />}
         </ZoneDetailsContent>
       </div>
     </>

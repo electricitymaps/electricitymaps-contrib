@@ -25,21 +25,21 @@ export function removeDuplicateSources(source: string | undefined) {
   return sources;
 }
 
-export default function Attribution({
-  data,
-  zoneId,
-}: {
-  zoneId: string;
-  data?: ZoneDetails;
-}) {
+export default function Attribution({ zoneId }: { zoneId: string }) {
   const { t } = useTranslation();
+  const { zoneContributorsIndexArray, contributors } = getContributors(zoneId);
 
   return (
     <div className="flex flex-col gap-3 pt-1.5">
-      <div className="flex flex-row justify-between">
-        <div className="text-sm font-semibold">{t('country-panel.helpfrom')}</div>
-        <ContributorList zoneId={zoneId} />
-      </div>
+      {zoneContributorsIndexArray.length > 0 && (
+        <div className="flex flex-row justify-between">
+          <div className="text-sm font-semibold">{t('country-panel.helpfrom')}</div>
+          <ContributorList
+            zoneContributorsIndexArray={zoneContributorsIndexArray}
+            contributors={contributors}
+          />
+        </div>
+      )}
       <Button
         icon={<GithubIcon></GithubIcon>}
         type="secondary"
@@ -51,8 +51,13 @@ export default function Attribution({
   );
 }
 
-function ContributorList({ zoneId }: { zoneId: string }) {
-  const { zoneContributorsIndexArray, contributors } = getContributors(zoneId);
+function ContributorList({
+  zoneContributorsIndexArray,
+  contributors,
+}: {
+  zoneContributorsIndexArray: number[];
+  contributors: string[];
+}) {
   if (!zoneContributorsIndexArray) {
     return null;
   }
