@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+from enum import Enum
 from logging import Logger, getLogger
 from typing import Any
 
@@ -13,9 +14,12 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
-from .ENTSOE import ENTSOE_DOMAIN_MAPPINGS
+from .ENTSOE import ENTSOE_DOMAIN_MAPPINGS, WindAndSolarProductionForecastTypes
 from .ENTSOE import parse_production as ENTSOE_parse_production
 from .ENTSOE import query_production as ENTSOE_query_production
+from .ENTSOE import (
+    query_wind_solar_production_forecast as ENTSOE_query_wind_solar_production_forecast,
+)
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
 
@@ -26,8 +30,40 @@ TYPE_MAPPING = {
 }
 
 
+class NedType(Enum):
+    SOLAR = 2
+
+
+class NedActivity(Enum):
+    PRODUCTION = 1
+    CONSUMPTION = 2
+
+
+class NedGranularity(Enum):
+    TEN_MINUTES = 3
+    FIFTEEN_MINUTES = 4
+    HOURLY = 5
+    DAILY = 6
+    MONTHLY = 7
+    YEARLY = 8
+
+
+class NedGranularityTimezone(Enum):
+    UTC = 0
+    LOCAL = 1
+
+
+class NedClassification(Enum):
+    FORECAST = 1
+    MEASURED = 2
+
+
+class NedPoint(Enum):
+    NETHERLANDS = 0
+
+
 # kWh to MWh with 3 decimal places
-def kwh_to_mw(kwh):
+def _kwh_to_mw(kwh):
     return round((kwh / 1000) * 4, 3)
 
 
@@ -35,14 +71,21 @@ def kwh_to_mw(kwh):
 # So we need to query each mode separately and then combine them
 def call_api(target_datetime: datetime, forecast: bool = False):
     params = {
-        "point": "0",
-        "type[]": "2",
-        "granularity": "4",
-        "granularitytimezone": "0",
-        "classification": "1" if forecast else "2",
-        "activity": "1",
-        "validfrom[before]": (target_datetime + timedelta(days=1)).date().isoformat(),
-        "validfrom[after]": (target_datetime - timedelta(days=1)).date().isoformat(),
+        "itemsPerPage": 192,
+        "point": NedPoint.NETHERLANDS.value,
+        "type[]": NedType.SOLAR.value,
+        "granularity": NedGranularity.FIFTEEN_MINUTES.value,
+        "granularitytimezone": NedGranularityTimezone.UTC.value,
+        "classification": NedClassification.FORECAST.value
+        if forecast
+        else NedClassification.MEASURED.value,
+        "activity": NedActivity.PRODUCTION.value,
+        "validfrom[before]": (target_datetime + timedelta(days=2 if forecast else 1))
+        .date()
+        .isoformat(),
+        "validfrom[after]": (target_datetime - timedelta(days=0 if forecast else 1))
+        .date()
+        .isoformat(),
     }
     headers = {"X-AUTH-TOKEN": get_token("NED_KEY"), "accept": "application/json"}
     response = requests.get(URL, params=params, headers=headers)
@@ -84,7 +127,7 @@ def format_data(json: Any, logger: Logger, forecast: bool = False):
             if clean_type in TYPE_MAPPING:
                 mix.add_value(
                     TYPE_MAPPING[clean_type],
-                    kwh_to_mw(data["volume"]),
+                    _kwh_to_mw(data["volume"]),
                 )
             else:
                 logger.warning(f"Unknown type: {clean_type}")
@@ -130,4 +173,52 @@ def fetch_production(
         matching_timestamps_only=True,
     )
 
+    return combined_data.to_list()
+
+
+def fetch_production_forecast(
+    zone_key: ZoneKey = ZoneKey("NL"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    session = session or Session()
+    target_datetime = target_datetime or datetime.now(timezone.utc)
+    json_data = call_api(target_datetime, forecast=True)
+    NED_data = format_data(json_data, logger, forecast=True)
+    ENTSOE_raw_data_day_ahead = ENTSOE_query_wind_solar_production_forecast(
+        ENTSOE_DOMAIN_MAPPINGS[zone_key],
+        session,
+        data_type=WindAndSolarProductionForecastTypes.DAY_AHEAD,
+        target_datetime=target_datetime,
+    )
+    ENTSOE_raw_data_intraday = ENTSOE_query_wind_solar_production_forecast(
+        ENTSOE_DOMAIN_MAPPINGS[zone_key],
+        session,
+        data_type=WindAndSolarProductionForecastTypes.INTRADAY,
+        target_datetime=target_datetime,
+    )
+    if ENTSOE_raw_data_day_ahead is None or ENTSOE_raw_data_intraday is None:
+        raise ParserException(
+            parser="NED.py",
+            message="Failed to fetch ENTSOE data",
+            zone_key=zone_key,
+        )
+    ENTSOE_parsed_data_day_ahead = ENTSOE_parse_production(
+        ENTSOE_raw_data_day_ahead, zoneKey=zone_key, logger=logger, forecasted=True
+    )
+    ENTSOE_parsed_data_intraday = ENTSOE_parse_production(
+        ENTSOE_raw_data_intraday, zoneKey=zone_key, logger=logger, forecasted=True
+    )
+    ENTSOE_updated_date = ProductionBreakdownList.update_production_breakdowns(
+        production_breakdowns=ENTSOE_parsed_data_day_ahead,
+        new_production_breakdowns=ENTSOE_parsed_data_intraday,
+        logger=logger,
+    )
+    combined_data = ProductionBreakdownList.update_production_breakdowns(
+        production_breakdowns=ENTSOE_updated_date,
+        new_production_breakdowns=NED_data,
+        logger=logger,
+        matching_timestamps_only=True,
+    )
     return combined_data.to_list()
