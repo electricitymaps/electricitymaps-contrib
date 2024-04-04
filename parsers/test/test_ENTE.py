@@ -25,7 +25,7 @@ class TestENTE(TestCase):
             ),
         )
 
-    @freeze_time("2024-04-03 14:37:00")
+    @freeze_time("2024-04-03 14:37:59")
     def test_fetch_exchange(self):
         exchange = fetch_exchange(
             zone_key1=ZoneKey("CR"),
@@ -53,7 +53,7 @@ class TestENTE(TestCase):
                 session=self.session,
             )
 
-    @freeze_time("2024-04-03 14:00:00")
+    @freeze_time("2024-04-03 14:00:59")
     def test_fetch_production(self):
         production = fetch_production(
             zone_key=ZoneKey("HN"),
