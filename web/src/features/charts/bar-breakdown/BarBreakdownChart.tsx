@@ -161,7 +161,9 @@ function BarBreakdownChart({
                     className={`mt-[2px] h-[16px] w-[16px]  bg-[url('/images/utility-pole_light.svg')] bg-center dark:bg-[url('/images/utility-pole_dark.svg')]`}
                   />
                 }
-                sources={[...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources)]}
+                sources={[
+                  ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
+                ]}
               />
             )}
             {currentZoneDetail?.source && (
