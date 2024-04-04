@@ -37,7 +37,6 @@
     "electricityconsumption": "Spotreba elektriny",
     "bysource": "podľa zdroja",
     "emissions": "Uhlíkové emisie",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">pridajte alebo upravte zdroj</a>",
     "helpfrom": "s pomocou od",
     "noDataAtTimestamp": "Dáta pre vybraný čas sú dočasne nedostupné",
     "noLiveData": "Živé dáta pre túto oblasť sú dočasne nedostupné",
