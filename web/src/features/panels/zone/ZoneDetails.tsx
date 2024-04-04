@@ -14,6 +14,7 @@ import {
   spatialAggregateAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+import { useBreakpoint } from 'utils/styling';
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
@@ -67,6 +68,9 @@ export default function ZoneDetails(): JSX.Element {
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
   const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+
+  const isMobile = !useBreakpoint('sm');
+
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
@@ -109,6 +113,16 @@ export default function ZoneDetails(): JSX.Element {
             />
           )}
           <Attribution data={data} zoneId={zoneId} />
+          {isMobile && (
+            <Button
+              backgroundClasses="mt-3"
+              icon={<MdOutlineCloudDownload size={20} />}
+              href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
+            >
+              {t('header.get-data')}
+            </Button>
+          )}
+          {!isMobile && <div className="p-1" />}
         </ZoneDetailsContent>
       </div>
     </>
