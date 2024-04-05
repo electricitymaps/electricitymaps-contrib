@@ -37,7 +37,6 @@
     "electricityconsumption": "Consumul de electricitate",
     "bysource": "după sursă",
     "emissions": "Emisii de carbon",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">adaugă sau modifică sursa</a>",
     "helpfrom": "cu ajutor de la",
     "noDataAtTimestamp": "Datele sunt indisponibile pentru perioada aleasă",
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",

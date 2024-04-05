@@ -63,7 +63,6 @@
     "electricityproduction": "電力生產",
     "electricityconsumption": "用電量",
     "emissions": "碳排放量",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">新增或編輯來源</a>",
     "helpfrom": "with help from",
     "noDataAtTimestamp": "尚無該時段的資料",
     "noLiveData": "尚無該地區的即時資料",
