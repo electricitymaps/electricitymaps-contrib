@@ -41,7 +41,6 @@ TZ = ZoneInfo("Asia/Jerusalem")
 def fetch_all() -> list:
     """Fetch info from IEC dashboard."""
     first = get(IEC_PRODUCTION)
-    first.cookies
     second = get(IEC_PRODUCTION, cookies=first.cookies)
     soup = BeautifulSoup(second.content, "lxml")
 

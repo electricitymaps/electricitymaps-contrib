@@ -1,9 +1,7 @@
-import { useGetWind } from 'api/getWeatherData';
+import { GfsForecastResponse, useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
-import { MapboxMap } from 'react-map-gl';
-import { Maybe } from 'types';
 import { ToggleOptions } from 'utils/constants';
 import {
   selectedDatetimeIndexAtom,
@@ -12,24 +10,23 @@ import {
 } from 'utils/state/atoms';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
-import Windy from './windy';
+import { Windy } from './windy';
 
-type WindyType = ReturnType<typeof Windy>;
-let windySingleton: Maybe<WindyType> = null;
-const createWindy = async (canvas: HTMLCanvasElement, data: any, map: MapboxMap) => {
+let windySingleton: Windy | null = null;
+const createWindy = async (
+  canvas: HTMLCanvasElement,
+  data: GfsForecastResponse,
+  map: maplibregl.Map
+) => {
   if (!windySingleton) {
-    windySingleton = new (Windy as any)({
-      canvas,
-      data,
-      map,
-    });
+    windySingleton = new Windy(canvas, data, map);
   }
-  return windySingleton as WindyType;
+  return windySingleton;
 };
 
-export default function WindLayer({ map }: { map?: MapboxMap }) {
+export default function WindLayer({ map }: { map?: maplibregl.Map }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
-  const [windy, setWindy] = useState<Maybe<WindyType>>(null);
+  const [windy, setWindy] = useState<Windy | null>(null);
   const { ref, node, width, height } = useReferenceWidthHeightObserver();
   const viewport = useMemo(() => {
     const sw = map?.unproject([0, height]);
@@ -59,8 +56,8 @@ export default function WindLayer({ map }: { map?: MapboxMap }) {
   useEffect(() => {
     if (map && !windy && isVisible && node && isWindLayerEnabled && windData) {
       createWindy(node as HTMLCanvasElement, windData, map).then((w) => {
-        const { bounds, width, height, extent } = viewport;
-        w.start(bounds, width, height, extent);
+        const { bounds, width, height } = viewport;
+        w.start(bounds, width, height);
         setWindy(w);
       });
       setIsLoadingWindLayer(false);

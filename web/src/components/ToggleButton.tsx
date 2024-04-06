@@ -10,9 +10,8 @@ import {
   Trigger as TooltipTrigger,
 } from '@radix-ui/react-tooltip';
 import { ReactElement, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
-
-import { useTranslation } from '../translation/translation';
 
 interface ToggleButtonProperties {
   options: Array<{ value: string; translationKey: string }>;
@@ -29,7 +28,7 @@ export default function ToggleButton({
   onToggle,
   transparentBackground,
 }: ToggleButtonProperties): ReactElement {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
   const onToolTipClick = () => {
     setIsToolTipOpen(!isToolTipOpen);
@@ -65,7 +64,7 @@ export default function ToggleButton({
             )}
           >
             <p className="sans flex-grow select-none capitalize dark:text-white">
-              {__(option.translationKey)}
+              {t(option.translationKey)}
             </p>
           </ToggleGroupItem>
         ))}
@@ -94,7 +93,7 @@ export default function ToggleButton({
                 side="bottom"
                 onPointerDownOutside={onToolTipClick}
               >
-                <div dangerouslySetInnerHTML={{ __html: __(tooltipKey) }} />
+                <div dangerouslySetInnerHTML={{ __html: t(tooltipKey) }} />
               </TooltipContent>
             </TooltipPortal>
           </TooltipRoot>

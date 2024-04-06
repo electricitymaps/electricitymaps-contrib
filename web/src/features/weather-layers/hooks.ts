@@ -28,21 +28,23 @@ export function useInterpolatedData(
     );
     return null;
   }
-  console.info(
-    `#1 ${type} forecast target ${formatDistance(tBefore, new Date(), {
-      addSuffix: true,
-    })} made ${formatDistance(getReferenceTime(gribs1[0]), new Date(), {
-      addSuffix: true,
-    })}`
-  );
+  if (import.meta.env.DEV) {
+    console.debug(
+      `#1 ${type} forecast target ${formatDistance(tBefore, new Date(), {
+        addSuffix: true,
+      })} made ${formatDistance(getReferenceTime(gribs1[0]), new Date(), {
+        addSuffix: true,
+      })}`
+    );
 
-  console.info(
-    `#2 ${type} forecast target ${formatDistance(tAfter, new Date(), {
-      addSuffix: true,
-    })} made ${formatDistance(getReferenceTime(gribs2[0]), new Date(), {
-      addSuffix: true,
-    })}`
-  );
+    console.debug(
+      `#2 ${type} forecast target ${formatDistance(tAfter, new Date(), {
+        addSuffix: true,
+      })} made ${formatDistance(getReferenceTime(gribs2[0]), new Date(), {
+        addSuffix: true,
+      })}`
+    );
+  }
 
   return gribs1.map((grib, outerIndex) => ({
     ...grib,

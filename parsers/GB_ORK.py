@@ -2,7 +2,6 @@
 
 """Parser for the Orkney Islands"""
 
-
 from datetime import datetime
 from logging import Logger, getLogger
 
@@ -44,7 +43,7 @@ def get_json_data():
         production[gen_type] = val
 
     for k in list(production.keys()):
-        if k not in GENERATION_MAPPING.keys():
+        if k not in GENERATION_MAPPING:
             # Get rid of unneeded keys.
             production.pop(k)
 
@@ -71,9 +70,7 @@ def get_datetime():
 
     if diff.total_seconds() > 7200:
         raise ValueError(
-            "Orkney data is too old to use, data is {} hours old.".format(
-                diff.total_seconds() / 3600
-            )
+            f"Orkney data is too old to use, data is {int(diff.total_seconds() / 3600)} hours old."
         )
 
     return aware_dt.datetime

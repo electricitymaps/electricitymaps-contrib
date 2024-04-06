@@ -4,11 +4,41 @@ bounding_box:
   - - 28.1767094256
     - 57.9701569688
 capacity:
-  biomass: 177
-  gas: 1157
-  hydro: 1609
-  solar: 63
-  wind: 165
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 177.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 166.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1157.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1112.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1609.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1588.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 63.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 303.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 165.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 136.0
 contributors:
   - corradio
 emissionFactors:

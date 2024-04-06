@@ -4,16 +4,69 @@ bounding_box:
   - - 31.5160921567
     - 70.1641930203
 capacity:
-  biomass: 1947
-  coal: 2608
-  gas: 1780
-  geothermal: 0
-  hydro: 3178
-  nuclear: 4394
-  oil: 1051
-  solar: 1018
-  unknown: 828
-  wind: 6715
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1947.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1782.0
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2608.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 2454.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1780.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1742.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 3167.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 3173.0
+  nuclear:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2794.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 4364.0
+  oil:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1051.0
+  solar:
+    - datetime: '2023-01-01'
+      source: fingrid.fi
+      value: 606
+    - datetime: '2023-12-31'
+      source: fingrid.fi
+      value: 1018
+  unknown:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 828.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 840.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 5121.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 6618.0
+    - datetime: '2024-02-01'
+      source: fingrid.fi
+      value: 6931.8
 contributors:
   - corradio
   - nessie2013
@@ -273,7 +326,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
-  productionCapacity: ENTSOE.fetch_production_capacity
+  productionCapacity: FI.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
 price_displayed: false

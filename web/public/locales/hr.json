@@ -4,7 +4,7 @@
     "opensource": "Open Source",
     "see": "vidi",
     "datasources": "izvore podataka",
-    "contribute": "Daj svoj doprinos <a href=\"%s\" target=\"_blank\">dodavanjem vlastitog područja</a>"
+    "contribute": "Daj svoj doprinos <a href=\"{{link}}\" target=\"_blank\">dodavanjem vlastitog područja</a>"
   },
   "mobile-main-menu": {
     "map": "Mapa",
@@ -37,38 +37,16 @@
     "electricityconsumption": "Upotreba struje",
     "bysource": "prema izvoru",
     "emissions": "Emisije",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ili promijeni izvor</a>",
     "helpfrom": "uz pomoć",
     "noDataAtTimestamp": "Podaci su trenutno nedostupni za odabrano vrijeme",
     "noLiveData": "Podaci uživo su trenutno nedostupni za odabrano područje",
-    "noParserInfo": "Još nemamo nikakve informacije za ovo područje.<br/> Želih nam ih pomoći dodati? Možeš dati svoj doprinos <a href=\"%s\" target=\"_blank\">dodavanjem podataka za područje</a>.",
+    "noParserInfo": "Još nemamo nikakve informacije za ovo područje.<br/> Želih nam ih pomoći dodati? Možeš dati svoj doprinos <a href=\"{{link}}\" target=\"_blank\">dodavanjem podataka za područje</a>.",
     "now": "Sada"
   },
   "left-panel": {
     "zone-list-header-title": "Utjecaj na klimu po području",
     "zone-list-header-subtitle": "Poredak po faktoru emisije upotrijebljene struje (gCO₂eq/kWh)",
     "search": "Traži"
-  },
-  "country-history": {
-    "Getdata": "Nađi povijesne podatke i API s prognozom",
-    "carbonintensity": {
-      "hourly": "Faktor emisije u zadnja 24 sata"
-    },
-    "emissionsorigin": {
-      "hourly": "Izvor emisija u zadnja 24 sata"
-    },
-    "emissionsproduction": {
-      "hourly": "Emisije proizvedene u zadnja 24 sata"
-    },
-    "electricityorigin": {
-      "hourly": "Izvor struje u zadnja 24 sata"
-    },
-    "electricityproduction": {
-      "hourly": "Proizvodnja struje u zadnja 24 sata"
-    },
-    "electricityprices": {
-      "hourly": "Cijene struje u zadnja 24 sata"
-    }
   },
   "footer": {
     "foundbugs": "Pronašao si grešku ili imaš ideje? Prijavi ih",
@@ -127,14 +105,14 @@
   "coal": "ugljen",
   "oil": "naftna",
   "unknown": "nepoznata",
-  "electricityComesFrom": "%4$s <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> dostupne električne energije",
-  "emissionsComeFrom": "%4$s <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija električne energije",
-  "electricityStoredUsing": "%4$s <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> pohranjene električne energije",
-  "emissionsStoredUsing": "%4$s <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija pohranjene električne energije",
-  "electricityExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> električne energije se izvozi u %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se izvozi u %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> električne energije se uvozi iz %5$s <b>%3$s</b>",
-  "emissionsImportedFrom": "%4$s <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se uvozi iz %5$s <b>%3$s</b>",
+  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: %3$s energija čini <b>{{percentageUsage}} %</b> dostupne električne energije",
+  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: %3$s energija čini <b>{{percentageUsage}} %</b> emisija električne energije",
+  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: %3$s energija čini <b>{{percentageUsage}} %</b> pohranjene električne energije",
+  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: %3$s energija čini <b>{{percentageUsage}} %</b> emisija pohranjene električne energije",
+  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> električne energije se izvozi u {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisija električne energije se izvozi u {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> električne energije se uvozi iz {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisija električne energije se uvozi iz {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Karta",
     "mapColors-question": "Što znače boje na karti?",

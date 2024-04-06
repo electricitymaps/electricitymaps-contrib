@@ -18,7 +18,8 @@ snapshots["test_production 1"] = [
             "wind": 9451.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 781.0},
+        "sourceType": "measured",
+        "storage": {"battery": 2.0, "hydro": 781.0},
         "zoneKey": "FR",
     },
     {
@@ -34,7 +35,8 @@ snapshots["test_production 1"] = [
             "wind": 9097.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 1097.5},
+        "sourceType": "measured",
+        "storage": {"battery": 1.5, "hydro": 1097.5},
         "zoneKey": "FR",
     },
     {
@@ -50,7 +52,8 @@ snapshots["test_production 1"] = [
             "wind": 9050.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 1423.0},
+        "sourceType": "measured",
+        "storage": {"battery": 4.5, "hydro": 1423.0},
         "zoneKey": "FR",
     },
     {
@@ -66,7 +69,8 @@ snapshots["test_production 1"] = [
             "wind": 8904.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 1422.5},
+        "sourceType": "measured",
+        "storage": {"battery": 8.5, "hydro": 1422.5},
         "zoneKey": "FR",
     },
     {
@@ -82,7 +86,8 @@ snapshots["test_production 1"] = [
             "wind": 8366.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 1422.0},
+        "sourceType": "measured",
+        "storage": {"battery": 5.0, "hydro": 1422.0},
         "zoneKey": "FR",
     },
     {
@@ -98,7 +103,8 @@ snapshots["test_production 1"] = [
             "wind": 7937.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 1421.5},
+        "sourceType": "measured",
+        "storage": {"battery": 3.0, "hydro": 1421.5},
         "zoneKey": "FR",
     },
     {
@@ -114,7 +120,8 @@ snapshots["test_production 1"] = [
             "wind": 7489.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 1256.5},
+        "sourceType": "measured",
+        "storage": {"battery": 3.5, "hydro": 1256.5},
         "zoneKey": "FR",
     },
     {
@@ -130,7 +137,8 @@ snapshots["test_production 1"] = [
             "wind": 6962.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 932.5},
+        "sourceType": "measured",
+        "storage": {"battery": -0.0, "hydro": 932.5},
         "zoneKey": "FR",
     },
     {
@@ -146,7 +154,8 @@ snapshots["test_production 1"] = [
             "wind": 6596.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 586.0},
+        "sourceType": "measured",
+        "storage": {"battery": 12.0, "hydro": 586.0},
         "zoneKey": "FR",
     },
     {
@@ -162,7 +171,8 @@ snapshots["test_production 1"] = [
             "wind": 6485.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -323.0},
+        "sourceType": "measured",
+        "storage": {"battery": -2.5, "hydro": -323.0},
         "zoneKey": "FR",
     },
     {
@@ -178,7 +188,8 @@ snapshots["test_production 1"] = [
             "wind": 5863.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -667.0},
+        "sourceType": "measured",
+        "storage": {"battery": 5.0, "hydro": -667.0},
         "zoneKey": "FR",
     },
     {
@@ -194,7 +205,8 @@ snapshots["test_production 1"] = [
             "wind": 5586.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -1045.0},
+        "sourceType": "measured",
+        "storage": {"battery": 1.0, "hydro": -1045.0},
         "zoneKey": "FR",
     },
     {
@@ -210,7 +222,8 @@ snapshots["test_production 1"] = [
             "wind": 5789.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -956.0},
+        "sourceType": "measured",
+        "storage": {"battery": 3.5, "hydro": -956.0},
         "zoneKey": "FR",
     },
     {
@@ -226,7 +239,8 @@ snapshots["test_production 1"] = [
             "wind": 5908.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -882.0},
+        "sourceType": "measured",
+        "storage": {"battery": -3.0, "hydro": -882.0},
         "zoneKey": "FR",
     },
     {
@@ -242,7 +256,8 @@ snapshots["test_production 1"] = [
             "wind": 5784.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -957.0},
+        "sourceType": "measured",
+        "storage": {"battery": 1.0, "hydro": -957.0},
         "zoneKey": "FR",
     },
     {
@@ -258,7 +273,8 @@ snapshots["test_production 1"] = [
             "wind": 5504.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -939.5},
+        "sourceType": "measured",
+        "storage": {"battery": 4.5, "hydro": -939.5},
         "zoneKey": "FR",
     },
     {
@@ -274,7 +290,8 @@ snapshots["test_production 1"] = [
             "wind": 5099.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -902.5},
+        "sourceType": "measured",
+        "storage": {"battery": -0.0, "hydro": -902.5},
         "zoneKey": "FR",
     },
     {
@@ -290,7 +307,8 @@ snapshots["test_production 1"] = [
             "wind": 4500.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -753.0},
+        "sourceType": "measured",
+        "storage": {"battery": 0.5, "hydro": -753.0},
         "zoneKey": "FR",
     },
     {
@@ -306,7 +324,8 @@ snapshots["test_production 1"] = [
             "wind": 4020.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -823.0},
+        "sourceType": "measured",
+        "storage": {"battery": 4.5, "hydro": -823.0},
         "zoneKey": "FR",
     },
     {
@@ -322,7 +341,8 @@ snapshots["test_production 1"] = [
             "wind": 3706.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -879.5},
+        "sourceType": "measured",
+        "storage": {"battery": 8.5, "hydro": -879.5},
         "zoneKey": "FR",
     },
     {
@@ -338,7 +358,8 @@ snapshots["test_production 1"] = [
             "wind": 3465.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -908.5},
+        "sourceType": "measured",
+        "storage": {"battery": 5.5, "hydro": -908.5},
         "zoneKey": "FR",
     },
     {
@@ -354,7 +375,8 @@ snapshots["test_production 1"] = [
             "wind": 3696.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -807.0},
+        "sourceType": "measured",
+        "storage": {"battery": 6.5, "hydro": -807.0},
         "zoneKey": "FR",
     },
     {
@@ -370,7 +392,8 @@ snapshots["test_production 1"] = [
             "wind": 4014.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -480.5},
+        "sourceType": "measured",
+        "storage": {"battery": 7.5, "hydro": -480.5},
         "zoneKey": "FR",
     },
     {
@@ -386,7 +409,8 @@ snapshots["test_production 1"] = [
             "wind": 4111.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -478.5},
+        "sourceType": "measured",
+        "storage": {"battery": 3.5, "hydro": -478.5},
         "zoneKey": "FR",
     },
     {
@@ -402,7 +426,8 @@ snapshots["test_production 1"] = [
             "wind": 4422.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -346.0},
+        "sourceType": "measured",
+        "storage": {"battery": 7.0, "hydro": -346.0},
         "zoneKey": "FR",
     },
     {
@@ -418,7 +443,8 @@ snapshots["test_production 1"] = [
             "wind": 5231.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -96.0},
+        "sourceType": "measured",
+        "storage": {"battery": 0.5, "hydro": -96.0},
         "zoneKey": "FR",
     },
     {
@@ -434,7 +460,8 @@ snapshots["test_production 1"] = [
             "wind": 5716.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": 22.5},
+        "sourceType": "measured",
+        "storage": {"battery": 3.5, "hydro": 22.5},
         "zoneKey": "FR",
     },
     {
@@ -450,7 +477,8 @@ snapshots["test_production 1"] = [
             "wind": 5908.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -121.0},
+        "sourceType": "measured",
+        "storage": {"battery": -2.5, "hydro": -121.0},
         "zoneKey": "FR",
     },
     {
@@ -466,7 +494,8 @@ snapshots["test_production 1"] = [
             "wind": 5689.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -480.5},
+        "sourceType": "measured",
+        "storage": {"battery": 3.0, "hydro": -480.5},
         "zoneKey": "FR",
     },
     {
@@ -482,7 +511,8 @@ snapshots["test_production 1"] = [
             "wind": 5525.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -1101.0},
+        "sourceType": "measured",
+        "storage": {"battery": -0.0, "hydro": -1101.0},
         "zoneKey": "FR",
     },
     {
@@ -498,7 +528,8 @@ snapshots["test_production 1"] = [
             "wind": 5645.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -959.0},
+        "sourceType": "measured",
+        "storage": {"battery": 9.5, "hydro": -959.0},
         "zoneKey": "FR",
     },
     {
@@ -514,7 +545,8 @@ snapshots["test_production 1"] = [
             "wind": 5495.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -1170.0},
+        "sourceType": "measured",
+        "storage": {"battery": -6.5, "hydro": -1170.0},
         "zoneKey": "FR",
     },
     {
@@ -530,7 +562,8 @@ snapshots["test_production 1"] = [
             "wind": 5446.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -936.0},
+        "sourceType": "measured",
+        "storage": {"battery": 12.0, "hydro": -936.0},
         "zoneKey": "FR",
     },
     {
@@ -546,7 +579,8 @@ snapshots["test_production 1"] = [
             "wind": 5308.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -509.0},
+        "sourceType": "measured",
+        "storage": {"battery": -2.0, "hydro": -509.0},
         "zoneKey": "FR",
     },
     {
@@ -562,7 +596,8 @@ snapshots["test_production 1"] = [
             "wind": 5164.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -945.5},
+        "sourceType": "measured",
+        "storage": {"battery": 5.0, "hydro": -945.5},
         "zoneKey": "FR",
     },
     {
@@ -578,7 +613,8 @@ snapshots["test_production 1"] = [
             "wind": 5344.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -900.5},
+        "sourceType": "measured",
+        "storage": {"battery": 8.5, "hydro": -900.5},
         "zoneKey": "FR",
     },
     {
@@ -594,7 +630,8 @@ snapshots["test_production 1"] = [
             "wind": 5333.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -1151.0},
+        "sourceType": "measured",
+        "storage": {"battery": 7.0, "hydro": -1151.0},
         "zoneKey": "FR",
     },
     {
@@ -610,7 +647,8 @@ snapshots["test_production 1"] = [
             "wind": 5381.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -1228.5},
+        "sourceType": "measured",
+        "storage": {"battery": 3.0, "hydro": -1228.5},
         "zoneKey": "FR",
     },
     {
@@ -626,7 +664,8 @@ snapshots["test_production 1"] = [
             "wind": 5378.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -1421.5},
+        "sourceType": "measured",
+        "storage": {"battery": -0.0, "hydro": -1421.5},
         "zoneKey": "FR",
     },
     {
@@ -642,7 +681,8 @@ snapshots["test_production 1"] = [
             "wind": 5526.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -596.5},
+        "sourceType": "measured",
+        "storage": {"battery": 10.5, "hydro": -596.5},
         "zoneKey": "FR",
     },
     {
@@ -658,7 +698,8 @@ snapshots["test_production 1"] = [
             "wind": 5895.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -486.5},
+        "sourceType": "measured",
+        "storage": {"battery": 5.5, "hydro": -486.5},
         "zoneKey": "FR",
     },
     {
@@ -674,7 +715,8 @@ snapshots["test_production 1"] = [
             "wind": 6158.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -607.5},
+        "sourceType": "measured",
+        "storage": {"battery": 3.0, "hydro": -607.5},
         "zoneKey": "FR",
     },
     {
@@ -690,7 +732,8 @@ snapshots["test_production 1"] = [
             "wind": 6445.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -703.0},
+        "sourceType": "measured",
+        "storage": {"battery": 2.0, "hydro": -703.0},
         "zoneKey": "FR",
     },
     {
@@ -706,7 +749,8 @@ snapshots["test_production 1"] = [
             "wind": 6631.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -461.5},
+        "sourceType": "measured",
+        "storage": {"battery": 7.5, "hydro": -461.5},
         "zoneKey": "FR",
     },
     {
@@ -722,7 +766,8 @@ snapshots["test_production 1"] = [
             "wind": 6738.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -657.5},
+        "sourceType": "measured",
+        "storage": {"battery": -0.5, "hydro": -657.5},
         "zoneKey": "FR",
     },
     {
@@ -738,7 +783,8 @@ snapshots["test_production 1"] = [
             "wind": 6931.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -586.5},
+        "sourceType": "measured",
+        "storage": {"battery": 6.0, "hydro": -586.5},
         "zoneKey": "FR",
     },
     {
@@ -754,7 +800,8 @@ snapshots["test_production 1"] = [
             "wind": 6831.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -556.5},
+        "sourceType": "measured",
+        "storage": {"battery": -2.0, "hydro": -556.5},
         "zoneKey": "FR",
     },
     {
@@ -770,7 +817,8 @@ snapshots["test_production 1"] = [
             "wind": 7137.5,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -567.0},
+        "sourceType": "measured",
+        "storage": {"battery": 5.0, "hydro": -567.0},
         "zoneKey": "FR",
     },
     {
@@ -786,7 +834,8 @@ snapshots["test_production 1"] = [
             "wind": 7440.0,
         },
         "source": "opendata.reseaux-energies.fr",
-        "storage": {"hydro": -207.0},
+        "sourceType": "measured",
+        "storage": {"battery": -0.0, "hydro": -207.0},
         "zoneKey": "FR",
     },
 ]

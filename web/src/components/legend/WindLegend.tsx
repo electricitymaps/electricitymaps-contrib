@@ -1,6 +1,6 @@
 import { windColor } from 'features/weather-layers/wind-layer/scales';
 import type { ReactElement } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 
 import HorizontalColorbar from './ColorBar';
 
@@ -24,10 +24,10 @@ function LegendItem({
 }
 
 export default function WindLegend(): ReactElement {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div>
-      <LegendItem label={__('legends.windpotential')} unit="m/s">
+      <LegendItem label={t('legends.windpotential')} unit="m/s">
         <HorizontalColorbar colorScale={windColor} id="wind" ticksCount={6} />
       </LegendItem>
     </div>

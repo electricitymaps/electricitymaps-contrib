@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_BY_GROUP,
@@ -28,48 +29,16 @@ ENTSOE_ENDPOINT = ENTSOE_HOST + ENDPOINT
 ENTSOE_EU_PROXY_ENDPOINT = EU_PROXY.format(endpoint=ENDPOINT, host=ENTSOE_HOST)
 
 
-ENTSOE_ZONES = [
-    "AL",
-    "AT",
-    "BA",
-    "BE",
-    "BG",
-    "CZ",
-    "DE",
-    "DK-DK1",
-    "DK-DK2",
-    "EE",
-    "ES",
-    "FI",
-    "FR",
-    "GR",
-    "HR",
-    "HU",
-    "IE",
-    "LT",
-    "LU",
-    "LV",
-    "ME",
-    "MK",
-    "NL",
-    "NO-NO1",
-    "NO-NO2",
-    "NO-NO3",
-    "NO-NO4",
-    "NO-NO5",
-    "PL",
-    "PT",
-    "RO",
-    "SI",
-    "SK",
-    "RS",
-    "XK",
-    "UA",
-]
+ENTSOE_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["ENTSOE"]
 
 # ENTSOE does not have battery storage capacity and the data needs to be collected from other sources for the following zones
 # TODO monitor this list and update if necessary
 ZONES_WITH_BATTERY_STORAGE = ["FR"]
+
+
+# reallocate B10 to hydro storage
+ENTSOE_CODE_TO_EM_MAPPING = ENTSOE_PARAMETER_BY_GROUP.copy()
+ENTSOE_CODE_TO_EM_MAPPING.update({"B10": "hydro storage"})
 
 
 def query_capacity(
@@ -79,13 +48,12 @@ def query_capacity(
         "documentType": "A68",
         "processType": "A33",
         "in_Domain": in_domain,
-        "periodStart": target_datetime.strftime("%Y01010000"),
-        "periodEnd": target_datetime.strftime("%Y12312300"),
     }
     return query_ENTSOE(
         session,
         params,
         target_datetime=target_datetime,
+        span=(0, 72),  # DO NOT USE A NEGATIVE LOOKBACK
         function_name=query_capacity.__name__,
     )
 
@@ -101,21 +69,15 @@ def fetch_production_capacity(
         fuel_code = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
         )
-        end_date = datetime.strptime(
-            timeseries.find_all("end")[0].contents[0], "%Y-%m-%dT%H:00Z"
-        )
-        if end_date.year != target_datetime.year:
-            pass  # query_ENTSOE fetches data for 2 years, so we need to filter out the data for the previous year
-        else:
-            point = timeseries.find_all("point")
-            value = float(point[0].find_all("quantity")[0].contents[0])
-            if ENTSOE_PARAMETER_BY_GROUP[fuel_code] not in capacity_dict:
-                capacity_dict[ENTSOE_PARAMETER_BY_GROUP[fuel_code]] = {
-                    "value": 0,
-                    "datetime": end_date.strftime("%Y-01-01"),
-                    "source": SOURCE,
-                }
-            capacity_dict[ENTSOE_PARAMETER_BY_GROUP[fuel_code]]["value"] += value
+        point = timeseries.find_all("point")
+        value = float(point[0].find_all("quantity")[0].contents[0])
+        if ENTSOE_CODE_TO_EM_MAPPING[fuel_code] not in capacity_dict:
+            capacity_dict[ENTSOE_CODE_TO_EM_MAPPING[fuel_code]] = {
+                "value": 0,
+                "datetime": f"{target_datetime.year}-01-01",
+                "source": SOURCE,
+            }
+        capacity_dict[ENTSOE_CODE_TO_EM_MAPPING[fuel_code]]["value"] += value
     if capacity_dict:
         logger.info(
             f"Capacity data for {zone_key} on {target_datetime.date()}: \n{capacity_dict}"

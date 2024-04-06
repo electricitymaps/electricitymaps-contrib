@@ -7,6 +7,7 @@ import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
 from parsers.EIA import REGIONS
 from parsers.lib.utils import get_token
@@ -15,7 +16,7 @@ logger = getLogger(__name__)
 
 CAPACITY_URL = "https://api.eia.gov/v2/electricity/operating-generator-capacity/data/?frequency=monthly&data[0]=nameplate-capacity-mw&facets[balancing_authority_code][]={}"
 SOURCE = "EIA.gov"
-US_ZONES = {key: value for key, value in REGIONS.items() if key.startswith("US-")}
+US_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EIA"]
 TECHNOLOGY_TO_MODE = {
     "All Other": "unknown",
     "Batteries": "battery storage",
@@ -52,6 +53,9 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, An
     df = df.copy()
     df = df.loc[df["statusDescription"] == "Operating"]
     df["mode"] = df["technology"].map(TECHNOLOGY_TO_MODE)
+    df["nameplate-capacity-mw"] = pd.to_numeric(
+        df["nameplate-capacity-mw"], errors="coerce"
+    )
     df_aggregated = df.groupby(["mode"])[["nameplate-capacity-mw"]].sum().reset_index()
     capacity_dict = {}
     for mode in CAPACITY_MODES:
@@ -85,7 +89,7 @@ def fetch_production_capacity(
     r: Response = session.get(url)
     json_data = r.json()
 
-    if not json_data.get("response", {}).get("data", []) == []:
+    if json_data.get("response", {}).get("data", []) != []:
         data = pd.DataFrame(json_data["response"]["data"])
         capacity_dict = format_capacity(data, target_datetime)
         logger.info(

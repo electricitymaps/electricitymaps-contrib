@@ -1,11 +1,11 @@
 import { max, sum } from 'd3-array';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { noop } from './graphUtils';
+import { getBadgeText, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
@@ -22,7 +22,7 @@ function BreakdownChart({
   timeAverage,
 }: BreakdownChartProps) {
   const { data, mixMode } = useBreakdownChartData();
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
 
   if (!data) {
     return null;
@@ -43,6 +43,8 @@ function BreakdownChart({
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
+  const badgeText = getBadgeText(chartData, t);
+
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
@@ -53,12 +55,15 @@ function BreakdownChart({
 
   return (
     <>
-      <ChartTitle translationKey={`country-history.${titleDisplayMode}${titleMixMode}`} />
+      <ChartTitle
+        translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
+        badgeText={badgeText}
+      />
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
           <div className="absolute top-0 h-full w-full">
             <div className=" h-full w-full bg-white opacity-50 dark:bg-gray-800" />
-            <div className="absolute left-[50%] top-[50%] z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
+            <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
               Temporarily disabled for consumption. <br /> Switch to production view
             </div>
           </div>
@@ -85,7 +90,7 @@ function BreakdownChart({
       {isBreakdownGraphOverlayEnabled && (
         <div
           className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
-          dangerouslySetInnerHTML={{ __html: __('country-panel.exchangesAreMissing') }}
+          dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
     </>

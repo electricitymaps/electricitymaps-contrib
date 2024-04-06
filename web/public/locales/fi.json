@@ -4,7 +4,7 @@
     "opensource": "avoin lähdekoodi",
     "see": "katso",
     "datasources": "tietolähteet",
-    "contribute": "Avusta <a href=\"%s\" target=\"_blank\">lisäämällä alueesi</a>"
+    "contribute": "Avusta <a href=\"{{link}}\" target=\"_blank\">lisäämällä alueesi</a>"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -37,41 +37,16 @@
     "electricityconsumption": "Sähkön kulutus",
     "bysource": "alkuperä",
     "emissions": "Hiilidioksidipäästöt",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">lisää tai muokkaa lähdettä</a>",
     "helpfrom": "heidän avustuksella",
     "noDataAtTimestamp": "Tiedot eivät ole väliaikaisesti käytettävissä valitulle ajankohdalle",
     "noLiveData": "Live-tiedot eivät ole väliaikaisesti käytettävissä tällä alueella",
-    "noParserInfo": "Meillä ei ole vielä tietoa tästä alueesta.<br/> Haluatko auttaa tämän korjaamisessa? Voit avustaa <a href=\"%s\" target=\"_blank\">lisäämällä alueen tiedot</a>.",
+    "noParserInfo": "Meillä ei ole vielä tietoa tästä alueesta.<br/> Haluatko auttaa tämän korjaamisessa? Voit avustaa <a href=\"{{link}}\" target=\"_blank\">lisäämällä alueen tiedot</a>.",
     "now": "Tällä hetkellä"
   },
   "left-panel": {
     "zone-list-header-title": "Ilmastovaikutukset alueittain",
     "zone-list-header-subtitle": "Sijoitus kulutetun sähkön hiili-intensiteetin mukaan (gCO₂eq/kWh)",
     "search": "Etsi alueita"
-  },
-  "country-history": {
-    "Getdata": "Hanki pääsy historia-, marginaali- ja ennuste-API:hin",
-    "carbonintensity": {
-      "hourly": "Hiili-intensiteetti viimeisen 24 tunnin aikana"
-    },
-    "emissionsorigin": {
-      "hourly": "Päästöjen alkuperä viimiesen 24 tunnin aikana"
-    },
-    "emissionsproduction": {
-      "hourly": "Päästöt tuotettu viimiesen 24 tunnin aikana"
-    },
-    "electricityorigin": {
-      "hourly": "Sähkön alkuperä viimeisen 24 tunnin aikana"
-    },
-    "electricityproduction": {
-      "hourly": "Sähkön tuotanto viimeisen 24 tunnin aikana"
-    },
-    "electricityprices": {
-      "hourly": "Sähkön hinnat viimeisen 24 tunnin aikana"
-    },
-    "emissions": {
-      "hourly": "Päästöt viimeisen 24 tunnin aikana"
-    }
   },
   "footer": {
     "foundbugs": "Löysitkö vikoja tai onko ideoita? Kerro niistä",
@@ -131,14 +106,14 @@
   "coal": "hiili",
   "oil": "öljy",
   "unknown": "tuntematon",
-  "electricityComesFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä tulee %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä tulee %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä varastoidaan %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä varastoidaan %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä viedään %3$s",
-  "emissionsExportedTo": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä viedään %3$s",
-  "electricityImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevasta sähköstä tuodaan %3$s",
-  "emissionsImportedFrom": "<b>%1$s %%</b> %4$s <b>%2$s</b> saatavilla olevista sähkön päästöistä tuodaan %3$s",
+  "electricityComesFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä tulee {{selectedLayerKey}}",
+  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä tulee {{selectedLayerKey}}",
+  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä varastoidaan {{selectedLayerKey}}",
+  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä varastoidaan {{selectedLayerKey}}",
+  "electricityExportedTo": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä viedään {{selectedLayerKey}}",
+  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä viedään {{selectedLayerKey}}",
+  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä tuodaan {{selectedLayerKey}}",
+  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä tuodaan {{selectedLayerKey}}",
   "theMap": {
     "groupName": "Kartta",
     "mapColors-question": "Mitä kartan värit tarkoittavat?",

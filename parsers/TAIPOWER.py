@@ -63,9 +63,9 @@ def fetch_production(
     )
     if objData["fueltype"].str.contains("OTHERRENEWABLEENERGY").any():
         if objData["name"].str.contains("Geothermal").any():
-            objData.loc[
-                objData["name"].str.contains("Geothermal"), "fueltype"
-            ] = "Geothermal"
+            objData.loc[objData["name"].str.contains("Geothermal"), "fueltype"] = (
+                "Geothermal"
+            )
         if objData["name"].str.contains("Biofuel").any():
             objData.loc[objData["name"].str.contains("Biofuel"), "fueltype"] = "Biofuel"
 

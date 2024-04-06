@@ -5,7 +5,6 @@ import { getHeaderHeight } from 'features/charts/bar-breakdown/utils';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
-import { MapboxMap } from 'react-map-gl';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
 
@@ -17,7 +16,7 @@ interface ExchangeArrowProps {
   data: ExchangeArrowData;
   viewportWidth: number;
   viewportHeight: number;
-  map: MapboxMap;
+  map: maplibregl.Map;
   colorBlindMode: boolean;
 }
 

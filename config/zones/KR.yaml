@@ -4,15 +4,77 @@ bounding_box:
   - - 129.46
     - 38.61
 capacity:
-  biomass: 1446
-  coal: 37338
-  gas: 41828
-  hydro: 1806
-  hydro storage: 4700
-  nuclear: 24431
-  oil: 960
-  solar: 18709
-  wind: 1727
+  biomass:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 3072.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 2730.0
+  coal:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 43687.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 42897.0
+  gas:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 42514.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 42996.0
+  geothermal:
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 0.0
+  hydro:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1812.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 1841.0
+  hydro storage:
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 4700.0
+  nuclear:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 24650.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 23250.0
+  oil:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 2053.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 3292.0
+  solar:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 24078.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 21264.0
+  unknown:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1243.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 1288.0
+  wind:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1908.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 1724.0
 contributors:
   - systemcatch
   - alixunderplatz
@@ -227,5 +289,5 @@ parsers:
   consumption: KPX.fetch_consumption
   price: KPX.fetch_price
   production: KPX.fetch_production
-  productionCapacity: EMBER.fetch_production_capacity
+  productionCapacity: IRENA.fetch_production_capacity
 timezone: Asia/Seoul

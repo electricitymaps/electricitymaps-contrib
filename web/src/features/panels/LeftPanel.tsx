@@ -1,7 +1,10 @@
 import * as Sentry from '@sentry/react';
+import LoadingSpinner from 'components/LoadingSpinner';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
+import { lazy, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
@@ -11,11 +14,11 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { useTranslation } from 'translation/translation';
 
 import { leftPanelOpenAtom } from './panelAtoms';
-import RankingPanel from './ranking-panel/RankingPanel';
-import ZoneDetails from './zone/ZoneDetails';
+
+const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
+const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
@@ -66,7 +69,7 @@ type CollapseButtonProps = {
 };
 
 function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
     <button
       data-test-id="left-panel-collapse-button"
@@ -75,7 +78,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
       }
       onClick={onCollapse}
       aria-label={
-        isCollapsed ? __('aria.label.showSidePanel') : __('aria.label.hideSidePanel')
+        isCollapsed ? t('aria.label.showSidePanel') : t('aria.label.hideSidePanel')
       }
     >
       {isCollapsed ? <HiChevronRight /> : <HiChevronLeft />}
@@ -120,12 +123,21 @@ export default function LeftPanel() {
           path="/zone/:zoneId"
           element={
             <ValidZoneIdGuardWrapper>
-              <ZoneDetails />
+              <Suspense fallback={<LoadingSpinner />}>
+                <ZoneDetails />
+              </Suspense>
             </ValidZoneIdGuardWrapper>
           }
         />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route path="*" element={<RankingPanel />} />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <RankingPanel />
+            </Suspense>
+          }
+        />
       </SentryRoutes>
     </OuterPanel>
   );

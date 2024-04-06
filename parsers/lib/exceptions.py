@@ -17,8 +17,5 @@ class ParserException(Exception):
         self.zone_key = zone_key
 
     def __str__(self):
-        if self.zone_key:
-            zone_key_info = f" ({self.zone_key})"
-        else:
-            zone_key_info = ""
+        zone_key_info = f" ({self.zone_key})" if self.zone_key else ""
         return f"{self.parser} Parser{zone_key_info}: {self.args[0]}"

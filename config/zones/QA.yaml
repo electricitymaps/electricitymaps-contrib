@@ -4,8 +4,48 @@ bounding_box:
   - - 52.11654707100007
     - 26.660101630000042
 capacity:
-  biomass: 38
-  solar: 5
+  biomass:
+    - datetime: '2016-01-01'
+      source: 'Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing'
+      value: 38
+    - datetime: '2022-01-01'
+      source: 'Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing'
+      value: 23
+  gas:
+    - datetime: '2016-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 8560.5
+    - datetime: '2017-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 8599
+    - datetime: '2018-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 10170
+    - datetime: '2019-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 10579
+    - datetime: '2020-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 10590
+    - datetime: '2022-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 10576
+    - datetime: '2023-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 10320
+  solar:
+    - datetime: '2016-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 2
+    - datetime: '2019-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 4
+    - datetime: '2022-01-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      value: 354
+    - datetime: '2022-10-01'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing,
+      value: 899
 contributors:
   - q--
   - nessie2013

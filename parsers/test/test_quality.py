@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 """Tests for quality.py."""
+
 import unittest
 
 from electricitymap.contrib.lib.types import ZoneKey

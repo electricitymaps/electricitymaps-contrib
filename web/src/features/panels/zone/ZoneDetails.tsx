@@ -1,7 +1,11 @@
 import useGetZone from 'api/getZone';
+import { Button } from 'components/Button';
+import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
@@ -10,6 +14,7 @@ import {
   spatialAggregateAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+import { useBreakpoint } from 'utils/styling';
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
@@ -33,6 +38,7 @@ export default function ZoneDetails(): JSX.Element {
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
   const { data, isError, isLoading } = useGetZone();
+  const { t } = useTranslation();
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
@@ -58,21 +64,27 @@ export default function ZoneDetails(): JSX.Element {
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
 
   const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
-  const { estimationMethod } = selectedData || {};
+  const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
+  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+
+  const isMobile = !useBreakpoint('sm');
 
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
-        {cardType != 'none' && (
-          <EstimationCard
-            cardType={cardType}
-            estimationMethod={estimationMethod}
-            outageMessage={zoneMessage}
-          ></EstimationCard>
-        )}
+        {cardType != 'none' &&
+          zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
+          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
+            <EstimationCard
+              cardType={cardType}
+              estimationMethod={estimationMethod}
+              outageMessage={zoneMessage}
+              estimatedPercentage={selectedData?.estimatedPercentage}
+            ></EstimationCard>
+          )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
@@ -83,8 +95,16 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart />
+          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           <Divider />
+          <Button
+            size="lg"
+            type="link"
+            icon={<MdOutlineCloudDownload size={20} />}
+            href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
+          >
+            {t('left-panel.get-data')}
+          </Button>
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -92,7 +112,18 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
-          <Attribution data={data} zoneId={zoneId} />
+          <Attribution zoneId={zoneId} />
+          {isMobile ? (
+            <Button
+              backgroundClasses="mt-3"
+              icon={<MdOutlineCloudDownload size={20} />}
+              href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
+            >
+              {t('header.get-data')}
+            </Button>
+          ) : (
+            <div className="p-2" />
+          )}
         </ZoneDetailsContent>
       </div>
     </>
@@ -118,7 +149,7 @@ function getCardType({
   if (timeAverage !== TimeAverages.HOURLY) {
     return 'aggregated';
   }
-  if (estimationMethod !== undefined) {
+  if (estimationMethod) {
     return 'estimated';
   }
   return 'none';
@@ -136,11 +167,7 @@ function ZoneDetailsContent({
   zoneDataStatus: ZoneDataStatus;
 }): JSX.Element {
   if (isLoading) {
-    return (
-      <div className={`flex h-full w-full items-center justify-center`}>
-        <div className="z-50 h-[50px] w-[50px] bg-[url('/images/loading-icon.svg')] bg-[length:60px] bg-center bg-no-repeat dark:bg-[url('/images/loading-icon-darkmode.svg')]"></div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {

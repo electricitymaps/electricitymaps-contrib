@@ -5,53 +5,56 @@ bounding_box:
     - 35.5013030000001
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 82.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 82.7
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1929.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1929.4
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 12234.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 12234.7
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 37762.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 37762.7
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 3317.6
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 3317.6
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1306.6
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1306.6
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 7168.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 7168.4
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 8282.4
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2001.3
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2001.3
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 4650.2
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 4650.2
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
 comment: Southern Company Services, Inc. - Trans
 contributors:
   - systemcatch
