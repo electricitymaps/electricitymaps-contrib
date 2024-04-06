@@ -37,7 +37,6 @@
     "electricityconsumption": "電力消費量",
     "bysource": "ソース分け",
     "emissions": "二酸化炭素排出",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">ソースを追加または編集する</a>",
     "helpfrom": "次の方の協力のおかげで",
     "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
     "noLiveData": "このエリアのライブデータは一時的に利用できません",
