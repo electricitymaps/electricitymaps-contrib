@@ -37,7 +37,6 @@
     "electricityconsumption": "Spotreba elektriny",
     "bysource": "podľa zdroja",
     "emissions": "Uhlíkové emisie",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">pridajte alebo upravte zdroj</a>",
     "helpfrom": "s pomocou od",
     "noDataAtTimestamp": "Dáta pre vybraný čas sú dočasne nedostupné",
     "noLiveData": "Živé dáta pre túto oblasť sú dočasne nedostupné",
@@ -48,9 +47,6 @@
     "zone-list-header-title": "Dopad na klímu podľa oblasti",
     "zone-list-header-subtitle": "Hodnotené podľa intezity uhlíka spotrebovanej elektriny (gCO₂eq/kWh)",
     "search": "Hľadaj oblasti"
-  },
-  "country-history": {
-    "Getdata": "Získajte historické dáta, menšinové a predpoveď API"
   },
   "footer": {
     "foundbugs": "Našli ste nedostatky alebo máte nápad? Povedzte nám o nich",

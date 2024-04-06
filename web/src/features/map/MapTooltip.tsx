@@ -20,7 +20,7 @@ import {
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
-function TooltipInner({
+export function TooltipInner({
   zoneData,
   date,
   zoneId,
@@ -63,7 +63,7 @@ function TooltipInner({
     <div className="w-full text-center">
       <div className="p-3">
         <div className="flex w-full flex-row justify-between">
-          <div className="max-w-52 pl-2">
+          <div className="max-w-full truncate pl-2">
             <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
             <div className="flex self-start text-sm text-neutral-600 dark:text-neutral-400">
               {date}

@@ -37,7 +37,6 @@
     "electricityconsumption": "Consumul de electricitate",
     "bysource": "după sursă",
     "emissions": "Emisii de carbon",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">adaugă sau modifică sursa</a>",
     "helpfrom": "cu ajutor de la",
     "noDataAtTimestamp": "Datele sunt indisponibile pentru perioada aleasă",
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",
@@ -49,9 +48,6 @@
     "zone-list-header-title": "Impact asupra climei în funcție de zonă",
     "zone-list-header-subtitle": "În ordinea concentrației de dioxid de carbon a electricității consumate (gCO₂eq/kWh)",
     "search": "Căutați zone"
-  },
-  "country-history": {
-    "Getdata": "Acces la date din trecut, la interval de o ora, date în timp real, și predicții cu Electricity Maps API"
   },
   "footer": {
     "foundbugs": "Ați găsit defecte sau aveți sugestii? Reportați-le",

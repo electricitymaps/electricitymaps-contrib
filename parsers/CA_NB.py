@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes consistently with other parsers
 from datetime import datetime, timezone
 from logging import Logger, getLogger
 from typing import Any

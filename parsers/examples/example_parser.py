@@ -177,7 +177,7 @@ def fetch_price(
     url = "https://api.someservice.com/v1/price/latest"
 
     response = session.get(url)
-    if not response.status_code == 200:
+    if not response.ok:
         raise ParserException(
             "example_parser.py",
             f"Exception when fetching price error code: {response.status_code}: {response.text}",
@@ -249,7 +249,7 @@ def fetch_exchange(
     }
 
     response = session.get(url, params=params)
-    if not response.status_code == 200:
+    if not response.ok:
         raise ParserException(
             "example_parser.py",
             f"Exception when fetching exchange error code: {response.status_code}: {response.text}",
@@ -319,7 +319,7 @@ def fetch_consumption(
     }
 
     response = session.get(url, params=params)
-    if not response.status_code == 200:
+    if not response.ok:
         raise ParserException(
             "example_parser.py",
             f"Exception when fetching consumption error code: {response.status_code}: {response.text}",
@@ -376,7 +376,7 @@ def fetch_total_production(
     }
 
     response = session.get(url, params=params)
-    if not response.status_code == 200:
+    if not response.ok:
         raise ParserException(
             "example_parser.py",
             f"Exception when fetching total production error code: {response.status_code}: {response.text}",

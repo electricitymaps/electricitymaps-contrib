@@ -58,7 +58,6 @@
       "total-electricity-consumption": "Consumo totale di elettricità per fonte"
     },
     "emissions": "Emissioni di carbonio",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">Aggiungi o modifica fonte</a>",
     "helpfrom": "con l'aiuto di",
     "noDataAtTimestamp": "Dati temporaneamente non disponibili per l'ora selezionata",
     "noLiveData": "Dati in tempo reale temporaneamente non disponibili per quest'area",
@@ -80,9 +79,6 @@
     "zone-list-header-title": "Impatto climatico per area",
     "zone-list-header-subtitle": "Classificazione per intensità di carbonio dell'elettricità consumata (gCO₂eq/kWh)",
     "search": "Cerca un'area..."
-  },
-  "country-history": {
-    "Getdata": "Ottieni dati orari storici, in tempo reale e previsioni con le API di Electricity Maps"
   },
   "footer": {
     "foundbugs": "Hai delle idee o hai trovato dei problemi? Scrivici",
