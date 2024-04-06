@@ -37,7 +37,6 @@
     "electricityconsumption": "Electricity consumption",
     "bysource": "bởi nguồn",
     "emissions": "Chất thải cacbon",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">thêm hoặc chỉnh sửa nguồn</a>",
     "helpfrom": "with help from",
     "noDataAtTimestamp": "Dữ liệu đang tạm thời chưa có trong khoảng thời gian được chọn",
     "noLiveData": "Live data is temporarily unavailable for this area",
@@ -48,9 +47,6 @@
     "zone-list-header-title": "Ảnh hưởng tới thời tiếtClimate Impact by Area",
     "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
     "search": "Tìm khu vực"
-  },
-  "country-history": {
-    "Getdata": "Get historical data, marginal and forecast API"
   },
   "footer": {
     "foundbugs": "Found bugs or have ideas? Report them",

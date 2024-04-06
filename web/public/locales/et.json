@@ -37,7 +37,6 @@
     "electricityconsumption": "Elektritarbimine",
     "bysource": "allikas",
     "emissions": "Süsinikheitmed",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lisa või muuda allikat</a>",
     "helpfrom": "koos aitajatega",
     "noDataAtTimestamp": "Andmed pole valitud aja jooksul ajutiselt saadaval",
     "noLiveData": "Muutuvad andmed pole selles piirkonnas ajutiselt saadaval",
@@ -49,9 +48,6 @@
     "zone-list-header-title": "Kliimamõju piirkonniti",
     "zone-list-header-subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
     "search": "Otsige piirkondi"
-  },
-  "country-history": {
-    "Getdata": "Hangi läbi Electricity Maps API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid"
   },
   "footer": {
     "foundbugs": "Leidsite vea või teil on idee? Andke nendest teada",

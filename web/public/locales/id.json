@@ -37,7 +37,6 @@
     "electricityconsumption": "Konsumsi Listrik",
     "bysource": "menurut sumber",
     "emissions": "Emisi Karbon",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">tambah atau edit sumber</a>",
     "helpfrom": "dengan bantuan dari",
     "noDataAtTimestamp": "Data belum tersedia pada waktu yang dipilih",
     "noLiveData": "Data belum tersedia pada area yang dipilih",
@@ -48,9 +47,6 @@
     "zone-list-header-title": "Dampak klimatologi berdasarkan area",
     "zone-list-header-subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
     "search": "Cari area"
-  },
-  "country-history": {
-    "Getdata": "Dapatkan data original, marjinal dan API cuaca."
   },
   "footer": {
     "foundbugs": "Menemukan kesalahan dan ide baru? Laporkan pada Kami",

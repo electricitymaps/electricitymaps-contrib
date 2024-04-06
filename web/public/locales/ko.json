@@ -37,7 +37,6 @@
     "electricityconsumption": "전력 소비",
     "bysource": "발생원에 따라",
     "emissions": "탄소 배출",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">정보를 제공하거나 수정해 주십시오</a>",
     "helpfrom": "의 도움으로",
     "noDataAtTimestamp": "지정된 시간 동안 데이터를 일시적으로 사용할 수 없습니다.",
     "noLiveData": "이 지역의 실시간 정보를 일시적으로 사용할 수 없습니다.",
@@ -48,9 +47,6 @@
     "zone-list-header-title": "지역에 따른 기후 영향",
     "zone-list-header-subtitle": "전력소비에 따른 탄소 밀집도 순위(gCO₂eq/kWh)",
     "search": "지역 찾기"
-  },
-  "country-history": {
-    "Getdata": "역사적 자료, marginal 그리고 예상된 API."
   },
   "footer": {
     "foundbugs": "버그가 발견되었거나 의견이 있으신가요? 알려주세요",

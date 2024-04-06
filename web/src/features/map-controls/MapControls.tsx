@@ -36,15 +36,19 @@ function MobileMapControls() {
   return (
     <div className="absolute right-2 top-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
       <Button
-        className="m-0 bg-white/80 p-3 backdrop-blur-sm dark:bg-gray-800/80"
+        size="lg"
+        type="secondary"
         aria-label="open info modal"
+        backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
         onClick={handleOpenInfoModal}
         icon={<HiOutlineInformationCircle size={21} />}
       />
       <Button
-        className="m-0 bg-white/80 p-3 backdrop-blur-sm dark:bg-gray-800/80"
+        size="lg"
+        type="secondary"
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
+        backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
         icon={<HiCog6Tooth size={20} />}
         data-test-id="settings-button-mobile"
       />
