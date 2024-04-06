@@ -89,8 +89,85 @@
       "total-electricity-consumption": "總用電量的來源"
     }
   },
+  "estimation-feedback": {
+    "title": {
+      "state-initial": "幫助我們改進!",
+      "state-success": "謝謝!"
+    },
+    "subtitle": {
+      "state-initial": "請評價以下陳述。",
+      "state-success": "您的反饋將幫助我們理解並提高溝通和方法論的品質。"
+    },
+    "rate-question": "資料估計的描述易於理解：",
+    "optional": "可選：",
+    "input-question": "有什麼是我們可以改進的？",
+    "agree": "非常同意",
+    "disagree": "非常不同意",
+    "placeholder": "用幾句話告訴我們...",
+    "submit": "提交"
+  },
+  "estimation-badge": {
+    "partially-estimated": "部分估計",
+    "fully-estimated": "已估計",
+    "outage": "不可用"
+  },
+  "estimation-card": {
+    "link": "了解我們的估計模型",
+    "estimated_time_slicer_average": {
+      "title": "數據目前為估計值",
+      "pill": "不可用",
+      "body": "數據提供者目前沒有報告這一小時的數據。 顯示的值是根據歷史測量值估計的，並將在可用時替換為綜合數據。 請注意，估計值可能並不總是準確的，因為它們沒有考慮到特定的即時天氣事件。"
+    },
+    "estimated_mode_breakdown": {
+      "title": "數據部分為估計值",
+      "pill": "不完整",
+      "body": "該區域發電數據不完整； 缺失值是使用估計模型計算的。"
+    },
+    "estimated_reconstruct_breakdown": {
+      "title": "數據始終為估計值",
+      "pill": "不精確",
+      "body": "該區域發布的數據僅提供總產量。可再生能源是使用即時天氣數據估算的，而化石能源是根據每個生產來源的歷史數據扣除的。"
+    },
+    "estimated_generic_method": {
+      "title": "數據為估計值",
+      "pill": "不精確",
+      "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
+    },
+    "estimated_construct_breakdown": {
+      "title": "數據始終為估計值",
+      "pill": "非即時",
+      "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
+    },
+    "estimated_construct_zero_breakdown": {
+      "title": "數據始終為估計值",
+      "pill": "非即時",
+      "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
+    },
+    "threshold_filtered": {
+      "title": "缺失數據",
+      "pill": "數據中斷",
+      "body": "該區域的數據提供者已長時間缺失數據。我們正在監視問題，一旦數據再次可用，區域將立即更新。"
+    },
+    "outage": {
+      "title": "持續存在的問題",
+      "pill": "不可用"
+    },
+    "aggregated": {
+      "title": "數據已匯總",
+      "body": "數據由每小時值聚合組成。"
+    },
+    "aggregated_estimated": {
+      "title": "數據已匯總",
+      "pill": " 估計為 {{percentage}}% ",
+      "body": "數據由每小時值聚合組成。 {{percentage}}% 的生產值為估計值。"
+    }
+  },
   "time-controller": {
-    "title": "顯示過去資料"
+    "title": "顯示過去資料",
+    "daily": "每日",
+    "hourly": "每小時",
+    "monthly": "每月",
+    "yearly": "每年"
   },
   "left-panel": {
     "zone-list-header-title": "各地區對氣候的影響",
@@ -98,6 +175,55 @@
     "search": "搜尋地區"
   },
   "country-history": {
+    "carbonintensity": {
+      "hourly": "每小時碳強度",
+      "daily": "每日碳強度",
+      "monthly": "每月碳強度",
+      "yearly": "每年碳強度"
+    },
+    "emissions": {
+      "hourly": "每小時碳排放",
+      "daily": "每日碳排放",
+      "monthly": "每月碳排放",
+      "yearly": "每年碳排放"
+    },
+    "emissionsorigin": {
+      "hourly": "每小時碳排放來源",
+      "daily": "每日碳排放來源",
+      "monthly": "每月碳排放來源",
+      "yearly": "每年碳排放來源"
+    },
+    "emissionsproduction": {
+      "hourly": "每小時生產排放",
+      "daily": "每日生產排放",
+      "monthly": "每月生產排放",
+      "yearly": "每年生產排放"
+    },
+    "electricityorigin": {
+      "hourly": "每小時電力來源",
+      "daily": "每日電力來源",
+      "monthly": "每月電力來源",
+      "yearly": "每年電力來源"
+    },
+    "electricityproduction": {
+      "hourly": "每小時電力生產",
+      "daily": "每日電力生產",
+      "monthly": "每月電力生產",
+      "yearly": "每年電力生產"
+    },
+    "electricityprices": {
+      "hourly": "每小時電價",
+      "daily": "每日電價",
+      "monthly": "每月電價",
+      "yearly": "每年電價"
+    },
+    "netExchange": {
+      "hourly": "每小時淨交換",
+      "daily": "每日淨交換",
+      "monthly": "每月淨交換",
+      "yearly": "每年淨交換"
+    },
+    "Getdata": "使用電力地圖 API 獲取每小時的歷史數據、即時數據和預測數據",
     "not-enough-data": "沒有足夠的數據來顯示圖表"
   },
   "footer": {
@@ -178,7 +304,8 @@
     "privacyPolicy": "隱私權政策",
     "legalNotice": "法律聲明",
     "dismiss": "關閉",
-    "reload": "重新載入"
+    "reload": "重新載入",
+    "slow-loading-text": "仍在加載中，如果持續如此，請嘗試重新載入..."
   },
   "wind": "風力",
   "windDataError": "目前尚無風力資料",
@@ -233,10 +360,8 @@
     "carbonIntensity-answer": "碳強度是衡量一個地區電力消耗的溫室氣體排放量的一種指標（單位為gCO₂eq/kWh，即每消耗一度電所排放的二氧化碳當量克數）。<br><br>我們測量電力消耗的溫室氣體排放量，亦即生產被一個地區消耗的電力會排放的所有溫室氣體（包含二氧化碳、甲烷等），包含從其他地區進口的電力。我們採用生命週期分析（Life Cycle Analysis），也就是，將發電廠整個生命週期（建造、燃料生產、運作、退役）的碳排量都納入計算。",
     "methodology-question": "你們如何計算這些數值的?",
     "methodology-answer": "我們在 <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a> 上詳細介紹了我們的完整方法論，並在我們的 <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">GitHub Wiki</a> 上提供了額外的文件.",
-    "consumptionFocus-question": "為什麼要計算電力消耗的碳排量，而不是電力生產的碳排量？",
-    "consumptionFocus-answer": "我們認為使用者是為他們消耗的電力負責，而不是為他們所在地生產的電量負責。而且，我們認為使用其他地區生產的不乾淨電力，以塑造自己所在區域低碳排的假象，是不應該的。",
     "renewableLowCarbonDifference-question": "「可再生」和「低碳排」的差異是什麼？",
-    "renewableLowCarbonDifference-answer": "「可再生」能源是利用可再生資源發電的發電方式，例如：風力、水力、太陽能、地熱能。「低碳」能源指的是電力生產過少碳排很少的發電方式，例如：核能。",
+    "renewableLowCarbonDifference-answer": "「可再生」能源是利用可再生能源發電的發電方式，例如：風力、水力、太陽能、地熱能。「低碳」能源指的是電力生產過少碳排很少的發電方式，例如：核能。",
     "importsAndExports-question": "你們有將電力輸入輸出納入計算嗎？",
     "importsAndExports-answer": "有的。我們在地圖上將電力進出口標記爲<a href=\"#mapArrows\" class=\"entry-link\">區域間的小箭頭</a>。點選該區域以顯示更多相關資訊。",
     "emissionsOfStored-question": "生產完直接被存入電池或用來把水抽入水庫的電力，他們的碳排如何計算呢？",
@@ -254,6 +379,8 @@
     "groupName": "我們的資料",
     "dataOrigins-question": "你們如何取得資料？",
     "dataOrigins-answer": "我們使用供電網路管理者、公部門提供的公開資料進行計算。點選區域以檢視資料來源資訊。",
+    "regionalEmissionFactors-question": "為什麼不同地區的排放因子會改變？",
+    "regionalEmissionFactors-answer": "對於某些區域，我們能夠獲取比全球平均值更精確的排放因子作為後備。例如，對於美國和歐盟，直接的發電廠排放數據是公開可用的。我們隨後將這些排放數據與發電廠的發電數據相匹配，並計算每個發電廠的排放因子，這些數據在區域層面進行了匯總。詳情見 <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">Wiki上的細節</a>.",
     "dataDownload-question": "可不可以下載你們的資料？",
     "dataDownload-answer": "你可以在我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>購買資料的取得權。",
     "dataIntegration-question": "可以將你們的即時資料整合到我的應用程式或裝置上嗎？",
@@ -1529,6 +1656,10 @@
     "US-AK": {
       "countryName": "美國",
       "zoneName": "阿拉斯加"
+    },
+    "US-AK-SEAPA": {
+      "countryName": "美國",
+      "zoneName": "Southeast Alaska Power Agency"
     },
     "US-HI-HA": {
       "countryName": "美國",
