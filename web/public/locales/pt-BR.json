@@ -44,7 +44,6 @@
       "total-electricity-consumption": "Consumo total de eletricidade por fonte"
     },
     "emissions": "Emissões de carbono",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">adicionar ou editar fonte de dados</a>",
     "helpfrom": "com ajuda de",
     "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
     "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
