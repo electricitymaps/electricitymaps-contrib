@@ -2,8 +2,8 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
 # This parser gets all real time interconnection flows from the
@@ -14,6 +14,8 @@ from requests import Session
 
 DATA_URL = "https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic"
 
+TIMEZONE = ZoneInfo("America/Tegucigalpa")
+
 JSON_MAPPING = {
     "GT->MX-OR": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
     "GT->SV": "3SISTEMA.LT230.INTER_NET_GT.CMW.MW",
@@ -23,6 +25,10 @@ JSON_MAPPING = {
     "CR->NI": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
     "CR->PA": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW",
 }
+
+
+def floor_to_minute(dt: datetime) -> datetime:
+    return dt.replace(second=0, microsecond=0)
 
 
 def fetch_production(
@@ -37,11 +43,11 @@ def fetch_production(
     # Total production data for HN from the ENTE-data is the 57th element in the JSON ('4SISTEMA.GTOT.OSYMGENTOTR.-.MW')
     production = round(response[56]["value"], 1)
 
-    dt = arrow.now("UTC-6").floor("minute")
+    dt = floor_to_minute(datetime.now(tz=TIMEZONE))
 
     data = {
         "zoneKey": zone_key,
-        "datetime": dt.datetime,
+        "datetime": dt,
         "production": {"unknown": production},
         "source": "enteoperador.org",
     }
@@ -88,11 +94,11 @@ def fetch_exchange(
 
     raw_data = s.get(DATA_URL).json()
     flow = round(extract_exchange(raw_data, sorted_zones), 1)
-    dt = arrow.now("UTC-6").floor("minute")
+    dt = floor_to_minute(datetime.now(tz=TIMEZONE))
 
     exchange = {
         "sortedZoneKeys": sorted_zones,
-        "datetime": dt.datetime,
+        "datetime": dt,
         "netFlow": flow,
         "source": "enteoperador.org",
     }
