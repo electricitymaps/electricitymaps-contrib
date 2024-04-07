@@ -14,6 +14,7 @@ interface ExchangeArrowProps {
   viewportHeight: number;
   map: maplibregl.Map;
   colorBlindMode: boolean;
+  isMobile: boolean;
 }
 
 function ExchangeArrow({
@@ -22,6 +23,7 @@ function ExchangeArrow({
   viewportHeight,
   map,
   colorBlindMode,
+  isMobile,
 }: ExchangeArrowProps) {
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
   if (!lonlat) {
@@ -47,6 +49,7 @@ function ExchangeArrow({
     transform.k < 0.1 ||
     // or if it would be rendered outside of viewport.
     transform.x + 100 * transform.k < 0 ||
+    transform.y + 100 * transform.k < 0 ||
     transform.x - 100 * transform.k > viewportWidth ||
     transform.y - 100 * transform.k > viewportHeight
   ) {
@@ -76,9 +79,9 @@ function ExchangeArrow({
 
   return (
     <TooltipWrapper
-      tooltipClassName="max-h-[256px] max-w-[512px] top-[-76px]"
-      tooltipContent={<ExchangeTooltip exchangeData={data} />}
-      side="right"
+      tooltipClassName={`max-h-[256px] max-w-[512px] ${isMobile ? '' : 'top-[-76px]'}`}
+      tooltipContent={<ExchangeTooltip exchangeData={data} isMobile={isMobile} />}
+      side={isMobile ? 'top' : 'right'}
       sideOffset={10}
     >
       <picture

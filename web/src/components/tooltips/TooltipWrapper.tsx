@@ -1,5 +1,4 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
-import { useDimensions } from 'hooks/dimensions';
 import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -9,27 +8,38 @@ interface TooltipWrapperProperties {
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
   tooltipClassName?: string;
+  isMobile?: boolean;
 }
 
-export default function TooltipWrapper(
-  properties: TooltipWrapperProperties
-): ReactElement {
-  const { tooltipContent, children, side, sideOffset, tooltipClassName } = properties;
+const noop = () => undefined;
+
+export default function TooltipWrapper({
+  tooltipContent,
+  children,
+  side,
+  sideOffset,
+  tooltipClassName,
+  isMobile,
+}: TooltipWrapperProperties): ReactElement {
   if (!tooltipContent) {
     return children;
   }
   const [isOpen, setIsOpen] = useState(false);
-  const { isMobile } = useDimensions();
+
+  // Helpers
+  const openTooltip = () => setIsOpen(true);
+  const closeTooltip = () => setIsOpen(false);
+  const toggleTooltip = () => setIsOpen(!isOpen);
 
   // Declare the event handlers outside of the JSX to avoid re-creating them on every render.
-  const handleMouseEnter = isMobile ? () => {} : () => setIsOpen(true);
-  const handleMouseLeave = isMobile ? () => {} : () => setIsOpen(false);
-  const handleClick = isMobile ? () => setIsOpen(!isOpen) : () => {};
-  const handleContentClick = isMobile ? () => setIsOpen(false) : () => {};
-  const handleContentPointerDownOutside = isMobile ? () => setIsOpen(false) : () => {};
+  const handleMouseEnter = isMobile ? noop : openTooltip;
+  const handleMouseLeave = isMobile ? noop : closeTooltip;
+  const handleClick = isMobile ? toggleTooltip : noop;
+  const handleContentClick = isMobile ? closeTooltip : noop;
+  const handleContentPointerDownOutside = isMobile ? closeTooltip : noop;
 
   return (
-    <Tooltip.Provider>
+    <Tooltip.Provider disableHoverableContent>
       <Tooltip.Root open={isOpen} delayDuration={0}>
         <Tooltip.Trigger
           onMouseEnter={handleMouseEnter}
