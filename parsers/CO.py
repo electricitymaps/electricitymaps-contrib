@@ -82,7 +82,7 @@ def fetch_live_consumption(
             datapoint["Fecha"] = datapoint["Fecha"].ljust(23, "0")
         demand_list.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(datapoint["Fecha"]).astimezone(tz=TZ),
+            datetime=datetime.fromisoformat(datapoint["Fecha"]).replace(tzinfo=TZ),
             consumption=round(datapoint["Valor"], 1),
             source="xm.com.co",
         )
@@ -97,7 +97,10 @@ def fetch_historical_consumption(
 ) -> list[dict[str, Any]]:
     demand_list = TotalConsumptionList(logger)
     # Convert datetime to local time
-    target_datetime_in_tz = target_datetime.astimezone(tz=TZ)
+    now = datetime.now(tz=TZ)
+    target_datetime_in_tz = (
+        now if target_datetime is None else target_datetime.astimezone(TZ)
+    )
 
     objetoAPI = pydataxm.ReadDB()
 
