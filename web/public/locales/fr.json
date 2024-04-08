@@ -57,7 +57,6 @@
       "total-electricity-consumption": "Consommation totale d'électricité par source"
     },
     "emissions": "Émissions",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">ajouter ou modifier la source</a>",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",

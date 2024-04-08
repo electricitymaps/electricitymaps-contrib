@@ -19,7 +19,6 @@
     "electricityproduction": "Elektriciteitsproductie",
     "bysource": "per bron",
     "emissions": "CO₂ uitstoot",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">voeg een bron toe, of wijzig deze</a>",
     "helpfrom": "met de hulp van",
     "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
     "noLiveData": "Live data is tijdelijk niet beschikbaar voor dit gebied",
