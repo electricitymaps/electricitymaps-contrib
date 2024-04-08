@@ -1,9 +1,7 @@
 import { Button } from 'components/Button';
 import { GithubIcon } from 'icons/githubIcon';
-import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { ZoneDetails } from 'types';
-import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import trackEvent from 'utils/analytics';
 
 import { getContributors } from './util';
 
@@ -44,6 +42,9 @@ export default function Attribution({ zoneId }: { zoneId: string }) {
         icon={<GithubIcon />}
         type="secondary"
         href="https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers"
+        onClick={() => {
+          trackEvent('Contribute On GitHub Button Clicked');
+        }}
       >
         {t('country-panel.contribute')}
       </Button>
