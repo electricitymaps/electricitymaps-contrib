@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import trackEvent from 'utils/analytics';
 import { dataSourcesCollapsed, displayByEmissionsAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
@@ -153,6 +154,9 @@ function BarBreakdownChart({
       )}
       <div className="pt-2">
         <Accordion
+          onClick={() => {
+            trackEvent('Data Sources Clicked', { chart: 'bar-breakdown-chart' });
+          }}
           title={t('data-sources.title')}
           className="text-md"
           isCollapsedAtom={dataSourcesCollapsed}
