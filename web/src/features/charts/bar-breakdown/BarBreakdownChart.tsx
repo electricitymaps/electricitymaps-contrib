@@ -1,6 +1,9 @@
 import * as Portal from '@radix-ui/react-portal';
 import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import { IndustryIcon } from 'icons/industryIcon';
+import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
+import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -165,11 +168,7 @@ function BarBreakdownChart({
             {currentZoneDetail?.capacitySources && (
               <DataSources
                 title="Installed capacity data"
-                icon={
-                  <div
-                    className={`mt-[2px] h-[16px] w-[16px]  bg-[url('/images/utility-pole_light.svg')] bg-center dark:bg-[url('/images/utility-pole_dark.svg')]`}
-                  />
-                }
+                icon={<UtilityPoleIcon />}
                 sources={[
                   ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
                 ]}
@@ -178,22 +177,14 @@ function BarBreakdownChart({
             {currentZoneDetail?.source && (
               <DataSources
                 title="Power generation data"
-                icon={
-                  <div
-                    className={`mt-[1px] h-[16px] w-[16px] bg-[url('/images/wind-turbine_light.svg')] bg-center dark:bg-[url('/images/wind-turbine_dark.svg')]`}
-                  />
-                }
+                icon={<WindTurbineIcon />}
                 sources={[currentZoneDetail?.source]}
               />
             )}
             {emissionData && (
               <DataSources
                 title="Emission factor data"
-                icon={
-                  <div
-                    className={`mt-[1px] h-[16px] w-[16px] bg-[url('/images/industry_light.svg')] bg-center dark:bg-[url('/images/industry_dark.svg')]`}
-                  />
-                }
+                icon={<IndustryIcon />}
                 sources={emissionData}
               />
             )}
