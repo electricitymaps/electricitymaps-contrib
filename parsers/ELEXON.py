@@ -192,7 +192,7 @@ def parse_exchange(
 
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     exchange = "->".join(sorted_zone_keys)
-    data_points = list()
+    data_points = []
     lines = csv_text.split("\n")
 
     # check field count in report is as expected
@@ -290,7 +290,7 @@ def process_production_events(
     df = fuel_inst_data.join(eso_data, rsuffix="_eso")
     df = df.rename(columns={"wind_eso": "wind", "solar_eso": "solar"})
     df = df.groupby(df.columns, axis=1).sum()
-    data_points = list()
+    data_points = []
     for time_t in pd.unique(df.index):
         time_df = df[df.index == time_t]
 
@@ -298,13 +298,13 @@ def process_production_events(
             "zoneKey": "GB",
             "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
-            "production": dict(),
-            "storage": dict(),
+            "production": {},
+            "storage": {},
         }
 
         for row in time_df.iterrows():
             electricity_production = row[1].to_dict()
-            for key in electricity_production.keys():
+            for key in electricity_production:
                 if key in PRODUCTION_MODES:
                     data_point["production"][key] = electricity_production[key]
                 elif key == "hydro storage":
@@ -356,7 +356,7 @@ def parse_production(
     df[fuel_column] = df[fuel_column].apply(lambda x: RESOURCE_TYPE_TO_FUEL[x])
 
     # loop through unique datetimes and create each data point
-    data_points = list()
+    data_points = []
     for time_t in pd.unique(df["datetime"]):
         time_df = df[df["datetime"] == time_t]
 
@@ -364,8 +364,8 @@ def parse_production(
             "zoneKey": "GB",
             "datetime": time_t.to_pydatetime(),
             "source": "bmreports.com",
-            "production": dict(),
-            "storage": dict(),
+            "production": {},
+            "storage": {},
         }
 
         for row in time_df.iterrows():
@@ -383,7 +383,7 @@ def parse_production(
                 # if/else structure allows summation of multiple quantities
                 # e.g. 'Wind Onshore' and 'Wind Offshore' both have the
                 # key 'wind' here.
-                if fuel in data_point["production"].keys():
+                if fuel in data_point["production"]:
                     data_point["production"][fuel] += quantity
                 else:
                     data_point["production"][fuel] = quantity
@@ -468,8 +468,8 @@ def fetch_exchange(
     session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
-    except arrow.parser.ParserError:
-        raise ValueError(f"Invalid target_datetime: {target_datetime}")
+    except arrow.parser.ParserError as e:
+        raise ValueError(f"Invalid target_datetime: {target_datetime}") from e
     response = query_exchange(session, target_datetime)
     data = parse_exchange(zone_key1, zone_key2, response, target_datetime, logger)
     return data
@@ -486,8 +486,8 @@ def fetch_production(
     session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
-    except arrow.parser.ParserError:
-        raise ValueError(f"Invalid target_datetime: {target_datetime}")
+    except arrow.parser.ParserError as e:
+        raise ValueError(f"Invalid target_datetime: {target_datetime}") from e
     # TODO currently resorting to FUELINST as B1620 reports 0 production in most production
     # modes at the moment. (16/12/2022) FUELINST will be decomissioned in 2023, so we should
     # switch back to B1620 at some point.

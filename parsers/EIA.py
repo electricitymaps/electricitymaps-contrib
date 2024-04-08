@@ -8,6 +8,7 @@ and exposes them via a unified API.
 Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
+
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
@@ -372,7 +373,12 @@ EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourl
 
 FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
-    "US-NW-PGE": ["biomass", "geothermal", "oil"],
+    "US-NW-PGE": [
+        "biomass",
+        "geothermal",
+        "oil",
+        "solar",
+    ],  # Solar is not reported by PGE.
     "US-NW-PACE": ["biomass", "geothermal", "oil"],
     "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
     "US-TEN-TVA": ["biomass", "geothermal", "oil"],
@@ -514,7 +520,6 @@ def fetch_production_mix(
         if zone_key == "US-CAR-SCEG" and production_mode == "nuclear":
             for point in production_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
-
         for point in production_values:
             production_mix, storage_mix = create_production_storage(
                 production_mode, point, negative_threshold
@@ -578,7 +583,7 @@ def fetch_production_mix(
     # Fx the latest oil data could be 6 months old.
     # In this case we want to discard the old data as we won't be able to merge it
     timeframes = [
-        sorted(map(lambda x: x.datetime, breakdowns.events))
+        sorted(x.datetime for x in breakdowns.events)
         for breakdowns in all_production_breakdowns
         if len(breakdowns.events) > 0
     ]
@@ -597,6 +602,9 @@ def fetch_production_mix(
         events = ProductionBreakdownList.filter_expected_modes(
             events, by_passed_modes=FILTER_INCOMPLETE_DATA_BYPASSED_MODES[zone_key]
         )
+
+    # filter events with a total_production of 0
+    events = ProductionBreakdownList.filter_only_zero_production(events)
     return events.to_list()
 
 
@@ -668,10 +676,10 @@ def _fetch(
     if target_datetime:
         try:
             target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError:
+        except arrow.parser.ParserError as e:
             raise ValueError(
                 f"target_datetime must be a valid datetime - received {target_datetime}"
-            )
+            ) from e
         utc = tz.gettz("UTC")
         eia_ts_format = "%Y-%m-%dT%H"
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
@@ -691,7 +699,7 @@ def _fetch(
             "datetime": _get_utc_datetime_from_datapoint(
                 parser.parse(datapoint["period"])
             ),
-            "value": datapoint["value"],
+            "value": float(datapoint["value"]) if datapoint["value"] else None,
             "source": "eia.gov",
         }
         for datapoint in raw_data["response"]["data"]

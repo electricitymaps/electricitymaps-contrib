@@ -20,16 +20,16 @@ class TestKPX(TestCase):
         self.session.mount("https://", self.adapter)
 
     def test_fetch_consumption(self):
-        consumption = open("parsers/test/mocks/KPX/realtime.html", "rb")
-        self.adapter.register_uri(
-            GET,
-            REAL_TIME_URL,
-            content=consumption.read(),
-        )
-        production = fetch_consumption(
-            zone_key=ZoneKey("KR"),
-            session=self.session,
-        )
+        with open("parsers/test/mocks/KPX/realtime.html", "rb") as consumption:
+            self.adapter.register_uri(
+                GET,
+                REAL_TIME_URL,
+                content=consumption.read(),
+            )
+            production = fetch_consumption(
+                zone_key=ZoneKey("KR"),
+                session=self.session,
+            )
         self.assertMatchSnapshot(
             [
                 {
@@ -44,16 +44,16 @@ class TestKPX(TestCase):
         )
 
     def test_production_realtime(self):
-        production = open("parsers/test/mocks/KPX/realtime.html", "rb")
-        self.adapter.register_uri(
-            GET,
-            REAL_TIME_URL,
-            content=production.read(),
-        )
-        production = fetch_production(
-            zone_key=ZoneKey("KR"),
-            session=self.session,
-        )
+        with open("parsers/test/mocks/KPX/realtime.html", "rb") as production:
+            self.adapter.register_uri(
+                GET,
+                REAL_TIME_URL,
+                content=production.read(),
+            )
+            production = fetch_production(
+                zone_key=ZoneKey("KR"),
+                session=self.session,
+            )
         self.assertMatchSnapshot(
             [
                 {
@@ -69,17 +69,17 @@ class TestKPX(TestCase):
         )
 
     def test_production_historical(self):
-        production = open("parsers/test/mocks/KPX/historical.html", "rb")
-        self.adapter.register_uri(
-            POST,
-            HISTORICAL_PRODUCTION_URL,
-            content=production.read(),
-        )
-        self.adapter.register_uri(
-            GET,
-            HISTORICAL_PRODUCTION_URL,
-            content=None,
-        )
+        with open("parsers/test/mocks/KPX/historical.html", "rb") as production:
+            self.adapter.register_uri(
+                POST,
+                HISTORICAL_PRODUCTION_URL,
+                content=production.read(),
+            )
+            self.adapter.register_uri(
+                GET,
+                HISTORICAL_PRODUCTION_URL,
+                content=None,
+            )
         production = fetch_production(
             zone_key=ZoneKey("KR"),
             session=self.session,

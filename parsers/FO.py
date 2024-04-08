@@ -43,7 +43,7 @@ ZONE_MAP: dict[VALID_ZONE_KEYS, ZoneData] = {
 
 
 def map_generation_type(raw_generation_type):
-    return MAP_GENERATION.get(raw_generation_type, None)
+    return MAP_GENERATION.get(raw_generation_type)
 
 
 def fetch_production(
@@ -80,12 +80,8 @@ def fetch_production(
     for key, value in obj.items():
         if key == "tiden":
             data["datetime"] = datetime.fromisoformat(value).replace(tzinfo=FO)
-        elif "Sum" in key:
-            continue
-        elif "Test" in key:
-            continue
-        elif "VnVand" in key:
-            # This is the sum of hydro (Mýrarnar + Fossá + Heygar)
+        if "Sum" in key or "Test" in key or "VnVand" in key:
+            # "VnVand" is the sum of hydro (Mýrarnar + Fossá + Heygar)
             continue
         elif key.endswith(ZONE_MAP[zone_key]["data_key"]):
             # E stands for Energy

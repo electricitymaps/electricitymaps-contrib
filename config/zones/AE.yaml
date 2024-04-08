@@ -4,12 +4,79 @@ bounding_box:
   - - 56.88363691500007
     - 26.574791972000085
 capacity:
-  biomass: 1
-  hydro: 0
-  solar: 2705
-  wind: 0
+  gas:
+    - datetime: '2016-01-01'
+      source: Climatescope
+      value: 26394
+    - datetime: '2017-01-01'
+      source: Climatescope
+      value: 26569
+    - datetime: '2018-01-01'
+      source: Climatescope
+      value: 28280
+    - datetime: '2019-01-01'
+      source: Climatescope
+      value: 25980
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 29059
+    - datetime: '2021-01-01'
+      source: Climatescope
+      value: 33493.8
+    - datetime: '2022-01-01'
+      source: Climatescope
+      value: 39976.8
+    - datetime: '2023-01-01'
+      source: Climatescope
+      value: 39451.8
+  solar:
+    - datetime: '2016-01-01'
+      source: Climatescope
+      value: 1
+    - datetime: '2017-01-01'
+      source: Climatescope
+      value: 24
+    - datetime: '2018-01-01'
+      source: Climatescope
+      value: 239
+    - datetime: '2019-01-01'
+      source: Climatescope
+      value: 513
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 2092
+    - datetime: '2021-01-01'
+      source: Climatescope
+      value: 2459
+    - datetime: '2022-01-01'
+      source: Climatescope
+      value: 3309
+    - datetime: '2022-01-01'
+      source: Climatescope
+      value: 5414
+  nuclear:
+    - datetime: '2022-01-01'
+      source: Climatescope
+      value: 1390
+    - datetime: '2023-01-01'
+      source: Climatescope
+      value: 2780
+  oil:
+    - datetime: '2016-01-01'
+      source: Climatescope
+      value: 219.9
+    - datetime: '2017-01-01'
+      source: Climatescope
+      value: 218.6
+    - datetime: '2018-01-01'
+      source: Climatescope
+      value: 71.4
 contributors:
   - q--
+  - florianscheidl
 parsers:
   consumption: GCCIA.fetch_consumption
+sources:
+  Climatescope:
+    link: https://www.global-climatescope.org/markets/ae/
 timezone: Asia/Dubai

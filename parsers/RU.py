@@ -190,9 +190,7 @@ def fetch_production_2nd_synchronous_zone(
 
     r = session or Session()
 
-    url = "{}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={}".format(
-        HOST, date
-    )
+    url = f"{HOST}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={date}"
 
     response = r.get(url, verify=False)
     json_content = json.loads(response.text)
@@ -303,10 +301,10 @@ def fetch_exchange(
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
     reversesortedcodes = "->".join(sorted([zone_key1, zone_key2], reverse=True))
 
-    if sortedcodes in exchange_ids.keys():
+    if sortedcodes in exchange_ids:
         exchange_id = exchange_ids[sortedcodes]
         direction = 1
-    elif reversesortedcodes in exchange_ids.keys():
+    elif reversesortedcodes in exchange_ids:
         exchange_id = exchange_ids[reversesortedcodes]
         direction = -1
     else:

@@ -3,7 +3,7 @@ import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
-import { getCountryName, getZoneName, useTranslation } from 'translation/translation';
+import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
 
 import { getDisclaimer } from './util';
@@ -14,13 +14,16 @@ interface ZoneHeaderTitleProps {
   isAggregated?: boolean;
 }
 
+const MAX_TITLE_LENGTH = 25;
+
 export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
-  const { __ } = useTranslation();
-  const title = getZoneName(zoneId);
+  const zoneName = getZoneName(zoneId);
+  const zoneNameFull = getFullZoneName(zoneId);
+  const showTooltip = zoneName !== zoneNameFull || zoneName.length >= MAX_TITLE_LENGTH;
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
-  const showCountryPill = zoneId.includes('-') && !title.includes(countryName);
+  const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
 
   return (
     <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
@@ -42,12 +45,12 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
                 className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
               />
               <TooltipWrapper
-                tooltipContent={title.length > 20 ? title : undefined}
+                tooltipContent={showTooltip ? zoneNameFull : undefined}
                 side="bottom"
               >
                 <div className="ml-2 flex w-full flex-row overflow-hidden">
                   <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
-                    {title}
+                    {zoneName}
                   </h2>
                   {showCountryPill && (
                     <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">

@@ -4,20 +4,14 @@
     "opensource": "開源資料",
     "see": "看",
     "datasources": "數據來源",
-    "contribute": "通過<a href=\"%s\" target=\"_blank\">添加你的國家</a>進行貢獻"
+    "contribute": "通過<a href=\"{{link}}\" target=\"_blank\">添加你的國家</a>進行貢獻"
   },
   "country-panel": {
     "source": "來源",
     "carbonintensity": "碳強度",
     "electricityproduction": "電力生產",
     "bysource": "按來源",
-    "emissions": "碳排放量",
-    "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>"
-  },
-  "country-history": {
-    "carbonintensity": {
-      "hourly": "過去24小時的碳強度"
-    }
+    "emissions": "碳排放量"
   },
   "footer": {
     "foundbugs": "發現錯誤或有其他想法？請回報",
@@ -54,14 +48,14 @@
   "coal": "煤炭",
   "oil": "石油",
   "unknown": "未知",
-  "electricityComesFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力來自 %3$s",
-  "emissionsComeFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量來自 %3$s",
-  "electricityStoredUsing": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力使用 %3$s 儲存",
-  "emissionsStoredUsing": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量使用 %3$s 儲存",
-  "electricityExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力被匯出到 %5$s <b>%3$s</b>",
-  "emissionsExportedTo": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量被匯出到 %5$s <b>%3$s</b>",
-  "electricityImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的電力從 %5$s <b>%3$s</b> 匯入",
-  "emissionsImportedFrom": "%4$s <b>%2$s</b> <b>%1$s %%</b> 的排放量從 %5$s <b>%3$s</b> 匯入",
+  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力來自 {{selectedLayerKey}}",
+  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量來自 {{selectedLayerKey}}",
+  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力使用 %3$s 儲存",
+  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量使用 %3$s 儲存",
+  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力被匯出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量被匯出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力從 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> 匯入",
+  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量從 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> 匯入",
   "zoneShortName": {
     "AL": {
       "zoneName": "阿爾巴尼亞"
