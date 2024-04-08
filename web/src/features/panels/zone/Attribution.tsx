@@ -1,69 +1,52 @@
-import { useAtom } from 'jotai';
-import { useMemo } from 'react';
+import { Button } from 'components/Button';
+import { GithubIcon } from 'icons/githubIcon';
 import { useTranslation } from 'react-i18next';
-import { ZoneDetails } from 'types';
-import { formatDataSources } from 'utils/formatting';
-import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import trackEvent from 'utils/analytics';
 
 import { getContributors } from './util';
 
-export default function Attribution({
-  data,
-  zoneId,
-}: {
-  zoneId: string;
-  data?: ZoneDetails;
-}) {
-  const { t, i18n } = useTranslation();
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
-  const dataSources = selectedData?.source;
-
-  const formattedDataSources = useMemo(() => {
-    return formatDataSources(dataSources ?? [], i18n.language);
-  }, [dataSources, i18n.language]);
+export default function Attribution({ zoneId }: { zoneId: string }) {
+  const { t } = useTranslation();
+  const { zoneContributorsIndexArray, contributors } = getContributors(zoneId);
 
   return (
-    <div className="text-sm">
-      <span>{t('country-panel.source')}:</span>
-      <a
-        style={{ textDecoration: 'none' }}
-        href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
-        target="_blank"
-        rel="noreferrer"
-        className="text-sky-600 no-underline hover:underline dark:invert"
+    <div className="flex flex-col gap-3 pt-1.5">
+      {zoneContributorsIndexArray.length > 0 && (
+        <div className="flex flex-row justify-between">
+          <div className="text-sm font-semibold">{t('country-panel.helpfrom')}</div>
+          <ContributorList
+            zoneContributorsIndexArray={zoneContributorsIndexArray}
+            contributors={contributors}
+          />
+        </div>
+      )}
+      <Button
+        icon={<GithubIcon />}
+        type="secondary"
+        href="https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers"
+        onClick={() => {
+          trackEvent('Contribute On GitHub Button Clicked');
+        }}
       >
-        {' '}
-        <span className="hover:underline">{formattedDataSources || '?'}</span>
-      </a>
-      <small>
-        {' '}
-        (
-        <span
-          className="text-sm text-sky-600 no-underline hover:underline dark:invert"
-          dangerouslySetInnerHTML={{
-            __html: t('country-panel.addeditsource', {
-              link: 'https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers',
-            }),
-          }}
-        />
-        )
-      </small>
-      {'  '}
-      {t('country-panel.helpfrom')}
-      <ContributorList zoneId={zoneId} />
+        {t('country-panel.contribute')}
+      </Button>
     </div>
   );
 }
 
-function ContributorList({ zoneId }: { zoneId: string }) {
-  const { zoneContributorsIndexArray, contributors } = getContributors(zoneId);
+function ContributorList({
+  zoneContributorsIndexArray,
+  contributors,
+}: {
+  zoneContributorsIndexArray: number[];
+  contributors: string[];
+}) {
   if (!zoneContributorsIndexArray) {
     return null;
   }
 
   return (
-    <div className="mt-1 flex flex-wrap gap-1">
+    <div className="flex flex-wrap gap-1">
       {zoneContributorsIndexArray.map((contributorIndex) => {
         return (
           <a
@@ -83,7 +66,7 @@ function ContributorList({ zoneId }: { zoneId: string }) {
               height="20"
               width="20"
               loading="lazy" // makes sure the image don't load until the user scrolls down
-              className="rounded-sm"
+              className="rounded-full"
             />
           </a>
         );

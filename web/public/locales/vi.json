@@ -37,7 +37,6 @@
     "electricityconsumption": "Electricity consumption",
     "bysource": "bởi nguồn",
     "emissions": "Chất thải cacbon",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">thêm hoặc chỉnh sửa nguồn</a>",
     "helpfrom": "with help from",
     "noDataAtTimestamp": "Dữ liệu đang tạm thời chưa có trong khoảng thời gian được chọn",
     "noLiveData": "Live data is temporarily unavailable for this area",

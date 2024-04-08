@@ -37,7 +37,6 @@
     "electricityconsumption": "Sähkön kulutus",
     "bysource": "alkuperä",
     "emissions": "Hiilidioksidipäästöt",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lisää tai muokkaa lähdettä</a>",
     "helpfrom": "heidän avustuksella",
     "noDataAtTimestamp": "Tiedot eivät ole väliaikaisesti käytettävissä valitulle ajankohdalle",
     "noLiveData": "Live-tiedot eivät ole väliaikaisesti käytettävissä tällä alueella",

@@ -1,14 +1,9 @@
-#!/usr/bin/env python3
-
 import json
-import logging
-import pprint
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Session
@@ -45,8 +40,6 @@ PRODUCTION_MAPPING = {
 
 STORAGE_MAPPING = {"raisingWater": "hydro"}
 
-pp = pprint.PrettyPrinter(indent=4)
-
 #### Classification of New & Renewable Energy Sources ####
 # Source: https://cms.khnp.co.kr/eng/content/563/main.do?mnCd=EN040101
 # New energy: Hydrogen, Fuel Cell, Coal liquefied or gasified energy, and vacuum residue gasified energy, etc.
@@ -59,7 +52,6 @@ def fetch_consumption(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    session = session or Session()
     if target_datetime:
         raise ParserException(
             "KPX.py",
@@ -68,7 +60,7 @@ def fetch_consumption(
         )
 
     logger.debug(f"Fetching consumption data from {REAL_TIME_URL}")
-
+    session = session or Session()
     response = session.get(REAL_TIME_URL, verify=False)
     assert response.status_code == 200
 
@@ -102,23 +94,22 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    session = session or Session()
-    first_available_date = (
-        arrow.now(TIMEZONE).shift(days=-6).floor("day").shift(hours=1)
+    now = datetime.now(tz=TIMEZONE)
+    target_datetime = (
+        now if target_datetime is None else target_datetime.astimezone(TIMEZONE)
     )
 
-    if target_datetime is not None and target_datetime < first_available_date:
+    today = datetime.combine(now, time(), tzinfo=TIMEZONE)  # truncates to day
+    first_available_api_date = today - timedelta(days=6) + timedelta(hours=1)
+    if target_datetime < first_available_api_date:
         raise ParserException(
             "KPX.py",
             "This parser is not able to parse dates more than one week in the past.",
             zone_key,
         )
 
-    if target_datetime is None:
-        target_datetime = datetime.now(TIMEZONE)
-
     logger.debug(f"Fetching price data from {PRICE_URL}")
-
+    session = session or Session()
     response = session.get(PRICE_URL, verify=False)
     assert response.status_code == 200
 
@@ -134,18 +125,17 @@ def fetch_price(
                 hour = 0
                 day += 1
 
-            arw_day = (
-                arrow.now(TIMEZONE)
-                .shift(days=-1 * (7 - day))
-                .replace(hour=hour, minute=0, second=0, microsecond=0)
+            dt = (now + timedelta(days=-1 * (7 - day))).replace(
+                hour=hour, minute=0, second=0, microsecond=0
             )
+
             price_value = (
                 table_prices.iloc[row_idx, col_idx] * 1000
             )  # Convert from Won/kWh to Won/MWh
 
             price_list.append(
                 zoneKey=zone_key,
-                datetime=arw_day.datetime,
+                datetime=dt,
                 source=KR_SOURCE,
                 price=price_value,
                 currency=KR_CURRENCY,
@@ -256,8 +246,7 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    session = session or Session()
-    first_available_date = arrow.get(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE)
+    first_available_date = datetime(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE)
     if target_datetime is not None and target_datetime < first_available_date:
         raise ParserException(
             "KPX.py",
@@ -265,6 +254,7 @@ def fetch_production(
             zone_key,
         )
 
+    session = session or Session()
     if target_datetime is None:
         production_list = get_real_time_prod_data(
             zone_key=zone_key, session=session, logger=logger
@@ -281,18 +271,14 @@ def fetch_production(
 
 
 if __name__ == "__main__":
-    logger = getLogger(__name__)
-    logging.basicConfig(level=logging.DEBUG)
-    # Testing datetime on specific date
-    target_datetime = arrow.get(2022, 2, 7, 16, 35, 0, tzinfo=TIMEZONE).datetime
+    target_datetime = datetime(2022, 2, 7, 16, 35, 0, tzinfo=TIMEZONE)
 
     print("fetch_production() ->")
-    # pp.pprint(fetch_production(target_datetime=target_datetime))
-    pp.pprint(fetch_production())
+    print(fetch_production())
+    print(fetch_production(target_datetime=target_datetime))
 
     print("fetch_price() -> ")
-    # pp.pprint(fetch_price(target_datetime=target_datetime))
-    pp.pprint(fetch_price())
+    print(fetch_price())
 
     print("fetch_consumption() -> ")
-    pp.pprint(fetch_consumption())
+    print(fetch_consumption())
