@@ -85,7 +85,10 @@ function BarBreakdownChart({
   };
 
   return (
-    <div className="text-sm" ref={ref}>
+    <div
+      className="mt-2 rounded-2xl border-[1px] border-neutral-200 pb-2 pl-2 pr-3 text-sm dark:border-gray-700"
+      ref={ref}
+    >
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}

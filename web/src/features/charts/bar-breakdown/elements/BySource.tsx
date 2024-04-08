@@ -49,7 +49,7 @@ export default function BySource({
 
   return (
     <div
-      className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
+      className={`relative flex flex-row justify-between pb-2 pt-2 text-md font-bold ${className}`}
     >
       {text}
       {hasEstimationPill && (
