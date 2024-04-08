@@ -60,7 +60,7 @@ def _floor(breakdowns: ProductionBreakdownList, floor: float | int):
 
 @config.refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: ZoneKey = ZoneKey("GE"),
+    zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -89,7 +89,7 @@ def fetch_production(
         production_breakdown_list = ProductionBreakdownList(logger)
         production_breakdown_list.append(
             zoneKey=zone_key,
-            datetime=datetime.now(tz=TIMEZONE).replace(second=0, microsecond=0),
+            datetime=datetime.now(tz=timezone.utc).replace(second=0, microsecond=0),
             source=SOURCE,
             production=production_mix,
         )
@@ -133,6 +133,8 @@ def fetch_production(
 
     production_breakdown_list = ProductionBreakdownList(logger)
     for timestamp, production in table.items():
+        dt = timestamp.to_pydatetime().replace(tzinfo=TIMEZONE).astimezone(timezone.utc)
+
         production_mix = ProductionMix()
         production_mix.add_value("gas", production["gas"])
         production_mix.add_value("hydro", production["hydro"])
@@ -141,7 +143,7 @@ def fetch_production(
 
         production_breakdown_list.append(
             zoneKey=zone_key,
-            datetime=timestamp.to_pydatetime().replace(tzinfo=TIMEZONE),
+            datetime=dt,
             source=SOURCE,
             production=production_mix,
         )
@@ -160,6 +162,13 @@ def fetch_exchange(
     """Request the last known power exchange (in MW) between two countries."""
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
+    if ZONE_KEY not in {zone_key1, zone_key2}:
+        raise ParserException(
+            PARSER,
+            f"This parser can only parse exchanges to / from {ZONE_KEY}.",
+            sorted_zone_keys,
+        )
+
     session = session or Session()
     if target_datetime is not None:
         return ENTSOE_fetch_exchange(
@@ -173,28 +182,28 @@ def fetch_exchange(
     if not response.ok:
         raise ParserException(
             PARSER,
-            f"Exception when fetching production error code: {response.status_code}: {response.text}",
+            f"Exception when fetching exchange error code: {response.status_code}: {response.text}",
             sorted_zone_keys,
         )
 
     net_flows = response.json()["areaSum"]
 
-    # Positive net flow should be in the same direction as the arrow in
-    # `exchange`. This is not necessarily the same as positive flow into GE.
-    if sorted_zone_keys == ZoneKey("AM->GE"):
+    neighbour = zone_key2 if zone_key1 == ZONE_KEY else zone_key1
+    direction = -1 if sorted_zone_keys.startswith(ZONE_KEY) else 1
+    if neighbour == ZoneKey("AM"):
         net_flow = net_flows["armeniaSum"]
-    elif sorted_zone_keys == ZoneKey("AZ->GE"):
+    elif neighbour == ZoneKey("AZ"):
         net_flow = net_flows["azerbaijanSum"]
-    elif sorted_zone_keys == ZoneKey("GE->RU"):
+    elif neighbour == ZoneKey("RU-1"):
         # GE->RU might be falsely reported, exchanges/*.yaml has a definition to
         # use the Russian TSO for this flow.
-        net_flow = -(
+        net_flow = (
             net_flows["russiaSum"]
             + net_flows["russiaJavaSum"]
             + net_flows["russiaSalkhinoSum"]
         )
-    elif sorted_zone_keys == ZoneKey("GE->TR"):
-        net_flow = -net_flows["turkeySum"]
+    elif neighbour == ZoneKey("TR"):
+        net_flow = net_flows["turkeySum"]
     else:
         raise NotImplementedError(f"{sorted_zone_keys} pair is not implemented")
 
@@ -202,7 +211,7 @@ def fetch_exchange(
     exchange_list.append(
         zoneKey=sorted_zone_keys,
         datetime=now.replace(second=0, microsecond=0),
-        netFlow=net_flow,
+        netFlow=direction * net_flow,
         source=SOURCE,
     )
     return exchange_list.to_list()
@@ -217,6 +226,6 @@ if __name__ == "__main__":
     print("fetch_production(target_datetime=datetime.datetime(2020, 1, 1)) ->")
     print(fetch_production(target_datetime=datetime(2020, 1, 1, tzinfo=timezone.utc)))
 
-    for neighbour in ["AM", "AZ", "RU", "TR"]:
+    for neighbour in ["AM", "AZ", "RU-1", "TR"]:
         print(f"fetch_exchange('GE', {neighbour}) ->")
         print(fetch_exchange(ZONE_KEY, ZoneKey(neighbour)))
