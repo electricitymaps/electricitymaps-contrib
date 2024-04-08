@@ -42,32 +42,32 @@ ArchiveDatapoint = namedtuple("ArchiveDatapoint", archive_fields)
 display_url = "http://www.moldelectrica.md/ro/activity/system_state"
 data_url = "http://www.moldelectrica.md/utils/load5.php"
 
-# To match the fields with the respective index and meaning,
-# I used the following code which may be used in the future for maintenance:
-# https://gist.github.com/Impelon/09407f739cdff05134f8c77cb7a92ada
+# Fields that can be fetched from data_url.
+FIELD_LABEL_to_INDEX = {
+    # individual plants production data
+    "NHE Costeşti": 0,  # hydro [run-of-river]
+    "CET Nord": 1,  # gas [CHPP]
+    "NHE Dubăsari": 2,  # hydro
+    "CET-2 Chişinău": 3,  # gas [CHPP]
+    "CET-1 Chişinău": 4,  # gas [CHPP]
+    "CERS Moldovenească": 5,  # gas [fuel mix: 99.94% gas, 0.01% coal, 0.05% oil (2020)]
+    "Uşi": 6,  # exchange interface [RO]
+    "Falciu": 7,  # exchange interface [RO]
+    "Isaccea": 8,  # exchange interface [RO]
+    # summary table
+    "consumption": 9,
+    "generation": 10,  # total [see below]
+    "gas": 11,
+    "hydro": 12,
+    "biomass": 13,
+    "solar": 14,
+    "wind": 15,
+    "sold": 16,  # total [see below]
+    "exchange MD-UA": 17,
+    "exchange MD-RO": 18,
+    "utility frequency": 19,
+}
 
-# Fields that can be fetched from data_url linked to production.
-# Types of production and translations have been added manually.
-production_fields = (
-    {"index": 2, "name": "NHE Costeşti", "type": "hydro"},  # run-of-river
-    {"index": 3, "name": "CET Nord", "type": "gas"},  # CHPP
-    {"index": 4, "name": "NHE Dubăsari", "type": "hydro"},
-    {"index": 5, "name": "CET-2 Chişinău", "type": "gas"},  # CHPP
-    {"index": 6, "name": "CET-1 Chişinău", "type": "gas"},  # CHPP
-    {
-        "index": 7,
-        "name": "CERS Moldovenească",
-        "type": "gas",
-    },  # fuel mix: 99.94% gas, 0.01% coal, 0.05% oil (2020)
-)
-# Other relevant fields that can be fetched from data_url.
-other_fields = (
-    {"index": 26, "name": "consumption"},
-    {"index": 27, "name": "generation"},
-    {"index": 28, "name": "exchange UA->MD"},
-    {"index": 29, "name": "exchange RO->MD"},
-    {"index": 30, "name": "utility frequency"},
-)
 
 # Further information on the equipment used at CERS Moldovenească can be found at:
 # http://moldgres.com/o-predpriyatii/equipment
@@ -211,7 +211,7 @@ def fetch_consumption(
     else:
         field_values = get_data(session)
 
-        consumption = field_values[other_fields[0]["index"]]
+        consumption = field_values[FIELD_LABEL_to_INDEX["consumption"]]
 
         dt = datetime.now(tz=TZ)
 
@@ -256,29 +256,13 @@ def fetch_production(
         field_values = get_data(session)
 
         production = {
-            "solar": None,
-            "wind": None,
-            "biomass": 0.0,
+            "solar": field_values[FIELD_LABEL_to_INDEX["solar"]],
+            "wind": field_values[FIELD_LABEL_to_INDEX["wind"]],
+            "biomass": field_values[FIELD_LABEL_to_INDEX["biomass"]],
             "nuclear": 0.0,
-            "gas": 0.0,
-            "hydro": 0.0,
+            "gas": field_values[FIELD_LABEL_to_INDEX["gas"]],
+            "hydro": field_values[FIELD_LABEL_to_INDEX["hydro"]],
         }
-
-        non_renewables_production = 0.0
-        for field in production_fields:
-            produced = field_values[field["index"]]
-            non_renewables_production += produced
-            production[field["type"]] += produced
-
-        # Renewables (solar + biogas + wind) make up a small part of the energy produced.
-        # They do not have an explicit entry,
-        # hence the difference between the actual generation and
-        # the sum of all other sectors are the renewables.
-        # The exact mix of renewable enegry sources is unknown,
-        # so everything is attributed to biomass.
-        production["biomass"] = (
-            field_values[other_fields[1]["index"]] - non_renewables_production
-        )
 
         dt = datetime.now(tz=TZ)
 
@@ -318,9 +302,9 @@ def fetch_exchange(
         field_values = get_data(session)
 
         if sorted_zone_keys == "MD->UA":
-            netflow = -1 * field_values[other_fields[2]["index"]]
+            netflow = field_values[FIELD_LABEL_to_INDEX["exchange MD-UA"]]
         elif sorted_zone_keys == "MD->RO":
-            netflow = -1 * field_values[other_fields[3]["index"]]
+            netflow = field_values[FIELD_LABEL_to_INDEX["exchange MD-RO"]]
         else:
             raise NotImplementedError("This exchange pair is not implemented")
 
