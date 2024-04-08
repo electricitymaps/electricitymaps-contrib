@@ -12,17 +12,13 @@ export default function ProductionSourceLegend({
   return (
     <g className="pointer-events-none">
       <rect
-        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 10}, 0)`}
+        transform={`translate(0, 0)`}
         fill={modeColor[electricityType as ElectricityModeType]}
         width={14}
         height={14}
         rx={2}
       />
-      <g
-        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 7}, 3)`}
-        width={14}
-        height={8}
-      >
+      <g transform={`translate(3, 3)`} width={14} height={8}>
         <ProductionSourceIcon source={electricityType} />
       </g>
     </g>
