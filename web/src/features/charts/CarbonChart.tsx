@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -31,7 +32,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     return <NotEnoughDataMessage title="country-history.carbonintensity" />;
   }
   return (
-    <>
+    <GraphCard className="pb-2">
       <ChartTitle
         translationKey="country-history.carbonintensity"
         badgeText={badgeText}
@@ -50,7 +51,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         selectedTimeAggregate={timeAverage}
         tooltip={CarbonChartTooltip}
       />
-    </>
+    </GraphCard>
   );
 }
 

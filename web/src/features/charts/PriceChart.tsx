@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
@@ -51,7 +52,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   }
 
   return (
-    <>
+    <GraphCard>
       <ChartTitle translationKey="country-history.electricityprices" />
       <div className="relative overflow-hidden">
         {isPriceDisabled && (
@@ -79,7 +80,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           tooltip={PriceChartTooltip}
         />
       </div>
-    </>
+    </GraphCard>
   );
 }
 

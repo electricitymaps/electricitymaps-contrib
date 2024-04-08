@@ -1,5 +1,6 @@
 import * as Portal from '@radix-ui/react-portal';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import Divider from 'features/panels/zone/Divider';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +16,7 @@ import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
+import { GraphCard } from './GraphCard';
 
 const X_PADDING = 9;
 
@@ -86,7 +88,7 @@ function BarBreakdownChart({
 
   return (
     <div
-      className="mt-2 rounded-2xl border-[1px] border-neutral-200 pb-2 pl-2 pr-3 text-sm dark:border-gray-700"
+      className="mt-4 rounded-2xl border-[1px] border-neutral-200 px-4 py-2 text-sm dark:border-gray-700"
       ref={ref}
     >
       <BySource
@@ -141,6 +143,7 @@ function BarBreakdownChart({
           isMobile={false}
         />
       )}
+      <Divider />
     </div>
   );
 }

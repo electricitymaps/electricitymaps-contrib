@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -28,7 +29,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const badgeText = getBadgeText(chartData, t);
 
   return (
-    <>
+    <GraphCard className="pb-2">
       <ChartTitle translationKey="country-history.emissions" badgeText={badgeText} />
       <AreaGraph
         testId="history-emissions-graph"
@@ -45,7 +46,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         tooltip={EmissionChartTooltip}
         formatTick={formatAxisTick}
       />
-    </>
+    </GraphCard>
   );
 }
 
