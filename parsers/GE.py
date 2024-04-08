@@ -5,6 +5,7 @@ from datetime import datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
+import numpy as np
 import pandas
 from requests import Session
 
@@ -97,19 +98,24 @@ def fetch_production(
             production_breakdown_list, floor=MINIMUM_PRODUCTION_THRESHOLD
         ).to_list()
 
-    # Get the production mix for every hour on the day of interest.
-    day = datetime.combine(target_datetime.astimezone(TIMEZONE), time())
+    # Get the production mix for every hour on the (UTC) day of interest.
+    day = datetime.combine(
+        target_datetime.astimezone(timezone.utc), time(), tzinfo=timezone.utc
+    )
     timestamp_from, timestamp_to = (
         day,
         day + timedelta(days=1) - timedelta(seconds=1),
     )
+
     # TODO: remove `verify=False` ASAP.
     response = session.get(
         f"{URL_STRING}/diagramDownload",
         params={
-            "fromDate": timestamp_from.strftime("%Y-%m-%dT%H:%M:%S"),
+            "fromDate": timestamp_from.astimezone(TIMEZONE).strftime(
+                "%Y-%m-%dT%H:%M:%S"
+            ),
             "lang": "EN",
-            "toDate": timestamp_to.strftime("%Y-%m-%dT%H:%M:%S"),
+            "toDate": timestamp_to.astimezone(TIMEZONE).strftime("%Y-%m-%dT%H:%M:%S"),
             "type": "FACT",
         },
         verify=False,
@@ -121,32 +127,43 @@ def fetch_production(
             zone_key,
         )
 
-    table = (
-        pandas.read_excel(response.content, header=2, index_col=1)
-        .iloc[2:6, 2:]
-        .dropna(axis="columns", how="all")
-    )
-    table.index = "gas", "hydro", "wind", "solar"
-    table.columns = pandas.date_range(
-        start=timestamp_from, freq="1H", periods=table.shape[1]
+    tables = pandas.read_excel(
+        response.content,
+        header=None,
+        # labels column + the 24 columns of hourly data
+        usecols=[1] + list(range(3, 27)),
+        # drop every 11th row (separation between tables)
+        skiprows=lambda x: x % 11 == 0,
     )
 
     production_breakdown_list = ProductionBreakdownList(logger)
-    for timestamp, production in table.items():
-        dt = timestamp.to_pydatetime().replace(tzinfo=TIMEZONE).astimezone(timezone.utc)
+    for _i, daily_table in reversed(
+        tuple(tables.groupby(np.arange(len(tables)) // 10))
+    ):
+        day = daily_table.iloc[1][1]
+        timestamps = pandas.date_range(start=day, freq="1H", periods=24)
 
-        production_mix = ProductionMix()
-        production_mix.add_value("gas", production["gas"])
-        production_mix.add_value("hydro", production["hydro"])
-        production_mix.add_value("solar", production["wind"])
-        production_mix.add_value("wind", production["solar"])
+        # zoom in on fields of interest
+        itemised_production_data = daily_table.iloc[4:8].set_index(1)
+        itemised_production_data.columns = timestamps
 
-        production_breakdown_list.append(
-            zoneKey=zone_key,
-            datetime=dt,
-            source=SOURCE,
-            production=production_mix,
-        )
+        for timestamp, production in itemised_production_data.dropna(
+            axis="columns", how="all"
+        ).items():
+            dt = timestamp.to_pydatetime().replace(tzinfo=TIMEZONE)
+
+            production_mix = ProductionMix()
+            production_mix.add_value("gas", production["Thermal Power Plants"])
+            production_mix.add_value("hydro", production["Hydro Power Plants"])
+            production_mix.add_value("solar", production["Wind Power Plants"])
+            production_mix.add_value("wind", production["Solar Power Plants"])
+
+            production_breakdown_list.append(
+                zoneKey=zone_key,
+                datetime=dt.astimezone(timezone.utc),
+                source=SOURCE,
+                production=production_mix,
+            )
     return _floor(
         production_breakdown_list, floor=MINIMUM_PRODUCTION_THRESHOLD
     ).to_list()
