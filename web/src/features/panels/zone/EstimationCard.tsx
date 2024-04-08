@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { ZoneDetails } from 'types';
+import trackEvent from 'utils/analytics';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -89,6 +90,7 @@ function BaseCard({
   showMethodologyLink,
   pillType,
   textColorTitle,
+  cardType,
 }: {
   estimationMethod?: string;
   estimatedPercentage?: number;
@@ -98,6 +100,7 @@ function BaseCard({
   showMethodologyLink: boolean;
   pillType?: string;
   textColorTitle: string;
+  cardType: string;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(
     estimationMethod == 'outage' ? false : true
@@ -108,6 +111,9 @@ function BaseCard({
   );
 
   const handleToggleCollapse = () => {
+    if (isCollapsed) {
+      trackEvent('EstimationCard Expanded', { cardType: cardType });
+    }
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
     setIsCollapsed((previous) => !previous);
   };
@@ -188,6 +194,11 @@ function BaseCard({
                   rel="noreferrer"
                   data-test-id="methodology-link"
                   className={`text-sm font-semibold text-black underline dark:text-white`}
+                  onClick={() => {
+                    trackEvent('EstimationCard Methodology Link Clicked', {
+                      cardType: cardType,
+                    });
+                  }}
                 >
                   <span className="underline">{t(`estimation-card.link`)}</span>
                 </a>
@@ -210,6 +221,7 @@ function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage
       showMethodologyLink={false}
       pillType="warning"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="outage-card"
     />
   );
 }
@@ -225,6 +237,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
       showMethodologyLink={false}
       pillType={'warning'}
       textColorTitle="text-black dark:text-white"
+      cardType="aggregated-card"
     />
   );
 }
@@ -239,6 +252,7 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       showMethodologyLink={true}
       pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="estimated-card"
     />
   );
 }
