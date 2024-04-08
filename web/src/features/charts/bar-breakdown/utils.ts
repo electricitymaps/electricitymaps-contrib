@@ -198,8 +198,11 @@ export const getHeaderHeight = () => {
   const [headerHeight, setHeaderHeight] = useState<number>(0);
 
   useEffect(() => {
-    const height = document.querySelector('header').offsetHeight;
-    setHeaderHeight(height * 1.1);
+    const headerElement = document.querySelector('header');
+    if (headerElement) {
+      const height = headerElement.offsetHeight;
+      setHeaderHeight(height * 1.1);
+    }
   }, [window.innerWidth, window.innerHeight]);
 
   return headerHeight;

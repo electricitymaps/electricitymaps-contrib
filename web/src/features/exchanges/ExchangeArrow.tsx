@@ -67,10 +67,9 @@ function ExchangeArrow({
     r: rotation + (netFlow > 0 ? 180 : 0),
   };
 
-  let tooltipClassNameTest = 'max-h-[256px] max-w-[512px] top-[-76px] hidden md:flex';
-
-  if (transform.y - 76 < headerHeight)
-    {tooltipClassNameTest = 'max-h-[256px] max-w-[512px] top-[76px] hidden md:flex';}
+  // Setting the top position from the arrow tooltip preventing overflowing to top.
+  let tooltipClassName = 'max-h-[256px] max-w-[512px] hidden md:flex';
+  tooltipClassName += transform.y - 76 < headerHeight ? ' top-[76px]' : ' top-[-76px]';
 
   // Don't render if the flow is very low ...
   if (absFlow < 1) {
@@ -127,7 +126,7 @@ function ExchangeArrow({
         </picture>
       </MobileTooltipWrapper>
       <TooltipWrapper
-        tooltipClassName={tooltipClassNameTest}
+        tooltipClassName={tooltipClassName}
         tooltipContent={<ExchangeTooltip exchangeData={data} />}
         side="right"
         sideOffset={10}
