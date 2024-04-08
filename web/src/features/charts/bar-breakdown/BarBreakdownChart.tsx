@@ -234,7 +234,7 @@ function Source({
         <div className="mr-1">{icon}</div>
         <div className="text-md font-semibold">{title}</div>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 pl-5">
         {sources.map((source, index) => (
           <div key={index} className="text-xm">
             {source}
