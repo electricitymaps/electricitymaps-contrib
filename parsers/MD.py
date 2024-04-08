@@ -5,6 +5,7 @@
 from collections import namedtuple
 from datetime import datetime
 from logging import Logger, getLogger
+from operator import attrgetter
 from zoneinfo import ZoneInfo
 
 from requests import Session
@@ -141,7 +142,7 @@ def get_archive_data(
             )
             for entry in data
         ]
-        return sorted(archive_datapoints, key=lambda x: x.datetime)
+        return sorted(archive_datapoints, key=attrgetter("datetime"))
     except Exception as e:
         raise ParserException(
             "MD.py",
