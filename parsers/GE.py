@@ -29,36 +29,6 @@ URL_STRING = URL.geturl()
 SOURCE = URL.netloc
 
 
-def _floor(breakdowns: ProductionBreakdownList, floor: float | int):
-    """Filters production breakdown events whose production sum is lower than a given floor."""
-    filtered_breakdowns = ProductionBreakdownList(breakdowns.logger)
-    for event in breakdowns.events:
-        if event.production is None:
-            continue
-
-        total = sum(v for _mode, v in event.production if v is not None)
-
-        if event.storage is not None:
-            total_storage = sum(v for _mode, v in event.storage if v is not None)
-            total -= total_storage
-
-        if total < floor:
-            filtered_breakdowns.logger.warning(
-                f"Discarded production event for {event.zoneKey} at {event.datetime} due to reported total of {total} MW does not meet {floor} MW floor value."
-            )
-            continue
-
-        filtered_breakdowns.append(
-            zoneKey=event.zoneKey,
-            datetime=event.datetime,
-            production=event.production,
-            storage=event.storage,
-            source=event.source,
-            sourceType=event.sourceType,
-        )
-    return filtered_breakdowns
-
-
 @config.refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZONE_KEY,
@@ -94,9 +64,7 @@ def fetch_production(
             source=SOURCE,
             production=production_mix,
         )
-        return _floor(
-            production_breakdown_list, floor=MINIMUM_PRODUCTION_THRESHOLD
-        ).to_list()
+        return production_breakdown_list.to_list()
 
     # Get the production mix for every hour on the (UTC) day of interest.
     day = datetime.combine(
@@ -164,9 +132,7 @@ def fetch_production(
                 source=SOURCE,
                 production=production_mix,
             )
-    return _floor(
-        production_breakdown_list, floor=MINIMUM_PRODUCTION_THRESHOLD
-    ).to_list()
+    return production_breakdown_list.to_list()
 
 
 def fetch_exchange(
