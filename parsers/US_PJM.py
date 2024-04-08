@@ -125,9 +125,7 @@ def fetch_consumption_forecast_7_days(
         utc_datetime = elem["forecast_datetime_beginning_utc"]
         consumption_list.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(utc_datetime)
-            .replace(tzinfo=timezone.utc)
-            .astimezone(TIMEZONE),
+            datetime=datetime.fromisoformat(utc_datetime).replace(tzinfo=timezone.utc),
             source=SOURCE,
             consumption=elem["forecast_load_mw"],
             sourceType=EventSourceType.forecasted,
@@ -146,8 +144,11 @@ def fetch_production(
 
     We assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)
     """
-    if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
+    target_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
 
     session = session or Session()
 
@@ -187,9 +188,7 @@ def fetch_production(
 
         production_breakdown_list.append(
             zoneKey=zone_key,
-            datetime=dt.to_pydatetime()
-            .replace(tzinfo=timezone.utc)
-            .astimezone(TIMEZONE),
+            datetime=dt.to_pydatetime().replace(tzinfo=timezone.utc),
             source=SOURCE,
             production=production_mix,
             storage=storage_mix,
