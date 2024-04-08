@@ -1,12 +1,17 @@
 import * as Portal from '@radix-ui/react-portal';
+import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import Divider from 'features/panels/zone/Divider';
+import { IndustryIcon } from 'icons/industryIcon';
+import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
+import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
-import { displayByEmissionsAtom } from 'utils/state/atoms';
+import trackEvent from 'utils/analytics';
+import { dataSourcesCollapsed, displayByEmissionsAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
@@ -14,9 +19,9 @@ import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartDa
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
+import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
-import { GraphCard } from './GraphCard';
 
 const X_PADDING = 9;
 
@@ -86,6 +91,17 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
+  const emissionData = [
+    ...new Set(
+      [
+        ...Object.values(currentZoneDetail?.dischargeCo2IntensitySources || {}),
+        ...Object.values(currentZoneDetail?.productionCo2IntensitySources || {}),
+      ].flatMap((item) => item.split('; '))
+    ),
+  ]
+    .filter((item) => !item.startsWith('assumes'))
+    .sort();
+
   return (
     <div
       className="mt-4 rounded-2xl border-[1px] border-neutral-200 px-4 py-2 text-sm dark:border-gray-700"
@@ -144,8 +160,62 @@ function BarBreakdownChart({
         />
       )}
       <Divider />
+      <div className="py-1">
+        <Accordion
+          onClick={() => {
+            trackEvent('Data Sources Clicked', { chart: 'bar-breakdown-chart' });
+          }}
+          title={t('data-sources.title')}
+          className="text-md"
+          isCollapsedAtom={dataSourcesCollapsed}
+        >
+          <div>
+            {currentZoneDetail?.capacitySources && (
+              <DataSources
+                title="Installed capacity data"
+                icon={<UtilityPoleIcon />}
+                sources={[
+                  ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
+                ]}
+              />
+            )}
+            {currentZoneDetail?.source && (
+              <DataSources
+                title="Power generation data"
+                icon={<WindTurbineIcon />}
+                sources={[currentZoneDetail?.source]}
+              />
+            )}
+            {emissionData && (
+              <DataSources
+                title="Emission factor data"
+                icon={<IndustryIcon />}
+                sources={emissionData}
+              />
+            )}
+          </div>
+        </Accordion>
+      </div>
     </div>
   );
 }
 
 export default BarBreakdownChart;
+
+function GetSourceArrayFromDictionary(sourceDict: {
+  [key in ElectricityModeType]: string[] | null;
+}): Set<string> {
+  const sourcesWithoutDuplicates: Set<string> = new Set();
+  if (sourceDict == null) {
+    return sourcesWithoutDuplicates;
+  }
+  for (const key of Object.keys(sourceDict)) {
+    const capacitySource = sourceDict?.[key as ElectricityModeType];
+    if (capacitySource != null) {
+      for (const source of capacitySource) {
+        sourcesWithoutDuplicates.add(source);
+      }
+    }
+  }
+  return sourcesWithoutDuplicates;
+}

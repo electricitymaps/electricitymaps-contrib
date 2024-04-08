@@ -54,7 +54,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   return (
     <GraphCard>
       <ChartTitle translationKey="country-history.electricityprices" />
-      <div className="relative overflow-hidden">
+      <div className="relative">
         {isPriceDisabled && (
           <div className="absolute top-0 -ml-3 h-full w-[115%]">
             <div className="h-full w-full rounded bg-white opacity-90 dark:bg-gray-900" />
