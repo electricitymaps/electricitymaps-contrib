@@ -5,6 +5,7 @@ import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneDetails } from 'types';
+import trackEvent from 'utils/analytics';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -89,6 +90,7 @@ function BaseCard({
   showMethodologyLink,
   pillType,
   textColorTitle,
+  cardType,
 }: {
   estimationMethod?: string;
   estimatedPercentage?: number;
@@ -98,11 +100,21 @@ function BaseCard({
   showMethodologyLink: boolean;
   pillType?: string;
   textColorTitle: string;
+  cardType: string;
 }) {
   const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
     feedbackCardCollapsedNumberAtom
   );
+  const isCollapsedDefault = estimationMethod == 'outage' ? false : true;
+  const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
+  const handleToggleCollapse = () => {
+    if (isCollapsed) {
+      trackEvent('EstimationCard Expanded', { cardType: cardType });
+    }
+    setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
+    setIsCollapsed((previous: boolean) => !previous);
+  };
   const { t } = useTranslation();
 
   const title = getEstimationTranslation('title', estimationMethod);
@@ -130,8 +142,8 @@ function BaseCard({
       } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
     >
       <Accordion
-        onClick={() => setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1)}
-        isCollapsedDefault={estimationMethod == 'outage' ? false : true}
+        onClick={() => handleToggleCollapse()}
+        isCollapsedDefault={isCollapsedDefault}
         badge={
           showBadge && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
         }
@@ -155,6 +167,11 @@ function BaseCard({
                 rel="noreferrer"
                 data-test-id="methodology-link"
                 className={`text-sm font-semibold text-black underline dark:text-white`}
+                onClick={() => {
+                  trackEvent('EstimationCard Methodology Link Clicked', {
+                    cardType: cardType,
+                  });
+                }}
               >
                 <span className="underline">{t(`estimation-card.link`)}</span>
               </a>
@@ -176,6 +193,7 @@ function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage
       showMethodologyLink={false}
       pillType="warning"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="outage-card"
     />
   );
 }
@@ -191,6 +209,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
       showMethodologyLink={false}
       pillType={'warning'}
       textColorTitle="text-black dark:text-white"
+      cardType="aggregated-card"
     />
   );
 }
@@ -205,6 +224,7 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       showMethodologyLink={true}
       pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="estimated-card"
     />
   );
 }

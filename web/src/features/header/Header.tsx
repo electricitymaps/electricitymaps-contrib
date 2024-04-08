@@ -101,6 +101,9 @@ export default function Header(): JSX.Element {
             {t('header.blog')}
           </MenuLink>
           <Button
+            onClick={() => {
+              trackEvent('HeaderLink Clicked', { linkId: 'get-data' });
+            }}
             backgroundClasses="my-2.5"
             foregroundClasses="text-base font-normal lg:text-[1rem] py-1 px-6"
             href="https://electricitymaps.com/get-our-data?utm_source=app.electricitymaps.com&utm_medium=referral"
