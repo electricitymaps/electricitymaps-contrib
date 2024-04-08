@@ -5,9 +5,9 @@ Mayorista (AMM) API.
 """
 
 import collections
+import enum
 from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
-from typing import Literal
 from zoneinfo import ZoneInfo
 
 from requests import Session
@@ -21,6 +21,11 @@ PRODUCTION_THRESHOLD = 10  # MW
 
 DOMAIN = "wl12.amm.org.gt"
 URL = f"https://{DOMAIN}/GraficaPW/graficaCombustible"
+
+
+class ApiKind(enum.Enum):
+    PRODUCTION = "production"
+    CONSUMPTION = "consumption"
 
 
 def fetch_consumption(
@@ -39,7 +44,7 @@ def fetch_consumption(
         else target_datetime.astimezone(TIMEZONE)
     )
 
-    api_data = _get_api_data(session, URL, target_datetime, target="consumption")
+    api_data = _get_api_data(session, URL, target_datetime, target=ApiKind.CONSUMPTION)
 
     day_datetime = datetime.combine(
         target_datetime, time(), tzinfo=TIMEZONE
@@ -72,7 +77,7 @@ def fetch_production(
         else target_datetime.astimezone(TIMEZONE)
     )
 
-    api_data = _get_api_data(session, URL, target_datetime, target="production")
+    api_data = _get_api_data(session, URL, target_datetime, target=ApiKind.PRODUCTION)
 
     day_datetime = datetime.combine(  # truncate to day
         target_datetime, time(), tzinfo=TIMEZONE
@@ -110,7 +115,7 @@ def _get_api_data(
     session: Session | None,
     url: str,
     date_time: datetime,
-    target: Literal["consumption", "production"],
+    target: ApiKind,
 ) -> list[dict]:
     """Get the JSON-formatted response from the AMM API for the desired date-time."""
     session = session or Session()
@@ -135,7 +140,9 @@ def _get_api_data(
     # so the current (and future) hour(s) should not be included in the results.
     # For live production data, the API will return zero-filled future data until the end of the day,
     # so future hours should not be included in the results.
-    cutoff_index = date_time.hour if target == "consumption" else date_time.hour + 1
+    cutoff_index = (
+        date_time.hour if target == ApiKind.CONSUMPTION else date_time.hour + 1
+    )
 
     return results if is_historical_data else results[:cutoff_index]
 
