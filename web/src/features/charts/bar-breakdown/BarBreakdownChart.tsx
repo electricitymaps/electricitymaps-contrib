@@ -14,9 +14,9 @@ import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartDa
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
+import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
-import { Source } from './Source';
 
 const X_PADDING = 9;
 
@@ -159,7 +159,7 @@ function BarBreakdownChart({
         >
           <div>
             {currentZoneDetail?.capacitySources && (
-              <Source
+              <DataSources
                 title="Installed capacity data"
                 icon={
                   <div
@@ -172,7 +172,7 @@ function BarBreakdownChart({
               />
             )}
             {currentZoneDetail?.source && (
-              <Source
+              <DataSources
                 title="Power generation data"
                 icon={
                   <div
@@ -183,7 +183,7 @@ function BarBreakdownChart({
               />
             )}
             {emissionData && (
-              <Source
+              <DataSources
                 title="Emission factor data"
                 icon={
                   <div

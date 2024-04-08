@@ -1,4 +1,4 @@
-export function Source({
+export function DataSources({
   title,
   icon,
   sources,
