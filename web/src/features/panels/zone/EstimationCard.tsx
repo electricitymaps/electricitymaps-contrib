@@ -1,10 +1,11 @@
+import Accordion from 'components/Accordion';
 import Badge from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { ZoneDetails } from 'types';
+import trackEvent from 'utils/analytics';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -89,6 +90,7 @@ function BaseCard({
   showMethodologyLink,
   pillType,
   textColorTitle,
+  cardType,
 }: {
   estimationMethod?: string;
   estimatedPercentage?: number;
@@ -98,18 +100,20 @@ function BaseCard({
   showMethodologyLink: boolean;
   pillType?: string;
   textColorTitle: string;
+  cardType: string;
 }) {
-  const [isCollapsed, setIsCollapsed] = useState(
-    estimationMethod == 'outage' ? false : true
-  );
-
   const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
     feedbackCardCollapsedNumberAtom
   );
+  const isCollapsedDefault = estimationMethod == 'outage' ? false : true;
+  const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
   const handleToggleCollapse = () => {
+    if (isCollapsed) {
+      trackEvent('EstimationCard Expanded', { cardType: cardType });
+    }
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
-    setIsCollapsed((previous) => !previous);
+    setIsCollapsed((previous: boolean) => !previous);
   };
   const { t } = useTranslation();
 
@@ -137,65 +141,44 @@ function BaseCard({
           : 'bg-neutral-100 dark:bg-gray-800'
       } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
     >
-      <div className="flex flex-col">
-        <button data-test-id="collapse-button" onClick={handleToggleCollapse}>
-          <div className="flex flex-row items-center justify-between">
-            <div className="flex w-2/3 flex-initial flex-row gap-2">
-              <div className={`flex items-center justify-center`}>
-                <div className={`h-[16px] w-[16px] bg-center ${icon}`} />
-              </div>
-              <h2
-                className={`text-left text-sm font-semibold ${textColorTitle} self-center`}
-                data-test-id="title"
+      <Accordion
+        onClick={() => handleToggleCollapse()}
+        isCollapsedDefault={isCollapsedDefault}
+        badge={
+          showBadge && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
+        }
+        className={textColorTitle}
+        icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
+        title={title}
+      >
+        <div className="gap-2">
+          <div
+            data-test-id="body-text"
+            className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
+          >
+            {estimationMethod != 'outage' && bodyText}
+            {estimationMethod == 'outage' && <OutageMessage outageData={outageMessage} />}
+          </div>
+          {showMethodologyLink && (
+            <div className="">
+              <a
+                href="https://www.electricitymaps.com/methodology"
+                target="_blank"
+                rel="noreferrer"
+                data-test-id="methodology-link"
+                className={`text-sm font-semibold text-black underline dark:text-white`}
+                onClick={() => {
+                  trackEvent('EstimationCard Methodology Link Clicked', {
+                    cardType: cardType,
+                  });
+                }}
               >
-                {title}
-              </h2>
+                <span className="underline">{t(`estimation-card.link`)}</span>
+              </a>
             </div>
-            <div className="flex h-fit flex-row gap-2 text-nowrap">
-              {showBadge && (
-                <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
-              )}
-              <div className="text-lg">
-                {isCollapsed ? (
-                  <div data-test-id="collapse-down">
-                    <HiChevronDown />
-                  </div>
-                ) : (
-                  <div data-test-id="collapse-up">
-                    <HiChevronUp />
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </button>
-        {!isCollapsed && (
-          <div className="gap-2 pt-1.5">
-            <div
-              data-test-id="body-text"
-              className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
-            >
-              {estimationMethod != 'outage' && bodyText}
-              {estimationMethod == 'outage' && (
-                <OutageMessage outageData={outageMessage} />
-              )}
-            </div>
-            {showMethodologyLink && (
-              <div className="">
-                <a
-                  href="https://www.electricitymaps.com/methodology"
-                  target="_blank"
-                  rel="noreferrer"
-                  data-test-id="methodology-link"
-                  className={`text-sm font-semibold text-black underline dark:text-white`}
-                >
-                  <span className="underline">{t(`estimation-card.link`)}</span>
-                </a>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </Accordion>
     </div>
   );
 }
@@ -210,6 +193,7 @@ function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage
       showMethodologyLink={false}
       pillType="warning"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="outage-card"
     />
   );
 }
@@ -225,6 +209,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
       showMethodologyLink={false}
       pillType={'warning'}
       textColorTitle="text-black dark:text-white"
+      cardType="aggregated-card"
     />
   );
 }
@@ -239,6 +224,7 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       showMethodologyLink={true}
       pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="estimated-card"
     />
   );
 }

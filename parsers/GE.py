@@ -1,23 +1,19 @@
 """Fetch the status of the Georgian electricity grid."""
 
-# Standard library imports
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
-# Third-party library imports
-import arrow
 import pandas
 from requests import Session
 
-# Local library imports
+from parsers.ENTSOE import fetch_exchange as ENTSOE_fetch_exchange
 from parsers.lib import config, validation
 
-from .ENTSOE import fetch_exchange as ENTSOE_fetch_exchange
-
 MINIMUM_PRODUCTION_THRESHOLD = 10  # MW
-TIMEZONE = "Asia/Tbilisi"
+TIMEZONE = ZoneInfo("Asia/Tbilisi")
 URL = urllib.parse.urlsplit("https://gse.com.ge/apps/gsebackend/rest")
 URL_STRING = URL.geturl()
 
@@ -38,7 +34,7 @@ def fetch_production(
         ]
         return validation.validate(
             {
-                "datetime": arrow.now(TIMEZONE).floor("minute").datetime,
+                "datetime": datetime.now(tz=TIMEZONE).replace(second=0, microsecond=0),
                 "production": {
                     "gas": production_mix["thermalData"],
                     "hydro": production_mix["hydroData"],
@@ -54,18 +50,19 @@ def fetch_production(
         )
     else:
         # Get the production mix for every hour on the day of interest.
+        day = datetime.combine(
+            target_datetime.astimezone(TIMEZONE), time()
+        )  # truncate to day
         timestamp_from, timestamp_to = (
-            arrow.get(target_datetime, TIMEZONE)
-            .replace(hour=0)
-            .floor("hour")
-            .span("day")
+            day,
+            day + timedelta(days=1) - timedelta(seconds=1),
         )
         response = session.get(
             f"{URL_STRING}/diagramDownload",
             params={
-                "fromDate": timestamp_from.format("YYYY-MM-DDTHH:mm:ss"),
+                "fromDate": timestamp_from.strftime("%Y-%m-%dT%H:%M:%S"),
                 "lang": "EN",
-                "toDate": timestamp_to.format("YYYY-MM-DDTHH:mm:ss"),
+                "toDate": timestamp_to.strftime("%Y-%m-%dT%H:%M:%S"),
                 "type": "FACT",
             },
             verify=False,
@@ -77,14 +74,14 @@ def fetch_production(
         )
         table.index = "gas", "hydro", "wind", "solar"
         table.columns = pandas.date_range(
-            start=timestamp_from.datetime, freq="1H", periods=table.shape[1]
+            start=timestamp_from, freq="1H", periods=table.shape[1]
         )
 
         # Collect the data into a list of dictionaries, then validate and
         # return it.
         production_mixes = (
             {
-                "datetime": arrow.get(timestamp, TIMEZONE).datetime,
+                "datetime": timestamp.to_pydatetime().replace(tzinfo=TIMEZONE),
                 "production": {
                     "gas": production_mix["gas"],
                     "hydro": production_mix["hydro"],
@@ -147,7 +144,7 @@ def fetch_exchange(
         raise NotImplementedError(f"{exchange} pair is not implemented")
 
     return {
-        "datetime": arrow.now(TIMEZONE).floor("minute").datetime,
+        "datetime": datetime.now(TIMEZONE).replace(second=0, microsecond=0),
         "netFlow": net_flow,
         "sortedZoneKeys": exchange,
         "source": URL.netloc,
@@ -156,10 +153,12 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     # Never used by the Electricity Map backend, but handy for testing.
+
     print("fetch_production() ->")
     print(fetch_production())
     print("fetch_production(target_datetime=datetime.datetime(2020, 1, 1)) ->")
-    print(fetch_production(target_datetime=datetime(2020, 1, 1)))
+    print(fetch_production(target_datetime=datetime(2020, 1, 1, tzinfo=timezone.utc)))
+
     print("fetch_exchange('GE', 'AM') ->")
     print(fetch_exchange("GE", "AM"))
     print("fetch_exchange('GE', 'AZ') ->")
@@ -168,5 +167,3 @@ if __name__ == "__main__":
     print(fetch_exchange("GE", "RU"))
     print("fetch_exchange('GE', 'TR') ->")
     print(fetch_exchange("GE", "TR"))
-    print("fetch_exchange('AB', 'YZ') ->")
-    print(fetch_exchange("AB", "YZ"))
