@@ -58,7 +58,6 @@
       "total-electricity-consumption": "Skupna poraba električne energije po virih"
     },
     "emissions": "ogljične emisije",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">dodaj ali uredi vir</a>",
     "helpfrom": "s pomočjo od",
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
     "noLiveData": "Podatki v živo za to območje začasno niso na voljo",
