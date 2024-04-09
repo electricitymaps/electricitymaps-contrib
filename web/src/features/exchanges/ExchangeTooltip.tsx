@@ -10,14 +10,15 @@ import { timeAverageAtom } from 'utils/state/atoms';
 
 interface ExchangeTooltipProperties {
   exchangeData: ExchangeArrowData;
+  isMobile: boolean;
 }
 
-export default function ExchangeTooltip(
-  properties: ExchangeTooltipProperties
-): ReactElement {
-  const { key, f, ci } = properties.exchangeData;
+export default function ExchangeTooltip({
+  exchangeData,
+  isMobile,
+}: ExchangeTooltipProperties): ReactElement {
+  const { key, f, ci } = exchangeData;
 
-  // TODO(VIKTOR): Extract common code between MobileExchangeTooltip and Exchange Tooltip
   const { t } = useTranslation();
   const isExporting = f > 0;
   const roundedNetFlow = Math.abs(Math.round(f));
@@ -26,15 +27,18 @@ export default function ExchangeTooltip(
   const [timeAverage] = useAtom(timeAverageAtom);
   const isHourly = timeAverage === TimeAverages.HOURLY;
 
+  const divClass = `${isMobile ? 'flex-col' : 'flex'} items-center pb-2`;
   return (
     <div className="text-start text-base font-medium">
       {t('tooltips.crossborderexport')}:
       <div>
-        <div className="flex items-center pb-2">
-          <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" /> <p className="mx-2">→</p>{' '}
+        <div className={divClass}>
+          <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" />
+          {isMobile ? <p className="ml-0.5">↓</p> : <p className="mx-2">→</p>}{' '}
           <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
           <b className="font-bold">
-            : {isHourly ? formatPower(roundedNetFlow) : formatEnergy(roundedNetFlow)}
+            {isMobile ? '' : ':'}{' '}
+            {isHourly ? formatPower(roundedNetFlow) : formatEnergy(roundedNetFlow)}
           </b>
         </div>
       </div>

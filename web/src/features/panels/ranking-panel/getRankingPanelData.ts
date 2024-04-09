@@ -64,7 +64,7 @@ export const getRankedState = (
     })
     .filter(
       (zone) =>
-        zone.ci !== undefined &&
+        Boolean(zone.ci) &&
         filterZonesBySpatialAggregation(zone.zoneId, spatialAggregation)
     );
 
