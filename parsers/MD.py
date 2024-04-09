@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
-
 """Parser for Moldova."""
 
 from collections import namedtuple
-from datetime import datetime
+from datetime import datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from operator import attrgetter
 from zoneinfo import ZoneInfo
@@ -38,36 +36,6 @@ archive_fields = (
 
 # Datapoint in the archive-data.
 ArchiveDatapoint = namedtuple("ArchiveDatapoint", archive_fields)
-
-display_url = "http://www.moldelectrica.md/ro/activity/system_state"
-data_url = "http://www.moldelectrica.md/utils/load5.php"
-
-# Fields that can be fetched from data_url.
-FIELD_LABEL_to_INDEX = {
-    # individual plants production data
-    "NHE Costeşti": 0,  # hydro [run-of-river]
-    "CET Nord": 1,  # gas [CHPP]
-    "NHE Dubăsari": 2,  # hydro
-    "CET-2 Chişinău": 3,  # gas [CHPP]
-    "CET-1 Chişinău": 4,  # gas [CHPP]
-    "CERS Moldovenească": 5,  # gas [fuel mix: 99.94% gas, 0.01% coal, 0.05% oil (2020)]
-    "Uşi": 6,  # exchange interface [RO]
-    "Falciu": 7,  # exchange interface [RO]
-    "Isaccea": 8,  # exchange interface [RO]
-    # summary table
-    "consumption": 9,
-    "generation": 10,  # total [see below]
-    "gas": 11,
-    "hydro": 12,
-    "biomass": 13,
-    "solar": 14,
-    "wind": 15,
-    "sold": 16,  # total [see below]
-    "exchange MD-UA": 17,
-    "exchange MD-RO": 18,
-    "utility frequency": 19,
-}
-
 
 # Further information on the equipment used at CERS Moldovenească can be found at:
 # http://moldgres.com/o-predpriyatii/equipment
@@ -124,49 +92,55 @@ def template_exchange_response(
 
 
 def get_archive_data(
-    target_datetime: datetime, session: Session | None = None
+    target_datetime: datetime | None, session: Session | None = None
 ) -> list[ArchiveDatapoint]:
-    """Returns archive data for the target day as a list of ArchiveDatapoint."""
+    """Returns archive data in 15 mn buckets for the day of interest."""
 
-    archive_date = target_datetime.astimezone(TZ).strftime("%d.%m.%Y")
-    archive_url = f"{archive_base_url}&date1={archive_date}&date2={archive_date}"
+    target_utc_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
+
+    target_utc_day = datetime.combine(target_utc_datetime, time(), tzinfo=timezone.utc)
+    target_utc_timestamp_from, target_utc_timestamp_to = (
+        target_utc_day,
+        target_utc_day + timedelta(days=1) - timedelta(seconds=1),
+    )
+
+    # the API works in local (TZ) timestamps
+    date1 = target_utc_timestamp_from.astimezone(TZ).strftime("%d.%m.%Y")
+    date2 = target_utc_timestamp_to.astimezone(TZ).strftime("%d.%m.%Y")
+    archive_url = f"{archive_base_url}&date1={date1}&date2={date2}"
 
     s = session or Session()
-    data_response = s.get(archive_url, verify=False)
+    data_response = s.get(archive_url)
     data = data_response.json()
+
     try:
-        archive_datapoints = [
-            ArchiveDatapoint(
-                datetime.strptime(entry[0], "%Y-%m-%d %H:%M").replace(tzinfo=TZ),
-                *map(float, entry[1:]),
+        archive_datapoints = []
+        for entry in data:
+            dt = (
+                datetime.strptime(entry[0], "%Y-%m-%d %H:%M")
+                .replace(tzinfo=TZ)
+                .astimezone(timezone.utc)
             )
-            for entry in data
-        ]
+
+            # filter out results outside of UTC target day
+            dt_utc_day = datetime.combine(dt, time(), tzinfo=timezone.utc)
+            if dt_utc_day != target_utc_day:
+                continue
+
+            datapoint = ArchiveDatapoint(dt, *map(float, entry[1:]))
+            archive_datapoints.append(datapoint)
+
         return sorted(archive_datapoints, key=attrgetter("datetime"))
+
     except Exception as e:
         raise ParserException(
             "MD.py",
             "Not able to parse received data. Check that the specifed URL returns correct data.",
         ) from e
-
-
-def get_data(session: Session | None = None) -> list:
-    """Returns data as a list of floats."""
-    s = session or Session()
-
-    # In order for data_url to return data, cookies from display_url must be obtained then reused.
-    _response = s.get(display_url, verify=False)
-    data_response = s.get(data_url, verify=False)
-    raw_data = data_response.text
-    try:
-        data = [float(i) if i else None for i in raw_data.split(",")]
-    except Exception as e:
-        raise ParserException(
-            "MD.py",
-            "Not able to parse received data. Check that the specifed URL returns correct data.",
-        ) from e
-
-    return data
 
 
 def fetch_price(
@@ -187,7 +161,7 @@ def fetch_price(
             "This parser is not yet able to parse past dates for price"
         )
 
-    dt = datetime.now(tz=TZ)
+    dt = datetime.now(timezone.utc)
     return template_price_response(zone_key, dt, 145.0)
 
 
@@ -198,26 +172,15 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
     """Requests the consumption (in MW) of a given country."""
-    if target_datetime:
-        archive_data = get_archive_data(target_datetime, session=session)
+    archive_data = get_archive_data(target_datetime, session=session)
 
-        datapoints = []
-        for entry in archive_data:
-            datapoint = template_consumption_response(
-                zone_key, entry.datetime, entry.consumption
-            )
-            datapoints.append(datapoint)
-        return datapoints
-    else:
-        field_values = get_data(session)
-
-        consumption = field_values[FIELD_LABEL_to_INDEX["consumption"]]
-
-        dt = datetime.now(tz=TZ)
-
-        datapoint = template_consumption_response(zone_key, dt, consumption)
-
-        return datapoint
+    datapoints = []
+    for entry in archive_data:
+        datapoint = template_consumption_response(
+            zone_key, entry.datetime, entry.consumption
+        )
+        datapoints.append(datapoint)
+    return datapoints
 
 
 def fetch_production(
@@ -227,48 +190,28 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
     """Requests the production mix (in MW) of a given country."""
-    if target_datetime:
-        archive_data = get_archive_data(target_datetime, session=session)
-        datapoints = []
-        for entry in archive_data:
-            production = {
-                "solar": None,
-                "wind": None,
-                "biomass": 0.0,
-                "nuclear": 0.0,
-                "gas": 0.0,
-                "hydro": 0.0,
-            }
-
-            production["gas"] += entry.tpp
-            production["hydro"] += entry.hpp
-            # Renewables (solar + biogas + wind) make up a small part of the energy produced.
-            # The exact mix of renewable enegry sources is unknown,
-            # so everything is attributed to biomass.
-            production["biomass"] += entry.res
-
-            datapoint = template_production_response(
-                zone_key, entry.datetime, production
-            )
-            datapoints.append(datapoint)
-        return datapoints
-    else:
-        field_values = get_data(session)
-
+    archive_data = get_archive_data(target_datetime, session=session)
+    datapoints = []
+    for entry in archive_data:
         production = {
-            "solar": field_values[FIELD_LABEL_to_INDEX["solar"]],
-            "wind": field_values[FIELD_LABEL_to_INDEX["wind"]],
-            "biomass": field_values[FIELD_LABEL_to_INDEX["biomass"]],
-            "nuclear": 0.0,
-            "gas": field_values[FIELD_LABEL_to_INDEX["gas"]],
-            "hydro": field_values[FIELD_LABEL_to_INDEX["hydro"]],
+            "solar": None,
+            "wind": None,
+            "biomass": 0.0,
+            "nuclear": None,
+            "gas": 0.0,
+            "hydro": 0.0,
         }
 
-        dt = datetime.now(tz=TZ)
+        production["gas"] += entry.tpp
+        production["hydro"] += entry.hpp
+        # Renewables (solar + biogas + wind) make up a small part of the energy produced.
+        # The exact mix of renewable enegry sources is unknown,
+        # so everything is attributed to biomass.
+        production["biomass"] += entry.res
 
-        datapoint = template_production_response(zone_key, dt, production)
-
-        return datapoint
+        datapoint = template_production_response(zone_key, entry.datetime, production)
+        datapoints.append(datapoint)
+    return datapoints
 
 
 def fetch_exchange(
@@ -281,38 +224,22 @@ def fetch_exchange(
     """Requests the last known power exchange (in MW) between two countries."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    if target_datetime:
-        archive_data = get_archive_data(target_datetime, session=session)
+    archive_data = get_archive_data(target_datetime, session=session)
 
-        datapoints = []
-        for entry in archive_data:
-            if sorted_zone_keys == "MD->UA":
-                netflow = -1 * entry.exchange_UA_to_MD
-            elif sorted_zone_keys == "MD->RO":
-                netflow = -1 * entry.exchange_RO_to_MD
-            else:
-                raise NotImplementedError("This exchange pair is not implemented")
-
-            datapoint = template_exchange_response(
-                sorted_zone_keys, entry.datetime, netflow
-            )
-            datapoints.append(datapoint)
-        return datapoints
-    else:
-        field_values = get_data(session)
-
+    datapoints = []
+    for entry in archive_data:
         if sorted_zone_keys == "MD->UA":
-            netflow = field_values[FIELD_LABEL_to_INDEX["exchange MD-UA"]]
+            netflow = -1 * entry.exchange_UA_to_MD
         elif sorted_zone_keys == "MD->RO":
-            netflow = field_values[FIELD_LABEL_to_INDEX["exchange MD-RO"]]
+            netflow = -1 * entry.exchange_RO_to_MD
         else:
             raise NotImplementedError("This exchange pair is not implemented")
 
-        dt = datetime.now(tz=TZ)
-
-        datapoint = template_exchange_response(sorted_zone_keys, dt, netflow)
-
-        return datapoint
+        datapoint = template_exchange_response(
+            sorted_zone_keys, entry.datetime, netflow
+        )
+        datapoints.append(datapoint)
+    return datapoints
 
 
 if __name__ == "__main__":
