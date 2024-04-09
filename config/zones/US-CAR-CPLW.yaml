@@ -36,7 +36,7 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 0.0
-  #oil:
+  oil: null
   # There has been reported oil generation through the usage of diseal generators during extreme weather events.
       # We do not know yet the capacity of these generators, so we are not able to provide a value.
   solar:
