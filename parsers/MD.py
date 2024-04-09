@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 
 from requests import Session
 
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 TZ = ZoneInfo("Europe/Chisinau")
@@ -92,9 +93,11 @@ def template_exchange_response(
 
 
 def get_archive_data(
-    target_datetime: datetime | None, session: Session | None = None
+    target_datetime: datetime | None,
+    session: Session | None,
+    backlog_days: int = 0,
 ) -> list[ArchiveDatapoint]:
-    """Returns archive data in 15 mn buckets for the day of interest."""
+    """Returns archive data in 15 mn buckets for the day of interest and (optionally) previous ones."""
 
     target_utc_datetime = (
         datetime.now(timezone.utc)
@@ -104,7 +107,7 @@ def get_archive_data(
 
     target_utc_day = datetime.combine(target_utc_datetime, time(), tzinfo=timezone.utc)
     target_utc_timestamp_from, target_utc_timestamp_to = (
-        target_utc_day,
+        target_utc_day - timedelta(days=backlog_days),
         target_utc_day + timedelta(days=1) - timedelta(seconds=1),
     )
 
@@ -120,18 +123,18 @@ def get_archive_data(
     try:
         archive_datapoints = []
         for entry in data:
-            dt = (
+            dt_utc = (
                 datetime.strptime(entry[0], "%Y-%m-%d %H:%M")
                 .replace(tzinfo=TZ)
                 .astimezone(timezone.utc)
             )
 
-            # filter out results outside of UTC target day
-            dt_utc_day = datetime.combine(dt, time(), tzinfo=timezone.utc)
-            if dt_utc_day != target_utc_day:
+            # filter out results outside of UTC target range
+            # The API returns data for whole TZ days, so some data might be outside boundaries
+            if dt_utc < target_utc_timestamp_from or dt_utc > target_utc_timestamp_to:
                 continue
 
-            datapoint = ArchiveDatapoint(dt, *map(float, entry[1:]))
+            datapoint = ArchiveDatapoint(dt_utc, *map(float, entry[1:]))
             archive_datapoints.append(datapoint)
 
         return sorted(archive_datapoints, key=attrgetter("datetime"))
@@ -165,6 +168,7 @@ def fetch_price(
     return template_price_response(zone_key, dt, 145.0)
 
 
+@refetch_frequency(timedelta(days=2))
 def fetch_consumption(
     zone_key: str = "MD",
     session: Session | None = None,
@@ -172,7 +176,7 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
     """Requests the consumption (in MW) of a given country."""
-    archive_data = get_archive_data(target_datetime, session=session)
+    archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
 
     datapoints = []
     for entry in archive_data:
@@ -183,6 +187,7 @@ def fetch_consumption(
     return datapoints
 
 
+@refetch_frequency(timedelta(days=2))
 def fetch_production(
     zone_key: str = "MD",
     session: Session | None = None,
@@ -190,7 +195,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
     """Requests the production mix (in MW) of a given country."""
-    archive_data = get_archive_data(target_datetime, session=session)
+    archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
     datapoints = []
     for entry in archive_data:
         production = {
@@ -214,6 +219,7 @@ def fetch_production(
     return datapoints
 
 
+@refetch_frequency(timedelta(days=2))
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
@@ -224,7 +230,7 @@ def fetch_exchange(
     """Requests the last known power exchange (in MW) between two countries."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    archive_data = get_archive_data(target_datetime, session=session)
+    archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
 
     datapoints = []
     for entry in archive_data:
