@@ -11,8 +11,7 @@
     "carbonintensity": "كثافة الكربون",
     "electricityproduction": "إنتاج الكهرباء",
     "bysource": "عبر المصدر",
-    "emissions": "انبعاثات الكربون",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">أضف أو عدّل على المصدر</a>"
+    "emissions": "انبعاثات الكربون"
   },
   "footer": {
     "foundbugs": "وجدت أخطاء برمجية أو لديك اقتراحات؟ أبلغنا عنها",

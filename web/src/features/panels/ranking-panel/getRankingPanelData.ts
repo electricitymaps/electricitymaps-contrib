@@ -58,7 +58,7 @@ export const getRankedState = (
     })
     .filter(
       (zone) =>
-        zone.co2intensity !== undefined &&
+        Boolean(zone.co2intensity) &&
         filterZonesBySpatialAggregation(zone.zoneId, spatialAggregation)
     );
 
