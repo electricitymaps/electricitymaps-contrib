@@ -22,7 +22,6 @@
     "electricityproduction": "производство электричества",
     "bysource": "по источнику",
     "emissions": "эмиссии CO₂эк",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">добавить или изменить источник</a>",
     "helpfrom": "с помощью",
     "electricityconsumption": "Потребление электричества",
     "noDataAtTimestamp": "Данные временно недоступны в указанном промежутке времени",
