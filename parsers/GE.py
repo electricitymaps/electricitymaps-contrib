@@ -39,37 +39,14 @@ def fetch_production(
     """Request the last known production mix (in MW) of a given country."""
     session = session or Session()
 
-    # Get the current production mix
-    if target_datetime is None:
-        # TODO: remove `verify=False` ASAP.
-        response = session.get(f"{URL_STRING}/map", verify=False)
-        if not response.ok:
-            raise ParserException(
-                PARSER,
-                f"Exception when fetching production error code: {response.status_code}: {response.text}",
-                zone_key,
-            )
-        response_payload = response.json()["typeSum"]
-
-        production_mix = ProductionMix()
-        production_mix.add_value("gas", response_payload["thermalData"])
-        production_mix.add_value("hydro", response_payload["hydroData"])
-        production_mix.add_value("solar", response_payload["solarData"])
-        production_mix.add_value("wind", response_payload["windPowerData"])
-
-        production_breakdown_list = ProductionBreakdownList(logger)
-        production_breakdown_list.append(
-            zoneKey=zone_key,
-            datetime=datetime.now(tz=timezone.utc).replace(second=0, microsecond=0),
-            source=SOURCE,
-            production=production_mix,
-        )
-        return production_breakdown_list.to_list()
+    target_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
 
     # Get the production mix for every hour on the (UTC) day of interest.
-    day = datetime.combine(
-        target_datetime.astimezone(timezone.utc), time(), tzinfo=timezone.utc
-    )
+    day = datetime.combine(target_datetime, time(), tzinfo=timezone.utc)
     timestamp_from, timestamp_to = (
         day,
         day + timedelta(days=1) - timedelta(seconds=1),
@@ -123,8 +100,8 @@ def fetch_production(
             production_mix = ProductionMix()
             production_mix.add_value("gas", production["Thermal Power Plants"])
             production_mix.add_value("hydro", production["Hydro Power Plants"])
-            production_mix.add_value("solar", production["Wind Power Plants"])
-            production_mix.add_value("wind", production["Solar Power Plants"])
+            production_mix.add_value("solar", production["Solar Power Plants"])
+            production_mix.add_value("wind", production["Wind Power Plants"])
 
             production_breakdown_list.append(
                 zoneKey=zone_key,

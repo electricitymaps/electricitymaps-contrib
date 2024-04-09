@@ -19,18 +19,17 @@ def fixture_session_mock() -> tuple[requests.Session, Adapter]:
     return session, adapter
 
 
-@freeze_time("2024-04-08 12:00:00")
+@freeze_time("2024-04-09 17:57:00")
 def test_fetch_production_live(snapshot, fixture_session_mock):
     session, adapter = fixture_session_mock
-    adapter.register_uri(
-        GET,
-        ANY,
-        json=json.loads(
-            resources.files("parsers.test.mocks.GE")
-            .joinpath("production_live.json")
-            .read_text()
-        ),
+
+    mock_asset = str(
+        resources.files("parsers.test.mocks.GE").joinpath("production_live.xls")
     )
+    with open(mock_asset, mode="rb") as f:
+        content = f.read()
+
+    adapter.register_uri(GET, ANY, content=content)
 
     production = fetch_production(session=session)
 
