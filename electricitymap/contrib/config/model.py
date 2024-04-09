@@ -46,7 +46,7 @@ class ModeCapacity(StrictBaseModelWithAlias):
     comment: str | None = Field(None, alias="_comment")
     url: str | list[str] | None = Field(None, alias="_url")
     datetime: date | datetime | None
-    value: NonNegativeFloat
+    value: NonNegativeFloat | None
 
 
 class Capacity(StrictBaseModel):
@@ -267,12 +267,12 @@ class ModeEmissionFactor(StrictBaseModelWithAlias):
 
 
 class AllModesEmissionFactors(StrictBaseModelWithAlias):
-    battery_charge: None | (
-        list[ModeEmissionFactor] | ModeEmissionFactor
-    ) = Field(None, alias="battery charge")
-    battery_discharge: None | (
-        list[ModeEmissionFactor] | ModeEmissionFactor
-    ) = Field(None, alias="battery discharge")
+    battery_charge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
+        None, alias="battery charge"
+    )
+    battery_discharge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
+        None, alias="battery discharge"
+    )
     biomass: list[ModeEmissionFactor] | ModeEmissionFactor | None
     coal: list[ModeEmissionFactor] | ModeEmissionFactor | None
     gas: list[ModeEmissionFactor] | ModeEmissionFactor | None
@@ -280,9 +280,9 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
     hydro_charge: list[ModeEmissionFactor] | ModeEmissionFactor | None = Field(
         None, alias="hydro charge"
     )
-    hydro_discharge: None | (
-        list[ModeEmissionFactor] | ModeEmissionFactor
-    ) = Field(None, alias="hydro discharge")
+    hydro_discharge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
+        None, alias="hydro discharge"
+    )
     hydro: list[ModeEmissionFactor] | ModeEmissionFactor | None
     nuclear: list[ModeEmissionFactor] | ModeEmissionFactor | None
     oil: list[ModeEmissionFactor] | ModeEmissionFactor | None
