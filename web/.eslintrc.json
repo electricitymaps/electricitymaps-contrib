@@ -16,6 +16,7 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react/jsx-runtime",
     "plugin:unicorn/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:react-prefer-function-component/recommended",
     "prettier"
   ],
