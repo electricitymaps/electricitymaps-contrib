@@ -3,6 +3,7 @@ import { useExchangeArrowsData } from 'hooks/arrows';
 import { useAtom } from 'jotai';
 import React from 'react';
 import { colorblindModeAtom } from 'utils/state/atoms';
+import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
 import ExchangeArrow from './ExchangeArrow';
@@ -12,6 +13,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
   const [isColorBlindModeEnabled] = useAtom(colorblindModeAtom);
   const { ref, width, height } = useReferenceWidthHeightObserver();
   const arrows = useExchangeArrowsData();
+  const isMobile = !useBreakpoint('md');
 
   return (
     <div
@@ -31,6 +33,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
             colorBlindMode={isColorBlindModeEnabled}
             viewportWidth={width}
             viewportHeight={height}
+            isMobile={isMobile}
           />
         ))}
     </div>
