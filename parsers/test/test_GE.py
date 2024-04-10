@@ -3,20 +3,11 @@ from datetime import datetime, timezone
 from importlib import resources
 
 import pytest
-import requests
 from freezegun import freeze_time
-from requests_mock import ANY, GET, Adapter
+from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.GE import fetch_exchange, fetch_production
-
-
-@pytest.fixture()
-def fixture_session_mock() -> tuple[requests.Session, Adapter]:
-    adapter = Adapter()
-    session = requests.Session()
-    session.mount("https://", adapter)
-    return session, adapter
 
 
 @freeze_time("2024-04-09 17:57:00")
