@@ -14,6 +14,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 PARSER = "GT.py"
@@ -33,8 +34,9 @@ def _get_api_data(
     session: Session,
     target_datetime: datetime,
     target: ApiKind,
+    num_backlog_days: int,
 ) -> dict[datetime, dict]:
-    """Get the one-hourly AMM API data for the desired UTC day."""
+    """Get the one-hourly AMM API data for the desired UTC day + n days of backlog."""
 
     now_utc = datetime.now(timezone.utc)
     hour_now_utc = now_utc.replace(minute=0, second=0, microsecond=0)
@@ -45,7 +47,7 @@ def _get_api_data(
     # so might need to do multiple api calls if UTC day straddles multiple local days
     target_day_utc = datetime.combine(target_datetime_utc, time(), tzinfo=timezone.utc)
 
-    target_day_utc_start = target_day_utc
+    target_day_utc_start = target_day_utc - timedelta(days=num_backlog_days)
     target_day_utc_end = target_day_utc + timedelta(days=1) - timedelta(microseconds=1)
 
     local_day_of_target_day_utc_start = datetime.combine(
@@ -54,12 +56,13 @@ def _get_api_data(
     local_day_of_target_day_utc_end = datetime.combine(
         target_day_utc_end.astimezone(TIMEZONE), time(), tzinfo=TIMEZONE
     )
+    num_local_days = (
+        local_day_of_target_day_utc_end - local_day_of_target_day_utc_start
+    ).days
 
     daily_payloads: dict[datetime, list[dict]] = {}
-    for local_day in {
-        local_day_of_target_day_utc_start,
-        local_day_of_target_day_utc_end,
-    }:
+    for i in range(num_local_days + 1):
+        local_day = local_day_of_target_day_utc_start + timedelta(days=i)
         response = session.get(URL, params={"dt": local_day.strftime("%d/%m/%Y")})
         if not response.ok:
             raise ParserException(
@@ -102,6 +105,7 @@ def _get_api_data(
     return results
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session | None = None,
@@ -117,7 +121,10 @@ def fetch_consumption(
         else target_datetime.astimezone(timezone.utc)
     )
     api_data = _get_api_data(
-        session, target_datetime=target_datetime, target=ApiKind.CONSUMPTION
+        session,
+        target_datetime=target_datetime,
+        target=ApiKind.CONSUMPTION,
+        num_backlog_days=0,
     )
 
     consumption_list = TotalConsumptionList(logger=logger)
@@ -135,6 +142,7 @@ def fetch_consumption(
     return consumption_list.to_list()
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session | None = None,
@@ -150,7 +158,10 @@ def fetch_production(
         else target_datetime.astimezone(timezone.utc)
     )
     api_data = _get_api_data(
-        session, target_datetime=target_datetime, target=ApiKind.PRODUCTION
+        session,
+        target_datetime=target_datetime,
+        target=ApiKind.PRODUCTION,
+        num_backlog_days=0,
     )
 
     production_breakdown_list = ProductionBreakdownList(logger)
