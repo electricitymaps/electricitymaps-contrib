@@ -34,58 +34,72 @@ def _get_api_data(
     target_datetime: datetime,
     target: ApiKind,
 ) -> dict[datetime, dict]:
-    """Get the JSON-formatted response from the AMM API for the desired (local) date-time."""
+    """Get the one-hourly AMM API data for the desired UTC day."""
+
+    now_utc = datetime.now(timezone.utc)
+    hour_now_utc = now_utc.replace(minute=0, second=0, microsecond=0)
 
     target_datetime_utc = target_datetime.astimezone(timezone.utc)
-    now_utc = datetime.now(timezone.utc)
 
-    # The API expects local (TZ) timestamps
-    target_datetime_local = target_datetime_utc.astimezone(TIMEZONE)
-    target_day_local = datetime.combine(target_datetime_local, time(), tzinfo=TIMEZONE)
-    today_local = now_utc.astimezone(TIMEZONE)
-    response = session.get(URL, params={"dt": target_day_local.strftime("%d/%m/%Y")})
-    if not response.ok:
+    # The API expects local (TZ) timestamps and can only return one day of data
+    # so might need to do multiple api calls if UTC day straddles multiple local days
+    target_day_utc = datetime.combine(target_datetime_utc, time(), tzinfo=timezone.utc)
+
+    target_day_utc_start = target_day_utc
+    target_day_utc_end = target_day_utc + timedelta(days=1) - timedelta(microseconds=1)
+
+    local_day_of_target_day_utc_start = datetime.combine(
+        target_day_utc_start.astimezone(TIMEZONE), time(), tzinfo=TIMEZONE
+    )
+    local_day_of_target_day_utc_end = datetime.combine(
+        target_day_utc_end.astimezone(TIMEZONE), time(), tzinfo=TIMEZONE
+    )
+
+    daily_payloads: dict[datetime, list[dict]] = {}
+    for local_day in {
+        local_day_of_target_day_utc_start,
+        local_day_of_target_day_utc_end,
+    }:
+        response = session.get(URL, params={"dt": local_day.strftime("%d/%m/%Y")})
+        if not response.ok:
+            raise ParserException(
+                PARSER,
+                f"Exception when fetching {target.value} error code: {response.status_code}: {response.text}",
+            )
+
+        # The JSON data returned by the API is a list of objects, each representing one technology type.
+        daily_payloads[local_day] = response.json()
+
+    if not any(daily_payload for daily_payload in daily_payloads.values()):
         raise ParserException(
             PARSER,
-            f"Exception when fetching {target.value} error code: {response.status_code}: {response.text}",
-        )
-    response_payload = response.json()
-    if not response_payload:
-        raise ParserException(
-            PARSER,
-            f"Exception when fetching {target.value}: no data available for target day {target_day_local.strftime('%Y-%m-%d %Z')}. "
-            f"Note that historical data is only available for the last 1 year, and live data is only available after ~9:15 AM UTC ",
+            f"Exception when fetching {target.value}: no data available for UTC day {target_day_utc.strftime('%Y-%m-%d %Z')}. "
+            f"Note that historical data is only available for the last 1 year.",
         )
 
-    # The JSON data returned by the API is a list of objects, each
-    # representing one technology type. Collect this information into a list,
-    # with the list index representing the hour of day.
-    results = [collections.defaultdict(float) for _ in range(24)]
-    for row in response_payload:
-        # The API returns hours in the range [1, 24], so each one refers to the
-        # past hour (e.g., 1 is the time period [00:00, 01:00)). Shift the hour
-        # so each index represents the hour ahead and is in the range [0, 24),
-        # e.g., hour 0 represents the period [00:00, 01:00).
-        results[int(row["hora"]) - 1][row["tipo"]] = row["potencia"]
+    # aggregate all individual hourly items into a dict keyed by common UTC timestamp
+    results: dict[datetime, dict] = collections.defaultdict(dict)
+    for local_day, daily_payload in daily_payloads.items():
+        for row in daily_payload:
+            # The API returns hours in the range [1, 24], so each one refers to the
+            # past hour (e.g., 1 is the time period [00:00, 01:00)). Shift the hour
+            # so each index represents the hour ahead and is in the range [0, 24),
+            # e.g., hour 0 represents the period [00:00, 01:00).
+            dt_local = local_day + timedelta(hours=int(row["hora"]) - 1)
+            dt_utc = dt_local.astimezone(timezone.utc)
 
-    # For live consumption data, an hour's data isn't updated until the hour has passed,
-    # so the current (and future) hour(s) should not be included in the results.
-    # For live production data, the API will return zero-filled future data until the end of the day,
-    # so future hours should not be included in the results.
-    is_live_day = target_day_local.date() >= today_local.date()
-    if is_live_day:
-        cutoff_index = (
-            target_datetime_local.hour
-            if target == ApiKind.CONSUMPTION
-            else target_datetime_local.hour + 1
-        )
-        results = results[:cutoff_index]
+            # ignore data outside of range of interest
+            if dt_utc < target_day_utc_start or dt_utc > target_day_utc_end:
+                continue
 
-    # return as a dict of API results keyed by UTC timestamp
-    return {
-        (target_day_local + timedelta(hours=h)).astimezone(timezone.utc): v
-        for h, v in enumerate(results)
-    }
+            # For live data, the current hour's data isn't finished updating until the hour has passed,
+            # so the current hour should not be included in the results.
+            if dt_utc >= hour_now_utc:
+                continue
+
+            results[dt_utc][row["tipo"]] = row["potencia"]
+
+    return results
 
 
 def fetch_consumption(
@@ -94,7 +108,7 @@ def fetch_consumption(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    """Fetch a list of hourly consumption data, in MW, for the (local) day of the requested date-time."""
+    """Fetch a list of hourly consumption data, in MW, for the UTC day of the requested date-time."""
 
     session = session or Session()
     target_datetime = (
@@ -127,7 +141,7 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    """Fetch a list of hourly production data, in MW, for the (local) day of the requested date-time."""
+    """Fetch a list of hourly production data, in MW, for the UTC day of the requested date-time."""
 
     session = session or Session()
     target_datetime = (
@@ -150,7 +164,9 @@ def fetch_production(
         production_mix.add_value("oil", row["BUNKER"] + row["DIESEL"])
         production_mix.add_value("solar", row["IRRADIACIÓN"])
         production_mix.add_value(
-            "unknown", row["BIOMASA/CARBÓN"] + row["CARBÓN/PETCOKE"] + row["SYNGAN"]
+            "unknown",
+            # 'BIOMASA/CARBÓN not always present, e.g. 15/07/2023 TZ
+            row.get("BIOMASA/CARBÓN", 0.0) + row["CARBÓN/PETCOKE"] + row["SYNGAN"],
         )
         production_mix.add_value("wind", row["VIENTO"])
 
@@ -166,7 +182,7 @@ def fetch_production(
 if __name__ == "__main__":
     # Never used by the electricityMap back-end, but handy for testing.
 
-    target_datetime = datetime.fromisoformat("2022-01-01T12:00:00+00:00")
+    target_datetime = datetime.fromisoformat("2023-07-16T12:00:00+00:00")
 
     print("fetch_production():")
     print(fetch_production())
