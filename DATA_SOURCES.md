@@ -144,7 +144,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
   - New York (US-NY-NYIS): [NYISO](https://www.nyiso.com/real-time-dashboard)
   - PJM (US-MIDA-PJM): [PJM](http://www.pjm.com/markets-and-operations.aspx)
   - Puerto Rico (PR): [AEEPR](https://aeepr.com/#/operacion)
-  - Southwest Power Pool (US-CENT-SWPP): [SPP](https://portal.spp.org/)
+  - Southwest Power Pool (US-CENT-SWPP): [SPP](https://portal.spp.org/integrated-marketplace)
 - Uruguay: [UTE](https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 - Vietnam: [EVN](https://www.nldc.evn.vn/)
   &nbsp;</details>
