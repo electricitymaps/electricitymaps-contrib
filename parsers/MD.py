@@ -1,43 +1,5 @@
 """Parser for Moldova."""
 
-from collections import namedtuple
-from datetime import datetime, time, timedelta, timezone
-from logging import Logger, getLogger
-from operator import attrgetter
-from zoneinfo import ZoneInfo
-
-from requests import Session
-
-from parsers.lib.config import refetch_frequency
-from parsers.lib.exceptions import ParserException
-
-TZ = ZoneInfo("Europe/Chisinau")
-
-# Supports the following formats:
-# - type=csv for zip-data with semicolon-separated-values
-# - type=array for a 2D json-array containing an array for each datapoint
-# - type=html for a HTML-table (default when no type is given)
-archive_base_url = "https://moldelectrica.md/utils/archive2.php?id=table&type=array"
-
-# Fields that can be fetched from archive_url in order.
-archive_fields = (
-    "datetime",
-    "consumption",
-    "planned_consumption",
-    "production",
-    "planned_production",
-    "tpp",  # production from thermal power plants
-    "hpp",  # production from thermal power plants
-    "res",  # production from renewable energy sources
-    "exchange_UA_to_MD",
-    "planned_exchange_UA_to_MD",
-    "exchange_RO_to_MD",
-    "planned_exchange_RO_to_MD",
-)
-
-# Datapoint in the archive-data.
-ArchiveDatapoint = namedtuple("ArchiveDatapoint", archive_fields)
-
 # Further information on the equipment used at CERS Moldovenească can be found at:
 # http://moldgres.com/o-predpriyatii/equipment
 # Further information on the fuel-mix used at CERS Moldovenească can be found at:
@@ -49,47 +11,52 @@ ArchiveDatapoint = namedtuple("ArchiveDatapoint", archive_fields)
 # Annual reports from moldelectrica can be found at:
 # https://moldelectrica.md/ro/network/annual_report
 
+from datetime import datetime, time, timedelta, timezone
+from logging import Logger, getLogger
+from operator import attrgetter
+from typing import NamedTuple
+from zoneinfo import ZoneInfo
 
-def template_price_response(zone_key: str, datetime: datetime, price) -> dict:
-    return {
-        "zoneKey": zone_key,
-        "datetime": datetime,
-        "currency": "MDL",
-        "price": price,
-        "source": "moldelectrica.md",
-    }
+from requests import Session
+
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    PriceList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
+
+PARSER = "MD.py"
+TZ = ZoneInfo("Europe/Chisinau")
+ZONE_KEY = ZoneKey("MD")
+
+# Supports the following formats:
+# - type=csv for zip-data with semicolon-separated-values
+# - type=array for a 2D json-array containing an array for each datapoint
+# - type=html for a HTML-table (default when no type is given)
+ARCHIVE_BASE_URL = "https://moldelectrica.md/utils/archive2.php?id=table&type=array"
+SOURCE = "moldelectrica.md"
 
 
-def template_consumption_response(
-    zone_key: str, datetime: datetime, consumption
-) -> dict:
-    return {
-        "zoneKey": zone_key,
-        "datetime": datetime,
-        "consumption": consumption,
-        "source": "moldelectrica.md",
-    }
+class ArchiveDatapoint(NamedTuple):
+    """Datapoint returned by the archive_url with ordered fetchable fields."""
 
-
-def template_production_response(zone_key: str, datetime: datetime, production) -> dict:
-    return {
-        "zoneKey": zone_key,
-        "datetime": datetime,
-        "production": production,
-        "storage": {},
-        "source": "moldelectrica.md",
-    }
-
-
-def template_exchange_response(
-    sorted_zone_keys: str, datetime: datetime, netflow
-) -> dict:
-    return {
-        "sortedZoneKeys": sorted_zone_keys,
-        "datetime": datetime,
-        "netFlow": netflow,
-        "source": "moldelectrica.md",
-    }
+    datetime: datetime
+    consumption: float
+    planned_consumption: float
+    production: float
+    planned_production: float
+    tpp: float  # production from thermal power plants
+    hpp: float  # production from hydro power plants
+    res: float  # production from renewable energy sources
+    exchange_UA_to_MD: float
+    planned_exchange_UA_to_MD: float
+    exchange_RO_to_MD: float
+    planned_exchange_RO_to_MD: float
 
 
 def get_archive_data(
@@ -97,7 +64,7 @@ def get_archive_data(
     session: Session | None,
     backlog_days: int = 0,
 ) -> list[ArchiveDatapoint]:
-    """Returns archive data in 15 mn buckets for the day of interest and (optionally) previous ones."""
+    """Returns archive data in 15 mn buckets for the UTC day of interest and (optionally) previous ones."""
 
     target_utc_datetime = (
         datetime.now(timezone.utc)
@@ -114,7 +81,7 @@ def get_archive_data(
     # the API works in local (TZ) timestamps
     date1 = target_utc_timestamp_from.astimezone(TZ).strftime("%d.%m.%Y")
     date2 = target_utc_timestamp_to.astimezone(TZ).strftime("%d.%m.%Y")
-    archive_url = f"{archive_base_url}&date1={date1}&date2={date2}"
+    archive_url = f"{ARCHIVE_BASE_URL}&date1={date1}&date2={date2}"
 
     s = session or Session()
     data_response = s.get(archive_url)
@@ -147,105 +114,130 @@ def get_archive_data(
 
 
 def fetch_price(
-    zone_key: str = "MD",
+    zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
-    """
-    Returns the static price of electricity (0.145 MDL per kWh) as specified here:
-    https://moldelectrica.md/ro/activity/tariff
-    It is defined by the following government-agency decision,
-    which is still in effect at the time of writing this (July 2021):
-    http://lex.justice.md/viewdoc.php?action=view&view=doc&id=360109&lang=1
+) -> list[dict]:
+    """Requests the last known power price of a given zone.
+
+    This will be a static power price of 0.145 MDL per kWh. It is defined by a government-agency decision,
+    which is still in effect at the time of writing this (July 2021).
+
+    References:
+        https://moldelectrica.md/ro/activity/tariff
+        http://lex.justice.md/viewdoc.php?action=view&view=doc&id=360109&lang=1
     """
     if target_datetime:
-        raise NotImplementedError(
-            "This parser is not yet able to parse past dates for price"
+        raise ParserException(
+            PARSER,
+            "This parser is not yet able to parse past dates",
+            zone_key,
         )
 
-    dt = datetime.now(timezone.utc)
-    return template_price_response(zone_key, dt, 145.0)
+    price_list = PriceList(logger=logger)
+    price_list.append(
+        zoneKey=zone_key,
+        datetime=datetime.now(timezone.utc),
+        source=SOURCE,
+        price=145.0,
+        currency="MDL",
+    )
+    return price_list.to_list()
 
 
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption(
-    zone_key: str = "MD",
+    zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict] | dict:
-    """Requests the consumption (in MW) of a given country."""
+) -> list[dict]:
+    """Requests the last known power consumption (in MW) of a given zone."""
     archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
 
-    datapoints = []
-    for entry in archive_data:
-        datapoint = template_consumption_response(
-            zone_key, entry.datetime, entry.consumption
+    consumption_list = TotalConsumptionList(logger=logger)
+
+    for archive_datapoint in archive_data:
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=archive_datapoint.datetime,
+            source=SOURCE,
+            consumption=archive_datapoint.consumption,
         )
-        datapoints.append(datapoint)
-    return datapoints
+    return consumption_list.to_list()
 
 
 @refetch_frequency(timedelta(days=2))
 def fetch_production(
-    zone_key: str = "MD",
+    zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict] | dict:
-    """Requests the production mix (in MW) of a given country."""
+) -> list[dict]:
+    """Requests the production mix (in MW) of a given zone."""
+
     archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
-    datapoints = []
-    for entry in archive_data:
-        production = {
-            "solar": None,
-            "wind": None,
-            "biomass": 0.0,
-            "nuclear": None,
-            "gas": 0.0,
-            "hydro": 0.0,
-        }
 
-        production["gas"] += entry.tpp
-        production["hydro"] += entry.hpp
+    production_list = ProductionBreakdownList(logger=logger)
+
+    for archive_datapoint in archive_data:
+        production_mix = ProductionMix()
+        production_mix.add_value("gas", archive_datapoint.tpp)
+        production_mix.add_value("hydro", archive_datapoint.hpp)
         # Renewables (solar + biogas + wind) make up a small part of the energy produced.
-        # The exact mix of renewable enegry sources is unknown,
+        # The exact mix of renewable energy sources is unknown,
         # so everything is attributed to biomass.
-        production["biomass"] += entry.res
+        production_mix.add_value("biomass", archive_datapoint.res)
 
-        datapoint = template_production_response(zone_key, entry.datetime, production)
-        datapoints.append(datapoint)
-    return datapoints
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=archive_datapoint.datetime,
+            source=SOURCE,
+            production=production_mix,
+        )
+
+    return production_list.to_list()
 
 
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict] | dict:
-    """Requests the last known power exchange (in MW) between two countries."""
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+) -> list[dict]:
+    """Requests the last known power exchange (in MW) between two zones."""
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+
+    if ZONE_KEY not in {zone_key1, zone_key2}:
+        raise ParserException(
+            PARSER,
+            f"This parser can only parse exchanges to / from {ZONE_KEY}.",
+            sorted_zone_keys,
+        )
 
     archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
 
-    datapoints = []
+    exchange_list = ExchangeList(logger=logger)
+
     for entry in archive_data:
-        if sorted_zone_keys == "MD->UA":
+        if sorted_zone_keys == ZoneKey("MD->UA"):
             netflow = -1 * entry.exchange_UA_to_MD
-        elif sorted_zone_keys == "MD->RO":
+        elif sorted_zone_keys == ZoneKey("MD->RO"):
             netflow = -1 * entry.exchange_RO_to_MD
         else:
-            raise NotImplementedError("This exchange pair is not implemented")
+            raise NotImplementedError(f"{sorted_zone_keys} pair is not implemented")
 
-        datapoint = template_exchange_response(
-            sorted_zone_keys, entry.datetime, netflow
+        exchange_list.append(
+            zoneKey=sorted_zone_keys,
+            datetime=entry.datetime,
+            netFlow=netflow,
+            source=SOURCE,
         )
-        datapoints.append(datapoint)
-    return datapoints
+
+    return exchange_list.to_list()
 
 
 if __name__ == "__main__":
@@ -263,9 +255,10 @@ if __name__ == "__main__":
         print("fetch_production() ->")
         print(fetch_production(target_datetime=target_datetime))
 
-        print("fetch_exchange(MD, UA) ->")
-        print(fetch_exchange("MD", "UA", target_datetime=target_datetime))
-        print("fetch_exchange(MD, RO) ->")
-        print(fetch_exchange("MD", "RO", target_datetime=target_datetime))
-
-        print("------------")
+        for neighbour in ["RO", "UA"]:
+            print(f"fetch_exchange({ZONE_KEY}, {neighbour}) ->")
+            print(
+                fetch_exchange(
+                    ZONE_KEY, ZoneKey(neighbour), target_datetime=target_datetime
+                )
+            )
