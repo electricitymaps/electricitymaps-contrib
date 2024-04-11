@@ -1,3 +1,4 @@
+import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
@@ -30,7 +31,11 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
 
   return (
     <GraphCard className="pb-2">
-      <ChartTitle translationKey="country-history.emissions" badgeText={badgeText} />
+      <ChartTitle
+        translationKey="country-history.emissions"
+        badgeText={badgeText}
+        icon={<CloudArrowUpIcon />}
+      />
       <AreaGraph
         testId="history-emissions-graph"
         data={chartData}

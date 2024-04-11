@@ -1,3 +1,4 @@
+import { CoinsIcon } from 'icons/coinsIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
@@ -53,7 +54,10 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
 
   return (
     <GraphCard>
-      <ChartTitle translationKey="country-history.electricityprices" />
+      <ChartTitle
+        translationKey="country-history.electricityprices"
+        icon={<CoinsIcon />}
+      />
       <div className="relative overflow-hidden">
         {isPriceDisabled && (
           <div className="absolute top-0 -ml-3 h-full w-[115%]">

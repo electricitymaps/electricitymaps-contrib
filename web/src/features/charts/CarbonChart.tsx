@@ -1,3 +1,4 @@
+import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
@@ -36,6 +37,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
       <ChartTitle
         translationKey="country-history.carbonintensity"
         badgeText={badgeText}
+        icon={<CloudArrowUpIcon />}
       />
       <AreaGraph
         testId="details-carbon-graph"
