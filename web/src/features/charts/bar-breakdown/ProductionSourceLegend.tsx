@@ -1,7 +1,6 @@
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
-import { LABEL_MAX_WIDTH, PADDING_Y } from './constants';
 import ProductionSourceIcon from './ProductionsSourceIcons';
 
 export default function ProductionSourceLegend({
