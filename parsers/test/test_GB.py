@@ -21,14 +21,14 @@ def fixture_session_mock() -> tuple[requests.Session, Adapter]:
 @pytest.mark.parametrize(
     "zone_key", ["BE", "CH", "AT", "ES", "FR", "GB", "IT", "NL", "PT"]
 )
-@freeze_time("2024-04-09 07:41:17")
+@freeze_time("2024-04-11 17:56:41")
 def test_fetch_price_live(snapshot, fixture_session_mock, zone_key):
     session, adapter = fixture_session_mock
     adapter.register_uri(
         GET,
         ANY,
         text=resources.files("parsers.test.mocks.GB")
-        .joinpath("price_live.xml")
+        .joinpath("eco2mix_api_live.xml")
         .read_text(),
     )
 
@@ -55,7 +55,7 @@ def test_fetch_price_historical(snapshot, fixture_session_mock):
         GET,
         ANY,
         text=resources.files("parsers.test.mocks.GB")
-        .joinpath("price_historical_20220716.xml")
+        .joinpath("eco2mix_api_historical_20220716.xml")
         .read_text(),
     )
 

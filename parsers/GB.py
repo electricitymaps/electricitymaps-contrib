@@ -18,14 +18,14 @@ TIMEZONE = ZoneInfo("Europe/London")
 ZONE_KEY = ZoneKey("GB")
 
 
-@refetch_frequency(timedelta(days=1))
+@refetch_frequency(timedelta(days=2))
 def fetch_price(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    """Returns one-hourly prices for the requested day."""
+    """Returns one-hourly prices for the requested day (and the previous one)."""
 
     now = datetime.now(timezone.utc)
     target_datetime = (
@@ -33,11 +33,16 @@ def fetch_price(
     )
 
     # API works in UTC timestamps
-    day = target_datetime.strftime("%d/%m/%Y")
-    url = f"http://eco2mix.rte-france.com/curves/getDonneesMarche?dateDeb={day}&dateFin={day}&mode=NORM"
+    num_backlog_days = 1
+    day_start = (target_datetime - timedelta(days=num_backlog_days)).strftime(
+        "%d/%m/%Y"
+    )
+    day_end = target_datetime.strftime("%d/%m/%Y")
+    url = f"http://eco2mix.rte-france.com/curves/getDonneesMarche?dateDeb={day_start}&dateFin={day_end}&mode=NORM"
 
     session = session or Session()
     response = session.get(url)
+
     if not response.ok:
         raise ParserException(
             PARSER,
