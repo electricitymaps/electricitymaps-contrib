@@ -20,7 +20,7 @@ export default function EstimationCard({
   estimatedPercentage,
   outageMessage,
 }: {
-  cardType: 'outage' | 'aggregated' | 'estimated';
+  cardType: string;
   estimationMethod?: string;
   estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
