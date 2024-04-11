@@ -110,8 +110,14 @@ def _get_archive_data(
     archive_url = f"{ARCHIVE_BASE_URL}&date1={date1}&date2={date2}"
 
     s = session or Session()
-    data_response = s.get(archive_url)
-    data = data_response.json()
+    response = s.get(archive_url)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching data error code: {response.status_code}: {response.text}",
+        )
+
+    data = response.json()
 
     try:
         archive_datapoints = []
