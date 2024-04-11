@@ -42,6 +42,32 @@ ARCHIVE_BASE_URL = "https://moldelectrica.md/utils/archive2.php?id=table&type=ar
 SOURCE = "moldelectrica.md"
 
 
+# Moldoelectrica electricity tariffs as defined by government-agency decisions.
+_MOLDOELECTRICA_NEW_POWER_PRICE_IN_MDL_PER_MW = {
+    # https://www.legis.md/cautare/getResults?doc_id=78826&lang=ro
+    datetime(2000, 4, 1, tzinfo=timezone.utc): 18.8,
+    # https://www.legis.md/cautare/getResults?doc_id=103953&lang=ro
+    datetime(2001, 10, 1, tzinfo=timezone.utc): 28.0,
+    # https://www.legis.md/cautare/getResults?doc_id=40249&lang=ro
+    datetime(2002, 9, 1, tzinfo=timezone.utc): 35.2,
+    # https://www.legis.md/cautare/getResults?doc_id=42701&lang=ro
+    datetime(2005, 9, 1, tzinfo=timezone.utc): 39.3,
+    # https://www.legis.md/cautare/getResults?doc_id=10948&lang=ro
+    datetime(2007, 8, 3, tzinfo=timezone.utc): 51.8,
+    # https://www.legis.md/cautare/getResults?doc_id=40130&lang=ro
+    datetime(2010, 1, 19, tzinfo=timezone.utc): 63.2,
+    # https://www.legis.md/cautare/getResults?doc_id=40589&lang=ro
+    datetime(2012, 5, 11, tzinfo=timezone.utc): 80.2,
+    # https://www.legis.md/cautare/getResults?doc_id=84436&lang=ro
+    datetime(2015, 7, 31, tzinfo=timezone.utc): 145.0,
+    # https://www.legis.md/cautare/getResults?doc_id=134854&lang=ro
+    datetime(2023, 12, 31, tzinfo=timezone.utc): 201.0,
+    # https://www.legis.md/cautare/getResults?doc_id=142391&lang=ro
+    datetime(2024, 3, 21, tzinfo=timezone.utc): 185.0,
+    # TODO(amv213): update as new tariffs get rolled out...
+}
+
+
 class ArchiveDatapoint(NamedTuple):
     """Datapoint returned by the archive_url with ordered fetchable fields."""
 
@@ -59,10 +85,10 @@ class ArchiveDatapoint(NamedTuple):
     planned_exchange_RO_to_MD: float
 
 
-def get_archive_data(
+def _get_archive_data(
     target_datetime: datetime | None,
     session: Session | None,
-    backlog_days: int = 0,
+    num_backlog_days: int = 0,
 ) -> list[ArchiveDatapoint]:
     """Returns archive data in 15 mn buckets for the UTC day of interest and (optionally) previous ones."""
 
@@ -74,7 +100,7 @@ def get_archive_data(
 
     target_utc_day = datetime.combine(target_utc_datetime, time(), tzinfo=timezone.utc)
     target_utc_timestamp_from, target_utc_timestamp_to = (
-        target_utc_day - timedelta(days=backlog_days),
+        target_utc_day - timedelta(days=num_backlog_days),
         target_utc_day + timedelta(days=1) - timedelta(seconds=1),
     )
 
@@ -121,26 +147,34 @@ def fetch_price(
 ) -> list[dict]:
     """Requests the last known power price of a given zone.
 
-    This will be a static power price of 0.145 MDL per kWh. It is defined by a government-agency decision,
-    which is still in effect at the time of writing this (July 2021).
+    This will be a static power price for Moldoelectrica electricity as defined by government-agency decision.
 
     References:
+        https://www.anre.md/energie-electrica-3-290
         https://moldelectrica.md/ro/activity/tariff
-        http://lex.justice.md/viewdoc.php?action=view&view=doc&id=360109&lang=1
     """
-    if target_datetime:
-        raise ParserException(
-            PARSER,
-            "This parser is not yet able to parse past dates",
-            zone_key,
-        )
+    target_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
+
+    # find price band for given target datetime
+    prices = iter(_MOLDOELECTRICA_NEW_POWER_PRICE_IN_MDL_PER_MW.items())
+    _, price = next(
+        prices
+    )  # assume base price for times before we could find references
+    for dt, new_price in prices:
+        if target_datetime < dt:
+            break
+        price = new_price
 
     price_list = PriceList(logger=logger)
     price_list.append(
         zoneKey=zone_key,
-        datetime=datetime.now(timezone.utc),
+        datetime=target_datetime,
         source=SOURCE,
-        price=145.0,
+        price=price,
         currency="MDL",
     )
     return price_list.to_list()
@@ -154,7 +188,9 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     """Requests the last known power consumption (in MW) of a given zone."""
-    archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
+    archive_data = _get_archive_data(
+        target_datetime, session=session, num_backlog_days=1
+    )
 
     consumption_list = TotalConsumptionList(logger=logger)
 
@@ -177,7 +213,9 @@ def fetch_production(
 ) -> list[dict]:
     """Requests the production mix (in MW) of a given zone."""
 
-    archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
+    archive_data = _get_archive_data(
+        target_datetime, session=session, num_backlog_days=1
+    )
 
     production_list = ProductionBreakdownList(logger=logger)
 
@@ -218,7 +256,9 @@ def fetch_exchange(
             sorted_zone_keys,
         )
 
-    archive_data = get_archive_data(target_datetime, session=session, backlog_days=1)
+    archive_data = _get_archive_data(
+        target_datetime, session=session, num_backlog_days=1
+    )
 
     exchange_list = ExchangeList(logger=logger)
 
@@ -243,20 +283,18 @@ def fetch_exchange(
 if __name__ == "__main__":
     # Main method, never used by the Electricity Map backend, but handy for testing.
 
-    print("fetch_price() ->")
-    print(fetch_price())
-
     for target_datetime in (None, datetime.fromisoformat("2021-07-25T15:00+00:00")):
-        print(f"For target_datetime {target_datetime}:")
+        print(f"fetch_price({target_datetime=}) ->")
+        print(fetch_price(target_datetime=target_datetime))
 
-        print("fetch_consumption() ->")
+        print(f"fetch_consumption({target_datetime=}) ->")
         print(fetch_consumption(target_datetime=target_datetime))
 
-        print("fetch_production() ->")
+        print(f"fetch_production({target_datetime=}) ->")
         print(fetch_production(target_datetime=target_datetime))
 
         for neighbour in ["RO", "UA"]:
-            print(f"fetch_exchange({ZONE_KEY}, {neighbour}) ->")
+            print(f"fetch_exchange({ZONE_KEY}, {neighbour}, {target_datetime=}) ->")
             print(
                 fetch_exchange(
                     ZONE_KEY, ZoneKey(neighbour), target_datetime=target_datetime
