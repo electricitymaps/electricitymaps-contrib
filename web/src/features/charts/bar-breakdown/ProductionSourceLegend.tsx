@@ -11,7 +11,6 @@ export default function ProductionSourceLegend({
   return (
     <g className="pointer-events-none">
       <rect
-        transform={`translate(0, 0)`}
         fill={modeColor[electricityType as ElectricityModeType]}
         width={14}
         height={14}
