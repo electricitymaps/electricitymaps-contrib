@@ -60,7 +60,8 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
 
   const currentExchanges: ExchangeArrowData[] = useMemo(() => {
     return Object.entries(exchangesToUse).map(([key, value]) => ({
-      ...value,
+      co2intensity: value.ci,
+      netFlow: value.f,
       ...exchangesConfig[key],
       key,
     }));

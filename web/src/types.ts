@@ -64,7 +64,9 @@ export interface StateExchangeData {
   f: number;
 }
 
-export interface ExchangeArrowData extends StateExchangeData {
+export interface ExchangeArrowData {
+  co2intensity: number;
+  netFlow: number;
   rotation: number;
   lonlat: [number, number];
   key: string;

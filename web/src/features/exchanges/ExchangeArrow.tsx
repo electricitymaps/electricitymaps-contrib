@@ -25,12 +25,12 @@ function ExchangeArrow({
   colorBlindMode,
   isMobile,
 }: ExchangeArrowProps) {
-  const { ci, lonlat, f, rotation, key } = data;
+  const { co2intensity, lonlat, netFlow, rotation, key } = data;
   if (!lonlat) {
     return null;
   }
 
-  const absFlow = Math.abs(f ?? 0);
+  const absFlow = Math.abs(netFlow ?? 0);
   // Don't render if the flow is very low ...
   if (absFlow < 1) {
     return null;
@@ -41,7 +41,7 @@ function ExchangeArrow({
     x: projection.x,
     y: projection.y,
     k: 0.04 + (mapZoom - 1.5) * 0.1,
-    r: rotation + (f > 0 ? 180 : 0),
+    r: rotation + (netFlow > 0 ? 180 : 0),
   };
 
   if (
@@ -71,7 +71,7 @@ function ExchangeArrow({
   }, []);
 
   const prefix = colorBlindMode ? 'colorblind-' : '';
-  const intensity = quantizedCo2IntensityScale(ci);
+  const intensity = quantizedCo2IntensityScale(co2intensity);
   const speed = quantizedExchangeSpeedScale(absFlow);
   const imageSource = resolvePath(
     `images/arrows/${prefix}arrow-${intensity}-animated-${speed}`
