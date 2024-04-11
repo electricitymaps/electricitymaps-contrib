@@ -33,13 +33,13 @@ export const getRankedState = (
   if (!data) {
     return [];
   }
-  const girdState = data.data.datetimes[datetimeIndex];
+  const gridState = data.data.datetimes[datetimeIndex];
 
-  if (!girdState || !girdState.z) {
+  if (!gridState || !gridState.z) {
     return [];
   }
 
-  const zoneState = girdState.z;
+  const zoneState = gridState.z;
 
   const keys = Object.keys(zoneState) as Array<keyof GridState>;
 
