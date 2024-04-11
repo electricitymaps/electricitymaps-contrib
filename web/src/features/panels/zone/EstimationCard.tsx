@@ -20,7 +20,7 @@ export default function EstimationCard({
   estimatedPercentage,
   outageMessage,
 }: {
-  cardType: string;
+  cardType: 'outage' | 'aggregated' | 'estimated';
   estimationMethod?: string;
   estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
@@ -241,6 +241,7 @@ function OutageMessage({
   if (!outageData || !outageData.message) {
     return null;
   }
+  const { t } = useTranslation();
   return (
     <span className="inline overflow-hidden">
       {truncateString(outageData.message, 300)}{' '}
@@ -251,7 +252,7 @@ function OutageMessage({
             className="inline-flex text-sm font-semibold text-black underline dark:text-white"
             href={`https://github.com/electricitymaps/electricitymaps-contrib/issues/${outageData.issue}`}
           >
-            <span className="pl-1 underline">issue #{outageData.issue}</span>
+            <span className="pl-1 underline">{t('estimation-card.outage-details')}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
