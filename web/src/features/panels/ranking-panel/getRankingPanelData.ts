@@ -33,21 +33,19 @@ export const getRankedState = (
   if (!data) {
     return [];
   }
-  const gird = data.data.datetimes[datetimeIndex];
+  const girdState = data.data.datetimes[datetimeIndex];
 
-  if (!gird || !gird.z) {
+  if (!girdState || !girdState.z) {
     return [];
   }
 
-  const keys = Object.keys(gird.z) as Array<keyof GridState>;
+  const zoneState = girdState.z;
 
-  if (!keys) {
-    return [];
-  }
+  const keys = Object.keys(zoneState) as Array<keyof GridState>;
 
   const zones = keys
     .map((key) => {
-      const zoneData = gird.z[key];
+      const zoneData = zoneState[key];
 
       const co2intensity = zoneData
         ? getCO2IntensityByMode(zoneData, electricityMode)
@@ -56,7 +54,7 @@ export const getRankedState = (
       return {
         zoneId: key,
         color: fillColor,
-        ci: co2intensity,
+        co2intensity,
         countryName: getCountryName(key),
         zoneName: getZoneName(key),
         ranking: undefined,
@@ -64,14 +62,14 @@ export const getRankedState = (
     })
     .filter(
       (zone) =>
-        Boolean(zone.ci) &&
+        Boolean(zone.co2intensity) &&
         filterZonesBySpatialAggregation(zone.zoneId, spatialAggregation)
     );
 
   const orderedZones =
     sortOrder === 'asc'
-      ? zones.sort((a, b) => (a.ci ?? 0) - (b.ci ?? 0))
-      : zones.sort((a, b) => (b.ci ?? 0) - (a.ci ?? 0));
+      ? zones.sort((a, b) => (a.co2intensity ?? 0) - (b.co2intensity ?? 0))
+      : zones.sort((a, b) => (b.co2intensity ?? 0) - (a.co2intensity ?? 0));
 
   return orderedZones;
 };
