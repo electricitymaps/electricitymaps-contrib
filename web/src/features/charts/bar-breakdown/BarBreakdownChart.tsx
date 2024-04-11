@@ -104,7 +104,7 @@ function BarBreakdownChart({
 
   return (
     <div
-      className="mt-4 rounded-2xl border-[1px] border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
+      className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
       ref={ref}
     >
       <BySource
