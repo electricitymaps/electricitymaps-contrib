@@ -37,7 +37,6 @@
     "electricityconsumption": "Elektritarbimine",
     "bysource": "allikas",
     "emissions": "Süsinikheitmed",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lisa või muuda allikat</a>",
     "helpfrom": "koos aitajatega",
     "noDataAtTimestamp": "Andmed pole valitud aja jooksul ajutiselt saadaval",
     "noLiveData": "Muutuvad andmed pole selles piirkonnas ajutiselt saadaval",
