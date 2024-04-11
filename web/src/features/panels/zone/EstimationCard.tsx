@@ -247,7 +247,6 @@ function OutageMessage({
       {truncateString(outageData.message, 300)}{' '}
       {outageData?.issue && outageData.issue != 'None' && (
         <span className="mt-1 inline-flex">
-          See{' '}
           <a
             className="inline-flex text-sm font-semibold text-black underline dark:text-white"
             href={`https://github.com/electricitymaps/electricitymaps-contrib/issues/${outageData.issue}`}

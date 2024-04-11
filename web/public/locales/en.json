@@ -121,7 +121,7 @@
   },
   "estimation-card": {
     "link": "Read about our estimation models",
-    "outage-details": "see details",
+    "outage-details": "See details",
     "estimated_time_slicer_average": {
       "title": "Data is currently estimated",
       "pill": "Unavailable",
