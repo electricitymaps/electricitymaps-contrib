@@ -136,6 +136,54 @@
     "search": "Rechercher une zone"
   },
   "country-history": {
+    "carbonintensity": {
+      "hourly": "Intensité carbone horaire",
+      "daily": "Intensité carbone quotidienne",
+      "monthly": "Intensité carbone mensuelle",
+      "yearly": "Intensité carbone annuelle"
+    },
+    "emissions": {
+      "hourly": "Emissions de CO2 horaires",
+      "daily": "Emissions de CO2 quotidiennes",
+      "monthly": "Emissions de CO2 mensuelles",
+      "yearly": "Emissions de CO2 annuelles"
+    },
+    "emissionsorigin": {
+      "hourly": "Origine des émissions de CO2 horaires",
+      "daily": "Origine des émissions de CO2 quotidiennes",
+      "monthly": "Origine des émissions de CO2 mensuelles",
+      "yearly": "Origine des émissions de CO2 annuelles"
+    },
+    "emissionsproduction": {
+      "hourly": "Emissions horaires pour la production",
+      "daily": "Emissions quotidiennes pour la production",
+      "monthly": "Emissions mensuelles pour la production",
+      "yearly": "Emissions annuelles pour la production"
+    },
+    "electricityorigin": {
+      "hourly": "Origine de l'électricité horaire",
+      "daily": "Origine de l'électricité quotidienne",
+      "monthly": "Origine de l'électricité mensuelle",
+      "yearly": "Origine de l'électricité annuelle"
+    },
+    "electricityproduction": {
+      "hourly": "Production d'électricité horaire",
+      "daily": "Production d'électricité quotidienne",
+      "monthly": "Production d'électricité mensuelle",
+      "yearly": "Production d'électricité annuelle"
+    },
+    "electricityprices": {
+      "hourly": "Prix de l'électricité horaires",
+      "daily": "Prix de l'électricité quotidiens",
+      "monthly": "Prix de l'électricité mensuels",
+      "yearly": "Prix de l'électricité annuels"
+    },
+    "netExchange": {
+      "hourly": "Echange net horaire",
+      "daily": "Echange net quotidien",
+      "monthly": "Echange net mensuel",
+      "yearly": "Echange net annuel"
+    },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique"
   },
   "footer": {
@@ -164,20 +212,22 @@
     "showSolarLayer": "Voir le calque d’ensoleillement",
     "hideSolarLayer": "Cacher le calque d’ensoleillement",
     "changeTheme": "Changer de thème",
-    "noParserInfo": "Pas de données disponible",
+    "noParserInfo": "Pas de données disponibles",
     "temporaryDataOutage": "Données temporairement indisponibles",
     "production": "production",
     "consumption": "consommation",
     "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
     "selectLanguage": "Choisissez une langue",
-    "lowCarbDescription": "Inclut les énergies renouvelables et nucléaire",
+    "lowCarbDescription": "Inclut les énergies renouvelables et le nucléaire",
     "dataIsDelayed": "Données en retard",
     "representing": "représentant",
     "ofemissions": "des émissions",
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
-    "weatherDisabled": "Les données météo ne sont pas disponible actuellement",
-    "aggregateInfo": "Visualiser la donnée par zone ou aggrégée par pays"
+    "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
+    "aggregateInfo": "Visualiser la donnée par zone ou aggrégée par pays",
+    "importing": "Important",
+    "exporting": "Exportant"
   },
   "themeOptions": {
     "dark": "Sombre",
