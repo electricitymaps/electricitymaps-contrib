@@ -93,7 +93,7 @@ const zoneDetailsData = {
     unknown: 'assumes thermal (coal, gas, oil or biomass)',
     wind: 'UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)',
   },
-  source: 'entsoe.eu',
+  source: ['entsoe.eu'],
   storage: { battery: null, hydro: -395 },
   totalCo2Discharge: 53_894_853.608_163_215,
   totalCo2Export: 174_956_880,
