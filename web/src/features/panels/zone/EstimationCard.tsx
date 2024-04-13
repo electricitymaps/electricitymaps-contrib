@@ -1,7 +1,6 @@
 import Accordion from 'components/Accordion';
 import Badge from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';

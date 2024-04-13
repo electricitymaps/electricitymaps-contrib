@@ -1,6 +1,5 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
-import { TFunction } from 'i18next';
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineX } from 'react-icons/hi';

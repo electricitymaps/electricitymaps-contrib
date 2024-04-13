@@ -43,17 +43,20 @@ export const detectHoveredDatapointIndex = (
 export const getTooltipPosition = (isMobile: boolean, marker: { x: number; y: number }) =>
   isMobile ? { x: 0, y: 0 } : marker;
 
-// TODO: Deprecate this
-export const isEmpty = (object: any) =>
-  [Object, Array].includes((object || {}).constructor) &&
-  Object.entries(object || {}).length === 0;
-
 export const noop = () => undefined;
 
-export const getTimeScale = (width: number, startTime: Date, endTime: Date) =>
-  scaleTime()
+export const getTimeScale = (
+  width: number,
+  startTime?: Date | null,
+  endTime?: Date | null
+) => {
+  if (!startTime || !endTime) {
+    return null;
+  }
+  return scaleTime()
     .domain([new Date(startTime), new Date(endTime)])
     .range([0, width]);
+};
 
 export const getStorageKey = (name: ElectricityStorageType): string | undefined => {
   switch (name) {
