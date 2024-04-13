@@ -70,12 +70,12 @@ export default function EstimationCard({
   }
 }
 
-function getEstimationTranslation(
-  t: TFunction,
+function useGetEstimationTranslation(
   field: 'title' | 'pill' | 'body',
   estimationMethod?: string,
   estimatedPercentage?: number
 ) {
+  const { t } = useTranslation();
   const exactTranslation =
     (estimatedPercentage ?? 0) > 0 && estimationMethod === 'aggregated'
       ? t(`estimation-card.aggregated_estimated.${field}`, {
@@ -125,15 +125,13 @@ function BaseCard({
   };
   const { t } = useTranslation();
 
-  const title = getEstimationTranslation(t, 'title', estimationMethod);
-  const pillText = getEstimationTranslation(
-    t,
+  const title = useGetEstimationTranslation('title', estimationMethod);
+  const pillText = useGetEstimationTranslation(
     'pill',
     estimationMethod,
     estimatedPercentage
   );
-  const bodyText = getEstimationTranslation(
-    t,
+  const bodyText = useGetEstimationTranslation(
     'body',
     estimationMethod,
     estimatedPercentage
