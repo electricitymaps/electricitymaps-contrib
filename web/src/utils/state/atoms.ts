@@ -47,3 +47,5 @@ export const feedbackCardCollapsedNumberAtom = atom(0);
 export const colorblindModeAtom = atomWithStorage('colorblindModeEnabled', false);
 
 export const dataSourcesCollapsed = atom(true);
+
+export const estimationCardCollapsed = atom(true);

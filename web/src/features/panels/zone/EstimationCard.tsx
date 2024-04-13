@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { ZoneDetails } from 'types';
 import trackEvent from 'utils/analytics';
 import {
+  estimationCardCollapsed,
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
 } from 'utils/state/atoms';
@@ -153,6 +154,7 @@ function BaseCard({
         className={textColorTitle}
         icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
         title={title}
+        isCollapsedAtom={estimationCardCollapsed}
       >
         <div className="gap-2">
           <div
