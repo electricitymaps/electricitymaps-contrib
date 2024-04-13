@@ -46,7 +46,7 @@ export function useNightTimes() {
         setNightTimes(undefined);
       }
     }
-  }, [zoneId, data]);
+  }, [zoneId, data, worldGeometries.features]);
 
   return nightTimes;
 }

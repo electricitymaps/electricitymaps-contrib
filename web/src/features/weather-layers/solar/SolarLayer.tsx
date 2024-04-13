@@ -93,7 +93,7 @@ export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
         map.removeSource('solar');
       }
     };
-  }, [map, node, isVisibleReference.current]);
+  }, [map, node, setIsLoadingSolarLayer]);
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {

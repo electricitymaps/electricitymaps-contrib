@@ -27,7 +27,7 @@ export default function EstimationCard({
   estimatedPercentage?: number;
   outageMessage: ZoneDetails['zoneMessage'];
 }) {
-  const [isFeedbackCardVisibile, setIsFeedbackCardVisibile] = useState(false);
+  const [isFeedbackCardVisible, setIsFeedbackCardVisibile] = useState(false);
   const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
@@ -39,12 +39,18 @@ export default function EstimationCard({
       feedbackEnabled &&
         showEstimationFeedbackCard(
           feedbackCardCollapsedNumber,
-          isFeedbackCardVisibile,
+          isFeedbackCardVisible,
           hasFeedbackCardBeenSeen,
           setHasFeedbackCardBeenSeen
         )
     );
-  }, [feedbackEnabled, feedbackCardCollapsedNumber]);
+  }, [
+    feedbackEnabled,
+    feedbackCardCollapsedNumber,
+    isFeedbackCardVisible,
+    hasFeedbackCardBeenSeen,
+    setHasFeedbackCardBeenSeen,
+  ]);
 
   switch (cardType) {
     case 'outage': {
@@ -57,7 +63,7 @@ export default function EstimationCard({
       return (
         <div>
           <EstimatedCard estimationMethod={estimationMethod} />
-          {isFeedbackCardVisibile && <FeedbackCard estimationMethod={estimationMethod} />}
+          {isFeedbackCardVisible && <FeedbackCard estimationMethod={estimationMethod} />}
         </div>
       );
     }

@@ -65,7 +65,17 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
       windy.stop();
       setWindy(null);
     }
-  }, [isVisible, isSuccess, node, windy, viewport]);
+  }, [
+    isVisible,
+    isSuccess,
+    node,
+    windy,
+    viewport,
+    map,
+    isWindLayerEnabled,
+    windData,
+    setIsLoadingWindLayer,
+  ]);
 
   return (
     <canvas
