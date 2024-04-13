@@ -18,6 +18,7 @@ export default function ExchangeTooltip({
   isMobile,
 }: ExchangeTooltipProperties): ReactElement {
   const { key, netFlow, co2intensity } = exchangeData;
+
   const { t } = useTranslation();
   const isExporting = netFlow > 0;
   const roundedNetFlow = Math.abs(Math.round(netFlow));

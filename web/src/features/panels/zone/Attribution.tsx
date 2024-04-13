@@ -5,24 +5,6 @@ import trackEvent from 'utils/analytics';
 
 import { getContributors } from './util';
 
-export function removeDuplicateSources(source: string | undefined) {
-  if (!source) {
-    return [''];
-  }
-
-  const sources = [
-    ...new Set(
-      source
-        .split('","')
-        .flatMap((x) =>
-          x.split(',').map((x) => x.replaceAll('\\', '').replaceAll('"', ''))
-        )
-    ),
-  ];
-
-  return sources;
-}
-
 export default function Attribution({ zoneId }: { zoneId: string }) {
   const { t } = useTranslation();
   const { zoneContributorsIndexArray, contributors } = getContributors(zoneId);

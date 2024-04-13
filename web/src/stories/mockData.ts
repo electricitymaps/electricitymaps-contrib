@@ -1,3 +1,5 @@
+import { StateZoneData } from 'types';
+
 export const zoneDetailMock = {
   _isFinestGranularity: true,
   capacity: {
@@ -87,7 +89,7 @@ export const zoneDetailMock = {
   },
   renewableRatio: 0.6874,
   renewableRatioProduction: 0.7044,
-  source: 'entsoe.eu',
+  source: ['entsoe.eu'],
   stateDatetime: '2023-09-05T18:00:00Z',
   storage: {
     battery: null,
@@ -109,14 +111,16 @@ export const zoneDetailMock = {
   zoneKey: 'PT',
 };
 
-export const zoneStateMock = {
-  co2intensity: 176.01,
-  co2intensityProduction: 342.58,
-  estimatedPercentage: 0,
-  fossilFuelRatio: 0.1664,
-  fossilFuelRatioProduction: 0.345,
-  renewableRatio: 0.683,
-  renewableRatioProduction: 0.655,
-  stateDatetime: 167_000_000_000,
-  zoneKey: 'DK-DK2',
+export const zoneStateMock: StateZoneData = {
+  c: {
+    ci: 176.01,
+    fr: 0.1664,
+    rr: 0.683,
+  },
+  p: {
+    ci: 342.58,
+    fr: 0.345,
+    rr: 0.655,
+  },
+  e: 0,
 };
