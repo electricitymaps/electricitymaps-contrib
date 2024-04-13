@@ -4,7 +4,7 @@ import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom } from 'jotai/react';
 import { TimeAverages } from 'utils/constants';
-import { getZoneFromPath } from 'utils/helpers';
+import { useGetZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
@@ -137,7 +137,7 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 }
 
 function TimeSlider(props: TimeSliderProps) {
-  const zoneId = getZoneFromPath();
+  const zoneId = useGetZoneFromPath();
   const [timeAverage] = useAtom(timeAverageAtom);
   const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;
 

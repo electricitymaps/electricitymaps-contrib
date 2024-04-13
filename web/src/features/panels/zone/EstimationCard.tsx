@@ -1,6 +1,7 @@
 import Accordion from 'components/Accordion';
 import Badge from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
+import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -63,11 +64,11 @@ export default function EstimationCard({
 }
 
 function getEstimationTranslation(
+  t: TFunction,
   field: 'title' | 'pill' | 'body',
   estimationMethod?: string,
   estimatedPercentage?: number
 ) {
-  const { t } = useTranslation();
   const exactTranslation =
     (estimatedPercentage ?? 0) > 0 && estimationMethod === 'aggregated'
       ? t(`estimation-card.aggregated_estimated.${field}`, {
@@ -117,13 +118,15 @@ function BaseCard({
   };
   const { t } = useTranslation();
 
-  const title = getEstimationTranslation('title', estimationMethod);
+  const title = getEstimationTranslation(t, 'title', estimationMethod);
   const pillText = getEstimationTranslation(
+    t,
     'pill',
     estimationMethod,
     estimatedPercentage
   );
   const bodyText = getEstimationTranslation(
+    t,
     'body',
     estimationMethod,
     estimatedPercentage
