@@ -10,7 +10,6 @@ import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import FeatureFlagsManager from 'features/feature-flags/FeatureFlagsManager';
 import Header from 'features/header/Header';
-import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import i18n from 'translation/i18n';
@@ -22,6 +21,7 @@ const LegendContainer = lazy(() => import('components/legend/LegendContainer'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
+const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
 
 const isProduction = import.meta.env.PROD;
 
