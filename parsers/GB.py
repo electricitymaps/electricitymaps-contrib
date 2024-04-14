@@ -25,19 +25,26 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    """Returns one-hourly prices for the requested day (and the previous one)."""
+    """Requests the power price per MWh of a given country.
+
+    This function will return one-hourly prices for the requested day, and previous one. For live data, it will also
+    return prices from day-ahead market data.
+    """
 
     now = datetime.now(timezone.utc)
     target_datetime = (
         now if target_datetime is None else target_datetime.astimezone(timezone.utc)
     )
+    is_today = target_datetime.date() == now.date()
 
-    # API works in UTC timestamps
+    # API works in UTC timestamps, and allows fetching day-ahead market data
     num_backlog_days = 1
     day_start = (target_datetime - timedelta(days=num_backlog_days)).strftime(
         "%d/%m/%Y"
     )
-    day_end = target_datetime.strftime("%d/%m/%Y")
+    day_end = (target_datetime + timedelta(days=1 if is_today else 0)).strftime(
+        "%d/%m/%Y"
+    )
     url = f"http://eco2mix.rte-france.com/curves/getDonneesMarche?dateDeb={day_start}&dateFin={day_end}&mode=NORM"
 
     session = session or Session()

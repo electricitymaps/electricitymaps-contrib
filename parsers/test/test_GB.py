@@ -21,7 +21,7 @@ def fixture_session_mock() -> tuple[requests.Session, Adapter]:
 @pytest.mark.parametrize(
     "zone_key", ["BE", "CH", "AT", "ES", "FR", "GB", "IT", "NL", "PT"]
 )
-@freeze_time("2024-04-11 17:56:41")
+@freeze_time("2024-04-14 15:10:57")
 def test_fetch_price_live(snapshot, fixture_session_mock, zone_key):
     session, adapter = fixture_session_mock
     adapter.register_uri(
