@@ -54,9 +54,15 @@ def fetch_price(
 
     price_list = PriceList(logger=logger)
     for daily_market_data in xml_tree.iterfind("donneesMarche"):
-        day = datetime.strptime(daily_market_data.get("date"), "%Y-%m-%d").replace(
-            tzinfo=timezone.utc
-        )
+        date = daily_market_data.get("date")
+        if date is None:
+            raise ParserException(
+                PARSER,
+                "Exception when parsing price API response: missing 'date' for daily market data.",
+                zone_key,
+            )
+        day = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+
         for daily_zone_data in daily_market_data:
             zone_code = daily_zone_data.get("perimetre")
 
@@ -78,7 +84,6 @@ def fetch_price(
 
                 period_number = int(value.attrib["periode"])
                 dt = day + timedelta(hours=period_number)
-                is_future = dt > now
 
                 price_list.append(
                     zoneKey=zone_key,
@@ -86,9 +91,8 @@ def fetch_price(
                     source="rte-france.com",
                     price=price,
                     currency="EUR",
-                    sourceType=EventSourceType.forecasted
-                    if is_future
-                    else EventSourceType.measured,
+                    # Can use EventSourceType.measured even for dt > now entries as price is set on day-ahead market
+                    sourceType=EventSourceType.measured,
                 )
 
     return price_list.to_list()

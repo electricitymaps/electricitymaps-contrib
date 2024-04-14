@@ -733,7 +733,7 @@ snapshots["test_fetch_price_live[AT] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 87.14,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "AT",
     },
     {
@@ -741,7 +741,7 @@ snapshots["test_fetch_price_live[AT] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 121.21,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "AT",
     },
     {
@@ -749,7 +749,7 @@ snapshots["test_fetch_price_live[AT] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 127.62,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "AT",
     },
     {
@@ -757,7 +757,7 @@ snapshots["test_fetch_price_live[AT] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 95.09,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "AT",
     },
     {
@@ -765,7 +765,7 @@ snapshots["test_fetch_price_live[AT] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 80.65,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "AT",
     },
     {
@@ -773,7 +773,7 @@ snapshots["test_fetch_price_live[AT] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 72.95,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "AT",
     },
 ]
@@ -1120,7 +1120,7 @@ snapshots["test_fetch_price_live[BE] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 100.7,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "BE",
     },
     {
@@ -1128,7 +1128,7 @@ snapshots["test_fetch_price_live[BE] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 129.0,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "BE",
     },
     {
@@ -1136,7 +1136,7 @@ snapshots["test_fetch_price_live[BE] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 113.25,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "BE",
     },
     {
@@ -1144,7 +1144,7 @@ snapshots["test_fetch_price_live[BE] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 90.46,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "BE",
     },
     {
@@ -1152,7 +1152,7 @@ snapshots["test_fetch_price_live[BE] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 77.67,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "BE",
     },
     {
@@ -1160,7 +1160,7 @@ snapshots["test_fetch_price_live[BE] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 68.94,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "BE",
     },
 ]
@@ -1507,7 +1507,7 @@ snapshots["test_fetch_price_live[CH] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 89.61,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "CH",
     },
     {
@@ -1515,7 +1515,7 @@ snapshots["test_fetch_price_live[CH] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 126.47,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "CH",
     },
     {
@@ -1523,7 +1523,7 @@ snapshots["test_fetch_price_live[CH] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 127.95,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "CH",
     },
     {
@@ -1531,7 +1531,7 @@ snapshots["test_fetch_price_live[CH] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 92.3,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "CH",
     },
     {
@@ -1539,7 +1539,7 @@ snapshots["test_fetch_price_live[CH] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 80.74,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "CH",
     },
     {
@@ -1547,7 +1547,7 @@ snapshots["test_fetch_price_live[CH] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 76.49,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "CH",
     },
 ]
@@ -1894,7 +1894,7 @@ snapshots["test_fetch_price_live[ES] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 0.0,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "ES",
     },
     {
@@ -1902,7 +1902,7 @@ snapshots["test_fetch_price_live[ES] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 4.9,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "ES",
     },
     {
@@ -1910,7 +1910,7 @@ snapshots["test_fetch_price_live[ES] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 60.0,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "ES",
     },
     {
@@ -1918,7 +1918,7 @@ snapshots["test_fetch_price_live[ES] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 70.95,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "ES",
     },
     {
@@ -1926,7 +1926,7 @@ snapshots["test_fetch_price_live[ES] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 70.01,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "ES",
     },
     {
@@ -1934,7 +1934,7 @@ snapshots["test_fetch_price_live[ES] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 34.08,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "ES",
     },
 ]
@@ -2281,7 +2281,7 @@ snapshots["test_fetch_price_live[FR] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 8.76,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "FR",
     },
     {
@@ -2289,7 +2289,7 @@ snapshots["test_fetch_price_live[FR] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 24.22,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "FR",
     },
     {
@@ -2297,7 +2297,7 @@ snapshots["test_fetch_price_live[FR] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 60.0,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "FR",
     },
     {
@@ -2305,7 +2305,7 @@ snapshots["test_fetch_price_live[FR] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 70.95,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "FR",
     },
     {
@@ -2313,7 +2313,7 @@ snapshots["test_fetch_price_live[FR] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 70.01,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "FR",
     },
     {
@@ -2321,7 +2321,7 @@ snapshots["test_fetch_price_live[FR] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 34.08,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "FR",
     },
 ]
@@ -2668,7 +2668,7 @@ snapshots["test_fetch_price_live[GB] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 86.99,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "GB",
     },
     {
@@ -2676,7 +2676,7 @@ snapshots["test_fetch_price_live[GB] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 97.4,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "GB",
     },
     {
@@ -2684,7 +2684,7 @@ snapshots["test_fetch_price_live[GB] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 97.28,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "GB",
     },
     {
@@ -2692,7 +2692,7 @@ snapshots["test_fetch_price_live[GB] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 86.52,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "GB",
     },
     {
@@ -2700,7 +2700,7 @@ snapshots["test_fetch_price_live[GB] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 73.08,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "GB",
     },
     {
@@ -2708,7 +2708,7 @@ snapshots["test_fetch_price_live[GB] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 56.12,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "GB",
     },
 ]
@@ -3055,7 +3055,7 @@ snapshots["test_fetch_price_live[IT] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 88.81,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "IT",
     },
     {
@@ -3063,7 +3063,7 @@ snapshots["test_fetch_price_live[IT] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 119.971,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "IT",
     },
     {
@@ -3071,7 +3071,7 @@ snapshots["test_fetch_price_live[IT] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 126.0,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "IT",
     },
     {
@@ -3079,7 +3079,7 @@ snapshots["test_fetch_price_live[IT] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 94.98,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "IT",
     },
     {
@@ -3087,7 +3087,7 @@ snapshots["test_fetch_price_live[IT] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 89.39,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "IT",
     },
     {
@@ -3095,7 +3095,7 @@ snapshots["test_fetch_price_live[IT] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 85.0,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "IT",
     },
 ]
@@ -3442,7 +3442,7 @@ snapshots["test_fetch_price_live[NL] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 100.7,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "NL",
     },
     {
@@ -3450,7 +3450,7 @@ snapshots["test_fetch_price_live[NL] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 134.36,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "NL",
     },
     {
@@ -3458,7 +3458,7 @@ snapshots["test_fetch_price_live[NL] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 119.8,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "NL",
     },
     {
@@ -3466,7 +3466,7 @@ snapshots["test_fetch_price_live[NL] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 91.05,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "NL",
     },
     {
@@ -3474,7 +3474,7 @@ snapshots["test_fetch_price_live[NL] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 79.21,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "NL",
     },
     {
@@ -3482,7 +3482,7 @@ snapshots["test_fetch_price_live[NL] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 75.75,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "NL",
     },
 ]
@@ -3829,7 +3829,7 @@ snapshots["test_fetch_price_live[PT] 1"] = [
         "datetime": "2024-04-11T18:00:00+00:00",
         "price": 0.0,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "PT",
     },
     {
@@ -3837,7 +3837,7 @@ snapshots["test_fetch_price_live[PT] 1"] = [
         "datetime": "2024-04-11T19:00:00+00:00",
         "price": 4.9,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "PT",
     },
     {
@@ -3845,7 +3845,7 @@ snapshots["test_fetch_price_live[PT] 1"] = [
         "datetime": "2024-04-11T20:00:00+00:00",
         "price": 60.0,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "PT",
     },
     {
@@ -3853,7 +3853,7 @@ snapshots["test_fetch_price_live[PT] 1"] = [
         "datetime": "2024-04-11T21:00:00+00:00",
         "price": 70.95,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "PT",
     },
     {
@@ -3861,7 +3861,7 @@ snapshots["test_fetch_price_live[PT] 1"] = [
         "datetime": "2024-04-11T22:00:00+00:00",
         "price": 70.01,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "PT",
     },
     {
@@ -3869,7 +3869,7 @@ snapshots["test_fetch_price_live[PT] 1"] = [
         "datetime": "2024-04-11T23:00:00+00:00",
         "price": 34.08,
         "source": "rte-france.com",
-        "sourceType": "forecasted",
+        "sourceType": "measured",
         "zoneKey": "PT",
     },
 ]
