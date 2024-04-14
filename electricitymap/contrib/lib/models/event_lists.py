@@ -304,7 +304,16 @@ class ProductionBreakdownList(AggregatableEventList):
         logger: Logger,
         matching_timestamps_only: bool = False,
     ) -> "ProductionBreakdownList":
-        """Given a new batch of production breakdowns, update the existing ones."""
+        """
+        Given a new batch of production breakdowns, update the existing ones.
+
+        Params:
+        - production_breakdowns: The existing production breakdowns to be updated.
+        - new_production_breakdowns: The new batch of production breakdowns.
+        - logger: The logger object used for logging information.
+        - matching_timestamps_only: Flag indicating whether to update only the events with matching timestamps from both the production breakdowns.
+        """
+
         if len(new_production_breakdowns) == 0:
             return production_breakdowns
         elif len(production_breakdowns) == 0:

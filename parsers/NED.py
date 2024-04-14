@@ -87,7 +87,7 @@ def call_api(target_datetime: datetime, forecast: bool = False):
         .date()
         .isoformat(),
     }
-    headers = {"X-AUTH-TOKEN": get_token("NED_KEY"), "accept": "application/json"}
+    headers = {"X-AUTH-TOKEN": get_token("NED_TOKEN"), "accept": "application/json"}
     response = requests.get(URL, params=params, headers=headers)
     if not response.ok:
         raise ParserException(
@@ -97,7 +97,9 @@ def call_api(target_datetime: datetime, forecast: bool = False):
     return response.json()
 
 
-def format_data(json: Any, logger: Logger, forecast: bool = False):
+def format_data(
+    json: Any, logger: Logger, forecast: bool = False
+) -> ProductionBreakdownList:
     df = pd.DataFrame(json)
     df.drop(
         columns=[
@@ -143,16 +145,12 @@ def format_data(json: Any, logger: Logger, forecast: bool = False):
     return formatted_production_data
 
 
-def fetch_production(
-    zone_key: ZoneKey = ZoneKey("NL"),
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    session = session or Session()
-    target_datetime = target_datetime or datetime.now(timezone.utc)
-    json_data = call_api(target_datetime)
-    NED_data = format_data(json_data, logger)
+def _get_entsoe_production_data(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger,
+) -> ProductionBreakdownList:
     ENTSOE_raw_data = ENTSOE_query_production(
         ENTSOE_DOMAIN_MAPPINGS[zone_key], session, target_datetime=target_datetime
     )
@@ -165,9 +163,25 @@ def fetch_production(
     ENTSOE_parsed_data = ENTSOE_parse_production(
         ENTSOE_raw_data, zoneKey=zone_key, logger=logger
     )
+    return ENTSOE_parsed_data
+
+
+def fetch_production(
+    zone_key: ZoneKey = ZoneKey("NL"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    session = session or Session()
+    target_datetime = target_datetime or datetime.now(timezone.utc)
+    json_data = call_api(target_datetime)
+    NED_data = format_data(json_data, logger)
+    ENTSOE_data = _get_entsoe_production_data(
+        zone_key, session, target_datetime, logger
+    )
 
     combined_data = ProductionBreakdownList.update_production_breakdowns(
-        production_breakdowns=ENTSOE_parsed_data,
+        production_breakdowns=ENTSOE_data,
         new_production_breakdowns=NED_data,
         logger=logger,
         matching_timestamps_only=True,
@@ -176,16 +190,12 @@ def fetch_production(
     return combined_data.to_list()
 
 
-def fetch_production_forecast(
-    zone_key: ZoneKey = ZoneKey("NL"),
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    session = session or Session()
-    target_datetime = target_datetime or datetime.now(timezone.utc)
-    json_data = call_api(target_datetime, forecast=True)
-    NED_data = format_data(json_data, logger, forecast=True)
+def _get_entsoe_forecast_data(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger,
+) -> ProductionBreakdownList:
     ENTSOE_raw_data_day_ahead = ENTSOE_query_wind_solar_production_forecast(
         ENTSOE_DOMAIN_MAPPINGS[zone_key],
         session,
@@ -210,13 +220,28 @@ def fetch_production_forecast(
     ENTSOE_parsed_data_intraday = ENTSOE_parse_production(
         ENTSOE_raw_data_intraday, zoneKey=zone_key, logger=logger, forecasted=True
     )
-    ENTSOE_updated_date = ProductionBreakdownList.update_production_breakdowns(
+    ENTSOE_updated_data = ProductionBreakdownList.update_production_breakdowns(
         production_breakdowns=ENTSOE_parsed_data_day_ahead,
         new_production_breakdowns=ENTSOE_parsed_data_intraday,
         logger=logger,
     )
+    return ENTSOE_updated_data
+
+
+def fetch_production_forecast(
+    zone_key: ZoneKey = ZoneKey("NL"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    session = session or Session()
+    target_datetime = target_datetime or datetime.now(timezone.utc)
+    json_data = call_api(target_datetime, forecast=True)
+    NED_data = format_data(json_data, logger, forecast=True)
+    ENTSOE_data = _get_entsoe_forecast_data(zone_key, session, target_datetime, logger)
+
     combined_data = ProductionBreakdownList.update_production_breakdowns(
-        production_breakdowns=ENTSOE_updated_date,
+        production_breakdowns=ENTSOE_data,
         new_production_breakdowns=NED_data,
         logger=logger,
         matching_timestamps_only=True,

@@ -52,8 +52,8 @@ contributors:
   - corradio
   - PaulCornelissen
   - nessie2013
-disclaimer: The generation mix served by the source is incomplete. It is therefore
-  improved through an Electricity Maps estimation model.
+  - VIKTORVAV99
+disclaimer: Solar production is collected from NED.nl and can contain their own estimations.
 emissionFactors:
   direct:
     battery discharge:
