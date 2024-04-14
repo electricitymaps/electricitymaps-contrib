@@ -178,7 +178,7 @@ def fetch_price(
     price_list = PriceList(logger=logger)
     price_list.append(
         zoneKey=zone_key,
-        datetime=target_datetime,
+        datetime=target_datetime.replace(minute=0, second=0, microsecond=0),
         source=SOURCE,
         price=price,
         currency="MDL",

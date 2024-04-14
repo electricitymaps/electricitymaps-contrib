@@ -6740,7 +6740,7 @@ snapshots["test_fetch_price_historical[historical_datetime9] 1"] = [
 snapshots["test_fetch_price_live 1"] = [
     {
         "currency": "MDL",
-        "datetime": "2024-04-11T06:32:00+00:00",
+        "datetime": "2024-04-11T06:00:00+00:00",
         "price": 185.0,
         "source": "moldelectrica.md",
         "sourceType": "measured",
