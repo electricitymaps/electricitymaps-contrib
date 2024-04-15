@@ -14,7 +14,7 @@ function ValueAxis({ scale, label, width, height, formatTick }: ValueAxisProps) 
   const [y1, y2] = scale.range();
   return (
     <g
-      transform={`translate(${width - 12} -1)`}
+      transform={`translate(${width - 1} -1)`}
       fill="none"
       fontSize="10"
       fontFamily="sans-serif"
