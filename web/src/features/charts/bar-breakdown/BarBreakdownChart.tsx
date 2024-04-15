@@ -10,7 +10,10 @@ import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import trackEvent from 'utils/analytics';
-import { dataSourcesCollapsed, displayByEmissionsAtom } from 'utils/state/atoms';
+import {
+  dataSourcesCollapsedBarBreakdown,
+  displayByEmissionsAtom,
+} from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
@@ -162,12 +165,12 @@ function BarBreakdownChart({
           }}
           title={t('data-sources.title')}
           className="text-md"
-          isCollapsedAtom={dataSourcesCollapsed}
+          isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
         >
           <div>
             {currentZoneDetail?.capacitySources && (
               <DataSources
-                title="Installed capacity data"
+                title={t('data-sources.capacity')}
                 icon={<UtilityPoleIcon />}
                 sources={[
                   ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
@@ -176,14 +179,14 @@ function BarBreakdownChart({
             )}
             {currentZoneDetail?.source && (
               <DataSources
-                title="Power generation data"
+                title={t('data-sources.power')}
                 icon={<WindTurbineIcon />}
                 sources={currentZoneDetail?.source}
               />
             )}
             {emissionData && (
               <DataSources
-                title="Emission factor data"
+                title={t('data-sources.emission')}
                 icon={<IndustryIcon />}
                 sources={emissionData}
               />

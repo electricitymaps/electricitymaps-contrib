@@ -1,8 +1,13 @@
+import Accordion from 'components/Accordion';
 import { max, sum } from 'd3-array';
+import Divider from 'features/panels/zone/Divider';
+import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
+import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
+import { DataSources } from './bar-breakdown/DataSources';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -21,7 +26,7 @@ function BreakdownChart({
   datetimes,
   timeAverage,
 }: BreakdownChartProps) {
-  const { data, mixMode } = useBreakdownChartData();
+  const { sources, data, mixMode } = useBreakdownChartData();
   const { t } = useTranslation();
 
   if (!data) {
@@ -93,6 +98,18 @@ function BreakdownChart({
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
+      <Divider />
+      <Accordion
+        title={t('data-sources.title')}
+        className="text-md"
+        isCollapsedAtom={dataSourcesCollapsedBreakdown}
+      >
+        <DataSources
+          title={t('data-sources.power')}
+          icon={<WindTurbineIcon />}
+          sources={sources}
+        />
+      </Accordion>
     </>
   );
 }
