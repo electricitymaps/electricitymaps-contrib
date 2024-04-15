@@ -183,7 +183,7 @@ function BarBreakdownChart({
               <DataSources
                 title="Power generation data"
                 icon={<WindTurbineIcon />}
-                sources={[currentZoneDetail?.source]}
+                sources={currentZoneDetail?.source}
               />
             )}
             {emissionData && (
