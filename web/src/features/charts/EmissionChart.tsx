@@ -1,7 +1,12 @@
+import Accordion from 'components/Accordion';
+import Divider from 'features/panels/zone/Divider';
+import { IndustryIcon } from 'icons/industryIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
+import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
+import { DataSources } from './bar-breakdown/DataSources';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -14,7 +19,8 @@ interface EmissionChartProps {
 }
 
 function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
-  const { data, isLoading, isError } = useEmissionChartData();
+  const { data, emissionSourceToProductionSource, isLoading, isError } =
+    useEmissionChartData();
   const { t } = useTranslation();
   if (isLoading || isError || !data) {
     return null;
@@ -45,6 +51,18 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         tooltip={EmissionChartTooltip}
         formatTick={formatAxisTick}
       />
+      <Divider />
+      <Accordion
+        title={t('data-sources.title')}
+        className="text-md"
+        isCollapsedAtom={dataSourcesCollapsedEmission}
+      >
+        <DataSources
+          title={t('data-sources.emission')}
+          icon={<IndustryIcon />}
+          sources={[...emissionSourceToProductionSource.keys()].sort()}
+        />
+      </Accordion>
     </>
   );
 }

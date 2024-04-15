@@ -5,6 +5,7 @@ import {
   GenerationType,
   Maybe,
   ZoneDetail,
+  ZoneDetails,
   ZoneKey,
 } from 'types';
 import { Mode, modeOrder } from 'utils/constants';
@@ -192,3 +193,60 @@ export const getExchangesToDisplay = (
     (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
   );
 };
+
+export function getEmissionData(zoneData: ZoneDetails) {
+  const sourceInfoToProductionSource = new Map<string, string[]>();
+
+  for (const state of Object.values(zoneData.zoneStates)) {
+    updateMapWithSources(
+      state.dischargeCo2IntensitySources,
+      sourceInfoToProductionSource,
+      true
+    );
+    updateMapWithSources(
+      state.productionCo2IntensitySources,
+      sourceInfoToProductionSource
+    );
+  }
+
+  return sourceInfoToProductionSource;
+}
+
+function updateMapWithSources(
+  sources: { [key: string]: string },
+  sourceInfoToProductionSource: Map<string, string[]>,
+  storageType?: boolean
+) {
+  for (const entry of Object.entries(sources)) {
+    for (const sourceInfo of entry[1].split('; ')) {
+      const productionSource = getProductionSourcesToAdd(
+        entry,
+        sourceInfoToProductionSource.get(sourceInfo),
+        storageType
+      );
+      if (productionSource.length > 0) {
+        sourceInfoToProductionSource.set(sourceInfo, productionSource);
+      }
+    }
+  }
+}
+
+function getProductionSourcesToAdd(
+  entry: [string, string],
+  productionSourceArray: string[] | undefined,
+  storageType?: boolean
+): string[] {
+  const productionSource = storageType ? entry[0] + ' storage' : entry[0];
+  const sourceInfo = entry[1];
+
+  if (sourceInfo.startsWith('assumes')) {
+    return [];
+  }
+  if (productionSourceArray === undefined) {
+    return [productionSource];
+  } else if (!productionSourceArray?.includes(productionSource)) {
+    productionSourceArray?.push(productionSource);
+    return productionSourceArray;
+  }
+  return [];
+}
