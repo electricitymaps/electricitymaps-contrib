@@ -25,7 +25,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -72,17 +72,17 @@ class ArchiveDatapoint(NamedTuple):
     """Datapoint returned by the archive_url with ordered fetchable fields."""
 
     datetime: datetime
-    consumption: float
-    planned_consumption: float
-    production: float
-    planned_production: float
-    tpp: float  # production from thermal power plants
-    hpp: float  # production from hydro power plants
-    res: float  # production from renewable energy sources
-    exchange_UA_to_MD: float
-    planned_exchange_UA_to_MD: float
-    exchange_RO_to_MD: float
-    planned_exchange_RO_to_MD: float
+    consumption: float | None
+    planned_consumption: float | None
+    production: float | None
+    planned_production: float | None
+    tpp: float | None  # production from thermal power plants
+    hpp: float | None  # production from hydro power plants
+    res: float | None  # production from renewable energy sources
+    exchange_UA_to_MD: float | None
+    planned_exchange_UA_to_MD: float | None
+    exchange_RO_to_MD: float | None
+    planned_exchange_RO_to_MD: float | None
 
 
 def _get_archive_data(
@@ -133,7 +133,10 @@ def _get_archive_data(
             if dt_utc < target_utc_timestamp_from or dt_utc > target_utc_timestamp_to:
                 continue
 
-            datapoint = ArchiveDatapoint(dt_utc, *map(float, entry[1:]))
+            # keep in mind that some values might be null
+            datapoint = ArchiveDatapoint(
+                dt_utc, *(float(x) if x is not None else x for x in entry[1:])
+            )
             archive_datapoints.append(datapoint)
 
         return sorted(archive_datapoints, key=attrgetter("datetime"))
@@ -244,15 +247,16 @@ def fetch_production(
     return production_list.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
-def fetch_exchange(
+def _fetch_exchange(
+    event_type: EventSourceType,
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
+    session: Session | None,
+    target_datetime: datetime | None,
+    logger: Logger,
+    num_backlog_days: int,
 ) -> list[dict]:
-    """Requests the last known power exchange (in MW) between two zones."""
+    """Requests measured or forecasted power exchange (in MW) between two zones."""
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     if ZONE_KEY not in {zone_key1, zone_key2}:
@@ -263,16 +267,38 @@ def fetch_exchange(
         )
 
     archive_data = _get_archive_data(
-        target_datetime, session=session, num_backlog_days=1
+        target_datetime,
+        session=session,
+        num_backlog_days=num_backlog_days,
     )
 
-    exchange_list = ExchangeList(logger=logger)
+    use_actual = event_type == EventSourceType.measured
 
+    exchange_list = ExchangeList(logger=logger)
     for entry in archive_data:
         if sorted_zone_keys == ZoneKey("MD->UA"):
-            netflow = -1 * entry.exchange_UA_to_MD
+            netflow = (
+                entry.exchange_UA_to_MD
+                if use_actual
+                else entry.planned_exchange_UA_to_MD
+            )
+            if netflow is None:
+                continue
+
+            if netflow != 0:
+                netflow *= -1
+
         elif sorted_zone_keys == ZoneKey("MD->RO"):
-            netflow = -1 * entry.exchange_RO_to_MD
+            netflow = (
+                entry.exchange_RO_to_MD
+                if use_actual
+                else entry.planned_exchange_RO_to_MD
+            )
+            if netflow is None:
+                continue
+
+            if netflow != 0:
+                netflow *= -1
         else:
             raise NotImplementedError(f"{sorted_zone_keys} pair is not implemented")
 
@@ -281,9 +307,50 @@ def fetch_exchange(
             datetime=entry.datetime,
             netFlow=netflow,
             source=SOURCE,
+            sourceType=event_type,
         )
 
     return exchange_list.to_list()
+
+
+@refetch_frequency(timedelta(days=2))
+def fetch_exchange(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Requests the known power exchange (in MW) between two zones."""
+    return _fetch_exchange(
+        event_type=EventSourceType.measured,
+        zone_key1=zone_key1,
+        zone_key2=zone_key2,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+        num_backlog_days=1,
+    )
+
+
+@refetch_frequency(timedelta(days=2))
+def fetch_exchange_forecast(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Requests the forecasted power exchange (in MW) between two zones."""
+    return _fetch_exchange(
+        event_type=EventSourceType.forecasted,
+        zone_key1=zone_key1,
+        zone_key2=zone_key2,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+        num_backlog_days=1,
+    )
 
 
 if __name__ == "__main__":
@@ -303,6 +370,15 @@ if __name__ == "__main__":
             print(f"fetch_exchange({ZONE_KEY}, {neighbour}, {target_datetime=}) ->")
             print(
                 fetch_exchange(
+                    ZONE_KEY, ZoneKey(neighbour), target_datetime=target_datetime
+                )
+            )
+
+            print(
+                f"fetch_exchange_forecast({ZONE_KEY}, {neighbour}, {target_datetime=}) ->"
+            )
+            print(
+                fetch_exchange_forecast(
                     ZONE_KEY, ZoneKey(neighbour), target_datetime=target_datetime
                 )
             )
