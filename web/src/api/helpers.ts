@@ -74,7 +74,8 @@ export function cacheBuster(): string {
     current_date.getFullYear(),
     current_date.getMonth(),
     current_date.getDate(),
-    current_date.getHours()
+    current_date.getHours(),
+    current_date.getMinutes()
   );
   return date_to_hour.toISOString();
 }
