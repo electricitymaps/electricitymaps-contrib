@@ -19,7 +19,6 @@ import { useBreakpoint } from 'utils/styling';
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
-import Divider from './Divider';
 import EstimationCard from './EstimationCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
@@ -74,7 +73,7 @@ export default function ZoneDetails(): JSX.Element {
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
-      <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
+      <div className="h-[calc(100%-110px)] overflow-y-scroll p-3 pb-40 pt-2 sm:h-[calc(100%-130px)]">
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
@@ -96,8 +95,8 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <Divider />
           <Button
+            backgroundClasses="mt-3 mb-1"
             size="lg"
             type="link"
             icon={<MdOutlineCloudDownload size={20} />}

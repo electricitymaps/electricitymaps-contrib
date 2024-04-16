@@ -1,8 +1,10 @@
 import { max, sum } from 'd3-array';
+import { CircleBoltIcon } from 'icons/circleBoltIcon';
 import { useTranslation } from 'react-i18next';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -54,10 +56,11 @@ function BreakdownChart({
   }
 
   return (
-    <>
+    <GraphCard>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badgeText={badgeText}
+        icon={<CircleBoltIcon />}
       />
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
@@ -93,7 +96,7 @@ function BreakdownChart({
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
-    </>
+    </GraphCard>
   );
 }
 
