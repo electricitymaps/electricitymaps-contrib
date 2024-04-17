@@ -1,6 +1,7 @@
 import * as Portal from '@radix-ui/react-portal';
 import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import Divider from 'features/panels/zone/Divider';
 import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
@@ -102,7 +103,10 @@ function BarBreakdownChart({
     .sort();
 
   return (
-    <div className="text-sm" ref={ref}>
+    <div
+      className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
+      ref={ref}
+    >
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
@@ -155,7 +159,8 @@ function BarBreakdownChart({
           isMobile={false}
         />
       )}
-      <div className="pt-2">
+      <Divider />
+      <div className="py-1">
         <Accordion
           onClick={() => {
             trackEvent('Data Sources Clicked', { chart: 'bar-breakdown-chart' });
