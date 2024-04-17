@@ -122,6 +122,11 @@
   "estimation-card": {
     "link": "Read about our estimation models",
     "outage-details": "See details",
+    "estimated_forecast_hierarchy": {
+      "title": "Data is estimated",
+      "pill": "Estimated",
+      "body": "The data for this zone is estimated using a combination of internal and external production forecasts and Time Slicer Averages. This aims to provide a more accurate representation than Time Slicer Average alone but the data may still be subject to inaccuracies. The data will be updated as soon as real-time data becomes available."
+    },
     "estimated_time_slicer_average": {
       "title": "Data is currently estimated",
       "pill": "Unavailable",
