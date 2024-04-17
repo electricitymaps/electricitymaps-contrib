@@ -19,23 +19,10 @@ def get_solar_capacity_at(target_datetime: datetime) -> float:
     """
 
     # Prepare historical records
+    # Values before 2015 are ignored as that is the absolute earliest we have some confidence in the data we are
+    # collecting and flowtracing (2015 is when the ENTSO-E transparency platform launched).
     historical_data = """
         Power_sum,Year,Plant_count
-        6.213,2000,404
-        7.668,2001,476
-        9.09,2002,536
-        10.554,2003,644
-        12.353,2004,731
-        16.994,2005,850
-        19.241,2006,1044
-        26.007,2007,1514
-        42.472,2008,2725
-        80.181,2009,4627
-        123.568,2010,6489
-        250.203,2011,11138
-        500.19,2012,18076
-        806.067,2013,25407
-        995.055,2014,32790
         1398.217,2015,46162
         1656.707,2016,56830
         1875.034,2017,70074
