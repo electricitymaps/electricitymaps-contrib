@@ -45,10 +45,10 @@ function getToken(): string {
  * @param route The route to generate x-signature for. Has to be given without the base path.
  * For example. `/v5/state/hourly` is a valid route, but `http://localhost:8001/v5/state/yearly` is not.
  */
-export async function getHeaders(route: string): Promise<Headers> {
+export async function getHeaders(route: URL): Promise<Headers> {
   const token = isUsingLocalEndpoint() ? 'development' : getToken();
   const timestamp = Date.now().toString();
-  const signature = await sha256(`${token}${route}${timestamp}`);
+  const signature = await sha256(`${token}${route.pathname}${timestamp}`);
 
   return new Headers({
     'electricitymap-token': token,
@@ -66,6 +66,14 @@ export function getBasePath() {
   return isUsingLocalEndpoint()
     ? 'http://127.0.0.1:8001'
     : 'https://app-backend.electricitymap.org';
+}
+
+export function cacheBuster(): string {
+  const currentDate = new Date();
+  currentDate.setSeconds(0);
+  currentDate.setMilliseconds(0);
+
+  return currentDate.toISOString();
 }
 
 export const QUERY_KEYS = {
