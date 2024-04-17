@@ -19,7 +19,7 @@ jobs:
       # Install https://github.com/remarkjs/remark-validate-links
       - name: Install remark-validate-links
         timeout-minutes: 1
-        run: npm install remark-cli remark-validate-links
+        run: pnpm install remark-cli remark-validate-links
 
       # Invoke remarks to validate INTERNAL links in md.
       # --frail specifies to return a non-zero error code even on warning
