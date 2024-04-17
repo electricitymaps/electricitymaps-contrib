@@ -72,7 +72,7 @@ export function cacheBuster(): string {
   const currentDate = new Date();
   currentDate.setSeconds(0);
   currentDate.setMilliseconds(0);
-  
+
   return currentDate.toISOString();
 }
 
