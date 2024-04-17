@@ -69,15 +69,11 @@ export function getBasePath() {
 }
 
 export function cacheBuster(): string {
-  const current_date = new Date();
-  const date_to_hour = new Date(
-    current_date.getFullYear(),
-    current_date.getMonth(),
-    current_date.getDate(),
-    current_date.getHours(),
-    current_date.getMinutes()
-  );
-  return date_to_hour.toISOString();
+  const currentDate = new Date();
+  currentDate.setSeconds(0);
+  currentDate.setMilliseconds(0);
+  
+  return currentDate.toISOString();
 }
 
 export const QUERY_KEYS = {
