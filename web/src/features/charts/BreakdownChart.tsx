@@ -4,18 +4,21 @@ import Divider from 'features/panels/zone/Divider';
 import { CircleBoltIcon } from 'icons/circleBoltIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
+import { ElectricityModeType } from 'types';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
 import { DataSources } from './bar-breakdown/DataSources';
 import { GraphCard } from './bar-breakdown/GraphCard';
+import ProductionSourceLegendList from './bar-breakdown/ProductionSourceLegendList';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, noop } from './graphUtils';
+import { getBadgeText, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
+import { AreaGraphElement } from './types';
 
 interface BreakdownChartProps {
   displayByEmissions: boolean;
@@ -101,6 +104,10 @@ function BreakdownChart({
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
+      <ProductionSourceLegendList
+        sources={getProductionSourcesInChart(chartData)}
+        className="py-1.5"
+      />
       <Divider />
       <Accordion
         title={t('data-sources.title')}
@@ -118,3 +125,18 @@ function BreakdownChart({
 }
 
 export default BreakdownChart;
+
+function getProductionSourcesInChart(chartData: AreaGraphElement[]) {
+  const productionSources = new Set<ElectricityModeType>();
+
+  for (const period of chartData) {
+    for (const entry of Object.entries(period.layerData)) {
+      const [source, value] = entry;
+      if (value && getGenerationTypeKey(source)) {
+        productionSources.add(source as ElectricityModeType);
+      }
+    }
+  }
+
+  return [...productionSources];
+}
