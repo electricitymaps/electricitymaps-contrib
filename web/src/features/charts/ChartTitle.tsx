@@ -9,7 +9,7 @@ type Props = {
   hasLink?: boolean;
   badgeText?: string;
   icon?: JSX.Element;
-  unit: string;
+  unit?: string;
 };
 
 export function ChartTitle({ translationKey, badgeText = undefined, icon, unit }: Props) {
@@ -27,7 +27,7 @@ export function ChartTitle({ translationKey, badgeText = undefined, icon, unit }
         </div>
         {badgeText != undefined && <EstimationBadge text={badgeText} />}
       </div>
-      <div className="text-sm dark:text-gray-300">{unit}</div>
+      {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>
   );
 }

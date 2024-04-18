@@ -71,7 +71,7 @@ export default function BySource({
           />
         )}
       </div>
-      <div className="text-sm dark:text-gray-300">{unit}</div>
+      {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>
   );
 }
