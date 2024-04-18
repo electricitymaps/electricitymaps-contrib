@@ -11,8 +11,6 @@ import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages } from 'utils/constants';
-import { formatEnergy, formatPower } from 'utils/formatting';
 import {
   dataSourcesCollapsed,
   displayByEmissionsAtom,
@@ -22,7 +20,7 @@ import {
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
-import { determineUnit, getTotalElectricityAvailable } from '../graphUtils';
+import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';

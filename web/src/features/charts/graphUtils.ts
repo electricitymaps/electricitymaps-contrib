@@ -132,9 +132,12 @@ export function determineUnit(
     : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
 }
 
-function getUnit(valueAndUnit: any) {
+function getUnit(valueAndUnit: string | number) {
   const regex = /\s+(.+)/;
-  const match = valueAndUnit.match(regex);
+  const match = valueAndUnit.toString().match(regex);
+  if (!match) {
+    return '';
+  }
   return match[1];
 }
 
