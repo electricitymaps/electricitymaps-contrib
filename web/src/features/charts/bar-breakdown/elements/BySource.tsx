@@ -1,5 +1,6 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { TFunction } from 'i18next';
+import { PlugCircleBoltIcon } from 'icons/plugCircleBoltIcon';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
@@ -51,7 +52,10 @@ export default function BySource({
     <div
       className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
     >
-      {text}
+      <div className="flex gap-1">
+        <PlugCircleBoltIcon />
+        {text}
+      </div>
       {hasEstimationPill && (
         <EstimationBadge
           text={

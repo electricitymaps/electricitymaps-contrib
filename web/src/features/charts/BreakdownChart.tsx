@@ -1,6 +1,7 @@
 import Accordion from 'components/Accordion';
 import { max, sum } from 'd3-array';
 import Divider from 'features/panels/zone/Divider';
+import { CircleBoltIcon } from 'icons/circleBoltIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import { Mode, TimeAverages } from 'utils/constants';
@@ -8,6 +9,7 @@ import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
 import { DataSources } from './bar-breakdown/DataSources';
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -59,10 +61,11 @@ function BreakdownChart({
   }
 
   return (
-    <>
+    <GraphCard>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badgeText={badgeText}
+        icon={<CircleBoltIcon />}
       />
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
@@ -110,7 +113,7 @@ function BreakdownChart({
           sources={sources}
         />
       </Accordion>
-    </>
+    </GraphCard>
   );
 }
 

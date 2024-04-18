@@ -1,5 +1,6 @@
 import Accordion from 'components/Accordion';
 import Divider from 'features/panels/zone/Divider';
+import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { IndustryIcon } from 'icons/industryIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
@@ -7,6 +8,7 @@ import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
 import { DataSources } from './bar-breakdown/DataSources';
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -34,8 +36,12 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const badgeText = getBadgeText(chartData, t);
 
   return (
-    <>
-      <ChartTitle translationKey="country-history.emissions" badgeText={badgeText} />
+    <GraphCard className="pb-2">
+      <ChartTitle
+        translationKey="country-history.emissions"
+        badgeText={badgeText}
+        icon={<CloudArrowUpIcon />}
+      />
       <AreaGraph
         testId="history-emissions-graph"
         data={chartData}
@@ -63,7 +69,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
           sources={[...emissionSourceToProductionSource.keys()].sort()}
         />
       </Accordion>
-    </>
+    </GraphCard>
   );
 }
 

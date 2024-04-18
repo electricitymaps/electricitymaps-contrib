@@ -1,4 +1,4 @@
-/*
+/*.html
 # Set early hint headers to improve first load performance
 # === Preload fonts ===
   Link: </fonts/Inter.var.woff2>; rel=preload; as=font; type=font/woff2; crossorigin
