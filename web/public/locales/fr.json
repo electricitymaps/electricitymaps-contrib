@@ -41,6 +41,13 @@
       "text": "La production d’énergie éolienne et solaire dépend de la météo. Afficher la vitesse du vent et de l’ensoleillement en temps réel à travers le monde grâce aux boutons dédiés à droite de l’écran."
     }
   },
+  "data-sources": {
+    "title": "Sources des données",
+    "capacity": "Données de capacité installée",
+    "power": "Données de puissance générée",
+    "exchange": "Données d'échanges",
+    "emission": "Données des facteurs d'émissions"
+  },
   "country-panel": {
     "source": "source",
     "renewable": "Renouvelable",
@@ -57,6 +64,7 @@
       "total-electricity-consumption": "Consommation totale d'électricité par source"
     },
     "emissions": "Émissions",
+    "contribute": "Contribuez sur GitHub",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
@@ -133,7 +141,8 @@
   "left-panel": {
     "zone-list-header-title": "Impact sur le climat par zone",
     "zone-list-header-subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
-    "search": "Rechercher une zone"
+    "search": "Rechercher une zone",
+    "get-data": "Voir nos offres commerciales d'API"
   },
   "country-history": {
     "carbonintensity": {
@@ -226,8 +235,20 @@
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
     "aggregateInfo": "Visualiser la donnée par zone ou aggrégée par pays",
+    "netExchange": "Echange net",
     "importing": "Important",
     "exporting": "Exportant"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "Selectionner votre langue",
+      "colorBlindMode": "Mode daltonien",
+      "windLayer": "Calque de vent",
+      "solarLayer": "Calque d'ensoleillement",
+      "changeTheme": "Changer le thème",
+      "hideSidePanel": "Cacher le panneau latéral",
+      "showSidePanel": "Afficher le panneau latéral"
+    }
   },
   "themeOptions": {
     "dark": "Sombre",
