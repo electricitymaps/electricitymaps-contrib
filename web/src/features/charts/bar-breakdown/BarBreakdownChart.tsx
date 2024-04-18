@@ -11,10 +11,18 @@ import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import trackEvent from 'utils/analytics';
-import { dataSourcesCollapsed, displayByEmissionsAtom } from 'utils/state/atoms';
+import { TimeAverages } from 'utils/constants';
+import { formatEnergy, formatPower } from 'utils/formatting';
+import {
+  dataSourcesCollapsed,
+  displayByEmissionsAtom,
+  productionConsumptionAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
+import { determineUnit, getTotalElectricityAvailable } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
@@ -42,6 +50,8 @@ function BarBreakdownChart({
   const { ref, width } = useReferenceWidthHeightObserver(X_PADDING);
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const [mixMode] = useAtom(productionConsumptionAtom);
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
@@ -110,6 +120,7 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
+        unit={determineUnit(displayByEmissions, currentZoneDetail, mixMode, timeAverage)}
       />
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">

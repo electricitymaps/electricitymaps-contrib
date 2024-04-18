@@ -4,9 +4,10 @@ import { bisectLeft } from 'd3-array';
 // // https://observablehq.com/@d3/d3-selection-2-0
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
-import { TFunction } from 'i18next';
+import { t,TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder } from 'utils/constants';
+import { Mode, modeOrder,TimeAverages } from 'utils/constants';
+import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
 
@@ -111,6 +112,31 @@ export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   const index = datetimes.findIndex((d) => d?.getTime() === currentDate?.getTime());
   return datetimes[index + 1];
 };
+
+export function determineUnit(
+  displayByEmissions: boolean,
+  currentZoneDetail: ZoneDetail,
+  mixMode: Mode,
+  timeAverage: TimeAverages
+) {
+  if (displayByEmissions) {
+    return getUnit(
+      formatCo2(getTotalEmissionsAvailable(currentZoneDetail, mixMode)) +
+        ' ' +
+        t('ofCO2eq')
+    );
+  }
+
+  return timeAverage === TimeAverages.HOURLY ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode))) : getUnit(
+      formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode))
+    );
+}
+
+function getUnit(valueAndUnit: any) {
+  const regex = /\s+(.+)/;
+  const match = valueAndUnit.match(regex);
+  return match[1];
+}
 
 export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
   // If both the numerator and denominator are zeros,
