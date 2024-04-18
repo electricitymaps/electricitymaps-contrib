@@ -64,6 +64,7 @@ function BreakdownChart({
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badgeText={badgeText}
         icon={<CircleBoltIcon />}
+        unit={valueAxisLabel}
       />
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
@@ -80,7 +81,6 @@ function BreakdownChart({
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
-          valueAxisLabel={valueAxisLabel}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
           isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
