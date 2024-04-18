@@ -112,8 +112,9 @@ function getProductionSourcesInChart(chartData: AreaGraphElement[]) {
   for (const period of chartData) {
     for (const entry of Object.entries(period.layerData)) {
       const [source, value] = entry;
-      if (value && getGenerationTypeKey(source))
-        {productionSources.add(source as ElectricityModeType);}
+      if (value && getGenerationTypeKey(source)) {
+        productionSources.add(source as ElectricityModeType);
+      }
     }
   }
 
