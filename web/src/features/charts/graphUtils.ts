@@ -4,9 +4,9 @@ import { bisectLeft } from 'd3-array';
 // // https://observablehq.com/@d3/d3-selection-2-0
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
-import { t,TFunction } from 'i18next';
+import { t, TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder,TimeAverages } from 'utils/constants';
+import { Mode, modeOrder, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
@@ -127,9 +127,9 @@ export function determineUnit(
     );
   }
 
-  return timeAverage === TimeAverages.HOURLY ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode))) : getUnit(
-      formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode))
-    );
+  return timeAverage === TimeAverages.HOURLY
+    ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode)))
+    : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
 }
 
 function getUnit(valueAndUnit: any) {
