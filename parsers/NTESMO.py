@@ -5,8 +5,8 @@ https://edlenergy.com/project/pine-creek/
 https://territorygeneration.com.au/about-us/our-power-stations/
 """
 
-from collections.abc import Callable
-from datetime import date, datetime, time, timedelta
+import math
+from datetime import datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from typing import TypedDict
 from zoneinfo import ZoneInfo
@@ -16,17 +16,15 @@ from bs4 import BeautifulSoup
 from requests import Session
 from requests.adapters import Retry
 
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency, retry_policy
 from parsers.lib.exceptions import ParserException
 
+PARSER = "NTESMO.py"
 AUSTRALIA_TZ = ZoneInfo("Australia/Darwin")
+ZONE_KEY = ZoneKey("AU-NT")
 
-INDEX_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data/{}-daily-trading-data"
-DEFAULT_URL = "https://ntesmo.com.au/data/daily-trading/historical-daily-trading-data"
-LATEST_URL = "https://ntesmo.com.au/data/daily-trading"
-DATA_DOC_PREFIX = "https://ntesmo.com.au/__data/assets/excel_doc/"
-# Data is being published after 2 days at the moment.
-DELAY = 24 * 2
+API_URL = "https://ntesmo.com.au/data/daily-trading"
 
 
 class Generator(TypedDict):
@@ -71,90 +69,91 @@ retry_strategy = Retry(
     status_forcelist=[500, 502, 503, 504],
 )
 
-_DT_CLASS = "smp-tiles-article__title"
 
+def _find_link_to_daily_report(target_datetime: datetime, session: Session) -> str:
+    """Scrapes daily report cards to find the link to the data for the target date."""
 
-def construct_latest_index(session: Session) -> dict[date, str]:
-    """Browse all links from the latest daily reports page and index them."""
-    index = {}
-    latest_index_page = session.get(LATEST_URL)
-    soup = BeautifulSoup(latest_index_page.text, "html.parser")
-    for a in soup.find_all("a", href=True):
-        if a["href"].startswith(DATA_DOC_PREFIX):
-            dt = pd.to_datetime(a.find("div", {"class": _DT_CLASS}).text)
-            index[dt.date()] = a["href"]
-    return index
+    today_date = datetime.now(AUSTRALIA_TZ).date()
+    target_datetime = target_datetime.astimezone(AUSTRALIA_TZ)
 
+    # cap target datetime if more recent that what the API makes available:
+    # data is being published after 2 days at the moment
+    _DELAY_IN_DAYS = 2
+    if abs(today_date - target_datetime.date()).days < _DELAY_IN_DAYS:
+        target_datetime = target_datetime - timedelta(days=_DELAY_IN_DAYS)
 
-def construct_year_index(year: int, session: Session) -> dict[date, str]:
-    """Browse all links on a yearly historical daily data and index them."""
-    index = {}
-    # For the current we need to go to the default page.
-    url = DEFAULT_URL
-    if year != datetime.now(tz=AUSTRALIA_TZ).year:
-        url = INDEX_URL.format(year)
-    year_index_page = session.get(url)
-    soup = BeautifulSoup(year_index_page.text, "html.parser")
-    for a in soup.find_all("a", href=True):
-        if a["href"].startswith(DATA_DOC_PREFIX):
-            dt = pd.to_datetime(a.find("div", {"class": _DT_CLASS}).text)
-            index[dt.date()] = a["href"]
-    return index
+    this_year = target_datetime.year == today_date.year
+    if this_year:
+        # current year's report cards are paginated (9 per page)
+        num_pages = int(math.ceil(365 / 9))
+        urls = (
+            f"{API_URL}?result_70160_result_page={page_number}"
+            for page_number in range(1, num_pages + 1)
+        )
+    else:
+        # historical report cards are all on the same page
+        urls = [
+            f"{API_URL}/historical-daily-trading-data/{target_datetime.year}-daily-trading-data"
+        ]
 
+    for url in urls:
+        response = session.get(url)
+        if not response.ok:
+            raise ParserException(
+                PARSER,
+                f"Exception when fetching daily trading data error code: {response.status_code}: {response.text}",
+            )
 
-def get_historical_daily_data(link: str, session: Session) -> bytes:
-    result = session.get(link)
-    return result.content
+        page = response.text
+        soup = BeautifulSoup(page, "html.parser")
+        for a in soup.find_all("a", href=True):
+            if a["href"].startswith("https://ntesmo.com.au/__data/assets/excel_doc/"):
+                dt = a.find("div", {"class": "smp-tiles-article__title"}).text
+                if dt == target_datetime.strftime("%d %B %Y"):
+                    return a["href"]
 
-
-def extract_production_data(file: bytes) -> pd.DataFrame:
-    return pd.read_excel(
-        file, "Generating Unit Output", skiprows=4, header=0, usecols="A:AA"
+    raise ParserException(
+        PARSER,
+        f"Cannot find link to daily report for date {target_datetime}",
     )
 
 
-def extract_demand_price_data(file: bytes) -> pd.DataFrame:
+def get_daily_report_data(
+    zone_key: ZoneKey,
+    session: Session | None,
+    target_datetime: datetime,
+) -> bytes:
+    session = session or Session()
+
+    link_to_daily_report = _find_link_to_daily_report(
+        target_datetime=target_datetime, session=session
+    )
+
+    response = session.get(link_to_daily_report)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching daily report data error code: {response.status_code}: {response.text}",
+            zone_key,
+        )
+
+    return response.content
+
+
+def extract_consumption_and_price_data(file: bytes) -> pd.DataFrame:
     return pd.read_excel(
         file, "System Demand and Market Price", skiprows=4, header=0, usecols="A:C"
     )
 
 
-def get_data(
-    session: Session,
-    target_datetime: datetime,
-    extraction_func: Callable[[bytes], pd.DataFrame],
-    logger: Logger,
-) -> pd.DataFrame:
-    assert target_datetime is not None, ParserException(
-        "NTESMO.py", "Target datetime cannot be None."
-    )
-    target_date = target_datetime.date()
-    latest_links = construct_latest_index(session)
-    link = latest_links.get(target_date, None)
-    if not link:
-        historical_links = construct_year_index(target_datetime.year, session)
-        link = historical_links.get(target_date, None)
-
-    try:
-        data_file = get_historical_daily_data(link, session)
-    except KeyError as e:
-        raise ParserException(
-            "NTESMO.py",
-            f"Cannot find file on the index page for date {target_datetime}",
-        ) from e
-    return extraction_func(data_file)
-
-
-def parse_consumption(
+def parse_consumption_and_price(
     raw_consumption: pd.DataFrame,
     target_datetime: datetime,
-    logger: Logger,
-    price: bool = False,
+    price: bool,
 ) -> list[dict]:
+    target_datetime = target_datetime.astimezone(AUSTRALIA_TZ)
+
     data_points = []
-    assert target_datetime is not None, ParserException(
-        "NTESMO.py", "Target datetime cannot be None."
-    )
     for _, consumption in raw_consumption.iterrows():
         # Market day starts at 4:30 and reports up until 4:00 the next day.
         # Therefore timestamps between 0:00 and 4:30 excluded need to have an extra day.
@@ -222,48 +221,103 @@ def parse_production_mix(
 @refetch_frequency(timedelta(days=1))
 @retry_policy(retry_policy=retry_strategy)
 def fetch_consumption(
-    zone_key: str = "AU-NT",
-    session: Session = Session(),
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    if target_datetime is None:
-        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
-    consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
-    return parse_consumption(consumption, target_datetime, logger)
+    target_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
+    daily_report_data = get_daily_report_data(
+        zone_key=zone_key,
+        session=session,
+        target_datetime=target_datetime,
+    )
+
+    consumption_and_price_data = extract_consumption_and_price_data(daily_report_data)
+    return parse_consumption_and_price(
+        raw_consumption=consumption_and_price_data,
+        target_datetime=target_datetime,
+        price=False,
+    )
 
 
 @refetch_frequency(timedelta(days=1))
 @retry_policy(retry_policy=retry_strategy)
 def fetch_price(
-    zone_key: str = "AU-NT",
-    session: Session = Session(),
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    if target_datetime is None:
-        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
-    consumption = get_data(session, target_datetime, extract_demand_price_data, logger)
-    return parse_consumption(consumption, target_datetime, logger, price=True)
+    target_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
+    daily_report_data = get_daily_report_data(
+        zone_key=zone_key,
+        session=session,
+        target_datetime=target_datetime,
+    )
+
+    consumption_and_price_data = extract_consumption_and_price_data(daily_report_data)
+    return parse_consumption_and_price(
+        raw_consumption=consumption_and_price_data,
+        target_datetime=target_datetime,
+        price=True,
+    )
 
 
 @refetch_frequency(timedelta(days=1))
 @retry_policy(retry_policy=retry_strategy)
-def fetch_production_mix(
-    zone_key: str = "AU-NT",
-    session: Session = Session(),
+def fetch_production(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    if target_datetime is None:
-        target_datetime = datetime.now(tz=AUSTRALIA_TZ) - timedelta(hours=DELAY)
-    production_mix = get_data(session, target_datetime, extract_production_data, logger)
+    target_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
+    daily_report_data = get_daily_report_data(
+        zone_key=zone_key,
+        session=session,
+        target_datetime=target_datetime,
+    )
+
+    production_mix = pd.read_excel(
+        daily_report_data,
+        sheet_name="Generating Unit Output",
+        header=0,
+        usecols="A:AA",
+        skiprows=4,
+        # avoid loading potential extra non-numerical lines at the bottom of the sheet
+        # e.g. sometimes there might be a disclaimer
+        nrows=48,
+    )
     return parse_production_mix(production_mix, logger)
 
 
 if __name__ == "__main__":
-    target_datetime = datetime.now() - timedelta(days=2)
-    consumption = get_data(
-        Session(), target_datetime, extract_production_data, Logger("test")
-    )
-    print(parse_production_mix(consumption, Logger("test")))
+    for dt in [
+        # now
+        None,
+        # this year, but old enough that the api data is not in the first page of results
+        datetime(2024, 4, 2, tzinfo=timezone.utc),
+        # historical data (previous years)
+        datetime(2023, 2, 15, tzinfo=timezone.utc),
+    ]:
+        print(f"fetch_consumption(target_datetime={dt}) ->")
+        print(fetch_consumption(target_datetime=dt))
+
+        print(f"fetch_price(target_datetime={dt}) ->")
+        print(fetch_price(target_datetime=dt))
+
+        print(f"fetch_production(target_datetime={dt}) ->")
+        print(fetch_production(target_datetime=dt))

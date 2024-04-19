@@ -1,5 +1,6 @@
 from copy import deepcopy
 from datetime import timedelta
+from functools import wraps
 from logging import getLogger
 
 from requests import Session
@@ -16,6 +17,7 @@ def refetch_frequency(frequency: timedelta):
     assert isinstance(frequency, timedelta)
 
     def wrap(f):
+        @wraps(f)
         def wrapped_f(*args, **kwargs):
             result = f(*args, **kwargs)
             return result
@@ -30,6 +32,7 @@ def retry_policy(retry_policy: Retry):
     assert isinstance(retry_policy, Retry)
 
     def wrap(f):
+        @wraps(f)
         def wrapped_f(*args, **kwargs):
             session = args[1] if len(args) > 2 else kwargs.get("session")
             logger = kwargs.get("logger", getLogger(__name__))
