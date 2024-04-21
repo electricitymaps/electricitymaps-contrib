@@ -5,6 +5,8 @@ https://edlenergy.com/project/pine-creek/
 https://territorygeneration.com.au/about-us/our-power-stations/
 """
 
+import collections
+import logging
 import math
 from datetime import datetime, time, timedelta, timezone
 from logging import Logger, getLogger
@@ -60,6 +62,10 @@ PLANT_MAPPING = {
     "BJ01": Generator(power_plant="", fuel_type="unknown"),
     "BP01": Generator(power_plant="", fuel_type="unknown"),
     "HP01": Generator(power_plant="", fuel_type="unknown"),
+    "RD01": Generator(power_plant="", fuel_type="unknown"),
+    "RB01": Generator(power_plant="", fuel_type="unknown"),
+    "RB02": Generator(power_plant="", fuel_type="unknown"),
+    "RB03": Generator(power_plant="", fuel_type="unknown"),
 }
 
 # For some reason the page doesn't always load on first attempt.
@@ -114,7 +120,7 @@ def _find_link_to_daily_report(target_datetime: datetime, session: Session) -> s
 
     raise ParserException(
         PARSER,
-        f"Cannot find link to daily report for date {target_datetime}",
+        f"Cannot find link to daily report for date {target_datetime.strftime('%Y-%m-%d %Z')}",
     )
 
 
@@ -176,50 +182,54 @@ def parse_consumption_and_price(
 
 
 def parse_production_mix(
-    raw_production_mix: pd.DataFrame, logger: Logger
+    raw_production_mix_df: pd.DataFrame, logger: logging.Logger
 ) -> list[dict]:
-    production_mix = []
-    generation_units = set(raw_production_mix.columns)
-    generation_units.remove("Period Start")
-    generation_units.remove("Period End")
-    if not generation_units == PLANT_MAPPING.keys():
-        raise ParserException(
-            "NTESMO.py",
-            f"New generator {generation_units - PLANT_MAPPING.keys()} detected in AU-NT, please update the mapping of generators.",
-        )
-    raw_production_mix["Period Start"] = raw_production_mix[
+    raw_production_mix_df["Period Start"] = raw_production_mix_df[
         "Period Start"
     ].dt.tz_localize("Australia/Darwin")
-    for _, production in raw_production_mix.iterrows():
-        data_point = {
-            "zoneKey": "AU-NT",
-            "datetime": production["Period Start"].to_pydatetime(),
+
+    # some older data may miss columns for newer plants
+    raw_production_mix_df = raw_production_mix_df.dropna(axis=1, how="all")
+
+    generation_units = set(raw_production_mix_df.columns)
+    generation_units.remove("Period Start")
+    generation_units.remove("Period End")
+    unknown_units = generation_units.difference(PLANT_MAPPING.keys())
+    logger.warning(
+        f"New generator(s) {unknown_units} detected in AU-NT, please update the mapping of generators."
+    )
+
+    production_breakdown_list = []
+    for row in raw_production_mix_df.itertuples():
+        production_mix = collections.defaultdict(float)
+        for generator_key in generation_units:
+            generator_production = getattr(row, generator_key)
+
+            # Some decommissioned plants have negative production values.
+            if generator_production < 0:
+                continue
+
+            fuel_type = (
+                "unknown"
+                if generator_key in unknown_units
+                else PLANT_MAPPING[generator_key]["fuel_type"]
+            )
+            production_mix[fuel_type] += generator_production
+
+        production_breakdown = {
+            "zoneKey": ZONE_KEY,
+            "datetime": row[1].to_pydatetime(),
             "source": "ntesmo.com.au",
-            "production": {},
+            "production": dict(production_mix),
             "storage": {},
         }
-        for generator_key, generator in PLANT_MAPPING.items():
-            if generator_key not in production:
-                raise ParserException(
-                    "NTESMO.py",
-                    f"Missing generator {generator_key} detected in AU-NT, please update the mapping of generators.",
-                )
-            # Some decomissioned plants have negative production values.
-            if production[generator_key] >= 0:
-                if generator["fuel_type"] in data_point["production"]:
-                    data_point["production"][generator["fuel_type"]] += production[
-                        generator_key
-                    ]
-                else:
-                    data_point["production"][generator["fuel_type"]] = production[
-                        generator_key
-                    ]
-        production_mix.append(data_point)
-    return production_mix
+        production_breakdown_list.append(production_breakdown)
+
+    return production_breakdown_list
 
 
-@refetch_frequency(timedelta(days=1))
 @retry_policy(retry_policy=retry_strategy)
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
@@ -245,8 +255,8 @@ def fetch_consumption(
     )
 
 
-@refetch_frequency(timedelta(days=1))
 @retry_policy(retry_policy=retry_strategy)
+@refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
@@ -272,8 +282,8 @@ def fetch_price(
     )
 
 
-@refetch_frequency(timedelta(days=1))
 @retry_policy(retry_policy=retry_strategy)
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
@@ -295,13 +305,14 @@ def fetch_production(
         daily_report_data,
         sheet_name="Generating Unit Output",
         header=0,
-        usecols="A:AA",
+        usecols="A:AE",
         skiprows=4,
         # avoid loading potential extra non-numerical lines at the bottom of the sheet
         # e.g. sometimes there might be a disclaimer
         nrows=48,
     )
-    return parse_production_mix(production_mix, logger)
+
+    return parse_production_mix(production_mix, logger=logger)
 
 
 if __name__ == "__main__":
@@ -312,6 +323,7 @@ if __name__ == "__main__":
         datetime(2024, 4, 2, tzinfo=timezone.utc),
         # historical data (previous years)
         datetime(2023, 2, 15, tzinfo=timezone.utc),
+        datetime(2022, 3, 11, tzinfo=timezone.utc),
     ]:
         print(f"fetch_consumption(target_datetime={dt}) ->")
         print(fetch_consumption(target_datetime=dt))

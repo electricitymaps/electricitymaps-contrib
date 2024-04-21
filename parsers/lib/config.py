@@ -17,7 +17,6 @@ def refetch_frequency(frequency: timedelta):
     assert isinstance(frequency, timedelta)
 
     def wrap(f):
-        @wraps(f)
         def wrapped_f(*args, **kwargs):
             result = f(*args, **kwargs)
             return result

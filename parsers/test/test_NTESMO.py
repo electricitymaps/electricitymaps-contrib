@@ -8,9 +8,9 @@ from requests_mock import ANY, Adapter
 from parsers.NTESMO import fetch_consumption, fetch_price, fetch_production
 
 # test the parser's underlying unwrapped functions, or the parser's @retry_policy decorator will overwrite mocks
-fetch_consumption = fetch_consumption.__wrapped__.__wrapped__
-fetch_production = fetch_production.__wrapped__.__wrapped__
-fetch_price = fetch_price.__wrapped__.__wrapped__
+fetch_consumption = fetch_consumption.__wrapped__
+fetch_production = fetch_production.__wrapped__
+fetch_price = fetch_price.__wrapped__
 
 
 australia = ZoneInfo("Australia/Darwin")
