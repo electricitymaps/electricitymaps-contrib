@@ -347,6 +347,8 @@ def fetch_historical_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    if target_datetime is None:
+        return []
     filename = target_datetime.strftime("TieFlows_%b%Y.csv")
     file_url = f"{US_PROXY}/file-browser-api/download/historical-tie-flow?{HOST_PARAMETER}&path={filename}"
 
@@ -372,7 +374,7 @@ def format_exchange_data(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """format exchanges data into list of data points"""
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     data = data[list(EXCHANGE_MAPPING)]
     data = data.melt(var_name="zone_key2", value_name="exchange", ignore_index=False)
     data.zone_key2 = data.zone_key2.map(EXCHANGE_MAPPING)
