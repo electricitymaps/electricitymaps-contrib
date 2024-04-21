@@ -7,12 +7,6 @@ from requests_mock import ANY, Adapter
 
 from parsers.NTESMO import fetch_consumption, fetch_price, fetch_production
 
-# test the parser's underlying unwrapped functions, or the parser's @retry_policy decorator will overwrite mocks
-fetch_consumption = fetch_consumption.__wrapped__
-fetch_production = fetch_production.__wrapped__
-fetch_price = fetch_price.__wrapped__
-
-
 australia = ZoneInfo("Australia/Darwin")
 
 
@@ -21,7 +15,8 @@ def fixture_session_mock() -> tuple[requests.Session, Adapter]:
     adapter = Adapter()
     session = requests.Session()
 
-    session.mount("https://", adapter)
+    # do not mount mock adapter on generic https:// prefix or the parser's @retry_policy decorator will overwrite it
+    session.mount("https://ntesmo.com.au/", adapter)
 
     index_page = """<div class="smp-tiles-article__item">
             <a href="https://ntesmo.com.au/__data/assets/excel_doc/0013/116113/Market-Information_System-Control-daily-trading-day_220401.xlsx">

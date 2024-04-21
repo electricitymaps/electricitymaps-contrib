@@ -124,6 +124,7 @@ def _find_link_to_daily_report(target_datetime: datetime, session: Session) -> s
     )
 
 
+@retry_policy(retry_policy=retry_strategy)
 def get_daily_report_data(
     zone_key: ZoneKey,
     session: Session | None,
@@ -228,7 +229,6 @@ def parse_production_mix(
     return production_breakdown_list
 
 
-@retry_policy(retry_policy=retry_strategy)
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = ZONE_KEY,
@@ -255,7 +255,6 @@ def fetch_consumption(
     )
 
 
-@retry_policy(retry_policy=retry_strategy)
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: ZoneKey = ZONE_KEY,
@@ -282,7 +281,6 @@ def fetch_price(
     )
 
 
-@retry_policy(retry_policy=retry_strategy)
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZONE_KEY,
