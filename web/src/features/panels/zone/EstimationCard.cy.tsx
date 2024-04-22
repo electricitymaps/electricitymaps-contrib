@@ -1,16 +1,27 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useAtom } from 'jotai';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'translation/i18n';
+import { estimationCardCollapsed } from 'utils/state/atoms';
 
 import EstimationCard from './EstimationCard';
 
 const queryClient = new QueryClient();
+
+// A component to reset the state of the atoms used in the EstimationCard component
+function ResetEstimationCard() {
+  const [, setIsCollapsed] = useAtom(estimationCardCollapsed);
+  setIsCollapsed(undefined);
+
+  return null;
+}
 
 describe('EstimationCard with FeedbackCard', () => {
   beforeEach(() => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
+          <ResetEstimationCard />
           <EstimationCard
             cardType="estimated"
             estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
@@ -47,6 +58,7 @@ describe('EstimationCard with known estimation method', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
+          <ResetEstimationCard />
           <EstimationCard
             cardType="estimated"
             estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
@@ -67,10 +79,10 @@ describe('EstimationCard with known estimation method', () => {
   });
 
   it('Toggles when collapse button is clicked', () => {
-    cy.get('[data-test-id="collapse-up"]').should('not.exist');
-    cy.get('[data-test-id="collapse-down"]').should('exist');
-    cy.get('[data-test-id="body-text"]').should('not.exist');
-    cy.get('[data-test-id="methodology-link"]').should('not.exist');
+    cy.get('[data-test-id="collapse-up"]').should('exist');
+    cy.get('[data-test-id="collapse-down"]').should('not.exist');
+    cy.get('[data-test-id="body-text"]').should('exist');
+    cy.get('[data-test-id="methodology-link"]').should('exist');
     cy.get('[data-test-id="collapse-button"]').click();
     cy.get('[data-test-id="collapse-up"]').should('exist');
     cy.get('[data-test-id="collapse-down"]').should('not.exist');
@@ -84,6 +96,7 @@ describe('EstimationCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
+          <ResetEstimationCard />
           <EstimationCard
             cardType="estimated"
             estimationMethod=""
@@ -104,6 +117,7 @@ describe('EstimationCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
+          <ResetEstimationCard />
           <EstimationCard cardType="" estimationMethod="" zoneMessage={undefined} />
         </QueryClientProvider>
       </I18nextProvider>
@@ -117,6 +131,7 @@ describe('OutageCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
+          <ResetEstimationCard />
           <EstimationCard
             cardType="outage"
             estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
@@ -136,8 +151,8 @@ describe('OutageCard', () => {
     cy.get('[data-test-id="collapse-up"]').should('exist');
     cy.get('[data-test-id="collapse-down"]').should('not.exist');
     cy.get('[data-test-id="collapse-button"]').click();
-    cy.get('[data-test-id="collapse-up"]').should('not.exist');
-    cy.get('[data-test-id="collapse-down"]').should('exist');
+    cy.get('[data-test-id="collapse-up"]').should('exist');
+    cy.get('[data-test-id="collapse-down"]').should('not.exist');
   });
 });
 
@@ -146,6 +161,7 @@ describe('AggregatedCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
+          <ResetEstimationCard />
           <EstimationCard
             cardType="aggregated"
             estimatedPercentage={50}
@@ -166,6 +182,7 @@ describe('AggregatedCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
+          <ResetEstimationCard />
           <EstimationCard
             cardType="aggregated"
             estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"

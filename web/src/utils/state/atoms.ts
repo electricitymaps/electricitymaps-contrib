@@ -52,4 +52,4 @@ export const dataSourcesCollapsedBreakdown = atom(true);
 
 export const dataSourcesCollapsedEmission = atom(true);
 
-export const estimationCardCollapsed = atom(true);
+export const estimationCardCollapsed = atom<boolean | undefined>(undefined);
