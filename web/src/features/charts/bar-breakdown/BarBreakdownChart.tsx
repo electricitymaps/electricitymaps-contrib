@@ -26,6 +26,8 @@ import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
+const X_PADDING = 9;
+
 function BarBreakdownChart({
   hasEstimationPill = false,
 }: {
@@ -40,9 +42,10 @@ function BarBreakdownChart({
     height,
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { ref, width = 0 } = useResizeObserver<HTMLDivElement>();
+  const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
+  const width = observerWidth + X_PADDING;
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
