@@ -10,6 +10,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 
 # This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 # The data is in MWh but since it is updated hourly we can view it as MW.
@@ -245,7 +246,7 @@ def extract_thermal_production(data: list[list[str]], dt: datetime) -> pd.DataFr
 
 
 def fetch_production(
-    zone_key: str = "DO",
+    zone_key: ZoneKey = ZoneKey("DO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
