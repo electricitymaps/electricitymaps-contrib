@@ -244,10 +244,12 @@ function truncateString(string_: string, number_: number) {
 }
 
 function ZoneMessageBlock({ zoneMessage }: { zoneMessage?: ZoneMessage }) {
+  const { t } = useTranslation();
+
   if (!zoneMessage || !zoneMessage.message) {
     return null;
   }
-  const { t } = useTranslation();
+
   return (
     <span className="inline overflow-hidden">
       {truncateString(zoneMessage.message, 300)}{' '}
