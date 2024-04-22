@@ -26,7 +26,7 @@ import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
-const X_PADDING = 9;
+const X_PADDING = 20;
 
 function BarBreakdownChart({
   hasEstimationPill = false,
