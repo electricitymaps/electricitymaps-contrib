@@ -176,10 +176,6 @@
       "body": "The data consists of an aggregation of hourly values. {{percentage}}% of the production values are estimated."
     }
   },
-  "units": {
-    "g-kwh": "g / kWh",
-    "co2eq": "CO₂eq"
-  },
   "time-controller": {
     "title": "Display data from the past",
     "daily": "daily",

@@ -35,7 +35,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         translationKey="country-history.emissions"
         badgeText={badgeText}
         icon={<CloudArrowUpIcon />}
-        unit={t('units.co2eq')}
+        unit={'CO₂eq'}
       />
       <AreaGraph
         testId="history-emissions-graph"

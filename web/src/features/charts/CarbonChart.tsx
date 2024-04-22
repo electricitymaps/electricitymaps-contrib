@@ -38,7 +38,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         translationKey="country-history.carbonintensity"
         badgeText={badgeText}
         icon={<CloudArrowUpIcon />}
-        unit={t('units.g-kwh')}
+        unit={'gCO₂eq / kWh'}
       />
       <AreaGraph
         testId="details-carbon-graph"
