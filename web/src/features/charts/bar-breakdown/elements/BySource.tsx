@@ -45,7 +45,7 @@ function getEstimatedText(
     return t('estimation-badge.outage');
   }
 
-  return t('estimation-badge-fully-estimated');
+  return t('estimation-badge.fully-estimated');
 }
 
 export default function BySource({
