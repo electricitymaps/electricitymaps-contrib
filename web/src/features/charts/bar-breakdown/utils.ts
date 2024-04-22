@@ -236,7 +236,7 @@ function getProductionSourcesToAdd(
   productionSourceArray: string[] | undefined,
   storageType?: boolean
 ): string[] {
-  const productionSource = storageType ? entry[0] + ' storage' : entry[0];
+  const productionSource = storageType ? `${entry[0]} storage` : entry[0];
   const sourceInfo = entry[1];
 
   if (sourceInfo.startsWith('assumes')) {
