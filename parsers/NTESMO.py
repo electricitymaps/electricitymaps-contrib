@@ -8,7 +8,8 @@ https://territorygeneration.com.au/about-us/our-power-stations/
 import collections
 import logging
 import math
-from datetime import datetime, time, timedelta, timezone
+from collections.abc import Iterable, Iterator
+from datetime import date, datetime, time, timedelta, timezone
 from logging import Logger, getLogger
 from typing import TypedDict
 from zoneinfo import ZoneInfo
@@ -76,31 +77,10 @@ retry_strategy = Retry(
 )
 
 
-def _find_link_to_daily_report(target_datetime: datetime, session: Session) -> str:
-    """Scrapes daily report cards to find the link to the data for the target date."""
-
-    today_date = datetime.now(AUSTRALIA_TZ).date()
-    target_datetime = target_datetime.astimezone(AUSTRALIA_TZ)
-
-    # cap target datetime if more recent that what the API makes available:
-    # data is being published after 2 days at the moment
-    _DELAY_IN_DAYS = 2
-    if abs(today_date - target_datetime.date()).days < _DELAY_IN_DAYS:
-        target_datetime = target_datetime - timedelta(days=_DELAY_IN_DAYS)
-
-    this_year = target_datetime.year == today_date.year
-    if this_year:
-        # current year's report cards are paginated (9 per page)
-        num_pages = int(math.ceil(365 / 9))
-        urls = (
-            f"{API_URL}?result_70160_result_page={page_number}"
-            for page_number in range(1, num_pages + 1)
-        )
-    else:
-        # historical report cards are all on the same page
-        urls = [
-            f"{API_URL}/historical-daily-trading-data/{target_datetime.year}-daily-trading-data"
-        ]
+def _scan_daily_report_urls(
+    urls: Iterable[str], session: Session
+) -> Iterator[tuple[date, str]]:
+    """Scans pages of daily report cards yielding links to the excel data files for each day."""
 
     for url in urls:
         response = session.get(url)
@@ -114,17 +94,58 @@ def _find_link_to_daily_report(target_datetime: datetime, session: Session) -> s
         soup = BeautifulSoup(page, "html.parser")
         for a in soup.find_all("a", href=True):
             if a["href"].startswith("https://ntesmo.com.au/__data/assets/excel_doc/"):
-                dt = a.find("div", {"class": "smp-tiles-article__title"}).text
-                if dt == target_datetime.strftime("%d %B %Y"):
-                    return a["href"]
+                timestamp = a.find("div", {"class": "smp-tiles-article__title"}).text
+                dt = (
+                    datetime.strptime(timestamp, "%d %B %Y")
+                    .replace(tzinfo=AUSTRALIA_TZ)
+                    .date()
+                )
+                yield dt, a["href"]
+
+
+def _find_link_to_daily_report(target_datetime: datetime, session: Session) -> str:
+    """Scrapes daily report cards to find the link to the data for the target date."""
+
+    today_datetime = datetime.now(AUSTRALIA_TZ)
+    today_date = today_datetime.date()
+    target_datetime = target_datetime.astimezone(AUSTRALIA_TZ)
+    target_date = target_datetime.date()
+
+    is_this_year = target_date.year == today_date.year
+    if is_this_year:
+        # current year's report cards are paginated (9 per page) [and in reverse chronological order, latest data first]
+        maximum_possible_num_pages = int(math.ceil(365 / 9))
+        urls = (
+            f"{API_URL}?result_70160_result_page={page_number}"
+            # page 0 is a hidden page. Usually it's just a duplicate of page=1, but it seems like sometimes it's
+            # updated with new daily data before page 1 is.
+            for page_number in range(0, maximum_possible_num_pages + 1)
+        )
+    else:
+        # historical report cards are all on the same page
+        urls = [
+            f"{API_URL}/historical-daily-trading-data/{target_date.year}-daily-trading-data"
+        ]
+
+    index = _scan_daily_report_urls(urls, session=session)
+
+    # cap target date if more recent than what the API makes available:
+    # data for a given day is published with a variable delay (+1-4 days)
+    if is_this_year:
+        date_of_latest_available_data, link = next(index)
+        if target_date >= date_of_latest_available_data:
+            return link
+
+    for dt, link in index:
+        if dt == target_date:
+            return link
 
     raise ParserException(
         PARSER,
-        f"Cannot find link to daily report for date {target_datetime.strftime('%Y-%m-%d %Z')}",
+        f"Cannot find link to daily report for date {target_date.strftime('%Y-%m-%d %Z')}",
     )
 
 
-@retry_policy(retry_policy=retry_strategy)
 def get_daily_report_data(
     zone_key: ZoneKey,
     session: Session | None,
@@ -230,6 +251,7 @@ def parse_production_mix(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_consumption(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
@@ -256,6 +278,7 @@ def fetch_consumption(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_price(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
@@ -282,6 +305,7 @@ def fetch_price(
 
 
 @refetch_frequency(timedelta(days=1))
+@retry_policy(retry_policy=retry_strategy)
 def fetch_production(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
