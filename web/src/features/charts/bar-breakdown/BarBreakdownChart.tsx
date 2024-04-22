@@ -1,6 +1,7 @@
 import * as Portal from '@radix-ui/react-portal';
 import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import Divider from 'features/panels/zone/Divider';
 import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
@@ -9,10 +10,13 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
-import { dataSourcesCollapsed, displayByEmissionsAtom } from 'utils/state/atoms';
+import {
+  dataSourcesCollapsedBarBreakdown,
+  displayByEmissionsAtom,
+} from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
@@ -22,7 +26,7 @@ import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
-const X_PADDING = 9;
+const X_PADDING = 20;
 
 function BarBreakdownChart({
   hasEstimationPill = false,
@@ -38,9 +42,10 @@ function BarBreakdownChart({
     height,
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { ref, width } = useReferenceWidthHeightObserver(X_PADDING);
+  const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
+  const width = observerWidth + X_PADDING;
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
@@ -102,7 +107,10 @@ function BarBreakdownChart({
     .sort();
 
   return (
-    <div className="text-sm" ref={ref}>
+    <div
+      className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
+      ref={ref}
+    >
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
@@ -155,19 +163,20 @@ function BarBreakdownChart({
           isMobile={false}
         />
       )}
-      <div className="pt-2">
+      <Divider />
+      <div className="py-1">
         <Accordion
           onClick={() => {
             trackEvent('Data Sources Clicked', { chart: 'bar-breakdown-chart' });
           }}
           title={t('data-sources.title')}
           className="text-md"
-          isCollapsedAtom={dataSourcesCollapsed}
+          isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
         >
           <div>
             {currentZoneDetail?.capacitySources && (
               <DataSources
-                title="Installed capacity data"
+                title={t('data-sources.capacity')}
                 icon={<UtilityPoleIcon />}
                 sources={[
                   ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
@@ -176,14 +185,14 @@ function BarBreakdownChart({
             )}
             {currentZoneDetail?.source && (
               <DataSources
-                title="Power generation data"
+                title={t('data-sources.power')}
                 icon={<WindTurbineIcon />}
                 sources={currentZoneDetail?.source}
               />
             )}
             {emissionData && (
               <DataSources
-                title="Emission factor data"
+                title={t('data-sources.emission')}
                 icon={<IndustryIcon />}
                 sources={emissionData}
               />

@@ -15,7 +15,7 @@ export function DataSources({
       </div>
       <div className="flex flex-col gap-2 pl-5">
         {sources.map((source, index) => (
-          <div key={index} className="text-xm">
+          <div key={index} className="text-sm">
             {source}
           </div>
         ))}
