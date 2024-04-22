@@ -49,4 +49,4 @@ deploy:
   COPY +build/dist ./dist
   RUN npm install -g wrangler
   # TODO: Point to master after build and deploy has been tested to staging
-  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID wrangler pages publish ./dist --project-name electricitymaps-app --branch master
+  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID wrangler pages deploy ./dist --project-name electricitymaps-app --branch master
