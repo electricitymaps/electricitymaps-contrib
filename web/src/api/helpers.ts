@@ -65,7 +65,7 @@ export async function getHeaders(route: URL): Promise<Headers> {
 export function getBasePath() {
   return isUsingLocalEndpoint()
     ? 'http://127.0.0.1:8001'
-    : 'https://app-backend.electricitymap.org';
+    : 'https://app-backend.electricitymaps.com';
 }
 
 export function cacheBuster(): string {
