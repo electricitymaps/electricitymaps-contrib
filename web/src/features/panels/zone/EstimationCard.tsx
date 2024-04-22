@@ -164,7 +164,7 @@ function BaseCard({
           {showMethodologyLink && (
             <div className="">
               <a
-                href="https://www.electricitymaps.com/methodology"
+                href="https://www.electricitymaps.com/methodology#missing-data"
                 target="_blank"
                 rel="noreferrer"
                 data-test-id="methodology-link"
