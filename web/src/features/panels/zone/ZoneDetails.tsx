@@ -146,7 +146,7 @@ function getCardType({
   ) {
     return 'outage';
   }
-  if (timeAverage !== TimeAverages.HOURLY) {
+  if (timeAverage !== TimeAverages.HOURLY && estimationMethod !== 'threshold_filtered') {
     return 'aggregated';
   }
   if (estimationMethod) {
