@@ -7,6 +7,7 @@ from zoneinfo import ZoneInfo
 
 import freezegun
 import numpy as np
+import pandas as pd
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
@@ -763,6 +764,14 @@ class TestMixAddValue(unittest.TestCase):
         assert mix.wind == 10
         assert mix.corrected_negative_modes == set()
 
+    def test_production_with_nan_init(self):
+        mix = ProductionMix(wind=math.nan)
+        assert mix.wind is None
+
+    def test_production_with_nan_using_numpy_init(self):
+        mix = ProductionMix(wind=np.nan)
+        assert mix.wind is None
+
     def test_storage(self):
         mix = StorageMix()
         mix.add_value("hydro", 10)
@@ -803,6 +812,14 @@ class TestMixAddValue(unittest.TestCase):
         assert mix.hydro == -5
         mix.add_value("hydro", np.nan)
         assert mix.hydro == -5
+
+    def test_storage_with_nan_init(self):
+        mix = StorageMix(hydro=math.nan)
+        assert mix.hydro is None
+
+    def test_storage_with_nan_using_numpy_init(self):
+        mix = StorageMix(hydro=np.nan)
+        assert mix.hydro is None
 
 
 class TestMixUpdate:
