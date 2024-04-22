@@ -152,6 +152,9 @@ importers:
       topojson-server:
         specifier: ^3.0.1
         version: 3.0.1
+      use-resize-observer:
+        specifier: ^9.1.0
+        version: 9.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@mdx-js/react':
         specifier: ^2.3.0
