@@ -22,9 +22,9 @@ export default function Accordion({
   title: string;
   isCollapsedAtom?: PrimitiveAtom<boolean>;
 }) {
-    const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
-      ? useAtom(isCollapsedAtom)
-      : [null, null];
+  const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
+    ? useAtom(isCollapsedAtom)
+    : [null, null];
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
   useEffect(() => {
