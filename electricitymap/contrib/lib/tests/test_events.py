@@ -7,7 +7,6 @@ from zoneinfo import ZoneInfo
 
 import freezegun
 import numpy as np
-import pandas as pd
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
