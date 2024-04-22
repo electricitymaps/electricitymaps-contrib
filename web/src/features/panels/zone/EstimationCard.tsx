@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
 import {
-  estimationCardCollapsed,
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
 } from 'utils/state/atoms';
@@ -43,13 +42,7 @@ export default function EstimationCard({
           setHasFeedbackCardBeenSeen
         )
     );
-  }, [
-    feedbackEnabled,
-    feedbackCardCollapsedNumber,
-    isFeedbackCardVisible,
-    hasFeedbackCardBeenSeen,
-    setHasFeedbackCardBeenSeen,
-  ]);
+  }, [feedbackEnabled, feedbackCardCollapsedNumber]);
 
   switch (cardType) {
     case 'outage': {
@@ -157,7 +150,6 @@ function BaseCard({
         className={textColorTitle}
         icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
         title={title}
-        isCollapsedAtom={estimationCardCollapsed}
       >
         <div className="gap-2">
           <div

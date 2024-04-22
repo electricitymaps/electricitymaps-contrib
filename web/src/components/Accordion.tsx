@@ -20,9 +20,11 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
-  isCollapsedAtom: PrimitiveAtom<boolean>;
+  isCollapsedAtom?: PrimitiveAtom<boolean>;
 }) {
-  const [collapsedAtom, setCollapsedAtom] = useAtom(isCollapsedAtom);
+    const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
+      ? useAtom(isCollapsedAtom)
+      : [null, null];
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
   useEffect(() => {
