@@ -10,13 +10,13 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
 import {
   dataSourcesCollapsedBarBreakdown,
   displayByEmissionsAtom,
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
@@ -26,7 +26,7 @@ import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
-const X_PADDING = 9;
+const X_PADDING = 20;
 
 function BarBreakdownChart({
   hasEstimationPill = false,
@@ -42,9 +42,10 @@ function BarBreakdownChart({
     height,
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { ref, width } = useReferenceWidthHeightObserver(X_PADDING);
+  const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
+  const width = observerWidth + X_PADDING;
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
