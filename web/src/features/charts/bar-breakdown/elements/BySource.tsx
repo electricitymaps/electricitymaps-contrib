@@ -42,7 +42,7 @@ function getEstimatedText(
     });
   }
   if (estimationMethod === 'threshold_filtered') {
-    return t('estimation-badge.outage');
+    return t('estimation-card.threshold_filtered.pill');
   }
 
   return t('estimation-badge.fully-estimated');
