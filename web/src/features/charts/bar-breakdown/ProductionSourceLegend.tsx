@@ -9,16 +9,18 @@ export default function ProductionSourceLegend({
   electricityType: ElectricityModeType;
 }) {
   return (
-    <g className="pointer-events-none">
-      <rect
-        fill={modeColor[electricityType as ElectricityModeType]}
-        width={14}
-        height={14}
-        rx={2}
-      />
-      <g transform={`translate(3, 3)`} width={14} height={8}>
-        <ProductionSourceIcon source={electricityType} />
+    <svg width={16} height={16}>
+      <g className="pointer-events-none">
+        <rect
+          fill={modeColor[electricityType as ElectricityModeType]}
+          width={16}
+          height={16}
+          rx={2}
+        />
+        <g transform={`translate(3, 3)`} width={16} height={16}>
+          <ProductionSourceIcon source={electricityType} />
+        </g>
       </g>
-    </g>
+    </svg>
   );
 }

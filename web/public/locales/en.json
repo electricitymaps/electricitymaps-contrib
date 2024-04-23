@@ -160,7 +160,7 @@
     "threshold_filtered": {
       "title": "Missing data",
       "pill": "Data outage",
-      "body": "The data provider for this zone has been missing data for a prolonged period. We are monitoring the issue and the zone will update as soon as data becomes available again."
+      "body": "The data provider for this zone has been missing data for a prolonged period. We are monitoring the issue and will update the zone as soon as the data meets our quality threshold again."
     },
     "outage": {
       "title": "Ongoing issues",
