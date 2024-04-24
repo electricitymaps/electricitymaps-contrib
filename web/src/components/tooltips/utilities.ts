@@ -48,7 +48,7 @@ export const getOffsetTooltipPosition = ({
 
   const tooltipPosition = {
     x: mousePositionX + xOffset,
-    y: mousePositionY - yOffset,
+    y: Math.max(mousePositionY - yOffset, 0),
   };
 
   return tooltipPosition;
