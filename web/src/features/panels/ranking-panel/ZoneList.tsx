@@ -12,7 +12,7 @@ export interface ZoneRowType {
   zoneId: keyof GridState;
   ranking?: number;
   color?: string;
-  co2intensity?: number;
+  co2intensity?: number | null;
   countryName?: string;
   zoneName?: string;
 }

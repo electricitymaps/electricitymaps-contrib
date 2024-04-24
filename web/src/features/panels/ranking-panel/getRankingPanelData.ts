@@ -33,15 +33,19 @@ export const getRankedState = (
   if (!data) {
     return [];
   }
-  const zonesData = data.data;
-  const keys = Object.keys(zonesData.zones) as Array<keyof GridState>;
+  const gridState = data.data.datetimes[datetimeIndex];
 
-  if (!keys) {
+  if (!gridState || !gridState.z) {
     return [];
   }
+
+  const zoneState = gridState.z;
+
+  const keys = Object.keys(zoneState) as Array<keyof GridState>;
+
   const zones = keys
     .map((key) => {
-      const zoneData = zonesData.zones[key][datetimeIndex];
+      const zoneData = zoneState[key];
 
       const co2intensity = zoneData
         ? getCO2IntensityByMode(zoneData, electricityMode)
@@ -64,8 +68,8 @@ export const getRankedState = (
 
   const orderedZones =
     sortOrder === 'asc'
-      ? zones.sort((a, b) => a.co2intensity! - b.co2intensity!)
-      : zones.sort((a, b) => b.co2intensity! - a.co2intensity!);
+      ? zones.sort((a, b) => (a.co2intensity ?? 0) - (b.co2intensity ?? 0))
+      : zones.sort((a, b) => (b.co2intensity ?? 0) - (a.co2intensity ?? 0));
 
   return orderedZones;
 };

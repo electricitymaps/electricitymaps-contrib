@@ -121,6 +121,12 @@
   },
   "estimation-card": {
     "link": "Read about our estimation models",
+    "outage-details": "See details",
+    "estimated_forecast_hierarchy": {
+      "title": "Data is estimated",
+      "pill": "Estimated",
+      "body": "The data for this zone is estimated using a combination of internal and external production forecasts and Time Slicer Averages. This aims to provide a more accurate representation than Time Slicer Average alone but the data may still be subject to inaccuracies. The data will be updated as soon as real-time data becomes available."
+    },
     "estimated_time_slicer_average": {
       "title": "Data is currently estimated",
       "pill": "Unavailable",
@@ -154,7 +160,7 @@
     "threshold_filtered": {
       "title": "Missing data",
       "pill": "Data outage",
-      "body": "The data provider for this zone has been missing data for a prolonged period. We are monitoring the issue and the zone will update as soon as data becomes available again."
+      "body": "The data provider for this zone has been missing data for a prolonged period. We are monitoring the issue and will update the zone as soon as the data meets our quality threshold again."
     },
     "outage": {
       "title": "Ongoing issues",
@@ -1734,11 +1740,13 @@
     },
     "US-CAL-BANC": {
       "countryName": "USA",
+      "displayName": "BANC",
       "zoneName": "Balancing Authority of Northern California"
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "zoneName": "California Independent System Operator"
+      "displayName": "CAISO",
+      "zoneName": "California ISO"
     },
     "US-CAL-IID": {
       "countryName": "USA",
@@ -1774,6 +1782,7 @@
     },
     "US-CAR-YAD": {
       "countryName": "USA",
+      "displayName": "Alcoa Power Generating",
       "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
     },
     "US-CENT-SPA": {
@@ -1782,6 +1791,7 @@
     },
     "US-CENT-SWPP": {
       "countryName": "USA",
+      "displayName": "SPP",
       "zoneName": "Southwest Power Pool"
     },
     "US-FLA-FMPP": {
@@ -1790,7 +1800,7 @@
     },
     "US-FLA-FPC": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Florida Inc"
+      "zoneName": "Duke Energy Florida"
     },
     "US-FLA-FPL": {
       "countryName": "USA",
@@ -1822,23 +1832,26 @@
     },
     "US-MIDA-PJM": {
       "countryName": "USA",
-      "zoneName": "PJM Interconnection, LLC"
+      "displayName": "PJM",
+      "zoneName": "PJM Interconnection"
     },
     "US-MIDW-AECI": {
       "countryName": "USA",
-      "zoneName": "Associated Electric Cooperative, Inc."
+      "zoneName": "Associated Electric Cooperative"
     },
     "US-MIDW-LGEE": {
       "countryName": "USA",
+      "displayName": "Louisville Gas And Electric Company",
       "zoneName": "Louisville Gas and Electric Company and Kentucky Utilities"
     },
     "US-MIDW-MISO": {
       "countryName": "USA",
-      "zoneName": "Midcontinent Independent Transmission System Operator, Inc."
+      "displayName": "MISO",
+      "zoneName": "Midcontinent ISO"
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "Iso New England Inc."
+      "zoneName": "New England ISO"
     },
     "US-NW-AVA": {
       "countryName": "USA",
@@ -1850,23 +1863,23 @@
     },
     "US-NW-CHPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 1 of Chelan County"
+      "zoneName": "Chelan County"
     },
     "US-NW-DOPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 1 of Douglas County"
+      "zoneName": "Douglas County"
     },
     "US-NW-GCPD": {
       "countryName": "USA",
-      "zoneName": "PUD No. 2 of Grant County, Washington"
+      "zoneName": "Grant County"
     },
     "US-NW-GRID": {
       "countryName": "USA",
-      "zoneName": "Gridforce Energy Management, LLC"
+      "zoneName": "Gridforce Energy Management"
     },
     "US-NW-GWA": {
       "countryName": "USA",
-      "zoneName": "Naturener Power Watch, LLC (Gwa)"
+      "zoneName": "Naturener Power Watch"
     },
     "US-NW-IPCO": {
       "countryName": "USA",
@@ -1894,6 +1907,7 @@
     },
     "US-NW-PSCO": {
       "countryName": "USA",
+      "displayName": "PSCo",
       "zoneName": "Public Service Company of Colorado"
     },
     "US-NW-PSEI": {
@@ -1906,23 +1920,25 @@
     },
     "US-NW-TPWR": {
       "countryName": "USA",
-      "zoneName": "City of Tacoma, Department of Public Utilities, Light Division"
+      "zoneName": "City of Tacoma"
     },
     "US-NW-WACM": {
       "countryName": "USA",
+      "displayName": "WAPA Rocky Mountains",
       "zoneName": "Western Area Power Administration - Rocky Mountain Region"
     },
     "US-NW-WAUW": {
       "countryName": "USA",
-      "zoneName": "Western Area Power Administration UGP West"
+      "displayName": "WAPA Upper Great Plains",
+      "zoneName": "Western Area Power Administration - Upper Great Plains West"
     },
     "US-NW-WWA": {
       "countryName": "USA",
-      "zoneName": "Naturener Wind Watch, LLC"
+      "zoneName": "Naturener Wind Watch"
     },
     "US-NY-NYIS": {
       "countryName": "USA",
-      "zoneName": "New York Independent System Operator"
+      "zoneName": "New York ISO"
     },
     "US-SE-SEPA": {
       "countryName": "USA",
@@ -1930,7 +1946,7 @@
     },
     "US-SE-SOCO": {
       "countryName": "USA",
-      "zoneName": "Southern Company Services, Inc. - Trans"
+      "zoneName": "Southern Company Services"
     },
     "US-SW-AZPS": {
       "countryName": "USA",
@@ -1942,7 +1958,7 @@
     },
     "US-SW-GRIF": {
       "countryName": "USA",
-      "zoneName": "Griffith Energy, LLC"
+      "zoneName": "Griffith Energy"
     },
     "US-SW-PNM": {
       "countryName": "USA",
@@ -1958,10 +1974,12 @@
     },
     "US-SW-WALC": {
       "countryName": "USA",
+      "displayName": "WAPA Desert Southwest",
       "zoneName": "Western Area Power Administration - Desert Southwest Region"
     },
     "US-TEN-TVA": {
       "countryName": "USA",
+      "displayName": "TVA",
       "zoneName": "Tennessee Valley Authority"
     },
     "US-TEX-ERCO": {
