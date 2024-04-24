@@ -24,7 +24,11 @@ export const All: Story = {
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
           <EstimationCard cardType="outage" zoneMessage={instance} />
-
+          <EstimationCard
+            cardType="outage"
+            zoneMessage={instance}
+            estimationMethod="threshold_filtered"
+          />
           <EstimationCard cardType="estimated" zoneMessage={instance} />
 
           <EstimationCard

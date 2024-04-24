@@ -114,6 +114,7 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
+        estimationMethod={currentZoneDetail.estimationMethod}
       />
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
