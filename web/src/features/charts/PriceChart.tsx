@@ -1,6 +1,8 @@
+import { CoinsIcon } from 'icons/coinsIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
@@ -51,13 +53,16 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   }
 
   return (
-    <>
-      <ChartTitle translationKey="country-history.electricityprices" />
-      <div className="relative overflow-hidden">
+    <GraphCard>
+      <ChartTitle
+        translationKey="country-history.electricityprices"
+        icon={<CoinsIcon />}
+      />
+      <div className={`relative ${isPriceDisabled ? 'overflow-hidden' : ''}`}>
         {isPriceDisabled && (
           <div className="absolute top-0 -ml-3 h-full w-[115%]">
-            <div className="h-full w-full rounded bg-white opacity-90 dark:bg-gray-900" />
-            <div className="absolute left-[45%] top-[50%] z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800">
+            <div className="h-full w-full rounded bg-zinc-50 opacity-90 dark:bg-gray-900" />
+            <div className="absolute left-[45%] top-1/2 z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800">
               {t(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
             </div>
           </div>
@@ -79,7 +84,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           tooltip={PriceChartTooltip}
         />
       </div>
-    </>
+    </GraphCard>
   );
 }
 

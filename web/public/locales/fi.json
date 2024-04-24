@@ -37,7 +37,6 @@
     "electricityconsumption": "Sähkön kulutus",
     "bysource": "alkuperä",
     "emissions": "Hiilidioksidipäästöt",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lisää tai muokkaa lähdettä</a>",
     "helpfrom": "heidän avustuksella",
     "noDataAtTimestamp": "Tiedot eivät ole väliaikaisesti käytettävissä valitulle ajankohdalle",
     "noLiveData": "Live-tiedot eivät ole väliaikaisesti käytettävissä tällä alueella",
@@ -48,9 +47,6 @@
     "zone-list-header-title": "Ilmastovaikutukset alueittain",
     "zone-list-header-subtitle": "Sijoitus kulutetun sähkön hiili-intensiteetin mukaan (gCO₂eq/kWh)",
     "search": "Etsi alueita"
-  },
-  "country-history": {
-    "Getdata": "Hanki pääsy historia-, marginaali- ja ennuste-API:hin"
   },
   "footer": {
     "foundbugs": "Löysitkö vikoja tai onko ideoita? Kerro niistä",

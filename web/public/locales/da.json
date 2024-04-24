@@ -29,7 +29,6 @@
     },
     "emissions": "CO₂-udledning",
     "helpfrom": "med hjælp fra",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">Tilføj eller rediger kilde</a>",
     "noDataAtTimestamp": "Data er midlertidigt utilgængeligt for det valgte tidspunkt",
     "noLiveData": "Realtidsdata er midlertidigt utilgængeligt for dette område",
     "estimated": "anslået",
@@ -45,7 +44,6 @@
     "yearly": "årlig"
   },
   "country-history": {
-    "Getdata": "Få adgang til historisk, real-time og prognoser med Electricity Maps API",
     "not-enough-data": "Ikke nok data tilgængeligt til at vise diagrammet"
   },
   "footer": {

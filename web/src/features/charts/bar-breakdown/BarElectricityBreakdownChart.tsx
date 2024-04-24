@@ -153,7 +153,9 @@ function BarElectricityBreakdownChart({
             onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
           >
-            <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
+            <g transform={`translate(-2, 0)`}>
+              <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
+            </g>
 
             <HorizontalBar
               className="text-black/10 dark:text-white/10"

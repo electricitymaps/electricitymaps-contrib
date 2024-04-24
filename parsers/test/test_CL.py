@@ -16,9 +16,9 @@ class TestFetchProduction(TestCase):
         self.session = Session()
         self.session.mount("https://", self.adapter)
 
-        self.target_datetime = datetime(2024, 2, 24, 0, 0, 0, tzinfo=timezone.utc)
+    def test_snapshot_historical_data(self):
+        target_datetime = datetime(2024, 2, 24, 0, 0, 0, tzinfo=timezone.utc)
         url = f"{API_BASE_URL}fecha__gte=2024-02-23&fecha__lte=2024-02-24"
-
         self.adapter.register_uri(
             GET,
             url,
@@ -29,11 +29,10 @@ class TestFetchProduction(TestCase):
             ),
         )
 
-    def test_snapshot(self):
         production = fetch_production(
             zone_key=ZoneKey("CL-SEN"),
             session=self.session,
-            target_datetime=self.target_datetime,
+            target_datetime=target_datetime,
         )
 
         self.assertMatchSnapshot(
@@ -44,6 +43,8 @@ class TestFetchProduction(TestCase):
                     "production": element["production"],
                     "storage": element["storage"],
                     "source": element["source"],
+                    "sourceType": element["sourceType"].value,
+                    "correctedModes": element["correctedModes"],
                 }
                 for element in production
             ]

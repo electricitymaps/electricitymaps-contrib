@@ -36,7 +36,6 @@
     "electricityproduction": "Produkcja energii elektrycznej",
     "bysource": "według źródeł energii",
     "emissions": "Emisje CO₂",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">dodaj lub zmień źródło</a>",
     "helpfrom": "z wkładem",
     "electricityconsumption": "Zużycie energii elektrycznej",
     "noDataAtTimestamp": "Dla wybranego okresu dane są tymczasowo niedostępne",
@@ -56,9 +55,6 @@
   },
   "time-controller": {
     "title": "Wyświetl dane historyczne"
-  },
-  "country-history": {
-    "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API Electricity Maps"
   },
   "footer": {
     "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",

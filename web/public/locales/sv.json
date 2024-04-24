@@ -50,7 +50,6 @@
     "electricityproduction": "Elproduktion",
     "electricityconsumption": "Elkonsumtion",
     "emissions": "Koldioxidutsläpp",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">lägg till eller redigera källa</a>",
     "helpfrom": "med hjälp från",
     "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
     "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
@@ -85,7 +84,6 @@
     "search": "Sök efter region"
   },
   "country-history": {
-    "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med Electricity Maps API",
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },
   "footer": {

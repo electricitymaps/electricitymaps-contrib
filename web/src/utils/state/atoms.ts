@@ -45,3 +45,9 @@ export const hasEstimationFeedbackBeenSeenAtom = atomWithStorage(
 export const feedbackCardCollapsedNumberAtom = atom(0);
 
 export const colorblindModeAtom = atomWithStorage('colorblindModeEnabled', false);
+
+export const dataSourcesCollapsedBarBreakdown = atom(true);
+
+export const dataSourcesCollapsedBreakdown = atom(true);
+
+export const dataSourcesCollapsedEmission = atom(true);
