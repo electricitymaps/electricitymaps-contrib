@@ -58,7 +58,6 @@
       "total-electricity-consumption": "Skupna poraba električne energije po virih"
     },
     "emissions": "ogljične emisije",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">dodaj ali uredi vir</a>",
     "helpfrom": "s pomočjo od",
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
     "noLiveData": "Podatki v živo za to območje začasno niso na voljo",
@@ -80,9 +79,6 @@
     "zone-list-header-title": "Vpliv na podnebje glede na območje",
     "zone-list-header-subtitle": "Razvrščeno glede na ogljično intenzivnost porabljene električne energije (gCO₂eq/kWh)",
     "search": "Območja iskanja"
-  },
-  "country-history": {
-    "Getdata": "Z API-jem za zemljevide električne energije pridobite vsako uro zgodovinske podatke, podatke v živo in napovedi"
   },
   "footer": {
     "foundbugs": "Ste našli hrošča, ali imate idejo? Pišite nam.",

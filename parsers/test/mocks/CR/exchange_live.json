@@ -1,0 +1,404 @@
+[
+  {
+    "nombre": "2LBR.IN400.INACPL.-.EST",
+    "value": 0,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "2LBR.IN400.INLITAPACHULA1.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "2LV2.IN230.INB12L120.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "2LV2.IN230.INME2M020.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "2MOY.IN230.INLIAHUACHAPAN.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "2PAN.IN230.INLI52-B2.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "2PAN.IN230.INLI52-ME.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "315S.IN230.IN8-32.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "315S.IN230.IN8-33.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "315S.IN230.INB18-22.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "315S.IN230.INB28-23.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "3AHU.IN230.IN8-12.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "3AHU.IN230.IN8-13.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "3AHU.IN230.IN8-22.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "3AHU.IN230.IN8-23.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4AGC.IN230.IN62E16.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4AGC.IN230.IN62E28.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4AGC.IN230.IN62L27.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4AGC.IN230.IN62L28.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4LEC.IN230.IN62E23.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4LEC.IN230.IN62L29.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4NNC.IN230.IN62L40.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4SBV.IN230.IN62E9.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4PRD.IN230.IN62E17.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4PRD.IN230.IN62L17.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "5AMY.IN230.INL9030.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "5LN1.IN230.INL9040.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "5SND.IN230.INA9015.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "5SND.IN230.INL9090.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "5LVG.IN230.INA9045.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "5LVG.IN230.INL9150.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "6CAH.IN230.INLICHANGUIN.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "6LIB.IN230.INLIAMAYO.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "6RCL.IN230.INLIDOMINICAL.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "6RCL.IN230.INLIPROGRESO.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "7CHA.IN230.INBB23B22.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "7CHA.IN230.INME23M22.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "7DOM.IN230.INBB23B12.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "7DOM.IN230.INME23M12.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "7PRO.IN230.INBA23A12.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "7PRO.IN230.INME23M12.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "7VEL.IN230.INBB23B102.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "7VEL.IN230.INME23M102.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "6CAS.IN230.INLITICUANTEPE.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "4NNC.IN230.IN62E40.-.EST",
+    "value": 1,
+    "good": 1,
+    "bad": 0
+  },
+  {
+    "nombre": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
+    "value": -261.600006103516,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "2SISTEMA.DTOT.OSYMDEMTOT.CMW2.MW",
+    "value": 1301.87512207031,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "2SISTEMA.GTOT.OSYMGENTOTR.-.MW",
+    "value": 1223.87524414063,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "3SISTEMA.CTOT.OSYMCARTOTR.-.MW",
+    "value": 650.966918945313,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "3SISTEMA.GTOT.OSYMGENTOTR.-.MW",
+    "value": 703.900451660156,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "3SISTEMA.LT230.INTER_NET_GT.CMW.MW",
+    "value": -97.1073150634766,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "3SISTEMA.LT230.INTER_NET_HO.CMW.MW",
+    "value": 154.814300537109,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "3SYS.DTOT.DEMTOTR.CMW.MW",
+    "value": 6538.74951171875,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "3SYS.GTOT.GENTOTREGIONAL.CMW.MW",
+    "value": 6272.46728515625,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "4LEC.LT230.2FR4-4LEC-01B.-.MW",
+    "value": -83.7900009155273,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "4SISTEMA.CTOT.OSYMCARTOTR.-.MW",
+    "value": 1225.34606933594,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "4SISTEMA.GTOT.OSYMGENTOTR.-.MW",
+    "value": 1247.08605957031,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "5SISTEMA.CTOT.OSYMCARTOTR.-.MW",
+    "value": 590.287841796875,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "5SISTEMA.GTOT.OSYMGENTOTR.-.MW",
+    "value": 500.26171875,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
+    "value": 99.4842376708984,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "5SISTEMA.LT230.INTER_NET_CR_2.CMW.MW",
+    "value": 172.856842041016,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "5SISTEMA.LT230.INTER_NET_HN.CMW.MW",
+    "value": -261.537536621094,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "6SISTEMA.CTOT.OSYMCARTOTR.-.MW",
+    "value": 1286.27380371094,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "6SISTEMA.GTOT.OSYMGENTOTR.-.MW",
+    "value": 1149.34399414063,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW",
+    "value": 31.558895111084,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "7SISTEMA.CTOT.OSYMCARTOTR.-.MW",
+    "value": 1484,
+    "good": 9,
+    "bad": 9
+  },
+  {
+    "nombre": "7SISTEMA.GTOT.OSYMGENTOTR.-.MW",
+    "value": 1448,
+    "good": 9,
+    "bad": 9
+  }
+]

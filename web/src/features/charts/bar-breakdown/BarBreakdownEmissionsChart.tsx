@@ -7,7 +7,7 @@ import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
-import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import { LABEL_MAX_WIDTH, PADDING_X, PADDING_Y } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
@@ -115,7 +115,9 @@ function BarBreakdownEmissionsChart({
             onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
           >
-            <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
+            <g transform={`translate(-2, 0)`}>
+              <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
+            </g>
             <HorizontalBar
               className="exchange"
               fill={'gray'}

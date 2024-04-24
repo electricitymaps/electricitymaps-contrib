@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
+from operator import itemgetter
 from typing import Any
 
 import pandas as pd
@@ -60,7 +61,7 @@ class EventList(ABC):
 
     def to_list(self) -> list[dict[str, Any]]:
         return sorted(
-            [event.to_dict() for event in self.events], key=lambda x: x["datetime"]
+            [event.to_dict() for event in self.events], key=itemgetter("datetime")
         )
 
     @property

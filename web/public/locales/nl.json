@@ -19,7 +19,6 @@
     "electricityproduction": "Elektriciteitsproductie",
     "bysource": "per bron",
     "emissions": "CO₂ uitstoot",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">voeg een bron toe, of wijzig deze</a>",
     "helpfrom": "met de hulp van",
     "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
     "noLiveData": "Live data is tijdelijk niet beschikbaar voor dit gebied",
@@ -30,9 +29,6 @@
     "zone-list-header-title": "Invloed op klimaat per Gebied",
     "zone-list-header-subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO₂eq/kWh)",
     "search": "Zoek gebieden"
-  },
-  "country-history": {
-    "Getdata": "Krijg toegang tot historische, huidige en voorspelde data via de API"
   },
   "footer": {
     "foundbugs": "Ondervind je problemen of heb je ideëen? Meld ze",

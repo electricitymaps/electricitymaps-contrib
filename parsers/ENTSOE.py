@@ -363,25 +363,18 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
     # It will still work if data is present but 0.
     # "expected_range" and "floor" only count production and storage
     # - not exchanges!
-    "AT": {
-        "required": ["hydro"],
-    },
-    "BA": {"required": ["coal", "hydro", "wind"], "expected_range": (500, 6500)},
+    "BA": {"expected_range": (500, 6500)},
     "BE": {
-        "required": ["gas", "nuclear"],
         "expected_range": (3000, 25000),
     },
     "BG": {
-        "required": ["coal", "nuclear", "hydro"],
         "expected_range": (2000, 20000),
     },
     "CH": {
-        "required": ["hydro", "nuclear"],
         "expected_range": (2000, 25000),
     },
     "CZ": {
         # usual load is in 7-12 GW range
-        "required": ["coal", "nuclear"],
         "expected_range": (3000, 25000),
     },
     "DE": {
@@ -390,73 +383,37 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         # and when those are missing this can indicate that others are missing as well.
         # We have also never seen unknown being 0.
         # Usual load is in 30 to 80 GW range.
-        "required": [
-            "coal",
-            "gas",
-            "wind",
-            "biomass",
-            "hydro",
-            "unknown",
-            "solar",
-        ],
         "expected_range": (20000, 100000),
     },
-    "EE": {
-        "required": ["coal"],
-    },
     "ES": {
-        "required": ["coal", "nuclear"],
         "expected_range": (10000, 80000),
     },
     "FI": {
-        "required": ["coal", "nuclear", "hydro", "biomass"],
         "expected_range": (2000, 20000),
     },
     "GB": {
-        # usual load is in 15 to 50 GW range
-        "required": ["coal", "gas", "nuclear"],
         "expected_range": (10000, 80000),
     },
     "GR": {
-        "required": ["coal", "gas"],
         "expected_range": (2000, 20000),
     },
-    "HR": {
-        "required": [
-            "coal",
-            "gas",
-            "wind",
-            "biomass",
-            "oil",
-            "solar",
-        ],
-    },
-    "HU": {
-        "required": ["coal", "nuclear"],
-    },
     "IE": {
-        "required": ["coal"],
         "expected_range": (1000, 15000),
     },
     "IT": {
-        "required": ["coal"],
         "expected_range": (5000, 50000),
     },
     "PL": {
-        # usual load is in 10-20 GW range and coal is always present
-        "required": ["coal"],
+        # usual load is in 10-20 GW range
         "expected_range": (5000, 35000),
     },
     "PT": {
-        "required": ["coal", "gas"],
         "expected_range": (1000, 20000),
     },
     "RO": {
-        "required": ["coal", "nuclear", "hydro"],
         "expected_range": (2000, 25000),
     },
     "RS": {
-        "required": ["biomass", "coal", "gas", "hydro", "unknown"],
         "expected_range": {
             "coal": (
                 800,
@@ -465,27 +422,10 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
             "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
         },
     },
-    "SE": {
-        "required": ["hydro", "nuclear", "wind", "unknown"],
-    },
-    "SE-SE1": {
-        "required": ["hydro", "wind", "unknown", "solar"],
-    },
-    "SE-SE2": {
-        "required": ["gas", "hydro", "wind", "unknown", "solar"],
-    },
-    "SE-SE3": {
-        "required": ["gas", "hydro", "nuclear", "wind", "unknown", "solar"],
-    },
-    "SE-SE4": {
-        "required": ["gas", "hydro", "wind", "unknown", "solar"],
-    },
     "SI": {
         # own total generation capacity is around 4 GW
-        "required": ["nuclear"],
         "expected_range": (140, 5000),
     },
-    "SK": {"required": ["nuclear"]},
 }
 
 
@@ -1001,14 +941,6 @@ def validate_production(
 
     if validation_criteria:
         return validate(datapoint, logger=logger, **validation_criteria)
-
-    # NOTE: Why are there sepcial checks for these zones?
-    if zone_key.startswith("DK-"):
-        return validate(datapoint, logger=logger, required=["coal", "solar", "wind"])
-
-    if zone_key.startswith("NO-"):
-        return validate(datapoint, logger=logger, required=["hydro"])
-
     return True
 
 

@@ -46,7 +46,7 @@ class ModeCapacity(StrictBaseModelWithAlias):
     comment: str | None = Field(None, alias="_comment")
     url: str | list[str] | None = Field(None, alias="_url")
     datetime: date | datetime | None
-    value: NonNegativeFloat
+    value: NonNegativeFloat | None
 
 
 class Capacity(StrictBaseModel):

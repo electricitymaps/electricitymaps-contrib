@@ -37,7 +37,6 @@
     "electricityconsumption": "Spotřeba elektřiny",
     "bysource": "podle zdroje",
     "emissions": "Uhlíkové emise",
-    "addeditsource": "<a href=\"{{link}}\" target=\"_blank\">přidejte nebo upravte zdroj</a>",
     "helpfrom": "s pomocí od",
     "noDataAtTimestamp": "Data pro vybraný čas jsou dočasně nedostupná",
     "noLiveData": "Živá data pro tuto oblast jsou dočasně nedostupná",
@@ -51,9 +50,6 @@
     "zone-list-header-title": "Dopad na klima podle oblasti",
     "zone-list-header-subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO₂eq/kWh)",
     "search": "Hledej oblasti"
-  },
-  "country-history": {
-    "Getdata": "Ziskejte historická a mezní data i předpověď přes API"
   },
   "footer": {
     "foundbugs": "Našli jste nedostatky, nebo máte nápad? Řekněte nám o nich",

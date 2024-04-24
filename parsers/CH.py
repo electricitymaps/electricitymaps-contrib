@@ -1,17 +1,12 @@
-#!/usr/bin/env python3
-
-
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from requests import Session
 
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers import ENTSOE
 from parsers.lib.config import refetch_frequency
-
-from . import ENTSOE
 
 
 def get_solar_capacity_at(date: datetime) -> float:
@@ -47,8 +42,8 @@ def fetch_swiss_exchanges(session, target_datetime, logger):
     swiss_transmissions = {}
     for exchange_key in ["AT", "DE", "IT", "FR"]:
         exchanges = ENTSOE.fetch_exchange(
-            zone_key1="CH",
-            zone_key2=exchange_key,
+            zone_key1=ZoneKey("CH"),
+            zone_key2=ZoneKey(exchange_key),
             session=session,
             target_datetime=target_datetime,
             logger=logger,
@@ -57,11 +52,11 @@ def fetch_swiss_exchanges(session, target_datetime, logger):
             continue
 
         for exchange in exchanges:
-            datetime = exchange["datetime"]
-            if datetime not in swiss_transmissions:
-                swiss_transmissions[datetime] = exchange["netFlow"]
+            dt = exchange["datetime"]
+            if dt not in swiss_transmissions:
+                swiss_transmissions[dt] = exchange["netFlow"]
             else:
-                swiss_transmissions[datetime] += exchange["netFlow"]
+                swiss_transmissions[dt] += exchange["netFlow"]
 
     return swiss_transmissions
 
@@ -71,35 +66,39 @@ def fetch_swiss_consumption(
 ):
     """Returns the total consumption of Switzerland."""
     consumptions = ENTSOE.fetch_consumption(
-        zone_key="CH", session=session, target_datetime=target_datetime, logger=logger
+        zone_key=ZoneKey("CH"),
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
     )
     return {c["datetime"]: c["consumption"] for c in consumptions}
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "CH",
+    zone_key: ZoneKey = ZoneKey("CH"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
     Returns the total production by type for Switzerland.
-    Currently the majority of the run-of-river production is missing.
+    Currently, the majority of the run-of-river production is missing.
     The difference between the sum of all production types and the total production is allocated as 'unknown'.
     The total production is calculated as sum of the consumption, storage and net imports.
     """
-    now = (
-        arrow.get(target_datetime).to("Europe/Zurich").datetime
-        if target_datetime
-        else datetime.now(tz=ZoneInfo("Europe/Zurich"))
+    target_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
     )
+
     r = session or Session()
 
-    exchanges = fetch_swiss_exchanges(r, now, logger)
-    consumptions = fetch_swiss_consumption(r, now, logger)
+    exchanges = fetch_swiss_exchanges(r, target_datetime, logger)
+    consumptions = fetch_swiss_consumption(r, target_datetime, logger)
     productions = ENTSOE.fetch_production(
-        zone_key=zone_key, session=r, target_datetime=now, logger=logger
+        zone_key=zone_key, session=r, target_datetime=target_datetime, logger=logger
     )
 
     if not productions:

@@ -33,40 +33,48 @@ export function InfoModalContent() {
           }}
         />
       </div>
-      <div>
+      <div className="w-[330px] space-y-2 py-2">
         <Button
+          size="lg"
+          type="secondary"
           onClick={() => setIsFAQModalOpen(true)}
           icon={<FaInfoCircle size={ICON_SIZE} />}
         >
           FAQ
         </Button>
         <Button
-          background="#44ab60"
-          textColor="#fff"
+          size="lg"
+          type="primary"
           href="https://forms.gle/VHaeHzXyGodFKZY18"
           icon={<FaCommentDots size={ICON_SIZE} />}
         >
           {t('info-modal.feedback-button')}
         </Button>
         <Button
-          background="linear-gradient(to right, #04275c 0%, #040e23 100%)"
-          textColor="#fff"
+          size="lg"
+          type="primary"
+          backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23]"
+          foregroundClasses="text-white dark:text-white focus-visible:outline-[#04275c]"
           href="https://github.com/electricityMaps/electricitymaps-contrib"
           icon={<FaGithub size={ICON_SIZE} />}
         >
           {t('info-modal.github-button')}
         </Button>
         <Button
-          background="#1d9bf0"
-          textColor="#fff"
+          size="lg"
+          type="primary"
+          backgroundClasses="bg-[#1d9bf0]"
+          foregroundClasses="text-white dark:text-white focus-visible:outline-[#1d9bf0]"
           href="https://twitter.com/intent/tweet?url=https://app.electricitymaps.com"
           icon={<FaTwitter size={ICON_SIZE} />}
         >
           {t('info-modal.twitter-button')}
         </Button>
         <Button
-          background="#4a154b"
-          textColor="#fff"
+          size="lg"
+          type="primary"
+          backgroundClasses="bg-[#4a154b]"
+          foregroundClasses="text-white dark:text-white focus-visible:outline-[#4a154b]"
           href="https://slack.electricitymaps.com/"
           icon={<FaSlack size={ICON_SIZE} />}
         >

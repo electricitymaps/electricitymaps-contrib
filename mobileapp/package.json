@@ -6,7 +6,7 @@
   "main": "index.js",
   "engines": {
     "node": ">=18",
-    "pnpm": "^8",
+    "pnpm": "^9",
     "ruby": ">=3.0.0"
   },
   "scripts": {

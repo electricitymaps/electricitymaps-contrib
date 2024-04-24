@@ -17,7 +17,7 @@ export default function AreaGraphContainer({
   displayByEmissions: boolean;
 }) {
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       {displayByEmissions ? (
         <EmissionChart datetimes={datetimes} timeAverage={timeAverage} />
       ) : (
