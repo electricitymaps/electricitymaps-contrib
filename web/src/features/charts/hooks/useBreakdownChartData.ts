@@ -9,6 +9,7 @@ import {
   ElectricityStorageKeyType,
   ElectricityStorageType,
   ZoneDetail,
+  ZoneDetails,
 } from 'types';
 import {
   Mode,
@@ -129,7 +130,23 @@ export default function useBreakdownChartData() {
     layerStroke: undefined,
   };
 
-  return { data: result, mixMode, isLoading, isError };
+  const sources = getSources(zoneData);
+
+  return { sources, data: result, mixMode, isLoading, isError };
+}
+
+function getSources(zoneData: ZoneDetails) {
+  const sourceSet = new Set<string>();
+
+  for (const state of Object.values(zoneData.zoneStates)) {
+    const currentSources = state.source;
+    for (const source of currentSources) {
+      sourceSet.add(source);
+    }
+  }
+
+  const sources = [...sourceSet];
+  return sources;
 }
 
 function getStorageValue(
