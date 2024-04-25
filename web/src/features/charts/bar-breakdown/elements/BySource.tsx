@@ -31,16 +31,35 @@ const getText = (
   return translations[period][dataType];
 };
 
+function getEstimatedText(
+  t: TFunction,
+  estimatedPercentage?: number,
+  estimationMethod?: string
+) {
+  if (estimatedPercentage) {
+    return t('estimation-card.aggregated_estimated.pill', {
+      percentage: estimatedPercentage,
+    });
+  }
+  if (estimationMethod === 'threshold_filtered') {
+    return t('estimation-card.threshold_filtered.pill');
+  }
+
+  return t('estimation-badge.fully-estimated');
+}
+
 export default function BySource({
   className,
   hasEstimationPill = false,
   estimatedPercentage,
   unit,
+  estimationMethod,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   unit?: string | number;
+  estimationMethod?: string;
 }) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -61,13 +80,7 @@ export default function BySource({
         </div>
         {hasEstimationPill && (
           <EstimationBadge
-            text={
-              estimatedPercentage
-                ? t('estimation-card.aggregated_estimated.pill', {
-                    percentage: estimatedPercentage,
-                  })
-                : t('estimation-badge.fully-estimated')
-            }
+            text={getEstimatedText(t, estimatedPercentage, estimationMethod)}
           />
         )}
       </div>

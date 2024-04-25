@@ -246,7 +246,7 @@ export class Windy {
   }
 
   start(viewportBounds: number[][], width: number, height: number) {
-    stop();
+    this.stop();
     this.started = true;
     this.paused = false;
 
