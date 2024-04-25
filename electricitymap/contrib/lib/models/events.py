@@ -670,20 +670,19 @@ class ProductionBreakdown(AggregatableEvent):
             raise ValueError(
                 f"Cannot update events from different datetimes: {event.datetime} and {new_event.datetime}"
             )
-        if event.source != new_event.source:
-            raise ValueError(
-                f"Cannot update events from different sources: {event.source} and {new_event.source}"
-            )
         if event.sourceType != new_event.sourceType:
             raise ValueError(
                 f"Cannot update events from different source types: {event.sourceType} and {new_event.sourceType}"
             )
         production_mix = ProductionMix._update(event.production, new_event.production)
         storage_mix = StorageMix._update(event.storage, new_event.storage)
+        source = ", ".join(
+            set(event.source.split(", ")) | set(new_event.source.split(", "))
+        )
         return ProductionBreakdown(
             zoneKey=event.zoneKey,
             datetime=event.datetime,
-            source=event.source,
+            source=source,
             production=production_mix,
             storage=storage_mix,
             sourceType=event.sourceType,
