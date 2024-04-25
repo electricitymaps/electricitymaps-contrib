@@ -6,7 +6,7 @@ import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder,TimeAverages } from 'utils/constants';
+import { Mode, modeOrder, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
