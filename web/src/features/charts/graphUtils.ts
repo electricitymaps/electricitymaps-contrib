@@ -4,9 +4,10 @@ import { bisectLeft } from 'd3-array';
 // // https://observablehq.com/@d3/d3-selection-2-0
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
-import { t, TFunction } from 'i18next';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder, TimeAverages } from 'utils/constants';
+import { Mode, modeOrder,TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
@@ -119,6 +120,7 @@ export function determineUnit(
   mixMode: Mode,
   timeAverage: TimeAverages
 ) {
+  const { t } = useTranslation();
   if (displayByEmissions) {
     return getUnit(
       formatCo2(getTotalEmissionsAvailable(currentZoneDetail, mixMode)) +
@@ -189,7 +191,8 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
-export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
+export function getBadgeText(chartData: AreaGraphElement[]) {
+  const { t } = useTranslation();
   const allEstimated = chartData.every(
     (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
   );

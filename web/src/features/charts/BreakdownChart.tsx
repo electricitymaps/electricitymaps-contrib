@@ -53,7 +53,7 @@ function BreakdownChart({
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const badgeText = getBadgeText(chartData, t);
+  const badgeText = getBadgeText(chartData);
 
   if (!hasEnoughDataToDisplay) {
     return (
