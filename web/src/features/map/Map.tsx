@@ -213,6 +213,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     if (feature && feature.properties) {
       const zoneId = feature.properties.zoneId;
       navigate(createToWithState(`/zone/${zoneId}`));
+      // setIsMoving(true);
     } else {
       navigate(createToWithState('/map'));
     }
