@@ -46,7 +46,7 @@ export default function EstimationCard({
 
   switch (cardType) {
     case 'outage': {
-      return <OutageCard zoneMessage={zoneMessage} />;
+      return <OutageCard zoneMessage={zoneMessage} estimationMethod={estimationMethod} />;
     }
     case 'aggregated': {
       return <AggregatedCard estimatedPercentage={estimatedPercentage} />;
@@ -185,11 +185,22 @@ function BaseCard({
   );
 }
 
-function OutageCard({ zoneMessage }: { zoneMessage?: ZoneMessage }) {
+function OutageCard({
+  zoneMessage,
+  estimationMethod,
+}: {
+  zoneMessage?: ZoneMessage;
+  estimationMethod?: string;
+}) {
+  const { t } = useTranslation();
+  const zoneMessageText =
+    estimationMethod === 'threshold_filtered'
+      ? { message: t('estimation-card.threshold_filtered.body') }
+      : zoneMessage;
   return (
     <BaseCard
       estimationMethod={'outage'}
-      zoneMessage={zoneMessage}
+      zoneMessage={zoneMessageText}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
       iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
       showMethodologyLink={false}
