@@ -119,7 +119,13 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
-        unit={determineUnit(displayByEmissions, currentZoneDetail, mixMode, timeAverage)}
+        unit={determineUnit(
+          displayByEmissions,
+          currentZoneDetail,
+          mixMode,
+          timeAverage,
+          t
+        )}
         estimationMethod={currentZoneDetail.estimationMethod}
       />
       {tooltipData && (
