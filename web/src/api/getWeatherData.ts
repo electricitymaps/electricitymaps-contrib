@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { add, startOfHour, sub } from 'date-fns';
-import { getInterpolatedData } from 'features/weather-layers/hooks';
+import { getInterpolatedData } from 'features/weather-layers/weatherUtils';
 import type { Maybe } from 'types';
 
 import { FIVE_MINUTES, getBasePath, getHeaders } from './helpers';
