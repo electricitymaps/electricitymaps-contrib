@@ -15,9 +15,12 @@ import trackEvent from 'utils/analytics';
 import {
   dataSourcesCollapsedBarBreakdown,
   displayByEmissionsAtom,
+  productionConsumptionAtom,
+  timeAverageAtom,
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
@@ -45,6 +48,8 @@ function BarBreakdownChart({
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const [mixMode] = useAtom(productionConsumptionAtom);
   const width = observerWidth + X_PADDING;
 
   const [tooltipData, setTooltipData] = useState<{
@@ -114,6 +119,14 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
+        unit={determineUnit(
+          displayByEmissions,
+          currentZoneDetail,
+          mixMode,
+          timeAverage,
+          t
+        )}
+        estimationMethod={currentZoneDetail.estimationMethod}
       />
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">

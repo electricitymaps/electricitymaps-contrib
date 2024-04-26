@@ -20,8 +20,8 @@ import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
 
 const X_AXIS_HEIGHT = 20;
-const Y_AXIS_WIDTH = 40;
-const Y_AXIS_PADDING = 4;
+const Y_AXIS_WIDTH = 20;
+const Y_AXIS_PADDING = 2;
 
 const getTotalValues = (layers: any) => {
   // Use a single loop to find the min and max values of the datapoints
@@ -84,7 +84,6 @@ interface AreagraphProps {
   layerStroke?: (key: string) => string;
   layerFill: FillFunction;
   markerFill?: FillFunction;
-  valueAxisLabel: string;
   markerUpdateHandler: any;
   markerHideHandler: any;
   isMobile: boolean;
@@ -109,7 +108,6 @@ function AreaGraph({
   layerStroke,
   layerFill,
   markerFill,
-  valueAxisLabel,
   isMobile,
   height = '10em',
   isOverlayEnabled = false,
@@ -260,13 +258,7 @@ function AreaGraph({
           className="h-[22px] w-full overflow-visible opacity-50"
         />
       )}
-      <ValueAxis
-        scale={valueScale}
-        label={valueAxisLabel}
-        width={containerWidth}
-        height={containerHeight}
-        formatTick={formatTick}
-      />
+      <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
       <GraphHoverLine
         layers={layers}
         timeScale={timeScale}

@@ -85,7 +85,7 @@ export default function ZoneDetails(): JSX.Element {
               estimationMethod={estimationMethod}
               zoneMessage={zoneMessage}
               estimatedPercentage={selectedData?.estimatedPercentage}
-            ></EstimationCard>
+            />
           )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
@@ -142,9 +142,10 @@ function getCardType({
   timeAverage: TimeAverages;
 }): 'estimated' | 'aggregated' | 'outage' | 'none' {
   if (
-    zoneMessage !== undefined &&
-    zoneMessage?.message !== undefined &&
-    zoneMessage?.issue !== undefined
+    (zoneMessage !== undefined &&
+      zoneMessage?.message !== undefined &&
+      zoneMessage?.issue !== undefined) ||
+    estimationMethod === 'threshold_filtered'
   ) {
     return 'outage';
   }
