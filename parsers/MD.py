@@ -276,17 +276,14 @@ def _fetch_exchange(
 
     exchange_list = ExchangeList(logger=logger)
     for entry in archive_data:
+        netflow = None
+
         if sorted_zone_keys == ZoneKey("MD->UA"):
             netflow = (
                 entry.exchange_UA_to_MD
                 if use_actual
                 else entry.planned_exchange_UA_to_MD
             )
-            if netflow is None:
-                continue
-
-            if netflow != 0:
-                netflow *= -1
 
         elif sorted_zone_keys == ZoneKey("MD->RO"):
             netflow = (
@@ -294,13 +291,11 @@ def _fetch_exchange(
                 if use_actual
                 else entry.planned_exchange_RO_to_MD
             )
-            if netflow is None:
-                continue
-
-            if netflow != 0:
-                netflow *= -1
         else:
             raise NotImplementedError(f"{sorted_zone_keys} pair is not implemented")
+
+        if netflow != 0 and netflow is not None:
+            netflow *= -1
 
         exchange_list.append(
             zoneKey=sorted_zone_keys,
