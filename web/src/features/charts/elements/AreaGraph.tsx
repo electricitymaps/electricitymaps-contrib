@@ -167,7 +167,7 @@ function AreaGraph({
   );
 
   const [graphIndex, setGraphIndex] = useState(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+  const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(null);
 
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
 
