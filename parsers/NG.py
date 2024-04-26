@@ -4,10 +4,10 @@
 
 import re
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 import bs4
 from requests import Session
 
@@ -27,6 +27,7 @@ NORMALISE = {
     "steam": "gas",
 }
 PATTERN = re.compile(r"\((.*)\)")
+TIMEZONE = ZoneInfo("Africa/Lagos")
 
 
 # The data is hourly, but it takes a few minutes after the turn of each hour
@@ -42,10 +43,11 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
-    timestamp = (
-        arrow.get(target_datetime)
-        .to("Africa/Lagos")
-        .replace(minute=0, second=0, microsecond=0)
+
+    if target_datetime is None:
+        target_datetime = datetime.now(timezone.utc).isoformat()
+    timestamp = datetime.fromisoformat(target_datetime).replace(
+        minute=0, second=0, microsecond=0, tzinfo=TIMEZONE
     )
 
     # GET the landing page (HTML) and scrape some form data from it.
@@ -53,8 +55,8 @@ def fetch_production(
     response = session.get(API_URL_STRING)
     soup = bs4.BeautifulSoup(response.text, "html.parser")
     data = {tag["name"]: tag["value"] for tag in soup.find_all("input")}
-    data["ctl00$MainContent$txtReadingDate"] = timestamp.format("DD/MM/YYYY")
-    data["ctl00$MainContent$ddlTime"] = timestamp.format("HH:mm")
+    data["ctl00$MainContent$txtReadingDate"] = timestamp.strftime("%d/%m/%Y")
+    data["ctl00$MainContent$ddlTime"] = timestamp.strftime("%H:%M")
 
     # Send a POST request for the desired grid data using parameters from the
     # landing page form. The grid data is presented as an HTML table; we ignore
@@ -75,7 +77,7 @@ def fetch_production(
     return validation.validate(
         {
             "zoneKey": zone_key,
-            "datetime": timestamp.datetime,
+            "datetime": timestamp,
             "production": production_mix,
             "source": API_URL.netloc,
         },
