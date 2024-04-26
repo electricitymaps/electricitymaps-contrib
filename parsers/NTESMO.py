@@ -8,6 +8,7 @@ https://territorygeneration.com.au/about-us/our-power-stations/
 import collections
 import logging
 import math
+import re
 from collections.abc import Iterable, Iterator
 from datetime import date, datetime, time, timedelta, timezone
 from logging import Logger, getLogger
@@ -95,11 +96,24 @@ def _scan_daily_report_urls(
         for a in soup.find_all("a", href=True):
             if a["href"].startswith("https://ntesmo.com.au/__data/assets/excel_doc/"):
                 timestamp = a.find("div", {"class": "smp-tiles-article__title"}).text
-                dt = (
-                    datetime.strptime(timestamp, "%d %B %Y")
-                    .replace(tzinfo=AUSTRALIA_TZ)
-                    .date()
-                )
+
+                try:
+                    date_time = datetime.strptime(timestamp, "%d %B %Y")
+                except ValueError:
+                    # some dates are not formatted properly or will contain extra information
+                    # e.g. "05 April 2018 - Publishing Recommencement", "05 January 2018 - System Notice", "18 June2018"
+                    # so extract individual %d %B %Y groups, potentially separated by 0 or more spaces
+                    match = re.search(r"(\d{2})\s*([a-zA-Z]+)\s*(\d{4})", timestamp)
+                    if not match:
+                        raise
+                    cleaned_timestamp = " ".join(match.groups())
+
+                    # some timestamps have typos e.g.  "02 Januray 2019"
+                    cleaned_timestamp = cleaned_timestamp.replace("Januray", "January")
+
+                    date_time = datetime.strptime(cleaned_timestamp, "%d %B %Y")
+
+                dt = date_time.replace(tzinfo=AUSTRALIA_TZ).date()
                 yield dt, a["href"]
 
 
@@ -217,9 +231,10 @@ def parse_production_mix(
     generation_units.remove("Period Start")
     generation_units.remove("Period End")
     unknown_units = generation_units.difference(PLANT_MAPPING.keys())
-    logger.warning(
-        f"New generator(s) {unknown_units} detected in AU-NT, please update the mapping of generators."
-    )
+    if unknown_units:
+        logger.warning(
+            f"New generator(s) {unknown_units} detected in {ZONE_KEY}, please update the mapping of generators."
+        )
 
     production_breakdown_list = []
     for row in raw_production_mix_df.itertuples():
