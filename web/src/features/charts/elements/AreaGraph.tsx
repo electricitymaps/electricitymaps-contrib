@@ -156,6 +156,7 @@ function AreaGraph({
 
   const datetimesWithNext = useMemo(
     // The as Date[] assertion is needed because the filter removes the null values but typescript can't infer that
+    // This can be inferred by typescript 5.5 and can be removed when we upgrade
     () => [...datetimes, endTime].filter(Boolean) as Date[],
     [datetimes, endTime]
   );
@@ -165,8 +166,8 @@ function AreaGraph({
     [containerWidth, startTime, endTime]
   );
 
-  const [graphIndex, setGraphIndex] = useState<number>(Number.NaN);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState<number>(Number.NaN);
+  const [graphIndex, setGraphIndex] = useState(null);
+  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
 
@@ -189,7 +190,7 @@ function AreaGraph({
 
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
-    () => (timeIndex: number, layerIndex: number) => {
+    () => (timeIndex: any, layerIndex: any) => {
       setGraphIndex(timeIndex);
       if (layers.length <= 1) {
         // Select the first (and only) layer even when hovering over background
@@ -203,8 +204,8 @@ function AreaGraph({
   );
   const mouseOutHandler = useMemo(
     () => () => {
-      setGraphIndex(Number.NaN);
-      setSelectedLayerIndex(Number.NaN);
+      setGraphIndex(null);
+      setSelectedLayerIndex(null);
     },
     [setGraphIndex, setSelectedLayerIndex]
   );
