@@ -9,21 +9,25 @@ type Props = {
   hasLink?: boolean;
   badgeText?: string;
   icon?: JSX.Element;
+  unit?: string;
 };
 
-export function ChartTitle({ translationKey, badgeText = undefined, icon }: Props) {
+export function ChartTitle({ translationKey, badgeText = undefined, icon, unit }: Props) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   /*
   Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
   */
   return (
-    <div className="flex flex-row justify-between pb-0.5 pt-4">
-      <div className="flex content-center gap-1.5">
-        {icon && <div className="w-5">{icon}</div>}
-        <h3 className="text-md font-bold">{t(`${translationKey}.${timeAverage}`)}</h3>
+    <div className="flex flex-col pb-0.5">
+      <div className="flex flex-row justify-between pt-4">
+        <div className="flex content-center gap-1.5">
+          {icon && <div className="w-5">{icon}</div>}
+          <h3 className="text-md font-bold">{t(`${translationKey}.${timeAverage}`)}</h3>
+        </div>
+        {badgeText != undefined && <EstimationBadge text={badgeText} />}
       </div>
-      {badgeText != undefined && <EstimationBadge text={badgeText} />}
+      {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>
   );
 }

@@ -52,11 +52,13 @@ export default function BySource({
   className,
   hasEstimationPill = false,
   estimatedPercentage,
+  unit,
   estimationMethod,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
+  unit?: string | number;
   estimationMethod?: string;
 }) {
   const { t } = useTranslation();
@@ -68,18 +70,21 @@ export default function BySource({
   const text = getText(timeAverage, dataType, t);
 
   return (
-    <div
-      className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
-    >
-      <div className="flex gap-1">
-        <PlugCircleBoltIcon />
-        {text}
+    <div className="flex flex-col pb-1 pt-4">
+      <div
+        className={`relative flex flex-row justify-between text-md font-bold ${className}`}
+      >
+        <div className="flex gap-1">
+          <PlugCircleBoltIcon />
+          {text}
+        </div>
+        {hasEstimationPill && (
+          <EstimationBadge
+            text={getEstimatedText(t, estimatedPercentage, estimationMethod)}
+          />
+        )}
       </div>
-      {hasEstimationPill && (
-        <EstimationBadge
-          text={getEstimatedText(t, estimatedPercentage, estimationMethod)}
-        />
-      )}
+      {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>
   );
 }
