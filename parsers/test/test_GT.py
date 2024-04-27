@@ -2,10 +2,23 @@ import json
 from datetime import datetime
 from importlib import resources
 
+import pytest
+import requests
+import requests_mock
 from freezegun import freeze_time
 from requests_mock import ANY, GET
 
 from parsers.GT import fetch_consumption, fetch_production
+
+
+@pytest.fixture()
+def fixture_session_mock() -> tuple[requests.Session, requests_mock.Adapter]:
+    session = requests.Session()
+
+    adapter = requests_mock.Adapter()
+    session.mount("https://", adapter)
+
+    return session, adapter
 
 
 @freeze_time("2024-04-10 12:28:00")
