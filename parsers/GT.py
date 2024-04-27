@@ -24,6 +24,22 @@ TIMEZONE = ZoneInfo("America/Guatemala")
 SOURCE = "wl12.amm.org.gt"
 URL = f"https://{SOURCE}/GraficaPW/graficaCombustible"
 
+PRODUCTION_TYPE_TO_PRODUCTION_MODE = {
+    "BIOGAS": "biomass",
+    "BIOMASA": "biomass",
+    "CARBÓN": "coal",
+    "GAS NATURAL": "gas",
+    "VAPOR": "geothermal",
+    "AGUA": "hydro",
+    "BUNKER": "oil",
+    "DIESEL": "oil",
+    "IRRADIACIÓN": "solar",
+    "BIOMASA/CARBÓN": "unknown",  # not always present, e.g. 15/07/2023 TZ
+    "CARBÓN/PETCOKE": "unknown",
+    "SYNGAN": "unknown",
+    "VIENTO": "wind",
+}
+
 
 class ApiKind(enum.Enum):
     PRODUCTION = "production"
@@ -167,19 +183,12 @@ def fetch_production(
     production_breakdown_list = ProductionBreakdownList(logger)
     for dt, row in api_data.items():
         production_mix = ProductionMix()
-        production_mix.add_value("biomass", row["BIOGAS"] + row["BIOMASA"])
-        production_mix.add_value("coal", row["CARBÓN"])
-        production_mix.add_value("gas", row["GAS NATURAL"])
-        production_mix.add_value("geothermal", row["VAPOR"])
-        production_mix.add_value("hydro", row["AGUA"])
-        production_mix.add_value("oil", row["BUNKER"] + row["DIESEL"])
-        production_mix.add_value("solar", row["IRRADIACIÓN"])
-        production_mix.add_value(
-            "unknown",
-            # 'BIOMASA/CARBÓN not always present, e.g. 15/07/2023 TZ
-            row.get("BIOMASA/CARBÓN", 0.0) + row["CARBÓN/PETCOKE"] + row["SYNGAN"],
-        )
-        production_mix.add_value("wind", row["VIENTO"])
+        for key in row:
+            if key not in PRODUCTION_TYPE_TO_PRODUCTION_MODE:
+                continue
+
+            production_mode = PRODUCTION_TYPE_TO_PRODUCTION_MODE[key]
+            production_mix.add_value(production_mode, row[key])
 
         production_breakdown_list.append(
             zoneKey=zone_key,
