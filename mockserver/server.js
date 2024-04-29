@@ -46,7 +46,7 @@ app.get('/v8/gfs/solar', (req, res, next) => {
 });
 
 app.get('/feature-flags', (req, res, next) => {
-  res.json({});
+  res.json({ test: true });
 });
 
 app.use(function (req, res, next) {
