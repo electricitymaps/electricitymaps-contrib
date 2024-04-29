@@ -26,7 +26,7 @@ export function useFeatureFlags(): FeatureFlags {
   return (
     useQuery<FeatureFlags>([QUERY_KEYS.FEATURE_FLAGS], async () => getFeatureFlags(), {
       suspense: true,
-    }).data || {}
+    }).data ?? {}
   );
 }
 
