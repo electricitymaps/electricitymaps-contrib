@@ -14,7 +14,7 @@
   "onboarding-modal": {
     "view1": {
       "header": "Bienvenue sur Electricity Maps",
-      "text": "Explorez l’impact climatique de l’électricité dans de nombreux pays à travers le monde. Laissez nous vous expliquer Electricity Maps en quelques simples étapes !"
+      "text": "Explorez l’impact climatique de l’électricité dans de nombreux pays à travers le monde. Laissez nous vous expliquer Electricity Maps en quelques étapes simples !"
     },
     "view2": {
       "header": "Visualisez la quantité de CO2 émis en temps réel pour produire votre électricité",
@@ -22,7 +22,7 @@
     },
     "view3": {
       "header": "Découvrez d’où vient votre électricité",
-      "text": "Les flèches sur la carte représentent les flux d’électricité entre les différentes zones. Cliquez sur une zone pour en découvrir plus sur l’origine de l’électricité qui y est consommée."
+      "text": "Les flèches sur la carte représentent les flux d’électricité entre les différentes zones. Cliquez sur une zone pour en apprendre plus sur l’origine de l’électricité qui y est consommée."
     },
     "view4": {
       "header": "Alternez entre différentes vues",
@@ -69,6 +69,7 @@
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
     "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
+    "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
     "disabledPriceReasons": {
       "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
     },
@@ -85,19 +86,19 @@
   "estimation-badge": {
     "partially-estimated": "Partiellement estimées",
     "fully-estimated": "Estimées",
-    "outage": "Indisponible"
+    "outage": "Indisponibles"
   },
   "estimation-card": {
     "link": "En savoir plus sur nos modèles d'estimation",
     "estimated_time_slicer_average": {
       "title": "Les données sont momentanément estimées",
-      "pill": "Indisponible",
+      "pill": "Indisponibles",
       "body": "Le fournisseur de données ne publie momentanément aucune donnée pour cette zone. Les valeurs affichées sont estimées en fonction des données historiques et seront remplacées par les données consolidées dès qu'elles seront disponibles. Veuillez noter que les valeurs estimées peuvent être inexactes car elles ne tiennent pas compte d'événements météorologiques spécifiques en temps réel."
     },
     "estimated_mode_breakdown": {
       "title": "Données estimées",
       "pill": "Incomplètes",
-      "body": "Les données relatives à la production d'électricité pour cette zone ne sont que partiellement disponible; les valeurs manquantes ont été calculées à l'aide d'un modèle d'estimation."
+      "body": "Les données relatives à la production d'électricité pour cette zone ne sont que partiellement disponibles; les valeurs manquantes ont été calculées à l'aide d'un modèle d'estimation."
     },
     "estimated_reconstruct_breakdown": {
       "title": "Les données sont toujours estimées",
@@ -143,6 +144,14 @@
     "zone-list-header-subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
     "search": "Rechercher une zone",
     "get-data": "Voir nos offres commerciales d'API"
+  },
+  "header": {
+    "get-data": "Obtenez nos données",
+    "blog": "Blog",
+    "open-source": "Open Source",
+    "hiring": "Nous recrutons !",
+    "methodology": "Methodologie",
+    "faq": "FAQ"
   },
   "country-history": {
     "carbonintensity": {
@@ -217,9 +226,9 @@
     "utilizing": "utilisant",
     "withcarbonintensity": "avec une intensité carbone de",
     "showWindLayer": "Voir le calque de vent",
-    "hideWindLayer": "Cacher le calque de vent",
+    "hideWindLayer": "Masquer le calque de vent",
     "showSolarLayer": "Voir le calque d’ensoleillement",
-    "hideSolarLayer": "Cacher le calque d’ensoleillement",
+    "hideSolarLayer": "Masquer le calque d’ensoleillement",
     "changeTheme": "Changer de thème",
     "noParserInfo": "Pas de données disponibles",
     "temporaryDataOutage": "Données temporairement indisponibles",
@@ -234,8 +243,9 @@
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
-    "aggregateInfo": "Visualiser la donnée par zone ou aggrégée par pays",
+    "aggregateInfo": "Visualiser les données par zone ou aggrégées par pays",
     "netExchange": "Echange net",
+    "price": "Prix",
     "importing": "Important",
     "exporting": "Exportant"
   },
@@ -246,7 +256,7 @@
       "windLayer": "Calque de vent",
       "solarLayer": "Calque d'ensoleillement",
       "changeTheme": "Changer le thème",
-      "hideSidePanel": "Cacher le panneau latéral",
+      "hideSidePanel": "Masquer le panneau latéral",
       "showSidePanel": "Afficher le panneau latéral"
     }
   },
@@ -268,10 +278,13 @@
     "privacyPolicy": "Politique de confidentialité",
     "legalNotice": "Informations légales",
     "dismiss": "Ignorer",
-    "reload": "Recharger"
+    "reload": "Recharger",
+    "slow-loading-text": "Chargement encore en cours, si il persiste essayez de recharger..."
   },
   "wind": "éolien",
+  "windDataError": "Les données sur le vent sont actuellement indisponibles",
   "solar": "solaire",
+  "solarDataError": "Les données solaires sont actuellement indisponibles",
   "hydro": "hydro",
   "hydro storage": "stockage hydro",
   "battery storage": "stockage batterie",
@@ -1957,7 +1970,5 @@
   "aggregateButtons": {
     "country": "pays",
     "zone": "zone"
-  },
-  "windDataError": "Les données sur le vent sont actuellement indisponibles",
-  "solarDataError": "Les données solaires sont actuellement indisponibles"
+  }
 }
