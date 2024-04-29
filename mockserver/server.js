@@ -23,7 +23,7 @@ app.get('/v8/details/:aggregate/:zoneId', (req, res, next) => {
   }
 });
 
-app.get('/v3/gfs/wind', (req, res, next) => {
+app.get('/v8/gfs/wind', (req, res, next) => {
   const { refTime, targetTime } = req.query;
 
   fs.readFile(`./public/v3/gfs/wind.json`, (err, data) => {
@@ -34,7 +34,7 @@ app.get('/v3/gfs/wind', (req, res, next) => {
   });
 });
 
-app.get('/v3/gfs/solar', (req, res, next) => {
+app.get('/v8/gfs/solar', (req, res, next) => {
   const { refTime, targetTime } = req.query;
 
   fs.readFile(`./public/v3/gfs/solar.json`, (err, data) => {
@@ -43,6 +43,10 @@ app.get('/v3/gfs/solar', (req, res, next) => {
 
     res.json(jsonData);
   });
+});
+
+app.get('/feature-flags', (req, res, next) => {
+  res.json({});
 });
 
 app.use(function (req, res, next) {
