@@ -5,9 +5,11 @@ import { FeatureFlags } from './types';
 
 export async function getFeatureFlags(): Promise<FeatureFlags> {
   const path: URL = new URL(`/${QUERY_KEYS.FEATURE_FLAGS}`, getBasePath());
-
+  const requestOptions: RequestInit = {
+    method: 'GET',
+  };
   try {
-    const response = await fetch(path);
+    const response = await fetch(path, requestOptions);
     if (response.ok) {
       const data = await response.json();
       return data;
