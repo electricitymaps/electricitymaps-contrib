@@ -218,7 +218,7 @@ importers:
         version: 4.36.1(@tanstack/react-query@4.36.1(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@testing-library/cypress':
         specifier: 10.0.1
-        version: 10.0.1(cypress@13.7.1)
+        version: 10.0.1(cypress@13.8.1)
       '@testing-library/dom':
         specifier: 9.3.4
         version: 9.3.4
@@ -304,8 +304,8 @@ importers:
         specifier: 0.1.2
         version: 0.1.2
       cypress:
-        specifier: 13.7.1
-        version: 13.7.1
+        specifier: 13.8.1
+        version: 13.8.1
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -4414,8 +4414,8 @@ packages:
   currency-symbol-map@5.1.0:
     resolution: {integrity: sha512-LO/lzYRw134LMDVnLyAf1dHE5tyO6axEFkR3TXjQIOmMkAM9YL6QsiUwuXzZAmFnuDJcs4hayOgyIYtViXFrLw==}
 
-  cypress@13.7.1:
-    resolution: {integrity: sha512-4u/rpFNxOFCoFX/Z5h+uwlkBO4mWzAjveURi3vqdSu56HPvVdyGTxGw4XKGWt399Y1JwIn9E1L9uMXQpc0o55w==}
+  cypress@13.8.1:
+    resolution: {integrity: sha512-Uk6ovhRbTg6FmXjeZW/TkbRM07KPtvM5gah1BIMp4Y2s+i/NMxgaLw0+PbYTOdw1+egE0FP3mWRiGcRkjjmhzA==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -12192,11 +12192,11 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
       react-native: 0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(react@18.2.0)
 
-  '@testing-library/cypress@10.0.1(cypress@13.7.1)':
+  '@testing-library/cypress@10.0.1(cypress@13.8.1)':
     dependencies:
       '@babel/runtime': 7.24.1
       '@testing-library/dom': 9.3.4
-      cypress: 13.7.1
+      cypress: 13.8.1
 
   '@testing-library/dom@9.3.4':
     dependencies:
@@ -14539,7 +14539,7 @@ snapshots:
 
   currency-symbol-map@5.1.0: {}
 
-  cypress@13.7.1:
+  cypress@13.8.1:
     dependencies:
       '@cypress/request': 3.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
