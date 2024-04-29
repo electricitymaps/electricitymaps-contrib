@@ -1,5 +1,6 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 
+import useGetChargingStations from 'api/getChargingStations';
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
@@ -21,6 +22,7 @@ import {
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import BackgroundLayer from './map-layers/BackgroundLayer';
+import ChargingStationsLayer from './map-layers/ChargingStationsLayer';
 import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
@@ -72,6 +74,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const { isLoading, isSuccess, isError, data } = useGetState();
+  const { data: chargingStationsGeoJSON } = useGetChargingStations();
   const { worldGeometries } = useGetGeometries();
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
@@ -107,7 +110,13 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     map?.touchZoomRotate.disableRotation();
     map?.touchPitch.disable();
-
+    map.loadImage('/icons/charging-station.png', (error, image) => {
+      if (error) {
+        throw error;
+      }
+      map.addImage('charging-station-icon', image);
+      // Add your layer code here
+    });
     if (!isSourceLoaded || isLoadingMap) {
       return;
     }
@@ -348,6 +357,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       <BackgroundLayer />
       <ZonesLayer />
       <StatesLayer />
+      <ChargingStationsLayer />
       <CustomLayer>
         <WindLayer />
       </CustomLayer>

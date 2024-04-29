@@ -14,7 +14,7 @@ export default function StatesLayer() {
     'text-halo-blur': 0.25,
     'text-opacity': 0.9,
   };
-
+  console.log('states', statesGeometries);
   return (
     <Source id="states" type="geojson" data={statesGeometries}>
       <Layer

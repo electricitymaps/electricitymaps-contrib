@@ -9,7 +9,13 @@ export default function ZonesLayer() {
   const theme = useTheme();
 
   return (
-    <Source id={ZONE_SOURCE} promoteId={'zoneId'} type="geojson" data={worldGeometries}>
+    <Source
+      id={ZONE_SOURCE}
+      promoteId={'zoneId'}
+      type="geojson"
+      data={worldGeometries}
+      // filter={['within', ['geometry'], ['geometry', ['source', 'charging-stations']]]} // Check if charging station point is within the zone geometry
+    >
       <Layer
         id="zones-clickable-layer"
         type="fill"
