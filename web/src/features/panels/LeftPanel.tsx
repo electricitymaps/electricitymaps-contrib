@@ -97,8 +97,9 @@ function MobileHeader() {
 
 function OuterPanel({ children }: { children: React.ReactNode }) {
   const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
-  const onCollapse = () => setOpen(!isOpen);
   const location = useLocation();
+
+  const onCollapse = () => setOpen(!isOpen);
 
   return (
     <aside
