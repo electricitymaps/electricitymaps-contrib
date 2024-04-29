@@ -45,9 +45,9 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc).isoformat()
-    timestamp = datetime.fromisoformat(target_datetime).replace(
-        minute=0, second=0, microsecond=0, tzinfo=TIMEZONE
+        target_datetime = datetime.now(timezone.utc)
+    timestamp = target_datetime.replace(minute=0, second=0, microsecond=0).astimezone(
+        TIMEZONE
     )
 
     # GET the landing page (HTML) and scrape some form data from it.
