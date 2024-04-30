@@ -514,7 +514,6 @@ def fetch_production(
                 else:
                     entry["production"]["wind"] = None
 
-    required = ["coal", "gas", "nuclear", "wind"]
     expected_range = {
         # Historical data might be above the current capacity for coal
         "coal": (0, 20000),
@@ -522,11 +521,7 @@ def fetch_production(
         "nuclear": (100, 56000),
         "wind": (0, 600000),
     }
-    data = [
-        x
-        for x in data
-        if validate(x, logger, required=required, expected_range=expected_range)
-    ]
+    data = [x for x in data if validate(x, logger, expected_range=expected_range)]
 
     return data
 

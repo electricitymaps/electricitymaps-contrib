@@ -505,7 +505,6 @@ export const IncludesStorage: Story = {
     layerKeys: Object.keys(includesStorageData[0].layerData),
     layerFill,
     selectedTimeAggregate: TimeAverages.HOURLY,
-    valueAxisLabel: `€ / ${EnergyUnits.MEGAWATT_HOURS}`,
     isMobile: false,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),
