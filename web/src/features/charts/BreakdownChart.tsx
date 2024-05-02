@@ -5,6 +5,7 @@ import { CircleBoltIcon } from 'icons/circleBoltIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
+import trackEvent from 'utils/analytics';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
@@ -110,6 +111,13 @@ function BreakdownChart({
       />
       <Divider />
       <Accordion
+        onClick={() => {
+          trackEvent('Data Sources Clicked', {
+            chart: displayByEmissions
+              ? 'emission-origin-chart'
+              : 'electricity-origin-chart',
+          });
+        }}
         title={t('data-sources.title')}
         className="text-md"
         isCollapsedAtom={dataSourcesCollapsedBreakdown}
