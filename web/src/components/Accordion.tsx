@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { PrimitiveAtom, useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
 
@@ -20,20 +21,27 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
-  isCollapsedAtom: PrimitiveAtom<boolean | undefined>;
+  isCollapsedAtom?: PrimitiveAtom<boolean>;
 }) {
-  const [isCollapsed, setIsCollapsed] = useAtom(isCollapsedAtom);
+  const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
+    ? useAtom(isCollapsedAtom)
+    : [null, null];
+  const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
+
   useEffect(() => {
-    if (isCollapsed === undefined) {
-      setIsCollapsed(isCollapsedDefault);
+    if (collapsedAtom !== null) {
+      setIsCollapsed(collapsedAtom);
     }
-  }, [isCollapsed, isCollapsedDefault, setIsCollapsed]);
+  }, [collapsedAtom]);
 
   const handleToggleCollapse = () => {
     if (onClick != undefined) {
       onClick();
     }
-    setIsCollapsed((previous: boolean | undefined) => !previous);
+    setIsCollapsed((previous: boolean) => !previous);
+    if (setCollapsedAtom != null) {
+      setCollapsedAtom((previous: boolean) => !previous);
+    }
   };
 
   return (
