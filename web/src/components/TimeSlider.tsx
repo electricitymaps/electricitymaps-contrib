@@ -72,8 +72,10 @@ export const getThumbIcon = (
   return isValueAtNight ? 'slider-thumb-night.svg' : 'slider-thumb-day.svg';
 };
 
-function trackTimeSliderEvent(selectedIndex: number) {
-  trackEvent('Time Slider Button Interaction', { selectedIndex });
+function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
+  trackEvent('Time Slider Button Interaction', {
+    selectedIndex: `${timeAverage} :${selectedIndex}`,
+  });
 }
 
 export type TimeSliderBasicProps = TimeSliderProps & {
@@ -87,6 +89,7 @@ export function TimeSliderBasic({
   trackBackground,
   thumbIcon,
 }: TimeSliderBasicProps) {
+  const [timeAverage] = useAtom(timeAverageAtom);
   return (
     <SliderPrimitive.Root
       defaultValue={[0]}
@@ -95,7 +98,7 @@ export function TimeSliderBasic({
       value={selectedIndex && selectedIndex > 0 ? [selectedIndex] : [0]}
       onValueChange={(value) => {
         onChange(value[0]);
-        trackTimeSliderEvent(value[0]);
+        trackTimeSliderEvent(value[0], timeAverage);
       }}
       aria-label="choose time"
       className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
