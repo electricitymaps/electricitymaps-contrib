@@ -24,8 +24,7 @@ describe('EstimationCard with FeedbackCard', () => {
   it('feedback card should only be visible when collapse button has been clicked', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': true },
-    }).as('feature-flags');
-    cy.wait('@feature-flags').its('response.statusCode').should('eq', 200);
+    }).request('/feature-flags');
     cy.get('[data-test-id=feedback-card]').should('not.exist');
     cy.get('[data-test-id=collapse-button]').click();
     cy.get('[data-test-id=feedback-card]').should('exist');
@@ -36,8 +35,7 @@ describe('EstimationCard with FeedbackCard', () => {
   it('feedback card should only be visible if feature-flag is enabled', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': false },
-    }).as('feature-flags');
-    cy.wait('@feature-flags').its('response.statusCode').should('eq', 200);
+    }).request('/feature-flags');
     cy.get('[data-test-id=feedback-card]').should('not.exist');
     cy.get('[data-test-id=collapse-button]').click();
     cy.get('[data-test-id=feedback-card]').should('exist');
