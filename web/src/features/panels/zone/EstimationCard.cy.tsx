@@ -25,6 +25,7 @@ describe('EstimationCard with FeedbackCard', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': true },
     });
+    cy.waitForAPISuccess('/feature-flags');
     cy.get('[data-test-id=feedback-card]').should('not.exist');
     cy.get('[data-test-id=collapse-button]').click();
     cy.get('[data-test-id=feedback-card]').should('exist');
@@ -36,6 +37,7 @@ describe('EstimationCard with FeedbackCard', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': false },
     });
+    cy.waitForAPISuccess('/feature-flags');
     cy.get('[data-test-id=feedback-card]').should('not.exist');
     cy.get('[data-test-id=collapse-button]').click();
     cy.get('[data-test-id=feedback-card]').should('exist');
