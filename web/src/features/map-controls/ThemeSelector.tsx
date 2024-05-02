@@ -3,6 +3,7 @@ import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { BsMoonStars } from 'react-icons/bs';
 import { HiOutlineComputerDesktop, HiOutlineSun } from 'react-icons/hi2';
+import trackEvent from 'utils/analytics';
 import { ThemeOptions } from 'utils/constants';
 import { themeAtom } from 'utils/state/atoms';
 
@@ -26,6 +27,7 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
 
   const handleThemeChange = (mode: ThemeOptions) => {
     setSelectedTheme(mode);
+    trackEvent('Theme Selected', { theme: mode });
   };
 
   return (
