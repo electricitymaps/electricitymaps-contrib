@@ -5,10 +5,10 @@ import * as Sentry from '@sentry/react';
 import { useGetAppVersion } from 'api/getAppVersion';
 import useGetState from 'api/getState';
 import LoadingOverlay from 'components/LoadingOverlay';
+import MapCardContainer from 'components/MapCardContainer';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
-import FeatureFlagsManager from 'features/feature-flags/FeatureFlagsManager';
 import Header from 'features/header/Header';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
@@ -104,12 +104,7 @@ export default function App(): ReactElement {
               <Suspense>
                 <TimeControllerWrapper />
               </Suspense>
-              <Suspense>
-                <FeatureFlagsManager />
-              </Suspense>
-              <Suspense>
-                <LegendContainer />
-              </Suspense>
+              <MapCardContainer />
             </Sentry.ErrorBoundary>
           </div>
         </ToastProvider>
