@@ -74,7 +74,7 @@ export const getThumbIcon = (
 
 function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
   trackEvent('Time Slider Button Interaction', {
-    selectedIndex: `${timeAverage} :${selectedIndex}`,
+    selectedIndex: `${timeAverage}: ${selectedIndex}`,
   });
 }
 
