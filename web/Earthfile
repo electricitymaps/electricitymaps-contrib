@@ -9,7 +9,7 @@ src-files:
 
 api-files:
   COPY geo/world.geojson ./geo/world.geojson
-  COPY public/locales/en.json ./public/locales/en.json
+  COPY src/locales/en.json ./public/locales/en.json
   SAVE ARTIFACT .
 
 prepare:
