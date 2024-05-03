@@ -110,7 +110,7 @@ jobs:
           npm install -g jsonlint-mod
       - name: Lint json
         run: |
-          jsonlint -q web/public/locales/*.json
+          jsonlint -q web/src/locales/*.json
 
   #                 #
   # Frontend checks #

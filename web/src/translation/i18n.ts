@@ -7,7 +7,7 @@ import { localeToFacebookLocale } from 'translation/locales';
 // Init localisation package and ensure it uses relevant plugins
 // eslint-disable-next-line import/no-named-as-default-member
 i18n
-  .use(resourcesToBackend((language) => import(`../locales/${language}.json`)))
+  .use(resourcesToBackend((language: string) => import(`../locales/${language}.json`)))
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
