@@ -18,7 +18,8 @@ updates:
     directories:
       - '/web'
       - '/mockserver'
-      - '/mobileapp'
+      # The mobile app still needs to be tested manually.
+      #- '/mobileapp'
     schedule:
       interval: 'monthly'
     open-pull-requests-limit: 15
