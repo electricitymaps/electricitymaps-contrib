@@ -1,25 +1,17 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import HttpApi from 'i18next-http-backend';
+import resourcesToBackend from 'i18next-resources-to-backend';
 import { initReactI18next } from 'react-i18next';
 import { localeToFacebookLocale } from 'translation/locales';
-
-// eslint-disable-next-line no-constant-condition
-const LOCALES_PATH = 'window.isCordova' ? 'locales' : '/locales'; // TODO test on mobile
 
 // Init localisation package and ensure it uses relevant plugins
 // eslint-disable-next-line import/no-named-as-default-member
 i18n
-  .use(HttpApi)
+  .use(resourcesToBackend((language) => import(`../locales/${language}.json`)))
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    backend: {
-      loadPath: `/${LOCALES_PATH}/{{lng}}.json`,
-      crossDomain: true,
-      // request: requestWithXmlHttpRequest, // TODO: test on mobile, if issue check out [INSERT PR]
-    },
     detection: {
       order: ['querystring', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       lookupQuerystring: 'lang',
