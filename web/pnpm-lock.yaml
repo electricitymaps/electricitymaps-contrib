@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@capacitor/app':
-        specifier: ^4.1.1
-        version: 4.1.1(@capacitor/core@4.8.1)
+        specifier: ^6.0.0
+        version: 6.0.0(@capacitor/core@6.0.0)
       '@capacitor/core':
-        specifier: ^4.8.1
-        version: 4.8.1
+        specifier: ^6.0.0
+        version: 6.0.0
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -1163,13 +1163,13 @@ packages:
   '@bundled-es-modules/statuses@1.0.1':
     resolution: {integrity: sha512-yn7BklA5acgcBr+7w064fGV+SGIFySjCKpqjcWgBAIfrAkY+4GQTJJHQMeT3V/sgz23VTEVV8TtOmkvJAhFVfg==}
 
-  '@capacitor/app@4.1.1':
-    resolution: {integrity: sha512-SJcJA1rhFQyeH6eLfUEbdKkHzAwzahJNVPNXmU88fdmXpMgM2dJGzZj1vrm6e21aQq+Z4aBVLJ2RCdj92zD7wg==}
+  '@capacitor/app@6.0.0':
+    resolution: {integrity: sha512-X5UGd90Jh5p9rmoPyMqFyFWqOypdJgVJhYcM5X1YyDVJJGzmJ5MuYv1+ajj5DW9Qyh+5a3th9WYptdGby8jidA==}
     peerDependencies:
-      '@capacitor/core': ^4.0.0
+      '@capacitor/core': ^6.0.0
 
-  '@capacitor/core@4.8.1':
-    resolution: {integrity: sha512-GIUGw1P2Iyh4jb8ZAIWRPtR2zH6ARcpwN5pn/vmIJiTujQBMQmF62s5L3m4XMQSVKlbw8iCPi/YKjlUL+EjKhA==}
+  '@capacitor/core@6.0.0':
+    resolution: {integrity: sha512-NvxIQsJcMiIV+Le1DilR2GGyQQbDInfXK1UywGROQ5mycdFlW5XoAPZ+MKnFGB123RoEgE3uhDGgwTXUmSlX9A==}
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -9711,11 +9711,11 @@ snapshots:
     dependencies:
       statuses: 2.0.1
 
-  '@capacitor/app@4.1.1(@capacitor/core@4.8.1)':
+  '@capacitor/app@6.0.0(@capacitor/core@6.0.0)':
     dependencies:
-      '@capacitor/core': 4.8.1
+      '@capacitor/core': 6.0.0
 
-  '@capacitor/core@4.8.1':
+  '@capacitor/core@6.0.0':
     dependencies:
       tslib: 2.6.2
 
