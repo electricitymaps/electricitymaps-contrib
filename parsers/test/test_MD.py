@@ -8,7 +8,13 @@ from freezegun import freeze_time
 from requests_mock import ANY, GET, Adapter
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.MD import fetch_consumption, fetch_exchange, fetch_price, fetch_production
+from parsers.MD import (
+    fetch_consumption,
+    fetch_exchange,
+    fetch_exchange_forecast,
+    fetch_price,
+    fetch_production,
+)
 
 # the datetime corresponding to our mock live API response
 frozen_live_time = freeze_time("2024-04-11 06:32:00")
@@ -146,6 +152,72 @@ def test_fetch_exchange_historical(snapshot, fixture_session_mock, neighbour):
                 "sourceType": exchange["sourceType"].value,
             }
             for exchange in exchanges
+        ]
+    )
+
+
+@pytest.mark.parametrize("neighbour", ["RO", "UA"])
+@frozen_live_time
+def test_fetch_exchange_forecast_live(snapshot, fixture_session_mock, neighbour):
+    session, adapter = fixture_session_mock
+    adapter.register_uri(
+        GET,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.MD")
+            .joinpath("moldoelectrica_api_live.json")
+            .read_text()
+        ),
+    )
+
+    exchange_forecasts = fetch_exchange_forecast(
+        ZoneKey("MD"), ZoneKey(neighbour), session=session
+    )
+
+    snapshot.assert_match(
+        [
+            {
+                "datetime": exchange["datetime"].isoformat(),
+                "sortedZoneKeys": exchange["sortedZoneKeys"],
+                "netFlow": exchange["netFlow"],
+                "source": exchange["source"],
+                "sourceType": exchange["sourceType"].value,
+            }
+            for exchange in exchange_forecasts
+        ]
+    )
+
+
+@pytest.mark.parametrize("neighbour", ["RO", "UA"])
+def test_fetch_exchange_forecast_historical(snapshot, fixture_session_mock, neighbour):
+    session, adapter = fixture_session_mock
+    adapter.register_uri(
+        GET,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.MD")
+            .joinpath("moldoelectrica_api_historical_20210725.json")
+            .read_text()
+        ),
+    )
+
+    exchange_forecasts = fetch_exchange_forecast(
+        ZoneKey("MD"),
+        ZoneKey(neighbour),
+        target_datetime=historical_datetime,
+        session=session,
+    )
+
+    snapshot.assert_match(
+        [
+            {
+                "datetime": exchange["datetime"].isoformat(),
+                "sortedZoneKeys": exchange["sortedZoneKeys"],
+                "netFlow": exchange["netFlow"],
+                "source": exchange["source"],
+                "sourceType": exchange["sourceType"].value,
+            }
+            for exchange in exchange_forecasts
         ]
     )
 

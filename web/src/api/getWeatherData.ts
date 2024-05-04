@@ -59,7 +59,7 @@ export async function fetchGfsForecast(
 ): Promise<GfsForecastResponse> {
   const targetTime = targetTimeFunction[period](endTime);
 
-  const path: URL = new URL(`v3/gfs/${resource}`, getBasePath());
+  const path: URL = new URL(`v8/gfs/${resource}`, getBasePath());
   path.searchParams.append('refTime', startTime.toISOString());
   path.searchParams.append('targetTime', targetTime);
 
@@ -70,9 +70,7 @@ export async function fetchGfsForecast(
   const response = await fetch(path, requestOptions);
   if (response.ok) {
     const { data } = await response.json();
-    // TODO: Change this on backend instead
-    // Convert solar data to array to ensure that data is consistent between weather layers
-    return resource === 'solar' ? [data] : data;
+    return data;
   }
 
   if (retries >= 3 || response.status !== 404) {

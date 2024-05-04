@@ -1,8 +1,13 @@
+import Accordion from 'components/Accordion';
+import Divider from 'features/panels/zone/Divider';
 import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
+import { IndustryIcon } from 'icons/industryIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
+import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
+import { DataSources } from './bar-breakdown/DataSources';
 import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -16,7 +21,8 @@ interface EmissionChartProps {
 }
 
 function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
-  const { data, isLoading, isError } = useEmissionChartData();
+  const { data, emissionSourceToProductionSource, isLoading, isError } =
+    useEmissionChartData();
   const { t } = useTranslation();
   if (isLoading || isError || !data) {
     return null;
@@ -35,13 +41,13 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         translationKey="country-history.emissions"
         badgeText={badgeText}
         icon={<CloudArrowUpIcon />}
+        unit={'CO₂eq'}
       />
       <AreaGraph
         testId="history-emissions-graph"
         data={chartData}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        valueAxisLabel="CO₂eq"
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         datetimes={datetimes}
@@ -51,6 +57,18 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         tooltip={EmissionChartTooltip}
         formatTick={formatAxisTick}
       />
+      <Divider />
+      <Accordion
+        title={t('data-sources.title')}
+        className="text-md"
+        isCollapsedAtom={dataSourcesCollapsedEmission}
+      >
+        <DataSources
+          title={t('data-sources.emission')}
+          icon={<IndustryIcon />}
+          sources={[...emissionSourceToProductionSource.keys()].sort()}
+        />
+      </Accordion>
     </GraphCard>
   );
 }

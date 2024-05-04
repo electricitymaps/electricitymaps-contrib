@@ -1,10 +1,15 @@
+import Accordion from 'components/Accordion';
 import { max, sum } from 'd3-array';
+import Divider from 'features/panels/zone/Divider';
 import { CircleBoltIcon } from 'icons/circleBoltIcon';
+import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { Mode, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
+import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
+import { DataSources } from './bar-breakdown/DataSources';
 import { GraphCard } from './bar-breakdown/GraphCard';
 import ProductionSourceLegendList from './bar-breakdown/ProductionSourceLegendList';
 import { ChartTitle } from './ChartTitle';
@@ -26,7 +31,7 @@ function BreakdownChart({
   datetimes,
   timeAverage,
 }: BreakdownChartProps) {
-  const { data, mixMode } = useBreakdownChartData();
+  const { sources, data, mixMode } = useBreakdownChartData();
   const { t } = useTranslation();
 
   if (!data) {
@@ -64,6 +69,7 @@ function BreakdownChart({
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badgeText={badgeText}
         icon={<CircleBoltIcon />}
+        unit={valueAxisLabel}
       />
       <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
@@ -80,7 +86,6 @@ function BreakdownChart({
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
-          valueAxisLabel={valueAxisLabel}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
           isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
@@ -99,7 +104,22 @@ function BreakdownChart({
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
-      <ProductionSourceLegendList sources={getProductionSourcesInChart(chartData)} />
+      <ProductionSourceLegendList
+        sources={getProductionSourcesInChart(chartData)}
+        className="py-1.5"
+      />
+      <Divider />
+      <Accordion
+        title={t('data-sources.title')}
+        className="text-md"
+        isCollapsedAtom={dataSourcesCollapsedBreakdown}
+      >
+        <DataSources
+          title={t('data-sources.power')}
+          icon={<WindTurbineIcon />}
+          sources={sources}
+        />
+      </Accordion>
     </GraphCard>
   );
 }

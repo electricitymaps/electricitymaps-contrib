@@ -43,7 +43,7 @@ describe('Country Panel', () => {
 
     cy.get('[data-test-id=details-carbon-graph]').trigger('mouseout');
     cy.get('[data-test-id=details-carbon-graph]').trigger('mousemove', 'center');
-    cy.get('[data-test-id=carbon-chart-tooltip]').should('contain.text', '141');
+    cy.get('[data-test-id=carbon-chart-tooltip]').should('contain.text', '130');
     cy.get('[data-test-id=details-carbon-graph]').trigger('mouseout');
 
     // cy.get('[data-test-id=time-slider-input] ').setSliderValue(1_661_306_400_000);

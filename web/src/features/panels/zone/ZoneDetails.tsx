@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
+import { ZoneMessage } from 'types';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -80,9 +81,9 @@ export default function ZoneDetails(): JSX.Element {
             <EstimationCard
               cardType={cardType}
               estimationMethod={estimationMethod}
-              outageMessage={zoneMessage}
+              zoneMessage={zoneMessage}
               estimatedPercentage={selectedData?.estimatedPercentage}
-            ></EstimationCard>
+            />
           )}
         <ZoneHeaderGauges data={data} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
@@ -135,13 +136,14 @@ function getCardType({
   timeAverage,
 }: {
   estimationMethod: string | undefined;
-  zoneMessage: { message: string; issue: string } | undefined;
+  zoneMessage?: ZoneMessage;
   timeAverage: TimeAverages;
 }): 'estimated' | 'aggregated' | 'outage' | 'none' {
   if (
-    zoneMessage !== undefined &&
-    zoneMessage?.message !== undefined &&
-    zoneMessage?.issue !== undefined
+    (zoneMessage !== undefined &&
+      zoneMessage?.message !== undefined &&
+      zoneMessage?.issue !== undefined) ||
+    estimationMethod === 'threshold_filtered'
   ) {
     return 'outage';
   }

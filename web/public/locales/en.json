@@ -122,7 +122,7 @@
   "estimation-card": {
     "link": "Read about our estimation models",
     "outage-details": "See details",
-    "estimated_forecast_hierarchy": {
+    "estimated_forecasts_hierarchy": {
       "title": "Data is estimated",
       "pill": "Estimated",
       "body": "The data for this zone is estimated using a combination of internal and external production forecasts and Time Slicer Averages. This aims to provide a more accurate representation than Time Slicer Average alone but the data may still be subject to inaccuracies. The data will be updated as soon as real-time data becomes available."
@@ -160,7 +160,7 @@
     "threshold_filtered": {
       "title": "Missing data",
       "pill": "Data outage",
-      "body": "The data provider for this zone has been missing data for a prolonged period. We are monitoring the issue and the zone will update as soon as data becomes available again."
+      "body": "The data provider for this zone has been missing data for a prolonged period. We are monitoring the issue and will update the zone as soon as the data meets our quality threshold again."
     },
     "outage": {
       "title": "Ongoing issues",

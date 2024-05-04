@@ -88,13 +88,10 @@ def validate_production_data(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """detects outliers: for real-time data the latest data point can be completely out of the expected range and needs to be excluded"""
-    required = list(PRODUCTION_MAPPING)
     floor = (
         17000  # as seen during the Covid-19 pandemic, the minimum production was 17 GW
     )
-    all_data_points_validated = [
-        x for x in data if validate(x, logger, required=required, floor=floor)
-    ]
+    all_data_points_validated = [x for x in data if validate(x, logger, floor=floor)]
     if exclude_last_data_point:
         all_data_points_validated = all_data_points_validated[:-1]
     return all_data_points_validated
