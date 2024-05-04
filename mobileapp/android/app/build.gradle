@@ -8,7 +8,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.tmrow.electricitymap"
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.tmrow.electricitymap"
         minSdkVersion rootProject.ext.minSdkVersion

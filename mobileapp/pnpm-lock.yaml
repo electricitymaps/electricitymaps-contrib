@@ -9,24 +9,24 @@ importers:
   .:
     dependencies:
       '@capacitor/android':
-        specifier: ^5.7.5
-        version: 5.7.5(@capacitor/core@5.7.5)
+        specifier: ^6.0.0
+        version: 6.0.0(@capacitor/core@6.0.0)
       '@capacitor/app':
-        specifier: ^5.0.7
-        version: 5.0.7(@capacitor/core@5.7.5)
+        specifier: ^6.0.0
+        version: 6.0.0(@capacitor/core@6.0.0)
       '@capacitor/core':
-        specifier: ^5.7.5
-        version: 5.7.5
+        specifier: ^6.0.0
+        version: 6.0.0
       '@capacitor/ios':
-        specifier: ^5.7.5
-        version: 5.7.5(@capacitor/core@5.7.5)
+        specifier: ^6.0.0
+        version: 6.0.0(@capacitor/core@6.0.0)
     devDependencies:
       '@capacitor/assets':
         specifier: ^1.0.14
         version: 1.0.14(@types/node@18.19.31)(typescript@4.9.5)
       '@capacitor/cli':
-        specifier: ^5.7.5
-        version: 5.7.5
+        specifier: ^6.0.0
+        version: 6.0.0
       '@types/node':
         specifier: ^18.19.31
         version: 18.19.31
@@ -48,15 +48,15 @@ packages:
     resolution: {integrity: sha512-8lLmua6AVh/8SLJRRVD6V8p73Hir9w5mJrhE+IPpILG31KKlI9iz5zmBYKcWPS59qSfgP9RaSBQSHHE81WKuEw==}
     engines: {node: '>=6.9.0'}
 
-  '@capacitor/android@5.7.5':
-    resolution: {integrity: sha512-VKb9VarGA2hJ8PuLk4EhSq4jvgM+V8JOoNw00WdD6Q4rbgDKSa7WIKTw75sFrNRGiwHSZ99FPvmisJfr1Spk+Q==}
+  '@capacitor/android@6.0.0':
+    resolution: {integrity: sha512-NwL87VO9F1WY/EgvJZN9pIhjejq688k2fRW6XWNLVe3cgGE6nUb9J34KI68fhx3139cf2LVGPUYs+mwZC8esiQ==}
     peerDependencies:
-      '@capacitor/core': ^5.7.0
+      '@capacitor/core': ^6.0.0
 
-  '@capacitor/app@5.0.7':
-    resolution: {integrity: sha512-oad0jwQu+vgQDukeS9UV56yG10dlxkAGGl26IQpZlTmg3dTI9qSJtvhmlLfkF0nEtoj5IsVQUPE+NLH1oZkgGQ==}
+  '@capacitor/app@6.0.0':
+    resolution: {integrity: sha512-X5UGd90Jh5p9rmoPyMqFyFWqOypdJgVJhYcM5X1YyDVJJGzmJ5MuYv1+ajj5DW9Qyh+5a3th9WYptdGby8jidA==}
     peerDependencies:
-      '@capacitor/core': ^5.0.0
+      '@capacitor/core': ^6.0.0
 
   '@capacitor/assets@1.0.14':
     resolution: {integrity: sha512-vP4KXrttcliE6tewY42MNdSIrI7+HbBpZ0DeiTIl+rw4dPByu5O34TQndB1Oj/NsjbSdaq1RF/mlfUycQ0Zc/Q==}
@@ -68,18 +68,18 @@ packages:
     engines: {node: '>=12.4.0'}
     hasBin: true
 
-  '@capacitor/cli@5.7.5':
-    resolution: {integrity: sha512-CEgCXq3NNacS+9EptJXM+Cm915oB8eNPhiTP7ylKsQchrY0CGbeyO5y4A/oYnB/h4f+UiaX3ShlIOljx3+agqw==}
-    engines: {node: '>=16.0.0'}
+  '@capacitor/cli@6.0.0':
+    resolution: {integrity: sha512-6z30P0mr53l0VXPwFjzDVuKIt1991bqUSSfShTT2efWN+rBSGSAH2bPID6qSZornH1n5R5Lh/UHq/aGuW523MQ==}
+    engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@capacitor/core@5.7.5':
-    resolution: {integrity: sha512-babBo26lgIyKkAOr/AbPq5wwi9I4uHDP0lBteJq7p4xZElA6tAA8mD3xRH1/4EKmZ4+acYpKmmyegX3zsVh37A==}
+  '@capacitor/core@6.0.0':
+    resolution: {integrity: sha512-NvxIQsJcMiIV+Le1DilR2GGyQQbDInfXK1UywGROQ5mycdFlW5XoAPZ+MKnFGB123RoEgE3uhDGgwTXUmSlX9A==}
 
-  '@capacitor/ios@5.7.5':
-    resolution: {integrity: sha512-mREcvv4XC9USSAbYmf/2Lmbr52eZjMDpKYwxwi2CKLJXGXNjYfJaHm6jnPordAl6kZdm3Bm/tnx+rYpb9KptGA==}
+  '@capacitor/ios@6.0.0':
+    resolution: {integrity: sha512-7mAs3gjWiE5DPM4AGPduqFSDGXCPwwqQRMzbohVway7/cTWnHomHV8mIojMZE4GILeWO2fILbyu3C8q9pHg2vg==}
     peerDependencies:
-      '@capacitor/core': ^5.7.0
+      '@capacitor/core': ^6.0.0
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -93,29 +93,61 @@ packages:
     resolution: {integrity: sha512-TshtaFQsovB4NWRBydbNFawql6yul7d5bMiW1WYYf17hd99V6xdDdk3vtF51bw6sLkxON3bDQpWsnUc9/hVo3g==}
     engines: {node: '>=16.0.0'}
 
+  '@ionic/utils-array@2.1.5':
+    resolution: {integrity: sha512-HD72a71IQVBmQckDwmA8RxNVMTbxnaLbgFOl+dO5tbvW9CkkSFCv41h6fUuNsSEVgngfkn0i98HDuZC8mk+lTA==}
+    engines: {node: '>=10.3.0'}
+
   '@ionic/utils-array@2.1.6':
     resolution: {integrity: sha512-0JZ1Zkp3wURnv8oq6Qt7fMPo5MpjbLoUoa9Bu2Q4PJuSDWM8H8gwF3dQO7VTeUj3/0o1IB1wGkFWZZYgUXZMUg==}
     engines: {node: '>=16.0.0'}
+
+  '@ionic/utils-fs@3.1.6':
+    resolution: {integrity: sha512-eikrNkK89CfGPmexjTfSWl4EYqsPSBh0Ka7by4F0PLc1hJZYtJxUZV3X4r5ecA8ikjicUmcbU7zJmAjmqutG/w==}
+    engines: {node: '>=10.3.0'}
 
   '@ionic/utils-fs@3.1.7':
     resolution: {integrity: sha512-2EknRvMVfhnyhL1VhFkSLa5gOcycK91VnjfrTB0kbqkTFCOXyXgVLI5whzq7SLrgD9t1aqos3lMMQyVzaQ5gVA==}
     engines: {node: '>=16.0.0'}
 
+  '@ionic/utils-object@2.1.5':
+    resolution: {integrity: sha512-XnYNSwfewUqxq+yjER1hxTKggftpNjFLJH0s37jcrNDwbzmbpFTQTVAp4ikNK4rd9DOebX/jbeZb8jfD86IYxw==}
+    engines: {node: '>=10.3.0'}
+
   '@ionic/utils-object@2.1.6':
     resolution: {integrity: sha512-vCl7sl6JjBHFw99CuAqHljYJpcE88YaH2ZW4ELiC/Zwxl5tiwn4kbdP/gxi2OT3MQb1vOtgAmSNRtusvgxI8ww==}
     engines: {node: '>=16.0.0'}
+
+  '@ionic/utils-process@2.1.10':
+    resolution: {integrity: sha512-mZ7JEowcuGQK+SKsJXi0liYTcXd2bNMR3nE0CyTROpMECUpJeAvvaBaPGZf5ERQUPeWBVuwqAqjUmIdxhz5bxw==}
+    engines: {node: '>=10.3.0'}
 
   '@ionic/utils-process@2.1.11':
     resolution: {integrity: sha512-Uavxn+x8j3rDlZEk1X7YnaN6wCgbCwYQOeIjv/m94i1dzslqWhqIHEqxEyeE8HsT5Negboagg7GtQiABy+BLbA==}
     engines: {node: '>=16.0.0'}
 
+  '@ionic/utils-process@2.1.12':
+    resolution: {integrity: sha512-Jqkgyq7zBs/v/J3YvKtQQiIcxfJyplPgECMWgdO0E1fKrrH8EF0QGHNJ9mJCn6PYe2UtHNS8JJf5G21e09DfYg==}
+    engines: {node: '>=16.0.0'}
+
+  '@ionic/utils-stream@3.1.5':
+    resolution: {integrity: sha512-hkm46uHvEC05X/8PHgdJi4l4zv9VQDELZTM+Kz69odtO9zZYfnt8DkfXHJqJ+PxmtiE5mk/ehJWLnn/XAczTUw==}
+    engines: {node: '>=10.3.0'}
+
   '@ionic/utils-stream@3.1.6':
     resolution: {integrity: sha512-4+Kitey1lTA1yGtnigeYNhV/0tggI3lWBMjC7tBs1K9GXa/q7q4CtOISppdh8QgtOhrhAXS2Igp8rbko/Cj+lA==}
     engines: {node: '>=16.0.0'}
 
+  '@ionic/utils-subprocess@2.1.11':
+    resolution: {integrity: sha512-6zCDixNmZCbMCy5np8klSxOZF85kuDyzZSTTQKQP90ZtYNCcPYmuFSzaqDwApJT4r5L3MY3JrqK1gLkc6xiUPw==}
+    engines: {node: '>=10.3.0'}
+
   '@ionic/utils-subprocess@2.1.14':
     resolution: {integrity: sha512-nGYvyGVjU0kjPUcSRFr4ROTraT3w/7r502f5QJEsMRKTqa4eEzCshtwRk+/mpASm0kgBN5rrjYA5A/OZg8ahqg==}
     engines: {node: '>=16.0.0'}
+
+  '@ionic/utils-terminal@2.3.3':
+    resolution: {integrity: sha512-RnuSfNZ5fLEyX3R5mtcMY97cGD1A0NVBbarsSQ6yMMfRJ5YHU7hHVyUfvZeClbqkBC/pAqI/rYJuXKCT9YeMCQ==}
+    engines: {node: '>=10.3.0'}
 
   '@ionic/utils-terminal@2.3.4':
     resolution: {integrity: sha512-cEiMFl3jklE0sW60r8JHH3ijFTwh/jkdEKWbylSyExQwZ8pPuwoXz7gpkWoJRLuoRHHSvg+wzNYyPJazIHfoJA==}
@@ -1698,13 +1730,13 @@ snapshots:
       js-tokens: 4.0.0
       picocolors: 1.0.0
 
-  '@capacitor/android@5.7.5(@capacitor/core@5.7.5)':
+  '@capacitor/android@6.0.0(@capacitor/core@6.0.0)':
     dependencies:
-      '@capacitor/core': 5.7.5
+      '@capacitor/core': 6.0.0
 
-  '@capacitor/app@5.0.7(@capacitor/core@5.7.5)':
+  '@capacitor/app@6.0.0(@capacitor/core@6.0.0)':
     dependencies:
-      '@capacitor/core': 5.7.5
+      '@capacitor/core': 6.0.0
 
   '@capacitor/assets@1.0.14(@types/node@18.19.31)(typescript@4.9.5)':
     dependencies:
@@ -1749,11 +1781,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@capacitor/cli@5.7.5':
+  '@capacitor/cli@6.0.0':
     dependencies:
       '@ionic/cli-framework-output': 2.2.8
       '@ionic/utils-fs': 3.1.7
-      '@ionic/utils-subprocess': 2.1.14
+      '@ionic/utils-process': 2.1.12
+      '@ionic/utils-subprocess': 2.1.11
       '@ionic/utils-terminal': 2.3.5
       commander: 9.5.0
       debug: 4.3.4
@@ -1771,13 +1804,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@capacitor/core@5.7.5':
+  '@capacitor/core@6.0.0':
     dependencies:
       tslib: 2.6.2
 
-  '@capacitor/ios@5.7.5(@capacitor/core@5.7.5)':
+  '@capacitor/ios@6.0.0(@capacitor/core@6.0.0)':
     dependencies:
-      '@capacitor/core': 5.7.5
+      '@capacitor/core': 6.0.0
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -1793,9 +1826,25 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@ionic/utils-array@2.1.5':
+    dependencies:
+      debug: 4.3.4
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
   '@ionic/utils-array@2.1.6':
     dependencies:
       debug: 4.3.4
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
+  '@ionic/utils-fs@3.1.6':
+    dependencies:
+      '@types/fs-extra': 8.1.5
+      debug: 4.3.4
+      fs-extra: 9.1.0
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
@@ -1809,9 +1858,27 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@ionic/utils-object@2.1.5':
+    dependencies:
+      debug: 4.3.4
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
   '@ionic/utils-object@2.1.6':
     dependencies:
       debug: 4.3.4
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
+  '@ionic/utils-process@2.1.10':
+    dependencies:
+      '@ionic/utils-object': 2.1.5
+      '@ionic/utils-terminal': 2.3.3
+      debug: 4.3.4
+      signal-exit: 3.0.7
+      tree-kill: 1.2.2
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
@@ -1827,8 +1894,39 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@ionic/utils-process@2.1.12':
+    dependencies:
+      '@ionic/utils-object': 2.1.6
+      '@ionic/utils-terminal': 2.3.5
+      debug: 4.3.4
+      signal-exit: 3.0.7
+      tree-kill: 1.2.2
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
+  '@ionic/utils-stream@3.1.5':
+    dependencies:
+      debug: 4.3.4
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
   '@ionic/utils-stream@3.1.6':
     dependencies:
+      debug: 4.3.4
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
+  '@ionic/utils-subprocess@2.1.11':
+    dependencies:
+      '@ionic/utils-array': 2.1.5
+      '@ionic/utils-fs': 3.1.6
+      '@ionic/utils-process': 2.1.10
+      '@ionic/utils-stream': 3.1.5
+      '@ionic/utils-terminal': 2.3.3
+      cross-spawn: 7.0.3
       debug: 4.3.4
       tslib: 2.6.2
     transitivePeerDependencies:
@@ -1844,6 +1942,20 @@ snapshots:
       cross-spawn: 7.0.3
       debug: 4.3.4
       tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
+  '@ionic/utils-terminal@2.3.3':
+    dependencies:
+      '@types/slice-ansi': 4.0.0
+      debug: 4.3.4
+      signal-exit: 3.0.7
+      slice-ansi: 4.0.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      tslib: 2.6.2
+      untildify: 4.0.0
+      wrap-ansi: 7.0.0
     transitivePeerDependencies:
       - supports-color
 

@@ -22,14 +22,14 @@
     "postinstall": "bundle install"
   },
   "dependencies": {
-    "@capacitor/android": "^5.7.5",
-    "@capacitor/app": "^5.0.7",
-    "@capacitor/core": "^5.7.5",
-    "@capacitor/ios": "^5.7.5"
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/app": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0"
   },
   "devDependencies": {
     "@capacitor/assets": "^1.0.14",
-    "@capacitor/cli": "^5.7.5",
+    "@capacitor/cli": "^6.0.0",
     "@types/node": "^18.19.31",
     "typescript": "^4.9.5"
   }
