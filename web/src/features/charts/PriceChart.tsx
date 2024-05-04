@@ -57,6 +57,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
       <ChartTitle
         translationKey="country-history.electricityprices"
         icon={<CoinsIcon />}
+        unit={valueAxisLabel}
       />
       <div className={`relative ${isPriceDisabled ? 'overflow-hidden' : ''}`}>
         {isPriceDisabled && (
@@ -74,7 +75,6 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           layerStroke={layerStroke}
           layerFill={layerFill}
           markerFill={markerFill}
-          valueAxisLabel={valueAxisLabel}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
           isMobile={false}

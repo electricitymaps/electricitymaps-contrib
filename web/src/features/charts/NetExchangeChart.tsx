@@ -40,7 +40,11 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
 
   return (
     <GraphCard className="pb-2">
-      <ChartTitle translationKey="country-history.netExchange" icon={<ExchangeIcon />} />
+      <ChartTitle
+        translationKey="country-history.netExchange"
+        icon={<ExchangeIcon />}
+        unit={valueAxisLabel}
+      />
       <div className="relative">
         <AreaGraph
           testId="history-exchange-graph"
@@ -49,7 +53,6 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           layerStroke={layerStroke}
           layerFill={layerFill}
           markerFill={markerFill}
-          valueAxisLabel={valueAxisLabel}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
           isMobile={false}
