@@ -1,6 +1,8 @@
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import { mapMovingAtom } from 'features/map/mapAtoms';
+import { useSetAtom } from 'jotai';
 import { HiArrowLeft } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
@@ -24,6 +26,9 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
   const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
+  const setIsMapMoving = useSetAtom(mapMovingAtom);
+
+  const onNavigateBack = () => setIsMapMoving(false);
 
   return (
     <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
@@ -31,6 +36,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         className="text-3xl self-center py-4 pr-4"
         to={returnToMapLink}
         data-test-id="left-panel-back-button"
+        onClick={onNavigateBack}
       >
         <HiArrowLeft />
       </Link>
