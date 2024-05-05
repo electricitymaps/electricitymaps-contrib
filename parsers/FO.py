@@ -26,7 +26,6 @@ VALID_ZONE_KEYS = Literal["FO", "FO-MI", "FO-SI"]
 
 
 class ValidationObject(TypedDict):
-    required: list[str]
     floor: int
 
 
@@ -36,9 +35,9 @@ class ZoneData(TypedDict):
 
 
 ZONE_MAP: dict[VALID_ZONE_KEYS, ZoneData] = {
-    "FO": {"data_key": "Sev_E", "validation": {"required": ["hydro"], "floor": 10}},
-    "FO-MI": {"data_key": "H_E", "validation": {"required": ["hydro"], "floor": 9}},
-    "FO-SI": {"data_key": "S_E", "validation": {"required": ["hydro"], "floor": 1}},
+    "FO": {"data_key": "Sev_E", "validation": {"floor": 10}},
+    "FO-MI": {"data_key": "H_E", "validation": {"floor": 9}},
+    "FO-SI": {"data_key": "S_E", "validation": {"floor": 1}},
 }
 
 
@@ -103,7 +102,6 @@ def fetch_production(
     data = validate(
         data,
         logger,
-        required=ZONE_MAP[zone_key]["validation"]["required"],
         floor=ZONE_MAP[zone_key]["validation"]["floor"],
     )
     if isinstance(data, dict):
