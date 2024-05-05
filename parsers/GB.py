@@ -85,7 +85,13 @@ def fetch_price(
                 continue
 
             for value in daily_zone_data:
-                price = None if value.text == "ND" else float(value.text)
+                price = (
+                    None
+                    if value.text == "ND"
+                    else float(value.text)
+                    if value.text is not None
+                    else None
+                )
                 if price is None:
                     continue
 
