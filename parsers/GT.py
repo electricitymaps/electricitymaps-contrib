@@ -28,17 +28,25 @@ PRODUCTION_TYPE_TO_PRODUCTION_MODE = {
     "BIOGAS": "biomass",
     "BIOMASA": "biomass",
     "CARBÓN": "coal",
+    "CARBÓN/PETCOKE": "coal",
     "GAS NATURAL": "gas",
+    "SYNGAN": "gas",
     "VAPOR": "geothermal",
     "AGUA": "hydro",
     "BUNKER": "oil",
     "DIESEL": "oil",
     "IRRADIACIÓN": "solar",
     "BIOMASA/CARBÓN": "unknown",  # not always present, e.g. 15/07/2023 TZ
-    "CARBÓN/PETCOKE": "unknown",
-    "SYNGAN": "unknown",
     "VIENTO": "wind",
 }
+
+KNOWN_API_DATA_KEYS = [
+    *PRODUCTION_TYPE_TO_PRODUCTION_MODE.keys(),
+    "DEM SNI",
+    "DEMANDA LOCAL PROG",
+    "INTERCONEXIÓN",
+    "null",
+]
 
 
 class ApiKind(enum.Enum):
@@ -185,6 +193,8 @@ def fetch_production(
         production_mix = ProductionMix()
         for key in row:
             if key not in PRODUCTION_TYPE_TO_PRODUCTION_MODE:
+                if key not in KNOWN_API_DATA_KEYS:
+                    logger.warning(f"Unmapped production type returned by API: {key}")
                 continue
 
             production_mode = PRODUCTION_TYPE_TO_PRODUCTION_MODE[key]
