@@ -1,8 +1,8 @@
-function BatteryStorage() {
+function BatteryStorage({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -21,11 +21,11 @@ function BatteryStorage() {
   );
 }
 
-function Biomass() {
+function Biomass({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -38,11 +38,11 @@ function Biomass() {
   );
 }
 
-function Coal() {
+function Coal({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -61,11 +61,11 @@ function Coal() {
   );
 }
 
-function Gas() {
+function Gas({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -78,11 +78,11 @@ function Gas() {
   );
 }
 
-function Geothermal() {
+function Geothermal({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -95,11 +95,11 @@ function Geothermal() {
   );
 }
 
-function HydroStorage() {
+function HydroStorage({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -112,11 +112,11 @@ function HydroStorage() {
   );
 }
 
-function Hydro() {
+function Hydro({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -129,11 +129,11 @@ function Hydro() {
   );
 }
 
-function Nuclear() {
+function Nuclear({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -146,11 +146,11 @@ function Nuclear() {
   );
 }
 
-function Oil() {
+function Oil({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -163,11 +163,11 @@ function Oil() {
   );
 }
 
-function Solar() {
+function Solar({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -180,11 +180,11 @@ function Solar() {
   );
 }
 
-function Unknown() {
+function Unknown({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -197,11 +197,11 @@ function Unknown() {
   );
 }
 
-function Wind() {
+function Wind({ size }: { size: number }) {
   return (
     <svg
-      width="8"
-      height="8"
+      width={size}
+      height={size}
       viewBox="0 0 8 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -229,9 +229,15 @@ const electricityTypeIcons = {
   wind: Wind,
 };
 
-export default function ProductionSourceIcon({ source }: { source: string }) {
+export default function ProductionSourceIcon({
+  source,
+  size = 10,
+}: {
+  source: string;
+  size?: number;
+}) {
   const sourceWithoutSpace = source.replaceAll(' ', '_');
   const Icon =
     electricityTypeIcons[sourceWithoutSpace as keyof typeof electricityTypeIcons];
-  return <Icon />;
+  return <Icon size={size} />;
 }

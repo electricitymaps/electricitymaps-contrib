@@ -4,6 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { useAtom } from 'jotai';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
+import { getEmissionData } from '../bar-breakdown/utils';
 import { getTotalEmissionsAvailable } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
@@ -45,5 +46,7 @@ export function useEmissionChartData() {
     layerStroke: undefined,
   };
 
-  return { data: result, isLoading, isError };
+  const emissionSourceToProductionSource = getEmissionData(data);
+
+  return { data: result, emissionSourceToProductionSource, isLoading, isError };
 }

@@ -7,20 +7,22 @@ import { TimeAverages } from 'utils/constants';
 import { getZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
-import { getBasePath, getHeaders, QUERY_KEYS } from './helpers';
+import { cacheBuster, getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 
 const getZone = async (
   timeAverage: TimeAverages,
   zoneId?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
-  const path = `/v7/details/${timeAverage}/${zoneId}`;
+  const path: URL = new URL(`v8/details/${timeAverage}/${zoneId}`, getBasePath());
+  path.searchParams.append('cacheKey', cacheBuster());
+
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
   };
 
-  const response = await fetch(`${getBasePath()}${path}`, requestOptions);
+  const response = await fetch(path, requestOptions);
 
   if (response.ok) {
     const { data } = (await response.json()) as { data: ZoneDetails };

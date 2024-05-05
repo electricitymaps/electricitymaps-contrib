@@ -28,9 +28,8 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     estimatedPercentage,
   } = zoneDetail;
   const intensity = getCarbonIntensity(
-    isConsumption,
-    co2intensity,
-    co2intensityProduction
+    { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
+    isConsumption
   );
   const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
   return (

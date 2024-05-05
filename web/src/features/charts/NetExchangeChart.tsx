@@ -1,8 +1,10 @@
+import { ExchangeIcon } from 'icons/exchangeIcon';
 import { useAtom } from 'jotai';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
@@ -37,8 +39,12 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   }
 
   return (
-    <>
-      <ChartTitle translationKey="country-history.netExchange" />
+    <GraphCard className="pb-2">
+      <ChartTitle
+        translationKey="country-history.netExchange"
+        icon={<ExchangeIcon />}
+        unit={valueAxisLabel}
+      />
       <div className="relative">
         <AreaGraph
           testId="history-exchange-graph"
@@ -47,7 +53,6 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           layerStroke={layerStroke}
           layerFill={layerFill}
           markerFill={markerFill}
-          valueAxisLabel={valueAxisLabel}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
           isMobile={false}
@@ -58,7 +63,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           formatTick={formatAxisTick}
         />
       </div>
-    </>
+    </GraphCard>
   );
 }
 

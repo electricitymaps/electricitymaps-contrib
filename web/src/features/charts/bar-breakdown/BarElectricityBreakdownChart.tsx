@@ -10,7 +10,7 @@ import { modeColor, TimeAverages } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
 import { timeAverageAtom } from 'utils/state/atoms';
 
-import { LABEL_MAX_WIDTH, PADDING_X, PADDING_Y } from './constants';
+import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
@@ -153,7 +153,7 @@ function BarElectricityBreakdownChart({
             onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
           >
-            <g transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y - 12}, 0)`}>
+            <g transform={`translate(-2, 0)`}>
               <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
             </g>
 

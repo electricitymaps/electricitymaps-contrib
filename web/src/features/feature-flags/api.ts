@@ -4,14 +4,14 @@ import { getBasePath, getHeaders, QUERY_KEYS } from 'api/helpers';
 import { FeatureFlags } from './types';
 
 export async function getFeatureFlags(): Promise<FeatureFlags> {
-  const path = `/${QUERY_KEYS.FEATURE_FLAGS}`;
+  const path: URL = new URL(`/${QUERY_KEYS.FEATURE_FLAGS}`, getBasePath());
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
   };
 
   try {
-    const response = await fetch(`${getBasePath()}${path}`, requestOptions);
+    const response = await fetch(path, requestOptions);
     if (response.ok) {
       const data = await response.json();
       return data;

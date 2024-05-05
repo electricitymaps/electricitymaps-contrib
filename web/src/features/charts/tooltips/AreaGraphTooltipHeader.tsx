@@ -40,7 +40,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
             className="rounded-sm  font-bold"
           >
             {productionSource && (
-              <div className="flex h-4 w-4 scale-125 justify-center pt-1">
+              <div className="flex h-4 w-4 justify-center pt-[3px]">
                 <ProductionSourceIcon source={productionSource} />
               </div>
             )}
