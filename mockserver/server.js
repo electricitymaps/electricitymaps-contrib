@@ -26,7 +26,7 @@ app.get('/v8/details/:aggregate/:zoneId', (req, res, next) => {
 app.get('/v8/gfs/wind', (req, res, next) => {
   const { refTime, targetTime } = req.query;
 
-  fs.readFile(`./public/v3/gfs/wind.json`, (err, data) => {
+  fs.readFile(`./public/v8/gfs/wind.json`, (err, data) => {
     const jsonData = JSON.parse(data);
     jsonData.data[0].header.refTime = targetTime;
 
@@ -37,7 +37,7 @@ app.get('/v8/gfs/wind', (req, res, next) => {
 app.get('/v8/gfs/solar', (req, res, next) => {
   const { refTime, targetTime } = req.query;
 
-  fs.readFile(`./public/v3/gfs/solar.json`, (err, data) => {
+  fs.readFile(`./public/v8/gfs/solar.json`, (err, data) => {
     const jsonData = JSON.parse(data);
     jsonData.data.header.refTime = targetTime;
 
@@ -45,8 +45,8 @@ app.get('/v8/gfs/solar', (req, res, next) => {
   });
 });
 
-app.get('/feature-flags', (req, res, next) => {
-  res.json({ test: true });
+app.get('/feature-flags', (req, res) => {
+  res.json({});
 });
 
 app.use(function (req, res, next) {
