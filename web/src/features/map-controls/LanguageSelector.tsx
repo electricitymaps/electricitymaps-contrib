@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiLanguage } from 'react-icons/hi2';
 import { languageNames } from 'translation/locales';
+import trackEvent from 'utils/analytics';
 
 import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
@@ -20,6 +21,7 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
   const handleLanguageSelect = (languageKey: LanguageNamesKey) => {
     i18n.changeLanguage(languageKey);
     setSelectedLanguage(languageNames[languageKey]);
+    trackEvent('Language Selected', { language: languageNames[languageKey] });
   };
   return (
     <MapOptionSelector
