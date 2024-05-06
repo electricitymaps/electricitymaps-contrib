@@ -14,14 +14,14 @@ def get_solar_capacity_at(date: datetime) -> float:
     # Source https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/?lang=en
     historical_capacities = pd.DataFrame.from_records(
         [
-            ("2015-01-01", 1393),
-            ("2016-01-01", 1646),
-            ("2017-01-01", 1859),
-            ("2018-01-01", 2090),
-            ("2019-01-01", 2375),
-            ("2020-01-01", 2795),
-            ("2021-01-01", 3314),
-            ("2022-01-01", 3904),
+            ("2015-01-01", 1393.0),
+            ("2016-01-01", 1646.0),
+            ("2017-01-01", 1859.0),
+            ("2018-01-01", 2090.0),
+            ("2019-01-01", 2375.0),
+            ("2020-01-01", 2795.0),
+            ("2021-01-01", 3314.0),
+            ("2022-01-01", 3904.0),
         ],
         columns=["datetime", "capacity.solar"],
     ).set_index("datetime")

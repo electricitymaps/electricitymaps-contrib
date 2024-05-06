@@ -10,12 +10,8 @@ import { cacheBuster, getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 const getState = async (timeAverage: string): Promise<GridState> => {
   const path: URL = new URL(`v8/state/${timeAverage}`, getBasePath());
   path.searchParams.append('cacheKey', cacheBuster());
-  const requestOptions: RequestInit = {
-    method: 'GET',
-    headers: await getHeaders(path),
-  };
 
-  const response = await fetch(path, requestOptions);
+  const response = await fetch(path);
 
   if (response.ok) {
     const result = (await response.json()) as GridState;
