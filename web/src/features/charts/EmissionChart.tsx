@@ -4,7 +4,7 @@ import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { IndustryIcon } from 'icons/industryIcon';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { TimeAverages } from 'utils/constants';
+import { TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
@@ -60,8 +60,8 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
       />
       <Divider />
       <Accordion
-        onClick={() => {
-          trackEvent('Data Sources Clicked', { chart: 'emission-chart' });
+        onOpen={() => {
+          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'emission-chart' });
         }}
         title={t('data-sources.title')}
         className="text-md"

@@ -4,7 +4,7 @@ import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { IndustryIcon } from 'icons/industryIcon';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { TimeAverages } from 'utils/constants';
+import { TimeAverages, TrackEvent } from 'utils/constants';
 import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
 import { DataSources } from './bar-breakdown/DataSources';
@@ -62,8 +62,8 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
       />
       <Divider />
       <Accordion
-        onClick={() => {
-          trackEvent('Data Sources Clicked', { chart: 'carbon-chart' });
+        onOpen={() => {
+          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });
         }}
         title={t('data-sources.title')}
         className="text-md"

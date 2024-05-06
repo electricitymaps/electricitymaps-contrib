@@ -6,7 +6,7 @@ import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
-import { Mode, TimeAverages } from 'utils/constants';
+import { Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
@@ -111,8 +111,8 @@ function BreakdownChart({
       />
       <Divider />
       <Accordion
-        onClick={() => {
-          trackEvent('Data Sources Clicked', {
+        onOpen={() => {
+          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
             chart: displayByEmissions
               ? 'emission-origin-chart'
               : 'electricity-origin-chart',
