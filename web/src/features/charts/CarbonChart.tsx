@@ -68,7 +68,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         <DataSources
           title={t('data-sources.emission')}
           icon={<IndustryIcon />}
-          sources={[...emissionSourceToProductionSource.keys()].sort()}
+          sourceToProductionSources={emissionSourceToProductionSource}
         />
       </Accordion>
     </GraphCard>

@@ -5,11 +5,13 @@ import ProductionSourceIcon from './ProductionsSourceIcons';
 
 export default function ProductionSourceLegend({
   electricityType,
+  transform,
 }: {
   electricityType: ElectricityModeType;
+  transform?: string;
 }) {
   return (
-    <svg width={16} height={16}>
+    <svg width={16} height={16} transform={transform}>
       <g className="pointer-events-none">
         <rect
           fill={modeColor[electricityType as ElectricityModeType]}
