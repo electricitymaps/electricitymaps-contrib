@@ -10,6 +10,7 @@ import {
 
 import {
   getDataBlockPositions,
+  getEmissionData,
   getExchangeData,
   getExchangesToDisplay,
   getProductionData,
@@ -56,6 +57,8 @@ export default function useBarBreakdownChartData() {
   );
   const height = isConsumption ? exchangeY + exchangeHeight : exchangeY;
 
+  const emissionSourceToProductionSource = getEmissionData(zoneData);
+
   return {
     height,
     zoneDetails: zoneData, // TODO: Data is returned here just to pass it back to the tooltip
@@ -63,5 +66,6 @@ export default function useBarBreakdownChartData() {
     exchangeData,
     productionData,
     isLoading: false,
+    emissionSourceToProductionSource,
   };
 }

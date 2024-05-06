@@ -43,6 +43,7 @@ function BarBreakdownChart({
     exchangeData,
     isLoading,
     height,
+    emissionSourceToProductionSource,
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
@@ -99,17 +100,6 @@ function BarBreakdownChart({
   const onMouseOut = () => {
     setTooltipData(null);
   };
-
-  const emissionData = [
-    ...new Set(
-      [
-        ...Object.values(currentZoneDetail?.dischargeCo2IntensitySources || {}),
-        ...Object.values(currentZoneDetail?.productionCo2IntensitySources || {}),
-      ].flatMap((item) => item.split('; '))
-    ),
-  ]
-    .filter((item) => !item.startsWith('assumes'))
-    .sort();
 
   return (
     <div
@@ -203,11 +193,11 @@ function BarBreakdownChart({
                 sources={currentZoneDetail?.source}
               />
             )}
-            {emissionData && (
+            {emissionSourceToProductionSource && (
               <DataSources
                 title={t('data-sources.emission')}
                 icon={<IndustryIcon />}
-                sources={emissionData}
+                sourceToProductionSources={emissionSourceToProductionSource}
               />
             )}
           </div>
