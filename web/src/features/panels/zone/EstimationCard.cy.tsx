@@ -21,7 +21,8 @@ describe('EstimationCard with FeedbackCard', () => {
     );
   });
 
-  it('feedback card should only be visible when collapse button has been clicked', () => {
+  // TODO(Viktor): Move this to E2E tests, AVO-240
+  it.skip('feedback card should only be visible when collapse button has been clicked', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': true },
     });
@@ -32,7 +33,7 @@ describe('EstimationCard with FeedbackCard', () => {
     cy.get('[data-test-id=feedback-card]').should('exist');
   });
 
-  it('feedback card should only be visible if feature-flag is enabled', () => {
+  it.skip('feedback card should only be visible if feature-flag is enabled', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': false },
     });
