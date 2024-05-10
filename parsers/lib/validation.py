@@ -213,7 +213,7 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
     fake_zeros: bool = kwargs.pop("fake_zeros", False)
 
     if kwargs:
-        raise TypeError("Unexpected **kwargs: %r" % kwargs)
+        raise TypeError(f"Unexpected **kwargs: {kwargs!r}")
 
     generation: dict[str, Any] = datapoint["production"]
     storage: dict[str, Any] = datapoint.get("storage", {})

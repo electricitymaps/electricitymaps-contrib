@@ -686,7 +686,7 @@ def datetime_from_position(start: datetime, position: int, resolution: str) -> d
         scale = m.group(2)
         if scale == "M":
             return start + timedelta(minutes=(position - 1) * digits)
-    raise NotImplementedError("Could not recognise resolution %s" % resolution)
+    raise NotImplementedError(f"Could not recognise resolution {resolution}")
 
 
 def parse_scalar(
