@@ -11,7 +11,7 @@ src-files:
   COPY parsers ./parsers
   COPY ./config+src-files/* ./config
   COPY scripts ./scripts
-  COPY web/src/locales/en.json ./web/public/locales/en.json
+  COPY web/public/locales/en.json ./web/public/locales/en.json
   COPY __init__.py ./__init__.py
   COPY pyproject.toml .
   SAVE ARTIFACT .
