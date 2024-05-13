@@ -20,7 +20,7 @@ import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
 
 const X_AXIS_HEIGHT = 20;
-const Y_AXIS_WIDTH = 20;
+const Y_AXIS_WIDTH = 26;
 const Y_AXIS_PADDING = 2;
 
 const getTotalValues = (layers: any) => {

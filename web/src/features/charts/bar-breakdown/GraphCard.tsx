@@ -10,7 +10,7 @@ export function GraphCard({
   return (
     <div
       className={twMerge(
-        'my-2 rounded-2xl border-[1px] border-neutral-200 px-4 pb-2 dark:border-gray-700',
+        'my-2 overflow-hidden rounded-2xl border-[1px] border-neutral-200 px-4 pb-2 dark:border-gray-700',
         className
       )}
     >
