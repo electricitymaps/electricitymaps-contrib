@@ -126,8 +126,7 @@ class ProductionMix(Mix):
         if (
             "wind_onshore" in self.corrected_negative_modes
             or "wind_offshore" in self._corrected_negative_values
-            and (self.wind_onshore is not None or self.wind_offshore is not None)
-        ):
+        ) and (self.wind_onshore is not None or self.wind_offshore is not None):
             return _none_safe_round(
                 (self.wind_onshore or 0) + (self.wind_offshore or 0)
             )

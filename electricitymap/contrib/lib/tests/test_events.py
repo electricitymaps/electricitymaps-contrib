@@ -546,6 +546,58 @@ class TestProductionBreakdown(unittest.TestCase):
         dict_form = breakdown.to_dict()
         assert dict_form["production"]["wind"] == 30
 
+    def test_mix_with_just_offshore_wind(self):
+        mix = ProductionMix(
+            wind_offshore=20,
+        )
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=mix,
+            source="trust.me",
+        )
+        dict_form = breakdown.to_dict()
+        assert dict_form["production"]["wind"] == 20
+
+    def test_mix_with_just_onshore_wind(self):
+        mix = ProductionMix(
+            wind_onshore=10,
+        )
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=mix,
+            source="trust.me",
+        )
+        dict_form = breakdown.to_dict()
+        assert dict_form["production"]["wind"] == 10
+
+    def test_production_breakdown_update(self):
+        mix = ProductionMix(wind_offshore=10, wind_onshore=20)
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=mix,
+            source="trust.me",
+        )
+        new_mix = ProductionMix(wind_offshore=5, wind_onshore=25)
+        new_breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=new_mix,
+            source="trust.me",
+        )
+        final_breakdown = ProductionBreakdown._update(breakdown, new_breakdown)
+        assert final_breakdown is not None
+        assert final_breakdown.production is not None
+        assert final_breakdown.production.wind_offshore == 5
+        assert final_breakdown.production.wind_onshore == 25
+        assert final_breakdown.zoneKey == ZoneKey("DE")
+        assert final_breakdown.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert final_breakdown.source == "trust.me"
+        dict_form = final_breakdown.to_dict()
+        assert dict_form["production"]["wind"] == 30
+
 
 class TestTotalProduction(unittest.TestCase):
     def test_create_generation(self):
@@ -981,3 +1033,56 @@ class TestMixUpdate:
         assert final_mix is not None
         assert final_mix.hydro is None
         assert final_mix.battery is None
+
+    def test_wind_onshore_and_wind_offshore(self):
+        mix = ProductionMix(
+            wind_onshore=15,
+            wind_offshore=20,
+        )
+        new_mix = ProductionMix(
+            wind_onshore=5,
+            wind_offshore=25,
+        )
+        final_mix = ProductionMix._update(mix, new_mix)
+        assert final_mix.wind_onshore == 5
+        assert final_mix.wind_offshore == 25
+
+    def test_wind_onshore_and_wind_offshore_with_none(self):
+        mix = ProductionMix(
+            wind_onshore=15,
+            wind_offshore=20,
+        )
+        new_mix = ProductionMix(
+            wind_onshore=None,
+            wind_offshore=25,
+        )
+        final_mix = ProductionMix._update(mix, new_mix)
+        assert final_mix.wind_onshore == 15
+        assert final_mix.wind_offshore == 25
+
+    def test_wind_onshore_and_wind_offshore_with_none_dict(self):
+        mix = ProductionMix(
+            wind_onshore=15,
+            wind_offshore=20,
+        )
+        new_mix = ProductionMix(
+            wind_onshore=17,
+            wind_offshore=None,
+        )
+        final_mix = ProductionMix._update(mix, new_mix)
+        assert final_mix is not None
+        dict_form = final_mix.dict()
+        assert dict_form["wind"] == 37
+
+    def test_wind_onshore_and_wind_offshore_with_none_dict_unset(self):
+        mix = ProductionMix(
+            wind_onshore=15,
+            wind_offshore=20,
+        )
+        new_mix = ProductionMix(
+            wind_onshore=17,
+        )
+        final_mix = ProductionMix._update(mix, new_mix)
+        assert final_mix is not None
+        dict_form = final_mix.dict()
+        assert dict_form["wind"] == 37

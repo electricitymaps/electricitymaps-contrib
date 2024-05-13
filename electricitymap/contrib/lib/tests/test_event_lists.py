@@ -961,6 +961,34 @@ class TestProductionBreakdownList(unittest.TestCase):
         assert updated_list.events[0].storage.hydro == 1
         assert updated_list.events[0].source == "trust.me"
 
+    def test_update_production_with_wind_onshore_and_offshore(self):
+        production_list1 = ProductionBreakdownList(logging.Logger("test"))
+        production_list1.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind_onshore=10, wind_offshore=10),
+            source="trust.me",
+        )
+        production_list2 = ProductionBreakdownList(logging.Logger("test"))
+        production_list2.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=ProductionMix(wind_onshore=20),
+            source="trust.me",
+        )
+        updated_list = ProductionBreakdownList.update_production_breakdowns(
+            production_list1, production_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 1
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].production is not None
+        assert updated_list.events[0].production.wind_onshore == 20
+        assert updated_list.events[0].production.wind_offshore == 10
+        dict_form = updated_list.events[0].to_dict()
+        assert dict_form["production"]["wind"] == 30
+
     def test_filter_expected_modes(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
         production_list_1.append(
