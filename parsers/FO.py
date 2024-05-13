@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -79,9 +79,7 @@ def fetch_production(
 
     production_breakdown_list.append(
         zoneKey=zone_key,
-        datetime=datetime.fromisoformat(obj["tiden"])
-        .replace(tzinfo=TIMEZONE)
-        .astimezone(timezone.utc),
+        datetime=datetime.fromisoformat(obj["tiden"]).replace(tzinfo=TIMEZONE),
         source="sev.fo",
         production=production_mix,
     )
