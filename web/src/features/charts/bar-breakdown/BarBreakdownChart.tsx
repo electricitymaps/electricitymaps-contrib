@@ -12,6 +12,7 @@ import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 import {
   dataSourcesCollapsedBarBreakdown,
   displayByEmissionsAtom,
@@ -169,8 +170,8 @@ function BarBreakdownChart({
       <Divider />
       <div className="py-1">
         <Accordion
-          onClick={() => {
-            trackEvent('Data Sources Clicked', { chart: 'bar-breakdown-chart' });
+          onOpen={() => {
+            trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'bar-breakdown-chart' });
           }}
           title={t('data-sources.title')}
           className="text-md"
