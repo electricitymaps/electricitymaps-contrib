@@ -120,6 +120,7 @@ class ProductionMix(Mix):
         """
         if self.wind is not None:
             return self.wind
+
         if self.wind_onshore is not None and self.wind_offshore is not None:
             return _none_safe_round(self.wind_onshore + self.wind_offshore)
         if (
@@ -130,6 +131,16 @@ class ProductionMix(Mix):
             return _none_safe_round(
                 (self.wind_onshore or 0) + (self.wind_offshore or 0)
             )
+        if (
+            "wind_onshore" in self.__fields_set__
+            and "wind_offshore" not in self.__fields_set__
+        ):
+            return self.wind_onshore
+        if (
+            "wind_offshore" in self.__fields_set__
+            and "wind_onshore" not in self.__fields_set__
+        ):
+            return self.wind_offshore
 
     def dict(  # noqa: A003
         self,

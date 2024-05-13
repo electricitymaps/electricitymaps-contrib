@@ -532,6 +532,20 @@ class TestProductionBreakdown(unittest.TestCase):
         assert dict_form["production"]["wind"] == 10
         assert dict_form["production"]["solar"] is None
 
+    def test_mix_with_just_offshore_and_onshore_wind(self):
+        mix = ProductionMix(
+            wind_onshore=10,
+            wind_offshore=20,
+        )
+        breakdown = ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            production=mix,
+            source="trust.me",
+        )
+        dict_form = breakdown.to_dict()
+        assert dict_form["production"]["wind"] == 30
+
 
 class TestTotalProduction(unittest.TestCase):
     def test_create_generation(self):
@@ -854,6 +868,13 @@ class TestMixAddValue(unittest.TestCase):
         )
         dict_form = mix.dict()
         assert dict_form["wind"] is None
+
+    def test_just_one_wind_submode(self):
+        mix = ProductionMix(
+            wind_onshore=10,
+        )
+        dict_form = mix.dict()
+        assert dict_form["wind"] == 10
 
     def test_wind_with_wind_onshore_and_wind_offshore(self):
         mix = ProductionMix(
