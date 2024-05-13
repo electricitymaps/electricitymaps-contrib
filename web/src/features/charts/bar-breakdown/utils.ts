@@ -194,6 +194,20 @@ export const getExchangesToDisplay = (
   );
 };
 
+export function getPowerGenerationSources(zoneData: ZoneDetails) {
+  const sourceSet = new Set<string>();
+
+  for (const state of Object.values(zoneData.zoneStates)) {
+    const currentSources = state.source;
+    for (const source of currentSources) {
+      sourceSet.add(source);
+    }
+  }
+
+  const sources = [...sourceSet];
+  return sources;
+}
+
 export function getEmissionData(zoneData: ZoneDetails) {
   const sourceInfoToProductionSource = new Map<string, string[]>();
 

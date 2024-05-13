@@ -9,7 +9,6 @@ import {
   ElectricityStorageKeyType,
   ElectricityStorageType,
   ZoneDetail,
-  ZoneDetails,
 } from 'types';
 import {
   Mode,
@@ -26,7 +25,11 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 
-import { getExchangesToDisplay } from '../bar-breakdown/utils';
+import {
+  getEmissionData,
+  getExchangesToDisplay,
+  getPowerGenerationSources,
+} from '../bar-breakdown/utils';
 import {
   getGenerationTypeKey,
   getTotalElectricityAvailable,
@@ -130,23 +133,17 @@ export default function useBreakdownChartData() {
     layerStroke: undefined,
   };
 
-  const sources = getSources(zoneData);
+  const emissionSourceToProductionSource = getEmissionData(zoneData);
+  const sources = getPowerGenerationSources(zoneData);
 
-  return { sources, data: result, mixMode, isLoading, isError };
-}
-
-function getSources(zoneData: ZoneDetails) {
-  const sourceSet = new Set<string>();
-
-  for (const state of Object.values(zoneData.zoneStates)) {
-    const currentSources = state.source;
-    for (const source of currentSources) {
-      sourceSet.add(source);
-    }
-  }
-
-  const sources = [...sourceSet];
-  return sources;
+  return {
+    sources,
+    emissionSourceToProductionSource,
+    data: result,
+    mixMode,
+    isLoading,
+    isError,
+  };
 }
 
 function getStorageValue(

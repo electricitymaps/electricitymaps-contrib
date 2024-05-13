@@ -2,6 +2,7 @@ import Accordion from 'components/Accordion';
 import { max, sum } from 'd3-array';
 import Divider from 'features/panels/zone/Divider';
 import { CircleBoltIcon } from 'icons/circleBoltIcon';
+import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
@@ -32,7 +33,8 @@ function BreakdownChart({
   datetimes,
   timeAverage,
 }: BreakdownChartProps) {
-  const { sources, data, mixMode } = useBreakdownChartData();
+  const { sources, emissionSourceToProductionSource, data, mixMode } =
+    useBreakdownChartData();
   const { t } = useTranslation();
 
   if (!data) {
@@ -126,6 +128,11 @@ function BreakdownChart({
           title={t('data-sources.power')}
           icon={<WindTurbineIcon />}
           sources={sources}
+        />
+        <DataSources
+          title={t('data-sources.emission')}
+          icon={<IndustryIcon />}
+          sourceToProductionSources={emissionSourceToProductionSource}
         />
       </Accordion>
     </GraphCard>

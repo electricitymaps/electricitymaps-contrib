@@ -2,6 +2,7 @@ import Accordion from 'components/Accordion';
 import Divider from 'features/panels/zone/Divider';
 import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { IndustryIcon } from 'icons/industryIcon';
+import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
@@ -22,8 +23,13 @@ interface CarbonChartProps {
 }
 
 function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
-  const { data, emissionSourceToProductionSource, isLoading, isError } =
-    useCarbonChartData();
+  const {
+    data,
+    emissionSourceToProductionSource,
+    powerGenerationSources,
+    isLoading,
+    isError,
+  } = useCarbonChartData();
   const { t } = useTranslation();
 
   if (isLoading || isError || !data) {
@@ -69,6 +75,11 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         className="text-md"
         isCollapsedAtom={dataSourcesCollapsedEmission}
       >
+        <DataSources
+          title={t('data-sources.power')}
+          icon={<WindTurbineIcon />}
+          sources={powerGenerationSources}
+        />
         <DataSources
           title={t('data-sources.emission')}
           icon={<IndustryIcon />}

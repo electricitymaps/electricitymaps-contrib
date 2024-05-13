@@ -2,6 +2,7 @@ import Accordion from 'components/Accordion';
 import Divider from 'features/panels/zone/Divider';
 import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { IndustryIcon } from 'icons/industryIcon';
+import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
@@ -22,8 +23,13 @@ interface EmissionChartProps {
 }
 
 function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
-  const { data, emissionSourceToProductionSource, isLoading, isError } =
-    useEmissionChartData();
+  const {
+    data,
+    emissionSourceToProductionSource,
+    powerGenerationSources,
+    isLoading,
+    isError,
+  } = useEmissionChartData();
   const { t } = useTranslation();
   if (isLoading || isError || !data) {
     return null;
@@ -67,6 +73,11 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         className="text-md"
         isCollapsedAtom={dataSourcesCollapsedEmission}
       >
+        <DataSources
+          title={t('data-sources.power')}
+          icon={<WindTurbineIcon />}
+          sources={powerGenerationSources}
+        />
         <DataSources
           title={t('data-sources.emission')}
           icon={<IndustryIcon />}
