@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { ZoneMessage } from 'types';
+import trackEvent from 'utils/analytics';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -120,9 +121,33 @@ export default function ZoneDetails(): JSX.Element {
               icon={<EmapsIcon />}
               title={t('left-panel.applied-methodologies.title')}
               className="pb-1 pt-3 text-md"
+              onOpen={() => trackEvent('AppliedMethodologies Expanded')}
             >
-              <div className="flex flex-col gap-2 pl-5">
-                <div className="text-sm">hey</div>
+              <div className="flex flex-col gap-2 pb-1 text-emerald-800 underline underline-offset-4 dark:text-emerald-500">
+                <a
+                  href="https://www.electricitymaps.com/methodology#missing-data"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`text-sm font-semibold `}
+                >
+                  <span>{t('left-panel.applied-methodologies.estimations')}</span>
+                </a>
+                <a
+                  href="https://www.electricitymaps.com/methodology#data-collection-and-processing"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`text-sm font-semibold `}
+                >
+                  <span>{t('left-panel.applied-methodologies.flowtracing')}</span>
+                </a>
+                <a
+                  href="https://www.electricitymaps.com/methodology#carbon-intensity-and-emission-factors"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`text-sm font-semibold `}
+                >
+                  <span>{t('left-panel.applied-methodologies.carbonintensity')}</span>
+                </a>
               </div>
             </Accordion>
           </RoundedCard>
