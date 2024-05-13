@@ -20,6 +20,7 @@ import re
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
+from operator import itemgetter
 from typing import Any
 
 import numpy as np
@@ -723,44 +724,21 @@ def parse_scalar(
     return list(zip(values, datetimes, strict=True))
 
 
-def create_production_storage(
-    fuel_code: str, quantity: float, logger: Logger, zoneKey: ZoneKey
-) -> tuple[ProductionMix | None, StorageMix | None]:
-    production = ProductionMix()
-    storage = StorageMix()
-    fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
-    if fuel_code in ENTSOE_STORAGE_PARAMETERS:
-        # Only include consumption if it's for storage. In other cases
-        # it is power plant self-consumption which should be ignored.
-        storage.add_value(fuel_em_type, -quantity)
-        return None, storage
-    if 0 > quantity > -50:
-        logger.info(
-            f"Self consumption value {quantity} for {fuel_em_type} has been set to 0.",
-            extra={"key": zoneKey, "fuel_type": fuel_em_type},
-        )
-        quantity = 0
-    production.add_value(fuel_em_type, quantity)
-    return production, None
-
-
 def parse_production(
     xml: str,
     logger: Logger,
     zoneKey: ZoneKey,
     forecasted: bool = False,
 ) -> ProductionBreakdownList:
-    all_production_breakdowns = []
+    production_breakdowns = ProductionBreakdownList(logger)
     source_type = EventSourceType.forecasted if forecasted else EventSourceType.measured
     if not xml:
-        return ProductionBreakdownList.merge_production_breakdowns(
-            all_production_breakdowns, logger
-        )
+        return production_breakdowns
     soup = BeautifulSoup(xml, "html.parser")
+    list_of_raw_data = []
 
     # Each timeserie is dedicated to a different fuel type.
     for timeseries in soup.find_all("timeseries"):
-        production_breakdowns = ProductionBreakdownList(logger)
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(timeseries.find_all("start")[0].contents[0])
@@ -768,7 +746,6 @@ def parse_production(
         fuel_code = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
         )
-
         for entry in timeseries.find_all("point"):
             quantity = float(entry.find_all("quantity")[0].contents[0])
             position = int(entry.find_all("position")[0].contents[0])
@@ -779,21 +756,53 @@ def parse_production(
                 len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
             )
             dt = datetime_from_position(datetime_start, position, resolution)
-            production, storage = create_production_storage(
-                fuel_code, quantity if is_production else -quantity, logger, zoneKey
+            list_of_raw_data.append(
+                {
+                    "datetime": dt,
+                    "fuel_code": fuel_code,
+                    "quantity": quantity if is_production else -quantity,
+                }
             )
-            production_breakdowns.append(
-                zoneKey=zoneKey,
-                datetime=dt,
-                source=SOURCE,
-                sourceType=source_type,
-                production=production,
-                storage=storage,
+
+    list_of_raw_data.sort(key=itemgetter("datetime"))
+    grouped_data = {
+        k: list(v)
+        for k, v in itertools.groupby(list_of_raw_data, key=itemgetter("datetime"))
+    }
+
+    expected_length = 0
+    if grouped_data:
+        expected_length = max(len(v) for v in grouped_data.values())
+
+    for dt, values in grouped_data.items():
+        if len(values) < expected_length:
+            logger.warning(
+                f"Expected {expected_length} values for {dt}, got {len(values)} instead."
             )
-        all_production_breakdowns.append(production_breakdowns)
-    return ProductionBreakdownList.merge_production_breakdowns(
-        all_production_breakdowns, logger
-    )
+            continue
+        production = ProductionMix()
+        storage = StorageMix()
+        for value in values:
+            _, fuel_code, quantity = value.values()
+
+            fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
+            if fuel_code in ENTSOE_STORAGE_PARAMETERS:
+                storage.add_value(fuel_em_type, -quantity)
+            else:
+                production.add_value(
+                    fuel_em_type, quantity, correct_negative_with_zero=True
+                )
+
+        production_breakdowns.append(
+            zoneKey=zoneKey,
+            datetime=dt,
+            source=SOURCE,
+            sourceType=source_type,
+            production=production,
+            storage=storage,
+        )
+
+    return production_breakdowns
 
 
 def parse_production_per_units(xml_text: str) -> Any | None:
