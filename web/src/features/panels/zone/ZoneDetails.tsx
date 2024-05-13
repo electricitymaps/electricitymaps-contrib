@@ -1,17 +1,13 @@
 import useGetZone from 'api/getZone';
-import Accordion from 'components/Accordion';
 import { Button } from 'components/Button';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
-import { RoundedCard } from 'features/charts/bar-breakdown/GraphCard';
-import { EmapsIcon } from 'icons/emapsIcon';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { ZoneMessage } from 'types';
-import trackEvent from 'utils/analytics';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
