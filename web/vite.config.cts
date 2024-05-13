@@ -28,10 +28,6 @@ const sentryPluginOptions: SentryVitePluginOptions = {
   // Auth tokens can be obtained from https://sentry.io/settings/account/api/auth-tokens/
   // and needs the `project:releases` and `org:read` scopes
   authToken: process.env.SENTRY_AUTH_TOKEN,
-  sourcemaps: {
-    // Specify the directory containing build artifacts
-    assets: ['./dist'],
-  },
 
   release: {
     // Optionally uncomment the line below to override automatic release name detection
