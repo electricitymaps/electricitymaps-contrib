@@ -48,13 +48,13 @@ export const formatCo2 = function (grams: number, valueToMatch?: number): string
   const checkAgainst = valueToMatch ?? grams;
 
   //Values less than 1Mt
-  if (Math.round(checkAgainst) < 1e9) {
+  if (Math.round(checkAgainst) < 1e9 && Math.round(checkAgainst) > 0) {
     let decimals = grams < 1 ? 2 : 1;
     // Remove decimals for large values
     if (grams > 1_000_000) {
       decimals = 2;
     }
-    if (checkAgainst < 1e6) {
+    if (checkAgainst < 1e6 && checkAgainst > 0) {
       return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~s`)(grams)}g`);
     }
 
