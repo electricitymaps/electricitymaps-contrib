@@ -111,30 +111,34 @@ function BreakdownChart({
         sources={getProductionSourcesInChart(chartData)}
         className="py-1.5"
       />
-      <Divider />
-      <Accordion
-        onOpen={() => {
-          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-            chart: displayByEmissions
-              ? 'emission-origin-chart'
-              : 'electricity-origin-chart',
-          });
-        }}
-        title={t('data-sources.title')}
-        className="text-md"
-        isCollapsedAtom={dataSourcesCollapsedBreakdown}
-      >
-        <DataSources
-          title={t('data-sources.power')}
-          icon={<WindTurbineIcon />}
-          sources={sources}
-        />
-        <DataSources
-          title={t('data-sources.emission')}
-          icon={<IndustryIcon />}
-          sourceToProductionSources={emissionSourceToProductionSource}
-        />
-      </Accordion>
+      {!isBreakdownGraphOverlayEnabled && (
+        <>
+          <Divider />
+          <Accordion
+            onOpen={() => {
+              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                chart: displayByEmissions
+                  ? 'emission-origin-chart'
+                  : 'electricity-origin-chart',
+              });
+            }}
+            title={t('data-sources.title')}
+            className="text-md"
+            isCollapsedAtom={dataSourcesCollapsedBreakdown}
+          >
+            <DataSources
+              title={t('data-sources.power')}
+              icon={<WindTurbineIcon />}
+              sources={sources}
+            />
+            <DataSources
+              title={t('data-sources.emission')}
+              icon={<IndustryIcon />}
+              sourceToProductionSources={emissionSourceToProductionSource}
+            />
+          </Accordion>
+        </>
+      )}
     </GraphCard>
   );
 }
