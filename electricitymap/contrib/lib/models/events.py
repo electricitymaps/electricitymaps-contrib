@@ -95,6 +95,8 @@ class ProductionMix(Mix):
     solar: float | None = None
     unknown: float | None = None
     wind: float | None = None
+    wind_onshore: float | None = None
+    wind_offshore: float | None = None
 
     def __init__(self, **data: Any):
         """
@@ -111,6 +113,24 @@ class ProductionMix(Mix):
             # Ensure that the value is rounded to 6 decimal places and set to None if it is NaN.
             self.__setattr__(attr, value)
 
+    def _wind_total_or_per_mode(self) -> float | None:
+        """
+        Returns the total wind production if it exists, otherwise the sum of the onshore and offshore wind if both exist.
+        If only one of the two exists, it returns None to indicate that the total wind production is not available.
+        """
+        if self.wind is not None:
+            return self.wind
+        if self.wind_onshore is not None and self.wind_offshore is not None:
+            return _none_safe_round(self.wind_onshore + self.wind_offshore)
+        if (
+            "wind_onshore" in self.corrected_negative_modes
+            or "wind_offshore" in self._corrected_negative_values
+            and (self.wind_onshore is not None or self.wind_offshore is not None)
+        ):
+            return _none_safe_round(
+                (self.wind_onshore or 0) + (self.wind_offshore or 0)
+            )
+
     def dict(  # noqa: A003
         self,
         *,
@@ -124,6 +144,18 @@ class ProductionMix(Mix):
         keep_corrected_negative_values: bool = False,
     ) -> dict[str, Any]:
         """Overriding the dict method to add the corrected negative values as Nones."""
+        # Sets the wind value to the total wind production if any of the sub modes have valid values.
+        if self.wind_offshore is not None or self.wind_onshore is not None:
+            self.wind = self._wind_total_or_per_mode()
+        # Create a new exclude set that contains the wind_onshore and wind_offshore modes.
+        exclude = (
+            exclude
+            if isinstance(exclude, set)
+            else set(exclude.keys())
+            if exclude
+            else set()
+        )
+        exclude = exclude.union({"wind_onshore", "wind_offshore"})
         production_mix = super().dict(
             include=include,
             exclude=exclude,
@@ -149,7 +181,10 @@ class ProductionMix(Mix):
         and to check for negative values and set them to None.
         This method also keeps track of the modes that have been corrected.
         """
-        if name not in PRODUCTION_MODES:
+        if name not in PRODUCTION_MODES + [
+            "wind_offshore",
+            "wind_onshore",
+        ]:
             raise AttributeError(f"Unknown production mode: {name}")
         if value is not None and value < 0:
             self._corrected_negative_values.add(name)

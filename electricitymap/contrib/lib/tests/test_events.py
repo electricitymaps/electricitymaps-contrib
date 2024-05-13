@@ -820,6 +820,49 @@ class TestMixAddValue(unittest.TestCase):
         mix = StorageMix(hydro=np.nan)
         assert mix.hydro is None
 
+    def test_wind_onshore_and_wind_offshore(self):
+        mix = ProductionMix(
+            wind_onshore=10,
+            wind_offshore=20,
+        )
+        dict_form = mix.dict()
+        assert dict_form["wind"] == 30
+        # Asset that the individual wind_onshore and wind_offshore values not present in the dict.
+        assert "wind_onshore" not in dict_form
+        assert "wind_offshore" not in dict_form
+
+    def test_wind_onshore_and_wind_offshore_with_negative_value(self):
+        mix = ProductionMix(
+            wind_onshore=10,
+            wind_offshore=-20,
+        )
+        dict_form = mix.dict()
+        assert dict_form["wind"] == 10
+
+    def test_wind_onshore_and_wind_offshore_with_none(self):
+        mix = ProductionMix(
+            wind_onshore=10,
+            wind_offshore=None,
+        )
+        dict_form = mix.dict()
+        assert dict_form["wind"] is None
+
+    def test_wind_onshore_and_wind_offshore_with_nan(self):
+        mix = ProductionMix(
+            wind_onshore=10,
+            wind_offshore=math.nan,
+        )
+        dict_form = mix.dict()
+        assert dict_form["wind"] is None
+
+    def test_wind_with_wind_onshore_and_wind_offshore(self):
+        mix = ProductionMix(
+            wind=10,
+            wind_onshore=7,
+            wind_offshore=5,
+        )
+        assert mix.wind == 10
+
 
 class TestMixUpdate:
     def test_update_production(self):
