@@ -75,7 +75,7 @@ def fetch_production(
             value = float(value.replace(",", "."))
             production_mix.add_value(generation_type, value)
         else:
-            pass
+            continue
 
     production_breakdown_list.append(
         zoneKey=zone_key,
