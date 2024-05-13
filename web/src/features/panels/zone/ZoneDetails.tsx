@@ -1,7 +1,10 @@
 import useGetZone from 'api/getZone';
+import Accordion from 'components/Accordion';
 import { Button } from 'components/Button';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import { RoundedCard } from 'features/charts/bar-breakdown/GraphCard';
+import { EmapsIcon } from 'icons/emapsIcon';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -112,6 +115,17 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
+          <RoundedCard>
+            <Accordion
+              icon={<EmapsIcon />}
+              title={t('left-panel.applied-methodologies.title')}
+              className="pb-1 pt-3 text-md"
+            >
+              <div className="flex flex-col gap-2 pl-5">
+                <div className="text-sm">hey</div>
+              </div>
+            </Accordion>
+          </RoundedCard>
           <Attribution zoneId={zoneId} />
           {isMobile ? (
             <Button

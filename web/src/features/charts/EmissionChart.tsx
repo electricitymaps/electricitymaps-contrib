@@ -9,7 +9,7 @@ import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
 import { DataSources } from './bar-breakdown/DataSources';
-import { GraphCard } from './bar-breakdown/GraphCard';
+import { RoundedCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -37,7 +37,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const badgeText = getBadgeText(chartData, t);
 
   return (
-    <GraphCard className="pb-2">
+    <RoundedCard className="pb-2">
       <ChartTitle
         translationKey="country-history.emissions"
         badgeText={badgeText}
@@ -73,7 +73,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
           sources={[...emissionSourceToProductionSource.keys()].sort()}
         />
       </Accordion>
-    </GraphCard>
+    </RoundedCard>
   );
 }
 

@@ -187,7 +187,13 @@
     "zone-list-header-title": "Climate Impact by Area",
     "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
     "search": "Search areas",
-    "get-data": "See our commercial API offerings"
+    "get-data": "See our commercial API offerings",
+    "applied-methodologies": {
+      "title": "Applied methodologies",
+      "estimations": "Electricity Maps - Estimations",
+      "flowtracing": "Electricity Maps - Flow-tracing",
+      "carbonintensity": "Electricity Maps - Carbon intensity"
+    }
   },
   "header": {
     "get-data": "Get our data",

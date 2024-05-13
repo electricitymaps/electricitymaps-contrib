@@ -11,7 +11,7 @@ import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
 import { DataSources } from './bar-breakdown/DataSources';
-import { GraphCard } from './bar-breakdown/GraphCard';
+import { RoundedCard } from './bar-breakdown/GraphCard';
 import ProductionSourceLegendList from './bar-breakdown/ProductionSourceLegendList';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -65,7 +65,7 @@ function BreakdownChart({
   }
 
   return (
-    <GraphCard>
+    <RoundedCard>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badgeText={badgeText}
@@ -128,7 +128,7 @@ function BreakdownChart({
           sources={sources}
         />
       </Accordion>
-    </GraphCard>
+    </RoundedCard>
   );
 }
 

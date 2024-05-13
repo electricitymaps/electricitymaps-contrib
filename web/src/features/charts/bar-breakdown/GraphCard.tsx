@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-export function GraphCard({
+export function RoundedCard({
   children,
   className,
 }: {
