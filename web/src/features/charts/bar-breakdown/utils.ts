@@ -218,35 +218,30 @@ function updateMapWithSources(
   storageType?: boolean
 ) {
   for (const entry of Object.entries(sources)) {
-    for (const sourceInfo of entry[1].split('; ')) {
-      const productionSource = getProductionSourcesToAdd(
-        entry,
-        sourceInfoToProductionSource.get(sourceInfo),
-        storageType
+    for (const emissionFactorSource of entry[1].split('; ')) {
+      const productionSources = getProductionSourcesToAdd(
+        storageType ? `${entry[0]} storage` : entry[0],
+        sourceInfoToProductionSource.get(emissionFactorSource),
+        emissionFactorSource
       );
-      if (productionSource.length > 0) {
-        sourceInfoToProductionSource.set(sourceInfo, productionSource);
+      if (productionSources.length > 0) {
+        sourceInfoToProductionSource.set(emissionFactorSource, productionSources);
       }
     }
   }
 }
 
 function getProductionSourcesToAdd(
-  entry: [string, string],
+  productionSource: string,
   productionSourceArray: string[] | undefined,
-  storageType?: boolean
+  emissionFactorSource: string
 ): string[] {
-  const productionSource = storageType ? `${entry[0]} storage` : entry[0];
-  const sourceInfo = entry[1];
-
-  if (sourceInfo.startsWith('assumes')) {
+  if (emissionFactorSource.startsWith('assumes')) {
     return [];
-  }
-  if (productionSourceArray === undefined) {
+  } else if (productionSourceArray === undefined) {
     return [productionSource];
   } else if (!productionSourceArray?.includes(productionSource)) {
     productionSourceArray?.push(productionSource);
-    return productionSourceArray;
   }
-  return [];
+  return productionSourceArray;
 }
