@@ -186,4 +186,9 @@ describe('formatCo2', () => {
     const expected = '1.5 Pt';
     expect(actual).to.deep.eq(expected);
   });
+  // it('handles negative values', () => {
+  //   const actual = formatCo2(-9);
+  //   const expected = '-9 g';
+  //   expect(actual).to.eq(expected);
+  // });
 });
