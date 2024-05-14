@@ -10,11 +10,20 @@ enum FeedbackState {
   SUCCESS = 'success',
 }
 
+export interface SurveyResponseProps {
+  feedbackScore: number;
+  inputText: string;
+  reference: string;
+}
+interface FeedbackCardProps {
+  postSurveyResponse: (props: SurveyResponseProps) => void;
+  surveyReference?: string;
+}
+
 export default function FeedbackCard({
-  estimationMethod,
-}: {
-  estimationMethod?: string;
-}) {
+  postSurveyResponse,
+  surveyReference,
+}: FeedbackCardProps) {
   const [isClosed, setIsClosed] = useState(false);
   const [feedbackState, setFeedbackState] = useState(FeedbackState.INITIAL);
 
@@ -62,7 +71,8 @@ export default function FeedbackCard({
         <FeedbackActions
           feedbackState={feedbackState}
           setFeedbackState={setFeedbackState}
-          estimationMethod={estimationMethod}
+          postSurveyResponse={postSurveyResponse}
+          surveyReference={surveyReference}
         />
       </div>
     </div>
@@ -122,16 +132,18 @@ function SubmitButton({ handleSave }: { handleSave: () => void }) {
 function FeedbackActions({
   feedbackState,
   setFeedbackState,
-  estimationMethod,
+  postSurveyResponse,
+  surveyReference,
 }: {
   feedbackState: FeedbackState;
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
-  estimationMethod?: string;
+  postSurveyResponse: (props: SurveyResponseProps) => void;
+  surveyReference?: string;
 }) {
   const [inputText, setInputText] = useState('');
   const [feedbackScore, setfeedbackScore] = useState('');
 
-  const question = getQuestionTranslation('rate-question');
+  const question = getQuestionTranslation('estimation-question');
 
   const handleInputChange = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
@@ -139,13 +151,10 @@ function FeedbackActions({
 
   const handleSave = () => {
     setFeedbackState(FeedbackState.SUCCESS);
-    fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
-      method: 'POST',
-      body: JSON.stringify({
-        score: feedbackScore,
-        feedback: inputText,
-        reference: estimationMethod,
-      }),
+    postSurveyResponse({
+      feedbackScore: Number.parseInt(feedbackScore),
+      inputText,
+      reference: surveyReference ?? 'Uknown',
     });
   };
 
@@ -264,9 +273,9 @@ function getQuestionTranslation(field: string, feedbackState?: FeedbackState) {
       feedbackState === FeedbackState.INITIAL ||
       feedbackState === FeedbackState.OPTIONAL
     ) {
-      return t(`estimation-feedback.${field}.state-initial`);
+      return t(`feedback-card.${field}.state-initial`);
     }
-    return t(`estimation-feedback.${field}.state-${feedbackState}`);
+    return t(`feedback-card.${field}.state-${feedbackState}`);
   }
-  return t(`estimation-feedback.${field}`);
+  return t(`feedback-card.${field}`);
 }

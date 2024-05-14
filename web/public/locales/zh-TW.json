@@ -89,7 +89,7 @@
       "total-electricity-consumption": "總用電量的來源"
     }
   },
-  "estimation-feedback": {
+  "feedback-card": {
     "title": {
       "state-initial": "幫助我們改進!",
       "state-success": "謝謝!"
@@ -98,7 +98,7 @@
       "state-initial": "請評價以下陳述。",
       "state-success": "您的反饋將幫助我們理解並提高溝通和方法論的品質。"
     },
-    "rate-question": "資料估計的描述易於理解：",
+    "estimation-question": "資料估計的描述易於理解：",
     "optional": "可選：",
     "input-question": "有什麼是我們可以改進的？",
     "agree": "非常同意",

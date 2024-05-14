@@ -1,4 +1,5 @@
 import Accordion from 'components/Accordion';
+import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
 import Badge from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
@@ -11,8 +12,22 @@ import {
   hasEstimationFeedbackBeenSeenAtom,
 } from 'utils/state/atoms';
 
-import FeedbackCard from './FeedbackCard';
 import { showEstimationFeedbackCard } from './util';
+
+function postSurveyResponse({
+  feedbackScore,
+  inputText,
+  reference: surveyReference,
+}: SurveyResponseProps) {
+  fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      score: feedbackScore,
+      feedback: inputText,
+      reference: surveyReference,
+    }),
+  });
+}
 
 export default function EstimationCard({
   cardType,
@@ -55,7 +70,12 @@ export default function EstimationCard({
       return (
         <div>
           <EstimatedCard estimationMethod={estimationMethod} />
-          {isFeedbackCardVisibile && <FeedbackCard estimationMethod={estimationMethod} />}
+          {isFeedbackCardVisibile && (
+            <FeedbackCard
+              surveyReference={estimationMethod}
+              postSurveyResponse={postSurveyResponse}
+            />
+          )}
         </div>
       );
     }

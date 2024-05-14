@@ -97,16 +97,17 @@
       "total-electricity-consumption": "Total electricity consumption by source"
     }
   },
-  "estimation-feedback": {
+  "feedback-card": {
     "title": {
       "state-initial": "Help us improve!",
       "state-success": "Thank you!"
     },
     "subtitle": {
       "state-initial": "Please rate the following statement.",
-      "state-success": "Your response helps us understand and improve the quality of our communication and methodology."
+      "state-success": "Your response helps us understand and improve the quality of app."
     },
-    "rate-question": "The description of the data estimation was easy to understand:",
+    "estimation-question": "The description of the data estimation was easy to understand:",
+    "satification-quetion": "how satisfied are you with your experience using the Electricity Maps app?",
     "optional": "Optional:",
     "input-question": "Anything we can do to improve it?",
     "agree": "Strongly agree",
