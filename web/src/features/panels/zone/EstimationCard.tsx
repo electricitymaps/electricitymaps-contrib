@@ -71,7 +71,7 @@ export default function EstimationCard({
       return (
         <div>
           <EstimatedCard estimationMethod={estimationMethod} />
-          {true && (
+          {isFeedbackCardVisibile && (
             <FeedbackCard
               surveyReference={estimationMethod}
               postSurveyResponse={postSurveyResponse}
