@@ -1,4 +1,4 @@
-import { formatCo2, formatDataSources, formatEnergy, formatPower } from './formatting';
+import { formatCo2, formatEnergy, formatPower } from './formatting';
 
 describe('formatEnergy', () => {
   it('handles NaN input', () => {

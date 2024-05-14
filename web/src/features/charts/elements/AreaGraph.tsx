@@ -11,7 +11,7 @@ import { TimeAverages } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
-import { getTimeScale, isEmpty } from '../graphUtils';
+import { getTimeScale } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphLayers from './AreaGraphLayers';
@@ -140,26 +140,27 @@ function AreaGraph({
     () => getValueScale(containerHeight, totalValues),
     [containerHeight, totalValues]
   );
-  const startTime = datetimes?.at(0);
-  const lastTime = datetimes?.at(-1);
-  const interval = datetimes?.at(-2);
+  const startTime = datetimes.at(0);
+  const lastTime = datetimes.at(-1);
+  const interval = datetimes.at(-2);
 
-  if (!startTime || !lastTime || !interval) {
-    return null;
-  }
   const intervalMs =
     datetimes.length > 1 && interval && lastTime
       ? lastTime.getTime() - interval.getTime()
       : 0;
   // The endTime needs to include the last interval so it can be shown
   const endTime = useMemo(
-    () => new Date(lastTime.getTime() + intervalMs),
+    () => (lastTime ? new Date(lastTime.getTime() + intervalMs) : null),
     [lastTime, intervalMs]
   );
-  const datetimesWithNext = useMemo(() => [...datetimes, endTime], [datetimes, endTime]);
-  if (!endTime) {
-    return null;
-  }
+
+  const datetimesWithNext = useMemo(
+    // The as Date[] assertion is needed because the filter removes the null values but typescript can't infer that
+    // This can be inferred by typescript 5.5 and can be removed when we upgrade
+    () => [...datetimes, endTime].filter(Boolean) as Date[],
+    [datetimes, endTime]
+  );
+
   const timeScale = useMemo(
     () => getTimeScale(containerWidth, startTime, endTime),
     [containerWidth, startTime, endTime]
@@ -208,12 +209,6 @@ function AreaGraph({
     },
     [setGraphIndex, setSelectedLayerIndex]
   );
-
-  // Don't render the graph at all if no layers are present
-  if (isEmpty(layers)) {
-    console.error('No layers present in AreaGraph');
-    return null;
-  }
 
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {

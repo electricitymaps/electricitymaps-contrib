@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 // API Version
-const API_VERSION = 'v7';
+const API_VERSION = 'v8';
 
 const writeJSON = (fileName, obj, encoding = 'utf8') =>
   fs.writeFileSync(fileName, JSON.stringify(obj), encoding);

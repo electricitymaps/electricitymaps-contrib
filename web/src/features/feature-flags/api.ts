@@ -1,17 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { getBasePath, getHeaders, QUERY_KEYS } from 'api/helpers';
+import { getBasePath, QUERY_KEYS } from 'api/helpers';
 
 import { FeatureFlags } from './types';
 
 export async function getFeatureFlags(): Promise<FeatureFlags> {
   const path: URL = new URL(`/${QUERY_KEYS.FEATURE_FLAGS}`, getBasePath());
-  const requestOptions: RequestInit = {
-    method: 'GET',
-    headers: await getHeaders(path),
-  };
 
   try {
-    const response = await fetch(path, requestOptions);
+    const response = await fetch(path);
     if (response.ok) {
       const data = await response.json();
       return data;
@@ -30,7 +26,7 @@ export function useFeatureFlags(): FeatureFlags {
   return (
     useQuery<FeatureFlags>([QUERY_KEYS.FEATURE_FLAGS], async () => getFeatureFlags(), {
       suspense: true,
-    }).data || {}
+    }).data ?? {}
   );
 }
 

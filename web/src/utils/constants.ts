@@ -34,6 +34,10 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+export enum TrackEvent {
+  DATA_SOURCES_CLICKED = 'Data Sources Clicked',
+}
+
 // Production/imports-exports mode
 export const modeColor: { [mode in ElectricityModeType]: string } = {
   solar: '#f27406',
