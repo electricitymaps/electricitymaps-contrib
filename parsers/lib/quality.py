@@ -109,7 +109,7 @@ def validate_exchange(item, k) -> None:
 def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
     validate_datapoint_format(datapoint=obj, kind="production", zone_key=zone_key)
     if "datetime" not in obj:
-        raise ValidationError("datetime was not returned for %s" % zone_key)
+        raise ValidationError(f"datetime was not returned for {zone_key}")
     if "countryCode" in obj:
         warn(
             "object has field `countryCode`. It should have "
@@ -117,7 +117,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             stacklevel=1,
         )
     if "zoneKey" not in obj and "countryCode" not in obj:
-        raise ValidationError("zoneKey was not returned for %s" % zone_key)
+        raise ValidationError(f"zoneKey was not returned for {zone_key}")
     if not isinstance(obj["datetime"], datetime):
         raise ValidationError(
             "datetime {} is not valid for {}".format(obj["datetime"], zone_key)
@@ -152,13 +152,12 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
         ]
     ):
         raise ValidationError(
-            "Coal, gas or oil or unknown production value is required for"
-            " %s" % zone_key
+            f"Coal, gas or oil or unknown production value is required for {zone_key}"
         )
 
     if zone_key in ["US-CAR-YAD"] and obj.get("production", {}).get("hydro", 0) < 5:
         raise ValidationError(
-            "Hydro production value is required to be greater than 5 for %s" % zone_key
+            f"Hydro production value is required to be greater than 5 for {zone_key}"
         )
 
     if obj.get("storage"):

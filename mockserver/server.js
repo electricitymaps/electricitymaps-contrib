@@ -39,7 +39,7 @@ app.get('/v8/gfs/solar', (req, res, next) => {
 
   fs.readFile(`./public/v8/gfs/solar.json`, (err, data) => {
     const jsonData = JSON.parse(data);
-    jsonData.data.header.refTime = targetTime;
+    jsonData.data[0].header.refTime = targetTime;
 
     res.json(jsonData);
   });
