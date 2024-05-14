@@ -40,6 +40,7 @@ export default function EstimationCard({
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
 }) {
+  const { t } = useTranslation();
   const [isFeedbackCardVisibile, setIsFeedbackCardVisibile] = useState(false);
   const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
@@ -70,10 +71,15 @@ export default function EstimationCard({
       return (
         <div>
           <EstimatedCard estimationMethod={estimationMethod} />
-          {isFeedbackCardVisibile && (
+          {true && (
             <FeedbackCard
               surveyReference={estimationMethod}
               postSurveyResponse={postSurveyResponse}
+              primaryQuestion={t('feedback-card.estimations.primary-question')}
+              secondaryQuestionHigh={t('feedback-card.estimations.secondary-question')}
+              secondaryQuestionLow={t('feedback-card.estimations.secondary-question')}
+              successMessage={t('feedback-card.success-message')}
+              subtitle={t('feedback-card.estimations.subtitle')}
             />
           )}
         </div>

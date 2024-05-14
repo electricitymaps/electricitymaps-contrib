@@ -8,7 +8,14 @@ describe('FeedbackCard', () => {
   beforeEach(() => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
-        <FeedbackCard postSurveyResponse={postSurveyResponse} />
+        <FeedbackCard
+          postSurveyResponse={postSurveyResponse}
+          primaryQuestion={i18n.t('feedback-card.estimations.primary-question')}
+          secondaryQuestionHigh={i18n.t('feedback-card.estimations.secondary-question')}
+          secondaryQuestionLow={i18n.t('feedback-card.estimations.secondary-question')}
+          successMessage={i18n.t('feedback-card.success-message')}
+          subtitle={i18n.t('feedback-card.estimations.subtitle')}
+        />
       </I18nextProvider>
     );
   });

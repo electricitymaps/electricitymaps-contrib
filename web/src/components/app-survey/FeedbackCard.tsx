@@ -17,11 +17,21 @@ export interface SurveyResponseProps {
 }
 interface FeedbackCardProps {
   postSurveyResponse: (props: SurveyResponseProps) => void;
+  subtitle?: string;
+  primaryQuestion: string;
+  secondaryQuestionHigh?: string;
+  secondaryQuestionLow?: string;
+  successMessage?: string;
   surveyReference?: string;
 }
 
 export default function FeedbackCard({
   postSurveyResponse,
+  subtitle,
+  primaryQuestion,
+  secondaryQuestionHigh,
+  secondaryQuestionLow,
+  successMessage,
   surveyReference,
 }: FeedbackCardProps) {
   const [isClosed, setIsClosed] = useState(false);
@@ -31,8 +41,7 @@ export default function FeedbackCard({
     setIsClosed(true);
   };
 
-  const title = getQuestionTranslation('title', feedbackState);
-  const subtitle = getQuestionTranslation('subtitle', feedbackState);
+  const title = getQuestionTranslation('title');
 
   if (isClosed) {
     return null;
@@ -52,7 +61,7 @@ export default function FeedbackCard({
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
             data-test-id="title"
           >
-            {title}
+            {feedbackState == FeedbackState.SUCCESS ? successMessage : title}
           </h2>
         </div>
         <button data-test-id="close-button" onClick={handleClose} className="px-3 py-2.5">
@@ -73,6 +82,9 @@ export default function FeedbackCard({
           setFeedbackState={setFeedbackState}
           postSurveyResponse={postSurveyResponse}
           surveyReference={surveyReference}
+          primaryQuestion={primaryQuestion}
+          inputQuestionHigh={secondaryQuestionHigh}
+          inputQuestionLow={secondaryQuestionLow}
         />
       </div>
     </div>
@@ -86,14 +98,15 @@ const calculateTextareaHeight = (event: ChangeEvent<HTMLTextAreaElement>) => {
 
 function InputField({
   inputText,
+  inputQuestion,
   handleInputChange,
 }: {
   inputText: string;
+  inputQuestion?: string;
   handleInputChange: (event: { target: { value: SetStateAction<string> } }) => void;
 }) {
   const inputPlaceholder = getQuestionTranslation('placeholder');
   const optional = getQuestionTranslation('optional');
-  const text = getQuestionTranslation('input-question');
 
   return (
     <div>
@@ -105,7 +118,7 @@ function InputField({
           data-test-id="input-title"
           className="text-sm font-normal text-black dark:text-white"
         >
-          {text}
+          {inputQuestion}
         </div>
       </div>
       <textarea
@@ -133,17 +146,21 @@ function FeedbackActions({
   feedbackState,
   setFeedbackState,
   postSurveyResponse,
+  inputQuestionHigh,
+  inputQuestionLow,
+  primaryQuestion,
   surveyReference,
 }: {
   feedbackState: FeedbackState;
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   postSurveyResponse: (props: SurveyResponseProps) => void;
+  primaryQuestion: string;
+  inputQuestionHigh?: string;
+  inputQuestionLow?: string;
   surveyReference?: string;
 }) {
   const [inputText, setInputText] = useState('');
   const [feedbackScore, setfeedbackScore] = useState('');
-
-  const question = getQuestionTranslation('estimation-question');
 
   const handleInputChange = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
@@ -165,7 +182,7 @@ function FeedbackActions({
   return (
     <div className="flex flex-col">
       <div data-test-id="feedback-question" className="text-sm">
-        {question}
+        {primaryQuestion}
       </div>
       <ActionPills
         setFeedbackState={setFeedbackState}
@@ -175,7 +192,13 @@ function FeedbackActions({
         <div>
           <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-gray-700" />
           <div>
-            <InputField inputText={inputText} handleInputChange={handleInputChange} />
+            <InputField
+              inputText={inputText}
+              handleInputChange={handleInputChange}
+              inputQuestion={
+                Number.parseInt(feedbackScore) > 3 ? inputQuestionHigh : inputQuestionLow
+              }
+            />
             <SubmitButton handleSave={handleSave} />
           </div>
         </div>
@@ -266,16 +289,7 @@ function PillContent({
   );
 }
 
-function getQuestionTranslation(field: string, feedbackState?: FeedbackState) {
+function getQuestionTranslation(field: string) {
   const { t } = useTranslation();
-  if (feedbackState != undefined) {
-    if (
-      feedbackState === FeedbackState.INITIAL ||
-      feedbackState === FeedbackState.OPTIONAL
-    ) {
-      return t(`feedback-card.${field}.state-initial`);
-    }
-    return t(`feedback-card.${field}.state-${feedbackState}`);
-  }
   return t(`feedback-card.${field}`);
 }
