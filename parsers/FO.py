@@ -33,7 +33,7 @@ ZONE_KEY_TO_DATA_KEY = {
 
 
 def fetch_production(
-    zone_key: ZoneKey = "FO",
+    zone_key: ZoneKey = ZoneKey("FO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
