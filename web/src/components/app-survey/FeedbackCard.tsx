@@ -40,8 +40,8 @@ export default function FeedbackCard({
   const handleClose = () => {
     setIsClosed(true);
   };
-
-  const title = getQuestionTranslation('title');
+  const { t } = useTranslation();
+  const title = t('feedback-card.title');
 
   if (isClosed) {
     return null;
@@ -105,8 +105,9 @@ function InputField({
   inputQuestion?: string;
   handleInputChange: (event: { target: { value: SetStateAction<string> } }) => void;
 }) {
-  const inputPlaceholder = getQuestionTranslation('placeholder');
-  const optional = getQuestionTranslation('optional');
+  const { t } = useTranslation();
+  const inputPlaceholder = t('feedback-card.placeholder');
+  const optional = t('feedback-card.optional');
 
   return (
     <div>
@@ -137,7 +138,8 @@ function InputField({
 }
 
 function SubmitButton({ handleSave }: { handleSave: () => void }) {
-  const buttonText = getQuestionTranslation('submit');
+  const { t } = useTranslation();
+  const buttonText = t('feedback-card.submit');
 
   return <Pill text={buttonText} onClick={handleSave} />;
 }
@@ -214,9 +216,10 @@ function ActionPills({
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   setFeedbackScore: Dispatch<SetStateAction<string>>;
 }) {
-  const agreeText = getQuestionTranslation('agree');
+  const { t } = useTranslation();
+  const agreeText = t('feedback-card.agree');
   const [pillContent] = useState(['1', '2', '3', '4', '5']);
-  const disagreeText = getQuestionTranslation('disagree');
+  const disagreeText = t('feedback-card.disagree');
   const [currentPillNumber, setPillNumber] = useState('');
 
   const handlePillClick = (identifier: string) => {
@@ -287,9 +290,4 @@ function PillContent({
       ))}
     </ToggleGroupPrimitive.Root>
   );
-}
-
-function getQuestionTranslation(field: string) {
-  const { t } = useTranslation();
-  return t(`feedback-card.${field}`);
 }
