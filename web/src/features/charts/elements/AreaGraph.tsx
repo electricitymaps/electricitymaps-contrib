@@ -87,7 +87,7 @@ interface AreagraphProps {
   markerUpdateHandler: any;
   markerHideHandler: any;
   isMobile: boolean;
-  isOverlayEnabled?: boolean;
+  isDisabled?: boolean;
   height: string;
   datetimes: Date[];
   selectedTimeAggregate: TimeAverages; // TODO: Graph does not need to know about this
@@ -110,7 +110,7 @@ function AreaGraph({
   markerFill,
   isMobile,
   height = '10em',
-  isOverlayEnabled = false,
+  isDisabled = false,
   selectedTimeAggregate,
   datetimes,
   tooltip,
@@ -228,7 +228,9 @@ function AreaGraph({
       data-test-id={testId}
       height={height}
       ref={reference}
-      className="w-full overflow-visible"
+      className={`w-full overflow-visible ${
+        isDisabled ? 'pointer-events-none blur-sm' : ''
+      }`}
     >
       <GraphBackground
         timeScale={timeScale}
@@ -249,21 +251,15 @@ function AreaGraph({
         isMobile={isMobile}
         svgNode={reference.current}
       />
-      {!isOverlayEnabled && (
-        <TimeAxis
-          isLoading={false}
-          selectedTimeAggregate={selectedTimeAggregate}
-          datetimes={datetimesWithNext}
-          scaleWidth={containerWidth}
-          transform={`translate(5 ${containerHeight})`}
-          className="h-[22px] w-full overflow-visible opacity-50"
-        />
-      )}
-      <ValueAxis
-        scale={valueScale}
-        width={containerWidth}
-        formatTick={isOverlayEnabled ? () => ' ?' : formatTick}
+      <TimeAxis
+        isLoading={false}
+        selectedTimeAggregate={selectedTimeAggregate}
+        datetimes={datetimesWithNext}
+        scaleWidth={containerWidth}
+        transform={`translate(5 ${containerHeight})`}
+        className="h-[22px] w-full overflow-visible opacity-50"
       />
+      <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
       <GraphHoverLine
         layers={layers}
         timeScale={timeScale}
