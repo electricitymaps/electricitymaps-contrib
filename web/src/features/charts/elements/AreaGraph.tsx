@@ -259,7 +259,11 @@ function AreaGraph({
           className="h-[22px] w-full overflow-visible opacity-50"
         />
       )}
-      <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
+      <ValueAxis
+        scale={valueScale}
+        width={containerWidth}
+        formatTick={isOverlayEnabled ? () => ' ?' : formatTick}
+      />
       <GraphHoverLine
         layers={layers}
         timeScale={timeScale}
