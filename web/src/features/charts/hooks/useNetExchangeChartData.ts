@@ -31,11 +31,13 @@ export function getFills(data: AreaGraphElement[]) {
 
 export function useNetExchangeChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const [timeAggregate] = useAtom(timeAverageAtom);
+
   if (isLoading || isError) {
     return { isLoading, isError };
   }
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [timeAggregate] = useAtom(timeAverageAtom);
+
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
     displayByEmissions,

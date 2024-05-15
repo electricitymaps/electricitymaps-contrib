@@ -25,7 +25,7 @@ export default function EstimationCard({
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
 }) {
-  const [isFeedbackCardVisibile, setIsFeedbackCardVisibile] = useState(false);
+  const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
@@ -33,16 +33,22 @@ export default function EstimationCard({
   );
 
   useEffect(() => {
-    setIsFeedbackCardVisibile(
+    setIsFeedbackCardVisible(
       feedbackEnabled &&
         showEstimationFeedbackCard(
           feedbackCardCollapsedNumber,
-          isFeedbackCardVisibile,
+          isFeedbackCardVisible,
           hasFeedbackCardBeenSeen,
           setHasFeedbackCardBeenSeen
         )
     );
-  }, [feedbackEnabled, feedbackCardCollapsedNumber]);
+  }, [
+    feedbackEnabled,
+    feedbackCardCollapsedNumber,
+    isFeedbackCardVisible,
+    hasFeedbackCardBeenSeen,
+    setHasFeedbackCardBeenSeen,
+  ]);
 
   switch (cardType) {
     case 'outage': {
@@ -55,14 +61,14 @@ export default function EstimationCard({
       return (
         <div>
           <EstimatedCard estimationMethod={estimationMethod} />
-          {isFeedbackCardVisibile && <FeedbackCard estimationMethod={estimationMethod} />}
+          {isFeedbackCardVisible && <FeedbackCard estimationMethod={estimationMethod} />}
         </div>
       );
     }
   }
 }
 
-function getEstimationTranslation(
+function useGetEstimationTranslation(
   field: 'title' | 'pill' | 'body',
   estimationMethod?: string,
   estimatedPercentage?: number
@@ -117,13 +123,13 @@ function BaseCard({
   };
   const { t } = useTranslation();
 
-  const title = getEstimationTranslation('title', estimationMethod);
-  const pillText = getEstimationTranslation(
+  const title = useGetEstimationTranslation('title', estimationMethod);
+  const pillText = useGetEstimationTranslation(
     'pill',
     estimationMethod,
     estimatedPercentage
   );
-  const bodyText = getEstimationTranslation(
+  const bodyText = useGetEstimationTranslation(
     'body',
     estimationMethod,
     estimatedPercentage
@@ -247,10 +253,12 @@ function truncateString(string_: string, number_: number) {
 }
 
 function ZoneMessageBlock({ zoneMessage }: { zoneMessage?: ZoneMessage }) {
+  const { t } = useTranslation();
+
   if (!zoneMessage || !zoneMessage.message) {
     return null;
   }
-  const { t } = useTranslation();
+
   return (
     <span className="inline overflow-hidden">
       {truncateString(zoneMessage.message, 300)}{' '}

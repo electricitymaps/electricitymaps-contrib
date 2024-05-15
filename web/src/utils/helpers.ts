@@ -7,12 +7,12 @@ import {
   ZoneDetail,
 } from 'types';
 
-export function getZoneFromPath() {
+export function useGetZoneFromPath() {
   const { zoneId } = useParams();
+  const match = useMatch('/zone/:id');
   if (zoneId) {
     return zoneId;
   }
-  const match = useMatch('/zone/:id');
   return match?.params.id || undefined;
 }
 
