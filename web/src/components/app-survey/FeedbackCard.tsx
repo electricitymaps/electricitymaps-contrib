@@ -162,7 +162,7 @@ function FeedbackActions({
   surveyReference?: string;
 }) {
   const [inputText, setInputText] = useState('');
-  const [feedbackScore, setfeedbackScore] = useState('');
+  const [feedbackScore, setFeedbackScore] = useState('');
 
   const handleInputChange = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
@@ -188,7 +188,7 @@ function FeedbackActions({
       </div>
       <ActionPills
         setFeedbackState={setFeedbackState}
-        setFeedbackScore={setfeedbackScore}
+        setFeedbackScore={setFeedbackScore}
       />
       {feedbackState === FeedbackState.OPTIONAL && (
         <div>

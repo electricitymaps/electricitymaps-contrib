@@ -21,10 +21,11 @@ export default function TooltipWrapper({
   tooltipClassName,
   isMobile,
 }: TooltipWrapperProperties): ReactElement {
+  const [isOpen, setIsOpen] = useState(false);
+
   if (!tooltipContent) {
     return children;
   }
-  const [isOpen, setIsOpen] = useState(false);
 
   // Helpers
   const openTooltip = () => setIsOpen(true);

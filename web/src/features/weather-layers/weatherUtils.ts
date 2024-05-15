@@ -5,7 +5,7 @@ import { Maybe } from 'types';
 
 import { getReferenceTime, getTargetTime } from './grib';
 
-export function useInterpolatedData(
+export function getInterpolatedData(
   type: WeatherType,
   rawData: GfsForecastResponse[]
 ): Maybe<GfsForecastResponse> {

@@ -75,14 +75,23 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
       windy.stop();
       setWindy(null);
     }
-  }, [isVisible, isSuccess, reference.current, windy]);
+  }, [
+    isVisible,
+    isSuccess,
+    windy,
+    map,
+    isWindLayerEnabled,
+    windData,
+    setIsLoadingWindLayer,
+    viewport,
+  ]);
 
   useEffect(() => {
     if (windy) {
       const { bounds, width, height } = viewport;
       windy.start(bounds, width, height);
     }
-  }, [viewport]);
+  }, [viewport, windy]);
 
   return (
     <canvas

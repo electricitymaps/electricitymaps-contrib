@@ -26,15 +26,28 @@ function ExchangeArrow({
   isMobile,
 }: ExchangeArrowProps) {
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
-  if (!lonlat) {
+
+  const setIsMoving = useSetAtom(mapMovingAtom);
+
+  useEffect(() => {
+    const cancelWheel = (event: Event) => event.preventDefault();
+    const exchangeLayer = document.querySelector('#exchange-layer');
+    if (!exchangeLayer) {
+      return;
+    }
+    exchangeLayer.addEventListener('wheel', cancelWheel, {
+      passive: true,
+    });
+    return () => exchangeLayer.removeEventListener('wheel', cancelWheel);
+  }, []);
+
+  const absFlow = Math.abs(netFlow ?? 0);
+
+  // Don't render if there is no position or if flow is very low ...
+  if (!lonlat || absFlow < 1) {
     return null;
   }
 
-  const absFlow = Math.abs(netFlow ?? 0);
-  // Don't render if the flow is very low ...
-  if (absFlow < 1) {
-    return null;
-  }
   const mapZoom = map.getZoom();
   const projection = map.project(lonlat);
   const transform = {
@@ -55,20 +68,6 @@ function ExchangeArrow({
   ) {
     return null;
   }
-
-  const setIsMoving = useSetAtom(mapMovingAtom);
-
-  useEffect(() => {
-    const cancelWheel = (event: Event) => event.preventDefault();
-    const exchangeLayer = document.querySelector('#exchange-layer');
-    if (!exchangeLayer) {
-      return;
-    }
-    exchangeLayer.addEventListener('wheel', cancelWheel, {
-      passive: true,
-    });
-    return () => exchangeLayer.removeEventListener('wheel', cancelWheel);
-  }, []);
 
   const prefix = colorBlindMode ? 'colorblind-' : '';
   const intensity = quantizedCo2IntensityScale(co2intensity);
