@@ -1,5 +1,5 @@
 import Accordion from 'components/Accordion';
-import { RoundedCard } from 'features/charts/bar-breakdown/GraphCard';
+import { RoundedCard } from 'features/charts/bar-breakdown/RoundedCard';
 import { t } from 'i18next';
 import { EmapsIcon } from 'icons/emapsIcon';
 import trackEvent from 'utils/analytics';
