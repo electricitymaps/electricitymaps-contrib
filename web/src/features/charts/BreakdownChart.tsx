@@ -69,7 +69,7 @@ function BreakdownChart({
     <GraphCard>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
-        badgeText={badgeText}
+        badgeText={isBreakdownGraphOverlayEnabled ? undefined : badgeText}
         icon={<CircleBoltIcon />}
         unit={valueAxisLabel}
       />
