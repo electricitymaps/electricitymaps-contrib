@@ -14,6 +14,7 @@ import { DataSources } from './bar-breakdown/DataSources';
 import { GraphCard } from './bar-breakdown/GraphCard';
 import ProductionSourceLegendList from './bar-breakdown/ProductionSourceLegendList';
 import { ChartTitle } from './ChartTitle';
+import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
@@ -74,9 +75,13 @@ function BreakdownChart({
       />
       <div className="relative ">
         {isBreakdownGraphOverlayEnabled && (
-          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
-            Temporarily disabled for consumption. <br /> Switch to production view
-          </div>
+          <DisabledMessage
+            message={
+              <>
+                Disabled for consumption. <br /> Switch to production view
+              </>
+            }
+          />
         )}
 
         <AreaGraph
