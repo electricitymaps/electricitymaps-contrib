@@ -84,7 +84,6 @@ export default function EstimationCard({
               primaryQuestion={t('feedback-card.estimations.primary-question')}
               secondaryQuestionHigh={t('feedback-card.estimations.secondary-question')}
               secondaryQuestionLow={t('feedback-card.estimations.secondary-question')}
-              successMessage={t('feedback-card.success-message')}
               subtitle={t('feedback-card.estimations.subtitle')}
             />
           )}
