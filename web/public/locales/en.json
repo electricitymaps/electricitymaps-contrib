@@ -100,11 +100,13 @@
   "feedback-card": {
     "title": "Help us improve!",
     "success-message": "Your response helps us understand and improve the quality of our app.",
+    "success-subtitle": "Thank you for your feedback!",
     "estimations": {
       "subtitle": "Please rate the following statement.",
       "secondary-question": "Anything we can do to improve it?",
       "primary-question": "The description of the data estimation was easy to understand:"
     },
+
     "primary-question": "How satisfied are you with your experience using the Electricity Maps app?",
     "secondary-question-low": "What can we do better?",
     "secondary-question-high": "What improvements would you like to see next?",

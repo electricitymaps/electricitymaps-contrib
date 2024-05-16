@@ -13,7 +13,6 @@ describe('FeedbackCard', () => {
           primaryQuestion={i18n.t('feedback-card.estimations.primary-question')}
           secondaryQuestionHigh={i18n.t('feedback-card.estimations.secondary-question')}
           secondaryQuestionLow={i18n.t('feedback-card.estimations.secondary-question')}
-          successMessage={i18n.t('feedback-card.success-message')}
           subtitle={i18n.t('feedback-card.estimations.subtitle')}
         />
       </I18nextProvider>
@@ -54,6 +53,9 @@ describe('FeedbackCard', () => {
     cy.get('[data-test-id=feedback-pill-1]').click();
     cy.get('[data-test-id=feedback-input]').type('Test comment');
     cy.get('[data-test-id=pill]').click();
-    cy.get('[data-test-id=title]').should('contain.text', 'Thank you!');
+    cy.get('[data-test-id=title]').should(
+      'contain.text',
+      'Your response helps us understand and improve the quality of our app.'
+    );
   });
 });

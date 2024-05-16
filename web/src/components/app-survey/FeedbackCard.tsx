@@ -21,7 +21,6 @@ interface FeedbackCardProps {
   primaryQuestion: string;
   secondaryQuestionHigh?: string;
   secondaryQuestionLow?: string;
-  successMessage?: string;
   surveyReference?: string;
 }
 
@@ -31,7 +30,7 @@ export default function FeedbackCard({
   primaryQuestion,
   secondaryQuestionHigh,
   secondaryQuestionLow,
-  successMessage,
+
   surveyReference,
 }: FeedbackCardProps) {
   const [isClosed, setIsClosed] = useState(false);
@@ -42,6 +41,9 @@ export default function FeedbackCard({
   };
   const { t } = useTranslation();
   const title = t('feedback-card.title');
+  const successMessage = t('feedback-card.success-message');
+  const successSubtitle = t('feedback-card.success-subtitle');
+  const isFeedbackSubmitted = feedbackState === FeedbackState.SUCCESS;
 
   if (isClosed) {
     return null;
@@ -61,7 +63,7 @@ export default function FeedbackCard({
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
             data-test-id="title"
           >
-            {feedbackState == FeedbackState.SUCCESS ? successMessage : title}
+            {isFeedbackSubmitted ? successMessage : title}
           </h2>
         </div>
         <button data-test-id="close-button" onClick={handleClose} className="px-3 py-2.5">
@@ -71,11 +73,11 @@ export default function FeedbackCard({
       <div className="pb-2 pr-2.5">
         <div
           className={`pb-1 ${
-            feedbackState == FeedbackState.SUCCESS ? 'text-sm' : 'text-xs'
+            isFeedbackSubmitted ? 'text-sm' : 'text-xs'
           } font-medium text-neutral-400`}
           data-test-id="subtitle"
         >
-          {subtitle}
+          {isFeedbackSubmitted ? successSubtitle : subtitle}
         </div>
         <FeedbackActions
           feedbackState={feedbackState}

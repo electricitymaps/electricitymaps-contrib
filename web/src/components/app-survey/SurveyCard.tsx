@@ -15,7 +15,6 @@ export default function SurveyCard() {
         primaryQuestion={t('feedback-card.primary-question')}
         secondaryQuestionHigh={t('feedback-card.secondary-question-high')}
         secondaryQuestionLow={t('feedback-card.secondary-question-low')}
-        successMessage={t('feedback-card.success-message')}
       />
     </div>
   );
