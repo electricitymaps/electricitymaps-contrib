@@ -1,16 +1,16 @@
-#!/usr/bin/env python3
-
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Literal, TypedDict
 from zoneinfo import ZoneInfo
 
 from requests import Response, Session
 
-from .lib.exceptions import ParserException
-from .lib.validation import validate
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.exceptions import ParserException
 
-FO = ZoneInfo("Atlantic/Faroe")
+PARSER = "FO.py"
+TIMEZONE = ZoneInfo("Atlantic/Faroe")
 
 MAP_GENERATION = {
     "Vand": "hydro",
@@ -22,97 +22,70 @@ MAP_GENERATION = {
     "Tidal": "unknown",
 }
 
-VALID_ZONE_KEYS = Literal["FO", "FO-MI", "FO-SI"]
+VALID_ZONE_KEYS = ["FO", "FO-MI", "FO-SI"]
 
 
-class ValidationObject(TypedDict):
-    floor: int
-
-
-class ZoneData(TypedDict):
-    data_key: str
-    validation: ValidationObject
-
-
-ZONE_MAP: dict[VALID_ZONE_KEYS, ZoneData] = {
-    "FO": {"data_key": "Sev_E", "validation": {"floor": 10}},
-    "FO-MI": {"data_key": "H_E", "validation": {"floor": 9}},
-    "FO-SI": {"data_key": "S_E", "validation": {"floor": 1}},
+ZONE_KEY_TO_DATA_KEY = {
+    "FO": "Sev_E",
+    "FO-MI": "H_E",
+    "FO-SI": "S_E",
 }
 
 
-def map_generation_type(raw_generation_type):
-    return MAP_GENERATION.get(raw_generation_type)
-
-
 def fetch_production(
-    zone_key: VALID_ZONE_KEYS = "FO",
+    zone_key: ZoneKey = ZoneKey("FO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
-    logger: Logger = getLogger("FO"),
-) -> dict:
-    if target_datetime:
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    if zone_key not in VALID_ZONE_KEYS:
+        raise ParserException(
+            PARSER,
+            f"This parser cannot retrieve data for zone {zone_key!r}",
+        )
+
+    if target_datetime is not None:
         # There is a API endpoint at https://www.sev.fo/api/elproduction/last7days
         # but it's currently returning nothing at all. Last checked on 2022-08-09
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+        raise ParserException(
+            PARSER, "This parser is not yet able to parse past dates", zone_key=zone_key
+        )
 
     ses = session or Session()
     url = "https://www.sev.fo/api/realtimemap/now"
     response: Response = ses.get(url)
     obj = response.json()
 
-    data = {
-        "zoneKey": zone_key,
-        "capacity": {},
-        "production": {
-            "biomass": 0,
-            "coal": 0,
-            "gas": 0,
-            "geothermal": 0,
-            "nuclear": 0,
-            "solar": 0,
-            "unknown": 0,
-        },
-        "storage": {},
-        "source": "sev.fo",
-    }
+    production_breakdown_list = ProductionBreakdownList(logger)
+    production_mix = ProductionMix()
     for key, value in obj.items():
-        if key == "tiden":
-            data["datetime"] = datetime.fromisoformat(value).replace(tzinfo=FO)
         if "Sum" in key or "Test" in key or "VnVand" in key:
             # "VnVand" is the sum of hydro (Mýrarnar + Fossá + Heygar)
             continue
-        elif key.endswith(ZONE_MAP[zone_key]["data_key"]):
+
+        elif key.endswith(ZONE_KEY_TO_DATA_KEY[zone_key]):
             # E stands for Energy
-            raw_generation_type: str = key.replace(ZONE_MAP[zone_key]["data_key"], "")
-            generation_type = map_generation_type(raw_generation_type)
-            if not generation_type:
+            raw_generation_type: str = key.replace(ZONE_KEY_TO_DATA_KEY[zone_key], "")
+            generation_type = MAP_GENERATION.get(raw_generation_type)
+            if generation_type is None:
                 raise ParserException(
-                    "FO.py", f"Unknown generation type: {raw_generation_type}", zone_key
+                    PARSER, f"Unknown generation type: {raw_generation_type}", zone_key
                 )
             # Power (MW)
             value = float(value.replace(",", "."))
-            data["production"][generation_type] = (
-                data["production"].get(generation_type, 0) + value
-            )
+            production_mix.add_value(generation_type, value)
         else:
-            # print 'Unhandled key %s' % key
-            pass
+            continue
 
-    data = validate(
-        data,
-        logger,
-        floor=ZONE_MAP[zone_key]["validation"]["floor"],
+    production_breakdown_list.append(
+        zoneKey=zone_key,
+        datetime=datetime.fromisoformat(obj["tiden"]).replace(tzinfo=TIMEZONE),
+        source="sev.fo",
+        production=production_mix,
     )
-    if isinstance(data, dict):
-        return data
-    else:
-        raise ParserException(
-            "FO.py",
-            f"No valid data was returned for {zone_key}",
-            zone_key,
-        )
+    return production_breakdown_list.to_list()
 
 
 if __name__ == "__main__":
-    print(fetch_production())
+    for zone in VALID_ZONE_KEYS:
+        print(fetch_production(zone_key=ZoneKey(zone)))
