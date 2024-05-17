@@ -3490,7 +3490,7 @@ snapshots["test_fetch_production_live[FO-MI] 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-05-16T11:02:00+00:00",
+        "datetime": "2024-05-16T11:00:00+00:00",
         "production": {
             "biomass": 0.75,
             "hydro": 6.62,
@@ -3805,7 +3805,7 @@ snapshots["test_fetch_production_live[FO-SI] 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-05-16T11:02:00+00:00",
+        "datetime": "2024-05-16T11:00:00+00:00",
         "production": {"hydro": 0.0, "oil": 3.77, "solar": 0.07, "wind": 0.59},
         "source": "sev.fo",
         "sourceType": "measured",
@@ -4312,7 +4312,7 @@ snapshots["test_fetch_production_live[FO] 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-05-16T11:02:00+00:00",
+        "datetime": "2024-05-16T11:00:00+00:00",
         "production": {
             "biomass": 0.75,
             "hydro": 6.62,
