@@ -8,6 +8,7 @@ import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
   Route,
+  Routes,
   useLocation,
   useParams,
   useSearchParams,
@@ -115,26 +116,28 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
 export default function LeftPanel() {
   return (
     <OuterPanel>
-      <Route path="/" element={<HandleLegacyRoutes />} />
-      <Route
-        path="/zone/:zoneId"
-        element={
-          <ValidZoneIdGuardWrapper>
+      <Routes>
+        <Route path="/" element={<HandleLegacyRoutes />} />
+        <Route
+          path="/zone/:zoneId"
+          element={
+            <ValidZoneIdGuardWrapper>
+              <Suspense fallback={<LoadingSpinner />}>
+                <ZoneDetails />
+              </Suspense>
+            </ValidZoneIdGuardWrapper>
+          }
+        />
+        {/* Alternative: add /map here and have a NotFound component for anything else*/}
+        <Route
+          path="*"
+          element={
             <Suspense fallback={<LoadingSpinner />}>
-              <ZoneDetails />
+              <RankingPanel />
             </Suspense>
-          </ValidZoneIdGuardWrapper>
-        }
-      />
-      {/* Alternative: add /map here and have a NotFound component for anything else*/}
-      <Route
-        path="*"
-        element={
-          <Suspense fallback={<LoadingSpinner />}>
-            <RankingPanel />
-          </Suspense>
-        }
-      />
+          }
+        />
+      </Routes>
     </OuterPanel>
   );
 }
