@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/react';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
@@ -9,7 +8,6 @@ import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
   Route,
-  Routes,
   useLocation,
   useParams,
   useSearchParams,
@@ -114,32 +112,29 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </aside>
   );
 }
-const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 export default function LeftPanel() {
   return (
     <OuterPanel>
-      <SentryRoutes>
-        <Route path="/" element={<HandleLegacyRoutes />} />
-        <Route
-          path="/zone/:zoneId"
-          element={
-            <ValidZoneIdGuardWrapper>
-              <Suspense fallback={<LoadingSpinner />}>
-                <ZoneDetails />
-              </Suspense>
-            </ValidZoneIdGuardWrapper>
-          }
-        />
-        {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route
-          path="*"
-          element={
+      <Route path="/" element={<HandleLegacyRoutes />} />
+      <Route
+        path="/zone/:zoneId"
+        element={
+          <ValidZoneIdGuardWrapper>
             <Suspense fallback={<LoadingSpinner />}>
-              <RankingPanel />
+              <ZoneDetails />
             </Suspense>
-          }
-        />
-      </SentryRoutes>
+          </ValidZoneIdGuardWrapper>
+        }
+      />
+      {/* Alternative: add /map here and have a NotFound component for anything else*/}
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<LoadingSpinner />}>
+            <RankingPanel />
+          </Suspense>
+        }
+      />
     </OuterPanel>
   );
 }
