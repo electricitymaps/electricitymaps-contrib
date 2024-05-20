@@ -154,7 +154,7 @@ function AreaGraph({
 
     //add exactly 1 interval to the last time, e.g. 1 hour or 1 day or 1 month, etc.
     return duration ? add(lastTime, { [duration]: 1 }) : null;
-  }, [lastTime]);
+  }, [lastTime, selectedTimeAggregate]);
 
   const datetimesWithNext = useMemo(
     // The as Date[] assertion is needed because the filter removes the null values but typescript can't infer that
