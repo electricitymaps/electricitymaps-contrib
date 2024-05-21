@@ -1,9 +1,20 @@
 import { useTranslation } from 'react-i18next';
 
-import FeedbackCard from './FeedbackCard';
+import FeedbackCard, { SurveyResponseProps } from './FeedbackCard';
 
-function postSurveyResponse() {
-  console.log('Survey response posted');
+function postSurveyResponse({
+  feedbackScore,
+  inputText,
+  reference: surveyReference,
+}: SurveyResponseProps) {
+  fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      score: feedbackScore,
+      feedback: inputText,
+      reference: surveyReference,
+    }),
+  });
 }
 export default function SurveyCard() {
   const { t } = useTranslation();

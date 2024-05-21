@@ -25,6 +25,7 @@ import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
+import { getZoneIdFromLocation } from './map-utils/getZoneIdFromLocation';
 import {
   hoveredZoneAtom,
   loadingMapAtom,
@@ -153,14 +154,52 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   useEffect(() => {
     // Run on first load to center the map on the user's location
-    if (!map || isError || !isFirstLoad) {
+    if (!map || isError || !isFirstLoad || !isSourceLoaded) {
       return;
     }
     if (data?.callerLocation && !selectedZoneId) {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
+
+      const handleIdle = () => {
+        if (
+          map.isSourceLoaded(ZONE_SOURCE) &&
+          map.areTilesLoaded() &&
+          data?.callerLocation
+        ) {
+          const source = map.getSource(ZONE_SOURCE);
+          const layer = map.getLayer('zones-clickable-layer');
+          if (!source) {
+            console.error(`Source "${ZONE_SOURCE}" not found`);
+            return;
+          }
+          if (!layer) {
+            console.error('Layer "zones-clickable-layer" not found or not rendered');
+            return;
+          }
+          const zoneFeature = getZoneIdFromLocation(
+            map,
+            data?.callerLocation,
+            ZONE_SOURCE
+          );
+          if (zoneFeature) {
+            const zoneName = zoneFeature.properties.zoneId;
+            console.log('User is in zone:', zoneName);
+          }
+          map.off('idle', handleIdle);
+        }
+      };
       setIsFirstLoad(false);
+      map.on('idle', handleIdle);
     }
-  }, [map, isSuccess, isError, isFirstLoad, data?.callerLocation, selectedZoneId]);
+  }, [
+    map,
+    isSuccess,
+    isError,
+    isFirstLoad,
+    data?.callerLocation,
+    selectedZoneId,
+    isSourceLoaded,
+  ]);
 
   useEffect(() => {
     // Run when the selected zone changes
