@@ -10,6 +10,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
+import { initPolyfills } from 'utils/polyfills';
 import { refetchDataOnHourChange } from 'utils/refetching';
 //import { registerSW } from 'virtual:pwa-register';
 
@@ -43,6 +44,7 @@ if (navigator.serviceWorker) {
 }
 // registerSW();
 createConsoleGreeting();
+initPolyfills();
 
 if (import.meta.env.DEV) {
   enableErrorsInOverlay();

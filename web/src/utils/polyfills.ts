@@ -2,7 +2,7 @@
  * Polyfills Array.at() for older versions of Safari
  * Source: https://github.com/tc39/proposal-relative-indexing-method#polyfill
  */
-export function polyfillArrayAt() {
+function polyfillArrayAt() {
   if (![].at) {
     Array.prototype.at = function (n) {
       console.log('Running .at with', n);
@@ -23,4 +23,6 @@ export function polyfillArrayAt() {
 }
 
 // Initialise all polyfills
-polyfillArrayAt();
+export const initPolyfills = () => {
+  polyfillArrayAt();
+};
