@@ -2,12 +2,13 @@
 /* eslint-disable react/display-name */
 import { scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
+import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis'; // TODO: Move to a shared folder
 import { useAtom } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
 import { ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { TimeAverages } from 'utils/constants';
+import { TimeAverages, timeAxisMapping } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
@@ -142,17 +143,18 @@ function AreaGraph({
   );
   const startTime = datetimes.at(0);
   const lastTime = datetimes.at(-1);
-  const interval = datetimes.at(-2);
 
-  const intervalMs =
-    datetimes.length > 1 && interval && lastTime
-      ? lastTime.getTime() - interval.getTime()
-      : 0;
   // The endTime needs to include the last interval so it can be shown
-  const endTime = useMemo(
-    () => (lastTime ? new Date(lastTime.getTime() + intervalMs) : null),
-    [lastTime, intervalMs]
-  );
+  const endTime = useMemo(() => {
+    if (!lastTime) {
+      return null;
+    }
+
+    const duration = timeAxisMapping[selectedTimeAggregate];
+
+    //add exactly 1 interval to the last time, e.g. 1 hour or 1 day or 1 month, etc.
+    return duration ? add(lastTime, { [duration]: 1 }) : null;
+  }, [lastTime, selectedTimeAggregate]);
 
   const datetimesWithNext = useMemo(
     // The as Date[] assertion is needed because the filter removes the null values but typescript can't infer that
