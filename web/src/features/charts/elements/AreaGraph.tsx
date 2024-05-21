@@ -120,7 +120,7 @@ function AreaGraph({
 }: AreagraphProps) {
   const reference = useRef(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
-    useResizeObserver<SVGSVGElement>({ ref: reference });
+    useResizeObserver<HTMLDivElement>({ ref: reference });
 
   const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
@@ -226,67 +226,64 @@ function AreaGraph({
   }
 
   return (
-    <svg
-      data-test-id={testId}
-      height={height}
-      ref={reference}
-      className="w-full overflow-visible"
-    >
-      <GraphBackground
-        timeScale={timeScale}
-        valueScale={valueScale}
-        datetimes={datetimes}
-        mouseMoveHandler={mouseMoveHandler}
-        mouseOutHandler={mouseOutHandler}
-        isMobile={isMobile}
-        svgNode={reference.current}
-      />
-      <AreaGraphLayers
-        layers={layers}
-        datetimes={datetimesWithNext}
-        timeScale={timeScale}
-        valueScale={valueScale}
-        mouseMoveHandler={mouseMoveHandler}
-        mouseOutHandler={mouseOutHandler}
-        isMobile={isMobile}
-        svgNode={reference.current}
-      />
-      {!isOverlayEnabled && (
-        <TimeAxis
-          isLoading={false}
-          selectedTimeAggregate={selectedTimeAggregate}
-          datetimes={datetimesWithNext}
-          scaleWidth={containerWidth}
-          transform={`translate(5 ${containerHeight})`}
-          className="h-[22px] w-full overflow-visible opacity-50"
+    <div ref={reference}>
+      <svg data-test-id={testId} height={height} className="w-full overflow-visible">
+        <GraphBackground
+          timeScale={timeScale}
+          valueScale={valueScale}
+          datetimes={datetimes}
+          mouseMoveHandler={mouseMoveHandler}
+          mouseOutHandler={mouseOutHandler}
+          isMobile={isMobile}
+          svgNode={reference.current}
         />
-      )}
-      <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
-      <GraphHoverLine
-        layers={layers}
-        timeScale={timeScale}
-        valueScale={valueScale}
-        datetimes={datetimes}
-        endTime={endTime}
-        markerUpdateHandler={markerUpdateHandler}
-        markerHideHandler={markerHideHandler}
-        selectedLayerIndex={selectedLayerIndex}
-        selectedTimeIndex={hoverLineTimeIndex}
-        svgNode={reference.current}
-      />
-      {tooltip && (
-        <AreaGraphTooltip
-          {...tooltipData}
-          selectedLayerKey={
-            selectedLayerIndex === null ? undefined : layerKeys[selectedLayerIndex]
-          }
-          tooltipSize={tooltipSize}
-          isBiggerThanMobile={isBiggerThanMobile}
-        >
-          {(props) => tooltip(props)}
-        </AreaGraphTooltip>
-      )}
-    </svg>
+        <AreaGraphLayers
+          layers={layers}
+          datetimes={datetimesWithNext}
+          timeScale={timeScale}
+          valueScale={valueScale}
+          mouseMoveHandler={mouseMoveHandler}
+          mouseOutHandler={mouseOutHandler}
+          isMobile={isMobile}
+          svgNode={reference.current}
+        />
+        {!isOverlayEnabled && (
+          <TimeAxis
+            isLoading={false}
+            selectedTimeAggregate={selectedTimeAggregate}
+            datetimes={datetimesWithNext}
+            scaleWidth={containerWidth}
+            transform={`translate(5 ${containerHeight})`}
+            className="h-[22px] w-full overflow-visible opacity-50"
+          />
+        )}
+        <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
+        <GraphHoverLine
+          layers={layers}
+          timeScale={timeScale}
+          valueScale={valueScale}
+          datetimes={datetimes}
+          endTime={endTime}
+          markerUpdateHandler={markerUpdateHandler}
+          markerHideHandler={markerHideHandler}
+          selectedLayerIndex={selectedLayerIndex}
+          selectedTimeIndex={hoverLineTimeIndex}
+          svgNode={reference.current}
+        />
+        {tooltip && (
+          <AreaGraphTooltip
+            {...tooltipData}
+            selectedLayerKey={
+              selectedLayerIndex === null ? undefined : layerKeys[selectedLayerIndex]
+            }
+            tooltipSize={tooltipSize}
+            isBiggerThanMobile={isBiggerThanMobile}
+          >
+            {(props) => tooltip(props)}
+          </AreaGraphTooltip>
+        )}
+      </svg>
+    </div>
   );
 }
 
