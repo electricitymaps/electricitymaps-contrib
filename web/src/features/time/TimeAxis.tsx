@@ -1,7 +1,7 @@
 import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
-import useResizeObserver from 'use-resize-observer';
+import useResizeObserver from 'use-resize-observer/polyfilled';
 import { TimeAverages } from 'utils/constants';
 
 import { formatDateTick } from '../../utils/formatting';
@@ -87,6 +87,7 @@ function TimeAxis({
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
+
   const width = observerWidth - 24;
 
   if (datetimes === undefined || isLoading) {
