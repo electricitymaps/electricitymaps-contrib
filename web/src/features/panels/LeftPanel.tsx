@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/react';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
@@ -114,11 +113,10 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </aside>
   );
 }
-const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 export default function LeftPanel() {
   return (
     <OuterPanel>
-      <SentryRoutes>
+      <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
         <Route
           path="/zone/:zoneId"
@@ -139,7 +137,7 @@ export default function LeftPanel() {
             </Suspense>
           }
         />
-      </SentryRoutes>
+      </Routes>
     </OuterPanel>
   );
 }
