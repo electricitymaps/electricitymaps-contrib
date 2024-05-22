@@ -156,7 +156,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   useEffect(() => {
     // Run on first load to center the map on the user's location
-    if (!map || isError || !isFirstLoad || !isSourceLoaded) {
+    if (!map || isError || !isFirstLoad || !isSourceLoaded || !data) {
       return;
     }
     if (data?.callerLocation && !selectedZoneId) {
@@ -199,7 +199,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     isSuccess,
     isError,
     isFirstLoad,
-    data.callerLocation,
+    data,
     selectedZoneId,
     isSourceLoaded,
     setUserLocation,
