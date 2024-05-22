@@ -5,7 +5,6 @@ import * as Sentry from '@sentry/react';
 import { useGetAppVersion } from 'api/getAppVersion';
 import useGetState from 'api/getState';
 import LoadingOverlay from 'components/LoadingOverlay';
-import MapCardContainer from 'components/MapCardContainer';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
@@ -17,7 +16,7 @@ import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
-const LegendContainer = lazy(() => import('components/legend/LegendContainer'));
+const MapCardContainer = lazy(() => import('components/MapCardContainer'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
@@ -104,7 +103,9 @@ export default function App(): ReactElement {
               <Suspense>
                 <TimeControllerWrapper />
               </Suspense>
-              <MapCardContainer />
+              <Suspense>
+                <MapCardContainer />
+              </Suspense>
             </Sentry.ErrorBoundary>
           </div>
         </ToastProvider>
