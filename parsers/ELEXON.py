@@ -342,7 +342,7 @@ def query_and_merge_production_fuelhh_and_eso(
     parsed_events_eso = parse_eso_production(events_eso, logger)
 
     merged_events = ProductionBreakdownList.merge_production_breakdowns(
-        [parsed_events_fuelhh, parsed_events_eso], logger
+        [parsed_events_fuelhh, parsed_events_eso], logger, matching_timestamps_only=True
     )
     return merged_events.to_list()
 
