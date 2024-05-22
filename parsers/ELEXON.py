@@ -329,13 +329,12 @@ def query_production_fuelhh(
     }
 
     fuelhh_data = query_elexon(ELEXON_URLS["production_fuelhh"], session, params)
-
     return fuelhh_data
 
 
 def query_and_merge_production_fuelhh_and_eso(
     session: Session, target_datetime: datetime, logger: Logger
-) -> list[dict[str, Any]]:
+) -> ProductionBreakdownList:
     events_fuelhh = query_production_fuelhh(session, target_datetime, logger)
     parsed_events_fuelhh = parse_production(events_fuelhh, logger, "FUELHH")
     events_eso = query_additional_eso_data(target_datetime, session)
@@ -344,12 +343,12 @@ def query_and_merge_production_fuelhh_and_eso(
     merged_events = ProductionBreakdownList.merge_production_breakdowns(
         [parsed_events_fuelhh, parsed_events_eso], logger, matching_timestamps_only=True
     )
-    return merged_events.to_list()
+    return merged_events
 
 
 def query_exchange(
     zone_key: ZoneKey, session: Session, target_datetime: datetime, logger: Logger
-) -> list:
+) -> ExchangeList:
     all_exchanges: list[ExchangeList] = []
     for interconnector in ZONEKEY_TO_INTERCONNECTOR[zone_key]:
         exchange_params = {
@@ -382,8 +381,7 @@ def query_exchange(
                 datetime=event_datetime,
             )
             all_exchanges.append(exchange_list)
-    events = ExchangeList.merge_exchanges(all_exchanges, logger)
-    return events.to_list()
+    return ExchangeList.merge_exchanges(all_exchanges, logger)
 
 
 @refetch_frequency(timedelta(days=1))
@@ -406,7 +404,7 @@ def fetch_exchange(
         )
     exchange_data = query_exchange(exchangeKey, session, target_datetime, logger)
 
-    return exchange_data
+    return exchange_data.to_list()
 
 
 @refetch_frequency(timedelta(days=2))
@@ -442,8 +440,8 @@ def fetch_production(
             [data_b1620, parsed_hydro_storage_data],
             logger,
             matching_timestamps_only=True,
-        ).to_list()
-    return data
+        )
+    return data.to_list()
 
 
 def validate_bmrs_data(data: ProductionBreakdownList):
