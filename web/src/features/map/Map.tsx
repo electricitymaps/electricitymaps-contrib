@@ -199,9 +199,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     isSuccess,
     isError,
     isFirstLoad,
-    data?.callerLocation,
+    data.callerLocation,
     selectedZoneId,
     isSourceLoaded,
+    setUserLocation,
   ]);
 
   useEffect(() => {
