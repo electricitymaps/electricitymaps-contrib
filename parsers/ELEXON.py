@@ -195,7 +195,9 @@ def parse_production(
         else:
             production_value = get_event_value(event, quantity_key)
             if production_value:
-                production_mix.add_value(production_mode, production_value)
+                production_mix.add_value(
+                    production_mode, production_value, correct_negative_with_zero=True
+                )
                 production_breakdown.append(
                     zoneKey=ZoneKey("GB"),
                     production=production_mix,
@@ -270,7 +272,9 @@ def parse_eso_production(
                 production_value = get_event_value(event, production_mode)
                 if production_value:
                     production_mix.add_value(
-                        ESO_FUEL_MAPPING[production_mode], event.get(production_mode)
+                        ESO_FUEL_MAPPING[production_mode],
+                        event.get(production_mode),
+                        correct_negative_with_zero=True,
                     )
                     production_breakdown.append(
                         zoneKey=ZoneKey("GB"),
