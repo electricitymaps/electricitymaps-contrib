@@ -113,11 +113,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
-      const zone = data.data?.zones[zoneId];
-      const co2intensity =
-        zone && zone[selectedDatetime.datetimeString]
-          ? getCO2IntensityByMode(zone[selectedDatetime.datetimeString], mixMode)
-          : undefined;
+      const zone = data.data.datetimes[selectedDatetime.datetimeString]?.z[zoneId];
+      const co2intensity = zone ? getCO2IntensityByMode(zone, mixMode) : undefined;
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
         : theme.clickableFill;
@@ -148,6 +145,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     isSourceLoaded,
     spatialAggregate,
     isSuccess,
+    isLoading,
+    isError,
+    worldGeometries.features,
+    theme.clickableFill,
   ]);
 
   useEffect(() => {
@@ -159,7 +160,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
       setIsFirstLoad(false);
     }
-  }, [map, isSuccess]);
+  }, [map, isSuccess, isError, isFirstLoad, data?.callerLocation, selectedZoneId]);
 
   useEffect(() => {
     // Run when the selected zone changes
@@ -189,7 +190,15 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
       }
     }
-  }, [map, location.pathname, isLoadingMap]);
+  }, [
+    map,
+    location.pathname,
+    isLoadingMap,
+    selectedZoneId,
+    setHoveredZone,
+    worldGeometries.features,
+    setLeftPanelOpen,
+  ]);
 
   const onClick = (event: maplibregl.MapLayerMouseEvent) => {
     if (!map || !event.features) {
@@ -333,7 +342,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
-      onTouchStart={onDragStart}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
       onZoomStart={onZoomStart}

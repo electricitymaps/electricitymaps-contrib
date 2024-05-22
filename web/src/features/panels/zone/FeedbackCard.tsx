@@ -22,8 +22,8 @@ export default function FeedbackCard({
     setIsClosed(true);
   };
 
-  const title = getQuestionTranslation('title', feedbackState);
-  const subtitle = getQuestionTranslation('subtitle', feedbackState);
+  const title = useGetQuestionTranslation('title', feedbackState);
+  const subtitle = useGetQuestionTranslation('subtitle', feedbackState);
 
   if (isClosed) {
     return null;
@@ -81,9 +81,9 @@ function InputField({
   inputText: string;
   handleInputChange: (event: { target: { value: SetStateAction<string> } }) => void;
 }) {
-  const inputPlaceholder = getQuestionTranslation('placeholder');
-  const optional = getQuestionTranslation('optional');
-  const text = getQuestionTranslation('input-question');
+  const inputPlaceholder = useGetQuestionTranslation('placeholder');
+  const optional = useGetQuestionTranslation('optional');
+  const text = useGetQuestionTranslation('input-question');
 
   return (
     <div>
@@ -114,7 +114,7 @@ function InputField({
 }
 
 function SubmitButton({ handleSave }: { handleSave: () => void }) {
-  const buttonText = getQuestionTranslation('submit');
+  const buttonText = useGetQuestionTranslation('submit');
 
   return <Pill text={buttonText} onClick={handleSave} />;
 }
@@ -129,9 +129,9 @@ function FeedbackActions({
   estimationMethod?: string;
 }) {
   const [inputText, setInputText] = useState('');
-  const [feedbackScore, setfeedbackScore] = useState('');
+  const [feedbackScore, setFeedbackScore] = useState('');
 
-  const question = getQuestionTranslation('rate-question');
+  const question = useGetQuestionTranslation('rate-question');
 
   const handleInputChange = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
@@ -160,7 +160,7 @@ function FeedbackActions({
       </div>
       <ActionPills
         setFeedbackState={setFeedbackState}
-        setFeedbackScore={setfeedbackScore}
+        setFeedbackScore={setFeedbackScore}
       />
       {feedbackState === FeedbackState.OPTIONAL && (
         <div>
@@ -182,9 +182,9 @@ function ActionPills({
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   setFeedbackScore: Dispatch<SetStateAction<string>>;
 }) {
-  const agreeText = getQuestionTranslation('agree');
+  const agreeText = useGetQuestionTranslation('agree');
   const [pillContent] = useState(['1', '2', '3', '4', '5']);
-  const disagreeText = getQuestionTranslation('disagree');
+  const disagreeText = useGetQuestionTranslation('disagree');
   const [currentPillNumber, setPillNumber] = useState('');
 
   const handlePillClick = (identifier: string) => {
@@ -257,7 +257,7 @@ function PillContent({
   );
 }
 
-function getQuestionTranslation(field: string, feedbackState?: FeedbackState) {
+function useGetQuestionTranslation(field: string, feedbackState?: FeedbackState) {
   const { t } = useTranslation();
   if (feedbackState != undefined) {
     if (

@@ -1,6 +1,14 @@
+import Accordion from 'components/Accordion';
+import Divider from 'features/panels/zone/Divider';
+import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
+import { IndustryIcon } from 'icons/industryIcon';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import trackEvent from 'utils/analytics';
+import { TimeAverages, TrackEvent } from 'utils/constants';
+import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
+import { DataSources } from './bar-breakdown/DataSources';
+import { GraphCard } from './bar-breakdown/GraphCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
@@ -14,7 +22,8 @@ interface CarbonChartProps {
 }
 
 function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
-  const { data, isLoading, isError } = useCarbonChartData();
+  const { data, emissionSourceToProductionSource, isLoading, isError } =
+    useCarbonChartData();
   const { t } = useTranslation();
 
   if (isLoading || isError || !data) {
@@ -31,17 +40,18 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     return <NotEnoughDataMessage title="country-history.carbonintensity" />;
   }
   return (
-    <>
+    <GraphCard className="pb-2">
       <ChartTitle
         translationKey="country-history.carbonintensity"
         badgeText={badgeText}
+        icon={<CloudArrowUpIcon />}
+        unit={'gCO₂eq / kWh'}
       />
       <AreaGraph
         testId="details-carbon-graph"
         data={chartData}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        valueAxisLabel="g / kWh"
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         isMobile={false}
@@ -50,7 +60,22 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         selectedTimeAggregate={timeAverage}
         tooltip={CarbonChartTooltip}
       />
-    </>
+      <Divider />
+      <Accordion
+        onOpen={() => {
+          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });
+        }}
+        title={t('data-sources.title')}
+        className="text-md"
+        isCollapsedAtom={dataSourcesCollapsedEmission}
+      >
+        <DataSources
+          title={t('data-sources.emission')}
+          icon={<IndustryIcon />}
+          sources={[...emissionSourceToProductionSource.keys()].sort()}
+        />
+      </Accordion>
+    </GraphCard>
   );
 }
 

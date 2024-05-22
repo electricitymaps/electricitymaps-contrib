@@ -839,14 +839,20 @@ class TestProductionBreakdownList(unittest.TestCase):
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             production=ProductionMix(wind=20, coal=20),
-            source="dont.trust.me",
+            source="trust.me.too",
         )
-        self.assertRaises(
-            ValueError,
-            ProductionBreakdownList.update_production_breakdowns,
-            production_list1,
-            production_list2,
-            logging.Logger("test"),
+        updated_list = ProductionBreakdownList.update_production_breakdowns(
+            production_list1, production_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 1
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].production is not None
+        assert updated_list.events[0].production.wind == 20
+        assert updated_list.events[0].production.coal == 20
+        assert updated_list.events[0].source == ", ".join(
+            set("trust.me, trust.me.too".split(", "))
         )
 
     def test_update_production_with_different_sourceType(self):

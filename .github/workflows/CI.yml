@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 2
       - name: Check which files have changed
         id: check-changed-files
-        uses: tj-actions/changed-files@v43.0.0
+        uses: tj-actions/changed-files@v44.4.0
         with:
           files_yaml_from_source_file: .github/filter-groups.yml
       - name: Log outputs
@@ -54,9 +54,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -110,7 +110,7 @@ jobs:
           npm install -g jsonlint-mod
       - name: Lint json
         run: |
-          jsonlint -q web/public/locales/*.json
+          jsonlint -q web/src/locales/*.json
 
   #                 #
   # Frontend checks #
@@ -130,9 +130,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -170,9 +170,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -227,9 +227,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -266,9 +266,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -307,9 +307,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -365,9 +365,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
