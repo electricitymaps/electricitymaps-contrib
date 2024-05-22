@@ -11,7 +11,7 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineX } from 'react-icons/hi';
-import { hasSeenSurveyPopupAtom, userLocationAtom } from 'utils/state/atoms';
+import { hasSeenSurveyCardAtom, userLocationAtom } from 'utils/state/atoms';
 
 enum FeedbackState {
   INITIAL = 'initial',
@@ -45,11 +45,11 @@ export default function FeedbackCard({
 }: FeedbackCardProps) {
   const [isClosed, setIsClosed] = useState(false);
   const [feedbackState, setFeedbackState] = useState(FeedbackState.INITIAL);
-  const setHasSeenSurveyPopup = useSetAtom(hasSeenSurveyPopupAtom);
+  const setHasSeenSurveyCard = useSetAtom(hasSeenSurveyCardAtom);
 
   const handleClose = () => {
     setIsClosed(true);
-    setHasSeenSurveyPopup(true);
+    setHasSeenSurveyCard(true);
   };
   const { t } = useTranslation();
   const title = t('feedback-card.title');
@@ -63,7 +63,7 @@ export default function FeedbackCard({
     const handleClickOutside = () => {
       if (feedbackCardReference.current && isFeedbackSubmitted) {
         setIsClosed(true);
-        setHasSeenSurveyPopup(true);
+        setHasSeenSurveyCard(true);
       }
     };
 
@@ -74,7 +74,7 @@ export default function FeedbackCard({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isClosed, isFeedbackSubmitted, setHasSeenSurveyPopup]);
+  }, [isClosed, isFeedbackSubmitted, setHasSeenSurveyCard]);
 
   if (isClosed) {
     return null;
