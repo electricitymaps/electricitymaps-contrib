@@ -44,11 +44,6 @@ export const detectHoveredDatapointIndex = (
 export const getTooltipPosition = (isMobile: boolean, marker: { x: number; y: number }) =>
   isMobile ? { x: 0, y: 0 } : marker;
 
-// TODO: Deprecate this
-export const isEmpty = (object: any) =>
-  [Object, Array].includes((object || {}).constructor) &&
-  Object.entries(object || {}).length === 0;
-
 export const noop = () => undefined;
 
 export const getTimeScale = (

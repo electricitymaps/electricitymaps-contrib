@@ -13,7 +13,7 @@ import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
 import { useHeaderHeight } from '../bar-breakdown/utils';
-import { getTimeScale, isEmpty } from '../graphUtils';
+import { getTimeScale } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphLayers from './AreaGraphLayers';
@@ -214,12 +214,6 @@ function AreaGraph({
   );
 
   const headerHeight = useHeaderHeight();
-
-  // Don't render the graph at all if no layers are present
-  if (isEmpty(layers)) {
-    console.error('No layers present in AreaGraph');
-    return null;
-  }
 
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {
