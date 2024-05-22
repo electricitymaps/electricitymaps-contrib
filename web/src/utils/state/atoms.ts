@@ -53,3 +53,5 @@ export const dataSourcesCollapsedBreakdown = atom(true);
 export const dataSourcesCollapsedEmission = atom(true);
 
 export const userLocationAtom = atom(undefined);
+
+export const hasSeenSurveyPopupAtom = atomWithStorage('hasSeenSurveyPopup', false);

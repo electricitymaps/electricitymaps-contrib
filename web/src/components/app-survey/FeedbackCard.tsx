@@ -1,10 +1,17 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
-import { useAtom } from 'jotai';
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { useAtom, useSetAtom } from 'jotai';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineX } from 'react-icons/hi';
-import { userLocationAtom } from 'utils/state/atoms';
+import { hasSeenSurveyPopupAtom, userLocationAtom } from 'utils/state/atoms';
 
 enum FeedbackState {
   INITIAL = 'initial',
@@ -38,15 +45,36 @@ export default function FeedbackCard({
 }: FeedbackCardProps) {
   const [isClosed, setIsClosed] = useState(false);
   const [feedbackState, setFeedbackState] = useState(FeedbackState.INITIAL);
+  const setHasSeenSurveyPopup = useSetAtom(hasSeenSurveyPopupAtom);
 
   const handleClose = () => {
     setIsClosed(true);
+    setHasSeenSurveyPopup(true);
   };
   const { t } = useTranslation();
   const title = t('feedback-card.title');
   const successMessage = t('feedback-card.success-message');
   const successSubtitle = t('feedback-card.success-subtitle');
   const isFeedbackSubmitted = feedbackState === FeedbackState.SUCCESS;
+
+  const feedbackCardReference = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (feedbackCardReference.current && isFeedbackSubmitted) {
+        setIsClosed(true);
+        setHasSeenSurveyPopup(true);
+      }
+    };
+
+    if (!isClosed) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isClosed, isFeedbackSubmitted, setHasSeenSurveyPopup]);
 
   if (isClosed) {
     return null;
@@ -56,6 +84,7 @@ export default function FeedbackCard({
     <div
       data-test-id="feedback-card"
       className="mb-4 flex w-full flex-col rounded-lg border border-neutral-200 bg-zinc-50 pl-2.5 transition-all dark:border-gray-700 dark:bg-gray-900"
+      ref={feedbackCardReference}
     >
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-initial flex-row gap-2">
