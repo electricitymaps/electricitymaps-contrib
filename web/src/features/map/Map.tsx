@@ -78,7 +78,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const { worldGeometries } = useGetGeometries();
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
-
+  const callerLocation = data?.callerLocation;
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
@@ -156,18 +156,14 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   useEffect(() => {
     // Run on first load to center the map on the user's location
-    if (!map || isError || !isFirstLoad || !isSourceLoaded || !data) {
+    if (!map || isError || !isFirstLoad || !isSourceLoaded || !callerLocation) {
       return;
     }
-    if (data?.callerLocation && !selectedZoneId) {
-      map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
+    if (callerLocation && !selectedZoneId) {
+      map.flyTo({ center: [callerLocation[0], callerLocation[1]] });
 
       const handleIdle = () => {
-        if (
-          map.isSourceLoaded(ZONE_SOURCE) &&
-          map.areTilesLoaded() &&
-          data?.callerLocation
-        ) {
+        if (map.isSourceLoaded(ZONE_SOURCE) && map.areTilesLoaded() && callerLocation) {
           const source = map.getSource(ZONE_SOURCE);
           const layer = map.getLayer('zones-clickable-layer');
           if (!source) {
@@ -178,11 +174,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
             console.error('Layer "zones-clickable-layer" not found or not rendered');
             return;
           }
-          const zoneFeature = getZoneIdFromLocation(
-            map,
-            data?.callerLocation,
-            ZONE_SOURCE
-          );
+          const zoneFeature = getZoneIdFromLocation(map, callerLocation, ZONE_SOURCE);
           if (zoneFeature) {
             const zoneName = zoneFeature.properties.zoneId;
             setUserLocation(zoneName);
@@ -199,7 +191,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     isSuccess,
     isError,
     isFirstLoad,
-    data,
+    callerLocation,
     selectedZoneId,
     isSourceLoaded,
     setUserLocation,
