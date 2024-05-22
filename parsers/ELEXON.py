@@ -245,7 +245,7 @@ def query_additional_eso_data(
 
 
 def parse_eso_production(
-    production_data: list[dict[str, any]], logger: Logger
+    production_data: list[dict[str, Any]], logger: Logger
 ) -> ProductionBreakdownList:
     all_production_breakdowns: list[ProductionBreakdownList] = []
     for event in production_data:
@@ -287,7 +287,7 @@ def parse_eso_production(
 
 
 def parse_eso_hydro_storage(
-    eso_data: list[dict[str, any]], logger: Logger
+    eso_data: list[dict[str, Any]], logger: Logger
 ) -> ProductionBreakdownList:
     """Parses only hydro storage data from the ESO API. This data will be merged with the B1620 data"""
     storage_breakdown = ProductionBreakdownList(logger=logger)
