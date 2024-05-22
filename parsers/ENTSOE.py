@@ -20,6 +20,7 @@ import re
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
+from operator import itemgetter
 from typing import Any
 
 import numpy as np
@@ -363,25 +364,18 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
     # It will still work if data is present but 0.
     # "expected_range" and "floor" only count production and storage
     # - not exchanges!
-    "AT": {
-        "required": ["hydro"],
-    },
-    "BA": {"required": ["coal", "hydro", "wind"], "expected_range": (500, 6500)},
+    "BA": {"expected_range": (500, 6500)},
     "BE": {
-        "required": ["gas", "nuclear"],
         "expected_range": (3000, 25000),
     },
     "BG": {
-        "required": ["coal", "nuclear", "hydro"],
         "expected_range": (2000, 20000),
     },
     "CH": {
-        "required": ["hydro", "nuclear"],
         "expected_range": (2000, 25000),
     },
     "CZ": {
         # usual load is in 7-12 GW range
-        "required": ["coal", "nuclear"],
         "expected_range": (3000, 25000),
     },
     "DE": {
@@ -390,73 +384,37 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         # and when those are missing this can indicate that others are missing as well.
         # We have also never seen unknown being 0.
         # Usual load is in 30 to 80 GW range.
-        "required": [
-            "coal",
-            "gas",
-            "wind",
-            "biomass",
-            "hydro",
-            "unknown",
-            "solar",
-        ],
         "expected_range": (20000, 100000),
     },
-    "EE": {
-        "required": ["coal"],
-    },
     "ES": {
-        "required": ["coal", "nuclear"],
         "expected_range": (10000, 80000),
     },
     "FI": {
-        "required": ["coal", "nuclear", "hydro", "biomass"],
         "expected_range": (2000, 20000),
     },
     "GB": {
-        # usual load is in 15 to 50 GW range
-        "required": ["coal", "gas", "nuclear"],
         "expected_range": (10000, 80000),
     },
     "GR": {
-        "required": ["coal", "gas"],
         "expected_range": (2000, 20000),
     },
-    "HR": {
-        "required": [
-            "coal",
-            "gas",
-            "wind",
-            "biomass",
-            "oil",
-            "solar",
-        ],
-    },
-    "HU": {
-        "required": ["coal", "nuclear"],
-    },
     "IE": {
-        "required": ["coal"],
         "expected_range": (1000, 15000),
     },
     "IT": {
-        "required": ["coal"],
         "expected_range": (5000, 50000),
     },
     "PL": {
-        # usual load is in 10-20 GW range and coal is always present
-        "required": ["coal"],
+        # usual load is in 10-20 GW range
         "expected_range": (5000, 35000),
     },
     "PT": {
-        "required": ["coal", "gas"],
         "expected_range": (1000, 20000),
     },
     "RO": {
-        "required": ["coal", "nuclear", "hydro"],
         "expected_range": (2000, 25000),
     },
     "RS": {
-        "required": ["biomass", "coal", "gas", "hydro", "unknown"],
         "expected_range": {
             "coal": (
                 800,
@@ -465,27 +423,10 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
             "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
         },
     },
-    "SE": {
-        "required": ["hydro", "nuclear", "wind", "unknown"],
-    },
-    "SE-SE1": {
-        "required": ["hydro", "wind", "unknown", "solar"],
-    },
-    "SE-SE2": {
-        "required": ["gas", "hydro", "wind", "unknown", "solar"],
-    },
-    "SE-SE3": {
-        "required": ["gas", "hydro", "nuclear", "wind", "unknown", "solar"],
-    },
-    "SE-SE4": {
-        "required": ["gas", "hydro", "wind", "unknown", "solar"],
-    },
     "SI": {
         # own total generation capacity is around 4 GW
-        "required": ["nuclear"],
         "expected_range": (140, 5000),
     },
-    "SK": {"required": ["nuclear"]},
 }
 
 
@@ -746,7 +687,7 @@ def datetime_from_position(start: datetime, position: int, resolution: str) -> d
         scale = m.group(2)
         if scale == "M":
             return start + timedelta(minutes=(position - 1) * digits)
-    raise NotImplementedError("Could not recognise resolution %s" % resolution)
+    raise NotImplementedError(f"Could not recognise resolution {resolution}")
 
 
 def parse_scalar(
@@ -783,77 +724,143 @@ def parse_scalar(
     return list(zip(values, datetimes, strict=True))
 
 
-def create_production_storage(
-    fuel_code: str, quantity: float, logger: Logger, zoneKey: ZoneKey
-) -> tuple[ProductionMix | None, StorageMix | None]:
-    production = ProductionMix()
-    storage = StorageMix()
-    fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
-    if fuel_code in ENTSOE_STORAGE_PARAMETERS:
-        # Only include consumption if it's for storage. In other cases
-        # it is power plant self-consumption which should be ignored.
-        storage.add_value(fuel_em_type, -quantity)
-        return None, storage
-    if 0 > quantity > -50:
-        logger.info(
-            f"Self consumption value {quantity} for {fuel_em_type} has been set to 0.",
-            extra={"key": zoneKey, "fuel_type": fuel_em_type},
-        )
-        quantity = 0
-    production.add_value(fuel_em_type, quantity)
-    return production, None
-
-
 def parse_production(
     xml: str,
     logger: Logger,
     zoneKey: ZoneKey,
     forecasted: bool = False,
 ) -> ProductionBreakdownList:
-    all_production_breakdowns = []
+    production_breakdowns = ProductionBreakdownList(logger)
     source_type = EventSourceType.forecasted if forecasted else EventSourceType.measured
     if not xml:
-        return ProductionBreakdownList.merge_production_breakdowns(
-            all_production_breakdowns, logger
-        )
+        return production_breakdowns
     soup = BeautifulSoup(xml, "html.parser")
+    list_of_raw_data = _get_raw_production_events(soup)
 
+    grouped_data = _group_production_data_by_datetime(list_of_raw_data)
+
+    expected_length = _get_expected_production_group_length(grouped_data)
+
+    # Loop over the grouped data and create production and storage mixes for each datetime.
+    for dt, values in grouped_data.items():
+        production, storage = _create_production_and_storage_mixes(
+            dt, values, expected_length, logger
+        )
+        # If production and storage are None, the datapoint is considered invalid and is skipped
+        # in order to not crash the parser.
+        if production is None and storage is None:
+            continue
+
+        production_breakdowns.append(
+            zoneKey=zoneKey,
+            datetime=dt,
+            source=SOURCE,
+            sourceType=source_type,
+            production=production,
+            storage=storage,
+        )
+
+    return production_breakdowns
+
+
+def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
+    """
+    Extracts the raw production events from the soup object and returns a list of dictionaries containing the raw production events.
+    """
+    list_of_raw_data = []
     # Each timeserie is dedicated to a different fuel type.
     for timeseries in soup.find_all("timeseries"):
-        production_breakdowns = ProductionBreakdownList(logger)
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        # The resolution is the time between each point in the timeseries.
+        resolution = str(timeseries.find("resolution").contents[0])
+        # The start time of the timeseries.
         datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
+            zulu_to_utc(timeseries.find("start").contents[0])
         )
-        fuel_code = str(
-            timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
-        )
-
+        # The fuel code is the ENTSOE code for the fuel type.
+        fuel_code = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
+        # Loop over all the points in the timeseries.
         for entry in timeseries.find_all("point"):
-            quantity = float(entry.find_all("quantity")[0].contents[0])
-            position = int(entry.find_all("position")[0].contents[0])
+            # The quantity is the amount of energy produced or consumed at the given position.
+            quantity = float(entry.find("quantity").contents[0])
+            # The position is the index of the point in the timeseries.
+            position = int(entry.find("position").contents[0])
             # Since all values in ENTSOE are positive, we need to check if
             # the value is production or consumption so we can set the quantity
             # to a negative value if it is consumption.
             is_production = (
                 len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
             )
+            # Calculate the datetime of the point based on the start time and the position.
             dt = datetime_from_position(datetime_start, position, resolution)
-            production, storage = create_production_storage(
-                fuel_code, quantity if is_production else -quantity, logger, zoneKey
+            # Appends the raw data to a master list so it later can be sorted and grouped by datetime.
+            list_of_raw_data.append(
+                {
+                    "datetime": dt,
+                    "fuel_code": fuel_code,
+                    "quantity": quantity if is_production else -quantity,
+                }
             )
-            production_breakdowns.append(
-                zoneKey=zoneKey,
-                datetime=dt,
-                source=SOURCE,
-                sourceType=source_type,
-                production=production,
-                storage=storage,
+
+    return list_of_raw_data
+
+
+def _create_production_and_storage_mixes(
+    dt: datetime, values: list[dict[str, Any]], expected_length: int, logger: Logger
+) -> tuple[ProductionMix, StorageMix] | tuple[None, None]:
+    """
+    Creates a populated ProductionMix and StorageMix object from a list of production values and ensures that the expected length is met.
+    If the expected length is not met, the datapoint is discarded. And the function returns (None, None).
+    """
+    value_length = len(values)
+    # Checks that the number of values have the expected length and skips the datapoint if not.
+    if value_length < expected_length:
+        logger.warning(
+            f"Expected {expected_length} production values for {dt}, recived {value_length} instead. Discarding datapoint..."
+        )
+        return None, None
+    production = ProductionMix()
+    storage = StorageMix()
+    for production_mode in values:
+        _datetime, fuel_code, quantity = production_mode.values()
+        fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
+        if fuel_code in ENTSOE_STORAGE_PARAMETERS:
+            storage.add_value(fuel_em_type, -quantity)
+        else:
+            production.add_value(
+                fuel_em_type, quantity, correct_negative_with_zero=True
             )
-        all_production_breakdowns.append(production_breakdowns)
-    return ProductionBreakdownList.merge_production_breakdowns(
-        all_production_breakdowns, logger
-    )
+
+    return production, storage
+
+
+def _get_expected_production_group_length(
+    grouped_data: dict[datetime, list[dict[str, Any]]],
+) -> int:
+    """
+    Returns the expected length of the grouped data. This is the maximum length of the grouped data values.
+    """
+    expected_length = 0
+    if grouped_data:
+        expected_length = max(len(v) for v in grouped_data.values())
+    return expected_length
+
+
+def _group_production_data_by_datetime(
+    list_of_raw_data,
+) -> dict[datetime, list[dict[str, Any]]]:
+    """
+    Sorts and groups raw production objects in the format of `{datetime: datetime.datetime, fuel_code: str, quantity: float}` by the datetime key.
+    And returns a dictionary with the datetime as the key and a list of the grouped data as the value.
+    """
+    # Sort the data in place by the datetime key so we can group it by datetime.
+    list_of_raw_data.sort(key=itemgetter("datetime"))
+    # Group the data by the datetime key. It requires the data to be sorted by the datetime key first.
+    grouped_data = {
+        k: list(v)
+        for k, v in itertools.groupby(list_of_raw_data, key=itemgetter("datetime"))
+    }
+
+    return grouped_data
 
 
 def parse_production_per_units(xml_text: str) -> Any | None:
@@ -1001,14 +1008,6 @@ def validate_production(
 
     if validation_criteria:
         return validate(datapoint, logger=logger, **validation_criteria)
-
-    # NOTE: Why are there sepcial checks for these zones?
-    if zone_key.startswith("DK-"):
-        return validate(datapoint, logger=logger, required=["coal", "solar", "wind"])
-
-    if zone_key.startswith("NO-"):
-        return validate(datapoint, logger=logger, required=["hydro"])
-
     return True
 
 

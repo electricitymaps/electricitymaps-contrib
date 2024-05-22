@@ -1,20 +1,20 @@
 // TODO: Convert to component test
 describe('Country Panel', () => {
   beforeEach(() => {
-    cy.interceptAPI('v7/state/hourly');
+    cy.interceptAPI('v8/state/hourly');
   });
 
   it('interacts with details', () => {
-    cy.interceptAPI('v7/details/hourly/DK-DK2');
+    cy.interceptAPI('v8/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
-    cy.waitForAPISuccess('v7/state/hourly');
-    cy.waitForAPISuccess('v7/details/hourly/DK-DK2');
+    cy.waitForAPISuccess('v8/state/hourly');
+    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
-    cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').contains('283');
+    cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').contains('73');
     // cy.get('[data-test-id=zone-header-lowcarbon-gauge]').trigger('mouseover');
     // cy.contains('Includes renewables and nuclear');
     cy.get('[data-test-id=zone-header-lowcarbon-gauge]').trigger('mouseout');
@@ -39,17 +39,17 @@ describe('Country Panel', () => {
     // ensure tooltip is shown and changes depending on where on the graph is being hovered
     cy.get('[data-test-id=details-carbon-graph]').trigger('mousemove', 'left');
     cy.get('[data-test-id=carbon-chart-tooltip]').should('be.visible');
-    cy.get('[data-test-id=carbon-chart-tooltip] ').should('contain.text', '418');
+    cy.get('[data-test-id=carbon-chart-tooltip] ').should('contain.text', '72');
 
     cy.get('[data-test-id=details-carbon-graph]').trigger('mouseout');
     cy.get('[data-test-id=details-carbon-graph]').trigger('mousemove', 'center');
-    cy.get('[data-test-id=carbon-chart-tooltip]').should('contain.text', '318');
+    cy.get('[data-test-id=carbon-chart-tooltip]').should('contain.text', '64');
     cy.get('[data-test-id=details-carbon-graph]').trigger('mouseout');
 
     // cy.get('[data-test-id=time-slider-input] ').setSliderValue(1_661_306_400_000);
     cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').should(
       'contain.text',
-      '283'
+      '73'
     );
 
     cy.get('[data-test-id=left-panel-back-button]').click();
@@ -57,10 +57,10 @@ describe('Country Panel', () => {
 
   // TODO bring back when we have a no recent data message
   it.skip('asserts countryPanel contains "no-recent-data" message', () => {
-    cy.interceptAPI('v7/details/hourly/UA');
+    cy.interceptAPI('v8/details/hourly/UA');
     cy.visit('/zone/UA?lang=en-GB');
-    cy.waitForAPISuccess('v7/state/hourly');
-    cy.waitForAPISuccess('v7/details/hourly/UA');
+    cy.waitForAPISuccess('v8/state/hourly');
+    cy.waitForAPISuccess('v8/details/hourly/UA');
 
     cy.get('[data-test-id=no-data-overlay-message]')
       .should('exist')
@@ -69,7 +69,7 @@ describe('Country Panel', () => {
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
     cy.visit('/zone/CN?lang=en-GB');
-    cy.waitForAPISuccess('v7/state/hourly');
+    cy.waitForAPISuccess('v8/state/hourly');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });

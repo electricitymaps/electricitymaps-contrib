@@ -4,7 +4,7 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ZoneDetails } from 'types';
+import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
 import {
   feedbackCardCollapsedNumberAtom,
@@ -18,14 +18,14 @@ export default function EstimationCard({
   cardType,
   estimationMethod,
   estimatedPercentage,
-  outageMessage,
+  zoneMessage,
 }: {
   cardType: string;
   estimationMethod?: string;
   estimatedPercentage?: number;
-  outageMessage: ZoneDetails['zoneMessage'];
+  zoneMessage?: ZoneMessage;
 }) {
-  const [isFeedbackCardVisibile, setIsFeedbackCardVisibile] = useState(false);
+  const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
@@ -33,20 +33,26 @@ export default function EstimationCard({
   );
 
   useEffect(() => {
-    setIsFeedbackCardVisibile(
+    setIsFeedbackCardVisible(
       feedbackEnabled &&
         showEstimationFeedbackCard(
           feedbackCardCollapsedNumber,
-          isFeedbackCardVisibile,
+          isFeedbackCardVisible,
           hasFeedbackCardBeenSeen,
           setHasFeedbackCardBeenSeen
         )
     );
-  }, [feedbackEnabled, feedbackCardCollapsedNumber]);
+  }, [
+    feedbackEnabled,
+    feedbackCardCollapsedNumber,
+    isFeedbackCardVisible,
+    hasFeedbackCardBeenSeen,
+    setHasFeedbackCardBeenSeen,
+  ]);
 
   switch (cardType) {
     case 'outage': {
-      return <OutageCard outageMessage={outageMessage} />;
+      return <OutageCard zoneMessage={zoneMessage} estimationMethod={estimationMethod} />;
     }
     case 'aggregated': {
       return <AggregatedCard estimatedPercentage={estimatedPercentage} />;
@@ -55,14 +61,14 @@ export default function EstimationCard({
       return (
         <div>
           <EstimatedCard estimationMethod={estimationMethod} />
-          {isFeedbackCardVisibile && <FeedbackCard estimationMethod={estimationMethod} />}
+          {isFeedbackCardVisible && <FeedbackCard estimationMethod={estimationMethod} />}
         </div>
       );
     }
   }
 }
 
-function getEstimationTranslation(
+function useGetEstimationTranslation(
   field: 'title' | 'pill' | 'body',
   estimationMethod?: string,
   estimatedPercentage?: number
@@ -84,7 +90,7 @@ function getEstimationTranslation(
 function BaseCard({
   estimationMethod,
   estimatedPercentage,
-  outageMessage,
+  zoneMessage,
   icon,
   iconPill,
   showMethodologyLink,
@@ -94,7 +100,7 @@ function BaseCard({
 }: {
   estimationMethod?: string;
   estimatedPercentage?: number;
-  outageMessage: ZoneDetails['zoneMessage'];
+  zoneMessage?: ZoneMessage;
   icon: string;
   iconPill?: string;
   showMethodologyLink: boolean;
@@ -117,13 +123,13 @@ function BaseCard({
   };
   const { t } = useTranslation();
 
-  const title = getEstimationTranslation('title', estimationMethod);
-  const pillText = getEstimationTranslation(
+  const title = useGetEstimationTranslation('title', estimationMethod);
+  const pillText = useGetEstimationTranslation(
     'pill',
     estimationMethod,
     estimatedPercentage
   );
-  const bodyText = getEstimationTranslation(
+  const bodyText = useGetEstimationTranslation(
     'body',
     estimationMethod,
     estimatedPercentage
@@ -157,12 +163,14 @@ function BaseCard({
             className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
           >
             {estimationMethod != 'outage' && bodyText}
-            {estimationMethod == 'outage' && <OutageMessage outageData={outageMessage} />}
+            {estimationMethod == 'outage' && (
+              <ZoneMessageBlock zoneMessage={zoneMessage} />
+            )}
           </div>
           {showMethodologyLink && (
             <div className="">
               <a
-                href="https://www.electricitymaps.com/methodology"
+                href="https://www.electricitymaps.com/methodology#missing-data"
                 target="_blank"
                 rel="noreferrer"
                 data-test-id="methodology-link"
@@ -183,11 +191,22 @@ function BaseCard({
   );
 }
 
-function OutageCard({ outageMessage }: { outageMessage: ZoneDetails['zoneMessage'] }) {
+function OutageCard({
+  zoneMessage,
+  estimationMethod,
+}: {
+  zoneMessage?: ZoneMessage;
+  estimationMethod?: string;
+}) {
+  const { t } = useTranslation();
+  const zoneMessageText =
+    estimationMethod === 'threshold_filtered'
+      ? { message: t('estimation-card.threshold_filtered.body') }
+      : zoneMessage;
   return (
     <BaseCard
       estimationMethod={'outage'}
-      outageMessage={outageMessage}
+      zoneMessage={zoneMessageText}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
       iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
       showMethodologyLink={false}
@@ -203,7 +222,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
     <BaseCard
       estimationMethod={'aggregated'}
       estimatedPercentage={estimatedPercentage}
-      outageMessage={undefined}
+      zoneMessage={undefined}
       icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
       iconPill={undefined}
       showMethodologyLink={false}
@@ -218,7 +237,7 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
   return (
     <BaseCard
       estimationMethod={estimationMethod}
-      outageMessage={undefined}
+      zoneMessage={undefined}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
       iconPill={undefined}
       showMethodologyLink={true}
@@ -233,25 +252,23 @@ function truncateString(string_: string, number_: number) {
   return string_.length <= number_ ? string_ : string_.slice(0, number_) + '...';
 }
 
-function OutageMessage({
-  outageData: outageData,
-}: {
-  outageData: ZoneDetails['zoneMessage'];
-}) {
-  if (!outageData || !outageData.message) {
+function ZoneMessageBlock({ zoneMessage }: { zoneMessage?: ZoneMessage }) {
+  const { t } = useTranslation();
+
+  if (!zoneMessage || !zoneMessage.message) {
     return null;
   }
+
   return (
     <span className="inline overflow-hidden">
-      {truncateString(outageData.message, 300)}{' '}
-      {outageData?.issue && outageData.issue != 'None' && (
+      {truncateString(zoneMessage.message, 300)}{' '}
+      {zoneMessage?.issue && zoneMessage.issue != 'None' && (
         <span className="mt-1 inline-flex">
-          See{' '}
           <a
             className="inline-flex text-sm font-semibold text-black underline dark:text-white"
-            href={`https://github.com/electricitymaps/electricitymaps-contrib/issues/${outageData.issue}`}
+            href={`https://github.com/electricitymaps/electricitymaps-contrib/issues/${zoneMessage.issue}`}
           >
-            <span className="pl-1 underline">issue #{outageData.issue}</span>
+            <span className="pl-1 underline">{t('estimation-card.outage-details')}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"

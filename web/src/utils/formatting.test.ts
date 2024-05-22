@@ -1,6 +1,4 @@
-import { removeDuplicateSources } from 'features/panels/zone/Attribution';
-
-import { formatCo2, formatDataSources, formatEnergy, formatPower } from './formatting';
+import { formatCo2, formatEnergy, formatPower } from './formatting';
 
 describe('formatEnergy', () => {
   it('handles NaN input', () => {
@@ -186,39 +184,6 @@ describe('formatCo2', () => {
   it('handles values petatonnes', () => {
     const actual = formatCo2(1.5e21);
     const expected = '1.5 Pt';
-    expect(actual).to.deep.eq(expected);
-  });
-});
-
-describe('formatDataSources', () => {
-  it('handles multiple sources with en', () => {
-    const input = removeDuplicateSources(
-      `"electricityMap Estimation","entsoe.eu","entsoe.eu"`
-    );
-
-    const expected = 'electricityMap Estimation and entsoe.eu';
-
-    const actual = formatDataSources(input, 'en');
-    expect(actual).to.deep.eq(expected);
-  });
-
-  it('handles multiple sources in another language', () => {
-    const input = removeDuplicateSources(
-      `"electricityMap Estimation","entsoe.eu","entsoe.eu"`
-    );
-
-    const expected = 'electricityMap Estimation og entsoe.eu';
-
-    const actual = formatDataSources(input, 'da');
-    expect(actual).to.deep.eq(expected);
-  });
-
-  it('single source is not changed', () => {
-    const input = removeDuplicateSources(`"entsoe.eu"`);
-
-    const expected = 'entsoe.eu';
-
-    const actual = formatDataSources(input, 'en');
     expect(actual).to.deep.eq(expected);
   });
 });

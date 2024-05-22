@@ -31,7 +31,7 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
       clearTimeout(timeoutId);
       setShowButton(false);
     };
-  }, [isVisible]);
+  }, [isVisible, showButton]);
 
   return transitions(
     (styles, isVisible) =>

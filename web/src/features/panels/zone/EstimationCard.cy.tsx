@@ -14,14 +14,15 @@ describe('EstimationCard with FeedbackCard', () => {
           <EstimationCard
             cardType="estimated"
             estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
-            outageMessage={undefined}
+            zoneMessage={undefined}
           />
         </QueryClientProvider>
       </I18nextProvider>
     );
   });
 
-  it('feedback card should only be visible when collapse button has been clicked', () => {
+  // TODO(Viktor): Move this to E2E tests, AVO-240
+  it.skip('feedback card should only be visible when collapse button has been clicked', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': true },
     });
@@ -32,7 +33,7 @@ describe('EstimationCard with FeedbackCard', () => {
     cy.get('[data-test-id=feedback-card]').should('exist');
   });
 
-  it('feedback card should only be visible if feature-flag is enabled', () => {
+  it.skip('feedback card should only be visible if feature-flag is enabled', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': false },
     });
@@ -50,7 +51,7 @@ describe('EstimationCard with known estimation method', () => {
           <EstimationCard
             cardType="estimated"
             estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
-            outageMessage={undefined}
+            zoneMessage={undefined}
           />
         </QueryClientProvider>
       </I18nextProvider>
@@ -87,7 +88,7 @@ describe('EstimationCard', () => {
           <EstimationCard
             cardType="estimated"
             estimationMethod=""
-            outageMessage={undefined}
+            zoneMessage={undefined}
           />
         </QueryClientProvider>
       </I18nextProvider>
@@ -104,7 +105,7 @@ describe('EstimationCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
-          <EstimationCard cardType="" estimationMethod="" outageMessage={undefined} />
+          <EstimationCard cardType="" estimationMethod="" zoneMessage={undefined} />
         </QueryClientProvider>
       </I18nextProvider>
     );
@@ -120,7 +121,7 @@ describe('OutageCard', () => {
           <EstimationCard
             cardType="outage"
             estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
-            outageMessage={{ message: 'Outage Message', issue: 'issue' }}
+            zoneMessage={{ message: 'Outage Message', issue: 'issue' }}
           />
         </QueryClientProvider>
       </I18nextProvider>
@@ -149,7 +150,7 @@ describe('AggregatedCard', () => {
           <EstimationCard
             cardType="aggregated"
             estimatedPercentage={50}
-            outageMessage={undefined}
+            zoneMessage={undefined}
           />
         </QueryClientProvider>
       </I18nextProvider>
@@ -169,7 +170,7 @@ describe('AggregatedCard', () => {
           <EstimationCard
             cardType="aggregated"
             estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
-            outageMessage={undefined}
+            zoneMessage={undefined}
           />
         </QueryClientProvider>
       </I18nextProvider>

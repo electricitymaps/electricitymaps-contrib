@@ -2,16 +2,21 @@ import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useExchangeArrowsData } from 'hooks/arrows';
 import { useAtom } from 'jotai';
 import React from 'react';
-import { colorblindModeAtom } from 'utils/state/atoms';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
+import useResizeObserver from 'use-resize-observer';
+import { Mode } from 'utils/constants';
+import { colorblindModeAtom, productionConsumptionAtom } from 'utils/state/atoms';
+import { useBreakpoint } from 'utils/styling';
 
 import ExchangeArrow from './ExchangeArrow';
 
 function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
   const [isMapMoving] = useAtom(mapMovingAtom);
   const [isColorBlindModeEnabled] = useAtom(colorblindModeAtom);
-  const { ref, width, height } = useReferenceWidthHeightObserver();
+  const { ref, width = 0, height = 0 } = useResizeObserver<HTMLDivElement>();
   const arrows = useExchangeArrowsData();
+  const isMobile = !useBreakpoint('md');
+  const [currentMode] = useAtom(productionConsumptionAtom);
+  const isConsumption = currentMode === Mode.CONSUMPTION;
 
   return (
     <div
@@ -23,6 +28,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
       {/* Don't render arrows when moving map - see https://github.com/electricitymaps/electricitymaps-contrib/issues/1590. */}
       {!isMapMoving &&
         map &&
+        isConsumption &&
         arrows.map((arrow) => (
           <ExchangeArrow
             key={arrow.key}
@@ -31,6 +37,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
             colorBlindMode={isColorBlindModeEnabled}
             viewportWidth={width}
             viewportHeight={height}
+            isMobile={isMobile}
           />
         ))}
     </div>

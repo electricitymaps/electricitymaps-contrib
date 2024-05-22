@@ -1,0 +1,2042 @@
+[
+  {
+    "hora": "1",
+    "potencia": 172.63,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "1",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "1",
+    "potencia": 309.27,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "1",
+    "potencia": 169.6,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "1",
+    "potencia": 199.04,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "1",
+    "potencia": 201.6,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "1",
+    "potencia": 272.73,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "1",
+    "potencia": 1320.37,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "1",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "1",
+    "potencia": 1290.61,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "1",
+    "potencia": 14.43,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "1",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "1",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "1",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "1",
+    "potencia": 32.77,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "1",
+    "potencia": 1.32,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "1",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "2",
+    "potencia": 115.6,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "2",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "2",
+    "potencia": 313.72,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "2",
+    "potencia": 166.76,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "2",
+    "potencia": 170.97,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "2",
+    "potencia": 202.09,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "2",
+    "potencia": 273.29,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "2",
+    "potencia": 1289.14,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "2",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "2",
+    "potencia": 1246.58,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "2",
+    "potencia": 2,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "2",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "2",
+    "potencia": 7.33,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "2",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "2",
+    "potencia": 32.82,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "2",
+    "potencia": 4.56,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "2",
+    "potencia": 7.33,
+    "tipo": "null"
+  },
+  {
+    "hora": "3",
+    "potencia": 108.85,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "3",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "3",
+    "potencia": 308.08,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "3",
+    "potencia": 170,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "3",
+    "potencia": 150.89,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "3",
+    "potencia": 201.72,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "3",
+    "potencia": 273.5,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "3",
+    "potencia": 1249.83,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "3",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "3",
+    "potencia": 1237.45,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "3",
+    "potencia": 11.9,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "3",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "3",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "3",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "3",
+    "potencia": 32.99,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "3",
+    "potencia": 3.69,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "3",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "4",
+    "potencia": 92.28,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "4",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "4",
+    "potencia": 308.41,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "4",
+    "potencia": 168.15,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "4",
+    "potencia": 188.95,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "4",
+    "potencia": 202.2,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "4",
+    "potencia": 273.36,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "4",
+    "potencia": 1262.99,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "4",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "4",
+    "potencia": 1253.23,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "4",
+    "potencia": 11.92,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "4",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "4",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "4",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "4",
+    "potencia": 33.34,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "4",
+    "potencia": 0.06,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "4",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "5",
+    "potencia": 193.68,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "5",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "5",
+    "potencia": 307.72,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "5",
+    "potencia": 169.06,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "5",
+    "potencia": 133.98,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "5",
+    "potencia": 203.18,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "5",
+    "potencia": 273.36,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "5",
+    "potencia": 1308.51,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "5",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "5",
+    "potencia": 1346.05,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "5",
+    "potencia": 13.28,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "5",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "5",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "5",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "5",
+    "potencia": 32.7,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "5",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "5",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "6",
+    "potencia": 256.285,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "6",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "6",
+    "potencia": 304.24,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "6",
+    "potencia": 166.4,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "6",
+    "potencia": 209.18,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "6",
+    "potencia": 202.9,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "6",
+    "potencia": 273.8,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "6",
+    "potencia": 1453.43,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "6",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "6",
+    "potencia": 1453.43,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "6",
+    "potencia": 15.386,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "6",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "6",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "6",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "6",
+    "potencia": 35.449,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "6",
+    "potencia": 1.52,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "6",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "7",
+    "potencia": 332.025,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "7",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "7",
+    "potencia": 304.24,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "7",
+    "potencia": 166.4,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "7",
+    "potencia": 228.489,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "7",
+    "potencia": 202.9,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "7",
+    "potencia": 273.8,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "7",
+    "potencia": 1595.02,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "7",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "7",
+    "potencia": 1595.02,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "7",
+    "potencia": 15.386,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "7",
+    "potencia": 4.421,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "7",
+    "potencia": 30.43,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "7",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "7",
+    "potencia": 35.449,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "7",
+    "potencia": 1.48,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "7",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "8",
+    "potencia": 1716.93,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "8",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "9",
+    "potencia": 1832.339,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "9",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "10",
+    "potencia": 1887.58,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "10",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "11",
+    "potencia": 1935.72,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "11",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "12",
+    "potencia": 1953.7,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "12",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "13",
+    "potencia": 1930.269,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "13",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "14",
+    "potencia": 1926.831,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "14",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "15",
+    "potencia": 1929.54,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "15",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "16",
+    "potencia": 1917.4,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "16",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "17",
+    "potencia": 1872.389,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "17",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "18",
+    "potencia": 1821.541,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "18",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "19",
+    "potencia": 2044.19,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "19",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "20",
+    "potencia": 2041.268,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "20",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "21",
+    "potencia": 1968.529,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "21",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "22",
+    "potencia": 1734.41,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "22",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "23",
+    "potencia": 1550.08,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "23",
+    "potencia": 0,
+    "tipo": "null"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "AGUA"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "BIOGAS"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "BIOMASA"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "BIOMASA/CARBÓN"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "BUNKER"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "CARBÓN"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "CARBÓN/PETCOKE"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "DEM SNI"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "DIESEL"
+  },
+  {
+    "hora": "24",
+    "potencia": 1423.899,
+    "tipo": "DEMANDA LOCAL PROG"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "GAS NATURAL"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "IRRADIACIÓN"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "INTERCONEXIÓN"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "SYNGAN"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "VAPOR"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "VIENTO"
+  },
+  {
+    "hora": "24",
+    "potencia": 0,
+    "tipo": "null"
+  }
+]

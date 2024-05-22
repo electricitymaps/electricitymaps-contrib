@@ -158,11 +158,6 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
         remove_negative: bool
             Changes negative production values to None.
             Defaults to False.
-        required: list
-            Generation types that must be present.
-            For example ['gas', 'hydro']
-            If any of these types are None the datapoint will be invalidated.
-            Defaults to an empty list.
         floor: float | int
             Checks production sum is above floor value.
             If this is not the case the datapoint is invalidated.
@@ -203,11 +198,9 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
     >>>       },
     >>>       'source': 'mysource.com'
     >>> }
-    >>> validate(datapoint, None, required=['gas'], expected_range=(100, 2000))
+    >>> validate(datapoint, None, expected_range=(100, 2000))
     datapoint
-    >>> validate(datapoint, None, required=['not_a_production_type'])
-    None
-    >>> validate(datapoint, None, required=['gas'],
+    >>> validate(datapoint, None,
     >>>          expected_range={'solar': (0, 1000), 'wind': (100, 2000)})
     datapoint
     """
@@ -215,13 +208,12 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
         logger = getLogger(__name__)
 
     remove_negative: bool = kwargs.pop("remove_negative", False)
-    required: list[Any] = kwargs.pop("required", [])
     floor: float | int | None = kwargs.pop("floor", None)
     expected_range: tuple | dict | None = kwargs.pop("expected_range", None)
     fake_zeros: bool = kwargs.pop("fake_zeros", False)
 
     if kwargs:
-        raise TypeError("Unexpected **kwargs: %r" % kwargs)
+        raise TypeError(f"Unexpected **kwargs: {kwargs!r}")
 
     generation: dict[str, Any] = datapoint["production"]
     storage: dict[str, Any] = datapoint.get("storage", {})
@@ -234,11 +226,6 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
                     extra={"key": datapoint["zoneKey"]},
                 )
                 generation[key] = None
-
-    if required:
-        for item in required:
-            if not has_value_for_key(datapoint, item, logger):
-                return
 
     if floor:
         # when adding power to the system, storage key is negative
