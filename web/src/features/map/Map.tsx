@@ -178,7 +178,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           if (zoneFeature) {
             const zoneName = zoneFeature.properties.zoneId;
             setUserLocation(zoneName);
-            console.log('User is in zone:', zoneName);
           }
           map.off('idle', handleIdle);
         }
