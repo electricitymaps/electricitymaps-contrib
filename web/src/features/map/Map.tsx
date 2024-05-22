@@ -17,6 +17,7 @@ import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
   spatialAggregateAtom,
+  userLocationAtom,
 } from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
@@ -58,6 +59,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
+  const setUserLocation = useSetAtom(userLocationAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
@@ -183,6 +185,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           );
           if (zoneFeature) {
             const zoneName = zoneFeature.properties.zoneId;
+            setUserLocation(zoneName);
             console.log('User is in zone:', zoneName);
           }
           map.off('idle', handleIdle);

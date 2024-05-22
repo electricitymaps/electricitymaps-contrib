@@ -1,8 +1,10 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
+import { useAtom } from 'jotai';
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineX } from 'react-icons/hi';
+import { userLocationAtom } from 'utils/state/atoms';
 
 enum FeedbackState {
   INITIAL = 'initial',
@@ -14,6 +16,7 @@ export interface SurveyResponseProps {
   feedbackScore: number;
   inputText: string;
   reference: string;
+  location?: string;
 }
 interface FeedbackCardProps {
   postSurveyResponse: (props: SurveyResponseProps) => void;
@@ -165,6 +168,7 @@ function FeedbackActions({
 }) {
   const [inputText, setInputText] = useState('');
   const [feedbackScore, setFeedbackScore] = useState('');
+  const [userLocation] = useAtom(userLocationAtom);
 
   const handleInputChange = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
@@ -175,7 +179,8 @@ function FeedbackActions({
     postSurveyResponse({
       feedbackScore: Number.parseInt(feedbackScore),
       inputText,
-      reference: surveyReference ?? 'Uknown',
+      reference: surveyReference ?? 'Unknown',
+      location: userLocation,
     });
   };
 
