@@ -19,6 +19,7 @@ import itertools
 import re
 from datetime import datetime, timedelta, timezone
 from enum import Enum
+from functools import lru_cache
 from logging import Logger, getLogger
 from operator import itemgetter
 from typing import Any
@@ -673,11 +674,13 @@ def query_wind_solar_production_forecast(
 
 
 # TODO: Remove this when we run on Python 3.11 or above
+@lru_cache(maxsize=8)
 def zulu_to_utc(datetime_string: str) -> str:
     """Converts a zulu time string to a UTC time string."""
     return datetime_string.replace("Z", "+00:00")
 
 
+@lru_cache(maxsize=512)
 def datetime_from_position(start: datetime, position: int, resolution: str) -> datetime:
     """Finds time granularity of data."""
 
@@ -708,15 +711,15 @@ def parse_scalar(
         )
         if (
             only_inBiddingZone_Domain
-            and not len(timeseries.find_all("inBiddingZone_Domain.mRID".lower()))
+            and not timeseries.find("inBiddingZone_Domain.mRID".lower())
         ) or (
             only_outBiddingZone_Domain
-            and not len(timeseries.find_all("outBiddingZone_Domain.mRID".lower()))
+            and not timeseries.find("outBiddingZone_Domain.mRID".lower())
         ):
             continue
         for entry in timeseries.find_all("point"):
-            position = int(entry.find_all("position")[0].contents[0])
-            value = float(entry.find_all("quantity")[0].contents[0])
+            position = int(entry.find("position").contents[0])
+            value = float(entry.find("quantity").contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
             values.append(value)
             datetimes.append(dt)
@@ -787,9 +790,7 @@ def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
             # Since all values in ENTSOE are positive, we need to check if
             # the value is production or consumption so we can set the quantity
             # to a negative value if it is consumption.
-            is_production = (
-                len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
-            )
+            is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
             # Calculate the datetime of the point based on the start time and the position.
             dt = datetime_from_position(datetime_start, position, resolution)
             # Appends the raw data to a master list so it later can be sorted and grouped by datetime.
@@ -871,33 +872,31 @@ def parse_production_per_units(xml_text: str) -> Any | None:
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        resolution = str(timeseries.find("resolution").contents[0])
         datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
+            zulu_to_utc(timeseries.find("start").contents[0])
         )
         is_production = (
             len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
         )
-        psr_type = str(
-            timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
-        )
+        psr_type = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
         unit_key = str(
-            timeseries.find_all("mktpsrtype")[0]
-            .find_all("powersystemresources")[0]
-            .find_all("mrid")[0]
+            timeseries.find("mktpsrtype")
+            .find("powersystemresources")
+            .find("mrid")
             .contents[0]
         )
         unit_name = str(
-            timeseries.find_all("mktpsrtype")[0]
-            .find_all("powersystemresources")[0]
-            .find_all("name")[0]
+            timeseries.find("mktpsrtype")
+            .find("powersystemresources")
+            .find("name")
             .contents[0]
         )
         if not is_production:
             continue
         for entry in timeseries.find_all("point"):
-            quantity = float(entry.find_all("quantity")[0].contents[0])
-            position = int(entry.find_all("position")[0].contents[0])
+            quantity = float(entry.find("quantity").contents[0])
+            position = int(entry.find("position").contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
             key = (unit_key, dt)
             if key in values:
@@ -929,23 +928,22 @@ def parse_exchange(
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        resolution = str(timeseries.find("resolution").contents[0])
         datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
+            zulu_to_utc(timeseries.find("start").contents[0])
         )
         # Only use contract_marketagreement.type == A01 (Total to avoid double counting some columns)
         if (
-            timeseries.find_all("contract_marketagreement.type")
-            and timeseries.find_all("contract_marketagreement.type")[0].contents[0]
-            != "A05"
+            timeseries.find("contract_marketagreement.type")
+            and timeseries.find("contract_marketagreement.type").contents[0] != "A05"
         ):
             continue
 
         for entry in timeseries.find_all("point"):
-            quantity = float(entry.find_all("quantity")[0].contents[0])
+            quantity = float(entry.find("quantity").contents[0])
             if is_import:
                 quantity *= -1
-            position = int(entry.find_all("position")[0].contents[0])
+            position = int(entry.find("position").contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             exchange_list.append(
@@ -971,18 +969,18 @@ def parse_prices(
     soup = BeautifulSoup(xml_text, "html.parser")
     prices = PriceList(logger)
     for timeseries in soup.find_all("timeseries"):
-        currency = str(timeseries.find_all("currency_unit.name")[0].contents[0])
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        currency = str(timeseries.find("currency_unit.name").contents[0])
+        resolution = str(timeseries.find("resolution").contents[0])
         datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
+            zulu_to_utc(timeseries.find("start").contents[0])
         )
         for entry in timeseries.find_all("point"):
-            position = int(entry.find_all("position")[0].contents[0])
+            position = int(entry.find("position").contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
             prices.append(
                 zoneKey=zoneKey,
                 datetime=dt,
-                price=float(entry.find_all("price.amount")[0].contents[0]),
+                price=float(entry.find("price.amount").contents[0]),
                 source="entsoe.eu",
                 currency=currency,
             )
@@ -1049,7 +1047,7 @@ def fetch_production(
     aggregated_zone_data = ProductionBreakdownList.merge_production_breakdowns(
         non_aggregated_data, logger
     ).to_list()
-    return list(filter(lambda x: validate_production(x, logger), aggregated_zone_data))
+    return [x for x in aggregated_zone_data if validate_production(x, logger)]
 
 
 @refetch_frequency(timedelta(days=1))
