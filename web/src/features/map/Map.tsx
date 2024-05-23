@@ -159,11 +159,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     if (!map || isError || !isFirstLoad || !isSourceLoaded || !callerLocation) {
       return;
     }
-    if (callerLocation && !selectedZoneId) {
+    if (!selectedZoneId) {
       map.flyTo({ center: [callerLocation[0], callerLocation[1]] });
 
       const handleIdle = () => {
-        if (map.isSourceLoaded(ZONE_SOURCE) && map.areTilesLoaded() && callerLocation) {
+        if (map.isSourceLoaded(ZONE_SOURCE) && map.areTilesLoaded()) {
           const source = map.getSource(ZONE_SOURCE);
           const layer = map.getLayer('zones-clickable-layer');
           if (!source) {

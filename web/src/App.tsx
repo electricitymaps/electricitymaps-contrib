@@ -16,7 +16,7 @@ import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
-const MapCardContainer = lazy(() => import('components/MapCardContainer'));
+const MapOverlays = lazy(() => import('components/MapOverlays'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
@@ -104,7 +104,7 @@ export default function App(): ReactElement {
                 <TimeControllerWrapper />
               </Suspense>
               <Suspense>
-                <MapCardContainer />
+                <MapOverlays />
               </Suspense>
             </Sentry.ErrorBoundary>
           </div>

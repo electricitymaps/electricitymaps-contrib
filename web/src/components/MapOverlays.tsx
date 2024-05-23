@@ -7,7 +7,7 @@ import { hasSeenSurveyCardAtom } from 'utils/state/atoms';
 import SurveyCard from './app-survey/SurveyCard';
 import LegendContainer from './legend/LegendContainer';
 
-export default function MapCardContainer() {
+export default function MapOverlays() {
   const hasSeenSurveyCard = useAtomValue(hasSeenSurveyCardAtom);
   const surveyEnabled = useFeatureFlag('feedback-micro-survey') && !hasSeenSurveyCard;
 

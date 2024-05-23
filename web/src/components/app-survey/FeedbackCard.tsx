@@ -40,7 +40,6 @@ export default function FeedbackCard({
   primaryQuestion,
   secondaryQuestionHigh,
   secondaryQuestionLow,
-
   surveyReference,
 }: FeedbackCardProps) {
   const [isClosed, setIsClosed] = useState(false);
@@ -49,7 +48,9 @@ export default function FeedbackCard({
 
   const handleClose = () => {
     setIsClosed(true);
-    setHasSeenSurveyCard(true);
+    if (surveyReference === 'Map Survey') {
+      setHasSeenSurveyCard(true);
+    }
   };
   const { t } = useTranslation();
   const title = t('feedback-card.title');

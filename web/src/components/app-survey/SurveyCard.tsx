@@ -28,7 +28,7 @@ async function postSurveyResponse({
 
     const result = await response.json();
     if (result.result === 'success') {
-      console.log('Feedback submitted successfully.');
+      console.debug('Feedback submitted successfully.');
     } else {
       console.error('Error submitting feedback:', result);
     }
