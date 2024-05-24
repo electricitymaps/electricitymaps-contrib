@@ -335,7 +335,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
         [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
       ]}
-      style={{ minWidth: '100vw', height: '100vh' }}
+      style={{ minWidth: '0vw', height: '0vh' }}
       mapStyle={MAP_STYLE as StyleSpecification}
     >
       <BackgroundLayer />

@@ -1,3 +1,5 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-restricted-syntax */
 import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
@@ -15,10 +17,10 @@ import { useDarkMode } from 'hooks/theme';
 import { useSetAtom } from 'jotai';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import i18n from 'translation/i18n';
+import { StateExchangeData, StateZoneData, ZoneKey } from 'types';
 import trackEvent from 'utils/analytics';
-import { emapleZoneAtom, emapleDatetimeAtom } from 'utils/state/atoms';
-
-import { ZoneKey, StateExchangeData, StateZoneData } from 'types';
+import { emapleDatetimeAtom, emapleZoneAtom } from 'utils/state/atoms';
+import { ZoneGuessInput } from 'ZoneGuessInput';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -85,14 +87,14 @@ const randomInt = (seed: number, min: number, max: number) => {
 interface ZoneState {
   e: {
     [key: ZoneKey]: StateExchangeData;
-  },
+  };
   z: {
     [key: ZoneKey]: StateZoneData;
   };
 }
 
 function filterZonesByCi(state: ZoneState) {
-  const filteredZones: {[key: ZoneKey]: StateZoneData} = {};
+  const filteredZones: { [key: ZoneKey]: StateZoneData } = {};
 
   for (const zoneKey in state.z) {
     if (state.z.hasOwnProperty(zoneKey)) {
@@ -106,7 +108,7 @@ function filterZonesByCi(state: ZoneState) {
   return filteredZones;
 }
 
-function pick_one_state_for_date(hourly_data): [string, string] {
+function pick_one_state_for_date(hourly_data: any): [string, string] {
   console.log('hourly_data', hourly_data);
   const [lat, lng] = hourly_data.callerLocation;
   const localDate = getCurrentDateInTimeZone(lat, lng);
@@ -140,7 +142,9 @@ export default function App(): ReactElement {
   const { data: hourly_data, isSuccess: successfullyLoaded } = useGetState();
   const setEmapsleZone = useSetAtom(emapleZoneAtom);
   const setEmapsleDatetime = useSetAtom(emapleDatetimeAtom);
-  const [datetime, zoneKey] = successfullyLoaded ? pick_one_state_for_date(hourly_data) : [null, null];
+  const [datetime, zoneKey] = successfullyLoaded
+    ? pick_one_state_for_date(hourly_data)
+    : [null, null];
   console.log('datetime', datetime);
   console.log('zoneKey', zoneKey);
   if (zoneKey) {
@@ -220,6 +224,9 @@ export default function App(): ReactElement {
               <Suspense>
                 <LegendContainer />
               </Suspense>
+              <div className="invisible fixed bottom-[50%] right-[30%] z-20 flex w-[400px] flex-col rounded bg-white/90 px-1 py-2 shadow-xl backdrop-blur-sm sm:visible dark:bg-gray-800">
+                <ZoneGuessInput />
+              </div>
             </Sentry.ErrorBoundary>
           </div>
         </ToastProvider>
