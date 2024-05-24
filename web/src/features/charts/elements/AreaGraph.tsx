@@ -12,6 +12,7 @@ import { TimeAverages, timeAxisMapping } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import { useHeaderHeight } from '../bar-breakdown/utils';
 import { getTimeScale } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
@@ -212,6 +213,8 @@ function AreaGraph({
     [setGraphIndex, setSelectedLayerIndex]
   );
 
+  const headerHeight = useHeaderHeight();
+
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {
     if (layer.datapoints.length !== datetimes.length) {
@@ -278,6 +281,7 @@ function AreaGraph({
             }
             tooltipSize={tooltipSize}
             isBiggerThanMobile={isBiggerThanMobile}
+            headerHeight={headerHeight}
           >
             {(props) => tooltip(props)}
           </AreaGraphTooltip>
