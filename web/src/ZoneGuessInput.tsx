@@ -1,19 +1,31 @@
 /* eslint-disable unicorn/prevent-abbreviations */
+import useGetState from 'api/getState';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
+import Autosuggest from 'react-autosuggest';
 import Confetti from 'react-confetti';
 import { getZoneName } from 'translation/translation';
 import { emapleZoneAtom } from 'utils/state/atoms';
 
+// Sample list of possible zone names
+// const zoneNames = ['Zone1', 'Zone2', 'Zone3', 'ExampleZone', 'SampleZone'];
+
 export function ZoneGuessInput() {
+  const { data } = useGetState();
+  const state = data?.data?.datetimes[Object.keys(data?.data.datetimes)[0]];
+  const zoneKeys = state ? Object.keys(state.z) : [];
+  const zoneNames = state ? zoneKeys.map((zoneKey) => getZoneName(zoneKey)) : [];
   const correctZoneName = getZoneName(useAtomValue(emapleZoneAtom)).toLowerCase();
   const correctZoneKey = useAtomValue(emapleZoneAtom).toLowerCase();
   const [guesses, setGuesses] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [message, setMessage] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+
   const isCorrect =
-    inputValue.toLocaleLowerCase() === correctZoneName ||
-    inputValue === correctZoneKey.toLowerCase();
+    inputValue.toLowerCase() === correctZoneName ||
+    inputValue.toLowerCase() === correctZoneKey.toLowerCase();
+
   const handleSubmit = () => {
     if (guesses.length >= 5) {
       setMessage('You have no guesses left.');
@@ -42,15 +54,49 @@ export function ZoneGuessInput() {
     }
   };
 
+  // Autosuggest functions
+  const getSuggestions = (value: any) => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0
+      ? []
+      : zoneNames.filter(
+          (zone) => zone.toLowerCase().slice(0, inputLength) === inputValue
+        );
+  };
+
+  const onSuggestionsFetchRequested = ({ value }: any) => {
+    // @ts-ignore
+    setSuggestions(getSuggestions(value));
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  const onSuggestionSelected = (event: any, { suggestion }: any) => {
+    setInputValue(suggestion);
+  };
+
+  const inputProps = {
+    placeholder: 'Enter your zone guess',
+    value: inputValue,
+    onChange: (_e: any, { newValue }: any) => setInputValue(newValue),
+    onKeyDown: handleKeyDown,
+    disabled: guesses.length >= 5,
+  };
+
   return (
     <div className="w-[400px]">
-      <input
-        type="text"
-        placeholder="Enter your zone guess"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        disabled={guesses.length >= 5}
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        onSuggestionSelected={onSuggestionSelected}
+        getSuggestionValue={(suggestion: any) => suggestion}
+        renderSuggestion={(suggestion: any) => <div>{suggestion}</div>}
+        inputProps={inputProps}
       />
       <button
         className="m-5 self-center rounded border bg-green-200 p-2"
@@ -61,7 +107,7 @@ export function ZoneGuessInput() {
       </button>
       <p>{message}</p>
       <p>Guesses left: {5 - guesses.length}</p>
-      {message == 'Correct!' && <Confetti width={400} height={500} />}
+      {message === 'Correct!' && <Confetti width={400} height={500} />}
     </div>
   );
 }
