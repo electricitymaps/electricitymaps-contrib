@@ -876,9 +876,7 @@ def parse_production_per_units(xml_text: str) -> Any | None:
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(timeseries.find("start").contents[0])
         )
-        is_production = (
-            len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
-        )
+        is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
         psr_type = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
         unit_key = str(
             timeseries.find("mktpsrtype")
