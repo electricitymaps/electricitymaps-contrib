@@ -88,7 +88,7 @@ export function ZoneGuessInput() {
   };
 
   return (
-    <div className="flex h-[300px] w-[400px]">
+    <div className="flex h-[300px] w-[500px]">
       <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
@@ -99,7 +99,7 @@ export function ZoneGuessInput() {
         inputProps={inputProps}
       />
       <button
-        className="m-5 self-center rounded border bg-green-200 p-2"
+        className="mx-5 h-10 rounded border bg-green-200 p-2"
         onClick={handleSubmit}
         disabled={guesses.length >= 5}
       >

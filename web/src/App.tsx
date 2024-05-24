@@ -224,7 +224,7 @@ export default function App(): ReactElement {
               <Suspense>
                 <LegendContainer />
               </Suspense>
-              <div className="invisible fixed bottom-[40%] right-[30%] z-20 flex w-[400px] flex-col rounded bg-white/90 px-1 py-2 shadow-xl backdrop-blur-sm sm:visible dark:bg-gray-800">
+              <div className="invisible fixed bottom-[40%] right-[25%] z-20 flex w-[550px] flex-col rounded bg-white/90 px-1 py-2 shadow-xl backdrop-blur-sm sm:visible dark:bg-gray-800">
                 <ZoneGuessInput />
               </div>
             </Sentry.ErrorBoundary>
