@@ -1,5 +1,6 @@
 import LoadingSpinner from 'components/LoadingSpinner';
 import { TimeDisplay } from 'components/TimeDisplay';
+import { DK } from 'country-flag-icons/react/3x2';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
 import { lazy, Suspense } from 'react';
@@ -13,6 +14,7 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
+import { emapleZoneAtom } from 'utils/state/atoms';
 
 import { leftPanelOpenAtom } from './panelAtoms';
 
@@ -22,13 +24,9 @@ const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
 
-  const page = (searchParameters.get('page') || 'map')
-    .replace('country', 'zone')
-    .replace('highscore', 'ranking');
-  searchParameters.delete('page');
+  const page = 'DK-DK2';
 
-  const zoneId = searchParameters.get('countryCode');
-  searchParameters.delete('countryCode');
+  const [zoneId] = useAtom(emapleZoneAtom);
 
   return (
     <Navigate
@@ -41,23 +39,22 @@ function HandleLegacyRoutes() {
 }
 
 function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
-  const [searchParameters] = useSearchParams();
-  const { zoneId } = useParams();
+  // const [searchParameters] = useSearchParams();
+  // const zoneId = 'emapsle';
+  // if (!zoneId) {
+  //   return <Navigate to="/" replace />;
+  // }
 
-  if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
-
-  // Handle legacy Australia zone names
-  if (zoneId.startsWith('AUS')) {
-    return (
-      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
-    );
-  }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
-  }
+  // // Handle legacy Australia zone names
+  // if (zoneId.startsWith('AUS')) {
+  //   return (
+  //     <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
+  //   );
+  // }
+  // const upperCaseZoneId = zoneId.toUpperCase();
+  // if (zoneId !== upperCaseZoneId) {
+  //   return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+  // }
 
   return children;
 }
@@ -119,7 +116,7 @@ export default function LeftPanel() {
       <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
         <Route
-          path="/zone/:zoneId"
+          path="zone/emapsle"
           element={
             <ValidZoneIdGuardWrapper>
               <Suspense fallback={<LoadingSpinner />}>

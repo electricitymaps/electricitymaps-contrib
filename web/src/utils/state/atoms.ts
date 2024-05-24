@@ -21,7 +21,7 @@ export const spatialAggregateAtom = atomWithStorage(
   'country-mode',
   SpatialAggregate.ZONE
 );
-export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTION);
+export const productionConsumptionAtom = atomWithStorage('mode', Mode.PRODUCTION);
 
 export const solarLayerEnabledAtom = atomWithStorage('solar', ToggleOptions.OFF);
 export const windLayerAtom = atomWithStorage('wind', ToggleOptions.OFF);
@@ -51,3 +51,5 @@ export const dataSourcesCollapsedBarBreakdown = atom(true);
 export const dataSourcesCollapsedBreakdown = atom(true);
 
 export const dataSourcesCollapsedEmission = atom(true);
+
+export const emapleZoneAtom = atom('');

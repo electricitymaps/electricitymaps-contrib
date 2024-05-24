@@ -175,7 +175,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     setSelectedZoneId(pathZoneId);
     if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
-        (feature) => feature?.properties?.zoneId === pathZoneId
+        (feature) => feature?.properties?.zoneId === 'DE'
       );
       // if no feature matches, it means that the selected zone is not in current spatial resolution.
       // We cannot include geometries in dependencies, as we don't want to flyTo when user switches
@@ -185,7 +185,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         map.setFeatureState({ source: ZONE_SOURCE, id: pathZoneId }, { selected: true });
         setLeftPanelOpen(true);
         const centerMinusLeftPanelWidth = [center[0] - 10, center[1]] as [number, number];
-        map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
+        map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 0 });
       }
     }
   }, [

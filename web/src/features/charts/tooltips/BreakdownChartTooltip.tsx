@@ -144,18 +144,18 @@ export function BreakdownChartTooltipContent({
   const headline = isExchange
     ? t(originTranslateKey, {
         percentageUsage: percentageUsage.toString(),
-        zoneName: getZoneName(zoneKey),
-        selectedZoneName: getZoneName(selectedLayerKey),
+        zoneName: 'NO SORRY JULIEn',
+        selectedZoneName: 'MUHAHAHA',
         zoneFlag: renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />),
         selectedZoneFlag: renderToString(
-          <CountryFlag className="shadow-3xl" zoneId={selectedLayerKey} />
+          <CountryFlag className="shadow-3xl" zoneId={''} />
         ),
       }) // Eg: "7 % of electricity in Denmark is imported from Germany"
     : t(originTranslateKey, {
         percentageUsage: percentageUsage.toString(),
-        zoneName: getZoneName(zoneKey),
-        selectedLayerKey: t(selectedLayerKey),
-        zoneFlag: renderToString(<CountryFlag className="shadow-3xl" zoneId={zoneKey} />),
+        zoneName: 'MUHAHA',
+        selectedLayerKey: 'MUHAHAHA',
+        zoneFlag: renderToString(<CountryFlag className="shadow-3xl" zoneId={'EMAPS'} />),
       }); // Eg: "20 % of electricity in Denmark comes from biomass"
   const title = isExchange
     ? getZoneName(selectedLayerKey)
