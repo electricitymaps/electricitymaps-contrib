@@ -89,17 +89,19 @@ export function ZoneGuessInput() {
 
   return (
     <div className="flex h-[300px] w-[500px]">
-      <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={onSuggestionsClearRequested}
-        onSuggestionSelected={onSuggestionSelected}
-        getSuggestionValue={(suggestion: any) => suggestion}
-        renderSuggestion={(suggestion: any) => <div>{suggestion}</div>}
-        inputProps={inputProps}
-      />
+      <div className="text-gray-600 dark:bg-gray-800">
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={onSuggestionsClearRequested}
+          onSuggestionSelected={onSuggestionSelected}
+          getSuggestionValue={(suggestion: any) => suggestion}
+          renderSuggestion={(suggestion: any) => <div>{suggestion}</div>}
+          inputProps={inputProps}
+        />
+      </div>
       <button
-        className="mx-5 h-10 rounded border bg-green-200 p-2"
+        className="mx-5 h-10 rounded border p-2 dark:bg-gray-700"
         onClick={handleSubmit}
         disabled={guesses.length >= 5}
       >
