@@ -88,7 +88,7 @@ export function ZoneGuessInput() {
   };
 
   return (
-    <div className="w-[400px]">
+    <div className="flex h-[300px] w-[400px]">
       <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
