@@ -680,7 +680,7 @@ def zulu_to_utc(datetime_string: str) -> str:
     return datetime_string.replace("Z", "+00:00")
 
 
-@lru_cache(maxsize=512)
+@lru_cache(maxsize=1024)
 def datetime_from_position(start: datetime, position: int, resolution: str) -> datetime:
     """Finds time granularity of data."""
 
