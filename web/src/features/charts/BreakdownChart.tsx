@@ -75,13 +75,7 @@ function BreakdownChart({
       />
       <div className="relative ">
         {isBreakdownGraphOverlayEnabled && (
-          <DisabledMessage
-            message={
-              <>
-                Disabled for consumption. <br /> Switch to production view
-              </>
-            }
-          />
+          <DisabledMessage message={t(`country-panel.disabledBreakdownChartReason`)} />
         )}
 
         <AreaGraph
