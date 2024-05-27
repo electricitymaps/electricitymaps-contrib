@@ -129,7 +129,7 @@
     },
     "estimated_time_slicer_average": {
       "title": "Data is preliminary",
-      "body": "The data provider is not reporting data for this hour. The displayed values are estimated based on historical measurements and will be updated once actual data is available. nNote that estimated values might not account for real-time weather events."
+      "body": "The data provider is not reporting data for this hour. The displayed values are estimated based on historical measurements and will be updated once actual data is available. Note that estimated values might not account for real-time weather events."
     },
     "estimated_mode_breakdown": {
       "title": "Data is partially estimated",
