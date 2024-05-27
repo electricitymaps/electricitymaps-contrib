@@ -28,6 +28,7 @@ export default function EstimationCard({
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
+  const isTSAModel = estimationMethod === 'ESTIMATED_TIME_SLICER_AVERAGE';
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
     hasEstimationFeedbackBeenSeenAtom
   );
@@ -61,7 +62,9 @@ export default function EstimationCard({
       return (
         <div>
           <EstimatedCard estimationMethod={estimationMethod} />
-          {isFeedbackCardVisible && <FeedbackCard estimationMethod={estimationMethod} />}
+          {isFeedbackCardVisible && isTSAModel && (
+            <FeedbackCard estimationMethod={estimationMethod} />
+          )}
         </div>
       );
     }
