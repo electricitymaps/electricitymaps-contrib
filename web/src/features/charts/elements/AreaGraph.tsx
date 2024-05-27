@@ -229,7 +229,7 @@ function AreaGraph({
       height={height}
       ref={reference}
       className={`w-full overflow-visible ${
-        isDisabled ? 'pointer-events-none blur-sm' : ''
+        isDisabled ? 'pointer-events-none blur' : ''
       }`}
     >
       <GraphBackground
