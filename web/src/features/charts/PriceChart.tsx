@@ -2,7 +2,7 @@ import { CoinsIcon } from 'icons/coinsIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
-import { GraphCard } from './bar-breakdown/GraphCard';
+import { RoundedCard } from './bar-breakdown/RoundedCard';
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
@@ -54,7 +54,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   }
 
   return (
-    <GraphCard>
+    <RoundedCard>
       <ChartTitle
         translationKey="country-history.electricityprices"
         icon={<CoinsIcon />}
@@ -83,7 +83,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           isDisabled={isPriceDisabled}
         />
       </div>
-    </GraphCard>
+    </RoundedCard>
   );
 }
 

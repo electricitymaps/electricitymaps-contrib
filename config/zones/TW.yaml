@@ -8,6 +8,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 90.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
   coal:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -16,10 +19,16 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 18050.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 18810.0
   hydro:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 2090.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 2100.0
   hydro storage:
     - datetime: '2015-01-01'
       source: taipower.com.tw
@@ -28,6 +37,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 2890.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1900.0
   oil:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -36,6 +48,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 9720.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 12420.0
   unknown:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -44,6 +59,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1580.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 2670.0
 contributors:
   - corradio
   - MariusKroon

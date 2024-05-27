@@ -1,3 +1,4 @@
+import type { Duration } from 'date-fns';
 import { ElectricityModeType } from 'types';
 
 // The order here determines the order displayed
@@ -68,3 +69,11 @@ export const modeOrder = [
   'oil',
   'unknown',
 ] as const;
+
+//A mapping between the TimeAverages enum and the corresponding Duration for the date-fns add/substract method
+export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
+  daily: 'days',
+  hourly: 'hours',
+  monthly: 'months',
+  yearly: 'years',
+};
