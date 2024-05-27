@@ -48,12 +48,11 @@ function SourcesWithLegends({
       {[...sourceToProductionSources.keys()].sort().map((source, index) => (
         <p key={index} className="text-sm">
           {source}
-          <span className="inline-flex gap-1 pl-1.5">
+          <span className="inline-flex translate-y-1 gap-1 pl-1.5">
             {sourceToProductionSources.get(source)?.map((productionSource, index) => (
               <span key={index} className="self-center object-center text-xs">
                 <ProductionSourceLegend
                   electricityType={productionSource as ElectricityModeType}
-                  transform="translate(0,3.5)"
                 />
               </span>
             ))}
