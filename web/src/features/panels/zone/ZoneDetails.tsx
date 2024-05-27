@@ -21,6 +21,7 @@ import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import EstimationCard from './EstimationCard';
+import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
@@ -28,22 +29,16 @@ import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
-  if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [_, setViewMode] = useAtom(spatialAggregateAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const hasSubZones = getHasSubZones(zoneId);
-  const isSubZone = zoneId ? zoneId.includes('-') : true;
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
-  // TODO: App-backend should not return an empty array as "data" if the zone does not
-  // exist.
-  if (Array.isArray(data)) {
-    return <Navigate to="/" replace />;
-  }
+  const isMobile = !useBreakpoint('sm');
+
+  const hasSubZones = getHasSubZones(zoneId);
+  const isSubZone = zoneId ? zoneId.includes('-') : true;
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -57,7 +52,17 @@ export default function ZoneDetails(): JSX.Element {
     if (!hasSubZones && isSubZone) {
       setViewMode(SpatialAggregate.ZONE);
     }
-  }, []);
+  }, [hasSubZones, isSubZone, setViewMode]);
+
+  if (!zoneId) {
+    return <Navigate to="/" replace />;
+  }
+
+  // TODO: App-backend should not return an empty array as "data" if the zone does not
+  // exist.
+  if (Array.isArray(data)) {
+    return <Navigate to="/" replace />;
+  }
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
 
@@ -68,8 +73,6 @@ export default function ZoneDetails(): JSX.Element {
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
   const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
-
-  const isMobile = !useBreakpoint('sm');
 
   return (
     <>
@@ -112,6 +115,7 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
+          <MethodologyCard />
           <Attribution zoneId={zoneId} />
           {isMobile ? (
             <Button

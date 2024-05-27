@@ -39,7 +39,7 @@ export default function TimeController({ className }: { className?: string }) {
         index: datetimes.length - 1,
       });
     }
-  }, [data]);
+  }, [data, datetimes, setSelectedDatetime]);
 
   const onTimeSliderChange = (index: number) => {
     // TODO: Does this work properly missing values?

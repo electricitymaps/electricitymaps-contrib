@@ -1,4 +1,5 @@
 import { max as d3Max } from 'd3-array';
+import { useEffect, useState } from 'react';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
@@ -207,6 +208,20 @@ export function getPowerGenerationSources(zoneData: ZoneDetails) {
   const sources = [...sourceSet];
   return sources;
 }
+
+export const useHeaderHeight = () => {
+  const [headerHeight, setHeaderHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const headerElement = document.querySelector('header');
+    if (headerElement) {
+      const height = headerElement.offsetHeight;
+      setHeaderHeight(height * 1.1);
+    }
+  }, [window.innerWidth, window.innerHeight]);
+
+  return headerHeight;
+};
 
 export function getEmissionData(zoneData: ZoneDetails) {
   const sourceInfoToProductionSource = new Map<string, string[]>();
