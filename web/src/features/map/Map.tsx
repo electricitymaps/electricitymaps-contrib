@@ -12,7 +12,7 @@ import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
-import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
+import { createToWithState, getCO2IntensityByMode, useUserLocation } from 'utils/helpers';
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
@@ -73,6 +73,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const { worldGeometries } = useGetGeometries();
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
+  const userLocation = useUserLocation();
 
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
@@ -154,11 +155,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     if (!map || isError || !isFirstLoad) {
       return;
     }
-    if (data?.callerLocation && !selectedZoneId) {
-      map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
+    if (userLocation && !selectedZoneId) {
+      map.flyTo({ center: [userLocation[0], userLocation[1]] });
       setIsFirstLoad(false);
     }
-  }, [map, isSuccess, isError, isFirstLoad, data?.callerLocation, selectedZoneId]);
+  }, [map, isSuccess, isError, isFirstLoad, userLocation, selectedZoneId]);
 
   useEffect(() => {
     // Run when the selected zone changes
