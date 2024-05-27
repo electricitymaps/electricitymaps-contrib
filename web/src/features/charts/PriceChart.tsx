@@ -4,6 +4,7 @@ import { TimeAverages } from 'utils/constants';
 
 import { RoundedCard } from './bar-breakdown/RoundedCard';
 import { ChartTitle } from './ChartTitle';
+import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
@@ -59,14 +60,11 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
         icon={<CoinsIcon />}
         unit={valueAxisLabel}
       />
-      <div className={`relative ${isPriceDisabled ? 'overflow-hidden' : ''}`}>
+      <div className="relative">
         {isPriceDisabled && (
-          <div className="absolute top-0 -ml-3 h-full w-[115%]">
-            <div className="h-full w-full rounded bg-zinc-50 opacity-90 dark:bg-gray-900" />
-            <div className="absolute left-[45%] top-1/2 z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800">
-              {t(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
-            </div>
-          </div>
+          <DisabledMessage
+            message={t(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
+          />
         )}
         <AreaGraph
           testId="history-prices-graph"
@@ -82,6 +80,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
           tooltip={PriceChartTooltip}
+          isDisabled={isPriceDisabled}
         />
       </div>
     </RoundedCard>
