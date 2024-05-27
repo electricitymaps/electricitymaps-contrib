@@ -105,6 +105,16 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
+  const showPowerSources = Boolean(
+    currentZoneDetail?.source && currentZoneDetail?.source.length !== 0
+  );
+  const showEmissionSources = Boolean(
+    emissionSourceToProductionSource && emissionSourceToProductionSource.size > 0
+  );
+  const showDataSourceAccordion = Boolean(
+    currentZoneDetail?.capacitySources || showPowerSources || showEmissionSources
+  );
+
   return (
     <div
       className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
@@ -170,54 +180,58 @@ function BarBreakdownChart({
           isMobile={false}
         />
       )}
-      <Divider />
-      <div className="py-1">
-        <Accordion
-          onOpen={() => {
-            trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'bar-breakdown-chart' });
-          }}
-          title={t('data-sources.title')}
-          className="text-md"
-          isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
-        >
-          <div>
-            {currentZoneDetail?.capacitySources && (
-              <DataSources
-                title={t('data-sources.capacity')}
-                icon={<UtilityPoleIcon />}
-                sources={[
-                  ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
-                ]}
-              />
-            )}
-            {currentZoneDetail?.source && (
-              <DataSources
-                title={t('data-sources.power')}
-                icon={<WindTurbineIcon />}
-                sources={currentZoneDetail?.source}
-              />
-            )}
-            {emissionSourceToProductionSource && (
-              <DataSources
-                title={t('data-sources.emission')}
-                icon={<IndustryIcon />}
-                sourceToProductionSources={emissionSourceToProductionSource}
-              />
-            )}
-          </div>
-        </Accordion>
-      </div>
+      {showDataSourceAccordion && (
+        <>
+          <Divider />
+          <div className="py-1">
+            <Accordion
+              onOpen={() => {
+                trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                  chart: 'bar-breakdown-chart',
+                });
+              }}
+              title={t('data-sources.title')}
+              className="text-md"
+              isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
+            >
+              <div>
+                <DataSources
+                  title={t('data-sources.capacity')}
+                  icon={<UtilityPoleIcon />}
+                  sources={[
+                    ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
+                  ]}
+                />
+                <DataSources
+                  title={t('data-sources.power')}
+                  icon={<WindTurbineIcon />}
+                  sources={currentZoneDetail?.source}
+                />
+                <DataSources
+                  title={t('data-sources.emission')}
+                  icon={<IndustryIcon />}
+                  sourceToProductionSources={emissionSourceToProductionSource}
+                />
+              </div>
+            </Accordion>
+          </div>{' '}
+        </>
+      )}
     </div>
   );
 }
 
 export default BarBreakdownChart;
 
-function GetSourceArrayFromDictionary(sourceDict: {
-  [key in ElectricityModeType]: string[] | null;
-}): Set<string> {
+function GetSourceArrayFromDictionary(
+  sourceDict:
+    | {
+        [key in ElectricityModeType]: string[] | null;
+      }
+    | undefined
+): Set<string> {
   const sourcesWithoutDuplicates: Set<string> = new Set();
-  if (sourceDict == null) {
+  if (sourceDict == null || sourceDict == undefined) {
     return sourcesWithoutDuplicates;
   }
   for (const key of Object.keys(sourceDict)) {

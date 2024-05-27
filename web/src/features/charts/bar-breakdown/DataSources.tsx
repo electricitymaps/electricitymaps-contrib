@@ -13,6 +13,14 @@ export function DataSources({
   sources?: string[];
   sourceToProductionSources?: Map<string, string[]>;
 }) {
+  const showDataSources = Boolean(
+    (sources && sources?.length > 0) ||
+      (sourceToProductionSources && sourceToProductionSources.size > 0)
+  );
+  if (showDataSources == false) {
+    return null;
+  }
+
   return (
     <div className="flex flex-col py-2">
       <div className="flex flex-row pb-2">
