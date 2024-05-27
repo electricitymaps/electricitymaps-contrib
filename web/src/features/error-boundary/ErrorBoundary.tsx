@@ -3,7 +3,7 @@
 // See more: https://docs.sentry.io/platforms/javascript/guides/react/features/error-boundary/
 
 interface Props {
-  error: Error;
+  error: unknown;
   componentStack: string | null;
   resetError: () => void;
 }
@@ -19,7 +19,7 @@ export default function ErrorComponent({ error }: Props) {
         so we can fix this!
       </p>
       <pre className="rounded-lg bg-gray-300 p-2 text-xs dark:bg-black">
-        Error message: {error?.toString()}
+        Error message: {error instanceof Error ? error.toString() : JSON.stringify(error)}
         <br />
         Url: {url}
       </pre>
