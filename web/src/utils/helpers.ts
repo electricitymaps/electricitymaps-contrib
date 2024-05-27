@@ -1,4 +1,4 @@
-import { useMeta } from 'api/getMeta';
+import { callerLocation, useMeta } from 'api/getMeta';
 import { useMatch, useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
@@ -16,8 +16,6 @@ export function useGetZoneFromPath() {
   }
   return match?.params.id || undefined;
 }
-
-type callerLocation = [number, number] | null;
 
 export function useUserLocation(): callerLocation {
   const { callerLocation } = useMeta();

@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getBasePath, QUERY_KEYS } from 'api/helpers';
 
+export type callerLocation = [number, number] | null;
+
 export interface Meta {
   features?: Record<string, boolean>;
-  callerLocation?: [number, number];
+  callerLocation?: callerLocation;
 }
 
 export async function getMeta(): Promise<Meta> {
