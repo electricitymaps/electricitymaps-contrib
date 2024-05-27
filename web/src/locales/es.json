@@ -80,9 +80,8 @@
   "estimation-card": {
     "link": "Más información sobre nuestros modelos de estimación",
     "estimated_time_slicer_average": {
-      "title": "Los datos son estimados",
-      "pill": "Retraso",
-      "body": "Los datos de esta hora aún no se han transmitido. Los valores mostrados son estimaciones y se reemplazarán por mediciones cuando estén disponibles."
+      "title": "Los datos son preliminares",
+      "body": ""
     },
     "estimated_mode_breakdown": {
       "title": "Datos parcialmente estimados",
