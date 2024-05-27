@@ -49,6 +49,7 @@ app.get('/v8/meta', (req, res) => {
   res.json({
     features: {
       'feature-flag-1': true,
+      'flag-2': false,
     },
     callerLocation: [0, 0],
   });

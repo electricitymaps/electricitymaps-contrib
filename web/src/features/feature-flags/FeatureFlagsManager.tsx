@@ -22,6 +22,7 @@ function Content({ features }: { features: FeatureFlags }) {
         return {
           ...oldMeta,
           features: {
+            ...previousFeatures,
             [key]: !previousFeatures?.[key],
           },
         };
