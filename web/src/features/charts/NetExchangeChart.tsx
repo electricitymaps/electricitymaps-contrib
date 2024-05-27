@@ -4,7 +4,7 @@ import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
-import { GraphCard } from './bar-breakdown/GraphCard';
+import { RoundedCard } from './bar-breakdown/RoundedCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
@@ -39,7 +39,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   }
 
   return (
-    <GraphCard className="pb-2">
+    <RoundedCard className="pb-2">
       <ChartTitle
         translationKey="country-history.netExchange"
         icon={<ExchangeIcon />}
@@ -63,7 +63,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           formatTick={formatAxisTick}
         />
       </div>
-    </GraphCard>
+    </RoundedCard>
   );
 }
 
