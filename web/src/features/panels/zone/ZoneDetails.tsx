@@ -21,6 +21,7 @@ import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import EstimationCard from './EstimationCard';
+import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
@@ -114,6 +115,7 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
+          <MethodologyCard />
           <Attribution zoneId={zoneId} />
           {isMobile ? (
             <Button
