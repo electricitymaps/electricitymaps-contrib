@@ -17,10 +17,10 @@ function Content({ features }: { features: FeatureFlags }) {
       const previousState = queryClient.getQueryData([QUERY_KEYS.META]);
 
       // Optimistically update to the new value
-      queryClient.setQueryData([QUERY_KEYS.META], (oldMeta: Meta | undefined) => {
-        const previousFeatures = oldMeta?.features || {};
+      queryClient.setQueryData([QUERY_KEYS.META], (previousMeta: Meta | undefined) => {
+        const previousFeatures = previousMeta?.features || {};
         return {
-          ...oldMeta,
+          ...previousMeta,
           features: {
             ...previousFeatures,
             [key]: !previousFeatures?.[key],
