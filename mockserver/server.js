@@ -45,8 +45,13 @@ app.get('/v8/gfs/solar', (req, res, next) => {
   });
 });
 
-app.get('/feature-flags', (req, res) => {
-  res.json({});
+app.get('/v8/meta', (req, res) => {
+  res.json({
+    features: {
+      'feature-flag-1': true,
+    },
+    callerLocation: [0, 0],
+  });
 });
 
 app.use(function (req, res, next) {
