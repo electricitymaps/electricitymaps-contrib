@@ -1,5 +1,6 @@
 import * as Switch from '@radix-ui/react-switch';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Meta } from 'api/getMeta';
 import { QUERY_KEYS } from 'api/helpers';
 import { useSearchParams } from 'react-router-dom';
 
@@ -13,18 +14,18 @@ function Content({ features }: { features: FeatureFlags }) {
     mutationFn: (_key: string) => Promise.resolve(),
     onMutate: async (key) => {
       // Snapshot the previous value
-      const previousState = queryClient.getQueryData([QUERY_KEYS.FEATURE_FLAGS]);
+      const previousState = queryClient.getQueryData([QUERY_KEYS.META]);
 
       // Optimistically update to the new value
-      queryClient.setQueryData(
-        [QUERY_KEYS.FEATURE_FLAGS],
-        (old: FeatureFlags | undefined) => {
-          return {
-            ...old,
-            [key]: !old?.[key],
-          };
-        }
-      );
+      queryClient.setQueryData([QUERY_KEYS.META], (oldMeta: Meta | undefined) => {
+        const previousFeatures = oldMeta?.features || {};
+        return {
+          ...oldMeta,
+          features: {
+            [key]: !previousFeatures?.[key],
+          },
+        };
+      });
 
       // Return a context object with the snapshotted value
       return { previousState };
