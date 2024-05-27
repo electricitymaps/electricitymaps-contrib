@@ -19,7 +19,14 @@ export function useGetZoneFromPath() {
 
 export function useUserLocation(): callerLocation {
   const { callerLocation } = useMeta();
-  return callerLocation || null;
+  if (
+    callerLocation &&
+    callerLocation.length === 2 &&
+    callerLocation.every((x) => Number.isFinite(x))
+  ) {
+    return callerLocation;
+  }
+  return null;
 }
 
 export function getCO2IntensityByMode(
