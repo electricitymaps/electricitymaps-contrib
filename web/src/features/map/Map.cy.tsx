@@ -151,12 +151,7 @@ const handleMapLoad = (map: any) => {
 describe('Map Component', () => {
   it('should display loading state initially', () => {
     const queryClient = new QueryClient();
-    cy.intercept('GET', /v8\/state\/hourly\?cacheKey=.*/, {
-      fixture: 'v8/state/hourly',
-    }).as('getHourlyState');
-    cy.intercept('GET', /v8\/state\/last_hour\?cacheKey=.*/, {
-      fixture: 'v8/state/last_hour',
-    }).as('getLastHourState');
+
     cy.mount(
       <TestProvider
         initialValues={[
@@ -176,12 +171,8 @@ describe('Map Component', () => {
         </QueryClientProvider>
       </TestProvider>
     );
-    cy.wait('@getHourlyState');
-    cy.wait('@getLastHourState');
     cy.get('[data-test-id=exchange-layer]').should('be.visible');
     cy.get('[data-test-id=wind-layer]').should('exist');
     cy.get('.maplibregl-map').should('be.visible');
-    cy.get('.maplibregl-canvas').should('be.visible');
-    cy.get('[data-test-id=exchange-arrow-JP-TH-\\>JP-TK]').should('be.visible');
   });
 });

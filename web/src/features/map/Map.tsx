@@ -176,8 +176,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           }
           const zoneFeature = getZoneIdFromLocation(map, callerLocation, ZONE_SOURCE);
           if (zoneFeature) {
-            const zoneName = zoneFeature.properties.zoneId;
-            setUserLocation(zoneName);
+            const zoneId = zoneFeature.properties.zoneId;
+            setUserLocation(zoneId);
           }
           map.off('idle', handleIdle);
         }
