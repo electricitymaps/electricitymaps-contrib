@@ -20,6 +20,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 3.0
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -28,6 +31,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2005.1
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 1816.7
   hydro storage:
     - datetime: '2023-10-01'
       source: EIA.gov

@@ -12,6 +12,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 76.1
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 71.6
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -32,6 +35,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2358.0
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 2454.0
   nuclear:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -44,6 +50,12 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2033.6
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 2038.6
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 2063.6
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
