@@ -69,8 +69,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [currentMode] = useAtom(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
-  const [isDragging, setIsDragging] = useState(false);
-  const [isZooming, setIsZooming] = useState(false);
   const [spatialAggregate] = useAtom(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
@@ -338,26 +336,12 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
   };
 
-  const onZoomStart = () => {
-    setIsZooming(true);
-    setIsMoving(true);
-  };
-  const onDragStart = () => {
-    setIsDragging(true);
+  const onMoveStart = () => {
     setIsMoving(true);
   };
 
-  const onZoomEnd = () => {
-    setIsZooming(false);
-    if (!isDragging) {
-      setIsMoving(false);
-    }
-  };
-  const onDragEnd = () => {
-    setIsDragging(false);
-    if (!isZooming) {
-      setIsMoving(false);
-    }
+  const onMoveEnd = () => {
+    setIsMoving(false);
   };
 
   return (
@@ -376,11 +360,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
-      onTouchStart={onDragStart}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-      onZoomStart={onZoomStart}
-      onZoomEnd={onZoomEnd}
+      onMoveStart={onMoveStart}
+      onMoveEnd={onMoveEnd}
       dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
       dragRotate={false}
       minZoom={0.7}

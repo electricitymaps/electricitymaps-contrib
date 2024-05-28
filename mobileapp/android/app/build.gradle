@@ -13,8 +13,8 @@ android {
         applicationId "com.tmrow.electricitymap"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1011300
-        versionName "1.113.0"
+        versionCode 1013700
+        versionName "1.137.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
