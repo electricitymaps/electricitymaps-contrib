@@ -231,7 +231,7 @@ function GetSourceArrayFromDictionary(
     | undefined
 ): Set<string> {
   const sourcesWithoutDuplicates: Set<string> = new Set();
-  if (sourceDict == null || sourceDict == undefined) {
+  if (!sourceDict) {
     return sourcesWithoutDuplicates;
   }
   for (const key of Object.keys(sourceDict)) {
