@@ -94,8 +94,8 @@
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
     "estimated_time_slicer_average": {
-      "title": "Die Daten sind vorläufig",
-      "body": ""
+      "title": "Vorläufige Daten",
+      "body": "Der Datenanbieter hat für diese Stunde keine Daten zur Verfügung gestellt. Die angezeigten Werte wurden anhand historischer Werte geschätzt und werden aktualisiert, sobald gemessene Daten verfügbar sind. Geschätzte Daten können unpräzise sein, da sie in manchen Fällen Echtzeit-Wetterereignisse vernachlässigen."
     },
     "estimated_mode_breakdown": {
       "title": "Teils geschätzte Daten",
