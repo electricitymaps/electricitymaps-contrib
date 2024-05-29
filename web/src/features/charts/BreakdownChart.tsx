@@ -11,9 +11,10 @@ import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
 import { DataSources } from './bar-breakdown/DataSources';
-import { GraphCard } from './bar-breakdown/GraphCard';
 import ProductionSourceLegendList from './bar-breakdown/ProductionSourceLegendList';
+import { RoundedCard } from './bar-breakdown/RoundedCard';
 import { ChartTitle } from './ChartTitle';
+import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
@@ -65,21 +66,16 @@ function BreakdownChart({
   }
 
   return (
-    <GraphCard>
+    <RoundedCard>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
-        badgeText={badgeText}
+        badgeText={isBreakdownGraphOverlayEnabled ? undefined : badgeText}
         icon={<CircleBoltIcon />}
         unit={valueAxisLabel}
       />
-      <div className="relative">
+      <div className="relative ">
         {isBreakdownGraphOverlayEnabled && (
-          <div className="absolute top-0 h-full w-full">
-            <div className=" h-full w-full bg-white opacity-50 dark:bg-gray-800" />
-            <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
-              Temporarily disabled for consumption. <br /> Switch to production view
-            </div>
-          </div>
+          <DisabledMessage message={t(`country-panel.disabledBreakdownChartReason`)} />
         )}
 
         <AreaGraph
@@ -91,7 +87,7 @@ function BreakdownChart({
           markerHideHandler={noop}
           isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
           height="10em"
-          isOverlayEnabled={isBreakdownGraphOverlayEnabled}
+          isDisabled={isBreakdownGraphOverlayEnabled}
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
           tooltip={BreakdownChartTooltip}
@@ -128,7 +124,7 @@ function BreakdownChart({
           sources={sources}
         />
       </Accordion>
-    </GraphCard>
+    </RoundedCard>
   );
 }
 

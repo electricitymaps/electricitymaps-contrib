@@ -8,7 +8,6 @@ import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
-import FeatureFlagsManager from 'features/feature-flags/FeatureFlagsManager';
 import Header from 'features/header/Header';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
@@ -17,7 +16,7 @@ import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
-const LegendContainer = lazy(() => import('components/legend/LegendContainer'));
+const MapOverlays = lazy(() => import('components/MapOverlays'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
@@ -105,10 +104,7 @@ export default function App(): ReactElement {
                 <TimeControllerWrapper />
               </Suspense>
               <Suspense>
-                <FeatureFlagsManager />
-              </Suspense>
-              <Suspense>
-                <LegendContainer />
+                <MapOverlays />
               </Suspense>
             </Sentry.ErrorBoundary>
           </div>
