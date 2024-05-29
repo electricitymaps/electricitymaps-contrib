@@ -28,7 +28,7 @@ emissionFactors:
       _url:
         - https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
         - http://denki-yoho.chuden.jp/denki_yoho_content_data/areabalance_current_term.csv
-      source: assumes 26.3% coal, 2.2% oil, 62.5% gas, 9% hydro and wind
+      source: Chubu Electric Power 2022; assumes 26.3% coal, 2.2% oil, 62.5% gas, 9% hydro and wind
       value: 538
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
