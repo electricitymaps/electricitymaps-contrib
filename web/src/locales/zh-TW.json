@@ -114,8 +114,8 @@
   "estimation-card": {
     "link": "了解我們的估計模型",
     "estimated_time_slicer_average": {
-      "title": "",
-      "body": ""
+      "title": "數據為初步的值",
+      "body": "資料提供者未提供此小時的數據。目前顯示的數值是基於歷史測量值估計的，一旦實際數據可用將立即更新。\n\n請注意，估計值可能未考慮到即時的天氣事件。"
     },
     "estimated_mode_breakdown": {
       "title": "數據部分為估計值",
