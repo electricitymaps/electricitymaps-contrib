@@ -1,3 +1,4 @@
+import { Link } from 'components/Link';
 import { ElectricityModeType } from 'types';
 import { sourceLinkMapping } from 'utils/constants';
 
@@ -40,7 +41,7 @@ function SourcesWithoutLegends({ sources }: { sources: string[] }) {
   return (
     <div className="flex flex-col gap-2 pl-5">
       {sources.map((source, index) => (
-        <div key={index} className="text-sm">
+        <div key={index}>
           <Source source={source} />
         </div>
       ))}
@@ -56,7 +57,7 @@ function SourcesWithLegends({
   return (
     <div className="flex flex-col gap-1 pl-5">
       {[...sourceToProductionSources.keys()].sort().map((source, index) => (
-        <p key={index} className="text-sm">
+        <p key={index}>
           <Source source={source} />
           <span className="inline-flex translate-y-1 gap-1 pl-1.5">
             {sourceToProductionSources.get(source)?.map((productionSource, index) => (
@@ -74,18 +75,27 @@ function SourcesWithLegends({
 }
 
 function Source({ source }: { source: string }) {
+  const link = extractLinkFromSource(source);
+  if (link) {
+    return <Link href={link} linkText={source} />;
+  }
+
+  return <span>{source}</span>;
+}
+
+function extractLinkFromSource(source: string) {
   const link = sourceLinkMapping[source];
   if (link) {
-    return (
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-emerald-800 underline underline-offset-4 dark:text-emerald-500"
-      >
-        {source}
-      </a>
-    );
+    return link;
   }
-  return <span>{source}</span>;
+
+  if (!source.includes('.')) {
+    return null;
+  }
+
+  if (source.includes('http')) {
+    return source;
+  }
+
+  return `http://${source}`;
 }
