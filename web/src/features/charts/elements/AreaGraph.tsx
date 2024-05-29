@@ -12,6 +12,7 @@ import { TimeAverages, timeAxisMapping } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import { useHeaderHeight } from '../bar-breakdown/utils';
 import { getTimeScale } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
@@ -21,7 +22,7 @@ import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
 
 const X_AXIS_HEIGHT = 20;
-const Y_AXIS_WIDTH = 20;
+const Y_AXIS_WIDTH = 26;
 const Y_AXIS_PADDING = 2;
 
 const getTotalValues = (layers: any) => {
@@ -88,7 +89,7 @@ interface AreagraphProps {
   markerUpdateHandler: any;
   markerHideHandler: any;
   isMobile: boolean;
-  isOverlayEnabled?: boolean;
+  isDisabled?: boolean;
   height: string;
   datetimes: Date[];
   selectedTimeAggregate: TimeAverages; // TODO: Graph does not need to know about this
@@ -111,7 +112,7 @@ function AreaGraph({
   markerFill,
   isMobile,
   height = '10em',
-  isOverlayEnabled = false,
+  isDisabled = false,
   selectedTimeAggregate,
   datetimes,
   tooltip,
@@ -120,7 +121,7 @@ function AreaGraph({
 }: AreagraphProps) {
   const reference = useRef(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
-    useResizeObserver<SVGSVGElement>({ ref: reference });
+    useResizeObserver<HTMLDivElement>({ ref: reference });
 
   const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
@@ -212,6 +213,8 @@ function AreaGraph({
     [setGraphIndex, setSelectedLayerIndex]
   );
 
+  const headerHeight = useHeaderHeight();
+
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {
     if (layer.datapoints.length !== datetimes.length) {
@@ -226,32 +229,33 @@ function AreaGraph({
   }
 
   return (
-    <svg
-      data-test-id={testId}
-      height={height}
-      ref={reference}
-      className="w-full overflow-visible"
-    >
-      <GraphBackground
-        timeScale={timeScale}
-        valueScale={valueScale}
-        datetimes={datetimes}
-        mouseMoveHandler={mouseMoveHandler}
-        mouseOutHandler={mouseOutHandler}
-        isMobile={isMobile}
-        svgNode={reference.current}
-      />
-      <AreaGraphLayers
-        layers={layers}
-        datetimes={datetimesWithNext}
-        timeScale={timeScale}
-        valueScale={valueScale}
-        mouseMoveHandler={mouseMoveHandler}
-        mouseOutHandler={mouseOutHandler}
-        isMobile={isMobile}
-        svgNode={reference.current}
-      />
-      {!isOverlayEnabled && (
+    <div ref={reference}>
+      <svg
+        data-test-id={testId}
+        height={height}
+        className={`w-full overflow-visible ${
+          isDisabled ? 'pointer-events-none blur' : ''
+        }`}
+      >
+        <GraphBackground
+          timeScale={timeScale}
+          valueScale={valueScale}
+          datetimes={datetimes}
+          mouseMoveHandler={mouseMoveHandler}
+          mouseOutHandler={mouseOutHandler}
+          isMobile={isMobile}
+          svgNode={reference.current}
+        />
+        <AreaGraphLayers
+          layers={layers}
+          datetimes={datetimesWithNext}
+          timeScale={timeScale}
+          valueScale={valueScale}
+          mouseMoveHandler={mouseMoveHandler}
+          mouseOutHandler={mouseOutHandler}
+          isMobile={isMobile}
+          svgNode={reference.current}
+        />
         <TimeAxis
           isLoading={false}
           selectedTimeAggregate={selectedTimeAggregate}
@@ -260,33 +264,34 @@ function AreaGraph({
           transform={`translate(5 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
         />
-      )}
-      <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
-      <GraphHoverLine
-        layers={layers}
-        timeScale={timeScale}
-        valueScale={valueScale}
-        datetimes={datetimes}
-        endTime={endTime}
-        markerUpdateHandler={markerUpdateHandler}
-        markerHideHandler={markerHideHandler}
-        selectedLayerIndex={selectedLayerIndex}
-        selectedTimeIndex={hoverLineTimeIndex}
-        svgNode={reference.current}
-      />
-      {tooltip && (
-        <AreaGraphTooltip
-          {...tooltipData}
-          selectedLayerKey={
-            selectedLayerIndex === null ? undefined : layerKeys[selectedLayerIndex]
-          }
-          tooltipSize={tooltipSize}
-          isBiggerThanMobile={isBiggerThanMobile}
-        >
-          {(props) => tooltip(props)}
-        </AreaGraphTooltip>
-      )}
-    </svg>
+        <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
+        <GraphHoverLine
+          layers={layers}
+          timeScale={timeScale}
+          valueScale={valueScale}
+          datetimes={datetimes}
+          endTime={endTime}
+          markerUpdateHandler={markerUpdateHandler}
+          markerHideHandler={markerHideHandler}
+          selectedLayerIndex={selectedLayerIndex}
+          selectedTimeIndex={hoverLineTimeIndex}
+          svgNode={reference.current}
+        />
+        {tooltip && (
+          <AreaGraphTooltip
+            {...tooltipData}
+            selectedLayerKey={
+              selectedLayerIndex === null ? undefined : layerKeys[selectedLayerIndex]
+            }
+            tooltipSize={tooltipSize}
+            isBiggerThanMobile={isBiggerThanMobile}
+            headerHeight={headerHeight}
+          >
+            {(props) => tooltip(props)}
+          </AreaGraphTooltip>
+        )}
+      </svg>
+    </div>
   );
 }
 
