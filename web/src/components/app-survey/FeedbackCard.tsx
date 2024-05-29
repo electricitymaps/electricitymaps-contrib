@@ -1,8 +1,17 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { useAtom, useSetAtom } from 'jotai';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineX } from 'react-icons/hi';
+import { hasSeenSurveyCardAtom, userLocationAtom } from 'utils/state/atoms';
 
 enum FeedbackState {
   INITIAL = 'initial',
@@ -10,20 +19,63 @@ enum FeedbackState {
   SUCCESS = 'success',
 }
 
+export interface SurveyResponseProps {
+  feedbackScore: number;
+  inputText: string;
+  reference: string;
+  location?: string;
+}
+interface FeedbackCardProps {
+  postSurveyResponse: (props: SurveyResponseProps) => void;
+  subtitle?: string;
+  primaryQuestion: string;
+  secondaryQuestionHigh?: string;
+  secondaryQuestionLow?: string;
+  surveyReference?: string;
+}
+
 export default function FeedbackCard({
-  estimationMethod,
-}: {
-  estimationMethod?: string;
-}) {
+  postSurveyResponse,
+  subtitle,
+  primaryQuestion,
+  secondaryQuestionHigh,
+  secondaryQuestionLow,
+  surveyReference,
+}: FeedbackCardProps) {
   const [isClosed, setIsClosed] = useState(false);
   const [feedbackState, setFeedbackState] = useState(FeedbackState.INITIAL);
+  const setHasSeenSurveyCard = useSetAtom(hasSeenSurveyCardAtom);
 
   const handleClose = () => {
     setIsClosed(true);
+    if (surveyReference === 'Map Survey') {
+      setHasSeenSurveyCard(true);
+    }
   };
+  const { t } = useTranslation();
+  const title = t('feedback-card.title');
+  const successMessage = t('feedback-card.success-message');
+  const successSubtitle = t('feedback-card.success-subtitle');
+  const isFeedbackSubmitted = feedbackState === FeedbackState.SUCCESS;
 
-  const title = useGetQuestionTranslation('title', feedbackState);
-  const subtitle = useGetQuestionTranslation('subtitle', feedbackState);
+  const feedbackCardReference = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (feedbackCardReference.current && isFeedbackSubmitted) {
+        setIsClosed(true);
+        setHasSeenSurveyCard(true);
+      }
+    };
+
+    if (!isClosed) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isClosed, isFeedbackSubmitted, setHasSeenSurveyCard]);
 
   if (isClosed) {
     return null;
@@ -33,6 +85,7 @@ export default function FeedbackCard({
     <div
       data-test-id="feedback-card"
       className="mb-4 flex w-full flex-col rounded-lg border border-neutral-200 bg-zinc-50 pl-2.5 transition-all dark:border-gray-700 dark:bg-gray-900"
+      ref={feedbackCardReference}
     >
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-initial flex-row gap-2">
@@ -43,7 +96,7 @@ export default function FeedbackCard({
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
             data-test-id="title"
           >
-            {title}
+            {isFeedbackSubmitted ? successMessage : title}
           </h2>
         </div>
         <button data-test-id="close-button" onClick={handleClose} className="px-3 py-2.5">
@@ -53,16 +106,20 @@ export default function FeedbackCard({
       <div className="pb-2 pr-2.5">
         <div
           className={`pb-1 ${
-            feedbackState == FeedbackState.SUCCESS ? 'text-sm' : 'text-xs'
+            isFeedbackSubmitted ? 'text-sm' : 'text-xs'
           } font-medium text-neutral-400`}
           data-test-id="subtitle"
         >
-          {subtitle}
+          {isFeedbackSubmitted ? successSubtitle : subtitle}
         </div>
         <FeedbackActions
           feedbackState={feedbackState}
           setFeedbackState={setFeedbackState}
-          estimationMethod={estimationMethod}
+          postSurveyResponse={postSurveyResponse}
+          surveyReference={surveyReference}
+          primaryQuestion={primaryQuestion}
+          inputQuestionHigh={secondaryQuestionHigh}
+          inputQuestionLow={secondaryQuestionLow}
         />
       </div>
     </div>
@@ -76,14 +133,16 @@ const calculateTextareaHeight = (event: ChangeEvent<HTMLTextAreaElement>) => {
 
 function InputField({
   inputText,
+  inputQuestion,
   handleInputChange,
 }: {
   inputText: string;
+  inputQuestion?: string;
   handleInputChange: (event: { target: { value: SetStateAction<string> } }) => void;
 }) {
-  const inputPlaceholder = useGetQuestionTranslation('placeholder');
-  const optional = useGetQuestionTranslation('optional');
-  const text = useGetQuestionTranslation('input-question');
+  const { t } = useTranslation();
+  const inputPlaceholder = t('feedback-card.placeholder');
+  const optional = t('feedback-card.optional');
 
   return (
     <div>
@@ -95,7 +154,7 @@ function InputField({
           data-test-id="input-title"
           className="text-sm font-normal text-black dark:text-white"
         >
-          {text}
+          {inputQuestion}
         </div>
       </div>
       <textarea
@@ -114,7 +173,8 @@ function InputField({
 }
 
 function SubmitButton({ handleSave }: { handleSave: () => void }) {
-  const buttonText = useGetQuestionTranslation('submit');
+  const { t } = useTranslation();
+  const buttonText = t('feedback-card.submit');
 
   return <Pill text={buttonText} onClick={handleSave} />;
 }
@@ -122,16 +182,23 @@ function SubmitButton({ handleSave }: { handleSave: () => void }) {
 function FeedbackActions({
   feedbackState,
   setFeedbackState,
-  estimationMethod,
+  postSurveyResponse,
+  inputQuestionHigh,
+  inputQuestionLow,
+  primaryQuestion,
+  surveyReference,
 }: {
   feedbackState: FeedbackState;
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
-  estimationMethod?: string;
+  postSurveyResponse: (props: SurveyResponseProps) => void;
+  primaryQuestion: string;
+  inputQuestionHigh?: string;
+  inputQuestionLow?: string;
+  surveyReference?: string;
 }) {
   const [inputText, setInputText] = useState('');
   const [feedbackScore, setFeedbackScore] = useState('');
-
-  const question = useGetQuestionTranslation('rate-question');
+  const [userLocation] = useAtom(userLocationAtom);
 
   const handleInputChange = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
@@ -139,13 +206,11 @@ function FeedbackActions({
 
   const handleSave = () => {
     setFeedbackState(FeedbackState.SUCCESS);
-    fetch(`https://hooks.zapier.com/hooks/catch/14671709/3l9daod/`, {
-      method: 'POST',
-      body: JSON.stringify({
-        score: feedbackScore,
-        feedback: inputText,
-        reference: estimationMethod,
-      }),
+    postSurveyResponse({
+      feedbackScore: Number.parseInt(feedbackScore),
+      inputText,
+      reference: surveyReference ?? 'Unknown',
+      location: userLocation,
     });
   };
 
@@ -156,7 +221,7 @@ function FeedbackActions({
   return (
     <div className="flex flex-col">
       <div data-test-id="feedback-question" className="text-sm">
-        {question}
+        {primaryQuestion}
       </div>
       <ActionPills
         setFeedbackState={setFeedbackState}
@@ -166,7 +231,13 @@ function FeedbackActions({
         <div>
           <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-gray-700" />
           <div>
-            <InputField inputText={inputText} handleInputChange={handleInputChange} />
+            <InputField
+              inputText={inputText}
+              handleInputChange={handleInputChange}
+              inputQuestion={
+                Number.parseInt(feedbackScore) > 3 ? inputQuestionHigh : inputQuestionLow
+              }
+            />
             <SubmitButton handleSave={handleSave} />
           </div>
         </div>
@@ -182,9 +253,10 @@ function ActionPills({
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   setFeedbackScore: Dispatch<SetStateAction<string>>;
 }) {
-  const agreeText = useGetQuestionTranslation('agree');
+  const { t } = useTranslation();
+  const agreeText = t('feedback-card.agree');
   const [pillContent] = useState(['1', '2', '3', '4', '5']);
-  const disagreeText = useGetQuestionTranslation('disagree');
+  const disagreeText = t('feedback-card.disagree');
   const [currentPillNumber, setPillNumber] = useState('');
 
   const handlePillClick = (identifier: string) => {
@@ -255,18 +327,4 @@ function PillContent({
       ))}
     </ToggleGroupPrimitive.Root>
   );
-}
-
-function useGetQuestionTranslation(field: string, feedbackState?: FeedbackState) {
-  const { t } = useTranslation();
-  if (feedbackState != undefined) {
-    if (
-      feedbackState === FeedbackState.INITIAL ||
-      feedbackState === FeedbackState.OPTIONAL
-    ) {
-      return t(`estimation-feedback.${field}.state-initial`);
-    }
-    return t(`estimation-feedback.${field}.state-${feedbackState}`);
-  }
-  return t(`estimation-feedback.${field}`);
 }
