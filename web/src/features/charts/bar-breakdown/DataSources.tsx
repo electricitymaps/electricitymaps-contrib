@@ -1,6 +1,13 @@
+import * as Portal from '@radix-ui/react-portal';
 import { Link } from 'components/Link';
+import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
+import { HiXMark } from 'react-icons/hi2';
+import { IoInformationCircleOutline } from 'react-icons/io5';
 import { ElectricityModeType } from 'types';
 import { sourceLinkMapping } from 'utils/constants';
+import { useBreakpoint } from 'utils/styling';
 
 import ProductionSourceLegend from './ProductionSourceLegend';
 
@@ -15,6 +22,8 @@ export function DataSources({
   sources?: string[];
   sourceToProductionSources?: Map<string, string[]>;
 }) {
+  const { t } = useTranslation();
+  const isMobile = !useBreakpoint('md');
   const showDataSources = Boolean(
     (sources && sources?.length > 0) ||
       (sourceToProductionSources && sourceToProductionSources.size > 0)
@@ -28,12 +37,50 @@ export function DataSources({
     <div className="flex flex-col py-2">
       <div className="flex flex-row pb-2">
         <div className="mr-1">{icon}</div>
-        <div className="text-md font-semibold">{title}</div>
+        <div className="pr-1 text-md font-semibold">{title}</div>
+        <TooltipWrapper
+          tooltipContent={
+            isMobile ? (
+              <EmissionFactorTooltip t={t} />
+            ) : (
+              t('country-panel.emissionFactorDataSourcesTooltip')
+            )
+          }
+          tooltipClassName={
+            isMobile
+              ? 'absolute h-full max-w-full rounded-none border-0 bg-red-500 p-0 text-left text-lg shadow-none dark:border-white dark:bg-gray-900'
+              : 'rounded-xl min-w-64 text-left dark:bg-gray-900 dark:border-1 dark:border-gray-700'
+          }
+          side="bottom"
+          isMobile={isMobile}
+        >
+          <div>
+            <IoInformationCircleOutline
+              className="text-emerald-800 dark:text-emerald-500"
+              size={20}
+            />
+          </div>
+        </TooltipWrapper>
       </div>
-      {sources && SourcesWithoutLegends({ sources: sources })}
-      {sourceToProductionSources &&
-        SourcesWithLegends({ sourceToProductionSources: sourceToProductionSources })}
+      <div className="flex flex-col gap-2 pl-5">
+        {sources && SourcesWithoutLegends({ sources: sources })}
+        {sourceToProductionSources &&
+          SourcesWithLegends({ sourceToProductionSources: sourceToProductionSources })}
+      </div>
     </div>
+  );
+}
+
+function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }) {
+  return (
+    <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col items-center bg-black/20 pt-44">
+      <div className="dark:border-1 relative h-auto min-w-64 max-w-[164px] rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
+        {t('country-panel.emissionFactorDataSourcesTooltip')}
+      </div>
+      <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 shadow-md sm:hidden dark:border-gray-700 dark:bg-gray-900">
+        <HiXMark size="24" />
+      </button>
+    </Portal.Root>
   );
 }
 

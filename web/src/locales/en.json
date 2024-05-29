@@ -77,6 +77,7 @@
     "disabledPriceReasons": {
       "licensing": "Electricity prices are unavailable for this area due to licensing terms"
     },
+    "emissionFactorDataSourcesTooltip": "Electricity production emission factors can originate from multiple sources. This happens as several factors, like plant-specific data, generation and sometimes fallback sources, are considered in emission calculations.",
     "disabledBreakdownChartReason": "Disabled for the consumption view. Please switch to the production view to enable the origin chart",
     "dataIsDelayed": "Data for this region can be up to {{hours}} hours delayed. Live data cannot be displayed.",
     "estimated": "estimated",
