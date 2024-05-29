@@ -45,7 +45,7 @@ function BarBreakdownChart({
     exchangeData,
     isLoading,
     height,
-    emissionSourceToProductionSource,
+    sourceProductionSourceMapping,
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
@@ -109,7 +109,7 @@ function BarBreakdownChart({
     currentZoneDetail?.source && currentZoneDetail?.source.length !== 0
   );
   const showEmissionSources = Boolean(
-    emissionSourceToProductionSource && emissionSourceToProductionSource.size > 0
+    sourceProductionSourceMapping && sourceProductionSourceMapping.size > 0
   );
   const showDataSourceAccordion = Boolean(
     currentZoneDetail?.capacitySources || showPowerSources || showEmissionSources
@@ -210,7 +210,7 @@ function BarBreakdownChart({
                 <DataSources
                   title={t('data-sources.emission')}
                   icon={<IndustryIcon />}
-                  sourceToProductionSources={emissionSourceToProductionSource}
+                  sourceToProductionSources={sourceProductionSourceMapping}
                 />
               </div>
             </Accordion>

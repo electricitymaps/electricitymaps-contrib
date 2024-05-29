@@ -224,21 +224,21 @@ export const useHeaderHeight = () => {
 };
 
 export function getEmissionData(zoneData: ZoneDetails) {
-  const sourceInfoToProductionSource = new Map<string, string[]>();
+  const sourceProductionSourceMapping = new Map<string, string[]>();
 
   for (const state of Object.values(zoneData.zoneStates)) {
     updateMapWithSources(
       state.dischargeCo2IntensitySources,
-      sourceInfoToProductionSource,
+      sourceProductionSourceMapping,
       true
     );
     updateMapWithSources(
       state.productionCo2IntensitySources,
-      sourceInfoToProductionSource
+      sourceProductionSourceMapping
     );
   }
 
-  return sourceInfoToProductionSource;
+  return sourceProductionSourceMapping;
 }
 
 function updateMapWithSources(
@@ -267,7 +267,7 @@ function getProductionSourcesToAdd(
 ): string[] {
   if (emissionFactorSource.startsWith('assumes')) {
     return [];
-  } else if (productionSourceArray === undefined) {
+  } else if (productionSourceArray == undefined) {
     return [productionSource];
   } else if (!productionSourceArray?.includes(productionSource)) {
     productionSourceArray?.push(productionSource);

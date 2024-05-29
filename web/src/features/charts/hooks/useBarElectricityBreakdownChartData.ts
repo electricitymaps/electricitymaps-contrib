@@ -57,7 +57,7 @@ export default function useBarBreakdownChartData() {
   );
   const height = isConsumption ? exchangeY + exchangeHeight : exchangeY;
 
-  const emissionSourceToProductionSource = getEmissionData(zoneData);
+  const sourceProductionSourceMapping = getEmissionData(zoneData);
 
   return {
     height,
@@ -66,6 +66,6 @@ export default function useBarBreakdownChartData() {
     exchangeData,
     productionData,
     isLoading: false,
-    emissionSourceToProductionSource,
+    sourceProductionSourceMapping,
   };
 }
