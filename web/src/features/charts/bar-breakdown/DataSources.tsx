@@ -1,4 +1,5 @@
 import { ElectricityModeType } from 'types';
+import { sourceLinkMapping } from 'utils/constants';
 
 import ProductionSourceLegend from './ProductionSourceLegend';
 
@@ -17,6 +18,7 @@ export function DataSources({
     (sources && sources?.length > 0) ||
       (sourceToProductionSources && sourceToProductionSources.size > 0)
   );
+
   if (showDataSources == false) {
     return null;
   }
@@ -39,7 +41,7 @@ function SourcesWithoutLegends({ sources }: { sources: string[] }) {
     <div className="flex flex-col gap-2 pl-5">
       {sources.map((source, index) => (
         <div key={index} className="text-sm">
-          {source}
+          <Source source={source} />
         </div>
       ))}
     </div>
@@ -55,7 +57,7 @@ function SourcesWithLegends({
     <div className="flex flex-col gap-1 pl-5">
       {[...sourceToProductionSources.keys()].sort().map((source, index) => (
         <p key={index} className="text-sm">
-          {source}
+          <Source source={source} />
           <span className="inline-flex translate-y-1 gap-1 pl-1.5">
             {sourceToProductionSources.get(source)?.map((productionSource, index) => (
               <span key={index} className="self-center object-center text-xs">
@@ -69,4 +71,21 @@ function SourcesWithLegends({
       ))}
     </div>
   );
+}
+
+function Source({ source }: { source: string }) {
+  const link = sourceLinkMapping[source];
+  if (link) {
+    return (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-emerald-800 underline underline-offset-4 dark:text-emerald-500"
+      >
+        {source}
+      </a>
+    );
+  }
+  return <span>{source}</span>;
 }
