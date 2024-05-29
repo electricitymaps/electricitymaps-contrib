@@ -1,11 +1,11 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { emapleZoneAtom, timeAverageAtom } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 
@@ -38,7 +38,7 @@ const getZone = async (
 // TODO: The frontend (graphs) expects that the datetimes in state are the same as in zone
 // should we add a check for this?
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const zoneId = useGetZoneFromPath();
+  const zoneId = useAtomValue(emapleZoneAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
   return useQuery<ZoneDetails>(
     [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],

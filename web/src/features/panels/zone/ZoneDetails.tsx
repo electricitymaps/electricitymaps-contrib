@@ -11,6 +11,7 @@ import { ZoneMessage } from 'types';
 import { SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
+  emapleZoneAtom,
   selectedDatetimeIndexAtom,
   spatialAggregateAtom,
   timeAverageAtom,
@@ -28,7 +29,7 @@ import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
-  const { zoneId } = useParams();
+  const [zoneId] = useAtom(emapleZoneAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [_, setViewMode] = useAtom(spatialAggregateAtom);
@@ -36,7 +37,7 @@ export default function ZoneDetails(): JSX.Element {
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
   const isMobile = !useBreakpoint('sm');
-
+  // alert('ZoneDetails');
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
 
@@ -76,7 +77,7 @@ export default function ZoneDetails(): JSX.Element {
 
   return (
     <>
-      <ZoneHeaderTitle zoneId={zoneId} />
+      <ZoneHeaderTitle zoneId={'EMAPSLE'} />
       <div className="h-[calc(100%-110px)] overflow-y-scroll p-3 pb-40 pt-2 sm:h-[calc(100%-130px)]">
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
