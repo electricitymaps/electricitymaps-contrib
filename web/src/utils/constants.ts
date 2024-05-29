@@ -79,11 +79,4 @@ export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
 };
 
 // Dummy links
-export const sourceLinkMapping: { [key: string]: string } = {
-  EIA: 'https://www.eia.gov/',
-  'ENTSO-E': 'https://www.entsoe.eu/',
-  'BEIS 2021':
-    'https://www.gov.uk/government/statistics/electricity-section-5-energy-trends',
-  'IPCC 2014': 'https://www.ipcc.ch/report/ar5/wg3/',
-  'entsoe.eu': 'https://www.entsoe.eu/data/data-portal/',
-};
+export const sourceLinkMapping: { [key: string]: string } = {};
