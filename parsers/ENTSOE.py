@@ -747,7 +747,7 @@ def parse_production(
     # Loop over the grouped data and create production and storage mixes for each datetime.
     for dt, values in grouped_data.items():
         production, storage = _create_production_and_storage_mixes(
-            dt, values, expected_length, logger
+            zoneKey, dt, values, expected_length, logger
         )
         # If production and storage are None, the datapoint is considered invalid and is skipped
         # in order to not crash the parser.
@@ -806,7 +806,11 @@ def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
 
 
 def _create_production_and_storage_mixes(
-    dt: datetime, values: list[dict[str, Any]], expected_length: int, logger: Logger
+    zoneKey: ZoneKey,
+    dt: datetime,
+    values: list[dict[str, Any]],
+    expected_length: int,
+    logger: Logger,
 ) -> tuple[ProductionMix, StorageMix] | tuple[None, None]:
     """
     Creates a populated ProductionMix and StorageMix object from a list of production values and ensures that the expected length is met.
@@ -815,10 +819,15 @@ def _create_production_and_storage_mixes(
     value_length = len(values)
     # Checks that the number of values have the expected length and skips the datapoint if not.
     if value_length < expected_length:
-        logger.warning(
-            f"Expected {expected_length} production values for {dt}, recived {value_length} instead. Discarding datapoint..."
-        )
-        return None, None
+        if zoneKey == "BE" and value_length == expected_length - 1:
+            logger.warning(
+                f"BE only has {value_length} production values for {dt}, but should have {expected_length}. BE doesn't report 0 values for storage so we will continue."
+            )
+        else:
+            logger.warning(
+                f"Expected {expected_length} production values for {dt}, received {value_length} instead. Discarding datapoint..."
+            )
+            return None, None
     production = ProductionMix()
     storage = StorageMix()
     for production_mode in values:
