@@ -38,29 +38,31 @@ export function DataSources({
       <div className="flex flex-row pb-2">
         <div className="mr-1">{icon}</div>
         <div className="pr-1 text-md font-semibold">{title}</div>
-        <TooltipWrapper
-          tooltipContent={
-            isMobile ? (
-              <EmissionFactorTooltip t={t} />
-            ) : (
-              t('country-panel.emissionFactorDataSourcesTooltip')
-            )
-          }
-          tooltipClassName={
-            isMobile
-              ? 'absolute h-full max-w-full rounded-none border-0 bg-red-500 p-0 text-left text-lg shadow-none dark:border-white dark:bg-gray-900'
-              : 'rounded-xl min-w-64 text-left dark:bg-gray-900 dark:border-1 dark:border-gray-700'
-          }
-          side="bottom"
-          isMobile={isMobile}
-        >
-          <div>
-            <IoInformationCircleOutline
-              className="text-emerald-800 dark:text-emerald-500"
-              size={20}
-            />
-          </div>
-        </TooltipWrapper>
+        {sourceToProductionSources && (
+          <TooltipWrapper
+            tooltipContent={
+              isMobile ? (
+                <EmissionFactorTooltip t={t} />
+              ) : (
+                t('country-panel.emissionFactorDataSourcesTooltip')
+              )
+            }
+            tooltipClassName={
+              isMobile
+                ? 'absolute h-full max-w-full rounded-none border-0 bg-red-500 p-0 text-left text-lg shadow-none dark:border-white dark:bg-gray-900'
+                : 'rounded-xl min-w-64 text-left dark:bg-gray-900 dark:border-1 dark:border-gray-700'
+            }
+            side="bottom"
+            isMobile={isMobile}
+          >
+            <div>
+              <IoInformationCircleOutline
+                className="text-emerald-800 dark:text-emerald-500"
+                size={20}
+              />
+            </div>
+          </TooltipWrapper>
+        )}
       </div>
       <div className="flex flex-col gap-2 pl-5">
         {sources && SourcesWithoutLegends({ sources: sources })}
@@ -77,7 +79,7 @@ function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }
       <div className="dark:border-1 relative h-auto min-w-64 max-w-[164px] rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
         {t('country-panel.emissionFactorDataSourcesTooltip')}
       </div>
-      <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 shadow-md sm:hidden dark:border-gray-700 dark:bg-gray-900">
+      <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 text-black shadow-md sm:hidden">
         <HiXMark size="24" />
       </button>
     </Portal.Root>
