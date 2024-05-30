@@ -30,7 +30,10 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   const { chartData } = data;
   const { layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } = data;
 
-  const maxEmissions = Math.max(...chartData.map((o) => o.layerData.netExchange));
+  // find the absolute max value to format the axis
+  const maxEmissions = Math.max(
+    ...chartData.map((o) => Math.abs(o.layerData.netExchange))
+  );
   const formatAxisTick = (t: number) =>
     displayByEmissions ? formatCo2(t, maxEmissions) : t.toString();
 
