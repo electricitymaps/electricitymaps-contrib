@@ -3,6 +3,7 @@ import { ElectricityModeType } from 'types';
 import { sourceLinkMapping } from 'utils/constants';
 
 import ProductionSourceLegend from './ProductionSourceLegend';
+import { extractLinkFromSource } from './utils';
 
 export function DataSources({
   title,
@@ -75,27 +76,10 @@ function SourcesWithLegends({
 }
 
 function Source({ source }: { source: string }) {
-  const link = extractLinkFromSource(source);
+  const link = extractLinkFromSource(source, sourceLinkMapping);
   if (link) {
     return <Link href={link} linkText={source} />;
   }
 
   return <span>{source}</span>;
-}
-
-function extractLinkFromSource(source: string) {
-  const link = sourceLinkMapping[source];
-  if (link) {
-    return link;
-  }
-
-  if (!source.includes('.')) {
-    return null;
-  }
-
-  if (source.includes('http')) {
-    return source;
-  }
-
-  return `http://${source}`;
 }
