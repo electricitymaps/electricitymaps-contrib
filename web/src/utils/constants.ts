@@ -56,15 +56,15 @@ export const modeColor: { [mode in ElectricityModeType]: string } = {
 };
 
 export const modeOrder = [
-  'nuclear',
-  'geothermal',
   'biomass',
-  'coal',
-  'wind',
-  'solar',
+  'geothermal',
   'hydro',
-  'hydro storage',
+  'solar',
+  'wind',
+  'nuclear',
   'battery storage',
+  'hydro storage',
+  'coal',
   'gas',
   'oil',
   'unknown',
