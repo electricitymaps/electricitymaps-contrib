@@ -9,6 +9,7 @@ import { OnboardingModal } from 'components/modals/OnboardingModal';
 import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
+import { AnnouncementModal } from 'features/modals/AnnouncementModal';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import i18n from 'translation/i18n';
@@ -88,6 +89,7 @@ export default function App(): ReactElement {
               </Suspense>
               <Suspense>
                 <OnboardingModal />
+                <AnnouncementModal />
               </Suspense>
               <Suspense>
                 <FAQModal />

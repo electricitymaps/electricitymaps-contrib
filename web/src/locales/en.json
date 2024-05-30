@@ -13,6 +13,10 @@
   "settings-modal": {
     "title": "Settings"
   },
+  "announcement-modal": {
+    "title": "Introducing a visual update to our app!",
+    "content": "We've revamped the colors representing electricity sources, bringing them closer to industry standards."
+  },
   "panel-initial-text": {
     "thisproject": "This app is",
     "opensource": "Open Source",
