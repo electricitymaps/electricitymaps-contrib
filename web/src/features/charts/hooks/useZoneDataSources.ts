@@ -30,7 +30,7 @@ export default function useZoneDataSources() {
 function getCapacitySources(zoneData: ZoneDetails) {
   const capacitySources: string[] = [];
   for (const state of Object.values(zoneData.zoneStates)) {
-    const currentSources = GetSourceArrayFromDictionary(state.capacitySources);
+    const currentSources = extractUniqueSourcesFromDictionary(state.capacitySources);
     for (const source of currentSources) {
       if (!capacitySources.includes(source)) {
         capacitySources.push(source);
@@ -40,7 +40,7 @@ function getCapacitySources(zoneData: ZoneDetails) {
   return capacitySources;
 }
 
-function GetSourceArrayFromDictionary(
+function extractUniqueSourcesFromDictionary(
   sourceDict:
     | {
         [key in ElectricityModeType]: string[] | null;
@@ -98,37 +98,37 @@ function getEmissionFactorSource(zoneData: ZoneDetails) {
 }
 
 function getEmissionFactorSourcesToProductionSource(zoneData: ZoneDetails) {
-  const sourceProductionSourceMapping = {};
+  const emissionFactorsourceToProductionSource = {};
 
   for (const state of Object.values(zoneData.zoneStates)) {
-    updateMapWithSources(
+    updateEmissionFactorSourcesWithProductionSources(
       state.dischargeCo2IntensitySources,
-      sourceProductionSourceMapping,
+      emissionFactorsourceToProductionSource,
       true
     );
-    updateMapWithSources(
+    updateEmissionFactorSourcesWithProductionSources(
       state.productionCo2IntensitySources,
-      sourceProductionSourceMapping
+      emissionFactorsourceToProductionSource
     );
   }
 
-  return sourceProductionSourceMapping;
+  return emissionFactorsourceToProductionSource;
 }
 
-function updateMapWithSources(
+function updateEmissionFactorSourcesWithProductionSources(
   sources: { [key: string]: string },
-  sourceInfoToProductionSource: { [key: string]: string[] },
+  emissionFactorsourceToProductionSource: { [key: string]: string[] },
   storageType?: boolean
 ) {
   for (const entry of Object.entries(sources)) {
     for (const emissionFactorSource of entry[1].split('; ')) {
       const productionSources = getProductionSourcesToAdd(
         storageType ? `${entry[0]} storage` : entry[0],
-        sourceInfoToProductionSource[emissionFactorSource],
+        emissionFactorsourceToProductionSource[emissionFactorSource],
         emissionFactorSource
       );
       if (productionSources.length > 0) {
-        sourceInfoToProductionSource[emissionFactorSource] = productionSources;
+        emissionFactorsourceToProductionSource[emissionFactorSource] = productionSources;
       }
     }
   }
