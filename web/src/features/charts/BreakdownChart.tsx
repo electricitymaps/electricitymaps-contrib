@@ -108,12 +108,12 @@ function BreakdownChart({
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
-      <ProductionSourceLegendList
-        sources={getProductionSourcesInChart(chartData)}
-        className="py-1.5"
-      />
       {!isBreakdownGraphOverlayEnabled && (
         <>
+          <ProductionSourceLegendList
+            sources={getProductionSourcesInChart(chartData)}
+            className="py-1.5"
+          />
           <Divider />
           <Accordion
             onOpen={() => {
