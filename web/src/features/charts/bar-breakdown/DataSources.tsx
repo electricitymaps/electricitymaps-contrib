@@ -6,16 +6,15 @@ export function DataSources({
   title,
   icon,
   sources,
-  sourceToProductionSources,
+  emissionFactorSourcesToProductionSources,
 }: {
   title: string;
   icon: React.ReactNode;
-  sources?: string[];
-  sourceToProductionSources?: Map<string, string[]>;
+  sources: string[];
+  emissionFactorSourcesToProductionSources?: { [key: string]: string[] };
 }) {
   const showDataSources = Boolean(
-    (sources && sources?.length > 0) ||
-      (sourceToProductionSources && sourceToProductionSources.size > 0)
+    (sources && sources?.length > 0) || emissionFactorSourcesToProductionSources
   );
   if (showDataSources == false) {
     return null;
@@ -27,46 +26,26 @@ export function DataSources({
         <div className="mr-1">{icon}</div>
         <div className="text-md font-semibold">{title}</div>
       </div>
-      {sources && SourcesWithoutLegends({ sources: sources })}
-      {sourceToProductionSources &&
-        SourcesWithLegends({ sourceToProductionSources: sourceToProductionSources })}
-    </div>
-  );
-}
-
-function SourcesWithoutLegends({ sources }: { sources: string[] }) {
-  return (
-    <div className="flex flex-col gap-2 pl-5">
-      {sources.map((source, index) => (
-        <div key={index} className="text-sm">
-          {source}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function SourcesWithLegends({
-  sourceToProductionSources,
-}: {
-  sourceToProductionSources: Map<string, string[]>;
-}) {
-  return (
-    <div className="flex flex-col gap-1 pl-5">
-      {[...sourceToProductionSources.keys()].sort().map((source, index) => (
-        <p key={index} className="text-sm">
-          {source}
-          <span className="inline-flex translate-y-1 gap-1 pl-1.5">
-            {sourceToProductionSources.get(source)?.map((productionSource, index) => (
-              <span key={index} className="self-center object-center text-xs">
-                <ProductionSourceLegend
-                  electricityType={productionSource as ElectricityModeType}
-                />
+      <div className="flex flex-col gap-2 pl-5">
+        {sources.sort().map((source, index) => (
+          <div key={index} className=" pl-5 text-sm">
+            {source}
+            {emissionFactorSourcesToProductionSources && (
+              <span className="inline-flex translate-y-1 gap-1 pl-1.5">
+                {emissionFactorSourcesToProductionSources[source]?.map(
+                  (productionSource, index) => (
+                    <span key={index} className="self-center object-center text-xs">
+                      <ProductionSourceLegend
+                        electricityType={productionSource as ElectricityModeType}
+                      />
+                    </span>
+                  )
+                )}
               </span>
-            ))}
-          </span>
-        </p>
-      ))}
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

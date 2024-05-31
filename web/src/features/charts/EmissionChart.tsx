@@ -15,6 +15,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
+import useZoneDataSources from './hooks/useZoneDataSources';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 
 interface EmissionChartProps {
@@ -23,13 +24,12 @@ interface EmissionChartProps {
 }
 
 function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
+  const { data, isLoading, isError } = useEmissionChartData();
   const {
-    data,
-    emissionSourceToProductionSource,
+    emissionFactorSources,
     powerGenerationSources,
-    isLoading,
-    isError,
-  } = useEmissionChartData();
+    emissionFactorSourcesToProductionSources,
+  } = useZoneDataSources();
   const { t } = useTranslation();
   if (isLoading || isError || !data) {
     return null;
@@ -81,7 +81,10 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         <DataSources
           title={t('data-sources.emission')}
           icon={<IndustryIcon />}
-          sourceToProductionSources={emissionSourceToProductionSource}
+          sources={emissionFactorSources}
+          emissionFactorSourcesToProductionSources={
+            emissionFactorSourcesToProductionSources
+          }
         />
       </Accordion>
     </RoundedCard>

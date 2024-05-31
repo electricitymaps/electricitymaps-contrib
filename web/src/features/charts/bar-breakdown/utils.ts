@@ -195,20 +195,6 @@ export const getExchangesToDisplay = (
   );
 };
 
-export function getPowerGenerationSources(zoneData: ZoneDetails) {
-  const sourceSet = new Set<string>();
-
-  for (const state of Object.values(zoneData.zoneStates)) {
-    const currentSources = state.source;
-    for (const source of currentSources) {
-      sourceSet.add(source);
-    }
-  }
-
-  const sources = [...sourceSet];
-  return sources;
-}
-
 export const useHeaderHeight = () => {
   const [headerHeight, setHeaderHeight] = useState<number>(0);
 
@@ -222,55 +208,3 @@ export const useHeaderHeight = () => {
 
   return headerHeight;
 };
-
-export function getEmissionData(zoneData: ZoneDetails) {
-  const sourceProductionSourceMapping = new Map<string, string[]>();
-
-  for (const state of Object.values(zoneData.zoneStates)) {
-    updateMapWithSources(
-      state.dischargeCo2IntensitySources,
-      sourceProductionSourceMapping,
-      true
-    );
-    updateMapWithSources(
-      state.productionCo2IntensitySources,
-      sourceProductionSourceMapping
-    );
-  }
-
-  return sourceProductionSourceMapping;
-}
-
-function updateMapWithSources(
-  sources: { [key: string]: string },
-  sourceInfoToProductionSource: Map<string, string[]>,
-  storageType?: boolean
-) {
-  for (const entry of Object.entries(sources)) {
-    for (const emissionFactorSource of entry[1].split('; ')) {
-      const productionSources = getProductionSourcesToAdd(
-        storageType ? `${entry[0]} storage` : entry[0],
-        sourceInfoToProductionSource.get(emissionFactorSource),
-        emissionFactorSource
-      );
-      if (productionSources.length > 0) {
-        sourceInfoToProductionSource.set(emissionFactorSource, productionSources);
-      }
-    }
-  }
-}
-
-function getProductionSourcesToAdd(
-  productionSource: string,
-  productionSourceArray: string[] | undefined,
-  emissionFactorSource: string
-): string[] {
-  if (emissionFactorSource.startsWith('assumes')) {
-    return [];
-  } else if (productionSourceArray == undefined) {
-    return [productionSource];
-  } else if (!productionSourceArray?.includes(productionSource)) {
-    productionSourceArray?.push(productionSource);
-  }
-  return productionSourceArray;
-}

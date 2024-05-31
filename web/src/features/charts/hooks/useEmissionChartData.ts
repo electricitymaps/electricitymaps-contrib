@@ -4,7 +4,6 @@ import { scaleLinear } from 'd3-scale';
 import { useAtom } from 'jotai';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
-import { getEmissionData, getPowerGenerationSources } from '../bar-breakdown/utils';
 import { getTotalEmissionsAvailable } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
@@ -46,13 +45,8 @@ export function useEmissionChartData() {
     layerStroke: undefined,
   };
 
-  const emissionSourceToProductionSource = getEmissionData(data);
-  const powerGenerationSources = getPowerGenerationSources(data);
-
   return {
     data: result,
-    emissionSourceToProductionSource,
-    powerGenerationSources,
     isLoading,
     isError,
   };
