@@ -41,8 +41,8 @@ export enum TrackEvent {
 
 // Production/imports-exports mode
 export const modeColor: { [mode in ElectricityModeType]: string } = {
-  solar: '#69D6F8',
-  wind: '#FFC700',
+  solar: '#FFC700',
+  wind: '#69D6F8',
   hydro: '#1878EA',
   'hydro storage': '#2B3CD8',
   'battery storage': '#1DA484',
