@@ -16,6 +16,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 729.9
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 0.0
   gas:
     - datetime: '2023-10-01'
       source: EIA.gov

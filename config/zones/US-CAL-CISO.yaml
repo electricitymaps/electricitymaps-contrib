@@ -8,10 +8,22 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 6887.1
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 7985.9
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 8430.5
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 993.1
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 970.9
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 970.5
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -20,6 +32,12 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 32732.4
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 31904.0
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 31888.3
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -28,10 +46,19 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 6333.6
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 6343.6
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 6149.4
   hydro storage:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 1568.8
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 1877.8
   nuclear:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -40,18 +67,36 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 164.8
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 160.3
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 19674.0
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 20526.9
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 20969.3
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 66.7
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 62.7
   wind:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 6027.7
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 6123.0
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 6106.5
 comment: California Independent System Operator
 contributors:
   - systemcatch
