@@ -374,7 +374,7 @@
     "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
     "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated with nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
     "mapColorBlind-question": "I am color blind. How can I read your map?",
-    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located below the select language button in the map control on desktop and in the settings tab on the mobile app."
+    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on right side of the app on desktop and in the settings panel on the mobile app."
   },
   "mapAreas": {
     "groupName": "Areas in the map",

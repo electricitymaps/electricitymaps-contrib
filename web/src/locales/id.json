@@ -124,7 +124,7 @@
     "mapNuclearColors-question": "Mengapa negara dengan energi nuklir berwarna hijau pada peta?",
     "mapNuclearColors-answer": "Produksi energi nuklir menghasilkan intensitas Karbon yang rendah (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >sumber</a>), dan negara-negara bertenaga nuklir ditampilkan sebagai hijau di peta. Ini tidak berarti bahwa tidak ada tantangan lingkungan lain yang terkait dengan energi nuklir (seperti halnya dengan bentuk-bentuk lain dari produksi energi), tetapi tantangan-tantangan ini tidak terkait dengan emisi gas rumah kaca dan karena itu berada di luar lingkup peta ini.",
     "mapColorBlind-question": "Saya buta warna. Bagaimana saya membaca peta Anda?",
-    "mapColorBlind-answer": "Anda dapat mengubah warna yang ditampilkan di peta dengan mengaktifkan pengaturan “mode buta warna”. Pengaturan ini terletak di bawah tombol ganti bahasa pada pengaturan map di desktop dan di tab pengaturan di aplikasi seluler."
+    "mapColorBlind-answer": "Anda dapat mengubah warna yang ditampilkan di peta dengan mengaktifkan pengaturan “mode buta warna”. Pengaturan ini terletak pada sebelah kanan aplikasi di desktop dan di panel pengaturan pada aplikasi seluler."
   },
   "mapAreas": {
     "groupName": "Area dalam peta",
