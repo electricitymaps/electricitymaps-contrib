@@ -4,7 +4,6 @@ import { useAtom } from 'jotai';
 import { getCO2IntensityByMode } from 'utils/helpers';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
-import { getEmissionData, getPowerGenerationSources } from '../bar-breakdown/utils';
 import { AreaGraphElement } from '../types';
 
 export function useCarbonChartData() {
@@ -50,13 +49,8 @@ export function useCarbonChartData() {
     layerFill,
   };
 
-  const emissionSourceToProductionSource = getEmissionData(data);
-  const powerGenerationSources = getPowerGenerationSources(data);
-
   return {
     data: result,
-    emissionSourceToProductionSource,
-    powerGenerationSources,
     isLoading,
     isError,
   };

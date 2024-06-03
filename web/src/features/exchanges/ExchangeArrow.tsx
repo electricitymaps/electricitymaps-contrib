@@ -104,6 +104,7 @@ function ExchangeArrow({
           top: '-41px',
         }}
         onWheel={() => setIsMoving(true)}
+        data-test-id={`exchange-arrow-${key}`}
       >
         <source srcSet={`${imageSource}.webp`} type="image/webp" />
         <img src={`${imageSource}.gif`} alt="" draggable={false} />
