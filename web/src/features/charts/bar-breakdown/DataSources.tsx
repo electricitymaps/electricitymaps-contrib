@@ -1,17 +1,16 @@
 import * as Portal from '@radix-ui/react-portal';
 import { Link } from 'components/Link';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
-import { link } from 'd3-shape';
 import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { IoInformationCircleOutline } from 'react-icons/io5';
-import { Source } from 'react-map-gl';
 import { ElectricityModeType } from 'types';
 import { sourceLinkMapping } from 'utils/constants';
 import { useBreakpoint } from 'utils/styling';
 
 import ProductionSourceLegend from './ProductionSourceLegend';
+import { extractLinkFromSource } from './utils';
 
 export function DataSources({
   title,
@@ -92,7 +91,7 @@ export function DataSources({
 function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }) {
   return (
     <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col items-center bg-black/20 pt-44">
-      <div className="dark:border-1 relative h-auto min-w-64 max-w-[164px] rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
+      <div className="dark:border-1 relative mx-6 h-auto min-w-64 rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
         {t('country-panel.emissionFactorDataSourcesTooltip')}
       </div>
       <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 text-black shadow-md sm:hidden">
@@ -103,27 +102,10 @@ function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }
 }
 
 function Source({ source }: { source: string }) {
-  const link = extractLinkFromSource(source);
+  const link = extractLinkFromSource(source, sourceLinkMapping);
   if (link) {
     return <Link href={link} linkText={source} />;
   }
 
   return <span>{source}</span>;
-}
-
-function extractLinkFromSource(source: string) {
-  const link = sourceLinkMapping[source];
-  if (link) {
-    return link;
-  }
-
-  if (!source.includes('.')) {
-    return null;
-  }
-
-  if (source.includes('http')) {
-    return source;
-  }
-
-  return `http://${source}`;
 }
