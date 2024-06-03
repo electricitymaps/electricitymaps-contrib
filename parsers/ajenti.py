@@ -18,7 +18,7 @@ from requests import Session
 from signalr import Connection
 
 ZONE_PARAMS = {
-    # King's Island
+    # King Island
     # https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island
     "AU-TAS-KI": {
         "hub": "TagHub",
