@@ -89,8 +89,6 @@ export default function App(): ReactElement {
               </Suspense>
               <Suspense>
                 <OnboardingModal />
-              </Suspense>
-              <Suspense>
                 <AnnouncementModal />
               </Suspense>
               <Suspense>
