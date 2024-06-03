@@ -11,16 +11,16 @@ import { Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
-import { DataSources } from './bar-breakdown/DataSources';
-import ProductionSourceLegendList from './bar-breakdown/ProductionSourceLegendList';
-import { RoundedCard } from './bar-breakdown/RoundedCard';
 import { ChartTitle } from './ChartTitle';
+import { DataSources } from './DataSources';
 import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
+import ProductionSourceLegendList from './ProductionSourceLegendList';
+import { RoundedCard } from './RoundedCard';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 import { AreaGraphElement } from './types';
 

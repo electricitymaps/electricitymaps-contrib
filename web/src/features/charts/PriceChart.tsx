@@ -2,7 +2,7 @@ import { CoinsIcon } from 'icons/coinsIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
-import { RoundedCard } from './bar-breakdown/RoundedCard';
+import { RoundedCard } from './RoundedCard';
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';

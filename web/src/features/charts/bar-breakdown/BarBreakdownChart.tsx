@@ -21,13 +21,13 @@ import {
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import { DataSources } from '../DataSources';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import useZoneDataSources from '../hooks/useZoneDataSources';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
-import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 import { useHeaderHeight } from './utils';

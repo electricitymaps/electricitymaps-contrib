@@ -28,7 +28,7 @@ export function DataSources({
       </div>
       <div className="flex flex-col gap-2 pl-5">
         {sources.sort().map((source, index) => (
-          <div key={index} className=" pl-5 text-sm">
+          <div key={index} className="text-sm">
             {source}
             {emissionFactorSourcesToProductionSources && (
               <span className="inline-flex translate-y-1 gap-1 pl-1.5">

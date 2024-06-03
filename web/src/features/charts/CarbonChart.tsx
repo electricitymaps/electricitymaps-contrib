@@ -8,9 +8,9 @@ import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
 import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
-import { DataSources } from './bar-breakdown/DataSources';
-import { RoundedCard } from './bar-breakdown/RoundedCard';
+import { RoundedCard } from './RoundedCard';
 import { ChartTitle } from './ChartTitle';
+import { DataSources } from './DataSources';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
