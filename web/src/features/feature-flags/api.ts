@@ -1,37 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
-import { getBasePath, QUERY_KEYS } from 'api/helpers';
+import { useMeta } from 'api/getMeta';
 
 import { FeatureFlags } from './types';
 
-export async function getFeatureFlags(): Promise<FeatureFlags> {
-  const path: URL = new URL(`/${QUERY_KEYS.FEATURE_FLAGS}`, getBasePath());
-
-  try {
-    const response = await fetch(path);
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    }
-
-    throw new Error(await response.text());
-  } catch (error) {
-    // If the request fails, we will return an empty object instead of throwing an error
-    // as the app might still be functional without feature flags
-    console.error(error);
-    return {};
-  }
-}
-
 export function useFeatureFlags(): FeatureFlags {
-  return (
-    useQuery<FeatureFlags>([QUERY_KEYS.FEATURE_FLAGS], async () => getFeatureFlags(), {
-      suspense: true,
-    }).data ?? {}
-  );
+  const { features } = useMeta();
+  return features || {};
 }
 
 export function useFeatureFlag(name: string): boolean {
-  const features = useFeatureFlags();
+  const { features } = useMeta();
 
   return features?.[name] || false;
 }
