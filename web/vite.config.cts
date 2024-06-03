@@ -95,9 +95,8 @@ export default defineConfig(({ mode }) => ({
             includeAssets: [
               'icons/*.{svg,png}',
               'robots.txt',
-              // Consider if we should also add subdirectories below
-              'images/*.{svg,png}',
-              'fonts/*.woff2',
+              'images/**/*.{svg,png,webp,jpg,jpeg}',
+              'fonts/**/*.{woff2, pbf}',
             ],
             manifest: {
               theme_color: '#000000',
