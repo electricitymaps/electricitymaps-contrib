@@ -30,7 +30,6 @@ if (isProduction) {
 //   return children;
 // };
 
-
 registerSW();
 createConsoleGreeting();
 
