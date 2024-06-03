@@ -262,11 +262,12 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
 function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefined }) {
   const isTSAModel = estimationMethod === 'ESTIMATED_TIME_SLICER_AVERAGE';
   const iconPath = isTSAModel ? 'preliminary' : 'estimated';
+  const iconClass = `bg-[url('/images/${iconPath}_light.svg')] dark:bg-[url('/images/${iconPath}_dark.svg')]`;
   return (
     <BaseCard
       estimationMethod={estimationMethod}
       zoneMessage={undefined}
-      icon={`bg-[url('/images/${iconPath}_light.svg')] dark:bg-[url('/images/${iconPath}_dark.svg')]`}
+      icon={iconClass}
       iconPill={undefined}
       showMethodologyLink={true}
       pillType={isTSAModel ? undefined : 'default'}
