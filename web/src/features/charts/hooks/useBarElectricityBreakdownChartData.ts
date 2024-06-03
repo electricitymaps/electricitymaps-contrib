@@ -54,10 +54,10 @@ export default function useBarBreakdownChartData() {
     productionData.length,
     exchangeData
   );
-  const height = isConsumption ? exchangeY + exchangeHeight : exchangeY;
-
   return {
-    height,
+    height: exchangeY,
+    exchangeHeight,
+    isConsumption,
     zoneDetails: zoneData, // TODO: Data is returned here just to pass it back to the tooltip
     currentZoneDetail: currentData,
     exchangeData,

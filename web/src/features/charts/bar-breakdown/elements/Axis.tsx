@@ -6,9 +6,10 @@ type Props = {
   height: number;
   scale: ScaleLinear<number, number, never>;
   formatTick: (tick: number) => string | number;
+  offSet?: number;
 };
 
-export default function Axis({ formatTick, height, scale }: Props) {
+export default function Axis({ formatTick, height, scale, offSet }: Props) {
   const axisTicks = scale.ticks(SCALE_TICKS);
 
   return (

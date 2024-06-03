@@ -96,6 +96,10 @@
       "total-emissions": "Total carbon emissions by source",
       "total-electricity-production": "Total electricity production by source",
       "total-electricity-consumption": "Total electricity consumption by source"
+    },
+    "graph-legends": {
+      "installed-capacity": "Installed capacity (GW)",
+      "exchange-capacity": "Available exchange capacity (GW)"
     }
   },
   "feedback-card": {

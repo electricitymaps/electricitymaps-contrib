@@ -1,18 +1,23 @@
 import * as Portal from '@radix-ui/react-portal';
 import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import { max as d3Max, min as d3Min } from 'd3-array';
+import { scaleLinear } from 'd3-scale';
 import Divider from 'features/panels/zone/Divider';
+import { useCo2ColorScale } from 'hooks/theme';
+import { t } from 'i18next';
 import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom } from 'jotai';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
+import { TimeAverages, TrackEvent } from 'utils/constants';
+import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   dataSourcesCollapsedBarBreakdown,
   displayByEmissionsAtom,
@@ -26,10 +31,13 @@ import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartDa
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
+import BarElectricityExchangeChart from './BarElectricityExchangeChart';
+import BarEmissionExchangeChart from './BarEmissionExchangeChart';
+import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
-import { useHeaderHeight } from './utils';
+import { getDataBlockPositions, useHeaderHeight } from './utils';
 
 const X_PADDING = 20;
 
@@ -45,6 +53,8 @@ function BarBreakdownChart({
     exchangeData,
     isLoading,
     height,
+    exchangeHeight,
+    isConsumption,
   } = useBarBreakdownChartData();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
@@ -61,6 +71,81 @@ function BarBreakdownChart({
   } | null>(null);
 
   const headerHeight = useHeaderHeight();
+
+  const maxCO2eqExport = d3Max(exchangeData ?? [], (d) => Math.max(0, -d.gCo2eq)) || 0;
+  const maxCO2eqImport = d3Max(exchangeData ?? [], (d) => Math.max(0, d.gCo2eq));
+  const maxCO2eqProduction = d3Max(productionData ?? [], (d) => d.gCo2eq);
+
+  // in CO₂eq
+
+  const co2Scale = useMemo(
+    () =>
+      scaleLinear()
+        .domain([
+          -maxCO2eqExport || 0,
+          Math.max(maxCO2eqProduction || 0, maxCO2eqImport || 0),
+        ])
+        .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
+    [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width]
+  );
+
+  const formatCO2Tick = (t: number) => {
+    const maxValue = maxCO2eqProduction || 1;
+
+    return formatCo2(t, maxValue);
+  };
+
+  const { productionY, exchangeY } = getDataBlockPositions(
+    productionData?.length ?? 0,
+    exchangeData ?? []
+  );
+
+  const co2ColorScale = useCo2ColorScale();
+
+  const isHourly = timeAverage === TimeAverages.HOURLY;
+
+  // Use the whole history to determine the min/max values in order to avoid
+  // graph jumping while sliding through the time range.
+  const [minPower, maxPower] = useMemo(() => {
+    return [
+      d3Min(
+        Object.values(zoneDetails?.zoneStates ?? {}).map((zoneData) =>
+          Math.min(
+            -zoneData.maxStorageCapacity || 0,
+            -zoneData.maxStorage || 0,
+            -zoneData.maxExport || 0,
+            -zoneData.maxExportCapacity || 0
+          )
+        )
+      ) || 0,
+      d3Max(
+        Object.values(zoneDetails?.zoneStates ?? {}).map((zoneData) =>
+          Math.max(
+            zoneData.maxCapacity || 0,
+            zoneData.maxProduction || 0,
+            zoneData.maxDischarge || 0,
+            zoneData.maxStorageCapacity || 0,
+            zoneData.maxImport || 0,
+            zoneData.maxImportCapacity || 0
+          )
+        )
+      ) || 0,
+    ];
+  }, [zoneDetails]);
+
+  // Power in MW
+  const powerScale = scaleLinear()
+    .domain([minPower, maxPower])
+    .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
+
+  const formatPowerTick = (t: number) => {
+    // Use same unit as max value for tick with value 0
+    if (t === 0) {
+      const tickValue = isHourly ? formatPower(maxPower, 1) : formatEnergy(maxPower, 1);
+      return tickValue.toString().replace(/[\d.]+/, '0');
+    }
+    return isHourly ? formatPower(t, 2) : formatEnergy(t, 2);
+  };
 
   if (isLoading) {
     return null;
@@ -132,6 +217,12 @@ function BarBreakdownChart({
         )}
         estimationMethod={currentZoneDetail.estimationMethod}
       />
+      <div className="flex flex-row pt-2">
+        <span className="h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
+        <span className="pl-2 text-xs font-medium text-neutral-600 dark:text-gray-300">
+          {t('country-panel.graph-legends.installed-capacity')}
+        </span>
+      </div>
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div
@@ -156,21 +247,19 @@ function BarBreakdownChart({
         <BarBreakdownEmissionsChart
           data={currentZoneDetail}
           productionData={productionData}
-          exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
           onProductionRowMouseOut={onMouseOut}
-          onExchangeRowMouseOver={onMouseOver}
-          onExchangeRowMouseOut={onMouseOut}
           width={width}
           height={height}
           isMobile={false}
+          co2Scale={co2Scale}
+          formatTick={formatCO2Tick}
+          productionY={productionY}
         />
       ) : (
         <BarElectricityBreakdownChart
-          data={zoneDetails}
           currentData={currentZoneDetail}
           productionData={productionData}
-          exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
           onProductionRowMouseOut={onMouseOut}
           onExchangeRowMouseOver={onMouseOver}
@@ -178,7 +267,45 @@ function BarBreakdownChart({
           width={width}
           height={height}
           isMobile={false}
+          formatTick={formatPowerTick}
+          powerScale={powerScale}
+          productionY={productionY}
         />
+      )}
+      {isConsumption && (
+        <>
+          <div className="flex flex-row pb-2 pt-4">
+            <span className="h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
+            <span className="pl-2 text-xs font-medium text-neutral-600 dark:text-gray-300">
+              {t('country-panel.graph-legends.exchange-capacity')}
+            </span>
+          </div>
+          {displayByEmissions ? (
+            <BarEmissionExchangeChart
+              height={exchangeHeight + 20}
+              onExchangeRowMouseOut={onMouseOut}
+              onExchangeRowMouseOver={onMouseOver}
+              exchangeData={exchangeData}
+              data={currentZoneDetail}
+              width={width}
+              co2Scale={co2Scale}
+              formatTick={formatCO2Tick}
+            />
+          ) : (
+            <BarElectricityExchangeChart
+              height={exchangeHeight + 20}
+              onExchangeRowMouseOut={onMouseOut}
+              onExchangeRowMouseOver={onMouseOver}
+              exchangeData={exchangeData}
+              data={currentZoneDetail}
+              width={width}
+              powerScale={powerScale}
+              formatTick={formatPowerTick}
+              co2ColorScale={co2ColorScale}
+            />
+          )}
+          <div>legend</div>
+        </>
       )}
       <Divider />
       <div className="py-1">
