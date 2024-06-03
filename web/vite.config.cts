@@ -93,12 +93,12 @@ export default defineConfig(({ mode }) => ({
               maximumFileSizeToCacheInBytes: 3_500_000,
               runtimeCaching: [
                 {
-                  urlPattern: /^\/images\/.*\.(jpg|jpeg|png|gif|webp)$/,
+                  urlPattern: ({ url }) => url.pathname.startsWith('/images/'),
                   handler: 'CacheFirst',
                   options: {
                     cacheName: 'images',
                     cacheableResponse: {
-                      statuses: [200, 302, 304],
+                      statuses: [200],
                     },
                   },
                 },
