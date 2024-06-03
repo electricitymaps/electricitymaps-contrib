@@ -23,6 +23,7 @@ import { useBreakpoint } from 'utils/styling';
 
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
+import useZoneDataSources from '../hooks/useZoneDataSources';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
@@ -45,8 +46,15 @@ function BarBreakdownChart({
     exchangeData,
     isLoading,
     height,
-    emissionSourceToProductionSource,
   } = useBarBreakdownChartData();
+
+  const {
+    capacitySources,
+    powerGenerationSources,
+    emissionFactorSources,
+    emissionFactorSourcesToProductionSources,
+  } = useZoneDataSources();
+
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
@@ -106,13 +114,15 @@ function BarBreakdownChart({
   };
 
   const showPowerSources = Boolean(
-    currentZoneDetail?.source && currentZoneDetail?.source.length !== 0
+    powerGenerationSources && powerGenerationSources.length > 0
   );
   const showEmissionSources = Boolean(
-    emissionSourceToProductionSource && emissionSourceToProductionSource.size > 0
+    emissionFactorSources && emissionFactorSources.length > 0
   );
+  const showCapacitySources = Boolean(capacitySources && capacitySources.length > 0);
+
   const showDataSourceAccordion = Boolean(
-    currentZoneDetail?.capacitySources || showPowerSources || showEmissionSources
+    showCapacitySources || showPowerSources || showEmissionSources
   );
 
   return (
@@ -198,19 +208,20 @@ function BarBreakdownChart({
                 <DataSources
                   title={t('data-sources.capacity')}
                   icon={<UtilityPoleIcon />}
-                  sources={[
-                    ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
-                  ]}
+                  sources={capacitySources}
                 />
                 <DataSources
                   title={t('data-sources.power')}
                   icon={<WindTurbineIcon />}
-                  sources={currentZoneDetail?.source}
+                  sources={powerGenerationSources}
                 />
                 <DataSources
                   title={t('data-sources.emission')}
                   icon={<IndustryIcon />}
-                  sourceToProductionSources={emissionSourceToProductionSource}
+                  sources={emissionFactorSources}
+                  emissionFactorSourcesToProductionSources={
+                    emissionFactorSourcesToProductionSources
+                  }
                 />
               </div>
             </Accordion>
@@ -222,25 +233,3 @@ function BarBreakdownChart({
 }
 
 export default BarBreakdownChart;
-
-function GetSourceArrayFromDictionary(
-  sourceDict:
-    | {
-        [key in ElectricityModeType]: string[] | null;
-      }
-    | undefined
-): Set<string> {
-  const sourcesWithoutDuplicates: Set<string> = new Set();
-  if (sourceDict == null || sourceDict == undefined) {
-    return sourcesWithoutDuplicates;
-  }
-  for (const key of Object.keys(sourceDict)) {
-    const capacitySource = sourceDict?.[key as ElectricityModeType];
-    if (capacitySource != null) {
-      for (const source of capacitySource) {
-        sourcesWithoutDuplicates.add(source);
-      }
-    }
-  }
-  return sourcesWithoutDuplicates;
-}

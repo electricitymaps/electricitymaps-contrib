@@ -14,6 +14,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
+import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 
@@ -23,13 +24,12 @@ interface CarbonChartProps {
 }
 
 function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
+  const { data, isLoading, isError } = useCarbonChartData();
   const {
-    data,
-    emissionSourceToProductionSource,
+    emissionFactorSources,
     powerGenerationSources,
-    isLoading,
-    isError,
-  } = useCarbonChartData();
+    emissionFactorSourcesToProductionSources,
+  } = useZoneDataSources();
   const { t } = useTranslation();
 
   if (isLoading || isError || !data) {
@@ -83,7 +83,10 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         <DataSources
           title={t('data-sources.emission')}
           icon={<IndustryIcon />}
-          sourceToProductionSources={emissionSourceToProductionSource}
+          sources={emissionFactorSources}
+          emissionFactorSourcesToProductionSources={
+            emissionFactorSourcesToProductionSources
+          }
         />
       </Accordion>
     </RoundedCard>

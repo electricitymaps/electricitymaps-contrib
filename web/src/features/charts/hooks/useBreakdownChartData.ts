@@ -25,11 +25,7 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 
-import {
-  getEmissionData,
-  getExchangesToDisplay,
-  getPowerGenerationSources,
-} from '../bar-breakdown/utils';
+import { getExchangesToDisplay } from '../bar-breakdown/utils';
 import {
   getGenerationTypeKey,
   getTotalElectricityAvailable,
@@ -133,12 +129,7 @@ export default function useBreakdownChartData() {
     layerStroke: undefined,
   };
 
-  const emissionSourceToProductionSource = getEmissionData(zoneData);
-  const sources = getPowerGenerationSources(zoneData);
-
   return {
-    sources,
-    emissionSourceToProductionSource,
     data: result,
     mixMode,
     isLoading,

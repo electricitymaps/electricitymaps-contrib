@@ -19,6 +19,7 @@ import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
+import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 import { AreaGraphElement } from './types';
@@ -34,8 +35,12 @@ function BreakdownChart({
   datetimes,
   timeAverage,
 }: BreakdownChartProps) {
-  const { sources, emissionSourceToProductionSource, data, mixMode } =
-    useBreakdownChartData();
+  const { data, mixMode } = useBreakdownChartData();
+  const {
+    emissionFactorSources,
+    powerGenerationSources,
+    emissionFactorSourcesToProductionSources,
+  } = useZoneDataSources();
   const { t } = useTranslation();
 
   if (!data) {
@@ -103,12 +108,12 @@ function BreakdownChart({
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
-      <ProductionSourceLegendList
-        sources={getProductionSourcesInChart(chartData)}
-        className="py-1.5"
-      />
       {!isBreakdownGraphOverlayEnabled && (
         <>
+          <ProductionSourceLegendList
+            sources={getProductionSourcesInChart(chartData)}
+            className="py-1.5"
+          />
           <Divider />
           <Accordion
             onOpen={() => {
@@ -125,12 +130,15 @@ function BreakdownChart({
             <DataSources
               title={t('data-sources.power')}
               icon={<WindTurbineIcon />}
-              sources={sources}
+              sources={powerGenerationSources}
             />
             <DataSources
               title={t('data-sources.emission')}
               icon={<IndustryIcon />}
-              sourceToProductionSources={emissionSourceToProductionSource}
+              sources={emissionFactorSources}
+              emissionFactorSourcesToProductionSources={
+                emissionFactorSourcesToProductionSources
+              }
             />
           </Accordion>
         </>

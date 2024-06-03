@@ -237,6 +237,32 @@ class TestFetchProduction(TestENTSOE):
             )
             self.assertEqual(production[-1]["production"]["gas"], 0)
 
+    def test_production_with_snapshot(self):
+        for zone in ["FI", "LU", "NO-NO5"]:
+            with self.subTest(zone=zone):
+                raw_data = Path(base_path_to_mock, f"{zone}_production.xml")
+                self.adapter.register_uri(
+                    GET,
+                    ANY,
+                    content=raw_data.read_bytes(),
+                )
+                production = ENTSOE.fetch_production(ZoneKey(zone), self.session)
+
+                self.assert_match_snapshot(
+                    [
+                        {
+                            "datetime": element["datetime"].isoformat(),
+                            "zoneKey": element["zoneKey"],
+                            "production": element["production"],
+                            "storage": element["storage"],
+                            "source": element["source"],
+                            "sourceType": element["sourceType"].value,
+                            "correctedModes": element["correctedModes"],
+                        }
+                        for element in production
+                    ]
+                )
+
 
 class TestFetchExchange(TestENTSOE):
     def test_fetch_exchange(self):

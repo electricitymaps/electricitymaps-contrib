@@ -98,18 +98,22 @@
       "total-electricity-consumption": "Total electricity consumption by source"
     }
   },
-  "estimation-feedback": {
-    "title": {
-      "state-initial": "Help us improve!",
-      "state-success": "Thank you!"
+  "feedback-card": {
+    "title": "Help us improve!",
+    "success-message": "Your response helps us understand and improve the quality of our app.",
+    "success-subtitle": "Thank you for your feedback!",
+    "estimations": {
+      "subtitle": "Please rate the following statement.",
+      "secondary-question": "Anything we can do to improve it?",
+      "primary-question": "The description of the data estimation was easy to understand:"
     },
-    "subtitle": {
-      "state-initial": "Please rate the following statement.",
-      "state-success": "Your response helps us understand and improve the quality of our communication and methodology."
-    },
-    "rate-question": "The description of the data estimation was easy to understand:",
+
+    "primary-question": "How satisfied are you with your experience using the Electricity Maps app?",
+    "secondary-question-low": "What can we do better?",
+    "secondary-question-high": "What improvements would you like to see next?",
+
     "optional": "Optional:",
-    "input-question": "Anything we can do to improve it?",
+    "input-question": "Let us know any features you'd like to see?",
     "agree": "Strongly agree",
     "disagree": "Strongly disagree",
     "placeholder": "Let us know in a few words...",
@@ -370,7 +374,7 @@
     "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
     "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated with nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
     "mapColorBlind-question": "I am color blind. How can I read your map?",
-    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
+    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on right side of the app on desktop and in the settings panel on the mobile app."
   },
   "mapAreas": {
     "groupName": "Areas in the map",

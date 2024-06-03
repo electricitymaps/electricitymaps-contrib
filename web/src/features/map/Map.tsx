@@ -17,6 +17,7 @@ import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
   spatialAggregateAtom,
+  userLocationAtom,
 } from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
@@ -25,6 +26,7 @@ import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
+import { getZoneIdFromLocation } from './map-utils/getZoneIdFromLocation';
 import {
   hoveredZoneAtom,
   loadingMapAtom,
@@ -57,6 +59,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
+  const setUserLocation = useSetAtom(userLocationAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
@@ -73,7 +76,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const { worldGeometries } = useGetGeometries();
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
-
+  const callerLocation = data?.callerLocation;
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
@@ -151,14 +154,45 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   useEffect(() => {
     // Run on first load to center the map on the user's location
-    if (!map || isError || !isFirstLoad) {
+    if (!map || isError || !isFirstLoad || !isSourceLoaded || !callerLocation) {
       return;
     }
-    if (data?.callerLocation && !selectedZoneId) {
-      map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
+    if (!selectedZoneId) {
+      map.flyTo({ center: [callerLocation[0], callerLocation[1]] });
+
+      const handleIdle = () => {
+        if (map.isSourceLoaded(ZONE_SOURCE) && map.areTilesLoaded()) {
+          const source = map.getSource(ZONE_SOURCE);
+          const layer = map.getLayer('zones-clickable-layer');
+          if (!source) {
+            console.error(`Source "${ZONE_SOURCE}" not found`);
+            return;
+          }
+          if (!layer) {
+            console.error('Layer "zones-clickable-layer" not found or not rendered');
+            return;
+          }
+          const zoneFeature = getZoneIdFromLocation(map, callerLocation, ZONE_SOURCE);
+          if (zoneFeature) {
+            const zoneId = zoneFeature.properties.zoneId;
+            setUserLocation(zoneId);
+          }
+          map.off('idle', handleIdle);
+        }
+      };
       setIsFirstLoad(false);
+      map.on('idle', handleIdle);
     }
-  }, [map, isSuccess, isError, isFirstLoad, data?.callerLocation, selectedZoneId]);
+  }, [
+    map,
+    isSuccess,
+    isError,
+    isFirstLoad,
+    callerLocation,
+    selectedZoneId,
+    isSourceLoaded,
+    setUserLocation,
+  ]);
 
   useEffect(() => {
     // Run when the selected zone changes
