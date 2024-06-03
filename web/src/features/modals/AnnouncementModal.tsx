@@ -16,7 +16,7 @@ const handleTierGaterClick = (event: React.MouseEvent<HTMLDivElement>) => {
   event.preventDefault();
 };
 
-export function AnnouncementModal() {
+export default function AnnouncementModal() {
   const { t } = useTranslation();
   const [hasAnnouncementBeenSeen, setHasAnnouncementBeenSeen] = useAtom(
     hasAnnouncementBeenSeenAtom

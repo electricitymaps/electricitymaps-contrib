@@ -9,7 +9,6 @@ import { OnboardingModal } from 'components/modals/OnboardingModal';
 import Toast from 'components/Toast';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
-import { AnnouncementModal } from 'features/modals/AnnouncementModal';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import i18n from 'translation/i18n';
@@ -22,6 +21,7 @@ const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
 const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
+const AnnouncementModal = lazy(() => import('features/modals/AnnouncementModal'));
 
 const isProduction = import.meta.env.PROD;
 
@@ -89,6 +89,8 @@ export default function App(): ReactElement {
               </Suspense>
               <Suspense>
                 <OnboardingModal />
+              </Suspense>
+              <Suspense>
                 <AnnouncementModal />
               </Suspense>
               <Suspense>
