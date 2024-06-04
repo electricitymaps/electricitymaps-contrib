@@ -55,7 +55,13 @@ export const modeColor: { [mode in ElectricityModeType]: string } = {
   unknown: '#ACACAC',
 };
 
-export const modeOrder = [
+/**
+ * The order of modes use the following logic:
+ * 1. renewables first (sorted alphabetically)
+ * 2. low carbon (nuclear)
+ * 3. fossil fuels (sorted alphabetically)
+ * 4. storage (sorted alphabetically)
+ */
   'biomass',
   'geothermal',
   'hydro',
