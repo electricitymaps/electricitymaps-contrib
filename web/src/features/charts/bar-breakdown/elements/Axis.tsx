@@ -6,10 +6,10 @@ type Props = {
   height: number;
   scale: ScaleLinear<number, number, never>;
   formatTick: (tick: number) => string | number;
-  offSet?: number;
+  hasLegend?: boolean;
 };
 
-export default function Axis({ formatTick, height, scale, offSet }: Props) {
+export default function Axis({ formatTick, height, scale, hasLegend }: Props) {
   const axisTicks = scale.ticks(SCALE_TICKS);
 
   return (
@@ -43,7 +43,7 @@ export default function Axis({ formatTick, height, scale, offSet }: Props) {
           >
             {formatTick(t)}
           </text>
-          {t == 0 && (
+          {hasLegend && t == 0 && (
             <>
               <line
                 stroke="currentColor"

@@ -278,42 +278,29 @@ function BarBreakdownChart({
       )}
       {isConsumption &&
         (displayByEmissions ? (
-          <>
-            <div className="p-2" />
-            <BarEmissionExchangeChart
-              height={exchangeHeight + 20}
-              onExchangeRowMouseOut={onMouseOut}
-              onExchangeRowMouseOver={onMouseOver}
-              exchangeData={exchangeData}
-              data={currentZoneDetail}
-              width={width}
-              co2Scale={co2Scale}
-              formatTick={formatCO2Tick}
-            />
-          </>
+          <BarEmissionExchangeChart
+            height={exchangeHeight + 20}
+            onExchangeRowMouseOut={onMouseOut}
+            onExchangeRowMouseOver={onMouseOver}
+            exchangeData={exchangeData}
+            data={currentZoneDetail}
+            width={width}
+            co2Scale={co2Scale}
+            formatTick={formatCO2Tick}
+          />
         ) : (
-          <>
-            <div className="flex flex-row pb-2 pt-4">
-              <span className="mt-0.5 h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
-              <span className="pl-2 text-sm font-medium text-neutral-600 dark:text-gray-300">
-                {t('country-panel.graph-legends.exchange-capacity')} {graphUnit}
-              </span>
-            </div>
-            <BarElectricityExchangeChart
-              height={exchangeHeight + 20}
-              onExchangeRowMouseOut={onMouseOut}
-              onExchangeRowMouseOver={onMouseOver}
-              exchangeData={exchangeData}
-              data={currentZoneDetail}
-              width={width}
-              powerScale={powerScale}
-              formatTick={formatPowerTick}
-              co2ColorScale={co2ColorScale}
-            />
-            <div className="pt-3">
-              <Co2Scale colorScale={co2ColorScale} ticksCount={6} t={t} />
-            </div>
-          </>
+          <BarElectricityExchangeChart
+            height={exchangeHeight + 20}
+            onExchangeRowMouseOut={onMouseOut}
+            onExchangeRowMouseOver={onMouseOver}
+            exchangeData={exchangeData}
+            data={currentZoneDetail}
+            width={width}
+            powerScale={powerScale}
+            formatTick={formatPowerTick}
+            co2ColorScale={co2ColorScale}
+            graphUnit={graphUnit}
+          />
         ))}
       <Divider />
       <div className="py-1">

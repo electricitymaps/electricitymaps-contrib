@@ -30,34 +30,39 @@ export default function BarEmissionExchangeChart({
   co2Scale: ScaleLinear<number, number, never>;
   formatTick: (value: number) => string;
 }) {
+  if (!exchangeData || exchangeData.length === 0) {
+    return null;
+  }
   return (
-    <svg className="w-full overflow-visible" height={height}>
-      <Axis formatTick={formatTick} height={height} scale={co2Scale} />
-      <g transform={`translate(0, ${20})`}>
-        {exchangeData.map((d, index) => (
-          <Row
-            key={d.zoneKey}
-            index={index}
-            label={d.zoneKey}
-            width={width}
-            scale={co2Scale}
-            value={d.exchange}
-            onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, data, event)}
-            onMouseOut={onExchangeRowMouseOut}
-            isMobile={false}
-          >
-            <g transform={`translate(-2, 0)`}>
-              <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
-            </g>
-            <HorizontalBar
-              className="exchange"
-              fill={'gray'}
-              range={[0, d.gCo2eq]}
+    <div className="pb-4 pt-2">
+      <svg className="w-full overflow-visible" height={height}>
+        <Axis formatTick={formatTick} height={height} scale={co2Scale} hasLegend={true} />
+        <g transform={`translate(0, ${20})`}>
+          {exchangeData.map((d, index) => (
+            <Row
+              key={d.zoneKey}
+              index={index}
+              label={d.zoneKey}
+              width={width}
               scale={co2Scale}
-            />
-          </Row>
-        ))}
-      </g>
-    </svg>
+              value={d.exchange}
+              onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, data, event)}
+              onMouseOut={onExchangeRowMouseOut}
+              isMobile={false}
+            >
+              <g transform={`translate(-2, 0)`}>
+                <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
+              </g>
+              <HorizontalBar
+                className="exchange"
+                fill={'gray'}
+                range={[0, d.gCo2eq]}
+                scale={co2Scale}
+              />
+            </Row>
+          ))}
+        </g>
+      </svg>
+    </div>
   );
 }
