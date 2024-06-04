@@ -19,7 +19,6 @@ export function DataSources({
   const showDataSources = Boolean(
     (sources && sources?.length > 0) || emissionFactorSourcesToProductionSources
   );
-
   if (showDataSources == false) {
     return null;
   }
