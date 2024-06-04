@@ -5,7 +5,6 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import Divider from 'features/panels/zone/Divider';
 import { useCo2ColorScale } from 'hooks/theme';
-import { t } from 'i18next';
 import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
@@ -26,6 +25,7 @@ import {
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import Co2Scale from '../Co2Scale';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
@@ -200,6 +200,14 @@ function BarBreakdownChart({
     .filter((item) => !item.startsWith('assumes'))
     .sort();
 
+  const graphUnit = determineUnit(
+    displayByEmissions,
+    currentZoneDetail,
+    mixMode,
+    timeAverage,
+    t
+  );
+
   return (
     <div
       className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
@@ -208,21 +216,17 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
-        unit={determineUnit(
-          displayByEmissions,
-          currentZoneDetail,
-          mixMode,
-          timeAverage,
-          t
-        )}
+        unit={graphUnit}
         estimationMethod={currentZoneDetail.estimationMethod}
       />
-      <div className="flex flex-row pt-2">
-        <span className="h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
-        <span className="pl-2 text-xs font-medium text-neutral-600 dark:text-gray-300">
-          {t('country-panel.graph-legends.installed-capacity')}
-        </span>
-      </div>
+      {!displayByEmissions && (
+        <div className="flex flex-row pt-2">
+          <span className="mt-0.5 h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
+          <span className="pl-2 text-sm font-medium text-neutral-600 dark:text-gray-300">
+            {t('country-panel.graph-legends.installed-capacity')} {graphUnit}
+          </span>
+        </div>
+      )}
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div
@@ -272,15 +276,10 @@ function BarBreakdownChart({
           productionY={productionY}
         />
       )}
-      {isConsumption && (
-        <>
-          <div className="flex flex-row pb-2 pt-4">
-            <span className="h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
-            <span className="pl-2 text-xs font-medium text-neutral-600 dark:text-gray-300">
-              {t('country-panel.graph-legends.exchange-capacity')}
-            </span>
-          </div>
-          {displayByEmissions ? (
+      {isConsumption &&
+        (displayByEmissions ? (
+          <>
+            <div className="p-2" />
             <BarEmissionExchangeChart
               height={exchangeHeight + 20}
               onExchangeRowMouseOut={onMouseOut}
@@ -291,7 +290,15 @@ function BarBreakdownChart({
               co2Scale={co2Scale}
               formatTick={formatCO2Tick}
             />
-          ) : (
+          </>
+        ) : (
+          <>
+            <div className="flex flex-row pb-2 pt-4">
+              <span className="mt-0.5 h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
+              <span className="pl-2 text-sm font-medium text-neutral-600 dark:text-gray-300">
+                {t('country-panel.graph-legends.exchange-capacity')} {graphUnit}
+              </span>
+            </div>
             <BarElectricityExchangeChart
               height={exchangeHeight + 20}
               onExchangeRowMouseOut={onMouseOut}
@@ -303,10 +310,11 @@ function BarBreakdownChart({
               formatTick={formatPowerTick}
               co2ColorScale={co2ColorScale}
             />
-          )}
-          <div>legend</div>
-        </>
-      )}
+            <div className="pt-3">
+              <Co2Scale colorScale={co2ColorScale} ticksCount={6} t={t} />
+            </div>
+          </>
+        ))}
       <Divider />
       <div className="py-1">
         <Accordion

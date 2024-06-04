@@ -98,8 +98,8 @@
       "total-electricity-consumption": "Total electricity consumption by source"
     },
     "graph-legends": {
-      "installed-capacity": "Installed capacity (GW)",
-      "exchange-capacity": "Available exchange capacity (GW)"
+      "installed-capacity": "Installed capacity ",
+      "exchange-capacity": "Available exchange capacity "
     }
   },
   "feedback-card": {

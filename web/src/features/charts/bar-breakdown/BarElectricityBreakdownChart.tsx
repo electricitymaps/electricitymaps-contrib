@@ -1,26 +1,13 @@
-import { CountryFlag } from 'components/Flag';
-import { max as d3Max, min as d3Min } from 'd3-array';
-import { ScaleLinear, scaleLinear } from 'd3-scale';
-import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
-import { useMemo } from 'react';
+import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
-import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
-import { modeColor, TimeAverages } from 'utils/constants';
-import { formatEnergy, formatPower } from 'utils/formatting';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import { modeColor } from 'utils/constants';
 
-import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import ProductionSourceLegend from './ProductionSourceLegend';
-import {
-  ExchangeDataType,
-  getDataBlockPositions,
-  getElectricityProductionValue,
-  ProductionDataType,
-} from './utils';
+import { getElectricityProductionValue, ProductionDataType } from './utils';
 
 interface BarElectricityBreakdownChartProps {
   height: number;

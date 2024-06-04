@@ -1,18 +1,13 @@
-import { CountryFlag } from 'components/Flag';
-import { max as d3Max } from 'd3-array';
-import { ScaleLinear, scaleLinear } from 'd3-scale';
-import { useMemo } from 'react';
+import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
-import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import { ElectricityModeType, ZoneDetail } from 'types';
 import { modeColor } from 'utils/constants';
-import { formatCo2 } from 'utils/formatting';
 
-import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import ProductionSourceLegend from './ProductionSourceLegend';
-import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
+import { ProductionDataType } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
   co2Scale: ScaleLinear<number, number, never>;

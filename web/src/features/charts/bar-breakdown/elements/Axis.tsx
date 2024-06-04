@@ -43,6 +43,35 @@ export default function Axis({ formatTick, height, scale, offSet }: Props) {
           >
             {formatTick(t)}
           </text>
+          {t == 0 && (
+            <>
+              <line
+                stroke="currentColor"
+                strokeWidth={1}
+                shapeRendering={'auto'}
+                y1={height - X_AXIS_HEIGHT}
+                y2={height - X_AXIS_HEIGHT + 15}
+              />
+              <text
+                fill="rgba(107, 114, 128, 1)"
+                fontSize={'0.6rem'}
+                y={height - X_AXIS_HEIGHT + 10}
+                x={-28}
+                dy="0"
+              >
+                {'Exported ← '}
+              </text>
+              <text
+                fill="rgba(107, 114, 128, 1)"
+                fontSize={'0.6rem'}
+                y={height - X_AXIS_HEIGHT + 10}
+                x={28}
+                dy="0"
+              >
+                {' → Imported'}
+              </text>
+            </>
+          )}
         </g>
       ))}
     </g>
