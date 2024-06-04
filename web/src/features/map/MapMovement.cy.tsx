@@ -29,6 +29,7 @@ describe('Map Component', () => {
     cy.intercept('GET', /v8\/state\/last_hour\?cacheKey=.*/, {
       fixture: 'v8/state/last_hour',
     }).as('getLastHourState');
+    cy.intercept('GET', 'v8/meta', { fixture: 'v8/meta' });
 
     cy.mount(
       <TestProvider

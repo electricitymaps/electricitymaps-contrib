@@ -9,13 +9,13 @@ import { TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
-import { DataSources } from './bar-breakdown/DataSources';
-import { RoundedCard } from './bar-breakdown/RoundedCard';
 import { ChartTitle } from './ChartTitle';
+import { DataSources } from './DataSources';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
+import { RoundedCard } from './RoundedCard';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 
 interface EmissionChartProps {
