@@ -39,7 +39,7 @@ export enum TrackEvent {
   DATA_SOURCES_CLICKED = 'Data Sources Clicked',
 }
 
-// Production/imports-exports mode
+// color of different production modes are based on various industry standards
 export const modeColor: { [mode in ElectricityModeType]: string } = {
   solar: '#FFC700',
   wind: '#69D6F8',
