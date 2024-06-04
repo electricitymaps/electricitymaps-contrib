@@ -24,7 +24,7 @@ export default function AnnouncementModal() {
   const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
   const [hasOnboardingBeenSeenInSession, setHasOnboardingBeenSeenInSession] =
     useState(false);
-  const isExpired = new Date() > new Date('2024-06-30');
+  const isExpired = new Date() > new Date('2024-07-15');
 
   // Check if onboarding has been seen in the current session
   useEffect(() => {
