@@ -25,16 +25,16 @@ import {
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
-import Co2Scale from '../Co2Scale';
+import { DataSources } from '../DataSources';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
+import useZoneDataSources from '../hooks/useZoneDataSources';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
 import BarEmissionExchangeChart from './BarEmissionExchangeChart';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
-import { DataSources } from './DataSources';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 import { getDataBlockPositions, useHeaderHeight } from './utils';
@@ -56,6 +56,14 @@ function BarBreakdownChart({
     exchangeHeight,
     isConsumption,
   } = useBarBreakdownChartData();
+
+  const {
+    capacitySources,
+    powerGenerationSources,
+    emissionFactorSources,
+    emissionFactorSourcesToProductionSources,
+  } = useZoneDataSources();
+
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
@@ -189,16 +197,17 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
-  const emissionData = [
-    ...new Set(
-      [
-        ...Object.values(currentZoneDetail?.dischargeCo2IntensitySources || {}),
-        ...Object.values(currentZoneDetail?.productionCo2IntensitySources || {}),
-      ].flatMap((item) => item.split('; '))
-    ),
-  ]
-    .filter((item) => !item.startsWith('assumes'))
-    .sort();
+  const showPowerSources = Boolean(
+    powerGenerationSources && powerGenerationSources.length > 0
+  );
+  const showEmissionSources = Boolean(
+    emissionFactorSources && emissionFactorSources.length > 0
+  );
+  const showCapacitySources = Boolean(capacitySources && capacitySources.length > 0);
+
+  const showDataSourceAccordion = Boolean(
+    showCapacitySources || showPowerSources || showEmissionSources
+  );
 
   const graphUnit = determineUnit(
     displayByEmissions,
@@ -302,63 +311,46 @@ function BarBreakdownChart({
             graphUnit={graphUnit}
           />
         ))}
-      <Divider />
-      <div className="py-1">
-        <Accordion
-          onOpen={() => {
-            trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'bar-breakdown-chart' });
-          }}
-          title={t('data-sources.title')}
-          className="text-md"
-          isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
-        >
-          <div>
-            {currentZoneDetail?.capacitySources && (
-              <DataSources
-                title={t('data-sources.capacity')}
-                icon={<UtilityPoleIcon />}
-                sources={[
-                  ...GetSourceArrayFromDictionary(currentZoneDetail?.capacitySources),
-                ]}
-              />
-            )}
-            {currentZoneDetail?.source && (
-              <DataSources
-                title={t('data-sources.power')}
-                icon={<WindTurbineIcon />}
-                sources={currentZoneDetail?.source}
-              />
-            )}
-            {emissionData && (
-              <DataSources
-                title={t('data-sources.emission')}
-                icon={<IndustryIcon />}
-                sources={emissionData}
-              />
-            )}
-          </div>
-        </Accordion>
-      </div>
+      {showDataSourceAccordion && (
+        <>
+          <Divider />
+          <div className="py-1">
+            <Accordion
+              onOpen={() => {
+                trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                  chart: 'bar-breakdown-chart',
+                });
+              }}
+              title={t('data-sources.title')}
+              className="text-md"
+              isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
+            >
+              <div>
+                <DataSources
+                  title={t('data-sources.capacity')}
+                  icon={<UtilityPoleIcon />}
+                  sources={capacitySources}
+                />
+                <DataSources
+                  title={t('data-sources.power')}
+                  icon={<WindTurbineIcon />}
+                  sources={powerGenerationSources}
+                />
+                <DataSources
+                  title={t('data-sources.emission')}
+                  icon={<IndustryIcon />}
+                  sources={emissionFactorSources}
+                  emissionFactorSourcesToProductionSources={
+                    emissionFactorSourcesToProductionSources
+                  }
+                />
+              </div>
+            </Accordion>
+          </div>{' '}
+        </>
+      )}
     </div>
   );
 }
 
 export default BarBreakdownChart;
-
-function GetSourceArrayFromDictionary(sourceDict: {
-  [key in ElectricityModeType]: string[] | null;
-}): Set<string> {
-  const sourcesWithoutDuplicates: Set<string> = new Set();
-  if (sourceDict == null) {
-    return sourcesWithoutDuplicates;
-  }
-  for (const key of Object.keys(sourceDict)) {
-    const capacitySource = sourceDict?.[key as ElectricityModeType];
-    if (capacitySource != null) {
-      for (const source of capacitySource) {
-        sourcesWithoutDuplicates.add(source);
-      }
-    }
-  }
-  return sourcesWithoutDuplicates;
-}

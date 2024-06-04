@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import { modeColor } from 'utils/constants';
 
+import ProductionSourceLegend from '../ProductionSourceLegend';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
-import ProductionSourceLegend from './ProductionSourceLegend';
 import { getElectricityProductionValue, ProductionDataType } from './utils';
 
 interface BarElectricityBreakdownChartProps {
