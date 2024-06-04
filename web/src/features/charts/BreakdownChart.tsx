@@ -2,6 +2,7 @@ import Accordion from 'components/Accordion';
 import { max, sum } from 'd3-array';
 import Divider from 'features/panels/zone/Divider';
 import { CircleBoltIcon } from 'icons/circleBoltIcon';
+import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
@@ -10,15 +11,16 @@ import { Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
 
-import { DataSources } from './bar-breakdown/DataSources';
-import ProductionSourceLegendList from './bar-breakdown/ProductionSourceLegendList';
-import { RoundedCard } from './bar-breakdown/RoundedCard';
 import { ChartTitle } from './ChartTitle';
+import { DataSources } from './DataSources';
 import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeText, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
+import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
+import ProductionSourceLegendList from './ProductionSourceLegendList';
+import { RoundedCard } from './RoundedCard';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 import { AreaGraphElement } from './types';
 
@@ -33,7 +35,12 @@ function BreakdownChart({
   datetimes,
   timeAverage,
 }: BreakdownChartProps) {
-  const { sources, data, mixMode } = useBreakdownChartData();
+  const { data, mixMode } = useBreakdownChartData();
+  const {
+    emissionFactorSources,
+    powerGenerationSources,
+    emissionFactorSourcesToProductionSources,
+  } = useZoneDataSources();
   const { t } = useTranslation();
 
   if (!data) {
@@ -101,29 +108,41 @@ function BreakdownChart({
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
-      <ProductionSourceLegendList
-        sources={getProductionSourcesInChart(chartData)}
-        className="py-1.5"
-      />
-      <Divider />
-      <Accordion
-        onOpen={() => {
-          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-            chart: displayByEmissions
-              ? 'emission-origin-chart'
-              : 'electricity-origin-chart',
-          });
-        }}
-        title={t('data-sources.title')}
-        className="text-md"
-        isCollapsedAtom={dataSourcesCollapsedBreakdown}
-      >
-        <DataSources
-          title={t('data-sources.power')}
-          icon={<WindTurbineIcon />}
-          sources={sources}
-        />
-      </Accordion>
+      {!isBreakdownGraphOverlayEnabled && (
+        <>
+          <ProductionSourceLegendList
+            sources={getProductionSourcesInChart(chartData)}
+            className="py-1.5"
+          />
+          <Divider />
+          <Accordion
+            onOpen={() => {
+              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                chart: displayByEmissions
+                  ? 'emission-origin-chart'
+                  : 'electricity-origin-chart',
+              });
+            }}
+            title={t('data-sources.title')}
+            className="text-md"
+            isCollapsedAtom={dataSourcesCollapsedBreakdown}
+          >
+            <DataSources
+              title={t('data-sources.power')}
+              icon={<WindTurbineIcon />}
+              sources={powerGenerationSources}
+            />
+            <DataSources
+              title={t('data-sources.emission')}
+              icon={<IndustryIcon />}
+              sources={emissionFactorSources}
+              emissionFactorSourcesToProductionSources={
+                emissionFactorSourcesToProductionSources
+              }
+            />
+          </Accordion>
+        </>
+      )}
     </RoundedCard>
   );
 }
