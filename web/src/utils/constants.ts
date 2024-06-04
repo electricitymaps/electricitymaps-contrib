@@ -77,7 +77,13 @@ export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
   monthly: 'months',
   yearly: 'years',
 };
-
+/**
+ * A mapping between the source name and a link to the source.
+ * Sources are coming from zone YAML files (capacity and emission factors) or from parsers (production data).
+ * The links have been collected from various sources and are not guaranteed to be up-to-date.
+ * TODO: In future each link should ideally be stored in the zone configuration YAML files instead of here,
+ * so that the link can be updated along with the source and more easily found and maintained.
+ */
 export const sourceLinkMapping: { [key: string]: string } = {
   'EU-ETS, ENTSO-E 2022':
     'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
