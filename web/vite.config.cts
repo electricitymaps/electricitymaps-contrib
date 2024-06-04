@@ -102,6 +102,26 @@ export default defineConfig(({ mode }) => ({
                     },
                   },
                 },
+                {
+                  urlPattern: ({ url }) => url.pathname.startsWith('/icons/'),
+                  handler: 'CacheFirst',
+                  options: {
+                    cacheName: 'icons',
+                    cacheableResponse: {
+                      statuses: [200],
+                    },
+                  },
+                },
+                {
+                  urlPattern: ({ url }) => url.host === 'avatars.githubusercontent.com',
+                  handler: 'StaleWhileRevalidate',
+                  options: {
+                    cacheName: 'avatars',
+                    cacheableResponse: {
+                      statuses: [0, 200],
+                    },
+                  },
+                },
               ],
             },
             includeAssets: ['robots.txt', 'fonts/**/*.{woff2, pbf}'],
