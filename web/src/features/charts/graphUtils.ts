@@ -210,3 +210,25 @@ export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
     return t('estimation-badge.partially-estimated');
   }
 }
+
+export function extractLinkFromSource(
+  source: string,
+  sourceToLinkMapping: {
+    [key: string]: string;
+  }
+) {
+  const link = sourceToLinkMapping[source];
+  if (link) {
+    return link;
+  }
+
+  if (!source.includes('.')) {
+    return null;
+  }
+
+  if (source.includes('http')) {
+    return source;
+  }
+
+  return `http://${source}`;
+}

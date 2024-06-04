@@ -1,6 +1,6 @@
 import Accordion from 'components/Accordion';
 import { Link } from 'components/Link';
-import { RoundedCard } from 'features/charts/bar-breakdown/RoundedCard';
+import { RoundedCard } from 'features/charts/RoundedCard';
 import { t } from 'i18next';
 import { EmapsIcon } from 'icons/emapsIcon';
 import trackEvent from 'utils/analytics';
