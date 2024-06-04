@@ -62,6 +62,7 @@ export const modeColor: { [mode in ElectricityModeType]: string } = {
  * 3. fossil fuels (sorted alphabetically)
  * 4. storage (sorted alphabetically)
  */
+export const modeOrder = [
   'biomass',
   'geothermal',
   'hydro',
