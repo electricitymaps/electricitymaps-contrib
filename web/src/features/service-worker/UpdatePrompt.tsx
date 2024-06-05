@@ -9,12 +9,10 @@ function UpdatePrompt() {
     updateServiceWorker,
   } = useRegisterSW({
     onRegisteredSW: (registration) => {
-      console.log(`SW registered: ${registration} at ${new Date().toLocaleTimeString()}`);
+      console.log(`SW registered: ${registration} at ${new Date().toISOString()}`);
     },
     onRegisterError(error) {
-      console.error(
-        `SW registration failed: ${error} at ${new Date().toLocaleTimeString()}`
-      );
+      console.error(`SW registration failed: ${error} at ${new Date().toISOString()}`);
     },
   });
 
