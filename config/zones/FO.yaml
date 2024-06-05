@@ -13,6 +13,7 @@ capacity:
 contributors:
   - corradio
   - q--
+  - amv213
 emissionFactors:
   direct:
     battery discharge:
