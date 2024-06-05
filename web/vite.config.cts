@@ -91,13 +91,31 @@ export default defineConfig(({ mode }) => ({
             registerType: 'autoUpdate',
             workbox: {
               maximumFileSizeToCacheInBytes: 3_500_000,
+              runtimeCaching: [
+                {
+                  urlPattern: ({ url }) => url.pathname.startsWith('/images/'),
+                  handler: 'CacheFirst',
+                  options: {
+                    cacheName: 'images',
+                    cacheableResponse: {
+                      statuses: [200],
+                    },
+                  },
+                },
+                {
+                  urlPattern: ({ url }) => url.pathname.startsWith('/icons/'),
+                  handler: 'CacheFirst',
+                  options: {
+                    cacheName: 'icons',
+                    cacheableResponse: {
+                      statuses: [200],
+                    },
+                  },
+                },
+              ],
             },
-            includeAssets: [
-              'icons/*.{svg,png}',
-              'robots.txt',
-              'images/**/*.{svg,png,webp,jpg,jpeg}',
-              'fonts/**/*.{woff2, pbf}',
-            ],
+
+            includeAssets: ['robots.txt', 'fonts/**/*.{woff2, pbf}'],
             manifest: {
               theme_color: '#000000',
               icons: [
