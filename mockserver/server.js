@@ -45,10 +45,6 @@ app.get('/v8/gfs/solar', (req, res, next) => {
   });
 });
 
-app.get('/feature-flags', (req, res) => {
-  res.json({});
-});
-
 app.use(function (req, res, next) {
   // Get rid of query parameters so we can serve static files
   if (Object.entries(req.query).length !== 0) {
