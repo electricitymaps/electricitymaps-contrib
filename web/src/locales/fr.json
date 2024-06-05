@@ -755,11 +755,11 @@
     },
     "DK-DK1": {
       "countryName": "Danemark",
-      "zoneName": "Danemark ouest"
+      "zoneName": Ouest"
     },
     "DK-DK2": {
       "countryName": "Danemark",
-      "zoneName": "Danemark est"
+      "zoneName": "Est"
     },
     "DK-BHM": {
       "countryName": "Danemark",
@@ -1153,11 +1153,11 @@
     },
     "IT-CNO": {
       "countryName": "Italie",
-      "zoneName": "Centre nord"
+      "zoneName": "Centre-Nord"
     },
     "IT-CSO": {
       "countryName": "Italie",
-      "zoneName": "Centre sud"
+      "zoneName": "Centre-Sud"
     },
     "IT-NO": {
       "countryName": "Italie",
