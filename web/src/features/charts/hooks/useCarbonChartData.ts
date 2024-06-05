@@ -49,5 +49,9 @@ export function useCarbonChartData() {
     layerFill,
   };
 
-  return { data: result, isLoading, isError };
+  return {
+    data: result,
+    isLoading,
+    isError,
+  };
 }

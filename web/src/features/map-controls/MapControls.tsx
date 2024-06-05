@@ -132,6 +132,7 @@ function DesktopMapControls() {
 
   const handleColorblindModeToggle = () => {
     setIsColorblindModeEnabled(!isColorblindModeEnabled);
+    trackEvent('Colorblind Mode Toggled');
   };
 
   return (

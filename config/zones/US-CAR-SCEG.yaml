@@ -12,6 +12,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 120.0
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 20.8
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -61,10 +64,11 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 30
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available. A third of the nuclear related electricity production
-  is attributed to the balancing authority South Carolina Public Service Authority
-  US-CAR-SC, due to an aggrement between the two balancing authorities. Read more
+disclaimer: Data for real-time consumption and generation mix is estimated.
+  Real-time exchanges are not available. A third of the nuclear-related
+  electricity production is attributed to the balancing authority
+  South Carolina Public Service Authority (US-CAR-SC) due to
+  an agreement between the two balancing authorities. Read more
   on the zone definition wiki page.
 emissionFactors:
   direct:

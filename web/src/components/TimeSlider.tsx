@@ -3,8 +3,9 @@ import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom } from 'jotai/react';
+import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
-import { getZoneFromPath } from 'utils/helpers';
+import { useGetZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
@@ -71,6 +72,12 @@ export const getThumbIcon = (
   return isValueAtNight ? 'slider-thumb-night.svg' : 'slider-thumb-day.svg';
 };
 
+function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
+  trackEvent('Time Slider Button Interaction', {
+    selectedIndex: `${timeAverage}: ${selectedIndex}`,
+  });
+}
+
 export type TimeSliderBasicProps = TimeSliderProps & {
   trackBackground: string;
   thumbIcon: ThumbIconPath;
@@ -82,13 +89,17 @@ export function TimeSliderBasic({
   trackBackground,
   thumbIcon,
 }: TimeSliderBasicProps) {
+  const [timeAverage] = useAtom(timeAverageAtom);
   return (
     <SliderPrimitive.Root
       defaultValue={[0]}
       max={numberOfEntries}
       step={1}
       value={selectedIndex && selectedIndex > 0 ? [selectedIndex] : [0]}
-      onValueChange={(value) => onChange(value[0])}
+      onValueChange={(value) => {
+        onChange(value[0]);
+        trackTimeSliderEvent(value[0], timeAverage);
+      }}
       aria-label="choose time"
       className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
     >
@@ -137,7 +148,7 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 }
 
 function TimeSlider(props: TimeSliderProps) {
-  const zoneId = getZoneFromPath();
+  const zoneId = useGetZoneFromPath();
   const [timeAverage] = useAtom(timeAverageAtom);
   const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;
 

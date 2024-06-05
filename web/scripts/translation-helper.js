@@ -4,7 +4,7 @@ const path = require('path');
 const process = require('process');
 require('colors');
 
-const LOCALES_PATH = path.join(__dirname, '..', 'public/locales/');
+const LOCALES_PATH = path.join(__dirname, '..', 'src/locales/');
 
 function saveTemporaryStateToFile(key, language, file) {
   fs.writeFileSync(`${LOCALES_PATH}/${language}.json`, JSON.stringify(file, null, 2));

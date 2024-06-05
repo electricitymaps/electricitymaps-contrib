@@ -23,23 +23,27 @@ export const All: Story = {
     <div className="space-y-2">
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
-          <EstimationCard cardType="outage" outageMessage={instance} />
-
-          <EstimationCard cardType="estimated" outageMessage={instance} />
+          <EstimationCard cardType="outage" zoneMessage={instance} />
+          <EstimationCard
+            cardType="outage"
+            zoneMessage={instance}
+            estimationMethod="threshold_filtered"
+          />
+          <EstimationCard cardType="estimated" zoneMessage={instance} />
 
           <EstimationCard
             cardType="estimated"
-            outageMessage={instance}
+            zoneMessage={instance}
             estimationMethod="estimated_mode_breakdown"
           />
 
           <EstimationCard
             cardType="aggregated"
-            outageMessage={instance}
+            zoneMessage={instance}
             estimatedPercentage={20}
           />
 
-          <EstimationCard cardType="aggregated" outageMessage={instance} />
+          <EstimationCard cardType="aggregated" zoneMessage={instance} />
         </QueryClientProvider>
       </I18nextProvider>
     </div>

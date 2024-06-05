@@ -37,9 +37,14 @@ capacity:
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - comment: Oil generation has been reported from the use of diesel generators
+        during extreme weather events. We do not yet know the capacity of these
+        generators, so we are unable to provide a value.
+      datetime: '2023-10-01'
       value: null
-      comment: There has been reported oil generation through the usage of diseal generators during extreme weather events. We do not know yet the capacity of these generators, so we are not able to provide a value.
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 0.0
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
