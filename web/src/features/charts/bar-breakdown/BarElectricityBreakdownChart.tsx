@@ -10,11 +10,11 @@ import { modeColor, TimeAverages } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
 import { timeAverageAtom } from 'utils/state/atoms';
 
+import ProductionSourceLegend from '../ProductionSourceLegend';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
-import ProductionSourceLegend from './ProductionSourceLegend';
 import {
   ExchangeDataType,
   getDataBlockPositions,

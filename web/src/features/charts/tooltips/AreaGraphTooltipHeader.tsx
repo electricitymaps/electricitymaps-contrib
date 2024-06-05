@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 
-import ProductionSourceIcon from '../bar-breakdown/ProductionsSourceIcons';
+import ProductionSourceIcon from '../ProductionsSourceIcons';
 
 interface AreaGraphToolTipHeaderProps {
   squareColor: string;

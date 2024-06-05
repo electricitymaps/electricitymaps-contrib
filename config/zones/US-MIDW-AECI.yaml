@@ -40,10 +40,16 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 44.3
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 97.5
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4.0
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 1.5
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov

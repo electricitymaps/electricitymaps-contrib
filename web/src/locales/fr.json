@@ -1,4 +1,18 @@
 {
+  "info-modal": {
+    "title": "Info",
+    "intro-text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
+    "open-source-text": "Cette application est <a href=\\\"{{link}}\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"{{sourcesLink}}\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté.",
+    "feedback-button": "Partagez vos commentaires",
+    "github-button": "Visiter notre Github",
+    "twitter-button": "Partager sur Twitter",
+    "slack-button": "Rejoindre la communauté Slack",
+    "privacy-policy": "Politique de confidentialité",
+    "legal-notice": "Informations légales"
+  },
+  "settings-modal": {
+    "title": "Paramètres"
+  },
   "panel-initial-text": {
     "thisproject": "Cette app est",
     "opensource": "Open Source",
@@ -83,6 +97,23 @@
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
   },
+  "estimation-feedback": {
+    "title": {
+      "state-initial": "Aidez-nous à nous améliorer !",
+      "state-success": "Merci !"
+    },
+    "subtitle": {
+      "state-initial": "Veuillez évaluer les points suivants.",
+      "state-success": "Vos réponses nous aident à comprendre et améliorer la qualité de notre communication et notre méthodologie."
+    },
+    "rate-question": "La description de l'estimation des données est facile à comprendre :",
+    "optional": "Optionel :",
+    "input-question": "Que pouvons nous faire pour l'améliorer ?",
+    "agree": "Absolument d'accord",
+    "disagree": "Absolument pas d'accord",
+    "placeholder": "Dites nous en quelques mots...",
+    "submit": "Envoyer"
+  },
   "estimation-badge": {
     "partially-estimated": "Partiellement estimées",
     "fully-estimated": "Estimées",
@@ -138,6 +169,13 @@
       "pill": " {{percentage}}% estimées",
       "body": "Les données consistent en une agrégation de données horaires. {{percentage}}% des données horaires sont estimées."
     }
+  },
+  "time-controller": {
+    "title": "Afficher les données passées",
+    "daily": "quotidien",
+    "hourly": "horaire",
+    "monthly": "mensuel",
+    "yearly": "annuel"
   },
   "left-panel": {
     "zone-list-header-title": "Impact sur le climat par zone",
@@ -260,6 +298,10 @@
       "showSidePanel": "Afficher le panneau latéral"
     }
   },
+  "aggregateButtons": {
+    "country": "pays",
+    "zone": "zone"
+  },
   "themeOptions": {
     "dark": "Sombre",
     "light": "Clair",
@@ -315,7 +357,7 @@
     "mapNuclearColors-question": "Pourquoi les pays alimentés par énergie nucléaire sont-ils indiqués en vert sur la carte ?",
     "mapNuclearColors-answer": "La production d’énergie nucléaire a une très faible intensité en carbone (<a href=\"https://fr.wikipedia.org/wiki/Émission_de_gaz_à_effet_de_serre_par_source_d'énergie_électrique#Etude_2014_du_GIEC_sur_les_émissions_de_CO2_des_différents_sources_d'électricité\" target=\"_blank\">source</a>), et les pays alimentés par énergie nucléaire apparaissent donc en vert sur la carte. Cela ne signifie pas qu’il n’y a pas d’autres défis environnementaux associés à l’énergie nucléaire (comme c’est également le cas pour d’autres formes de production d’énergie), mais ces défis ne sont pas liés aux émissions de gaz à effet de serre et sortent donc du cadre de cette carte.",
     "mapColorBlind-question": "Je suis daltonien. Comment puis-je lire votre carte ?",
-    "mapColorBlind-answer": "Vous pouvez modifier les couleurs affichées sur la carte en activant le paramètre « Mode daltonien ». Il se trouve au bas du panneau de gauche sur grand écran et dans l’onglet « À propos » sur mobile."
+    "mapColorBlind-answer": "Vous pouvez modifier les couleurs affichées sur la carte en activant le paramètre « Mode daltonien ». Il se trouve à droite de l'application sur grand écran et dans le panneau « Paramètres » sur mobile."
   },
   "mapAreas": {
     "groupName": "Zones sur la carte",
@@ -1949,30 +1991,5 @@
     "XK": {
       "zoneName": "Kosovo"
     }
-  },
-  "info-modal": {
-    "title": "Info",
-    "intro-text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
-    "open-source-text": "Cette application est <a href=\\\"{{link}}\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"{{sourcesLink}}\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté.",
-    "feedback-button": "Partagez vos commentaires",
-    "github-button": "Visiter notre Github",
-    "twitter-button": "Partager sur Twitter",
-    "slack-button": "Rejoindre la communauté Slack",
-    "privacy-policy": "Politique de confidentialité",
-    "legal-notice": "Informations légales"
-  },
-  "settings-modal": {
-    "title": "Paramètres"
-  },
-  "time-controller": {
-    "title": "Afficher les données passées",
-    "daily": "quotidien",
-    "hourly": "horaire",
-    "monthly": "mensuel",
-    "yearly": "annuel"
-  },
-  "aggregateButtons": {
-    "country": "pays",
-    "zone": "zone"
   }
 }

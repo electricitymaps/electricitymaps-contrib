@@ -152,9 +152,6 @@ describe('Map Component', () => {
   it('should display loading state initially', () => {
     const queryClient = new QueryClient();
 
-    cy.intercept('v8/state/hourly', { fixture: 'v8/state/hourly' });
-    cy.intercept('v8/state/last_hour', { fixture: 'v8/state/last_hour' });
-
     cy.mount(
       <TestProvider
         initialValues={[

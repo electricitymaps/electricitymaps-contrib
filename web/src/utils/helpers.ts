@@ -1,3 +1,4 @@
+import { callerLocation, useMeta } from 'api/getMeta';
 import { useMatch, useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
@@ -14,6 +15,18 @@ export function useGetZoneFromPath() {
     return zoneId;
   }
   return match?.params.id || undefined;
+}
+
+export function useUserLocation(): callerLocation {
+  const { callerLocation } = useMeta();
+  if (
+    callerLocation &&
+    callerLocation.length === 2 &&
+    callerLocation.every((x) => Number.isFinite(x))
+  ) {
+    return callerLocation;
+  }
+  return null;
 }
 
 export function getCO2IntensityByMode(

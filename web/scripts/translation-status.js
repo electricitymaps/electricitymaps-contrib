@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 require('colors');
 
-const LOCALES_PATH = path.join(__dirname, '..', 'public/locales/');
+const LOCALES_PATH = path.join(__dirname, '..', 'src/locales/');
 const languages = fs
   .readdirSync(LOCALES_PATH)
   .filter((f) => f !== 'en.json' && f.endsWith('.json'))

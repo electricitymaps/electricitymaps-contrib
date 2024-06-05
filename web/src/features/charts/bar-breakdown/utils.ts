@@ -1,4 +1,5 @@
 import { max as d3Max } from 'd3-array';
+import { useEffect, useState } from 'react';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
@@ -194,59 +195,16 @@ export const getExchangesToDisplay = (
   );
 };
 
-export function getEmissionData(zoneData: ZoneDetails) {
-  const sourceInfoToProductionSource = new Map<string, string[]>();
+export const useHeaderHeight = () => {
+  const [headerHeight, setHeaderHeight] = useState<number>(0);
 
-  for (const state of Object.values(zoneData.zoneStates)) {
-    updateMapWithSources(
-      state.dischargeCo2IntensitySources,
-      sourceInfoToProductionSource,
-      true
-    );
-    updateMapWithSources(
-      state.productionCo2IntensitySources,
-      sourceInfoToProductionSource
-    );
-  }
-
-  return sourceInfoToProductionSource;
-}
-
-function updateMapWithSources(
-  sources: { [key: string]: string },
-  sourceInfoToProductionSource: Map<string, string[]>,
-  storageType?: boolean
-) {
-  for (const entry of Object.entries(sources)) {
-    for (const sourceInfo of entry[1].split('; ')) {
-      const productionSource = getProductionSourcesToAdd(
-        entry,
-        sourceInfoToProductionSource.get(sourceInfo),
-        storageType
-      );
-      if (productionSource.length > 0) {
-        sourceInfoToProductionSource.set(sourceInfo, productionSource);
-      }
+  useEffect(() => {
+    const headerElement = document.querySelector('header');
+    if (headerElement) {
+      const height = headerElement.offsetHeight;
+      setHeaderHeight(height * 1.1);
     }
-  }
-}
+  }, [window.innerWidth, window.innerHeight]);
 
-function getProductionSourcesToAdd(
-  entry: [string, string],
-  productionSourceArray: string[] | undefined,
-  storageType?: boolean
-): string[] {
-  const productionSource = storageType ? `${entry[0]} storage` : entry[0];
-  const sourceInfo = entry[1];
-
-  if (sourceInfo.startsWith('assumes')) {
-    return [];
-  }
-  if (productionSourceArray === undefined) {
-    return [productionSource];
-  } else if (!productionSourceArray?.includes(productionSource)) {
-    productionSourceArray?.push(productionSource);
-    return productionSourceArray;
-  }
-  return [];
-}
+  return headerHeight;
+};

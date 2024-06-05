@@ -1,4 +1,5 @@
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import { useHeaderHeight } from 'features/charts/bar-breakdown/utils';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -28,6 +29,7 @@ function ExchangeArrow({
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
 
   const setIsMoving = useSetAtom(mapMovingAtom);
+  const headerHeight = useHeaderHeight();
 
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
@@ -57,6 +59,12 @@ function ExchangeArrow({
     r: rotation + (netFlow > 0 ? 180 : 0),
   };
 
+  // Setting the top position from the arrow tooltip preventing overflowing to top.
+  let tooltipClassName = 'max-h-[256px] max-w-[512px] hidden md:flex';
+  if (!isMobile) {
+    tooltipClassName += transform.y - 76 < headerHeight ? ' top-[76px]' : ' top-[-76px]';
+  }
+
   if (
     // or if the arrow would be very tiny
     transform.k < 0.1 ||
@@ -78,7 +86,7 @@ function ExchangeArrow({
 
   return (
     <TooltipWrapper
-      tooltipClassName={`max-h-[256px] max-w-[512px] ${isMobile ? '' : 'top-[-76px]'}`}
+      tooltipClassName={tooltipClassName}
       tooltipContent={<ExchangeTooltip exchangeData={data} isMobile={isMobile} />}
       side={isMobile ? 'top' : 'right'}
       sideOffset={10}
@@ -96,6 +104,7 @@ function ExchangeArrow({
           top: '-41px',
         }}
         onWheel={() => setIsMoving(true)}
+        data-test-id={`exchange-arrow-${key}`}
       >
         <source srcSet={`${imageSource}.webp`} type="image/webp" />
         <img src={`${imageSource}.gif`} alt="" draggable={false} />
