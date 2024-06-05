@@ -22,6 +22,14 @@ if (isProduction) {
     tracesSampleRate: 0, // Disables tracing completely as we don't use it and sends a lot of data
   });
 }
+/**
+ * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
+ * Only enabled on import.meta.env.DEV
+ */
+// const AtomsDevtools = ({ children }: { children: JSX.Element }) => {
+//   useAtomsDevtools('demo');
+//   return children;
+// };
 
 createConsoleGreeting();
 
