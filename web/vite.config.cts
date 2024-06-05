@@ -88,7 +88,7 @@ export default defineConfig(({ mode }) => ({
       ? [
           eslintPlugin(),
           VitePWA({
-            registerType: 'autoUpdate',
+            registerType: 'prompt',
             workbox: {
               maximumFileSizeToCacheInBytes: 3_500_000,
               runtimeCaching: [

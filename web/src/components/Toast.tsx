@@ -7,15 +7,19 @@ type Props = {
   description?: string;
   isCloseable?: boolean;
   toastAction?: () => void;
+  toastClose?: () => void;
   toastActionText?: string;
 };
 
-function Toast(props: Props) {
+function Toast({ title, description, toastAction, toastActionText, toastClose }: Props) {
   const { t } = useTranslation();
-  const { title, description, toastAction, toastActionText } = props;
   const [open, setOpen] = useState(true);
   const handleToastAction = () => {
-    toastAction && toastAction();
+    toastAction?.();
+    setOpen(false);
+  };
+  const handleToastClose = () => {
+    toastClose?.();
     setOpen(false);
   };
 
@@ -51,7 +55,10 @@ function Toast(props: Props) {
                 )}
               </div>
               <div className="flex h-0 flex-1 ">
-                <ToastPrimitive.Close className="flex h-6 w-full items-center justify-center rounded border border-transparent px-3 py-2 text-sm font-medium shadow">
+                <ToastPrimitive.Close
+                  className="flex h-6 w-full items-center justify-center rounded border border-transparent px-3 py-2 text-sm font-medium shadow"
+                  onClick={handleToastClose}
+                >
                   {t('misc.dismiss')}
                 </ToastPrimitive.Close>
               </div>
