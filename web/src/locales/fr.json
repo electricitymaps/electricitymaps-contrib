@@ -901,7 +901,6 @@
       "zoneName": "Géorgie"
     },
     "GF": {
-      "countryName": "France",
       "zoneName": "Guyane Française"
     },
     "GG": {
@@ -923,7 +922,6 @@
       "zoneName": "Guinée"
     },
     "GP": {
-      "countryName": "France",
       "zoneName": "Guadeloupe"
     },
     "GQ": {
@@ -1306,7 +1304,6 @@
       "zoneName": "Monténégro"
     },
     "MF": {
-      "countryName": "France",
       "zoneName": "Saint-Martin"
     },
     "MG": {
@@ -1334,7 +1331,6 @@
       "zoneName": "Îles Mariannes du Nord"
     },
     "MQ": {
-      "countryName": "France",
       "zoneName": "Martinique"
     },
     "MR": {
@@ -1409,7 +1405,6 @@
       "zoneName": "Namibie"
     },
     "NC": {
-      "countryName": "France",
       "zoneName": "Nouvelle-Calédonie"
     },
     "NE": {
@@ -1487,7 +1482,6 @@
       "zoneName": "Pérou"
     },
     "PF": {
-      "countryName": "France",
       "zoneName": "Polynésie française"
     },
     "PG": {
@@ -1515,7 +1509,6 @@
       "zoneName": "Pologne"
     },
     "PM": {
-      "countryName": "France",
       "zoneName": "Saint-Pierre-et-Miquelon"
     },
     "PN": {
@@ -1548,7 +1541,6 @@
       "zoneName": "Qatar"
     },
     "RE": {
-      "countryName": "France",
       "zoneName": "La Réunion"
     },
     "RO": {
@@ -1674,7 +1666,6 @@
       "zoneName": "Tchad"
     },
     "TF": {
-      "countryName": "France",
       "zoneName": "Terres australes et antarctiques françaises"
     },
     "TG": {
@@ -2054,7 +2045,6 @@
       "zoneName": "Vanuatu"
     },
     "WF": {
-      "countryName": "France",
       "zoneName": "Wallis-et-Futuna"
     },
     "WS": {
@@ -2070,7 +2060,6 @@
       "zoneName": "Yémen"
     },
     "YT": {
-      "countryName": "France",
       "zoneName": "Mayotte"
     },
     "ZA": {
