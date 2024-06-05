@@ -40,7 +40,7 @@ async function postSurveyResponse({
 export default function SurveyCard() {
   const { t } = useTranslation();
   return (
-    <div className="invisible  z-20  sm:visible ">
+    <div className="pointer-events-auto invisible  z-20  sm:visible ">
       <FeedbackCard
         surveyReference="Map Survey"
         postSurveyResponse={postSurveyResponse}
