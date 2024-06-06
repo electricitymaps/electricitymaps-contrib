@@ -44,6 +44,11 @@ const sentryPluginOptions: SentryVitePluginOptions = {
 const PWAManifest = {
   name: 'Electricity Maps',
   short_name: 'Electricity Maps',
+  start_url: '/',
+  display: 'standalone',
+  background_color: '#ffffff',
+  lang: 'en',
+  scope: '/',
   description:
     'Electricity Maps is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.',
   theme_color: '#000000',
@@ -64,8 +69,7 @@ const PWAManifest = {
       type: 'image/png',
     },
   ],
-  start_url: '/',
-  iarc_rating_id: '194a8347-3f9e-4525-9e04-9969d2db0f56', // Needed for enhanced install experience on Edge
+  iarc_rating_id: '194a8347-3f9e-4525-9e04-9969d2db0f56',
   prefer_related_applications: true,
   related_applications: [
     {
@@ -79,6 +83,9 @@ const PWAManifest = {
       id: '1224594248',
     },
   ],
+  id: 'com.tmrow.electricitymap',
+  categories: ['education'],
+  display_override: ['standalone', 'window-controls-overlay'],
 };
 
 export default defineConfig(({ mode }) => ({

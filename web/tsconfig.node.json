@@ -9,7 +9,8 @@
     "moduleResolution": "Node",
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "types": ["vite-plugin-pwa/react"]
   },
   "ts-node": {
     "compilerOptions": {
