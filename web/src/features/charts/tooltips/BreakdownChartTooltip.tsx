@@ -191,7 +191,7 @@ export function BreakdownChartTooltipContent({
       )}
 
       {!displayByEmissions && (
-        <>
+        <div translate="no">
           <MetricRatio
             value={usage}
             total={totalElectricity}
@@ -226,7 +226,7 @@ export function BreakdownChartTooltipContent({
             label={t('ofCO2eq')}
             useTotalUnit
           />
-        </>
+        </div>
       )}
       {!displayByEmissions && (Number.isFinite(co2Intensity) || usage !== 0) && (
         <>

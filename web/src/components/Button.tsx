@@ -53,6 +53,7 @@ export function Button({
         type={componentType}
         onClick={onClick}
         target="_blank"
+        translate="no"
       >
         {icon}
         {children}
