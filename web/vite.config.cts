@@ -89,6 +89,7 @@ const PWAManifest = {
     'standalone' as Display,
     'window-controls-overlay' as DisplayOverride,
   ],
+  orientation: 'any',
 };
 
 export default defineConfig(({ mode }) => ({
