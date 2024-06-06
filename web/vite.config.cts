@@ -64,7 +64,6 @@ const PWAManifest = {
       type: 'image/png',
     },
   ],
-  display: 'standalone',
   start_url: '/',
   iarc_rating_id: '194a8347-3f9e-4525-9e04-9969d2db0f56', // Needed for enhanced install experience on Edge
   prefer_related_applications: true,
