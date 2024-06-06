@@ -41,6 +41,47 @@ const sentryPluginOptions: SentryVitePluginOptions = {
   },
 };
 
+const PWAManifest = {
+  name: 'Electricity Maps',
+  short_name: 'Electricity Maps',
+  description:
+    'Electricity Maps is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.',
+  theme_color: '#000000',
+  icons: [
+    {
+      src: '/icons/logo-square-256.png',
+      sizes: '256x256',
+      type: 'image/png',
+    },
+    {
+      src: '/icons/logo-square-512.png',
+      sizes: '512x512',
+      type: 'image/png',
+    },
+    {
+      src: '/icons/logo-square-1024.png',
+      sizes: '1024x1024',
+      type: 'image/png',
+    },
+  ],
+  display: 'standalone',
+  start_url: '/',
+  iarc_rating_id: '194a8347-3f9e-4525-9e04-9969d2db0f56', // Needed for enhanced install experience on Edge
+  prefer_related_applications: true,
+  related_applications: [
+    {
+      platform: 'play',
+      url: 'https://play.google.com/store/apps/details?id=com.tmrow.electricitymap',
+      id: 'com.tmrow.electricitymap',
+    },
+    {
+      platform: 'itunes',
+      url: 'https://apps.apple.com/app/electricitymap/id1224594248',
+      id: '1224594248',
+    },
+  ],
+};
+
 export default defineConfig(({ mode }) => ({
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
@@ -114,24 +155,8 @@ export default defineConfig(({ mode }) => ({
                 },
               ],
             },
-
             includeAssets: ['robots.txt', 'fonts/**/*.{woff2, pbf}'],
-            manifest: {
-              theme_color: '#000000',
-              icons: [
-                {
-                  src: '/icons/android-chrome-192x192.png',
-                  sizes: '192x192',
-                  type: 'image/png',
-                  purpose: 'any maskable',
-                },
-                {
-                  src: '/icons/android-chrome-512x512.png',
-                  sizes: '512x512',
-                  type: 'image/png',
-                },
-              ],
-            },
+            manifest: PWAManifest,
           }),
           // Used to upload sourcemaps to Sentry
           process.env.SENTRY_AUTH_TOKEN && sentryVitePlugin(sentryPluginOptions),
