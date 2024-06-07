@@ -5,6 +5,7 @@ describe('Country Panel', () => {
   });
 
   it('interacts with details', () => {
+    cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB');
