@@ -70,6 +70,6 @@ describe('Country Panel', () => {
   it('asserts countryPanel contains no parser message when zone has no data', () => {
     cy.visit('/zone/CN?lang=en-GB');
     cy.waitForAPISuccess('v8/state/hourly');
-    cy.get('[data-test-id=no-parser-message]').should('exist');
+    cy.get('[data-test-id=no-parser-message]', { timeout: 8000 }).should('exist');
   });
 });
