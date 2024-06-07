@@ -53,6 +53,7 @@ export function Button({
         type={componentType}
         onClick={onClick}
         target="_blank"
+        // Used to prevent browser translation crashes on edge, see #6809
         translate="no"
       >
         {icon}

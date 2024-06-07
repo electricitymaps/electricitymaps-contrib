@@ -191,6 +191,7 @@ export function BreakdownChartTooltipContent({
       )}
 
       {!displayByEmissions && (
+        // Used to prevent browser translation crashes on edge, see #6809
         <div translate="no">
           <MetricRatio
             value={usage}
