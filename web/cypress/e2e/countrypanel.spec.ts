@@ -69,10 +69,15 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
+    cy.interceptAPI('v8/state/last_hour');
     cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/details/hourly/CN');
+    cy.visit('/map?lang=en-GB');
+    cy.waitForAPISuccess('v8/state/last_hour');
+    cy.waitForAPISuccess('v8/state/hourly');
+    cy.get('[data-test-id=close-modal]').click();
     cy.visit('/zone/CN?lang=en-GB');
-    cy.wait('@v8/details/hourly/CN');
+    cy.waitForAPISuccess('v8/details/hourly/CN');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });
