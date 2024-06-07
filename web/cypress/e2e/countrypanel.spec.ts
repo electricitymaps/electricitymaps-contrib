@@ -68,7 +68,7 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
-    cy.interceptAPI('v8/state/hourly/');
+    cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/details/hourly/CN');
     cy.visit('/zone/CN?lang=en-GB');
     cy.get('[data-test-id=no-parser-message]').should('exist');
