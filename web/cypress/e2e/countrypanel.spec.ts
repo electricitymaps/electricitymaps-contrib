@@ -72,8 +72,7 @@ describe('Country Panel', () => {
     cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/details/hourly/CN');
     cy.visit('/zone/CN?lang=en-GB');
-    cy.waitForAPISuccess('v8/state/hourly');
-    cy.waitForAPISuccess('v8/details/hourly/CN');
+    cy.wait('@v8/details/hourly/CN');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });
