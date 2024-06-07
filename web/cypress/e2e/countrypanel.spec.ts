@@ -75,9 +75,13 @@ describe('Country Panel', () => {
     cy.visit('/map?lang=en-GB');
     cy.waitForAPISuccess('v8/state/last_hour');
     cy.waitForAPISuccess('v8/state/hourly');
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(500);
     cy.get('[data-test-id=close-modal]').click();
     cy.visit('/zone/CN?lang=en-GB');
     cy.waitForAPISuccess('v8/details/hourly/CN');
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(500);
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });
