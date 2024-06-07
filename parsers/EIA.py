@@ -383,7 +383,6 @@ FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
     "US-TEN-TVA": ["biomass", "geothermal", "oil"],
     "US-SE-SOCO": ["biomass", "geothermal", "oil"],
-    "US-SE-SEPA": ["biomass", "geothermal", "oil"],
     "US-FLA-FPL": ["biomass", "geothermal", "oil"],
 }
 
