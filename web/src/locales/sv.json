@@ -125,7 +125,7 @@
     "outage": "Otillgänglig"
   },
   "estimation-card": {
-    "link": "Läs om våra estimeringsmodeller",
+    "link": "Läs om våra uppskattningsmodeller",
     "outage-details": "Se detaljer",
     "estimated_forecasts_hierarchy": {
       "title": "Data är uppskattad",
