@@ -163,7 +163,7 @@
       "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
     },
     "threshold_filtered": {
-      "title": "MSaknade data",
+      "title": "Saknar data",
       "pill": "Dataavbrott",
       "body": "Dataleverantören för denna zon har saknat data under en längre period. Vi håller koll på problemet och kommer att uppdatera zonen så snart datakvaliteten möter vår krav igen."
     },
