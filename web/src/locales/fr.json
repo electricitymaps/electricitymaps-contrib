@@ -102,7 +102,7 @@
     "agree": "D'accord",
     "disagree": "Pas d'accord",
     "estimations": {
-      "primary-question": "La description des données estimées sont faciles à comprendre:",
+      "primary-question": "Les descriptions des données estimées sont faciles à comprendre:",
       "secondary-question": "Comment pouvons-nous l'améliorer ?",
       "subtitle": "Evaluez les affirmations suivantes."
     },
@@ -110,7 +110,7 @@
     "optional": "Optionnel :",
     "placeholder": "Dites le nous en quelques mots...",
     "primary-question": " Dans quelle mesure êtes-vous satisfait de votre expérience d'utilisation de l'application Electricity Maps ?",
-    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apporter prochainement ?",
+    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apportées prochainement ?",
     "secondary-question-low": "Que pouvons faire de mieux ?",
     "submit": "Soumettre",
     "success-message": "Votre réponse nous permet de comprendre et d'améliorer la qualité de notre application.",
