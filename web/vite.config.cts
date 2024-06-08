@@ -54,12 +54,12 @@ const PWAManifest: Partial<ManifestOptions> = {
   theme_color: '#000000',
   icons: [
     {
-      src: '/icons/favicon.svg',
+      src: '/icons/icon.svg',
       sizes: 'any',
       type: 'image/svg+xml',
     },
     {
-      src: '/icons/favicon-maskable.svg',
+      src: '/icons/icon-maskable.svg',
       sizes: 'any',
       type: 'image/svg+xml',
       purpose: 'maskable',
