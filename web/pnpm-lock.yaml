@@ -60,8 +60,8 @@ importers:
         specifier: 4.36.1
         version: 4.36.1(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.24.3)(@babel/preset-env@7.24.3(@babel/core@7.24.3))(react@18.2.0))(react@18.2.0)
       '@turf/helpers':
-        specifier: ^6.5.0
-        version: 6.5.0
+        specifier: ^7.0.0
+        version: 7.0.0
       country-flag-icons:
         specifier: ^1.5.9
         version: 1.5.9
@@ -2742,6 +2742,9 @@ packages:
 
   '@turf/helpers@6.5.0':
     resolution: {integrity: sha512-VbI1dV5bLFzohYYdgqwikdMVpe7pJ9X3E+dlr425wa2/sMJqYDhTO++ec38/pcPvPE6oD9WEEeU3Xu3gza+VPw==}
+
+  '@turf/helpers@7.0.0':
+    resolution: {integrity: sha512-vwZvxRuyjGpGXvhXSbT9mX6FK92dBMLWbMbDJ/MXQUPx17ReVPFc+6N6IcxAzZfkiCnqy7vpuq0c+/TTrQxIiA==}
 
   '@turf/hex-grid@6.5.0':
     resolution: {integrity: sha512-Ln3tc2tgZT8etDOldgc6e741Smg1CsMKAz1/Mlel+MEL5Ynv2mhx3m0q4J9IB1F3a4MNjDeVvm8drAaf9SF33g==}
@@ -11687,6 +11690,11 @@ snapshots:
       '@turf/invariant': 6.5.0
 
   '@turf/helpers@6.5.0': {}
+
+  '@turf/helpers@7.0.0':
+    dependencies:
+      deep-equal: 2.2.3
+      tslib: 2.6.2
 
   '@turf/hex-grid@6.5.0':
     dependencies:
