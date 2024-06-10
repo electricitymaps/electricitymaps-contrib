@@ -7,29 +7,30 @@ describe('Country Panel', () => {
     cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/state/last_hour');
     cy.interceptAPI('v8/meta');
-    cy.visit('/zone/CN', {
-      onBeforeLoad(win: any) {
-        delete win?.navigator?.__proto__?.ServiceWorker;
-        delete win?.navigator?.serviceWorker;
-      },
-    });
-    if (window?.navigator && navigator?.serviceWorker) {
-      navigator.serviceWorker.getRegistrations().then((registrations: any) => {
-        for (const registration of registrations) {
-          registration.unregister();
-        }
-      });
-    }
   });
-  afterEach(() => {
-    if (window.navigator && navigator.serviceWorker) {
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        for (const registration of registrations) {
-          registration.unregister();
-        }
-      });
-    }
-  });
+  //   cy.visit('/zone/CN', {
+  //     onBeforeLoad(win: any) {
+  //       delete win?.navigator?.__proto__?.ServiceWorker;
+  //       delete win?.navigator?.serviceWorker;
+  //     },
+  //   });
+  //   if (window?.navigator && navigator?.serviceWorker) {
+  //     navigator.serviceWorker.getRegistrations().then((registrations: any) => {
+  //       for (const registration of registrations) {
+  //         registration.unregister();
+  //       }
+  //     });
+  //   }
+  // });
+  // afterEach(() => {
+  //   if (window.navigator && navigator.serviceWorker) {
+  //     navigator.serviceWorker.getRegistrations().then((registrations) => {
+  //       for (const registration of registrations) {
+  //         registration.unregister();
+  //       }
+  //     });
+  //   }
+  // });
 
   it('interacts with details', () => {
     cy.interceptAPI('v8/details/hourly/DK-DK2');
@@ -95,7 +96,11 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
-    cy.visit('/zone/CN?lang=en-GB');
+    cy.visit('/zone/CN?lang=en-GB', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
     cy.waitForAPISuccess('v8/state/last_hour');
     cy.waitForAPISuccess('v8/state/hourly');
     cy.intercept('GET', 'v8/details/hourly/CN*').as('chinaDetails');
