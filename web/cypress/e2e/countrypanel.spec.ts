@@ -1,9 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // TODO: Convert to component test
 describe('Country Panel', () => {
   beforeEach(() => {
     cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/state/last_hour');
     cy.interceptAPI('v8/meta');
+    cy.visit('/map', {
+      onBeforeLoad(win: any) {
+        delete win?.navigator?.__proto__?.ServiceWorker;
+        delete win?.navigator?.serviceWorker;
+      },
+    });
+    if (window?.navigator && navigator?.serviceWorker) {
+      navigator.serviceWorker.getRegistrations().then((registrations: any) => {
+        for (const registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
   });
 
   it('interacts with details', () => {
