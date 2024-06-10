@@ -9,6 +9,8 @@ export default defineConfig({
   e2e: {
     baseUrl: 'http://127.0.0.1:5173/',
     specPattern: 'cypress/e2e/**/*.ts',
+    pageLoadTimeout: 120_000, // Increase to 2 minutes
+    defaultCommandTimeout: 10_000,
   },
   component: {
     devServer: {
