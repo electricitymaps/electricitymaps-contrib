@@ -84,7 +84,7 @@ export default function FeedbackCard({
   return (
     <div
       data-test-id="feedback-card"
-      className="mb-4 flex w-full flex-col rounded-lg border border-neutral-200 bg-zinc-50 pl-2.5 transition-all dark:border-gray-700 dark:bg-gray-900"
+      className="flex w-full flex-col rounded-lg border border-neutral-200 bg-zinc-50 pl-2.5 transition-all dark:border-gray-700 dark:bg-gray-900"
       ref={feedbackCardReference}
     >
       <div className="flex flex-row items-center justify-between">
