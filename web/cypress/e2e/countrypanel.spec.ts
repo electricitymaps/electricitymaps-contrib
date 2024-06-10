@@ -6,7 +6,7 @@ describe('Country Panel', () => {
     cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/state/last_hour');
     cy.interceptAPI('v8/meta');
-    cy.visit('/map', {
+    cy.visit('/zone/CN', {
       onBeforeLoad(win: any) {
         delete win?.navigator?.__proto__?.ServiceWorker;
         delete win?.navigator?.serviceWorker;
