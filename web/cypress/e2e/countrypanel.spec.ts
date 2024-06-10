@@ -35,7 +35,11 @@ describe('Country Panel', () => {
   it('interacts with details', () => {
     cy.interceptAPI('v8/details/hourly/DK-DK2');
 
-    cy.visit('/zone/DK-DK2?lang=en-GB');
+    cy.visit('/zone/DK-DK2?lang=en-GB', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
     cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
@@ -86,7 +90,11 @@ describe('Country Panel', () => {
   // TODO bring back when we have a no recent data message
   it.skip('asserts countryPanel contains "no-recent-data" message', () => {
     cy.interceptAPI('v8/details/hourly/UA');
-    cy.visit('/zone/UA?lang=en-GB');
+    cy.visit('/zone/UA?lang=en-GB', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/UA');
 
