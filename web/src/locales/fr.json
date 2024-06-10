@@ -88,6 +88,7 @@
       "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
     },
     "now": "Maintenant",
+    "disabledBreakdownChartReason": "Désactivé pour la vue consommation. Merci de changer la vue en production pour activer le graphique d'origine de l'électricité.",
     "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
     "estimated": "estimé",
     "aggregated": "aggrégé",
@@ -97,22 +98,24 @@
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
   },
-  "estimation-feedback": {
-    "title": {
-      "state-initial": "Aidez-nous à nous améliorer !",
-      "state-success": "Merci !"
+  "feedback-card": {
+    "agree": "D'accord",
+    "disagree": "Pas d'accord",
+    "estimations": {
+      "primary-question": "Les descriptions des données estimées sont faciles à comprendre:",
+      "secondary-question": "Comment pouvons-nous l'améliorer ?",
+      "subtitle": "Evaluez les affirmations suivantes."
     },
-    "subtitle": {
-      "state-initial": "Veuillez évaluer les points suivants.",
-      "state-success": "Vos réponses nous aident à comprendre et améliorer la qualité de notre communication et notre méthodologie."
-    },
-    "rate-question": "La description de l'estimation des données est facile à comprendre :",
-    "optional": "Optionel :",
-    "input-question": "Que pouvons nous faire pour l'améliorer ?",
-    "agree": "Absolument d'accord",
-    "disagree": "Absolument pas d'accord",
-    "placeholder": "Dites nous en quelques mots...",
-    "submit": "Envoyer"
+    "input-question": "Faites-nous savoir si vous souhaitez voir des fonctionnalités supplémentaires.",
+    "optional": "Optionnel :",
+    "placeholder": "Dites le nous en quelques mots...",
+    "primary-question": " Dans quelle mesure êtes-vous satisfait de votre expérience d'utilisation de l'application Electricity Maps ?",
+    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apportées prochainement ?",
+    "secondary-question-low": "Que pouvons faire de mieux ?",
+    "submit": "Soumettre",
+    "success-message": "Votre réponse nous permet de comprendre et d'améliorer la qualité de notre application.",
+    "success-subtitle": "Merci pour votre retour !",
+    "title": "Aidez-nous à nous améliorer !"
   },
   "estimation-badge": {
     "partially-estimated": "Partiellement estimées",
@@ -121,6 +124,12 @@
   },
   "estimation-card": {
     "link": "En savoir plus sur nos modèles d'estimation",
+    "outage-details": "Voir les détails",
+    "estimated_forecasts_hierarchy": {
+      "body": "Les données pour cette zone sont estimées à l'aide d'une combinaison de prévisions de production internes et externes et de moyennes de Time Slicer. Cela vise à fournir une représentation plus précise que la moyenne de Time Slicer seule, mais les données peuvent toujours être sujettes à des inexactitudes. Les données seront mises à jour dès que les données en temps réel seront disponibles.",
+      "pill": "Estimé",
+      "title": "Les données sont estimées"
+    },
     "estimated_time_slicer_average": {
       "title": "Les données sont temporaires",
       "body": "Le fournisseur de données n'a encore rien reporté pour cette heure. Les valeurs affichées ont été estimées à partir de données historiques et seront mises à jour dès que les données réelles seront disponibles. Veuillez noter que les valeurs estimées ne tiennent pas toujours compte de la météo en temps réel."
@@ -177,6 +186,12 @@
     "yearly": "annuel"
   },
   "left-panel": {
+    "applied-methodologies": {
+      "carbonintensity": "Electricity Maps - Intensité carbone",
+      "estimations": "Electricity Maps - Estimations",
+      "flowtracing": "Electricity Maps - Traçage des flux",
+      "title": "Méthologies utilisées"
+    },
     "zone-list-header-title": "Impact sur le climat par zone",
     "zone-list-header-subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
     "search": "Rechercher une zone",
@@ -453,6 +468,13 @@
     "AR": {
       "zoneName": "Argentine"
     },
+    "AU": {
+      "zoneName": "Australie"
+    },
+    "AU-LH": {
+      "countryName": "Australie",
+      "zoneName": "Île Lord Howe"
+    },
     "AU-NSW": {
       "countryName": "Australie",
       "zoneName": "Nouvelle-Galles du Sud"
@@ -472,6 +494,14 @@
     "AU-TAS": {
       "countryName": "Australie",
       "zoneName": "Tasmanie"
+    },
+    "AU-TAS-CBI": {
+      "countryName": "Australie",
+      "zoneName": "Île du Cap Barren"
+    },
+    "AU-TAS-FI": {
+      "countryName": "Australie",
+      "zoneName": "Île Flinders"
     },
     "AU-TAS-KI": {
       "countryName": "Australie",
@@ -544,6 +574,10 @@
       "countryName": "Brésil",
       "zoneName": "Central"
     },
+    "BR-I": {
+      "countryName": "Brésil",
+      "zoneName": "Systèmes isolés"
+    },
     "BR-N": {
       "countryName": "Brésil",
       "zoneName": "Nord"
@@ -589,6 +623,14 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Terre-Neuve-et-Labrador"
+    },
+    "CA-NL-LB": {
+      "countryName": "Canada",
+      "zoneName": "Labrador"
+    },
+    "CA-NL-NF": {
+      "countryName": "Canada",
+      "zoneName": "Terre-Neuve"
     },
     "CA-NB": {
       "countryName": "Canada",
@@ -712,11 +754,11 @@
     },
     "DK-DK1": {
       "countryName": "Danemark",
-      "zoneName": "Danemark ouest"
+      "zoneName": "Ouest"
     },
     "DK-DK2": {
       "countryName": "Danemark",
-      "zoneName": "Danemark est"
+      "zoneName": "Est"
     },
     "DK-BHM": {
       "countryName": "Danemark",
@@ -815,6 +857,14 @@
     "FO": {
       "zoneName": "Îles Féroé"
     },
+    "FO-MI": {
+      "countryName": "Îles Féroé",
+      "zoneName": "Iles principales"
+    },
+    "FO-SI": {
+      "countryName": "Îles Féroé",
+      "zoneName": "Île du Sud"
+    },
     "FR": {
       "zoneName": "France"
     },
@@ -839,6 +889,10 @@
       "countryName": "Grande Bretagne",
       "zoneName": "Shetland"
     },
+    "GB-SHI": {
+      "countryName": "Grande Bretagne",
+      "zoneName": "Îles Shetland"
+    },
     "GD": {
       "zoneName": "Grenade"
     },
@@ -846,7 +900,6 @@
       "zoneName": "Géorgie"
     },
     "GF": {
-      "countryName": "France",
       "zoneName": "Guyane Française"
     },
     "GG": {
@@ -868,7 +921,6 @@
       "zoneName": "Guinée"
     },
     "GP": {
-      "countryName": "France",
       "zoneName": "Guadeloupe"
     },
     "GQ": {
@@ -926,6 +978,9 @@
     "IM": {
       "zoneName": "Île de Man"
     },
+    "IN": {
+      "zoneName": "Inde"
+    },
     "IN-AN": {
       "countryName": "Inde",
       "zoneName": "Andaman and Nicobar Islands"
@@ -957,6 +1012,10 @@
     "IN-DN": {
       "countryName": "Inde",
       "zoneName": "Dadra et Nagar Haveli"
+    },
+    "IN-EA": {
+      "countryName": "Inde",
+      "zoneName": "Est"
     },
     "IN-GA": {
       "countryName": "Inde",
@@ -1010,9 +1069,17 @@
       "countryName": "Inde",
       "zoneName": "Mizoram"
     },
+    "IN-NE": {
+      "countryName": "Inde",
+      "zoneName": "Nort-Est"
+    },
     "IN-NL": {
       "countryName": "Inde",
       "zoneName": "Nagaland"
+    },
+    "IN-NO": {
+      "countryName": "Inde",
+      "zoneName": "Nord"
     },
     "IN-OR": {
       "countryName": "Inde",
@@ -1034,6 +1101,10 @@
       "countryName": "Inde",
       "zoneName": "Sikkim"
     },
+    "IN-SO": {
+      "countryName": "Inde",
+      "zoneName": "Sud"
+    },
     "IN-TN": {
       "countryName": "Inde",
       "zoneName": "Tamil Nadu"
@@ -1052,7 +1123,11 @@
     },
     "IN-WB": {
       "countryName": "Inde",
-      "zoneName": "West Bengal"
+      "zoneName": "Ouest Bengal"
+    },
+    "IN-WE": {
+      "countryName": "Inde",
+      "zoneName": "Ouest"
     },
     "IO": {
       "zoneName": "Territoire britannique de l’océan Indien"
@@ -1075,11 +1150,11 @@
     },
     "IT-CNO": {
       "countryName": "Italie",
-      "zoneName": "Centre nord"
+      "zoneName": "Centre-Nord"
     },
     "IT-CSO": {
       "countryName": "Italie",
-      "zoneName": "Centre sud"
+      "zoneName": "Centre-Sud"
     },
     "IT-NO": {
       "countryName": "Italie",
@@ -1105,6 +1180,9 @@
     },
     "JO": {
       "zoneName": "Jordanie"
+    },
+    "JP": {
+      "zoneName": "Japon"
     },
     "JP-CB": {
       "countryName": "Japon",
@@ -1225,7 +1303,6 @@
       "zoneName": "Monténégro"
     },
     "MF": {
-      "countryName": "France",
       "zoneName": "Saint-Martin"
     },
     "MG": {
@@ -1253,7 +1330,6 @@
       "zoneName": "Îles Mariannes du Nord"
     },
     "MQ": {
-      "countryName": "France",
       "zoneName": "Martinique"
     },
     "MR": {
@@ -1281,13 +1357,17 @@
       "countryName": "Mexique",
       "zoneName": "Baja California"
     },
+    "MX-BCS": {
+      "countryName": "Mexique",
+      "zoneName": "Sud Baja California"
+    },
     "MX-CE": {
       "countryName": "Mexique",
       "zoneName": "Centre"
     },
     "MX-NE": {
       "countryName": "Mexique",
-      "zoneName": "Nord-est"
+      "zoneName": "Nord-Est"
     },
     "MX-NO": {
       "countryName": "Mexique",
@@ -1344,25 +1424,28 @@
     "NL": {
       "zoneName": "Pays-Bas"
     },
+    "NO": {
+      "zoneName": "Norvège"
+    },
     "NO-NO1": {
       "countryName": "Norvège",
-      "zoneName": "Norvège du Sud-Est"
+      "zoneName": "Sud-Est"
     },
     "NO-NO2": {
       "countryName": "Norvège",
-      "zoneName": "Norvège du Sud-Ouest"
+      "zoneName": "Sud-Ouest"
     },
     "NO-NO3": {
       "countryName": "Norvège",
-      "zoneName": "Norvège Centre"
+      "zoneName": "Centre"
     },
     "NO-NO4": {
       "countryName": "Norvège",
-      "zoneName": "Norvège Nord"
+      "zoneName": "Nord"
     },
     "NO-NO5": {
       "countryName": "Norvège",
-      "zoneName": "Norvège Ouest"
+      "zoneName": "Ouest"
     },
     "NP": {
       "zoneName": "Népal"
@@ -1384,6 +1467,10 @@
       "countryName": "Nouvelle-Zélande",
       "zoneName": "Îles Chatham"
     },
+    "NZ-NZST": {
+      "countryName": "Nouvelle-Zélande",
+      "zoneName": "Île Stewart"
+    },
     "OM": {
       "zoneName": "Oman"
     },
@@ -1402,6 +1489,18 @@
     "PH": {
       "zoneName": "Philippines"
     },
+    "PH-LU": {
+      "countryName": "Philippines",
+      "zoneName": "Luzon"
+    },
+    "PH-MI": {
+      "countryName": "Philippines",
+      "zoneName": "Mindanao"
+    },
+    "PH-VI": {
+      "countryName": "Philippines",
+      "zoneName": "Visayas"
+    },
     "PK": {
       "zoneName": "Pakistan"
     },
@@ -1409,7 +1508,6 @@
       "zoneName": "Pologne"
     },
     "PM": {
-      "countryName": "France",
       "zoneName": "Saint-Pierre-et-Miquelon"
     },
     "PN": {
@@ -1442,7 +1540,6 @@
       "zoneName": "Qatar"
     },
     "RE": {
-      "countryName": "France",
       "zoneName": "La Réunion"
     },
     "RO": {
@@ -1496,6 +1593,22 @@
     "SE": {
       "zoneName": "Suède"
     },
+    "SE-SE1": {
+      "countryName": "Suède",
+      "zoneName": "Nord de la Suède"
+    },
+    "SE-SE2": {
+      "countryName": "Suède",
+      "zoneName": "Centre-Nord de la Suède"
+    },
+    "SE-SE3": {
+      "countryName": "Suède",
+      "zoneName": "Centre-Sud de la Suède"
+    },
+    "SE-SE4": {
+      "countryName": "Suède",
+      "zoneName": "Sud de la Suède"
+    },
     "SG": {
       "zoneName": "Singapour"
     },
@@ -1536,8 +1649,8 @@
       "zoneName": "Salvador"
     },
     "SX": {
-      "countryName": "Saint Martin",
-      "zoneName": "Pays-Bas"
+      "countryName": "Pays-Bas",
+      "zoneName": "Saint-Martin"
     },
     "SY": {
       "zoneName": "Syrie"
@@ -1607,43 +1720,287 @@
       "zoneName": "Îles mineures éloignées des États-Unis"
     },
     "US": {
-      "zoneName": "États-Unis d’Amérique Contigus"
+      "zoneName": "États-Unis"
+    },
+    "US-AK": {
+      "countryName": "États-Unis",
+      "zoneName": "Alaska"
+    },
+    "US-AK-SEAPA": {
+      "countryName": "États-Unis",
+      "zoneName": "Autorité électrique d'Alaska du Sud"
+    },
+    "US-CAL-BANC": {
+      "countryName": "États-Unis",
+      "zoneName": "Autorité d'équilibrage de la Californie du Nord"
+    },
+    "US-CAL-CISO": {
+      "countryName": "États-Unis",
+      "zoneName": "Opérateur de réseau indépendant de Californie"
+    },
+    "US-CAL-IID": {
+      "countryName": "États-Unis",
+      "zoneName": "District d'irrigation impérial"
+    },
+    "US-CAL-LDWP": {
+      "countryName": "États-Unis",
+      "zoneName": "Département de l'eau et de l'électricité de Los Angeles"
+    },
+    "US-CAL-TIDC": {
+      "countryName": "États-Unis",
+      "zoneName": "District d'irrigation de Turlock"
+    },
+    "US-CAR-CPLE": {
+      "countryName": "États-Unis",
+      "zoneName": "Duke Energy Progress East"
+    },
+    "US-CAR-CPLW": {
+      "countryName": "États-Unis",
+      "zoneName": "Duke Energy Progress West"
+    },
+    "US-CAR-DUK": {
+      "countryName": "États-Unis",
+      "zoneName": "Duke Energy Carolines"
+    },
+    "US-CAR-SC": {
+      "countryName": "États-Unis",
+      "zoneName": "Autorité des services publics de Caroline du Sud"
+    },
+    "US-CAR-SCEG": {
+      "countryName": "États-Unis",
+      "zoneName": "Compagnie d'électricité et de gaz de Caroline du Sud"
+    },
+    "US-CAR-YAD": {
+      "countryName": "États-Unis",
+      "zoneName": "Génération d'énergie Alcoa, Inc. Division de Yadkin"
+    },
+    "US-CENT-SPA": {
+      "countryName": "États-Unis",
+      "zoneName": "Administration de l'électricité du sud-ouest"
+    },
+    "US-CENT-SWPP": {
+      "countryName": "États-Unis",
+      "zoneName": "Pool énergétique du sud-ouest"
+    },
+    "US-FLA-FMPP": {
+      "countryName": "États-Unis",
+      "zoneName": "Pool énergétique municipal de Floride"
+    },
+    "US-FLA-FPC": {
+      "countryName": "États-Unis",
+      "zoneName": "Duke Energy Floride Inc"
+    },
+    "US-FLA-FPL": {
+      "countryName": "États-Unis",
+      "zoneName": "Compagnie d'électricité et d'éclairage de Floride"
+    },
+    "US-FLA-GVL": {
+      "countryName": "États-Unis",
+      "zoneName": "Services publics régionaux de Gainesville"
+    },
+    "US-FLA-HST": {
+      "countryName": "États-Unis",
+      "zoneName": "Ville de Homestead"
+    },
+    "US-FLA-JEA": {
+      "countryName": "États-Unis",
+      "zoneName": "Autorité électrique de Jacksonville"
+    },
+    "US-FLA-SEC": {
+      "countryName": "États-Unis",
+      "zoneName": "Coopérative électrique de Seminole"
+    },
+    "US-FLA-TAL": {
+      "countryName": "États-Unis",
+      "zoneName": "Ville de Tallahassee"
+    },
+    "US-FLA-TEC": {
+      "countryName": "États-Unis",
+      "zoneName": "Compagnie d'électricité de Tampa"
     },
     "US-HI": {
-      "countryName": "États-Unis d’Amérique",
+      "countryName": "États-Unis",
       "zoneName": "Hawaï"
     },
     "US-HI-HA": {
-      "countryName": "États Unis d’Amérique",
+      "countryName": "États Unis",
       "zoneName": "Hawaï"
     },
     "US-HI-KA": {
-      "countryName": "États Unis d’Amérique",
+      "countryName": "États Unis",
       "zoneName": "Kauai"
     },
     "US-HI-KH": {
-      "countryName": "États Unis d’Amérique",
+      "countryName": "États Unis",
       "zoneName": "Kahoolawe"
     },
     "US-HI-LA": {
-      "countryName": "États Unis d’Amérique",
+      "countryName": "États Unis",
       "zoneName": "Lanai"
     },
     "US-HI-MA": {
-      "countryName": "États Unis d’Amérique",
+      "countryName": "États Unis",
       "zoneName": "Maui"
     },
     "US-HI-MO": {
-      "countryName": "États Unis d’Amérique",
+      "countryName": "États Unis",
       "zoneName": "Molokai"
     },
     "US-HI-NI": {
-      "countryName": "États Unis d’Amérique",
+      "countryName": "États Unis",
       "zoneName": "Niihau"
     },
     "US-HI-OA": {
-      "countryName": "États Unis d’Amérique",
+      "countryName": "États Unis",
       "zoneName": "Oahu"
+    },
+    "US-MIDA-PJM": {
+      "countryName": "États-Unis",
+      "zoneName": "PJM Interconnection, Llc"
+    },
+    "US-MIDW-AECI": {
+      "countryName": "États-Unis",
+      "zoneName": "Coopérative électrique associée, Inc."
+    },
+    "US-MIDW-LGEE": {
+      "countryName": "États-Unis",
+      "zoneName": "Compagnie de gaz et d'électricité de Louisville et services publics du Kentucky"
+    },
+    "US-MIDW-MISO": {
+      "countryName": "États-Unis",
+      "zoneName": "Midcontinent Independent Transmission System Operator, Inc."
+    },
+    "US-NE-ISNE": {
+      "countryName": "États-Unis",
+      "zoneName": "Iso Nouvelle-Angleterre Inc."
+    },
+    "US-NW-AVA": {
+      "countryName": "États-Unis",
+      "zoneName": "Avista Corporation"
+    },
+    "US-NW-BPAT": {
+      "countryName": "États-Unis",
+      "zoneName": "Administration de l'électricité de Bonneville"
+    },
+    "US-NW-CHPD": {
+      "countryName": "États-Unis",
+      "zoneName": "PUD n°1 du comté de Chelan"
+    },
+    "US-NW-DOPD": {
+      "countryName": "États-Unis",
+      "zoneName": "PUD n°1 du comté de Douglas"
+    },
+    "US-NW-GCPD": {
+      "countryName": "États-Unis",
+      "zoneName": "PUD n°2 du comté de Grant, Washington"
+    },
+    "US-NW-GRID": {
+      "countryName": "États-Unis",
+      "zoneName": "Gestion de l'énergie Gridforce, LLC"
+    },
+    "US-NW-GWA": {
+      "countryName": "États-Unis",
+      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+    },
+    "US-NW-IPCO": {
+      "countryName": "États-Unis",
+      "zoneName": "Société d'électricité d'Idaho"
+    },
+    "US-NW-NEVP": {
+      "countryName": "États-Unis",
+      "zoneName": "Société d'électricité du Nevada"
+    },
+    "US-NW-NWMT": {
+      "countryName": "États-Unis",
+      "zoneName": "Énergie du Nord-Ouest"
+    },
+    "US-NW-PACE": {
+      "countryName": "États-Unis",
+      "zoneName": "Pacificorp East"
+    },
+    "US-NW-PACW": {
+      "countryName": "États-Unis",
+      "zoneName": "Pacificorp West"
+    },
+    "US-NW-PGE": {
+      "countryName": "États-Unis",
+      "zoneName": "Compagnie électrique générale de Portland"
+    },
+    "US-NW-PSCO": {
+      "countryName": "États-Unis",
+      "zoneName": "Société de service public du Colorado"
+    },
+    "US-NW-PSEI": {
+      "countryName": "États-Unis",
+      "zoneName": "Puget Sound Energy"
+    },
+    "US-NW-SCL": {
+      "countryName": "États-Unis",
+      "zoneName": "Seattle City Light"
+    },
+    "US-NW-TPWR": {
+      "countryName": "États-Unis",
+      "zoneName": "Ville de Tacoma, Département des services publics, Division de la lumière"
+    },
+    "US-NW-WACM": {
+      "countryName": "États-Unis",
+      "zoneName": "Western Area Power Administration - Région des Rocheuses"
+    },
+    "US-NW-WAUW": {
+      "countryName": "États-Unis",
+      "zoneName": "Administration de l'électricité de la région de l'Ouest UGP Ouest"
+    },
+    "US-NW-WWA": {
+      "countryName": "États-Unis",
+      "zoneName": "Naturener Wind Watch, Llc"
+    },
+    "US-NY-NYIS": {
+      "countryName": "États-Unis",
+      "zoneName": "Exploitant de réseau indépendant de New York"
+    },
+    "US-SE-SEPA": {
+      "countryName": "États-Unis",
+      "zoneName": "Administration de l'électricité du Sud-Est"
+    },
+    "US-SE-SOCO": {
+      "countryName": "États-Unis",
+      "zoneName": "Southern Company Services, Inc. - Trans"
+    },
+    "US-SW-AZPS": {
+      "countryName": "États-Unis",
+      "zoneName": "Société de services publics de l'Arizona"
+    },
+    "US-SW-EPE": {
+      "countryName": "États-Unis",
+      "zoneName": "Compagnie électrique El Paso"
+    },
+    "US-SW-GRIF": {
+      "countryName": "États-Unis",
+      "zoneName": "Griffith Energy, LLC"
+    },
+    "US-SW-PNM": {
+      "countryName": "États-Unis",
+      "zoneName": "Société de service public du Nouveau-Mexique"
+    },
+    "US-SW-SRP": {
+      "countryName": "États-Unis",
+      "zoneName": "Projet Salt River"
+    },
+    "US-SW-TEPC": {
+      "countryName": "États-Unis",
+      "zoneName": "Société d'énergie électrique de Tucson"
+    },
+    "US-SW-WALC": {
+      "countryName": "États-Unis",
+      "zoneName": "Western Area Power Administration - Région du sud-ouest désertique"
+    },
+    "US-TEN-TVA": {
+      "countryName": "États-Unis",
+      "zoneName": "Autorité de la vallée du Tennessee"
+    },
+    "US-TEX-ERCO": {
+      "countryName": "États-Unis",
+      "zoneName": "Conseil de fiabilité électrique du Texas, Inc."
     },
     "UY": {
       "zoneName": "Uruguay"
@@ -1669,17 +2026,31 @@
       "zoneName": "Îles Vierges des États-Unis"
     },
     "VN": {
-      "zoneName": "Viêt Nam"
+      "zoneName": "Vietnam"
+    },
+    "VN-C": {
+      "countryName": "Vietnam",
+      "zoneName": "Centre"
+    },
+    "VN-N": {
+      "countryName": "Vietnam",
+      "zoneName": "Nord"
+    },
+    "VN-S": {
+      "countryName": "Vietnam",
+      "zoneName": "Sud"
     },
     "VU": {
       "zoneName": "Vanuatu"
     },
     "WF": {
-      "countryName": "France",
       "zoneName": "Wallis-et-Futuna"
     },
     "WS": {
       "zoneName": "Samoa"
+    },
+    "XK": {
+      "zoneName": "Kosovo"
     },
     "XX": {
       "zoneName": "Chypre du Nord"
@@ -1688,7 +2059,6 @@
       "zoneName": "Yémen"
     },
     "YT": {
-      "countryName": "France",
       "zoneName": "Mayotte"
     },
     "ZA": {
@@ -1699,296 +2069,6 @@
     },
     "ZW": {
       "zoneName": "Zimbabwe"
-    },
-    "AU-TAS-CBI": {
-      "countryName": "Australie",
-      "zoneName": "Île du Cap Barren"
-    },
-    "AU-TAS-FI": {
-      "countryName": "Australie",
-      "zoneName": "Île Flinders"
-    },
-    "BR-I": {
-      "countryName": "Brésil",
-      "zoneName": "Systèmes isolés"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Terre-Neuve"
-    },
-    "FO-MI": {
-      "countryName": "Îles Féroé",
-      "zoneName": "Iles principales"
-    },
-    "FO-SI": {
-      "countryName": "Îles Féroé",
-      "zoneName": "Île du Sud"
-    },
-    "NO": {
-      "zoneName": "Norvège"
-    },
-    "NZ-NZST": {
-      "countryName": "Nouvelle-Zélande",
-      "zoneName": "Île Stewart"
-    },
-    "SE-SE1": {
-      "countryName": "Suède",
-      "zoneName": "Nord de la Suède"
-    },
-    "SE-SE2": {
-      "countryName": "Suède",
-      "zoneName": "Centre-Nord de la Suède"
-    },
-    "SE-SE3": {
-      "countryName": "Suède",
-      "zoneName": "Centre-Sud de la Suède"
-    },
-    "SE-SE4": {
-      "countryName": "Suède",
-      "zoneName": "Sud de la Suède"
-    },
-    "US-CAL-BANC": {
-      "countryName": "USA",
-      "zoneName": "Autorité d'équilibrage de la Californie du Nord"
-    },
-    "US-CAL-CISO": {
-      "countryName": "USA",
-      "zoneName": "Opérateur de réseau indépendant de Californie"
-    },
-    "US-CAL-IID": {
-      "countryName": "USA",
-      "zoneName": "District d'irrigation impérial"
-    },
-    "US-CAL-LDWP": {
-      "countryName": "USA",
-      "zoneName": "Département de l'eau et de l'électricité de Los Angeles"
-    },
-    "US-CAL-TIDC": {
-      "countryName": "USA",
-      "zoneName": "District d'irrigation de Turlock"
-    },
-    "US-CAR-CPLE": {
-      "countryName": "USA",
-      "zoneName": "Duke Energy Progress East"
-    },
-    "US-CAR-CPLW": {
-      "countryName": "USA",
-      "zoneName": "Duke Energy Progress West"
-    },
-    "US-CAR-DUK": {
-      "countryName": "USA",
-      "zoneName": "Duke Energy Carolines"
-    },
-    "US-CAR-SC": {
-      "countryName": "USA",
-      "zoneName": "Autorité des services publics de Caroline du Sud"
-    },
-    "US-CAR-SCEG": {
-      "countryName": "USA",
-      "zoneName": "Compagnie d'électricité et de gaz de Caroline du Sud"
-    },
-    "US-CAR-YAD": {
-      "countryName": "USA",
-      "zoneName": "Génération d'énergie Alcoa, Inc. Division de Yadkin"
-    },
-    "US-CENT-SPA": {
-      "countryName": "USA",
-      "zoneName": "Administration de l'électricité du sud-ouest"
-    },
-    "US-CENT-SWPP": {
-      "countryName": "USA",
-      "zoneName": "Pool énergétique du sud-ouest"
-    },
-    "US-FLA-FMPP": {
-      "countryName": "USA",
-      "zoneName": "Pool énergétique municipal de Floride"
-    },
-    "US-FLA-FPC": {
-      "countryName": "USA",
-      "zoneName": "Duke Energy Floride Inc"
-    },
-    "US-FLA-FPL": {
-      "countryName": "USA",
-      "zoneName": "Compagnie d'électricité et d'éclairage de Floride"
-    },
-    "US-FLA-GVL": {
-      "countryName": "USA",
-      "zoneName": "Services publics régionaux de Gainesville"
-    },
-    "US-FLA-HST": {
-      "countryName": "USA",
-      "zoneName": "Ville de Homestead"
-    },
-    "US-FLA-JEA": {
-      "countryName": "USA",
-      "zoneName": "Autorité électrique de Jacksonville"
-    },
-    "US-FLA-SEC": {
-      "countryName": "USA",
-      "zoneName": "Coopérative électrique de Seminole"
-    },
-    "US-FLA-TAL": {
-      "countryName": "USA",
-      "zoneName": "Ville de Tallahassee"
-    },
-    "US-FLA-TEC": {
-      "countryName": "USA",
-      "zoneName": "Compagnie d'électricité de Tampa"
-    },
-    "US-MIDA-PJM": {
-      "countryName": "USA",
-      "zoneName": "PJM Interconnection, Llc"
-    },
-    "US-MIDW-AECI": {
-      "countryName": "USA",
-      "zoneName": "Coopérative électrique associée, Inc."
-    },
-    "US-MIDW-LGEE": {
-      "countryName": "USA",
-      "zoneName": "Compagnie de gaz et d'électricité de Louisville et services publics du Kentucky"
-    },
-    "US-MIDW-MISO": {
-      "countryName": "USA",
-      "zoneName": "Midcontinent Independent Transmission System Operator, Inc."
-    },
-    "US-NE-ISNE": {
-      "countryName": "USA",
-      "zoneName": "Iso Nouvelle-Angleterre Inc."
-    },
-    "US-NW-AVA": {
-      "countryName": "USA",
-      "zoneName": "Avista Corporation"
-    },
-    "US-NW-BPAT": {
-      "countryName": "USA",
-      "zoneName": "Administration de l'électricité de Bonneville"
-    },
-    "US-NW-CHPD": {
-      "countryName": "USA",
-      "zoneName": "PUD n°1 du comté de Chelan"
-    },
-    "US-NW-DOPD": {
-      "countryName": "USA",
-      "zoneName": "PUD n°1 du comté de Douglas"
-    },
-    "US-NW-GCPD": {
-      "countryName": "USA",
-      "zoneName": "PUD n°2 du comté de Grant, Washington"
-    },
-    "US-NW-GRID": {
-      "countryName": "USA",
-      "zoneName": "Gestion de l'énergie Gridforce, LLC"
-    },
-    "US-NW-GWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
-    },
-    "US-NW-IPCO": {
-      "countryName": "USA",
-      "zoneName": "Société d'électricité d'Idaho"
-    },
-    "US-NW-NEVP": {
-      "countryName": "USA",
-      "zoneName": "Société d'électricité du Nevada"
-    },
-    "US-NW-NWMT": {
-      "countryName": "USA",
-      "zoneName": "Énergie du Nord-Ouest"
-    },
-    "US-NW-PACE": {
-      "countryName": "USA",
-      "zoneName": "Pacificorp East"
-    },
-    "US-NW-PACW": {
-      "countryName": "USA",
-      "zoneName": "Pacificorp West"
-    },
-    "US-NW-PGE": {
-      "countryName": "USA",
-      "zoneName": "Compagnie électrique générale de Portland"
-    },
-    "US-NW-PSCO": {
-      "countryName": "USA",
-      "zoneName": "Société de service public du Colorado"
-    },
-    "US-NW-PSEI": {
-      "countryName": "USA",
-      "zoneName": "Puget Sound Energy"
-    },
-    "US-NW-SCL": {
-      "countryName": "USA",
-      "zoneName": "Seattle City Light"
-    },
-    "US-NW-TPWR": {
-      "countryName": "USA",
-      "zoneName": "Ville de Tacoma, Département des services publics, Division de la lumière"
-    },
-    "US-NW-WACM": {
-      "countryName": "USA",
-      "zoneName": "Western Area Power Administration - Région des Rocheuses"
-    },
-    "US-NW-WAUW": {
-      "countryName": "USA",
-      "zoneName": "Administration de l'électricité de la région de l'Ouest UGP Ouest"
-    },
-    "US-NW-WWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Wind Watch, Llc"
-    },
-    "US-NY-NYIS": {
-      "countryName": "USA",
-      "zoneName": "Exploitant de réseau indépendant de New York"
-    },
-    "US-SE-SEPA": {
-      "countryName": "USA",
-      "zoneName": "Administration de l'électricité du Sud-Est"
-    },
-    "US-SE-SOCO": {
-      "countryName": "USA",
-      "zoneName": "Southern Company Services, Inc. - Trans"
-    },
-    "US-SW-AZPS": {
-      "countryName": "USA",
-      "zoneName": "Société de services publics de l'Arizona"
-    },
-    "US-SW-EPE": {
-      "countryName": "USA",
-      "zoneName": "Compagnie électrique El Paso"
-    },
-    "US-SW-GRIF": {
-      "countryName": "USA",
-      "zoneName": "Griffith Energy, LLC"
-    },
-    "US-SW-PNM": {
-      "countryName": "USA",
-      "zoneName": "Société de service public du Nouveau-Mexique"
-    },
-    "US-SW-SRP": {
-      "countryName": "USA",
-      "zoneName": "Projet Salt River"
-    },
-    "US-SW-TEPC": {
-      "countryName": "USA",
-      "zoneName": "Société d'énergie électrique de Tucson"
-    },
-    "US-SW-WALC": {
-      "countryName": "USA",
-      "zoneName": "Western Area Power Administration - Région du sud-ouest désertique"
-    },
-    "US-TEN-TVA": {
-      "countryName": "USA",
-      "zoneName": "Autorité de la vallée du Tennessee"
-    },
-    "US-TEX-ERCO": {
-      "countryName": "USA",
-      "zoneName": "Conseil de fiabilité électrique du Texas, Inc."
-    },
-    "XK": {
-      "zoneName": "Kosovo"
     }
   }
 }

@@ -5,7 +5,7 @@ import type { GridState } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state/atoms';
 
-import { cacheBuster, getBasePath, getHeaders, QUERY_KEYS } from './helpers';
+import { cacheBuster, getBasePath, QUERY_KEYS } from './helpers';
 
 const getState = async (timeAverage: string): Promise<GridState> => {
   const path: URL = new URL(`v8/state/${timeAverage}`, getBasePath());
