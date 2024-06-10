@@ -6,19 +6,15 @@ import { Button } from './Button';
 
 interface Properties {
   showReloadButton?: boolean;
-  spinnerSize?: number;
 }
 
 export default function LoadingSpinner({
   showReloadButton = false,
-  spinnerSize = 40,
 }: Properties): ReactElement {
   const { t } = useTranslation();
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <div
-        className={`flex items-center justify-center h-${spinnerSize} w-${spinnerSize}`}
-      >
+      <div className={`flex max-h-[100px] max-w-[100px] items-center justify-center`}>
         <LoadingSpinnerIcon />
       </div>
       {showReloadButton && (
