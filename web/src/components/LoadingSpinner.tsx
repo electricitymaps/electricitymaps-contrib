@@ -1,5 +1,5 @@
 import { LoadingSpinnerIcon } from 'icons/loadingSpinnerIcon';
-import { ReactElement, Suspense } from 'react';
+import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from './Button';
@@ -16,13 +16,11 @@ export default function LoadingSpinner({
   const { t } = useTranslation();
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <Suspense>
-        <div
-          className={`flex items-center justify-center h-${spinnerSize} w-${spinnerSize}`}
-        >
-          <LoadingSpinnerIcon />
-        </div>
-      </Suspense>
+      <div
+        className={`flex items-center justify-center h-${spinnerSize} w-${spinnerSize}`}
+      >
+        <LoadingSpinnerIcon />
+      </div>
       {showReloadButton && (
         <>
           <p>{t('misc.slow-loading-text')}</p>
