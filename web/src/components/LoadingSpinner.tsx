@@ -1,20 +1,28 @@
-import { ReactElement } from 'react';
+import { LoadingSpinnerIcon } from 'icons/loadingSpinnerIcon';
+import { ReactElement, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from './Button';
 
 interface Properties {
   showReloadButton?: boolean;
+  spinnerSize?: number;
 }
 
 export default function LoadingSpinner({
   showReloadButton = false,
+  spinnerSize = 40,
 }: Properties): ReactElement {
   const { t } = useTranslation();
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <div className="h-40 w-40 bg-[url('/images/loading-icon.svg')] bg-[length:100px] bg-center bg-no-repeat dark:bg-gray-900 dark:bg-[url('/images/loading-icon-darkmode.svg')]" />
-
+      <Suspense>
+        <div
+          className={`flex items-center justify-center h-${spinnerSize} w-${spinnerSize}`}
+        >
+          <LoadingSpinnerIcon />
+        </div>
+      </Suspense>
       {showReloadButton && (
         <>
           <p>{t('misc.slow-loading-text')}</p>
