@@ -11,10 +11,13 @@ function UpdatePrompt() {
   } = useRegisterSW({
     onRegisteredSW: (_swURL, registration) => {
       registration &&
-        setInterval(() => {
-          console.info(`Checking for app update...`);
-          registration.update();
-        }, ONE_HOUR);
+        setInterval(
+          () => {
+            console.info(`Checking for app update...`);
+            registration.update();
+          },
+          import.meta.env.PROD ? ONE_HOUR : 10 * 1000
+        );
     },
     onRegisterError(error) {
       console.error(`SW registration failed: ${error}`);
