@@ -166,7 +166,12 @@ export interface ZoneDetails {
   zoneStates: {
     [key: string]: ZoneDetail;
   };
-  zoneMessage?: { message: string; issue: string };
+  zoneMessage?: ZoneMessage;
+}
+
+export interface ZoneMessage {
+  message: string;
+  issue?: string;
 }
 
 export interface GeometryProperties {

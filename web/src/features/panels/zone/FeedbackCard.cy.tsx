@@ -1,13 +1,20 @@
+import FeedbackCard from 'components/app-survey/FeedbackCard';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'translation/i18n';
 
-import FeedbackCard from './FeedbackCard';
+function postSurveyResponse() {}
 
 describe('FeedbackCard', () => {
   beforeEach(() => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
-        <FeedbackCard />
+        <FeedbackCard
+          postSurveyResponse={postSurveyResponse}
+          primaryQuestion={i18n.t('feedback-card.estimations.primary-question')}
+          secondaryQuestionHigh={i18n.t('feedback-card.estimations.secondary-question')}
+          secondaryQuestionLow={i18n.t('feedback-card.estimations.secondary-question')}
+          subtitle={i18n.t('feedback-card.estimations.subtitle')}
+        />
       </I18nextProvider>
     );
   });
@@ -46,6 +53,9 @@ describe('FeedbackCard', () => {
     cy.get('[data-test-id=feedback-pill-1]').click();
     cy.get('[data-test-id=feedback-input]').type('Test comment');
     cy.get('[data-test-id=pill]').click();
-    cy.get('[data-test-id=title]').should('contain.text', 'Thank you!');
+    cy.get('[data-test-id=title]').should(
+      'contain.text',
+      'Your response helps us understand and improve the quality of our app.'
+    );
   });
 });

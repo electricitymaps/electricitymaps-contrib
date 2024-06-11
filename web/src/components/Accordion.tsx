@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { PrimitiveAtom, useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
@@ -6,6 +7,7 @@ import { twMerge } from 'tailwind-merge';
 export default function Accordion({
   isCollapsedDefault = true,
   onClick,
+  onOpen,
   badge,
   className,
   icon,
@@ -15,6 +17,7 @@ export default function Accordion({
 }: {
   isCollapsedDefault?: boolean;
   onClick?: () => void;
+  onOpen?: () => void;
   badge?: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
@@ -37,6 +40,11 @@ export default function Accordion({
     if (onClick != undefined) {
       onClick();
     }
+
+    if (isCollapsed && onOpen != undefined) {
+      onOpen();
+    }
+
     setIsCollapsed((previous: boolean) => !previous);
     if (setCollapsedAtom != null) {
       setCollapsedAtom((previous: boolean) => !previous);

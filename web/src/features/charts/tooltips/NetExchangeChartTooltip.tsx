@@ -11,12 +11,13 @@ import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 export default function NetExchangeChartTooltip({
   zoneDetail,
 }: InnerAreaGraphTooltipProps) {
-  if (!zoneDetail) {
-    return null;
-  }
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { t } = useTranslation();
+
+  if (!zoneDetail) {
+    return null;
+  }
 
   const isHourly = timeAverage === TimeAverages.HOURLY;
   const { stateDatetime } = zoneDetail;

@@ -25,7 +25,8 @@ export default function TimeController({ className }: { className?: string }) {
   // or as Date objects. In this case datetimes are easier to work with
   const datetimes = useMemo(
     () => (data ? Object.keys(data.data?.datetimes).map((d) => new Date(d)) : undefined),
-    [data]
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- is loading is used to trigger the re-memoization on hour change
+    [data, isLoading]
   );
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function TimeController({ className }: { className?: string }) {
         index: datetimes.length - 1,
       });
     }
-  }, [data]);
+  }, [data, datetimes, setSelectedDatetime]);
 
   const onTimeSliderChange = (index: number) => {
     // TODO: Does this work properly missing values?

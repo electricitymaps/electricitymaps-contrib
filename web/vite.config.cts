@@ -6,7 +6,6 @@ import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
 // import { VitePWA } from 'vite-plugin-pwa';
-import replace from '@rollup/plugin-replace';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const manualChunkMap = {
@@ -28,14 +27,17 @@ const sentryPluginOptions: SentryVitePluginOptions = {
   // Auth tokens can be obtained from https://sentry.io/settings/account/api/auth-tokens/
   // and needs the `project:releases` and `org:read` scopes
   authToken: process.env.SENTRY_AUTH_TOKEN,
-  sourcemaps: {
-    // Specify the directory containing build artifacts
-    assets: ['./dist'],
-  },
 
   release: {
     // Optionally uncomment the line below to override automatic release name detection
     name: process.env.npm_package_version,
+  },
+  bundleSizeOptimizations: {
+    excludeDebugStatements: true,
+    excludePerformanceMonitoring: true,
+    excludeReplayIframe: true,
+    excludeReplayShadowDom: true,
+    excludeReplayWorker: true,
   },
 };
 
@@ -76,9 +78,6 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [
-    replace({
-      __SENTRY_TRACING__: false,
-    }),
     tsconfigPaths(),
     react({
       babel: {

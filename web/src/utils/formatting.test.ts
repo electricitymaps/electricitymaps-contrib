@@ -1,4 +1,4 @@
-import { formatCo2, formatDataSources, formatEnergy, formatPower } from './formatting';
+import { formatCo2, formatEnergy, formatPower } from './formatting';
 
 describe('formatEnergy', () => {
   it('handles NaN input', () => {
@@ -185,5 +185,65 @@ describe('formatCo2', () => {
     const actual = formatCo2(1.5e21);
     const expected = '1.5 Pt';
     expect(actual).to.deep.eq(expected);
+  });
+  it('handles negative values g', () => {
+    const actual = formatCo2(-9);
+    const expected = '−9 g';
+    expect(actual).to.eq(expected);
+  });
+  it('handles negative values kg', () => {
+    const actual = formatCo2(-9000);
+    const expected = '−9 kg';
+    expect(actual).to.eq(expected);
+  });
+  it('handles negative values t', () => {
+    const actual = formatCo2(-9_000_000);
+    const expected = '−9 t';
+    expect(actual).to.eq(expected);
+  });
+  it('handles negative values kt', () => {
+    const actual = formatCo2(-9_000_000_000);
+    const expected = '−9 kt';
+    expect(actual).to.eq(expected);
+  });
+  it('handles negative values Mt', () => {
+    const actual = formatCo2(-99_000_000_000_000);
+    const expected = '−99 Mt';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('uses same unit as another value would - negative t', () => {
+    const actual = formatCo2(-23_000, -2_350_000);
+    const expected = '−0.023 t';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('uses same unit as another value would - negative kg', () => {
+    const actual = formatCo2(-23_000, -24_000);
+    const expected = '−23 kg';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles real data value - negative', () => {
+    const actual = formatCo2(-740_703_650);
+    const expected = '−740 t';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles values petatonnes - negative', () => {
+    const actual = formatCo2(-1.5e21);
+    const expected = '−1.5 Pt';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles megatonnes close to 1Gt rounding down - negative', () => {
+    const actual = formatCo2(-994_320_320_231_123);
+    const expected = '−994 Mt';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles values up to 1 trillion grams, rounding up - negative', () => {
+    const actual = formatCo2(-999_900_000_000_000);
+    const expected = '−1 Gt';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles negative values correct when value to match is positive', () => {
+    const actual = formatCo2(-1_400_000_000, 1_400_000_000);
+    const expected = '−1.4 kt';
+    expect(actual).to.eq(expected);
   });
 });

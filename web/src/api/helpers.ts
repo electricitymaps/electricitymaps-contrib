@@ -65,11 +65,13 @@ export async function getHeaders(route: URL): Promise<Headers> {
 export function getBasePath() {
   return isUsingLocalEndpoint()
     ? 'http://127.0.0.1:8001'
-    : 'https://app-backend.electricitymap.org';
+    : 'https://app-backend.electricitymaps.com';
 }
 
 export function cacheBuster(): string {
   const currentDate = new Date();
+  const minutes = currentDate.getMinutes();
+  currentDate.setMinutes(minutes - (minutes % 5));
   currentDate.setSeconds(0);
   currentDate.setMilliseconds(0);
 
@@ -79,5 +81,5 @@ export function cacheBuster(): string {
 export const QUERY_KEYS = {
   STATE: 'state',
   ZONE: 'zone',
-  FEATURE_FLAGS: 'feature-flags',
+  META: 'meta',
 };

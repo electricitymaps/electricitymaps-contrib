@@ -5,12 +5,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    {
-      name: '@storybook/addon-styling',
-      options: {
-        postCss: true,
-      },
-    },
+    '@storybook/addon-themes',
   ],
   framework: {
     name: '@storybook/react-vite',

@@ -20,6 +20,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4854.6
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 4631.7
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -44,6 +47,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 999.1
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 1000.9
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov

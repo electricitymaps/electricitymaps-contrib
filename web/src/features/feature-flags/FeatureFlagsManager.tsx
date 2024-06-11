@@ -1,5 +1,6 @@
 import * as Switch from '@radix-ui/react-switch';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Meta } from 'api/getMeta';
 import { QUERY_KEYS } from 'api/helpers';
 import { useSearchParams } from 'react-router-dom';
 
@@ -13,18 +14,19 @@ function Content({ features }: { features: FeatureFlags }) {
     mutationFn: (_key: string) => Promise.resolve(),
     onMutate: async (key) => {
       // Snapshot the previous value
-      const previousState = queryClient.getQueryData([QUERY_KEYS.FEATURE_FLAGS]);
+      const previousState = queryClient.getQueryData([QUERY_KEYS.META]);
 
       // Optimistically update to the new value
-      queryClient.setQueryData(
-        [QUERY_KEYS.FEATURE_FLAGS],
-        (old: FeatureFlags | undefined) => {
-          return {
-            ...old,
-            [key]: !old?.[key],
-          };
-        }
-      );
+      queryClient.setQueryData([QUERY_KEYS.META], (previousMeta: Meta | undefined) => {
+        const previousFeatures = previousMeta?.features || {};
+        return {
+          ...previousMeta,
+          features: {
+            ...previousFeatures,
+            [key]: !previousFeatures?.[key],
+          },
+        };
+      });
 
       // Return a context object with the snapshotted value
       return { previousState };
@@ -65,7 +67,7 @@ export default function FeatureFlagsManager() {
   }
 
   return (
-    <div className="invisible fixed bottom-28 right-4 z-40 flex w-[224px] flex-col rounded bg-white/90 px-4 py-4  shadow-lg backdrop-blur-sm sm:visible dark:bg-gray-800">
+    <div className="pointer-events-auto invisible flex w-[224px] flex-col rounded bg-white/90 px-4 py-4 shadow-lg backdrop-blur-sm sm:visible dark:bg-gray-800">
       <Content features={features} />
     </div>
   );
