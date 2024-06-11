@@ -60,3 +60,12 @@ Cypress.Commands.add('visitOnMobile', (path) => {
     },
   });
 });
+
+Cypress.Commands.add('waitForServiceWorker', () => {
+  cy.window().then((win) => {
+    if ('serviceWorker' in win.navigator) {
+      return cy.wrap(win.navigator.serviceWorker.ready);
+    }
+    throw new Error('Service Worker is not supported by this browser.');
+  });
+});

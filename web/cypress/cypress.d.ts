@@ -13,6 +13,7 @@ declare global {
       waitForAPISuccess: (path: string) => void;
       visitOnMobile: (path: string) => void;
       getById: (value: string, arguments_?: any) => Chainable<JQuery<HTMLElement>>;
+      waitForServiceWorker: () => Chainable<void>;
     }
   }
 }

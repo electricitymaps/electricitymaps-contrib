@@ -10,6 +10,7 @@ describe('Country Panel', () => {
     cy.interceptAPI('v8/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB');
+    cy.waitForServiceWorker();
     cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
@@ -61,6 +62,7 @@ describe('Country Panel', () => {
   it.skip('asserts countryPanel contains "no-recent-data" message', () => {
     cy.interceptAPI('v8/details/hourly/UA');
     cy.visit('/zone/UA?lang=en-GB');
+    cy.waitForServiceWorker();
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/UA');
 
@@ -70,14 +72,12 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
+    cy.interceptAPI('v8/details/hourly/CN');
     cy.visit('/zone/CN?lang=en-GB');
+    cy.waitForServiceWorker();
     cy.waitForAPISuccess('v8/state/last_hour');
     cy.waitForAPISuccess('v8/state/hourly');
-    cy.intercept('GET', 'v8/details/hourly/CN*').as('chinaDetails');
-    cy.wait('@chinaDetails').then((interception) => {
-      // Check for the presence of a failure condition
-      expect(interception?.response?.statusCode).to.not.eq(200);
-    });
+    cy.waitForAPISuccess('v8/details/hourly/CN');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });

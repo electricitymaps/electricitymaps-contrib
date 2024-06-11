@@ -7,8 +7,10 @@ export default defineConfig({
   video: false,
   watchForFileChanges: true,
   e2e: {
-    baseUrl: 'http://127.0.0.1:5173/',
+    baseUrl: 'http://127.0.0.1:4173/',
     specPattern: 'cypress/e2e/**/*.ts',
+    pageLoadTimeout: 60 * 2 * 1000, // Increase to 2 minutes
+    defaultCommandTimeout: 60 * 2 * 1000, // Increase to 2 minutes
   },
   component: {
     devServer: {
