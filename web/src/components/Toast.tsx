@@ -33,7 +33,7 @@ function Toast({ title, description, toastAction, toastActionText, toastClose }:
         onOpenChange={setOpen}
         duration={60 * 1000}
         type="background"
-        className="radix-state-open:animate-toast-slide-in-right radix-state-closed:animate-toast-hide bg-gray/80 fixed top-16 z-50 m-2 inline-block max-w-max self-center rounded-lg shadow backdrop-blur-sm xs:left-1/2 xs:w-max xs:-translate-x-1/2 xs:transform dark:bg-gray-800/80"
+        className="bg-gray/80 fixed top-16 z-50 m-2 inline-block max-w-max self-center rounded-lg shadow backdrop-blur-sm xs:left-1/2 xs:w-max xs:-translate-x-1/2 xs:transform dark:bg-gray-800/80"
       >
         <div className="flex items-center p-2">
           <div className="flex flex-col">
