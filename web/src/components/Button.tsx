@@ -12,6 +12,7 @@ interface ButtonProps {
   href?: string;
   backgroundClasses?: string;
   foregroundClasses?: string;
+  asDiv?: boolean;
   onClick?: () => void;
 }
 
@@ -24,10 +25,11 @@ export function Button({
   foregroundClasses, // textColor, etc.
   size = 'lg',
   type = 'primary',
+  asDiv, // If true, renders a div instead of a button to avoid nested buttons in components like ToastPrimitive.Action
   onClick,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
-  const As = renderAsLink ? 'a' : 'button';
+  const As = asDiv ? 'div' : (renderAsLink ? 'a' : 'button');
   const componentType = renderAsLink ? undefined : 'button';
   const isIconOnly = !children && Boolean(icon);
 

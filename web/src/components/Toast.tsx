@@ -50,7 +50,9 @@ function Toast({ title, description, toastAction, toastActionText, toastClose }:
               className="m-2 flex items-center justify-center "
               onClick={handleToastAction}
             >
-              <Button size="md">{toastActionText}</Button>
+              <Button size="md" asDiv>
+                {toastActionText}
+              </Button>
             </ToastPrimitive.Action>
           )}
           <ToastPrimitive.Close
