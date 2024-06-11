@@ -1,11 +1,13 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
+type SizeOptions = 'sm' | 'md' | 'lg' | 'xl';
+
 interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   disabled?: boolean;
-  size?: 'sm' | 'lg' | 'xl';
+  size?: SizeOptions;
   type?: 'primary' | 'secondary' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
@@ -105,11 +107,14 @@ function getForeground(type: string) {
   }
 }
 
-function getSize(size: string, type: string, isIconOnly: boolean) {
+function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
   if (isIconOnly) {
     switch (size) {
       case 'sm': {
         return 'min-w-7 min-h-7';
+      }
+      case 'md': {
+        return 'min-w-9 min-h-9';
       }
       case 'lg': {
         return 'min-w-11 min-h-11';
@@ -123,6 +128,9 @@ function getSize(size: string, type: string, isIconOnly: boolean) {
   switch (size) {
     case 'sm': {
       return 'min-w-6 min-h-6 px-2 py-1 gap-x-1 text-sm';
+    }
+    case 'md': {
+      return 'min-w-8 min-h-8 px-4 py-2 gap-x-1.5 text-sm';
     }
     case 'lg': {
       return type == 'link'
