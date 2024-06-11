@@ -29,7 +29,7 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
-  const As = asDiv ? 'div' : (renderAsLink ? 'a' : 'button');
+  const As = getComponentType(renderAsLink, asDiv);
   const componentType = renderAsLink ? undefined : 'button';
   const isIconOnly = !children && Boolean(icon);
 
@@ -65,6 +65,17 @@ export function Button({
       </As>
     </div>
   );
+}
+
+function getComponentType(renderAsLink: boolean, asDiv?: boolean) {
+  if (renderAsLink) {
+    return 'a';
+  }
+  if (asDiv) {
+    return 'div';
+  }
+
+  return 'button';
 }
 
 function getHover(type: string) {
