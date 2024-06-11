@@ -37,17 +37,17 @@ function Toast({ title, description, toastAction, toastActionText, toastClose }:
       >
         <div className="flex items-center p-2">
           <div className="flex flex-col">
-            <ToastPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
+            <ToastPrimitive.Title className="text-md font-medium text-gray-900 dark:text-gray-100">
               {title}
             </ToastPrimitive.Title>
-            <ToastPrimitive.Description className="mt-1 text-sm text-gray-700 dark:text-gray-400">
+            <ToastPrimitive.Description className="text-sm text-gray-700 dark:text-gray-400">
               {description}
             </ToastPrimitive.Description>
           </div>
           {toastAction && (
             <ToastPrimitive.Action
               altText="view now"
-              className="m-2 flex items-center justify-center "
+              className="mx-2 flex items-center justify-center"
               onClick={handleToastAction}
             >
               <Button size="md" asDiv>
@@ -56,7 +56,7 @@ function Toast({ title, description, toastAction, toastActionText, toastClose }:
             </ToastPrimitive.Action>
           )}
           <ToastPrimitive.Close
-            className="m-2 flex items-center justify-center"
+            className="mx-2 flex items-center justify-center"
             onClick={handleToastClose}
             aria-label={t('misc.dismiss')}
           >
