@@ -27,6 +27,8 @@ capacity:
 contributors:
   - corradio
   - nessie2013
+delays:
+  production: 4
 emissionFactors:
   direct:
     battery discharge:

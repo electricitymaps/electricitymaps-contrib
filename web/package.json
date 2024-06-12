@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.140.0",
+  "version": "1.144.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "repository": {
     "type": "git",
@@ -148,7 +148,7 @@
     "autoprefixer": "10.4.15",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
-    "cypress": "13.8.1",
+    "cypress": "13.11.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
