@@ -77,7 +77,11 @@ export default function EstimationCard({
     case 'estimated': {
       return (
         <div>
-          <EstimatedCard estimationMethod={estimationMethod} />
+          {isTSAModel ? (
+            <EstimatedTSACard />
+          ) : (
+            <EstimatedCard estimationMethod={estimationMethod} />
+          )}
           {isFeedbackCardVisible && isTSAModel && (
             <FeedbackCard
               surveyReference={estimationMethod}
@@ -260,17 +264,29 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
 }
 
 function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefined }) {
-  const isTSAModel = estimationMethod === 'ESTIMATED_TIME_SLICER_AVERAGE';
-  const iconPath = isTSAModel ? 'preliminary' : 'estimated';
-  const iconClass = `bg-[url('/images/${iconPath}_light.svg')] dark:bg-[url('/images/${iconPath}_dark.svg')]`;
   return (
     <BaseCard
       estimationMethod={estimationMethod}
       zoneMessage={undefined}
-      icon={iconClass}
+      icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
       iconPill={undefined}
       showMethodologyLink={true}
-      pillType={isTSAModel ? undefined : 'default'}
+      pillType="default"
+      textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="estimated-card"
+    />
+  );
+}
+
+function EstimatedTSACard() {
+  return (
+    <BaseCard
+      estimationMethod="ESTIMATED_TIME_SLICER_AVERAGE"
+      zoneMessage={undefined}
+      icon="bg-[url('/images/preliminary_light.svg')] dark:bg-[url('/images/preliminary_dark.svg')]"
+      iconPill={undefined}
+      showMethodologyLink={true}
+      pillType={undefined}
       textColorTitle="text-amber-700 dark:text-amber-500"
       cardType="estimated-card"
     />
