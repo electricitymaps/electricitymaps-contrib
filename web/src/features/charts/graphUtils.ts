@@ -230,5 +230,6 @@ export function extractLinkFromSource(
     return source;
   }
 
+  // We on purpose don't use https due to some sources not supporting it (and the majority that does will automatically redirect anyway)
   return `http://${source}`;
 }
