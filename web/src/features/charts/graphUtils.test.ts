@@ -158,7 +158,7 @@ describe('extractLinkFromSource', () => {
     );
   });
 
-  it('real example: should return mapped link if source is in sourceLinkMapping', () => {
+  it('should work with a real link', () => {
     expect(extractLinkFromSource('Climatescope', sourceLinkMapping)).to.equal(
       'https://www.global-climatescope.org/'
     );
