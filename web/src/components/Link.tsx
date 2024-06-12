@@ -1,4 +1,4 @@
-export function Link({ href, linkText }: { href: string; linkText: string }) {
+export function Link({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
       href={href}
@@ -6,7 +6,7 @@ export function Link({ href, linkText }: { href: string; linkText: string }) {
       rel="noopener noreferrer"
       className="text-sm font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500"
     >
-      {linkText}
+      {children}
     </a>
   );
 }

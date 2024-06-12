@@ -15,18 +15,15 @@ export default function MethodologyCard() {
         onOpen={() => trackEvent('AppliedMethodologies Expanded')}
       >
         <div className="flex flex-col gap-2 pb-1 ">
-          <Link
-            href="https://www.electricitymaps.com/methodology#missing-data"
-            linkText={t('left-panel.applied-methodologies.estimations')}
-          />
-          <Link
-            href="https://www.electricitymaps.com/methodology#data-collection-and-processing"
-            linkText={t('left-panel.applied-methodologies.flowtracing')}
-          />
-          <Link
-            href="https://www.electricitymaps.com/methodology#carbon-intensity-and-emission-factors"
-            linkText={t('left-panel.applied-methodologies.carbonintensity')}
-          />
+          <Link href="https://www.electricitymaps.com/methodology#missing-data">
+            {t('left-panel.applied-methodologies.estimations')}
+          </Link>
+          <Link href="https://www.electricitymaps.com/methodology#data-collection-and-processing">
+            {t('left-panel.applied-methodologies.flowtracing')}
+          </Link>
+          <Link href="https://www.electricitymaps.com/methodology#carbon-intensity-and-emission-factors">
+            {t('left-panel.applied-methodologies.carbonintensity')}
+          </Link>
         </div>
       </Accordion>
     </RoundedCard>
