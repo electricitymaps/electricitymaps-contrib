@@ -12,9 +12,17 @@ type Props = {
   toastAction?: () => void;
   toastClose?: () => void;
   toastActionText?: string;
+  duration?: number;
 };
 
-function Toast({ title, description, toastAction, toastActionText, toastClose }: Props) {
+function Toast({
+  title,
+  description,
+  toastAction,
+  toastActionText,
+  toastClose,
+  duration,
+}: Props) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(true);
   const handleToastAction = () => {
@@ -31,7 +39,7 @@ function Toast({ title, description, toastAction, toastActionText, toastClose }:
       <ToastPrimitive.Root
         open={open}
         onOpenChange={setOpen}
-        duration={60 * 1000}
+        duration={duration}
         type="background"
         className="bg-gray/80 fixed top-16 z-50 m-2 inline-block max-w-max self-center rounded-lg shadow backdrop-blur-sm xs:left-1/2 xs:w-max xs:-translate-x-1/2 xs:transform dark:bg-gray-800/80"
       >

@@ -36,6 +36,7 @@ function UpdatePrompt() {
         isCloseable={true}
         toastActionText={t('misc.reload')}
         toastClose={close}
+        duration={60 * 1000}
       />
     )
   );
