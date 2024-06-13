@@ -151,6 +151,12 @@
     "light": "Ljus",
     "system": "System"
   },
+  "updatePrompt": {
+    "title": "Uppdatering tillgänglig",
+    "description": "En ny version av appen är tillgänglig, uppdatera nu?",
+    "update": "Uppdatera",
+    "dismiss": "Avvisa"
+  },
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
     "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",

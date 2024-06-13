@@ -126,6 +126,12 @@
     "country": "nazione",
     "zone": "zona"
   },
+  "updatePrompt": {
+    "title": "Aggiornamento disponibile",
+    "description": "Una nuova versione dell'app è disponibile, aggiornare ora?",
+    "update": "Aggiorna",
+    "dismiss": "Ignora"
+  },
   "misc": {
     "maintitle": "Emissioni di CO₂ in tempo reale del consumo elettrico",
     "oops": "Oops! Stiamo avendo dei problemi nel raggiungere il server. Proveremo di nuovo tra poco!.",

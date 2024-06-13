@@ -194,6 +194,12 @@
     "light": "Hell",
     "system": "System"
   },
+  "updatePrompt": {
+    "title": "Aktualisierung verfügbar",
+    "description": "Eine neue Version der App ist verfügbar, jetzt aktualisieren?",
+    "update": "Aktualisieren",
+    "dismiss": "Schließen"
+  },
   "misc": {
     "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
     "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",

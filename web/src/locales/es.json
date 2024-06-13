@@ -184,6 +184,12 @@
     "lowCarbDescription": "Incluye renovables y nuclear",
     "dataIsDelayed": "Datos con retraso"
   },
+  "updatePrompt": {
+    "title": "Actualización disponible",
+    "description": "Una nueva versión de la aplicación está disponible, ¿actualizar ahora?",
+    "update": "Actualizar",
+    "dismiss": "Descartar"
+  },
   "misc": {
     "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
     "oops": "¡Ups! Estamos teniendo problemas con el servidor. Lo intentaremos de nuevo en unos segundos.",

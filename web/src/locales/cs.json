@@ -84,6 +84,12 @@
     "cpinfo": "<b>spotřeba</b> bere v úvahu dovoz a vývoz, <b>výroba</b> je ignoruje",
     "selectLanguage": "Vyberte jazyk"
   },
+  "updatePrompt": {
+    "title": "Dostupná aktualizace",
+    "description": "Je dostupná nová verze aplikace, aktualizovat nyní?",
+    "update": "Aktualizovat",
+    "dismiss": "Zavřít"
+  },
   "misc": {
     "maintitle": "Emise CO₂ ze spotřeby elektřiny v reálném čase",
     "oops": "Ach jo! Máme problém v komunikaci se serverem. Zkusíme to znovu za pár vteřin.",

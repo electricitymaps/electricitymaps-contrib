@@ -125,6 +125,12 @@
     "country": "država",
     "zone": "območje"
   },
+  "updatePrompt": {
+    "title": "Posodobitev na voljo",
+    "description": "Na voljo je nova različica aplikacije, želite zdaj posodobiti?",
+    "update": "Posodobi",
+    "dismiss": "Zavrni"
+  },
   "misc": {
     "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije",
     "oops": "Ups! Imamo težave pri doseganju strežnika. Poskusili bomo znova čez nekaj sekund.",

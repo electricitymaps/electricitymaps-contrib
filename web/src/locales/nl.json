@@ -60,6 +60,12 @@
     "selectLanguage": "Selecteer taal",
     "lowCarbDescription": "Inclusief hernieuwbaar en nucleair"
   },
+  "updatePrompt": {
+    "title": "Update beschikbaar",
+    "description": "Er is een nieuwe versie van de app beschikbaar, nu updaten?",
+    "update": "Bijwerken",
+    "dismiss": "Negeren"
+  },
   "misc": {
     "maintitle": "Live CO₂ uitstoot van het elektriciteitsverbruik",
     "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
