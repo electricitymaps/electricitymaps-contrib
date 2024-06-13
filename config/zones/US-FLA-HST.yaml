@@ -66,7 +66,7 @@ contributors:
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 41
+  production: 37
 emissionFactors:
   direct: {}
   lifecycle:
