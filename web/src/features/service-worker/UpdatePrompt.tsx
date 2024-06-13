@@ -31,11 +31,13 @@ function UpdatePrompt() {
   return (
     needRefresh && (
       <Toast
-        title={t('misc.newversion')}
+        title={t('updatePrompt.title')}
+        description={t('updatePrompt.description')}
         toastAction={update}
         isCloseable={true}
-        toastActionText={t('misc.reload')}
+        toastActionText={t('updatePrompt.update')}
         toastClose={close}
+        toastCloseText={t('updatePrompt.dismiss')}
         duration={60 * 1000}
       />
     )

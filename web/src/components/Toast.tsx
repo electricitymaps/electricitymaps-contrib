@@ -12,6 +12,7 @@ type Props = {
   toastAction?: () => void;
   toastClose?: () => void;
   toastActionText?: string;
+  toastCloseText?: string;
   duration?: number;
 };
 
@@ -21,6 +22,7 @@ function Toast({
   toastAction,
   toastActionText,
   toastClose,
+  toastCloseText,
   duration,
 }: Props) {
   const { t } = useTranslation();
@@ -66,7 +68,7 @@ function Toast({
           <ToastPrimitive.Close
             className="mx-2 flex items-center justify-center"
             onClick={handleToastClose}
-            aria-label={t('misc.dismiss')}
+            aria-label={toastCloseText ?? t('misc.dismiss')}
           >
             <HiXMark className="h-4 w-4" />
           </ToastPrimitive.Close>
