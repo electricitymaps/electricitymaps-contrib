@@ -1,7 +1,7 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaXmark } from 'react-icons/fa6';
+import { HiXMark } from 'react-icons/hi2';
 
 import { Button } from './Button';
 
@@ -60,7 +60,7 @@ function Toast({ title, description, toastAction, toastActionText, toastClose }:
             onClick={handleToastClose}
             aria-label={t('misc.dismiss')}
           >
-            <FaXmark className="h-4 w-4" />
+            <HiXMark className="h-4 w-4" />
           </ToastPrimitive.Close>
         </div>
       </ToastPrimitive.Root>

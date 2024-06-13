@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineX } from 'react-icons/hi';
+import { HiXMark } from 'react-icons/hi2';
 import { hasSeenSurveyCardAtom, userLocationAtom } from 'utils/state/atoms';
 
 enum FeedbackState {
@@ -100,7 +100,7 @@ export default function FeedbackCard({
           </h2>
         </div>
         <button data-test-id="close-button" onClick={handleClose} className="px-3 py-2.5">
-          <HiOutlineX />
+          <HiXMark />
         </button>
       </div>
       <div className="pb-2 pr-2.5">
