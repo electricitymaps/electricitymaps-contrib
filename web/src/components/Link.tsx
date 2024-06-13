@@ -1,10 +1,4 @@
-export function Link({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
+export function Link({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
       href={href}
