@@ -197,7 +197,6 @@
   "misc": {
     "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
     "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",
-    "newversion": "Eine neuere Version ist verfügbar!",
     "retrynow": "Erneut versuchen",
     "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
     "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
