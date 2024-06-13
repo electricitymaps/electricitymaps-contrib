@@ -61,7 +61,7 @@ contributors:
   - robertahunt
   - KabelWlan
 delays:
-  production: 118
+  production: 85
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:
