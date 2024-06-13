@@ -152,7 +152,7 @@ noscript img {
   max-width: 300px;
 }
 
-@keyframes fade {
+@keyframes loading-icon-spinner-animation {
   0%,
   100% {
     opacity: 1;

@@ -8,7 +8,7 @@ function AnimatedCircle({ cx, cy, delay }: { cx: string; cy: string; delay: numb
       r="19"
       fill="currentColor"
       style={{
-        animation: `fade 0.8s ${delay}s infinite linear`,
+        animation: `loading-icon-spinner-animation 0.8s ${delay}s infinite linear`,
       }}
     />
   );
