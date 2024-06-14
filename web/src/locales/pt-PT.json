@@ -879,9 +879,9 @@
       "countryName": "Grã-Bretanha",
       "zoneName": "Ilhas Orkney"
     },
-    "GB-SHI": {
-      "countryName": "Great Britain",
-      "zoneName": "Shetland Islands"
+    "GB-ZET": {
+      "countryName": "Grã-Bretanha",
+      "zoneName": "Ilhas Shetland"
     },
     "GD": {
       "zoneName": "Grenada"
@@ -2073,10 +2073,6 @@
     "BR-I": {
       "countryName": "Brasil",
       "zoneName": "Sistemas Isolados"
-    },
-    "GB-ZET": {
-      "countryName": "Grã-Bretanha",
-      "zoneName": "Ilhas Shetland"
     },
     "IN-TL": {
       "countryName": "Índia",
