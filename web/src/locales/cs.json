@@ -35,7 +35,6 @@
     "renewable": "Obnovitelné",
     "electricityproduction": "Produkce elektřiny",
     "electricityconsumption": "Spotřeba elektřiny",
-    "bysource": "podle zdroje",
     "emissions": "Uhlíkové emise",
     "helpfrom": "s pomocí od",
     "noDataAtTimestamp": "Data pro vybraný čas jsou dočasně nedostupná",
@@ -86,12 +85,7 @@
   },
   "misc": {
     "maintitle": "Emise CO₂ ze spotřeby elektřiny v reálném čase",
-    "oops": "Ach jo! Máme problém v komunikaci se serverem. Zkusíme to znovu za pár vteřin.",
     "newversion": "Nová verze je dostupná!",
-    "retrynow": "Zkusit znovu",
-    "database-ad": "Hledáte historická data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Zkontrolujte naši databázi!</a>",
-    "api-ad": "Chcete mít aktuální data ve své aplikaci nebo na svém zařízení? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vyzkoušejte naše API!</a>]",
-    "legend": "Legenda",
     "faq": "Často kladené otázky",
     "dismiss": "Zavřít",
     "reload": "Znovu načíst"
@@ -144,8 +138,6 @@
     "groupName": "Metogologie",
     "carbonIntensity-question": "Co je \"uhlíková intenzita\"?",
     "carbonIntensity-answer": "Uhlíková intenzita je míra emisí skleníkových plynů ve vztahu k produkci elektrické energie, kterou spotřebováváte (uvádí se v gCO₂eq/kWh - gram ekvivalentního oxidu uhličitého vyprodukovaného na kilowatthodinu spotřebované elektřiny). <br><br>Měříme emise spotřebované elektřiny - ne produkce. To znamená, že počítáme všechny skleníkové plyny (jak CO₂, tak i jiné skleníkové plyny, například metan), které vzešly z produkce a importu elektřiny spotřebované v dané oblasti. Používáme přístup posuzovaní životního cyklu (LCA - life cycle analysis approach). To znamená, že bereme v úvahu emise vznikající v celém životním cyklu elektrárny(stavba, produkce paliva, operativní emise, vyřazení).",
-    "consumptionFocus-question": "Proč počítáte uhlíkovou intenzitu spotřeby energie a ne její produkce?",
-    "consumptionFocus-answer": "Věříme, že obyvatelstvo by mělo být zodpovědné za elektřinu, kterou spotřebuje a ne za elektřinu, která je produkovaná v oblasti, ve které žije. Taky věříme, že oblasti by neměly být schopné simulovat nízký dopad na klima jednoduše tím, že přemístí špinavou produkci energie do jiných oblastí a pak importovat elektřinu právě z nich.",
     "renewableLowCarbonDifference-question": "Jaký je rozdíl mezi „obnovitelnou“ a „nízko-emisní“ energií?",
     "renewableLowCarbonDifference-answer": "Obnovitelná produkce energie je založená na obnovitelných zdrojích energie jako například na větru, vodním proudu, slunečním záření nebo geotermální energii. Nízko-emisní produkce energie znamená, že tato produkce produkuje nízkou úroveň emisí skleníkových plynů, jako například jaderná energie.",
     "importsAndExports-question": "Berete v úvahu import a export elektřiny?",
@@ -405,10 +397,6 @@
     },
     "CK": {
       "zoneName": "Cookovy ostrovy"
-    },
-    "CL-SING": {
-      "countryName": "Chile",
-      "zoneName": "SING"
     },
     "CL-SEM": {
       "countryName": "Chile",
@@ -1341,10 +1329,6 @@
     },
     "UM": {
       "zoneName": "Menší odlehlé ostrovy USA "
-    },
-    "US-HI": {
-      "countryName": "Spojené státy americké",
-      "zoneName": "Havaj"
     },
     "UY": {
       "zoneName": "Uruguay"

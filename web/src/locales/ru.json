@@ -1,13 +1,5 @@
 {
   "panel-initial-text": {
-    "thisshowsrealtime": "Карта в режиме реального времени иллюстрирует",
-    "whereelectricitycomesfrom": "из каких источников вырабатывается электричество",
-    "and": "и",
-    "howmuchco2": "сколько CO₂эк",
-    "wasemitted": "был выпущен, чтобы произвести его",
-    "takeinaccount": "Мы учитываем",
-    "importexport": "перетоки",
-    "betweenzones": " между зонами",
     "thisproject": "Этот проект",
     "opensource": "Open Source",
     "see": "см.",
@@ -20,7 +12,6 @@
     "lowcarbon": "с низким уровнем CO₂",
     "renewable": "ВИЭ",
     "electricityproduction": "производство электричества",
-    "bysource": "по источнику",
     "emissions": "эмиссии CO₂эк",
     "helpfrom": "с помощью",
     "electricityconsumption": "Потребление электричества",
@@ -84,12 +75,7 @@
   },
   "misc": {
     "maintitle": "Эмиссии CO₂ производства электроенергии в реальном времени",
-    "oops": "Ой! У нас возникли проблемы с доступом к серверу. Подождите несколько секунд.",
     "newversion": "Доступна новая версия!",
-    "retrynow": "Повторить попытку",
-    "database-ad": "Ищите исторические данные? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Посетите нашу базу данных!</a>",
-    "api-ad": "Хотите получать данные в реальном времени для своего приложения или устройства? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Посетите наш API!</a>",
-    "legend": "Легенда",
     "faq": "Часто Задаваемые Вопросы",
     "dismiss": "Закрыть",
     "reload": "Перезагрузить"
@@ -345,10 +331,6 @@
       "countryName": "Чили",
       "zoneName": "SEM"
     },
-    "CL-SING": {
-      "countryName": "Чили",
-      "zoneName": "SING"
-    },
     "CM": {
       "zoneName": "Камерун"
     },
@@ -450,10 +432,6 @@
     "ES-CN-TE": {
       "countryName": "Испания",
       "zoneName": "Тенерифе"
-    },
-    "ES-IB": {
-      "countryName": "Испания",
-      "zoneName": "Балеарские острова"
     },
     "ET": {
       "zoneName": "Эфиопия"
@@ -673,10 +651,6 @@
     "IN-SK": {
       "countryName": "Индия",
       "zoneName": "Сикким"
-    },
-    "IN-TL": {
-      "countryName": "Индия",
-      "zoneName": "Тамил Наду"
     },
     "IN-TR": {
       "countryName": "Индия",
@@ -1179,10 +1153,6 @@
     "AU-TAS-KI": {
       "countryName": "Тасмания",
       "zoneName": "Кинг"
-    },
-    "CL-SING-SIC": {
-      "countryName": "Чили",
-      "zoneName": "SING/SIC"
     },
     "ES-IB-FO": {
       "countryName": "Испания",
