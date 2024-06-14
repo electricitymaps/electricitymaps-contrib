@@ -11,6 +11,19 @@ import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'
 const exchangesConfig: Record<string, any> = exchangesConfigJSON;
 const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesToExclude;
 
+function shouldHideExchangeIntensity(
+  exchange: string,
+  zonesWithOutages: string[],
+  value: number
+) {
+  const [zone1, zone2] = exchange.split('->');
+
+  return (
+    (zonesWithOutages.includes(zone1) && value > 0) ||
+    (zonesWithOutages.includes(zone2) && value < 0)
+  );
+}
+
 export function filterExchanges(
   exchanges: Record<string, StateExchangeData>,
   exclusionArrayZones: string[],
@@ -40,6 +53,16 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
   const [viewMode] = useAtom(spatialAggregateAtom);
   const { data } = useGetState();
 
+  // Find outages in state data and hide exports from those zones
+  const zonesWithOutages = useMemo(() => {
+    const zoneData = data?.data?.datetimes?.[selectedDatetime?.datetimeString]?.z;
+    return zoneData
+      ? Object.entries(zoneData)
+          .filter(([_, value]) => value.o)
+          .map(([zone]) => zone)
+      : [];
+  }, [data, selectedDatetime]);
+
   const exchangesToUse: { [key: string]: StateExchangeData } = useMemo(() => {
     const exchanges = data?.data?.datetimes?.[selectedDatetime?.datetimeString]?.e;
 
@@ -60,12 +83,14 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
 
   const currentExchanges: ExchangeArrowData[] = useMemo(() => {
     return Object.entries(exchangesToUse).map(([key, value]) => ({
-      co2intensity: value.ci,
+      co2intensity: shouldHideExchangeIntensity(key, zonesWithOutages, value.f)
+        ? Number.NaN
+        : value.ci,
       netFlow: value.f,
       ...exchangesConfig[key],
       key,
     }));
-  }, [exchangesToUse]);
+  }, [exchangesToUse, zonesWithOutages]);
 
   return currentExchanges;
 }
