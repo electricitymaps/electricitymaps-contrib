@@ -24,6 +24,12 @@ function cleanLanguageObject(language, reference) {
       cleanLanguageObject(language[key], reference[key]);
     }
   }
+  // Run through the keys again to remove any empty objects
+  for (const key of Object.keys(language)) {
+    if (typeof language[key] === 'object' && Object.keys(language[key]).length === 0) {
+      delete language[key];
+    }
+  }
 }
 
 for (const language of languages) {
