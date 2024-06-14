@@ -16,9 +16,7 @@ const englishFile = JSON.parse(await readFile(LOCALES_PATH + english));
 
 function cleanLanguageObject(language, reference) {
   for (const key of Object.keys(language)) {
-    console.log(key);
     if (!reference[key]) {
-      console.log(key);
       // Delete the key from the current language if not present in the reference
       delete language[key];
     } else if (typeof language[key] === 'object' && typeof reference[key] === 'object') {
@@ -30,11 +28,12 @@ function cleanLanguageObject(language, reference) {
 
 for (const language of languages) {
   // Read the language file
+  console.log(`🧹 Fixing ${language.replace('.json', '')}...`);
   let languageFile = await readFile(LOCALES_PATH + language);
   // Parse the language file
   languageFile = JSON.parse(languageFile);
-  console.log(languageFile);
   // Clean the language object
   cleanLanguageObject(languageFile, englishFile);
   await writeFile(LOCALES_PATH + language, JSON.stringify(languageFile, null, 2));
+  console.log(`✅ Fixed ${language.replace('.json', '')}`);
 }
