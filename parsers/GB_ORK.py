@@ -6,7 +6,6 @@ from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import dateutil
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
