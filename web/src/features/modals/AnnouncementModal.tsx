@@ -38,6 +38,15 @@ export default function AnnouncementModal() {
     setHasAnnouncementBeenSeen(true);
   };
 
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement;
+
+    if (target.id === 'backdrop') {
+      handleDismiss();
+    }
+    return;
+  };
+
   if (
     hasAnnouncementBeenSeen ||
     isExpired ||
@@ -52,10 +61,12 @@ export default function AnnouncementModal() {
     <div
       role="presentation"
       className="absolute left-0 top-0 z-30 flex h-full w-full flex-col items-center justify-center bg-black/20"
+      onClick={handleClick}
+      id="backdrop"
     >
       <div
         role="presentation"
-        className="pointer-events-none z-50 max-w-[361px] overflow-hidden rounded-3xl border border-neutral-200 dark:border-gray-700"
+        className="z-50 max-w-[361px] overflow-hidden rounded-3xl border border-neutral-200 dark:border-gray-700"
       >
         <SourceColorAnnouncementImage />
         <div className="h-56 bg-zinc-50 opacity-95 dark:bg-gray-900">
