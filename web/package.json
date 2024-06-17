@@ -143,7 +143,7 @@
     "@types/topojson-client": "^3.1.4",
     "@types/topojson-server": "^3.0.4",
     "@types/topojson-specification": "^1.0.5",
-    "@vitejs/plugin-react": "4.2.1",
+    "@vitejs/plugin-react": "4.3.1",
     "@vitest/coverage-istanbul": "0.34.6",
     "autoprefixer": "10.4.15",
     "colors": "^1.4.0",
