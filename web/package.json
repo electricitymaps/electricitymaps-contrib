@@ -24,7 +24,7 @@
     "prepare": "cd .. && husky install web/.husky",
     "preview": "vite preview",
     "pretest": "pnpm run create-generated-files",
-    "test": "vitest",
+    "test": "bun vitest",
     "pretest:ci": "pnpm run create-generated-files",
     "test:ci": "vitest run",
     "format": "prettier -uw --cache --ignore-path ../.prettierignore .",

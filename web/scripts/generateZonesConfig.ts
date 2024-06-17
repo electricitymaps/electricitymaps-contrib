@@ -16,6 +16,7 @@ import {
 import { round } from '../geo/utilities.js';
 
 const BASE_CONFIG_PATH = '../../config';
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 const verifyConfig = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
@@ -193,9 +194,7 @@ const writeJSON = (fileName: string, object: CombinedZonesConfig | ExchangesConf
 const zonesConfig = getConfig();
 const exchangesConfig = mergeExchanges();
 
-const autogenConfigPath = path.resolve(
-  fileURLToPath(new URL('../config', import.meta.url))
-);
+const autogenConfigPath = path.resolve(currentDirectory, '../config');
 
 if (verifyConfig.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(
