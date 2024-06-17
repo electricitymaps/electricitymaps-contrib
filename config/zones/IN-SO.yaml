@@ -1,8 +1,8 @@
 bounding_box:
-  - - 62.775879
-    - 6.031311
-  - - 95.668945
-    - 22.755921
+- - 62.775879
+  - 6.031311
+- - 95.668945
+  - 22.755921
 capacity:
   biomass: 3734.75
   coal: 43397.5
@@ -14,21 +14,21 @@ capacity:
   unknown: 0
   wind: 19655.72
 contributors:
-  - hectorespert
-  - gopikrishna1793
-  - unitrium
+- hectorespert
+- gopikrishna1793
+- unitrium
 timezone: Asia/Kolkata
 emissionFactors:
   direct:
     unknown:
-      - datetime: '2020-01-01'
-        source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
-        value: 45
+    - datetime: '2020-01-01'
+      source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
+      value: 45
   lifecycle:
     unknown:
-      - datetime: '2020-01-01'
-        source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
-        value: 192
+    - datetime: '2020-01-01'
+      source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
+      value: 192
 isLowCarbon:
   unknown:
     value: 0.92
@@ -38,3 +38,5 @@ isRenewable:
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
+region: Asia
+country: IN

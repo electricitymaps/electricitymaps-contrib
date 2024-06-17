@@ -1,8 +1,8 @@
 bounding_box:
-  - - 130.66
-    - 33.585
-  - - 134.54
-    - 35.74
+- - 130.66
+  - 33.585
+- - 134.54
+  - 35.74
 capacity:
   geothermal: 0
   oil: 850
@@ -17,12 +17,12 @@ capacity:
 emissionFactors:
   lifecycle:
     unknown:
-      source: 'Enerdata 2022 Japanese National Average'
+      source: Enerdata 2022 Japanese National Average
       value: 462
 contributors:
-  - tmslaine
-  - lorrieq
-  - PPsyrius
+- tmslaine
+- lorrieq
+- PPsyrius
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
@@ -31,3 +31,5 @@ timezone: Asia/Tokyo
 sources:
   Enerdata 2022 Japanese National Average:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
+region: Asia
+country: JP

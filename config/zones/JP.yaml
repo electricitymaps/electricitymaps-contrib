@@ -1,8 +1,8 @@
 bounding_box:
-  - - 138.5
-    - 34.52
-  - - 141.16
-    - 37.17
+- - 138.5
+  - 34.52
+- - 141.16
+  - 37.17
 capacity:
   battery storage: null
   biomass: 2847.6
@@ -17,21 +17,23 @@ capacity:
   unknown: 9976.9
   wind: 3978.8
 contributors:
-  - kongkille
-  - lorrieq
-  - tmslaine
-  - wobniarin
-  - pierresegonne
-  - nessie2013
+- kongkille
+- lorrieq
+- tmslaine
+- wobniarin
+- pierresegonne
+- nessie2013
 subZoneNames:
-  - JP-CB
-  - JP-CG
-  - JP-HKD
-  - JP-HR
-  - JP-KN
-  - JP-KY
-  - JP-ON
-  - JP-SK
-  - JP-TH
-  - JP-TK
+- JP-CB
+- JP-CG
+- JP-HKD
+- JP-HR
+- JP-KN
+- JP-KY
+- JP-ON
+- JP-SK
+- JP-TH
+- JP-TK
 timezone: Japan/Tokyo
+region: Asia
+country: JP

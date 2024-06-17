@@ -1,9 +1,11 @@
 bounding_box:
-  - - -2.612294074999852
-    - 59.0141055360001
-  - - -0.25479081899990774
-    - 61.34788646000004
+- - -2.612294074999852
+  - 59.0141055360001
+- - -0.25479081899990774
+  - 61.34788646000004
 contributors:
-  - systemcatch
-  - maxbellec
+- systemcatch
+- maxbellec
 timezone: Europe/London
+region: Europe
+country: GB

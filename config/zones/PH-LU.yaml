@@ -1,8 +1,8 @@
 bounding_box:
-  - - 116.46336963369632
-    - 7.323918659865512
-  - - 124.9190441904419
-    - 19.14290487703049
+- - 116.46336963369632
+  - 7.323918659865512
+- - 124.9190441904419
+  - 19.14290487703049
 capacity:
   battery storage: 72
   biomass: 175
@@ -15,13 +15,15 @@ capacity:
   solar: 960
   wind: 337
 contributors:
-  - VIKTORVAV99
-  - jarek
-  - systemcatch
-  - q--
-  - mathilde-daugy
-  - pierresegonne
-  - xomanuel
+- VIKTORVAV99
+- jarek
+- systemcatch
+- q--
+- mathilde-daugy
+- pierresegonne
+- xomanuel
 parsers:
   production: IEMOP.fetch_production
 timezone: Asia/Manila
+region: Asia
+country: PH

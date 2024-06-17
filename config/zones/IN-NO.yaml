@@ -1,8 +1,8 @@
 bounding_box:
-  - - 60.754395
-    - 20.797201
-  - - 93.647461
-    - 35.978006
+- - 60.754395
+  - 20.797201
+- - 93.647461
+  - 35.978006
 capacity:
   biomass: 3284.43
   coal: 45879.0
@@ -14,13 +14,13 @@ capacity:
   unknown: 0
   wind: 4579.82
 contributors:
-  - corradio
-  - gopikrishna1793
-  - hectorespert
-  - pierresegonne
-  - sahitya-pavurala
-  - willbeaufoy
-  - mathilde-daugy
+- corradio
+- gopikrishna1793
+- hectorespert
+- pierresegonne
+- sahitya-pavurala
+- willbeaufoy
+- mathilde-daugy
 timezone: Asia/Kolkata
 emissionFactors:
   direct:
@@ -40,3 +40,5 @@ isRenewable:
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
+region: Asia
+country: IN

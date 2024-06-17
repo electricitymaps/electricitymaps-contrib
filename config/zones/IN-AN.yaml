@@ -5,5 +5,7 @@ capacity:
   nuclear: 0
   oil: 40.05
 contributors:
-  - gopikrishna1793
+- gopikrishna1793
 timezone: Asia/Kolkata
+region: Asia
+country: IN

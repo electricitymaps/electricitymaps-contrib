@@ -1,8 +1,8 @@
 bounding_box:
-  - - -157.80426998599995
-    - 20.553371486000145
-  - - -156.20572493599994
-    - 21.721879885000135
+- - -157.80426998599995
+  - 20.553371486000145
+- - -156.20572493599994
+  - 21.721879885000135
 emissionFactors:
   lifecycle:
     coal:
@@ -21,3 +21,5 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Pacific/Honolulu
+region: Americas
+country: US

@@ -1,49 +1,51 @@
 bounding_box:
-  - - 87.52178959200009
-    - 20.23871491100003
-  - - 93.14285119700017
-    - 27.123544007000064
+- - 87.52178959200009
+  - 20.23871491100003
+- - 93.14285119700017
+  - 27.123544007000064
 capacity:
   biomass:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   coal:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 2860.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 2860.0
   gas:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 11390.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 11390.0
   hydro:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 230.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 230.0
   oil:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 7660.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 7720.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 7660.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 7720.0
   solar:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 560.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 770.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 560.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 770.0
   wind:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 contributors:
-  - systemcatch
-  - alixunderplatz
-  - MuffinCompiler
+- systemcatch
+- alixunderplatz
+- MuffinCompiler
 parsers:
   consumption: ERP_PGCB.fetch_consumption
   production: ERP_PGCB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Dhaka
+region: Asia
+country: BD
