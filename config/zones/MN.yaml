@@ -1,52 +1,52 @@
 bounding_box:
-- - 87.23570886300013
-  - 41.086144918000016
-- - 120.40702681500011
-  - 52.62958404600003
+  - - 87.23570886300013
+    - 41.086144918000016
+  - - 120.40702681500011
+    - 52.62958404600003
 capacity:
   coal:
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 970.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 970.0
   hydro:
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 30.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
   solar:
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 90.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
   wind:
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 160.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
 contributors:
-- q--
-- alixunderplatz
-- MuffinCompiler
+  - q--
+  - alixunderplatz
+  - MuffinCompiler
 emissionFactors:
   direct:
     unknown:
-    - _url: https://www.iea.org/fuels-and-technologies/electricity
-      datetime: '2020-01-01'
-      source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
-      value: 729.1
+      - _url: https://www.iea.org/fuels-and-technologies/electricity
+        datetime: '2020-01-01'
+        source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
+        value: 729.1
   lifecycle:
     unknown:
-    - _url: https://www.iea.org/fuels-and-technologies/electricity
-      datetime: '2020-01-01'
-      source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
-      value: 799.2
+      - _url: https://www.iea.org/fuels-and-technologies/electricity
+        datetime: '2020-01-01'
+        source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
+        value: 799.2
 isLowCarbon:
   unknown:
-  - _url: https://www.iea.org/fuels-and-technologies/electricity
-    datetime: '2020-01-01'
-    value: 0.0137
+    - _url: https://www.iea.org/fuels-and-technologies/electricity
+      datetime: '2020-01-01'
+      value: 0.0137
 isRenewable:
   unknown:
-  - _url: https://www.iea.org/fuels-and-technologies/electricity
-    datetime: '2020-01-01'
-    value: 0.0137
+    - _url: https://www.iea.org/fuels-and-technologies/electricity
+      datetime: '2020-01-01'
+      value: 0.0137
 parsers:
   consumption: MN.fetch_consumption
   production: MN.fetch_production

@@ -1,8 +1,8 @@
 bounding_box:
-- - 19.10954837300008
-  - 53.842937318000054
-- - 23.348351684000107
-  - 55.78995961500016
+  - - 19.10954837300008
+    - 53.842937318000054
+  - - 23.348351684000107
+    - 55.78995961500016
 fallbackZoneMixes:
   _comment: see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf
     and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants.

@@ -1,8 +1,8 @@
 bounding_box:
-- - 139.35
-  - 41.3
-- - 146
-  - 45.97
+  - - 139.35
+    - 41.3
+  - - 146
+    - 45.97
 capacity:
   biomass: 300
   coal: 2250
@@ -16,11 +16,11 @@ capacity:
   wind: 577
   unknown: 0
 contributors:
-- tmslaine
-- lorrieq
-- pierresegonne
-- wobniarin
-- PPsyrius
+  - tmslaine
+  - lorrieq
+  - pierresegonne
+  - wobniarin
+  - PPsyrius
 emissionFactors:
   lifecycle:
     unknown:

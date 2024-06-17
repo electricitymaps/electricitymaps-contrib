@@ -1,39 +1,39 @@
 aggregates_displayed:
-- daily
-- monthly
-- yearly
+  - daily
+  - monthly
+  - yearly
 bounding_box:
-- - -110.49997270417693
-  - 48.49261789994816
-- - -100.86433964677866
-  - 60.50005890629359
+  - - -110.49997270417693
+    - 48.49261789994816
+  - - -100.86433964677866
+    - 60.50005890629359
 capacity:
   coal:
-  - datetime: '2024-01-01'
-    source: saskpower.com
-    value: 1389
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 1389
   gas:
-  - datetime: '2024-01-01'
-    source: saskpower.com
-    value: 2065
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 2065
   hydro:
-  - datetime: '2024-01-01'
-    source: saskpower.com
-    value: 865
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 865
   solar:
-  - datetime: '2024-01-01'
-    source: saskpower.com
-    value: 93
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 93
   wind:
-  - datetime: '2024-01-01'
-    source: saskpower.com
-    value: 617
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 617
   unknown:
-  - datetime: '2024-01-01'
-    source: saskpower.com
-    value: 324
+    - datetime: '2024-01-01'
+      source: saskpower.com
+      value: 324
 contributors:
-- VIKTORVAV99
+  - VIKTORVAV99
 disclaimer: The hourly production mix is estimated based on the daily average production
   mix.
 timezone: America/Regina

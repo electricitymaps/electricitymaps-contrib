@@ -1,8 +1,8 @@
 bounding_box:
-- - 130.66
-  - 33.585
-- - 134.54
-  - 35.74
+  - - 130.66
+    - 33.585
+  - - 134.54
+    - 35.74
 capacity:
   geothermal: 0
   oil: 850
@@ -20,9 +20,9 @@ emissionFactors:
       source: Enerdata 2022 Japanese National Average
       value: 462
 contributors:
-- tmslaine
-- lorrieq
-- PPsyrius
+  - tmslaine
+  - lorrieq
+  - PPsyrius
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price

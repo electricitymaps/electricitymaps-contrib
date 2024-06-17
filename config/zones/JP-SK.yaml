@@ -1,13 +1,13 @@
 bounding_box:
-- - 132.15
-  - 32.53
-- - 134.69
-  - 34.63
+  - - 132.15
+    - 32.53
+  - - 134.69
+    - 34.63
 contributors:
-- tmslaine
-- lorrieq
-- wobniarin
-- PPsyrius
+  - tmslaine
+  - lorrieq
+  - wobniarin
+  - PPsyrius
 capacity:
   biomass: 406
   geothermal: 0

@@ -1,8 +1,8 @@
 bounding_box:
-- - 45.97827884900005
-  - 40.08465566000011
-- - 87.82379602100013
-  - 55.93455027300003
+  - - 45.97827884900005
+    - 40.08465566000011
+  - - 87.82379602100013
+    - 55.93455027300003
 fallbackZoneMixes:
   _source: Our world in data 2019
   _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?stackMode=relative&time=earliest..latest&country=~KAZ

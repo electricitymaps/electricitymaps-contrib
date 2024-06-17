@@ -1,8 +1,8 @@
 bounding_box:
-- - -74.5185401854018
-  - -34.24045114057622
-- - -34.29614796147959
-  - 5.766573637368978
+  - - -74.5185401854018
+    - -34.24045114057622
+  - - -34.29614796147959
+    - 5.766573637368978
 capacity:
   hydro: 109413
   nuclear: 1990
@@ -10,16 +10,16 @@ capacity:
   unknown: 39584
   wind: 25628
 contributors:
-- alexanmtz
-- corradio
-- systemcatch
-- nessie2013
-- VIKTORVAV99
+  - alexanmtz
+  - corradio
+  - systemcatch
+  - nessie2013
+  - VIKTORVAV99
 estimation_method: RECONSTRUCT_BREAKDOWN
 subZoneNames:
-- BR-CS
-- BR-N
-- BR-NE
-- BR-S
+  - BR-CS
+  - BR-N
+  - BR-NE
+  - BR-S
 region: Americas
 country: BR

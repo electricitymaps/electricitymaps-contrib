@@ -1,47 +1,47 @@
 bounding_box:
-- - 51.47861495000012
-  - 16.142401434000078
-- - 60.34457441500007
-  - 26.885972398000035
+  - - 51.47861495000012
+    - 16.142401434000078
+  - - 60.34457441500007
+    - 26.885972398000035
 capacity:
   gas:
-  - datetime: '2020-01-01'
-    source: Climatescope
-    value: 10544
-  - datetime: '2021-01-01'
-    source: Climatescope
-    value: 9764
-  - datetime: '2022-01-01'
-    source: Climatescope
-    value: 9495
-  - datetime: '2023-01-01'
-    source: Climatescope
-    value: 9044
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 10544
+    - datetime: '2021-01-01'
+      source: Climatescope
+      value: 9764
+    - datetime: '2022-01-01'
+      source: Climatescope
+      value: 9495
+    - datetime: '2023-01-01'
+      source: Climatescope
+      value: 9044
   solar:
-  - datetime: '2020-01-01'
-    source: Climatescope
-    value: 43
-  - datetime: '2021-01-01'
-    source: Climatescope
-    value: 329
-  - datetime: '2022-01-01'
-    source: Climatescope
-    value: 924
-  - datetime: '2023-01-01'
-    source: Climatescope
-    value: 1224
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 43
+    - datetime: '2021-01-01'
+      source: Climatescope
+      value: 329
+    - datetime: '2022-01-01'
+      source: Climatescope
+      value: 924
+    - datetime: '2023-01-01'
+      source: Climatescope
+      value: 1224
   wind:
-  - datetime: '2020-01-01'
-    source: Climatescope
-    value: 49
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 49
   oil:
-  - datetime: '2020-01-01'
-    source: Climatescope
-    value: 150
+    - datetime: '2020-01-01'
+      source: Climatescope
+      value: 150
 contributors:
-- q--
-- nessie2013
-- florianscheidl
+  - q--
+  - nessie2013
+  - florianscheidl
 parsers:
   consumption: GCCIA.fetch_consumption
 sources:

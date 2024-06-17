@@ -1,14 +1,14 @@
 bounding_box:
-- - 135.8
-  - 35.39
-- - 137.75
-  - 37.9
+  - - 135.8
+    - 35.39
+  - - 137.75
+    - 37.9
 contributors:
-- tmslaine
-- lorrieq
-- pierresegonne
-- wobniarin
-- PPsyrius
+  - tmslaine
+  - lorrieq
+  - pierresegonne
+  - wobniarin
+  - PPsyrius
 capacity:
   biomass: 700
   geothermal: 0
