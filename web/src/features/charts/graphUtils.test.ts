@@ -2,6 +2,7 @@ import { ZoneDetail } from 'types';
 import { Mode } from 'utils/constants';
 
 import {
+  extractLinkFromSource,
   getElectricityProductionValue,
   getRatioPercent,
   getTotalElectricityAvailable,
@@ -138,5 +139,44 @@ describe('getTotalEmissionsAvailableOrElectricityAvailable', () => {
       Mode.PRODUCTION
     );
     expect(actual).to.deep.eq(Number.NaN);
+  });
+});
+
+describe('extractLinkFromSource', () => {
+  const sourceLinkMapping = {
+    source1: 'http://mappedlink1.com',
+    source2: 'http://mappedlink2.com',
+    Climatescope: 'https://www.global-climatescope.org/',
+  };
+
+  it('should return mapped link if source is in sourceLinkMapping', () => {
+    expect(extractLinkFromSource('source1', sourceLinkMapping)).to.equal(
+      'http://mappedlink1.com'
+    );
+    expect(extractLinkFromSource('source2', sourceLinkMapping)).to.equal(
+      'http://mappedlink2.com'
+    );
+  });
+
+  it('should work with a real link', () => {
+    expect(extractLinkFromSource('Climatescope', sourceLinkMapping)).to.equal(
+      'https://www.global-climatescope.org/'
+    );
+  });
+
+  it('should return null if source does not include a dot', () => {
+    expect(extractLinkFromSource('sourceWithoutDot', sourceLinkMapping)).to.be.null;
+  });
+
+  it('should return source if source includes http', () => {
+    expect(
+      extractLinkFromSource('http://sourceWithHttp.com', sourceLinkMapping)
+    ).to.equal('http://sourceWithHttp.com');
+  });
+
+  it('should return source with http prefix if source includes a dot but not http', () => {
+    expect(extractLinkFromSource('sourceWithDot.com', sourceLinkMapping)).to.equal(
+      'http://sourceWithDot.com'
+    );
   });
 });
