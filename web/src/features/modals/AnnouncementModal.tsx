@@ -68,12 +68,9 @@ export default function AnnouncementModal() {
             }
           </div>
           <div className="pointer-events-auto pt-3 text-center">
-            <Link
-              linkText="Read more on our change log"
-              href={
-                'https://electricitymaps.notion.site/2024-06-New-production-mode-colors-and-order-5daedf4ece634da891f5f533a7977aea'
-              }
-            />
+            <Link href="https://electricitymaps.notion.site/2024-06-New-production-mode-colors-and-order-5daedf4ece634da891f5f533a7977aea">
+              Read more about this change
+            </Link>
           </div>
         </div>
       </div>
