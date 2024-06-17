@@ -60,7 +60,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.x"
+          bun-version: '1.x'
       - name: Restore node_modules for web
         id: cache-web
         uses: actions/cache@v4
@@ -104,7 +104,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.x"
+          bun-version: '1.x'
       - name: Install jsonlint-mod
         run: |
           npm install -g jsonlint-mod
@@ -136,7 +136,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.x"
+          bun-version: '1.x'
       - name: Restore node_modules for web
         id: cache-web
         uses: actions/cache@v4
@@ -176,7 +176,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.x"
+          bun-version: '1.x'
       - name: Restore node_modules for web
         id: cache-web
         uses: actions/cache@v4
@@ -233,7 +233,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.x"
+          bun-version: '1.x'
       - name: Restore node_modules for web
         id: cache-web
         uses: actions/cache@v4
@@ -272,7 +272,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.x"
+          bun-version: '1.x'
       - name: Restore node_modules for web
         id: cache-web
         uses: actions/cache@v4
@@ -313,7 +313,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.x"
+          bun-version: '1.x'
       - name: Generate config files
         run: pnpm create-generated-files
         working-directory: ./web
@@ -368,7 +368,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.x"
+          bun-version: '1.x'
       - name: Cache Cypress binary
         id: cache-cypress
         uses: actions/cache@v4
