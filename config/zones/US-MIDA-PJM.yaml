@@ -96,6 +96,8 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:

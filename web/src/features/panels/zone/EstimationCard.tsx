@@ -44,6 +44,7 @@ export default function EstimationCard({
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
+  const isTSAModel = estimationMethod === 'ESTIMATED_TIME_SLICER_AVERAGE';
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
     hasEstimationFeedbackBeenSeenAtom
   );
@@ -76,8 +77,12 @@ export default function EstimationCard({
     case 'estimated': {
       return (
         <div>
-          <EstimatedCard estimationMethod={estimationMethod} />
-          {isFeedbackCardVisible && (
+          {isTSAModel ? (
+            <EstimatedTSACard />
+          ) : (
+            <EstimatedCard estimationMethod={estimationMethod} />
+          )}
+          {isFeedbackCardVisible && isTSAModel && (
             <FeedbackCard
               surveyReference={estimationMethod}
               postSurveyResponse={postSurveyResponse}
@@ -267,6 +272,21 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       iconPill={undefined}
       showMethodologyLink={true}
       pillType="default"
+      textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="estimated-card"
+    />
+  );
+}
+
+function EstimatedTSACard() {
+  return (
+    <BaseCard
+      estimationMethod="ESTIMATED_TIME_SLICER_AVERAGE"
+      zoneMessage={undefined}
+      icon="bg-[url('/images/preliminary_light.svg')] dark:bg-[url('/images/preliminary_dark.svg')]"
+      iconPill={undefined}
+      showMethodologyLink={true}
+      pillType={undefined}
       textColorTitle="text-amber-700 dark:text-amber-500"
       cardType="estimated-card"
     />
