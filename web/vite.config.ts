@@ -84,8 +84,9 @@ export default defineConfig(({ mode }) => ({
         plugins: [jotaiDebugLabel, jotaiReactRefresh],
       },
     }),
-    ...(mode !== 'test'
-      ? [
+    ...(mode === 'test'
+      ? []
+      : [
           eslintPlugin(),
           // Temporarily disabled to ensure we can more easily rollback
           // VitePWA({
@@ -119,7 +120,6 @@ export default defineConfig(({ mode }) => ({
           // }),
           // Used to upload sourcemaps to Sentry
           process.env.SENTRY_AUTH_TOKEN && sentryVitePlugin(sentryPluginOptions),
-        ]
-      : []),
+        ]),
   ],
 }));
