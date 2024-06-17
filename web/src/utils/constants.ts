@@ -39,19 +39,19 @@ export enum TrackEvent {
   DATA_SOURCES_CLICKED = 'Data Sources Clicked',
 }
 
-// Production/imports-exports mode
+// color of different production modes are based on various industry standards
 export const modeColor: { [mode in ElectricityModeType]: string } = {
-  solar: '#f27406',
-  wind: '#74cdb9',
-  hydro: '#2772b2',
-  'hydro storage': '#0052cc',
-  'battery storage': '#b76bcf',
-  biomass: '#166a57',
-  geothermal: 'yellow',
-  nuclear: '#AEB800',
-  gas: '#bb2f51',
-  coal: '#ac8c35',
-  oil: '#867d66',
+  solar: '#FFC700',
+  wind: '#69D6F8',
+  hydro: '#1878EA',
+  'hydro storage': '#2B3CD8',
+  'battery storage': '#1DA484',
+  biomass: '#008043',
+  geothermal: '#A73C15',
+  nuclear: '#9D71F7',
+  gas: '#AAA189',
+  coal: '#545454',
+  oil: '#584745',
   unknown: '#ACACAC',
 };
 
