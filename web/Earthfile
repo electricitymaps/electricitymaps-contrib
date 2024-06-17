@@ -1,6 +1,9 @@
 VERSION --use-visited-upfront-hash-collection 0.7
-FROM node:20
+FROM oven/bun:alpine
 WORKDIR /contrib/web
+
+ENV BUN_INSTALL=$HOME/.bun
+ENV PATH=$BUN_INSTALL/bin:$PATH
 
 src-files:
   COPY ../config+src-files/* ../config
@@ -14,7 +17,7 @@ api-files:
 
 prepare:
   FROM +src-files
-  RUN npm install -g pnpm@9
+  RUN bun install -g pnpm@9
   RUN pnpm install --frozen-lockfile
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
@@ -46,6 +49,6 @@ build:
 deploy:
   FROM +prepare
   COPY +build/dist ./dist
-  RUN npm install -g wrangler
+  RUN bun install -g wrangler
   # TODO: Point to master after build and deploy has been tested to staging
-  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID wrangler pages deploy ./dist --project-name electricitymaps-app --branch master
+  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID bun wrangler pages deploy ./dist --project-name electricitymaps-app --branch master
