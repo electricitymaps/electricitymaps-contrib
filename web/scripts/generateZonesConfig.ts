@@ -111,9 +111,7 @@ const getConfig = (): CombinedZonesConfig => {
 };
 
 const mergeExchanges = (): ExchangesConfig => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/exchanges'), import.meta.url))
-  );
+  const basePath = path.resolve(currentDirectory, BASE_CONFIG_PATH.concat('/exchanges'));
 
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDirectory = exchangeFiles
@@ -142,7 +140,7 @@ const mergeExchanges = (): ExchangesConfig => {
 
 const mergeRatioParameters = () => {
   // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
-  const basePath = path.resolve(fileURLToPath(new URL('../config', import.meta.url)));
+  const basePath = path.resolve(currentDirectory, '../config');
 
   const defaultParameters: any = yaml.load(
     fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8')
