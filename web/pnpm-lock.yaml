@@ -160,8 +160,8 @@ importers:
         specifier: ^2.3.0
         version: 2.3.0(react@18.2.0)
       '@microsoft/eslint-formatter-sarif':
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.1.0
+        version: 3.1.0
       '@nabla/vite-plugin-eslint':
         specifier: 1.6.0
         version: 1.6.0(eslint@8.57.0)(vite@4.5.3(@types/node@20.14.2)(less@4.2.0)(terser@5.31.1))
@@ -1580,8 +1580,8 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@microsoft/eslint-formatter-sarif@3.0.0':
-    resolution: {integrity: sha512-KIKkT44hEqCzqxODYwFMUvYEK0CrdHx/Ll9xiOWgFbBSRuzbxmVy4d/tzfgoucGz72HJZNOMjuyzFTBKntRK5Q==}
+  '@microsoft/eslint-formatter-sarif@3.1.0':
+    resolution: {integrity: sha512-/mn4UXziHzGXnKCg+r8HGgPy+w4RzpgdoqFuqaKOqUVBT5x2CygGefIrO4SusaY7t0C4gyIWMNu6YQT6Jw64Cw==}
     engines: {node: '>= 14'}
 
   '@mswjs/cookies@1.1.0':
@@ -9941,7 +9941,7 @@ snapshots:
       '@types/react': 18.2.20
       react: 18.2.0
 
-  '@microsoft/eslint-formatter-sarif@3.0.0':
+  '@microsoft/eslint-formatter-sarif@3.1.0':
     dependencies:
       eslint: 8.57.0
       jschardet: 3.1.2
