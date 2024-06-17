@@ -1386,4 +1386,4 @@ scripts = ["xmltodict"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">= 3.10, < 3.11"
-content-hash = "6121c6e0dd7980b59fc6f7d4c3eeca830963d0374ff8128c9986a02a0cd69884"
+content-hash = "2e749a4f6b02fefa3c71e016c25d39070c55129fc3065b2a23e7cd8e2f25ad3b"
