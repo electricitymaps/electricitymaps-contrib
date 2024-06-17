@@ -44,10 +44,12 @@ export default function ExchangeTooltip({
       </div>
       {t('tooltips.carbonintensityexport')}:
       <div className="pt-1">
-        {co2intensity > 0 && (
+        {co2intensity > 0 ? (
           <div className="inline-flex items-center gap-x-1">
             <CarbonIntensityDisplay withSquare co2Intensity={co2intensity} />
           </div>
+        ) : (
+          <p className="text-gray-400">{t('tooltips.temporarilyUnavailable')}</p>
         )}
       </div>
     </div>
