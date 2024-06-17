@@ -77,7 +77,7 @@ function BarBreakdownChart({
 
   if (!currentZoneDetail) {
     return (
-      <div className="relative w-full text-md" ref={ref}>
+      <div className="text-md relative w-full" ref={ref}>
         <BySource className="opacity-40" />
         <EmptyBarBreakdownChart
           height={height}

@@ -11,7 +11,7 @@ export default function MethodologyCard() {
       <Accordion
         icon={<EmapsIcon />}
         title={t('left-panel.applied-methodologies.title')}
-        className="pb-1 pt-3 text-md"
+        className="text-md pb-1 pt-3"
         onOpen={() => trackEvent('AppliedMethodologies Expanded')}
       >
         <div className="flex flex-col gap-2 pb-1 ">
