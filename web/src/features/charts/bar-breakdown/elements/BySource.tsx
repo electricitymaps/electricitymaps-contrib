@@ -72,11 +72,11 @@ export default function BySource({
   return (
     <div className="flex flex-col pb-1 pt-4">
       <div
-        className={`relative flex flex-row justify-between text-md font-bold ${className}`}
+        className={`text-md relative flex flex-row justify-between font-bold ${className}`}
       >
-        <div className="flex gap-1">
+        <div className="flex items-center gap-1">
           <PlugCircleBoltIcon />
-          {text}
+          <h2>{text}</h2>
         </div>
         {hasEstimationPill && (
           <EstimationBadge
@@ -84,7 +84,7 @@ export default function BySource({
           />
         )}
       </div>
-      {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
+      {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>
   );
 }
