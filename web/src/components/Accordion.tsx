@@ -64,9 +64,9 @@ export default function Accordion({
             {icon && (
               <div className={`flex items-center justify-center pr-2`}>{icon}</div>
             )}
-            <p className={`self-center text-left font-semibold`} data-test-id="title">
+            <h3 className={`self-center text-left`} data-test-id="title">
               {title}
-            </p>
+            </h3>
           </div>
           <div className="flex h-fit flex-row gap-2 text-nowrap">
             {badge}

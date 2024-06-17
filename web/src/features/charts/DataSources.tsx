@@ -27,7 +27,7 @@ export function DataSources({
     <div className="flex flex-col py-2">
       <div className="flex flex-row pb-2">
         <div className="mr-1">{icon}</div>
-        <div className="text-md font-semibold">{title}</div>
+        <p className="font-semibold">{title}</p>
       </div>
       <div className="flex flex-col gap-2 pl-5">
         {sources.sort().map((source, index) => (
