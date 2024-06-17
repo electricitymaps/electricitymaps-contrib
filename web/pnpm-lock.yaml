@@ -163,8 +163,8 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
       '@nabla/vite-plugin-eslint':
-        specifier: 1.6.0
-        version: 1.6.0(eslint@8.57.0)(vite@5.3.1(@types/node@20.14.2)(less@4.2.0)(terser@5.31.1))
+        specifier: 2.0.4
+        version: 2.0.4(eslint@8.57.0)(vite@5.3.1(@types/node@20.14.2)(less@4.2.0)(terser@5.31.1))
       '@sentry/vite-plugin':
         specifier: ^2.16.1
         version: 2.16.1
@@ -1713,11 +1713,11 @@ packages:
     resolution: {integrity: sha512-3rDakgJZ77+RiQUuSK69t1F0m8BQKA8Vh5DCS5V0DWvNY67zob2JhhQrhCO0AKLGINTRSFd1tBaHcJTkhefoSw==}
     engines: {node: '>=18'}
 
-  '@nabla/vite-plugin-eslint@1.6.0':
-    resolution: {integrity: sha512-vxEOV4QtiFNiu9o2jg91sWl1X7dHSosvVYZrYwaDAgDlgTfzmwxca3Nafyq9n42WX45l1l/6HshMMGShsW6Mkg==}
+  '@nabla/vite-plugin-eslint@2.0.4':
+    resolution: {integrity: sha512-hXLv7XPZLKP54AHLI6JzlCRYptf34rBmT1FyRBi++iN5ucjO7CEf5etV3DfQ2rfTpgMbY+3hoCAfwilA6lyWdw==}
     peerDependencies:
-      eslint: '*'
-      vite: ^2 || ^3 || ^4 || ^5
+      eslint: ^8.45 || ^9
+      vite: ^4 || ^5
 
   '@ndelangen/get-tarball@3.0.9':
     resolution: {integrity: sha512-9JKTEik4vq+yGosHYhZ1tiH/3WpUS0Nh0kej4Agndhox8pAdWhEx5knFVRcb/ya9knCRCs1rPxNrSXTDdfVqpA==}
@@ -10016,7 +10016,7 @@ snapshots:
   '@eslint/eslintrc@2.1.4':
     dependencies:
       ajv: 6.12.6
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5
       espree: 9.6.1
       globals: 13.24.0
       ignore: 5.3.1
@@ -10057,7 +10057,7 @@ snapshots:
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -10243,12 +10243,15 @@ snapshots:
       outvariant: 1.4.2
       strict-event-emitter: 0.5.1
 
-  '@nabla/vite-plugin-eslint@1.6.0(eslint@8.57.0)(vite@5.3.1(@types/node@20.14.2)(less@4.2.0)(terser@5.31.1))':
+  '@nabla/vite-plugin-eslint@2.0.4(eslint@8.57.0)(vite@5.3.1(@types/node@20.14.2)(less@4.2.0)(terser@5.31.1))':
     dependencies:
       '@types/eslint': 8.56.6
       chalk: 4.1.2
+      debug: 4.3.5
       eslint: 8.57.0
       vite: 5.3.1(@types/node@20.14.2)(less@4.2.0)(terser@5.31.1)
+    transitivePeerDependencies:
+      - supports-color
 
   '@ndelangen/get-tarball@3.0.9':
     dependencies:
@@ -13361,7 +13364,7 @@ snapshots:
       '@typescript-eslint/type-utils': 7.5.0(eslint@8.57.0)(typescript@5.3.2)
       '@typescript-eslint/utils': 7.5.0(eslint@8.57.0)(typescript@5.3.2)
       '@typescript-eslint/visitor-keys': 7.5.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5
       eslint: 8.57.0
       graphemer: 1.4.0
       ignore: 5.3.1
@@ -13379,7 +13382,7 @@ snapshots:
       '@typescript-eslint/types': 7.5.0
       '@typescript-eslint/typescript-estree': 7.5.0(typescript@5.3.2)
       '@typescript-eslint/visitor-keys': 7.5.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5
       eslint: 8.57.0
     optionalDependencies:
       typescript: 5.3.2
@@ -15673,7 +15676,7 @@ snapshots:
     dependencies:
       '@tootallnate/once': 2.0.0
       agent-base: 6.0.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5
     transitivePeerDependencies:
       - supports-color
 
@@ -15686,7 +15689,7 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5
     transitivePeerDependencies:
       - supports-color
 
@@ -18827,7 +18830,7 @@ snapshots:
   vite-node@0.32.4(@types/node@20.14.2)(less@4.2.0)(terser@5.31.1):
     dependencies:
       cac: 6.7.14
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5
       mlly: 1.5.0
       pathe: 1.1.2
       picocolors: 1.0.0
