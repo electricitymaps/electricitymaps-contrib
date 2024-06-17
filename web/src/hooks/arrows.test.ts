@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { filterExchanges } from './arrows';
+import { filterExchanges, shouldHideExchangeIntensity } from './arrows';
 
 const mockExchangesToExcludeZoneView = ['exchange1', 'exchange2', 'exchange4'];
 
@@ -123,5 +123,17 @@ describe('filterExchanges', () => {
         )
       ).toThrow(TypeError);
     });
+  });
+});
+
+describe('shouldHideExchangeIntensity', () => {
+  it('should hide exported intensity if zone has an outage', () => {
+    expect(shouldHideExchangeIntensity('zone1->zone2', ['zone2'], -10)).toBe(true); // zone2 is exporting
+    expect(shouldHideExchangeIntensity('zone2->zone1', ['zone2'], 10)).toBe(true); // zone2 is exporting
+    expect(shouldHideExchangeIntensity('zone1->zone2', ['zone2'], 10)).toBe(false); // zone2 is importing
+  });
+  it('should not hide intensity of zones are not having an outage', () => {
+    expect(shouldHideExchangeIntensity('zone1->zone2', [], 10)).toBe(false);
+    expect(shouldHideExchangeIntensity('zone1->zone2', ['zone3'], -10)).toBe(false);
   });
 });
