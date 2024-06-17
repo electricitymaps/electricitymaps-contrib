@@ -90,7 +90,7 @@ export function DataSources({
 
 function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }) {
   return (
-    <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col items-center bg-black/20 pt-44">
+    <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col content-center items-center justify-center bg-black/20 pb-40">
       <div className="dark:border-1 relative mx-6 h-auto min-w-64 rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
         {t('country-panel.emissionFactorDataSourcesTooltip')}
       </div>
