@@ -85,6 +85,8 @@ contributors:
   - robertahunt
   - KabelWlan
   - brandongalbraith
+delays:
+  production: 2
 emissionFactors:
   direct:
     battery discharge:

@@ -1,5 +1,8 @@
+import { Link } from 'components/Link';
 import { ElectricityModeType } from 'types';
+import { sourceLinkMapping } from 'utils/constants';
 
+import { extractLinkFromSource } from './graphUtils';
 import ProductionSourceLegend from './ProductionSourceLegend';
 
 export function DataSources({
@@ -29,7 +32,7 @@ export function DataSources({
       <div className="flex flex-col gap-2 pl-5">
         {sources.sort().map((source, index) => (
           <div key={index} className="text-sm">
-            {source}
+            <Source source={source} />
             {emissionFactorSourcesToProductionSources && (
               <span className="inline-flex translate-y-1 gap-1 pl-1.5">
                 {emissionFactorSourcesToProductionSources[source]?.map(
@@ -48,4 +51,13 @@ export function DataSources({
       </div>
     </div>
   );
+}
+
+function Source({ source }: { source: string }) {
+  const link = extractLinkFromSource(source, sourceLinkMapping);
+  if (link) {
+    return <Link href={link}> {source} </Link>;
+  }
+
+  return <span>{source}</span>;
 }
