@@ -17,7 +17,7 @@ const zonesGeo: WorldFeatureCollection = getJSON(
 
 if (inputArguments.length <= 0) {
   console.error(
-    'ERROR: Please add a zoneName parameter ("ts-node --esm generateZoneBoundingBoxes.ts DE")'
+    'ERROR: Please add a zoneName parameter ("bun generateZoneBoundingBoxes.ts DE")'
   );
   process.exit(1);
 }

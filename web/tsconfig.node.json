@@ -11,11 +11,5 @@
     "strict": true,
     "target": "ESNext"
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "ESNext"
-    },
-    "transpileOnly": true
-  },
   "include": ["vite.config.cts", "cypress.config.ts", "scripts", "geo"]
 }
