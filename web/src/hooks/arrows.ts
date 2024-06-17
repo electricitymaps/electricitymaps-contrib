@@ -11,6 +11,10 @@ import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'
 const exchangesConfig: Record<string, any> = exchangesConfigJSON;
 const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesToExclude;
 
+/**
+ * Determines if the carbon intensity of an exchange should be hidden due to a temporary zone outage.
+ * By not passing on carbon intensity, we are able to still show a grey arrow with the power value.
+ */
 function shouldHideExchangeIntensity(
   exchange: string,
   zonesWithOutages: string[],
@@ -18,6 +22,8 @@ function shouldHideExchangeIntensity(
 ) {
   const [zone1, zone2] = exchange.split('->');
 
+  // Check if the exchange is from a zone with an outage and the power is flowing out of the zone
+  // and not in. We only want to hide the intensity being exported by the zone.
   return (
     (zonesWithOutages.includes(zone1) && value > 0) ||
     (zonesWithOutages.includes(zone2) && value < 0)
