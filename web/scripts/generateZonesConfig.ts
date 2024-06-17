@@ -23,9 +23,7 @@ const verifyConfig = {
 };
 
 const getConfig = (): CombinedZonesConfig => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
-  );
+  const basePath = path.resolve(currentDirectory, BASE_CONFIG_PATH.concat('/zones'));
 
   const zoneFiles = fs.readdirSync(basePath);
   const filesWithDirectory = zoneFiles
