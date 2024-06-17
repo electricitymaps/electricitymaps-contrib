@@ -1,7 +1,7 @@
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { modeOrder } from 'utils/constants';
+import { modeOrderBarBreakdown } from 'utils/constants';
 import { PowerUnits } from 'utils/units';
 
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
@@ -23,7 +23,7 @@ function EmptyBarBreakdownChart({
   overLayText,
   width,
 }: EmptyBarBreakdownChartProps) {
-  const productionData = modeOrder.map((d) => ({
+  const productionData = modeOrderBarBreakdown.map((d) => ({
     mode: d,
     gCo2eq: 0,
     gCo2eqByFuel: {},
