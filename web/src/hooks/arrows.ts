@@ -15,7 +15,7 @@ const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesT
  * Determines if the carbon intensity of an exchange should be hidden due to a temporary zone outage.
  * By not passing on carbon intensity, we are able to still show a grey arrow with the power value.
  */
-function shouldHideExchangeIntensity(
+export function shouldHideExchangeIntensity(
   exchange: string,
   zonesWithOutages: string[],
   value: number
