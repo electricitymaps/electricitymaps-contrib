@@ -70,6 +70,28 @@ export const modeOrder = [
   'unknown',
 ] as const;
 
+/**
+ * The order of modes use the following logic:
+ * 1. renewables first (sorted alphabetically)
+ * 2. low carbon (nuclear)
+ * 3. fossil fuels (sorted alphabetically)
+ * 4. storage (sorted alphabetically)
+ */
+export const modeOrderBarBreakdown = [
+  'biomass',
+  'geothermal',
+  'hydro',
+  'solar',
+  'wind',
+  'nuclear',
+  'battery storage',
+  'hydro storage',
+  'coal',
+  'gas',
+  'oil',
+  'unknown',
+] as const;
+
 //A mapping between the TimeAverages enum and the corresponding Duration for the date-fns add/substract method
 export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
   daily: 'days',
