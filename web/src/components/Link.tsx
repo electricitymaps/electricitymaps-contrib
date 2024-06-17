@@ -1,12 +1,12 @@
-export function Link({ href, linkText }: { href: string; linkText: string }) {
+export function Link({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
       href={href}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       className="text-sm font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500"
     >
-      {linkText}
+      {children}
     </a>
   );
 }

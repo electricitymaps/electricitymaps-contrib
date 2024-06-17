@@ -104,7 +104,7 @@ function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }
 function Source({ source }: { source: string }) {
   const link = extractLinkFromSource(source, sourceLinkMapping);
   if (link) {
-    return <Link href={link} linkText={source} />;
+    return <Link href={link}> {source} </Link>;
   }
 
   return <span>{source}</span>;
