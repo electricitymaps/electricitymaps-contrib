@@ -35,3 +35,5 @@ subZoneNames:
   - JP-TH
   - JP-TK
 timezone: Japan/Tokyo
+region: Asia
+country: JP

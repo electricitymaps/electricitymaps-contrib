@@ -10,3 +10,5 @@ fallbackZoneMixes:
     value:
       hydro: 1
 timezone: null
+region: Asia
+country: null
