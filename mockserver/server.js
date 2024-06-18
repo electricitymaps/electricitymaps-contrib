@@ -58,6 +58,6 @@ app.use(function (req, res, next) {
 
 app.use(express.static('public', { extensions: ['json'] }));
 
-const server = app.listen(PORT, HOST, () => {
+const server = app.listen(PORT, () => {
   console.log(`mockserver running at: http://${HOST}:${PORT}/`);
 });

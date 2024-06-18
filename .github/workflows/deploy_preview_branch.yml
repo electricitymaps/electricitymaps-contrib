@@ -37,7 +37,7 @@ jobs:
         working-directory: ./web
       - name: Build
         working-directory: ./web
-        run: pnpm run build
+        run: bun run build
         env:
           VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}'
       - name: Publish
