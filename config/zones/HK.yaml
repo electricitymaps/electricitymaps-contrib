@@ -1,5 +1,5 @@
 aggregates_displayed:
-  - yearly
+  - none # We are not showing this zone due to lack of data
 bounding_box:
   - - 113.337331576
     - 21.677069403000075
