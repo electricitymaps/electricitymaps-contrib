@@ -78,4 +78,4 @@ fallbackZoneMixes:
         wind: 0.015505325244864603
 timezone: Africa/Windhoek
 region: Africa
-country: OTHER
+country: null

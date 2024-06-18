@@ -66,4 +66,4 @@ parsers:
   productionPerUnit: ENTSOE.fetch_production_per_units
 timezone: Europe/Belgrade
 region: Europe
-country: OTHER
+country: XK
