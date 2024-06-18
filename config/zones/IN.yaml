@@ -131,3 +131,5 @@ subZoneNames:
   - IN-WE
   - IN-SO
 timezone: Asia/Kolkata
+region: Asia
+country: IN

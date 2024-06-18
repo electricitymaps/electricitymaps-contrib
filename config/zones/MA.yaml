@@ -28,3 +28,5 @@ fallbackZoneMixes:
       wind: 0.1409
 parsers: {}
 timezone: Africa/Casablanca
+region: Africa
+country: MA

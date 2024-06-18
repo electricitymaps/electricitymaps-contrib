@@ -199,3 +199,5 @@ parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity
 timezone: null
+region: Americas
+country: BR

@@ -242,3 +242,5 @@ parsers:
   production: UY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Montevideo
+region: Americas
+country: UY

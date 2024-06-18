@@ -53,9 +53,6 @@ describe('FeedbackCard', () => {
     cy.get('[data-test-id=feedback-pill-1]').click();
     cy.get('[data-test-id=feedback-input]').type('Test comment');
     cy.get('[data-test-id=pill]').click();
-    cy.get('[data-test-id=title]').should(
-      'contain.text',
-      'Your response helps us understand and improve the quality of our app.'
-    );
+    cy.get('[data-test-id=title]').should('contain.text', 'Thank you for your feedback!');
   });
 });
