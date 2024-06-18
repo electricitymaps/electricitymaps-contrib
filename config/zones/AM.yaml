@@ -80,3 +80,5 @@ fallbackZoneMixes:
         wind: 1.592678840714006e-06
 parsers: {}
 timezone: Asia/Yerevan
+region: Asia
+country: AM

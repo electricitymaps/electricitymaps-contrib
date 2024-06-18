@@ -122,3 +122,5 @@ parsers:
   consumption: KW.fetch_consumption
   productionCapacity: IRENA.fetch_production_capacity
 timezone: Asia/Kuwait
+region: Asia
+country: KW

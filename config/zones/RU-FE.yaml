@@ -4,3 +4,5 @@ bounding_box:
   - - 179.9
     - 71.6
 timezone: null
+region: Europe
+country: RU

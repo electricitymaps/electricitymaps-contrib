@@ -12,3 +12,5 @@ fallbackZoneMixes:
       oil: 0.46
       unknown: 0.01
 timezone: Asia/Baku
+region: Asia
+country: AZ

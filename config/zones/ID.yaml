@@ -216,5 +216,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
+disclaimer: Real-time consumption and generation mix data is not available and is
+  fully estimated.
 timezone: Asia/Jakarta
+region: Asia
+country: ID

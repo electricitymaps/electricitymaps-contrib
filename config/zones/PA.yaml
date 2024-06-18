@@ -260,3 +260,5 @@ parsers:
   production: PA.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
 timezone: America/Panama
+region: Americas
+country: PA
