@@ -78,7 +78,6 @@ class TestES(TestCase):
             datetime(2023, 9, 3, 23, 55, tzinfo=timezone.utc),
         )
 
-
     # Test for DST change days
     @patch("requests.Response")
     @patch("parsers.ES.Session.get")
@@ -181,7 +180,7 @@ class TestES(TestCase):
             data_list[0]["datetime"],
             datetime(2023, 9, 3, 17, 5, tzinfo=timezone.utc),
         )
-    
+
     # Test for DST change days
     @patch("requests.Response")
     @patch("parsers.ES.Session.get")
