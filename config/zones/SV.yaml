@@ -102,7 +102,7 @@ emissionFactors:
         factors
       _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
       datetime: '2022-01-01'
-      source: assumes 51% gas, 49% oil
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
       value: 387.6470588235294
   lifecycle:
     battery discharge:
@@ -166,7 +166,7 @@ emissionFactors:
         factors
       _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
       datetime: '2022-01-01'
-      source: assumes 51% gas, 49% oil
+      source: Our World in Data; IPCC 2014; assumes 51% gas, 49% oil
       value: 568.4313725490196
 fallbackZoneMixes:
   powerOriginRatios:

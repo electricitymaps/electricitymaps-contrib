@@ -21,8 +21,8 @@ PARSER = "GT.py"
 DEFAULT_ZONE_KEY = ZoneKey("GT")
 TIMEZONE = ZoneInfo("America/Guatemala")
 
-SOURCE = "wl12.amm.org.gt"
-URL = f"https://{SOURCE}/GraficaPW/graficaCombustible"
+SOURCE = "amm.org.gt"  # Source is slightly different than API URL
+URL = "https://wl12.amm.org.gt/GraficaPW/graficaCombustible"
 
 PRODUCTION_TYPE_TO_PRODUCTION_MODE = {
     "BIOGAS": "biomass",

@@ -91,7 +91,7 @@ def fetch_production(
                 "unknown": df.loc[i, "unknown"],
             },
             "capacity": {"wind": capacity if capacity is not None else {}},
-            "source": f"occtonet.or.jp, {sources[zone_key]}",
+            "source": f"occto.or.jp, {sources[zone_key]}",
         }
         datalist.append(data)
     return datalist
