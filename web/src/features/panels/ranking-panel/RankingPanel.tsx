@@ -12,7 +12,7 @@ import {
 import { getRankedState } from './getRankingPanelData';
 import InfoText from './InfoText';
 import SearchBar from './SearchBar';
-import SocialButtons from './SocialButtons';
+import SocialIcons from './SocialIcons';
 import ZoneList from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
@@ -41,10 +41,10 @@ export default function RankingPanel(): ReactElement {
     spatialAggregation
   );
   const filteredList = rankedList.filter((zone) => {
-    if (zone.countryName && zone.countryName.toLowerCase().includes(searchTerm)) {
-      return true;
-    }
-    if (zone.zoneName && zone.zoneName.toLowerCase().includes(searchTerm)) {
+    if (
+      zone.countryName?.toLowerCase().includes(searchTerm) ||
+      zone.zoneName?.toLowerCase().includes(searchTerm)
+    ) {
       return true;
     }
     return false;
@@ -67,7 +67,7 @@ export default function RankingPanel(): ReactElement {
       <ZoneList data={filteredList} />
       <div className="space-y-4 p-2">
         <InfoText />
-        <SocialButtons />
+        <SocialIcons />
       </div>
     </div>
   );
