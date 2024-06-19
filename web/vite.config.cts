@@ -45,7 +45,7 @@ const PWAManifest: Partial<ManifestOptions> = {
   name: 'Electricity Maps',
   short_name: 'Electricity Maps',
   start_url: '/',
-  display: 'standalone', // For some reason, the type is not recognized without the cast
+  display: 'standalone',
   background_color: '#ffffff',
   lang: 'en',
   scope: '/',
