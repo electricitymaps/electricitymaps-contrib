@@ -15,6 +15,7 @@ interface ButtonProps {
   children?: React.ReactNode;
   disabled?: boolean;
   size?: 'sm' | 'lg' | 'xl';
+  shouldShrink?: boolean;
   type?: 'primary' | 'secondary' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
@@ -27,7 +28,6 @@ interface SocialButtonProps
   iconSize?: number;
   iconOnly?: boolean;
   isShareLink?: boolean;
-  shouldShrink?: boolean;
 }
 
 export function Button({
@@ -38,6 +38,7 @@ export function Button({
   backgroundClasses, // backgroundColor, borderColor, margin, etc.
   foregroundClasses, // textColor, etc.
   size = 'lg',
+  shouldShrink = false,
   type = 'primary',
   onClick,
 }: ButtonProps) {
@@ -50,7 +51,8 @@ export function Button({
     <div
       className={twMerge(
         `items-center justify-center rounded-full ${getBackground(type, disabled)}`,
-        backgroundClasses
+        backgroundClasses,
+        shouldShrink ? 'w-fit' : ''
       )}
     >
       <As
@@ -169,9 +171,8 @@ export function GitHubButton({
     <Button
       size={size}
       type={type}
-      backgroundClasses={`bg-gradient-to-r from-[#04275c] to-[#040e23] ${
-        shouldShrink ? 'w-fit' : ''
-      }`}
+      shouldShrink={shouldShrink}
+      backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23]"
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#04275c]"
       href="https://github.com/electricityMaps/electricitymaps-contrib"
       icon={<FaGithub size={iconSize} />}
@@ -194,7 +195,8 @@ export function TwitterButton({
     <Button
       size={size}
       type={type}
-      backgroundClasses={`bg-[#1d9bf0] ${shouldShrink ? 'w-fit' : ''}`}
+      shouldShrink={shouldShrink}
+      backgroundClasses="bg-[#1d9bf0]"
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#1d9bf0]"
       href={
         isShareLink
@@ -221,7 +223,8 @@ export function FacebookButton({
     <Button
       size={size}
       type={type}
-      backgroundClasses={`bg-[#1877F2] ${shouldShrink ? 'w-fit' : ''}`}
+      shouldShrink={shouldShrink}
+      backgroundClasses="bg-[#1877F2]"
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#1877F2]"
       href={
         isShareLink
@@ -248,7 +251,8 @@ export function SlackButton({
     <Button
       size={size}
       type={type}
-      backgroundClasses={`bg-[#4a154b] ${shouldShrink ? 'w-fit' : ''}`}
+      shouldShrink={shouldShrink}
+      backgroundClasses="bg-[#4a154b]"
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#4a154b]"
       href={isShareLink ? undefined : 'https://slack.electricitymaps.com'}
       icon={<FaSlack size={iconSize} />}
@@ -271,7 +275,8 @@ export function LinkedinButton({
     <Button
       size={size}
       type={type}
-      backgroundClasses={`bg-[#0A66C2] ${shouldShrink ? 'w-fit' : ''}`}
+      shouldShrink={shouldShrink}
+      backgroundClasses="bg-[#0A66C2]"
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#0A66C2]"
       href={
         isShareLink
@@ -297,7 +302,7 @@ export function FeedbackButton({
     <Button
       size={size}
       type={type}
-      backgroundClasses={shouldShrink ? 'w-fit' : ''}
+      shouldShrink={shouldShrink}
       href="https://forms.gle/VHaeHzXyGodFKZY18"
       icon={<FaCommentDots size={iconSize} />}
     >
