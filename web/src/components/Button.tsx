@@ -27,6 +27,7 @@ interface SocialButtonProps
   iconSize?: number;
   iconOnly?: boolean;
   isShareLink?: boolean;
+  shouldShrink?: boolean;
 }
 
 export function Button({
@@ -156,13 +157,21 @@ function getSize(size: string, type: string, isIconOnly: boolean) {
   }
 }
 
-export function GitHubButton({ iconOnly, size, iconSize, type }: SocialButtonProps) {
+export function GitHubButton({
+  iconOnly,
+  size,
+  iconSize,
+  type,
+  shouldShrink,
+}: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
-      backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23]"
+      backgroundClasses={`bg-gradient-to-r from-[#04275c] to-[#040e23] ${
+        shouldShrink ? 'w-fit' : ''
+      }`}
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#04275c]"
       href="https://github.com/electricityMaps/electricitymaps-contrib"
       icon={<FaGithub size={iconSize} />}
@@ -178,13 +187,14 @@ export function TwitterButton({
   iconSize,
   type,
   isShareLink,
+  shouldShrink,
 }: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
-      backgroundClasses="bg-[#1d9bf0]"
+      backgroundClasses={`bg-[#1d9bf0] ${shouldShrink ? 'w-fit' : ''}`}
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#1d9bf0]"
       href={
         isShareLink
@@ -204,12 +214,15 @@ export function FacebookButton({
   iconSize,
   type,
   isShareLink,
+  shouldShrink,
 }: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
+      backgroundClasses={`bg-[#1877F2] ${shouldShrink ? 'w-fit' : ''}`}
+      foregroundClasses="text-white dark:text-white focus-visible:outline-[#1877F2]"
       href={
         isShareLink
           ? 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fapp.electricitymaps.com%2F'
@@ -228,13 +241,14 @@ export function SlackButton({
   iconSize,
   type,
   isShareLink,
+  shouldShrink,
 }: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
-      backgroundClasses="bg-[#4a154b]"
+      backgroundClasses={`bg-[#4a154b] ${shouldShrink ? 'w-fit' : ''}`}
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#4a154b]"
       href={isShareLink ? undefined : 'https://slack.electricitymaps.com'}
       icon={<FaSlack size={iconSize} />}
@@ -250,13 +264,14 @@ export function LinkedinButton({
   iconSize,
   type,
   isShareLink,
+  shouldShrink,
 }: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
-      backgroundClasses="bg-[#0A66C2]"
+      backgroundClasses={`bg-[#0A66C2] ${shouldShrink ? 'w-fit' : ''}`}
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#0A66C2]"
       href={
         isShareLink
@@ -270,12 +285,19 @@ export function LinkedinButton({
   );
 }
 
-export function FeedbackButton({ iconOnly, size, iconSize, type }: SocialButtonProps) {
+export function FeedbackButton({
+  iconOnly,
+  size,
+  iconSize,
+  type,
+  shouldShrink,
+}: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
+      backgroundClasses={shouldShrink ? 'w-fit' : ''}
       href="https://forms.gle/VHaeHzXyGodFKZY18"
       icon={<FaCommentDots size={iconSize} />}
     >
