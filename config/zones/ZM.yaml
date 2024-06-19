@@ -12,3 +12,5 @@ fallbackZoneMixes:
       hydro: 0.83
       oil: 0.06
 timezone: Africa/Maputo
+region: Africa
+country: ZM

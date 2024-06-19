@@ -16,3 +16,5 @@ capacity:
   solar: 2.96
   wind: 1.8
 timezone: America/Santiago
+region: Americas
+country: CL

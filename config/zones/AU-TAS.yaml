@@ -220,3 +220,5 @@ parsers:
   production: OPENNEM.fetch_production
   productionCapacity: OPENNEM.fetch_production_capacity
 timezone: Australia/Hobart
+region: Oceania
+country: AU

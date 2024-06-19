@@ -21,3 +21,5 @@ parsers:
   price: NTESMO.fetch_price
   production: NTESMO.fetch_production
 timezone: Australia/Darwin
+region: Oceania
+country: AU

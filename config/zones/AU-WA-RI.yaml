@@ -59,3 +59,5 @@ fallbackZoneMixes:
 parsers:
   production: ajenti.fetch_production
 timezone: Australia/Perth
+region: Oceania
+country: AU

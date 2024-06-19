@@ -227,3 +227,5 @@ parsers:
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 timezone: Europe/Podgorica
+region: Europe
+country: ME
