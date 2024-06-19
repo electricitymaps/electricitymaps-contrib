@@ -19,7 +19,8 @@ contributors:
   - lorrieq
   - pierresegonne
   - wobniarin
-disclaimer: The data provided for solar power production is suspected to be too high (source; Chubu Electric Power Co.,Inc.).
+disclaimer: The data provided for solar power production is suspected to be too high
+  (source; Chubu Electric Power Co.,Inc.).
 emissionFactors:
   lifecycle:
     unknown:
@@ -35,3 +36,5 @@ parsers:
   price: JP.fetch_price
   production: JP.fetch_production
 timezone: Asia/Tokyo
+region: Asia
+country: JP

@@ -45,3 +45,5 @@ subZoneNames:
   - AU-WA
   - AU-WA-RI
 timezone: Australia/Sydney
+region: Oceania
+country: AU

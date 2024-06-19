@@ -12,3 +12,5 @@ contributors:
 parsers:
   consumption: GCCIA.fetch_consumption
 timezone: Asia/Bahrain
+region: Asia
+country: BH

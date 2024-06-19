@@ -98,3 +98,5 @@ parsers:
   consumption: IN_WE.fetch_consumption
   production: IN.fetch_production
 timezone: Asia/Kolkata
+region: Asia
+country: IN

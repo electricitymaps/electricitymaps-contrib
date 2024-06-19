@@ -56,3 +56,5 @@ parsers:
   production: FR_O.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
 timezone: Europe/Paris
+region: Americas
+country: GF

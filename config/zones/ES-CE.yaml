@@ -19,3 +19,5 @@ parsers:
   production: ES.fetch_production
   productionCapacity: REE.fetch_production_capacity
 timezone: Europe/Madrid
+region: Europe
+country: ES

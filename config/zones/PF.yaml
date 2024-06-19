@@ -90,3 +90,5 @@ parsers:
   production: PF.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
 timezone: Pacific/Tahiti
+region: Oceania
+country: PF
