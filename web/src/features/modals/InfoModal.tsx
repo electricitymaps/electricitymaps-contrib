@@ -49,7 +49,7 @@ export function InfoModalContent() {
           href="https://forms.gle/VHaeHzXyGodFKZY18"
           icon={<FaCommentDots size={ICON_SIZE} />}
         >
-          {t('info-modal.feedback-button')}
+          {t('button.feedback')}
         </Button>
         <Button
           size="lg"
@@ -59,7 +59,7 @@ export function InfoModalContent() {
           href="https://github.com/electricityMaps/electricitymaps-contrib"
           icon={<FaGithub size={ICON_SIZE} />}
         >
-          {t('social-buttons.github')}
+          {t('button.github')}
         </Button>
         <Button
           size="lg"
@@ -69,7 +69,7 @@ export function InfoModalContent() {
           href="https://twitter.com/intent/tweet?url=https://app.electricitymaps.com"
           icon={<FaTwitter size={ICON_SIZE} />}
         >
-          {t('social-buttons.twitter')}
+          {t('button.twitter')}
         </Button>
         <Button
           size="lg"
@@ -79,7 +79,7 @@ export function InfoModalContent() {
           href="https://slack.electricitymaps.com/"
           icon={<FaSlack size={ICON_SIZE} />}
         >
-          {t('social-buttons.slack')}
+          {t('button.slack')}
         </Button>
         <Button
           size="lg"
@@ -89,7 +89,7 @@ export function InfoModalContent() {
           href="https://www.linkedin.com/company/electricitymaps/"
           icon={<FaLinkedin size={ICON_SIZE} />}
         >
-          {t('social-buttons.linkedin')}
+          {t('button.linkedin')}
         </Button>
       </div>
       <div className="prose space-x-2  pt-1 text-center text-sm prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
