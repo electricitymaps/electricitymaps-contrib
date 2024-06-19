@@ -9,8 +9,10 @@ import {
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 
+import Divider from '../zone/Divider';
 import { getRankedState } from './getRankingPanelData';
-import InfoText from './InfoText';
+// import InfoText from './InfoText';
+import RankingPanelAccordion from './RankingPanelAccordion';
 import SearchBar from './SearchBar';
 import SocialIcons from './SocialIcons';
 import ZoneList from './ZoneList';
@@ -53,20 +55,19 @@ export default function RankingPanel(): ReactElement {
   return (
     <div className="flex max-h-[calc(100vh_-_230px)] flex-col py-5 pl-5 pr-1 ">
       <div className="pb-5">
-        <div className="font-poppins text-lg font-medium">
-          {t('left-panel.zone-list-header-title')}
-        </div>
-        <div className="text-sm">{t('left-panel.zone-list-header-subtitle')}</div>
+        <div className="font-poppins text-lg font-medium">{t('ranking-panel.title')}</div>
+        <div className="text-sm">{t('ranking-panel.subtitle')}</div>
       </div>
 
       <SearchBar
-        placeholder={t('left-panel.search')}
+        placeholder={t('ranking-panel.search')}
         searchHandler={inputHandler}
         value={searchTerm}
       />
       <ZoneList data={filteredList} />
       <div className="space-y-4 p-2">
-        <InfoText />
+        <RankingPanelAccordion />
+        <Divider />
         <SocialIcons />
       </div>
     </div>

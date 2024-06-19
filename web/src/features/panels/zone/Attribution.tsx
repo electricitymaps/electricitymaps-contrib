@@ -28,7 +28,7 @@ export default function Attribution({ zoneId }: { zoneId: string }) {
           trackEvent('Contribute On GitHub Button Clicked');
         }}
       >
-        {t('country-panel.contribute')}
+        {t('social-buttons.github')}
       </Button>
     </div>
   );

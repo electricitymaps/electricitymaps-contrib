@@ -6,6 +6,7 @@ import {
   FaCommentDots,
   FaGithub,
   FaInfoCircle,
+  FaLinkedin,
   FaSlack,
   FaTwitter,
 } from 'react-icons/fa';
@@ -58,7 +59,7 @@ export function InfoModalContent() {
           href="https://github.com/electricityMaps/electricitymaps-contrib"
           icon={<FaGithub size={ICON_SIZE} />}
         >
-          {t('info-modal.github-button')}
+          {t('social-buttons.github')}
         </Button>
         <Button
           size="lg"
@@ -68,7 +69,7 @@ export function InfoModalContent() {
           href="https://twitter.com/intent/tweet?url=https://app.electricitymaps.com"
           icon={<FaTwitter size={ICON_SIZE} />}
         >
-          {t('info-modal.twitter-button')}
+          {t('social-buttons.twitter')}
         </Button>
         <Button
           size="lg"
@@ -78,7 +79,17 @@ export function InfoModalContent() {
           href="https://slack.electricitymaps.com/"
           icon={<FaSlack size={ICON_SIZE} />}
         >
-          {t('info-modal.slack-button')}
+          {t('social-buttons.slack')}
+        </Button>
+        <Button
+          size="lg"
+          type="primary"
+          backgroundClasses="bg-[#0A66C2]"
+          foregroundClasses="text-white dark:text-white focus-visible:outline-[#0A66C2]"
+          href="https://www.linkedin.com/company/electricitymaps/"
+          icon={<FaLinkedin size={ICON_SIZE} />}
+        >
+          {t('social-buttons.linkedin')}
         </Button>
       </div>
       <div className="prose space-x-2  pt-1 text-center text-sm prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
