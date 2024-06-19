@@ -22,11 +22,11 @@ export function InfoModalContent() {
   return (
     <div className=" flex flex-col items-center ">
       <div className="prose text-center text-md dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 hover:prose-a:underline">
-        <p>{t('info-modal.intro-text')}</p>
+        <p>{t('info.text')}</p>
         <p
           className=""
           dangerouslySetInnerHTML={{
-            __html: t('info-modal.open-source-text', {
+            __html: t('info.open-source-text', {
               link: 'https://github.com/electricitymaps/electricitymaps-contrib',
               sourcesLink:
                 'https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources',
@@ -94,11 +94,11 @@ export function InfoModalContent() {
       </div>
       <div className="prose space-x-2  pt-1 text-center text-sm prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
         <a href="https://www.electricitymaps.com/privacy-policy/">
-          {t('info-modal.privacy-policy')}
+          {t('info.privacy-policy')}
         </a>
         <span className="text-gray-500">|</span>
         <a href="https://www.electricitymaps.com/legal-notice/">
-          {t('info-modal.legal-notice')}
+          {t('info.legal-notice')}
         </a>
       </div>
       <p className="text mt-2  text-sm">Version: {APP_VERSION}</p>
@@ -111,7 +111,7 @@ export default function InfoModal() {
   const [isOpen, setIsOpen] = useAtom(isInfoModalOpenAtom);
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={t('info-modal.title')}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={t('info.title')}>
       <InfoModalContent />
     </Modal>
   );

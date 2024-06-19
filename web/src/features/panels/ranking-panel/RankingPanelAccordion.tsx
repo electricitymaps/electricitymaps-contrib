@@ -6,10 +6,10 @@ export default function RankingPanelAccordion() {
   const { t } = useTranslation();
   return (
     <Accordion
-      title={t('ranking-panel.accordion.title')}
+      title={t('info.title')}
       isCollapsedAtom={rankingPanelAccordionCollapsedAtom}
     >
-      <p>{t('ranking-panel.accordion.text')}</p>
+      <p>{t('info.text')}</p>
     </Accordion>
   );
 }

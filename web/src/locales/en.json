@@ -1,6 +1,7 @@
 {
-  "info-modal": {
-    "title": "Info",
+  "info": {
+    "title": "About the app",
+    "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
     "open-source-text": "This app is <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">see data sources</a>) and powered by the community.",
     "privacy-policy": "Privacy Policy",
     "legal-notice": "Legal Notice"
@@ -11,11 +12,7 @@
   "ranking-panel": {
     "title": "Climate Impact by Area",
     "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas",
-    "accordion": {
-      "title": "About the app",
-      "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges."
-    }
+    "search": "Search areas"
   },
   "button": {
     "github": "Contribute on GitHub",
