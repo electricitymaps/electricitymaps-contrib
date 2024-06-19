@@ -11,6 +11,7 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 
+import InfoText from './InfoText';
 import { isFAQModalOpenAtom, isInfoModalOpenAtom } from './modalAtoms';
 
 const ICON_SIZE = 16;
@@ -21,19 +22,7 @@ export function InfoModalContent() {
 
   return (
     <div className=" flex flex-col items-center ">
-      <div className="prose text-center text-md dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 hover:prose-a:underline">
-        <p>{t('info.text')}</p>
-        <p
-          className=""
-          dangerouslySetInnerHTML={{
-            __html: t('info.open-source-text', {
-              link: 'https://github.com/electricitymaps/electricitymaps-contrib',
-              sourcesLink:
-                'https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources',
-            }),
-          }}
-        />
-      </div>
+      <InfoText />
       <div className="w-[330px] space-y-2 py-2">
         <Button
           size="lg"
