@@ -9,6 +9,7 @@ export default function RankingPanelAccordion() {
     <Accordion
       title={t('info.title')}
       isCollapsedAtom={rankingPanelAccordionCollapsedAtom}
+      isOnTop
     >
       <InfoText />
     </Accordion>
