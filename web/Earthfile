@@ -18,7 +18,7 @@ api-files:
 prepare:
   FROM +src-files
   RUN bun install -g pnpm@9
-  RUN pnpm install --frozen-lockfile
+  RUN bunx pnpm install --frozen-lockfile
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
   COPY --dir geo public src ./
@@ -28,15 +28,15 @@ test:
   COPY ../+linting-files/* ../
   COPY .gitignore .eslintrc.json .prettierrc.json viteEnvironment.d.ts testSetup.ts .
   COPY --dir cypress ./
-  RUN pnpm run create-generated-files
-  RUN pnpm run validate
+  RUN bun run create-generated-files
+  RUN bun run validate
   # TODO: Enable Cypress tests later
   # RUN pnpm run cy:test-all
 
 build:
   FROM +prepare
-  RUN pnpm run create-generated-files
-  RUN pnpm version minor
+  RUN bun run create-generated-files
+  RUN bunx pnpm version minor
   RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
 
   # Local outputs for debugging
@@ -51,4 +51,4 @@ deploy:
   COPY +build/dist ./dist
   RUN bun install -g wrangler
   # TODO: Point to master after build and deploy has been tested to staging
-  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID bun wrangler pages deploy ./dist --project-name electricitymaps-app --branch master
+  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID bunx wrangler pages deploy ./dist --project-name electricitymaps-app --branch master
