@@ -1,10 +1,10 @@
+_comment: Capacity calculations are available at https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
 bounding_box:
   - - 50.250987175000034
     - 24.059871521000062
   - - 52.11654707100007
     - 26.660101630000042
 capacity:
-  _comment: Emission factor calculations are available at https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
   biomass:
     - datetime: '2016-01-01'
       source: Climatescope
