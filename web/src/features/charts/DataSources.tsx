@@ -94,7 +94,7 @@ function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }
       <div className="dark:border-1 relative mx-6 h-auto min-w-64 rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
         {t('country-panel.emissionFactorDataSourcesTooltip')}
       </div>
-      <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 text-black shadow-md sm:hidden">
+      <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 text-black shadow-md">
         <HiXMark size="24" />
       </button>
     </Portal.Root>
