@@ -16,3 +16,5 @@ capacity:
   solar: 0
   wind: 12.9
 timezone: America/Punta_Arenas
+region: Americas
+country: CL

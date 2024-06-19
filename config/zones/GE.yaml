@@ -119,3 +119,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 timezone: Asia/Tbilisi
+region: Asia
+country: GE

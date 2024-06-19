@@ -24,7 +24,7 @@ contributors:
 emissionFactors:
   lifecycle:
     unknown:
-      source: 'Enerdata 2022 Japanese National Average'
+      source: Enerdata 2022 Japanese National Average
       value: 462
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
@@ -34,3 +34,5 @@ timezone: Asia/Tokyo
 sources:
   Enerdata 2022 Japanese National Average:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
+region: Asia
+country: JP

@@ -79,3 +79,5 @@ emissionFactors:
 parsers:
   production: PrinceEdwardIsland.fetch_production
 timezone: America/Halifax
+region: Americas
+country: CA

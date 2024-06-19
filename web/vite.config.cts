@@ -11,7 +11,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const manualChunkMap = {
   '@sentry': 'sentry',
   '@radix-ui': 'radix',
-  'country-flag-icons': 'flags',
   recharts: 'recharts',
   'world.json': 'world',
   'usa_states.json': 'config',

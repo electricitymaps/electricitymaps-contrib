@@ -136,3 +136,5 @@ fallbackZoneMixes:
 parsers:
   production: CA_NS.fetch_production
 timezone: America/Halifax
+region: Americas
+country: CA

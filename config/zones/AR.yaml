@@ -193,3 +193,5 @@ parsers:
   production: CAMMESA.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Argentina/Buenos_Aires
+region: Americas
+country: AR

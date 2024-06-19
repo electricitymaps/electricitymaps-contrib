@@ -256,3 +256,5 @@ parsers:
   production: NZ.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: Pacific/Auckland
+region: Oceania
+country: NZ

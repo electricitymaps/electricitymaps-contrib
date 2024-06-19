@@ -75,3 +75,5 @@ parsers:
   consumption: IQ.fetch_consumption
   production: IQ.fetch_production
 timezone: Asia/Baghdad
+region: Asia
+country: IQ

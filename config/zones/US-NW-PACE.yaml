@@ -84,7 +84,7 @@ contributors:
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 30
+  production: 34
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available. This zone includes all gas related electricity production
   from the generation-only balancing authority Avangrid Renewables, LLC. Read more
@@ -354,3 +354,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain
+region: Americas
+country: US
