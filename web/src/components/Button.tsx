@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   FaCommentDots,
   FaFacebook,
+  FaGithub,
   FaLinkedin,
   FaSlack,
   FaTwitter,
@@ -23,6 +24,7 @@ interface ButtonProps {
 
 interface SocialButtonProps
   extends Omit<ButtonProps, 'icon' | 'children' | 'href' | 'onClick'> {
+  iconSize?: number;
   iconOnly?: boolean;
   isShareLink?: boolean;
 }
@@ -154,25 +156,55 @@ function getSize(size: string, type: string, isIconOnly: boolean) {
   }
 }
 
-export function TwitterButton({ iconOnly, size, type, isShareLink }: SocialButtonProps) {
+export function GitHubButton({ iconOnly, size, iconSize, type }: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
+      backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23]"
+      foregroundClasses="text-white dark:text-white focus-visible:outline-[#04275c]"
+      href="https://github.com/electricityMaps/electricitymaps-contrib"
+      icon={<FaGithub size={iconSize} />}
+    >
+      {iconOnly ? undefined : t('button.github')}
+    </Button>
+  );
+}
+
+export function TwitterButton({
+  iconOnly,
+  size,
+  iconSize,
+  type,
+  isShareLink,
+}: SocialButtonProps) {
+  const { t } = useTranslation();
+  return (
+    <Button
+      size={size}
+      type={type}
+      backgroundClasses="bg-[#1d9bf0]"
+      foregroundClasses="text-white dark:text-white focus-visible:outline-[#1d9bf0]"
       href={
         isShareLink
           ? 'https://twitter.com/intent/tweet?url=https://app.electricitymaps.com'
           : undefined
       }
-      icon={<FaTwitter />}
+      icon={<FaTwitter size={iconSize} />}
     >
       {iconOnly ? undefined : t('button.twitter')}
     </Button>
   );
 }
 
-export function FacebookButton({ iconOnly, size, type, isShareLink }: SocialButtonProps) {
+export function FacebookButton({
+  iconOnly,
+  size,
+  iconSize,
+  type,
+  isShareLink,
+}: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
@@ -183,53 +215,69 @@ export function FacebookButton({ iconOnly, size, type, isShareLink }: SocialButt
           ? 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fapp.electricitymaps.com%2F'
           : undefined
       }
-      icon={<FaFacebook />}
+      icon={<FaFacebook size={iconSize} />}
     >
       {iconOnly ? undefined : t('button.facebook')}
     </Button>
   );
 }
 
-export function SlackButton({ iconOnly, size, type, isShareLink }: SocialButtonProps) {
+export function SlackButton({
+  iconOnly,
+  size,
+  iconSize,
+  type,
+  isShareLink,
+}: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
+      backgroundClasses="bg-[#4a154b]"
+      foregroundClasses="text-white dark:text-white focus-visible:outline-[#4a154b]"
       href={isShareLink ? undefined : 'https://slack.electricitymaps.com'}
-      icon={<FaSlack />}
+      icon={<FaSlack size={iconSize} />}
     >
       {iconOnly ? undefined : t('button.slack')}
     </Button>
   );
 }
 
-export function LinkedinButton({ iconOnly, size, type, isShareLink }: SocialButtonProps) {
+export function LinkedinButton({
+  iconOnly,
+  size,
+  iconSize,
+  type,
+  isShareLink,
+}: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
+      backgroundClasses="bg-[#0A66C2]"
+      foregroundClasses="text-white dark:text-white focus-visible:outline-[#0A66C2]"
       href={
         isShareLink
           ? 'https://www.linkedin.com/shareArticle?mini=true&url=https://app.electricitymaps.com'
-          : undefined
+          : 'https://www.linkedin.com/company/electricitymaps/'
       }
-      icon={<FaLinkedin />}
+      icon={<FaLinkedin size={iconSize} />}
     >
       {iconOnly ? undefined : t('button.linkedin')}
     </Button>
   );
 }
 
-export function FeedbackButton({ iconOnly, size, type }: SocialButtonProps) {
+export function FeedbackButton({ iconOnly, size, iconSize, type }: SocialButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       size={size}
       type={type}
       href="https://forms.gle/VHaeHzXyGodFKZY18"
-      icon={<FaCommentDots />}
+      icon={<FaCommentDots size={iconSize} />}
     >
       {iconOnly ? undefined : t('button.feedback')}
     </Button>
