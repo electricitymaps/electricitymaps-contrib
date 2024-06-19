@@ -8,6 +8,7 @@ export default function RankingPanelAccordion() {
   return (
     <Accordion
       title={t('info.title')}
+      className="py-1"
       isCollapsedAtom={rankingPanelAccordionCollapsedAtom}
       isOnTop
     >

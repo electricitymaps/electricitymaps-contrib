@@ -1,4 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  FaCommentDots,
+  FaFacebook,
+  FaLinkedin,
+  FaSlack,
+  FaTwitter,
+} from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
@@ -11,6 +19,12 @@ interface ButtonProps {
   backgroundClasses?: string;
   foregroundClasses?: string;
   onClick?: () => void;
+}
+
+interface SocialButtonProps
+  extends Omit<ButtonProps, 'icon' | 'children' | 'href' | 'onClick'> {
+  iconOnly?: boolean;
+  isShareLink?: boolean;
 }
 
 export function Button({
@@ -138,4 +152,86 @@ function getSize(size: string, type: string, isIconOnly: boolean) {
       return '';
     }
   }
+}
+
+export function TwitterButton({ iconOnly, size, type, isShareLink }: SocialButtonProps) {
+  const { t } = useTranslation();
+  return (
+    <Button
+      size={size}
+      type={type}
+      href={
+        isShareLink
+          ? 'https://twitter.com/intent/tweet?url=https://app.electricitymaps.com'
+          : undefined
+      }
+      icon={<FaTwitter />}
+    >
+      {iconOnly ? undefined : t('button.twitter')}
+    </Button>
+  );
+}
+
+export function FacebookButton({ iconOnly, size, type, isShareLink }: SocialButtonProps) {
+  const { t } = useTranslation();
+  return (
+    <Button
+      size={size}
+      type={type}
+      href={
+        isShareLink
+          ? 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fapp.electricitymaps.com%2F'
+          : undefined
+      }
+      icon={<FaFacebook />}
+    >
+      {iconOnly ? undefined : t('button.facebook')}
+    </Button>
+  );
+}
+
+export function SlackButton({ iconOnly, size, type, isShareLink }: SocialButtonProps) {
+  const { t } = useTranslation();
+  return (
+    <Button
+      size={size}
+      type={type}
+      href={isShareLink ? undefined : 'https://slack.electricitymaps.com'}
+      icon={<FaSlack />}
+    >
+      {iconOnly ? undefined : t('button.slack')}
+    </Button>
+  );
+}
+
+export function LinkedinButton({ iconOnly, size, type, isShareLink }: SocialButtonProps) {
+  const { t } = useTranslation();
+  return (
+    <Button
+      size={size}
+      type={type}
+      href={
+        isShareLink
+          ? 'https://www.linkedin.com/shareArticle?mini=true&url=https://app.electricitymaps.com'
+          : undefined
+      }
+      icon={<FaLinkedin />}
+    >
+      {iconOnly ? undefined : t('button.linkedin')}
+    </Button>
+  );
+}
+
+export function FeedbackButton({ iconOnly, size, type }: SocialButtonProps) {
+  const { t } = useTranslation();
+  return (
+    <Button
+      size={size}
+      type={type}
+      href="https://forms.gle/VHaeHzXyGodFKZY18"
+      icon={<FaCommentDots />}
+    >
+      {iconOnly ? undefined : t('button.feedback')}
+    </Button>
+  );
 }

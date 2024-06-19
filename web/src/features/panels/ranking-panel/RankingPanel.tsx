@@ -14,7 +14,7 @@ import { getRankedState } from './getRankingPanelData';
 // import InfoText from './InfoText';
 import RankingPanelAccordion from './RankingPanelAccordion';
 import SearchBar from './SearchBar';
-import SocialIcons from './SocialIcons';
+import SocialIconRow from './SocialIcons';
 import ZoneList from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
@@ -68,7 +68,7 @@ export default function RankingPanel(): ReactElement {
       <div className="space-y-4 p-2">
         <RankingPanelAccordion />
         <Divider />
-        <SocialIcons />
+        <SocialIconRow />
       </div>
     </div>
   );
