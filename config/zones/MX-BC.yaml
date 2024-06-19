@@ -25,3 +25,5 @@ emissionFactors:
 parsers:
   consumption: CENACE.fetch_consumption
 timezone: America/Tijuana
+region: Americas
+country: MX

@@ -6,10 +6,10 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2016-01-01'
-      source: 'Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
       value: 38
     - datetime: '2022-01-01'
-      source: 'Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing'
+      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
       value: 23
   gas:
     - datetime: '2016-01-01'
@@ -52,3 +52,5 @@ contributors:
 parsers:
   consumption: GCCIA.fetch_consumption
 timezone: Asia/Qatar
+region: Asia
+country: QA

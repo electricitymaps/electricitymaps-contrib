@@ -291,3 +291,5 @@ parsers:
   production: KPX.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
 timezone: Asia/Seoul
+region: Asia
+country: KR

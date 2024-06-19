@@ -4,3 +4,5 @@ bounding_box:
   - - -55.14755647556471
     - 60.80458831011339
 timezone: America/St_Johns
+region: Americas
+country: CA

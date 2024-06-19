@@ -160,3 +160,5 @@ parsers:
   price: JP.fetch_price
   production: JP.fetch_production
 timezone: Asia/Tokyo
+region: Asia
+country: JP

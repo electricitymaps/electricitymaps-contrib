@@ -136,6 +136,8 @@ class Zone(StrictBaseModelWithAlias):
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     estimation_method: str | None
     sources: dict[str, Source] | None
+    region: str | None
+    country: str | None
 
     def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])

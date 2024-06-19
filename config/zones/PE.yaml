@@ -249,3 +249,5 @@ parsers:
   production: PE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Lima
+region: Americas
+country: PE
