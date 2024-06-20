@@ -212,3 +212,5 @@ subZoneNames:
   - FO-MI
   - FO-SI
 timezone: Atlantic/Faroe
+region: Europe
+country: FO

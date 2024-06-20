@@ -47,3 +47,5 @@ parsers:
   production: ERP_PGCB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Dhaka
+region: Asia
+country: BD

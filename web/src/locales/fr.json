@@ -102,7 +102,7 @@
     "agree": "D'accord",
     "disagree": "Pas d'accord",
     "estimations": {
-      "primary-question": "La description des données estimées sont faciles à comprendre:",
+      "primary-question": "Les descriptions des données estimées sont faciles à comprendre:",
       "secondary-question": "Comment pouvons-nous l'améliorer ?",
       "subtitle": "Evaluez les affirmations suivantes."
     },
@@ -110,7 +110,7 @@
     "optional": "Optionnel :",
     "placeholder": "Dites le nous en quelques mots...",
     "primary-question": " Dans quelle mesure êtes-vous satisfait de votre expérience d'utilisation de l'application Electricity Maps ?",
-    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apporter prochainement ?",
+    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apportées prochainement ?",
     "secondary-question-low": "Que pouvons faire de mieux ?",
     "submit": "Soumettre",
     "success-message": "Votre réponse nous permet de comprendre et d'améliorer la qualité de notre application.",
@@ -131,9 +131,8 @@
       "title": "Les données sont estimées"
     },
     "estimated_time_slicer_average": {
-      "title": "Les données sont momentanément estimées",
-      "pill": "Indisponibles",
-      "body": "Le fournisseur de données ne publie momentanément aucune donnée pour cette zone. Les valeurs affichées sont estimées en fonction des données historiques et seront remplacées par les données consolidées dès qu'elles seront disponibles. Veuillez noter que les valeurs estimées peuvent être inexactes car elles ne tiennent pas compte d'événements météorologiques spécifiques en temps réel."
+      "title": "Les données sont temporaires",
+      "body": "Le fournisseur de données n'a encore rien reporté pour cette heure. Les valeurs affichées ont été estimées à partir de données historiques et seront mises à jour dès que les données réelles seront disponibles. Veuillez noter que les valeurs estimées ne tiennent pas toujours compte de la météo en temps réel."
     },
     "estimated_mode_breakdown": {
       "title": "Données estimées",

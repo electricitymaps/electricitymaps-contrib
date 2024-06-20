@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // TODO: Convert to component test
 describe('Country Panel', () => {
   beforeEach(() => {
@@ -9,7 +10,11 @@ describe('Country Panel', () => {
   it('interacts with details', () => {
     cy.interceptAPI('v8/details/hourly/DK-DK2');
 
-    cy.visit('/zone/DK-DK2?lang=en-GB');
+    cy.visit('/zone/DK-DK2?lang=en-GB', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
     cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
@@ -60,7 +65,11 @@ describe('Country Panel', () => {
   // TODO bring back when we have a no recent data message
   it.skip('asserts countryPanel contains "no-recent-data" message', () => {
     cy.interceptAPI('v8/details/hourly/UA');
-    cy.visit('/zone/UA?lang=en-GB');
+    cy.visit('/zone/UA?lang=en-GB', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/UA');
 
@@ -70,14 +79,15 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
-    cy.visit('/zone/CN?lang=en-GB');
+    cy.interceptAPI('v8/details/hourly/CN');
+    cy.visit('/zone/CN?lang=en-GB', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
     cy.waitForAPISuccess('v8/state/last_hour');
     cy.waitForAPISuccess('v8/state/hourly');
-    cy.intercept('GET', 'v8/details/hourly/CN*').as('chinaDetails');
-    cy.wait('@chinaDetails').then((interception) => {
-      // Check for the presence of a failure condition
-      expect(interception?.response?.statusCode).to.not.eq(200);
-    });
+    cy.waitForAPISuccess('v8/details/hourly/CN');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });

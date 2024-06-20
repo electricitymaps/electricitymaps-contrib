@@ -308,3 +308,5 @@ subZoneNames:
   - IT-SIC
   - IT-SO
 timezone: Europe/Rome
+region: Europe
+country: IT

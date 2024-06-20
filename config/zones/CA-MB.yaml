@@ -22,3 +22,5 @@ fallbackZoneMixes:
       hydro: 0.9715
       wind: 0.0254
 timezone: America/Winnipeg
+region: Americas
+country: CA

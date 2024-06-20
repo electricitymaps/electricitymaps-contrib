@@ -5,13 +5,12 @@ import react from '@vitejs/plugin-react';
 import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
-import { Display, DisplayOverride, ManifestOptions, VitePWA } from 'vite-plugin-pwa';
+import { ManifestOptions, VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const manualChunkMap = {
   '@sentry': 'sentry',
   '@radix-ui': 'radix',
-  'country-flag-icons': 'flags',
   recharts: 'recharts',
   'world.json': 'world',
   'usa_states.json': 'config',
@@ -45,7 +44,7 @@ const PWAManifest: Partial<ManifestOptions> = {
   name: 'Electricity Maps',
   short_name: 'Electricity Maps',
   start_url: '/',
-  display: 'standalone', // For some reason, the type is not recognized without the cast
+  display: 'standalone',
   background_color: '#ffffff',
   lang: 'en',
   scope: '/',

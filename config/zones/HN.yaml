@@ -87,3 +87,5 @@ parsers:
   production: HN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Tegucigalpa
+region: Americas
+country: HN

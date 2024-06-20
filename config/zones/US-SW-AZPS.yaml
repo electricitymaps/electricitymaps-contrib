@@ -63,7 +63,7 @@ contributors:
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 30
+  production: 32
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:
@@ -331,3 +331,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Arizona
+region: Americas
+country: US
