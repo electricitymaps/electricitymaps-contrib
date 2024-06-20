@@ -1,6 +1,9 @@
+import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
+import { useSetAtom } from 'jotai/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  FaCircleInfo,
   FaCommentDots,
   FaFacebook,
   FaGithub,
@@ -183,8 +186,64 @@ function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
   }
 }
 
+export function FAQButton({
+  isIconOnly,
+  size = 'lg',
+  iconSize = DEFAULT_ICON_SIZE,
+  shouldShrink,
+}: SocialButtonProps) {
+  const setIsFAQModalOpen = useSetAtom(isFAQModalOpenAtom);
+  return (
+    <Button
+      size={size}
+      type="secondary"
+      shouldShrink={shouldShrink}
+      icon={<FaCircleInfo size={iconSize} />}
+      onClick={() => setIsFAQModalOpen(true)}
+    >
+      {isIconOnly ? undefined : 'FAQ'}
+    </Button>
+  );
+}
+
+export function PrivacyPolicyButton({
+  isIconOnly,
+  size = 'lg',
+  shouldShrink,
+}: SocialButtonProps) {
+  const { t } = useTranslation();
+  return (
+    <Button
+      size={size}
+      type="link"
+      shouldShrink={shouldShrink}
+      href="https://www.electricitymaps.com/privacy-policy/"
+    >
+      {isIconOnly ? undefined : t('info.privacy-policy')}
+    </Button>
+  );
+}
+
+export function LegalNoticeButton({
+  isIconOnly,
+  size = 'lg',
+  shouldShrink,
+}: SocialButtonProps) {
+  const { t } = useTranslation();
+  return (
+    <Button
+      size={size}
+      type="link"
+      shouldShrink={shouldShrink}
+      href="https://www.electricitymaps.com/legal-notice/"
+    >
+      {isIconOnly ? undefined : t('info.legal-notice')}
+    </Button>
+  );
+}
+
 export function GitHubButton({
-  isIconOnly: iconOnly,
+  isIconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -204,13 +263,13 @@ export function GitHubButton({
         trackEvent('Contribute On GitHub Button Clicked');
       }}
     >
-      {iconOnly ? undefined : t('button.github')}
+      {isIconOnly ? undefined : t('button.github')}
     </Button>
   );
 }
 
 export function TwitterButton({
-  isIconOnly: iconOnly,
+  isIconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -232,13 +291,13 @@ export function TwitterButton({
       }
       icon={<FaXTwitter size={iconSize} />}
     >
-      {iconOnly ? undefined : t('button.twitter')}
+      {isIconOnly ? undefined : t('button.twitter')}
     </Button>
   );
 }
 
 export function FacebookButton({
-  isIconOnly: iconOnly,
+  isIconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -260,13 +319,13 @@ export function FacebookButton({
       }
       icon={<FaFacebook size={iconSize} />}
     >
-      {iconOnly ? undefined : t('button.facebook')}
+      {isIconOnly ? undefined : t('button.facebook')}
     </Button>
   );
 }
 
 export function SlackButton({
-  isIconOnly: iconOnly,
+  isIconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -284,13 +343,13 @@ export function SlackButton({
       href={isShareLink ? undefined : 'https://slack.electricitymaps.com'}
       icon={<FaSlack size={iconSize} />}
     >
-      {iconOnly ? undefined : t('button.slack')}
+      {isIconOnly ? undefined : t('button.slack')}
     </Button>
   );
 }
 
 export function LinkedinButton({
-  isIconOnly: iconOnly,
+  isIconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -312,13 +371,13 @@ export function LinkedinButton({
       }
       icon={<FaLinkedin size={iconSize} />}
     >
-      {iconOnly ? undefined : t('button.linkedin')}
+      {isIconOnly ? undefined : t('button.linkedin')}
     </Button>
   );
 }
 
 export function FeedbackButton({
-  isIconOnly: iconOnly,
+  isIconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -333,7 +392,7 @@ export function FeedbackButton({
       href="https://forms.gle/VHaeHzXyGodFKZY18"
       icon={<FaCommentDots size={iconSize} />}
     >
-      {iconOnly ? undefined : t('button.feedback')}
+      {isIconOnly ? undefined : t('button.feedback')}
     </Button>
   );
 }
