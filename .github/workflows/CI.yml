@@ -138,7 +138,6 @@ jobs:
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
         working-directory: ./web
       - name: Run test
@@ -175,7 +174,6 @@ jobs:
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
         working-directory: ./web
       - name: Restore ESLint cache
@@ -232,7 +230,6 @@ jobs:
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
         working-directory: ./web
       - name: Run TypeScript typechecking for app
@@ -311,7 +308,6 @@ jobs:
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
         working-directory: ./web
       - name: Cache Cypress binary
@@ -364,7 +360,6 @@ jobs:
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
         working-directory: ./web
       - name: Cache Cypress binary
