@@ -16,6 +16,7 @@ updates:
   # Maintain the npm (pnpm) dependencies.
   - package-ecosystem: 'npm'
     directories:
+      - '/'
       - '/web'
       - '/mockserver'
       # The mobile app still needs to be tested manually.
