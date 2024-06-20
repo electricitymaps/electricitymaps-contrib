@@ -2,14 +2,13 @@
   "dependencies": {
     "axios": "^1.6.7",
     "cors": "^2.8.5",
-    "express": "^4.19.2",
-    "nodemon": "^3.0.3"
+    "express": "^4.19.2"
   },
   "engines": {
     "node": ">=18",
     "pnpm": "^9"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "bun --watch server.js "
   }
 }

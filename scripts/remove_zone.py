@@ -106,7 +106,7 @@ def remove_geojson_entry(zone_key: ZoneKey):
         cwd=ROOT_PATH,
     )
     run_shell_command(
-        "pnpm generate-world",
+        "bun generate-world",
         cwd=ROOT_PATH / "web",
     )
 

@@ -89,7 +89,7 @@ function generateTopojson(
 
   if (verifyNoUpdates) {
     console.error(
-      'Did not expect any updates to world.json. Please run "pnpm generate-world"'
+      'Did not expect any updates to world.json. Please run "bun generate-world"'
     );
     process.exit(1);
   }
