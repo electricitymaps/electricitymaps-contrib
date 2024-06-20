@@ -63,7 +63,10 @@ jobs:
         id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            web/node_modules
+            mockserver/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
       - name: Install dependencies
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
@@ -132,7 +135,10 @@ jobs:
         id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            web/node_modules
+            mockserver/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
       - name: Install dependencies
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
@@ -168,7 +174,10 @@ jobs:
         id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            web/node_modules
+            mockserver/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
       - name: Install dependencies
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
@@ -224,7 +233,10 @@ jobs:
         id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            web/node_modules
+            mockserver/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
       - name: Install dependencies
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
@@ -261,7 +273,10 @@ jobs:
         id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            web/node_modules
+            mockserver/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
       - name: Install dependencies
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
@@ -302,7 +317,10 @@ jobs:
         id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            web/node_modules
+            mockserver/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
       - name: Install dependencies
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
@@ -354,7 +372,10 @@ jobs:
         id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            web/node_modules
+            mockserver/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
       - name: Install dependencies
         if: steps.cache-pnpm.outputs.cache-hit != 'true'
