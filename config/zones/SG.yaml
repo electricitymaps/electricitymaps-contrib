@@ -257,3 +257,5 @@ parsers:
   production: SG.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Singapore
+region: Asia
+country: SG

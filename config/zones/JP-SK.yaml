@@ -19,11 +19,13 @@ capacity:
   oil: 1350
   solar: 2230
   wind: 227
-disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live
+  data only for solar and unknown. We are working on improving the data quality for
+  this zone.
 emissionFactors:
   lifecycle:
     unknown:
-      source: 'Enerdata 2022 Japanese National Average'
+      source: Enerdata 2022 Japanese National Average
       value: 462
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
@@ -33,3 +35,5 @@ timezone: Asia/Tokyo
 sources:
   Enerdata 2022 Japanese National Average:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
+region: Asia
+country: JP

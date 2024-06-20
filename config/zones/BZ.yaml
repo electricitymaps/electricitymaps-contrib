@@ -4,3 +4,5 @@ bounding_box:
   - - -87.28307044199994
     - 18.99075876900004
 timezone: America/Belize
+region: Americas
+country: BZ

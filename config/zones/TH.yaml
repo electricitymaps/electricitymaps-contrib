@@ -1,3 +1,5 @@
+aggregates_displayed:
+  - none # We are not showing this zone due to lack of data
 bounding_box:
   - - 96.85140100100011
     - 5.129890035000059
@@ -209,3 +211,5 @@ sources:
   EPPO:
     link: https://www.eppo.go.th/index.php/en/en-energystatistics/co2-statistic
 timezone: Asia/Bangkok
+region: Asia
+country: TH

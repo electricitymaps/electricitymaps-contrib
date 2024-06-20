@@ -1,3 +1,5 @@
+aggregates_displayed:
+  - none # We are not showing this zone due to lack of data
 bounding_box:
   - - 46.155
     - 28.3985
@@ -122,3 +124,5 @@ parsers:
   consumption: KW.fetch_consumption
   productionCapacity: IRENA.fetch_production_capacity
 timezone: Asia/Kuwait
+region: Asia
+country: KW

@@ -10,3 +10,5 @@ delays:
 parsers:
   production: SEAPA.fetch_production
 timezone: America/Anchorage
+region: Americas
+country: US

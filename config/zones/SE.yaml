@@ -451,3 +451,5 @@ subZoneNames:
   - SE-SE3
   - SE-SE4
 timezone: Europe/Stockholm
+region: Europe
+country: SE
