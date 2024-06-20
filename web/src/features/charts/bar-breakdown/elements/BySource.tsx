@@ -74,8 +74,10 @@ export default function BySource({
       <div
         className={`text-md relative flex flex-row justify-between font-bold ${className}`}
       >
-        <div className="flex items-center gap-1">
-          <PlugCircleBoltIcon />
+        <div className="flex gap-1">
+          <div className="pt-0.5">
+            <PlugCircleBoltIcon />
+          </div>
           <h2>{text}</h2>
         </div>
         {hasEstimationPill && (
