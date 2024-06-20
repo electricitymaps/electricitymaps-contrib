@@ -111,11 +111,7 @@ export function TimeSliderBasic({
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
         data-test-id="time-slider-input"
-        className={`block h-6 w-6 rounded-full bg-white bg-center
-          bg-no-repeat shadow-3xl transition-shadow hover:ring
-          hover:ring-brand-green/10 hover:ring-opacity-75 focus:outline-none focus-visible:ring
-          focus-visible:ring-brand-green/10 focus-visible:ring-opacity-75
-          dark:bg-gray-400 hover:dark:ring-white/70 dark:focus-visible:ring-white/70`}
+        className={`block h-6 w-6 rounded-full bg-white bg-center bg-no-repeat shadow-3xl transition-shadow hover:ring hover:ring-brand-green/10 hover:ring-opacity-75 focus:outline-none focus-visible:ring focus-visible:ring-brand-green/10 focus-visible:ring-opacity-75 dark:bg-gray-400 hover:dark:ring-white/70 dark:focus-visible:ring-white/70`}
         style={{ backgroundImage: `url(/images/${thumbIcon})` }}
       ></SliderPrimitive.Thumb>
     </SliderPrimitive.Root>

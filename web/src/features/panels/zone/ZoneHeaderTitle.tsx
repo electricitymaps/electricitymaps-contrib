@@ -42,9 +42,9 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
       </Link>
 
       <div className="w-full overflow-hidden">
-        <div className="flex w-full  flex-row justify-between">
-          <div className="mb-0.5 flex  w-full  justify-between">
-            <div className="flex w-full flex-row items-center pr-4 sm:pr-0 ">
+        <div className="flex w-full flex-row justify-between">
+          <div className="mb-0.5 flex w-full justify-between">
+            <div className="flex w-full flex-row items-center pr-4 sm:pr-0">
               <CountryFlag
                 zoneId={zoneId}
                 size={18}
@@ -59,7 +59,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
                     {zoneName}
                   </h2>
                   {showCountryPill && (
-                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
+                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5 text-sm dark:bg-gray-800/80">
                       <p className="w-full truncate">{countryName ?? zoneId}</p>
                     </div>
                   )}

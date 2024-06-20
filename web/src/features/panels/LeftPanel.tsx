@@ -103,7 +103,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <aside
       data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 sm:flex sm:w-[calc(14vw_+_16rem)] dark:bg-gray-900 dark:[color-scheme:dark] ${
+      className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 sm:flex sm:w-[calc(14vw_+_16rem)] dark:bg-gray-900 dark:[color-scheme:dark] ${
         location.pathname === '/map' ? 'hidden' : ''
       } ${isOpen ? '' : '-translate-x-full'}`}
     >

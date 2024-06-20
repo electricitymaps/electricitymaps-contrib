@@ -80,7 +80,7 @@ function BreakdownChart({
         icon={<CircleBoltIcon />}
         unit={valueAxisLabel}
       />
-      <div className="relative ">
+      <div className="relative">
         {isBreakdownGraphOverlayEnabled && (
           <DisabledMessage message={t(`country-panel.disabledBreakdownChartReason`)} />
         )}

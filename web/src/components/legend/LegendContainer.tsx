@@ -22,7 +22,7 @@ export default function LegendContainer(): ReactElement {
     windLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
 
   return (
-    <div className="invisible  flex w-[224px] flex-col rounded bg-white/90 px-1 py-2 shadow-xl backdrop-blur-sm sm:visible dark:bg-gray-800">
+    <div className="invisible flex w-[224px] flex-col rounded bg-white/90 px-1 py-2 shadow-xl backdrop-blur-sm sm:visible dark:bg-gray-800">
       {isSolarLayerEnabled && <SolarLegend />}
       {isWindLayerEnabled && <WindLegend />}
       <Co2Legend />

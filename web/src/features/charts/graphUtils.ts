@@ -41,8 +41,10 @@ export const detectHoveredDatapointIndex = (
 
 // If in mobile mode, put the tooltip to the top of the screen for
 // readability, otherwise float it depending on the marker position.
-export const getTooltipPosition = (isMobile: boolean, marker: { x: number; y: number }) =>
-  isMobile ? { x: 0, y: 0 } : marker;
+export const getTooltipPosition = (
+  isMobile: boolean,
+  marker: { x: number; y: number }
+) => (isMobile ? { x: 0, y: 0 } : marker);
 
 export const noop = () => undefined;
 

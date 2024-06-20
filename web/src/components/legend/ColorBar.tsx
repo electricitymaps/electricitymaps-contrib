@@ -25,7 +25,7 @@ function HorizontalColorbar({
     .range([0, width]);
 
   return (
-    <svg className="flex h-10 w-full flex-col  px-2">
+    <svg className="flex h-10 w-full flex-col px-2">
       <g transform={`translate(8,0)`}>
         <linearGradient id={`${id}-gradient`} x2="100%">
           {spreadOverDomain(colorScale, 10).map((value, index) => (

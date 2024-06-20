@@ -128,15 +128,18 @@ function zeroGaps(
 function zeroNeighboringIds(fc: WorldFeatureCollection) {
   // Throws error if multiple polygons have the same zoneName and are right next to each other,
   // in that case they should be merged as one polygon
-  const groupedByZoneNames = getPolygons(fc).features.reduce((accumulator, cval) => {
-    const zoneName = cval.properties?.zoneName;
-    if (accumulator[zoneName]) {
-      accumulator[zoneName].push(cval);
-    } else {
-      accumulator[zoneName] = [cval];
-    }
-    return accumulator;
-  }, {} as { [key: string]: Feature<Polygon>[] });
+  const groupedByZoneNames = getPolygons(fc).features.reduce(
+    (accumulator, cval) => {
+      const zoneName = cval.properties?.zoneName;
+      if (accumulator[zoneName]) {
+        accumulator[zoneName].push(cval);
+      } else {
+        accumulator[zoneName] = [cval];
+      }
+      return accumulator;
+    },
+    {} as { [key: string]: Feature<Polygon>[] }
+  );
 
   // dissolve each group, if length decreases, it means that they are superfluous neigbors
   const zoneNames = Object.entries(groupedByZoneNames)

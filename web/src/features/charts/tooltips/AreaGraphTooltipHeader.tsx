@@ -37,7 +37,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
               height: 16,
               width: 16,
             }}
-            className="rounded-sm  font-bold"
+            className="rounded-sm font-bold"
           >
             {productionSource && (
               <div className="flex h-4 w-4 justify-center pt-[3px]">

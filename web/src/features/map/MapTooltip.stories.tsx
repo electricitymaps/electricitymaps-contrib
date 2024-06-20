@@ -14,7 +14,7 @@ interface StoryStateZoneData {
 
 function TestWrapper({ zoneKey, ci, fr, rr, e, o }: StoryStateZoneData) {
   return (
-    <div className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900 ">
+    <div className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900">
       <div>
         <TooltipInner
           zoneData={{

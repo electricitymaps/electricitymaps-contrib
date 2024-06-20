@@ -36,18 +36,16 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
           value={value}
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}
-          className={`
-          inline-flex select-none rounded-full px-2.5 py-2 text-sm capitalize sm:px-2 lg:px-3
-            ${
-              timeAverage === value
-                ? 'items-center bg-white font-bold text-green-900 shadow-2xl dark:border dark:border-gray-400/10 dark:bg-gray-600 dark:text-white'
-                : 'bg-gray-100 dark:bg-gray-700'
-            }`}
+          className={`inline-flex select-none rounded-full px-2.5 py-2 text-sm capitalize sm:px-2 lg:px-3 ${
+            timeAverage === value
+              ? 'items-center bg-white font-bold text-green-900 shadow-2xl dark:border dark:border-gray-400/10 dark:bg-gray-600 dark:text-white'
+              : 'bg-gray-100 dark:bg-gray-700'
+          }`}
         >
           {timeAverage === value && (
             <HiOutlineClock className="mr-1 hidden text-[0.87rem] min-[370px]:block sm:hidden xl:block" />
           )}
-          <p className={`w-15 ${timeAverage === value ? '' : 'dark:opacity-80 '}`}>
+          <p className={`w-15 ${timeAverage === value ? '' : 'dark:opacity-80'}`}>
             {label}
           </p>
         </ToggleGroupPrimitive.Item>

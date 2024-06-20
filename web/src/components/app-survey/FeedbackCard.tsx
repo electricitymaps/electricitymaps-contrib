@@ -95,7 +95,7 @@ export default function FeedbackCard({
       className="flex w-full flex-col gap-2 rounded-lg border border-neutral-200 bg-zinc-50 px-3 py-4 transition-all dark:border-gray-700 dark:bg-gray-900"
       ref={feedbackCardReference}
     >
-      <div className="flex flex-row  justify-between">
+      <div className="flex flex-row justify-between">
         <div className="flex flex-initial flex-row gap-2">
           <div
             className={`min-h-[16px] min-w-[16px] bg-[url('/images/electricitymaps-icon.svg')] bg-contain bg-center bg-no-repeat dark:invert`}
@@ -311,17 +311,15 @@ function PillContent({
           value={content}
           aria-label={content}
           onClick={() => handlePillClick(content)}
-          className={`
-          inline-flex h-9 w-full select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-gray-700 dark:text-white
-            ${
-              currentPillNumber == content
-                ? 'bg-black dark:bg-white'
-                : 'hover:bg-neutral-200 dark:hover:bg-gray-700'
-            }`}
+          className={`inline-flex h-9 w-full select-none items-center justify-center rounded-full border border-neutral-200 text-black dark:border-gray-700 dark:text-white ${
+            currentPillNumber == content
+              ? 'bg-black dark:bg-white'
+              : 'hover:bg-neutral-200 dark:hover:bg-gray-700'
+          }`}
         >
           <div
             className={`text-sm font-semibold ${
-              currentPillNumber == content ? ' text-zinc-50 dark:text-gray-900' : ''
+              currentPillNumber == content ? 'text-zinc-50 dark:text-gray-900' : ''
             }`}
           >
             {content}

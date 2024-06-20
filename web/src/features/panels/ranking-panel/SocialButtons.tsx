@@ -50,7 +50,7 @@ export function SocialButton({ type }: { type: keyof typeof SOCIAL_TYPES }) {
       href={SOCIAL_TYPES[type].url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${SOCIAL_TYPES[type].classes}  flex items-center space-x-1 rounded  p-0.5 px-2 text-sm font-bold text-white transition-colors`}
+      className={`${SOCIAL_TYPES[type].classes} flex items-center space-x-1 rounded p-0.5 px-2 text-sm font-bold text-white transition-colors`}
     >
       {SOCIAL_TYPES[type].icon}
       <span>{SOCIAL_TYPES[type].text}</span>

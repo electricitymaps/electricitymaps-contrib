@@ -19,7 +19,7 @@ export function InfoModalContent() {
   const setIsFAQModalOpen = useSetAtom(isFAQModalOpenAtom);
 
   return (
-    <div className=" flex flex-col items-center ">
+    <div className="flex flex-col items-center">
       <div className="prose text-center text-md dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 hover:prose-a:underline">
         <p>{t('info-modal.intro-text')}</p>
         <p
@@ -81,7 +81,7 @@ export function InfoModalContent() {
           {t('info-modal.slack-button')}
         </Button>
       </div>
-      <div className="prose space-x-2  pt-1 text-center text-sm prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
+      <div className="prose space-x-2 pt-1 text-center text-sm prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
         <a href="https://www.electricitymaps.com/privacy-policy/">
           {t('info-modal.privacy-policy')}
         </a>
@@ -90,7 +90,7 @@ export function InfoModalContent() {
           {t('info-modal.legal-notice')}
         </a>
       </div>
-      <p className="text mt-2  text-sm">Version: {APP_VERSION}</p>
+      <p className="text mt-2 text-sm">Version: {APP_VERSION}</p>
     </div>
   );
 }

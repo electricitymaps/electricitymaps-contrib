@@ -63,14 +63,13 @@ function Modal({
   return (
     <>
       <div
-        className="absolute inset-0 z-40  bg-gray-800   bg-opacity-20"
+        className="absolute inset-0 z-40 bg-gray-800 bg-opacity-20"
         onClick={onDismiss}
         onKeyDown={onDismiss}
         role="presentation"
       />
       <div
-        className="px-auto pointer-events-none  absolute top-auto z-50 mx-auto flex w-full items-center justify-center
-       self-center sm:top-20 sm:min-w-[500px]"
+        className="px-auto pointer-events-none absolute top-auto z-50 mx-auto flex w-full items-center justify-center self-center sm:top-20 sm:min-w-[500px]"
         data-test-id={modalName}
       >
         <div className="pointer-events-auto z-10 flex w-full max-w-[35px] shrink flex-col justify-around px-2 sm:max-w-[60px]">
@@ -83,7 +82,7 @@ function Modal({
             </button>
           )}
         </div>
-        <div className="color-white pointer-events-auto relative flex h-[450px] w-auto max-w-[500px] flex-col rounded-3xl bg-gray-50 shadow-lg sm:h-[500px]  dark:bg-gray-700">
+        <div className="color-white pointer-events-auto relative flex h-[450px] w-auto max-w-[500px] flex-col rounded-3xl bg-gray-50 shadow-lg sm:h-[500px] dark:bg-gray-700">
           <div className="absolute self-end p-4 align-baseline">
             <button
               className="p-auto pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900"
@@ -94,10 +93,9 @@ function Modal({
             </button>
           </div>
           <div
-            className={`flex h-1/2 max-h-[264px] w-full flex-grow self-center
-              rounded-t-3xl bg-auto bg-center bg-no-repeat ${
-                isOnFirstView() ? 'max-w-[10rem] dark:invert' : ''
-              }`}
+            className={`flex h-1/2 max-h-[264px] w-full flex-grow self-center rounded-t-3xl bg-auto bg-center bg-no-repeat ${
+              isOnFirstView() ? 'max-w-[10rem] dark:invert' : ''
+            }`}
             style={
               currentView.headerImage && !currentView.hasWebp
                 ? {
@@ -127,11 +125,11 @@ function Modal({
             {currentView.renderContent(t)}
           </div>
         </div>
-        <div className="pointer-events-auto absolute bottom-[-60px] left-auto  h-[40px] self-center">
+        <div className="pointer-events-auto absolute bottom-[-60px] left-auto h-[40px] self-center">
           {views.map((view: Page, index: number) => (
             <button
               key={`modal-step-item-${index}`}
-              className={` mx-2 inline-block h-[14px] w-[14px] rounded-xl ${
+              className={`mx-2 inline-block h-[14px] w-[14px] rounded-xl ${
                 index === currentViewIndex ? 'bg-brand-green' : 'bg-white'
               }`}
               onClick={() => setCurrentViewIndex(index)}

@@ -57,9 +57,9 @@ export default function ToggleButton({
             value={option.value}
             onClick={() => onToggle(option.value)}
             className={twMerge(
-              'inline-flex h-[29px] w-full items-center whitespace-nowrap rounded-full  bg-gray-100/0 px-4 text-sm dark:border dark:border-gray-400/0 dark:bg-transparent',
+              'inline-flex h-[29px] w-full items-center whitespace-nowrap rounded-full bg-gray-100/0 px-4 text-sm dark:border dark:border-gray-400/0 dark:bg-transparent',
               option.value === selectedOption
-                ? ' bg-white font-bold text-brand-green shadow transition duration-500 ease-in-out dark:border dark:border-gray-400/10 dark:bg-gray-600'
+                ? 'bg-white font-bold text-brand-green shadow transition duration-500 ease-in-out dark:border dark:border-gray-400/10 dark:bg-gray-600'
                 : ''
             )}
           >

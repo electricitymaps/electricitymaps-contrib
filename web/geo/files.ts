@@ -9,10 +9,13 @@ import { ZoneConfig } from './types';
 const sortObjectByKey = (object: ZoneConfig) =>
   Object.keys(object)
     .sort()
-    .reduce((result, key) => {
-      result[key] = object[key];
-      return result;
-    }, {} as { [key: string]: ZoneConfig });
+    .reduce(
+      (result, key) => {
+        result[key] = object[key];
+        return result;
+      },
+      {} as { [key: string]: ZoneConfig }
+    );
 
 const saveZoneYaml = (zoneKey: string, zone: ZoneConfig) => {
   const zonePath = path.resolve(

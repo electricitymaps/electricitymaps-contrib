@@ -143,7 +143,7 @@ function BarBreakdownChart({
         estimationMethod={currentZoneDetail.estimationMethod}
       />
       {tooltipData && (
-        <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
+        <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full sm:h-0 sm:w-0">
           <div
             className="absolute mt-14 flex h-full w-full flex-col items-center gap-y-1 bg-black/20 sm:mt-auto sm:items-start"
             style={{

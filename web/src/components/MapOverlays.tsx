@@ -12,7 +12,7 @@ export default function MapOverlays() {
   const surveyEnabled = useFeatureFlag('feedback-micro-survey') && !hasSeenSurveyCard;
 
   return (
-    <div className="pointer-events-none  fixed top-12 z-20  m-3 flex flex-col items-end space-y-3 sm:bottom-0 sm:right-0 sm:top-auto ">
+    <div className="pointer-events-none fixed top-12 z-20 m-3 flex flex-col items-end space-y-3 sm:bottom-0 sm:right-0 sm:top-auto">
       <Suspense>
         <div className="hidden sm:flex">
           <FeatureFlagsManager />

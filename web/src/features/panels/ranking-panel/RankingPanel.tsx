@@ -51,7 +51,7 @@ export default function RankingPanel(): ReactElement {
   });
 
   return (
-    <div className="flex max-h-[calc(100vh_-_230px)] flex-col py-5 pl-5 pr-1 ">
+    <div className="flex max-h-[calc(100vh_-_230px)] flex-col py-5 pl-5 pr-1">
       <div className="pb-5">
         <div className="font-poppins text-lg font-medium">
           {t('left-panel.zone-list-header-title')}
