@@ -2,12 +2,10 @@ VERSION --use-visited-upfront-hash-collection 0.7
 FROM node:20
 WORKDIR /contrib/web
 
-# Needed for the top level pnpm workspace setup
-COPY ../pnpm-lock.yaml /contrib/
-
 src-files:
   COPY ../config+src-files/* ../config
-  COPY package.json /contrib/
+  COPY package.json .
+  COPY pnpm-lock.yaml .
 
 api-files:
   COPY geo/world.geojson ./geo/world.geojson
@@ -17,7 +15,7 @@ api-files:
 prepare:
   FROM +src-files
   RUN npm install -g pnpm@9
-  RUN pnpm install --frozen-lockfile --dir /contrib
+  RUN pnpm install --frozen-lockfile
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
   COPY scripts/register-tsNodeESM.js ./scripts/register-tsNodeESM.js
