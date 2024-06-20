@@ -43,7 +43,7 @@ function Toast({
         onOpenChange={setOpen}
         duration={duration}
         type="background"
-        className="bg-gray/80 fixed top-16 z-50 m-2 inline-block max-w-max self-center rounded-lg shadow backdrop-blur-sm xs:left-1/2 xs:w-max xs:-translate-x-1/2 xs:transform dark:bg-gray-800/80"
+        className="bg-white/80 fixed top-16 z-50 m-2 inline-block max-w-max self-center rounded-lg shadow backdrop-blur-sm xs:left-1/2 xs:w-max xs:-translate-x-1/2 xs:transform dark:bg-gray-800/80"
       >
         <div className="flex items-center p-2">
           <div className="flex flex-col">
