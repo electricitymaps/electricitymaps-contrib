@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "check": "prettier --check ."
+  },
+  "dependencies": {
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5"
+  },
+  "packageManager": "pnpm@9.3.0"
+}

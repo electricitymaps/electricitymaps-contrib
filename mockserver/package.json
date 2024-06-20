@@ -11,5 +11,6 @@
   },
   "scripts": {
     "start": "nodemon server.js"
-  }
+  },
+  "packageManager": "pnpm@9.3.0"
 }

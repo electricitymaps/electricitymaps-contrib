@@ -61,20 +61,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
+      - name: Restore node_modules
+        id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
+      - name: Install dependencies
+        if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
-        working-directory: ./web
       - name: Prettier Check
-        # Uses the prettier binary from the web node_modules so it's always in sync.
         run: |
-          web/node_modules/.bin/prettier --check .
+          pnpm run check
 
   earthly:
     name: earthly
@@ -123,9 +121,6 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     runs-on: ubuntu-latest
     timeout-minutes: 4
-    defaults:
-      run:
-        working-directory: web
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -137,20 +132,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
+      - name: Restore node_modules
+        id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
+      - name: Install dependencies
+        if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache.outputs.cache-hit == 'true'
+        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
+        working-directory: ./web
       - name: Run test
         run: pnpm run test:ci
+        working-directory: ./web
 
   eslint:
     name: Frontend / ESLint
@@ -163,9 +160,6 @@ jobs:
       contents: read
       security-events: write
     timeout-minutes: 4
-    defaults:
-      run:
-        working-directory: web
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -177,18 +171,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
+      - name: Restore node_modules
+        id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
+      - name: Install dependencies
+        if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
-        if: steps.cache.outputs.cache-hit == 'true'
+        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
+        working-directory: ./web
       - name: Restore ESLint cache
         uses: actions/cache@v4
         with:
@@ -206,6 +201,7 @@ jobs:
           --format @microsoft/eslint-formatter-sarif
           --output-file eslint-results.sarif
         continue-on-error: true
+        working-directory: ./web
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
@@ -234,21 +230,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
+      - name: Restore node_modules
+        id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
+      - name: Install dependencies
+        if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
+        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
+        working-directory: ./web
       - name: Run TypeScript typechecking for app
         run: pnpm run typecheck
+        working-directory: ./web
       - name: Run TypeScript typechecking for scripts
         run: pnpm run typecheck --project tsconfig.node.json
+        working-directory: ./web
 
   validate_generate_files:
     name: Frontend / Validate generated files
@@ -259,9 +259,6 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     runs-on: ubuntu-latest
     timeout-minutes: 2
-    defaults:
-      run:
-        working-directory: web
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -273,19 +270,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
+      - name: Restore node_modules
+        id: cache-pnpm
         uses: actions/cache@v4
         with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
+      - name: Install dependencies
+        if: steps.cache-pnpm.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate zone config
         run: pnpm run generate-zones-config
+        working-directory: ./web
       - name: Generate world file
         run: pnpm run generate-world
+        working-directory: ./web
 
   deploy_preview_branch:
     name: Deploy preview
@@ -314,10 +313,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
-      - name: Install ts-node
-        run: pnpm add ts-node --save-dev
-        working-directory: ./web
+      - name: Restore node_modules
+        id: cache-pnpm
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
+      - name: Install dependencies
+        if: steps.cache-pnpm.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
       - name: Generate config files
+        if: steps.cache-pnpm.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
         working-directory: ./web
       - name: Cache Cypress binary
@@ -326,16 +332,6 @@ jobs:
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-        working-directory: ./web
       - name: Install Cypress binary
         if: steps.cache-cypress.outputs.cache-hit != 'true'
         run: pnpm exec cypress install
@@ -372,22 +368,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
+      - name: Restore node_modules
+        id: cache-pnpm
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./pnpm-lock.yaml') }}
+      - name: Install dependencies
+        if: steps.cache-pnpm.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+      - name: Generate config files
+        if: steps.cache-pnpm.outputs.cache-hit == 'true'
+        run: pnpm create-generated-files
+        working-directory: ./web
       - name: Cache Cypress binary
         id: cache-cypress
         uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-        working-directory: ./web
       - name: Install Cypress binary
         if: steps.cache-cypress.outputs.cache-hit != 'true'
         run: pnpm exec cypress install
