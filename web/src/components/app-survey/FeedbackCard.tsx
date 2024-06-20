@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineX } from 'react-icons/hi';
+import { HiXMark } from 'react-icons/hi2';
 import { hasSeenSurveyCardAtom, userLocationAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
@@ -108,7 +108,7 @@ export default function FeedbackCard({
           </h2>
         </div>
         <button data-test-id="close-button" onClick={handleClose}>
-          <HiOutlineX />
+          <HiXMark />
         </button>
       </div>
       <div>

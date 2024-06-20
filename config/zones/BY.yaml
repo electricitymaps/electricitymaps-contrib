@@ -33,3 +33,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 timezone: Europe/Minsk
+region: Europe
+country: BY

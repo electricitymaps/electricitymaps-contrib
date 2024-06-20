@@ -253,3 +253,5 @@ subZoneNames:
   - NO-NO4
   - NO-NO5
 timezone: Europe/Oslo
+region: Europe
+country: 'NO'

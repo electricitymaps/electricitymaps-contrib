@@ -7,11 +7,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { I18nextProvider } from 'react-i18next';
 import { BrowserRouter } from 'react-router-dom';
+import i18n from 'translation/i18n';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { refetchDataOnHourChange } from 'utils/refetching';
-//import { registerSW } from 'virtual:pwa-register';
 
 const isProduction = import.meta.env.PROD;
 
@@ -30,18 +31,6 @@ if (isProduction) {
 //   return children;
 // };
 
-// Temporarily disabled to ensure we can more easily rollback
-// Also removes existing service workers to ensure they don't interfer
-
-if (navigator.serviceWorker) {
-  // eslint-disable-next-line unicorn/prefer-top-level-await
-  navigator.serviceWorker.getRegistrations().then(function (registrations) {
-    for (const registration of registrations) {
-      registration.unregister();
-    }
-  });
-}
-// registerSW();
 createConsoleGreeting();
 
 if (import.meta.env.DEV) {
@@ -68,11 +57,13 @@ if (container) {
   const root = createRoot(container);
   root.render(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </QueryClientProvider>
+      <I18nextProvider i18n={i18n}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </I18nextProvider>
     </StrictMode>
   );
 }

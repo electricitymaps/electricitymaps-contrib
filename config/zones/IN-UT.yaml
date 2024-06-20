@@ -19,3 +19,5 @@ contributors:
 parsers:
   production: IN_UT.fetch_production
 timezone: Asia/Kolkata
+region: Asia
+country: IN

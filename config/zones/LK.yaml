@@ -60,3 +60,5 @@ parsers:
   production: CEB.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
 timezone: Asia/Colombo
+region: Asia
+country: LK

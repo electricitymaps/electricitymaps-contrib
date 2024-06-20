@@ -217,3 +217,5 @@ fallbackZoneMixes:
         wind: 0.0
 parsers: {}
 timezone: Asia/Kolkata
+region: Asia
+country: IN

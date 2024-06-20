@@ -221,3 +221,5 @@ parsers:
   consumption: CA_QC.fetch_consumption
   production: CA_QC.fetch_production
 timezone: America/Toronto
+region: Americas
+country: CA
