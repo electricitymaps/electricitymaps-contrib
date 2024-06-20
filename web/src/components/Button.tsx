@@ -192,6 +192,7 @@ export function FAQButton({
   iconSize = DEFAULT_ICON_SIZE,
   shouldShrink,
 }: SocialButtonProps) {
+  const { t } = useTranslation();
   const setIsFAQModalOpen = useSetAtom(isFAQModalOpenAtom);
   return (
     <Button
@@ -201,7 +202,7 @@ export function FAQButton({
       icon={<FaCircleInfo size={iconSize} />}
       onClick={() => setIsFAQModalOpen(true)}
     >
-      {isIconOnly ? undefined : 'FAQ'}
+      {isIconOnly ? undefined : t('button.faq')}
     </Button>
   );
 }
@@ -219,7 +220,7 @@ export function PrivacyPolicyButton({
       shouldShrink={shouldShrink}
       href="https://www.electricitymaps.com/privacy-policy/"
     >
-      {isIconOnly ? undefined : t('info.privacy-policy')}
+      {isIconOnly ? undefined : t('button.privacy-policy')}
     </Button>
   );
 }
@@ -237,7 +238,7 @@ export function LegalNoticeButton({
       shouldShrink={shouldShrink}
       href="https://www.electricitymaps.com/legal-notice/"
     >
-      {isIconOnly ? undefined : t('info.legal-notice')}
+      {isIconOnly ? undefined : t('button.legal-notice')}
     </Button>
   );
 }
