@@ -3,7 +3,7 @@ FROM node:20
 WORKDIR /contrib/web
 
 # Needed for the top level pnpm workspace setup
-COPY ../../pnpm-lock.yaml /contrib/
+COPY ../pnpm-lock.yaml /contrib/
 
 src-files:
   COPY ../config+src-files/* ../config
