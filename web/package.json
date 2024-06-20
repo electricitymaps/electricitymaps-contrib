@@ -84,7 +84,7 @@
     "maplibre-gl": "^3.6.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-i18next": "^14.1.1",
+    "react-i18next": "^14.1.2",
     "react-icons": "^4.12.0",
     "react-map-gl": "~7.1.7",
     "react-router-dom": "6.23.1",
