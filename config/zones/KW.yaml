@@ -1,3 +1,5 @@
+aggregates_displayed:
+  - none # We are not showing this zone due to lack of data
 bounding_box:
   - - 46.155
     - 28.3985

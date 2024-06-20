@@ -89,6 +89,7 @@
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> or contact the data provider.",
     "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"{{link}}\" target=\"_blank\">adding area data</a>.",
     "aggregationDisabled": "Data is not available for the selected time period due to missing granular breakdown. Try a broader time period.",
+    "fullyDisabled": "The data we have available for this zone is insufficient and therefore not shown. If you are aware of data sources for this area, please <a href=\"{{link}}\" target=\"_blank\">let us know</a>.",
     "now": "Now",
     "by-source": {
       "emissions": "Carbon emissions by source",
@@ -325,10 +326,15 @@
     "light": "Light",
     "system": "System"
   },
+  "updatePrompt": {
+    "title": "Update available",
+    "description": "A new version of the app is available, update now?",
+    "update": "Update",
+    "dismiss": "Dismiss"
+  },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-    "newversion": "A new app version is available!",
     "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
     "retrynow": "Retry now",
     "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
