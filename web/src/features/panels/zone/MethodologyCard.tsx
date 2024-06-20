@@ -11,10 +11,10 @@ export default function MethodologyCard() {
       <Accordion
         icon={<EmapsIcon />}
         title={t('left-panel.applied-methodologies.title')}
-        className="text-md pb-1 pt-3"
+        className="text-md pt-2"
         onOpen={() => trackEvent('AppliedMethodologies Expanded')}
       >
-        <div className="flex flex-col gap-2 pb-1 ">
+        <div className="flex flex-col gap-2 py-1 ">
           <Link href="https://www.electricitymaps.com/methodology#missing-data">
             {t('left-panel.applied-methodologies.estimations')}
           </Link>

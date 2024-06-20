@@ -193,39 +193,37 @@ function BarBreakdownChart({
       {showDataSourceAccordion && (
         <>
           <Divider />
-          <div className="py-1">
-            <Accordion
-              onOpen={() => {
-                trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-                  chart: 'bar-breakdown-chart',
-                });
-              }}
-              title={t('data-sources.title')}
-              className="text-md"
-              isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
-            >
-              <div>
-                <DataSources
-                  title={t('data-sources.capacity')}
-                  icon={<UtilityPoleIcon />}
-                  sources={capacitySources}
-                />
-                <DataSources
-                  title={t('data-sources.power')}
-                  icon={<WindTurbineIcon />}
-                  sources={powerGenerationSources}
-                />
-                <DataSources
-                  title={t('data-sources.emission')}
-                  icon={<IndustryIcon />}
-                  sources={emissionFactorSources}
-                  emissionFactorSourcesToProductionSources={
-                    emissionFactorSourcesToProductionSources
-                  }
-                />
-              </div>
-            </Accordion>
-          </div>{' '}
+          <Accordion
+            onOpen={() => {
+              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                chart: 'bar-breakdown-chart',
+              });
+            }}
+            title={t('data-sources.title')}
+            className="text-md"
+            isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
+          >
+            <div>
+              <DataSources
+                title={t('data-sources.capacity')}
+                icon={<UtilityPoleIcon />}
+                sources={capacitySources}
+              />
+              <DataSources
+                title={t('data-sources.power')}
+                icon={<WindTurbineIcon />}
+                sources={powerGenerationSources}
+              />
+              <DataSources
+                title={t('data-sources.emission')}
+                icon={<IndustryIcon />}
+                sources={emissionFactorSources}
+                emissionFactorSourcesToProductionSources={
+                  emissionFactorSourcesToProductionSources
+                }
+              />
+            </div>
+          </Accordion>
         </>
       )}
     </div>

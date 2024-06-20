@@ -52,7 +52,7 @@ export default function Accordion({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col py-1">
       <button data-test-id="collapse-button" onClick={handleToggleCollapse}>
         <div
           className={twMerge(
@@ -70,7 +70,7 @@ export default function Accordion({
           </div>
           <div className="flex h-fit flex-row gap-2 text-nowrap">
             {badge}
-            <div className="text-lg text-black dark:text-white">
+            <div className="text-xl text-black dark:text-white">
               {isCollapsed ? (
                 <div data-test-id="collapse-down">
                   <HiChevronDown />
