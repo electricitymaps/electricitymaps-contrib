@@ -6,6 +6,7 @@ import {
   SlackButton,
   TwitterButton,
 } from 'components/Button';
+import { VerticalDivider } from 'components/Divider';
 import Modal from 'components/Modal';
 import { useAtom, useSetAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
@@ -42,7 +43,7 @@ export function InfoModalContent() {
         <a href="https://www.electricitymaps.com/privacy-policy/">
           {t('info.privacy-policy')}
         </a>
-        <span className="text-gray-500">|</span>
+        <VerticalDivider />
         <a href="https://www.electricitymaps.com/legal-notice/">
           {t('info.legal-notice')}
         </a>

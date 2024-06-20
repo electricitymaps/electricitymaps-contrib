@@ -1,5 +1,5 @@
 import Accordion from 'components/Accordion';
-import Divider from 'features/panels/zone/Divider';
+import { HorizontalDivider } from 'components/Divider';
 import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
@@ -64,7 +64,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         tooltip={EmissionChartTooltip}
         formatTick={formatAxisTick}
       />
-      <Divider />
+      <HorizontalDivider />
       <Accordion
         onOpen={() => {
           trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'emission-chart' });

@@ -18,7 +18,7 @@ type SizeOptions = 'sm' | 'md' | 'lg' | 'xl';
 interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
-  disabled?: boolean;
+  isDisabled?: boolean;
   size?: SizeOptions;
   shouldShrink?: boolean;
   type?: 'primary' | 'secondary' | 'tertiary' | 'link';
@@ -32,14 +32,14 @@ interface ButtonProps {
 interface SocialButtonProps
   extends Omit<ButtonProps, 'icon' | 'children' | 'href' | 'onClick'> {
   iconSize?: number;
-  iconOnly?: boolean;
+  isIconOnly?: boolean;
   isShareLink?: boolean;
 }
 
 export function Button({
   icon,
   children,
-  disabled,
+  isDisabled,
   href,
   backgroundClasses, // backgroundColor, borderColor, margin, etc.
   foregroundClasses, // textColor, etc.
@@ -57,7 +57,7 @@ export function Button({
   return (
     <div
       className={twMerge(
-        `items-center justify-center rounded-full ${getBackground(type, disabled)}`,
+        `items-center justify-center rounded-full ${getBackground(type, isDisabled)}`,
         backgroundClasses,
         shouldShrink ? 'w-fit' : ''
       )}
@@ -74,7 +74,7 @@ export function Button({
         ${getForeground(type)} ${getHover(type)}`,
           foregroundClasses
         )}
-        disabled={disabled}
+        disabled={isDisabled}
         href={href}
         type={componentType}
         onClick={onClick}
@@ -184,7 +184,7 @@ function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
 }
 
 export function GitHubButton({
-  iconOnly,
+  isIconOnly: iconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -210,7 +210,7 @@ export function GitHubButton({
 }
 
 export function TwitterButton({
-  iconOnly,
+  isIconOnly: iconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -238,7 +238,7 @@ export function TwitterButton({
 }
 
 export function FacebookButton({
-  iconOnly,
+  isIconOnly: iconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -266,7 +266,7 @@ export function FacebookButton({
 }
 
 export function SlackButton({
-  iconOnly,
+  isIconOnly: iconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -290,7 +290,7 @@ export function SlackButton({
 }
 
 export function LinkedinButton({
-  iconOnly,
+  isIconOnly: iconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,
@@ -318,7 +318,7 @@ export function LinkedinButton({
 }
 
 export function FeedbackButton({
-  iconOnly,
+  isIconOnly: iconOnly,
   size = 'lg',
   iconSize = DEFAULT_ICON_SIZE,
   type,

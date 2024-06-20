@@ -99,7 +99,7 @@ export const All: Story = {
         icon={<HiMagnifyingGlass size={18} />}
       />
 
-      <Button size="lg" type="primary" disabled>
+      <Button size="lg" type="primary" isDisabled>
         disabled
       </Button>
 

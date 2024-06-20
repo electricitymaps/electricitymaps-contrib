@@ -1,7 +1,7 @@
 import * as Portal from '@radix-ui/react-portal';
 import Accordion from 'components/Accordion';
+import { HorizontalDivider } from 'components/Divider';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
-import Divider from 'features/panels/zone/Divider';
 import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
@@ -192,7 +192,7 @@ function BarBreakdownChart({
       )}
       {showDataSourceAccordion && (
         <>
-          <Divider />
+          <HorizontalDivider />
           <div className="py-1">
             <Accordion
               onOpen={() => {

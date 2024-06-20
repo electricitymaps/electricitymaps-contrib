@@ -1,4 +1,5 @@
 import useGetState from 'api/getState';
+import { HorizontalDivider } from 'components/Divider';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
 import { ReactElement, useState } from 'react';
@@ -9,9 +10,7 @@ import {
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 
-import Divider from '../zone/Divider';
 import { getRankedState } from './getRankingPanelData';
-// import InfoText from './InfoText';
 import RankingPanelAccordion from './RankingPanelAccordion';
 import SearchBar from './SearchBar';
 import SocialIconRow from './SocialIcons';
@@ -67,7 +66,7 @@ export default function RankingPanel(): ReactElement {
       <ZoneList data={filteredList} />
       <div className="space-y-4 p-2">
         <RankingPanelAccordion />
-        <Divider />
+        <HorizontalDivider />
         <SocialIconRow />
       </div>
     </div>

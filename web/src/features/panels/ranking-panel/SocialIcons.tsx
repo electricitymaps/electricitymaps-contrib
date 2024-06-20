@@ -10,9 +10,9 @@ export default function SocialIconRow() {
     <div className="flex w-full">
       <h3>Share the app:</h3>
       <div className="mr-auto flex space-x-1">
-        <FacebookButton iconOnly size="sm" type="link" isShareLink />
-        <LinkedinButton iconOnly size="sm" type="link" isShareLink />
-        <TwitterButton iconOnly size="sm" type="link" isShareLink />
+        <FacebookButton isIconOnly size="sm" type="link" isShareLink />
+        <LinkedinButton isIconOnly size="sm" type="link" isShareLink />
+        <TwitterButton isIconOnly size="sm" type="link" isShareLink />
       </div>
       <FeedbackButton size="sm" type="link" />
     </div>
