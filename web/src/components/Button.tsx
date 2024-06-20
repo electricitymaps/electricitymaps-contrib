@@ -6,9 +6,12 @@ import {
   FaGithub,
   FaLinkedin,
   FaSlack,
-  FaTwitter,
-} from 'react-icons/fa';
+  FaXTwitter,
+} from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
+import trackEvent from 'utils/analytics';
+
+const DEFAULT_ICON_SIZE = 16;
 
 interface ButtonProps {
   icon?: React.ReactNode;
@@ -161,8 +164,8 @@ function getSize(size: string, type: string, isIconOnly: boolean) {
 
 export function GitHubButton({
   iconOnly,
-  size,
-  iconSize,
+  size = 'lg',
+  iconSize = DEFAULT_ICON_SIZE,
   type,
   shouldShrink,
 }: SocialButtonProps) {
@@ -172,10 +175,13 @@ export function GitHubButton({
       size={size}
       type={type}
       shouldShrink={shouldShrink}
-      backgroundClasses="bg-gradient-to-r from-[#04275c] to-[#040e23]"
-      foregroundClasses="text-white dark:text-white focus-visible:outline-[#04275c]"
+      backgroundClasses="bg-[#010409]"
+      foregroundClasses="text-white dark:text-white focus-visible:outline-[#010409]"
       href="https://github.com/electricityMaps/electricitymaps-contrib"
       icon={<FaGithub size={iconSize} />}
+      onClick={() => {
+        trackEvent('Contribute On GitHub Button Clicked');
+      }}
     >
       {iconOnly ? undefined : t('button.github')}
     </Button>
@@ -184,8 +190,8 @@ export function GitHubButton({
 
 export function TwitterButton({
   iconOnly,
-  size,
-  iconSize,
+  size = 'lg',
+  iconSize = DEFAULT_ICON_SIZE,
   type,
   isShareLink,
   shouldShrink,
@@ -196,14 +202,14 @@ export function TwitterButton({
       size={size}
       type={type}
       shouldShrink={shouldShrink}
-      backgroundClasses="bg-[#1d9bf0]"
-      foregroundClasses="text-white dark:text-white focus-visible:outline-[#1d9bf0]"
+      backgroundClasses="bg-black"
+      foregroundClasses="text-white dark:text-white focus-visible:outline-black"
       href={
         isShareLink
           ? 'https://twitter.com/intent/tweet?url=https://app.electricitymaps.com'
           : undefined
       }
-      icon={<FaTwitter size={iconSize} />}
+      icon={<FaXTwitter size={iconSize} />}
     >
       {iconOnly ? undefined : t('button.twitter')}
     </Button>
@@ -212,8 +218,8 @@ export function TwitterButton({
 
 export function FacebookButton({
   iconOnly,
-  size,
-  iconSize,
+  size = 'lg',
+  iconSize = DEFAULT_ICON_SIZE,
   type,
   isShareLink,
   shouldShrink,
@@ -240,8 +246,8 @@ export function FacebookButton({
 
 export function SlackButton({
   iconOnly,
-  size,
-  iconSize,
+  size = 'lg',
+  iconSize = DEFAULT_ICON_SIZE,
   type,
   isShareLink,
   shouldShrink,
@@ -264,8 +270,8 @@ export function SlackButton({
 
 export function LinkedinButton({
   iconOnly,
-  size,
-  iconSize,
+  size = 'lg',
+  iconSize = DEFAULT_ICON_SIZE,
   type,
   isShareLink,
   shouldShrink,
@@ -292,8 +298,8 @@ export function LinkedinButton({
 
 export function FeedbackButton({
   iconOnly,
-  size,
-  iconSize,
+  size = 'lg',
+  iconSize = DEFAULT_ICON_SIZE,
   type,
   shouldShrink,
 }: SocialButtonProps) {

@@ -32,11 +32,11 @@ export function InfoModalContent() {
         >
           FAQ
         </Button>
-        <FeedbackButton size="lg" iconSize={ICON_SIZE} />
-        <GitHubButton size="lg" iconSize={ICON_SIZE} />
-        <TwitterButton size="lg" iconSize={ICON_SIZE} />
-        <SlackButton size="lg" iconSize={ICON_SIZE} />
-        <LinkedinButton size="lg" iconSize={ICON_SIZE} />
+        <FeedbackButton />
+        <GitHubButton />
+        <TwitterButton />
+        <SlackButton />
+        <LinkedinButton />
       </div>
       <div className="prose space-x-2  pt-1 text-center text-sm prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
         <a href="https://www.electricitymaps.com/privacy-policy/">
