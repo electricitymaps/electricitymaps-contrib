@@ -20,6 +20,9 @@ export const All: Story = {
       <Button size="lg" type="primary">
         default lg primary button
       </Button>
+      <Button size="md" type="primary">
+        default md primary button
+      </Button>
       <Button size="sm" type="primary">
         default sm primary button
       </Button>
@@ -42,8 +45,26 @@ export const All: Story = {
         icon={<HiMagnifyingGlass size={18} />}
       />
 
+      <Button size="md" type="primary" backgroundClasses="w-fit">
+        default md primary button with set w-fit
+      </Button>
+      <Button
+        size="md"
+        type="primary"
+        backgroundClasses="w-fit"
+        icon={<HiMagnifyingGlass size={18} />}
+      >
+        with icon
+      </Button>
+      <Button
+        size="md"
+        type="primary"
+        backgroundClasses="w-fit"
+        icon={<HiMagnifyingGlass size={18} />}
+      />
+
       <Button size="lg" type="primary" backgroundClasses="w-fit">
-        default sm primary button with set w-fit
+        default lg primary button with set w-fit
       </Button>
       <Button
         size="lg"
@@ -61,7 +82,7 @@ export const All: Story = {
       />
 
       <Button size="xl" type="primary" backgroundClasses="w-fit">
-        default sm primary button with set w-fit
+        default xl primary button with set w-fit
       </Button>
       <Button
         size="xl"
@@ -105,6 +126,10 @@ export const All: Story = {
 
       <Button size="sm" type="link" backgroundClasses="w-fit">
         link sm
+      </Button>
+
+      <Button size="md" type="link" backgroundClasses="w-fit">
+        link md
       </Button>
 
       <Button size="lg" type="link" backgroundClasses="w-fit">
