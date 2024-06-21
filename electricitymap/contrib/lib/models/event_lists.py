@@ -25,6 +25,12 @@ from electricitymap.contrib.lib.types import ZoneKey
 CAPACITY_STRICT_THRESHOLD = 0
 CAPACITY_LOOSE_THRESHOLD = 0.02
 
+ZERO_PRODUCTION_ZONES = [
+    "US-CAR-YAD",
+    "US-SE-SEPA",
+    "US-FLA-HST",
+]  # TODO: potentially reorganise where this is placed.
+
 
 class EventList(ABC):
     """
@@ -373,8 +379,13 @@ class ProductionBreakdownList(AggregatableEventList):
         A method to filter out production breakdowns with a total production of 0 MW."""
         production_events = ProductionBreakdownList(breakdowns.logger)
         for event in breakdowns.events:
-            if event.production is not None and not any(
-                v for _mode, v in event.production
+            if (
+                event.production is not None
+                and not any(v for _mode, v in event.production)
+                and (
+                    event.zoneKey not in ZERO_PRODUCTION_ZONES
+                    or not any(v is None for _mode, v in event.production)
+                )
             ):
                 production_events.logger.warning(
                     f"Discarded production event for {event.zoneKey} at {event.datetime} because all production values are 0 or None."
