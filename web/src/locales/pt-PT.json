@@ -970,15 +970,14 @@
       "zoneName": "Índia Nordeste"
     },
     "IN-NO": {
-      "countryName": "Índia"
-    },
-    "IN-SO": {
       "countryName": "Índia",
       "zoneName": "Índia Norte"
     },
+    "IN-SO": {
+      "countryName": "Índia"
+    },
     "IN-WE": {
-      "countryName": "Índia",
-      "zoneName": "India Oeste"
+      "countryName": "Índia"
     },
     "IN-AN": {
       "countryName": "Índia",
