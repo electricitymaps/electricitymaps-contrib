@@ -155,11 +155,6 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             f"Coal, gas or oil or unknown production value is required for {zone_key}"
         )
 
-    if zone_key in ["US-CAR-YAD"] and obj.get("production", {}).get("hydro", 0) < 5:
-        raise ValidationError(
-            f"Hydro production value is required to be greater than 5 for {zone_key}"
-        )
-
     if obj.get("storage"):
         if not isinstance(obj["storage"], dict):
             raise ValidationError(
