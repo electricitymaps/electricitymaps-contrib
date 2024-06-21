@@ -256,3 +256,5 @@ parsers:
   production: OPENNEM.fetch_production
   productionCapacity: OPENNEM.fetch_production_capacity
 timezone: Australia/Sydney
+region: Oceania
+country: AU

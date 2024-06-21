@@ -93,7 +93,9 @@
   },
   "misc": {
     "maintitle": "Realtids-CO₂-udledning fra elforbruget",
-    "newversion": "En ny version er tilgængelig!",
+    "legend": "Forklaring",
+    "oops": "Hov! Vi kan ikke få kontakt til serverne. Vi prøver igen om et par sekunder.",
+    "retrynow": "Prøv igen nu",
     "reload": "Genindlæs",
     "dismiss": "Afvis"
   },

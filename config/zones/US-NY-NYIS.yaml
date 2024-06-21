@@ -85,6 +85,8 @@ contributors:
   - robertahunt
   - KabelWlan
   - brandongalbraith
+delays:
+  production: 2
 emissionFactors:
   direct:
     battery discharge:
@@ -353,3 +355,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
+region: Americas
+country: US

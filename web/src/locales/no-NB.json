@@ -151,7 +151,9 @@
   "misc": {
     "faq": "Ofte stilte spørsmål",
     "maintitle": "Sanntids CO₂-utslipp fra strømforbruket",
-    "newversion": "En ny version er tilgjengelig!",
+    "oops": "Ka farsken! Vi får ikke kontakt med serverne. Vi prøver igjen om noen sekund!",
+    "retrynow": "Prøv igjen nå",
+    "webgl-not-supported": "Kartet vises ikke riktig fordi nettleseren din mangler støtte for WebGL.",
     "dismiss": "Avbryt",
     "reload": "Last på nytt"
   },

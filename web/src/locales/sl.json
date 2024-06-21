@@ -125,9 +125,21 @@
     "country": "država",
     "zone": "območje"
   },
+  "updatePrompt": {
+    "title": "Posodobitev na voljo",
+    "description": "Na voljo je nova različica aplikacije, želite zdaj posodobiti?",
+    "update": "Posodobi",
+    "dismiss": "Zavrni"
+  },
   "misc": {
     "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije",
+    "oops": "Ups! Imamo težave pri doseganju strežnika. Poskusili bomo znova čez nekaj sekund.",
     "newversion": "Na voljo je nova različica!",
+    "webgl-not-supported": "Zemljevida ni mogoče upodobiti, ker ta brskalnik ne podpira WebGL.",
+    "retrynow": "Poskusi ponovno",
+    "database-ad": "Iščete zgodovinske podatke? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preverite našo bazo podatkov!</a>",
+    "api-ad": "želite podatke v živo v svoji aplikaciji? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preizkusi naš API!</a>",
+    "legend": "Legenda",
     "faq": "Pogosto postavljena vprašanja",
     "dismiss": "Opusti",
     "reload": "Znova naloži"

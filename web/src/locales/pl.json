@@ -91,9 +91,19 @@
     "selectLanguage": "Wybierz język",
     "lowCarbDescription": "Zawiera niskoemisyjne i jądrowe źródła energii"
   },
+  "updatePrompt": {
+    "title": "Dostępna aktualizacja",
+    "description": "Dostępna jest nowa wersja aplikacji, zaktualizować teraz?",
+    "update": "Aktualizuj",
+    "dismiss": "Odrzuć"
+  },
   "misc": {
     "maintitle": "Emisja CO₂ konsumpcji energii elektrycznej w czasie rzeczywistym",
-    "newversion": "Jest dostępna nowa wersja!",
+    "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
+    "retrynow": "Spróbuj teraz",
+    "database-ad": "Szukasz danych historycznych? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
+    "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na urządzeniu? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
+    "legend": "Legenda",
     "faq": "Najczęściej Zadawane Pytania",
     "dismiss": "Ignoruj",
     "reload": "Odśwież"
