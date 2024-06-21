@@ -1,6 +1,7 @@
+import { useVirtualizer } from '@tanstack/react-virtual';
 import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
-import type { ReactElement } from 'react';
+import { useRef } from 'react';
 import { HiChevronRight } from 'react-icons/hi2';
 import { GridState } from 'types';
 
@@ -45,22 +46,55 @@ function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType)
             {zoneName}
           </p>
         </div>
-        <div className="min-w-2">
-          <p className="hidden pr-2 group-hover:block dark:text-gray-400">
-            <HiChevronRight />
-          </p>
-        </div>
+        <p className="hidden min-w-2 pr-2 group-hover:block dark:text-gray-400">
+          <HiChevronRight />
+        </p>
       </div>
     </InternalLink>
   );
 }
 
-export default function Zonelist({ data }: ZonelistProperties): ReactElement {
+export function VirtualizedZoneList({ data }: ZonelistProperties) {
+  const parentReference = useRef<HTMLDivElement>(null);
+
+  const rowVirtualizer = useVirtualizer({
+    count: data.length,
+    getScrollElement: () => parentReference.current,
+    estimateSize: () => 46,
+    overscan: 5,
+  });
+
+  const items = rowVirtualizer.getVirtualItems();
+
   return (
-    <div className="overflow-y-scroll">
-      {data.map((rowProps, index) => {
-        return <ZoneRow key={index} {...rowProps} ranking={index + 1} />;
-      })}
+    <div ref={parentReference} className="h-full w-full overflow-y-auto">
+      <div
+        style={{
+          height: rowVirtualizer.getTotalSize(),
+          width: '100%',
+          position: 'relative',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            transform: `translateY(${items[0]?.start ?? 0}px)`,
+          }}
+        >
+          {items.map((virtualRow) => (
+            <div key={virtualRow.key} data-index={virtualRow.index}>
+              <ZoneRow
+                key={virtualRow.index}
+                {...data[virtualRow.index]}
+                ranking={virtualRow.index + 1}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

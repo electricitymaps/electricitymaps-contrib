@@ -1,7 +1,7 @@
 import useGetState from 'api/getState';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   productionConsumptionAtom,
@@ -13,7 +13,7 @@ import { getRankedState } from './getRankingPanelData';
 import InfoText from './InfoText';
 import SearchBar from './SearchBar';
 import SocialButtons from './SocialButtons';
-import ZoneList from './ZoneList';
+import { VirtualizedZoneList } from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
   const { t } = useTranslation();
@@ -64,7 +64,7 @@ export default function RankingPanel(): ReactElement {
         searchHandler={inputHandler}
         value={searchTerm}
       />
-      <ZoneList data={filteredList} />
+      <VirtualizedZoneList data={filteredList} />
       <div className="space-y-4 p-2">
         <InfoText />
         <SocialButtons />
