@@ -164,10 +164,9 @@ function BaseCard({
     estimationMethod,
     estimatedPercentage
   );
-  const showBadge =
-    estimationMethod == 'aggregated'
-      ? Boolean(estimatedPercentage)
-      : pillType != undefined;
+  const showBadge = Boolean(
+    estimationMethod == 'aggregated' ? estimatedPercentage : pillType
+  );
 
   return (
     <div
@@ -271,7 +270,7 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
       iconPill={undefined}
       showMethodologyLink={true}
-      pillType={undefined}
+      pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
       cardType="estimated-card"
     />
