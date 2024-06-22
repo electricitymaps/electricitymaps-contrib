@@ -8,6 +8,7 @@ interface ButtonProps {
   children?: React.ReactNode;
   disabled?: boolean;
   size?: SizeOptions;
+  shouldShrink?: boolean;
   type?: 'primary' | 'secondary' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
@@ -24,6 +25,7 @@ export function Button({
   backgroundClasses, // backgroundColor, borderColor, margin, etc.
   foregroundClasses, // textColor, etc.
   size = 'lg',
+  shouldShrink = false,
   type = 'primary',
   asDiv, // If true, renders a div instead of a button to avoid nested buttons in components like ToastPrimitive.Action
   onClick,
@@ -37,7 +39,8 @@ export function Button({
     <div
       className={twMerge(
         `items-center justify-center rounded-full ${getBackground(type, disabled)}`,
-        backgroundClasses
+        backgroundClasses,
+        shouldShrink ? 'w-fit' : ''
       )}
     >
       <As

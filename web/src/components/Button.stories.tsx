@@ -3,142 +3,101 @@ import { HiMagnifyingGlass } from 'react-icons/hi2';
 
 import { Button } from './Button';
 
+const iconOptions = { noIcon: undefined, icon: <HiMagnifyingGlass size={16} /> };
+
 const meta: Meta<typeof Button> = {
   title: 'Basics/Button',
   component: Button,
+  argTypes: {
+    children: {
+      // Overriding the type to be a string
+      type: 'string',
+    },
+    icon: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'inline-radio',
+        labels: {
+          noIcon: 'No icon',
+          icon: 'With icon',
+        },
+      },
+    },
+    size: {
+      control: {
+        type: 'radio',
+        options: ['sm', 'md', 'lg'],
+        labels: {
+          sm: 'Small',
+          md: 'Medium',
+          lg: 'Large',
+        },
+      },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const All: Story = {
-  render: () => (
-    <div className="space-y-2">
-      <Button size="xl" type="primary">
-        default xl primary button
-      </Button>
-      <Button size="lg" type="primary">
-        default lg primary button
-      </Button>
-      <Button size="md" type="primary">
-        default md primary button
-      </Button>
-      <Button size="sm" type="primary">
-        default sm primary button
-      </Button>
+export const Primary: Story = {
+  name: 'Default Button',
+  args: {
+    children: 'Button',
+  },
+};
 
-      <Button size="sm" type="primary" backgroundClasses="w-fit">
-        default sm primary button with set w-fit
-      </Button>
-      <Button
-        size="sm"
-        type="primary"
-        backgroundClasses="w-fit"
-        icon={<HiMagnifyingGlass size={18} />}
-      >
-        with icon
-      </Button>
-      <Button
-        size="sm"
-        type="primary"
-        backgroundClasses="w-fit"
-        icon={<HiMagnifyingGlass size={18} />}
-      />
+export const SmallPrimaryButton: Story = {
+  args: {
+    size: 'sm',
+    type: 'primary',
+    children: 'Button',
+  },
+};
 
-      <Button size="md" type="primary" backgroundClasses="w-fit">
-        default md primary button with set w-fit
-      </Button>
-      <Button
-        size="md"
-        type="primary"
-        backgroundClasses="w-fit"
-        icon={<HiMagnifyingGlass size={18} />}
-      >
-        with icon
-      </Button>
-      <Button
-        size="md"
-        type="primary"
-        backgroundClasses="w-fit"
-        icon={<HiMagnifyingGlass size={18} />}
-      />
+export const MediumPrimaryButton: Story = {
+  args: {
+    size: 'md',
+    type: 'primary',
+    children: 'Button',
+  },
+};
 
-      <Button size="lg" type="primary" backgroundClasses="w-fit">
-        default lg primary button with set w-fit
-      </Button>
-      <Button
-        size="lg"
-        type="primary"
-        backgroundClasses="w-fit"
-        icon={<HiMagnifyingGlass size={18} />}
-      >
-        with icon
-      </Button>
-      <Button
-        size="lg"
-        type="primary"
-        backgroundClasses="w-fit"
-        icon={<HiMagnifyingGlass size={18} />}
-      />
+export const LargePrimaryButton: Story = {
+  args: {
+    size: 'lg',
+    type: 'primary',
+    children: 'Button',
+  },
+};
 
-      <Button size="xl" type="primary" backgroundClasses="w-fit">
-        default xl primary button with set w-fit
-      </Button>
-      <Button
-        size="xl"
-        type="primary"
-        backgroundClasses="w-fit"
-        icon={<HiMagnifyingGlass size={18} />}
-      >
-        with icon
-      </Button>
-      <Button
-        size="xl"
-        type="primary"
-        backgroundClasses="w-fit"
-        icon={<HiMagnifyingGlass size={18} />}
-      />
+export const LargePrimaryIconButton: Story = {
+  storyName: 'Large Button with Icon',
+  args: {
+    size: 'lg',
+    type: 'primary',
+    icon: 'icon',
+    children: 'Button',
+  },
+};
 
-      <Button size="lg" type="primary" disabled>
-        disabled
-      </Button>
+export const LargePrimaryIconButtonWithShrink: Story = {
+  storyName: 'Large Button with Icon and "shouldShrink"',
+  args: {
+    size: 'lg',
+    type: 'primary',
+    icon: 'icon',
+    shouldShrink: true,
+  },
+};
 
-      <Button
-        size="lg"
-        type="primary"
-        backgroundClasses="bg-blue-200 dark:bg-blue-200"
-        foregroundClasses="text-blue-500 dark:text-blue-500 focus-visible:outline-blue-200 focus-visible:dark:outline-blue-200"
-      >
-        custom colors
-      </Button>
-
-      <Button size="lg" type="secondary">
-        secondary
-      </Button>
-
-      <Button size="lg" type="tertiary">
-        tertiary
-      </Button>
-
-      <Button size="lg" type="link">
-        link lg
-      </Button>
-
-      <Button size="sm" type="link" backgroundClasses="w-fit">
-        link sm
-      </Button>
-
-      <Button size="md" type="link" backgroundClasses="w-fit">
-        link md
-      </Button>
-
-      <Button size="lg" type="link" backgroundClasses="w-fit">
-        link lg
-      </Button>
-
-      <Button size="xl" type="link" backgroundClasses="w-fit">
-        link xl
-      </Button>
-    </div>
-  ),
+export const LargeLinkButton: Story = {
+  storyName: 'Large Button with text and href',
+  args: {
+    size: 'lg',
+    type: 'link',
+    children: 'Button',
+    href: 'https://electricitymaps.com',
+  },
 };
