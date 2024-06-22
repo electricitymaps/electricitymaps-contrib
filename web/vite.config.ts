@@ -2,6 +2,7 @@
 import eslintPlugin from '@nabla/vite-plugin-eslint';
 import { sentryVitePlugin, SentryVitePluginOptions } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react';
+import browserslistToEsbuild from 'browserslist-to-esbuild';
 import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
@@ -90,6 +91,7 @@ export default defineConfig(({ mode }) => ({
   },
   server: { host: '127.0.0.1' },
   build: {
+    target: browserslistToEsbuild(),
     sourcemap: true,
     rollupOptions: {
       output: {
@@ -127,8 +129,9 @@ export default defineConfig(({ mode }) => ({
         plugins: [jotaiDebugLabel, jotaiReactRefresh],
       },
     }),
-    ...(mode !== 'test'
-      ? [
+    ...(mode === 'test'
+      ? []
+      : [
           eslintPlugin(),
           VitePWA({
             registerType: 'prompt',
@@ -162,7 +165,6 @@ export default defineConfig(({ mode }) => ({
           }),
           // Used to upload sourcemaps to Sentry
           process.env.SENTRY_AUTH_TOKEN && sentryVitePlugin(sentryPluginOptions),
-        ]
-      : []),
+        ]),
   ],
 }));

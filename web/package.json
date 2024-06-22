@@ -145,6 +145,7 @@
     "@vitejs/plugin-react": "4.3.1",
     "@vitest/coverage-istanbul": "0.34.6",
     "autoprefixer": "10.4.15",
+    "browserslist-to-esbuild": "^2.1.1",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
     "cypress": "13.12.0",
