@@ -26,7 +26,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: {
-        type: 'radio',
+        type: 'select',
         options: ['sm', 'md', 'lg'],
         labels: {
           sm: 'Small',
@@ -35,6 +35,31 @@ const meta: Meta<typeof Button> = {
         },
       },
     },
+    type: {
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary', 'tertiary', 'link'],
+        labels: {
+          primary: 'Primary',
+          secondary: 'Secondary',
+          tertiary: 'Tertiary',
+          link: 'Link',
+        },
+      },
+    },
+  },
+  args: {
+    icon: 'noIcon',
+    children: 'Button',
+    size: 'lg',
+    type: 'primary',
+    shouldShrink: false,
+    disabled: false,
+    href: undefined,
+    backgroundClasses: '',
+    foregroundClasses: '',
+    asDiv: false,
+    onClick: () => {},
   },
 };
 
@@ -43,61 +68,42 @@ type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = {
   name: 'Default Button',
-  args: {
-    children: 'Button',
-  },
 };
 
 export const SmallPrimaryButton: Story = {
   args: {
     size: 'sm',
-    type: 'primary',
-    children: 'Button',
   },
 };
 
 export const MediumPrimaryButton: Story = {
   args: {
     size: 'md',
-    type: 'primary',
-    children: 'Button',
   },
 };
 
-export const LargePrimaryButton: Story = {
-  args: {
-    size: 'lg',
-    type: 'primary',
-    children: 'Button',
-  },
-};
+export const LargePrimaryButton: Story = {};
 
 export const LargePrimaryIconButton: Story = {
-  storyName: 'Large Button with Icon',
+  name: 'Large Button with Icon',
   args: {
-    size: 'lg',
-    type: 'primary',
     icon: 'icon',
-    children: 'Button',
   },
 };
 
 export const LargePrimaryIconButtonWithShrink: Story = {
-  storyName: 'Large Button with Icon and "shouldShrink"',
+  name: 'Large Button with Icon and "shouldShrink"',
   args: {
-    size: 'lg',
-    type: 'primary',
     icon: 'icon',
     shouldShrink: true,
+    children: undefined,
   },
 };
 
 export const LargeLinkButton: Story = {
-  storyName: 'Large Button with text and href',
+  name: 'Large Button with text and href',
   args: {
-    size: 'lg',
     type: 'link',
-    children: 'Button',
     href: 'https://electricitymaps.com',
   },
 };
