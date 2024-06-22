@@ -46,7 +46,7 @@ export default function ToggleButton({
       )}
     >
       <ToggleGroupRoot
-        className={'flex flex-grow flex-row items-center justify-between rounded-full'}
+        className={'flex grow flex-row items-center justify-between rounded-full'}
         type="single"
         aria-label="Toggle between modes"
         value={selectedOption}
@@ -63,7 +63,7 @@ export default function ToggleButton({
                 : ''
             )}
           >
-            <p className="sans flex-grow select-none capitalize dark:text-white">
+            <p className="sans grow select-none capitalize dark:text-white">
               {t(option.translationKey)}
             </p>
           </ToggleGroupItem>
