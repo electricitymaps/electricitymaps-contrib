@@ -139,6 +139,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             "AU-TAS",
             "DK-BHM",
             "US-CAR-YAD",
+            "US-CENT-SPA",
             "US-NW-SCL",
             "US-NW-CHPD",
             "US-NW-WWA",
