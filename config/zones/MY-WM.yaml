@@ -134,3 +134,5 @@ parsers:
   production: GSO.fetch_production
   productionCapacity: MY_WM.fetch_production_capacity
 timezone: null
+region: Asia
+country: MY

@@ -4,3 +4,5 @@ bounding_box:
   - - 63.81962813300004
     - 40.271526998000084
 timezone: Asia/Tehran
+region: Asia
+country: IR

@@ -4,3 +4,5 @@ bounding_box:
   - - -53.74528885899994
     - -18.78672861699995
 timezone: America/Asuncion
+region: Americas
+country: PY

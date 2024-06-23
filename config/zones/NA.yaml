@@ -77,3 +77,5 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.015505325244864603
 timezone: Africa/Windhoek
+region: Africa
+country: NA

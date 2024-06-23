@@ -270,3 +270,5 @@ parsers:
   production: TAIPOWER.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Taipei
+region: Asia
+country: TW

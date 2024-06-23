@@ -155,3 +155,5 @@ fallbackZoneMixes:
 parsers:
   production: YUKONENERGY.fetch_production
 timezone: America/Whitehorse
+region: Americas
+country: CA

@@ -8,3 +8,5 @@ contributors:
 parsers:
   consumption: GCCIA.fetch_consumption
 timezone: Asia/Riyadh
+region: Asia
+country: SA

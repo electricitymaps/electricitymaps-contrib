@@ -136,3 +136,5 @@ parsers:
   consumption: IN_DL.fetch_consumption
   production: IN_DL.fetch_production
 timezone: Asia/Kolkata
+region: Asia
+country: IN
