@@ -1,5 +1,3 @@
-import 'maplibre-gl/dist/maplibre-gl.css';
-
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
