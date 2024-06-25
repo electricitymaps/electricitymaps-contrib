@@ -10,7 +10,6 @@
     "source": "來源",
     "carbonintensity": "碳強度",
     "electricityproduction": "電力生產",
-    "bysource": "按來源",
     "emissions": "碳排放量"
   },
   "footer": {
@@ -33,7 +32,6 @@
   },
   "misc": {
     "maintitle": "生活用電二氧化碳排放量",
-    "oops": "哎呀！ 我們無法連線到服務器。 我們會在幾秒鐘後再試一次。",
     "dismiss": "移除",
     "reload": "重新載入"
   },
