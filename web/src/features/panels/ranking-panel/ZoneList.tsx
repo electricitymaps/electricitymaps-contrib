@@ -32,7 +32,7 @@ function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType)
       ></div>
 
       <CountryFlag size={30} zoneId={zoneId} />
-      <div className="flex flex-grow items-center justify-between overflow-hidden">
+      <div className="flex grow items-center justify-between overflow-hidden">
         <div className="flex  flex-col content-center justify-center overflow-hidden px-2 pt-1">
           <p className="truncate font-poppins text-sm  leading-none">{countryName}</p>
           <p

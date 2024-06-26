@@ -27,7 +27,7 @@ function MenuLink({
 }: MenuLinkProps): JSX.Element {
   const handleClick = () => {
     trackEvent('HeaderLink Clicked', { linkId: id });
-    onClick && onClick();
+    onClick?.();
   };
   return (
     <div className="relative flex py-3">

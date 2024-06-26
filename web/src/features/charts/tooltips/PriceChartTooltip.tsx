@@ -16,7 +16,7 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
   }
   const { price, stateDatetime } = zoneDetail;
 
-  const priceIsDefined = price && typeof price.value === 'number';
+  const priceIsDefined = typeof price?.value === 'number';
   const currency = priceIsDefined ? getSymbolFromCurrency(price?.currency) : '?';
   const value = priceIsDefined ? price?.value : '';
 
