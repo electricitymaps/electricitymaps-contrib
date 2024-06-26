@@ -134,15 +134,7 @@
   },
   "misc": {
     "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije",
-    "oops": "Ups! Imamo težave pri doseganju strežnika. Poskusili bomo znova čez nekaj sekund.",
-    "webgl-not-supported": "Zemljevida ni mogoče upodobiti, ker ta brskalnik ne podpira WebGL.",
-    "retrynow": "Poskusi ponovno",
-    "database-ad": "Iščete zgodovinske podatke? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preverite našo bazo podatkov!</a>",
-    "api-ad": "želite podatke v živo v svoji aplikaciji? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Preizkusi naš API!</a>",
-    "legend": "Legenda",
     "faq": "Pogosto postavljena vprašanja",
-    "privacyPolicy": "Politika zasebnosti",
-    "legalNotice": "Pravno obvestilo",
     "dismiss": "Opusti",
     "reload": "Znova naloži"
   },
@@ -196,8 +188,6 @@
     "groupName": "Our methods",
     "carbonIntensity-question": "Kaj je \"ogljična intenzivnost\"?",
     "carbonIntensity-answer": "Intenzivnost ogljika je merilo emisij toplogrednih plinov, povezanih s proizvodnjo električne energije, ki jo porabite (v gCO₂eq/kWh – gramih ekvivalentov ogljikovega dioksida, izpuščenih na kilovatno uro porabljene električne energije). <br><br>Merimo emisije porabe električne energije (ne proizvodnje), kar pomeni vse emisije toplogrednih plinov (tako CO₂ kot drugih toplogrednih plinov, kot je metan), ki so šli v proizvodnjo električne energije, ki se porablja na območju, ob upoštevanju upoštevati ogljične intenzivnosti električne energije, uvožene z drugih območij. Uporabljamo pristop analize življenjskega cikla (LCA), kar pomeni, da upoštevamo emisije, ki izhajajo iz celotnega življenjskega cikla elektrarn (gradnja, proizvodnja goriva, obratovalne emisije in razgradnja).",
-    "consumptionFocus-question": "Zakaj izračunavate ogljično intenzivnost porabe električne energije namesto proizvodnje?",
-    "consumptionFocus-answer": "Prepričani smo, da bi morali biti državljani odgovorni za električno energijo, ki jo porabijo, in ne za električno energijo, ki je proizvedena na območju, kjer slučajno živijo.",
     "renewableLowCarbonDifference-question": "Kakšna je razlika med 'obnovljivo' in 'nizkoogljičnio' energijo?",
     "renewableLowCarbonDifference-answer": "Proizvodnja obnovljive energije temelji na obnovljivih virih energije, kot so veter in vodni tokovi, sonce in geotermalna energija. Nizkoogljična proizvodnja energije pomeni, da proizvodnja vključuje zelo nizko raven emisij toplogrednih plinov, na primer pri proizvodnji jedrske energije.",
     "importsAndExports-question": "Ali upoštevate uvoz in izvoz električne energije?",
@@ -367,10 +357,6 @@
     "BR-CS": {
       "countryName": "Brazilija",
       "zoneName": "Centralna Brazilija"
-    },
-    "BR-I": {
-      "countryName": "Brazilija",
-      "zoneName": "Isolated Systems"
     },
     "BR-N": {
       "countryName": "Brazilija",

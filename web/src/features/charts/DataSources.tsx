@@ -26,7 +26,7 @@ export function DataSources({
   const { t } = useTranslation();
   const isMobile = !useBreakpoint('md');
   const showDataSources = Boolean(
-    (sources && sources?.length > 0) || emissionFactorSourcesToProductionSources
+    sources?.length > 0 || emissionFactorSourcesToProductionSources
   );
 
   if (showDataSources == false) {

@@ -1,5 +1,3 @@
-import 'maplibre-gl/dist/maplibre-gl.css';
-
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
@@ -86,10 +84,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     const setSourceLoadedForMap = () => {
       setSourceLoaded(
         Boolean(
-          map &&
-            map.getSource(ZONE_SOURCE) !== undefined &&
-            map.getSource('states') !== undefined &&
-            map.isSourceLoaded('states')
+          map?.getSource(ZONE_SOURCE) !== undefined &&
+            map?.getSource('states') !== undefined &&
+            map?.isSourceLoaded('states')
         )
       );
     };
@@ -255,7 +252,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       );
     }
     setHoveredZone(null);
-    if (feature && feature.properties) {
+    if (feature?.properties) {
       const zoneId = feature.properties.zoneId;
       navigate(createToWithState(`/zone/${zoneId}`));
     } else {

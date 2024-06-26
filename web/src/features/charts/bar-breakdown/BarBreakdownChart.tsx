@@ -113,13 +113,9 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
-  const showPowerSources = Boolean(
-    powerGenerationSources && powerGenerationSources.length > 0
-  );
-  const showEmissionSources = Boolean(
-    emissionFactorSources && emissionFactorSources.length > 0
-  );
-  const showCapacitySources = Boolean(capacitySources && capacitySources.length > 0);
+  const showPowerSources = Boolean(powerGenerationSources?.length > 0);
+  const showEmissionSources = Boolean(emissionFactorSources?.length > 0);
+  const showCapacitySources = Boolean(capacitySources?.length > 0);
 
   const showDataSourceAccordion = Boolean(
     showCapacitySources || showPowerSources || showEmissionSources
