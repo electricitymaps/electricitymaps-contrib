@@ -2,7 +2,6 @@ import * as Switch from '@radix-ui/react-switch';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Meta } from 'api/getMeta';
 import { QUERY_KEYS } from 'api/helpers';
-import { useSearchParams } from 'react-router-dom';
 
 import { useFeatureFlags } from './api';
 import { FeatureFlags } from './types';
@@ -58,11 +57,7 @@ function Content({ features }: { features: FeatureFlags }) {
 export default function FeatureFlagsManager() {
   const features = useFeatureFlags();
 
-  const [searchParameters] = useSearchParams();
-  const showManager =
-    searchParameters.get('ff') === 'true' || searchParameters.get('ff') === '';
-
-  if (!features || !showManager) {
+  if (!features) {
     return null;
   }
 
