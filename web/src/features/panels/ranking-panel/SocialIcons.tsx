@@ -1,9 +1,7 @@
-import {
-  FacebookButton,
-  FeedbackButton,
-  LinkedinButton,
-  TwitterButton,
-} from 'components/Button';
+import { FacebookButton } from 'components/buttons/FacebookButton';
+import { FeedbackButton } from 'components/buttons/FeedbackButton';
+import { LinkedinButton } from 'components/buttons/LinkedinButton';
+import { TwitterButton } from 'components/buttons/TwitterButton';
 
 export default function SocialIconRow() {
   return (

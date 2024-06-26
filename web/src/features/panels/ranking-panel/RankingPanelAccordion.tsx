@@ -1,5 +1,7 @@
 import Accordion from 'components/Accordion';
-import { GitHubButton, LinkedinButton, SlackButton } from 'components/Button';
+import { GitHubButton } from 'components/buttons/GithubButton';
+import { LinkedinButton } from 'components/buttons/LinkedinButton';
+import { SlackButton } from 'components/buttons/SlackButton';
 import InfoText from 'features/modals/InfoText';
 import { useTranslation } from 'react-i18next';
 import { rankingPanelAccordionCollapsedAtom } from 'utils/state/atoms';

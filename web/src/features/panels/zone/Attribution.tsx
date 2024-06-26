@@ -1,4 +1,4 @@
-import { GitHubButton } from 'components/Button';
+import { GitHubButton } from 'components/buttons/GithubButton';
 import { useTranslation } from 'react-i18next';
 
 import { getContributors } from './util';
