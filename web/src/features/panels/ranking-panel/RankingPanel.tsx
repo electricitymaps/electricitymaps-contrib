@@ -25,7 +25,7 @@ export default function RankingPanel(): ReactElement {
   const inputHandler = (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
 
-    if (target && typeof target.value === 'string') {
+    if (typeof target?.value === 'string') {
       const lowerCase = target.value.toLowerCase();
       setSearchTerm(lowerCase);
     }
@@ -41,10 +41,10 @@ export default function RankingPanel(): ReactElement {
     spatialAggregation
   );
   const filteredList = rankedList.filter((zone) => {
-    if (zone.countryName && zone.countryName.toLowerCase().includes(searchTerm)) {
+    if (zone.countryName?.toLowerCase().includes(searchTerm)) {
       return true;
     }
-    if (zone.zoneName && zone.zoneName.toLowerCase().includes(searchTerm)) {
+    if (zone.zoneName?.toLowerCase().includes(searchTerm)) {
       return true;
     }
     return false;

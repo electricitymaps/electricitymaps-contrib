@@ -51,8 +51,8 @@ export function TooltipInner({
           </div>
           <DataValidityBadge hasOutage={o} estimated={e} />
         </div>
-        <div className="flex w-full flex-grow py-1 pt-4 sm:pr-2">
-          <div className="flex w-full flex-grow flex-row justify-around">
+        <div className="flex w-full grow py-1 pt-4 sm:pr-2">
+          <div className="flex w-full grow flex-row justify-around">
             <CarbonIntensitySquare intensity={intensity} />
             <CircularGauge
               name={t('country-panel.lowcarbon')}
