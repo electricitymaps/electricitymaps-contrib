@@ -15,13 +15,15 @@ import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
-const isProduction = import.meta.env.PROD;
-
-if (isProduction) {
+if (import.meta.env.PROD) {
   Sentry.init({
     dsn: 'https://bbe4fb6e5b3c4b96a1df95145a91e744@o192958.ingest.sentry.io/4504366922989568', //We should create a capacitor project in Sentry for the mobile app
-    tracesSampleRate: 0, // Disables tracing completely as we don't use it and sends a lot of data
+    tracesSampleRate: 1, // Disables tracing completely as we don't use it and sends a lot of data
   });
+  // eslint-disable-next-line import/namespace
+  Sentry.setUser({ ip_address: '{{auto}}' });
+  // eslint-disable-next-line import/namespace
+  Sentry.captureException(new Error('Test error'));
 }
 /**
  * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
