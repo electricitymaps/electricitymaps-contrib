@@ -1,6 +1,6 @@
 import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
-import Badge from 'components/Badge';
+import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -134,7 +134,7 @@ function BaseCard({
   icon: string;
   iconPill?: string;
   showMethodologyLink: boolean;
-  pillType?: string;
+  pillType?: PillType;
   textColorTitle: string;
   cardType: string;
 }) {
@@ -164,10 +164,9 @@ function BaseCard({
     estimationMethod,
     estimatedPercentage
   );
-  const showBadge =
-    estimationMethod == 'aggregated'
-      ? Boolean(estimatedPercentage)
-      : pillType != undefined;
+  const showBadge = Boolean(
+    estimationMethod == 'aggregated' ? estimatedPercentage : pillType
+  );
 
   return (
     <div
