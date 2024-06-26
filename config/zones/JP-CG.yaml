@@ -4,32 +4,34 @@ bounding_box:
   - - 134.54
     - 35.74
 capacity:
-  geothermal: 0
-  oil: 850
+  biomass: 500
   coal: 3850
   gas: 4000
+  geothermal: 0
   hydro: 780
   hydro storage: 2123
   nuclear: 0
+  oil: 850
   solar: 5690
   wind: 365
-  biomass: 500
+contributors:
+  - tmslaine
+  - lorrieq
+  - PPsyrius
+country: JP
+delays:
+  production: 5
 emissionFactors:
   lifecycle:
     unknown:
       source: Enerdata 2022 Japanese National Average
       value: 462
-contributors:
-  - tmslaine
-  - lorrieq
-  - PPsyrius
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
-timezone: Asia/Tokyo
+region: Asia
 sources:
   Enerdata 2022 Japanese National Average:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
-region: Asia
-country: JP
+timezone: Asia/Tokyo

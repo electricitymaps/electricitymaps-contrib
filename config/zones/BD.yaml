@@ -42,10 +42,12 @@ contributors:
   - systemcatch
   - alixunderplatz
   - MuffinCompiler
+country: BD
+delays:
+  production: 10
 parsers:
   consumption: ERP_PGCB.fetch_consumption
   production: ERP_PGCB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
-timezone: Asia/Dhaka
 region: Asia
-country: BD
+timezone: Asia/Dhaka

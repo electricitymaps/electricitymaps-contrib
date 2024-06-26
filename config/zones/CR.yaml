@@ -39,6 +39,9 @@ contributors:
   - jarek
   - mlucchini
   - nessie2013
+country: CR
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -244,6 +247,5 @@ fallbackZoneMixes:
 parsers:
   production: CR.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
-timezone: America/Costa_Rica
 region: Americas
-country: CR
+timezone: America/Costa_Rica

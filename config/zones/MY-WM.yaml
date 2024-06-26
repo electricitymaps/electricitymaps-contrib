@@ -12,6 +12,9 @@ contributors:
   - kruschk
   - systemcatch
   - nessie2013
+country: MY
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -133,6 +136,5 @@ parsers:
   consumption: GSO.fetch_consumption
   production: GSO.fetch_production
   productionCapacity: MY_WM.fetch_production_capacity
-timezone: null
 region: Asia
-country: MY
+timezone: null
