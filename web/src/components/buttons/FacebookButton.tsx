@@ -32,7 +32,9 @@ export function FacebookButton({
       icon={<FaFacebook size={iconSize} />}
       {...restProps}
     >
-      {isIconOnly ? undefined : t('button.facebook')}
+      {isIconOnly
+        ? undefined
+        : t(isShareLink ? 'button.facebook-share' : 'button.facebook')}
     </Button>
   );
 }

@@ -32,7 +32,9 @@ export function TwitterButton({
       icon={<FaXTwitter size={iconSize} />}
       {...restProps}
     >
-      {isIconOnly ? undefined : t('button.twitter')}
+      {isIconOnly
+        ? undefined
+        : t(isShareLink ? 'button.twitter-share' : 'button.twitter')}
     </Button>
   );
 }

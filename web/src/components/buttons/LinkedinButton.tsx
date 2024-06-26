@@ -32,7 +32,9 @@ export function LinkedinButton({
       icon={<FaLinkedin size={iconSize} />}
       {...restProps}
     >
-      {isIconOnly ? undefined : t('button.linkedin')}
+      {isIconOnly
+        ? undefined
+        : t(isShareLink ? 'button.linkedin-share' : 'button.linkedin')}
     </Button>
   );
 }
