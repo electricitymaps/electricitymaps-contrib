@@ -53,7 +53,7 @@ contributors:
   - PaulCornelissen
   - nessie2013
   - VIKTORVAV99
-disclaimer: Solar production is collected from NED.nl and can contain their own estimations.
+disclaimer: Solar and wind production is collected from NED.nl and can contain their own estimations.
 emissionFactors:
   direct:
     battery discharge:

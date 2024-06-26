@@ -25,13 +25,18 @@ from .lib.utils import get_token
 
 URL = "https://api.ned.nl/v1/utilizations"
 
-TYPE_MAPPING = {
-    2: "solar",
-}
-
 
 class NedType(Enum):
+    WIND = 1
     SOLAR = 2
+    WIND_OFFSHORE_C = 51  # The original dataset has been replaced by the B and later C version in the API.
+
+
+TYPE_MAPPING = {
+    NedType.WIND.value: "wind",
+    NedType.SOLAR.value: "solar",
+    NedType.WIND_OFFSHORE_C.value: "wind",
+}
 
 
 class NedActivity(Enum):
@@ -72,8 +77,13 @@ def _kwh_to_mw(kwh):
 def call_api(target_datetime: datetime, forecast: bool = False):
     params = {
         "itemsPerPage": 192,
+        "page": 1,
         "point": NedPoint.NETHERLANDS.value,
-        "type[]": NedType.SOLAR.value,
+        "type[]": [
+            NedType.SOLAR.value,
+            NedType.WIND.value,
+            NedType.WIND_OFFSHORE_C.value,
+        ],
         "granularity": NedGranularity.FIFTEEN_MINUTES.value,
         "granularitytimezone": NedGranularityTimezone.UTC.value,
         "classification": NedClassification.FORECAST.value
@@ -88,60 +98,65 @@ def call_api(target_datetime: datetime, forecast: bool = False):
         .isoformat(),
     }
     headers = {"X-AUTH-TOKEN": get_token("NED_TOKEN"), "accept": "application/json"}
-    response = requests.get(URL, params=params, headers=headers)
-    if not response.ok:
-        raise ParserException(
-            parser="NED.py",
-            message=f"Failed to fetch NED data: {response.status_code}, err: {response.text}",
-        )
-    return response.json()
+
+    for _ in range(2):
+        response = requests.get(URL, params=params, headers=headers)
+        if not response.ok:
+            raise ParserException(
+                parser="NED.py",
+                message=f"Failed to fetch NED data: {response.status_code}, err: {response.text}",
+            )
+        json = response.json()
+        yield json
+        params["page"] += 1
 
 
 def format_data(
-    json: Any, logger: Logger, forecast: bool = False
+    json_list: Any, logger: Logger, forecast: bool = False
 ) -> ProductionBreakdownList:
-    df = pd.DataFrame(json)
-    df.drop(
-        columns=[
-            "id",
-            "point",
-            "classification",
-            "activity",
-            "granularity",
-            "granularitytimezone",
-            "emission",
-            "emissionfactor",
-            "capacity",
-            "validto",
-            "lastupdate",
-        ],
-        inplace=True,
-    )
-
-    df = df.groupby(by="validfrom")
-
     formatted_production_data = ProductionBreakdownList(logger)
-    for _group_key, group_df in df:
-        data_dict = group_df.to_dict(orient="records")
-        mix = ProductionMix()
-        for data in data_dict:
-            clean_type = int(data["type"].split("/")[-1])
-            if clean_type in TYPE_MAPPING:
-                mix.add_value(
-                    TYPE_MAPPING[clean_type],
-                    _kwh_to_mw(data["volume"]),
-                )
-            else:
-                logger.warning(f"Unknown type: {clean_type}")
-        formatted_production_data.append(
-            zoneKey=ZoneKey("NL"),
-            datetime=group_df["validfrom"].iloc[0],
-            production=mix,
-            source="ned.nl",
-            sourceType=EventSourceType.forecasted
-            if forecast
-            else EventSourceType.measured,
+    for item in json_list:
+        df = pd.DataFrame(item)
+        df.drop(
+            columns=[
+                "id",
+                "point",
+                "classification",
+                "activity",
+                "granularity",
+                "granularitytimezone",
+                "emission",
+                "emissionfactor",
+                "capacity",
+                "validto",
+                "lastupdate",
+            ],
+            inplace=True,
         )
+
+        df = df.groupby(by="validfrom")
+
+        for _group_key, group_df in df:
+            data_dict = group_df.to_dict(orient="records")
+            mix = ProductionMix()
+            for data in data_dict:
+                clean_type = int(data["type"].split("/")[-1])
+                if clean_type in TYPE_MAPPING:
+                    mix.add_value(
+                        TYPE_MAPPING[clean_type],
+                        _kwh_to_mw(data["volume"]),
+                    )
+                else:
+                    logger.warning(f"Unknown type: {clean_type}")
+            formatted_production_data.append(
+                zoneKey=ZoneKey("NL"),
+                datetime=group_df["validfrom"].iloc[0],
+                production=mix,
+                source="ned.nl",
+                sourceType=EventSourceType.forecasted
+                if forecast
+                else EventSourceType.measured,
+            )
     return formatted_production_data
 
 
@@ -238,12 +253,13 @@ def fetch_production_forecast(
     target_datetime = target_datetime or datetime.now(timezone.utc)
     json_data = call_api(target_datetime, forecast=True)
     NED_data = format_data(json_data, logger, forecast=True)
-    ENTSOE_data = _get_entsoe_forecast_data(zone_key, session, target_datetime, logger)
-
-    combined_data = ProductionBreakdownList.update_production_breakdowns(
-        production_breakdowns=ENTSOE_data,
-        new_production_breakdowns=NED_data,
-        logger=logger,
-        matching_timestamps_only=True,
-    )
-    return combined_data.to_list()
+    # ENTSOE-E only provides forecast data for wind and solar, we already get this from NED
+    # ENTSOE_data = _get_entsoe_forecast_data(zone_key, session, target_datetime, logger)
+    #
+    # combined_data = ProductionBreakdownList.update_production_breakdowns(
+    #     production_breakdowns=ENTSOE_data,
+    #     new_production_breakdowns=NED_data,
+    #     logger=logger,
+    #     matching_timestamps_only=True,
+    # )
+    return NED_data.to_list()
