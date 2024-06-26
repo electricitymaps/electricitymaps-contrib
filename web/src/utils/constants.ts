@@ -208,3 +208,7 @@ export const sourceLinkMapping: { [key: string]: string } = {
   '2021 annual mean carbon intensity by Electricity Maps':
     'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Emission-factors#emission-factors-for-storage',
 };
+
+export enum EstimationMethods {
+  TSA = 'ESTIMATED_TIME_SLICER_AVERAGE',
+}

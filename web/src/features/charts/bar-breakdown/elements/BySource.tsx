@@ -1,4 +1,5 @@
 import EstimationBadge from 'components/EstimationBadge';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
 import { PlugCircleBoltIcon } from 'icons/plugCircleBoltIcon';
 import { useAtom } from 'jotai';
@@ -31,23 +32,6 @@ const getText = (
   return translations[period][dataType];
 };
 
-function getEstimatedText(
-  t: TFunction,
-  estimatedPercentage?: number,
-  estimationMethod?: string
-) {
-  if (estimatedPercentage) {
-    return t('estimation-card.aggregated_estimated.pill', {
-      percentage: estimatedPercentage,
-    });
-  }
-  if (estimationMethod === 'threshold_filtered') {
-    return t('estimation-card.threshold_filtered.pill');
-  }
-
-  return t('estimation-badge.fully-estimated');
-}
-
 export default function BySource({
   className,
   hasEstimationPill = false,
@@ -68,6 +52,11 @@ export default function BySource({
 
   const dataType = displayByEmissions ? 'emissions' : mixMode;
   const text = getText(timeAverage, dataType, t);
+  const pillText = useGetEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
 
   return (
     <div className="flex flex-col pb-1 pt-4">
@@ -78,11 +67,7 @@ export default function BySource({
           <PlugCircleBoltIcon />
           {text}
         </div>
-        {hasEstimationPill && (
-          <EstimationBadge
-            text={getEstimatedText(t, estimatedPercentage, estimationMethod)}
-          />
-        )}
+        {hasEstimationPill && <EstimationBadge text={pillText} />}
       </div>
       {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>
