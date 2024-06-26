@@ -94,7 +94,7 @@ function Modal({
             </button>
           </div>
           <div
-            className={`flex h-1/2 max-h-[264px] w-full flex-grow self-center
+            className={`flex h-1/2 max-h-[264px] w-full grow self-center
               rounded-t-3xl bg-auto bg-center bg-no-repeat ${
                 isOnFirstView() ? 'max-w-[10rem] dark:invert' : ''
               }`}
@@ -121,7 +121,7 @@ function Modal({
                 />
               </picture>
             )}
-            <div>{currentView.title && <h1>{currentView.title(t)}</h1>}</div>
+            <h1>{currentView.title?.(t)}</h1>
           </div>
           <div className="flex w-auto flex-col justify-center px-4 pt-6 text-center dark:bg-gray-700">
             {currentView.renderContent(t)}
