@@ -1,6 +1,8 @@
+export type PillType = 'default' | 'warning';
+
 type BadgeProps = {
   pillText: string;
-  type?: string;
+  type?: PillType;
   icon?: string;
 };
 
