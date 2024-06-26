@@ -39,6 +39,9 @@ contributors:
   - nessie2013
   - ZachEichen
   - ananyasharma20
+country: UY
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -241,6 +244,5 @@ parsers:
   consumption: UY.fetch_consumption
   production: UY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
-timezone: America/Montevideo
 region: Americas
-country: UY
+timezone: America/Montevideo

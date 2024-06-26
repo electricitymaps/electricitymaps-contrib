@@ -61,6 +61,9 @@ contributors:
   - corradio
   - systemcatch
   - jarek
+country: NI
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -263,6 +266,5 @@ parsers:
   price: NI.fetch_price
   production: NI.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
-timezone: America/Managua
 region: Americas
-country: NI
+timezone: America/Managua

@@ -10,6 +10,9 @@ capacity:
   oil: 0
 contributors:
   - mlucchini
+country: CA
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -101,6 +104,5 @@ fallbackZoneMixes:
 parsers:
   price: CA_AB.fetch_price
   production: CA_AB.fetch_production
-timezone: America/Edmonton
 region: Americas
-country: CA
+timezone: America/Edmonton
