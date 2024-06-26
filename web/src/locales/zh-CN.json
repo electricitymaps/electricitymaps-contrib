@@ -34,9 +34,6 @@
     "disabledPriceReasons": {
       "licensing": "由于许可条款的限制，我们无法提供该地区的电价"
     },
-    "time-controller": {
-      "title": "显是历史数据"
-    },
     "dataIsDelayed": "该地区的数据有至多{{hours}}小时的延迟。实时数据无法被显示。",
     "estimated": "估算",
     "aggregated": "汇总",
@@ -47,10 +44,6 @@
     "helpUs": "看一下我们的<a href=\"{{link}}\" target=\"_blank\">运行记录</a>来帮助我们找出问题，或着联系数据来源。",
     "noParserInfo": "我们目前还没有该地区的信息。<br/> 想要帮忙改善？可以通过<a href=\"{{link}}\" target=\"_blank\">添加该地区的数据</a>。",
     "now": "当前"
-  },
-  "rankings-panel": {
-    "country-ranking": "国家排名",
-    "show-ranking": "显示排名"
   },
   "footer": {
     "foundbugs": "发现错误或有其他想法？请回报",
@@ -87,11 +80,6 @@
   },
   "misc": {
     "maintitle": "生活用电二氧化碳排放量",
-    "oops": "哎呀！ 我们无法连线到服务器。 我们会在几秒钟后再试一次。",
-    "webgl-not-supported": "由于该浏览器不支持WebGL，无法渲染地图。",
-    "database-ad": "寻找历史数据？<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">看看我们的数据库！</a>",
-    "api-ad": "想要在您的应用程序或设备上获得实时数据？ <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">试试我们的API!</a>",
-    "legend": "图例",
     "faq": "常见问题",
     "dismiss": "取消",
     "reload": "重新加载"
