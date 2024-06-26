@@ -1,9 +1,9 @@
 import { FAQButton } from 'components/buttons/FAQButton';
 import { FeedbackButton } from 'components/buttons/FeedbackButton';
 import { GithubButton } from 'components/buttons/GithubButton';
-import { LegalNoticeButton } from 'components/buttons/LegalnoticeButton';
+import { LegalNoticeButton } from 'components/buttons/LegalNoticeButton';
 import { LinkedinButton } from 'components/buttons/LinkedinButton';
-import { PrivacyPolicyButton } from 'components/buttons/PrivacyPolicy';
+import { PrivacyPolicyButton } from 'components/buttons/PrivacyPolicyButton';
 import { SlackButton } from 'components/buttons/SlackButton';
 import { VerticalDivider } from 'components/Divider';
 import Modal from 'components/Modal';

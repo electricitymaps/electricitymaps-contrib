@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LegalNoticeButton } from './LegalnoticeButton';
+import { LegalNoticeButton } from './LegalNoticeButton';
 
 const meta: Meta<typeof LegalNoticeButton> = {
   title: 'Basics/Buttons/LegalNotice',
