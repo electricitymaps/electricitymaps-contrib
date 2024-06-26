@@ -59,7 +59,7 @@ function Content({ features }: { features: FeatureFlags }) {
         ))}
       </div>
       <button
-        className="mt-2 self-end rounded  bg-green-900 p-1 text-xs text-white"
+        className="mt-2 self-end rounded  bg-green-900 p-1 text-sm text-white"
         onClick={handleClearLocalStorage}
       >
         Clear Local Storage
