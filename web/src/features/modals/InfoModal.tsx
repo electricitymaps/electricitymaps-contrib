@@ -1,6 +1,6 @@
 import { FAQButton } from 'components/buttons/FAQButton';
 import { FeedbackButton } from 'components/buttons/FeedbackButton';
-import { GitHubButton } from 'components/buttons/GithubButton';
+import { GithubButton } from 'components/buttons/GithubButton';
 import { LegalNoticeButton } from 'components/buttons/LegalnoticeButton';
 import { LinkedinButton } from 'components/buttons/LinkedinButton';
 import { PrivacyPolicyButton } from 'components/buttons/PrivacyPolicy';
@@ -24,7 +24,7 @@ export function InfoModalContent() {
         <FeedbackButton />
         <LinkedinButton />
         <SlackButton />
-        <GitHubButton />
+        <GithubButton />
       </div>
       <div className="flex gap-x-4">
         <PrivacyPolicyButton />

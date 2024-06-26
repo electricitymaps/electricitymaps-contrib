@@ -13,7 +13,7 @@ interface GithubButtonProps
   isIconOnly?: boolean;
 }
 
-export function GitHubButton({
+export function GithubButton({
   isIconOnly,
   iconSize = DEFAULT_ICON_SIZE,
   ...restProps

@@ -1,5 +1,5 @@
 import Accordion from 'components/Accordion';
-import { GitHubButton } from 'components/buttons/GithubButton';
+import { GithubButton } from 'components/buttons/GithubButton';
 import { LinkedinButton } from 'components/buttons/LinkedinButton';
 import { SlackButton } from 'components/buttons/SlackButton';
 import InfoText from 'features/modals/InfoText';
@@ -18,7 +18,7 @@ export default function RankingPanelAccordion() {
       <InfoText />
       <div className="mt-4 flex flex-wrap gap-2 ">
         <SlackButton size="sm" shouldShrink />
-        <GitHubButton size="sm" shouldShrink />
+        <GithubButton size="sm" shouldShrink />
         <LinkedinButton size="sm" shouldShrink />
       </div>
     </Accordion>
