@@ -11,22 +11,22 @@ import { getJSON } from './utilities.js';
 
 const inputArguments = process.argv.slice(2);
 
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+
 const zonesGeo: WorldFeatureCollection = getJSON(
-  path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url)))
+  path.resolve(currentDirectory, 'world.geojson')
 );
 
 if (inputArguments.length <= 0) {
   console.error(
-    'ERROR: Please add a zoneName parameter ("ts-node --esm generateZoneBoundingBoxes.ts DE")'
+    'ERROR: Please add a zoneName parameter ("bun generateZoneBoundingBoxes.ts DE")'
   );
   process.exit(1);
 }
 
 const zoneKey = inputArguments[0];
 
-const zonePath = path.resolve(
-  fileURLToPath(new URL(`../../config/zones/${zoneKey}.yaml`, import.meta.url))
-);
+const zonePath = path.resolve(currentDirectory, `../../config/zones/${zoneKey}.yaml`);
 const zoneConfig = yaml.load(fs.readFileSync(zonePath, 'utf8')) as ZoneConfig;
 
 if (!zoneConfig) {

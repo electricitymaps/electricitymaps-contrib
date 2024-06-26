@@ -143,7 +143,7 @@
     "@types/topojson-server": "^3.0.4",
     "@types/topojson-specification": "^1.0.5",
     "@vitejs/plugin-react": "4.3.1",
-    "@vitest/coverage-istanbul": "0.34.6",
+    "@vitest/coverage-istanbul": "1.6.0",
     "autoprefixer": "10.4.15",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
@@ -182,7 +182,7 @@
     "vite": "4.5.3",
     "vite-plugin-pwa": "0.20.0",
     "vite-tsconfig-paths": "4.3.2",
-    "vitest": "0.32.4",
+    "vitest": "1.6.0",
     "whatwg-fetch": "3.6.17",
     "workbox-build": "7.1.1",
     "workbox-window": "7.1.0"
