@@ -1,6 +1,6 @@
 import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
-import Badge, { PillTypes } from 'components/Badge';
+import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -134,7 +134,7 @@ function BaseCard({
   icon: string;
   iconPill?: string;
   showMethodologyLink: boolean;
-  pillType?: PillTypes;
+  pillType?: PillType;
   textColorTitle: string;
   cardType: string;
 }) {
