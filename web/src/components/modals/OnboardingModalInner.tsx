@@ -94,7 +94,7 @@ function Modal({
             </button>
           </div>
           <div
-            className={`flex h-1/2 max-h-[264px] w-full flex-grow self-center
+            className={`flex h-1/2 max-h-[264px] w-full grow self-center
               rounded-t-3xl bg-auto bg-center bg-no-repeat ${
                 isOnFirstView() ? 'max-w-[10rem] dark:invert' : ''
               }`}
