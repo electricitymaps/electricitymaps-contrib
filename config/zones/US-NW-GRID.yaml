@@ -59,8 +59,9 @@ comment: Gridforce Energy Management, Llc
 contributors:
   - systemcatch
   - robertahunt
+country: US
 delays:
-  production: 32
+  production: 33
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:
@@ -286,6 +287,7 @@ fallbackZoneMixes:
 parsers:
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
@@ -294,5 +296,3 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
-region: Americas
-country: US
