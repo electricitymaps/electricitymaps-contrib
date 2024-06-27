@@ -321,8 +321,9 @@ jobs:
         run: pnpm run storybook:build
       - name: Upload Storybook artifacts
         uses: actions/upload-artifact@v4
+        if: github.ref_name == 'master' || github.event_name == 'pull_request'
         with:
-          name: storybook-${{ github.ref_name}}
+          name: storybook-${{ github.ref_name == 'master' && 'latest' || '' }}${{ github.event_name == 'pull_request' && 'PR-' || '' }}${{ github.event_name == 'pull_request' && github.event.number || '' }}
           path: web/storybook-static
           overwrite: true
 
