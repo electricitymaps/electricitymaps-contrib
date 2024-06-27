@@ -20,6 +20,9 @@ contributors:
   - corradio
   - nessie2013
   - Pantkowsky
+country: ME
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -226,6 +229,5 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-timezone: Europe/Podgorica
 region: Europe
-country: ME
+timezone: Europe/Podgorica

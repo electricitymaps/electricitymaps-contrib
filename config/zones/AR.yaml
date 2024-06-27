@@ -44,6 +44,9 @@ contributors:
   - systemcatch
   - corradio
   - nessie2013
+country: AR
+delays:
+  production: 5
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas.
 emissionFactors:
   direct:
@@ -192,6 +195,5 @@ fallbackZoneMixes:
 parsers:
   production: CAMMESA.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
-timezone: America/Argentina/Buenos_Aires
 region: Americas
-country: AR
+timezone: America/Argentina/Buenos_Aires

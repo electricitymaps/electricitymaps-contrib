@@ -56,6 +56,9 @@ capacity:
       value: 2956.0
 contributors:
   - IV1T3
+country: ZA
+delays:
+  production: 74
 emissionFactors:
   direct:
     battery discharge:
@@ -263,6 +266,5 @@ isRenewable:
 parsers:
   production: ESKOM.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
-timezone: Africa/Johannesburg
 region: Africa
-country: ZA
+timezone: Africa/Johannesburg
