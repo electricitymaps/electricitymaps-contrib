@@ -290,9 +290,6 @@ jobs:
   build_storybook:
     name: Frontend / Build / Storybook
     needs: [eslint, typecheck, validate_generate_files, unit_test]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     defaults:
@@ -316,12 +313,18 @@ jobs:
           path: ./web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
       - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache-web.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - name: Generate config files
         run: pnpm create-generated-files
       - name: Build Storybook
         run: pnpm run storybook:build
+      - name: Upload Storybook artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-${{ github.ref_name}}
+          path: web/storybook-static
+          overwrite: true
 
   deploy_preview_branch:
     name: Deploy preview
