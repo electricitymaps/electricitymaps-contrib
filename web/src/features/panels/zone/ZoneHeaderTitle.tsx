@@ -33,7 +33,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   return (
     <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
       <Link
-        className="self-center py-4 pr-4 text-3xl"
+        className="self-center py-4 pr-4 text-xl"
         to={returnToMapLink}
         data-test-id="left-panel-back-button"
         onClick={onNavigateBack}
