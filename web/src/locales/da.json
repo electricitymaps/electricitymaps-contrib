@@ -16,7 +16,6 @@
     "carbonintensity": "CO₂-intensitet",
     "lowcarbon": "Lav CO₂",
     "renewable": "Vedvarende",
-    "electricity": "Elektricitet",
     "electricityproduction": "Elproduktion",
     "electricityconsumption": "Elforbrug",
     "by-source": {
@@ -94,9 +93,6 @@
   },
   "misc": {
     "maintitle": "Realtids-CO₂-udledning fra elforbruget",
-    "legend": "Forklaring",
-    "oops": "Hov! Vi kan ikke få kontakt til serverne. Vi prøver igen om et par sekunder.",
-    "retrynow": "Prøv igen nu",
     "reload": "Genindlæs",
     "dismiss": "Afvis"
   },
