@@ -108,44 +108,51 @@ const scalePower = function (maxPower: number | undefined, isPower = false) {
   };
 };
 
-const formatDate = function (date: Date, lang: string, time: string) {
-  if (!isValidDate(date) || !time) {
-    return '';
-  }
-
-  switch (time) {
+function getDateTimeFormatOptions(timeAverage: TimeAverages): Intl.DateTimeFormatOptions {
+  switch (timeAverage) {
     case TimeAverages.HOURLY: {
-      return new Intl.DateTimeFormat(lang, {
-        dateStyle: 'medium',
-        timeStyle: 'short',
-      }).format(date);
+      return {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZoneName: 'short',
+      };
     }
-    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
-    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, {
+      return {
         dateStyle: 'long',
         timeZone: 'UTC',
-      }).format(date);
+      };
     }
     case TimeAverages.MONTHLY: {
-      return new Intl.DateTimeFormat(lang, {
+      return {
         month: 'long',
         year: 'numeric',
         timeZone: 'UTC',
-      }).format(date);
+      };
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, {
+      return {
         year: 'numeric',
         timeZone: 'UTC',
-      }).format(date);
+      };
     }
     default: {
-      console.error(`${time} is not implemented`);
-      return '';
+      console.error(`${timeAverage} is not implemented`);
+      return {};
     }
   }
+}
+
+const formatDate = function (date: Date, lang: string, timeAverage: TimeAverages) {
+  if (!isValidDate(date) || !timeAverage) {
+    return '';
+  }
+  return new Intl.DateTimeFormat(lang, getDateTimeFormatOptions(timeAverage)).format(
+    date
+  );
 };
 
 const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAverages) {
