@@ -54,12 +54,12 @@ const PWAManifest: Partial<ManifestOptions> = {
   icons: [
     {
       src: '/icons/icon.svg',
-      sizes: 'any',
+      sizes: '512/512',
       type: 'image/svg+xml',
     },
     {
       src: '/icons/icon-maskable.svg',
-      sizes: 'any',
+      sizes: '512/512',
       type: 'image/svg+xml',
       purpose: 'maskable',
     },
