@@ -35,7 +35,6 @@
     "renewable": "Terbarukan",
     "electricityproduction": "Produksi listrik",
     "electricityconsumption": "Konsumsi Listrik",
-    "bysource": "menurut sumber",
     "emissions": "Emisi Karbon",
     "helpfrom": "dengan bantuan dari",
     "noDataAtTimestamp": "Data belum tersedia pada waktu yang dipilih",
@@ -83,12 +82,6 @@
   },
   "misc": {
     "maintitle": "Emisi CO₂ langsung dari pemakaian energi listrik",
-    "oops": "Oops! Kami mengalami masalah menghubungkan ke dalam server. Kami akan coba beberapa detik lagi.",
-    "newversion": "Versi baru tersedia!",
-    "retrynow": "Ulangi sekarang",
-    "database-ad": "Mencari data historikal? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Periksa di database Kami!</a>",
-    "api-ad": "Ingin mendapatkan data langsung di aplikasi atau perangkat Anda? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Coba API kami!</a>",
-    "legend": "Legenda",
     "faq": "Pertanyaan yang Sering Diajukan",
     "dismiss": "Tutup",
     "reload": "Muat Ulang"
@@ -141,8 +134,6 @@
     "groupName": "Metode Kami",
     "carbonIntensity-question": "Apa itu \"intensitas Karbon\"?",
     "carbonIntensity-answer": "Intensitas karbon adalah ukuran emisi gas rumah kaca yang terkait dengan menghasilkan listrik yang Anda konsumsi (dalam gCO₂eq / kWh - gram setara karbon dioksida yang dipancarkan per kilowatt hour dari konsumsi listrik). <br> <br> Kami mengukur emisi konsumsi listrik (bukan produksi), yang berarti semua emisi gas rumah kaca (baik CO₂ dan gas rumah kaca lainnya seperti metana) yang telah menghasilkan listrik yang dikonsumsi di suatu daerah, dengan mengambil memperhitungkan intensitas karbon dari listrik yang diimpor dari daerah lain. Kami menggunakan pendekatan analisis siklus hidup (LCA), yang berarti bahwa kami memperhitungkan emisi yang muncul dari seluruh siklus hidup pembangkit listrik (konstruksi, produksi bahan bakar, emisi operasional, dan penonaktifan).",
-    "consumptionFocus-question": "Mengapa Anda menghitung intensitas karbon dari konsumsi listrik daripada produksinya?",
-    "consumptionFocus-answer": "Kami percaya warga harus bertanggung jawab atas listrik yang mereka konsumsi, dan bukan untuk listrik yang diproduksi di daerah tempat mereka tinggal. Selain itu, kami percaya bahwa daerah tidak boleh 'memalsukan' dampak iklim rendah hanya dengan merelokasi produksi energi kotor ke daerah lain dan kemudian mengimpor listrik dari daerah tersebut. ",
     "renewableLowCarbonDifference-question": "Apa perbedaan dari “terbarukan” and “karbon-rendah”?",
     "renewableLowCarbonDifference-answer": "Produksi energi terbarukan didasarkan pada sumber energi terbarukan seperti angin dan aliran air, sinar matahari, dan energi panas bumi. Produksi energi rendah karbon berarti bahwa produksi tersebut melibatkan tingkat emisi gas rumah kaca yang sangat rendah, seperti dalam produksi tenaga nuklir.",
     "importsAndExports-question": "Apakah Anda memperhitungkan impor dan ekspor listrik?",
@@ -406,10 +397,6 @@
     },
     "CK": {
       "zoneName": "Pulau Cook"
-    },
-    "CL-SING-SIC": {
-      "countryName": "Chili",
-      "zoneName": "SING/SIC"
     },
     "CL-SEM": {
       "countryName": "Chili",

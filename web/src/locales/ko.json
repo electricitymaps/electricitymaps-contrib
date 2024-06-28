@@ -35,7 +35,6 @@
     "renewable": "재생 가능한",
     "electricityproduction": "전력 생산",
     "electricityconsumption": "전력 소비",
-    "bysource": "발생원에 따라",
     "emissions": "탄소 배출",
     "helpfrom": "의 도움으로",
     "noDataAtTimestamp": "지정된 시간 동안 데이터를 일시적으로 사용할 수 없습니다.",
@@ -83,12 +82,6 @@
   },
   "misc": {
     "maintitle": "전력 소비로 인한 실시간 CO₂ 배출",
-    "oops": "이런! 서버 접속에 문제가 있네요. 잠시 후 다시 시도해보겠습니다.",
-    "newversion": "새 버전이 출시되었습니다!",
-    "retrynow": "지금 다시 눌러보세요",
-    "database-ad": "역사학적 데이터를 찾으시나요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">데이터 베이스를 확인해보세요!</a>",
-    "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
-    "legend": "범주",
     "faq": "자주 묻는 질문",
     "dismiss": "닫기",
     "reload": "다시 로드"
@@ -141,8 +134,6 @@
     "groupName": "접근 방법/연구 방법",
     "carbonIntensity-question": "탄소집약도란?",
     "carbonIntensity-answer": "탄소집약도란 우리가 소비하는 전력의 생산과 관련하여 온실가스 배출량을 측정한 수치를 말합니다.(gCO₂eq/kWh; 소비전력 킬로와트시당 방출되는 이산화탄소 그램 양). <br><br>다만, 우리는 생산된 전력의 온실가스 방출량이 아니라 소비 전력의 온실가스 방출량을 측정합니다. 즉, 한 지역에서 소비되는 전력을 생산하는 과정에서 배출되는 모든 온실가스(이산화탄소뿐만 아니라 메탄과 같은 다른 온실가스도 포함)의 방출량을 측정하는 것입니다. 이때 다른 지역에서 수입된 전력의 탄소집약도까지 고려하게 됩니다. 우리는 라이프사이클 분석(LCA) 기법을 적용하여, 연료 생산 및 발전소 운영에 따른 방출량을 포함해 발전소 건설 단계에서부터 폐기 단계까지 발전소의 전체 라이프사이클에서 발생되는 배출량을 고려합니다.",
-    "consumptionFocus-question": "생산 전력 대신 소비 전력의 탄소집약도를 측정하는 이유는 무엇입니까?",
-    "consumptionFocus-answer": "우리는 사람들이 살고 있는 지역에서 생산된 전력이 아니라 그들이 소비한 전력에 대해 책임이 있다고 생각합니다. 또한 각 지자체는 오염된 에너지를 그저 다른 지역으로 이전시키고 그곳에서 다시 전력을 수입하는 방식을 통해 해당 지역이 환경에 미치는 영향이 적다고 ‘거짓' 홍보를 해서는 안됩니다.",
     "renewableLowCarbonDifference-question": "재생 에너지와 저탄소 에너지의 차이점은 무엇입니까?",
     "renewableLowCarbonDifference-answer": "재생 에너지는 풍력, 수력, 태양열, 지열과 같이 재생가능한 자원을 바탕으로 생산됩니다. 저탄소 에너지는 원자력처럼 에너지 생산 시 매우 적은 양의 온실가스가 배출되는 에너지를 말합니다.",
     "importsAndExports-question": "전력의 수입 및 수출도 고려 대상입니까?",
@@ -406,10 +397,6 @@
     },
     "CK": {
       "zoneName": "쿡 제도"
-    },
-    "CL-SING-SIC": {
-      "countryName": "칠레",
-      "zoneName": "SING/SIC"
     },
     "CL-SEM": {
       "countryName": "칠레",

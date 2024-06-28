@@ -132,7 +132,6 @@
     },
     "estimated_time_slicer_average": {
       "title": "Os dados atuais são estimados",
-      "pill": "Indisponível",
       "body": "O fornecedor de dados não está a reportar dados para esta hora. Os valores exibidos são estimados com base em medições históricas e serão substituídos por dados consolidados assim que estiverem disponíveis. Por favor, esteja ciente de que os valores estimados podem nem sempre ser precisos, uma vez que não contabilizam eventos climáticos específicos em tempo real."
     },
     "estimated_mode_breakdown": {
@@ -324,16 +323,7 @@
   },
   "misc": {
     "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
-    "oops": "Epa! Estamos com problemas no servidor. Vamos tentar de novo em alguns segundos.",
-    "newversion": "Uma nova versão está disponível!",
-    "webgl-not-supported": "Não é possível mostrar o mapa porque este navegador não suporta WebGL.",
-    "retrynow": "Tentar novamente",
-    "database-ad": "À procura de dados históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Explore o nosso banco de dados!</a>",
-    "api-ad": "Gostaria de dados em tempo real na sua aplicação ou dispositivo? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Experimente o nosso API!</a>",
-    "legend": "Legenda",
     "faq": "Questões frequentes",
-    "privacyPolicy": "Política de Privacidade",
-    "legalNotice": "Aviso Legal",
     "dismiss": "Descartar",
     "reload": "Recarregar",
     "slow-loading-text": "Ainda a carregar, se continuar, experimente recarregar a página..."
@@ -406,12 +396,7 @@
     "homeSolarPanel-question": "E se eu tiver um painel solar instalado em minha casa?",
     "homeSolarPanel-answer": "Medimos a intensidade de carbono da rede elétrica local, portanto, qualquer eletricidade que consuma diretamente do seu painel solar (fora da rede) não faz parte das nossas medições. No entanto, se o seu painel solar estiver a fornecer energia à sua rede de energia local, a sua produção está incluída nas nossas estatísticas em áreas nas quais as estimativas da produção local de energia solar são disponibilizadas publicamente (como em França e no Reino Unido).",
     "emissionsPerCapita-question": "Por que não mostram emissões per capita?",
-    "emissionsPerCapita-answer": "Parte da eletricidade consumida numa área é usada no fabrico de bens e produtos físicos que são posteriormente exportados e consumidos noutras áreas. Esse fabrico, e, portanto, também o consumo de eletricidade e as emissões associadas, são impulsionados pelo consumo de produtos nas <em> áreas de importação </em>, e não na área em que a produção ocorre. Nós acreditamos que as pessoas devem ser responsáveis ​​apenas pelo que consomem, não pelos produtos fabricados na área em que vivem e não consumam eles mesmos. Nesse sentido, mostrar emissões per capita de consumo de eletricidade para áreas é enganoso.",
-    "consumerFocus-question": "Porque calculam a intensidade de carbono do consumo de eletricidade em vez da produção?",
-    "consumerFocus-answer": "Acreditamos que os cidadãos devem ser responsáveis ​​pela eletricidade que consomem, e não pela eletricidade produzida na área em que vivem. Além disso, acreditamos que as áreas não devem ser capazes de \"falsificar\" um baixo impacto climático simplesmente ao transferir a produção de energia suja para outras áreas e ao importar a eletricidade dessas áreas.",
-    "guaranteOfOrigin-question": "O que são certificados verdes e como são levados em consideração?",
-    "consumptionFocus-question": "Porque calculam a intensidade de carbono gerada pela eletricidade consumida ao invés da produzida?",
-    "consumptionFocus-answer": "Nós acreditamos que os cidadãos devem ser responsáveis pela energia que eles consomem, e não pela energia que é produzida na area que eles vivem. Além disso, acreditamos que áreas não deveriam ser capazes de 'falsificar' um baixo impacto ambiental por simplesmente realocar produção de energia não limpa para outras áreas, e depois importar energia dessas mesmas áreas."
+    "emissionsPerCapita-answer": "Parte da eletricidade consumida numa área é usada no fabrico de bens e produtos físicos que são posteriormente exportados e consumidos noutras áreas. Esse fabrico, e, portanto, também o consumo de eletricidade e as emissões associadas, são impulsionados pelo consumo de produtos nas <em> áreas de importação </em>, e não na área em que a produção ocorre. Nós acreditamos que as pessoas devem ser responsáveis ​​apenas pelo que consomem, não pelos produtos fabricados na área em que vivem e não consumam eles mesmos. Nesse sentido, mostrar emissões per capita de consumo de eletricidade para áreas é enganoso."
   },
   "data": {
     "groupName": "Nossos dados",
@@ -433,9 +418,7 @@
     "workTogether-question": "Podemos trabalhar juntos?",
     "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:app@electricitymaps.com\">Envie-nos um email!</a>",
     "disclaimer-question": "Aviso legal",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publica dados e imagens no <a href = \"https://www.electricitymaps.com/\"target=\"_blank\">Electricity Maps</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Electricity Maps não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da Electricity Maps, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Electricity Maps, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente.",
-    "contribut-question": "Posso contribuir para o seu projeto?",
-    "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado pelos nossos colaboradores voluntários. Se deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs, fique à vontade para se juntar a nós no nosso <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>. "
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publica dados e imagens no <a href = \"https://www.electricitymaps.com/\"target=\"_blank\">Electricity Maps</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Electricity Maps não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da Electricity Maps, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Electricity Maps, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente."
   },
   "zoneShortName": {
     "AD": {
@@ -879,9 +862,9 @@
       "countryName": "Grã-Bretanha",
       "zoneName": "Ilhas Orkney"
     },
-    "GB-SHI": {
-      "countryName": "Great Britain",
-      "zoneName": "Shetland Islands"
+    "GB-ZET": {
+      "countryName": "Grã-Bretanha",
+      "zoneName": "Ilhas Shetland"
     },
     "GD": {
       "zoneName": "Grenada"
@@ -981,15 +964,13 @@
     },
     "IN-NO": {
       "countryName": "Índia",
-      "+oneName": "Índia Norte"
-    },
-    "IN-SO": {
-      "countryName": "Índia",
       "zoneName": "Índia Norte"
     },
+    "IN-SO": {
+      "countryName": "Índia"
+    },
     "IN-WE": {
-      "countryName": "Índia",
-      "zoneName": "India Oeste"
+      "countryName": "Índia"
     },
     "IN-AN": {
       "countryName": "Índia",
@@ -2069,18 +2050,6 @@
     },
     "ZW": {
       "zoneName": "Zimbábue"
-    },
-    "BR-I": {
-      "countryName": "Brasil",
-      "zoneName": "Sistemas Isolados"
-    },
-    "GB-ZET": {
-      "countryName": "Grã-Bretanha",
-      "zoneName": "Ilhas Shetland"
-    },
-    "IN-TL": {
-      "countryName": "Índia",
-      "zoneName": "Tamil Nadu"
     }
   }
 }

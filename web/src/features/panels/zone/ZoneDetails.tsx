@@ -187,9 +187,11 @@ function ZoneDetailsContent({
   }
 
   if (
-    [ZoneDataStatus.NO_INFORMATION, ZoneDataStatus.AGGREGATE_DISABLED].includes(
-      zoneDataStatus
-    )
+    [
+      ZoneDataStatus.NO_INFORMATION,
+      ZoneDataStatus.AGGREGATE_DISABLED,
+      ZoneDataStatus.FULLY_DISABLED,
+    ].includes(zoneDataStatus)
   ) {
     return <NoInformationMessage status={zoneDataStatus} />;
   }

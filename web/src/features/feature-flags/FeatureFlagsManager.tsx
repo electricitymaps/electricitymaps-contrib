@@ -2,10 +2,14 @@ import * as Switch from '@radix-ui/react-switch';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Meta } from 'api/getMeta';
 import { QUERY_KEYS } from 'api/helpers';
-import { useSearchParams } from 'react-router-dom';
 
 import { useFeatureFlags } from './api';
 import { FeatureFlags } from './types';
+
+function handleClearLocalStorage() {
+  localStorage.clear();
+  location.reload();
+}
 
 function Content({ features }: { features: FeatureFlags }) {
   const queryClient = useQueryClient();
@@ -34,23 +38,31 @@ function Content({ features }: { features: FeatureFlags }) {
   });
 
   return (
-    <div>
+    <div className="flex flex-col">
       <p className="pb-1 font-poppins text-sm text-gray-600">Feature Flags</p>
-      {Object.entries(features).map(([key, value]) => (
-        <div className="flex w-full items-center justify-between text-sm" key={key}>
-          <label className="pr-8" htmlFor={key}>
-            {key}
-          </label>
-          <Switch.Root
-            className="relative h-[20px] w-[38px] cursor-default rounded-full bg-gray-300 outline-none data-[state=checked]:bg-brand-green"
-            id={key}
-            defaultChecked={Boolean(value)}
-            onCheckedChange={() => mutation.mutate(key)}
-          >
-            <Switch.Thumb className="block h-[16px] w-[16px] translate-x-0.5 rounded-full bg-white transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[19px]" />
-          </Switch.Root>
-        </div>
-      ))}
+      <div>
+        {Object.entries(features).map(([key, value]) => (
+          <div className="flex w-full items-center justify-between text-sm" key={key}>
+            <label className="pr-8" htmlFor={key}>
+              {key}
+            </label>
+            <Switch.Root
+              className="relative h-[20px] w-[38px] cursor-default rounded-full bg-gray-300 outline-none data-[state=checked]:bg-brand-green"
+              id={key}
+              defaultChecked={Boolean(value)}
+              onCheckedChange={() => mutation.mutate(key)}
+            >
+              <Switch.Thumb className="block h-[16px] w-[16px] translate-x-0.5 rounded-full bg-white transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[19px]" />
+            </Switch.Root>
+          </div>
+        ))}
+      </div>
+      <button
+        className="mt-2 self-end rounded  bg-green-900 p-1 text-sm text-white"
+        onClick={handleClearLocalStorage}
+      >
+        Clear Local Storage
+      </button>
     </div>
   );
 }
@@ -58,11 +70,7 @@ function Content({ features }: { features: FeatureFlags }) {
 export default function FeatureFlagsManager() {
   const features = useFeatureFlags();
 
-  const [searchParameters] = useSearchParams();
-  const showManager =
-    searchParameters.get('ff') === 'true' || searchParameters.get('ff') === '';
-
-  if (!features || !showManager) {
+  if (!features) {
     return null;
   }
 

@@ -27,7 +27,7 @@ function MenuLink({
 }: MenuLinkProps): JSX.Element {
   const handleClick = () => {
     trackEvent('HeaderLink Clicked', { linkId: id });
-    onClick && onClick();
+    onClick?.();
   };
   return (
     <div className="relative flex py-3">
@@ -38,6 +38,7 @@ function MenuLink({
         <NavigationMenu.Link
           onClick={handleClick}
           href={href}
+          target={isExternal ? '_blank' : '_self'}
           className="group px-1 py-2 text-base lg:px-2 lg:text-[1rem]"
         >
           {children}

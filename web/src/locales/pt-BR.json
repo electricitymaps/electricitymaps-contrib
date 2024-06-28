@@ -109,16 +109,7 @@
   },
   "misc": {
     "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
-    "oops": "Epa! Estamos tendo problemas com o servidor. Tentaremos novamente em alguns segundos.",
-    "newversion": "Uma nova versão está disponível!",
-    "webgl-not-supported": "O mapa não pode ser renderizado porque este navegador não oferece suporte a WebGL.",
-    "retrynow": "Tentar novamente",
-    "database-ad": "Procurando por dados históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
-    "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
-    "legend": "Legenda",
     "faq": "Questões frequentes",
-    "privacyPolicy": "Política de Privacidade",
-    "legalNotice": "Aviso Legal",
     "dismiss": "Descartar",
     "reload": "Recarregar"
   },
@@ -171,15 +162,12 @@
     "groupName": "Nossos métodos",
     "carbonIntensity-question": "O que é \"intensidade de carbono\"?",
     "carbonIntensity-answer": "A intensidade do carbono é uma medida das emissões de gases de efeito estufa associadas à produção de eletricidade que você consome (em gCO₂eq / kWh - gramas de equivalente de dióxido de carbono emitido por quilowatt-hora de eletricidade consumida). <br> <br> Medimos as emissões do consumo de eletricidade (não a produção), ou seja, todas as emissões de gases de efeito estufa (CO₂ e outros gases de efeito estufa, como o metano) que foram produzidas para a eletricidade que está sendo consumida em uma área, levando em consideração as intensidades de carbono do gás. a eletricidade importada de outras áreas. Utilizamos uma abordagem de análise do ciclo de vida (ACV), o que significa que levamos em consideração as emissões decorrentes de todo o ciclo de vida das usinas (construção, produção de combustível, emissões operacionais e desativação).",
-    "consumerFocus-question": "Por que você calcula a intensidade de carbono do consumo de eletricidade em vez da produção?",
-    "consumerFocus-answer": "Acreditamos que os cidadãos devem ser responsáveis ​​pela eletricidade que consomem, e não pela eletricidade produzida na área em que vivem. Além disso, acreditamos que as áreas não devem ser capazes de \"falsificar\" um baixo impacto climático simplesmente transferindo a produção de energia suja para outras áreas e importando a eletricidade dessas áreas.",
     "renewableLowCarbonDifference-question": "Qual é a diferença entre \"renovável \"e \"baixo carbono\"?",
     "renewableLowCarbonDifference-answer": "A produção de energia renovável se baseia em fontes de energia renováveis, como fluxo de vento e água, sol e energia geotérmica. Produção de energia com baixo teor de carbono significa que a produção envolve um nível muito baixo de emissões de gases de efeito estufa, como na produção de energia nuclear.",
     "importsAndExports-question": "Você considera importações e exportações de eletricidade?",
     "importsAndExports-answer": "Sim. Sim. Importações e exportações podem ser vistas no mapa como pequenas <a href=\"#mapArrows\" class=\"entry-link\"> setas entre áreas diferentes </ a >. Informações detalhadas podem ser vistas nas tabelas mostradas quando você clica em uma área.",
     "emissionsOfStored-question": "E as emissões provenientes da geração de eletricidade, que são armazenadas nas baterias ou usadas para encher reservatórios?",
     "emissionsOfStored-answer": "Como atualmente apenas uma pequena proporção de eletricidade é armazenada, imprecisões na modelagem dessas emissões não devem fazer muita diferença para o total no momento. No entanto, dada a crescente importância do armazenamento, esperamos levá-lo em consideração. em mais detalhes em nosso modelo em breve.",
-    "guaranteOfOrigin-question": "O que são certificados verdes e como são levados em consideração?",
     "guaranteesOfOrigin-answer": "Quando os produtores de energia renovável produzem eletricidade, eles podem criar Garantias de Origem (ou Certificados de Energia Renovável) - uma prova de que a eletricidade renovável foi produzida e distribuída na rede elétrica. Essas garantias podem ser vendidas, dando aos varejistas de eletricidade uma maneira de afirmar que a eletricidade que eles revendem vem de fontes renováveis, independentemente de sua fonte física real. <br> <br> Isso significa que os consumidores de eletricidade podem ser informados de que sua eletricidade vem da energia solar e eólica, mesmo em uma noite sem vento, o que é problemático, pois remove os incentivos dos consumidores para consumir eletricidade no melhor momento (por exemplo, quando a quantidade de eletricidade renovável na rede é realmente a mais alta). Portanto, este mapa exclui as garantias de origem, oferecendo quadro físico baseado na localização da rede elétrica, a fim de capacitar os consumidores. ",
     "otherSources-question": "Por que você não mostra outras fontes de emissão além da produção de eletricidade?",
     "otherSources-answer": "Isso estaria fora do escopo deste projeto. No entanto, amanhã, estamos trabalhando ativamente no desenvolvimento de <a href=\"#whoAreYou\" class=\"entry-link\"> novas soluções para quantificar o impacto climático de suas decisões diárias </a>.",
@@ -187,8 +175,6 @@
     "homeSolarPanel-answer": "Medimos a intensidade de carbono da rede elétrica local, portanto, qualquer eletricidade que você consome diretamente do seu painel solar (fora da rede) não faz parte de nossas medições. No entanto, se o seu painel solar estiver fornecendo energia na sua rede de energia local, sua produção está incluída em nossas estatísticas em áreas nas quais as estimativas da produção local de energia solar são disponibilizadas publicamente (como na França e no Reino Unido).",
     "emissionsPerCapita-question": "Por que você não mostra emissões per capita?",
     "emissionsPerCapita-answer": "Parte da eletricidade consumida em uma área é usada na fabricação de bens e produtos físicos que são posteriormente exportados e consumidos em outras áreas. Essa fabricação, e, portanto, também o consumo de eletricidade e as emissões associadas, são impulsionados pelo consumo de produtos nas <em> áreas de importação </em>, e não na área em que a produção está ocorrendo.Nós acreditamos que as pessoas devem ser responsáveis ​​apenas pelo que consomem, não pelos produtos fabricados na área em que vivem. não consumam eles mesmos. Nesse sentido, mostrar emissões per capita de consumo de eletricidade para áreas é enganoso.",
-    "consumptionFocus-question": "Porque você calcula a intencidade de carbono gerada pela eletricidade consumida ao invés da produzida?",
-    "consumptionFocus-answer": "Nós acreditamos que cidadãos devem ser responsáveis pela energia que eles consomem, e não pela energia que é produzida na area que eles vivem. Além disso, acreditamos que áreas não deveriam ser capazes de 'falsificar' um baixo impacto ambiental por simplesmente realocar produção de energia não limpa para outras áreas, e depois importar energia dessas mesmas áreas.",
     "guaranteesOfOrigin-question": "O que são certificados verdes e como eles são levados em conta?"
   },
   "data": {
@@ -206,8 +192,6 @@
     "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência, quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
     "feedback-question": "Posso dar algum feedback?",
     "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:app@electricitymaps.com\"> envie-nos um email!</a>",
-    "contribut-question": "Posso contribuir para o seu projeto?",
-    "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado por nossos colaboradores voluntários. Se você deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs, fique à vontade para juntar-se a nós em nosso <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>. ",
     "workTogether-question": "Podemos trabalhar juntos?",
     "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:app@electricitymaps.com\">Envie-nos um email!</a>",
     "disclaimer-question": "Aviso legal",
@@ -338,10 +322,6 @@
     "BR-CS": {
       "countryName": "Brasil",
       "zoneName": "Central"
-    },
-    "BR-I": {
-      "countryName": "Brasil",
-      "zoneName": "Sistemas Isolados"
     },
     "BR-N": {
       "countryName": "Brasil",
@@ -818,10 +798,6 @@
     "IN-SK": {
       "countryName": "Índia",
       "zoneName": "Sikkim"
-    },
-    "IN-TL": {
-      "countryName": "Índia",
-      "zoneName": "Tamil Nadu"
     },
     "IN-TR": {
       "countryName": "Índia",
