@@ -1133,8 +1133,7 @@ def get_raw_exchange(
     exchanges_to_fetch: list[list[str]] = []
 
     if sorted_zone_keys in EXCHANGE_AGGREGATES:
-        for domain_pair in EXCHANGE_AGGREGATES[sorted_zone_keys]:
-            exchanges_to_fetch.append(domain_pair)
+        exchanges_to_fetch = list(EXCHANGE_AGGREGATES[sorted_zone_keys])
     elif sorted_zone_keys in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
         exchanges_to_fetch.append(ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[sorted_zone_keys])
     else:

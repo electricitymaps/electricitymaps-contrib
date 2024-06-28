@@ -201,7 +201,7 @@ def fetch_exchange(
 
     exchanges = ExchangeList(logger)
     exchange_data = get_json_data(target_datetime, postdata, session)
-    for _, exchange_values in exchange_data.items():
+    for exchange_values in exchange_data.values():
         for datapoint in exchange_values:
             time_string = datapoint.pop("BeginDate", None)
             if time_string:

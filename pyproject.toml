@@ -144,11 +144,13 @@ select = [
     "A",
     "C4",
     "SIM",
-    "NPY"
+    "NPY",
+    "PERF"
 ]
 ignore = [
     "B008", # This flags every parser we have, let's ignore it for now
     "B017", # TODO: Fix this
+    "PERF203" # We have too many of these in the parsers, let's ignore them for now
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.

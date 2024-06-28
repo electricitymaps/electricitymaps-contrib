@@ -251,16 +251,15 @@ def fetch_consumption_forecast(
     # validate
     df = df.loc[df["fcst"] > 0]
     # return format
-    data = []
-    for i in df.index:
-        data.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": df.loc[i, "datetime"].to_pydatetime(),
-                "value": float(df.loc[i, "fcst"]),
-                "source": sources[zone_key],
-            }
-        )
+    data = [
+        {
+            "zoneKey": zone_key,
+            "datetime": df.loc[i, "datetime"].to_pydatetime(),
+            "value": float(df.loc[i, "fcst"]),
+            "source": sources[zone_key],
+        }
+        for i in df.index
+    ]
 
     return data
 
@@ -312,19 +311,16 @@ def fetch_price(
         axis=1,
     )
 
-    data = []
-    for row in df.iterrows():
-        data.append(
-            {
-                "zoneKey": zone_key,
-                "currency": "JPY",
-                "datetime": row[1]["datetime"].datetime,
-                "price": round(
-                    int(1000 * row[1][zone_key]), -1
-                ),  # Convert from JPY/kWh to JPY/MWh
-                "source": "jepx.org",
-            }
-        )
+    data = [
+        {
+            "zoneKey": zone_key,
+            "currency": "JPY",
+            "datetime": row[1]["datetime"].datetime,
+            "price": round(int(1000 * row[1][zone_key]), -1),  # Convert from JPY/kWh to JPY/MWh
+            "source": "jepx.org",
+        }
+        for _, row in df.iterrows()
+    ]
 
     return data
 

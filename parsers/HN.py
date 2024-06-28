@@ -156,18 +156,20 @@ def fetch_production(
     CSV_data, PLANT_TO_TYPE_MAP = get_data(session, "production")
     production_by_hour, date = get_values(CSV_data, PLANT_TO_TYPE_MAP)
 
-    production_list = []
-    if date is not None:
-        for index in range(0, 24):
-            if production_by_hour[index] != {}:
-                production_list.append(
-                    {
-                        "zoneKey": zone_key,
-                        "datetime": get_datetime(date, index),
-                        "production": production_by_hour[index],
-                        "source": "ods.org.hn",
-                    }
-                )
+    production_list = (
+        [
+            {
+                "zoneKey": zone_key,
+                "datetime": get_datetime(date, index),
+                "production": production_by_hour[index],
+                "source": "ods.org.hn",
+            }
+            for index in range(24)
+            if production_by_hour[index] != {}
+        ]
+        if date is not None
+        else []
+    )
 
     return production_list
 
@@ -188,17 +190,19 @@ def fetch_exchange(
     exchange_per_hour, date = get_values(CSV_data, EXCHANGE_MAP, "exchange")
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    exchange_list = []
-    if date is not None:
-        for index in range(0, 24):
-            if exchange_per_hour[index] != {}:
-                exchange_list.append(
-                    {
-                        "sortedZoneKeys": sorted_zone_keys,
-                        "datetime": get_datetime(date, index),
-                        "netFlow": exchange_per_hour[index][sorted_zone_keys],
-                        "source": "ods.org.hn",
-                    }
-                )
+    exchange_list = (
+        [
+            {
+                "sortedZoneKeys": sorted_zone_keys,
+                "datetime": get_datetime(date, index),
+                "netFlow": exchange_per_hour[index][sorted_zone_keys],
+                "source": "ods.org.hn",
+            }
+            for index in range(24)
+            if exchange_per_hour[index] != {}
+        ]
+        if date is not None
+        else []
+    )
 
     return exchange_list

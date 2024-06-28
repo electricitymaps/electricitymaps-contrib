@@ -56,14 +56,11 @@ def fetch_all() -> list:
 
     def flatten_list(_2d_list) -> list:
         """Flatten the list."""
-        flat_list = []
-        for element in _2d_list:
-            if isinstance(element, list):
-                for item in element:
-                    flat_list.append(item)
-            else:
-                flat_list.append(element)
-        return flat_list
+        return [
+            item
+            for element in _2d_list
+            for item in (element if isinstance(element, list) else [element])
+        ]
 
     return flatten_list(cleaned_list)
 
