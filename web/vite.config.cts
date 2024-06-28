@@ -48,6 +48,9 @@ const PWAManifest: Partial<ManifestOptions> = {
   background_color: '#ffffff',
   lang: 'en',
   scope: '/',
+  launch_handler: {
+    client_mode: 'auto',
+  },
   description:
     'Electricity Maps is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.',
   theme_color: '#000000',
