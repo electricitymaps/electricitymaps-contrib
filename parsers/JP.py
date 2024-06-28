@@ -316,7 +316,9 @@ def fetch_price(
             "zoneKey": zone_key,
             "currency": "JPY",
             "datetime": row[1]["datetime"].datetime,
-            "price": round(int(1000 * row[1][zone_key]), -1),  # Convert from JPY/kWh to JPY/MWh
+            "price": round(
+                int(1000 * row[1][zone_key]), -1
+            ),  # Convert from JPY/kWh to JPY/MWh
             "source": "jepx.org",
         }
         for _, row in df.iterrows()
