@@ -42,20 +42,6 @@
   scrollbar-color: #404040b3 transparent; /*remove scrollbar track firefox*/
 }
 
-/* Custom styling for react-spring-bottom-sheet */
-.dark [data-rsbs-root] {
-  --rsbs-bg: theme(colors.gray.800);
-  --rsbs-handle-bg: rgba(255, 255, 255, 0.2);
-}
-[data-rsbs-header] {
-  padding-bottom: 0;
-  box-shadow: none;
-}
-[data-rsbs-scroll] {
-  /* Disables scrolling, as we want users to open the sheet instead of scrolling inside it */
-  overflow: hidden;
-}
-
 .translate-x-radix-toast-swipe-move-x {
   transform: translateX(var(--radix-toast-swipe-move-x));
 }

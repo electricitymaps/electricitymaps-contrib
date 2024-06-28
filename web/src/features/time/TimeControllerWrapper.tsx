@@ -1,41 +1,9 @@
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
-import { BottomSheet } from 'react-spring-bottom-sheet';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
 import TimeController from './TimeController';
-import TimeHeader from './TimeHeader';
-
-function BottomSheetWrappedTimeController() {
-  const [isLoadingMap] = useAtom(loadingMapAtom);
-  const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
-  const safeAreaBottomString = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('--sab');
-
-  const safeAreaBottom = safeAreaBottomString
-    ? Number.parseInt(safeAreaBottomString.replace('px', ''))
-    : 0;
-  const SNAP_POINTS = [60 + safeAreaBottom, 160 + safeAreaBottom];
-
-  // Don't show the time controller until the onboarding has been seen
-  // But it still has to be rendered to avoid re-querying data and showing loading
-  // indicators again. Therefore we set the snap points to 0 until modal is closed.
-  const snapPoints = hasOnboardingBeenSeen && !isLoadingMap ? SNAP_POINTS : [0, 0];
-
-  return (
-    <BottomSheet
-      scrollLocking={false} // Ensures scrolling is not blocked on IOS
-      open={!isLoadingMap}
-      snapPoints={() => snapPoints}
-      blocking={false}
-      header={<TimeHeader />}
-    >
-      <TimeController className="p-2 pt-1 min-[370px]:px-4" />
-    </BottomSheet>
-  );
-}
 
 function FloatingTimeController() {
   return (
@@ -45,11 +13,15 @@ function FloatingTimeController() {
   );
 }
 
+function FixedTimeController() {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-20 w-full bg-white px-4 py-3 shadow-xl drop-shadow-2xl dark:bg-gray-800">
+      <TimeController />
+    </div>
+  );
+}
+
 export default function TimeControllerWrapper() {
   const isBiggerThanMobile = useBreakpoint('sm');
-  return isBiggerThanMobile ? (
-    <FloatingTimeController />
-  ) : (
-    <BottomSheetWrappedTimeController />
-  );
+  return isBiggerThanMobile ? <FloatingTimeController /> : <FixedTimeController />;
 }

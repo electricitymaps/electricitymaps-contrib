@@ -65,10 +65,7 @@ export default function TimeController({ className }: { className?: string }) {
 
   return (
     <div className={className}>
-      <TimeHeader
-        // Hide the header on mobile as it is loaded directly into the BottomSheet header section
-        className="hidden sm:flex"
-      />
+      <TimeHeader />
       <TimeAverageToggle
         timeAverage={timeAverage}
         onToggleGroupClick={onToggleGroupClick}
