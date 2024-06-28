@@ -48,6 +48,7 @@ const PWAManifest: Partial<ManifestOptions> = {
   background_color: '#ffffff',
   lang: 'en',
   scope: '/',
+  scope_extensions: [{ origin: 'app.electricitymaps.com' }],
   launch_handler: {
     client_mode: 'auto',
   },
