@@ -82,6 +82,62 @@ const PWAManifest: Partial<ManifestOptions> = {
   categories: ['education'],
   display_override: ['standalone', 'window-controls-overlay'],
   orientation: 'any',
+  screenshots: [
+    {
+      src: '/images/screenshots/desktop/1.png',
+      sizes: '1440/1024',
+      type: 'image/png',
+      form_factor: 'wide',
+    },
+    {
+      src: '/images/screenshots/desktop/2.png',
+      sizes: '1440/1024',
+      type: 'image/png',
+      form_factor: 'wide',
+    },
+    {
+      src: '/images/screenshots/desktop/3.png',
+      sizes: '1440/1024',
+      type: 'image/png',
+      form_factor: 'wide',
+    },
+    {
+      src: '/images/screenshots/desktop/4.png',
+      sizes: '1440/1024',
+      type: 'image/png',
+      form_factor: 'wide',
+    },
+    {
+      src: '/images/screenshots/mobile/1.png',
+      sizes: '786/1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+    {
+      src: '/images/screenshots/mobile/2.png',
+      sizes: '786/1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+    {
+      src: '/images/screenshots/mobile/3.png',
+      sizes: '786/1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+    {
+      src: '/images/screenshots/mobile/4.png',
+      sizes: '786/1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+    {
+      src: '/images/screenshots/mobile/5.png',
+      sizes: '786/1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+  ],
 };
 
 export default defineConfig(({ mode }) => ({
