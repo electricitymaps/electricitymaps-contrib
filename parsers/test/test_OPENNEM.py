@@ -16,7 +16,8 @@ class TestOPENNEM(unittest.TestCase):
             inclusive="left",
         )
         df = pd.DataFrame(index=idx)
-        rdn_any_column = np.random.rand(len(idx)).astype(float)
+        rng = np.random.default_rng()  # Creates a new random Generator instance
+        rdn_any_column = rng.random(len(idx)).astype(float)
         df.loc[:, "any_column"] = rdn_any_column
         # No solar rooftop, nothing
         processed_df = process_solar_rooftop(df)
