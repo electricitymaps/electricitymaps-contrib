@@ -299,10 +299,12 @@ describe('getDateTimeFormatOptions', () => {
     // Spy on console.error to check if it is called
     const consoleErrorSpy = vi.spyOn(console, 'error');
 
-    const actual = getDateTimeFormatOptions('test' as TimeAverages);
+    const actual = getDateTimeFormatOptions('ThisAggregateDoesNotExist' as TimeAverages);
     const expected = {};
     expect(actual).to.deep.eq(expected);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('test is not implemented');
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'ThisAggregateDoesNotExist is not implemented'
+    );
 
     // Restore the spy
     consoleErrorSpy.mockRestore();
@@ -349,11 +351,13 @@ describe('formatDate', () => {
     const actual = formatDate(
       new Date('2021-01-01T00:00:00Z'),
       'en',
-      'test' as TimeAverages
+      'ThisAggregateDoesNotExist' as TimeAverages
     );
     const expected = '1/1/2021';
     expect(actual).to.deep.eq(expected);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('test is not implemented');
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'ThisAggregateDoesNotExist is not implemented'
+    );
 
     // Restore the spy
     consoleErrorSpy.mockRestore();
