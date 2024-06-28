@@ -102,7 +102,9 @@ const scalePower = (maxPower: number | undefined, isPower = false) => {
   };
 };
 
-function getDateTimeFormatOptions(timeAverage: TimeAverages): Intl.DateTimeFormatOptions {
+export const getDateTimeFormatOptions = (
+  timeAverage: TimeAverages
+): Intl.DateTimeFormatOptions => {
   switch (timeAverage) {
     case TimeAverages.HOURLY: {
       return {
@@ -138,7 +140,7 @@ function getDateTimeFormatOptions(timeAverage: TimeAverages): Intl.DateTimeForma
       return {};
     }
   }
-}
+};
 
 const formatDate = (date: Date, lang: string, timeAverage: TimeAverages) => {
   if (!isValidDate(date) || !timeAverage) {

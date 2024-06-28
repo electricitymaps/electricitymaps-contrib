@@ -1,4 +1,13 @@
-import { formatCo2, formatEnergy, formatPower } from './formatting';
+import { describe, expect, it, vi } from 'vitest';
+
+import { TimeAverages } from './constants';
+import {
+  formatCo2,
+  formatDate,
+  formatEnergy,
+  formatPower,
+  getDateTimeFormatOptions,
+} from './formatting';
 
 describe('formatEnergy', () => {
   it('handles NaN input', () => {
@@ -245,5 +254,108 @@ describe('formatCo2', () => {
     const actual = formatCo2(-1_400_000_000, 1_400_000_000);
     const expected = '−1.4 kt';
     expect(actual).to.eq(expected);
+  });
+});
+
+describe('getDateTimeFormatOptions', () => {
+  it('handles hourly data', () => {
+    const actual = getDateTimeFormatOptions(TimeAverages.HOURLY);
+    const expected = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZoneName: 'short',
+    };
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles daily data', () => {
+    const actual = getDateTimeFormatOptions(TimeAverages.DAILY);
+    const expected = {
+      dateStyle: 'long',
+      timeZone: 'UTC',
+    };
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles monthly data', () => {
+    const actual = getDateTimeFormatOptions(TimeAverages.MONTHLY);
+    const expected = {
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'UTC',
+    };
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles yearly data', () => {
+    const actual = getDateTimeFormatOptions(TimeAverages.YEARLY);
+    const expected = {
+      year: 'numeric',
+      timeZone: 'UTC',
+    };
+    expect(actual).to.deep.eq(expected);
+  });
+  it('logs an error on unknown data', () => {
+    // Spy on console.error to check if it is called
+    const consoleErrorSpy = vi.spyOn(console, 'error');
+
+    const actual = getDateTimeFormatOptions('test' as TimeAverages);
+    const expected = {};
+    expect(actual).to.deep.eq(expected);
+    expect(consoleErrorSpy).toHaveBeenCalledWith('test is not implemented');
+
+    // Restore the spy
+    consoleErrorSpy.mockRestore();
+  });
+});
+
+describe('formatDate', () => {
+  it('handles hourly data', () => {
+    const actual = formatDate(
+      new Date('2021-01-01T00:00:00Z'),
+      'en',
+      TimeAverages.HOURLY
+    );
+    const expected = 'January 1, 2021 at 1:00 AM GMT+1';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles daily data', () => {
+    const actual = formatDate(new Date('2021-01-01T00:00:00Z'), 'en', TimeAverages.DAILY);
+    const expected = 'January 1, 2021';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles monthly data', () => {
+    const actual = formatDate(
+      new Date('2021-01-01T00:00:00Z'),
+      'en',
+      TimeAverages.MONTHLY
+    );
+    const expected = 'January 2021';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles yearly data', () => {
+    const actual = formatDate(
+      new Date('2021-01-01T00:00:00Z'),
+      'en',
+      TimeAverages.YEARLY
+    );
+    const expected = '2021';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('logs an error on unknown data', () => {
+    // Spy on console.error to check if it is called
+    const consoleErrorSpy = vi.spyOn(console, 'error');
+
+    const actual = formatDate(
+      new Date('2021-01-01T00:00:00Z'),
+      'en',
+      'test' as TimeAverages
+    );
+    const expected = '1/1/2021';
+    expect(actual).to.deep.eq(expected);
+    expect(consoleErrorSpy).toHaveBeenCalledWith('test is not implemented');
+
+    // Restore the spy
+    consoleErrorSpy.mockRestore();
   });
 });
