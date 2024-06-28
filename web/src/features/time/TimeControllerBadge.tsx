@@ -1,10 +1,8 @@
 import useGetState from 'api/getState';
-import Accordion from 'components/Accordion';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { dateToDatetimeString } from 'utils/helpers';
@@ -14,7 +12,6 @@ import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeBadge';
 
 export default function TimeController({ className }: { className?: string }) {
-  const { t } = useTranslation();
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
@@ -68,12 +65,11 @@ export default function TimeController({ className }: { className?: string }) {
 
   return (
     <div className={className}>
-      <Accordion title={t('time-controller.title')} badge={<TimeHeader />} isOnTop>
-        <TimeAverageToggle
-          timeAverage={timeAverage}
-          onToggleGroupClick={onToggleGroupClick}
-        />
-      </Accordion>
+      <TimeHeader />
+      <TimeAverageToggle
+        timeAverage={timeAverage}
+        onToggleGroupClick={onToggleGroupClick}
+      />
       <TimeSlider
         onChange={onTimeSliderChange}
         numberOfEntries={numberOfEntries}
