@@ -10,10 +10,7 @@ function addSpaceBetweenNumberAndUnit(inputString: string) {
   return inputString.replace(/([A-Za-z])/, ' $1');
 }
 
-export const formatPower = function (
-  d: number,
-  numberDigits: number = DEFAULT_NUM_DIGITS
-) {
+export const formatPower = (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) => {
   // Assume MW input
   if (d == undefined || Number.isNaN(d)) {
     return d;
@@ -26,10 +23,7 @@ export const formatPower = function (
   return addSpaceBetweenNumberAndUnit(power);
 };
 
-export const formatEnergy = function (
-  d: number,
-  numberDigits: number = DEFAULT_NUM_DIGITS
-) {
+export const formatEnergy = (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) => {
   const power = formatPower(d, numberDigits);
   // Assume MW input
   if (power == undefined || Number.isNaN(power)) {
@@ -38,7 +32,7 @@ export const formatEnergy = function (
   return power + 'h';
 };
 
-export const formatCo2 = function (grams: number, valueToMatch?: number): string {
+export const formatCo2 = (grams: number, valueToMatch?: number): string => {
   // Validate input
   if (grams == null || Number.isNaN(grams)) {
     return '?';
@@ -64,7 +58,7 @@ export const formatCo2 = function (grams: number, valueToMatch?: number): string
   return addSpaceBetweenNumberAndUnit(`${d3.format(',.3~s')(grams / 1e6)}t`);
 };
 
-const scalePower = function (maxPower: number | undefined, isPower = false) {
+const scalePower = (maxPower: number | undefined, isPower = false) => {
   // Assume MW input
   if (maxPower == undefined) {
     return {
@@ -146,7 +140,7 @@ function getDateTimeFormatOptions(timeAverage: TimeAverages): Intl.DateTimeForma
   }
 }
 
-const formatDate = function (date: Date, lang: string, timeAverage: TimeAverages) {
+const formatDate = (date: Date, lang: string, timeAverage: TimeAverages) => {
   if (!isValidDate(date) || !timeAverage) {
     return '';
   }
@@ -155,7 +149,7 @@ const formatDate = function (date: Date, lang: string, timeAverage: TimeAverages
   );
 };
 
-const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAverages) {
+const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) => {
   if (!isValidDate(date) || !timeAggregate) {
     return '';
   }
