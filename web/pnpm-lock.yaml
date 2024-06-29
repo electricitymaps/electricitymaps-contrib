@@ -291,9 +291,6 @@ importers:
       '@types/topojson-specification':
         specifier: ^1.0.5
         version: 1.0.5
-      '@vitejs/plugin-react':
-        specifier: 4.3.1
-        version: 4.3.1(vite@4.5.3(@types/node@20.14.6)(less@4.2.0)(terser@5.31.1))
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.0
         version: 3.7.0(vite@4.5.3(@types/node@20.14.6)(less@4.2.0)(terser@5.31.1))
@@ -3623,12 +3620,6 @@ packages:
     resolution: {integrity: sha512-yrknSb3Dci6svCd/qhHqhFPDSw0QtjumcqdKMoNNzmOl5lMXTTiqzjWtG4Qask2HdvvzaNgSunbQGet8/GrKdA==}
     peerDependencies:
       vite: ^4 || ^5
-
-  '@vitejs/plugin-react@4.3.1':
-    resolution: {integrity: sha512-m/V2syj5CuVnaxcUJOQRel/Wr31FFXRFlnOoq1TVtkCxsY5veGMTEmpWHndrhB2U8ScHtCQB1e+4hWYExQc6Lg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    peerDependencies:
-      vite: ^4.2.0 || ^5.0.0
 
   '@vitest/coverage-istanbul@0.34.6':
     resolution: {integrity: sha512-5KaBNZPDSk2ybavC3rZ1pWGniw7sJ5usuwVGRUYzJwiBfWvnLpuUer7bjw7qUCRGdKJXrBgb/Dsgif9rkwMX/A==}
@@ -13427,17 +13418,6 @@ snapshots:
       vite: 4.5.3(@types/node@20.14.6)(less@4.2.0)(terser@5.31.1)
     transitivePeerDependencies:
       - '@swc/helpers'
-
-  '@vitejs/plugin-react@4.3.1(vite@4.5.3(@types/node@20.14.6)(less@4.2.0)(terser@5.31.1))':
-    dependencies:
-      '@babel/core': 7.24.7
-      '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.24.7)
-      '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.24.7)
-      '@types/babel__core': 7.20.5
-      react-refresh: 0.14.2
-      vite: 4.5.3(@types/node@20.14.6)(less@4.2.0)(terser@5.31.1)
-    transitivePeerDependencies:
-      - supports-color
 
   '@vitest/coverage-istanbul@0.34.6(vitest@0.32.4(jsdom@20.0.1)(less@4.2.0)(terser@5.31.1))':
     dependencies:
