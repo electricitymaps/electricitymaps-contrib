@@ -15,7 +15,7 @@ const TIME_TO_TICK_FREQUENCY = {
 };
 
 const renderTick = (
-  scale: any,
+  scale: ScaleTime<number, number>,
   value: Date,
   index: number,
   displayLive: boolean,
@@ -29,10 +29,9 @@ const renderTick = (
     <g
       key={`timeaxis-tick-${index}`}
       className="text-xs"
-      opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
-      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
+      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 1 : 0.2} />
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeAggregate)}
     </g>
@@ -47,16 +46,12 @@ const renderTickValue = (
   selectedTimeAggregate: TimeAverages
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
-  const textOffset = selectedTimeAggregate === TimeAverages.HOURLY ? 5 : 0;
   return shouldDisplayLive ? (
-    <g>
-      <circle cx="-1em" cy="1.15em" r="2" fill="red" />
-      <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold">
-        LIVE
-      </text>
-    </g>
+    <text fill="#DE3054" y="9" dy="0.71em" fontWeight="bold">
+      LIVE
+    </text>
   ) : (
-    <text fill="currentColor" y="9" x={textOffset} dy="0.71em">
+    <text fill="currentColor" y="9" dy="0.71em" fontWeight="bold">
       {formatDateTick(v, lang, selectedTimeAggregate)}
     </text>
   );

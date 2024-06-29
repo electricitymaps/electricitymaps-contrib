@@ -47,7 +47,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
           h-full grow basis-0 select-none border border-transparent text-sm font-semibold capitalize
             ${
               timeAverage === value
-                ? 'rounded-full bg-white/80 text-brand-green dark:border dark:border-gray-400/10 dark:bg-gray-600/80 dark:text-white'
+                ? 'rounded-full border-[#e5e5e5] bg-white/80 text-brand-green dark:border-gray-400/10 dark:bg-gray-600/80 dark:text-white'
                 : ''
             }`}
         >
