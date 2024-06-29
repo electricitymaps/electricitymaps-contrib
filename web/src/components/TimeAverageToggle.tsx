@@ -31,7 +31,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
   return (
     <ToggleGroupRoot
       className={
-        'flex h-11 min-w-fit grow items-center justify-between rounded-full bg-gray-200/80 p-1 shadow backdrop-blur-sm dark:bg-gray-800/80'
+        'flex h-11 min-w-fit grow items-center justify-between gap-1 rounded-full bg-gray-200/80 p-1 backdrop-blur-sm dark:bg-gray-800/80'
       }
       type="multiple"
       aria-label="Toggle between time averages"
@@ -44,7 +44,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}
           className={`
-          h-full grow basis-0 select-none bg-none text-sm font-semibold capitalize
+          h-full grow basis-0 select-none border border-transparent text-sm font-semibold capitalize
             ${
               timeAverage === value
                 ? 'rounded-full bg-white/80 text-brand-green dark:border dark:border-gray-400/10 dark:bg-gray-600/80 dark:text-white'
