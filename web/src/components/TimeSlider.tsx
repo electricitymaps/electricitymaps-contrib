@@ -101,7 +101,7 @@ export function TimeSliderBasic({
         trackTimeSliderEvent(value[0], timeAverage);
       }}
       aria-label="choose time"
-      className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
+      className="relative my-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
     >
       <SliderPrimitive.Track
         className="relative h-2.5 w-full grow rounded-sm"

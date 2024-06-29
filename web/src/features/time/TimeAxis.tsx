@@ -92,7 +92,7 @@ function TimeAxis({
 
   if (datetimes === undefined || isLoading) {
     return (
-      <div className="flex h-[22px]  w-full justify-center">
+      <div className="flex h-[22px] w-full justify-center">
         <PulseLoader size={6} color={'#135836'} />
       </div>
     );

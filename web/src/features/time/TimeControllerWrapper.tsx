@@ -12,7 +12,7 @@ function FloatingTimeController() {
 
 function FixedTimeController() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-20 w-full bg-white/80 px-4 py-3 shadow-xl drop-shadow-2xl backdrop-blur-sm dark:bg-gray-800/80">
+    <div className="fixed bottom-0 left-0 right-0 z-20 w-full border border-[#e5e5e5] bg-white/80 px-4 py-3 shadow-xl drop-shadow-2xl backdrop-blur-sm dark:border-[#374151] dark:bg-gray-800/80">
       <TimeController />
     </div>
   );
