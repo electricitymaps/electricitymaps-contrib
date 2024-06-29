@@ -4,7 +4,7 @@ type PlausibleArguments = [string, { props: PlausibleEventProps }];
 // TODO: Consider moving this to its own global file
 declare global {
   const plausible: {
-    (...arguments_: PlausibleArguments): void; // Renamed 'arguments' to 'args'
+    (...arguments_: PlausibleArguments): void; // Renamed 'arguments' to 'arguments_' to avoid conflict with the reserved keyword 'arguments'
     q?: PlausibleArguments[];
   };
 
