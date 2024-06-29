@@ -1,9 +1,7 @@
 /// <reference types="vitest" />
 import eslintPlugin from '@nabla/vite-plugin-eslint';
 import { sentryVitePlugin, SentryVitePluginOptions } from '@sentry/vite-plugin';
-import react from '@vitejs/plugin-react';
-import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
-import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
+import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 import { ManifestOptions, VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -122,11 +120,17 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     tsconfigPaths(),
-    react({
-      babel: {
-        plugins: [jotaiDebugLabel, jotaiReactRefresh],
-      },
-    }),
+    react(
+      mode === 'production'
+        ? {}
+        : {
+            devTarget: 'es2022',
+            plugins: [
+              ['@swc-jotai/react-refresh', {}],
+              ['@swc-jotai/debug-label', {}],
+            ],
+          }
+    ),
     ...(mode !== 'test'
       ? [
           eslintPlugin(),

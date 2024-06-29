@@ -1,10 +1,10 @@
 type PlausibleEventProps = { readonly [propName: string]: string | number | boolean };
 type PlausibleArguments = [string, { props: PlausibleEventProps }];
 
-// TODO: Consider moving this to it's own global file
+// TODO: Consider moving this to its own global file
 declare global {
   const plausible: {
-    (...arguments: PlausibleArguments): void;
+    (...arguments_: PlausibleArguments): void; // Renamed 'arguments' to 'args'
     q?: PlausibleArguments[];
   };
 
