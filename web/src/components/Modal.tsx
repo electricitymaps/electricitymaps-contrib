@@ -7,14 +7,14 @@ interface ModalProps {
   title?: string;
   testId?: string;
   children: React.ReactNode;
-  fullWidth?: boolean;
+  useFullWidth?: boolean;
 }
 
 export default function Modal({
   isOpen,
   setIsOpen,
   title,
-  fullWidth,
+  useFullWidth,
   testId,
   children,
 }: ModalProps) {
@@ -27,7 +27,7 @@ export default function Modal({
           onOpenAutoFocus={(event: Event) => event.preventDefault()}
           data-test-id={testId}
           className={`fixed left-1/2 top-1/2 z-40 max-h-full w-[98vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white/90 shadow-md backdrop-blur-sm sm:w-[90vw] dark:bg-gray-800/90 ${
-            fullWidth ? 'p-0' : 'p-4'
+            useFullWidth ? 'p-0' : 'p-4'
           }`}
         >
           {title && (
@@ -43,7 +43,9 @@ export default function Modal({
             <HiXMark size="18" />
           </Dialog.Close>
           <div
-            className={fullWidth ? 'p-0' : 'px-2 py-3 sm:p-[25px_55px] md:px-2 md:py-4'}
+            className={
+              useFullWidth ? 'p-0' : 'px-2 py-3 sm:p-[25px_55px] md:px-2 md:py-4'
+            }
           >
             {children}
           </div>

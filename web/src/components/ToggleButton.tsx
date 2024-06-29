@@ -18,7 +18,7 @@ interface ToggleButtonProperties {
   selectedOption: string;
   onToggle: (option: string) => void;
   tooltipKey?: string;
-  transparentBackground?: boolean;
+  useTransparentBackground?: boolean;
 }
 
 export default function ToggleButton({
@@ -26,7 +26,7 @@ export default function ToggleButton({
   selectedOption,
   tooltipKey,
   onToggle,
-  transparentBackground,
+  useTransparentBackground,
 }: ToggleButtonProperties): ReactElement {
   const { t } = useTranslation();
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
@@ -42,7 +42,7 @@ export default function ToggleButton({
     <div
       className={twMerge(
         'z-10 flex h-9 min-w-fit rounded-full bg-gray-200/80 px-1 shadow dark:bg-gray-800/80',
-        transparentBackground ? 'backdrop-blur-sm' : 'bg-gray-200'
+        useTransparentBackground ? 'backdrop-blur-sm' : 'bg-gray-200'
       )}
     >
       <ToggleGroupRoot

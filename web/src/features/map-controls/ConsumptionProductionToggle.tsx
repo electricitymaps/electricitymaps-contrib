@@ -25,7 +25,7 @@ export default function ConsumptionProductionToggle(): ReactElement {
       tooltipKey="tooltips.cpinfo"
       selectedOption={currentMode}
       onToggle={onSetCurrentMode}
-      transparentBackground
+      useTransparentBackground
     />
   );
 }

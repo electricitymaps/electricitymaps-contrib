@@ -14,12 +14,12 @@ export interface Page {
 function Modal({
   modalName,
   views,
-  visible,
+  isVisible,
   onDismiss,
 }: {
   modalName: string;
   views: Page[];
-  visible: boolean;
+  isVisible: boolean;
   onDismiss: () => void;
 }) {
   const { t } = useTranslation();
@@ -38,7 +38,7 @@ function Modal({
     }
   };
 
-  if (!visible) {
+  if (!isVisible) {
     return null;
   }
   const currentView = views[currentViewIndex];
