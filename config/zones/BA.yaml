@@ -27,8 +27,9 @@ capacity:
 contributors:
   - corradio
   - nessie2013
+country: BA
 delays:
-  production: 4
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -185,9 +186,8 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Asia/Bahrain
-region: Europe
-country: BA

@@ -19,6 +19,9 @@ contributors:
   - postronium
   - Kikof2
   - KabelWlan
+country: CH
+delays:
+  production: 7
 disclaimer: Data for the electricity consumption and generation mix is based on estimates
   stemming from different data sources. As such, it may diverge from aggregated public
   statistics of the Swiss Federal Office for Energy.
@@ -387,6 +390,7 @@ parsers:
   production: CH.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
+region: Europe
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
@@ -395,5 +399,3 @@ sources:
   SFOE, Electricity Maps:
     link: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E
 timezone: Europe/Zurich
-region: Europe
-country: CH
