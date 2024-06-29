@@ -9,7 +9,7 @@ import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 
 import TimeAxis from './TimeAxis';
-import TimeHeader from './TimeBadge';
+import TimeBadge from './TimeBadge';
 
 export default function TimeController({ className }: { className?: string }) {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
@@ -24,20 +24,20 @@ export default function TimeController({ className }: { className?: string }) {
   // TODO: Figure out whether we want to work with datetimes as strings
   // or as Date objects. In this case datetimes are easier to work with
   const datetimes = useMemo(
-    () => (data ? Object.keys(data.data?.datetimes).map((d) => new Date(d)) : undefined),
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- is loading is used to trigger the re-memoization on hour change
-    [data, isLoading]
+    () => Object.keys(data?.data?.datetimes ?? {}).map((d) => new Date(d)),
+    [data]
   );
 
   useEffect(() => {
     if (datetimes) {
+      const lastIndex = datetimes.length - 1;
       // This value is stored in state to avoid flickering when switching between time averages
       // as this effect means index will be one render behind if using datetimes directly
-      setNumberOfEntries(datetimes.length - 1);
+      setNumberOfEntries(lastIndex);
       // Reset the selected datetime when data changes
       setSelectedDatetime({
-        datetimeString: dateToDatetimeString(datetimes.at(-1) as Date),
-        index: datetimes.length - 1,
+        datetimeString: dateToDatetimeString(datetimes[lastIndex]),
+        index: lastIndex,
       });
     }
   }, [data, datetimes, setSelectedDatetime]);
@@ -65,7 +65,7 @@ export default function TimeController({ className }: { className?: string }) {
 
   return (
     <div className={className}>
-      <TimeHeader />
+      <TimeBadge />
       <TimeAverageToggle
         timeAverage={timeAverage}
         onToggleGroupClick={onToggleGroupClick}
