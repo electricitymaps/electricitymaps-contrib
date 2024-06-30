@@ -72,7 +72,7 @@ export function CircularGauge({
                 <Label
                   verticalAnchor="middle"
                   horizontalAnchor="middle"
-                  backgroundFill="transparent"
+                  showBackground={false}
                   fontColor="currentColor"
                   showAnchorLine={false}
                   title={Number.isNaN(ratio) ? '?%' : `${Math.round(ratio * 100)}%`}
