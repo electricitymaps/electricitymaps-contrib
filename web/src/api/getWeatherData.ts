@@ -124,9 +124,9 @@ const useGetWeather = (options: UseWeatherQueryOptions) => {
   });
 };
 
-export const useGetWind = (options?: UseWeatherQueryOptions) => {
+export const useGetWind = (options?: Omit<UseWeatherQueryOptions, 'type'>) => {
   return useGetWeather({ type: 'wind', ...options });
 };
-export const useGetSolar = (options?: UseWeatherQueryOptions) => {
+export const useGetSolar = (options?: Omit<UseWeatherQueryOptions, 'type'>) => {
   return useGetWeather({ type: 'solar', ...options });
 };
