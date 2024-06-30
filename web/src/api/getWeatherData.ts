@@ -109,16 +109,17 @@ const useGetWeather = (
   type: WeatherType,
   options?: UseQueryOptions<Maybe<GfsForecastResponse>>
 ) => {
-  return useQuery<Maybe<GfsForecastResponse>>(
-    [type],
-    async () => await getWeatherData(type),
-    {
-      staleTime: FIVE_MINUTES,
-      cacheTime: FIVE_MINUTES,
-      retry: false, // Disables retrying as getWeatherData handles retrying with new timestamps
-      ...options,
-    }
-  );
+  return useQuery<Maybe<GfsForecastResponse>>({
+    queryKey: [type],
+    queryFn: async () => await getWeatherData(type),
+    staleTime: FIVE_MINUTES,
+    gcTime: FIVE_MINUTES,
+
+    // Disables retrying as getWeatherData handles retrying with new timestamps
+    retry: false,
+
+    ...options,
+  });
 };
 
 export const useGetWind = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>) => {
