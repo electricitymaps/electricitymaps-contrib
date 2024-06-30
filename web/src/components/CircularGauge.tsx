@@ -2,6 +2,7 @@ import { Annotation, Label } from '@visx/annotation';
 import { Group } from '@visx/group';
 import { Arc } from '@visx/shape';
 import type { DatumObject } from '@visx/shape/lib/types';
+import { memo } from 'react';
 
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
@@ -14,14 +15,27 @@ export interface CircularGaugeProps {
   testId?: string;
 }
 
+const BackgroundArc = memo(function BackgroundArc({ radius }: { radius: number }) {
+  return (
+    <Arc
+      innerRadius={radius * 0.8}
+      outerRadius={radius}
+      startAngle={90}
+      endAngle={-360}
+      data={{ value: 100 }}
+      className="fill-gray-200/60 dark:fill-gray-600/50"
+      strokeWidth={0}
+    />
+  );
+});
+
 export function CircularGauge({
   ratio,
   name,
   tooltipContent,
   testId,
 }: CircularGaugeProps) {
-  // TODO: To improve performance, the background pie does not need to rerender on percentage change
-  const data: DatumObject = [{ value: ratio }];
+  const data: DatumObject = { value: ratio };
   const percentageAsAngle = ratio * 360;
   const endAngle = PIE_START_ANGLE + (percentageAsAngle * Math.PI) / 180;
   const height = 65;
@@ -29,8 +43,6 @@ export function CircularGauge({
   const radius = Math.min(width, height) / 2;
   const centerY = height / 2;
   const centerX = width / 2;
-
-  console.log('CircularGauge', { ratio, percentageAsAngle, endAngle });
 
   return (
     <div className="flex flex-col items-center">
@@ -43,15 +55,7 @@ export function CircularGauge({
         <div data-test-id={testId}>
           <svg height={height} width={width}>
             <Group top={centerY} left={centerX}>
-              <Arc
-                innerRadius={radius * 0.8}
-                outerRadius={radius}
-                startAngle={90}
-                endAngle={-360}
-                data={[{ value: 100 }]}
-                className="fill-gray-200/60 dark:fill-gray-600/50"
-                strokeWidth={0}
-              />
+              <BackgroundArc radius={radius} />
               <Arc
                 height={height}
                 width={width}
@@ -64,6 +68,7 @@ export function CircularGauge({
                 fill="#3C764A"
               />
               <Annotation>
+                {/* Consider memoizing this */}
                 <Label
                   verticalAnchor="middle"
                   horizontalAnchor="middle"
