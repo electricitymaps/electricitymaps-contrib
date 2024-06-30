@@ -105,13 +105,16 @@ async function getWeatherData(type: WeatherType) {
   return interdata;
 }
 
-const useGetWeather = (
-  type: WeatherType,
-  options?: UseQueryOptions<Maybe<GfsForecastResponse>>
-) => {
+const useGetWeather = ({
+  queryKey,
+  options,
+}: {
+  queryKey: WeatherType;
+  options?: UseQueryOptions<Maybe<GfsForecastResponse>>;
+}) => {
   return useQuery<Maybe<GfsForecastResponse>>({
-    queryKey: [type],
-    queryFn: async () => await getWeatherData(type),
+    queryKey: [queryKey],
+    queryFn: async () => await getWeatherData(queryKey),
     staleTime: FIVE_MINUTES,
     gcTime: FIVE_MINUTES,
 
@@ -122,9 +125,13 @@ const useGetWeather = (
   });
 };
 
-export const useGetWind = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>) => {
-  return useGetWeather('wind', options);
+export const useGetWind = (
+  options?: Omit<UseQueryOptions<Maybe<GfsForecastResponse>>, 'queryKey'>
+) => {
+  return useGetWeather({ queryKey: 'wind', ...options });
 };
-export const useGetSolar = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>) => {
-  return useGetWeather('solar', options);
+export const useGetSolar = (
+  options?: Omit<UseQueryOptions<Maybe<GfsForecastResponse>>, 'queryKey'>
+) => {
+  return useGetWeather({ queryKey: 'solar', ...options });
 };

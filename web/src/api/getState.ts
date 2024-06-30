@@ -46,7 +46,7 @@ const useGetState = (): UseQueryResult<GridState> => {
     // The query should not execute until the last_hour query is done
     enabled: shouldFetchFullState,
   });
-  return all_data.data || timeAverage != 'hourly' ? all_data : last_hour;
+  return (all_data.data || timeAverage != 'hourly' ? all_data : last_hour) ?? {};
 };
 
 export default useGetState;
