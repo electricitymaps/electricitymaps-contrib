@@ -16,15 +16,14 @@ import {
 import { round } from '../geo/utilities.js';
 
 const BASE_CONFIG_PATH = '../../config';
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 const verifyConfig = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
 const getConfig = (): CombinedZonesConfig => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
-  );
+  const basePath = path.resolve(currentDirectory, BASE_CONFIG_PATH.concat('/zones'));
 
   const zoneFiles = fs.readdirSync(basePath);
   const filesWithDirectory = zoneFiles
@@ -110,9 +109,7 @@ const getConfig = (): CombinedZonesConfig => {
 };
 
 const mergeExchanges = (): ExchangesConfig => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/exchanges'), import.meta.url))
-  );
+  const basePath = path.resolve(currentDirectory, BASE_CONFIG_PATH.concat('/exchanges'));
 
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDirectory = exchangeFiles
@@ -141,7 +138,7 @@ const mergeExchanges = (): ExchangesConfig => {
 
 const mergeRatioParameters = () => {
   // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
-  const basePath = path.resolve(fileURLToPath(new URL('../config', import.meta.url)));
+  const basePath = path.resolve(currentDirectory, '../config');
 
   const defaultParameters: any = yaml.load(
     fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8')
@@ -193,9 +190,7 @@ const writeJSON = (fileName: string, object: CombinedZonesConfig | ExchangesConf
 const zonesConfig = getConfig();
 const exchangesConfig = mergeExchanges();
 
-const autogenConfigPath = path.resolve(
-  fileURLToPath(new URL('../config', import.meta.url))
-);
+const autogenConfigPath = path.resolve(currentDirectory, '../config');
 
 if (verifyConfig.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(
