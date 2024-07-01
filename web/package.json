@@ -89,7 +89,7 @@
     "react-icons": "^4.12.0",
     "react-map-gl": "~7.1.7",
     "react-router-dom": "6.24.0",
-    "react-spinners": "^0.13.8",
+    "react-spinners": "^0.14.1",
     "react-spring-bottom-sheet": "3.5.0-alpha.0",
     "recharts": "^2.12.7",
     "sunrise-sunset-js": "^2.2.1",
