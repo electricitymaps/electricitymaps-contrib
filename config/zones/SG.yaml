@@ -48,6 +48,9 @@ contributors:
   - alixunderplatz
   - q--
   - nessie2013
+country: SG
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -256,6 +259,5 @@ parsers:
   price: SG.fetch_price
   production: SG.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
-timezone: Asia/Singapore
 region: Asia
-country: SG
+timezone: Asia/Singapore
