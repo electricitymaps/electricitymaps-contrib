@@ -60,8 +60,8 @@ importers:
         specifier: 4.36.1
         version: 4.36.1(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(react@18.3.1))(react@18.3.1)
       '@tanstack/react-virtual':
-        specifier: ^3.5.1
-        version: 3.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^3.8.1
+        version: 3.8.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@turf/helpers':
         specifier: ^6.5.0
         version: 6.5.0
@@ -2706,14 +2706,14 @@ packages:
       react-native:
         optional: true
 
-  '@tanstack/react-virtual@3.5.1':
-    resolution: {integrity: sha512-jIsuhfgy8GqA67PdWqg73ZB2LFE+HD9hjWL1L6ifEIZVyZVAKpYmgUG4WsKQ005aEyImJmbuimPiEvc57IY0Aw==}
+  '@tanstack/react-virtual@3.8.1':
+    resolution: {integrity: sha512-dP5a7giEM4BQWLJ7K07ToZv8rF51mzbrBMkf0scg1QNYuFx3utnPUBPUHdzaowZhIez1K2XS78amuzD+YGRA5Q==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@tanstack/virtual-core@3.5.1':
-    resolution: {integrity: sha512-046+AUSiDru/V9pajE1du8WayvBKeCvJ2NmKPy/mR8/SbKKrqmSbj7LJBfXE+nSq4f5TBXvnCzu0kcYebI9WdQ==}
+  '@tanstack/virtual-core@3.8.1':
+    resolution: {integrity: sha512-uNtAwenT276M9QYCjTBoHZ8X3MUeCRoGK59zPi92hMIxdfS9AyHjkDWJ94WroDxnv48UE+hIeo21BU84jKc8aQ==}
 
   '@testing-library/cypress@10.0.2':
     resolution: {integrity: sha512-dKv95Bre5fDmNb9tOIuWedhGUryxGu1GWYWtXDqUsDPcr9Ekld0fiTb+pcBvSsFpYXAZSpmyEjhoXzLbhh06yQ==}
@@ -11865,13 +11865,13 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-native: 0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(react@18.3.1)
 
-  '@tanstack/react-virtual@3.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tanstack/react-virtual@3.8.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tanstack/virtual-core': 3.5.1
+      '@tanstack/virtual-core': 3.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@tanstack/virtual-core@3.5.1': {}
+  '@tanstack/virtual-core@3.8.1': {}
 
   '@testing-library/cypress@10.0.2(cypress@13.12.0)':
     dependencies:
