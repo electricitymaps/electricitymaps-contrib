@@ -2,6 +2,7 @@
 This library contains validation functions applied to all parsers by the feeder.
 This is a higher level validation than validation.py
 """
+
 from datetime import datetime, timezone
 from typing import Any
 from warnings import warn
@@ -34,10 +35,7 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
     for key in keys_dict[kind]:
         if key not in datapoint:
             raise ValidationError(
-                "{} - data point does not have the required keys:  {} is missing".format(
-                    zone_key,
-                    [key for key in keys_dict[kind] if key not in datapoint],
-                ),
+                f"{zone_key} - data point does not have the required keys:  { [key for key in keys_dict[kind] if key not in datapoint]} is missing"
             )
 
 
@@ -84,7 +82,7 @@ def validate_exchange(item, k) -> None:
         raise ValidationError(f"netFlow was not returned for {k}")
     # Verify that the exchange flow is not greater than the interconnector
     # capacity and has physical sense (no exchange should exceed 100GW)
-    # Use https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/example.py for expected format
+    # Use https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/examples/example_parser.py for expected format
     if item.get("sortedZoneKeys", None) and item.get("netFlow", None):
         zone_names: list[str] = item["sortedZoneKeys"]
         if abs(item.get("netFlow", 0)) > 100000:
@@ -111,7 +109,7 @@ def validate_exchange(item, k) -> None:
 def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
     validate_datapoint_format(datapoint=obj, kind="production", zone_key=zone_key)
     if "datetime" not in obj:
-        raise ValidationError("datetime was not returned for %s" % zone_key)
+        raise ValidationError(f"datetime was not returned for {zone_key}")
     if "countryCode" in obj:
         warn(
             "object has field `countryCode`. It should have "
@@ -119,14 +117,14 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             stacklevel=1,
         )
     if "zoneKey" not in obj and "countryCode" not in obj:
-        raise ValidationError("zoneKey was not returned for %s" % zone_key)
+        raise ValidationError(f"zoneKey was not returned for {zone_key}")
     if not isinstance(obj["datetime"], datetime):
         raise ValidationError(
             "datetime {} is not valid for {}".format(obj["datetime"], zone_key)
         )
-    if (obj.get("zoneKey", None) or obj.get("countryCode", None)) != zone_key:
+    if (obj.get("zoneKey") or obj.get("countryCode")) != zone_key:
         raise ValidationError(
-            f"Zone keys {obj.get('zoneKey', None)} and {zone_key} don't match in {obj}"
+            f"Zone keys {obj.get('zoneKey')} and {zone_key} don't match in {obj}"
         )
 
     if (
@@ -141,6 +139,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             "AU-TAS",
             "DK-BHM",
             "US-CAR-YAD",
+            "US-CENT-SPA",
             "US-NW-SCL",
             "US-NW-CHPD",
             "US-NW-WWA",
@@ -154,13 +153,12 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
         ]
     ):
         raise ValidationError(
-            "Coal, gas or oil or unknown production value is required for"
-            " %s" % zone_key
+            f"Coal, gas or oil or unknown production value is required for {zone_key}"
         )
 
     if zone_key in ["US-CAR-YAD"] and obj.get("production", {}).get("hydro", 0) < 5:
         raise ValidationError(
-            "Hydro production value is required to be greater than 5 for %s" % zone_key
+            f"Hydro production value is required to be greater than 5 for {zone_key}"
         )
 
     if obj.get("storage"):

@@ -8,17 +8,17 @@ capacity:
   biomass:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 1115.0
+      value: 1114.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 1116.0
+      value: 1115.0
   gas:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 6995.0
+      value: 6988.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 6999.0
+      value: 6995.0
   hydro:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -30,14 +30,17 @@ capacity:
   nuclear:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 5943.0
+      value: 4937.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 3929.0
   oil:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 448.0
+      value: 450.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 432.0
+      value: 452.0
   solar:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -58,6 +61,9 @@ contributors:
   - nessie2013
   - Fred-3000
   - gadakast
+country: BE
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -334,6 +340,7 @@ parsers:
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

@@ -1,9 +1,9 @@
-import * as Sentry from '@sentry/react';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
 import { lazy, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
@@ -13,7 +13,6 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { useTranslation } from 'translation/translation';
 
 import { leftPanelOpenAtom } from './panelAtoms';
 
@@ -69,7 +68,7 @@ type CollapseButtonProps = {
 };
 
 function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
     <button
       data-test-id="left-panel-collapse-button"
@@ -78,7 +77,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
       }
       onClick={onCollapse}
       aria-label={
-        isCollapsed ? __('aria.label.showSidePanel') : __('aria.label.hideSidePanel')
+        isCollapsed ? t('aria.label.showSidePanel') : t('aria.label.hideSidePanel')
       }
     >
       {isCollapsed ? <HiChevronRight /> : <HiChevronLeft />}
@@ -97,8 +96,9 @@ function MobileHeader() {
 
 function OuterPanel({ children }: { children: React.ReactNode }) {
   const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
-  const onCollapse = () => setOpen(!isOpen);
   const location = useLocation();
+
+  const onCollapse = () => setOpen(!isOpen);
 
   return (
     <aside
@@ -108,16 +108,15 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
       } ${isOpen ? '' : '-translate-x-full'}`}
     >
       <MobileHeader />
-      <section className="h-full w-full p-2 pr-0 sm:pl-1">{children}</section>
+      <section className="h-full w-full py-2 pr-0">{children}</section>
       <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
     </aside>
   );
 }
-const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 export default function LeftPanel() {
   return (
     <OuterPanel>
-      <SentryRoutes>
+      <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
         <Route
           path="/zone/:zoneId"
@@ -138,7 +137,7 @@ export default function LeftPanel() {
             </Suspense>
           }
         />
-      </SentryRoutes>
+      </Routes>
     </OuterPanel>
   );
 }

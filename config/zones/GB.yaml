@@ -71,6 +71,10 @@ contributors:
   - nessie2013
   - AlexandreCouderc
   - gadakast
+  - amv213
+country: GB
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -295,6 +299,7 @@ parsers:
   productionCapacity: GB.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
+region: Europe
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

@@ -1,8 +1,8 @@
 bounding_box:
-  - - 7.261963
-    - 54.661124
-  - - 11.304932
-    - 57.803798
+  - - 10.535889
+    - 54.380557
+  - - 12.788086
+    - 56.36525
 capacity:
   biomass:
     - datetime: '2023-01-01'
@@ -39,6 +39,9 @@ capacity:
 contributors:
   - corradio
   - tmslaine
+country: DK
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -316,6 +319,7 @@ parsers:
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
 price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

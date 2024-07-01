@@ -5,9 +5,9 @@ bounding_box:
     - 37.17
 capacity:
   biomass: 352.6
-  geothermal: 2
   coal: 5170
   gas: 14136
+  geothermal: 2
   hydro: 2180
   hydro storage: 3320
   nuclear: 3617
@@ -19,7 +19,11 @@ contributors:
   - lorrieq
   - pierresegonne
   - wobniarin
-disclaimer: The data provided for solar power production is suspected to be too high (source; Chubu Electric Power Co.,Inc.).
+country: JP
+delays:
+  production: 5
+disclaimer: The data provided for solar power production is suspected to be too high
+  (source; Chubu Electric Power Co.,Inc.).
 emissionFactors:
   lifecycle:
     unknown:
@@ -34,4 +38,5 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
+region: Asia
 timezone: Asia/Tokyo

@@ -8,6 +8,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 26.9
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 25.7
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -20,6 +23,12 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 34966.3
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 34976.7
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 34947.2
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -40,10 +49,22 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2053.6
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 2047.3
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 2085.5
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 588.6
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 596.9
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 606.9
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -52,11 +73,20 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 31745.7
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 32688.6
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 33089.0
 comment: Southwest Power Pool
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+country: US
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -323,6 +353,7 @@ parsers:
   production: US_SPP.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_SPP.fetch_wind_solar_forecasts
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

@@ -1,10 +1,12 @@
 import logging
+import math
 import unittest
 from datetime import datetime, timezone
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 import freezegun
+import numpy as np
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
@@ -48,6 +50,24 @@ class TestExchange(unittest.TestCase):
                 zoneKey=ZoneKey("AT->DE"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 netFlow=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the netFlow is NaN.
+        with self.assertRaises(ValueError):
+            Exchange(
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                netFlow=math.nan,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the netFlow is Nan using Numpy.
+        with self.assertRaises(ValueError):
+            Exchange(
+                zoneKey=ZoneKey("AT->DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                netFlow=np.nan,
                 source="trust.me",
             )
 
@@ -105,6 +125,26 @@ class TestExchange(unittest.TestCase):
             )
             mock_error.assert_called_once()
 
+    def test_update_exchange(self):
+        exchange = Exchange(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+        new_exchange = Exchange(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=2,
+            source="trust.me",
+        )
+        final_exchange = Exchange._update(exchange, new_exchange)
+        assert final_exchange is not None
+        assert final_exchange.netFlow == 2
+        assert final_exchange.zoneKey == ZoneKey("AT->DE")
+        assert final_exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert final_exchange.source == "trust.me"
+
 
 class TestConsumption(unittest.TestCase):
     def test_create_consumption(self):
@@ -126,6 +166,24 @@ class TestConsumption(unittest.TestCase):
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 consumption=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the consumption is NaN.
+        with self.assertRaises(ValueError):
+            TotalConsumption(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                consumption=math.nan,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the consumption is Nan using Numpy.
+        with self.assertRaises(ValueError):
+            TotalConsumption(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                consumption=np.nan,
                 source="trust.me",
             )
 
@@ -186,6 +244,26 @@ class TestPrice(unittest.TestCase):
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 price=None,
+                source="trust.me",
+                currency="EUR",
+            )
+
+        # This should raise a ValueError because the price is NaN.
+        with self.assertRaises(ValueError):
+            Price(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                price=math.nan,
+                source="trust.me",
+                currency="EUR",
+            )
+
+        # This should raise a ValueError because the price is Nan using Numpy.
+        with self.assertRaises(ValueError):
+            Price(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                price=np.nan,
                 source="trust.me",
                 currency="EUR",
             )
@@ -392,7 +470,7 @@ class TestProductionBreakdown(unittest.TestCase):
             2023, 1, 1, 5, tzinfo=ZoneInfo("Asia/Tokyo")
         )
 
-    def test_static_create_logs_error(self):
+    def test_static_create_logs_error_with_none(self):
         logger = logging.Logger("test")
         with patch.object(logger, "error") as mock_error:
             ProductionBreakdown.create(
@@ -400,6 +478,30 @@ class TestProductionBreakdown(unittest.TestCase):
                 zoneKey=ZoneKey("DE"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 production=ProductionMix(wind=None),
+                source="trust.me",
+            )
+            mock_error.assert_called_once()
+
+    def test_static_create_logs_with_nan(self):
+        logger = logging.Logger("test")
+        with patch.object(logger, "error") as mock_error:
+            ProductionBreakdown.create(
+                logger=logger,
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                production=ProductionMix(wind=math.nan),
+                source="trust.me",
+            )
+            mock_error.assert_called_once()
+
+    def test_static_create_logs_with_nan_using_numpy(self):
+        logger = logging.Logger("test")
+        with patch.object(logger, "error") as mock_error:
+            ProductionBreakdown.create(
+                logger=logger,
+                zoneKey=ZoneKey("DE"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                production=ProductionMix(wind=np.nan),
                 source="trust.me",
             )
             mock_error.assert_called_once()
@@ -463,6 +565,24 @@ class TestTotalProduction(unittest.TestCase):
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 value=None,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the generation is NaN.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=math.nan,
+                source="trust.me",
+            )
+
+        # This should raise a ValueError because the generation is Nan using Numpy.
+        with self.assertRaises(ValueError):
+            TotalProduction(
+                zoneKey=ZoneKey("AT"),
+                datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+                value=np.nan,
                 source="trust.me",
             )
 
@@ -627,6 +747,30 @@ class TestMixAddValue(unittest.TestCase):
         assert mix.wind == 10
         assert mix.corrected_negative_modes == set()
 
+    def test_production_with_nan(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", math.nan)
+        assert mix.wind == 10
+        assert mix.corrected_negative_modes == set()
+
+    def test_production_with_nan_using_numpy(self):
+        mix = ProductionMix()
+        mix.add_value("wind", 10)
+        assert mix.wind == 10
+        mix.add_value("wind", np.nan)
+        assert mix.wind == 10
+        assert mix.corrected_negative_modes == set()
+
+    def test_production_with_nan_init(self):
+        mix = ProductionMix(wind=math.nan)
+        assert mix.wind is None
+
+    def test_production_with_nan_using_numpy_init(self):
+        mix = ProductionMix(wind=np.nan)
+        assert mix.wind is None
+
     def test_storage(self):
         mix = StorageMix()
         mix.add_value("hydro", 10)
@@ -650,12 +794,38 @@ class TestMixAddValue(unittest.TestCase):
         mix.add_value("hydro", None)
         assert mix.hydro == -5
 
+    def test_storage_with_nan(self):
+        mix = StorageMix()
+        mix.add_value("hydro", math.nan)
+        assert mix.hydro is None
+        mix.add_value("hydro", -5)
+        assert mix.hydro == -5
+        mix.add_value("hydro", math.nan)
+        assert mix.hydro == -5
+
+    def test_storage_with_nan_using_numpy(self):
+        mix = StorageMix()
+        mix.add_value("hydro", np.nan)
+        assert mix.hydro is None
+        mix.add_value("hydro", -5)
+        assert mix.hydro == -5
+        mix.add_value("hydro", np.nan)
+        assert mix.hydro == -5
+
+    def test_storage_with_nan_init(self):
+        mix = StorageMix(hydro=math.nan)
+        assert mix.hydro is None
+
+    def test_storage_with_nan_using_numpy_init(self):
+        mix = StorageMix(hydro=np.nan)
+        assert mix.hydro is None
+
 
 class TestMixUpdate:
     def test_update_production(self):
         mix = ProductionMix(wind=10, solar=20)
         new_mix = ProductionMix(wind=5, solar=25)
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind == 5
         assert final_mix.solar == 25
@@ -663,7 +833,7 @@ class TestMixUpdate:
     def test_update_storage(self):
         mix = StorageMix(hydro=10, battery=20)
         new_mix = StorageMix(hydro=5, battery=25)
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro == 5
         assert final_mix.battery == 25
@@ -671,7 +841,7 @@ class TestMixUpdate:
     def test_update_production_with_none(self):
         mix = ProductionMix(wind=10, solar=20)
         new_mix = ProductionMix(wind=None, solar=25)
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind == 10
         assert final_mix.solar == 25
@@ -679,7 +849,7 @@ class TestMixUpdate:
     def test_update_storage_with_none(self):
         mix = StorageMix(hydro=10, battery=20)
         new_mix = StorageMix(hydro=None, battery=25)
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro == 10
         assert final_mix.battery == 25
@@ -687,7 +857,7 @@ class TestMixUpdate:
     def test_update_production_with_empty(self):
         mix = ProductionMix()
         new_mix = ProductionMix(wind=0, solar=25)
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind == 0
         assert final_mix.solar == 25
@@ -695,7 +865,7 @@ class TestMixUpdate:
     def test_update_storage_with_empty(self):
         mix = StorageMix()
         new_mix = StorageMix(hydro=0, battery=25)
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro == 0
         assert final_mix.battery == 25
@@ -703,7 +873,7 @@ class TestMixUpdate:
     def test_update_production_with_new_empty(self):
         mix = ProductionMix(wind=10, solar=20)
         new_mix = ProductionMix()
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind == 10
         assert final_mix.solar == 20
@@ -711,7 +881,7 @@ class TestMixUpdate:
     def test_update_storage_with_new_empty(self):
         mix = StorageMix(hydro=10, battery=20)
         new_mix = StorageMix()
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro == 10
         assert final_mix.battery == 20
@@ -719,7 +889,7 @@ class TestMixUpdate:
     def test_update_production_with_empty_and_new_none(self):
         mix = ProductionMix()
         new_mix = ProductionMix(wind=None, solar=None)
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind is None
         assert final_mix.solar is None
@@ -727,7 +897,7 @@ class TestMixUpdate:
     def test_update_storage_with_empty_and_new_none(self):
         mix = StorageMix()
         new_mix = StorageMix(hydro=None, battery=None)
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro is None
         assert final_mix.battery is None
@@ -735,7 +905,7 @@ class TestMixUpdate:
     def test_update_production_with_empty_and_new_empty(self):
         mix = ProductionMix()
         new_mix = ProductionMix()
-        final_mix = ProductionMix.update(mix, new_mix)
+        final_mix = ProductionMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.wind is None
         assert final_mix.solar is None
@@ -743,7 +913,7 @@ class TestMixUpdate:
     def test_update_storage_with_empty_and_new_empty(self):
         mix = StorageMix()
         new_mix = StorageMix()
-        final_mix = StorageMix.update(mix, new_mix)
+        final_mix = StorageMix._update(mix, new_mix)
         assert final_mix is not None
         assert final_mix.hydro is None
         assert final_mix.battery is None

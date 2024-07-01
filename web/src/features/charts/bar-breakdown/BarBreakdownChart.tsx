@@ -1,22 +1,38 @@
 import * as Portal from '@radix-ui/react-portal';
+import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import Divider from 'features/panels/zone/Divider';
+import { IndustryIcon } from 'icons/industryIcon';
+import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
+import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
-import { displayByEmissionsAtom } from 'utils/state/atoms';
+import useResizeObserver from 'use-resize-observer';
+import trackEvent from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
+import {
+  dataSourcesCollapsedBarBreakdown,
+  displayByEmissionsAtom,
+  productionConsumptionAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
+import { DataSources } from '../DataSources';
+import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
+import useZoneDataSources from '../hooks/useZoneDataSources';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
+import { useHeaderHeight } from './utils';
 
-const X_PADDING = 9;
+const X_PADDING = 20;
 
 function BarBreakdownChart({
   hasEstimationPill = false,
@@ -31,16 +47,29 @@ function BarBreakdownChart({
     isLoading,
     height,
   } = useBarBreakdownChartData();
+
+  const {
+    capacitySources,
+    powerGenerationSources,
+    emissionFactorSources,
+    emissionFactorSourcesToProductionSources,
+  } = useZoneDataSources();
+
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const { ref, width } = useReferenceWidthHeightObserver(X_PADDING);
-  const { __ } = useTranslation();
+  const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
+  const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const [mixMode] = useAtom(productionConsumptionAtom);
+  const width = observerWidth + X_PADDING;
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
     x: number;
     y: number;
   } | null>(null);
+
+  const headerHeight = useHeaderHeight();
 
   if (isLoading) {
     return null;
@@ -53,7 +82,7 @@ function BarBreakdownChart({
         <EmptyBarBreakdownChart
           height={height}
           width={width}
-          overLayText={__('country-panel.noDataAtTimestamp')}
+          overLayText={t('country-panel.noDataAtTimestamp')}
         />
       </div>
     );
@@ -84,11 +113,30 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
+  const showPowerSources = Boolean(powerGenerationSources?.length > 0);
+  const showEmissionSources = Boolean(emissionFactorSources?.length > 0);
+  const showCapacitySources = Boolean(capacitySources?.length > 0);
+
+  const showDataSourceAccordion = Boolean(
+    showCapacitySources || showPowerSources || showEmissionSources
+  );
+
   return (
-    <div className="text-sm" ref={ref}>
+    <div
+      className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
+      ref={ref}
+    >
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
+        unit={determineUnit(
+          displayByEmissions,
+          currentZoneDetail,
+          mixMode,
+          timeAverage,
+          t
+        )}
+        estimationMethod={currentZoneDetail.estimationMethod}
       />
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
@@ -96,7 +144,7 @@ function BarBreakdownChart({
             className="absolute mt-14 flex h-full w-full flex-col items-center gap-y-1 bg-black/20 sm:mt-auto sm:items-start"
             style={{
               left: tooltipData?.x,
-              top: tooltipData?.y,
+              top: tooltipData?.y <= headerHeight ? headerHeight : tooltipData?.y,
             }}
           >
             <BreakdownChartTooltip
@@ -137,6 +185,44 @@ function BarBreakdownChart({
           height={height}
           isMobile={false}
         />
+      )}
+      {showDataSourceAccordion && (
+        <>
+          <Divider />
+          <div className="py-1">
+            <Accordion
+              onOpen={() => {
+                trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                  chart: 'bar-breakdown-chart',
+                });
+              }}
+              title={t('data-sources.title')}
+              className="text-md"
+              isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
+            >
+              <div>
+                <DataSources
+                  title={t('data-sources.capacity')}
+                  icon={<UtilityPoleIcon />}
+                  sources={capacitySources}
+                />
+                <DataSources
+                  title={t('data-sources.power')}
+                  icon={<WindTurbineIcon />}
+                  sources={powerGenerationSources}
+                />
+                <DataSources
+                  title={t('data-sources.emission')}
+                  icon={<IndustryIcon />}
+                  sources={emissionFactorSources}
+                  emissionFactorSourcesToProductionSources={
+                    emissionFactorSourcesToProductionSources
+                  }
+                />
+              </div>
+            </Accordion>
+          </div>{' '}
+        </>
       )}
     </div>
   );

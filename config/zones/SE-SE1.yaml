@@ -13,6 +13,9 @@ capacity:
   oil: 0
   solar: 19
   wind: 2978
+country: SE
+delays:
+  production: 7
 emissionFactors:
   direct:
     biomass:
@@ -108,6 +111,7 @@ parsers:
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
 price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

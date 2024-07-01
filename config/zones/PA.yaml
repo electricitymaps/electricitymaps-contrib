@@ -57,6 +57,9 @@ contributors:
   - q--
   - IV1T3
   - r24mille
+country: PA
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -259,4 +262,5 @@ parsers:
   consumption: PA.fetch_consumption
   production: PA.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
+region: Americas
 timezone: America/Panama

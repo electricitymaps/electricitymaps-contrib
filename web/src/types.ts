@@ -14,44 +14,59 @@ export type ZoneKey = string;
 export interface GridState {
   callerLocation?: [number, number];
   data: {
-    zones: { [key: string]: StateZoneDataForTimePeriod };
+    _disclaimer: string;
     createdAt: string;
-    datetime: string;
-    datetimes: Array<string>;
-    exchanges: { [key: string]: ExchangeResponse };
-    stateAggregation: string;
+    datetimes: {
+      /** Object representing the grid state at a single point in time */
+      [datetimeKey: string]: {
+        /** Array of all exchanges */
+        e: {
+          [key: ZoneKey]: StateExchangeData;
+        };
+        /** Array of all zones */
+        z: {
+          [key: ZoneKey]: StateZoneData;
+        };
+      };
+    };
   };
-}
-
-interface StateZoneDataForTimePeriod {
-  [timestamp: string]: StateZoneData;
 }
 
 export interface StateZoneData {
-  co2intensity: number; //TODO https://linear.app/electricitymaps/issue/ELE-1495/update-app-backend-variable-naming-to-use-camel-case-update-the
-  co2intensityProduction: number;
-  fossilFuelRatio: number;
-  fossilFuelRatioProduction: number;
-  renewableRatio: number;
-  renewableRatioProduction: number;
-  stateDatetime: number;
-  zoneKey: string;
-  // TODO: Add spatial aggregate info to the request so we can use it for filtering in ranking panel
-}
-
-export interface ExchangeResponse {
-  [datetimeKey: string]: {
-    netFlow: number;
-    co2intensity: number;
+  /** Object representing all production values */
+  p: {
+    /** Carbon intensity */
+    ci?: number | null;
+    /** Fossil ratio */
+    fr?: number | null;
+    /** Renewable ratio */
+    rr?: number | null;
   };
+  /** Object representing all consumption values */
+  c: {
+    /** Carbon intensity */
+    ci?: number | null;
+    /** Fossil ratio */
+    fr?: number | null;
+    /** Renewable ratio */
+    rr?: number | null;
+  };
+  /** Represents if a zone is estimated or not, will be true for hourly data else number */
+  e?: boolean | number | null;
+  /** Represents if the zone has a outage message or not */
+  o?: boolean | null;
 }
 
-export interface ExchangeOverview {
-  netFlow: number;
+export interface StateExchangeData {
+  /** The carbon intensity of the exchange */
+  ci: number;
+  /** The net flow of the exchange */
+  f: number;
+}
+
+export interface ExchangeArrowData {
   co2intensity: number;
-}
-
-export interface ExchangeArrowData extends ExchangeOverview {
+  netFlow: number;
   rotation: number;
   lonlat: [number, number];
   key: string;
@@ -60,6 +75,7 @@ export interface ExchangeArrowData extends ExchangeOverview {
 export interface ZoneOverviewForTimePeriod {
   [dateTimeKey: string]: ZoneOverview;
 }
+
 export interface ZoneOverview {
   zoneKey: string;
   co2intensity?: number;
@@ -97,6 +113,7 @@ export interface ZoneDetail extends ZoneOverview {
   completenessPercentage?: number;
   // Capacity is only available on hourly details
   capacity?: { [key in ElectricityModeType]: number | null };
+  capacitySources?: { [key in ElectricityModeType]: string[] | null };
   dischargeCo2Intensities: { [key in ElectricityStorageKeyType]: number };
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;
@@ -126,7 +143,7 @@ export interface ZoneDetail extends ZoneOverview {
   productionCo2IntensitySources: { [key in GenerationType]: string };
   renewableRatio: number;
   renewableRatioProduction: number;
-  source: string;
+  source: string[];
   storage: { [key in ElectricityStorageKeyType]: Maybe<number> };
   totalCo2Consumption: number;
   totalCo2Discharge: number | null;
@@ -149,7 +166,12 @@ export interface ZoneDetails {
   zoneStates: {
     [key: string]: ZoneDetail;
   };
-  zoneMessage?: { message: string; issue: string };
+  zoneMessage?: ZoneMessage;
+}
+
+export interface ZoneMessage {
+  message: string;
+  issue?: string;
 }
 
 export interface GeometryProperties {

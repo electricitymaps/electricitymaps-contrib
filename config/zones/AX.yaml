@@ -14,6 +14,9 @@ contributors:
   - tmslaine
   - systemcatch
   - VIKTORVAV99
+country: AX
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -199,6 +202,7 @@ parsers:
   price: ENTSOE.fetch_price
   production: AX.fetch_production
 price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

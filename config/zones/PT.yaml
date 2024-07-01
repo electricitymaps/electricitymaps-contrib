@@ -7,10 +7,13 @@ capacity:
   biomass:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 681.0
+      value: 647.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 647.0
+      value: 681.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 700.0
   coal:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -18,10 +21,13 @@ capacity:
   gas:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 4520.0
+      value: 4585.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 4585.0
+      value: 4433.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 4434.0
   geothermal:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -29,17 +35,20 @@ capacity:
   hydro:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 4371.0
+      value: 4489.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 4489.0
+      value: 4485.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 4711.0
   hydro storage:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 2827.0
-    - datetime: '2024-01-01'
-      source: entsoe.eu
       value: 3707.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 3585.0
   nuclear:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -51,10 +60,13 @@ capacity:
   solar:
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 1032.0
+      value: 1332.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 1332.0
+      value: 1811.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 2744.0
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -63,11 +75,20 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 5353.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 5358.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 5374.0
 contributors:
   - corradio
   - nessie2013
   - Musketeiro
   - RGarrido03
+country: PT
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -343,6 +364,7 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

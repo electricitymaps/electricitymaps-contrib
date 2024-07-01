@@ -45,11 +45,11 @@ capacity:
       value: 1051.0
   solar:
     - datetime: '2023-01-01'
-      source: entsoe.eu
-      value: 18.0
-    - datetime: '2024-01-01'
-      source: entsoe.eu
-      value: 27.0
+      source: fingrid.fi
+      value: 606
+    - datetime: '2023-12-31'
+      source: fingrid.fi
+      value: 1018
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -64,11 +64,17 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 6618.0
+    - datetime: '2024-02-01'
+      source: fingrid.fi
+      value: 6931.8
 contributors:
   - corradio
   - nessie2013
   - gadakast
   - pnook
+country: FI
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -323,10 +329,11 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
-  productionCapacity: ENTSOE.fetch_production_capacity
+  productionCapacity: FI.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
 price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

@@ -32,12 +32,13 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 37.0
+country: MK
 delays:
   consumption: 24
   consumptionForecast: 24
   generationForecast: 24
   price: 24
-  production: 24
+  production: 34
   productionPerModeForecast: 24
 emissionFactors:
   direct:
@@ -218,4 +219,5 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 timezone: Europe/Skopje

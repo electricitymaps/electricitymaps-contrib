@@ -4,9 +4,10 @@ import { bisectLeft } from 'd3-array';
 // // https://observablehq.com/@d3/d3-selection-2-0
 import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
-import { useTranslation } from 'translation/translation';
+import { TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder } from 'utils/constants';
+import { Mode, modeOrder, TimeAverages } from 'utils/constants';
+import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
 
@@ -43,17 +44,20 @@ export const detectHoveredDatapointIndex = (
 export const getTooltipPosition = (isMobile: boolean, marker: { x: number; y: number }) =>
   isMobile ? { x: 0, y: 0 } : marker;
 
-// TODO: Deprecate this
-export const isEmpty = (object: any) =>
-  [Object, Array].includes((object || {}).constructor) &&
-  Object.entries(object || {}).length === 0;
-
 export const noop = () => undefined;
 
-export const getTimeScale = (width: number, startTime: Date, endTime: Date) =>
-  scaleTime()
+export const getTimeScale = (
+  width: number,
+  startTime?: Date | null,
+  endTime?: Date | null
+) => {
+  if (!startTime || !endTime) {
+    return null;
+  }
+  return scaleTime()
     .domain([new Date(startTime), new Date(endTime)])
     .range([0, width]);
+};
 
 export const getStorageKey = (name: ElectricityStorageType): string | undefined => {
   switch (name) {
@@ -112,6 +116,35 @@ export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   return datetimes[index + 1];
 };
 
+export function determineUnit(
+  displayByEmissions: boolean,
+  currentZoneDetail: ZoneDetail,
+  mixMode: Mode,
+  timeAverage: TimeAverages,
+  t: TFunction
+) {
+  if (displayByEmissions) {
+    return getUnit(
+      formatCo2(getTotalEmissionsAvailable(currentZoneDetail, mixMode)) +
+        ' ' +
+        t('ofCO2eq')
+    );
+  }
+
+  return timeAverage === TimeAverages.HOURLY
+    ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode)))
+    : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
+}
+
+function getUnit(valueAndUnit: string | number) {
+  const regex = /\s+(.+)/;
+  const match = valueAndUnit.toString().match(regex);
+  if (!match) {
+    return '';
+  }
+  return match[1];
+}
+
 export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
   // If both the numerator and denominator are zeros,
   // interpret the ratio as zero instead of NaN.
@@ -160,15 +193,13 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
-export function getBadgeText(chartData: AreaGraphElement[]) {
-  const { __ } = useTranslation();
-
+export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
   const allEstimated = chartData.every(
     (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
   );
 
   if (allEstimated) {
-    return __('estimation-badge.fully-estimated');
+    return t('estimation-badge.fully-estimated');
   }
 
   const hasEstimation = chartData.some(
@@ -176,6 +207,29 @@ export function getBadgeText(chartData: AreaGraphElement[]) {
   );
 
   if (hasEstimation) {
-    return __('estimation-badge.partially-estimated');
+    return t('estimation-badge.partially-estimated');
   }
+}
+
+export function extractLinkFromSource(
+  source: string,
+  sourceToLinkMapping: {
+    [key: string]: string;
+  }
+) {
+  const link = sourceToLinkMapping[source];
+  if (link) {
+    return link;
+  }
+
+  if (!source.includes('.')) {
+    return null;
+  }
+
+  if (source.includes('http')) {
+    return source;
+  }
+
+  // We on purpose don't use https due to some sources not supporting it (and the majority that does will automatically redirect anyway)
+  return `http://${source}`;
 }

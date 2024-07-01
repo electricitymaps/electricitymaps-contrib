@@ -1,7 +1,6 @@
 import { useGetSolar } from 'api/getWeatherData';
 import { useAtom, useSetAtom } from 'jotai';
-import { useEffect, useMemo, useRef } from 'react';
-import { MapboxMap } from 'react-map-gl';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ToggleOptions } from 'utils/constants';
 import {
   selectedDatetimeIndexAtom,
@@ -33,7 +32,7 @@ function convertYToLat(yMax: number, y: number): number {
   );
 }
 
-export default function SolarLayer({ map }: { map?: MapboxMap }) {
+export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
   const setIsLoadingSolarLayer = useSetAtom(solarLayerLoadingAtom);
@@ -48,31 +47,57 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
   const isVisibleReference = useRef(false);
   isVisibleReference.current = isSuccess && isSolarLayerEnabled;
 
-  const canvasScale = 4;
+  const [canvasScale, setCanvasScale] = useState(4);
+
+  // Shrink canvasScale so that canvas dimensions don't exceed WebGL MAX_TEXTURE_SIZE of the user's device
+  useEffect(() => {
+    const gl = document.createElement('canvas').getContext('webgl');
+    if (gl) {
+      const targetCanvasScale =
+        gl.getParameter(gl.MAX_TEXTURE_SIZE) /
+        Math.max(3 * (solarData?.header.nx ?? 360), solarData?.header.ny ?? 180);
+      const newCanvasScale = Math.max(1, Math.min(4, Math.floor(targetCanvasScale)));
+      setCanvasScale(newCanvasScale);
+    }
+  }, [solarData?.header.nx, solarData?.header.ny]);
+
   const node: HTMLCanvasElement = useMemo(() => {
     const canvas = document.createElement('canvas');
     // wrap around Earth three times to avoid a seam where 180 and -180 meet
     canvas.width = 3 * canvasScale * (solarData?.header.nx ?? 360);
     canvas.height = canvasScale * (solarData?.header.ny ?? 180);
     return canvas;
-  }, [solarData?.header.nx, solarData?.header.ny]);
+  }, [canvasScale, solarData?.header.nx, solarData?.header.ny]);
 
   useEffect(() => {
     if (!node || !map?.isStyleLoaded()) {
       return;
     }
+
     const north = gudermannian(convertYToLat(node.height - 1, 0));
     const south = gudermannian(convertYToLat(node.height - 1, node.height - 1));
-    map.addSource('solar', {
-      type: 'canvas',
-      canvas: node,
-      coordinates: [
-        [-540, north],
-        [539.999, north],
-        [539.999, south],
-        [-540, south],
-      ],
-    });
+
+    map.addSource(
+      'solar',
+      {
+        type: 'canvas',
+        canvas: node,
+        coordinates: [
+          [-540, north],
+          [539.999, north],
+          [539.999, south],
+          [-540, south],
+        ],
+      } as any // Workaround for https://github.com/maplibre/maplibre-gl-js/issues/2242
+    );
+
+    if (isVisibleReference.current) {
+      if (!map.getLayer('solar-point')) {
+        map.addLayer({ id: 'solar-point', type: 'raster', source: 'solar' });
+      }
+      setIsLoadingSolarLayer(false);
+    }
+
     return () => {
       if (map.getLayer('solar-point')) {
         map.removeLayer('solar-point');
@@ -81,23 +106,7 @@ export default function SolarLayer({ map }: { map?: MapboxMap }) {
         map.removeSource('solar');
       }
     };
-  }, [map, node]);
-
-  useEffect(() => {
-    if (!node || !map?.isStyleLoaded() || !isVisibleReference.current) {
-      return;
-    }
-    if (!map.getLayer('solar-point')) {
-      map.addLayer({ id: 'solar-point', type: 'raster', source: 'solar' });
-    }
-    setIsLoadingSolarLayer(false);
-
-    return () => {
-      if (map.getLayer('solar-point')) {
-        map.removeLayer('solar-point');
-      }
-    };
-  }, [map, node, isVisibleReference.current]);
+  }, [map, node, setIsLoadingSolarLayer, isVisibleReference.current]);
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {

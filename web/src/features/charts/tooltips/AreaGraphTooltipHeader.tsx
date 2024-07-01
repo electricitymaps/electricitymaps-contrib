@@ -1,7 +1,9 @@
-import Badge from 'components/Badge';
-import { useTranslation } from 'translation/translation';
+import EstimationBadge from 'components/EstimationBadge';
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
+
+import ProductionSourceIcon from '../ProductionsSourceIcons';
 
 interface AreaGraphToolTipHeaderProps {
   squareColor: string;
@@ -10,6 +12,7 @@ interface AreaGraphToolTipHeaderProps {
   title: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
+  productionSource?: string;
 }
 
 export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {
@@ -20,8 +23,9 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
     title,
     hasEstimationPill = false,
     estimatedPercentage,
+    productionSource,
   } = props;
-  const { __, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -34,21 +38,25 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
               width: 16,
             }}
             className="rounded-sm  font-bold"
-          ></div>
+          >
+            {productionSource && (
+              <div className="flex h-4 w-4 justify-center pt-[3px]">
+                <ProductionSourceIcon source={productionSource} />
+              </div>
+            )}
+          </div>
           <p className="px-1 text-base">{title}</p>
         </div>
         <div className="inline-flex items-center gap-x-2">
           {hasEstimationPill && estimatedPercentage !== 0 && (
-            <Badge
-              pillText={
+            <EstimationBadge
+              text={
                 estimatedPercentage
-                  ? i18n.t('estimation-card.aggregated_estimated.pill', {
+                  ? t('estimation-card.aggregated_estimated.pill', {
                       percentage: estimatedPercentage,
                     })
-                  : __('estimation-badge.fully-estimated')
+                  : t('estimation-badge.fully-estimated')
               }
-              type="warning"
-              icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
             />
           )}
           <div className="my-1 h-[32px] max-w-[165px] select-none whitespace-nowrap rounded-full bg-brand-green/10 px-3 py-2 text-sm text-brand-green dark:bg-gray-700 dark:text-white">

@@ -1,0 +1,7562 @@
+[
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0.88
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 3.34
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 34.55
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-14 23:00:00",
+    "mwh": 1.8
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0.28
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 1.07
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 4.75
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 32.04
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 00:00:00",
+    "mwh": 1.8
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0.24
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 1.82
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 7.17
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 28.87
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 01:00:00",
+    "mwh": 1.25
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0.43
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 1.3
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 8.53
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 26.41
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 02:00:00",
+    "mwh": 0.63
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0.22
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0.2
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 1.77
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 8.73
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 25.84
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 03:00:00",
+    "mwh": 0.78
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0.27
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0.15
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 2.85
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 10.89
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 23.46
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 04:00:00",
+    "mwh": 0.2
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0.53
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 2.61
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 12.68
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 21.03
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0.16
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0.63
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 2.56
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 13.78
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 21.11
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0.37
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0.49
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 2.64
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 17.11
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 19.91
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0.43
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 2.78
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 19.18
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 20.68
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0.38
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0.23
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 2.96
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 22.42
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 20.55
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0.13
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0.13
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0.28
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 3.19
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 25.17
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 19.76
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 1.15
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0.46
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 3.25
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 26.11
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0.02
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 17.81
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0.93
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0.27
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 3.26
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 25.98
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 18.73
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0.91
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0.21
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0.67
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 3.32
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 25.98
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 18.68
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0.94
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0.29
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 3.27
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 25.98
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0.02
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 18.86
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0.99
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0.44
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0.93
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 3.3
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 25.98
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 19.14
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 1
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0.23
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 1.28
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 3.39
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 25.98
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 19.26
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0.95
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 1.24
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 3.6
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 25.98
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 18.98
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 1.2
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0.2
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 1.09
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 3.31
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 25.1
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 19.23
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 1.66
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0.31
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0.97
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 3.24
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 22.65
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 19.68
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 1.62
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 1.02
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 3.16
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 22.39
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 18.94
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 1.2
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0.08
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 1.12
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 3.2
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 21.9
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 19.91
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0.69
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0.37
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 1.27
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 3.3
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 22.01
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 19.41
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0.53
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 1.29
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 3.04
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 21.4
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 18.72
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-15 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0.37
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0.52
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 1.28
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 2.75
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 21.44
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 17.77
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 1.28
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 2.61
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 21.17
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 17.75
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 1.19
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 2.71
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 19.76
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 18.12
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0.41
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 1.13
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 2.73
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 18.46
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 19.1
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0.08
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 1.26
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 2.51
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 17.97
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 18.98
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 1.29
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 2.46
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 17.97
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 18.74
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0.3
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 1.28
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 2.38
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 17.97
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0.02
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 20.26
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0.34
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 1.29
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 2.55
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 18.45
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0.02
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 21.26
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 1.29
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 2.82
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 19.39
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 22.08
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0.34
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 1.29
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 3.02
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 19.47
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 24.46
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0.15
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 1.25
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 3.21
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 22.33
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 23.6
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 1.26
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 3.24
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 23.61
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0.06
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 22.4
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0.25
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 1.26
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 3.32
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 23.72
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0.05
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 22.89
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0.19
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 1.29
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 3.2
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 24.97
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 21.26
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 1.3
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 3.05
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 24.93
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 20.36
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0.09
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0.42
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 1.3
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 3.08
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 24.04
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 21.28
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 3.24
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0.11
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0.42
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0.26
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 1.22
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 1.58
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 18.57
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 23.63
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 5.76
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 2.91
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 1.27
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0.56
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 12.34
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 26.35
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 6.79
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 3.02
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0.22
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 1.09
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0.38
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 7.74
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0.02
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 30.1
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 5.36
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 3.01
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0.28
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0.29
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 9.45
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 30.15
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 4.15
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 2.71
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0.55
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0.42
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 10.68
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 28.98
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 2.42
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 2.12
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0.12
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0.31
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 1.28
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 15.74
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 25.63
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 1.63
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 1.63
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0.32
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0.38
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 1.08
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 16.98
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 24.58
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 5.65
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 1.75
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0.34
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0.73
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 11.7
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 23.72
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-16 23:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 3.82
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 2.02
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0.54
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0.18
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0.63
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 12.14
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 23.9
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 00:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 4.31
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 2.32
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0.58
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 10.15
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 25
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 01:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 4.52
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 2.32
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 2.23
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0.02
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0.54
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 6.87
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 24.34
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 02:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 1.83
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 2.32
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0.44
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 1.38
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0.05
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0.32
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 9.8
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 24.6
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 03:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 3.35
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 2.14
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 1.54
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0.37
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 6.5
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 26.62
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 04:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 2.32
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 1.41
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0.3
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0.02
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 1.19
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 9.96
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 26.95
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 05:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 2.25
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 1.31
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0.33
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 1.43
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 13.36
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0.02
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 28.6
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 06:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 1.78
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 1.21
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0.32
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0.1
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 1.55
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 11.67
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 35.03
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 07:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 3.96
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0.9
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 1.57
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0.18
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 2.36
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 9.68
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0.05
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 35.2
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 08:00:00",
+    "mwh": 0.6
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 6.05
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0.77
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0.19
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 3.05
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0.36
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 2.6
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 10.41
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0.05
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 33.22
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 09:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 6.27
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0.52
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0.2
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 3.19
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0.48
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 3.06
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 10.11
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0.05
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 34.75
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 10:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 6.06
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 3.23
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0.74
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 3.42
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 11.54
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0.09
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 32.14
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 11:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 6.15
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0.2
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 3.47
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0.08
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0.52
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 3.39
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 10.69
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0.11
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 32.95
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 12:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 6.04
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0.12
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 3.31
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0.39
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 3.47
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 11.32
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0.09
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 32.15
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 13:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 5.45
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 2.98
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0.4
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 3.75
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 12.1
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0.06
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 31.51
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 14:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 2.87
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0.58
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 2.01
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0.46
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 3.7
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 15.7
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 31.02
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 15:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 3.18
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0.07
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0.63
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 3.87
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 16.86
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 32.27
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 16:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 3.39
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0.74
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0.94
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 3.68
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 14.81
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 32.41
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 17:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 4.83
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0.42
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0.77
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 3.52
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 12.02
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 32.01
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 18:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 1.51
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0.04
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0.81
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 3.32
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 19.51
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0.03
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 26.67
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 19:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 1.47
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0.75
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0.69
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 3.22
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 24.39
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0.01
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 20
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 20:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 3.31
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0.34
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0.64
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 3.22
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 23.66
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 17.82
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 21:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Eiðisverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 3.1
+  },
+  {
+    "powerplant": "Elverkið á Strond",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið á Strond Vatn",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Elverkið í Botni",
+    "motivepower": "Water",
+    "area": "South",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Førka Biogas",
+    "motivepower": "Biogas",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0.06
+  },
+  {
+    "powerplant": "Fossáverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Heygaverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Mýruverkið",
+    "motivepower": "Water",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Neshagi",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0.72
+  },
+  {
+    "powerplant": "Norðstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0.64
+  },
+  {
+    "powerplant": "Suðuroy",
+    "motivepower": "Wind",
+    "area": "South",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 3.11
+  },
+  {
+    "powerplant": "Suðurstreymoy",
+    "motivepower": "Wind",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 23.32
+  },
+  {
+    "powerplant": "Sumba",
+    "motivepower": "Solar",
+    "area": "South",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0
+  },
+  {
+    "powerplant": "Sundsverkið",
+    "motivepower": "Oil",
+    "area": "Main",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 17.73
+  },
+  {
+    "powerplant": "Vágsverkið",
+    "motivepower": "Oil",
+    "area": "South",
+    "date": "2023-07-17 22:00:00",
+    "mwh": 0
+  }
+]

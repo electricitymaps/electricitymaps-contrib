@@ -2,10 +2,10 @@
 // TODO: Uncomment tests
 describe('Map', () => {
   it('interacts with the map', () => {
-    cy.interceptAPI('v7/state/hourly');
+    cy.interceptAPI('v8/state/hourly');
     cy.visit('/?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
-    cy.waitForAPISuccess(`v7/state/hourly`);
+    cy.waitForAPISuccess(`v8/state/hourly`);
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
 
     // closes left panel
@@ -52,6 +52,6 @@ describe('Map', () => {
     // cy.get('[data-test-id=dark-mode-button]').click().click();
 
     // eslint-disable-next-line cypress/require-data-selectors
-    cy.get('.maplibregl-ctrl-zoom-in.mapboxgl-ctrl-zoom-in').click();
+    cy.get('.maplibregl-ctrl-zoom-in.maplibregl-ctrl-zoom-in').click();
   });
 });

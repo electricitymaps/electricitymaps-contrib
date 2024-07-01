@@ -221,3 +221,5 @@ fallbackZoneMixes:
 parsers:
   production: IN_MH.fetch_production
 timezone: Asia/Kolkata
+region: Asia
+country: IN

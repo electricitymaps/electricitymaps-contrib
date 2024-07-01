@@ -86,6 +86,9 @@ contributors:
   - nessie2013
   - IV1T3
   - sin
+country: DE
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -362,6 +365,7 @@ parsers:
   productionCapacity: DE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

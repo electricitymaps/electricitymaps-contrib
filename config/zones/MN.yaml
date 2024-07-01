@@ -52,3 +52,5 @@ parsers:
   production: MN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: Asia/Ulaanbaatar
+region: Asia
+country: MN

@@ -159,18 +159,14 @@ def fetch_consumption_df(
     datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
     consumption_url = {
         "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
-        "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
-            datestamp
-        ),
+        "JP-TH": f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{datestamp}.csv",
         "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d-j.csv",
         "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
         "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{datestamp}.csv",
         "JP-SK": "http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv",
-        "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
-            datestamp
-        ),
+        "JP-KY": f"https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{datestamp}.csv",
         "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
 
@@ -223,18 +219,14 @@ def fetch_consumption_forecast(
 
     consumption_url = {
         "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
-        "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
-            datestamp
-        ),
+        "JP-TH": f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{datestamp}.csv",
         "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv",
         "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
         "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{datestamp}.csv",
         "JP-SK": "http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv",
-        "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
-            datestamp
-        ),
+        "JP-KY": f"https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{datestamp}.csv",
         "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
     # Skip non-tabular data at the start of source files

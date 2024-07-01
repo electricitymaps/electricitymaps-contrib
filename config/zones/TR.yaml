@@ -12,6 +12,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1810.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1950.0
   coal:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -20,32 +23,53 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 28120.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 27630.0
   geothermal:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1740.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1750.0
   hydro:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 31570.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 31780.0
   oil:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 690.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 660.0
   solar:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 9430.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 11290.0
   wind:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 11400.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 11700.0
 contributors:
   - corradio
   - olivierSemet
   - lorrieq
   - nessie2013
   - lgrigoryeva1
+country: TR
+delays:
+  production: 8
 emissionFactors:
   direct:
     battery discharge:
@@ -256,6 +280,7 @@ parsers:
   production: TR.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Asia
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

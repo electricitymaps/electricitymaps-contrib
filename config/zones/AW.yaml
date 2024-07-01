@@ -129,3 +129,5 @@ parsers:
   production: AW.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Aruba
+region: Americas
+country: AW

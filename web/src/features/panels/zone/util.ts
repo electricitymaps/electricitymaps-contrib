@@ -20,6 +20,7 @@ export const getHasSubZones = (zoneId?: string) => {
 
 export enum ZoneDataStatus {
   AGGREGATE_DISABLED = 'aggregate_disabled',
+  FULLY_DISABLED = 'fully_disabled',
   NO_INFORMATION = 'no_information',
   NO_REAL_TIME_DATA = 'dark',
   AVAILABLE = 'available',
@@ -44,8 +45,6 @@ export const getZoneDataStatus = (
   // If there is no config for the zone, we assume we do not have any data
   const zoneConfig = config.zones[zoneId];
   if (!zoneConfig) {
-    console.log(zoneConfig);
-
     return ZoneDataStatus.NO_INFORMATION;
   }
 
@@ -53,6 +52,9 @@ export const getZoneDataStatus = (
     config.zones[zoneId].aggregates_displayed &&
     !config.zones[zoneId].aggregates_displayed.includes(timeAverage)
   ) {
+    if (config.zones[zoneId].aggregates_displayed[0] === 'none') {
+      return ZoneDataStatus.FULLY_DISABLED;
+    }
     return ZoneDataStatus.AGGREGATE_DISABLED;
   }
 
@@ -76,4 +78,19 @@ export function getContributors(zoneId: string) {
 export function getDisclaimer(zoneId: string) {
   const zoneConfig = config.zones[zoneId];
   return zoneConfig?.disclaimer;
+}
+
+export function showEstimationFeedbackCard(
+  collapsedNumber: number,
+  isFeedbackCardVisibile: boolean,
+  hasFeedbackCardBeenSeen: string | boolean,
+  setHasFeedbackCardBeenSeen: (value: boolean) => void
+) {
+  if ((!hasFeedbackCardBeenSeen && collapsedNumber > 0) || isFeedbackCardVisibile) {
+    if (!hasFeedbackCardBeenSeen) {
+      setHasFeedbackCardBeenSeen(true);
+    }
+    return true;
+  }
+  return false;
 }

@@ -2,10 +2,12 @@ import * as Portal from '@radix-ui/react-portal';
 import useGetState from 'api/getState';
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
+import EstimationBadge from 'components/EstimationBadge';
+import OutageBadge from 'components/OutageBadge';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneName } from 'components/ZoneName';
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
@@ -18,7 +20,7 @@ import {
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
-function TooltipInner({
+export function TooltipInner({
   zoneData,
   date,
   zoneId,
@@ -27,53 +29,68 @@ function TooltipInner({
   zoneId: string;
   zoneData: StateZoneData;
 }) {
-  const {
-    co2intensity,
-    co2intensityProduction,
-    fossilFuelRatio,
-    fossilFuelRatioProduction,
-    renewableRatio,
-    renewableRatioProduction,
-  } = zoneData;
-  const { __ } = useTranslation();
+  const { e, o } = zoneData;
+
+  const { t } = useTranslation();
 
   const [currentMode] = useAtom(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
-  const intensity = getCarbonIntensity(
-    isConsumption,
-    co2intensity,
-    co2intensityProduction
-  );
-  const fossilFuelPercentage = getFossilFuelRatio(
-    isConsumption,
-    fossilFuelRatio,
-    fossilFuelRatioProduction
-  );
-  const renewable = getRenewableRatio(
-    isConsumption,
-    renewableRatio,
-    renewableRatioProduction
-  );
+  const intensity = getCarbonIntensity(zoneData, isConsumption);
+  const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
+  const renewable = getRenewableRatio(zoneData, isConsumption);
+
   return (
     <div className="w-full text-center">
-      <div className="pl-2">
-        <ZoneName zone={zoneId} textStyle="text-base font-medium" />
-        <div className="flex self-start text-xs">{date}</div>{' '}
-      </div>
-      <div className="flex w-full flex-grow py-1 sm:pr-2">
-        <div className="flex w-full flex-grow flex-row justify-around">
-          <CarbonIntensitySquare intensity={intensity} />
-          <div className="pl-2 pr-6">
+      <div className="p-3">
+        <div className="flex w-full flex-row justify-between">
+          <div className="max-w-full truncate pl-2">
+            <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
+            <div className="flex self-start text-sm text-neutral-600 dark:text-neutral-400">
+              {date}
+            </div>{' '}
+          </div>
+          <DataValidityBadge hasOutage={o} estimated={e} />
+        </div>
+        <div className="flex w-full grow py-1 pt-4 sm:pr-2">
+          <div className="flex w-full grow flex-row justify-around">
+            <CarbonIntensitySquare intensity={intensity} />
             <CircularGauge
-              name={__('country-panel.lowcarbon')}
+              name={t('country-panel.lowcarbon')}
               ratio={fossilFuelPercentage}
             />
+            <CircularGauge name={t('country-panel.renewable')} ratio={renewable} />
           </div>
-          <CircularGauge name={__('country-panel.renewable')} ratio={renewable} />
         </div>
       </div>
     </div>
   );
+}
+
+function DataValidityBadge({
+  hasOutage,
+  estimated,
+}: {
+  hasOutage?: boolean | null;
+  estimated?: number | boolean | null;
+}) {
+  const { t } = useTranslation();
+
+  if (hasOutage) {
+    return <OutageBadge />;
+  }
+  if (estimated === true) {
+    return <EstimationBadge text={t('estimation-badge.fully-estimated')} />;
+  }
+  if (estimated && estimated > 0) {
+    return (
+      <EstimationBadge
+        text={t(`estimation-card.aggregated_estimated.pill`, {
+          percentage: estimated,
+        })}
+      />
+    );
+  }
+  return null;
 }
 
 export default function MapTooltip() {
@@ -82,7 +99,7 @@ export default function MapTooltip() {
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [isMapMoving] = useAtom(mapMovingAtom);
-  const { i18n, __ } = useTranslation();
+  const { i18n, t } = useTranslation();
   const { data } = useGetState();
 
   if (!hoveredZone || isMapMoving) {
@@ -90,13 +107,12 @@ export default function MapTooltip() {
   }
 
   const { x, y } = mousePosition;
-  const hoveredZoneData = data?.data?.zones[hoveredZone.zoneId] ?? undefined;
-  const zoneData = hoveredZoneData
-    ? data?.data?.zones[hoveredZone.zoneId][selectedDatetime.datetimeString]
-    : undefined;
+  const zoneData =
+    data?.data?.datetimes[selectedDatetime.datetimeString]?.z[hoveredZone.zoneId] ??
+    undefined;
 
   const screenWidth = window.innerWidth;
-  const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 300, 170);
+  const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);
   const emptyTooltipPosition = getSafeTooltipPosition(x, y, screenWidth, 176, 70);
 
   const formattedDate = formatDate(
@@ -109,7 +125,7 @@ export default function MapTooltip() {
     return (
       <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
         <div
-          className="pointer-events-none relative w-[300px] rounded border bg-zinc-50 p-3  text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800 "
+          className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900 "
           style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
         >
           <div>
@@ -132,7 +148,7 @@ export default function MapTooltip() {
         <div>
           <ZoneName zone={hoveredZone.zoneId} textStyle="font-medium" />
           <div className="flex self-start text-xs">{formattedDate}</div>
-          <p className="text-start">{__('tooltips.noParserInfo')}</p>
+          <p className="text-start">{t('tooltips.noParserInfo')}</p>
         </div>
       </div>
     </Portal.Root>

@@ -10,7 +10,7 @@ capacity:
       value: 68.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 71.0
+      value: 107.0
   coal:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -21,7 +21,7 @@ capacity:
       value: 70.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 76.0
+      value: 72.0
   geothermal:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -48,7 +48,7 @@ capacity:
       value: 300.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 350.0
+      value: 415.0
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -59,10 +59,13 @@ capacity:
       value: 152.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 174.0
+      value: 208.0
 contributors:
   - corradio
   - clawfire
+country: LU
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -171,6 +174,7 @@ parsers:
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

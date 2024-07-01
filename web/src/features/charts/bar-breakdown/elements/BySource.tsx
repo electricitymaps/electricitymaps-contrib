@@ -1,6 +1,8 @@
-import Badge from 'components/Badge';
+import EstimationBadge from 'components/EstimationBadge';
+import { TFunction } from 'i18next';
+import { PlugCircleBoltIcon } from 'icons/plugCircleBoltIcon';
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -11,59 +13,78 @@ import {
 const getText = (
   timePeriod: TimeAverages,
   dataType: 'emissions' | 'production' | 'consumption',
-  __: (text: string) => string
+  t: TFunction
 ) => {
   const translations = {
     hourly: {
-      emissions: __('country-panel.by-source.emissions'),
-      production: __('country-panel.by-source.electricity-production'),
-      consumption: __('country-panel.by-source.electricity-consumption'),
+      emissions: t('country-panel.by-source.emissions'),
+      production: t('country-panel.by-source.electricity-production'),
+      consumption: t('country-panel.by-source.electricity-consumption'),
     },
     default: {
-      emissions: __('country-panel.by-source.total-emissions'),
-      production: __('country-panel.by-source.total-electricity-production'),
-      consumption: __('country-panel.by-source.total-electricity-consumption'),
+      emissions: t('country-panel.by-source.total-emissions'),
+      production: t('country-panel.by-source.total-electricity-production'),
+      consumption: t('country-panel.by-source.total-electricity-consumption'),
     },
   };
   const period = timePeriod === TimeAverages.HOURLY ? 'hourly' : 'default';
   return translations[period][dataType];
 };
 
+function getEstimatedText(
+  t: TFunction,
+  estimatedPercentage?: number,
+  estimationMethod?: string
+) {
+  if (estimatedPercentage) {
+    return t('estimation-card.aggregated_estimated.pill', {
+      percentage: estimatedPercentage,
+    });
+  }
+  if (estimationMethod === 'threshold_filtered') {
+    return t('estimation-card.threshold_filtered.pill');
+  }
+
+  return t('estimation-badge.fully-estimated');
+}
+
 export default function BySource({
   className,
   hasEstimationPill = false,
   estimatedPercentage,
+  unit,
+  estimationMethod,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
+  unit?: string | number;
+  estimationMethod?: string;
 }) {
-  const { __, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
 
   const dataType = displayByEmissions ? 'emissions' : mixMode;
-  const text = getText(timeAverage, dataType, __);
+  const text = getText(timeAverage, dataType, t);
 
   return (
-    <div
-      className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
-    >
-      {text}
-      {hasEstimationPill && (
-        <Badge
-          pillText={
-            estimatedPercentage
-              ? i18n.t('estimation-card.aggregated_estimated.pill', {
-                  percentage: estimatedPercentage,
-                })
-              : __('estimation-badge.fully-estimated')
-          }
-          type="warning"
-          icon="h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
-        />
-      )}
+    <div className="flex flex-col pb-1 pt-4">
+      <div
+        className={`relative flex flex-row justify-between text-md font-bold ${className}`}
+      >
+        <div className="flex gap-1">
+          <PlugCircleBoltIcon />
+          {text}
+        </div>
+        {hasEstimationPill && (
+          <EstimationBadge
+            text={getEstimatedText(t, estimatedPercentage, estimationMethod)}
+          />
+        )}
+      </div>
+      {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>
   );
 }

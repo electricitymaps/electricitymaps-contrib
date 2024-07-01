@@ -1,26 +1,26 @@
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
 import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { ZoneDetails } from 'types';
 import { Mode } from 'utils/constants';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
 function LowCarbonTooltip() {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="text-left">
-      <b>{__('tooltips.lowcarbon')}</b>
+      <b>{t('tooltips.lowcarbon')}</b>
       <br />
-      <small>{__('tooltips.lowCarbDescription')}</small>
+      <small>{t('tooltips.lowCarbDescription')}</small>
       <br />
     </div>
   );
 }
 
 export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [currentMode] = useAtom(productionConsumptionAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
@@ -36,19 +36,16 @@ export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
   } = selectedData || {};
 
   const intensity = getCarbonIntensity(
-    isConsumption,
-    co2intensity,
-    co2intensityProduction
+    { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
+    isConsumption
   );
   const renewable = getRenewableRatio(
-    isConsumption,
-    renewableRatio,
-    renewableRatioProduction
+    { c: { rr: renewableRatio }, p: { rr: renewableRatioProduction } },
+    isConsumption
   );
   const fossilFuelPercentage = getFossilFuelRatio(
-    isConsumption,
-    fossilFuelRatio,
-    fossilFuelRatioProduction
+    { c: { fr: fossilFuelRatio }, p: { fr: fossilFuelRatioProduction } },
+    isConsumption
   );
 
   return (
@@ -60,13 +57,13 @@ export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
           withSubtext
         />
         <CircularGauge
-          name={__('country-panel.lowcarbon')}
+          name={t('country-panel.lowcarbon')}
           ratio={fossilFuelPercentage}
           tooltipContent={<LowCarbonTooltip />}
           testId="zone-header-lowcarbon-gauge"
         />
         <CircularGauge
-          name={__('country-panel.renewable')}
+          name={t('country-panel.renewable')}
           ratio={renewable}
           testId="zone-header-renewable-gauge"
         />

@@ -45,5 +45,9 @@ export function useEmissionChartData() {
     layerStroke: undefined,
   };
 
-  return { data: result, isLoading, isError };
+  return {
+    data: result,
+    isLoading,
+    isError,
+  };
 }
