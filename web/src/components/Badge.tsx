@@ -11,12 +11,13 @@ export default function Badge({ pillText, type, icon }: BadgeProps) {
 
   switch (type) {
     case 'warning': {
-      classes = 'bg-amber-700/10 dark:bg-amber-500/10 text-amber-700 dark:text-amber-500';
+      classes =
+        'bg-warning/10 dark:bg-warning-dark/10 text-warning dark:text-warning-dark';
       break;
     }
     case 'success': {
       classes =
-        'bg-emerald-800/10 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-500';
+        'bg-success/10 dark:bg-success-dark/10 text-success dark:text-success-dark';
       break;
     }
     default: {
