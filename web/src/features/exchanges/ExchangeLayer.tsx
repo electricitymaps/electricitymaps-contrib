@@ -34,7 +34,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
             key={arrow.key}
             data={arrow}
             map={map}
-            colorBlindMode={isColorBlindModeEnabled}
+            useColorBlindMode={isColorBlindModeEnabled}
             viewportWidth={width}
             viewportHeight={height}
             isMobile={isMobile}

@@ -19,10 +19,10 @@ import {
 import { isSettingsModalOpenAtom } from './modalAtoms';
 
 function WeatherToggleButton({
-  allowed,
+  isAllowed,
   type,
 }: {
-  allowed: boolean;
+  isAllowed: boolean;
   type: 'wind' | 'solar';
 }) {
   const { t } = useTranslation();
@@ -41,13 +41,15 @@ function WeatherToggleButton({
 
   return (
     <>
-      {!allowed && <p className="text-sm italic text-red-400">{t(`${type}DataError`)}</p>}
+      {!isAllowed && (
+        <p className="text-sm italic text-red-400">{t(`${type}DataError`)}</p>
+      )}
 
       <Button
         onClick={isLoadingLayer ? () => {} : onToggle}
         size="lg"
         type={isEnabled ? 'primary' : 'secondary'}
-        disabled={!allowed}
+        disabled={!isAllowed}
         backgroundClasses="w-[330px] h-[45px]"
         icon={
           isLoadingLayer ? (
@@ -87,8 +89,8 @@ export function SettingsModalContent() {
         <SpatialAggregatesToggle />
       </div>
       <LanguageSelector isMobile />
-      <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
-      <WeatherToggleButton allowed={areWeatherLayersAllowed} type="solar" />
+      <WeatherToggleButton isAllowed={areWeatherLayersAllowed} type="wind" />
+      <WeatherToggleButton isAllowed={areWeatherLayersAllowed} type="solar" />
       <Button
         size="lg"
         type={isColorblindModeEnabled ? 'primary' : 'secondary'}

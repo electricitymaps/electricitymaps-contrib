@@ -97,6 +97,7 @@
     "react/boolean-prop-naming": [
       "error",
       {
+        "rule": "^(is|has|as|with|should|use|show|displayBy)[A-Z]([A-Za-z0-9]?)+|^disabled$",
         "validateNested": true
       }
     ],

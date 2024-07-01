@@ -14,7 +14,7 @@ interface ExchangeArrowProps {
   viewportWidth: number;
   viewportHeight: number;
   map: maplibregl.Map;
-  colorBlindMode: boolean;
+  useColorBlindMode: boolean;
   isMobile: boolean;
 }
 
@@ -23,7 +23,7 @@ function ExchangeArrow({
   viewportWidth,
   viewportHeight,
   map,
-  colorBlindMode,
+  useColorBlindMode,
   isMobile,
 }: ExchangeArrowProps) {
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
@@ -77,7 +77,7 @@ function ExchangeArrow({
     return null;
   }
 
-  const prefix = colorBlindMode ? 'colorblind-' : '';
+  const prefix = useColorBlindMode ? 'colorblind-' : '';
   const intensity = quantizedCo2IntensityScale(co2intensity);
   const speed = quantizedExchangeSpeedScale(absFlow);
   const imageSource = resolvePath(
