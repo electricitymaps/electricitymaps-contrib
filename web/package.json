@@ -165,7 +165,7 @@
     "eslint-plugin-testing-library": "^6.2.0",
     "eslint-plugin-unicorn": "^51.0.1",
     "husky": "8.0.3",
-    "jsdom": "20.0.1",
+    "jsdom": "20.0.3",
     "lint-staged": "13.3.0",
     "msw": "2.3.1",
     "nodemon": "^2.0.22",
