@@ -21,7 +21,8 @@ const renderTick = (
   displayLive: boolean,
   lang: string,
   selectedTimeAggregate: TimeAverages,
-  isLoading: boolean
+  isLoading: boolean,
+  latestString: string
 ) => {
   const shouldShowValue =
     index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
@@ -33,7 +34,14 @@ const renderTick = (
     >
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 1 : 0.2} />
       {shouldShowValue &&
-        renderTickValue(value, index, displayLive, lang, selectedTimeAggregate)}
+        renderTickValue(
+          value,
+          index,
+          displayLive,
+          lang,
+          selectedTimeAggregate,
+          latestString
+        )}
     </g>
   );
 };
@@ -43,12 +51,13 @@ const renderTickValue = (
   index: number,
   displayLive: boolean,
   lang: string,
-  selectedTimeAggregate: TimeAverages
+  selectedTimeAggregate: TimeAverages,
+  latestString: string
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
   return shouldDisplayLive ? (
     <text fill="#DE3054" y="9" dy="0.71em" fontWeight="bold">
-      LIVE
+      {latestString}
     </text>
   ) : (
     <text fill="currentColor" y="9" dy="0.71em" fontWeight="bold">
@@ -80,7 +89,7 @@ function TimeAxis({
   isLiveDisplay,
   className,
 }: TimeAxisProps) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
 
   const width = observerWidth - 24;
@@ -113,7 +122,8 @@ function TimeAxis({
             isLiveDisplay ?? false,
             i18n.language,
             selectedTimeAggregate,
-            isLoading
+            isLoading,
+            t('time-controller.latest')
           )
         )}
       </g>
