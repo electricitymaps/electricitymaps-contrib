@@ -17,5 +17,5 @@ export default function TimeHeader() {
     timeAverage
   );
 
-  return !isLoading && <Badge pillText={date} />;
+  return !isLoading && <Badge pillText={date} type="success" />;
 }

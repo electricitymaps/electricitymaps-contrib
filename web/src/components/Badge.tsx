@@ -1,4 +1,4 @@
-export type PillType = 'default' | 'warning';
+export type PillType = 'default' | 'warning' | 'success';
 
 type BadgeProps = {
   pillText: string;
@@ -7,10 +7,22 @@ type BadgeProps = {
 };
 
 export default function Badge({ pillText, type, icon }: BadgeProps) {
-  const classes =
-    type == 'warning'
-      ? 'bg-amber-700/10 dark:bg-amber-500/10 text-amber-700 dark:text-amber-500'
-      : 'bg-neutral-200 dark:bg-gray-700 text-black dark:text-white';
+  let classes = '';
+
+  switch (type) {
+    case 'warning': {
+      classes = 'bg-amber-700/10 dark:bg-amber-500/10 text-amber-700 dark:text-amber-500';
+      break;
+    }
+    case 'success': {
+      classes =
+        'bg-emerald-800/10 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-500';
+      break;
+    }
+    default: {
+      classes = 'bg-neutral-200 dark:bg-gray-700 text-black dark:text-white';
+    }
+  }
 
   return (
     <span
