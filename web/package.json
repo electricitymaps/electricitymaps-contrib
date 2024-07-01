@@ -33,7 +33,8 @@
     "lint:ci": "eslint --cache --quiet --ignore-path .gitignore --ext .ts,.tsx . ",
     "validate-generated-files": "VERIFY_NO_UPDATES=1 pnpm run create-generated-files",
     "validate": "run-p typecheck lint:ci format:ci test:ci validate-generated-files",
-    "storybook": "storybook dev -p 6006"
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build"
   },
   "lint-staged": {
     "*": "prettier -uw --cache",
