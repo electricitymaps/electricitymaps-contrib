@@ -55,13 +55,9 @@ const renderTickValue = (
   latestString: string
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
-  return shouldDisplayLive ? (
-    <text fill="#DE3054" y="9" dy="0.71em" fontWeight="bold">
-      {latestString}
-    </text>
-  ) : (
+  return (
     <text fill="currentColor" y="9" dy="0.71em" fontWeight="bold">
-      {formatDateTick(v, lang, selectedTimeAggregate)}
+      {shouldDisplayLive ? latestString : formatDateTick(v, lang, selectedTimeAggregate)}
     </text>
   );
 };
