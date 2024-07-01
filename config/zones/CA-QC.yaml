@@ -19,6 +19,9 @@ contributors:
   - pjakobsen
   - madsnedergaard
   - KabelWlan
+country: CA
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -220,6 +223,5 @@ fallbackZoneMixes:
 parsers:
   consumption: CA_QC.fetch_consumption
   production: CA_QC.fetch_production
-timezone: America/Toronto
 region: Americas
-country: CA
+timezone: America/Toronto
