@@ -57,22 +57,22 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 635.0561225236347
     oil:
-      -datetime: '2017-01-01'
+      - datetime: '2017-01-01'
         source: EU-ETS, REE
         value: 773.092
-      -datetime: '2018-01-01'
+      - datetime: '2018-01-01'
         source: EU-ETS, REE
         value: 814.399
-      -datetime: '2019-01-01'
+      - datetime: '2019-01-01'
         source: EU-ETS, REE
         value: 812.544
-      -datetime: '2020-01-01'
+      - datetime: '2020-01-01'
         source: EU-ETS, REE
         value: 777.284
-      -datetime: '2021-01-01'
+      - datetime: '2021-01-01'
         source: EU-ETS, REE
         value: 781.398
-      -datetime: '2022-01-01'
+      - datetime: '2022-01-01'
         source: EU-ETS, REE
         value: 838.759
   lifecycle:
@@ -131,22 +131,22 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
-      -datetime: '2017-01-01'
+      - datetime: '2017-01-01'
         source: EU-ETS, REE
         value: 1017.092
-      -datetime: '2018-01-01'
+      - datetime: '2018-01-01'
         source: EU-ETS, REE
         value: 1058.399
-      -datetime: '2019-01-01'
+      - datetime: '2019-01-01'
         source: EU-ETS, REE
         value: 1056.544
-      -datetime: '2020-01-01'
+      - datetime: '2020-01-01'
         source: EU-ETS, REE
         value: 1021.284
-      -datetime: '2021-01-01'
+      - datetime: '2021-01-01'
         source: EU-ETS, REE
         value: 1025.398
-      -datetime: '2022-01-01'
+      - datetime: '2022-01-01'
         source: EU-ETS, REE
         value: 1082.759
     solar:

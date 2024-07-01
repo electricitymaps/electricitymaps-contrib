@@ -34,22 +34,22 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022
         value: 1156.28
     gas:
-      -datetime: '2017-01-01'
+      - datetime: '2017-01-01'
         source: EU-ETS, REE
         value: 618.289
-      -datetime: '2018-01-01'
+      - datetime: '2018-01-01'
         source: EU-ETS, REE
         value: 590.329
-      -datetime: '2019-01-01'
+      - datetime: '2019-01-01'
         source: EU-ETS, REE
         value: 583.131
-      -datetime: '2020-01-01'
+      - datetime: '2020-01-01'
         source: EU-ETS, REE
         value: 635.217
-      -datetime: '2021-01-01'
+      - datetime: '2021-01-01'
         source: EU-ETS, REE
         value: 581.127
-      -datetime: '2022-01-01'
+      - datetime: '2022-01-01'
         source: EU-ETS, REE
         value: 570.7
     hydro discharge:
@@ -94,22 +94,22 @@ emissionFactors:
           hotspots of coal power generation."
         value: 1235.586989
     gas:
-      -datetime: '2017-01-01'
+      - datetime: '2017-01-01'
         source: EU-ETS, REE
         value: 738.289
-      -datetime: '2018-01-01'
+      - datetime: '2018-01-01'
         source: EU-ETS, REE
         value: 710.329
-      -datetime: '2019-01-01'
+      - datetime: '2019-01-01'
         source: EU-ETS, REE
         value: 703.131
-      -datetime: '2020-01-01'
+      - datetime: '2020-01-01'
         source: EU-ETS, REE
         value: 755.217
-      -datetime: '2021-01-01'
+      - datetime: '2021-01-01'
         source: EU-ETS, REE
         value: 701.127
-      -datetime: '2022-01-01'
+      - datetime: '2022-01-01'
         source: EU-ETS, REE
         value: 690.7
     hydro:
