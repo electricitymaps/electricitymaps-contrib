@@ -14,7 +14,7 @@ import { getRankedState } from './getRankingPanelData';
 import RankingPanelAccordion from './RankingPanelAccordion';
 import SearchBar from './SearchBar';
 import SocialIconRow from './SocialIcons';
-import ZoneList from './ZoneList';
+import { VirtualizedZoneList } from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
   const { t } = useTranslation();
@@ -63,7 +63,7 @@ export default function RankingPanel(): ReactElement {
         searchHandler={inputHandler}
         value={searchTerm}
       />
-      <ZoneList data={filteredList} />
+      <VirtualizedZoneList data={filteredList} />
       <div className="space-y-4 p-2">
         <RankingPanelAccordion />
         <HorizontalDivider />
