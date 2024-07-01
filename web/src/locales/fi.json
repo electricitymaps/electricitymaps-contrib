@@ -35,7 +35,6 @@
     "renewable": "Uusiutuva",
     "electricityproduction": "Sähkön tuotanto",
     "electricityconsumption": "Sähkön kulutus",
-    "bysource": "alkuperä",
     "emissions": "Hiilidioksidipäästöt",
     "helpfrom": "heidän avustuksella",
     "noDataAtTimestamp": "Tiedot eivät ole väliaikaisesti käytettävissä valitulle ajankohdalle",
@@ -84,11 +83,6 @@
   },
   "misc": {
     "maintitle": "Sähkönkulutuksen reaaliaikiaset hiilidioksidipäästöt",
-    "oops": "Meillä on vaikeuksia palvelimen saavuttamisessa. Yritämme uudelleen muutamassa sekunnissa.",
-    "retrynow": "Yritä uudelleen nyt",
-    "database-ad": "Etsitkö historiallista tietoa? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Tutustu tietokantaamme!</a>",
-    "api-ad": "Haluatko live-tietoja sovelluksessasi tai laitteessasi? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Kokeile meidän API:ta!</a>",
-    "legend": "Selite",
     "faq": "Usein Kysytyt Kysymykset",
     "dismiss": "Ohita",
     "reload": "Lataa uudelleen"
@@ -141,8 +135,6 @@
     "groupName": "Menetelmämme",
     "carbonIntensity-question": "Mikä on \"hiili-intensiteetti\"?",
     "carbonIntensity-answer": "Hiili-intensiteetti on lukema kasvihuonekaasupäästöistä, jotka liittyvät kuluttamasi sähkön tuotantoon (gCO₂eq / kWh - grammaa hiilidioksidia vastaavia päästöjä kilowattitunnin kulutuksesta). <br> <br> Mittaamme sähkönkulutuksen (ei tuotannon) päästöt, tarkoittaen kaikkia kasvihuonekaasupäästöjä (sekä hiilidioksidi että muut kasvihuonekaasut, kuten metaani), joita on käytetty tuottamaan alueella kuluttamaa sähköä ottaen huomioon muilta alueilta tuodun sähkön hiili-intensiteetit. Käytämme elinkaarianalyysimenetelmää (LCA), jossa otamme huomioon voimalaitosten koko elinkaaren päästöt (rakentaminen, polttoaineen tuotanto, toiminnalliset päästöt ja käytöstäpoisto).",
-    "consumptionFocus-question": "Miksi laskette sähkönkulutuksen hiili-intensiteetin tuotannon sijasta?",
-    "consumptionFocus-answer": "Uskomme, että kansalaisten olisi oltava vastuussa kuluttamastaan sähköstä, ei sähköstä, jota tuotetaan alueella, jolla he sattuvat asumaan. Lisäksi uskomme, että alueiden ei pitäisi pystyä 'väärentämään' heikkoa ilmastovaikutusta yksinkertaisesti siirtämällä likaisen energiantuotannon muille alueille ja tuomalla sähkön kyseisiltä alueilta.",
     "renewableLowCarbonDifference-question": "Mitä eroa on 'uusiutuvilla' ja 'vähähiilisillä' energianlähteillä?",
     "renewableLowCarbonDifference-answer": "Uusiutuvan energiantuotanto perustuu uusiutuviin energialähteisiin, kuten tuulen ja veden virtaukseen, auringonpaisteeseen ja maalämpöön. Vähähiilinen energiantuotanto tarkoittaa, että tuotantoon liittyy erittäin alhainen kasvihuonekaasupäästö, esimerkiksi ydinvoiman tuotannossa.",
     "importsAndExports-question": "Otattekoko huomioon sähkön tuonnin ja viennin?",
@@ -406,10 +398,6 @@
     },
     "CK": {
       "zoneName": "Cookinsaaret"
-    },
-    "CL-SING-SIC": {
-      "countryName": "Chile",
-      "zoneName": "SING/SIC"
     },
     "CL-SEM": {
       "countryName": "Chile",
@@ -1018,9 +1006,6 @@
     },
     "MW": {
       "zoneName": "Malawi"
-    },
-    "MX": {
-      "countryName": "Meksiko"
     },
     "MX-BC": {
       "countryName": "Meksiko",
