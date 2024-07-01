@@ -18,8 +18,8 @@ importers:
         specifier: ^4.19.2
         version: 4.19.2
       nodemon:
-        specifier: ^3.0.3
-        version: 3.0.3
+        specifier: ^3.1.4
+        version: 3.1.4
 
 packages:
 
@@ -293,8 +293,8 @@ packages:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
 
-  nodemon@3.0.3:
-    resolution: {integrity: sha512-7jH/NXbFPxVaMwmBCC2B9F/V6X1VkEdNgx3iu9jji8WxWcvhMWkmhNWhI5077zknOnZnBzba9hZP6bCPJLSReQ==}
+  nodemon@3.1.4:
+    resolution: {integrity: sha512-wjPBbFhtpJwmIeY2yP7QF+UKzPfltVGtfce1g/bB15/8vCGZj8uxD62b/b9M9/WVgme0NZudpownKN+c0plXlQ==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -714,7 +714,7 @@ snapshots:
 
   negotiator@0.6.3: {}
 
-  nodemon@3.0.3:
+  nodemon@3.1.4:
     dependencies:
       chokidar: 3.5.3
       debug: 4.3.4(supports-color@5.5.0)
