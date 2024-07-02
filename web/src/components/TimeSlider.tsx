@@ -10,10 +10,6 @@ import { useGetZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
-type ThumbIconPath =
-  | 'slider-thumb.svg'
-  | 'slider-thumb-day.svg'
-  | 'slider-thumb-night.svg';
 
 export interface TimeSliderProps {
   onChange: (datetimeIndex: number) => void;
@@ -63,7 +59,7 @@ export const getTrackBackground = (
 export const getThumbIcon = (
   selectedIndex?: number,
   sets?: NightTimeSet[]
-): JSX.Element => {
+): React.ReactNode => {
   const size = 14;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
     return <FaArrowsLeftRight size={size} />;
@@ -82,7 +78,7 @@ function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) 
 
 export type TimeSliderBasicProps = TimeSliderProps & {
   trackBackground: string;
-  thumbIcon: ThumbIconPath;
+  thumbIcon: React.ReactNode;
 };
 export function TimeSliderBasic({
   onChange,
