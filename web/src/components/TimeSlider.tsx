@@ -3,6 +3,7 @@ import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom } from 'jotai/react';
+import { FaArrowsLeftRight, FaMoon, FaSun } from 'react-icons/fa6';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
@@ -62,14 +63,15 @@ export const getTrackBackground = (
 export const getThumbIcon = (
   selectedIndex?: number,
   sets?: NightTimeSet[]
-): ThumbIconPath => {
+): JSX.Element => {
+  const size = 14;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
-    return 'slider-thumb.svg';
+    return <FaArrowsLeftRight size={size} />;
   }
   const isValueAtNight = sets.some(
     ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
   );
-  return isValueAtNight ? 'slider-thumb-night.svg' : 'slider-thumb-day.svg';
+  return isValueAtNight ? <FaMoon size={size} /> : <FaSun size={size} />;
 };
 
 function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
@@ -111,14 +113,15 @@ export function TimeSliderBasic({
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
         data-test-id="time-slider-input"
-        className={`gray-200/50 block h-6 w-6 rounded-full bg-center
-          bg-no-repeat
-          shadow-3xl backdrop-blur-sm transition-shadow hover:ring
-          hover:ring-success/10 hover:ring-opacity-50 focus:outline-none focus-visible:ring
-          focus-visible:ring-success/10 focus-visible:ring-opacity-75
-          dark:bg-gray-400/50 hover:dark:ring-success-dark/10 dark:focus-visible:ring-success-dark/10`}
-        style={{ backgroundImage: `url(/images/${thumbIcon})` }}
-      ></SliderPrimitive.Thumb>
+        className="gray-200/50 flex h-6 w-6 items-center
+          justify-center rounded-full shadow-3xl
+          backdrop-blur-sm transition-shadow hover:ring hover:ring-success/10
+          hover:ring-opacity-50 focus:outline-none
+          focus-visible:ring focus-visible:ring-success/10 focus-visible:ring-opacity-75
+          dark:bg-gray-400/50 hover:dark:ring-success-dark/10 dark:focus-visible:ring-success-dark/10"
+      >
+        {thumbIcon}
+      </SliderPrimitive.Thumb>
     </SliderPrimitive.Root>
   );
 }
