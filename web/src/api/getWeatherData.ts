@@ -105,25 +105,28 @@ async function getWeatherData(type: WeatherType) {
   return interdata;
 }
 
-const useGetWeather = (
-  type: WeatherType,
-  options?: UseQueryOptions<Maybe<GfsForecastResponse>>
-) => {
-  return useQuery<Maybe<GfsForecastResponse>>(
-    [type],
-    async () => await getWeatherData(type),
-    {
-      staleTime: FIVE_MINUTES,
-      cacheTime: FIVE_MINUTES,
-      retry: false, // Disables retrying as getWeatherData handles retrying with new timestamps
-      ...options,
-    }
-  );
+interface UseWeatherQueryOptions
+  extends Omit<UseQueryOptions<Maybe<GfsForecastResponse>>, 'queryKey'> {
+  type: WeatherType;
+}
+
+const useGetWeather = (options: UseWeatherQueryOptions) => {
+  const { type, ...queryOptions } = options;
+  // Ensure getWeatherData returns Promise<Maybe<GfsForecastResponse>>
+  // and FIVE_MINUTES is a number representing milliseconds
+  return useQuery<Maybe<GfsForecastResponse>>({
+    queryKey: [type],
+    queryFn: () => getWeatherData(type), // Removed unnecessary async/await
+    staleTime: FIVE_MINUTES,
+    gcTime: FIVE_MINUTES,
+    retry: false,
+    ...queryOptions,
+  });
 };
 
-export const useGetWind = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>) => {
-  return useGetWeather('wind', options);
+export const useGetWind = (options?: Omit<UseWeatherQueryOptions, 'type'>) => {
+  return useGetWeather({ type: 'wind', ...options });
 };
-export const useGetSolar = (options?: UseQueryOptions<Maybe<GfsForecastResponse>>) => {
-  return useGetWeather('solar', options);
+export const useGetSolar = (options?: Omit<UseWeatherQueryOptions, 'type'>) => {
+  return useGetWeather({ type: 'solar', ...options });
 };

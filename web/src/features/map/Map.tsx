@@ -112,7 +112,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
-      const zone = data.data.datetimes[selectedDatetime.datetimeString]?.z[zoneId];
+      const zone = data?.data.datetimes[selectedDatetime.datetimeString]?.z[zoneId];
       const co2intensity = zone ? getCO2IntensityByMode(zone, mixMode) : undefined;
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
