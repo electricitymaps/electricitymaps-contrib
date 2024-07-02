@@ -19,8 +19,8 @@ export function InfoModalContent() {
   const setIsFAQModalOpen = useSetAtom(isFAQModalOpenAtom);
 
   return (
-    <div className=" flex flex-col items-center ">
-      <div className="prose text-center text-md dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 hover:prose-a:underline">
+    <div className="flex flex-col items-center ">
+      <div className="prose text-center dark:prose-invert prose-p:my-1 prose-p:leading-snug prose-a:text-sky-600 hover:prose-a:underline">
         <p>{t('info-modal.intro-text')}</p>
         <p
           className=""

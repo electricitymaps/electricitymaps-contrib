@@ -16,7 +16,7 @@ function LegendItem({
 }) {
   return (
     <div className="text-center">
-      <p className="mr-2 py-1 font-poppins text-sm">
+      <p className="py-1 font-poppins">
         {label} <small>({unit})</small>
       </p>
       {children}

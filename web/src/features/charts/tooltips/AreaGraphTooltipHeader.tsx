@@ -59,9 +59,9 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
               }
             />
           )}
-          <div className="my-1 h-[32px] max-w-[165px] select-none whitespace-nowrap rounded-full bg-brand-green/10 px-3 py-2 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
+          <p className="my-1 max-w-[180px] select-none whitespace-nowrap rounded-full bg-brand-green/10 px-3 py-2 text-brand-green dark:bg-gray-700 dark:text-white">
             {formatDate(datetime, i18n.language, timeAverage)}
-          </div>
+          </p>
         </div>
       </div>
       <hr className="my-1 mb-3 dark:border-gray-600" />

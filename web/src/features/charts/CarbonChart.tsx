@@ -72,7 +72,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
           trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });
         }}
         title={t('data-sources.title')}
-        className="text-md"
         isCollapsedAtom={dataSourcesCollapsedEmission}
       >
         <DataSources

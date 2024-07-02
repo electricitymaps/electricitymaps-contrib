@@ -56,7 +56,7 @@ const renderTickValue = (
       </text>
     </g>
   ) : (
-    <text fill="currentColor" y="9" x={textOffset} dy="0.71em">
+    <text fill="currentColor" y="9" x={textOffset} dy="0.71em" fontSize={'0.65rem'}>
       {formatDateTick(v, lang, selectedTimeAggregate)}
     </text>
   );
