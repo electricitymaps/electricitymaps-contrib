@@ -187,7 +187,8 @@
     "daily": "daily",
     "hourly": "hourly",
     "monthly": "monthly",
-    "yearly": "yearly"
+    "yearly": "yearly",
+    "latest": "Latest"
   },
   "left-panel": {
     "zone-list-header-title": "Climate Impact by Area",

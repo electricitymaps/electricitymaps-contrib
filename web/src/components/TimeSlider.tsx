@@ -3,16 +3,13 @@ import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom } from 'jotai/react';
+import { FaArrowsLeftRight, FaMoon, FaSun } from 'react-icons/fa6';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
-type ThumbIconPath =
-  | 'slider-thumb.svg'
-  | 'slider-thumb-day.svg'
-  | 'slider-thumb-night.svg';
 
 export interface TimeSliderProps {
   onChange: (datetimeIndex: number) => void;
@@ -22,12 +19,12 @@ export interface TimeSliderProps {
 
 export const COLORS = {
   light: {
-    day: 'rgb(243,244,246)', // bg-gray-100
-    night: 'rgb(209,213,219)', // bg-gray-300
+    day: 'rgba(229, 231, 235, 0.5)',
+    night: 'rgba(75, 85, 99, 0.5)',
   },
   dark: {
-    day: 'rgb(75,85,99)', // bg-gray-600
-    night: 'rgb(55,65,81)', // bg-gray-700
+    night: 'rgba(75, 85, 99, 0.5)',
+    day: 'rgba(156, 163, 175, 0.5)',
   },
 };
 
@@ -62,14 +59,15 @@ export const getTrackBackground = (
 export const getThumbIcon = (
   selectedIndex?: number,
   sets?: NightTimeSet[]
-): ThumbIconPath => {
+): React.ReactNode => {
+  const size = 14;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
-    return 'slider-thumb.svg';
+    return <FaArrowsLeftRight size={size} />;
   }
   const isValueAtNight = sets.some(
     ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
   );
-  return isValueAtNight ? 'slider-thumb-night.svg' : 'slider-thumb-day.svg';
+  return isValueAtNight ? <FaMoon size={size} /> : <FaSun size={size} />;
 };
 
 function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
@@ -80,7 +78,7 @@ function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) 
 
 export type TimeSliderBasicProps = TimeSliderProps & {
   trackBackground: string;
-  thumbIcon: ThumbIconPath;
+  thumbIcon: React.ReactNode;
 };
 export function TimeSliderBasic({
   onChange,
@@ -101,23 +99,25 @@ export function TimeSliderBasic({
         trackTimeSliderEvent(value[0], timeAverage);
       }}
       aria-label="choose time"
-      className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
+      className="relative my-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
     >
       <SliderPrimitive.Track
-        className="relative h-2.5 w-full grow rounded-sm"
+        className="relative h-2.5 w-full grow rounded-full backdrop-blur-sm"
         style={{ background: trackBackground }}
       >
         <SliderPrimitive.Range />
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
         data-test-id="time-slider-input"
-        className={`block h-6 w-6 rounded-full bg-white bg-center
-          bg-no-repeat shadow-3xl transition-shadow hover:ring
-          hover:ring-brand-green/10 hover:ring-opacity-75 focus:outline-none focus-visible:ring
-          focus-visible:ring-brand-green/10 focus-visible:ring-opacity-75
-          dark:bg-gray-400 hover:dark:ring-white/70 dark:focus-visible:ring-white/70`}
-        style={{ backgroundImage: `url(/images/${thumbIcon})` }}
-      ></SliderPrimitive.Thumb>
+        className="gray-200/50 flex h-6 w-6 items-center
+          justify-center rounded-full shadow-3xl
+          backdrop-blur-sm transition-shadow hover:ring hover:ring-success/10
+          hover:ring-opacity-50 focus:outline-none
+          focus-visible:ring focus-visible:ring-success/10 focus-visible:ring-opacity-75
+          dark:bg-gray-400/50 hover:dark:ring-success-dark/10 dark:focus-visible:ring-success-dark/10"
+      >
+        {thumbIcon}
+      </SliderPrimitive.Thumb>
     </SliderPrimitive.Root>
   );
 }

@@ -1,17 +1,31 @@
 import useGetState from 'api/getState';
+import Accordion from 'components/Accordion';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+import { useIsMobile } from 'utils/styling';
 
 import TimeAxis from './TimeAxis';
-import TimeHeader from './TimeHeader';
+import TimeHeader from './TimeBadge';
+
+const timeControllerCollapsedAtom = atomWithStorage<boolean | null>(
+  'timeControllerCollapsed',
+  null
+);
 
 export default function TimeController({ className }: { className?: string }) {
+  const { t } = useTranslation();
+  const isMobile = useIsMobile();
+  const [timeControllerCollapsed, setTimeControllerCollapsed] = useAtom(
+    timeControllerCollapsedAtom
+  );
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
@@ -63,16 +77,23 @@ export default function TimeController({ className }: { className?: string }) {
     trackEvent('Time Aggregate Button Clicked', { timeAverage });
   };
 
+  if (timeControllerCollapsed === null) {
+    setTimeControllerCollapsed(isMobile);
+  }
+
   return (
     <div className={className}>
-      <TimeHeader
-        // Hide the header on mobile as it is loaded directly into the BottomSheet header section
-        className="hidden sm:flex"
-      />
-      <TimeAverageToggle
-        timeAverage={timeAverage}
-        onToggleGroupClick={onToggleGroupClick}
-      />
+      <Accordion
+        title={t('time-controller.title')}
+        badge={<TimeHeader />}
+        isOnTop
+        isCollapsedAtom={timeControllerCollapsedAtom}
+      >
+        <TimeAverageToggle
+          timeAverage={timeAverage}
+          onToggleGroupClick={onToggleGroupClick}
+        />
+      </Accordion>
       <TimeSlider
         onChange={onTimeSliderChange}
         numberOfEntries={numberOfEntries}

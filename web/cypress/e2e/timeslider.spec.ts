@@ -56,7 +56,7 @@ describe('TimeController', () => {
     // Hourly
     cy.waitForAPISuccess(`v8/state/hourly`);
     cy.waitForAPISuccess(`v8/details/hourly/DK-DK2`);
-    cy.contains('LIVE');
+    cy.contains('Latest');
     cy.get('[data-test-id=co2-square-value').should(
       'contain.text',
       getco2intensity(24, hourlyData)

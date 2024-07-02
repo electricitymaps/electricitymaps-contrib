@@ -14,6 +14,7 @@ export default function Accordion({
   children,
   title,
   isCollapsedAtom,
+  isOnTop = false,
 }: {
   isCollapsedDefault?: boolean;
   onClick?: () => void;
@@ -23,7 +24,8 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
-  isCollapsedAtom?: PrimitiveAtom<boolean>;
+  isCollapsedAtom?: PrimitiveAtom<boolean | null>;
+  isOnTop?: boolean;
 }) {
   const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
     ? useAtom(isCollapsedAtom)
@@ -47,7 +49,7 @@ export default function Accordion({
 
     setIsCollapsed((previous: boolean) => !previous);
     if (setCollapsedAtom != null) {
-      setCollapsedAtom((previous: boolean) => !previous);
+      setCollapsedAtom((previous: boolean | null) => !previous);
     }
   };
 
@@ -73,11 +75,11 @@ export default function Accordion({
             <div className="text-lg text-black dark:text-white">
               {isCollapsed ? (
                 <div data-test-id="collapse-down">
-                  <HiChevronDown />
+                  {isOnTop ? <HiChevronUp /> : <HiChevronDown />}
                 </div>
               ) : (
                 <div data-test-id="collapse-up">
-                  <HiChevronUp />
+                  {isOnTop ? <HiChevronDown /> : <HiChevronUp />}
                 </div>
               )}
             </div>
