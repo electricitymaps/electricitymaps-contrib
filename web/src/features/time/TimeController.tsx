@@ -23,6 +23,9 @@ const timeControllerCollapsedAtom = atomWithStorage<boolean | null>(
 export default function TimeController({ className }: { className?: string }) {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+  const [timeControllerCollapsed, setTimeControllerCollapsed] = useAtom(
+    timeControllerCollapsedAtom
+  );
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
@@ -74,13 +77,16 @@ export default function TimeController({ className }: { className?: string }) {
     trackEvent('Time Aggregate Button Clicked', { timeAverage });
   };
 
+  if (timeControllerCollapsed === null) {
+    setTimeControllerCollapsed(isMobile);
+  }
+
   return (
     <div className={className}>
       <Accordion
         title={t('time-controller.title')}
         badge={<TimeHeader />}
         isOnTop
-        isCollapsedDefault={isMobile}
         isCollapsedAtom={timeControllerCollapsedAtom}
       >
         <TimeAverageToggle
