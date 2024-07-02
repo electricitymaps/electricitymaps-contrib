@@ -8,7 +8,10 @@ from zoneinfo import ZoneInfo
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
-from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
 from electricitymap.contrib.lib.models.events import ProductionMix
 
 # This parser gets all real time interconnection flows from the
@@ -86,7 +89,7 @@ def fetch_exchange(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Gets an exchange pair from the SIEPAC system."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -102,14 +105,15 @@ def fetch_exchange(
     flow = round(extract_exchange(raw_data, sorted_zones), 1)
     dt = floor_to_minute(datetime.now(tz=TIMEZONE))
 
-    exchange = {
-        "sortedZoneKeys": sorted_zones,
-        "datetime": dt,
-        "netFlow": flow,
-        "source": "enteoperador.org",
-    }
+    exchanges = ExchangeList(logger)
+    exchanges.append(
+        zoneKey=ZoneKey(sorted_zones),
+        datetime=dt,
+        netFlow=flow,
+        source="enteoperador.org",
+    )
 
-    return exchange
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":
