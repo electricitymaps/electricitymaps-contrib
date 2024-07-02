@@ -2,6 +2,7 @@ import { TFunction } from 'i18next';
 import { ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiCheck, HiChevronLeft, HiChevronRight, HiXMark } from 'react-icons/hi2';
+import { useMediaQuery } from 'utils';
 
 export interface Page {
   headerImage: { pathname: string };
@@ -23,6 +24,7 @@ function Modal({
   onDismiss: () => void;
 }) {
   const { t } = useTranslation();
+  const isMinHeight = useMediaQuery('(min-height: 675px)');
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
   const isOnLastView = () => currentViewIndex === views.length - 1;
   const isOnFirstView = () => currentViewIndex === 0;
@@ -83,8 +85,18 @@ function Modal({
             </button>
           )}
         </div>
-        <div className="color-white pointer-events-auto relative flex h-[450px] w-auto max-w-[500px] flex-col rounded-3xl bg-gray-50 shadow-lg sm:h-[500px]  dark:bg-gray-700">
-          <div className="absolute self-end p-4 align-baseline">
+        <div
+          className={`color-white pointer-events-auto relative flex w-auto rounded-3xl bg-gray-50 shadow-lg ${
+            isMinHeight
+              ? 'h-[450px] max-w-[500px] flex-col sm:h-[500px]'
+              : 'h-[250px] w-full max-w-[1000px] flex-row sm:h-[250px]'
+          } dark:bg-gray-700`}
+        >
+          <div
+            className={`absolute ${
+              isMinHeight ? 'self-end' : 'right-0 self-baseline'
+            } p-4 align-baseline`}
+          >
             <button
               className="p-auto pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900"
               onClick={onDismiss}
@@ -94,10 +106,16 @@ function Modal({
             </button>
           </div>
           <div
-            className={`flex h-1/2 max-h-[264px] w-full grow self-center
-              rounded-t-3xl bg-auto bg-center bg-no-repeat ${
-                isOnFirstView() ? 'max-w-[10rem] dark:invert' : ''
-              }`}
+            className={`flex w-full grow self-center
+              ${
+                isMinHeight ? 'h-1/2 max-h-[264px] rounded-t-3xl' : 'h-full rounded-l-3xl'
+              } bg-auto bg-center bg-no-repeat ${
+              isOnFirstView()
+                ? 'max-w-[10rem] dark:invert'
+                : (isMinHeight
+                ? ''
+                : 'max-w-[400px]')
+            }`}
             style={
               currentView.headerImage && !currentView.hasWebp
                 ? {
@@ -116,7 +134,11 @@ function Modal({
                 <img
                   src={`${currentView.headerImage.pathname}.png`}
                   alt=""
-                  className="w-full rounded-t-3xl object-top"
+                  className={`${
+                    isMinHeight
+                      ? 'w-full rounded-t-3xl object-top'
+                      : 'h-full rounded-l-3xl object-contain object-right'
+                  }`}
                   draggable={false}
                 />
               </picture>
