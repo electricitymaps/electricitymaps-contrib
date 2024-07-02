@@ -24,7 +24,7 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
-  isCollapsedAtom?: PrimitiveAtom<boolean>;
+  isCollapsedAtom?: PrimitiveAtom<boolean | null>;
   isOnTop?: boolean;
 }) {
   const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
@@ -49,7 +49,7 @@ export default function Accordion({
 
     setIsCollapsed((previous: boolean) => !previous);
     if (setCollapsedAtom != null) {
-      setCollapsedAtom((previous: boolean) => !previous);
+      setCollapsedAtom((previous: boolean | null) => !previous);
     }
   };
 
