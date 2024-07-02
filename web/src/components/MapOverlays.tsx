@@ -13,10 +13,15 @@ function FallbackComponent() {
 
 export default function MapOverlays() {
   const hasSeenSurveyCard = useAtomValue(hasSeenSurveyCardAtom);
-  const surveyEnabled = useFeatureFlag('feedback-micro-survey') && !hasSeenSurveyCard;
+
   const [searchParameters] = useSearchParams();
   const showManager =
     searchParameters.get('ff') === 'true' || searchParameters.get('ff') === '';
+  const isProductionOrFManagerOpen = !import.meta.env.DEV || showManager;
+  const surveyEnabled =
+    useFeatureFlag('feedback-micro-survey') &&
+    !hasSeenSurveyCard &&
+    isProductionOrFManagerOpen;
 
   const FeatureFlagsManager = showManager
     ? lazy(() => import('features/feature-flags/FeatureFlagsManager'))
