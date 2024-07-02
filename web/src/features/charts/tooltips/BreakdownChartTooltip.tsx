@@ -90,6 +90,7 @@ export default function BreakdownChartTooltip({
       timeAverage={timeAverage}
       hasEstimationPill={hasEstimationPill}
       estimatedPercentage={estimatedPercentage}
+      estimationMethod={estimationMethod}
     ></BreakdownChartTooltipContent>
   );
 }
@@ -114,6 +115,7 @@ interface BreakdownChartTooltipContentProperties {
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   capacitySource?: string[] | null;
+  estimationMethod?: string;
 }
 
 export function BreakdownChartTooltipContent({
@@ -134,6 +136,7 @@ export function BreakdownChartTooltipContent({
   hasEstimationPill,
   estimatedPercentage,
   capacitySource,
+  estimationMethod,
 }: BreakdownChartTooltipContentProperties) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
@@ -174,6 +177,7 @@ export function BreakdownChartTooltipContent({
         hasEstimationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
         productionSource={isExchange ? undefined : selectedLayerKey}
+        estimationMethod={estimationMethod}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"

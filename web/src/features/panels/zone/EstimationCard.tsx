@@ -2,11 +2,13 @@ import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
 import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
+import { EstimationMethods } from 'utils/constants';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -44,7 +46,7 @@ export default function EstimationCard({
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
-  const isTSAModel = estimationMethod === 'ESTIMATED_TIME_SLICER_AVERAGE';
+  const isTSAModel = estimationMethod === EstimationMethods.TSA;
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
     hasEstimationFeedbackBeenSeenAtom
   );
@@ -96,25 +98,6 @@ export default function EstimationCard({
       );
     }
   }
-}
-
-function useGetEstimationTranslation(
-  field: 'title' | 'pill' | 'body',
-  estimationMethod?: string,
-  estimatedPercentage?: number
-) {
-  const { t } = useTranslation();
-  const exactTranslation =
-    (estimatedPercentage ?? 0) > 0 && estimationMethod === 'aggregated'
-      ? t(`estimation-card.aggregated_estimated.${field}`, {
-          percentage: estimatedPercentage,
-        })
-      : t(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
-
-  const genericTranslation = t(`estimation-card.estimated_generic_method.${field}`);
-  return exactTranslation.startsWith('estimation-card.')
-    ? genericTranslation
-    : exactTranslation;
 }
 
 function BaseCard({
@@ -280,7 +263,7 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
 function EstimatedTSACard() {
   return (
     <BaseCard
-      estimationMethod="ESTIMATED_TIME_SLICER_AVERAGE"
+      estimationMethod={EstimationMethods.TSA}
       zoneMessage={undefined}
       icon="bg-[url('/images/preliminary_light.svg')] dark:bg-[url('/images/preliminary_dark.svg')]"
       iconPill={undefined}

@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'translation/i18n';
+import { EstimationMethods } from 'utils/constants';
 
 import EstimationCard from './EstimationCard';
 
@@ -13,7 +14,7 @@ describe('EstimationCard with FeedbackCard', () => {
         <QueryClientProvider client={queryClient}>
           <EstimationCard
             cardType="estimated"
-            estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
+            estimationMethod={EstimationMethods.CONSTRUCT_BREAKDOWN}
             zoneMessage={undefined}
           />
         </QueryClientProvider>
@@ -50,7 +51,7 @@ describe('EstimationCard with known estimation method', () => {
         <QueryClientProvider client={queryClient}>
           <EstimationCard
             cardType="estimated"
-            estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
+            estimationMethod={EstimationMethods.CONSTRUCT_BREAKDOWN}
             zoneMessage={undefined}
           />
         </QueryClientProvider>
@@ -120,7 +121,7 @@ describe('OutageCard', () => {
         <QueryClientProvider client={queryClient}>
           <EstimationCard
             cardType="outage"
-            estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
+            estimationMethod={EstimationMethods.CONSTRUCT_BREAKDOWN}
             zoneMessage={{ message: 'Outage Message', issue: 'issue' }}
           />
         </QueryClientProvider>
@@ -169,7 +170,7 @@ describe('AggregatedCard', () => {
         <QueryClientProvider client={queryClient}>
           <EstimationCard
             cardType="aggregated"
-            estimationMethod="ESTIMATED_CONSTRUCT_BREAKDOWN"
+            estimationMethod={EstimationMethods.CONSTRUCT_BREAKDOWN}
             zoneMessage={undefined}
           />
         </QueryClientProvider>

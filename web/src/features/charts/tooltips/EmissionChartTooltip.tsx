@@ -29,6 +29,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
         title={t('country-panel.emissions')}
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
+        estimationMethod={estimationMethod}
       />
       <p className="flex justify-center text-base">
         <b className="mr-1">{formatCo2(totalEmissions)}</b> {t('ofCO2eq')}

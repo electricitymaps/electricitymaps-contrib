@@ -6,7 +6,7 @@ import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeOrder, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
@@ -197,6 +197,14 @@ export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
   const allEstimated = chartData.every(
     (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
   );
+
+  const allTimeSlicerAverageMethod = chartData.every(
+    (day) => day.meta.estimationMethod === EstimationMethods.TSA
+  );
+
+  if (allTimeSlicerAverageMethod) {
+    return t(`estimation-card.${EstimationMethods.TSA.toLowerCase()}.pill`);
+  }
 
   if (allEstimated) {
     return t('estimation-badge.fully-estimated');
