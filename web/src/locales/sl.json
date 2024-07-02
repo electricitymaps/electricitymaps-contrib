@@ -1,12 +1,13 @@
 {
-  "info-modal": {
-    "title": "Info",
+  "info": {
     "intro-text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda.",
-    "open-source-text": "Ta aplikacija je <a href=\"{{link}}\" target=\"_blank\">odprtokodna</a> (<a href=\"{{sourcesLink}}\" target= '_blank'>glej vire podatkov</a>) .",
-    "feedback-button": "Deli povratne informacije",
-    "github-button": "Oglejte si naš GitHub",
-    "twitter-button": "Deli na Twitterju",
-    "slack-button": "Pridruži se skupnosti Slack",
+    "open-source-text": "Ta aplikacija je <a href=\"{{link}}\" target=\"_blank\">odprtokodna</a> (<a href=\"{{sourcesLink}}\" target= '_blank'>glej vire podatkov</a>) ."
+  },
+  "button": {
+    "feedback": "Deli povratne informacije",
+    "github": "Oglejte si naš GitHub",
+    "twitter": "Deli na Twitterju",
+    "slack": "Pridruži se skupnosti Slack",
     "privacy-policy": "Politika zasebnosti",
     "legal-notice": "Pravno obvestilo"
   },

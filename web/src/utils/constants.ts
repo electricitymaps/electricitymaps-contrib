@@ -208,3 +208,5 @@ export const sourceLinkMapping: { [key: string]: string } = {
   '2021 annual mean carbon intensity by Electricity Maps':
     'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Emission-factors#emission-factors-for-storage',
 };
+
+export const DEFAULT_ICON_SIZE = 16;

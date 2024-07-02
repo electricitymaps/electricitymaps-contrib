@@ -1,12 +1,13 @@
 {
-  "info-modal": {
-    "title": "Info",
+  "info": {
     "intro-text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
-    "open-source-text": "Cette application est <a href=\\\"{{link}}\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"{{sourcesLink}}\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté.",
-    "feedback-button": "Partagez vos commentaires",
-    "github-button": "Visiter notre Github",
-    "twitter-button": "Partager sur Twitter",
-    "slack-button": "Rejoindre la communauté Slack",
+    "open-source-text": "Cette application est <a href=\\\"{{link}}\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"{{sourcesLink}}\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté."
+  },
+  "button": {
+    "feedback": "Partagez vos commentaires",
+    "github": "Visiter notre Github",
+    "twitter": "Partager sur Twitter",
+    "slack": "Rejoindre la communauté Slack",
     "privacy-policy": "Politique de confidentialité",
     "legal-notice": "Informations légales"
   },

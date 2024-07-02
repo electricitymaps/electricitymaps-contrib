@@ -47,7 +47,7 @@ function WeatherToggleButton({
         onClick={isLoadingLayer ? () => {} : onToggle}
         size="lg"
         type={isEnabled ? 'primary' : 'secondary'}
-        disabled={!allowed}
+        isDisabled={!allowed}
         backgroundClasses="w-[330px] h-[45px]"
         icon={
           isLoadingLayer ? (

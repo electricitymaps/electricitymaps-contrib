@@ -54,7 +54,7 @@ const meta: Meta<typeof Button> = {
     size: 'lg',
     type: 'primary',
     shouldShrink: false,
-    disabled: false,
+    isDisabled: false,
     href: undefined,
     backgroundClasses: '',
     foregroundClasses: '',
