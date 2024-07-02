@@ -1,3 +1,5 @@
+import { expect } from 'vitest';
+
 import { COLORS, getThumbIcon, getTrackBackground } from './TimeSlider';
 
 describe('getTrackBackground', () => {
@@ -11,8 +13,13 @@ describe('getTrackBackground', () => {
       [2, 5],
       [8, 10],
     ];
-    const expectedBackground = `linear-gradient(\n    90deg,\n    rgb(243,244,246) 20%, rgb(209,213,219) 20%, rgb(209,213,219) 50%, rgb(243,244,246) 50%,\nrgb(243,244,246) 80%, rgb(209,213,219) 80%, rgb(209,213,219) 100%, rgb(243,244,246) 100%\n  )`;
-    expect(getTrackBackground(false, 10, sets)).to.eq(expectedBackground);
+    expect(getTrackBackground(false, 10, sets)).toMatchInlineSnapshot(`
+      "linear-gradient(
+          90deg,
+          rgba(229, 231, 235, 0.5) 20%, rgba(75, 85, 99, 0.5) 20%, rgba(75, 85, 99, 0.5) 50%, rgba(229, 231, 235, 0.5) 50%,
+      rgba(229, 231, 235, 0.5) 80%, rgba(75, 85, 99, 0.5) 80%, rgba(75, 85, 99, 0.5) 100%, rgba(229, 231, 235, 0.5) 100%
+        )"
+    `);
   });
 });
 

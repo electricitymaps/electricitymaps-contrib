@@ -22,12 +22,12 @@ export interface TimeSliderProps {
 
 export const COLORS = {
   light: {
-    day: 'rgb(243,244,246)', // bg-gray-100
-    night: 'rgb(209,213,219)', // bg-gray-300
+    day: 'rgba(229, 231, 235, 0.5)',
+    night: 'rgba(75, 85, 99, 0.5)',
   },
   dark: {
-    day: 'rgb(75,85,99)', // bg-gray-600
-    night: 'rgb(55,65,81)', // bg-gray-700
+    night: 'rgba(75, 85, 99, 0.5)',
+    day: 'rgba(156, 163, 175, 0.5)',
   },
 };
 
@@ -104,18 +104,19 @@ export function TimeSliderBasic({
       className="relative my-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
     >
       <SliderPrimitive.Track
-        className="relative h-2.5 w-full grow rounded-sm"
+        className="relative h-2.5 w-full grow rounded-full backdrop-blur-sm"
         style={{ background: trackBackground }}
       >
         <SliderPrimitive.Range />
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
         data-test-id="time-slider-input"
-        className={`block h-6 w-6 rounded-full bg-white bg-center
-          bg-no-repeat shadow-3xl transition-shadow hover:ring
-          hover:ring-brand-green/10 hover:ring-opacity-75 focus:outline-none focus-visible:ring
-          focus-visible:ring-brand-green/10 focus-visible:ring-opacity-75
-          dark:bg-gray-400 hover:dark:ring-white/70 dark:focus-visible:ring-white/70`}
+        className={`gray-200/50 block h-6 w-6 rounded-full bg-center
+          bg-no-repeat
+          shadow-3xl backdrop-blur-sm transition-shadow hover:ring
+          hover:ring-success/10 hover:ring-opacity-50 focus:outline-none focus-visible:ring
+          focus-visible:ring-success/10 focus-visible:ring-opacity-75
+          dark:bg-gray-400/50 hover:dark:ring-success-dark/10 dark:focus-visible:ring-success-dark/10`}
         style={{ backgroundImage: `url(/images/${thumbIcon})` }}
       ></SliderPrimitive.Thumb>
     </SliderPrimitive.Root>
