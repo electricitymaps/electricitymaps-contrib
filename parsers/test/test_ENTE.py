@@ -61,10 +61,16 @@ class TestENTE(TestCase):
         )
 
         self.assertMatchSnapshot(
-            {
-                "datetime": production["datetime"].isoformat(),
-                "zoneKey": production["zoneKey"],
-                "production": production["production"],
-                "source": production["source"],
-            }
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "zoneKey": element["zoneKey"],
+                    "production": element["production"],
+                    "storage": element["storage"],
+                    "source": element["source"],
+                    "sourceType": element["sourceType"].value,
+                    "correctedModes": element["correctedModes"],
+                }
+                for element in production
+            ]
         )

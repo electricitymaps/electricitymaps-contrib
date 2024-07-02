@@ -2,9 +2,14 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 from requests import Session
+
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
 
 # This parser gets all real time interconnection flows from the
 # Central American Electrical Interconnection System (SIEPAC).
@@ -32,11 +37,11 @@ def floor_to_minute(dt: datetime) -> datetime:
 
 
 def fetch_production(
-    zone_key: str = "HN",
+    zone_key: ZoneKey = ZoneKey("HN"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     r = session or Session()
     response = r.get(DATA_URL).json()
 
@@ -45,14 +50,15 @@ def fetch_production(
 
     dt = floor_to_minute(datetime.now(tz=TIMEZONE))
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": dt,
-        "production": {"unknown": production},
-        "source": "enteoperador.org",
-    }
+    production_list = ProductionBreakdownList(logger)
+    production_list.append(
+        zoneKey=zone_key,
+        datetime=dt,
+        production=ProductionMix(unknown=production),
+        source="enteoperador.org",
+    )
 
-    return data
+    return production_list.to_list()
 
 
 def extract_exchange(raw_data, exchange) -> float | None:
