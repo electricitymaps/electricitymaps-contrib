@@ -2,6 +2,7 @@ import * as Portal from '@radix-ui/react-portal';
 import Accordion from 'components/Accordion';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import Divider from 'features/panels/zone/Divider';
+import { useHeaderHeight } from 'hooks/headerHeight';
 import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
@@ -30,7 +31,6 @@ import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
-import { useHeaderHeight } from './utils';
 
 const X_PADDING = 20;
 

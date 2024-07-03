@@ -6,9 +6,20 @@ import { SpatialAggregate } from 'utils/constants';
 import { selectedDatetimeIndexAtom, spatialAggregateAtom } from 'utils/state/atoms';
 
 import exchangesConfigJSON from '../../config/exchanges.json'; // do something globally
-import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'; // do something globally
+import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json';
+// do something globally
+interface Arrow {
+  capacity?: [number, number];
+  lonlat: [number, number];
+  rotation: number;
+}
 
-const exchangesConfig: Record<string, any> = exchangesConfigJSON;
+interface Arrows {
+  [key: string]: Arrow;
+}
+
+const exchangesConfig: Arrows = exchangesConfigJSON as unknown as Arrows;
+
 const { exchangesToExcludeZoneView, exchangesToExcludeCountryView } = exchangesToExclude;
 
 /**

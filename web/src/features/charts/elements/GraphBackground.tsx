@@ -1,11 +1,22 @@
 /* eslint-disable react/jsx-handler-names */
 /* eslint-disable unicorn/no-null */
 /* eslint-disable react/display-name */
+import { ScaleLinear, ScaleTime } from 'd3-scale';
 import React from 'react';
 
 import { detectHoveredDatapointIndex, noop } from '../graphUtils';
 
-const GraphBackground = React.memo(
+interface GraphBackgroundProps {
+  timeScale: ScaleTime<number, number>;
+  valueScale: ScaleLinear<number, number>;
+  datetimes: Date[];
+  mouseMoveHandler?: (index: number | null) => void;
+  mouseOutHandler?: () => void;
+  isMobile: boolean;
+  svgNode: SVGElement;
+}
+
+const GraphBackground: React.FC<GraphBackgroundProps> = React.memo(
   ({
     timeScale,
     valueScale,
@@ -14,7 +25,7 @@ const GraphBackground = React.memo(
     mouseOutHandler,
     isMobile,
     svgNode,
-  }: any) => {
+  }) => {
     const [x1, x2] = timeScale.range();
     const [y2, y1] = valueScale.range();
     const width = x2 - x1;
@@ -22,7 +33,7 @@ const GraphBackground = React.memo(
 
     // Mouse hover events
     let mouseOutRectTimeout: string | number | NodeJS.Timeout | undefined;
-    const handleRectMouseMove = (event_: any) => {
+    const handleRectMouseMove = (event_: React.MouseEvent<SVGRectElement>) => {
       if (mouseOutRectTimeout) {
         clearTimeout(mouseOutRectTimeout);
         mouseOutRectTimeout = undefined;

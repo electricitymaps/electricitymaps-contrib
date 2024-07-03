@@ -15,7 +15,7 @@ const TIME_TO_TICK_FREQUENCY = {
 };
 
 const renderTick = (
-  scale: any,
+  scale: ScaleTime<number, number, never>,
   value: Date,
   index: number,
   displayLive: boolean,

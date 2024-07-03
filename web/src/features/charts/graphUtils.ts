@@ -1,8 +1,5 @@
-/* eslint-disable unicorn/no-null */
 import { bisectLeft } from 'd3-array';
-// import { pointer } from 'd3-selection';
-// // https://observablehq.com/@d3/d3-selection-2-0
-import { scaleTime } from 'd3-scale';
+import { ScaleTime, scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
@@ -12,10 +9,10 @@ import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import { AreaGraphElement } from './types';
 
 export const detectHoveredDatapointIndex = (
-  event_: any,
-  datetimes: any,
-  timeScale: any,
-  svgNode: any
+  event_: React.MouseEvent<SVGRectElement> | PointerEvent,
+  datetimes: Date[],
+  timeScale: ScaleTime<number, number>,
+  svgNode: SVGElement
 ) => {
   if (datetimes.length === 0) {
     return null;
@@ -29,8 +26,14 @@ export const detectHoveredDatapointIndex = (
   const datetime = timeScale.invert(adjustedDx);
 
   // Find data point closest to
+
   let index = bisectLeft(datetimes, datetime);
-  if (index > 0 && datetime - datetimes[index - 1] < datetimes[index] - datetime) {
+  // Aligns the hovered point to the chart bar
+  if (
+    index > 0 &&
+    datetime.getTime() - datetimes[index - 1].getTime() <
+      datetimes[index].getTime() - datetime.getTime()
+  ) {
     index -= 1;
   }
   if (index > datetimes.length - 1) {
