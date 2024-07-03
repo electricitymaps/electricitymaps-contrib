@@ -93,9 +93,9 @@ function Modal({
           } dark:bg-gray-700`}
         >
           <div
-            className={`absolute ${
+            className={`absolute p-4 align-baseline ${
               isMinHeight ? 'self-end' : 'right-0 self-baseline'
-            } p-4 align-baseline`}
+            }`}
           >
             <button
               className="p-auto pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900"
@@ -111,7 +111,7 @@ function Modal({
                 isMinHeight ? 'h-1/2 max-h-[264px] rounded-t-3xl' : 'h-full rounded-l-3xl'
               } bg-auto bg-center bg-no-repeat ${
               isOnFirstView()
-                ? 'max-w-[10rem] dark:invert'
+                ? `dark:invert ${isMinHeight ? 'max-w-[10rem]' : 'max-w-[400px]'}`
                 : isMinHeight
                 ? ''
                 : 'max-w-[400px]'
@@ -145,7 +145,11 @@ function Modal({
             )}
             <h1>{currentView.title?.(t)}</h1>
           </div>
-          <div className="flex w-auto flex-col justify-center px-4 pt-6 text-center dark:bg-gray-700">
+          <div
+            className={`flex w-full flex-col justify-center px-4 pt-6 text-center ${
+              isMinHeight ? '' : 'pr-12'
+            }`}
+          >
             {currentView.renderContent(t)}
           </div>
         </div>
