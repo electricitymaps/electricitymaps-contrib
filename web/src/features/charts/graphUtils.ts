@@ -196,16 +196,17 @@ export function getElectricityProductionValue({
 function analyzeChartData(chartData: AreaGraphElement[]) {
   let estimatedCount = 0;
   let tsaCount = 0;
-
-  for (const day of chartData) {
-    if (day.meta.estimationMethod === EstimationMethods.TSA) {
+  for (const chartElement of chartData) {
+    if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
       tsaCount++;
     }
-    if (day.meta.estimationMethod || day.meta.estimatedPercentage === 100) {
+    if (
+      chartElement.meta.estimationMethod ||
+      chartElement.meta.estimatedPercentage === 100
+    ) {
       estimatedCount++;
     }
   }
-
   return {
     allTimeSlicerAverageMethod: tsaCount === chartData.length,
     allEstimated: estimatedCount === chartData.length,
