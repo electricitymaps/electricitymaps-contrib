@@ -42,7 +42,7 @@ const zoneDetailsData = {
     battery: 'electricityMap, 2021 average',
     hydro: 'electricityMap, 2021 average',
   },
-  estimationMethod: 'MEASURED',
+  estimationMethod: undefined,
   exchange: { ES: -934 },
   exchangeCapacities: {},
   exchangeCo2Intensities: { ES: 187.32 },
