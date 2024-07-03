@@ -56,9 +56,11 @@ capacity:
       value: 252.0
 contributors:
   - q--
+country: LK
+delays:
+  production: 30
 parsers:
   production: CEB.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
-timezone: Asia/Colombo
 region: Asia
-country: LK
+timezone: Asia/Colombo

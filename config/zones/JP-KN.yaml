@@ -17,6 +17,9 @@ contributors:
   - tmslaine
   - lorrieq
   - kongkille
+country: JP
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -160,6 +163,5 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP_KN.fetch_production
-timezone: Asia/Tokyo
 region: Asia
-country: JP
+timezone: Asia/Tokyo
