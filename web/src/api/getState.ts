@@ -1,13 +1,9 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import type { GridState } from 'types';
 import { TimeAverages } from 'utils/constants';
-import {
-  numberOfEntriesAtom,
-  selectedDatetimeIndexAtom,
-  timeAverageAtom,
-} from 'utils/state/atoms';
+import { timeAverageAtom } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, QUERY_KEYS } from './helpers';
 

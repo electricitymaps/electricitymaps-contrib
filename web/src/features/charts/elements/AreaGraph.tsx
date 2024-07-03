@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis'; // TODO: Move to a shared folder
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
 import { ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';

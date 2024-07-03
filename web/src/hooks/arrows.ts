@@ -1,5 +1,5 @@
 import useGetState from 'api/getState';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { ExchangeArrowData, StateExchangeData } from 'types';
 import { SpatialAggregate } from 'utils/constants';

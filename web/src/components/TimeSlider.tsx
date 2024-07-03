@@ -2,14 +2,14 @@ import * as SliderPrimitive from '@radix-ui/react-slider';
 import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai/react';
+import { useAtom, useAtomValue } from 'jotai/react';
+import { JSX } from 'react/jsx-runtime';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
-import { dateToDatetimeString, useGetZoneFromPath } from 'utils/helpers';
+import { useGetZoneFromPath } from 'utils/helpers';
 import {
   availableDatetimesAtom,
   numberOfEntriesAtom,
-  selectedDatetimeAtom,
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
@@ -147,7 +147,7 @@ export function TimeSliderWithNight() {
   return <TimeSliderBasic trackBackground={trackBackground} thumbIcon={thumbIcon} />;
 }
 
-function TimeSlider(props) {
+function TimeSlider(props: JSX.IntrinsicAttributes) {
   const zoneId = useGetZoneFromPath();
   const timeAverage = useAtomValue(timeAverageAtom);
   const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;

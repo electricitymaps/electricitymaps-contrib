@@ -1,11 +1,10 @@
 import useGetState from 'api/getState';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
-import { atom, useAtom } from 'jotai';
-import { useEffect, useMemo } from 'react';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useMemo } from 'react';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
-import { dateToDatetimeString } from 'utils/helpers';
 import {
   availableDatetimesAtom,
   numberOfEntriesAtom,
@@ -22,11 +21,9 @@ export default function TimeController({ className }: { className?: string }) {
   const [selectedDatetimeIndex, setSelectedDatetimeIndex] = useAtom(
     selectedDatetimeIndexAtom
   );
-  const [selectedDatetimeString, setSelectedDatetimeString] = useAtom(
-    selectedDatetimeStringAtom
-  );
-  const [numberOfEntries, setNumberOfEntries] = useAtom(numberOfEntriesAtom);
-  const [availableDatetimes, setAvailableDatetimes] = useAtom(availableDatetimesAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const setNumberOfEntries = useSetAtom(numberOfEntriesAtom);
+  const setAvailableDatetimes = useSetAtom(availableDatetimesAtom);
   const { data, isLoading: dataLoading } = useGetState();
 
   // Show a loading state if isLoading is true or if there is only one datetime,
