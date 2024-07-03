@@ -112,8 +112,6 @@ interface UseWeatherQueryOptions
 
 const useGetWeather = (options: UseWeatherQueryOptions) => {
   const { type, ...queryOptions } = options;
-  // Ensure getWeatherData returns Promise<Maybe<GfsForecastResponse>>
-  // and FIVE_MINUTES is a number representing milliseconds
   return useQuery<Maybe<GfsForecastResponse>>({
     queryKey: [type],
     queryFn: () => getWeatherData(type),
