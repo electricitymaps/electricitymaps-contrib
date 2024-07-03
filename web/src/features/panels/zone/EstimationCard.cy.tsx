@@ -86,11 +86,7 @@ describe('EstimationCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
-          <EstimationCard
-            cardType="estimated"
-            estimationMethod=""
-            zoneMessage={undefined}
-          />
+          <EstimationCard cardType="estimated" zoneMessage={undefined} />
         </QueryClientProvider>
       </I18nextProvider>
     );
@@ -106,7 +102,7 @@ describe('EstimationCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
-          <EstimationCard cardType="" estimationMethod="" zoneMessage={undefined} />
+          <EstimationCard cardType="" zoneMessage={undefined} />
         </QueryClientProvider>
       </I18nextProvider>
     );

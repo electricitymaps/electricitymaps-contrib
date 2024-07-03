@@ -28,7 +28,7 @@ export const All: Story = {
           <EstimationCard
             cardType="outage"
             zoneMessage={instance}
-            estimationMethod="threshold_filtered"
+            estimationMethod={EstimationMethods.THRESHOLD_FILTERED}
           />
           <EstimationCard cardType="estimated" zoneMessage={instance} />
 

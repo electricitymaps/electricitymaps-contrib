@@ -38,7 +38,7 @@ export default function EstimationCard({
   zoneMessage,
 }: {
   cardType: string;
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
 }) {
@@ -111,7 +111,7 @@ function BaseCard({
   textColorTitle,
   cardType,
 }: {
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
   icon: string;
@@ -124,7 +124,7 @@ function BaseCard({
   const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
     feedbackCardCollapsedNumberAtom
   );
-  const isCollapsedDefault = estimationMethod == 'outage' ? false : true;
+  const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
   const handleToggleCollapse = () => {
@@ -212,12 +212,12 @@ function OutageCard({
 }) {
   const { t } = useTranslation();
   const zoneMessageText =
-    estimationMethod === 'threshold_filtered'
-      ? { message: t('estimation-card.threshold_filtered.body') }
+    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
+      ? { message: t(`estimation-card.${EstimationMethods.THRESHOLD_FILTERED}.body`) }
       : zoneMessage;
   return (
     <BaseCard
-      estimationMethod={'outage'}
+      estimationMethod={EstimationMethods.OUTAGE}
       zoneMessage={zoneMessageText}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
       iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
@@ -232,7 +232,7 @@ function OutageCard({
 function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number }) {
   return (
     <BaseCard
-      estimationMethod={'aggregated'}
+      estimationMethod={EstimationMethods.AGGREGATED}
       estimatedPercentage={estimatedPercentage}
       zoneMessage={undefined}
       icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
@@ -245,7 +245,11 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
   );
 }
 
-function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefined }) {
+function EstimatedCard({
+  estimationMethod,
+}: {
+  estimationMethod: EstimationMethods | undefined;
+}) {
   return (
     <BaseCard
       estimationMethod={estimationMethod}

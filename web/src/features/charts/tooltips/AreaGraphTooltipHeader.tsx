@@ -1,7 +1,7 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { EstimationMethods, TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
@@ -14,7 +14,7 @@ interface AreaGraphToolTipHeaderProps {
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   productionSource?: string;
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
 }
 
 export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {

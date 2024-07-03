@@ -4,7 +4,7 @@ import { TFunction } from 'i18next';
 import { PlugCircleBoltIcon } from 'icons/plugCircleBoltIcon';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
@@ -43,7 +43,7 @@ export default function BySource({
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   unit?: string | number;
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
 }) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
