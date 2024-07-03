@@ -6,7 +6,7 @@ import EstimationBadge from 'components/EstimationBadge';
 import OutageBadge from 'components/OutageBadge';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneName } from 'components/ZoneName';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
@@ -14,7 +14,7 @@ import { formatDate } from 'utils/formatting';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import {
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
 
@@ -96,7 +96,7 @@ function DataValidityBadge({
 export default function MapTooltip() {
   const [mousePosition] = useAtom(mousePositionAtom);
   const [hoveredZone] = useAtom(hoveredZoneAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
   const [isMapMoving] = useAtom(mapMovingAtom);
   const { i18n, t } = useTranslation();
@@ -108,15 +108,14 @@ export default function MapTooltip() {
 
   const { x, y } = mousePosition;
   const zoneData =
-    data?.data?.datetimes[selectedDatetime.datetimeString]?.z[hoveredZone.zoneId] ??
-    undefined;
+    data?.data?.datetimes[selectedDatetimeString]?.z[hoveredZone.zoneId] ?? undefined;
 
   const screenWidth = window.innerWidth;
   const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);
   const emptyTooltipPosition = getSafeTooltipPosition(x, y, screenWidth, 176, 70);
 
   const formattedDate = formatDate(
-    new Date(selectedDatetime.datetimeString),
+    new Date(selectedDatetimeString),
     i18n.language,
     timeAverage
   );

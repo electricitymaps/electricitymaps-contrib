@@ -1,5 +1,5 @@
 import { useGetSolar } from 'api/getWeatherData';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ToggleOptions } from 'utils/constants';
 import {
@@ -33,12 +33,12 @@ function convertYToLat(yMax: number, y: number): number {
 }
 
 export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
+  const selectedDatetimeIndex = useAtomValue(selectedDatetimeIndexAtom);
+  const solarLayerToggle = useAtomValue(solarLayerEnabledAtom);
   const setIsLoadingSolarLayer = useSetAtom(solarLayerLoadingAtom);
 
   const isSolarLayerEnabled =
-    solarLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
+    solarLayerToggle === ToggleOptions.ON && selectedDatetimeIndex === 24;
   const { data: solarDataArray, isSuccess } = useGetSolar({
     enabled: isSolarLayerEnabled,
   });
@@ -162,7 +162,7 @@ export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
     // Render the image into canvas and mark as ready so that fading in can start.
     canvas.clearRect(0, 0, node.width, node.height);
     canvas.putImageData(image, 0, 0);
-  }, [node, solarData, map]);
+  }, [node, solarData, map, canvasScale]);
 
   return null;
 }

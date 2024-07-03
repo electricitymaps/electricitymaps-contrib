@@ -40,6 +40,10 @@ export function getCO2IntensityByMode(
  * Converts date to format returned by API
  */
 export function dateToDatetimeString(date: Date) {
+  if (!date) {
+    console.error('No date provided');
+    return '';
+  }
   return date.toISOString().split('.')[0] + 'Z';
 }
 export function getProductionCo2Intensity(

@@ -38,6 +38,9 @@ function getForecastStartTime(now: Date) {
 }
 
 function getBeforeForcastEndTime(now: Date) {
+  if (!now) {
+    console.error('No date provided for getBeforeForcastEndTime');
+  }
   return add(startOfHour(now), { hours: 0 }).toISOString();
 }
 
@@ -60,6 +63,9 @@ export async function fetchGfsForecast(
   const targetTime = targetTimeFunction[period](endTime);
 
   const path: URL = new URL(`v8/gfs/${resource}`, getBasePath());
+  if (!startTime) {
+    console.error('No start time provided for fetchGfsForecast');
+  }
   path.searchParams.append('refTime', startTime.toISOString());
   path.searchParams.append('targetTime', targetTime);
 

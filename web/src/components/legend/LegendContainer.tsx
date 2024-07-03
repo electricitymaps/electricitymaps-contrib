@@ -1,4 +1,4 @@
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
 import { ToggleOptions } from 'utils/constants';
 import {
@@ -12,14 +12,14 @@ import SolarLegend from './SolarLegend';
 import WindLegend from './WindLegend';
 
 export default function LegendContainer(): ReactElement {
-  const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
-  const [windLayerToggle] = useAtom(windLayerAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const solarLayerToggle = useAtomValue(solarLayerEnabledAtom);
+  const windLayerToggle = useAtomValue(windLayerAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
 
   const isSolarLayerEnabled =
-    solarLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
+    solarLayerToggle === ToggleOptions.ON && selectedDatetime === 24;
   const isWindLayerEnabled =
-    windLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
+    windLayerToggle === ToggleOptions.ON && selectedDatetime === 24;
 
   return (
     <div className="invisible  flex w-[224px] flex-col rounded bg-white/90 px-1 py-2 shadow-xl backdrop-blur-sm sm:visible dark:bg-gray-800">

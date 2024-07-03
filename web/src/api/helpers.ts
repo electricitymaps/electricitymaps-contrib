@@ -78,8 +78,8 @@ export function cacheBuster(): string {
   return currentDate.toISOString();
 }
 
-export const QUERY_KEYS = {
-  STATE: 'state',
-  ZONE: 'zone',
-  META: 'meta',
-};
+export enum QUERY_KEYS {
+  STATE = 'state',
+  ZONE = 'zone',
+  META = 'meta',
+}

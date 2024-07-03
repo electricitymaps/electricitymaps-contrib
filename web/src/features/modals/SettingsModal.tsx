@@ -5,7 +5,7 @@ import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import ThemeSelector from 'features/map-controls/ThemeSelector';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineEyeOff } from 'react-icons/hi';
 import { MoonLoader } from 'react-spinners';
@@ -69,13 +69,13 @@ function WeatherToggleButton({
 
 export function SettingsModalContent() {
   const [timeAverage] = useAtom(timeAverageAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const selectedDatetimeIndex = useAtomValue(selectedDatetimeIndexAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
 
   // We are currently only supporting and fetching weather data for the latest hourly value
   const areWeatherLayersAllowed =
-    selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
+    selectedDatetimeIndex === 24 && timeAverage === TimeAverages.HOURLY;
 
   const { t } = useTranslation();
   return (

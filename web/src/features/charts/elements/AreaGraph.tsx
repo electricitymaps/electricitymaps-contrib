@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis'; // TODO: Move to a shared folder
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
 import { ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
@@ -123,7 +123,7 @@ function AreaGraph({
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<HTMLDivElement>({ ref: reference });
 
-  const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
+  const selectedDatetimeIndex = useAtomValue(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
   const isBiggerThanMobile = useBreakpoint('sm');
 
@@ -172,7 +172,7 @@ function AreaGraph({
   const [graphIndex, setGraphIndex] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(null);
 
-  const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
+  const hoverLineTimeIndex = graphIndex ?? selectedDatetimeIndex;
 
   // Graph update handlers. Used for tooltip data.
   const markerUpdateHandler = useMemo(

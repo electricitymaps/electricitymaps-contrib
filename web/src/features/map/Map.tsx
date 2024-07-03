@@ -13,7 +13,7 @@ import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode, useUserLocation } from 'utils/helpers';
 import {
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
   userLocationAtom,
 } from 'utils/state/atoms';
@@ -55,7 +55,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const [selectedDatetimeString] = useAtom(selectedDatetimeStringAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const setUserLocation = useSetAtom(userLocationAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -112,7 +112,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
-      const zone = data?.data.datetimes[selectedDatetime.datetimeString]?.z[zoneId];
+      const zone = data?.data.datetimes[selectedDatetimeString]?.z[zoneId];
       const co2intensity = zone ? getCO2IntensityByMode(zone, mixMode) : undefined;
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
@@ -138,7 +138,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     map,
     data,
     getCo2colorScale,
-    selectedDatetime,
+    selectedDatetimeString,
     mixMode,
     isLoadingMap,
     isSourceLoaded,

@@ -1,9 +1,13 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import type { GridState } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { timeAverageAtom } from 'utils/state/atoms';
+import {
+  numberOfEntriesAtom,
+  selectedDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, QUERY_KEYS } from './helpers';
 
@@ -22,7 +26,7 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
 
   // First fetch last hour only
   const last_hour = useQuery<GridState>({

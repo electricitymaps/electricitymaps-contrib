@@ -2,23 +2,23 @@ import * as SliderPrimitive from '@radix-ui/react-slider';
 import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
-import { useAtom } from 'jotai/react';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai/react';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
-import { useGetZoneFromPath } from 'utils/helpers';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { dateToDatetimeString, useGetZoneFromPath } from 'utils/helpers';
+import {
+  availableDatetimesAtom,
+  numberOfEntriesAtom,
+  selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 
 type NightTimeSet = number[];
 type ThumbIconPath =
   | 'slider-thumb.svg'
   | 'slider-thumb-day.svg'
   | 'slider-thumb-night.svg';
-
-export interface TimeSliderProps {
-  onChange: (datetimeIndex: number) => void;
-  numberOfEntries: number;
-  selectedIndex?: number;
-}
 
 export const COLORS = {
   light: {
@@ -78,18 +78,16 @@ function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) 
   });
 }
 
-export type TimeSliderBasicProps = TimeSliderProps & {
+export type TimeSliderBasicProps = {
   trackBackground: string;
   thumbIcon: ThumbIconPath;
 };
-export function TimeSliderBasic({
-  onChange,
-  numberOfEntries,
-  selectedIndex,
-  trackBackground,
-  thumbIcon,
-}: TimeSliderBasicProps) {
-  const [timeAverage] = useAtom(timeAverageAtom);
+export function TimeSliderBasic({ trackBackground, thumbIcon }: TimeSliderBasicProps) {
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const [selectedIndex, setSelectedIndex] = useAtom(selectedDatetimeIndexAtom);
+  const setSelectedDatetimeString = useSetAtom(selectedDatetimeStringAtom);
+  const numberOfEntries = useAtomValue(numberOfEntriesAtom);
+  const availableDatetimes = useAtomValue(availableDatetimesAtom);
   return (
     <SliderPrimitive.Root
       defaultValue={[0]}
@@ -97,8 +95,12 @@ export function TimeSliderBasic({
       step={1}
       value={selectedIndex && selectedIndex > 0 ? [selectedIndex] : [0]}
       onValueChange={(value) => {
-        onChange(value[0]);
+        console.log('Value', value);
+        setSelectedIndex(value[0]);
+        setSelectedDatetimeString(dateToDatetimeString(availableDatetimes[value[0]]));
         trackTimeSliderEvent(value[0], timeAverage);
+        console.log('Index', selectedIndex);
+        console.log('String', availableDatetimes[value[0]]);
       }}
       aria-label="choose time"
       className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
@@ -124,8 +126,9 @@ export function TimeSliderBasic({
 
 export function TimeSliderWithoutNight(props: TimeSliderProps) {
   const isDarkModeEnabled = useDarkMode();
+  const numberOfEntries = useAtomValue(numberOfEntriesAtom);
   const thumbIcon = getThumbIcon();
-  const trackBackground = getTrackBackground(isDarkModeEnabled, props.numberOfEntries);
+  const trackBackground = getTrackBackground(isDarkModeEnabled, numberOfEntries);
   return (
     <TimeSliderBasic {...props} trackBackground={trackBackground} thumbIcon={thumbIcon} />
   );
@@ -134,11 +137,13 @@ export function TimeSliderWithoutNight(props: TimeSliderProps) {
 export function TimeSliderWithNight(props: TimeSliderProps) {
   const nightTimeSets = useNightTimes();
   const isDarkModeEnabled = useDarkMode();
+  const numberOfEntries = useAtomValue(numberOfEntriesAtom);
+  const selectedIndex = useAtomValue(selectedDatetimeIndexAtom);
 
-  const thumbIcon = getThumbIcon(props.selectedIndex || 0, nightTimeSets);
+  const thumbIcon = getThumbIcon(selectedIndex || 0, nightTimeSets);
   const trackBackground = getTrackBackground(
     isDarkModeEnabled,
-    props.numberOfEntries,
+    numberOfEntries,
     nightTimeSets
   );
 
@@ -149,7 +154,7 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 
 function TimeSlider(props: TimeSliderProps) {
   const zoneId = useGetZoneFromPath();
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
   const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;
 
   return showNightTime ? (

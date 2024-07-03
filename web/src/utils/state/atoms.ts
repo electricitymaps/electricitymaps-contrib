@@ -15,7 +15,10 @@ import {
 export const timeAverageAtom = atom(TimeAverages.HOURLY);
 
 // TODO: consider another initial value
-export const selectedDatetimeIndexAtom = atom({ datetimeString: '', index: 0 });
+export const selectedDatetimeIndexAtom = atom(0);
+export const selectedDatetimeStringAtom = atom('test');
+export const numberOfEntriesAtom = atom(0);
+export const availableDatetimesAtom = atom<Date[]>([]);
 
 export const spatialAggregateAtom = atomWithStorage(
   'country-mode',

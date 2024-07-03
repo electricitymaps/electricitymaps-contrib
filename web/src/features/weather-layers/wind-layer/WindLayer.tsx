@@ -1,6 +1,6 @@
 import { GfsForecastResponse, useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import useResizeObserver from 'use-resize-observer';
 import { ToggleOptions } from 'utils/constants';
@@ -25,7 +25,7 @@ const createWindy = async (
 };
 
 export default function WindLayer({ map }: { map?: maplibregl.Map }) {
-  const [isMapMoving] = useAtom(mapMovingAtom);
+  const isMapMoving = useAtomValue(mapMovingAtom);
   const [windy, setWindy] = useState<Windy | null>(null);
   const reference = useRef(null);
   const { width = 0, height = 0 } = useResizeObserver<HTMLCanvasElement>({
@@ -48,11 +48,11 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
     };
   }, [map, width, height]);
 
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [windLayerToggle] = useAtom(windLayerAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const windLayerToggle = useAtomValue(windLayerAtom);
   const setIsLoadingWindLayer = useSetAtom(windLayerLoadingAtom);
   const isWindLayerEnabled =
-    windLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
+    windLayerToggle === ToggleOptions.ON && selectedDatetime === 24;
   const { data: windData, isSuccess } = useGetWind({ enabled: isWindLayerEnabled });
   const isVisible = isSuccess && !isMapMoving && isWindLayerEnabled;
 
