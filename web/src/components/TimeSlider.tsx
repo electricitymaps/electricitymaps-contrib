@@ -9,8 +9,8 @@ import { dateToDatetimeString, useGetZoneFromPath } from 'utils/helpers';
 import {
   availableDatetimesAtom,
   numberOfEntriesAtom,
+  selectedDatetimeAtom,
   selectedDatetimeIndexAtom,
-  selectedDatetimeStringAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
 
@@ -85,7 +85,6 @@ export type TimeSliderBasicProps = {
 export function TimeSliderBasic({ trackBackground, thumbIcon }: TimeSliderBasicProps) {
   const timeAverage = useAtomValue(timeAverageAtom);
   const [selectedIndex, setSelectedIndex] = useAtom(selectedDatetimeIndexAtom);
-  const setSelectedDatetimeString = useSetAtom(selectedDatetimeStringAtom);
   const numberOfEntries = useAtomValue(numberOfEntriesAtom);
   const availableDatetimes = useAtomValue(availableDatetimesAtom);
   return (
@@ -97,10 +96,10 @@ export function TimeSliderBasic({ trackBackground, thumbIcon }: TimeSliderBasicP
       onValueChange={(value) => {
         console.log('Value', value);
         setSelectedIndex(value[0]);
-        setSelectedDatetimeString(dateToDatetimeString(availableDatetimes[value[0]]));
         trackTimeSliderEvent(value[0], timeAverage);
         console.log('Index', selectedIndex);
         console.log('String', availableDatetimes[value[0]]);
+        console.log('Date', availableDatetimes);
       }}
       aria-label="choose time"
       className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
@@ -124,17 +123,15 @@ export function TimeSliderBasic({ trackBackground, thumbIcon }: TimeSliderBasicP
   );
 }
 
-export function TimeSliderWithoutNight(props: TimeSliderProps) {
+export function TimeSliderWithoutNight() {
   const isDarkModeEnabled = useDarkMode();
   const numberOfEntries = useAtomValue(numberOfEntriesAtom);
   const thumbIcon = getThumbIcon();
   const trackBackground = getTrackBackground(isDarkModeEnabled, numberOfEntries);
-  return (
-    <TimeSliderBasic {...props} trackBackground={trackBackground} thumbIcon={thumbIcon} />
-  );
+  return <TimeSliderBasic trackBackground={trackBackground} thumbIcon={thumbIcon} />;
 }
 
-export function TimeSliderWithNight(props: TimeSliderProps) {
+export function TimeSliderWithNight() {
   const nightTimeSets = useNightTimes();
   const isDarkModeEnabled = useDarkMode();
   const numberOfEntries = useAtomValue(numberOfEntriesAtom);
@@ -147,12 +144,10 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
     nightTimeSets
   );
 
-  return (
-    <TimeSliderBasic {...props} trackBackground={trackBackground} thumbIcon={thumbIcon} />
-  );
+  return <TimeSliderBasic trackBackground={trackBackground} thumbIcon={thumbIcon} />;
 }
 
-function TimeSlider(props: TimeSliderProps) {
+function TimeSlider(props) {
   const zoneId = useGetZoneFromPath();
   const timeAverage = useAtomValue(timeAverageAtom);
   const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;

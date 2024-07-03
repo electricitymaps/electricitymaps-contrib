@@ -2,11 +2,7 @@ import useGetState from 'api/getState';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { formatDate } from 'utils/formatting';
-import {
-  selectedDatetimeIndexAtom,
-  selectedDatetimeStringAtom,
-  timeAverageAtom,
-} from 'utils/state/atoms';
+import { selectedDatetimeAtom, timeAverageAtom } from 'utils/state/atoms';
 
 type TimeHeaderProps = {
   className?: string;
@@ -14,10 +10,10 @@ type TimeHeaderProps = {
 export default function TimeHeader({ className }: TimeHeaderProps) {
   const { t, i18n } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
-  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeAtom);
   const { isLoading } = useGetState();
 
-  const date = formatDate(new Date(selectedDatetimeString), i18n.language, timeAverage);
+  const date = formatDate(selectedDatetime, i18n.language, timeAverage);
 
   return (
     <div

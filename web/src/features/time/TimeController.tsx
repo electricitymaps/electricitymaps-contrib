@@ -48,9 +48,6 @@ export default function TimeController({ className }: { className?: string }) {
     // Set time slider to latest value before switching aggregate to avoid flickering
     datetimes && setNumberOfEntries(datetimes.length - 1);
     datetimes && setSelectedDatetimeIndex(datetimes.length - 1);
-    datetimes &&
-      setSelectedDatetimeString(dateToDatetimeString(datetimes.at(-1) as Date));
-
     trackEvent('Time Aggregate Button Clicked', { timeAverage });
     console.log('Index', selectedDatetimeIndex);
     console.log('String', selectedDatetimeString);
