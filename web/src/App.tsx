@@ -33,7 +33,8 @@ if (isProduction) {
 export default function App(): ReactElement {
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
-  const _ = useGetState();
+  // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
+  useGetState();
   const shouldUseDarkMode = useDarkMode();
 
   // Update classes on theme change

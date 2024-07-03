@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { getBasePath, QUERY_KEYS } from 'api/helpers';
 
 export type callerLocation = [number, number] | null;
@@ -29,8 +29,9 @@ export async function getMeta(): Promise<Meta> {
 
 export function useMeta(): Meta {
   return (
-    useQuery<Meta>([QUERY_KEYS.META], async () => getMeta(), {
-      suspense: true,
+    useSuspenseQuery<Meta>({
+      queryKey: [QUERY_KEYS.META],
+      queryFn: async () => getMeta(),
     }).data ?? {}
   );
 }
