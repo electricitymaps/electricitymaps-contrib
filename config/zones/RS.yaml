@@ -222,4 +222,6 @@ region: Europe
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
+  UNECE 2022:
+    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Europe/Belgrade
