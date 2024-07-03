@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeColor, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeColor, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
@@ -115,7 +115,7 @@ interface BreakdownChartTooltipContentProperties {
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   capacitySource?: string[] | null;
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
 }
 
 export function BreakdownChartTooltipContent({
