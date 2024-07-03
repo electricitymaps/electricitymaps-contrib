@@ -101,6 +101,14 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 28.8
+    hydro:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 10.7
+    nuclear:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 5.13
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

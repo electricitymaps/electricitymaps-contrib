@@ -114,6 +114,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 400.03933900187366
+    hydro:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 10.7
+    nuclear:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 5.13
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
