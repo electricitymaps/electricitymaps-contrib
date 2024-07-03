@@ -5,17 +5,17 @@ import { useTranslation } from 'react-i18next';
 import { formatDate } from 'utils/formatting';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 
-export default function TimeHeader() {
+export default function TimeBadge() {
   const { i18n } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const { isLoading } = useGetState();
 
-  const date = formatDate(
+  const formattedDate = formatDate(
     new Date(selectedDatetime.datetimeString),
     i18n.language,
     timeAverage
   );
 
-  return !isLoading && <Badge pillText={date} type="success" />;
+  return !isLoading && <Badge pillText={formattedDate} type="success" />;
 }

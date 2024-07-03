@@ -10,17 +10,17 @@ import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
-import { useIsMobile } from 'utils/styling';
+import { useIsBiggerThanMobile, useIsMobile } from 'utils/styling';
 
 import TimeAxis from './TimeAxis';
-import TimeHeader from './TimeBadge';
+import TimeBadge from './TimeBadge';
 
 const timeControllerCollapsedAtom = atomWithStorage<boolean | null>(
   'timeControllerCollapsed',
   null
 );
 
-export default function TimeController({ className }: { className?: string }) {
+function InternalTimeController({ className }: { className?: string }) {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
   const [timeControllerCollapsed, setTimeControllerCollapsed] = useAtom(
@@ -85,7 +85,7 @@ export default function TimeController({ className }: { className?: string }) {
     <div className={className}>
       <Accordion
         title={t('time-controller.title')}
-        badge={<TimeHeader />}
+        badge={<TimeBadge />}
         isOnTop
         isCollapsedAtom={timeControllerCollapsedAtom}
       >
@@ -109,4 +109,25 @@ export default function TimeController({ className }: { className?: string }) {
       />
     </div>
   );
+}
+
+function FloatingTimeController() {
+  return (
+    <div className="fixed bottom-3 left-3 z-20 w-[calc(14vw_+_16rem)] rounded-2xl bg-white/80 px-4 py-3 shadow-xl drop-shadow-2xl backdrop-blur min-[780px]:w-[calc((14vw_+_16rem)_-_30px)] xl:px-5 dark:bg-gray-800/80">
+      <InternalTimeController />
+    </div>
+  );
+}
+
+function FixedTimeController() {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-20 w-full border-t border-neutral-200 bg-white/80 px-4 py-3 backdrop-blur dark:border-gray-700 dark:bg-gray-800/80">
+      <InternalTimeController />
+    </div>
+  );
+}
+
+export default function TimeController() {
+  const isBiggerThanMobile = useIsBiggerThanMobile();
+  return isBiggerThanMobile ? <FloatingTimeController /> : <FixedTimeController />;
 }
