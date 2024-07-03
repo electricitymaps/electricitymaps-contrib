@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { PrimitiveAtom, useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
 
@@ -23,32 +21,23 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
-  isCollapsedAtom?: PrimitiveAtom<boolean>;
+  isCollapsedAtom: PrimitiveAtom<boolean | null>;
 }) {
-  const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
-    ? useAtom(isCollapsedAtom)
-    : [null, null];
-  const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
+  // Initialize state based on props
+  const [atomState, setAtomState] = useAtom(isCollapsedAtom);
 
-  useEffect(() => {
-    if (collapsedAtom !== null) {
-      setIsCollapsed(collapsedAtom);
-    }
-  }, [collapsedAtom]);
+  // If atom state is null, set it to the default value
+  if (atomState === null) {
+    setAtomState(isCollapsedDefault);
+  }
 
+  // Call onOpen callback if it exists and atom state is true
+  atomState && onOpen?.();
+
+  // Toggle atom state and call onClick callback if it exists
   const handleToggleCollapse = () => {
-    if (onClick != undefined) {
-      onClick();
-    }
-
-    if (isCollapsed && onOpen != undefined) {
-      onOpen();
-    }
-
-    setIsCollapsed((previous: boolean) => !previous);
-    if (setCollapsedAtom != null) {
-      setCollapsedAtom((previous: boolean) => !previous);
-    }
+    onClick?.();
+    setAtomState(!atomState);
   };
 
   return (
@@ -71,7 +60,7 @@ export default function Accordion({
           <div className="flex h-fit flex-row gap-2 text-nowrap">
             {badge}
             <div className="text-lg text-black dark:text-white">
-              {isCollapsed ? (
+              {atomState ? (
                 <div data-test-id="collapse-down">
                   <HiChevronDown />
                 </div>
@@ -84,7 +73,7 @@ export default function Accordion({
           </div>
         </div>
       </button>
-      {!isCollapsed && <div className="pt-1.5">{children}</div>}
+      {!atomState && <div className="pt-1.5">{children}</div>}
     </div>
   );
 }

@@ -3,7 +3,10 @@ import { Link } from 'components/Link';
 import { RoundedCard } from 'features/charts/RoundedCard';
 import { t } from 'i18next';
 import { EmapsIcon } from 'icons/emapsIcon';
+import { atom } from 'jotai';
 import trackEvent from 'utils/analytics';
+
+const methodologyCardCollapsedAtom = atom<boolean | null>(null);
 
 export default function MethodologyCard() {
   return (
@@ -13,6 +16,7 @@ export default function MethodologyCard() {
         title={t('left-panel.applied-methodologies.title')}
         className="pb-1 pt-3 text-md"
         onOpen={() => trackEvent('AppliedMethodologies Expanded')}
+        isCollapsedAtom={methodologyCardCollapsedAtom}
       >
         <div className="flex flex-col gap-2 pb-1 ">
           <Link href="https://www.electricitymaps.com/methodology#missing-data">

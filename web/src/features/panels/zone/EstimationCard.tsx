@@ -2,7 +2,7 @@ import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
 import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { useAtom } from 'jotai';
+import { atom, PrimitiveAtom, useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneMessage } from 'types';
@@ -127,6 +127,7 @@ function BaseCard({
   pillType,
   textColorTitle,
   cardType,
+  isCollapsedAtom,
 }: {
   estimationMethod?: string;
   estimatedPercentage?: number;
@@ -137,6 +138,7 @@ function BaseCard({
   pillType?: PillType;
   textColorTitle: string;
   cardType: string;
+  isCollapsedAtom: PrimitiveAtom<boolean | null>;
 }) {
   const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
     feedbackCardCollapsedNumberAtom
@@ -185,6 +187,7 @@ function BaseCard({
         className={textColorTitle}
         icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
         title={title}
+        isCollapsedAtom={isCollapsedAtom}
       >
         <div className="gap-2">
           <div
@@ -220,6 +223,8 @@ function BaseCard({
   );
 }
 
+const infoCardCollapsedAtom = atom<boolean | null>(true);
+
 function OutageCard({
   zoneMessage,
   estimationMethod,
@@ -242,6 +247,7 @@ function OutageCard({
       pillType="warning"
       textColorTitle="text-amber-700 dark:text-amber-500"
       cardType="outage-card"
+      isCollapsedAtom={infoCardCollapsedAtom}
     />
   );
 }
@@ -258,6 +264,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
       pillType={'warning'}
       textColorTitle="text-black dark:text-white"
       cardType="aggregated-card"
+      isCollapsedAtom={infoCardCollapsedAtom}
     />
   );
 }
@@ -273,6 +280,7 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       pillType="default"
       textColorTitle="text-amber-700 dark:text-amber-500"
       cardType="estimated-card"
+      isCollapsedAtom={infoCardCollapsedAtom}
     />
   );
 }
@@ -288,6 +296,7 @@ function EstimatedTSACard() {
       pillType={undefined}
       textColorTitle="text-amber-700 dark:text-amber-500"
       cardType="estimated-card"
+      isCollapsedAtom={infoCardCollapsedAtom}
     />
   );
 }
