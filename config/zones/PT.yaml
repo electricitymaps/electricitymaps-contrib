@@ -64,9 +64,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 1811.0
-    - datetime: '2024-03-01'
+    - datetime: '2024-07-01'
       source: ren.pt
-      value: 2744.0
+      value: 3129.0
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -80,7 +80,7 @@ capacity:
       value: 5358.0
     - datetime: '2024-03-01'
       source: ren.pt
-      value: 5374.0
+      value: 5380.0
 contributors:
   - corradio
   - nessie2013
