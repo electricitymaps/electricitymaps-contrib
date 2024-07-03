@@ -31,12 +31,14 @@ export default function Accordion({
     setAtomState(isCollapsedDefault);
   }
 
-  // Call onOpen callback if it exists and atom state is true
-  atomState && onOpen?.();
-
-  // Toggle atom state and call onClick callback if it exists
+  // Toggle atom state
   const handleToggleCollapse = () => {
+    // Call onClick callback if it exists
     onClick?.();
+
+    // Call onOpen callback if it exists and atom state is true
+    atomState && onOpen?.();
+
     setAtomState(!atomState);
   };
 
