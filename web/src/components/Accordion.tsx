@@ -31,7 +31,7 @@ export default function Accordion({
     setAtomState(isCollapsedDefault);
   }
 
-  // Toggle atom state
+  // Handle interaction with the collapse button
   const handleToggleCollapse = () => {
     // Call onClick callback if it exists
     onClick?.();
@@ -39,6 +39,7 @@ export default function Accordion({
     // Call onOpen callback if it exists and atom state is true
     atomState && onOpen?.();
 
+    // Toggle atom state
     setAtomState(!atomState);
   };
 
