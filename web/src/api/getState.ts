@@ -25,13 +25,11 @@ const useGetState = (): UseQueryResult<GridState> => {
   const [timeAverage] = useAtom(timeAverageAtom);
 
   // First fetch last hour only
-  const last_hour = useQuery<GridState>(
-    [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
-    async () => getState('last_hour'),
-    {
-      enabled: timeAverage === TimeAverages.HOURLY,
-    }
-  );
+  const last_hour = useQuery<GridState>({
+    queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
+    queryFn: async () => getState('last_hour'),
+    enabled: timeAverage === TimeAverages.HOURLY,
+  });
 
   const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
 
@@ -41,15 +39,14 @@ const useGetState = (): UseQueryResult<GridState> => {
     last_hour.isError === true;
 
   // Then fetch the rest of the data
-  const all_data = useQuery<GridState>(
-    [QUERY_KEYS.STATE, { aggregate: timeAverage }],
-    async () => getState(timeAverage),
-    {
-      // The query should not execute until the last_hour query is done
-      enabled: shouldFetchFullState,
-    }
-  );
-  return all_data.data || timeAverage != 'hourly' ? all_data : last_hour;
+  const all_data = useQuery<GridState>({
+    queryKey: [QUERY_KEYS.STATE, { aggregate: timeAverage }],
+    queryFn: async () => getState(timeAverage),
+
+    // The query should not execute until the last_hour query is done
+    enabled: shouldFetchFullState,
+  });
+  return (all_data.data || timeAverage != 'hourly' ? all_data : last_hour) ?? {};
 };
 
 export default useGetState;
