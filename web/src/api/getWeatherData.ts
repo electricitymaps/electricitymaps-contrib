@@ -116,7 +116,7 @@ const useGetWeather = (options: UseWeatherQueryOptions) => {
   // and FIVE_MINUTES is a number representing milliseconds
   return useQuery<Maybe<GfsForecastResponse>>({
     queryKey: [type],
-    queryFn: () => getWeatherData(type), // Removed unnecessary async/await
+    queryFn: () => getWeatherData(type),
     staleTime: FIVE_MINUTES,
     gcTime: FIVE_MINUTES,
     retry: false,
