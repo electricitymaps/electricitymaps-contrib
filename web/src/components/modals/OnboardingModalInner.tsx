@@ -112,9 +112,9 @@ function Modal({
               } bg-auto bg-center bg-no-repeat ${
               isOnFirstView()
                 ? 'max-w-[10rem] dark:invert'
-                : (isMinHeight
+                : isMinHeight
                 ? ''
-                : 'max-w-[400px]')
+                : 'max-w-[400px]'
             }`}
             style={
               currentView.headerImage && !currentView.hasWebp

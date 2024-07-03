@@ -21,6 +21,9 @@
     "prettier"
   ],
   "rules": {
+    // TODO: Viktor - Remove once all eslint plugin and prettier versions are up to date
+    "no-nested-ternary": "off",
+
     // TODO: TEMPORARILY DISABLED DURING INITIAL DEVELOPMENT
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
@@ -150,7 +153,6 @@
         "ignore": [".*[pP]rops"]
       }
     ],
-    "unicorn/no-nested-ternary": "error",
     "unicorn/no-useless-undefined": "off",
     "unicorn/no-null": "off",
     "simple-import-sort/imports": "error",
