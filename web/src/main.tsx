@@ -44,7 +44,7 @@ const queryClient = new QueryClient({
       retry: MAX_RETRIES,
       refetchOnWindowFocus: false,
       // by default data is cached and valid forever, as we handle invalidation ourselves
-      cacheTime: Number.POSITIVE_INFINITY,
+      gcTime: Number.POSITIVE_INFINITY,
       staleTime: Number.POSITIVE_INFINITY,
     },
   },
