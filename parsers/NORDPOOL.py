@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from enum import Enum
+from functools import lru_cache
 from logging import Logger, getLogger
 
 from lib.utils import get_token
@@ -23,6 +24,7 @@ class NORDPOOL_API_ENDPOINT(Enum):
 
 class MARKET_TYPE(Enum):
     DAY_AHEAD = "DayAhead"
+    GB_DAY_AHEAD = "GbHalfHour_DayAhead"
 
 
 class CURRENCY(Enum):
@@ -119,6 +121,13 @@ def _handle_status_code(response: Response, logger: Logger) -> Response:
             )
 
 
+# TODO: Remove this when we run on Python 3.11 or above
+@lru_cache(maxsize=8)
+def zulu_to_utc(datetime_string: str) -> str:
+    """Converts a zulu time string to a UTC time string."""
+    return datetime_string.replace("Z", "+00:00")
+
+
 def _query_nordpool(
     endpoint: NORDPOOL_API_ENDPOINT,
     params: dict[str, str],
@@ -147,7 +156,7 @@ def _parse_price(response: Response, logger: Logger) -> PriceList:
         price_list.append(
             zoneKey=ZoneKey(INVERTED_ZONE_MAPPING[json["deliveryArea"]]),
             price=price["price"],
-            datetime=price["deliveryStart"],
+            datetime=datetime.fromisoformat(zulu_to_utc(price["deliveryStart"])),
             currency=json["currency"],
             source=SOURCE,
         )
@@ -163,8 +172,12 @@ def fetch_price(
     target_datetime = target_datetime or datetime.now()
     params = {
         "areas": f"{ZONE_MAPPING[zone_key]}",
-        "currency": CURRENCY.EUR.value,
-        "market": MARKET_TYPE.DAY_AHEAD.value,
+        "currency": CURRENCY.EUR.value
+        if zone_key != ZoneKey("GB")
+        else CURRENCY.GBP.value,
+        "market": MARKET_TYPE.DAY_AHEAD.value
+        if zone_key != ZoneKey("GB")
+        else MARKET_TYPE.GB_DAY_AHEAD.value,
         "date": target_datetime.date().isoformat(),
     }
     response = _query_nordpool(NORDPOOL_API_ENDPOINT.PRICE, params, logger, session)
