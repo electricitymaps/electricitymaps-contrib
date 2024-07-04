@@ -389,7 +389,6 @@ parsers:
   price: ENTSOE.fetch_price
   production: CH.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
 region: Europe
 sources:
   INCER ACV:
