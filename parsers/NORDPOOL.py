@@ -3,11 +3,12 @@ from enum import Enum
 from functools import lru_cache
 from logging import Logger, getLogger
 
-from lib.utils import get_token
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import PriceList
 from electricitymap.contrib.lib.types import ZoneKey
+
+from .lib.utils import get_token
 
 NORDPOOL_BASE_URL = "https://data-api.nordpoolgroup.com/api/v2/"
 
