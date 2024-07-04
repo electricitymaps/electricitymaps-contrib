@@ -1,11 +1,10 @@
 import useGetState from 'api/getState';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
