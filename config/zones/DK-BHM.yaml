@@ -199,7 +199,6 @@ fallbackZoneMixes:
 parsers:
   price: ENTSOE.fetch_price
   production: BORNHOLM_POWERLAB.fetch_production
-price_displayed: false
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
