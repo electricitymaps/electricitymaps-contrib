@@ -1,12 +1,18 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from enum import Enum
 from logging import Logger, getLogger
+from urllib.parse import urlencode
 
-from requests import Session
+from lib.utils import get_token
+from requests import Response, Session
 
 from electricitymap.contrib.lib.types import ZoneKey
 
-NORDPOOL_BASE_URL = "https://www.nordpoolgroup.com/api/v2/"
+NORDPOOL_BASE_URL = "https://data-api.nordpoolgroup.com/api/v2/"
+
+# Set this as a global const outside of the functions to cache the token for the current parser instance
+NORDPOOL_TOKEN = None
+NORDPOOL_TOKEN_EXPIRATION = None
 
 
 class NORDPOOL_API_ENDPOINT(Enum):
@@ -51,10 +57,49 @@ ZONE_MAPPING = {
 }
 
 
-def _handle_status_code(response, logger: Logger):
+def _generate_new_nordpool_token(session: Session | None = None) -> str:
+    global NORDPOOL_TOKEN_EXPIRATION
+    session = session or Session()
+    URL = "https://sts.nordpoolgroup.com/connect/token"
+    username = get_token("EMAPS_NORDPOOL_USERNAME")
+    password = get_token("EMAPS_NORDPOOL_PASSWORD")
+    headers = {
+        "accept": "application/json",
+        "Authorization": "Basic Y2xpZW50X2F1Y3Rpb25fYXBpOmNsaWVudF9hdWN0aW9uX2FwaQ==",  # This is a public key listed in the Nordpool API documentation
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
+    data = {
+        "grant_type": "password",
+        "scope": "auction_api",
+        "username": username,
+        "password": password,
+    }
+    encoded_credentials = urlencode(data)
+    response = session.post(URL, headers=headers, data=encoded_credentials)
+    response = _handle_status_code(response, getLogger(__name__))
+    NORDPOOL_TOKEN_EXPIRATION = datetime.now() + timedelta(
+        seconds=response.json()["expires_in"]
+    )
+
+    return response.json()["access_token"]
+
+
+def _get_token() -> str:
+    global NORDPOOL_TOKEN
+    global NORDPOOL_TOKEN_EXPIRATION
+    if (
+        NORDPOOL_TOKEN is None
+        or NORDPOOL_TOKEN_EXPIRATION is None
+        or datetime.now() > NORDPOOL_TOKEN_EXPIRATION - timedelta(minutes=5)
+    ):
+        NORDPOOL_TOKEN = _generate_new_nordpool_token()
+    return NORDPOOL_TOKEN
+
+
+def _handle_status_code(response: Response, logger: Logger) -> Response:
     match response.status_code:
         case 200:
-            return response.json()
+            return response
         case 400:
             # Bad request
             raise ValueError(f"Bad request: {response.text}")
@@ -77,10 +122,18 @@ def query_nordpool(
     logger: Logger,
     session: Session | None = None,
 ):
+    TOKEN = _get_token()
     session = session or Session()
-    _headers = {}
-    response = session.get(f"{NORDPOOL_BASE_URL}{endpoint.value}", params=params)
-    return _handle_status_code(response, logger)
+    headers = {
+        "Authorization": f"Bearer {TOKEN}",
+    }
+
+    response = session.get(
+        f"{NORDPOOL_BASE_URL}{endpoint.value}", params=params, headers=headers
+    )
+
+    response = _handle_status_code(response, logger)
+    return response
 
 
 def fetch_price(
@@ -91,10 +144,18 @@ def fetch_price(
 ) -> list:
     target_datetime = target_datetime or datetime.now()
     params = {
-        "areas": ZONE_MAPPING[zone_key],
+        "areas": f"{ZONE_MAPPING[zone_key]}",
         "currency": CURRENCY.EUR.value,
         "market": MARKET_TYPE.DAY_AHEAD.value,
         "date": target_datetime.date().isoformat(),
     }
-    _response = query_nordpool(NORDPOOL_API_ENDPOINT.PRICE, params, logger, session)
+    response = query_nordpool(NORDPOOL_API_ENDPOINT.PRICE, params, logger, session)
     return []
+
+
+fetch_price(
+    ZoneKey("SE-SE1"),
+    session=Session(),
+    target_datetime=datetime.now(),
+    logger=getLogger(__name__),
+)
