@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta
 from enum import Enum
 from logging import Logger, getLogger
-from urllib.parse import urlencode
 
 from lib.utils import get_token
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import PriceList
 from electricitymap.contrib.lib.types import ZoneKey
 
 NORDPOOL_BASE_URL = "https://data-api.nordpoolgroup.com/api/v2/"
@@ -13,6 +13,8 @@ NORDPOOL_BASE_URL = "https://data-api.nordpoolgroup.com/api/v2/"
 # Set this as a global const outside of the functions to cache the token for the current parser instance
 NORDPOOL_TOKEN = None
 NORDPOOL_TOKEN_EXPIRATION = None
+
+SOURCE = "nordpool.com"
 
 
 class NORDPOOL_API_ENDPOINT(Enum):
@@ -56,6 +58,8 @@ ZONE_MAPPING = {
     "SE-SE4": "SE4",
 }
 
+INVERTED_ZONE_MAPPING = {value: key for key, value in ZONE_MAPPING.items()}
+
 
 def _generate_new_nordpool_token(session: Session | None = None) -> str:
     global NORDPOOL_TOKEN_EXPIRATION
@@ -65,17 +69,16 @@ def _generate_new_nordpool_token(session: Session | None = None) -> str:
     password = get_token("EMAPS_NORDPOOL_PASSWORD")
     headers = {
         "accept": "application/json",
-        "Authorization": "Basic Y2xpZW50X2F1Y3Rpb25fYXBpOmNsaWVudF9hdWN0aW9uX2FwaQ==",  # This is a public key listed in the Nordpool API documentation
+        "Authorization": "Basic Y2xpZW50X21hcmtldGRhdGFfYXBpOmNsaWVudF9tYXJrZXRkYXRhX2FwaQ==",  # This is a public key listed in the Nordpool API documentation
         "Content-Type": "application/x-www-form-urlencoded",
     }
     data = {
         "grant_type": "password",
-        "scope": "auction_api",
+        "scope": "marketdata_api",
         "username": username,
         "password": password,
     }
-    encoded_credentials = urlencode(data)
-    response = session.post(URL, headers=headers, data=encoded_credentials)
+    response = session.post(URL, headers=headers, data=data)
     response = _handle_status_code(response, getLogger(__name__))
     NORDPOOL_TOKEN_EXPIRATION = datetime.now() + timedelta(
         seconds=response.json()["expires_in"]
@@ -116,7 +119,7 @@ def _handle_status_code(response: Response, logger: Logger) -> Response:
             )
 
 
-def query_nordpool(
+def _query_nordpool(
     endpoint: NORDPOOL_API_ENDPOINT,
     params: dict[str, str],
     logger: Logger,
@@ -136,6 +139,21 @@ def query_nordpool(
     return response
 
 
+def _parse_price(response: Response, logger: Logger) -> PriceList:
+    price_list = PriceList(logger)
+    json = response.json()[0]
+    prices = json["prices"]
+    for price in prices:
+        price_list.append(
+            zoneKey=ZoneKey(INVERTED_ZONE_MAPPING[json["deliveryArea"]]),
+            price=price["price"],
+            datetime=price["deliveryStart"],
+            currency=json["currency"],
+            source=SOURCE,
+        )
+    return price_list
+
+
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -149,13 +167,6 @@ def fetch_price(
         "market": MARKET_TYPE.DAY_AHEAD.value,
         "date": target_datetime.date().isoformat(),
     }
-    response = query_nordpool(NORDPOOL_API_ENDPOINT.PRICE, params, logger, session)
-    return []
-
-
-fetch_price(
-    ZoneKey("SE-SE1"),
-    session=Session(),
-    target_datetime=datetime.now(),
-    logger=getLogger(__name__),
-)
+    response = _query_nordpool(NORDPOOL_API_ENDPOINT.PRICE, params, logger, session)
+    price_data: PriceList = _parse_price(response, logger)
+    return price_data.to_list()
