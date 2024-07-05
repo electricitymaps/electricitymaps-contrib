@@ -203,10 +203,7 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
     if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
       tsaCount++;
     }
-    if (
-      chartElement.meta.estimationMethod ||
-      chartElement.meta.estimatedPercentage === 100
-    ) {
+    if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
       estimatedCount++;
     }
   }
@@ -220,7 +217,6 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
 export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
   const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
     analyzeChartData(chartData);
-
   if (allTimeSlicerAverageMethod) {
     return t(`estimation-card.${EstimationMethods.TSA}.pill`);
   }
