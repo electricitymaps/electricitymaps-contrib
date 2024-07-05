@@ -201,7 +201,6 @@ parsers:
   consumption: AX.fetch_consumption
   price: ENTSOE.fetch_price
   production: AX.fetch_production
-price_displayed: false
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
