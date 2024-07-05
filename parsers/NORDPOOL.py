@@ -181,6 +181,14 @@ def fetch_price(
         else MARKET_TYPE.GB_DAY_AHEAD.value,
         "date": target_datetime.date().isoformat(),
     }
-    response = _query_nordpool(NORDPOOL_API_ENDPOINT.PRICE, params, logger, session)
-    price_data: PriceList = _parse_price(response, logger)
-    return price_data.to_list()
+    response_target = _query_nordpool(NORDPOOL_API_ENDPOINT.PRICE, params, logger, session)
+    params["date"] = (target_datetime + timedelta(days=1)).date().isoformat()
+    response_target_day_ahead = _query_nordpool(
+        NORDPOOL_API_ENDPOINT.PRICE, params, logger, session
+    )
+    price_data_target: PriceList = _parse_price(response_target, logger)
+    price_data_target_day_ahead: PriceList = _parse_price(
+        response_target_day_ahead, logger
+    )
+
+    return (price_data_target + price_data_target_day_ahead).to_list()
