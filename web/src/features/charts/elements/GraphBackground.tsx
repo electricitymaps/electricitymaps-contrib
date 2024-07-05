@@ -1,8 +1,5 @@
-/* eslint-disable react/jsx-handler-names */
-/* eslint-disable unicorn/no-null */
-/* eslint-disable react/display-name */
 import { ScaleLinear, ScaleTime } from 'd3-scale';
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { detectHoveredDatapointIndex, noop } from '../graphUtils';
 
@@ -14,60 +11,57 @@ interface GraphBackgroundProps {
   mouseOutHandler?: () => void;
   isMobile: boolean;
   svgNode: SVGSVGElement;
+  displayName?: string;
 }
 
-const GraphBackground: React.FC<GraphBackgroundProps> = React.memo(
-  ({
-    timeScale,
-    valueScale,
-    datetimes,
-    mouseMoveHandler,
-    mouseOutHandler,
-    isMobile,
-    svgNode,
-  }) => {
-    const [x1, x2] = timeScale.range();
-    const [y2, y1] = valueScale.range();
-    const width = x2 - x1;
-    const height = y2 - y1;
+const GraphBackground = React.memo(function GraphBackground({
+  timeScale,
+  valueScale,
+  datetimes,
+  mouseMoveHandler,
+  mouseOutHandler,
+  isMobile,
+  svgNode,
+}: GraphBackgroundProps) {
+  const [x1, x2] = useMemo(() => timeScale.range(), [timeScale]);
+  const [y2, y1] = useMemo(() => valueScale.range(), [valueScale]);
+  const width = useMemo(() => x2 - x1, [x1, x2]);
+  const height = useMemo(() => y2 - y1, [y1, y2]);
 
-    // Mouse hover events
-    let mouseOutRectTimeout: string | number | NodeJS.Timeout | undefined;
-    const handleRectMouseMove = (event: React.MouseEvent<SVGRectElement>) => {
-      if (mouseOutRectTimeout) {
-        clearTimeout(mouseOutRectTimeout);
-        mouseOutRectTimeout = undefined;
-      }
+  const handleRectMouseMove = useCallback(
+    (event: React.MouseEvent<SVGRectElement>) => {
       const timeIndex = detectHoveredDatapointIndex(event, datetimes, timeScale, svgNode);
       if (mouseMoveHandler) {
         mouseMoveHandler(timeIndex, null);
       }
-    };
-    const handleRectMouseOut = () => {
-      if (mouseOutHandler) {
-        mouseOutHandler();
-      }
-    };
+    },
+    [datetimes, timeScale, svgNode, mouseMoveHandler]
+  );
 
-    // Don't render if the dimensions are not positive
-    if (width <= 0 || height <= 0) {
-      return null;
+  const handleRectMouseOut = useCallback(() => {
+    if (mouseOutHandler) {
+      mouseOutHandler();
     }
+  }, [mouseOutHandler]);
 
-    return (
-      <rect
-        x={x1}
-        y={y1}
-        width={width}
-        height={height}
-        style={{ cursor: 'pointer', opacity: 0 }}
-        onMouseOver={isMobile ? noop : handleRectMouseMove}
-        onMouseMove={isMobile ? noop : handleRectMouseMove}
-        onMouseOut={handleRectMouseOut}
-        onBlur={handleRectMouseOut}
-      />
-    );
+  // Don't render if the dimensions are not positive
+  if (width <= 0 || height <= 0) {
+    return null;
   }
-);
+
+  return (
+    <rect
+      x={x1}
+      y={y1}
+      width={width}
+      height={height}
+      style={{ cursor: 'pointer', opacity: 0 }}
+      onMouseOver={isMobile ? noop : handleRectMouseMove}
+      onMouseMove={isMobile ? noop : handleRectMouseMove}
+      onMouseOut={handleRectMouseOut}
+      onBlur={handleRectMouseOut}
+    />
+  );
+});
 
 export default GraphBackground;
