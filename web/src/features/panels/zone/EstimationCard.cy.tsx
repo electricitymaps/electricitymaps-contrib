@@ -69,15 +69,15 @@ describe('EstimationCard with known estimation method', () => {
   });
 
   it('Toggles when collapse button is clicked', () => {
-    cy.get('[data-test-id="collapse-up"]').should('not.exist');
-    cy.get('[data-test-id="collapse-down"]').should('exist');
-    cy.get('[data-test-id="body-text"]').should('not.exist');
-    cy.get('[data-test-id="methodology-link"]').should('not.exist');
-    cy.get('[data-test-id="collapse-button"]').click();
     cy.get('[data-test-id="collapse-up"]').should('exist');
     cy.get('[data-test-id="collapse-down"]').should('not.exist');
     cy.get('[data-test-id="body-text"]').should('exist');
     cy.get('[data-test-id="methodology-link"]').should('exist');
+    cy.get('[data-test-id="collapse-button"]').click();
+    cy.get('[data-test-id="collapse-up"]').should('not.exist');
+    cy.get('[data-test-id="collapse-down"]').should('exist');
+    cy.get('[data-test-id="body-text"]').should('not.exist');
+    cy.get('[data-test-id="methodology-link"]').should('not.exist');
   });
 });
 
@@ -174,9 +174,10 @@ describe('AggregatedCard', () => {
     );
     cy.get('[data-test-id=title]').contains('Data is aggregated');
     cy.get('[data-test-id=badge]').should('not.exist');
-    cy.get('[data-test-id="collapse-button"]').click();
     cy.get('[data-test-id="body-text"]').contains(
       'The data consists of an aggregation of hourly values.'
     );
+    cy.get('[data-test-id="collapse-button"]').click();
+    cy.get('[data-test-id="body-text"]').should('not.exist');
   });
 });
