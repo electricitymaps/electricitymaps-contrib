@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { ZoneMessage } from 'types';
-import { SpatialAggregate, TimeAverages } from 'utils/constants';
+import { EstimationMethods, SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   selectedDatetimeIndexAtom,
@@ -139,7 +139,7 @@ function getCardType({
   zoneMessage,
   timeAverage,
 }: {
-  estimationMethod: string | undefined;
+  estimationMethod?: EstimationMethods;
   zoneMessage?: ZoneMessage;
   timeAverage: TimeAverages;
 }): 'estimated' | 'aggregated' | 'outage' | 'none' {
@@ -147,7 +147,7 @@ function getCardType({
     (zoneMessage !== undefined &&
       zoneMessage?.message !== undefined &&
       zoneMessage?.issue !== undefined) ||
-    estimationMethod === 'threshold_filtered'
+    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
   ) {
     return 'outage';
   }
