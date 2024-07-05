@@ -32,8 +32,8 @@ export const detectHoveredDatapointIndex = (
   // Aligns the hovered point to the chart bar
   if (
     index > 0 &&
-    datetime.getTime() - datetimes[index - 1].getTime() <
-      datetimes[index].getTime() - datetime.getTime()
+    datetime?.getTime() - datetimes[index - 1]?.getTime() <
+      datetimes[index]?.getTime() - datetime?.getTime()
   ) {
     index -= 1;
   }
