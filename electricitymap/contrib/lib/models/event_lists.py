@@ -517,7 +517,3 @@ class PriceList(EventList):
         )
         if event:
             self.events.append(event)
-
-
-
-
