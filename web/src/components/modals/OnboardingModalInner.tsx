@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { HiCheck, HiChevronLeft, HiChevronRight, HiXMark } from 'react-icons/hi2';
 
 export interface Page {
-  headerImage: { pathname: string };
+  headerImage: string;
   isMainTitle?: boolean;
   renderContent: (translator: TFunction) => ReactElement;
   title?: (translator: TFunction) => ReactElement;
@@ -101,7 +101,7 @@ function Modal({
             style={
               currentView.headerImage && !currentView.hasWebp
                 ? {
-                    backgroundImage: `url("${currentView.headerImage.pathname}")`,
+                    backgroundImage: `url("${currentView.headerImage}")`,
                     backgroundSize: `${currentView.isMainTitle ? 'contain' : 'cover'} `,
                   }
                 : {}
@@ -109,12 +109,9 @@ function Modal({
           >
             {currentView.headerImage && currentView.hasWebp && (
               <picture className="overflow-hidden" style={{}}>
-                <source
-                  srcSet={`${currentView.headerImage.pathname}.webp`}
-                  type="image/webp"
-                />
+                <source srcSet={`${currentView.headerImage}.webp`} type="image/webp" />
                 <img
-                  src={`${currentView.headerImage.pathname}.png`}
+                  src={`${currentView.headerImage}.png`}
                   alt=""
                   className="w-full rounded-t-3xl object-top"
                   draggable={false}

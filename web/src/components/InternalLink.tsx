@@ -1,4 +1,4 @@
-import { Link, LinkProps, useLocation } from 'react-router-dom';
+import { Link, LinkProps, useLocation } from '@tanstack/react-router';
 
 export default function InternalLink({ to, ...rest }: LinkProps) {
   const location = useLocation();

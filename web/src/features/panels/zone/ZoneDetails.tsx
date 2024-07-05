@@ -1,3 +1,4 @@
+import { Navigate, useParams } from '@tanstack/react-router';
 import useGetZone from 'api/getZone';
 import { Button } from 'components/Button';
 import LoadingSpinner from 'components/LoadingSpinner';
@@ -6,7 +7,6 @@ import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
-import { Navigate, useParams } from 'react-router-dom';
 import { ZoneMessage } from 'types';
 import { EstimationMethods, SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
@@ -28,7 +28,7 @@ import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams({ strict: false });
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [_, setViewMode] = useAtom(spatialAggregateAtom);

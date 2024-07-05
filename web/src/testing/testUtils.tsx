@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider } from '@tanstack/react-router';
 import { render } from '@testing-library/react';
+import { router } from 'main';
 import type { PropsWithChildren, ReactElement } from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +26,7 @@ export default function renderWithProviders(
   render(ui, {
     wrapper: ({ children }: PropsWithChildren): ReactElement => (
       <QueryClientProvider client={queryClient}>
-        {includeRouter ? <BrowserRouter>{children}</BrowserRouter> : children}
+        {includeRouter && <RouterProvider router={router} />}
       </QueryClientProvider>
     ),
   });

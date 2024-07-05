@@ -21,7 +21,7 @@ export interface ZoneRowType {
 function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType) {
   return (
     <InternalLink
-      className="group my-1 flex h-11 w-full items-center overflow-hidden rounded bg-gray-100 pl-3 text-left transition hover:bg-gray-200 focus:border focus:border-gray-400/60 focus-visible:outline-none dark:border dark:border-gray-400/10 dark:bg-gray-800 dark:hover:bg-gray-700/70 dark:focus:border-gray-500/80"
+      //className="group my-1 flex h-11 w-full items-center overflow-hidden rounded bg-gray-100 pl-3 text-left transition hover:bg-gray-200 focus:border focus:border-gray-400/60 focus-visible:outline-none dark:border dark:border-gray-400/10 dark:bg-gray-800 dark:hover:bg-gray-700/70 dark:focus:border-gray-500/80"
       key={ranking}
       to={`/zone/${zoneId}`}
       data-test-id="zone-list-link"

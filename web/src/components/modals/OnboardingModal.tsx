@@ -1,6 +1,6 @@
+import { useSearch } from '@tanstack/react-router';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
-import { resolvePath, useSearchParams } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
 import Modal, { Page } from './OnboardingModalInner';
@@ -36,38 +36,38 @@ function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewConten
 
 const views: Page[] = [
   {
-    headerImage: resolvePath('images/electricitymaps-icon.svg'),
+    headerImage: '/images/electricitymaps-icon.svg',
     isMainTitle: true,
     renderContent: (t) => (
       <ViewContent t={t} translationKey="onboarding-modal.view1" isDangerouslySet />
     ),
   },
   {
-    headerImage: resolvePath('images/onboarding/mapExtract'),
+    headerImage: '/images/onboarding/mapExtract',
     hasWebp: true,
     renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view2" />,
   },
   {
-    headerImage: resolvePath('images/onboarding/exchangeArrows.gif'),
+    headerImage: '/images/onboarding/exchangeArrows.gif',
     renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view3" />,
   },
   {
-    headerImage: resolvePath('images/onboarding/switchViews'),
+    headerImage: '/images/onboarding/switchViews',
     hasWebp: true,
     renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view4" />,
   },
   {
-    headerImage: resolvePath('images/onboarding/switchEmissions'),
+    headerImage: '/images/onboarding/switchEmissions',
     hasWebp: true,
     renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view5" />,
   },
   {
-    headerImage: resolvePath('images/onboarding/pastData'),
+    headerImage: '/images/onboarding/pastData',
     hasWebp: true,
     renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view6" />,
   },
   {
-    headerImage: resolvePath('images/onboarding/splitLayers'),
+    headerImage: '/images/onboarding/splitLayers',
     hasWebp: true,
     renderContent: (t) => <ViewContent t={t} translationKey="onboarding-modal.view7" />,
   },
@@ -77,8 +77,7 @@ export function OnboardingModal() {
   const [hasOnboardingBeenSeen, setHasOnboardingBeenSeen] = useAtom(
     hasOnboardingBeenSeenAtom
   );
-  const [searchParameters] = useSearchParams();
-  const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
+  const { 'skip-onboarding': skipOnboarding } = useSearch({ strict: false });
   const visible = !hasOnboardingBeenSeen && !skipOnboarding;
   const handleDismiss = () => {
     setHasOnboardingBeenSeen(true);

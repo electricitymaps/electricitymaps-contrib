@@ -1,5 +1,5 @@
+import { useMatch, useParams } from '@tanstack/react-router';
 import { callerLocation, useMeta } from 'api/getMeta';
-import { useMatch, useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
@@ -9,8 +9,10 @@ import {
 } from 'types';
 
 export function useGetZoneFromPath() {
-  const { zoneId } = useParams();
-  const match = useMatch('/zone/:id');
+  const { zoneId } = useParams({ strict: false });
+  const match = useMatch({
+    strict: false,
+  });
   if (zoneId) {
     return zoneId;
   }

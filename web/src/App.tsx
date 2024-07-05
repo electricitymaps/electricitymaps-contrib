@@ -2,6 +2,7 @@ import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
 import * as Sentry from '@sentry/react';
+import { Outlet } from '@tanstack/react-router';
 import useGetState from 'api/getState';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
@@ -13,7 +14,6 @@ import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react'
 import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
-const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const MapOverlays = lazy(() => import('components/MapOverlays'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
@@ -71,6 +71,7 @@ export default function App(): ReactElement {
               <Suspense>
                 <UpdatePrompt />
               </Suspense>
+              <Outlet />
               <Suspense>
                 <LoadingOverlay />
               </Suspense>
@@ -82,9 +83,6 @@ export default function App(): ReactElement {
                 <FAQModal />
                 <InfoModal />
                 <SettingsModal />
-              </Suspense>
-              <Suspense>
-                <LeftPanel />
               </Suspense>
               <Suspense>
                 <MapWrapper />

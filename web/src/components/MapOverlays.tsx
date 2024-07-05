@@ -1,7 +1,7 @@
+import { useSearch } from '@tanstack/react-router';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtomValue } from 'jotai';
 import { lazy, Suspense } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { hasSeenSurveyCardAtom } from 'utils/state/atoms';
 
 import SurveyCard from './app-survey/SurveyCard';
@@ -14,9 +14,7 @@ function FallbackComponent() {
 export default function MapOverlays() {
   const hasSeenSurveyCard = useAtomValue(hasSeenSurveyCardAtom);
 
-  const [searchParameters] = useSearchParams();
-  const showManager =
-    searchParameters.get('ff') === 'true' || searchParameters.get('ff') === '';
+  const { ff: showManager } = useSearch({ strict: false });
   const isProductionOrFManagerOpen = !import.meta.env.DEV || showManager;
   const surveyEnabled =
     useFeatureFlag('feedback-micro-survey') &&

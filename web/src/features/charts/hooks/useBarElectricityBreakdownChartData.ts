@@ -1,6 +1,6 @@
+import { useParams } from '@tanstack/react-router';
 import useGetZone from 'api/getZone';
 import { useAtom } from 'jotai';
-import { useParams } from 'react-router-dom';
 import { Mode, SpatialAggregate } from 'utils/constants';
 import {
   productionConsumptionAtom,
@@ -20,7 +20,9 @@ const DEFAULT_BAR_PX_HEIGHT = 265;
 export default function useBarBreakdownChartData() {
   // TODO: Create hook for using "current" selectedTimeIndex of data instead
   const { data: zoneData, isLoading } = useGetZone();
-  const { zoneId } = useParams();
+  const zoneId = useParams({
+    strict: false,
+  });
   const [viewMode] = useAtom(spatialAggregateAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);

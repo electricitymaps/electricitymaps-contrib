@@ -5,11 +5,17 @@ import './index.css';
 
 import * as Sentry from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  createRootRoute,
+  createRoute,
+  createRouter,
+  RouterProvider,
+} from '@tanstack/react-router';
 import App from 'App';
-import { StrictMode } from 'react';
+import LoadingSpinner from 'components/LoadingSpinner';
+import { lazy, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
-import { BrowserRouter } from 'react-router-dom';
 import i18n from 'translation/i18n';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
@@ -53,6 +59,37 @@ const queryClient = new QueryClient({
 
 refetchDataOnHourChange(queryClient);
 
+const rootRoute = createRootRoute({
+  component: App,
+});
+
+const leftPanelRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  id: 'left-panel',
+  component: lazy(() => import('features/panels/LeftPanel')),
+  pendingComponent: LoadingSpinner,
+});
+
+const rankingPanelRoute = createRoute({
+  getParentRoute: () => leftPanelRoute,
+  path: '/',
+  component: lazy(() => import('features/panels/ranking-panel/RankingPanel')),
+  pendingComponent: LoadingSpinner,
+});
+
+const zoneDetailsRoute = createRoute({
+  getParentRoute: () => leftPanelRoute,
+  path: '/zone/$zoneId',
+  component: lazy(() => import('features/panels/zone/ZoneDetails')),
+  pendingComponent: LoadingSpinner,
+});
+
+const routeTree = rootRoute.addChildren([
+  leftPanelRoute.addChildren([rankingPanelRoute, zoneDetailsRoute]),
+]);
+
+export const router = createRouter({ routeTree });
+
 const container = document.querySelector('#root');
 if (container) {
   const root = createRoot(container);
@@ -60,9 +97,7 @@ if (container) {
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <RouterProvider router={router} />
         </QueryClientProvider>
       </I18nextProvider>
     </StrictMode>

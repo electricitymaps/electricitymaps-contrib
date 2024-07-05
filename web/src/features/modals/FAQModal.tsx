@@ -1,9 +1,9 @@
+import { useLocation } from '@tanstack/react-router';
 import Modal from 'components/Modal';
 import FAQContent from 'features/panels/faq/FAQContent';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
 
 import { isFAQModalOpenAtom } from './modalAtoms';
 

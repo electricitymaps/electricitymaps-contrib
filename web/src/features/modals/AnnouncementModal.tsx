@@ -1,10 +1,10 @@
+import { useSearch } from '@tanstack/react-router';
 import { Link } from 'components/Link';
 import { SourceColorAnnouncementImage } from 'icons/announcementSourceColorImage';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useEffect, useState } from 'react';
 import { HiXMark } from 'react-icons/hi2';
-import { useSearchParams } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
 const hasAnnouncementBeenSeenAtom = atomWithStorage(
@@ -19,8 +19,7 @@ export default function AnnouncementModal() {
   const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
   const [hasOnboardingBeenSeenInSession, setHasOnboardingBeenSeenInSession] =
     useState(false);
-  const [searchParameters] = useSearchParams();
-  const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
+  const { 'skip-onboarding': skipOnboarding } = useSearch({ strict: false });
   const isExpired = new Date() > new Date('2024-07-15');
 
   // Check if onboarding has been seen in the current session

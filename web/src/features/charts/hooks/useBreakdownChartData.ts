@@ -1,9 +1,9 @@
+import { useParams } from '@tanstack/react-router';
 import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
 import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
@@ -47,7 +47,7 @@ export const getLayerFill =
 export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
-  const { zoneId } = useParams();
+  const { zoneId } = useParams({ strict: false });
   const [mixMode] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [viewMode] = useAtom(spatialAggregateAtom);

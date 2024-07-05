@@ -1,3 +1,4 @@
+import { useLocation, useMatchRoute, useNavigate } from '@tanstack/react-router';
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
@@ -8,7 +9,6 @@ import { useAtom, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
-import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode, useUserLocation } from 'utils/helpers';
 import {
@@ -75,6 +75,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
+  //const matchRoute = useMatchRoute();
 
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
@@ -203,7 +204,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    const pathZoneId = 'SE-SE4';
     setSelectedZoneId(pathZoneId);
     if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
@@ -254,9 +255,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     setHoveredZone(null);
     if (feature?.properties) {
       const zoneId = feature.properties.zoneId;
-      navigate(createToWithState(`/zone/${zoneId}`));
+      navigate({ to: createToWithState(`/zone/${zoneId}`) });
     } else {
-      navigate(createToWithState('/map'));
+      navigate({ to: createToWithState('/map') });
     }
   };
 

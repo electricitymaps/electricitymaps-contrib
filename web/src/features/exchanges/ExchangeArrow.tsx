@@ -3,7 +3,6 @@ import { useHeaderHeight } from 'features/charts/bar-breakdown/utils';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
 
 import ExchangeTooltip from './ExchangeTooltip';
@@ -80,10 +79,7 @@ function ExchangeArrow({
   const prefix = colorBlindMode ? 'colorblind-' : '';
   const intensity = quantizedCo2IntensityScale(co2intensity);
   const speed = quantizedExchangeSpeedScale(absFlow);
-  const imageSource = resolvePath(
-    `images/arrows/${prefix}arrow-${intensity}-animated-${speed}`
-  ).pathname;
-
+  const imageSource = `/images/arrows/${prefix}arrow-${intensity}-animated-${speed}`;
   return (
     <TooltipWrapper
       tooltipClassName={tooltipClassName}

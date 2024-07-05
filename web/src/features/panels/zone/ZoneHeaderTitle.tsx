@@ -1,10 +1,10 @@
+import { Link } from '@tanstack/react-router';
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useSetAtom } from 'jotai';
 import { HiArrowLeft } from 'react-icons/hi2';
-import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
 
