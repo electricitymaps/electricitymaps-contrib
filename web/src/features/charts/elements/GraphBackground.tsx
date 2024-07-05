@@ -10,10 +10,10 @@ interface GraphBackgroundProps {
   timeScale: ScaleTime<number, number>;
   valueScale: ScaleLinear<number, number>;
   datetimes: Date[];
-  mouseMoveHandler?: (index: number | null) => void;
+  mouseMoveHandler?: (timeIndex: number | null, layerIndex: number | null) => void;
   mouseOutHandler?: () => void;
   isMobile: boolean;
-  svgNode: SVGElement;
+  svgNode: SVGSVGElement;
 }
 
 const GraphBackground: React.FC<GraphBackgroundProps> = React.memo(
@@ -33,19 +33,14 @@ const GraphBackground: React.FC<GraphBackgroundProps> = React.memo(
 
     // Mouse hover events
     let mouseOutRectTimeout: string | number | NodeJS.Timeout | undefined;
-    const handleRectMouseMove = (event_: React.MouseEvent<SVGRectElement>) => {
+    const handleRectMouseMove = (event: React.MouseEvent<SVGRectElement>) => {
       if (mouseOutRectTimeout) {
         clearTimeout(mouseOutRectTimeout);
         mouseOutRectTimeout = undefined;
       }
-      const timeIndex = detectHoveredDatapointIndex(
-        event_,
-        datetimes,
-        timeScale,
-        svgNode
-      );
+      const timeIndex = detectHoveredDatapointIndex(event, datetimes, timeScale, svgNode);
       if (mouseMoveHandler) {
-        mouseMoveHandler(timeIndex);
+        mouseMoveHandler(timeIndex, null);
       }
     };
     const handleRectMouseOut = () => {
@@ -66,9 +61,6 @@ const GraphBackground: React.FC<GraphBackgroundProps> = React.memo(
         width={width}
         height={height}
         style={{ cursor: 'pointer', opacity: 0 }}
-        /* Support only click events in mobile mode, otherwise react to mouse hovers */
-        onClick={isMobile ? handleRectMouseMove : noop}
-        onFocus={isMobile ? noop : handleRectMouseMove}
         onMouseOver={isMobile ? noop : handleRectMouseMove}
         onMouseMove={isMobile ? noop : handleRectMouseMove}
         onMouseOut={handleRectMouseOut}

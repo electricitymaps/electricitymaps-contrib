@@ -2,6 +2,7 @@ import { bisectLeft } from 'd3-array';
 import { ScaleTime, scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
+import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { EstimationMethods, Mode, modeOrder, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
@@ -9,11 +10,11 @@ import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import { AreaGraphElement } from './types';
 
 export const detectHoveredDatapointIndex = (
-  event_: React.MouseEvent<SVGRectElement> | PointerEvent,
+  event_: MouseEvent<SVGRectElement> | MouseEvent<SVGPathElement>,
   datetimes: Date[],
   timeScale: ScaleTime<number, number>,
-  svgNode: SVGElement
-) => {
+  svgNode: SVGSVGElement
+): number | null => {
   if (datetimes.length === 0) {
     return null;
   }

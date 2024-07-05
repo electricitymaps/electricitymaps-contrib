@@ -249,15 +249,17 @@ function AreaGraph({
           isDisabled ? 'pointer-events-none blur' : ''
         }`}
       >
-        <GraphBackground
-          timeScale={timeScale}
-          valueScale={valueScale}
-          datetimes={datetimes}
-          mouseMoveHandler={mouseMoveHandler}
-          mouseOutHandler={mouseOutHandler}
-          isMobile={isMobile}
-          svgNode={reference.current}
-        />
+        {timeScale && reference.current && (
+          <GraphBackground
+            timeScale={timeScale}
+            valueScale={valueScale}
+            datetimes={datetimes}
+            mouseMoveHandler={mouseMoveHandler}
+            mouseOutHandler={mouseOutHandler}
+            isMobile={isMobile}
+            svgNode={reference.current}
+          />
+        )}
         <AreaGraphLayers
           layers={layers}
           datetimes={datetimesWithNext}
