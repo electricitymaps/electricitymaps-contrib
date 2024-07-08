@@ -67,7 +67,7 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
           .filter(([_, value]) => value.o)
           .map(([zone]) => zone)
       : [];
-  }, [data?.data?.datetimes, selectedDatetimeString]);
+  }, [data, selectedDatetimeString]);
 
   const exchangesToUse: { [key: string]: StateExchangeData } = useMemo(() => {
     const exchanges = data?.data?.datetimes?.[selectedDatetimeString]?.e;
@@ -85,7 +85,7 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
     return viewMode === SpatialAggregate.COUNTRY
       ? countryViewExchanges
       : zoneViewExchanges;
-  }, [data?.data?.datetimes, selectedDatetimeString, viewMode]);
+  }, [data, selectedDatetimeString, viewMode]);
 
   const currentExchanges: ExchangeArrowData[] = useMemo(() => {
     return Object.entries(exchangesToUse).map(([key, value]) => ({

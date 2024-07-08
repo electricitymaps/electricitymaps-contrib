@@ -1,4 +1,4 @@
-import { useAtomValue } from 'jotai/react';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { formatDate } from 'utils/formatting';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
