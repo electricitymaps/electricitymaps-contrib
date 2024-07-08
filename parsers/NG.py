@@ -11,9 +11,11 @@ from zoneinfo import ZoneInfo
 import bs4
 from requests import Session
 
-from parsers.lib import config, validation
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
+from parsers.lib import config
 
-API_URL = urllib.parse.urlparse("https://niggrid.org/GenerationProfile")
+API_URL = urllib.parse.urlparse("https://niggrid.org/GenerationProfile2")
 API_URL_STRING = API_URL.geturl()
 NORMALISE = {
     "gas": "gas",
@@ -28,6 +30,48 @@ NORMALISE = {
 }
 PATTERN = re.compile(r"\((.*)\)")
 TIMEZONE = ZoneInfo("Africa/Lagos")
+
+
+def get_data(session: Session, logger: Logger, timestamp: datetime):
+    # GET the landing page (HTML) and scrape some form data from it.
+    response = session.get(API_URL_STRING)
+    soup = bs4.BeautifulSoup(response.text, "html.parser")
+    data = {tag["name"]: tag["value"] for tag in soup.find_all("input")}
+    data["ctl00$MainContent$txtReadingDate"] = timestamp.strftime("%Y/%m/%d")
+
+    # Send a POST request for the desired grid data using parameters from the
+    # landing page form. The grid data is presented as an HTML table; we ignore
+    # its header and footer rows.
+    response = session.post(API_URL_STRING, data=data)
+    rows = bs4.BeautifulSoup(response.text, "html.parser").find_all("tr")[1:-1]
+
+    # Values from the future should not be returned
+    max_hour = min(
+        int(
+            (datetime.now(TIMEZONE) - timestamp.replace(hour=0)).total_seconds() / 3600
+        ),
+        24,
+    )
+
+    production_dict = {}
+    production_mix = ProductionMix()
+
+    for hour in range(0, max_hour):
+        production_dict[timestamp.replace(hour=hour)] = production_mix.copy()
+
+    for row in rows:
+        _, source, *power, _ = (tag.text for tag in row.find_all("td"))
+        try:
+            technology = NORMALISE[PATTERN.search(source).group(1).casefold()]
+        except (AttributeError, KeyError):
+            logger.warning(f"Unexpected source '{source.strip()}' encountered")
+            continue
+        for hour in range(0, max_hour):
+            production_dict[timestamp.replace(hour=hour)].add_value(
+                technology,
+                float(power.pop(0)),
+            )
+    return production_dict
 
 
 # The data is hourly, but it takes a few minutes after the turn of each hour
@@ -50,41 +94,24 @@ def fetch_production(
         TIMEZONE
     )
 
-    # GET the landing page (HTML) and scrape some form data from it.
     session = session or Session()
-    response = session.get(API_URL_STRING)
-    soup = bs4.BeautifulSoup(response.text, "html.parser")
-    data = {tag["name"]: tag["value"] for tag in soup.find_all("input")}
-    data["ctl00$MainContent$txtReadingDate"] = timestamp.strftime("%d/%m/%Y")
-    data["ctl00$MainContent$ddlTime"] = timestamp.strftime("%H:%M")
+    production_dict = get_data(session=session, logger=logger, timestamp=timestamp)
 
-    # Send a POST request for the desired grid data using parameters from the
-    # landing page form. The grid data is presented as an HTML table; we ignore
-    # its header and footer rows.
-    response = session.post(API_URL_STRING, data=data)
-    rows = bs4.BeautifulSoup(response.text, "html.parser").find_all("tr")[1:-1]
-    production_mix = {technology: 0.0 for technology in NORMALISE.values()}
-    for row in rows:
-        _, source, power, _ = (tag.text for tag in row.find_all("td"))
-        try:
-            technology = NORMALISE[PATTERN.search(source).group(1).casefold()]
-        except (AttributeError, KeyError):
-            logger.warning(f"Unexpected source '{source.strip()}' encountered")
-            continue
-        production_mix[technology] += float(power)
+    # Add data from previous day if few hours ago to update preliminary data
+    if len(production_dict) < 12:
+        production_dict = production_dict | get_data(
+            session=session, logger=logger, timestamp=timestamp - timedelta(days=1)
+        )
 
-    # Return the production mix.
-    return validation.validate(
-        {
-            "zoneKey": zone_key,
-            "datetime": timestamp,
-            "production": production_mix,
-            "source": API_URL.netloc,
-        },
-        logger,
-        floor=10.0,
-        remove_negative=True,
-    )
+    production_list = ProductionBreakdownList(logger=logger)
+    for ts in production_dict:
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=ts,
+            production=production_dict[ts],
+            source=API_URL.netloc,
+        )
+    return production_list.to_list()
 
 
 if __name__ == "__main__":
