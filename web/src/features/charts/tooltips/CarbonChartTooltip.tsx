@@ -44,6 +44,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
         title={t('tooltips.carbonintensity')}
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
+        estimationMethod={estimationMethod}
       />
       <CarbonIntensityDisplay
         co2Intensity={intensity}

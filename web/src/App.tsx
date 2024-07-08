@@ -39,11 +39,7 @@ export default function App(): ReactElement {
 
   // Update classes on theme change
   useLayoutEffect(() => {
-    if (shouldUseDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.toggle('dark', shouldUseDarkMode);
   }, [shouldUseDarkMode]);
 
   // Handle back button on Android

@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.148.0",
+  "version": "1.151.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "repository": {
     "type": "git",
@@ -185,7 +185,6 @@
     "vite-plugin-pwa": "0.20.0",
     "vite-tsconfig-paths": "4.3.2",
     "vitest": "1.6.0",
-    "whatwg-fetch": "3.6.17",
     "workbox-build": "7.1.1",
     "workbox-window": "7.1.0"
   },
