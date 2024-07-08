@@ -27,7 +27,9 @@ describe('getTrackBackground', () => {
 
 describe('getThumbIcon', () => {
   it('returns "<FaArrowsLeftRight size={14} />" when no index or sets are provided', () => {
-    const { container: expected } = render(<FaArrowsLeftRight size={14} />);
+    const { container: expected } = render(
+      <FaArrowsLeftRight size={14} pointerEvents="none" />
+    );
     const { container } = render(getThumbIcon());
     expect(container.innerHTML).toEqual(expected.innerHTML);
   });
@@ -39,7 +41,7 @@ describe('getThumbIcon', () => {
         [7, 21],
         [30, 40],
       ];
-      const { container: expected } = render(<FaMoon size={14} />);
+      const { container: expected } = render(<FaMoon size={14} pointerEvents="none" />);
       const { container } = render(getThumbIcon(index, sets));
       expect(container.innerHTML).toEqual(expected.innerHTML);
     }
@@ -52,7 +54,7 @@ describe('getThumbIcon', () => {
         [7, 21],
         [30, 40],
       ];
-      const { container: expected } = render(<FaSun size={14} />);
+      const { container: expected } = render(<FaSun size={14} pointerEvents="none" />);
       const { container } = render(getThumbIcon(index, sets));
       expect(container.innerHTML).toEqual(expected.innerHTML);
     }

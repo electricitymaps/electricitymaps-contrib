@@ -62,12 +62,16 @@ export const getThumbIcon = (
 ): React.ReactNode => {
   const size = 14;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
-    return <FaArrowsLeftRight size={size} />;
+    return <FaArrowsLeftRight size={size} pointerEvents="none" />;
   }
   const isValueAtNight = sets.some(
     ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
   );
-  return isValueAtNight ? <FaMoon size={size} /> : <FaSun size={size} />;
+  return isValueAtNight ? (
+    <FaMoon size={size} pointerEvents="none" />
+  ) : (
+    <FaSun size={size} pointerEvents="none" />
+  );
 };
 
 function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
