@@ -1,5 +1,5 @@
 import useGetZone from 'api/getZone';
-import { useAtomValue } from 'jotai/react';
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import { Mode, SpatialAggregate } from 'utils/constants';
 import {
