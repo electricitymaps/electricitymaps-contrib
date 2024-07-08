@@ -20,23 +20,6 @@ const timeControllerCollapsedAtom = atomWithStorage<boolean | null>(
   null
 );
 
-function getTimeControllerTitleTranslationKey(timeAverage: TimeAverages) {
-  switch (timeAverage) {
-    case TimeAverages.HOURLY: {
-      return 'time-controller.title.hourly';
-    }
-    case TimeAverages.DAILY: {
-      return 'time-controller.title.daily';
-    }
-    case TimeAverages.MONTHLY: {
-      return 'time-controller.title.monthly';
-    }
-    case TimeAverages.YEARLY: {
-      return 'time-controller.title.yearly';
-    }
-  }
-}
-
 function InternalTimeController({ className }: { className?: string }) {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
@@ -101,7 +84,7 @@ function InternalTimeController({ className }: { className?: string }) {
   return (
     <div className={className}>
       <Accordion
-        title={t(getTimeControllerTitleTranslationKey(timeAverage))}
+        title={t(`time-controller.title.${timeAverage}`)}
         badge={<TimeBadge />}
         isOnTop
         isCollapsedAtom={timeControllerCollapsedAtom}

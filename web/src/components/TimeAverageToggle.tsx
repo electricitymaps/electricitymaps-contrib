@@ -44,7 +44,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}
           className={`
-          h-full grow basis-0 select-none border border-transparent text-sm font-semibold capitalize
+          h-full grow basis-0 select-none border border-transparent text-xs font-semibold capitalize
             ${
               timeAverage === value
                 ? 'rounded-full border-[#e5e5e5] bg-white/80 text-brand-green dark:border-gray-400/10 dark:bg-gray-600/80 dark:text-white'
