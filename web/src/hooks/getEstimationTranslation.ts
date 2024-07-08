@@ -7,13 +7,11 @@ export function useGetEstimationTranslation(
   estimatedPercentage?: number
 ) {
   const { t } = useTranslation();
-
-  const exactTranslation =
-    (estimatedPercentage ?? 0) > 0 && estimationMethod === EstimationMethods.AGGREGATED
-      ? t(`estimation-card.aggregated_estimated.${field}`, {
-          percentage: estimatedPercentage,
-        })
-      : t(`estimation-card.${estimationMethod}.${field}`);
+  const exactTranslation = estimatedPercentage
+    ? t(`estimation-card.aggregated_estimated.${field}`, {
+        percentage: estimatedPercentage,
+      })
+    : t(`estimation-card.${estimationMethod}.${field}`);
 
   const genericTranslation = t(`estimation-card.estimated_generic_method.${field}`);
   return exactTranslation.startsWith('estimation-card.')
