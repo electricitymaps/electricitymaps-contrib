@@ -311,39 +311,57 @@ describe('getDateTimeFormatOptions', () => {
   });
 });
 
+// These tests rely on the internal implementation of the `Intl.DateTimeFormat` object
+// and may fail if the Node version changes. Simply update the snapshot if that is the case.
 describe('formatDate', () => {
-  it('handles hourly data', () => {
-    const actual = formatDate(
-      new Date('2021-01-01T00:00:00Z'),
-      'en',
-      TimeAverages.HOURLY
-    );
-    const expected = 'January 1, 2021 at 1:00 AM GMT+1';
-    expect(actual).to.deep.eq(expected);
-  });
-  it('handles daily data', () => {
-    const actual = formatDate(new Date('2021-01-01T00:00:00Z'), 'en', TimeAverages.DAILY);
-    const expected = 'January 1, 2021';
-    expect(actual).to.deep.eq(expected);
-  });
-  it('handles monthly data', () => {
-    const actual = formatDate(
-      new Date('2021-01-01T00:00:00Z'),
-      'en',
-      TimeAverages.MONTHLY
-    );
-    const expected = 'January 2021';
-    expect(actual).to.deep.eq(expected);
-  });
-  it('handles yearly data', () => {
-    const actual = formatDate(
-      new Date('2021-01-01T00:00:00Z'),
-      'en',
-      TimeAverages.YEARLY
-    );
-    const expected = '2021';
-    expect(actual).to.deep.eq(expected);
-  });
+  it.each(['en', 'sv', 'de', 'fr', 'es', 'it'])(
+    'handles hourly data for %s',
+    (language) => {
+      const actual = formatDate(
+        new Date('2021-01-01T00:00:00Z'),
+        language,
+        TimeAverages.HOURLY
+      );
+      expect(actual).toMatchSnapshot();
+    }
+  );
+
+  it.each(['en', 'sv', 'de', 'fr', 'es', 'it'])(
+    'handles daily data for %s',
+    (language) => {
+      const actual = formatDate(
+        new Date('2021-01-01T00:00:00Z'),
+        language,
+        TimeAverages.DAILY
+      );
+      expect(actual).toMatchSnapshot();
+    }
+  );
+
+  it.each(['en', 'sv', 'de', 'fr', 'es', 'it'])(
+    'handles monthly data for %s',
+    (language) => {
+      const actual = formatDate(
+        new Date('2021-01-01T00:00:00Z'),
+        language,
+        TimeAverages.MONTHLY
+      );
+      expect(actual).toMatchSnapshot();
+    }
+  );
+
+  it.each(['en', 'sv', 'de', 'fr', 'es', 'it'])(
+    'handles yearly data for %s',
+    (language) => {
+      const actual = formatDate(
+        new Date('2021-01-01T00:00:00Z'),
+        language,
+        TimeAverages.YEARLY
+      );
+      expect(actual).toMatchSnapshot();
+    }
+  );
+
   it('logs an error on unknown data', () => {
     // Spy on console.error to check if it is called
     const consoleErrorSpy = vi.spyOn(console, 'error');
