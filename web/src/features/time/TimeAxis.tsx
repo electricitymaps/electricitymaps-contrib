@@ -22,17 +22,20 @@ const renderTick = (
   lang: string,
   selectedTimeAggregate: TimeAverages,
   isLoading: boolean,
-  latestString: string
+  latestString: string,
+  isGraph: boolean
 ) => {
   const shouldShowValue =
     index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
+  const valueOpacity = isGraph ? 0.5 : 1;
   return (
     <g
       key={`timeaxis-tick-${index}`}
       className="text-xs"
+      opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
-      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 1 : 0.2} />
+      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? valueOpacity : 0.2} />
       {shouldShowValue &&
         renderTickValue(
           value,
@@ -40,7 +43,8 @@ const renderTick = (
           displayLive,
           lang,
           selectedTimeAggregate,
-          latestString
+          latestString,
+          isGraph
         )}
     </g>
   );
@@ -52,11 +56,19 @@ const renderTickValue = (
   displayLive: boolean,
   lang: string,
   selectedTimeAggregate: TimeAverages,
-  latestString: string
+  latestString: string,
+  isGraph: boolean
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
+  const fontWeight = isGraph ? 'normal' : 'bold';
   return (
-    <text fill="currentColor" y="9" dy="0.71em" fontWeight="bold" fontSize={'0.65rem'}>
+    <text
+      fill="currentColor"
+      y="9"
+      dy="0.71em"
+      fontWeight={fontWeight}
+      fontSize={'0.65rem'}
+    >
       {shouldDisplayLive ? latestString : formatDateTick(v, lang, selectedTimeAggregate)}
     </text>
   );
@@ -74,6 +86,7 @@ interface TimeAxisProps {
   transform?: string;
   scaleWidth?: number;
   className?: string;
+  isGraph?: boolean;
 }
 
 function TimeAxis({
@@ -84,6 +97,7 @@ function TimeAxis({
   scaleWidth,
   isLiveDisplay,
   className,
+  isGraph = true,
 }: TimeAxisProps) {
   const { t, i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
@@ -119,7 +133,8 @@ function TimeAxis({
             i18n.language,
             selectedTimeAggregate,
             isLoading,
-            t('time-controller.latest')
+            t('time-controller.latest'),
+            isGraph
           )
         )}
       </g>

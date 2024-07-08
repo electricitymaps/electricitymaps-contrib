@@ -106,6 +106,7 @@ function InternalTimeController({ className }: { className?: string }) {
         className="h-[22px] w-full overflow-visible"
         transform={`translate(12, 0)`}
         isLiveDisplay={timeAverage === TimeAverages.HOURLY}
+        isGraph={false}
       />
     </div>
   );
