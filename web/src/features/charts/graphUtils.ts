@@ -6,7 +6,7 @@ import { scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeOrder, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
@@ -193,18 +193,34 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
+function analyzeChartData(chartData: AreaGraphElement[]) {
+  let estimatedCount = 0;
+  let tsaCount = 0;
+  for (const chartElement of chartData) {
+    if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
+      tsaCount++;
+    }
+    if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
+      estimatedCount++;
+    }
+  }
+  return {
+    allTimeSlicerAverageMethod: tsaCount === chartData.length,
+    allEstimated: estimatedCount === chartData.length,
+    hasEstimation: estimatedCount > 0,
+  };
+}
+
 export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
-  const allEstimated = chartData.every(
-    (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
-  );
+  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
+    analyzeChartData(chartData);
+  if (allTimeSlicerAverageMethod) {
+    return t(`estimation-card.${EstimationMethods.TSA}.pill`);
+  }
 
   if (allEstimated) {
     return t('estimation-badge.fully-estimated');
   }
-
-  const hasEstimation = chartData.some(
-    (day) => day.meta.estimationMethod || Boolean(day.meta.estimatedPercentage)
-  );
 
   if (hasEstimation) {
     return t('estimation-badge.partially-estimated');

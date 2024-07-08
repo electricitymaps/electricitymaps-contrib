@@ -37,7 +37,7 @@ export function DataSources({
     <div className="flex flex-col py-2">
       <div className="flex flex-row pb-2">
         <div className="mr-1">{icon}</div>
-        <div className="pr-1 text-md font-semibold">{title}</div>
+        <p className="pr-1 font-semibold">{title}</p>
         {emissionFactorSourcesToProductionSources && (
           <TooltipWrapper
             tooltipContent={

@@ -67,7 +67,7 @@ function EmptyBarBreakdownChart({
       <svg
         className={`${
           overLayText ? 'opacity-40' : 'opacity-1'
-        } w-full overflow-visible text-md`}
+        } text-md w-full overflow-visible`}
         height={height}
       >
         <Axis formatTick={formatTick} height={height} scale={co2Scale} />
