@@ -119,6 +119,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 477.10041160023616
+    hydro:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 10.7
+    nuclear:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 5.13
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -220,4 +228,7 @@ parsers:
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Europe
+sources:
+  UNECE 2022:
+    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Europe/Skopje
