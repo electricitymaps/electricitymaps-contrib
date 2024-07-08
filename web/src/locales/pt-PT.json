@@ -179,7 +179,6 @@
     }
   },
   "time-controller": {
-    "title": "Exibir dados do passado",
     "daily": "diários",
     "hourly": "horários",
     "monthly": "mensais",

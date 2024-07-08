@@ -72,9 +72,6 @@
     "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href=\"{{link}}\" target=\"_blank\">dodate območje podatki</a>.",
     "now": "Zdaj"
   },
-  "time-controller": {
-    "title": "Prikaži podatke iz preteklosti"
-  },
   "left-panel": {
     "zone-list-header-title": "Vpliv na podnebje glede na območje",
     "zone-list-header-subtitle": "Razvrščeno glede na ogljično intenzivnost porabljene električne energije (gCO₂eq/kWh)",

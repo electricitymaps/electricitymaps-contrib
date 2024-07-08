@@ -184,11 +184,16 @@
     }
   },
   "time-controller": {
-    "title": "Display data from the past",
-    "daily": "daily",
-    "hourly": "hourly",
-    "monthly": "monthly",
-    "yearly": "yearly",
+    "title": {
+      "hourly": "Hourly data for:",
+      "daily": "Daily data for:",
+      "monthly": "Monthly data for:",
+      "yearly": "Yearly data for:"
+    },
+    "daily": "Daily",
+    "hourly": "Hourly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
     "latest": "Latest"
   },
   "left-panel": {
