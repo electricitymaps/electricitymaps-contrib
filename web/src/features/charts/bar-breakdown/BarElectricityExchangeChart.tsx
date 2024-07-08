@@ -46,9 +46,9 @@ export default function BarElectricityExchangeChart({
     <>
       <div className="flex flex-row pb-2 pt-4">
         <span className="mt-0.5 h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
-        <span className="pl-2 text-sm font-medium text-neutral-600 dark:text-gray-300">
-          {t('country-panel.graph-legends.exchange-capacity')} {graphUnit}
-        </span>
+        <p className="pl-2 text-xs font-medium text-neutral-600 dark:text-gray-300">
+          {t('country-panel.graph-legends.exchange-capacity')} ({graphUnit})
+        </p>
       </div>
       <svg className="w-full overflow-visible" height={height}>
         <Axis

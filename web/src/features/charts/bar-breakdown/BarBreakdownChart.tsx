@@ -103,7 +103,7 @@ function BarBreakdownChart({
     return formatCo2(t, maxValue);
   };
 
-  const { productionY, exchangeY } = getDataBlockPositions(
+  const { productionY } = getDataBlockPositions(
     productionData?.length ?? 0,
     exchangeData ?? []
   );
@@ -226,9 +226,9 @@ function BarBreakdownChart({
       />
       {!displayByEmissions && (
         <div className="flex flex-row pt-2">
-          <span className="mt-0.5 h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
-          <span className="pl-2 text-sm font-medium text-neutral-600 dark:text-gray-300">
-            {t('country-panel.graph-legends.installed-capacity')} {graphUnit}
+          <span className="mt-0.5 h-3 w-3 rounded-full bg-black/10 text-xs dark:bg-white/10"></span>
+          <span className="pl-2 text-xs font-medium text-neutral-600 dark:text-gray-300">
+            {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
           </span>
         </div>
       )}

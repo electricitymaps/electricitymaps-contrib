@@ -3,7 +3,10 @@ import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { TFunction } from 'i18next';
 import { CarbonUnits } from 'utils/units';
 
-const spreadOverDomain = (scale: any, count: number) => {
+const spreadOverDomain = (
+  scale: ScaleLinear<string | number, string | number, string | number>,
+  count: number
+) => {
   const [x1, x2] = (extent(scale.domain()) as unknown as [number, number]) ?? [0, 0];
   return [...Array.from({ length: count }).keys()].map(
     (v) => x1 + ((x2 - x1) * v) / (count - 1)
@@ -28,7 +31,7 @@ function Co2Scale({
 
   return (
     <div className="mb-5 mt-2">
-      <div className="mb-1 text-sm font-medium text-neutral-600 dark:text-gray-300">
+      <div className="mb-1 text-xs font-medium text-neutral-600 dark:text-gray-300">
         {t('legends.carbonintensity')} ({CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR})
       </div>
       <svg className="flex h-3 w-full flex-col overflow-visible">
@@ -51,7 +54,7 @@ function Co2Scale({
         {spreadOverDomain(linearScale, ticksCount).map((t) => (
           <div
             key={`colorbar-tick-${t}`}
-            className="text-sm font-medium text-neutral-600 dark:text-gray-300"
+            className="text-xs font-medium text-neutral-600 dark:text-gray-300"
           >
             {Math.round(t)}
           </div>
