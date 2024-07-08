@@ -60,7 +60,7 @@ const renderTickValue = (
   isGraph: boolean
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
-  const fontWeight = isGraph ? 'normal' : 'bold';
+  const fontWeight = isGraph ? 'normal' : '600'; // 600 is semibold
   return (
     <text
       fill="currentColor"
