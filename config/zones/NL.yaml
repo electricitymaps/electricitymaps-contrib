@@ -53,6 +53,9 @@ contributors:
   - PaulCornelissen
   - nessie2013
   - VIKTORVAV99
+country: NL
+delays:
+  production: 6
 disclaimer: Solar production is collected from NED.nl and can contain their own estimations.
 emissionFactors:
   direct:
@@ -323,7 +326,7 @@ parsers:
   production: NED.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: NED.fetch_production_forecast
-price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

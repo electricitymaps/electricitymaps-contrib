@@ -79,17 +79,16 @@
   },
   "estimation-card": {
     "link": "Más información sobre nuestros modelos de estimación",
-    "estimated_time_slicer_average": {
-      "title": "Los datos son estimados",
-      "pill": "Retraso",
-      "body": "Los datos de esta hora aún no se han transmitido. Los valores mostrados son estimaciones y se reemplazarán por mediciones cuando estén disponibles."
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
+      "title": "Los datos son preliminares",
+      "body": "Los datos para esta hora aún no se han transmitido. Los valores mostrados son estimaciones calculadas a partir de valores históricos y se reemplazarán cuando los datos reales estén disponibles. Es posible que los valores estimados no tengan en consideración fenómenos meteorológicos en tiempo real."
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Datos parcialmente estimados",
       "pill": "Datos incompletos",
       "body": "Los datos de generación de electricidad correspondientes a zona son incompletos.Los valores faltantes se han calculado mediante un modelo de estimación."
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Los datos son siempre estimados",
       "pill": "Datos imprecisos",
       "body": "Los datos publicados correspondientes a  esta zona sólo proporcionan la generación total. Las fuentes renovables se estiman utilizando datos meteorológicos en tiempo real, mientras que las fuentes fósiles se deducen basándose en los datos históricos de cada fuente de producción."
@@ -99,12 +98,12 @@
       "pill": "Datos imprecisos",
       "body": "Los datos publicados para esta zona no están disponibles o están incompletos. Los datos mostrados en el mapa han sido estimados mediante nuestros modelos de estimación, pudiendo diferir de los valores reales."
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Los datos son siempre estimados",
       "pill": "Tiempo real no disponible",
       "body": "Los datos para esta zona no están disponibles en tiempo real y sólo proporcionan la generación total. Tanto los valores horarios como el desglose por fuente de generación se estiman a partir de datos históricos."
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Los datos son siempre estimados",
       "pill": "Tiempo real no disponible",
       "body": "Los datos para esta zona no están disponibles en tiempo real y sólo proporcionan la generación total. Tanto los valores horarios como el desglose por fuente de generación se estiman a partir de datos históricos."
@@ -121,11 +120,6 @@
     "aggregated": {
       "title": "Datos agregados",
       "body": "Los datos mostrados son el resultado de la agregación de valores horarios."
-    },
-    "aggregated-estimated": {
-      "title": "Datos agregados",
-      "pill": " {{percentage}}% estimado",
-      "body": "Los datos mostrados son el resultado de la agregación de valores horarios. Un {{percentage}}% de los valores de generación son estimados."
     }
   },
   "time-controller": {
@@ -140,7 +134,6 @@
     "zone-list-header-subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
     "search": "Buscar zonas"
   },
-
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
     "faq-text": "¿Alguna duda? Consulta nuestras",
@@ -177,25 +170,20 @@
     "production": "producción",
     "consumption": "consumo",
     "cpinfo": "El <b>consumo</b> tiene en cuenta las importaciones y exportaciones de energía, la <b>producción</b> no",
-    "aggregated": "agregado",
-    "detailed": "detallado",
     "aggregateInfo": "Alternar entre visualización a nivel de zona o vista agregada de país",
     "selectLanguage": "Cambiar de idioma",
     "lowCarbDescription": "Incluye renovables y nuclear",
     "dataIsDelayed": "Datos con retraso"
   },
+  "updatePrompt": {
+    "title": "Actualización disponible",
+    "description": "Una nueva versión de la aplicación está disponible, ¿actualizar ahora?",
+    "update": "Actualizar",
+    "dismiss": "Descartar"
+  },
   "misc": {
     "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
-    "oops": "¡Ups! Estamos teniendo problemas con el servidor. Lo intentaremos de nuevo en unos segundos.",
-    "newversion": "¡Hay disponible una nueva versión!",
-    "webgl-not-supported": "No se puede mostrar el mapa porque este navegador no es compatible con WebGL.",
-    "retrynow": "Vuelve a intentarlo",
-    "database-ad": "¿Buscas datos históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
-    "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
-    "legend": "Leyenda",
     "faq": "Preguntas frecuentes",
-    "privacyPolicy": "Política de privacidad",
-    "legalNotice": "Aviso legal",
     "dismiss": "Descartar",
     "reload": "Recargar"
   },
@@ -250,8 +238,6 @@
     "groupName": "Nuestros métodos",
     "carbonIntensity-question": "¿Qué es la \"intensidad de carbono\"?",
     "carbonIntensity-answer": "La intensidad de carbono mide las emisiones de dióxido de carbono asociadas a la producción de la electricidad que consumimos (en gCO₂eq/kWh - gramos de equivalente de dióxido de carbono emitidos por kilovatio-hora de electricidad consumida). <br><br>Medimos las emisiones del consumo eléctrico (no de la producción), es decir, las emisiones de gases de efecto invernadero (tanto CO₂ como otros gases de efecto invernadero como el metano) resultantes de producir la electricidad que se está consumiendo en una zona, más la intensidad de carbono de la electricidad importada de otras zonas. Además nos servimos de un análisis de ciclo de vida (ACV), que quiere decir que tenemos en cuenta las emisiones de las centrales eléctricas durante todas las etapas de su vida (construcción, obtención de combustibles, emisiones durante su vida útil, y por último el desmantelamiento y la eliminación de residuos).",
-    "consumptionFocus-question": "¿Por qué calculáis la intensidad de carbono de la electricidad consumida y no de la producida?",
-    "consumptionFocus-answer": "Creemos que los ciudadanos tienen que ser responsables de la electricidad que usan, y no de la que se produzca en la zona donde viven. Además, no queremos que haya regiones con un bajo impacto climático simplemente porque han trasladado la producción de electricidad a otras zonas y luego la importan, lo cual sería engañoso.",
     "renewableLowCarbonDifference-question": "¿Qué diferencia hay entre “renovable” y “baja en emisiones”?",
     "renewableLowCarbonDifference-answer": "La energía renovable procede de fuentes de energía casi inagotables como el viento, las mareas, la luz del sol y la energía geotérmica. Baja en emisiones se denomina a la energía que se produce emitiendo muy pocos gases de efecto invernadero, como la energía nuclear.",
     "importsAndExports-question": "¿Tenéis en cuenta tanto las importaciones como las exportaciones de electricidad?",
@@ -362,7 +348,6 @@
       "zoneName": "Aruba"
     },
     "AX": {
-      "countryName": "Finlandia",
       "zoneName": "Islas Åland"
     },
     "AZ": {
@@ -1459,10 +1444,6 @@
     },
     "US": {
       "zoneName": "Estados Unidos contiguos"
-    },
-    "US-HI": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Hawái"
     },
     "US-HI-KA": {
       "countryName": "Estados Unidos",

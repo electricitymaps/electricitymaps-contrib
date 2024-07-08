@@ -195,3 +195,5 @@ parsers:
   production: CNDC.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/La_Paz
+region: Americas
+country: BO

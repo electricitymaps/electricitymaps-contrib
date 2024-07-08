@@ -58,6 +58,9 @@ capacity:
       value: 3.0
 contributors:
   - corradio
+country: SI
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -333,6 +336,7 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'translation/i18n';
+import { EstimationMethods } from 'utils/constants';
 
 import EstimationCard from './EstimationCard';
 
@@ -27,14 +28,14 @@ export const All: Story = {
           <EstimationCard
             cardType="outage"
             zoneMessage={instance}
-            estimationMethod="threshold_filtered"
+            estimationMethod={EstimationMethods.THRESHOLD_FILTERED}
           />
           <EstimationCard cardType="estimated" zoneMessage={instance} />
 
           <EstimationCard
             cardType="estimated"
             zoneMessage={instance}
-            estimationMethod="estimated_mode_breakdown"
+            estimationMethod={EstimationMethods.MODE_BREAKDOWN}
           />
 
           <EstimationCard

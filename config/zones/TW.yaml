@@ -68,6 +68,9 @@ contributors:
   - nessie2013
   - Manu1400
   - VIKTORVAV99
+country: TW
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -269,4 +272,5 @@ fallbackZoneMixes:
 parsers:
   production: TAIPOWER.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Asia
 timezone: Asia/Taipei

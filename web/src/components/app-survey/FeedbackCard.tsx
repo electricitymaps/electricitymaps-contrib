@@ -10,8 +10,9 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineX } from 'react-icons/hi';
+import { HiXMark } from 'react-icons/hi2';
 import { hasSeenSurveyCardAtom, userLocationAtom } from 'utils/state/atoms';
+import { useIsMobile } from 'utils/styling';
 
 enum FeedbackState {
   INITIAL = 'initial',
@@ -45,6 +46,7 @@ export default function FeedbackCard({
   const [isClosed, setIsClosed] = useState(false);
   const [feedbackState, setFeedbackState] = useState(FeedbackState.INITIAL);
   const setHasSeenSurveyCard = useSetAtom(hasSeenSurveyCardAtom);
+  const isMobile = useIsMobile();
 
   const handleClose = () => {
     setIsClosed(true);
@@ -58,11 +60,16 @@ export default function FeedbackCard({
   const successSubtitle = t('feedback-card.success-subtitle');
   const isFeedbackSubmitted = feedbackState === FeedbackState.SUCCESS;
 
-  const feedbackCardReference = useRef(null);
+  const feedbackCardReference = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClickOutside = () => {
-      if (feedbackCardReference.current && isFeedbackSubmitted) {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as HTMLElement;
+      if (
+        feedbackCardReference.current &&
+        !feedbackCardReference.current.contains(target) &&
+        (isFeedbackSubmitted || isMobile)
+      ) {
         setIsClosed(true);
         setHasSeenSurveyCard(true);
       }
@@ -70,13 +77,14 @@ export default function FeedbackCard({
 
     if (!isClosed) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, [isClosed, isFeedbackSubmitted, setHasSeenSurveyCard]);
-
+  }, [isClosed, isFeedbackSubmitted, isMobile, setHasSeenSurveyCard]);
   if (isClosed) {
     return null;
   }
@@ -84,33 +92,33 @@ export default function FeedbackCard({
   return (
     <div
       data-test-id="feedback-card"
-      className="mb-4 flex w-full flex-col rounded-lg border border-neutral-200 bg-zinc-50 pl-2.5 transition-all dark:border-gray-700 dark:bg-gray-900"
+      className="flex w-full flex-col gap-2 rounded-lg border border-neutral-200 bg-zinc-50 px-3 py-4 transition-all dark:border-gray-700 dark:bg-gray-900"
       ref={feedbackCardReference}
     >
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row  justify-between">
         <div className="flex flex-initial flex-row gap-2">
           <div
-            className={`h-[20px] w-[20px] bg-[url('/images/electricitymaps-icon.svg')] bg-contain bg-center dark:invert`}
+            className={`min-h-[16px] min-w-[16px] bg-[url('/images/electricitymaps-icon.svg')] bg-contain bg-center bg-no-repeat dark:invert`}
           />
           <h2
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
             data-test-id="title"
           >
-            {isFeedbackSubmitted ? successMessage : title}
+            {isFeedbackSubmitted ? successSubtitle : title}
           </h2>
         </div>
-        <button data-test-id="close-button" onClick={handleClose} className="px-3 py-2.5">
-          <HiOutlineX />
+        <button data-test-id="close-button" onClick={handleClose}>
+          <HiXMark />
         </button>
       </div>
-      <div className="pb-2 pr-2.5">
+      <div>
         <div
           className={`pb-1 ${
             isFeedbackSubmitted ? 'text-sm' : 'text-xs'
           } font-medium text-neutral-400`}
           data-test-id="subtitle"
         >
-          {isFeedbackSubmitted ? successSubtitle : subtitle}
+          {isFeedbackSubmitted ? successMessage : subtitle}
         </div>
         <FeedbackActions
           feedbackState={feedbackState}
@@ -146,16 +154,11 @@ function InputField({
 
   return (
     <div>
-      <div className="flex justify-start">
-        <div className="pr-1 text-sm font-semibold text-black dark:text-white">
-          {optional}
-        </div>
-        <div
-          data-test-id="input-title"
-          className="text-sm font-normal text-black dark:text-white"
-        >
-          {inputQuestion}
-        </div>
+      <div className="flex flex-wrap justify-start">
+        <span className="text-sm font-normal text-black dark:text-white">
+          <span className="pr-1 font-semibold">{optional}</span>
+          <span data-test-id="input-title">{inputQuestion}</span>
+        </span>
       </div>
       <textarea
         data-test-id="feedback-input"

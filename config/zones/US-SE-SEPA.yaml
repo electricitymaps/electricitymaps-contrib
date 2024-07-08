@@ -60,8 +60,9 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+country: US
 delays:
-  production: 30
+  production: 34
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:
@@ -196,6 +197,7 @@ fallbackZoneMixes:
 parsers:
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

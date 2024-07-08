@@ -1,15 +1,19 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
+type SizeOptions = 'sm' | 'md' | 'lg' | 'xl';
+
 interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   disabled?: boolean;
-  size?: 'sm' | 'lg' | 'xl';
+  size?: SizeOptions;
+  shouldShrink?: boolean;
   type?: 'primary' | 'secondary' | 'tertiary' | 'link';
   href?: string;
   backgroundClasses?: string;
   foregroundClasses?: string;
+  asDiv?: boolean;
   onClick?: () => void;
 }
 
@@ -21,11 +25,13 @@ export function Button({
   backgroundClasses, // backgroundColor, borderColor, margin, etc.
   foregroundClasses, // textColor, etc.
   size = 'lg',
+  shouldShrink = false,
   type = 'primary',
+  asDiv, // If true, renders a div instead of a button to avoid nested buttons in components like ToastPrimitive.Action
   onClick,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
-  const As = renderAsLink ? 'a' : 'button';
+  const As = getComponentType(renderAsLink, asDiv);
   const componentType = renderAsLink ? undefined : 'button';
   const isIconOnly = !children && Boolean(icon);
 
@@ -33,7 +39,8 @@ export function Button({
     <div
       className={twMerge(
         `items-center justify-center rounded-full ${getBackground(type, disabled)}`,
-        backgroundClasses
+        backgroundClasses,
+        shouldShrink ? 'w-fit' : ''
       )}
     >
       <As
@@ -53,12 +60,25 @@ export function Button({
         type={componentType}
         onClick={onClick}
         target="_blank"
+        // Used to prevent browser translation crashes on edge, see #6809
+        translate="no"
       >
         {icon}
         {children}
       </As>
     </div>
   );
+}
+
+function getComponentType(renderAsLink: boolean, asDiv?: boolean) {
+  if (renderAsLink) {
+    return 'a';
+  }
+  if (asDiv) {
+    return 'div';
+  }
+
+  return 'button';
 }
 
 function getHover(type: string) {
@@ -103,11 +123,14 @@ function getForeground(type: string) {
   }
 }
 
-function getSize(size: string, type: string, isIconOnly: boolean) {
+function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
   if (isIconOnly) {
     switch (size) {
       case 'sm': {
         return 'min-w-7 min-h-7';
+      }
+      case 'md': {
+        return 'min-w-9 min-h-9';
       }
       case 'lg': {
         return 'min-w-11 min-h-11';
@@ -120,17 +143,15 @@ function getSize(size: string, type: string, isIconOnly: boolean) {
 
   switch (size) {
     case 'sm': {
-      return 'min-w-6 min-h-6 px-2 py-1 gap-x-1 text-sm';
+      return 'min-w-6 min-h-6 px-2 py-1 gap-x-1';
+    }
+    case 'md': {
+      return 'min-w-8 min-h-8 px-4 py-2 gap-x-1.5 text-sm';
     }
     case 'lg': {
       return type == 'link'
-        ? 'px-4 py-2 gap-x-2 text-sm'
-        : 'min-w-10 min-h-10 px-6 py-3 gap-x-1.5 text-sm';
-    }
-    case 'xl': {
-      return type == 'link'
-        ? 'px-4 py-2 gap-x-2 text-base'
-        : 'min-w-12 min-h-12 px-8 py-4 gap-x-1.5 text-base';
+        ? 'px-4 py-2 gap-x-2'
+        : 'min-w-10 min-h-10 px-6 py-3 gap-x-1.5';
     }
     default: {
       return '';

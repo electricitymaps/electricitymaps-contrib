@@ -67,6 +67,9 @@ capacity:
     - datetime: '2024-03-01'
       source: ren.pt
       value: 2744.0
+    - datetime: '2024-07-01'
+      source: ren.pt
+      value: 3129.0
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -81,11 +84,17 @@ capacity:
     - datetime: '2024-03-01'
       source: ren.pt
       value: 5374.0
+    - datetime: '2024-07-01'
+      source: ren.pt
+      value: 5380.0
 contributors:
   - corradio
   - nessie2013
   - Musketeiro
   - RGarrido03
+country: PT
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -361,6 +370,7 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

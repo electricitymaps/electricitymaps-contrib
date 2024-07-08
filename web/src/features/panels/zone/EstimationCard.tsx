@@ -1,12 +1,14 @@
 import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
-import Badge from 'components/Badge';
+import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
+import { EstimationMethods } from 'utils/constants';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -36,7 +38,7 @@ export default function EstimationCard({
   zoneMessage,
 }: {
   cardType: string;
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
 }) {
@@ -44,6 +46,7 @@ export default function EstimationCard({
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
+  const isTSAModel = estimationMethod === EstimationMethods.TSA;
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
     hasEstimationFeedbackBeenSeenAtom
   );
@@ -76,8 +79,12 @@ export default function EstimationCard({
     case 'estimated': {
       return (
         <div>
-          <EstimatedCard estimationMethod={estimationMethod} />
-          {isFeedbackCardVisible && (
+          {isTSAModel ? (
+            <EstimatedTSACard />
+          ) : (
+            <EstimatedCard estimationMethod={estimationMethod} />
+          )}
+          {isFeedbackCardVisible && isTSAModel && (
             <FeedbackCard
               surveyReference={estimationMethod}
               postSurveyResponse={postSurveyResponse}
@@ -93,25 +100,6 @@ export default function EstimationCard({
   }
 }
 
-function useGetEstimationTranslation(
-  field: 'title' | 'pill' | 'body',
-  estimationMethod?: string,
-  estimatedPercentage?: number
-) {
-  const { t } = useTranslation();
-  const exactTranslation =
-    (estimatedPercentage ?? 0) > 0 && estimationMethod === 'aggregated'
-      ? t(`estimation-card.aggregated_estimated.${field}`, {
-          percentage: estimatedPercentage,
-        })
-      : t(`estimation-card.${estimationMethod?.toLowerCase()}.${field}`);
-
-  const genericTranslation = t(`estimation-card.estimated_generic_method.${field}`);
-  return exactTranslation.startsWith('estimation-card.')
-    ? genericTranslation
-    : exactTranslation;
-}
-
 function BaseCard({
   estimationMethod,
   estimatedPercentage,
@@ -123,20 +111,20 @@ function BaseCard({
   textColorTitle,
   cardType,
 }: {
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
   icon: string;
   iconPill?: string;
   showMethodologyLink: boolean;
-  pillType?: string;
+  pillType?: PillType;
   textColorTitle: string;
   cardType: string;
 }) {
   const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
     feedbackCardCollapsedNumberAtom
   );
-  const isCollapsedDefault = estimationMethod == 'outage' ? false : true;
+  const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
   const handleToggleCollapse = () => {
@@ -159,14 +147,13 @@ function BaseCard({
     estimationMethod,
     estimatedPercentage
   );
-  const showBadge =
-    estimationMethod == 'aggregated'
-      ? Boolean(estimatedPercentage)
-      : pillType != undefined;
+  const showBadge = Boolean(
+    estimationMethod == 'aggregated' ? estimatedPercentage : pillType
+  );
 
   return (
     <div
-      className={`w-full rounded-lg px-3 py-2.5 ${
+      className={`w-full rounded-lg px-3 py-1.5 ${
         estimationMethod == 'outage'
           ? 'bg-amber-700/20 dark:bg-amber-500/20'
           : 'bg-neutral-100 dark:bg-gray-800'
@@ -225,12 +212,12 @@ function OutageCard({
 }) {
   const { t } = useTranslation();
   const zoneMessageText =
-    estimationMethod === 'threshold_filtered'
-      ? { message: t('estimation-card.threshold_filtered.body') }
+    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
+      ? { message: t(`estimation-card.${EstimationMethods.THRESHOLD_FILTERED}.body`) }
       : zoneMessage;
   return (
     <BaseCard
-      estimationMethod={'outage'}
+      estimationMethod={EstimationMethods.OUTAGE}
       zoneMessage={zoneMessageText}
       icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
       iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
@@ -245,7 +232,7 @@ function OutageCard({
 function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number }) {
   return (
     <BaseCard
-      estimationMethod={'aggregated'}
+      estimationMethod={EstimationMethods.AGGREGATED}
       estimatedPercentage={estimatedPercentage}
       zoneMessage={undefined}
       icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
@@ -258,7 +245,11 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
   );
 }
 
-function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefined }) {
+function EstimatedCard({
+  estimationMethod,
+}: {
+  estimationMethod: EstimationMethods | undefined;
+}) {
   return (
     <BaseCard
       estimationMethod={estimationMethod}
@@ -267,6 +258,21 @@ function EstimatedCard({ estimationMethod }: { estimationMethod: string | undefi
       iconPill={undefined}
       showMethodologyLink={true}
       pillType="default"
+      textColorTitle="text-amber-700 dark:text-amber-500"
+      cardType="estimated-card"
+    />
+  );
+}
+
+function EstimatedTSACard() {
+  return (
+    <BaseCard
+      estimationMethod={EstimationMethods.TSA}
+      zoneMessage={undefined}
+      icon="bg-[url('/images/preliminary_light.svg')] dark:bg-[url('/images/preliminary_dark.svg')]"
+      iconPill={undefined}
+      showMethodologyLink={true}
+      pillType={undefined}
       textColorTitle="text-amber-700 dark:text-amber-500"
       cardType="estimated-card"
     />

@@ -72,6 +72,9 @@ contributors:
   - nessie2013
   - gadakast
   - pnook
+country: FI
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -329,7 +332,7 @@ parsers:
   productionCapacity: FI.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
-price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

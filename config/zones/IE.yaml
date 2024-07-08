@@ -58,6 +58,9 @@ capacity:
 contributors:
   - corradio
   - nessie2013
+country: IE
+delays:
+  production: 5
 disclaimer: The complete generation mix is unavailable. It is therefore estimated
   by Electricity Maps.
 emissionFactors:
@@ -335,6 +338,7 @@ parsers:
   production: SMARTGRIDDASHBOARD.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

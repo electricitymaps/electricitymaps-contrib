@@ -80,3 +80,5 @@ sources:
   Climatescope:
     link: https://www.global-climatescope.org/markets/ae/
 timezone: Asia/Dubai
+region: Asia
+country: AE

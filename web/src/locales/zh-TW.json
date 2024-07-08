@@ -110,17 +110,16 @@
   },
   "estimation-card": {
     "link": "了解我們的估計模型",
-    "estimated_time_slicer_average": {
-      "title": "數據目前為估計值",
-      "pill": "不可用",
-      "body": "數據提供者目前沒有報告這一小時的數據。 顯示的值是根據歷史測量值估計的，並將在可用時替換為綜合數據。 請注意，估計值可能並不總是準確的，因為它們沒有考慮到特定的即時天氣事件。"
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
+      "title": "數據為初步的值",
+      "body": "資料提供者未提供此小時的數據。目前顯示的數值是基於歷史測量值估計的，一旦實際數據可用將立即更新。\n\n請注意，估計值可能未考慮到即時的天氣事件。"
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "數據部分為估計值",
       "pill": "不完整",
       "body": "該區域發電數據不完整； 缺失值是使用估計模型計算的。"
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "數據始終為估計值",
       "pill": "不精確",
       "body": "該區域發布的數據僅提供總產量。可再生能源是使用即時天氣數據估算的，而化石能源是根據每個生產來源的歷史數據扣除的。"
@@ -130,12 +129,12 @@
       "pill": "不精確",
       "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "數據始終為估計值",
       "pill": "非即時",
       "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "數據始終為估計值",
       "pill": "非即時",
       "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
@@ -220,7 +219,6 @@
       "monthly": "每月淨交換",
       "yearly": "每年淨交換"
     },
-    "Getdata": "使用電力地圖 API 獲取每小時的歷史數據、即時數據和預測數據",
     "not-enough-data": "沒有足夠的數據來顯示圖表"
   },
   "footer": {
@@ -290,16 +288,7 @@
   },
   "misc": {
     "maintitle": "生活用電二氧化碳排放量",
-    "oops": "哎呀！ 我們無法連線到伺服器。 我們會在幾秒鐘後再試一次。",
-    "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">這裏</a>重新載入。",
-    "webgl-not-supported": "無法渲染地圖，因為您的瀏覽器不支援 WebGL。",
-    "retrynow": "再試一次",
-    "database-ad": "在尋找歷史資料嗎？歡迎檢視我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>！",
-    "api-ad": "<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">試試我們的 API！</a>",
-    "legend": "傳奇",
     "faq": "常見問題",
-    "privacyPolicy": "隱私權政策",
-    "legalNotice": "法律聲明",
     "dismiss": "關閉",
     "reload": "重新載入",
     "slow-loading-text": "仍在加載中，如果持續如此，請嘗試重新載入..."
@@ -376,8 +365,6 @@
     "groupName": "我們的資料",
     "dataOrigins-question": "你們如何取得資料？",
     "dataOrigins-answer": "我們使用供電網路管理者、公部門提供的公開資料進行計算。點選區域以檢視資料來源資訊。",
-    "regionalEmissionFactors-question": "為什麼不同地區的排放因子會改變？",
-    "regionalEmissionFactors-answer": "對於某些區域，我們能夠獲取比全球平均值更精確的排放因子作為後備。例如，對於美國和歐盟，直接的發電廠排放數據是公開可用的。我們隨後將這些排放數據與發電廠的發電數據相匹配，並計算每個發電廠的排放因子，這些數據在區域層面進行了匯總。詳情見 <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">Wiki上的細節</a>.",
     "dataDownload-question": "可不可以下載你們的資料？",
     "dataDownload-answer": "你可以在我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>購買資料的取得權。",
     "dataIntegration-question": "可以將你們的即時資料整合到我的應用程式或裝置上嗎？",
@@ -828,14 +815,13 @@
       "zoneName": "英國"
     },
     "GB-NIR": {
-      "countryName": "英國",
       "zoneName": "北愛爾蘭"
     },
     "GB-ORK": {
       "countryName": "英國",
       "zoneName": "奥克尼"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "英國",
       "zoneName": "昔得蘭"
     },

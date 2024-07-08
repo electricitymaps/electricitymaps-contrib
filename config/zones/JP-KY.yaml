@@ -8,12 +8,15 @@ capacity:
   hydro: 1247
   hydro storage: 2350
   nuclear: 5258
-  wind: 630
   solar: 10910
+  wind: 630
 contributors:
   - tmslaine
   - lorrieq
   - nessie2013
+country: JP
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -177,4 +180,5 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP-KY.fetch_production
+region: Asia
 timezone: Asia/Tokyo

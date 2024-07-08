@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { ZoneMessage } from 'types';
-import { SpatialAggregate, TimeAverages } from 'utils/constants';
+import { EstimationMethods, SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   selectedDatetimeIndexAtom,
@@ -77,7 +77,7 @@ export default function ZoneDetails(): JSX.Element {
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
-      <div className="h-[calc(100%-110px)] overflow-y-scroll p-3 pb-40 pt-2 sm:h-[calc(100%-130px)]">
+      <div className="mb-3 h-[calc(100%-120px)] overflow-y-scroll p-3 pb-40 pt-2 sm:h-[calc(100%-150px)]">
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
@@ -139,7 +139,7 @@ function getCardType({
   zoneMessage,
   timeAverage,
 }: {
-  estimationMethod: string | undefined;
+  estimationMethod?: EstimationMethods;
   zoneMessage?: ZoneMessage;
   timeAverage: TimeAverages;
 }): 'estimated' | 'aggregated' | 'outage' | 'none' {
@@ -147,7 +147,7 @@ function getCardType({
     (zoneMessage !== undefined &&
       zoneMessage?.message !== undefined &&
       zoneMessage?.issue !== undefined) ||
-    estimationMethod === 'threshold_filtered'
+    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
   ) {
     return 'outage';
   }
@@ -187,9 +187,11 @@ function ZoneDetailsContent({
   }
 
   if (
-    [ZoneDataStatus.NO_INFORMATION, ZoneDataStatus.AGGREGATE_DISABLED].includes(
-      zoneDataStatus
-    )
+    [
+      ZoneDataStatus.NO_INFORMATION,
+      ZoneDataStatus.AGGREGATE_DISABLED,
+      ZoneDataStatus.FULLY_DISABLED,
+    ].includes(zoneDataStatus)
   ) {
     return <NoInformationMessage status={zoneDataStatus} />;
   }

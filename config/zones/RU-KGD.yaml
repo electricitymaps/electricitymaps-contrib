@@ -17,3 +17,5 @@ fallbackZoneMixes:
       hydro: 0.005
       wind: 0.015
 timezone: Europe/Kaliningrad
+region: Europe
+country: RU

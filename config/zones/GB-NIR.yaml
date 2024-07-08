@@ -20,7 +20,11 @@ contributors:
   - nessie2013
   - msaynevirta
   - brandongalbraith
-disclaimer: The complete generation mix is unavailable. It is therefore estimated by Electricity Maps.
+country: GB
+delays:
+  production: 5
+disclaimer: The complete generation mix is unavailable. It is therefore estimated
+  by Electricity Maps.
 emissionFactors:
   direct:
     battery discharge:
@@ -231,10 +235,11 @@ fallbackZoneMixes:
 parsers:
   consumption: SMARTGRIDDASHBOARD.fetch_consumption
   consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast
+  generationForecast: SMARTGRIDDASHBOARD.fetch_total_generation
   price: ENTSOE.fetch_price
   production: SMARTGRIDDASHBOARD.fetch_production
   productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
-  generationForecast: SMARTGRIDDASHBOARD.fetch_total_generation
+region: Europe
 sources:
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf

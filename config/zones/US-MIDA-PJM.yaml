@@ -96,6 +96,9 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+country: US
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -362,6 +365,7 @@ parsers:
   price: US_PJM.fetch_price
   production: US_PJM.fetch_production
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

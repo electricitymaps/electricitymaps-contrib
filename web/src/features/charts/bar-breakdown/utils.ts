@@ -9,7 +9,7 @@ import {
   ZoneDetails,
   ZoneKey,
 } from 'types';
-import { Mode, modeOrder } from 'utils/constants';
+import { Mode, modeOrderBarBreakdown } from 'utils/constants';
 import { getProductionCo2Intensity } from 'utils/helpers';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
@@ -51,7 +51,7 @@ export interface ProductionDataType {
 }
 
 export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
-  modeOrder.map((mode) => {
+  modeOrderBarBreakdown.map((mode) => {
     const isStorage = mode.includes('storage');
     const generationMode = mode.replace(' storage', '') as GenerationType;
     // Power in MW

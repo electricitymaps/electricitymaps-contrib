@@ -1,17 +1,14 @@
 /// <reference types="vitest" />
 import eslintPlugin from '@nabla/vite-plugin-eslint';
 import { sentryVitePlugin, SentryVitePluginOptions } from '@sentry/vite-plugin';
-import react from '@vitejs/plugin-react';
-import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
-import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
+import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
-// import { VitePWA } from 'vite-plugin-pwa';
+import { ManifestOptions, VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const manualChunkMap = {
   '@sentry': 'sentry',
   '@radix-ui': 'radix',
-  'country-flag-icons': 'flags',
   recharts: 'recharts',
   'world.json': 'world',
   'usa_states.json': 'config',
@@ -39,6 +36,111 @@ const sentryPluginOptions: SentryVitePluginOptions = {
     excludeReplayShadowDom: true,
     excludeReplayWorker: true,
   },
+};
+
+const PWAManifest: Partial<ManifestOptions> = {
+  name: 'Electricity Maps',
+  short_name: 'Electricity Maps',
+  start_url: '/',
+  display: 'standalone',
+  background_color: '#ffffff',
+  lang: 'en',
+  scope: '/',
+  scope_extensions: [{ origin: 'app.electricitymaps.com' }],
+  launch_handler: {
+    client_mode: 'auto',
+  },
+  description:
+    'Electricity Maps is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.',
+  theme_color: '#000000',
+  icons: [
+    {
+      src: '/icons/icon.svg',
+      sizes: '512x512 any',
+      type: 'image/svg+xml',
+      purpose: 'any',
+    },
+    {
+      src: '/icons/icon-maskable.svg',
+      sizes: '512x512 any',
+      type: 'image/svg+xml',
+      purpose: 'maskable',
+    },
+  ],
+  iarc_rating_id: '194a8347-3f9e-4525-9e04-9969d2db0f56',
+  prefer_related_applications: true,
+  related_applications: [
+    {
+      platform: 'play',
+      url: 'https://play.google.com/store/apps/details?id=com.tmrow.electricitymap',
+      id: 'com.tmrow.electricitymap',
+    },
+    {
+      platform: 'itunes',
+      url: 'https://apps.apple.com/app/electricitymap/id1224594248',
+      id: '1224594248',
+    },
+  ],
+  id: 'com.tmrow.electricitymap',
+  categories: ['education'],
+  display_override: ['standalone', 'window-controls-overlay'],
+  orientation: 'any',
+  screenshots: [
+    {
+      src: '/images/screenshots/desktop/1.png',
+      sizes: '1440x1024',
+      type: 'image/png',
+      form_factor: 'wide',
+    },
+    {
+      src: '/images/screenshots/desktop/2.png',
+      sizes: '1440x1024',
+      type: 'image/png',
+      form_factor: 'wide',
+    },
+    {
+      src: '/images/screenshots/desktop/3.png',
+      sizes: '1440x1024',
+      type: 'image/png',
+      form_factor: 'wide',
+    },
+    {
+      src: '/images/screenshots/desktop/4.png',
+      sizes: '1440x1024',
+      type: 'image/png',
+      form_factor: 'wide',
+    },
+    {
+      src: '/images/screenshots/mobile/1.png',
+      sizes: '786x1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+    {
+      src: '/images/screenshots/mobile/2.png',
+      sizes: '786x1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+    {
+      src: '/images/screenshots/mobile/3.png',
+      sizes: '786x1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+    {
+      src: '/images/screenshots/mobile/4.png',
+      sizes: '786x1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+    {
+      src: '/images/screenshots/mobile/5.png',
+      sizes: '786x1704',
+      type: 'image/png',
+      form_factor: 'narrow',
+    },
+  ],
 };
 
 export default defineConfig(({ mode }) => ({
@@ -79,44 +181,50 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     tsconfigPaths(),
-    react({
-      babel: {
-        plugins: [jotaiDebugLabel, jotaiReactRefresh],
-      },
-    }),
+    react(
+      mode === 'production'
+        ? {}
+        : {
+            devTarget: 'es2022',
+            plugins: [
+              ['@swc-jotai/react-refresh', {}],
+              ['@swc-jotai/debug-label', {}],
+            ],
+          }
+    ),
     ...(mode !== 'test'
       ? [
           eslintPlugin(),
-          // Temporarily disabled to ensure we can more easily rollback
-          // VitePWA({
-          //   registerType: 'autoUpdate',
-          //   workbox: {
-          //     maximumFileSizeToCacheInBytes: 3_500_000,
-          //   },
-          //   includeAssets: [
-          //     'icons/*.{svg,png}',
-          //     'robots.txt',
-          //     // Consider if we should also add subdirectories below
-          //     'images/*.{svg,png}',
-          //     'fonts/*.woff2',
-          //   ],
-          //   manifest: {
-          //     theme_color: '#000000',
-          //     icons: [
-          //       {
-          //         src: '/icons/android-chrome-192x192.png',
-          //         sizes: '192x192',
-          //         type: 'image/png',
-          //         purpose: 'any maskable',
-          //       },
-          //       {
-          //         src: '/icons/android-chrome-512x512.png',
-          //         sizes: '512x512',
-          //         type: 'image/png',
-          //       },
-          //     ],
-          //   },
-          // }),
+          VitePWA({
+            registerType: 'prompt',
+            workbox: {
+              maximumFileSizeToCacheInBytes: 3_500_000,
+              runtimeCaching: [
+                {
+                  urlPattern: ({ url }) => url.pathname.startsWith('/images/'),
+                  handler: 'CacheFirst',
+                  options: {
+                    cacheName: 'images',
+                    cacheableResponse: {
+                      statuses: [200],
+                    },
+                  },
+                },
+                {
+                  urlPattern: ({ url }) => url.pathname.startsWith('/icons/'),
+                  handler: 'CacheFirst',
+                  options: {
+                    cacheName: 'icons',
+                    cacheableResponse: {
+                      statuses: [200],
+                    },
+                  },
+                },
+              ],
+            },
+            includeAssets: ['robots.txt', 'fonts/**/*.{woff2, pbf}'],
+            manifest: PWAManifest,
+          }),
           // Used to upload sourcemaps to Sentry
           process.env.SENTRY_AUTH_TOKEN && sentryVitePlugin(sentryPluginOptions),
         ]

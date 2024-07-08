@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeColor, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeColor, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
@@ -90,6 +90,7 @@ export default function BreakdownChartTooltip({
       timeAverage={timeAverage}
       hasEstimationPill={hasEstimationPill}
       estimatedPercentage={estimatedPercentage}
+      estimationMethod={estimationMethod}
     ></BreakdownChartTooltipContent>
   );
 }
@@ -114,6 +115,7 @@ interface BreakdownChartTooltipContentProperties {
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   capacitySource?: string[] | null;
+  estimationMethod?: EstimationMethods;
 }
 
 export function BreakdownChartTooltipContent({
@@ -134,6 +136,7 @@ export function BreakdownChartTooltipContent({
   hasEstimationPill,
   estimatedPercentage,
   capacitySource,
+  estimationMethod,
 }: BreakdownChartTooltipContentProperties) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
@@ -174,6 +177,7 @@ export function BreakdownChartTooltipContent({
         hasEstimationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
         productionSource={isExchange ? undefined : selectedLayerKey}
+        estimationMethod={estimationMethod}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"
@@ -191,7 +195,8 @@ export function BreakdownChartTooltipContent({
       )}
 
       {!displayByEmissions && (
-        <>
+        // Used to prevent browser translation crashes on edge, see #6809
+        <div translate="no">
           <MetricRatio
             value={usage}
             total={totalElectricity}
@@ -226,7 +231,7 @@ export function BreakdownChartTooltipContent({
             label={t('ofCO2eq')}
             useTotalUnit
           />
-        </>
+        </div>
       )}
       {!displayByEmissions && (Number.isFinite(co2Intensity) || usage !== 0) && (
         <>
