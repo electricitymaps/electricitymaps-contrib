@@ -57,13 +57,13 @@ export default function ToggleButton({
             value={option.value}
             onClick={() => onToggle(option.value)}
             className={twMerge(
-              'inline-flex h-[29px] w-full items-center whitespace-nowrap rounded-full  bg-gray-100/0 px-4 text-sm dark:border dark:border-gray-400/0 dark:bg-transparent',
+              'inline-flex h-[29px] w-full items-center whitespace-nowrap rounded-full  bg-gray-100/0 px-4 text-xs dark:border dark:border-gray-400/0 dark:bg-transparent',
               option.value === selectedOption
                 ? ' bg-white font-bold text-brand-green shadow transition duration-500 ease-in-out dark:border dark:border-gray-400/10 dark:bg-gray-600'
                 : ''
             )}
           >
-            <p className="sans grow select-none capitalize dark:text-white">
+            <p className="sans grow select-none text-sm capitalize dark:text-white">
               {t(option.translationKey)}
             </p>
           </ToggleGroupItem>
@@ -83,12 +83,12 @@ export default function ToggleButton({
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <p className="self-center text-sm font-bold">i</p>
+                <div className="self-center text-xs font-bold">i</div>
               </div>
             </TooltipTrigger>
             <TooltipPortal>
               <TooltipContent
-                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-zinc-50 p-2 text-center text-sm dark:border-0 dark:bg-gray-900"
+                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-zinc-50 p-2 text-center text-xs dark:border-0 dark:bg-gray-900"
                 sideOffset={10}
                 side="bottom"
                 onPointerDownOutside={onToolTipClick}

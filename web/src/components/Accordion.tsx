@@ -44,7 +44,7 @@ export default function Accordion({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col py-1">
       <button data-test-id="collapse-button" onClick={handleToggleCollapse}>
         <div
           className={twMerge(
@@ -56,13 +56,13 @@ export default function Accordion({
             {icon && (
               <div className={`flex items-center justify-center pr-2`}>{icon}</div>
             )}
-            <h2 className={`self-center text-left font-semibold`} data-test-id="title">
+            <h3 className={`self-center text-left`} data-test-id="title">
               {title}
-            </h2>
+            </h3>
           </div>
           <div className="flex h-fit flex-row gap-2 text-nowrap">
             {badge}
-            <div className="text-lg text-black dark:text-white">
+            <div className="text-xl text-black dark:text-white">
               {atomState ? (
                 <div data-test-id="collapse-down">
                   <HiChevronDown />

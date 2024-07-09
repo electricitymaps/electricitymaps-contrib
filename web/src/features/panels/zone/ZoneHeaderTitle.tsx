@@ -33,7 +33,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   return (
     <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
       <Link
-        className="text-3xl self-center py-4 pr-4"
+        className="self-center py-4 pr-4 text-xl"
         to={returnToMapLink}
         data-test-id="left-panel-back-button"
         onClick={onNavigateBack}
@@ -55,9 +55,9 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
                 side="bottom"
               >
                 <div className="ml-2 flex w-full flex-row overflow-hidden">
-                  <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
+                  <h1 className="truncate font-medium" data-test-id="zone-name">
                     {zoneName}
-                  </h2>
+                  </h1>
                   {showCountryPill && (
                     <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
                       <p className="w-full truncate">{countryName ?? zoneId}</p>

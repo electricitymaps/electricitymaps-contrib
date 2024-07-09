@@ -155,7 +155,7 @@ function BaseCard({
 
   return (
     <div
-      className={`w-full rounded-lg px-3 py-2.5 ${
+      className={`w-full rounded-lg px-3 py-1.5 ${
         estimationMethod == 'outage'
           ? 'bg-amber-700/20 dark:bg-amber-500/20'
           : 'bg-neutral-100 dark:bg-gray-800'
