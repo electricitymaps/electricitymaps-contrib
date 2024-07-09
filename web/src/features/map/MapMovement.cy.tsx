@@ -37,7 +37,7 @@ describe('Map Component', () => {
           [
             selectedDatetimeIndexAtom,
             {
-              datetimeString: '2024-05-01T17:00:00Z',
+              datetime: new Date('2024-05-01T17:00:00+00:00'),
               index: 0,
             },
           ],
