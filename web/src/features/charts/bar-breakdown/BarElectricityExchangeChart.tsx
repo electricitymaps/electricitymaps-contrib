@@ -55,7 +55,7 @@ export default function BarElectricityExchangeChart({
           formatTick={formatTick}
           height={height}
           scale={powerScale}
-          hasLegend={true}
+          hasExchangeLegend={true}
         />
         <g transform={`translate(0, 20)`}>
           {exchangeData.map((d, index) => (

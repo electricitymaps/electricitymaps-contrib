@@ -101,7 +101,9 @@
     },
     "graph-legends": {
       "installed-capacity": "Installed capacity ",
-      "exchange-capacity": "Available exchange capacity "
+      "exchange-capacity": "Available exchange capacity ",
+      "exported": "Exported",
+      "imported": "Imported"
     }
   },
   "feedback-card": {
