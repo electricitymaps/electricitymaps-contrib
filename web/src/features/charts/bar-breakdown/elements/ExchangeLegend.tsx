@@ -14,7 +14,7 @@ export default function ExchangeLegend({ height, t }: { height: number; t: TFunc
         y2={height - X_AXIS_HEIGHT + 15}
       />
       <text
-        fill="rgba(163, 163, 163, 1)"
+        fill="rgba(115, 115, 115, 1)"
         fontSize={'0.7rem'}
         y={height - X_AXIS_HEIGHT + 10}
         x={-40}
@@ -22,10 +22,18 @@ export default function ExchangeLegend({ height, t }: { height: number; t: TFunc
       >
         {t('country-panel.graph-legends.exported')}
       </text>
-      <FaArrowLeft className="text-neutral-200" x={-15} y={height - X_AXIS_HEIGHT + 2} />
-      <FaArrowRight className="text-neutral-200" x={5} y={height - X_AXIS_HEIGHT + 2} />
+      <FaArrowLeft
+        className="text-neutral-300 dark:text-gray-700"
+        x={-15}
+        y={height - X_AXIS_HEIGHT + 2}
+      />
+      <FaArrowRight
+        className="text-neutral-300 dark:text-gray-700"
+        x={5}
+        y={height - X_AXIS_HEIGHT + 2}
+      />
       <text
-        fill="rgba(163, 163, 163, 1)"
+        fill="rgba(115, 115, 115, 1)"
         fontSize={'0.7rem'}
         y={height - X_AXIS_HEIGHT + 10}
         x={40}
