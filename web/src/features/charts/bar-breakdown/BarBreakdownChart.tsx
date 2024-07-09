@@ -171,15 +171,15 @@ function BarBreakdownChart({
       {displayByEmissions ? (
         <BarBreakdownEmissionsChart
           data={currentZoneDetail}
-          exchangeData={exchangeData}
           productionData={productionData}
+          exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
           onProductionRowMouseOut={onMouseOut}
+          onExchangeRowMouseOut={onMouseOut}
+          onExchangeRowMouseOver={onMouseOver}
           width={width}
           height={height}
           isMobile={false}
-          onExchangeRowMouseOut={onMouseOut}
-          onExchangeRowMouseOver={onMouseOver}
         />
       ) : (
         <BarElectricityBreakdownChart

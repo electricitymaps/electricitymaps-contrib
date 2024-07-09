@@ -49,15 +49,13 @@ export default function useBarBreakdownChartData() {
     ? getExchangeData(currentData, exchangeKeys, mixMode)
     : []; // TODO: Consider memoing this
 
-  const { exchangeY, exchangeHeight } = getDataBlockPositions(
+  const { exchangeY } = getDataBlockPositions(
     //TODO this naming could be more descriptive
     productionData.length,
     exchangeData
   );
   return {
     height: exchangeY,
-    exchangeHeight,
-    isConsumption,
     zoneDetails: zoneData, // TODO: Data is returned here just to pass it back to the tooltip
     currentZoneDetail: currentData,
     exchangeData,
