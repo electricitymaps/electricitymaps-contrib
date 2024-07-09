@@ -21,8 +21,8 @@ export default function ProductionSourceLegendList({
       tooltipContent={<ProductionSourceTooltip sources={sources} isMobile={isMobile} />}
       tooltipClassName={
         isMobile
-          ? 'absolute h-full min-w-44 rounded-none border-0 p-0 text-left text-lg shadow-none dark:border-white dark:bg-gray-900'
-          : 'rounded-xl min-w-44 dark:bg-gray-900 dark:border-1 dark:border-gray-700'
+          ? ''
+          : 'rounded-2xl min-w-44 dark:bg-gray-900 dark:border-1 dark:border-gray-700 mx-5'
       }
       side="bottom"
       isMobile={isMobile}
@@ -46,7 +46,7 @@ function ProductionSourceTooltip({
   if (isMobile) {
     return (
       <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col content-center items-center justify-center bg-black/20 pb-40">
-        <div className="dark:border-1 relative mx-6 h-auto min-w-64 rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
+        <div className="dark:border-1 relative mx-6 h-auto min-w-64 rounded-2xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
           <div className="flex flex-col gap-1.5">
             {sources.map((source, index) => (
               <div key={source} className="flex flex-row gap-2">
