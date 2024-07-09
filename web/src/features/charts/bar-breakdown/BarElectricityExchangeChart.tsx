@@ -1,9 +1,10 @@
 import { CountryFlag } from 'components/Flag';
+import HorizontalColorbar from 'components/legend/ColorBar';
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import { ZoneDetail, ZoneKey } from 'types';
+import { CarbonUnits } from 'utils/units';
 
-import Co2LegendRounded from '../../../components/legend/Co2LegendRounded';
 import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
 import CapacityLegend from './elements/CapacityLegend';
@@ -91,8 +92,11 @@ export default function BarElectricityExchangeChart({
           ))}
         </g>
       </svg>
-      <div className="pt-4">
-        <Co2LegendRounded colorScale={co2ColorScale} ticksCount={6} t={t} />
+      <div className="pb-2 pt-6">
+        <div className="mb-1 text-xs font-medium text-neutral-600 dark:text-gray-300">
+          {t('legends.carbonintensity')} ({CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR})
+        </div>
+        <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
       </div>
     </>
   );
