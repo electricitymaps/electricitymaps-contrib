@@ -293,18 +293,18 @@ describe('getElectricityProductionValue', () => {
   });
 });
 
-// describe('getDataBlockPositions', () => {
-//   it('returns correct data', () => {
-//     const result = getDataBlockPositions(productionData.length, exchangeData);
-//     expect(result).to.deep.eq({
-//       exchangeFlagX: 50,
-//       exchangeHeight: 40,
-//       exchangeY: 282,
-//       productionY: 22,
-//       productionHeight: 240,
-//     });
-//   });
-// });
+describe('getDataBlockPositions', () => {
+  it('returns correct data', () => {
+    const result = getDataBlockPositions(productionData.length, exchangeData);
+    expect(result).to.deep.eq({
+      exchangeFlagX: 50,
+      exchangeHeight: 40,
+      exchangeY: 262,
+      productionY: 22,
+      productionHeight: 240,
+    });
+  });
+});
 
 describe('getExchangesToDisplay', () => {
   it('shows aggregated exchanges only when required', () => {
