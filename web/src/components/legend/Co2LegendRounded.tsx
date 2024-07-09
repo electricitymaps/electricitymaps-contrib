@@ -3,17 +3,9 @@ import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { TFunction } from 'i18next';
 import { CarbonUnits } from 'utils/units';
 
-const spreadOverDomain = (
-  scale: ScaleLinear<string | number, string | number, string | number>,
-  count: number
-) => {
-  const [x1, x2] = (extent(scale.domain()) as unknown as [number, number]) ?? [0, 0];
-  return [...Array.from({ length: count }).keys()].map(
-    (v) => x1 + ((x2 - x1) * v) / (count - 1)
-  );
-};
+import { spreadOverDomain } from './utils';
 
-function Co2Scale({
+function Co2LegendRounded({
   colorScale,
   ticksCount = 5,
   t,
@@ -22,12 +14,9 @@ function Co2Scale({
   ticksCount?: number;
   t: TFunction<'translation', undefined>;
 }) {
-  const width = 176;
-  const height = 8;
-
-  const linearScale = scaleLinear()
-    .domain(extent(colorScale.domain()) as unknown as [number, number])
-    .range([0, width]);
+  const linearScale = scaleLinear().domain(
+    extent(colorScale.domain()) as unknown as [number, number]
+  );
 
   return (
     <div className="mb-5 mt-2">
@@ -44,7 +33,7 @@ function Co2Scale({
           <rect
             fill={`url(#co2-gradient)`}
             width="100%"
-            height={height}
+            height={8}
             rx={5}
             transform="translate(-10,0)"
           />
@@ -64,4 +53,4 @@ function Co2Scale({
   );
 }
 
-export default Co2Scale;
+export default Co2LegendRounded;

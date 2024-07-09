@@ -3,7 +3,7 @@ import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import { ZoneDetail, ZoneKey } from 'types';
 
-import Co2Scale from '../Co2Scale';
+import Co2LegendRounded from '../../../components/legend/Co2LegendRounded';
 import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
 import CapacityLegend from './elements/CapacityLegend';
@@ -92,7 +92,7 @@ export default function BarElectricityExchangeChart({
         </g>
       </svg>
       <div className="pt-4">
-        <Co2Scale colorScale={co2ColorScale} ticksCount={6} t={t} />
+        <Co2LegendRounded colorScale={co2ColorScale} ticksCount={6} t={t} />
       </div>
     </>
   );

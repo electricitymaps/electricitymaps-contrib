@@ -1,12 +1,7 @@
 import { extent } from 'd3-array';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 
-const spreadOverDomain = (scale: any, count: number) => {
-  const [x1, x2] = (extent(scale.domain()) as unknown as [number, number]) ?? [0, 0];
-  return [...Array.from({ length: count }).keys()].map(
-    (v) => x1 + ((x2 - x1) * v) / (count - 1)
-  );
-};
+import { spreadOverDomain } from './utils';
 
 function HorizontalColorbar({
   colorScale,
