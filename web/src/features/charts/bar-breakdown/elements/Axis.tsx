@@ -1,9 +1,8 @@
 import { ScaleLinear } from 'd3-scale';
-import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 import { LABEL_MAX_WIDTH, SCALE_TICKS, X_AXIS_HEIGHT } from '../constants';
+import ExchangeLegend from './ExchangeLegend';
 
 type Props = {
   height: number;
@@ -53,39 +52,5 @@ export default function Axis({ formatTick, height, scale, hasExchangeLegend }: P
         </g>
       ))}
     </g>
-  );
-}
-
-function ExchangeLegend({ height, t }: { height: number; t: TFunction }) {
-  return (
-    <>
-      <line
-        stroke="currentColor"
-        strokeWidth={1}
-        shapeRendering={'auto'}
-        y1={height - X_AXIS_HEIGHT}
-        y2={height - X_AXIS_HEIGHT + 15}
-      />
-      <text
-        fill="rgba(163, 163, 163, 1)"
-        fontSize={'0.7rem'}
-        y={height - X_AXIS_HEIGHT + 10}
-        x={-40}
-        dy="0"
-      >
-        {t('country-panel.graph-legends.exported')}
-      </text>
-      <FaArrowLeft x={-15} y={height - X_AXIS_HEIGHT + 2} />
-      <FaArrowRight x={5} y={height - X_AXIS_HEIGHT + 2} />
-      <text
-        fill="rgba(163, 163, 163, 1)"
-        fontSize={'0.7rem'}
-        y={height - X_AXIS_HEIGHT + 10}
-        x={40}
-        dy="0"
-      >
-        {t('country-panel.graph-legends.imported')}
-      </text>
-    </>
   );
 }
