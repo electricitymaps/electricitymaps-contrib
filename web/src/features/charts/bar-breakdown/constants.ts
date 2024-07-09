@@ -8,3 +8,4 @@ export const X_AXIS_HEIGHT = 15;
 export const DEFAULT_FLAG_SIZE = 16;
 export const SCALE_TICKS = 4;
 export const ICON_PLUS_PADDING = 22;
+export const EXCHANGE_PADDING = 20;

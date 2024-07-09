@@ -2,6 +2,7 @@ import { CountryFlag } from 'components/Flag';
 import { ScaleLinear } from 'd3-scale';
 import { ZoneDetail, ZoneKey } from 'types';
 
+import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
@@ -36,8 +37,13 @@ export default function BarEmissionExchangeChart({
   return (
     <div className="pb-4 pt-2">
       <svg className="w-full overflow-visible" height={height}>
-        <Axis formatTick={formatTick} height={height} scale={co2Scale} hasLegend={true} />
-        <g transform={`translate(0, ${20})`}>
+        <Axis
+          formatTick={formatTick}
+          height={height}
+          scale={co2Scale}
+          hasExchangeLegend={true}
+        />
+        <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (
             <Row
               key={d.zoneKey}

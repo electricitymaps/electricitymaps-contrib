@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ZoneDetail, ZoneKey } from 'types';
 
 import Co2Scale from '../Co2Scale';
+import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
@@ -57,7 +58,7 @@ export default function BarElectricityExchangeChart({
           scale={powerScale}
           hasExchangeLegend={true}
         />
-        <g transform={`translate(0, 20)`}>
+        <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (
             <Row
               key={d.zoneKey}
