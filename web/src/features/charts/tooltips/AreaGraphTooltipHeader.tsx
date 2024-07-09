@@ -36,7 +36,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
   );
   return (
     <>
-      <div className="mb-2 flex justify-between">
+      <div className="flex justify-between">
         <div className="inline-flex items-center gap-x-1 font-bold">
           <div
             style={{
@@ -58,11 +58,11 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
           {hasEstimationPill && estimatedPercentage !== 0 && (
             <EstimationBadge text={pillText} />
           )}
-          <p className="my-1 max-w-[180px] select-none whitespace-nowrap rounded-full bg-brand-green/10 px-3 py-2 text-brand-green dark:bg-gray-700 dark:text-white">
-            {formatDate(datetime, i18n.language, timeAverage)}
-          </p>
         </div>
       </div>
+      <p className="whitespace-nowrap text-sm">
+        {formatDate(datetime, i18n.language, timeAverage)}
+      </p>
       <hr className="my-1 mb-3 dark:border-gray-600" />
     </>
   );
