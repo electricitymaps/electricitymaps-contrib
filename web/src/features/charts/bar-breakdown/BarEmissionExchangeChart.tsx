@@ -10,26 +10,26 @@ import { ExchangeDataType } from './utils';
 
 export default function BarEmissionExchangeChart({
   height,
-  exchangeData,
   width,
-  co2Scale,
   data,
+  exchangeData,
+  co2Scale,
   formatTick,
   onExchangeRowMouseOut,
   onExchangeRowMouseOver,
 }: {
   height: number;
+  width: number;
+  data: ZoneDetail;
+  exchangeData: ExchangeDataType[];
+  co2Scale: ScaleLinear<number, number, never>;
+  formatTick: (value: number) => string;
+  onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
-  onExchangeRowMouseOut: () => void;
-  exchangeData: ExchangeDataType[];
-  data: ZoneDetail;
-  width: number;
-  co2Scale: ScaleLinear<number, number, never>;
-  formatTick: (value: number) => string;
 }) {
   if (!exchangeData || exchangeData.length === 0) {
     return null;

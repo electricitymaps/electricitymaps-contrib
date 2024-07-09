@@ -13,30 +13,30 @@ import { ExchangeDataType } from './utils';
 
 export default function BarElectricityExchangeChart({
   height,
-  exchangeData,
   width,
-  powerScale,
   data,
+  exchangeData,
+  powerScale,
+  co2ColorScale,
+  graphUnit,
   formatTick,
   onExchangeRowMouseOut,
   onExchangeRowMouseOver,
-  co2ColorScale,
-  graphUnit,
 }: {
   height: number;
+  width: number;
+  data: ZoneDetail;
+  exchangeData: ExchangeDataType[];
+  powerScale: ScaleLinear<number, number, never>;
+  co2ColorScale: ScaleLinear<string, string, string>;
+  graphUnit: string;
+  formatTick: (t: number) => string | number;
+  onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
     data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
-  onExchangeRowMouseOut: () => void;
-  exchangeData: ExchangeDataType[];
-  data: ZoneDetail;
-  width: number;
-  powerScale: ScaleLinear<number, number, never>;
-  formatTick: (t: number) => string | number;
-  co2ColorScale: ScaleLinear<string, string, string>;
-  graphUnit: string;
 }) {
   const { t } = useTranslation();
 
