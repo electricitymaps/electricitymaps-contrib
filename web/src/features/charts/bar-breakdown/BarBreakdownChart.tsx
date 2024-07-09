@@ -173,8 +173,8 @@ function BarBreakdownChart({
           exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
           onProductionRowMouseOut={onMouseOut}
-          onExchangeRowMouseOut={onMouseOut}
           onExchangeRowMouseOver={onMouseOver}
+          onExchangeRowMouseOut={onMouseOut}
           width={width}
           height={height}
           isMobile={false}
