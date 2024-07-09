@@ -26,7 +26,7 @@ export function InfoModalContent() {
         <SlackButton />
         <GithubButton />
       </div>
-      <div className="flex gap-x-4">
+      <div className="flex basis-0 gap-x-4">
         <PrivacyPolicyButton />
         <VerticalDivider />
         <LegalNoticeButton />
