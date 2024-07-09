@@ -1,6 +1,6 @@
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from enum import Enum
-from functools import lru_cache
 from logging import Logger, getLogger
 
 from requests import Response, Session
@@ -12,9 +12,14 @@ from .lib.utils import get_token
 
 NORDPOOL_BASE_URL = "https://data-api.nordpoolgroup.com/api/v2/"
 
-# Set this as a global const outside of the functions to cache the token for the current parser instance
-NORDPOOL_TOKEN = None
-NORDPOOL_TOKEN_EXPIRATION = None
+
+@dataclass
+class NordpoolToken:
+    token: str | None = None
+    expiration: datetime | None = None
+
+
+TOKEN = NordpoolToken()
 
 SOURCE = "nordpool.com"
 
@@ -83,23 +88,19 @@ def _generate_new_nordpool_token(session: Session | None = None) -> str:
     }
     response = session.post(URL, headers=headers, data=data)
     response = _handle_status_code(response, getLogger(__name__))
-    NORDPOOL_TOKEN_EXPIRATION = datetime.now() + timedelta(
-        seconds=response.json()["expires_in"]
-    )
+    TOKEN.expiration = datetime.now() + timedelta(seconds=response.json()["expires_in"])
 
     return response.json()["access_token"]
 
 
 def _get_token() -> str:
-    global NORDPOOL_TOKEN
-    global NORDPOOL_TOKEN_EXPIRATION
     if (
-        NORDPOOL_TOKEN is None
-        or NORDPOOL_TOKEN_EXPIRATION is None
-        or datetime.now() > NORDPOOL_TOKEN_EXPIRATION - timedelta(minutes=5)
+        TOKEN.token is None
+        or TOKEN.expiration is None
+        or datetime.now() > TOKEN.expiration - timedelta(minutes=5)
     ):
-        NORDPOOL_TOKEN = _generate_new_nordpool_token()
-    return NORDPOOL_TOKEN
+        TOKEN.token = _generate_new_nordpool_token()
+    return TOKEN.token
 
 
 def _handle_status_code(response: Response, logger: Logger) -> Response:
@@ -123,7 +124,6 @@ def _handle_status_code(response: Response, logger: Logger) -> Response:
 
 
 # TODO: Remove this when we run on Python 3.11 or above
-@lru_cache(maxsize=8)
 def zulu_to_utc(datetime_string: str) -> str:
     """Converts a zulu time string to a UTC time string."""
     return datetime_string.replace("Z", "+00:00")
@@ -174,10 +174,10 @@ def fetch_price(
     params = {
         "areas": f"{ZONE_MAPPING[zone_key]}",
         "currency": CURRENCY.EUR.value
-        if zone_key != ZoneKey("GB")
+        if zone_key != ZoneKey("GB")  # GB uses GBP not EUR
         else CURRENCY.GBP.value,
         "market": MARKET_TYPE.DAY_AHEAD.value
-        if zone_key != ZoneKey("GB")
+        if zone_key != ZoneKey("GB")  # GB uses it's own 30 minute TMU day ahead market
         else MARKET_TYPE.GB_DAY_AHEAD.value,
         "date": target_datetime.date().isoformat(),
     }
