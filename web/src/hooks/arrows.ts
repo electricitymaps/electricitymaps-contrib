@@ -1,9 +1,9 @@
 import useGetState from 'api/getState';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { ExchangeArrowData, StateExchangeData } from 'types';
 import { SpatialAggregate } from 'utils/constants';
-import { selectedDatetimeIndexAtom, spatialAggregateAtom } from 'utils/state/atoms';
+import { selectedDatetimeStringAtom, spatialAggregateAtom } from 'utils/state/atoms';
 
 import exchangesConfigJSON from '../../config/exchanges.json'; // do something globally
 import exchangesToExclude from '../../config/excluded_aggregated_exchanges.json'; // do something globally
@@ -55,22 +55,22 @@ export function filterExchanges(
 }
 
 export function useExchangeArrowsData(): ExchangeArrowData[] {
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [viewMode] = useAtom(spatialAggregateAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const viewMode = useAtomValue(spatialAggregateAtom);
   const { data } = useGetState();
 
   // Find outages in state data and hide exports from those zones
   const zonesWithOutages = useMemo(() => {
-    const zoneData = data?.data?.datetimes?.[selectedDatetime?.datetimeString]?.z;
+    const zoneData = data?.data?.datetimes?.[selectedDatetimeString]?.z;
     return zoneData
       ? Object.entries(zoneData)
           .filter(([_, value]) => value.o)
           .map(([zone]) => zone)
       : [];
-  }, [data, selectedDatetime]);
+  }, [data, selectedDatetimeString]);
 
   const exchangesToUse: { [key: string]: StateExchangeData } = useMemo(() => {
-    const exchanges = data?.data?.datetimes?.[selectedDatetime?.datetimeString]?.e;
+    const exchanges = data?.data?.datetimes?.[selectedDatetimeString]?.e;
 
     if (!exchanges) {
       return {};
@@ -85,7 +85,7 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
     return viewMode === SpatialAggregate.COUNTRY
       ? countryViewExchanges
       : zoneViewExchanges;
-  }, [data, selectedDatetime, viewMode]);
+  }, [data, selectedDatetimeString, viewMode]);
 
   const currentExchanges: ExchangeArrowData[] = useMemo(() => {
     return Object.entries(exchangesToUse).map(([key, value]) => ({

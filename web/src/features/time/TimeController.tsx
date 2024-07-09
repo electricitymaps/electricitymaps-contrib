@@ -8,7 +8,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
-import { dateToDatetimeString } from 'utils/helpers';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 import { useIsBiggerThanMobile, useIsMobile } from 'utils/styling';
 
@@ -50,7 +49,7 @@ function InternalTimeController({ className }: { className?: string }) {
       setNumberOfEntries(datetimes.length - 1);
       // Reset the selected datetime when data changes
       setSelectedDatetime({
-        datetimeString: dateToDatetimeString(datetimes.at(-1) as Date),
+        datetime: datetimes.at(-1) as Date,
         index: datetimes.length - 1,
       });
     }
@@ -62,7 +61,7 @@ function InternalTimeController({ className }: { className?: string }) {
       return;
     }
     setSelectedDatetime({
-      datetimeString: dateToDatetimeString(datetimes[index]),
+      datetime: datetimes[index],
       index,
     });
   };
@@ -70,7 +69,7 @@ function InternalTimeController({ className }: { className?: string }) {
   const onToggleGroupClick = (timeAverage: TimeAverages) => {
     // Set time slider to latest value before switching aggregate to avoid flickering
     setSelectedDatetime({
-      datetimeString: selectedDatetime.datetimeString,
+      datetime: selectedDatetime.datetime,
       index: numberOfEntries,
     });
     setTimeAverage(timeAverage);
