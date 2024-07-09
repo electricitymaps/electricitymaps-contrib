@@ -14,7 +14,7 @@ type Props = {
 
 export default function Axis({ formatTick, height, scale, hasExchangeLegend }: Props) {
   const axisTicks = scale.ticks(SCALE_TICKS);
-  const { t } = useTranslation();
+  const { t: translate } = useTranslation();
 
   return (
     <g
@@ -31,13 +31,8 @@ export default function Axis({ formatTick, height, scale, hasExchangeLegend }: P
         shapeRendering="auto"
         d={`M${scale.range()[0] + 0.5},0.5H${scale.range()[1] + 0.5}`}
       />
-      {axisTicks.map((tick) => (
-        <g
-          key={tick}
-          className="tick"
-          opacity="1"
-          transform={`translate(${scale(tick)}, 0)`}
-        >
+      {axisTicks.map((t) => (
+        <g key={t} className="tick" opacity="1" transform={`translate(${scale(t)}, 0)`}>
           <line
             stroke="currentColor"
             strokeWidth={1}
@@ -50,9 +45,11 @@ export default function Axis({ formatTick, height, scale, hasExchangeLegend }: P
             y="-3"
             dy="0"
           >
-            {formatTick(tick)}
+            {formatTick(t)}
           </text>
-          {hasExchangeLegend && tick == 0 && <ExchangeLegend height={height} t={t} />}
+          {hasExchangeLegend && t == 0 && (
+            <ExchangeLegend height={height} t={translate} />
+          )}
         </g>
       ))}
     </g>
