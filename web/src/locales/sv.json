@@ -126,21 +126,21 @@
   "estimation-card": {
     "link": "Läs om våra uppskattningsmodeller",
     "outage-details": "Se detaljer",
-    "estimated_forecasts_hierarchy": {
+    "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data är uppskattad",
       "pill": "Uppskattad",
       "body": "Data för denna zon är uppskattad med en kombination av interna och externa produktionsprognoser och historiska genomsnitt. Detta syftar till att ge en mer exakt representation än enbart historiska genomsnitt, men data kan fortfarande vara felaktig. Data kommer att uppdateras så snart realtidsdata blir tillgänglig."
     },
-    "estimated_time_slicer_average": {
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data är för närvarande uppskattad",
       "body": "Dataleverantören rapporterar för närvarande inte data för denna timme. De visade värdena är uppskattade baserat på historiska mätningar och kommer att ersättas med konsoliderade data när de blir tillgängliga. Observera att uppskattade värden kanske inte alltid är korrekta eftersom de inte tar hänsyn till specifika realtidshändelser som väder."
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data är delvis uppskattad",
       "pill": "Ofullständig",
       "body": "Data om elproduktion för denna zon är ofullständig; saknade värden har beräknats med en uppskattningsmodell."
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Data är alltid uppskattad",
       "pill": "Opålitlig",
       "body": "De publicerade data för denna zon tillhandahåller endast den totala produktionen. Förnybara källor uppskattas med hjälp av aktuella väderdata, medan fossila källor beräknas baserat på historiska data för varje produktionskälla."
@@ -150,12 +150,12 @@
       "pill": "Opålitlig",
       "body": "De publicerade data för denna zon är otillgängliga eller ofullständiga. Data som visas på kartan är uppskattad enligt bästa förmåga men kan skilja sig från de faktiska värdena."
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Data är alltid uppskattad",
       "pill": "Ej realtid",
       "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Data är alltid uppskattad",
       "pill": "Ej realtid",
       "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
@@ -908,10 +908,6 @@
     },
     "GR": {
       "zoneName": "Grekland"
-    },
-    "GR-IS": {
-      "countryName": "Grekland",
-      "zoneName": "Egeiska öarna"
     },
     "GS": {
       "zoneName": "Sydgeorgien och Sydsandwichöarna"

@@ -2,16 +2,16 @@ import useGetZone from 'api/getZone';
 import { Button } from 'components/Button';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
-import { useAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { ZoneMessage } from 'types';
-import { SpatialAggregate, TimeAverages } from 'utils/constants';
+import { EstimationMethods, SpatialAggregate, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
-  selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
@@ -29,10 +29,10 @@ import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [_, setViewMode] = useAtom(spatialAggregateAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const setViewMode = useSetAtom(spatialAggregateAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
   const isMobile = !useBreakpoint('sm');
@@ -68,7 +68,7 @@ export default function ZoneDetails(): JSX.Element {
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
 
-  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
+  const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
@@ -77,7 +77,7 @@ export default function ZoneDetails(): JSX.Element {
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
-      <div className="mb-3 h-[calc(100%-110px)] overflow-y-scroll p-3 pb-40 pt-2 sm:h-[calc(100%-130px)]">
+      <div className="mb-3 h-[calc(100%-120px)] overflow-y-scroll p-3 pb-40 pt-2 sm:h-[calc(100%-150px)]">
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
@@ -139,7 +139,7 @@ function getCardType({
   zoneMessage,
   timeAverage,
 }: {
-  estimationMethod: string | undefined;
+  estimationMethod?: EstimationMethods;
   zoneMessage?: ZoneMessage;
   timeAverage: TimeAverages;
 }): 'estimated' | 'aggregated' | 'outage' | 'none' {
@@ -147,7 +147,7 @@ function getCardType({
     (zoneMessage !== undefined &&
       zoneMessage?.message !== undefined &&
       zoneMessage?.issue !== undefined) ||
-    estimationMethod === 'threshold_filtered'
+    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
   ) {
     return 'outage';
   }

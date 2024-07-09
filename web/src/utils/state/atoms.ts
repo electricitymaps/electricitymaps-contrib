@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
+import { dateToDatetimeString } from 'utils/helpers';
 
 import {
   Mode,
@@ -15,7 +16,12 @@ import {
 export const timeAverageAtom = atom(TimeAverages.HOURLY);
 
 // TODO: consider another initial value
-export const selectedDatetimeIndexAtom = atom({ datetimeString: '', index: 0 });
+export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
+
+export const selectedDatetimeStringAtom = atom((get) => {
+  const { datetime } = get(selectedDatetimeIndexAtom);
+  return dateToDatetimeString(datetime);
+});
 
 export const spatialAggregateAtom = atomWithStorage(
   'country-mode',

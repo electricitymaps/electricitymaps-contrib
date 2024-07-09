@@ -1,6 +1,7 @@
 import { Capacitor } from '@capacitor/core';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Button } from 'components/Button';
+import { Link } from 'components/Link';
 import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
 import { useSetAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
@@ -67,7 +68,9 @@ export default function Header(): JSX.Element {
         !isMobileApp && 'sm:block md:flex'
       )}
     >
-      <Logo className="h-12 w-56 fill-black dark:fill-white" />
+      <Link href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral">
+        <Logo className="h-12 w-56 fill-black dark:fill-white" />
+      </Link>
       <NavigationMenu.Root className="hidden sm:block">
         <NavigationMenu.List className="flex w-full justify-around md:space-x-2">
           <MenuLink id="faq" onClick={onFAQClick}>

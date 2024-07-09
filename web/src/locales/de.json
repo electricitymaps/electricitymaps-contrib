@@ -92,16 +92,16 @@
   },
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
-    "estimated_time_slicer_average": {
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Vorläufige Daten",
       "body": "Der Datenanbieter hat für diese Stunde keine Daten zur Verfügung gestellt. Die angezeigten Werte wurden anhand historischer Werte geschätzt und werden aktualisiert, sobald gemessene Daten verfügbar sind. Geschätzte Daten können unpräzise sein, da sie in manchen Fällen Echtzeit-Wetterereignisse vernachlässigen."
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Teils geschätzte Daten",
       "pill": "Unvollständig",
       "body": "Die Daten zur Stromerzeugung in diesem Gebiet sind unvollständig. Die fehlenden Werte wurden anhand eines statistischen Schätzmodells berechnet."
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Unpräzise",
       "body": "Die Datenquelle gibt ausschließlich die Gesamtproduktion an. Die Stromproduktion aus erneuerbaren Quellen wird anhand aktueller Wetterdaten geschätzt. Die übrige Stromproduktion wird fossilen Energieträgern zugeordnet, wobei die Verteilung auf historischen Daten basiert."
@@ -111,12 +111,12 @@
       "pill": "Unpräzise",
       "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Nicht in Echtzeit",
       "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Nicht in Echtzeit",
       "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
@@ -712,10 +712,6 @@
     },
     "GR": {
       "zoneName": "Griechenland"
-    },
-    "GR-IS": {
-      "countryName": "Griechenland",
-      "zoneName": "Ägäische Inseln"
     },
     "GS": {
       "zoneName": "Südgeorgien und die südlichen Sandwichinseln"
