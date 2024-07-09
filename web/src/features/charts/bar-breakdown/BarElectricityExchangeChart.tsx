@@ -6,6 +6,7 @@ import { ZoneDetail, ZoneKey } from 'types';
 import Co2Scale from '../Co2Scale';
 import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
+import CapacityLegend from './elements/CapacityLegend';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
 import { ExchangeDataType } from './utils';
@@ -45,11 +46,10 @@ export default function BarElectricityExchangeChart({
 
   return (
     <>
-      <div className="flex flex-row pb-2 pt-4">
-        <span className="mt-0.5 h-3 w-3 rounded-full bg-black/10 dark:bg-white/10"></span>
-        <p className="pl-2 text-xs font-medium text-neutral-600 dark:text-gray-300">
+      <div className="py-2">
+        <CapacityLegend>
           {t('country-panel.graph-legends.exchange-capacity')} ({graphUnit})
-        </p>
+        </CapacityLegend>
       </div>
       <svg className="w-full overflow-visible" height={height}>
         <Axis

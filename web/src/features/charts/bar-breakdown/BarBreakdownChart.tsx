@@ -29,6 +29,7 @@ import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
+import CapacityLegend from './elements/CapacityLegend';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 import { useHeaderHeight } from './utils';
 
@@ -141,12 +142,9 @@ function BarBreakdownChart({
         estimationMethod={currentZoneDetail.estimationMethod}
       />
       {!displayByEmissions && (
-        <div className="flex flex-row pt-2">
-          <span className="mt-0.5 h-3 w-3 rounded-full bg-black/10 text-xs dark:bg-white/10"></span>
-          <span className="pl-2 text-xs font-medium text-neutral-600 dark:text-gray-300">
-            {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
-          </span>
-        </div>
+        <CapacityLegend>
+          {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
+        </CapacityLegend>
       )}
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
