@@ -5,7 +5,7 @@ import { TwitterButton } from 'components/buttons/TwitterButton';
 
 export default function SocialIconRow() {
   return (
-    <div className="flex w-full">
+    <div className="flex w-full items-center gap-1">
       <h3>Share the app:</h3>
       <div className="mr-auto flex space-x-1">
         <FacebookButton isIconOnly size="sm" type="link" isShareLink />

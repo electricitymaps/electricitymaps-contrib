@@ -52,7 +52,7 @@ export default function RankingPanel(): ReactElement {
   });
 
   return (
-    <div className="flex max-h-[calc(100vh_-_230px)] flex-col py-5 pl-5 pr-1 ">
+    <div className="flex max-h-[calc(100vh_-_240px)] flex-col py-3 pl-5 pr-1 ">
       <div className="pb-5">
         <div className="font-poppins text-lg font-medium">{t('ranking-panel.title')}</div>
         <div className="text-sm">{t('ranking-panel.subtitle')}</div>
@@ -64,7 +64,8 @@ export default function RankingPanel(): ReactElement {
         value={searchTerm}
       />
       <VirtualizedZoneList data={filteredList} />
-      <div className="space-y-4 p-2">
+      {/* TODO: Revise the margin here once the scrollbars are fixed */}
+      <div className="mr-3 space-y-4">
         <RankingPanelAccordion />
         <HorizontalDivider />
         <SocialIconRow />
