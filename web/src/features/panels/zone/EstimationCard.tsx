@@ -6,7 +6,7 @@ import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
 import { EstimationMethods } from 'utils/constants';
