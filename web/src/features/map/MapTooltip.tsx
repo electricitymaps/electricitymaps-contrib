@@ -6,7 +6,7 @@ import EstimationBadge from 'components/EstimationBadge';
 import OutageBadge from 'components/OutageBadge';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneName } from 'components/ZoneName';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
@@ -15,6 +15,7 @@ import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
 
@@ -33,7 +34,7 @@ export function TooltipInner({
 
   const { t } = useTranslation();
 
-  const [currentMode] = useAtom(productionConsumptionAtom);
+  const currentMode = useAtomValue(productionConsumptionAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
   const intensity = getCarbonIntensity(zoneData, isConsumption);
   const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
@@ -94,11 +95,12 @@ function DataValidityBadge({
 }
 
 export default function MapTooltip() {
-  const [mousePosition] = useAtom(mousePositionAtom);
-  const [hoveredZone] = useAtom(hoveredZoneAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [isMapMoving] = useAtom(mapMovingAtom);
+  const mousePosition = useAtomValue(mousePositionAtom);
+  const hoveredZone = useAtomValue(hoveredZoneAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const isMapMoving = useAtomValue(mapMovingAtom);
   const { i18n, t } = useTranslation();
   const { data } = useGetState();
 
@@ -108,18 +110,13 @@ export default function MapTooltip() {
 
   const { x, y } = mousePosition;
   const zoneData =
-    data?.data?.datetimes[selectedDatetime.datetimeString]?.z[hoveredZone.zoneId] ??
-    undefined;
+    data?.data?.datetimes[selectedDatetimeString]?.z[hoveredZone.zoneId] ?? undefined;
 
   const screenWidth = window.innerWidth;
   const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);
   const emptyTooltipPosition = getSafeTooltipPosition(x, y, screenWidth, 176, 70);
 
-  const formattedDate = formatDate(
-    new Date(selectedDatetime.datetimeString),
-    i18n.language,
-    timeAverage
-  );
+  const formattedDate = formatDate(selectedDatetime.datetime, i18n.language, timeAverage);
 
   if (zoneData) {
     return (
