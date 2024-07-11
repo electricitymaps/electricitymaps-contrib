@@ -1,6 +1,5 @@
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
-import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
@@ -344,6 +343,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   return (
     <Map
+      id="map"
       RTLTextPlugin={false}
       ref={onMapReferenceChange}
       initialViewState={{
@@ -382,7 +382,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       <CustomLayer>
         <SolarLayer />
       </CustomLayer>
-      <ZoomControls />
     </Map>
   );
 }

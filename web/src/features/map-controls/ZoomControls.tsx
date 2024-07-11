@@ -1,23 +1,25 @@
 import { ReactElement } from 'react';
-import { NavigationControl } from 'react-map-gl/maplibre';
+import { useTranslation } from 'react-i18next';
+import { FaMinus, FaPlus } from 'react-icons/fa6';
+import { useMap } from 'react-map-gl/maplibre';
+
+import MapButton from './MapButton';
 
 export default function ZoomControls(): ReactElement {
+  const { map } = useMap();
+  const { t } = useTranslation();
   return (
-    <NavigationControl
-      style={{
-        marginRight: 12,
-        marginTop: 98,
-        width: '33px',
-        boxShadow: '0px 1px 1px  rgb(0 0 0 / 0.1)',
-        border: 0,
-        color: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-      showCompass={false}
-      //TODO: Find a way to use a __('tooltips.zoomIn') as aria-label here
-      //TODO: Find a way to use a __('tooltips.zoomOut') as aria-label here
-    />
+    <>
+      <MapButton
+        icon={<FaPlus size={20} />}
+        onClick={() => map?.zoomIn()}
+        ariaLabel={t('tooltips.zoomIn')}
+      />
+      <MapButton
+        icon={<FaMinus size={20} />}
+        onClick={() => map?.zoomOut()}
+        ariaLabel={t('tooltips.zoomOut')}
+      />
+    </>
   );
 }

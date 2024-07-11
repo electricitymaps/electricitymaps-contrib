@@ -1,6 +1,5 @@
 // Init CSS
 import 'react-spring-bottom-sheet/dist/style.css';
-import 'maplibre-gl/dist/maplibre-gl.css';
 import './index.css';
 
 import * as Sentry from '@sentry/react';
@@ -9,6 +8,7 @@ import App from 'App';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
+import { MapProvider } from 'react-map-gl/maplibre';
 import { BrowserRouter } from 'react-router-dom';
 import i18n from 'translation/i18n';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
@@ -60,9 +60,11 @@ if (container) {
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <MapProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </MapProvider>
         </QueryClientProvider>
       </I18nextProvider>
     </StrictMode>

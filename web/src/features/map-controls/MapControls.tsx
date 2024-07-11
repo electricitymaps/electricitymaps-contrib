@@ -25,6 +25,7 @@ import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 import ThemeSelector from './ThemeSelector';
+import ZoomControls from './ZoomControls';
 
 function MobileMapControls() {
   const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
@@ -137,11 +138,10 @@ function DesktopMapControls() {
 
   return (
     <div className="pointer-events-none absolute right-3 top-2 z-30 hidden flex-col items-end md:flex">
-      <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-2">
+      <div className="pointer-events-auto flex flex-col items-end gap-2">
         <ConsumptionProductionToggle />
         <SpatialAggregatesToggle />
-      </div>
-      <div className="mt-5 space-y-2">
+        <ZoomControls />
         <LanguageSelector />
         <MapButton
           icon={
