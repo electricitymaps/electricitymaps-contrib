@@ -301,7 +301,7 @@ function ZoneMessageBlock({ zoneMessage }: { zoneMessage?: ZoneMessage }) {
             href={`https://github.com/electricitymaps/electricitymaps-contrib/issues/${zoneMessage.issue}`}
           >
             <span className="pl-1 underline">{t('estimation-card.outage-details')}</span>
-            <FaGithub />
+            <FaGithub size={18} />
           </a>
         </span>
       )}
