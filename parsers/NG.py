@@ -13,6 +13,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib import config
 
 API_URL = urllib.parse.urlparse("https://niggrid.org/GenerationProfile2")
@@ -81,11 +82,11 @@ def get_data(session: Session, logger: Logger, timestamp: datetime):
 # tell, the table is always populated within 15 min of the turn of the hour).
 @config.refetch_frequency(timedelta(minutes=45))
 def fetch_production(
-    zone_key: str = "NG",
+    zone_key: ZoneKey = ZoneKey("NG"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is None:
@@ -117,4 +118,6 @@ def fetch_production(
 if __name__ == "__main__":
     """Never used by the Electricity Map backend, but handy for testing."""
     print(fetch_production())
-    print(fetch_production(target_datetime="2022-03-09T15:00:00"))
+    print(
+        fetch_production(target_datetime=datetime.fromisoformat("2022-03-09T15:00:00"))
+    )
