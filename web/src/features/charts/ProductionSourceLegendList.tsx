@@ -21,8 +21,8 @@ export default function ProductionSourceLegendList({
       tooltipContent={<ProductionSourceTooltip sources={sources} isMobile={isMobile} />}
       tooltipClassName={
         isMobile
-          ? ''
-          : 'rounded-2xl min-w-44 dark:bg-gray-900 dark:border-1 dark:border-gray-700 mx-5'
+          ? 'bg-transparent shadow-none border-transparent dark:bg-transparent items-center flex flex-col p-0'
+          : 'rounded-2xl min-w-44 dark:bg-gray-900/80 dark:border-1 dark:border-gray-700 mx-5 backdrop-blur bg-white/80'
       }
       side="bottom"
       isMobile={isMobile}
@@ -45,8 +45,8 @@ function ProductionSourceTooltip({
 }) {
   if (isMobile) {
     return (
-      <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col content-center items-center justify-center bg-black/20 pb-40">
-        <div className="dark:border-1 relative mx-6 h-auto min-w-64 rounded-2xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
+      <>
+        <div className="dark:border-1 relative h-auto min-w-44 rounded-2xl border bg-white/80 p-4 text-left text-sm shadow-md backdrop-blur dark:border-gray-700 dark:bg-gray-900/80">
           <div className="flex flex-col gap-1.5">
             {sources.map((source, index) => (
               <div key={source} className="flex flex-row gap-2">
@@ -56,10 +56,10 @@ function ProductionSourceTooltip({
             ))}
           </div>
         </div>
-        <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 text-black shadow-md">
+        <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-white text-black shadow-md">
           <HiXMark size="24" />
         </button>
-      </Portal.Root>
+      </>
     );
   }
 
