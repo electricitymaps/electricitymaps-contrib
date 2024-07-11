@@ -14,11 +14,13 @@ export default function ZoomControls(): ReactElement {
         icon={<FaPlus size={20} />}
         onClick={() => map?.zoomIn()}
         ariaLabel={t('tooltips.zoomIn')}
+        dataTestId="zoom-in"
       />
       <MapButton
         icon={<FaMinus size={20} />}
         onClick={() => map?.zoomOut()}
         ariaLabel={t('tooltips.zoomOut')}
+        dataTestId="zoom-out"
       />
     </>
   );
