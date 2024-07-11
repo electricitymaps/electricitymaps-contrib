@@ -8,12 +8,7 @@ import { formatCo2 } from 'utils/formatting';
 
 import ProductionSourceLegend from '../ProductionSourceLegend';
 import BarEmissionExchangeChart from './BarEmissionExchangeChart';
-import {
-  AXIS_LEGEND_PADDING,
-  EXCHANGE_PADDING,
-  LABEL_MAX_WIDTH,
-  PADDING_X,
-} from './constants';
+import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
