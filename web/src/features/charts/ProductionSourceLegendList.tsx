@@ -61,9 +61,9 @@ function ProductionSourceTooltip({
 function ProductionSourceTooltipInner({ sources }: { sources: ElectricityModeType[] }) {
   return (
     <div className="flex flex-col gap-1.5">
-      {sources.map((source, index) => (
+      {sources.map((source) => (
         <div key={source} className="flex flex-row gap-2">
-          <ProductionSourceLegend key={index} electricityType={source} />
+          <ProductionSourceLegend key={source} electricityType={source} />
           <div className="text-xs font-medium">{source}</div>
         </div>
       ))}
