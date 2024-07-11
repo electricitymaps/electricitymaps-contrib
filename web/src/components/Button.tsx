@@ -105,7 +105,7 @@ function getBackground(type: string, disabled: boolean | undefined) {
       return 'border dark:border-gray-700 border-neutral-200 bg-white dark:bg-gray-900';
     }
     case 'transparent': {
-      return 'bg-white/80 dark:bg-gray-800/80 border border-neutral-200 dark:border-gray-700';
+      return 'bg-white/80 dark:bg-gray-800/80 border border-neutral-200 dark:border-gray-700 backdrop-blur';
     }
     default: {
       return 'bg-inherit';
