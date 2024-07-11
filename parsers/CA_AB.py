@@ -10,7 +10,7 @@ import re
 import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any
+from typing import Any, Optional
 from zoneinfo import ZoneInfo
 
 # Third-party library imports
@@ -98,7 +98,7 @@ def fetch_production(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict[str, Any]:
+) -> Optional[dict[str, Any]]:
     """Request the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
