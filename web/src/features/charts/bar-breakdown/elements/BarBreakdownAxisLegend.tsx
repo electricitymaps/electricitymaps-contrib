@@ -1,4 +1,4 @@
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
 
 import { X_AXIS_HEIGHT } from '../constants';
 
