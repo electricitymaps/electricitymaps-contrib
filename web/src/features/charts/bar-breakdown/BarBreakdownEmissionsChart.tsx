@@ -8,7 +8,12 @@ import { formatCo2 } from 'utils/formatting';
 
 import ProductionSourceLegend from '../ProductionSourceLegend';
 import BarEmissionExchangeChart from './BarEmissionExchangeChart';
-import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import {
+  AXIS_LEGEND_PADDING,
+  EXCHANGE_PADDING,
+  LABEL_MAX_WIDTH,
+  PADDING_X,
+} from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
@@ -79,8 +84,16 @@ function BarBreakdownEmissionsChart({
 
   return (
     <>
-      <svg className="w-full overflow-visible" height={height}>
-        <Axis formatTick={formatTick} height={height} scale={co2Scale} />
+      <svg className="w-full overflow-visible" height={height + AXIS_LEGEND_PADDING}>
+        <Axis
+          formatTick={formatTick}
+          height={height}
+          scale={co2Scale}
+          axisLegendText={{
+            left: t('country-panel.graph-legends.stored'),
+            right: t('country-panel.graph-legends.produced'),
+          }}
+        />
         <g transform={`translate(0, ${productionY})`}>
           {productionData.map((d, index) => (
             <Row

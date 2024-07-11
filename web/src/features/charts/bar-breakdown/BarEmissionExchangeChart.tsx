@@ -1,5 +1,6 @@
 import { CountryFlag } from 'components/Flag';
 import { ScaleLinear } from 'd3-scale';
+import { useTranslation } from 'react-i18next';
 import { ZoneDetail, ZoneKey } from 'types';
 
 import { EXCHANGE_PADDING } from './constants';
@@ -31,6 +32,8 @@ export default function BarEmissionExchangeChart({
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
 }) {
+  const { t } = useTranslation();
+
   if (!exchangeData || exchangeData.length === 0) {
     return null;
   }
@@ -41,7 +44,10 @@ export default function BarEmissionExchangeChart({
           formatTick={formatTick}
           height={height}
           scale={co2Scale}
-          hasExchangeLegend={true}
+          axisLegendText={{
+            left: t('country-panel.graph-legends.exported'),
+            right: t('country-panel.graph-legends.imported'),
+          }}
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (

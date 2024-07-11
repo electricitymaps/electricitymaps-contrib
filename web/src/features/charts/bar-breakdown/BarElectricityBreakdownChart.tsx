@@ -11,7 +11,12 @@ import { timeAverageAtom } from 'utils/state/atoms';
 
 import ProductionSourceLegend from '../ProductionSourceLegend';
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
-import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import {
+  AXIS_LEGEND_PADDING,
+  EXCHANGE_PADDING,
+  LABEL_MAX_WIDTH,
+  PADDING_X,
+} from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
@@ -113,8 +118,16 @@ function BarElectricityBreakdownChart({
 
   return (
     <>
-      <svg className="w-full overflow-visible" height={height}>
-        <Axis formatTick={formatTick} height={height} scale={powerScale} />
+      <svg className="w-full overflow-visible" height={height + AXIS_LEGEND_PADDING}>
+        <Axis
+          formatTick={formatTick}
+          height={height}
+          scale={powerScale}
+          axisLegendText={{
+            left: t('country-panel.graph-legends.stored'),
+            right: t('country-panel.graph-legends.produced'),
+          }}
+        />
         <g transform={`translate(0, ${productionY})`}>
           {productionData.map((d, index) => (
             <Row

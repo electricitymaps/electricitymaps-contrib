@@ -1,9 +1,14 @@
-import { TFunction } from 'i18next';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 import { X_AXIS_HEIGHT } from '../constants';
 
-export default function ExchangeLegend({ height, t }: { height: number; t: TFunction }) {
+export default function BarBreakdownAxisLegend({
+  height,
+  legendText,
+}: {
+  height: number;
+  legendText: { left: string; right: string };
+}) {
   return (
     <>
       <line
@@ -17,10 +22,10 @@ export default function ExchangeLegend({ height, t }: { height: number; t: TFunc
         fill="rgba(115, 115, 115, 1)"
         fontSize={'0.7rem'}
         y={height - X_AXIS_HEIGHT + 10}
-        x={-40}
-        dy="0"
+        x={-18}
+        textAnchor="end"
       >
-        {t('country-panel.graph-legends.exported')}
+        {legendText.left}
       </text>
       <FaArrowLeft
         className="text-neutral-300 dark:text-gray-700"
@@ -36,10 +41,10 @@ export default function ExchangeLegend({ height, t }: { height: number; t: TFunc
         fill="rgba(115, 115, 115, 1)"
         fontSize={'0.7rem'}
         y={height - X_AXIS_HEIGHT + 10}
-        x={40}
-        dy="0"
+        x={18}
+        textAnchor="start"
       >
-        {t('country-panel.graph-legends.imported')}
+        {legendText.right}
       </text>
     </>
   );

@@ -103,7 +103,9 @@
       "installed-capacity": "Installed capacity ",
       "exchange-capacity": "Available exchange capacity ",
       "exported": "Exported",
-      "imported": "Imported"
+      "imported": "Imported",
+      "stored": "Stored",
+      "produced": "Produced"
     }
   },
   "feedback-card": {

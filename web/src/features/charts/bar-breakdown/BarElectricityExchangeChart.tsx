@@ -47,7 +47,7 @@ export default function BarElectricityExchangeChart({
 
   return (
     <>
-      <div className="py-2">
+      <div>
         <CapacityLegend>
           {t('country-panel.graph-legends.exchange-capacity')} ({graphUnit})
         </CapacityLegend>
@@ -57,7 +57,10 @@ export default function BarElectricityExchangeChart({
           formatTick={formatTick}
           height={height}
           scale={powerScale}
-          hasExchangeLegend={true}
+          axisLegendText={{
+            left: t('country-panel.graph-legends.exported'),
+            right: t('country-panel.graph-legends.imported'),
+          }}
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (

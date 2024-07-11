@@ -1,19 +1,17 @@
 import { ScaleLinear } from 'd3-scale';
-import { useTranslation } from 'react-i18next';
 
 import { LABEL_MAX_WIDTH, SCALE_TICKS, X_AXIS_HEIGHT } from '../constants';
-import ExchangeLegend from './ExchangeLegend';
+import BarBreakdownAxisLegend from './BarBreakdownAxisLegend';
 
 type Props = {
   height: number;
   scale: ScaleLinear<number, number, never>;
   formatTick: (tick: number) => string | number;
-  hasExchangeLegend?: boolean;
+  axisLegendText?: { left: string; right: string };
 };
 
-export default function Axis({ formatTick, height, scale, hasExchangeLegend }: Props) {
+export default function Axis({ formatTick, height, scale, axisLegendText }: Props) {
   const axisTicks = scale.ticks(SCALE_TICKS);
-  const { t: translate } = useTranslation();
 
   return (
     <g
@@ -46,8 +44,8 @@ export default function Axis({ formatTick, height, scale, hasExchangeLegend }: P
           >
             {formatTick(t)}
           </text>
-          {hasExchangeLegend && t == 0 && (
-            <ExchangeLegend height={height} t={translate} />
+          {axisLegendText && t == 0 && (
+            <BarBreakdownAxisLegend height={height} legendText={axisLegendText} />
           )}
         </g>
       ))}
