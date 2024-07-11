@@ -84,16 +84,8 @@ function BarBreakdownEmissionsChart({
 
   return (
     <>
-      <svg className="w-full overflow-visible" height={height + AXIS_LEGEND_PADDING}>
-        <Axis
-          formatTick={formatTick}
-          height={height}
-          scale={co2Scale}
-          axisLegendText={{
-            left: t('country-panel.graph-legends.stored'),
-            right: t('country-panel.graph-legends.produced'),
-          }}
-        />
+      <svg className="w-full overflow-visible" height={height}>
+        <Axis formatTick={formatTick} height={height} scale={co2Scale} />
         <g transform={`translate(0, ${productionY})`}>
           {productionData.map((d, index) => (
             <Row
