@@ -3,29 +3,15 @@ import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
-import { modeColor, TimeAverages } from 'utils/constants';
+import { TimeAverages } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
 import { timeAverageAtom } from 'utils/state/atoms';
 
-import ProductionSourceLegend from '../ProductionSourceLegend';
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
-import {
-  AXIS_LEGEND_PADDING,
-  EXCHANGE_PADDING,
-  LABEL_MAX_WIDTH,
-  PADDING_X,
-} from './constants';
-import Axis from './elements/Axis';
-import HorizontalBar from './elements/HorizontalBar';
-import Row from './elements/Row';
-import {
-  ExchangeDataType,
-  getDataBlockPositions,
-  getElectricityProductionValue,
-  ProductionDataType,
-} from './utils';
+import { BarElectricityProductionChart } from './BarElectricityProductionChart';
+import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarElectricityBreakdownChartProps {
   height: number;
@@ -64,7 +50,6 @@ function BarElectricityBreakdownChart({
   width,
   graphUnit,
 }: BarElectricityBreakdownChartProps) {
-  const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const { productionY, exchangeHeight } = getDataBlockPositions(
     productionData.length,
@@ -118,48 +103,18 @@ function BarElectricityBreakdownChart({
 
   return (
     <>
-      <svg className="w-full overflow-visible" height={height + AXIS_LEGEND_PADDING}>
-        <Axis
-          formatTick={formatTick}
-          height={height}
-          scale={powerScale}
-          axisLegendText={{
-            left: t('country-panel.graph-legends.stored'),
-            right: t('country-panel.graph-legends.produced'),
-          }}
-        />
-        <g transform={`translate(0, ${productionY})`}>
-          {productionData.map((d, index) => (
-            <Row
-              key={d.mode}
-              index={index}
-              label={t(d.mode)}
-              width={width}
-              scale={powerScale}
-              value={getElectricityProductionValue(d)}
-              onMouseOver={(event) =>
-                onProductionRowMouseOver(d.mode, currentData, event)
-              }
-              onMouseOut={onProductionRowMouseOut}
-              isMobile={isMobile}
-            >
-              <ProductionSourceLegend electricityType={d.mode} />
-              <HorizontalBar
-                className="text-black/10 dark:text-white/10"
-                fill="currentColor"
-                range={d.isStorage ? [-(d.capacity || 0), d.capacity] : [0, d.capacity]}
-                scale={powerScale}
-              />
-              <HorizontalBar
-                className="production"
-                fill={modeColor[d.mode]}
-                range={[0, getElectricityProductionValue(d)]}
-                scale={powerScale}
-              />
-            </Row>
-          ))}
-        </g>
-      </svg>
+      <BarElectricityProductionChart
+        powerScale={powerScale}
+        height={height}
+        formatTick={formatTick}
+        productionY={productionY}
+        productionData={productionData}
+        currentData={currentData}
+        width={width}
+        onProductionRowMouseOver={onProductionRowMouseOver}
+        onProductionRowMouseOut={onProductionRowMouseOut}
+        isMobile={isMobile}
+      />
       <BarElectricityExchangeChart
         height={exchangeHeight + EXCHANGE_PADDING}
         onExchangeRowMouseOut={onExchangeRowMouseOut}

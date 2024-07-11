@@ -1,17 +1,12 @@
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
-import { modeColor } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
-import ProductionSourceLegend from '../ProductionSourceLegend';
 import BarEmissionExchangeChart from './BarEmissionExchangeChart';
+import { BarEmissionProductionChart } from './BarEmissionProductionChart';
 import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
-import Axis from './elements/Axis';
-import HorizontalBar from './elements/HorizontalBar';
-import Row from './elements/Row';
 import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
@@ -47,8 +42,6 @@ function BarBreakdownEmissionsChart({
   onExchangeRowMouseOut,
   width,
 }: BarBreakdownEmissionsChartProps) {
-  const { t } = useTranslation();
-
   const { productionY, exchangeHeight } = getDataBlockPositions(
     productionData.length > 0 ? productionData.length : 0,
     exchangeData
@@ -79,32 +72,18 @@ function BarBreakdownEmissionsChart({
 
   return (
     <>
-      <svg className="w-full overflow-visible" height={height}>
-        <Axis formatTick={formatTick} height={height} scale={co2Scale} />
-        <g transform={`translate(0, ${productionY})`}>
-          {productionData.map((d, index) => (
-            <Row
-              key={d.mode}
-              index={index}
-              label={t(d.mode)}
-              width={width}
-              scale={co2Scale}
-              value={Math.abs(d.gCo2eq)}
-              onMouseOver={(event) => onProductionRowMouseOver(d.mode, data, event)}
-              onMouseOut={onProductionRowMouseOut}
-              isMobile={isMobile}
-            >
-              <ProductionSourceLegend electricityType={d.mode} />
-              <HorizontalBar
-                className="production"
-                fill={modeColor[d.mode]}
-                range={[0, Math.abs(d.gCo2eq)]}
-                scale={co2Scale}
-              />
-            </Row>
-          ))}
-        </g>
-      </svg>
+      <BarEmissionProductionChart
+        height={height}
+        formatTick={formatTick}
+        co2Scale={co2Scale}
+        productionY={productionY}
+        productionData={productionData}
+        data={data}
+        width={width}
+        onProductionRowMouseOut={onProductionRowMouseOut}
+        onProductionRowMouseOver={onProductionRowMouseOver}
+        isMobile={isMobile}
+      />
       <BarEmissionExchangeChart
         height={exchangeHeight + EXCHANGE_PADDING}
         onExchangeRowMouseOut={onExchangeRowMouseOut}
