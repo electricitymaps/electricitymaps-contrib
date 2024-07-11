@@ -47,11 +47,9 @@ export default function BarElectricityExchangeChart({
 
   return (
     <>
-      <div>
-        <CapacityLegend>
-          {t('country-panel.graph-legends.exchange-capacity')} ({graphUnit})
-        </CapacityLegend>
-      </div>
+      <CapacityLegend>
+        {t('country-panel.graph-legends.exchange-capacity')} ({graphUnit})
+      </CapacityLegend>
       <svg className="w-full overflow-visible" height={height}>
         <Axis
           formatTick={formatTick}
