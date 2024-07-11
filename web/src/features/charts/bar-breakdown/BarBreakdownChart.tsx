@@ -66,9 +66,8 @@ function BarBreakdownChart({
 
   const graphUnit = useMemo(
     () =>
-      currentZoneDetail
-        ? determineUnit(displayByEmissions, currentZoneDetail, mixMode, timeAverage, t)
-        : '',
+      currentZoneDetail &&
+      determineUnit(displayByEmissions, currentZoneDetail, mixMode, timeAverage, t),
     [displayByEmissions, currentZoneDetail, mixMode, timeAverage, t]
   );
 
