@@ -4,13 +4,12 @@ import { useAtom, useSetAtom } from 'jotai';
 import { useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FiWind } from 'react-icons/fi';
-import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
+import { HiOutlineSun } from 'react-icons/hi';
 import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import trackEvent from 'utils/analytics';
 import { ThemeOptions, TimeAverages, ToggleOptions } from 'utils/constants';
 import {
-  colorblindModeAtom,
   selectedDatetimeIndexAtom,
   solarLayerEnabledAtom,
   solarLayerLoadingAtom,
@@ -20,6 +19,7 @@ import {
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
 
+import ColorblindToggle from './ColorblindToggle';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
@@ -115,26 +115,17 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={isLoadingLayer ? () => {} : onToggle}
       ariaLabel={type == 'wind' ? t('aria.label.windLayer') : t('aria.label.solarLayer')}
-      asToggle
     />
   );
 }
 
 function DesktopMapControls() {
-  const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
-    useAtom(colorblindModeAtom);
 
   // We are currently only supporting and fetching weather data for the latest hourly value
   const areWeatherLayersAllowed =
     selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
-
-  const handleColorblindModeToggle = () => {
-    setIsColorblindModeEnabled(!isColorblindModeEnabled);
-    trackEvent('Colorblind Mode Toggled');
-  };
 
   return (
     <div className="pointer-events-none absolute right-3 top-2 z-30 hidden flex-col items-end md:flex">
@@ -143,26 +134,14 @@ function DesktopMapControls() {
         <SpatialAggregatesToggle />
         <ZoomControls />
         <LanguageSelector />
-        <MapButton
-          icon={
-            <HiOutlineEyeOff
-              size={20}
-              className={`${isColorblindModeEnabled ? '' : 'opacity-50'}`}
-            />
-          }
-          dataTestId="colorblind-layer-button"
-          tooltipText={t('legends.colorblindmode')}
-          onClick={handleColorblindModeToggle}
-          asToggle
-          ariaLabel={t('aria.label.colorBlindMode')}
-        />
+        <ColorblindToggle />
+        <ThemeSelector />
         {areWeatherLayersAllowed && (
           <>
             <WeatherButton type="wind" />
             <WeatherButton type="solar" />
           </>
         )}
-        <ThemeSelector />
       </div>
     </div>
   );

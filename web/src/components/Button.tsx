@@ -9,12 +9,13 @@ interface ButtonProps {
   disabled?: boolean;
   size?: SizeOptions;
   shouldShrink?: boolean;
-  type?: 'primary' | 'secondary' | 'tertiary' | 'link';
+  type?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'transparent';
   href?: string;
   backgroundClasses?: string;
   foregroundClasses?: string;
   asDiv?: boolean;
   onClick?: () => void;
+  ariaLabel?: string;
 }
 
 export function Button({
@@ -102,6 +103,9 @@ function getBackground(type: string, disabled: boolean | undefined) {
     }
     case 'secondary': {
       return 'border dark:border-gray-700 border-neutral-200 bg-white dark:bg-gray-900';
+    }
+    case 'transparent': {
+      return 'bg-white/80 dark:bg-gray-800/80 border border-neutral-200 dark:border-gray-700';
     }
     default: {
       return 'bg-inherit';
