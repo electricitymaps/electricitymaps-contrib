@@ -6,7 +6,7 @@ import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom } from 'jotai';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
@@ -64,6 +64,14 @@ function BarBreakdownChart({
   const [mixMode] = useAtom(productionConsumptionAtom);
   const width = observerWidth + X_PADDING;
 
+  const graphUnit = useMemo(
+    () =>
+      currentZoneDetail
+        ? determineUnit(displayByEmissions, currentZoneDetail, mixMode, timeAverage, t)
+        : '',
+    [displayByEmissions, currentZoneDetail, mixMode, timeAverage, t]
+  );
+
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
     x: number;
@@ -120,14 +128,6 @@ function BarBreakdownChart({
 
   const showDataSourceAccordion = Boolean(
     showCapacitySources || showPowerSources || showEmissionSources
-  );
-
-  const graphUnit = determineUnit(
-    displayByEmissions,
-    currentZoneDetail,
-    mixMode,
-    timeAverage,
-    t
   );
 
   return (
