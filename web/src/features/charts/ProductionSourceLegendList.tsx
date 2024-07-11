@@ -1,4 +1,3 @@
-import * as Portal from '@radix-ui/react-portal';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { HiXMark } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
