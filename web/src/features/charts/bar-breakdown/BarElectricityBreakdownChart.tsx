@@ -33,7 +33,7 @@ interface BarElectricityBreakdownChartProps {
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onExchangeRowMouseOut: () => void;
-  graphUnit: string;
+  graphUnit: string | undefined;
 }
 
 function BarElectricityBreakdownChart({

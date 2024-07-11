@@ -30,7 +30,7 @@ export default function BarElectricityExchangeChart({
   exchangeData: ExchangeDataType[];
   powerScale: ScaleLinear<number, number, never>;
   co2ColorScale: ScaleLinear<string, string, string>;
-  graphUnit: string;
+  graphUnit: string | undefined;
   formatTick: (t: number) => string | number;
   onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
