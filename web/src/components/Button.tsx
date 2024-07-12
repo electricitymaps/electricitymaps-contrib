@@ -39,7 +39,10 @@ export function Button({
   return (
     <div
       className={twMerge(
-        `items-center justify-center rounded-full ${getBackground(type, disabled)}`,
+        `pointer-events-auto items-center justify-center rounded-full ${getBackground(
+          type,
+          disabled
+        )}`,
         backgroundClasses,
         shouldShrink ? 'w-fit' : ''
       )}

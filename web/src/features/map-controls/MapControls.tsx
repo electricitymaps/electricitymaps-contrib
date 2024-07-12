@@ -129,7 +129,7 @@ function DesktopMapControls() {
 
   return (
     <div className="pointer-events-none absolute right-3 top-2 z-30 hidden flex-col items-end md:flex">
-      <div className="pointer-events-auto flex flex-col items-end gap-2">
+      <div className="flex flex-col items-end gap-2">
         <ConsumptionProductionToggle />
         <SpatialAggregatesToggle />
         <ZoomControls />
