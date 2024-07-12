@@ -6,6 +6,7 @@ import {
   formatDate,
   formatEnergy,
   formatPower,
+  formatPowerToMatchTotal,
   getDateTimeFormatOptions,
 } from './formatting';
 
@@ -123,6 +124,98 @@ describe('formatPower', () => {
   it('handles 0 input for number of digits', () => {
     const actual = formatPower(12_313, 0);
     const expected = '10 GW';
+    expect(actual).to.deep.eq(expected);
+  });
+});
+
+describe('formatPowerToMatchTotal', () => {
+  it('handles NaN input', () => {
+    const actual = formatPowerToMatchTotal(Number.NaN, 0.006);
+    const expected = Number.NaN;
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles without total', () => {
+    const actual = formatPowerToMatchTotal(20);
+    const expected = '20 MW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles W with decimal', () => {
+    const actual = formatPowerToMatchTotal(0.000_054_6, 0.0006);
+    const expected = '54.6 W';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles W without decimal', () => {
+    const actual = formatPowerToMatchTotal(0.000_05, 0.0006);
+    const expected = '50 W';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles kW with decimal', () => {
+    const actual = formatPowerToMatchTotal(0.000_05, 0.05);
+    const expected = '0.05 kW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles kW without decimal', () => {
+    const actual = formatPowerToMatchTotal(0.003, 0.05);
+    const expected = '3 kW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles d and total being the same', () => {
+    const actual = formatPowerToMatchTotal(0.05, 0.05);
+    const expected = '50 kW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles MW', () => {
+    const actual = formatPowerToMatchTotal(0.009, 30);
+    const expected = '0.009 MW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles GW', () => {
+    const actual = formatPowerToMatchTotal(6.5, 70_000);
+    const expected = '0.0065 GW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles GW with d being small', () => {
+    const actual = formatPowerToMatchTotal(0.000_05, 70_000);
+    const expected = '0.00000005 GW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles GW with d being small', () => {
+    const actual = formatPowerToMatchTotal(0.000_000_05, 70_000);
+    const expected = '~0 W';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles GW with d being 0', () => {
+    const actual = formatPowerToMatchTotal(0, 70_000);
+    const expected = '0 W';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles TW', () => {
+    const actual = formatPowerToMatchTotal(45, 890_000_000);
+    const expected = '0.000045 TW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles TW with small d', () => {
+    const actual = formatPowerToMatchTotal(0.000_05, 890_000_000);
+    const expected = '0.00000000005 TW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles TW with bug precission', () => {
+    const actual = formatPowerToMatchTotal(42_059.836_85, 890_000_000);
+    const expected = '0.0421 TW';
     expect(actual).to.deep.eq(expected);
   });
 });
