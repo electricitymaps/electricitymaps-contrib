@@ -5,56 +5,65 @@ import { EnergyUnits, PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 3;
 
-function addSpaceBetweenNumberAndUnit(inputString: string) {
-  // Use a regular expression to add a space between the number and unit
-  return inputString.replace(/([A-Za-z])/, ' $1');
+export interface FormatParameters {
+  value: number;
+  total?: number;
+  numberDigits?: number;
 }
 
-export const formatPowerToMatchTotal = (d: number, total?: number) => {
+export const formatPower = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
   // Assume MW input
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
+  if (value == undefined || Number.isNaN(value)) {
+    return value;
   }
-  const checkAgainst = total ?? d;
-  const decimals = 3;
-
-  if (d == 0) {
+  if (value == 0) {
     return '0 W';
   }
-  if (d < 1e-6) {
+  if (value < 1e-6) {
     return '~0 W';
   }
 
-  if (Math.abs(checkAgainst) < 1e-3) {
-    return d3.format(`.${decimals}~r`)(d * 1e6) + ' W';
-  }
-  if (Math.abs(checkAgainst) < 1) {
-    return d3.format(`.${decimals}~r`)(d * 1e3) + ' kW';
-  }
-  if (Math.abs(checkAgainst) < 1e3) {
-    return d3.format(`.${decimals}~r`)(d) + ' MW';
-  }
-  if (Math.abs(checkAgainst) < 1e6) {
-    return d3.format(`.${decimals}~r`)(d / 1e3) + ' GW';
-  }
-  return d3.format(`.${decimals}~r`)(d / 1e6) + ' TW';
+  const valueInWatt = value * 1e6;
+  const totalInWatt = total ? total * 1e6 : undefined;
+
+  return format({ value: valueInWatt, total: totalInWatt, numberDigits }) + 'W';
 };
 
-export const formatPower = (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) => {
-  // Assume MW input
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
+const format = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
+  if (value == undefined || Number.isNaN(value)) {
+    return value;
   }
-  const significantFigures = d.toString().length > 1 ? numberDigits : 1;
-  const power =
-    d < 1e9
-      ? d3.format(`.${significantFigures}s`)(d * 1e6) + 'W'
-      : d3.format(`.${significantFigures}r`)(d / 1e6) + 'TW';
-  return addSpaceBetweenNumberAndUnit(power);
+  const checkAgainst = Math.abs(Math.round(total ?? value));
+
+  if (checkAgainst < 1e3) {
+    return d3.format(`.${numberDigits}~r`)(value) + ' ';
+  }
+  if (checkAgainst < 1e6) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e3) + ' k';
+  }
+  if (checkAgainst < 1e9) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e6) + ' M';
+  }
+  if (checkAgainst < 1e12) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e9) + ' G';
+  }
+  return d3.format(`.${numberDigits}~r`)(value / 1e12) + ' T';
 };
 
-export const formatEnergy = (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) => {
-  const power = formatPower(d, numberDigits);
+export const formatEnergy = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
+  const power = formatPower({ value, total, numberDigits });
   // Assume MW input
   if (power == undefined || Number.isNaN(power)) {
     return power;
@@ -62,30 +71,25 @@ export const formatEnergy = (d: number, numberDigits: number = DEFAULT_NUM_DIGIT
   return power + 'h';
 };
 
-export const formatCo2 = (grams: number, valueToMatch?: number): string => {
+export const formatCo2 = ({ value, total, numberDigits }: FormatParameters) => {
   // Validate input
-  if (grams == null || Number.isNaN(grams)) {
+  if (value == null || Number.isNaN(value)) {
     return '?';
   }
 
-  // Ensure both numbers are at the same scale
-  const checkAgainst = valueToMatch ?? grams;
+  const checkAgainst = total ?? value;
 
-  //Values less than 1Mt
-  if (Math.abs(Math.round(checkAgainst)) < 1e9) {
-    let decimals = grams < 1 ? 2 : 1;
-    // Remove decimals for large values
-    if (grams > 1_000_000) {
-      decimals = 2;
-    }
-    if (Math.abs(checkAgainst) < 1e6) {
-      return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~s`)(grams)}g`);
-    }
-
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~r`)(grams / 1e6)}t`);
+  if (Math.abs(Math.round(checkAgainst)) < 1e6) {
+    return format({ value: value, total: total, numberDigits: numberDigits }) + 'g';
   }
-  // tonnes or above with significant figures as a default
-  return addSpaceBetweenNumberAndUnit(`${d3.format(',.3~s')(grams / 1e6)}t`);
+
+  return (
+    format({
+      value: value / 1e6,
+      total: total ? total / 1e6 : undefined,
+      numberDigits: numberDigits,
+    }) + 't'
+  );
 };
 
 const scalePower = (maxPower: number | undefined, isPower = false) => {
