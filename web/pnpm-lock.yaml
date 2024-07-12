@@ -420,9 +420,6 @@ importers:
       vitest:
         specifier: 1.6.0
         version: 1.6.0(@types/node@20.14.6)(jsdom@20.0.3)(less@4.2.0)(terser@5.31.1)
-      whatwg-fetch:
-        specifier: 3.6.17
-        version: 3.6.17
       workbox-build:
         specifier: 7.1.1
         version: 7.1.1(@types/babel__core@7.20.5)
