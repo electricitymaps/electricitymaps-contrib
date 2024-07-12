@@ -16,6 +16,7 @@ interface ButtonProps {
   asDiv?: boolean;
   onClick?: () => void;
   ariaLabel?: string;
+  dataTestId?: string;
 }
 
 export function Button({
@@ -30,6 +31,7 @@ export function Button({
   type = 'primary',
   asDiv, // If true, renders a div instead of a button to avoid nested buttons in components like ToastPrimitive.Action
   onClick,
+  dataTestId,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
   const As = getComponentType(renderAsLink, asDiv);
@@ -46,6 +48,7 @@ export function Button({
         backgroundClasses,
         shouldShrink ? 'w-fit' : ''
       )}
+      data-test-id={dataTestId}
     >
       <As
         className={twMerge(

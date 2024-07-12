@@ -28,7 +28,7 @@ export default function MapButton({
         icon={icon}
         onClick={onClick}
         aria-label={ariaLabel}
-        data-test-id={dataTestId}
+        dataTestId={dataTestId}
         backgroundClasses={backgroundClasses}
       />
     </TooltipWrapper>
