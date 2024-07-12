@@ -123,8 +123,8 @@ importers:
         specifier: ^14.1.2
         version: 14.1.2(i18next@23.11.5)(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(react@18.3.1))(react@18.3.1)
       react-icons:
-        specifier: ^4.12.0
-        version: 4.12.0(react@18.3.1)
+        specifier: ^5.2.1
+        version: 5.2.1(react@18.3.1)
       react-map-gl:
         specifier: ~7.1.7
         version: 7.1.7(maplibre-gl@3.6.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7285,8 +7285,8 @@ packages:
       react-native:
         optional: true
 
-  react-icons@4.12.0:
-    resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
+  react-icons@5.2.1:
+    resolution: {integrity: sha512-zdbW5GstTzXaVKvGSyTaBalt7HSfuK5ovrzlpyiWHAFXndXTdd/1hdDHI4xBM1Mn7YriT6aqESucFl9kEXzrdw==}
     peerDependencies:
       react: '*'
 
@@ -17566,7 +17566,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-native: 0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(react@18.3.1)
 
-  react-icons@4.12.0(react@18.3.1):
+  react-icons@5.2.1(react@18.3.1):
     dependencies:
       react: 18.3.1
 
