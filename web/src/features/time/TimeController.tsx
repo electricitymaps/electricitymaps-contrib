@@ -1,17 +1,22 @@
 import useGetState from 'api/getState';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
-import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+import {
+  isHourlyAtom,
+  selectedDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 
 import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
@@ -89,7 +94,7 @@ export default function TimeController({ className }: { className?: string }) {
         isLoading={isLoading}
         className="h-[22px] w-full overflow-visible"
         transform={`translate(12, 0)`}
-        isLiveDisplay={timeAverage === TimeAverages.HOURLY}
+        isLiveDisplay={isHourly}
       />
     </div>
   );
