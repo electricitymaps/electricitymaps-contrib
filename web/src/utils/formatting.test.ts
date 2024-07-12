@@ -70,79 +70,79 @@ describe('formatEnergy', () => {
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles W with decimal', () => {
-    const actual = formatPower({ value: 0.000_054_6, total: 0.0006 });
-    const expected = '54.6 W';
-    expect(actual).to.deep.eq(expected);
-  });
-
-  it('handles W without decimal', () => {
+  it('handles using same unit as total for W', () => {
     const actual = formatPower({ value: 0.000_05, total: 0.0006 });
     const expected = '50 W';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles kW with decimal', () => {
-    const actual = formatPower({ value: 0.000_05, total: 0.05 });
-    const expected = '0.05 kW';
+  it('handles using same unit as total for W with decimal', () => {
+    const actual = formatPower({ value: 0.000_054_6, total: 0.0006 });
+    const expected = '54.6 W';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles kW without decimal', () => {
+  it('handles using same unit as total for kW', () => {
     const actual = formatPower({ value: 0.003, total: 0.05 });
     const expected = '3 kW';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles d and total being the same', () => {
+  it('handles using same unit as total for kW with decimal', () => {
+    const actual = formatPower({ value: 0.000_05, total: 0.05 });
+    const expected = '0.05 kW';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles value and total being the same', () => {
     const actual = formatPower({ value: 0.05, total: 0.05 });
     const expected = '50 kW';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles MW', () => {
+  it('handles using same unit as total for MW', () => {
     const actual = formatPower({ value: 0.009, total: 30 });
     const expected = '0.009 MW';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles GW', () => {
+  it('handles using same unit as total for GW', () => {
     const actual = formatPower({ value: 6.5, total: 70_000 });
     const expected = '0.0065 GW';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles GW with d being small', () => {
+  it('handles using same unit as total for GW with value being small', () => {
     const actual = formatPower({ value: 0.000_05, total: 70_000 });
     const expected = '0.00000005 GW';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles GW with d being very small', () => {
+  it('handles using same unit as total for GW with value being very small', () => {
     const actual = formatPower({ value: 0.000_000_05, total: 70_000 });
     const expected = '~0 W';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles GW with d being 0', () => {
+  it('handles using same unit as total for GW with value being 0', () => {
     const actual = formatPower({ value: 0, total: 70_000 });
     const expected = '0 W';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles TW', () => {
+  it('handles using same unit as total for TW', () => {
     const actual = formatPower({ value: 45, total: 890_000_000 });
     const expected = '0.000045 TW';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles TW with small d', () => {
+  it('handles using same unit as total for TW with small value', () => {
     const actual = formatPower({ value: 0.000_05, total: 890_000_000 });
     const expected = '0.00000000005 TW';
     expect(actual).to.deep.eq(expected);
   });
 
-  it('handles TW with bug precision', () => {
+  it('handles using same unit as total for TW with a precise number', () => {
     const actual = formatPower({ value: 42_059.836_85, total: 890_000_000 });
     const expected = '0.0421 TW';
     expect(actual).to.deep.eq(expected);
