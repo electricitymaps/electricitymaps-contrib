@@ -200,6 +200,7 @@ export function BreakdownChartTooltipContent({
           <MetricRatio
             value={usage}
             total={totalElectricity}
+            useTotalUnit
             format={timeAverage === TimeAverages.HOURLY ? formatPower : formatEnergy}
           />
           <br />
@@ -209,7 +210,12 @@ export function BreakdownChartTooltipContent({
               {t('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
               {t('tooltips.ofinstalled')}
               <br />
-              <MetricRatio value={usage} total={(capacity ??= 0)} format={formatPower} />
+              <MetricRatio
+                value={usage}
+                total={(capacity ??= 0)}
+                useTotalUnit
+                format={formatPower}
+              />
               {capacitySource && (
                 <small>
                   {' '}

@@ -55,7 +55,7 @@ function BreakdownChart({
   // Find highest daily emissions to show correct unit on chart
   const maxEmissions = max(chartData.map((day) => sum(Object.values(day.layerData))));
 
-  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
+  const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
   const titleDisplayMode = displayByEmissions ? 'emissions' : 'electricity';
   const titleMixMode = mixMode === Mode.CONSUMPTION ? 'origin' : 'production';

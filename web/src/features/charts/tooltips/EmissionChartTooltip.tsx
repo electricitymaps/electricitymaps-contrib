@@ -32,7 +32,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
         estimationMethod={estimationMethod}
       />
       <p className="flex justify-center text-base">
-        <b className="mr-1">{formatCo2(totalEmissions)}</b> {t('ofCO2eq')}
+        <b className="mr-1">{formatCo2({ value: totalEmissions })}</b> {t('ofCO2eq')}
       </p>
     </div>
   );
