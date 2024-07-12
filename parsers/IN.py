@@ -4,7 +4,7 @@
 
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Any, Optional
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import arrow
@@ -380,7 +380,7 @@ def fetch_cea_production(
     target_datetime: datetime,
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
-) -> Optional[dict[str, Any]]:
+) -> dict[str, Any] | None:
     """Gets production data for wind, solar and other renewables
     Other renewables includes a share of hydro, biomass and others and will categorized as unknown
     DISCLAIMER: this data is only available since 2020/12/17"""
