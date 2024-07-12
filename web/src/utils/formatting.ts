@@ -10,6 +10,36 @@ function addSpaceBetweenNumberAndUnit(inputString: string) {
   return inputString.replace(/([A-Za-z])/, ' $1');
 }
 
+export const formatPowerToMatchTotal = (d: number, total?: number) => {
+  // Assume MW input
+  if (d == undefined || Number.isNaN(d)) {
+    return d;
+  }
+  const checkAgainst = total ?? d;
+  const decimals = 3;
+
+  if (d == 0) {
+    return '0 W';
+  }
+  if (d < 1e-6) {
+    return '~0 W';
+  }
+
+  if (Math.abs(checkAgainst) < 1e-3) {
+    return d3.format(`.${decimals}~r`)(d * 1e6) + ' W';
+  }
+  if (Math.abs(checkAgainst) < 1) {
+    return d3.format(`.${decimals}~r`)(d * 1e3) + ' kW';
+  }
+  if (Math.abs(checkAgainst) < 1e3) {
+    return d3.format(`.${decimals}~r`)(d) + ' MW';
+  }
+  if (Math.abs(checkAgainst) < 1e6) {
+    return d3.format(`.${decimals}~r`)(d / 1e3) + ' GW';
+  }
+  return d3.format(`.${decimals}~r`)(d / 1e6) + ' TW';
+};
+
 export const formatPower = (d: number, numberDigits: number = DEFAULT_NUM_DIGITS) => {
   // Assume MW input
   if (d == undefined || Number.isNaN(d)) {
