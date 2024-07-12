@@ -21,7 +21,7 @@ export default function MapButton({
   backgroundClasses,
 }: MapButtonProperties) {
   return (
-    <TooltipWrapper tooltipContent={tooltipText}>
+    <TooltipWrapper tooltipContent={tooltipText} asChild={false}>
       <Button
         size="md"
         type="transparent"
