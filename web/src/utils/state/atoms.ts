@@ -29,8 +29,19 @@ export const spatialAggregateAtom = atomWithStorage(
 );
 export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTION);
 
-export const solarLayerEnabledAtom = atomWithStorage('solar', ToggleOptions.OFF);
+export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);
+export const isSolarLayerEnabledAtom = atom(
+  (get) =>
+    get(solarLayerAtom) === ToggleOptions.ON &&
+    get(selectedDatetimeIndexAtom).index === 24
+);
+
 export const windLayerAtom = atomWithStorage('wind', ToggleOptions.OFF);
+export const isWindLayerEnabledAtom = atom(
+  (get) =>
+    get(windLayerAtom) === ToggleOptions.ON && get(selectedDatetimeIndexAtom).index === 24
+);
+
 export const solarLayerLoadingAtom = atom(false);
 export const windLayerLoadingAtom = atom(false);
 
