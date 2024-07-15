@@ -3,16 +3,14 @@ import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom } from 'jotai';
+import { ReactElement } from 'react';
+import { FaArrowsLeftRight, FaMoon, FaSun } from 'react-icons/fa6';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
-type ThumbIconPath =
-  | 'slider-thumb.svg'
-  | 'slider-thumb-day.svg'
-  | 'slider-thumb-night.svg';
 
 export interface TimeSliderProps {
   onChange: (datetimeIndex: number) => void;
@@ -62,14 +60,19 @@ export const getTrackBackground = (
 export const getThumbIcon = (
   selectedIndex?: number,
   sets?: NightTimeSet[]
-): ThumbIconPath => {
+): ReactElement => {
+  const size = 14;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
-    return 'slider-thumb.svg';
+    return <FaArrowsLeftRight size={size} pointerEvents="none" />;
   }
   const isValueAtNight = sets.some(
     ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
   );
-  return isValueAtNight ? 'slider-thumb-night.svg' : 'slider-thumb-day.svg';
+  return isValueAtNight ? (
+    <FaMoon size={size} pointerEvents="none" />
+  ) : (
+    <FaSun size={size} pointerEvents="none" />
+  );
 };
 
 function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
@@ -80,7 +83,7 @@ function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) 
 
 export type TimeSliderBasicProps = TimeSliderProps & {
   trackBackground: string;
-  thumbIcon: ThumbIconPath;
+  thumbIcon: ReactElement;
 };
 export function TimeSliderBasic({
   onChange,
@@ -111,13 +114,14 @@ export function TimeSliderBasic({
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
         data-test-id="time-slider-input"
-        className={`block h-6 w-6 rounded-full bg-white bg-center
+        className={`flex h-6 w-6 items-center justify-center rounded-full bg-white bg-center
           bg-no-repeat shadow-3xl transition-shadow hover:ring
           hover:ring-brand-green/10 hover:ring-opacity-75 focus:outline-none focus-visible:ring
           focus-visible:ring-brand-green/10 focus-visible:ring-opacity-75
           dark:bg-gray-400 hover:dark:ring-white/70 dark:focus-visible:ring-white/70`}
-        style={{ backgroundImage: `url(/images/${thumbIcon})` }}
-      ></SliderPrimitive.Thumb>
+      >
+        {thumbIcon}
+      </SliderPrimitive.Thumb>
     </SliderPrimitive.Root>
   );
 }
