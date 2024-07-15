@@ -37,6 +37,7 @@ const getConfig = (): CombinedZonesConfig => {
     'parsers',
     'subZoneNames',
     'aggregates_displayed',
+    'generation_only',
   ]);
 
   const contributors = new Set<string>();
