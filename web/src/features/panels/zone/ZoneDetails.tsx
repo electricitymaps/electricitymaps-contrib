@@ -8,9 +8,10 @@ import { useTranslation } from 'react-i18next';
 import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { ZoneMessage } from 'types';
-import { EstimationMethods, SpatialAggregate, TimeAverages } from 'utils/constants';
+import { EstimationMethods, SpatialAggregate } from 'utils/constants';
 import {
   displayByEmissionsAtom,
+  isHourlyAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeAverageAtom,
@@ -35,6 +36,7 @@ export default function ZoneDetails(): JSX.Element {
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
   const isMobile = !useBreakpoint('sm');
 
   const hasSubZones = getHasSubZones(zoneId);
@@ -71,7 +73,7 @@ export default function ZoneDetails(): JSX.Element {
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
-  const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
+  const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
   const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
 
   return (
@@ -137,11 +139,11 @@ export default function ZoneDetails(): JSX.Element {
 function getCardType({
   estimationMethod,
   zoneMessage,
-  timeAverage,
+  isHourly,
 }: {
   estimationMethod?: EstimationMethods;
   zoneMessage?: ZoneMessage;
-  timeAverage: TimeAverages;
+  isHourly: boolean;
 }): 'estimated' | 'aggregated' | 'outage' | 'none' {
   if (
     (zoneMessage !== undefined &&
@@ -151,7 +153,7 @@ function getCardType({
   ) {
     return 'outage';
   }
-  if (timeAverage !== TimeAverages.HOURLY) {
+  if (!isHourly) {
     return 'aggregated';
   }
   if (estimationMethod) {

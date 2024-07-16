@@ -14,6 +14,7 @@ import {
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
 export const timeAverageAtom = atom(TimeAverages.HOURLY);
+export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });

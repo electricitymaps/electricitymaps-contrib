@@ -2,13 +2,13 @@ import { CountryFlag } from 'components/Flag';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
-import { modeColor, TimeAverages } from 'utils/constants';
+import { modeColor } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { isHourlyAtom } from 'utils/state/atoms';
 
 import ProductionSourceLegend from '../ProductionSourceLegend';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
@@ -63,8 +63,7 @@ function BarElectricityBreakdownChart({
     productionData.length,
     exchangeData
   );
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const isHourly = timeAverage === TimeAverages.HOURLY;
+  const isHourly = useAtomValue(isHourlyAtom);
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.

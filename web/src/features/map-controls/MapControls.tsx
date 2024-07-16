@@ -1,6 +1,6 @@
 import { Button } from 'components/Button';
 import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FiWind } from 'react-icons/fi';
@@ -8,14 +8,14 @@ import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
 import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import trackEvent from 'utils/analytics';
-import { ThemeOptions, TimeAverages, ToggleOptions } from 'utils/constants';
+import { ThemeOptions, ToggleOptions } from 'utils/constants';
 import {
   colorblindModeAtom,
+  isHourlyAtom,
   selectedDatetimeIndexAtom,
   solarLayerAtom,
   solarLayerLoadingAtom,
   themeAtom,
-  timeAverageAtom,
   windLayerAtom,
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
@@ -121,14 +121,13 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
 
 function DesktopMapControls() {
   const { t } = useTranslation();
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
 
   // We are currently only supporting and fetching weather data for the latest hourly value
-  const areWeatherLayersAllowed =
-    selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
+  const areWeatherLayersAllowed = selectedDatetime.index === 24 && isHourly;
 
   const handleColorblindModeToggle = () => {
     setIsColorblindModeEnabled(!isColorblindModeEnabled);
