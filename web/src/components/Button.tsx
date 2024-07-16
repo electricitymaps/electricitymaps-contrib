@@ -81,9 +81,7 @@ export function Button({
   );
 
   return tooltipText ? (
-    <TooltipWrapper tooltipContent={tooltipText} asChild={false}>
-      {button}
-    </TooltipWrapper>
+    <TooltipWrapper tooltipContent={tooltipText}>{button}</TooltipWrapper>
   ) : (
     button
   );
