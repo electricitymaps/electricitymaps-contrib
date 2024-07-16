@@ -12,7 +12,7 @@ import { ThemeOptions, ToggleOptions } from 'utils/constants';
 import {
   isHourlyAtom,
   selectedDatetimeIndexAtom,
-  solarLayerEnabledAtom,
+  solarLayerAtom,
   solarLayerLoadingAtom,
   themeAtom,
   windLayerAtom,
@@ -70,7 +70,7 @@ export const weatherButtonMap = {
   solar: {
     icon: HiOutlineSun,
     iconSize: 21,
-    enabledAtom: solarLayerEnabledAtom,
+    enabledAtom: solarLayerAtom,
     loadingAtom: solarLayerLoadingAtom,
   },
 };
