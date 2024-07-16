@@ -18,6 +18,7 @@ import {
   windLayerAtom,
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
+import { useIsBiggerThanMobile, useIsMobile } from 'utils/styling';
 
 import ColorblindToggle from './ColorblindToggle';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
@@ -29,30 +30,33 @@ import ZoomControls from './ZoomControls';
 function MobileMapControls() {
   const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
   const setIsSettingsModalOpen = useSetAtom(isSettingsModalOpenAtom);
+  const isMobile = useIsMobile();
 
   const handleOpenInfoModal = () => setIsInfoModalOpen(true);
   const handleOpenSettingsModal = () => setIsSettingsModalOpen(true);
 
   return (
-    <div className="absolute right-2 top-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
-      <Button
-        size="lg"
-        type="secondary"
-        aria-label="open info modal"
-        backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
-        onClick={handleOpenInfoModal}
-        icon={<HiOutlineInformationCircle size={21} />}
-      />
-      <Button
-        size="lg"
-        type="secondary"
-        aria-label="open settings modal"
-        onClick={handleOpenSettingsModal}
-        backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
-        icon={<HiCog6Tooth size={20} />}
-        data-test-id="settings-button-mobile"
-      />
-    </div>
+    isMobile && (
+      <div className="absolute right-2 top-2 flex space-x-3 pt-[env(safe-area-inset-top)]">
+        <Button
+          size="lg"
+          type="secondary"
+          aria-label="open info modal"
+          backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
+          onClick={handleOpenInfoModal}
+          icon={<HiOutlineInformationCircle size={21} />}
+        />
+        <Button
+          size="lg"
+          type="secondary"
+          aria-label="open settings modal"
+          onClick={handleOpenSettingsModal}
+          backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
+          icon={<HiCog6Tooth size={20} />}
+          data-test-id="settings-button-mobile"
+        />
+      </div>
+    )
   );
 }
 
@@ -124,28 +128,31 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
 function DesktopMapControls() {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const isBiggerThanMobile = useIsBiggerThanMobile();
 
   // We are currently only supporting and fetching weather data for the latest hourly value
   const areWeatherLayersAllowed =
     selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
 
   return (
-    <div className="pointer-events-none absolute right-3 top-2 z-30 hidden flex-col items-end md:flex">
-      <div className="flex flex-col items-end gap-2">
-        <ConsumptionProductionToggle />
-        <SpatialAggregatesToggle />
-        <ZoomControls />
-        <LanguageSelector />
-        <ColorblindToggle />
-        <ThemeSelector />
-        {areWeatherLayersAllowed && (
-          <>
-            <WeatherButton type="wind" />
-            <WeatherButton type="solar" />
-          </>
-        )}
+    isBiggerThanMobile && (
+      <div className="pointer-events-none absolute right-3 top-2 z-30 flex-col items-end">
+        <div className="flex flex-col items-end gap-2">
+          <ConsumptionProductionToggle />
+          <SpatialAggregatesToggle />
+          <ZoomControls />
+          <LanguageSelector />
+          <ColorblindToggle />
+          <ThemeSelector />
+          {areWeatherLayersAllowed && (
+            <>
+              <WeatherButton type="wind" />
+              <WeatherButton type="solar" />
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    )
   );
 }
 
