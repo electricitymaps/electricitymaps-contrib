@@ -4,12 +4,13 @@ import Divider from 'features/panels/zone/Divider';
 import { CircleBoltIcon } from 'icons/circleBoltIcon';
 import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
 import { Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
+import { dataSourcesCollapsedBreakdown, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
@@ -42,13 +43,13 @@ function BreakdownChart({
     emissionFactorSourcesToProductionSources,
   } = useZoneDataSources();
   const { t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
 
   if (!data) {
     return null;
   }
 
-  const isBreakdownGraphOverlayEnabled =
-    mixMode === Mode.CONSUMPTION && timeAverage !== TimeAverages.HOURLY;
+  const isBreakdownGraphOverlayEnabled = mixMode === Mode.CONSUMPTION && !isHourly;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 

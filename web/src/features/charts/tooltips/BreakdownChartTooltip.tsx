@@ -2,7 +2,7 @@ import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { CountryFlag } from 'components/Flag';
 import { MetricRatio } from 'components/MetricRatio';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { renderToString } from 'react-dom/server';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
@@ -11,6 +11,7 @@ import { EstimationMethods, Mode, modeColor, TimeAverages } from 'utils/constant
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
+  isHourlyAtom,
   productionConsumptionAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
@@ -140,6 +141,7 @@ export function BreakdownChartTooltipContent({
 }: BreakdownChartTooltipContentProperties) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
+  const isHourly = useAtomValue(isHourlyAtom);
   // Dynamically generate the translated headline HTML based on the exchange or generation type
   const percentageUsage = displayByEmissions
     ? getRatioPercent(emissions, totalEmissions)
@@ -200,10 +202,10 @@ export function BreakdownChartTooltipContent({
           <MetricRatio
             value={usage}
             total={totalElectricity}
-            format={timeAverage === TimeAverages.HOURLY ? formatPower : formatEnergy}
+            format={isHourly ? formatPower : formatEnergy}
           />
           <br />
-          {timeAverage === TimeAverages.HOURLY && (
+          {isHourly && (
             <>
               <br />
               {t('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
