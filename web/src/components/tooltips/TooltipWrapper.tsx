@@ -9,7 +9,6 @@ interface TooltipWrapperProperties {
   sideOffset?: number;
   tooltipClassName?: string;
   isMobile?: boolean;
-  asChild?: boolean;
 }
 
 const noop = () => undefined;
@@ -21,7 +20,6 @@ export default function TooltipWrapper({
   sideOffset,
   tooltipClassName,
   isMobile,
-  asChild = true,
 }: TooltipWrapperProperties): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -48,7 +46,7 @@ export default function TooltipWrapper({
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={handleClick}
-          asChild={asChild}
+          asChild
         >
           {children}
         </Tooltip.Trigger>

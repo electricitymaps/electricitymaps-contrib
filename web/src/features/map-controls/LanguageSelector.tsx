@@ -41,6 +41,7 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
             icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
             tooltipText={t('tooltips.selectLanguage')}
             ariaLabel={t('aria.label.selectLanguage')}
+            asDiv
           />
         )
       }

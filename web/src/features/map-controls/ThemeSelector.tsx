@@ -48,6 +48,7 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
             tooltipText={t('tooltips.changeTheme')}
             ariaLabel={t('aria.label.changeTheme')}
+            asDiv
           />
         )
       }
