@@ -1,6 +1,8 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
+import TooltipWrapper from './tooltips/TooltipWrapper';
+
 type SizeOptions = 'sm' | 'md' | 'lg' | 'xl';
 
 interface ButtonProps {
@@ -9,7 +11,7 @@ interface ButtonProps {
   disabled?: boolean;
   size?: SizeOptions;
   shouldShrink?: boolean;
-  type?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'transparent';
+  type?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'opaque';
   href?: string;
   backgroundClasses?: string;
   foregroundClasses?: string;
@@ -17,6 +19,7 @@ interface ButtonProps {
   onClick?: () => void;
   ariaLabel?: string;
   dataTestId?: string;
+  tooltipText?: string;
 }
 
 export function Button({
@@ -32,13 +35,14 @@ export function Button({
   asDiv, // If true, renders a div instead of a button to avoid nested buttons in components like ToastPrimitive.Action
   onClick,
   dataTestId,
+  tooltipText,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
   const As = getComponentType(renderAsLink, asDiv);
   const componentType = renderAsLink ? undefined : 'button';
   const isIconOnly = !children && Boolean(icon);
 
-  return (
+  const button = (
     <div
       className={twMerge(
         `pointer-events-auto items-center justify-center rounded-full ${getBackground(
@@ -75,6 +79,14 @@ export function Button({
       </As>
     </div>
   );
+
+  return tooltipText ? (
+    <TooltipWrapper tooltipContent={tooltipText} asChild={false}>
+      {button}
+    </TooltipWrapper>
+  ) : (
+    button
+  );
 }
 
 function getComponentType(renderAsLink: boolean, asDiv?: boolean) {
@@ -110,7 +122,7 @@ function getBackground(type: string, disabled: boolean | undefined) {
     case 'secondary': {
       return 'border dark:border-gray-700 border-neutral-200 bg-white dark:bg-gray-900';
     }
-    case 'transparent': {
+    case 'opaque': {
       return 'bg-white/80 dark:bg-gray-800/80 border border-neutral-200 dark:border-gray-700 backdrop-blur';
     }
     default: {

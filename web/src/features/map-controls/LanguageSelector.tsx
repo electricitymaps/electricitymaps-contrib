@@ -5,7 +5,6 @@ import { HiLanguage } from 'react-icons/hi2';
 import { languageNames } from 'translation/locales';
 import trackEvent from 'utils/analytics';
 
-import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
 
 type LanguageNamesKey = keyof typeof languageNames;
@@ -36,7 +35,9 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
             {t('tooltips.selectLanguage')}
           </Button>
         ) : (
-          <MapButton
+          <Button
+            size="md"
+            type="opaque"
             icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
             tooltipText={t('tooltips.selectLanguage')}
             ariaLabel={t('aria.label.selectLanguage')}

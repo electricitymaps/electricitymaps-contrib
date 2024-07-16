@@ -1,10 +1,9 @@
+import { Button } from 'components/Button';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineEyeOff } from 'react-icons/hi';
 import trackEvent from 'utils/analytics';
 import { colorblindModeAtom } from 'utils/state/atoms';
-
-import MapButton from './MapButton';
 
 export default function ColorblindToggle() {
   const { t } = useTranslation();
@@ -17,7 +16,9 @@ export default function ColorblindToggle() {
   };
 
   return (
-    <MapButton
+    <Button
+      size="md"
+      type="opaque"
       icon={
         <HiOutlineEyeOff
           size={20}

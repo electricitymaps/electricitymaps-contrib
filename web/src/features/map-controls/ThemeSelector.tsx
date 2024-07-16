@@ -7,7 +7,6 @@ import trackEvent from 'utils/analytics';
 import { ThemeOptions } from 'utils/constants';
 import { themeAtom } from 'utils/state/atoms';
 
-import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
 
 const ICONS = {
@@ -43,7 +42,9 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
             {t('tooltips.changeTheme')}
           </Button>
         ) : (
-          <MapButton
+          <Button
+            size="md"
+            type="opaque"
             icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
             tooltipText={t('tooltips.changeTheme')}
             ariaLabel={t('aria.label.changeTheme')}

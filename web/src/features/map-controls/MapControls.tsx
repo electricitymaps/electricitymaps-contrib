@@ -22,7 +22,6 @@ import {
 import ColorblindToggle from './ColorblindToggle';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import { LanguageSelector } from './LanguageSelector';
-import MapButton from './MapButton';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 import ThemeSelector from './ThemeSelector';
 import ZoomControls from './ZoomControls';
@@ -102,7 +101,7 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
   };
 
   return (
-    <MapButton
+    <Button
       icon={
         isLoadingLayer ? (
           <MoonLoader size={14} color={spinnerColor} />
@@ -110,11 +109,14 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
           <Icon size={weatherButtonMap[type].iconSize} color={isEnabled ? '' : 'gray'} />
         )
       }
+      type="opaque"
+      size="md"
       tooltipText={tooltipTexts[type]}
       dataTestId={`${type}-layer-button`}
-      className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
+      foregroundClasses={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={isLoadingLayer ? () => {} : onToggle}
       ariaLabel={type == 'wind' ? t('aria.label.windLayer') : t('aria.label.solarLayer')}
+      asDiv
     />
   );
 }
