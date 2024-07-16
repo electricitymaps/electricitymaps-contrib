@@ -33,6 +33,7 @@ export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTIO
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);
 export const isSolarLayerEnabledAtom = atom(
   (get) =>
+    get(isHourlyAtom) &&
     get(solarLayerAtom) === ToggleOptions.ON &&
     get(selectedDatetimeIndexAtom).index === 24
 );
@@ -40,7 +41,9 @@ export const isSolarLayerEnabledAtom = atom(
 export const windLayerAtom = atomWithStorage('wind', ToggleOptions.OFF);
 export const isWindLayerEnabledAtom = atom(
   (get) =>
-    get(windLayerAtom) === ToggleOptions.ON && get(selectedDatetimeIndexAtom).index === 24
+    get(isHourlyAtom) &&
+    get(windLayerAtom) === ToggleOptions.ON &&
+    get(selectedDatetimeIndexAtom).index === 24
 );
 
 export const solarLayerLoadingAtom = atom(false);
