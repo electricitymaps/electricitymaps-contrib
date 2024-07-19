@@ -152,6 +152,7 @@ export default defineConfig(({ mode }) => ({
     sourcemap: true,
     rollupOptions: {
       output: {
+        experimentalMinChunkSize: 3500,
         manualChunks(id) {
           for (const [searchString, value] of Object.entries(manualChunkMap)) {
             if (id.includes(searchString)) {
