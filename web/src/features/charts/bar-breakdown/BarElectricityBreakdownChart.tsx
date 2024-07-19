@@ -1,12 +1,11 @@
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
-import { TimeAverages } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { isHourlyAtom } from 'utils/state/atoms';
 
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
 import { BarElectricityProductionChart } from './BarElectricityProductionChart';
@@ -55,8 +54,7 @@ function BarElectricityBreakdownChart({
     productionData.length,
     exchangeData
   );
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const isHourly = timeAverage === TimeAverages.HOURLY;
+  const isHourly = useAtomValue(isHourlyAtom);
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
