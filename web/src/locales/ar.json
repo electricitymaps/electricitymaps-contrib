@@ -47,8 +47,6 @@
   "coal": "فحم",
   "oil": "نفط",
   "unknown": "غير معروف",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> من الكهرباء {{zoneFlag}} <b>{{zoneName}}</b> مصدره  {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> من الانبعاثات{{zoneFlag}} <b>{{zoneName}}</b> مصدره {{selectedLayerKey}}",
   "electricityStoredUsing": "<b>{{percentageUsage}} %</b> من الكهرباء في {{zoneFlag}} <b>{{zoneName}}</b>مخزنة باستخدام  {{selectedLayerKey}}",
   "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> من الانبعاثات في {{zoneFlag}} <b>{{zoneName}}</b> مخزنة باستخدام {{selectedLayerKey}}",
   "electricityExportedTo": "<b>{{percentageUsage}} %</b> من الكهرباء في {{zoneFlag}} <b>{{zoneName}}</b> تصدر إلى {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",

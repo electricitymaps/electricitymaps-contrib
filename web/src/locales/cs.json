@@ -107,8 +107,6 @@
   "coal": "uhlí",
   "oil": "ropa",
   "unknown": "neznámé",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> pochází z {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> pochází z {{selectedLayerKey}}",
   "electricityStoredUsing": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je ukládáno do {{selectedLayerKey}}",
   "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je ukládáno do {{selectedLayerKey}}",
   "electricityExportedTo": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",

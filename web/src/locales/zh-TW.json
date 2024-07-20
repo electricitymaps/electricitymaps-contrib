@@ -307,8 +307,6 @@
   "coal": "煤炭",
   "oil": "石油",
   "unknown": "未知",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力來自 {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量來自 {{selectedLayerKey}}",
   "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力使用 {{selectedLayerKey}} 儲存",
   "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量使用 {{selectedLayerKey}} 儲存",
   "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力被匯出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",

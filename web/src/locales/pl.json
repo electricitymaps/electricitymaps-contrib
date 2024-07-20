@@ -179,8 +179,6 @@
   "coal": "węglowa",
   "oil": "naftowa",
   "unknown": "nieznana",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: produkcja {{selectedLayerKey}} tworzy <b>{{percentageUsage}} %</b> energii elektrycznej",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: produkcja {{selectedLayerKey}} tworzy <b>{{percentageUsage}} %</b> emisji",
   "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} przetrzymywują <b>{{percentageUsage}} %</b> energii elektrycznej",
   "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} przetrzymywują <b>{{percentageUsage}} %</b> emisji",
   "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> energii elektrycznej jest eksportowane do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",

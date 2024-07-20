@@ -98,8 +98,6 @@
   "coal": "coal",
   "oil": "oil",
   "unknown": "unknown",
-  "electricityComesFrom": "{{percentageUsage}} % lượng điện năng ở {{zoneFlag}} <b>{{zoneName}}</b> đến từ {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{percentageUsage}} % lượng khí thải từ viêc sản xuất điện ở {{zoneFlag}} <b>{{zoneName}}</b> đến từ {{selectedLayerKey}}",
   "electricityStoredUsing": "{{percentageUsage}} % of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
   "emissionsStoredUsing": "{{percentageUsage}} % of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
   "electricityExportedTo": "{{percentageUsage}} % of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",

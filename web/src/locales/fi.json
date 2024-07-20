@@ -99,8 +99,6 @@
   "coal": "hiili",
   "oil": "öljy",
   "unknown": "tuntematon",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä tulee {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä tulee {{selectedLayerKey}}",
   "electricityStoredUsing": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä varastoidaan {{selectedLayerKey}}",
   "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä varastoidaan {{selectedLayerKey}}",
   "electricityExportedTo": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä viedään {{selectedLayerKey}}",

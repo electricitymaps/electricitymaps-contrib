@@ -98,8 +98,6 @@
   "coal": "석탄",
   "oil": "오일",
   "unknown": "알 수 없음",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
   "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
   "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
   "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",

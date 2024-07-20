@@ -103,8 +103,6 @@
   "coal": "süsi",
   "oil": "õli",
   "unknown": "teadmata",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
   "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
   "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
   "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",

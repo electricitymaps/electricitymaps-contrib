@@ -100,8 +100,6 @@
   "coal": "石炭",
   "oil": "石油",
   "unknown": "不明",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
   "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
   "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
   "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",

@@ -216,8 +216,6 @@
   "coal": "Kohle",
   "oil": "Öl",
   "unknown": "unbekannt",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
   "electricityStoredUsing": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
   "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
   "electricityExportedTo": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
