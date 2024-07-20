@@ -98,12 +98,6 @@
   "coal": "석탄",
   "oil": "오일",
   "unknown": "알 수 없음",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "지도",
     "mapColors-question": "지도에서 색은 무엇을 의미 합니까?",

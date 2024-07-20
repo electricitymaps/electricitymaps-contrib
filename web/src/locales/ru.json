@@ -91,12 +91,6 @@
   "coal": "уголь",
   "oil": "нефтепродукты",
   "unknown": "неизвестно",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> доступного электричества зоны {{zoneFlag}} <b>{{zoneName}}</b> использованы для аккумуляции в {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> эмисии CO₂ зоны {{zoneFlag}} <b>{{zoneName}}</b> выпущены из-за аккумуляции в {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> доступного электричества зоны {{zoneFlag}} <b>{{zoneName}}</b> экспортируются в зону {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> эмисии CO₂ зоны {{zoneFlag}} <b>{{zoneName}}</b> экспортируются в зону {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> доступного электричества зоны {{zoneFlag}} <b>{{zoneName}}</b> имспортируются из зоны {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> эмисии CO₂ зоны {{zoneFlag}} <b>{{zoneName}}</b> импортируются из зоны {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AD": {
       "zoneName": "Андорра"

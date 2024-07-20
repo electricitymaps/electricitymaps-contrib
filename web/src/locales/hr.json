@@ -98,12 +98,6 @@
   "coal": "ugljen",
   "oil": "naftna",
   "unknown": "nepoznata",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} energija čini <b>{{percentageUsage}} %</b> pohranjene električne energije",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>:{{selectedLayerKey}} energija čini <b>{{percentageUsage}} %</b> emisija pohranjene električne energije",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> električne energije se izvozi u {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisija električne energije se izvozi u {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> električne energije se uvozi iz {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisija električne energije se uvozi iz {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Karta",
     "mapColors-question": "Što znače boje na karti?",

@@ -47,12 +47,6 @@
   "coal": "فحم",
   "oil": "نفط",
   "unknown": "غير معروف",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> من الكهرباء في {{zoneFlag}} <b>{{zoneName}}</b>مخزنة باستخدام  {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> من الانبعاثات في {{zoneFlag}} <b>{{zoneName}}</b> مخزنة باستخدام {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> من الكهرباء في {{zoneFlag}} <b>{{zoneName}}</b> تصدر إلى {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> من الانبعاثات في {{zoneFlag}} <b>{{zoneName}}</b> تصدر إلى {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> من الكهرباء في {{zoneFlag}} <b>{{zoneName}}</b> تستورد من {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> من الانبعاثات في {{zoneFlag}} <b>{{zoneName}}</b> تستورد من {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AD": {
       "zoneName": "أندورا"
