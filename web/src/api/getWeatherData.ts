@@ -98,9 +98,7 @@ async function getWeatherData(type: WeatherType) {
   const before = fetchGfsForecast(type, startTime, now, 'before');
   const after = fetchGfsForecast(type, startTime, now, 'after');
 
-  const forecasts = await Promise.all([before, after]).then((values) => {
-    return values;
-  });
+  const forecasts = await Promise.all([before, after]).then((values) => values);
   const interdata = getInterpolatedData(type, forecasts);
   return interdata;
 }
@@ -122,9 +120,7 @@ const useGetWeather = (options: UseWeatherQueryOptions) => {
   });
 };
 
-export const useGetWind = (options?: Omit<UseWeatherQueryOptions, 'type'>) => {
-  return useGetWeather({ type: 'wind', ...options });
-};
-export const useGetSolar = (options?: Omit<UseWeatherQueryOptions, 'type'>) => {
-  return useGetWeather({ type: 'solar', ...options });
-};
+export const useGetWind = (options?: Omit<UseWeatherQueryOptions, 'type'>) =>
+  useGetWeather({ type: 'wind', ...options });
+export const useGetSolar = (options?: Omit<UseWeatherQueryOptions, 'type'>) =>
+  useGetWeather({ type: 'solar', ...options });
