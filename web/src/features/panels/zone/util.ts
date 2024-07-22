@@ -94,3 +94,6 @@ export function showEstimationFeedbackCard(
   }
   return false;
 }
+
+export const isGenerationOnlyZone = (zoneId: string) =>
+  config.zones[zoneId]?.generation_only;
