@@ -5,29 +5,22 @@ import { CircularGauge } from 'components/CircularGauge';
 import EstimationBadge from 'components/EstimationBadge';
 import NoDataBadge from 'components/NoDataBadge';
 import OutageBadge from 'components/OutageBadge';
+import { TimeDisplay } from 'components/TimeDisplay';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
-import { formatDate } from 'utils/formatting';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
-import {
-  productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
-  selectedDatetimeStringAtom,
-  timeAverageAtom,
-} from 'utils/state/atoms';
+import { productionConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
 export function TooltipInner({
   zoneData,
-  date,
   zoneId,
 }: {
-  date: string;
   zoneId: string;
   zoneData: StateZoneData | undefined;
 }) {
@@ -61,9 +54,7 @@ export function TooltipInner({
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
         </div>
-        <div className="self-start text-sm text-neutral-600 dark:text-neutral-400">
-          {date}
-        </div>
+        <TimeDisplay className="self-start text-neutral-600 dark:text-neutral-400" />
       </div>
       <div className="flex w-full grow justify-around py-1 pt-4 sm:pr-2">
         <CarbonIntensitySquare intensity={intensity} />
@@ -109,11 +100,8 @@ function DataValidityBadge({
 export default function MapTooltip() {
   const mousePosition = useAtomValue(mousePositionAtom);
   const hoveredZone = useAtomValue(hoveredZoneAtom);
-  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
-  const timeAverage = useAtomValue(timeAverageAtom);
   const isMapMoving = useAtomValue(mapMovingAtom);
-  const { i18n } = useTranslation();
   const { data } = useGetState();
 
   if (!hoveredZone || isMapMoving) {
@@ -128,15 +116,13 @@ export default function MapTooltip() {
   const screenWidth = window.innerWidth;
   const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);
 
-  const formattedDate = formatDate(selectedDatetime.datetime, i18n.language, timeAverage);
-
   return (
     <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
       <div
         className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900 "
         style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
       >
-        <TooltipInner zoneData={zoneData} zoneId={zoneId} date={formattedDate} />
+        <TooltipInner zoneData={zoneData} zoneId={zoneId} />
       </div>
     </Portal.Root>
   );
