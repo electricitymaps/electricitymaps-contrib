@@ -55,27 +55,20 @@ export function TooltipInner({
   const renewable = getRenewableRatio(zoneData, isConsumption);
 
   return (
-    <div className="w-full text-center">
-      <div className="p-3">
-        <div className="flex flex-col">
-          <div className="flex w-full flex-row justify-between">
-            <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
-            <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
-          </div>
-          <div className="flex self-start text-sm text-neutral-600 dark:text-neutral-400">
-            {date}
-          </div>{' '}
+    <div className="w-full p-3 text-center">
+      <div className="flex flex-col">
+        <div className="flex w-full flex-row justify-between">
+          <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
+          <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
         </div>
-        <div className="flex w-full grow py-1 pt-4 sm:pr-2">
-          <div className="flex w-full grow flex-row justify-around">
-            <CarbonIntensitySquare intensity={intensity} />
-            <CircularGauge
-              name={t('country-panel.lowcarbon')}
-              ratio={fossilFuelPercentage}
-            />
-            <CircularGauge name={t('country-panel.renewable')} ratio={renewable} />
-          </div>
+        <div className="self-start text-sm text-neutral-600 dark:text-neutral-400">
+          {date}
         </div>
+      </div>
+      <div className="flex w-full grow justify-around py-1 pt-4 sm:pr-2">
+        <CarbonIntensitySquare intensity={intensity} />
+        <CircularGauge name={t('country-panel.lowcarbon')} ratio={fossilFuelPercentage} />
+        <CircularGauge name={t('country-panel.renewable')} ratio={renewable} />
       </div>
     </div>
   );
