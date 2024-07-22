@@ -1,12 +1,11 @@
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { ZoneName } from 'components/ZoneName';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ExchangeArrowData } from 'types';
-import { TimeAverages } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { isHourlyAtom } from 'utils/state/atoms';
 
 interface ExchangeTooltipProperties {
   exchangeData: ExchangeArrowData;
@@ -17,15 +16,14 @@ export default function ExchangeTooltip({
   exchangeData,
   isMobile,
 }: ExchangeTooltipProperties): ReactElement {
+  const { t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
   const { key, netFlow, co2intensity } = exchangeData;
 
-  const { t } = useTranslation();
   const isExporting = netFlow > 0;
   const roundedNetFlow = Math.abs(Math.round(netFlow));
   const zoneFrom = key.split('->')[isExporting ? 0 : 1];
   const zoneTo = key.split('->')[isExporting ? 1 : 0];
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const isHourly = timeAverage === TimeAverages.HOURLY;
 
   const divClass = `${isMobile ? 'flex-col' : 'flex'} items-center pb-2`;
   return (
