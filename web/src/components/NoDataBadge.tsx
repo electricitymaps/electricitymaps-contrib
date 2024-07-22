@@ -4,5 +4,5 @@ import { useTranslation } from 'react-i18next';
 export default function NoDataBadge() {
   const { t } = useTranslation();
 
-  return <Badge pillText={t('estimation-badge.no-data')} />;
+  return <Badge pillText={t('tooltips.noParserInfo')} />;
 }

@@ -124,8 +124,7 @@
   "estimation-badge": {
     "partially-estimated": "Partially estimated",
     "fully-estimated": "Estimated",
-    "outage": "Unavailable",
-    "no-data": "No data available"
+    "outage": "Unavailable"
   },
   "estimation-card": {
     "link": "Read about our estimation models",
