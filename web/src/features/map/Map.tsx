@@ -230,86 +230,93 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     setLeftPanelOpen,
   ]);
 
-  const onClick = (event: maplibregl.MapLayerMouseEvent) => {
-    if (!map || !event.features) {
-      return;
-    }
-    const feature = event.features[0];
+  const onClick = useCallback(
+    (event: maplibregl.MapLayerMouseEvent) => {
+      if (!map || !event.features) {
+        return;
+      }
+      const feature = event.features[0];
 
-    // Remove state from old feature if we are no longer hovering anything,
-    // or if we are hovering a different feature than the previous one
-    if (selectedZoneId && (!feature || selectedZoneId !== feature.id)) {
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: selectedZoneId },
-        { selected: false }
-      );
-    }
+      // Remove state from old feature if we are no longer hovering anything,
+      // or if we are hovering a different feature than the previous one
+      if (selectedZoneId && (!feature || selectedZoneId !== feature.id)) {
+        map.setFeatureState(
+          { source: ZONE_SOURCE, id: selectedZoneId },
+          { selected: false }
+        );
+      }
 
-    if (hoveredZone && (!feature || hoveredZone.featureId !== selectedZoneId)) {
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredZone.featureId },
-        { hover: false }
-      );
-    }
-    setHoveredZone(null);
-    if (feature?.properties) {
-      const zoneId = feature.properties.zoneId;
-      navigate(createToWithState(`/zone/${zoneId}`));
-    } else {
-      navigate(createToWithState('/map'));
-    }
-  };
+      if (hoveredZone && (!feature || hoveredZone.featureId !== selectedZoneId)) {
+        map.setFeatureState(
+          { source: ZONE_SOURCE, id: hoveredZone.featureId },
+          { hover: false }
+        );
+      }
+      setHoveredZone(null);
+      if (feature?.properties) {
+        const zoneId = feature.properties.zoneId;
+        navigate(createToWithState(`/zone/${zoneId}`));
+      } else {
+        navigate(createToWithState('/map'));
+      }
+    },
+    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
+  );
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging
-  const onMouseMove = (event: maplibregl.MapLayerMouseEvent) => {
-    if (!map || !event.features) {
-      return;
-    }
-    const feature = event.features[0];
-    const isHoveringAZone = feature?.id !== undefined;
-    const isHoveringANewZone = isHoveringAZone && hoveredZone?.featureId !== feature?.id;
+  const onMouseMove = useCallback(
+    (event: maplibregl.MapLayerMouseEvent) => {
+      if (!map || !event.features) {
+        return;
+      }
+      const feature = event.features[0];
+      const isHoveringAZone = feature?.id !== undefined;
+      const isHoveringANewZone =
+        isHoveringAZone && hoveredZone?.featureId !== feature?.id;
 
-    // Reset currently hovered zone if we are no longer hovering anything
-    if (!isHoveringAZone && hoveredZone) {
-      setHoveredZone(null);
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredZone?.featureId },
-        { hover: false }
-      );
-    }
-
-    // Do no more if we are not hovering a zone
-    if (!isHoveringAZone) {
-      return;
-    }
-
-    // Update mouse position to help position the tooltip
-    setMousePosition({
-      x: event.point.x,
-      y: event.point.y,
-    });
-
-    // Update hovered zone if we are hovering a new zone
-    if (isHoveringANewZone) {
-      // Reset the old one first
-      if (hoveredZone) {
+      // Reset currently hovered zone if we are no longer hovering anything
+      if (!isHoveringAZone && hoveredZone) {
+        setHoveredZone(null);
         map.setFeatureState(
           { source: ZONE_SOURCE, id: hoveredZone?.featureId },
           { hover: false }
         );
       }
 
-      setHoveredZone({ featureId: feature.id, zoneId: feature.properties?.zoneId });
-      map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
-    }
-  };
+      // Do no more if we are not hovering a zone
+      if (!isHoveringAZone) {
+        return;
+      }
 
-  const onMouseOut = () => {
+      // Update mouse position to help position the tooltip
+      setMousePosition({
+        x: event.point.x,
+        y: event.point.y,
+      });
+
+      // Update hovered zone if we are hovering a new zone
+      if (isHoveringANewZone) {
+        // Reset the old one first
+        if (hoveredZone) {
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: hoveredZone?.featureId },
+            { hover: false }
+          );
+        }
+
+        setHoveredZone({ featureId: feature.id, zoneId: feature.properties?.zoneId });
+        map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
+      }
+    },
+    [map, hoveredZone, setHoveredZone, setMousePosition]
+  );
+
+  const onMouseOut = useCallback(() => {
     if (!map) {
       return;
     }
 
-    // Reset hovered state when mouse leaves map (e.g. cursor moving into panel)
+    // Reset hovered state when mouse leaves map (e.g., cursor moving into panel)
     if (hoveredZone?.featureId !== undefined) {
       map.setFeatureState(
         { source: ZONE_SOURCE, id: hoveredZone?.featureId },
@@ -317,30 +324,33 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       );
       setHoveredZone(null);
     }
-  };
+  }, [map, hoveredZone, setHoveredZone]);
 
-  const onError = (event: ErrorEvent) => {
-    console.error(event.error);
-    setIsLoadingMap(false);
-    // TODO: Show error message to user
-    // TODO: Send to Sentry
-    // TODO: Handle the "no webgl" error gracefully
-  };
+  const onError = useCallback(
+    (event: ErrorEvent) => {
+      console.error(event.error);
+      setIsLoadingMap(false);
+      // TODO: Show error message to user
+      // TODO: Send to Sentry
+      // TODO: Handle the "no webgl" error gracefully
+    },
+    [setIsLoadingMap]
+  );
 
-  const onLoad = () => {
+  const onLoad = useCallback(() => {
     setIsLoadingMap(false);
     if (onMapLoad && mapReference) {
       onMapLoad(mapReference.getMap());
     }
-  };
+  }, [setIsLoadingMap, onMapLoad, mapReference]);
 
-  const onMoveStart = () => {
+  const onMoveStart = useCallback(() => {
     setIsMoving(true);
-  };
+  }, [setIsMoving]);
 
-  const onMoveEnd = () => {
+  const onMoveEnd = useCallback(() => {
     setIsMoving(false);
-  };
+  }, [setIsMoving]);
 
   return (
     <Map
