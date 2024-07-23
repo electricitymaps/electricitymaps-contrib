@@ -20,7 +20,9 @@ from parsers.lib.exceptions import ParserException
 
 EGAT_GENERATION_URL = "https://www.sothailand.com/sysgen/ws/sysgen"
 EGAT_URL = "www.egat.co.th"
-MEA_BASEPRICE_URL = "https://www.mea.or.th/en/our-services/tariff-calculation/other/-yosbxMGAjzp0"
+MEA_BASEPRICE_URL = (
+    "https://www.mea.or.th/en/our-services/tariff-calculation/other/-yosbxMGAjzp0"
+)
 MEA_FT_URL = "https://www.mea.or.th/our-services/tariff-calculation/ft/bG2m6iSUN"
 MEA_URL = "www.mea.or.th"
 TZ = ZoneInfo("Asia/Bangkok")
