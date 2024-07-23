@@ -58,7 +58,6 @@ EU_ZONES = [
     "MQ",
     "PM",
     "GR",
-    "GR-IS",
     "HR",
     "HU",
     "IE",

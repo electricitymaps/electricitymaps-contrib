@@ -2,15 +2,16 @@ import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { CountryFlag } from 'components/Flag';
 import { MetricRatio } from 'components/MetricRatio';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { renderToString } from 'react-dom/server';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeColor, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeColor, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
+  isHourlyAtom,
   productionConsumptionAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
@@ -90,6 +91,7 @@ export default function BreakdownChartTooltip({
       timeAverage={timeAverage}
       hasEstimationPill={hasEstimationPill}
       estimatedPercentage={estimatedPercentage}
+      estimationMethod={estimationMethod}
     ></BreakdownChartTooltipContent>
   );
 }
@@ -114,6 +116,7 @@ interface BreakdownChartTooltipContentProperties {
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   capacitySource?: string[] | null;
+  estimationMethod?: EstimationMethods;
 }
 
 export function BreakdownChartTooltipContent({
@@ -134,9 +137,11 @@ export function BreakdownChartTooltipContent({
   hasEstimationPill,
   estimatedPercentage,
   capacitySource,
+  estimationMethod,
 }: BreakdownChartTooltipContentProperties) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
+  const isHourly = useAtomValue(isHourlyAtom);
   // Dynamically generate the translated headline HTML based on the exchange or generation type
   const percentageUsage = displayByEmissions
     ? getRatioPercent(emissions, totalEmissions)
@@ -174,6 +179,7 @@ export function BreakdownChartTooltipContent({
         hasEstimationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
         productionSource={isExchange ? undefined : selectedLayerKey}
+        estimationMethod={estimationMethod}
       />
       <div
         className="inline-flex flex-wrap items-center gap-x-1"
@@ -196,10 +202,10 @@ export function BreakdownChartTooltipContent({
           <MetricRatio
             value={usage}
             total={totalElectricity}
-            format={timeAverage === TimeAverages.HOURLY ? formatPower : formatEnergy}
+            format={isHourly ? formatPower : formatEnergy}
           />
           <br />
-          {timeAverage === TimeAverages.HOURLY && (
+          {isHourly && (
             <>
               <br />
               {t('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}

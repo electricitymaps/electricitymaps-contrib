@@ -79,16 +79,16 @@
   },
   "estimation-card": {
     "link": "Más información sobre nuestros modelos de estimación",
-    "estimated_time_slicer_average": {
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Los datos son preliminares",
       "body": "Los datos para esta hora aún no se han transmitido. Los valores mostrados son estimaciones calculadas a partir de valores históricos y se reemplazarán cuando los datos reales estén disponibles. Es posible que los valores estimados no tengan en consideración fenómenos meteorológicos en tiempo real."
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Datos parcialmente estimados",
       "pill": "Datos incompletos",
       "body": "Los datos de generación de electricidad correspondientes a zona son incompletos.Los valores faltantes se han calculado mediante un modelo de estimación."
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Los datos son siempre estimados",
       "pill": "Datos imprecisos",
       "body": "Los datos publicados correspondientes a  esta zona sólo proporcionan la generación total. Las fuentes renovables se estiman utilizando datos meteorológicos en tiempo real, mientras que las fuentes fósiles se deducen basándose en los datos históricos de cada fuente de producción."
@@ -98,12 +98,12 @@
       "pill": "Datos imprecisos",
       "body": "Los datos publicados para esta zona no están disponibles o están incompletos. Los datos mostrados en el mapa han sido estimados mediante nuestros modelos de estimación, pudiendo diferir de los valores reales."
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Los datos son siempre estimados",
       "pill": "Tiempo real no disponible",
       "body": "Los datos para esta zona no están disponibles en tiempo real y sólo proporcionan la generación total. Tanto los valores horarios como el desglose por fuente de generación se estiman a partir de datos históricos."
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Los datos son siempre estimados",
       "pill": "Tiempo real no disponible",
       "body": "Los datos para esta zona no están disponibles en tiempo real y sólo proporcionan la generación total. Tanto los valores horarios como el desglose por fuente de generación se estiman a partir de datos históricos."
@@ -721,10 +721,6 @@
     },
     "GR": {
       "zoneName": "Grecia"
-    },
-    "GR-IS": {
-      "countryName": "Grecia",
-      "zoneName": "Islas del Egeo"
     },
     "GS": {
       "zoneName": "Islas Georgias del Sur y Sándwich del Sur"

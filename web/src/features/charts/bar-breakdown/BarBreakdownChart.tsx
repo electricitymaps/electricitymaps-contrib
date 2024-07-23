@@ -5,7 +5,7 @@ import Divider from 'features/panels/zone/Divider';
 import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
@@ -16,8 +16,8 @@ import { TrackEvent } from 'utils/constants';
 import {
   dataSourcesCollapsedBarBreakdown,
   displayByEmissionsAtom,
+  isHourlyAtom,
   productionConsumptionAtom,
-  timeAverageAtom,
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
@@ -59,7 +59,7 @@ function BarBreakdownChart({
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
   const width = observerWidth + X_PADDING;
 
@@ -77,7 +77,7 @@ function BarBreakdownChart({
 
   if (!currentZoneDetail) {
     return (
-      <div className="relative w-full text-md" ref={ref}>
+      <div className="text-md relative w-full" ref={ref}>
         <BySource className="opacity-40" />
         <EmptyBarBreakdownChart
           height={height}
@@ -129,13 +129,7 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
-        unit={determineUnit(
-          displayByEmissions,
-          currentZoneDetail,
-          mixMode,
-          timeAverage,
-          t
-        )}
+        unit={determineUnit(displayByEmissions, currentZoneDetail, mixMode, isHourly, t)}
         estimationMethod={currentZoneDetail.estimationMethod}
       />
       {tooltipData && (
@@ -189,39 +183,37 @@ function BarBreakdownChart({
       {showDataSourceAccordion && (
         <>
           <Divider />
-          <div className="py-1">
-            <Accordion
-              onOpen={() => {
-                trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-                  chart: 'bar-breakdown-chart',
-                });
-              }}
-              title={t('data-sources.title')}
-              className="text-md"
-              isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
-            >
-              <div>
-                <DataSources
-                  title={t('data-sources.capacity')}
-                  icon={<UtilityPoleIcon />}
-                  sources={capacitySources}
-                />
-                <DataSources
-                  title={t('data-sources.power')}
-                  icon={<WindTurbineIcon />}
-                  sources={powerGenerationSources}
-                />
-                <DataSources
-                  title={t('data-sources.emission')}
-                  icon={<IndustryIcon />}
-                  sources={emissionFactorSources}
-                  emissionFactorSourcesToProductionSources={
-                    emissionFactorSourcesToProductionSources
-                  }
-                />
-              </div>
-            </Accordion>
-          </div>{' '}
+          <Accordion
+            onOpen={() => {
+              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                chart: 'bar-breakdown-chart',
+              });
+            }}
+            title={t('data-sources.title')}
+            className="text-md"
+            isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
+          >
+            <div>
+              <DataSources
+                title={t('data-sources.capacity')}
+                icon={<UtilityPoleIcon />}
+                sources={capacitySources}
+              />
+              <DataSources
+                title={t('data-sources.power')}
+                icon={<WindTurbineIcon />}
+                sources={powerGenerationSources}
+              />
+              <DataSources
+                title={t('data-sources.emission')}
+                icon={<IndustryIcon />}
+                sources={emissionFactorSources}
+                emissionFactorSourcesToProductionSources={
+                  emissionFactorSourcesToProductionSources
+                }
+              />
+            </div>
+          </Accordion>
         </>
       )}
     </div>

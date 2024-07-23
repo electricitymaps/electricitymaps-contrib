@@ -56,7 +56,7 @@ export default function Row({
 
       {/* Row label */}
       <text
-        className="pointer-events-none"
+        className="pointer-events-none text-xs"
         textAnchor="start"
         fill="currentColor"
         transform={`translate(${ICON_PLUS_PADDING}, ${TEXT_ADJUST_Y})`}
