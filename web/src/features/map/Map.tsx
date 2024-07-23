@@ -231,11 +231,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   ]);
 
   const onClick = useCallback(
-    (event: maplibregl.MapLayerMouseEvent) => {
-      if (!map || !event.features) {
+    ({ features }: maplibregl.MapLayerMouseEvent) => {
+      if (!map || !features) {
         return;
       }
-      const feature = event.features[0];
+      const feature = features[0];
 
       // Remove state from old feature if we are no longer hovering anything,
       // or if we are hovering a different feature than the previous one
@@ -265,11 +265,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging
   const onMouseMove = useCallback(
-    (event: maplibregl.MapLayerMouseEvent) => {
-      if (!map || !event.features) {
+    ({ features, point }: maplibregl.MapLayerMouseEvent) => {
+      if (!map || !features) {
         return;
       }
-      const feature = event.features[0];
+      const feature = features[0];
       const isHoveringAZone = feature?.id !== undefined;
       const isHoveringANewZone =
         isHoveringAZone && hoveredZone?.featureId !== feature?.id;
@@ -290,8 +290,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
       // Update mouse position to help position the tooltip
       setMousePosition({
-        x: event.point.x,
-        y: event.point.y,
+        x: point.x,
+        y: point.y,
       });
 
       // Update hovered zone if we are hovering a new zone
@@ -327,8 +327,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   }, [map, hoveredZone, setHoveredZone]);
 
   const onError = useCallback(
-    (event: ErrorEvent) => {
-      console.error(event.error);
+    ({ error }: ErrorEvent) => {
+      console.error(error);
       setIsLoadingMap(false);
       // TODO: Show error message to user
       // TODO: Send to Sentry
