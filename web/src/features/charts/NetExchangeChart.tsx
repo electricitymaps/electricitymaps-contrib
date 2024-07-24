@@ -42,10 +42,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
 
   return (
     <RoundedCard className="pb-2">
-      <ChartTitle
-        translationKey="country-history.netExchange"
-        unit={valueAxisLabel}
-      />
+      <ChartTitle translationKey="country-history.netExchange" unit={valueAxisLabel} />
       <div className="relative">
         <AreaGraph
           testId="history-exchange-graph"
