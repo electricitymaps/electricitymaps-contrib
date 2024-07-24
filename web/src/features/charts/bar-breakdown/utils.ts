@@ -1,12 +1,10 @@
 import { max as d3Max } from 'd3-array';
-import { useEffect, useState } from 'react';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
   Maybe,
   ZoneDetail,
-  ZoneDetails,
   ZoneKey,
 } from 'types';
 import { Mode, modeOrderBarBreakdown } from 'utils/constants';
@@ -193,18 +191,4 @@ export const getExchangesToDisplay = (
   return uniqueExchangeKeys.filter(
     (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
   );
-};
-
-export const useHeaderHeight = () => {
-  const [headerHeight, setHeaderHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const headerElement = document.querySelector('header');
-    if (headerElement) {
-      const height = headerElement.offsetHeight;
-      setHeaderHeight(height * 1.1);
-    }
-  }, [window.innerWidth, window.innerHeight]);
-
-  return headerHeight;
 };
