@@ -8,9 +8,16 @@ type Props = {
   scale: ScaleLinear<number, number, never>;
   formatTick: (tick: number) => string | number;
   axisLegendText?: { left: string; right: string };
+  hasNegativeValuesInData?: boolean;
 };
 
-export default function Axis({ formatTick, height, scale, axisLegendText }: Props) {
+export default function Axis({
+  formatTick,
+  height,
+  scale,
+  axisLegendText,
+  hasNegativeValuesInData,
+}: Props) {
   const axisTicks = scale.ticks(SCALE_TICKS);
 
   return (
@@ -44,7 +51,7 @@ export default function Axis({ formatTick, height, scale, axisLegendText }: Prop
           >
             {formatTick(t)}
           </text>
-          {axisLegendText && t == 0 && (
+          {axisLegendText && t == 0 && hasNegativeValuesInData && (
             <BarBreakdownAxisLegend height={height} legendText={axisLegendText} />
           )}
         </g>

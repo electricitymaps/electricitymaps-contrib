@@ -208,3 +208,21 @@ export const useHeaderHeight = () => {
 
   return headerHeight;
 };
+
+export const hasNegativeDataValues = (
+  productionData: ProductionDataType[],
+  exchangeData: ExchangeDataType[]
+) => {
+  for (const d of productionData) {
+    if ((d.isStorage && (d.capacity ?? 0) > 0) || (d.storage ?? 0) > 0) {
+      return true;
+    }
+  }
+  for (const d of exchangeData) {
+    if (d.exchange < 0 || d.exchangeCapacityRange[0] < 0) {
+      return true;
+    }
+  }
+
+  return false;
+};

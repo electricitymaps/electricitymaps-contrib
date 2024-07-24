@@ -33,6 +33,7 @@ interface BarElectricityBreakdownChartProps {
   ) => void;
   onExchangeRowMouseOut: () => void;
   graphUnit: string | undefined;
+  hasNegativeValuesInData: boolean;
 }
 
 function BarElectricityBreakdownChart({
@@ -48,6 +49,7 @@ function BarElectricityBreakdownChart({
   onExchangeRowMouseOut,
   width,
   graphUnit,
+  hasNegativeValuesInData,
 }: BarElectricityBreakdownChartProps) {
   const co2ColorScale = useCo2ColorScale();
   const { productionY, exchangeHeight } = getDataBlockPositions(
@@ -112,6 +114,7 @@ function BarElectricityBreakdownChart({
         onProductionRowMouseOver={onProductionRowMouseOver}
         onProductionRowMouseOut={onProductionRowMouseOut}
         isMobile={isMobile}
+        hasNegativeValuesInData={hasNegativeValuesInData}
       />
       <BarElectricityExchangeChart
         height={exchangeHeight + EXCHANGE_PADDING}
