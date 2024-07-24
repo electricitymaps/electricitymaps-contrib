@@ -1,5 +1,5 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
-import { X } from 'lucide-react'
+import { X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
