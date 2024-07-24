@@ -1,11 +1,11 @@
 import useGetState from 'api/getState';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 
@@ -13,15 +13,15 @@ import { getRankedState } from './getRankingPanelData';
 import InfoText from './InfoText';
 import SearchBar from './SearchBar';
 import SocialButtons from './SocialButtons';
-import ZoneList from './ZoneList';
+import { VirtualizedZoneList } from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
   const { t } = useTranslation();
   const getCo2colorScale = useCo2ColorScale();
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const [searchTerm, setSearchTerm] = useState('');
-  const [electricityMode] = useAtom(productionConsumptionAtom);
-  const [spatialAggregation] = useAtom(spatialAggregateAtom);
+  const electricityMode = useAtomValue(productionConsumptionAtom);
+  const spatialAggregation = useAtomValue(spatialAggregateAtom);
   const inputHandler = (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
 
@@ -36,7 +36,7 @@ export default function RankingPanel(): ReactElement {
     data,
     getCo2colorScale,
     'asc',
-    selectedDatetime.datetimeString,
+    selectedDatetimeString,
     electricityMode,
     spatialAggregation
   );
@@ -64,7 +64,7 @@ export default function RankingPanel(): ReactElement {
         searchHandler={inputHandler}
         value={searchTerm}
       />
-      <ZoneList data={filteredList} />
+      <VirtualizedZoneList data={filteredList} />
       <div className="space-y-4 p-2">
         <InfoText />
         <SocialButtons />

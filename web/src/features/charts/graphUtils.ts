@@ -1,22 +1,20 @@
-/* eslint-disable unicorn/no-null */
 import { bisectLeft } from 'd3-array';
-// import { pointer } from 'd3-selection';
-// // https://observablehq.com/@d3/d3-selection-2-0
-import { scaleTime } from 'd3-scale';
+import { ScaleTime, scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
+import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
 
 export const detectHoveredDatapointIndex = (
-  event_: any,
-  datetimes: any,
-  timeScale: any,
-  svgNode: any
-) => {
+  event_: MouseEvent<SVGRectElement> | MouseEvent<SVGPathElement>,
+  datetimes: Date[],
+  timeScale: ScaleTime<number, number>,
+  svgNode: SVGSVGElement
+): number | null => {
   if (datetimes.length === 0) {
     return null;
   }
@@ -29,8 +27,14 @@ export const detectHoveredDatapointIndex = (
   const datetime = timeScale.invert(adjustedDx);
 
   // Find data point closest to
+
   let index = bisectLeft(datetimes, datetime);
-  if (index > 0 && datetime - datetimes[index - 1] < datetimes[index] - datetime) {
+  // Aligns the hovered point to the chart bar
+  if (
+    index > 0 &&
+    datetime?.getTime() - datetimes[index - 1]?.getTime() <
+      datetimes[index]?.getTime() - datetime?.getTime()
+  ) {
     index -= 1;
   }
   if (index > datetimes.length - 1) {
@@ -120,7 +124,7 @@ export function determineUnit(
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
   mixMode: Mode,
-  timeAverage: TimeAverages,
+  isHourly: boolean,
   t: TFunction
 ) {
   if (displayByEmissions) {
@@ -131,7 +135,7 @@ export function determineUnit(
     );
   }
 
-  return timeAverage === TimeAverages.HOURLY
+  return isHourly
     ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode)))
     : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
 }
@@ -193,18 +197,34 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
+function analyzeChartData(chartData: AreaGraphElement[]) {
+  let estimatedCount = 0;
+  let tsaCount = 0;
+  for (const chartElement of chartData) {
+    if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
+      tsaCount++;
+    }
+    if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
+      estimatedCount++;
+    }
+  }
+  return {
+    allTimeSlicerAverageMethod: tsaCount === chartData.length,
+    allEstimated: estimatedCount === chartData.length,
+    hasEstimation: estimatedCount > 0,
+  };
+}
+
 export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
-  const allEstimated = chartData.every(
-    (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
-  );
+  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
+    analyzeChartData(chartData);
+  if (allTimeSlicerAverageMethod) {
+    return t(`estimation-card.${EstimationMethods.TSA}.pill`);
+  }
 
   if (allEstimated) {
     return t('estimation-badge.fully-estimated');
   }
-
-  const hasEstimation = chartData.some(
-    (day) => day.meta.estimationMethod || Boolean(day.meta.estimatedPercentage)
-  );
 
   if (hasEstimation) {
     return t('estimation-badge.partially-estimated');

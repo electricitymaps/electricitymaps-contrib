@@ -125,21 +125,21 @@
   "estimation-card": {
     "link": "Leia sobre os nossos modelos de estimativa",
     "outage-details": "Ver detalhes",
-    "estimated_forecasts_hierarchy": {
+    "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Os dados são estimados",
       "pill": "Estimado",
       "body": "Os dados para esta zona são estimados usando uma combinação de previsões de produção internas e externas e médias de <i>Time Slices</i>. Isso visa fornecer uma representação mais precisa do que a média de <i>Time Slices</i> sozinha, mas os dados ainda podem estar sujeitos a imprecisões. Os dados serão atualizados assim que os dados em tempo real estiverem disponíveis."
     },
-    "estimated_time_slicer_average": {
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Os dados atuais são estimados",
       "body": "O fornecedor de dados não está a reportar dados para esta hora. Os valores exibidos são estimados com base em medições históricas e serão substituídos por dados consolidados assim que estiverem disponíveis. Por favor, esteja ciente de que os valores estimados podem nem sempre ser precisos, uma vez que não contabilizam eventos climáticos específicos em tempo real."
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Os dados são parcialmente estimados",
       "pill": "Incompleto",
       "body": "Dados de geração de eletricidade estão incompletos; valores em falta foram calculados usando um modelo de estimativa."
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Os dados são sempre estimados",
       "pill": "Impreciso",
       "body": "Os dados publicados para esta zona só contêm a produção total. Fontes renováveis são estimadas usando dados meteorológicos em tempo real, enquanto as fontes fósseis são aproximados com base em dados históricos para cada fonte de produção."
@@ -149,12 +149,12 @@
       "pill": "Impreciso",
       "body": "Os dados publicados para esta zona estão indisponíveis ou incompletos. Os dados mostrados no mapa são estimados ao melhor da nossa habilidade, mas podem diferir dos valores reais."
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Os dados são sempre estimados",
       "pill": "Não em tempo real",
       "body": "Os dados para esta zona não são publicados em tempo real e só fornecem a produção total. Tanto a produção horária quanto as fontes de produção são estimadas com base em dados históricos para cada fonte de produção."
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Os dados são sempre estimados",
       "pill": "Não em tempo real",
       "body": "Os dados para esta zona não são publicados em tempo real e só fornecem a produção total. Tanto a produção horária quanto as fontes de produção são estimadas com base em dados históricos para cada fonte de produção."
@@ -342,14 +342,6 @@
   "coal": "carvão",
   "oil": "petróleo",
   "unknown": "desconhecida",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> da eletricidade em {{zoneFlag}} <b>{{zoneName}}</b> provém de energia {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> das emissões em {{zoneFlag}} <b>{{zoneName}}</b> provêm de energia {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> da eletricidade em {{zoneFlag}} <b>{{zoneName}}</b> é armazenada usando {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> das emissões em {{zoneFlag}} <b>{{zoneName}}</b> são armazenadas usando {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> da eletricidade em {{zoneFlag}} <b>{{zoneName}}</b> é exportada para {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> das emissões em {{zoneFlag}} <b>{{zoneName}}</b> são exportadas para {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> da eletricidade em {{zoneFlag}} <b>{{zoneName}}</b> é importada de {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> das emissões em {{zoneFlag}} <b>{{zoneName}}</b> são importadas de {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "O mapa",
@@ -901,10 +893,6 @@
     },
     "GR": {
       "zoneName": "Grécia"
-    },
-    "GR-IS": {
-      "countryName": "Grécia",
-      "zoneName": "Ilhas do mar Egeu"
     },
     "GS": {
       "zoneName": "Geórgia do Sul e Ilhas Sandwich do Sul"

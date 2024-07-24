@@ -94,14 +94,6 @@
   "coal": "uhlie",
   "oil": "ropa",
   "unknown": "neznáme",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> pochádza z {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> emisii z elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> pochádza z {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je uchovávaných použitím {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> emisii z elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je uchovávaných použitím {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> emisii z elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je importovaných z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> emisii z elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je importovaných z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Čo znamenajú farby na mape?",
@@ -601,10 +593,6 @@
     },
     "GR": {
       "zoneName": "Grécko"
-    },
-    "GR-IS": {
-      "countryName": "Grécko",
-      "zoneName": "Egejské ostrovy"
     },
     "GS": {
       "zoneName": "Južná Georgia a Sandwichove ostrovy"

@@ -11,6 +11,7 @@ export interface ZoneConfig {
   contributors?: string[];
   disclaimer?: string;
   estimation_method?: string;
+  generation_only?: boolean;
   parsers?: {
     consumption?: string;
     consumptionForecast?: string;

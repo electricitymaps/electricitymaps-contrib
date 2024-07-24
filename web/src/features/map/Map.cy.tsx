@@ -158,7 +158,7 @@ describe('Map Component', () => {
           [
             selectedDatetimeIndexAtom,
             {
-              datetimeString: '2022-12-05T08:00:00Z',
+              datetime: new Date('2022-12-05T08:00:00+00:00'),
               index: 0,
             },
           ],

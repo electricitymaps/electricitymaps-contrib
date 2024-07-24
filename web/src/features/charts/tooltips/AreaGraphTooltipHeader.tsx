@@ -1,6 +1,7 @@
 import EstimationBadge from 'components/EstimationBadge';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { EstimationMethods, TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
@@ -13,6 +14,7 @@ interface AreaGraphToolTipHeaderProps {
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   productionSource?: string;
+  estimationMethod?: EstimationMethods;
 }
 
 export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {
@@ -24,12 +26,17 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
     hasEstimationPill = false,
     estimatedPercentage,
     productionSource,
+    estimationMethod,
   } = props;
-  const { t, i18n } = useTranslation();
-
+  const { i18n } = useTranslation();
+  const pillText = useGetEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
   return (
     <>
-      <div className="mb-2 flex justify-between">
+      <div className="flex justify-between">
         <div className="inline-flex items-center gap-x-1 font-bold">
           <div
             style={{
@@ -49,21 +56,13 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
         </div>
         <div className="inline-flex items-center gap-x-2">
           {hasEstimationPill && estimatedPercentage !== 0 && (
-            <EstimationBadge
-              text={
-                estimatedPercentage
-                  ? t('estimation-card.aggregated_estimated.pill', {
-                      percentage: estimatedPercentage,
-                    })
-                  : t('estimation-badge.fully-estimated')
-              }
-            />
+            <EstimationBadge text={pillText} />
           )}
-          <div className="my-1 h-[32px] max-w-[165px] select-none whitespace-nowrap rounded-full bg-brand-green/10 px-3 py-2 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
-            {formatDate(datetime, i18n.language, timeAverage)}
-          </div>
         </div>
       </div>
+      <p className="whitespace-nowrap text-sm">
+        {formatDate(datetime, i18n.language, timeAverage)}
+      </p>
       <hr className="my-1 mb-3 dark:border-gray-600" />
     </>
   );
