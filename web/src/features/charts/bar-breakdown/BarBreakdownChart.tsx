@@ -6,9 +6,9 @@ import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom, useAtomValue } from 'jotai';
+import { X } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
@@ -147,7 +147,7 @@ function BarBreakdownChart({
               hasEstimationPill={hasEstimationPill}
             />
             <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
-              <HiXMark size="24" />
+              <X />
             </button>
           </div>
         </Portal.Root>
