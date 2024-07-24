@@ -25,9 +25,8 @@ const GraphBackground = React.memo(function GraphBackground({
 }: GraphBackgroundProps) {
   const [x1, x2] = useMemo(() => timeScale.range(), [timeScale]);
   const [y2, y1] = useMemo(() => valueScale.range(), [valueScale]);
-  const width = useMemo(() => x2 - x1, [x1, x2]);
-  const height = useMemo(() => y2 - y1, [y1, y2]);
-
+  const width = x2 - x1;
+  const height = y2 - y1;
   const handleRectMouseMove = useCallback(
     (event: React.MouseEvent<SVGRectElement>) => {
       const timeIndex = detectHoveredDatapointIndex(event, datetimes, timeScale, svgNode);
@@ -39,9 +38,7 @@ const GraphBackground = React.memo(function GraphBackground({
   );
 
   const handleRectMouseOut = useCallback(() => {
-    if (mouseOutHandler) {
-      mouseOutHandler();
-    }
+    mouseOutHandler?.();
   }, [mouseOutHandler]);
 
   // Don't render if the dimensions are not positive

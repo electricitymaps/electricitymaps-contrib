@@ -1,5 +1,4 @@
 import { max as d3Max } from 'd3-array';
-import { useEffect, useState } from 'react';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
