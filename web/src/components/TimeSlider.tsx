@@ -61,7 +61,7 @@ export const getThumbIcon = (
   selectedIndex?: number,
   sets?: NightTimeSet[]
 ): ReactElement => {
-  const size = 14;
+  const size = 16;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
     return <MoveHorizontal size={size} pointerEvents="none" />;
   }
