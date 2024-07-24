@@ -1,4 +1,5 @@
 import useGetState from 'api/getState';
+import Badge from 'components/Badge';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { formatDate } from 'utils/formatting';
@@ -28,11 +29,7 @@ export default function TimeHeader({ className }: TimeHeaderProps) {
         // Setting a fixed height here to prevent the TimeHeader from jumping
         className="h-10 sm:h-8"
       >
-        {!isLoading && (
-          <div className="select-none whitespace-nowrap rounded-full bg-brand-green/10 px-2 py-1 text-sm text-brand-green lg:px-3 dark:bg-gray-700 dark:text-white">
-            {date}
-          </div>
-        )}
+        {!isLoading && <Badge pillText={date} type="success" />}
       </div>
     </div>
   );
