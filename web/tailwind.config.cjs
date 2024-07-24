@@ -3,6 +3,7 @@ const defaultConfig = require('tailwindcss/defaultConfig');
 const formsPlugin = require('@tailwindcss/forms');
 const radix = require('tailwindcss-radix');
 const typography = require('@tailwindcss/typography');
+const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss/types').Config} */
 const config = {
@@ -35,6 +36,18 @@ const config = {
         'brand-green': '#135836',
         'brand-yellow': '#E9B73B',
         'brand-brown': '#702214',
+        success: {
+          DEFAULT: colors.emerald[800],
+          dark: colors.emerald[500],
+        },
+        warning: {
+          DEFAULT: colors.amber[700],
+          dark: colors.amber[500],
+        },
+        danger: {
+          DEFAULT: colors.red[700],
+          dark: colors.red[400],
+        },
       },
     },
     fontFamily: {

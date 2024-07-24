@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.151.0",
+  "version": "1.153.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "repository": {
     "type": "git",
@@ -86,7 +86,7 @@
     "maplibre-gl": "^3.6.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-i18next": "^14.1.2",
+    "react-i18next": "^15.0.0",
     "react-icons": "^5.2.1",
     "react-map-gl": "~7.1.7",
     "react-router-dom": "6.24.0",
