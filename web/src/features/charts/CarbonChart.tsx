@@ -1,6 +1,5 @@
 import Accordion from 'components/Accordion';
 import Divider from 'features/panels/zone/Divider';
-import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
@@ -50,7 +49,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
       <ChartTitle
         translationKey="country-history.carbonintensity"
         badgeText={badgeText}
-        icon={<CloudArrowUpIcon />}
         unit={'gCO₂eq / kWh'}
       />
       <AreaGraph
@@ -72,7 +70,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
           trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });
         }}
         title={t('data-sources.title')}
-        className="text-md"
         isCollapsedAtom={dataSourcesCollapsedEmission}
       >
         <DataSources

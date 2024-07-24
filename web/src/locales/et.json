@@ -103,14 +103,6 @@
   "coal": "süsi",
   "oil": "õli",
   "unknown": "teadmata",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> imporditakse riigist {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> imporditakse riigist {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Kaart",
     "mapColors-question": "Mida värvid kaardil tähistavad?",
@@ -642,10 +634,6 @@
     },
     "GR": {
       "zoneName": "Kreeka"
-    },
-    "GR-IS": {
-      "countryName": "Kreeka",
-      "zoneName": "Egeuse saared"
     },
     "GS": {
       "zoneName": "Lõuna-Georgia ja Lõuna-Sandwichi saared"

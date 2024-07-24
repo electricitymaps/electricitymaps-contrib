@@ -2,11 +2,11 @@ import * as SliderPrimitive from '@radix-ui/react-slider';
 import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
-import { useAtom } from 'jotai/react';
+import { useAtom, useAtomValue } from 'jotai';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
 type ThumbIconPath =
@@ -147,8 +147,8 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 
 function TimeSlider(props: TimeSliderProps) {
   const zoneId = useGetZoneFromPath();
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;
+  const isHourly = useAtomValue(isHourlyAtom);
+  const showNightTime = zoneId && isHourly;
 
   return showNightTime ? (
     <TimeSliderWithNight {...props} />

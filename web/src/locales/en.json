@@ -354,14 +354,15 @@
   "coal": "coal",
   "oil": "oil",
   "unknown": "unknown",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityStoredUsing": "is stored using",
+  "emissionsStoredUsing": "are stored using",
+  "electricityExportedTo": "is exported to",
+  "emissionsExportedTo": "are exported to",
+  "electricityImportedFrom": "is imported from",
+  "emissionsImportedFrom": "are imported from",
+  "electricityAvailableIn": "of electricity available in",
+  "emissionsAvailableIn": "of emissions from electricity available in",
+  "comesFrom": "comes from",
   "ofCO2eq": "of CO₂eq",
   "theMap": {
     "groupName": "The map",
@@ -914,10 +915,6 @@
     },
     "GR": {
       "zoneName": "Greece"
-    },
-    "GR-IS": {
-      "countryName": "Greece",
-      "zoneName": "Aegean Islands"
     },
     "GS": {
       "zoneName": "South Georgia and the South Sandwich Islands"

@@ -4,7 +4,7 @@ import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
 import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { EstimationMethods, Mode, modeOrder, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
@@ -124,7 +124,7 @@ export function determineUnit(
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
   mixMode: Mode,
-  timeAverage: TimeAverages,
+  isHourly: boolean,
   t: TFunction
 ) {
   if (displayByEmissions) {
@@ -135,7 +135,7 @@ export function determineUnit(
     );
   }
 
-  return timeAverage === TimeAverages.HOURLY
+  return isHourly
     ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode)))
     : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
 }

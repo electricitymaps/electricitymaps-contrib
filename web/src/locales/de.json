@@ -216,14 +216,6 @@
   "coal": "Kohle",
   "oil": "Öl",
   "unknown": "unbekannt",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden aus der Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> importiert",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden aus der Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> importiert",
   "ofCO2eq": "CO₂äq",
   "theMap": {
     "groupName": "Die Karte",
@@ -712,10 +704,6 @@
     },
     "GR": {
       "zoneName": "Griechenland"
-    },
-    "GR-IS": {
-      "countryName": "Griechenland",
-      "zoneName": "Ägäische Inseln"
     },
     "GS": {
       "zoneName": "Südgeorgien und die südlichen Sandwichinseln"
