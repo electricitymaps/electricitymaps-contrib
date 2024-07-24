@@ -1,4 +1,3 @@
-import { ExchangeIcon } from 'icons/exchangeIcon';
 import { useAtom } from 'jotai';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
@@ -45,7 +44,6 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
     <RoundedCard className="pb-2">
       <ChartTitle
         translationKey="country-history.netExchange"
-        icon={<ExchangeIcon />}
         unit={valueAxisLabel}
       />
       <div className="relative">
