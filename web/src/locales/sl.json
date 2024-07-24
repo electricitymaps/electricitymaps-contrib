@@ -47,8 +47,6 @@
     "carbonintensity": "Intenzivnost ogljika",
     "lowcarbon": "nizkoogljična",
     "renewable": "obnovljiva",
-    "electricityproduction": "Proizvodnja električne energije",
-    "electricityconsumption": "Poraba električne energije",
     "by-source": {
       "emissions": "Izpusti ogljika po virih",
       "electricity-production": "Proizvodnja električne energije po virih",
@@ -57,7 +55,6 @@
       "total-electricity-production": "Skupna proizvodnja električne energije po virih",
       "total-electricity-consumption": "Skupna poraba električne energije po virih"
     },
-    "emissions": "ogljične emisije",
     "helpfrom": "s pomočjo od",
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
     "noLiveData": "Podatki v živo za to območje začasno niso na voljo",

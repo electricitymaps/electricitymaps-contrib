@@ -67,8 +67,6 @@
     "renewable": "Renouvelable",
     "carbonintensity": "Intensité carbone",
     "lowcarbon": "Bas carbone",
-    "electricityproduction": "Production électrique",
-    "electricityconsumption": "Consommation électrique",
     "by-source": {
       "emissions": "Émissions de carbone par source",
       "electricity-production": "Production d'électricité par source",
@@ -77,7 +75,6 @@
       "total-electricity-production": "Production totale d'électricité par source",
       "total-electricity-consumption": "Consommation totale d'électricité par source"
     },
-    "emissions": "Émissions",
     "contribute": "Contribuez sur GitHub",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",

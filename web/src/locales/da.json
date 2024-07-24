@@ -16,8 +16,6 @@
     "carbonintensity": "CO₂-intensitet",
     "lowcarbon": "Lav CO₂",
     "renewable": "Vedvarende",
-    "electricityproduction": "Elproduktion",
-    "electricityconsumption": "Elforbrug",
     "by-source": {
       "emissions": "CO₂-udledning per kilde",
       "electricity-production": "Elproduktion per kilde",
@@ -26,7 +24,6 @@
       "total-electricity-production": "Samlet elproduktion per kilde",
       "total-electricity-consumption": "Samlet elforbrug per kilde"
     },
-    "emissions": "CO₂-udledning",
     "helpfrom": "med hjælp fra",
     "noDataAtTimestamp": "Data er midlertidigt utilgængeligt for det valgte tidspunkt",
     "noLiveData": "Realtidsdata er midlertidigt utilgængeligt for dette område",

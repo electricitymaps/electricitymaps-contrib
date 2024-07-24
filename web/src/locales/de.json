@@ -46,8 +46,6 @@
     "carbonintensity": "spezifische CO₂-Emissionen",
     "lowcarbon": "CO₂-arm",
     "renewable": "regenerativ",
-    "electricityproduction": "Stromerzeugung",
-    "electricityconsumption": "Stromverbrauch",
     "by-source": {
       "emissions": "CO₂-Emissionen nach Quelle",
       "electricity-production": "Stromerzeugung nach Quelle",
@@ -56,7 +54,6 @@
       "total-electricity-production": "Gesamte Stromerzeugung nach Quelle",
       "total-electricity-consumption": "Gesamter Stromverbrauch nach Quelle"
     },
-    "emissions": "CO₂-Emissionen",
     "helpfrom": "mit Unterstützung von",
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
     "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",

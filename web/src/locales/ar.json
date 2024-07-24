@@ -8,9 +8,7 @@
   },
   "country-panel": {
     "source": "المصدر",
-    "carbonintensity": "كثافة الكربون",
-    "electricityproduction": "إنتاج الكهرباء",
-    "emissions": "انبعاثات الكربون"
+    "carbonintensity": "كثافة الكربون"
   },
   "footer": {
     "foundbugs": "وجدت أخطاء برمجية أو لديك اقتراحات؟ أبلغنا عنها",
