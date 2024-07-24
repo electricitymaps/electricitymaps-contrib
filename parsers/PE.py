@@ -76,10 +76,7 @@ def fetch_production(
     production_events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
-    filtered_production_events = ProductionBreakdownList.filter_only_zero_production(
-        production_events
-    )
-    filtered_production_events = filtered_production_events.to_list()
+    production_events = production_events.to_list()
 
     # Drop last datapoints if it "looks" incomplete.
     # The last hour often only contains data from some power plants
@@ -90,7 +87,7 @@ def fetch_production(
     # TODO: remove this in the future, when this is automatically detected by QA layer
 
     total_production_per_datapoint = [
-        sum(d["production"].values()) for d in filtered_production_events
+        sum(d["production"].values()) for d in production_events
     ]
     mean_production = sum(total_production_per_datapoint) / len(
         total_production_per_datapoint
@@ -102,5 +99,5 @@ def fetch_production(
         logger.warning(
             "Dropping last datapoint as it is probably incomplete. Total production is less than 90% of the mean."
         )
-        filtered_production_events = filtered_production_events[:-1]
-    return filtered_production_events
+        production_events = production_events[:-1]
+    return production_events
