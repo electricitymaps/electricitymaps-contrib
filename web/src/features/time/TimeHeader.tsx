@@ -21,7 +21,7 @@ export default function TimeHeader({ className }: TimeHeaderProps) {
         className || ''
       }`}
     >
-      <p className="select-none text-left text-base font-bold">
+      <p className="select-none text-left font-poppins text-sm font-medium">
         {t('time-controller.title')}
       </p>
       <div
