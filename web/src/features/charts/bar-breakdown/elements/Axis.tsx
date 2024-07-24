@@ -16,7 +16,7 @@ export default function Axis({
   height,
   scale,
   axisLegendText,
-  hasNegativeValuesInData,
+  hasNegativeValuesInData = true,
 }: Props) {
   const axisTicks = scale.ticks(SCALE_TICKS);
 
