@@ -3,8 +3,8 @@ import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom } from 'jotai';
+import { Moon, MoveHorizontal, Sun } from 'lucide-react';
 import { ReactElement } from 'react';
-import { FaArrowsLeftRight, FaMoon, FaSun } from 'react-icons/fa6';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
@@ -63,15 +63,15 @@ export const getThumbIcon = (
 ): ReactElement => {
   const size = 14;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
-    return <FaArrowsLeftRight size={size} pointerEvents="none" />;
+    return <MoveHorizontal size={size} pointerEvents="none" />;
   }
   const isValueAtNight = sets.some(
     ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
   );
   return isValueAtNight ? (
-    <FaMoon size={size} pointerEvents="none" />
+    <Moon size={size} pointerEvents="none" />
   ) : (
-    <FaSun size={size} pointerEvents="none" />
+    <Sun size={size} pointerEvents="none" />
   );
 };
 
