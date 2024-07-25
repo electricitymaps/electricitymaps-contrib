@@ -7,9 +7,9 @@ import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom, useAtomValue } from 'jotai';
-import React, { useState } from 'react';
+import { X } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
@@ -30,6 +30,7 @@ import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
+import CapacityLegend from './elements/CapacityLegend';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
 const X_PADDING = 20;
@@ -62,6 +63,13 @@ function BarBreakdownChart({
   const isHourly = useAtomValue(isHourlyAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
   const width = observerWidth + X_PADDING;
+
+  const graphUnit = useMemo(
+    () =>
+      currentZoneDetail &&
+      determineUnit(displayByEmissions, currentZoneDetail, mixMode, isHourly, t),
+    [displayByEmissions, currentZoneDetail, mixMode, isHourly, t]
+  );
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
@@ -129,9 +137,14 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
-        unit={determineUnit(displayByEmissions, currentZoneDetail, mixMode, isHourly, t)}
+        unit={graphUnit}
         estimationMethod={currentZoneDetail.estimationMethod}
       />
+      {!displayByEmissions && (
+        <CapacityLegend>
+          {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
+        </CapacityLegend>
+      )}
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div
@@ -147,7 +160,7 @@ function BarBreakdownChart({
               hasEstimationPill={hasEstimationPill}
             />
             <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
-              <HiXMark size="24" />
+              <X />
             </button>
           </div>
         </Portal.Root>
@@ -178,6 +191,7 @@ function BarBreakdownChart({
           width={width}
           height={height}
           isMobile={false}
+          graphUnit={graphUnit}
         />
       )}
       {showDataSourceAccordion && (

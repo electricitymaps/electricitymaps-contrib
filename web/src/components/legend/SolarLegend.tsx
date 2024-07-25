@@ -3,25 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { solarColor } from '../../features/weather-layers/solar/utils';
 import HorizontalColorbar from './ColorBar';
-
-function LegendItem({
-  label,
-  unit,
-  children,
-}: {
-  label: string;
-  unit: string | ReactElement;
-  children: ReactElement;
-}) {
-  return (
-    <div className="text-center">
-      <p className="py-1  text-base">
-        {label} <small>({unit})</small>
-      </p>
-      {children}
-    </div>
-  );
-}
+import { LegendItem } from './LegendItem';
 
 export default function SolarLegend(): ReactElement {
   const { t } = useTranslation();
