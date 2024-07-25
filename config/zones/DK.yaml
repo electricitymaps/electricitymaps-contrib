@@ -4,20 +4,162 @@ bounding_box:
   - - 13.30324
     - 57.751949
 capacity:
-  biomass: 2139
-  coal: 3022
-  gas: 1568
-  geothermal: 0
-  hydro: 5
-  hydro storage: 0
-  nuclear: 0
-  oil: 959
-  solar: 2322
-  unknown: 136
-  wind: 7017
+  biomass:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 560.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 2080.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 2106.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 2256.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 2254.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2139.0
+  coal:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 4847.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 3656.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 3414.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 3165.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 3022.0
+  gas:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 2941.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1826.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 1814.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 1739.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1654.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 1621.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1568.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 9.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 6.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 7.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 5.0
+  oil:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 1051.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1007.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 1009.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1010.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 997.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 959.0
+  solar:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 601.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1002.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 1014.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 1013.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1300.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 1536.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2322.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 88.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 146.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 135.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 137.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 142.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 136.0
+  wind:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 4845.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 6123.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 6126.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 6102.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 6181.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 6949.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 7017.0
 contributors:
   - corradio
   - Manu1400
+country: DK
 emissionFactors:
   direct:
     battery discharge:
@@ -209,7 +351,9 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   production: ENTSOE.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
@@ -231,5 +375,3 @@ subZoneNames:
   - DK-DK2
   - DK-BHM
 timezone: Europe/Copenhagen
-region: Europe
-country: DK

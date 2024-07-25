@@ -4,19 +4,100 @@ bounding_box:
   - - 31.57731077310774
     - 71.66078268093528
 capacity:
-  biomass: 113.3
-  coal: 0
-  gas: 473.4
-  geothermal: 0
-  hydro: 33625
-  hydro storage: 1438
-  nuclear: 0
-  oil: 0
-  solar: 160
-  unknown: 112.6
-  wind: 5056
+  biomass:
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 92.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 106.0
+  gas:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 611.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 635.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 642.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 639.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 459.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 473.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 30053.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 31899.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 32409.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 32781.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 33360.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 33403.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 33535.0
+  hydro storage:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 1042.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1031.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1065.0
+  solar:
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 9.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 0.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 131.0
+  wind:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 904.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1232.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 2262.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 3866.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 5105.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 5130.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 5133.0
 contributors:
   - corradio
+country: 'NO'
 emissionFactors:
   direct:
     battery discharge:
@@ -241,7 +322,9 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   production: ENTSOE.fetch_production
+  productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
@@ -252,5 +335,3 @@ subZoneNames:
   - NO-NO4
   - NO-NO5
 timezone: Europe/Oslo
-region: Europe
-country: 'NO'
