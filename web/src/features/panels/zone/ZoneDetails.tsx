@@ -71,10 +71,9 @@ export default function ZoneDetails(): JSX.Element {
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
 
   const selectedData = data?.zoneStates[selectedDatetimeString];
-  const { estimationMethod, estimatedPercentage } = selectedData || {};
+  const { estimationMethod } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
 
   return (
     <>
@@ -100,7 +99,7 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+          <BarBreakdownChart />
           <Button
             backgroundClasses="mt-3 mb-1"
             size="lg"

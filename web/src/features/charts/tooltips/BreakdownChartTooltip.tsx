@@ -124,7 +124,6 @@ export default function BreakdownChartTooltip({
   );
 
   const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
-  const hasEstimationPill = estimationMethod != undefined || Boolean(estimatedPercentage);
 
   return (
     <BreakdownChartTooltipContent
@@ -133,7 +132,6 @@ export default function BreakdownChartTooltip({
       isExchange={isExchange}
       selectedLayerKey={selectedLayerKey}
       timeAverage={timeAverage}
-      hasEstimationPill={hasEstimationPill}
       estimatedPercentage={estimatedPercentage}
       estimationMethod={estimationMethod}
     ></BreakdownChartTooltipContent>
@@ -157,7 +155,6 @@ interface BreakdownChartTooltipContentProperties {
   co2IntensitySource?: string;
   storage?: Maybe<number>;
   production?: Maybe<number>;
-  hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   capacitySource?: string[] | null;
   estimationMethod?: EstimationMethods;
@@ -178,7 +175,6 @@ export function BreakdownChartTooltipContent({
   zoneKey,
   isExchange,
   selectedLayerKey,
-  hasEstimationPill,
   estimatedPercentage,
   capacitySource,
   estimationMethod,
@@ -205,7 +201,6 @@ export function BreakdownChartTooltipContent({
         datetime={datetime}
         timeAverage={timeAverage}
         title={title}
-        hasEstimationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
         productionSource={isExchange ? undefined : selectedLayerKey}
         estimationMethod={estimationMethod}

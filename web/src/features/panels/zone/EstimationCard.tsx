@@ -148,9 +148,9 @@ function BaseCard({
     estimationMethod,
     estimatedPercentage
   );
-  const showBadge = Boolean(
-    estimationMethod == 'aggregated' ? estimatedPercentage : pillType
-  );
+  if (!title || !bodyText) {
+    return;
+  }
 
   return (
     <div
@@ -164,7 +164,7 @@ function BaseCard({
         onClick={() => handleToggleCollapse()}
         isCollapsedDefault={isCollapsedDefault}
         badge={
-          showBadge && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
+          pillText && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
         }
         className={textColorTitle}
         icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}

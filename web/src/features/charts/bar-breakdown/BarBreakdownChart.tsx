@@ -35,11 +35,7 @@ import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
 const X_PADDING = 20;
 
-function BarBreakdownChart({
-  hasEstimationPill = false,
-}: {
-  hasEstimationPill: boolean;
-}) {
+function BarBreakdownChart() {
   const {
     currentZoneDetail,
     zoneDetails,
@@ -156,7 +152,6 @@ function BarBreakdownChart({
             <BreakdownChartTooltip
               selectedLayerKey={tooltipData?.selectedLayerKey}
               zoneDetail={currentZoneDetail}
-              hasEstimationPill={hasEstimationPill}
             />
             <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
               <X />

@@ -11,7 +11,6 @@ interface AreaGraphToolTipHeaderProps {
   datetime: Date;
   timeAverage: TimeAverages;
   title: string;
-  hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   productionSource?: string;
   estimationMethod?: EstimationMethods;
@@ -23,7 +22,6 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
     datetime,
     timeAverage,
     title,
-    hasEstimationPill = false,
     estimatedPercentage,
     productionSource,
     estimationMethod,
@@ -55,9 +53,7 @@ export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProp
           <p className="px-1 text-base">{title}</p>
         </div>
         <div className="inline-flex items-center gap-x-2">
-          {hasEstimationPill && estimatedPercentage !== 0 && (
-            <EstimationBadge text={pillText} />
-          )}
+          {pillText && <EstimationBadge text={pillText} />}
         </div>
       </div>
       <p className="whitespace-nowrap text-sm">

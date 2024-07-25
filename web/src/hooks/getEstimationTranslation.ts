@@ -7,6 +7,9 @@ export function useGetEstimationTranslation(
   estimatedPercentage?: number
 ) {
   const { t } = useTranslation();
+  if (!estimationMethod && !estimatedPercentage) {
+    return;
+  }
   const exactTranslation = estimatedPercentage
     ? t(`estimation-card.aggregated_estimated.${field}`, {
         percentage: estimatedPercentage,

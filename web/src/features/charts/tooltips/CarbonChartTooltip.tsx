@@ -31,7 +31,6 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
     isConsumption
   );
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
   return (
     <div
       data-test-id="carbon-chart-tooltip"
@@ -42,7 +41,6 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
         timeAverage={timeAverage}
         squareColor={co2ColorScale(intensity)}
         title={t('tooltips.carbonintensity')}
-        hasEstimationPill={hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
         estimationMethod={estimationMethod}
       />

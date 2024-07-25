@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 import EstimationBadge from 'components/EstimationBadge';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { timeAverageAtom } from 'utils/state/atoms';
 
@@ -18,7 +18,7 @@ export function ChartTitle({
   hasTimeAverageTranslations = true,
 }: Props) {
   const { t } = useTranslation();
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
   translationKey = hasTimeAverageTranslations
     ? `${translationKey}.${timeAverage}`
     : translationKey;
@@ -31,7 +31,7 @@ export function ChartTitle({
         <div className="flex content-center items-center gap-1.5">
           <h2>{t(translationKey)}</h2>
         </div>
-        {badgeText != undefined && <EstimationBadge text={badgeText} />}
+        {badgeText && <EstimationBadge text={badgeText} />}
       </div>
       {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>
