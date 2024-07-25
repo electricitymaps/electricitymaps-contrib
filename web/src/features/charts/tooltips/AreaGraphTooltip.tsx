@@ -1,6 +1,6 @@
 import * as Portal from '@radix-ui/react-portal';
+import { X } from 'lucide-react';
 import type { ReactElement } from 'react';
-import { HiXMark } from 'react-icons/hi2';
 import { ZoneDetail } from 'types';
 
 import { getOffsetTooltipPosition } from '../../../components/tooltips/utilities';
@@ -53,7 +53,7 @@ export default function AreaGraphTooltip({
       >
         {children({ zoneDetail, selectedLayerKey })}
         <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
-          <HiXMark size="24" />
+          <X />
         </button>
       </div>
     </Portal.Root>

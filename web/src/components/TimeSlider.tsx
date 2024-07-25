@@ -18,23 +18,21 @@ export interface TimeSliderProps {
   selectedIndex?: number;
 }
 
-export const COLORS = {
-  light: {
-    day: 'rgb(243,244,246)', // bg-gray-100
-    night: 'rgb(209,213,219)', // bg-gray-300
-  },
-  dark: {
-    day: 'rgb(75,85,99)', // bg-gray-600
-    night: 'rgb(55,65,81)', // bg-gray-700
-  },
-};
+export enum COLORS {
+  LIGHT_DAY = 'rgb(243,244,246)', // bg-gray-100
+  LIGHT_NIGHT = 'rgb(209,213,219)', // bg-gray-300
+  DARK_DAY = 'rgb(75,85,99)', // bg-gray-600
+  DARK_NIGHT = 'rgb(55,65,81)', // bg-gray-700
+}
 
 export const getTrackBackground = (
   isDarkModeEnabled: boolean,
   numberOfEntries: number,
   sets?: NightTimeSet[]
 ) => {
-  const colors = isDarkModeEnabled ? COLORS.dark : COLORS.light;
+  const colors = isDarkModeEnabled
+    ? { day: COLORS.DARK_DAY, night: COLORS.DARK_NIGHT }
+    : { day: COLORS.LIGHT_DAY, night: COLORS.LIGHT_NIGHT };
 
   if (!sets || sets.length === 0) {
     return colors.day;
