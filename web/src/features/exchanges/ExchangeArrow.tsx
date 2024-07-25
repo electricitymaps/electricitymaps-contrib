@@ -1,6 +1,6 @@
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
-import { useHeaderHeight } from 'features/charts/bar-breakdown/utils';
 import { mapMovingAtom } from 'features/map/mapAtoms';
+import { useHeaderHeight } from 'hooks/headerHeight';
 import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { resolvePath } from 'react-router-dom';

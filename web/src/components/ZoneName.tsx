@@ -5,7 +5,7 @@ import { CountryFlag } from './Flag';
 
 export function ZoneName({ zone, textStyle }: { zone: string; textStyle?: string }) {
   return (
-    <div className="flex items-center">
+    <div className="flex min-w-0 items-center">
       <CountryFlag
         zoneId={zone}
         size={18}

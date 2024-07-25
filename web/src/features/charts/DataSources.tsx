@@ -2,8 +2,8 @@ import * as Portal from '@radix-ui/react-portal';
 import { Link } from 'components/Link';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { TFunction } from 'i18next';
+import { X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { HiXMark } from 'react-icons/hi2';
 import { IoInformationCircleOutline } from 'react-icons/io5';
 import { ElectricityModeType } from 'types';
 import { sourceLinkMapping } from 'utils/constants';
@@ -95,7 +95,7 @@ function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }
         {t('country-panel.emissionFactorDataSourcesTooltip')}
       </div>
       <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 text-black shadow-md">
-        <HiXMark size="24" />
+        <X />
       </button>
     </Portal.Root>
   );

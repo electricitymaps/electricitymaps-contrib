@@ -1,7 +1,7 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
+import { X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiXMark } from 'react-icons/hi2';
 
 import { Button } from './Button';
 
@@ -70,7 +70,7 @@ function Toast({
             onClick={handleToastClose}
             aria-label={toastCloseText ?? t('misc.dismiss')}
           >
-            <HiXMark className="h-4 w-4" />
+            <X />
           </ToastPrimitive.Close>
         </div>
       </ToastPrimitive.Root>

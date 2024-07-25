@@ -8,11 +8,10 @@ type Props = {
   translationKey: string;
   hasLink?: boolean;
   badgeText?: string;
-  icon?: JSX.Element;
   unit?: string;
 };
 
-export function ChartTitle({ translationKey, badgeText = undefined, icon, unit }: Props) {
+export function ChartTitle({ translationKey, badgeText = undefined, unit }: Props) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
   /*
@@ -22,7 +21,6 @@ export function ChartTitle({ translationKey, badgeText = undefined, icon, unit }
     <div className="flex flex-col pb-0.5">
       <div className="flex flex-row justify-between pt-4">
         <div className="flex content-center items-center gap-1.5">
-          {icon && <div className="w-5">{icon}</div>}
           <h2>{t(`${translationKey}.${timeAverage}`)}</h2>
         </div>
         {badgeText != undefined && <EstimationBadge text={badgeText} />}

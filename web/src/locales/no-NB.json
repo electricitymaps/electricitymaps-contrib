@@ -73,14 +73,6 @@
     "dataOrigins-question": "Hvordan får dere tak i dataene?",
     "groupName": "Våre data"
   },
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> lagres gjennom {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> lagres gjennom {{selectedLayerKey}}",
   "footer": {
     "faq": "ofte stilte spørsmål",
     "faq-text": "Er som er vanskelig å forstå? Se de",

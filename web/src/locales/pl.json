@@ -176,14 +176,6 @@
   "coal": "węglowa",
   "oil": "naftowa",
   "unknown": "nieznana",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: produkcja {{selectedLayerKey}} tworzy <b>{{percentageUsage}} %</b> energii elektrycznej",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: produkcja {{selectedLayerKey}} tworzy <b>{{percentageUsage}} %</b> emisji",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} przetrzymywują <b>{{percentageUsage}} %</b> energii elektrycznej",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} przetrzymywują <b>{{percentageUsage}} %</b> emisji",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> energii elektrycznej jest eksportowane do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisji jest eksportowane do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> energii elektrycznej jest importowane z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisji jest importowane z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AE": {
       "zoneName": "Zjednoczone Emiraty Arabskie"
