@@ -29,7 +29,7 @@ describe('Country Panel', () => {
     cy.contains('Emissions').should('have.attr', 'aria-checked', 'false');
     cy.contains('Emissions').click().should('have.attr', 'aria-checked', 'true');
     cy.contains('0 t');
-    cy.contains('Electricity consumption').click();
+    cy.contains('Consumption').click();
 
     // // test graph tooltip
     // cy.get('[data-test-id=details-carbon-graph]').trigger('mousemove', 'left');
