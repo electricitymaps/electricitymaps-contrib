@@ -1,6 +1,5 @@
 import Accordion from 'components/Accordion';
 import Divider from 'features/panels/zone/Divider';
-import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
 import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
@@ -47,7 +46,6 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
       <ChartTitle
         translationKey="country-history.emissions"
         badgeText={badgeText}
-        icon={<CloudArrowUpIcon />}
         unit={'CO₂eq'}
       />
       <AreaGraph
