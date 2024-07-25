@@ -29,7 +29,7 @@ import useZoneDataSources from '../hooks/useZoneDataSources';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
-import BySource from './elements/BySource';
+import BarBreakdownChartTitle from './elements/BarBreakdownChartTitle';
 import CapacityLegend from './elements/CapacityLegend';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
@@ -86,7 +86,7 @@ function BarBreakdownChart({
   if (!currentZoneDetail) {
     return (
       <div className="text-md relative w-full" ref={ref}>
-        <BySource className="opacity-40" />
+        <BarBreakdownChartTitle className="opacity-40" />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
@@ -134,7 +134,7 @@ function BarBreakdownChart({
       className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
       ref={ref}
     >
-      <BySource
+      <BarBreakdownChartTitle
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
         unit={graphUnit}
