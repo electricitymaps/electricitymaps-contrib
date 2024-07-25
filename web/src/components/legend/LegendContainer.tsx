@@ -11,7 +11,7 @@ export default function LegendContainer(): ReactElement {
   const isWindLayerEnabled = useAtomValue(isWindLayerEnabledAtom);
 
   return (
-    <div className="flex w-[224px] flex-col rounded-2xl bg-white/80 px-2 pb-2 pt-4 backdrop-blur dark:bg-gray-800/80">
+    <div className="flex min-w-64 max-w-min flex-col gap-2 rounded-2xl bg-white/80 p-2 backdrop-blur dark:bg-gray-800/80">
       {isSolarLayerEnabled && <SolarLegend />}
       {isWindLayerEnabled && <WindLegend />}
       <Co2Legend />
