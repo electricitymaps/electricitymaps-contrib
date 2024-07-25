@@ -21,7 +21,7 @@ export default function BarBreakdownAxisLegend({
       <text
         fill="rgba(115, 115, 115, 1)"
         fontSize={'0.7rem'}
-        y={height - X_AXIS_HEIGHT + 10}
+        y={height - X_AXIS_HEIGHT + 12}
         x={-18}
         textAnchor="end"
       >
@@ -30,17 +30,17 @@ export default function BarBreakdownAxisLegend({
       <FaArrowLeft
         className="text-neutral-300 dark:text-gray-700"
         x={-15}
-        y={height - X_AXIS_HEIGHT + 2}
+        y={height - X_AXIS_HEIGHT + 3}
       />
       <FaArrowRight
         className="text-neutral-300 dark:text-gray-700"
         x={5}
-        y={height - X_AXIS_HEIGHT + 2}
+        y={height - X_AXIS_HEIGHT + 3}
       />
       <text
         fill="rgba(115, 115, 115, 1)"
         fontSize={'0.7rem'}
-        y={height - X_AXIS_HEIGHT + 10}
+        y={height - X_AXIS_HEIGHT + 12}
         x={18}
         textAnchor="start"
       >
