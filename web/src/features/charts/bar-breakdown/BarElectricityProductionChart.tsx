@@ -21,7 +21,6 @@ export function BarElectricityProductionChart({
   onProductionRowMouseOver,
   onProductionRowMouseOut,
   isMobile,
-  hasNegativeValuesInData,
 }: {
   powerScale: ScaleLinear<number, number, never>;
   height: number;
@@ -37,7 +36,6 @@ export function BarElectricityProductionChart({
   ) => void;
   onProductionRowMouseOut: () => void;
   isMobile: boolean;
-  hasNegativeValuesInData: boolean;
 }) {
   const { t } = useTranslation();
   return (
@@ -46,7 +44,6 @@ export function BarElectricityProductionChart({
         formatTick={formatTick}
         height={height}
         scale={powerScale}
-        hasNegativeValuesInData={hasNegativeValuesInData}
         axisLegendText={{
           left: t('country-panel.graph-legends.stored'),
           right: t('country-panel.graph-legends.produced'),

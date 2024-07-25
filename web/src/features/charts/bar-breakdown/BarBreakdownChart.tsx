@@ -32,7 +32,6 @@ import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
 import CapacityLegend from './elements/CapacityLegend';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
-import { hasNegativeDataValues } from './utils';
 
 const X_PADDING = 20;
 
@@ -130,8 +129,6 @@ function BarBreakdownChart({
     showCapacitySources || showPowerSources || showEmissionSources
   );
 
-  const hasNegativeValuesInData = hasNegativeDataValues(productionData, exchangeData);
-
   return (
     <div
       className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
@@ -195,7 +192,6 @@ function BarBreakdownChart({
           height={height}
           isMobile={false}
           graphUnit={graphUnit}
-          hasNegativeValuesInData={hasNegativeValuesInData}
         />
       )}
       {showDataSourceAccordion && (
