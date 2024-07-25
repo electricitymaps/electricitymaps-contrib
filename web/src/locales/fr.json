@@ -70,7 +70,7 @@
     "electricityproduction": "Production électrique",
     "electricityconsumption": "Consommation électrique",
     "by-source": {
-      "emissions": "Émissions de carbone",
+      "emissions": "Émissions carbone",
       "electricity-production": "Production d'électricité",
       "electricity-consumption": "Consommation d'électricité",
       "total-emissions": "Émissions totales de carbone",
