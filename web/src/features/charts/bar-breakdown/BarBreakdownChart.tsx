@@ -86,7 +86,7 @@ function BarBreakdownChart({
   if (!currentZoneDetail) {
     return (
       <div className="text-md relative w-full" ref={ref}>
-        <BarBreakdownChartTitle className="opacity-40" />
+        <BarBreakdownChartTitle />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
@@ -135,7 +135,6 @@ function BarBreakdownChart({
       ref={ref}
     >
       <BarBreakdownChartTitle
-        hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
         unit={graphUnit}
         estimationMethod={currentZoneDetail.estimationMethod}

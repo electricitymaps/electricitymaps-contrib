@@ -33,8 +33,6 @@ export default function BarBreakdownChartTitle({
   unit,
   estimationMethod,
 }: {
-  className?: string;
-  hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   unit?: string;
   estimationMethod?: EstimationMethods;
@@ -51,5 +49,12 @@ export default function BarBreakdownChartTitle({
     estimatedPercentage
   );
 
-  return <ChartTitle translationKey={translationKey} badgeText={pillText} unit={unit} />;
+  return (
+    <ChartTitle
+      translationKey={translationKey}
+      badgeText={pillText}
+      unit={unit}
+      hasTimeAverageTranslations={false}
+    />
+  );
 }
