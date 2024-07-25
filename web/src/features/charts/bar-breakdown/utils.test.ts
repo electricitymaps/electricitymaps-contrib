@@ -299,7 +299,7 @@ describe('getDataBlockPositions', () => {
     expect(result).to.deep.eq({
       exchangeFlagX: 50,
       exchangeHeight: 40,
-      exchangeY: 282,
+      exchangeY: 262,
       productionY: 22,
       productionHeight: 240,
     });
