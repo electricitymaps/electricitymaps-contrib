@@ -201,14 +201,6 @@
   "coal": "carbón",
   "oil": "petróleo",
   "unknown": "desconocido",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> de la electricidad de {{zoneFlag}} <b>{{zoneName}}</b> es producida por {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> de las emisiones de {{zoneFlag}} <b>{{zoneName}}</b> es producida por {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> de la electricidad de {{zoneFlag}} <b>{{zoneName}}</b> se almacena utilizando {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> de las emisiones de {{zoneFlag}} <b>{{zoneName}}</b> se almacena utilizando {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> de la electricidad de {{zoneFlag}} <b>{{zoneName}}</b> se exporta a {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> de las emisiones de {{zoneFlag}} <b>{{zoneName}}</b> se exporta a {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> de la electricidad de {{zoneFlag}} <b>{{zoneName}}</b> se importa de {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> de las emisiones de {{zoneFlag}} <b>{{zoneName}}</b> se importa de {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "El mapa",
@@ -721,10 +713,6 @@
     },
     "GR": {
       "zoneName": "Grecia"
-    },
-    "GR-IS": {
-      "countryName": "Grecia",
-      "zoneName": "Islas del Egeo"
     },
     "GS": {
       "zoneName": "Islas Georgias del Sur y Sándwich del Sur"

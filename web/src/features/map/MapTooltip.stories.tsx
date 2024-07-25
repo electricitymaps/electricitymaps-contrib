@@ -28,7 +28,6 @@ function TestWrapper({ zoneKey, ci, fr, rr, e, o }: StoryStateZoneData) {
             o,
           }}
           zoneId={zoneKey}
-          date={'2022-01-01'}
         />
       </div>
     </div>

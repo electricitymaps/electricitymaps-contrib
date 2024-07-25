@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import HorizontalColorbar from './ColorBar';
-import LegendItem from './LegendItem';
+import { LegendItem } from './LegendItem';
 
 export default function WindLegend(): ReactElement {
   const { t } = useTranslation();

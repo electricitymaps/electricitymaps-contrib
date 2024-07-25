@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-function LegendItem({
+export function LegendItem({
   label,
   unit,
   children,
@@ -11,12 +11,10 @@ function LegendItem({
 }) {
   return (
     <div className="text-center">
-      <p className="mr-2 pb-1 font-poppins text-sm">
+      <p className="py-1 font-poppins">
         {label} <small>({unit})</small>
       </p>
-      {children}
+      <div className="px-2">{children}</div>
     </div>
   );
 }
-
-export default LegendItem;

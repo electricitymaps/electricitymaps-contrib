@@ -348,14 +348,6 @@
   "coal": "charbon",
   "oil": "fioul",
   "unknown": "inconnu",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> de l’électricité disponible en {{zoneFlag}} <b>{{zoneName}}</b> est produite par {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> des émissions disponibles en {{zoneFlag}} <b>{{zoneName}}</b> sont produites par {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> de l’électricité disponible en {{zoneFlag}} <b>{{zoneName}}</b> est stockée par {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> des émissions disponibles en {{zoneFlag}} <b>{{zoneName}}</b> sont stockées par {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> de l’électricité disponible en {{zoneFlag}} <b>{{zoneName}}</b> est exportée vers {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> des émissions disponibles en {{zoneFlag}} <b>{{zoneName}}</b> sont exportées vers {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> de l’électricité disponible en {{zoneFlag}} <b>{{zoneName}}</b> est importée depuis {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> des émissions disponibles en {{zoneFlag}} <b>{{zoneName}}</b> sont importées depuis {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "La carte",
@@ -907,10 +899,6 @@
     },
     "GR": {
       "zoneName": "Grèce"
-    },
-    "GR-IS": {
-      "countryName": "Grèce",
-      "zoneName": "Îles Égéennes"
     },
     "GS": {
       "zoneName": "Géorgie du Sud-et-les Îles Sandwich du Sud"

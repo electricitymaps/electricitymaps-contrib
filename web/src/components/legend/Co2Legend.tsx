@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
 import HorizontalColorbar from './ColorBar';
-import LegendItem from './LegendItem';
+import { LegendItem } from './LegendItem';
 
 export default function Co2Legend(): ReactElement {
   const { t } = useTranslation();

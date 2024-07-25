@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { solarColor } from '../../features/weather-layers/solar/utils';
 import HorizontalColorbar from './ColorBar';
-import LegendItem from './LegendItem';
+import { LegendItem } from './LegendItem';
 
 export default function SolarLegend(): ReactElement {
   const { t } = useTranslation();

@@ -4,7 +4,7 @@ import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
@@ -13,7 +13,7 @@ import { Mode } from 'utils/constants';
 import { createToWithState, getCO2IntensityByMode, useUserLocation } from 'utils/helpers';
 import {
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
   userLocationAtom,
 } from 'utils/state/atoms';
@@ -55,7 +55,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const setUserLocation = useSetAtom(userLocationAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -64,10 +64,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const theme = useTheme();
-  const [currentMode] = useAtom(productionConsumptionAtom);
+  const currentMode = useAtomValue(productionConsumptionAtom);
   const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
-  const [spatialAggregate] = useAtom(spatialAggregateAtom);
+  const spatialAggregate = useAtomValue(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const { isLoading, isSuccess, isError, data } = useGetState();
@@ -112,7 +112,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
-      const zone = data?.data.datetimes[selectedDatetime.datetimeString]?.z[zoneId];
+      const zone = data?.data.datetimes[selectedDatetimeString]?.z[zoneId];
       const co2intensity = zone ? getCO2IntensityByMode(zone, mixMode) : undefined;
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
@@ -138,7 +138,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     map,
     data,
     getCo2colorScale,
-    selectedDatetime,
     mixMode,
     isLoadingMap,
     isSourceLoaded,
@@ -148,6 +147,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     isError,
     worldGeometries.features,
     theme.clickableFill,
+    selectedDatetimeString,
   ]);
 
   useEffect(() => {
