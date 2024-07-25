@@ -1,12 +1,10 @@
 import { max as d3Max } from 'd3-array';
-import { useEffect, useState } from 'react';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
   Maybe,
   ZoneDetail,
-  ZoneDetails,
   ZoneKey,
 } from 'types';
 import { Mode, modeOrderBarBreakdown } from 'utils/constants';
@@ -119,7 +117,7 @@ export const getDataBlockPositions = (
   const exchangeFlagX =
     LABEL_MAX_WIDTH - 4 * PADDING_X - DEFAULT_FLAG_SIZE - exchangeMax * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
-  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+  const exchangeY = productionY + productionHeight;
 
   return {
     productionHeight,
@@ -195,16 +193,20 @@ export const getExchangesToDisplay = (
   );
 };
 
-export const useHeaderHeight = () => {
-  const [headerHeight, setHeaderHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const headerElement = document.querySelector('header');
-    if (headerElement) {
-      const height = headerElement.offsetHeight;
-      setHeaderHeight(height * 1.1);
+export const hasNegativeDataValues = (
+  productionData: ProductionDataType[],
+  exchangeData: ExchangeDataType[]
+) => {
+  for (const d of productionData) {
+    if ((d.isStorage && (d.capacity ?? 0) > 0) || (d.storage ?? 0) > 0) {
+      return true;
     }
-  }, [window.innerWidth, window.innerHeight]);
+  }
+  for (const d of exchangeData) {
+    if (d.exchange < 0 || d.exchangeCapacityRange[0] < 0) {
+      return true;
+    }
+  }
 
-  return headerHeight;
+  return false;
 };
