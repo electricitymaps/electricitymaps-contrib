@@ -7,7 +7,7 @@ import { IndustryIcon } from 'icons/industryIcon';
 import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom, useAtomValue } from 'jotai';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiXMark } from 'react-icons/hi2';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
@@ -30,7 +30,9 @@ import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
+import CapacityLegend from './elements/CapacityLegend';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
+import { hasNegativeDataValues } from './utils';
 
 const X_PADDING = 20;
 
@@ -62,6 +64,13 @@ function BarBreakdownChart({
   const isHourly = useAtomValue(isHourlyAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
   const width = observerWidth + X_PADDING;
+
+  const graphUnit = useMemo(
+    () =>
+      currentZoneDetail &&
+      determineUnit(displayByEmissions, currentZoneDetail, mixMode, isHourly, t),
+    [displayByEmissions, currentZoneDetail, mixMode, isHourly, t]
+  );
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
@@ -121,6 +130,8 @@ function BarBreakdownChart({
     showCapacitySources || showPowerSources || showEmissionSources
   );
 
+  const hasNegativeValuesInData = hasNegativeDataValues(productionData, exchangeData);
+
   return (
     <div
       className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
@@ -129,9 +140,14 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
-        unit={determineUnit(displayByEmissions, currentZoneDetail, mixMode, isHourly, t)}
+        unit={graphUnit}
         estimationMethod={currentZoneDetail.estimationMethod}
       />
+      {!displayByEmissions && (
+        <CapacityLegend>
+          {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
+        </CapacityLegend>
+      )}
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div
@@ -178,6 +194,8 @@ function BarBreakdownChart({
           width={width}
           height={height}
           isMobile={false}
+          graphUnit={graphUnit}
+          hasNegativeValuesInData={hasNegativeValuesInData}
         />
       )}
       {showDataSourceAccordion && (

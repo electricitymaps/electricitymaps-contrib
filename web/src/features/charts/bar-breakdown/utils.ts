@@ -117,7 +117,7 @@ export const getDataBlockPositions = (
   const exchangeFlagX =
     LABEL_MAX_WIDTH - 4 * PADDING_X - DEFAULT_FLAG_SIZE - exchangeMax * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
-  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+  const exchangeY = productionY + productionHeight;
 
   return {
     productionHeight,
@@ -191,4 +191,22 @@ export const getExchangesToDisplay = (
   return uniqueExchangeKeys.filter(
     (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
   );
+};
+
+export const hasNegativeDataValues = (
+  productionData: ProductionDataType[],
+  exchangeData: ExchangeDataType[]
+) => {
+  for (const d of productionData) {
+    if ((d.isStorage && (d.capacity ?? 0) > 0) || (d.storage ?? 0) > 0) {
+      return true;
+    }
+  }
+  for (const d of exchangeData) {
+    if (d.exchange < 0 || d.exchangeCapacityRange[0] < 0) {
+      return true;
+    }
+  }
+
+  return false;
 };
