@@ -16,6 +16,9 @@
     "carbonintensity": "CO₂-intensitet",
     "lowcarbon": "Lav CO₂",
     "renewable": "Vedvarende",
+    "electricityproduction": "Produktion",
+    "electricityconsumption": "Forbrug",
+    "emissions": "Udledning",
     "by-source": {
       "emissions": "CO₂-udledning per kilde",
       "electricity-production": "Elproduktion per kilde",

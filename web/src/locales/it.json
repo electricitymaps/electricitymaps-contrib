@@ -47,6 +47,9 @@
     "carbonintensity": "Intensità di carbonio",
     "lowcarbon": "Basse emissioni",
     "renewable": "Rinnovabile",
+    "electricityproduction": "Produzione",
+    "electricityconsumption": "Consumo",
+    "emissions": "Emissione",
     "by-source": {
       "emissions": "Emissioni di carbonio per fonte",
       "electricity-production": "Produzione di elettricità per fonte",
