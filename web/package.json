@@ -45,6 +45,9 @@
   },
   "browserslist": [
     "defaults",
+    "safari 15.6",
+    "ios_saf 15.6",
+    "> 0.25%",
     "not ie 11",
     "not op_mini all"
   ],
@@ -150,6 +153,7 @@
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vitest/coverage-istanbul": "1.6.0",
     "autoprefixer": "10.4.19",
+    "browserslist-to-esbuild": "^2.1.1",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
     "cypress": "13.12.0",
