@@ -1,5 +1,4 @@
 import LoadingSpinner from 'components/LoadingSpinner';
-import { TimeDisplay } from 'components/TimeDisplay';
 import Logo from 'features/header/Logo';
 import { useAtom } from 'jotai';
 import { lazy, Suspense } from 'react';
@@ -89,7 +88,6 @@ function MobileHeader() {
   return (
     <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] shadow-md sm:hidden dark:bg-gray-900">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
-      <TimeDisplay className="mr-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300" />
     </div>
   );
 }

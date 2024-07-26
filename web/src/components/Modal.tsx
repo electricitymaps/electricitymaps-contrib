@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { HiXMark } from 'react-icons/hi2';
+import { X } from 'lucide-react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -40,7 +40,7 @@ export default function Modal({
             aria-label="Close"
             data-test-id="close-modal-button"
           >
-            <HiXMark size="18" />
+            <X size="18" />
           </Dialog.Close>
           <div
             className={fullWidth ? 'p-0' : 'px-2 py-3 sm:p-[25px_55px] md:px-2 md:py-4'}
