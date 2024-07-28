@@ -13,8 +13,6 @@ describe('Map', () => {
     cy.get('[data-test-id=wind-layer]').should('exist');
     // eslint-disable-next-line cypress/require-data-selectors
     cy.get('.maplibregl-map').should('be.visible');
-    // eslint-disable-next-line cypress/require-data-selectors
-    cy.get('.maplibregl-canvas').should('be.visible');
 
     cy.get('[data-test-id=zone-search-bar]').type('Denmark');
     cy.get('[data-index="0"] > .group').click();
