@@ -12,6 +12,7 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
+import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
 
@@ -61,54 +62,54 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   return children;
 }
 
-type CollapseButtonProps = {
-  isCollapsed: boolean;
-  onCollapse: () => void;
-};
-
-function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
+function CollapseButton() {
   const { t } = useTranslation();
+  const [leftPanelOpen, setLeftPanelOpen] = useAtom(leftPanelOpenAtom);
   return (
     <button
       data-test-id="left-panel-collapse-button"
-      className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 pl-1 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
-      }
-      onClick={onCollapse}
+      className={`pointer-events-auto absolute left-full top-2 z-10 ml-2 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-red-600 transition-all duration-500 ${
+        leftPanelOpen ? '' : '-translate-x-[calc(500px+0.5rem)]'
+      }`}
+      onClick={() => setLeftPanelOpen(!leftPanelOpen)}
       aria-label={
-        isCollapsed ? t('aria.label.showSidePanel') : t('aria.label.hideSidePanel')
+        leftPanelOpen ? t('aria.label.hideSidePanel') : t('aria.label.showSidePanel')
       }
     >
-      {isCollapsed ? <HiChevronRight /> : <HiChevronLeft />}
+      {leftPanelOpen ? <HiChevronLeft /> : <HiChevronRight />}
     </button>
   );
 }
 
 function MobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] shadow-md sm:hidden dark:bg-gray-900">
+    <div className="flex w-full items-center justify-between overflow-x-visible p-1 pt-[env(safe-area-inset-top)] shadow-md dark:bg-gray-900">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
     </div>
   );
 }
 
 function OuterPanel({ children }: { children: React.ReactNode }) {
-  const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
+  const [isOpen] = useAtom(leftPanelOpenAtom);
   const location = useLocation();
-
-  const onCollapse = () => setOpen(!isOpen);
+  const isMobile = useIsMobile();
 
   return (
-    <aside
-      data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 sm:flex sm:w-[calc(14vw_+_16rem)] dark:bg-gray-900 dark:[color-scheme:dark] ${
-        location.pathname === '/map' ? 'hidden' : ''
-      } ${isOpen ? '' : '-translate-x-full'}`}
-    >
-      <MobileHeader />
-      <section className="h-full w-full py-2 pr-0">{children}</section>
-      <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
-    </aside>
+    !(location.pathname === '/map' && isMobile) && (
+      <>
+        <div
+          data-test-id="left-panel"
+          className={`pointer-events-auto left-0 z-20 grow overflow-y-scroll bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] ${
+            location.pathname === '/map' && isMobile ? 'hidden' : ''
+          } ${isOpen ? '' : '-translate-x-[calc(500px+0.5rem)]'}
+          ${isMobile ? '' : 'rounded-2xl'}`}
+        >
+          {isMobile && <MobileHeader />}
+          <section className="h-full w-full py-2 pr-0">{children}</section>
+        </div>
+        <CollapseButton />
+      </>
+    )
   );
 }
 export default function LeftPanel() {

@@ -42,7 +42,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
       </Link>
 
       <div className="w-full overflow-hidden">
-        <div className="flex w-full  flex-row justify-between">
+        <div className="flex w-full flex-row justify-between">
           <div className="mb-0.5 flex  w-full  justify-between">
             <div className="flex w-full flex-row items-center pr-4 sm:pr-0 ">
               <CountryFlag

@@ -10,6 +10,7 @@ import {
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+import { useIsBiggerThanMobile } from 'utils/styling';
 
 import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
@@ -20,6 +21,7 @@ export default function TimeController({ className }: { className?: string }) {
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
+  const isBiggerThanMobile = useIsBiggerThanMobile();
 
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
@@ -75,10 +77,12 @@ export default function TimeController({ className }: { className?: string }) {
 
   return (
     <div className={className}>
-      <TimeHeader
-        // Hide the header on mobile as it is loaded directly into the BottomSheet header section
-        className="hidden sm:flex"
-      />
+      {
+        isBiggerThanMobile && (
+          <TimeHeader />
+        ) /* Hide the header on mobile as it is loaded directly into the BottomSheet header section */
+      }
+
       <TimeAverageToggle
         timeAverage={timeAverage}
         onToggleGroupClick={onToggleGroupClick}
