@@ -176,6 +176,12 @@
     }
   },
   "time-controller": {
+    "title": {
+      "hourly": "Timvis data för:",
+      "daily": "Dagsvis data för:",
+      "monthly": "Månadsvis data för:",
+      "yearly": "Årsvis data för:"
+    },
     "daily": "dagvis",
     "hourly": "timvis",
     "monthly": "månadsvis",
