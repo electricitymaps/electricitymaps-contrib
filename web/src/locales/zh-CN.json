@@ -24,12 +24,9 @@
   "country-panel": {
     "source": "来源",
     "carbonintensity": "碳强度",
-    "electricityproduction": "电力生产",
     "helpfrom": "得力于",
-    "emissions": "碳排放量",
     "lowcarbon": "低碳能源",
     "renewable": "可再生能源",
-    "electricityconsumption": "用电量",
     "noDataAtTimestamp": "所暂无可用数据",
     "noLiveData": "没有实时数据",
     "disabledPriceReasons": {

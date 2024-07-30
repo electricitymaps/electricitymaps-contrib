@@ -68,9 +68,6 @@
     "carbonintensity": "Kolintensitet",
     "lowcarbon": "Fossilfritt",
     "renewable": "Förnybart",
-    "electricityproduction": "Elproduktion",
-    "electricityconsumption": "Elkonsumtion",
-    "emissions": "Koldioxidutsläpp",
     "contribute": "Bidra på GitHub",
     "helpfrom": "Med hjälp från:",
     "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
@@ -91,12 +88,12 @@
     "aggregationDisabled": "Data är inte tillgänglig för den valda tidsperioden på grund av saknad detaljerad uppdelning. Försök med en bredare tidsperiod.",
     "now": "Nu",
     "by-source": {
-      "emissions": "Koldioxidutsläpp per källa",
-      "electricity-production": "Elproduktion per källa",
-      "electricity-consumption": "Elkonsumtion per källa",
-      "total-emissions": "Totala koldioxidutsläpp per källa",
-      "total-electricity-production": "Total elproduktion per källa",
-      "total-electricity-consumption": "Total ekonsumtion per källa"
+      "emissions": "Koldioxidutsläpp",
+      "electricity-production": "Elproduktion",
+      "electricity-consumption": "Elkonsumtion",
+      "total-emissions": "Totala koldioxidutsläpp",
+      "total-electricity-production": "Total elproduktion",
+      "total-electricity-consumption": "Total ekonsumtion"
     }
   },
   "feedback-card": {
