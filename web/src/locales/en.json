@@ -67,9 +67,9 @@
     "carbonintensity": "Carbon Intensity",
     "lowcarbon": "Low-carbon",
     "renewable": "Renewable",
-    "electricityproduction": "Electricity production",
-    "electricityconsumption": "Electricity consumption",
-    "emissions": "Carbon emissions",
+    "electricityproduction": "Production",
+    "electricityconsumption": "Consumption",
+    "emissions": "Emissions",
     "contribute": "Contribute on GitHub",
     "helpfrom": "With help from:",
     "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
@@ -92,12 +92,20 @@
     "fullyDisabled": "The data we have available for this zone is insufficient and therefore not shown. If you are aware of data sources for this area, please <a href=\"{{link}}\" target=\"_blank\">let us know</a>.",
     "now": "Now",
     "by-source": {
-      "emissions": "Carbon emissions by source",
-      "electricity-production": "Electricity production by source",
-      "electricity-consumption": "Electricity consumption by source",
-      "total-emissions": "Total carbon emissions by source",
-      "total-electricity-production": "Total electricity production by source",
-      "total-electricity-consumption": "Total electricity consumption by source"
+      "emissions": "Carbon emissions",
+      "electricity-production": "Electricity production",
+      "electricity-consumption": "Electricity consumption",
+      "total-emissions": "Total carbon emissions",
+      "total-electricity-production": "Total electricity production",
+      "total-electricity-consumption": "Total electricity consumption"
+    },
+    "graph-legends": {
+      "installed-capacity": "Installed capacity ",
+      "exchange-capacity": "Available exchange capacity ",
+      "exported": "Exported",
+      "imported": "Imported",
+      "stored": "Stored",
+      "produced": "Produced"
     }
   },
   "feedback-card": {
@@ -360,14 +368,15 @@
   "coal": "coal",
   "oil": "oil",
   "unknown": "unknown",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityStoredUsing": "is stored using",
+  "emissionsStoredUsing": "are stored using",
+  "electricityExportedTo": "is exported to",
+  "emissionsExportedTo": "are exported to",
+  "electricityImportedFrom": "is imported from",
+  "emissionsImportedFrom": "are imported from",
+  "electricityAvailableIn": "of electricity available in",
+  "emissionsAvailableIn": "of emissions from electricity available in",
+  "comesFrom": "comes from",
   "ofCO2eq": "of CO₂eq",
   "theMap": {
     "groupName": "The map",
@@ -920,10 +929,6 @@
     },
     "GR": {
       "zoneName": "Greece"
-    },
-    "GR-IS": {
-      "countryName": "Greece",
-      "zoneName": "Aegean Islands"
     },
     "GS": {
       "zoneName": "South Georgia and the South Sandwich Islands"

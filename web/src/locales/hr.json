@@ -33,9 +33,6 @@
     "carbonintensity": "Faktor emisije",
     "lowcarbon": "Niske emisije",
     "renewable": "Obnovljivi",
-    "electricityproduction": "Proizvodnja struje",
-    "electricityconsumption": "Upotreba struje",
-    "emissions": "Emisije",
     "helpfrom": "uz pomoć",
     "noDataAtTimestamp": "Podaci su trenutno nedostupni za odabrano vrijeme",
     "noLiveData": "Podaci uživo su trenutno nedostupni za odabrano područje",
@@ -98,14 +95,6 @@
   "coal": "ugljen",
   "oil": "naftna",
   "unknown": "nepoznata",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} energija čini <b>{{percentageUsage}} %</b> dostupne električne energije",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} energija čini <b>{{percentageUsage}} %</b> emisija električne energije",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} energija čini <b>{{percentageUsage}} %</b> pohranjene električne energije",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>:{{selectedLayerKey}} energija čini <b>{{percentageUsage}} %</b> emisija pohranjene električne energije",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> električne energije se izvozi u {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisija električne energije se izvozi u {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> električne energije se uvozi iz {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisija električne energije se uvozi iz {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Karta",
     "mapColors-question": "Što znače boje na karti?",
@@ -611,10 +600,6 @@
     },
     "GR": {
       "zoneName": "Grčka"
-    },
-    "GR-IS": {
-      "countryName": "Grčka",
-      "zoneName": "Egejski Otoci"
     },
     "GS": {
       "zoneName": "Južna Georgija i otočje Južni Sandwich"

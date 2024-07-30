@@ -1,9 +1,8 @@
-/* eslint-disable unicorn/no-null */
-/* eslint-disable react/display-name */
-import { scaleLinear } from 'd3-scale';
-import { stack, stackOffsetDiverging } from 'd3-shape';
+import { ScaleLinear, scaleLinear } from 'd3-scale';
+import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
-import TimeAxis from 'features/time/TimeAxis'; // TODO: Move to a shared folder
+import TimeAxis from 'features/time/TimeAxis';
+import { useHeaderHeight } from 'hooks/headerHeight';
 import { useAtom } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
 import { ZoneDetail } from 'types';
@@ -12,7 +11,6 @@ import { TimeAverages, timeAxisMapping } from 'utils/constants';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
-import { useHeaderHeight } from '../bar-breakdown/utils';
 import { getTimeScale } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
@@ -25,7 +23,15 @@ const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 26;
 const Y_AXIS_PADDING = 2;
 
-const getTotalValues = (layers: any) => {
+interface Layer {
+  key: string;
+  stroke: string;
+  fill: string | ((d: { data: AreaGraphElement }) => string);
+  markerFill: string | ((d: { data: AreaGraphElement }) => string);
+  datapoints: Series<AreaGraphElement, string>;
+}
+
+const getTotalValues = (layers: Layer[]): { min: number; max: number } => {
   // Use a single loop to find the min and max values of the datapoints
   let min = 0;
   let max = 0;
@@ -47,7 +53,10 @@ const getTotalValues = (layers: any) => {
   };
 };
 
-const getValueScale = (height: number, totalValues: { min: number; max: number }) =>
+const getValueScale = (
+  height: number,
+  totalValues: { min: number; max: number }
+): ScaleLinear<number, number> =>
   scaleLinear()
     .domain([Math.min(0, 1.1 * totalValues.min), Math.max(0, 1.1 * totalValues.max)])
     .range([height, Y_AXIS_PADDING]);
@@ -58,7 +67,7 @@ const getLayers = (
   layerFill: FillFunction,
   markerFill?: FillFunction,
   layerStroke?: (key: string) => string
-) => {
+): Layer[] => {
   if (!data || !data[0]) {
     return [];
   }
@@ -86,8 +95,11 @@ interface AreagraphProps {
   layerStroke?: (key: string) => string;
   layerFill: FillFunction;
   markerFill?: FillFunction;
-  markerUpdateHandler: any;
-  markerHideHandler: any;
+  markerUpdateHandler: (
+    position: { x: number; y: number },
+    dataPoint: AreaGraphElement
+  ) => void;
+  markerHideHandler: () => void;
   isMobile: boolean;
   isDisabled?: boolean;
   height: string;
@@ -169,7 +181,7 @@ function AreaGraph({
     [containerWidth, startTime, endTime]
   );
 
-  const [graphIndex, setGraphIndex] = useState(null);
+  const [graphIndex, setGraphIndex] = useState<number | null>(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(null);
 
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
@@ -193,7 +205,7 @@ function AreaGraph({
 
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
-    () => (timeIndex: any, layerIndex: any) => {
+    () => (timeIndex: number | null, layerIndex: number | null) => {
       setGraphIndex(timeIndex);
       if (layers.length <= 1) {
         // Select the first (and only) layer even when hovering over background
@@ -237,15 +249,17 @@ function AreaGraph({
           isDisabled ? 'pointer-events-none blur' : ''
         }`}
       >
-        <GraphBackground
-          timeScale={timeScale}
-          valueScale={valueScale}
-          datetimes={datetimes}
-          mouseMoveHandler={mouseMoveHandler}
-          mouseOutHandler={mouseOutHandler}
-          isMobile={isMobile}
-          svgNode={reference.current}
-        />
+        {timeScale && reference.current && (
+          <GraphBackground
+            timeScale={timeScale}
+            valueScale={valueScale}
+            datetimes={datetimes}
+            mouseMoveHandler={mouseMoveHandler}
+            mouseOutHandler={mouseOutHandler}
+            isMobile={isMobile}
+            svgNode={reference.current}
+          />
+        )}
         <AreaGraphLayers
           layers={layers}
           datetimes={datetimesWithNext}

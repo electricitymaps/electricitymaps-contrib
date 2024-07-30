@@ -47,17 +47,17 @@
     "carbonintensity": "Intensità di carbonio",
     "lowcarbon": "Basse emissioni",
     "renewable": "Rinnovabile",
-    "electricityproduction": "Produzione elettrica",
-    "electricityconsumption": "Consumo elettrico",
+    "electricityproduction": "Produzione",
+    "electricityconsumption": "Consumo",
+    "emissions": "Emissioni",
     "by-source": {
-      "emissions": "Emissioni di carbonio per fonte",
-      "electricity-production": "Produzione di elettricità per fonte",
-      "electricity-consumption": "Consumo di elettricità per fonte",
-      "total-emissions": "Emissioni totali di carbonio per fonte",
-      "total-electricity-production": "Produzione totale di elettricità per fonte",
-      "total-electricity-consumption": "Consumo totale di elettricità per fonte"
+      "emissions": "Emissioni di carbonio",
+      "electricity-production": "Produzione di elettricità",
+      "electricity-consumption": "Consumo di elettricità",
+      "total-emissions": "Emissioni totali di carbonio",
+      "total-electricity-production": "Produzione totale di elettricità",
+      "total-electricity-consumption": "Consumo totale di elettricità"
     },
-    "emissions": "Emissioni di carbonio",
     "helpfrom": "con l'aiuto di",
     "noDataAtTimestamp": "Dati temporaneamente non disponibili per l'ora selezionata",
     "noLiveData": "Dati in tempo reale temporaneamente non disponibili per quest'area",
@@ -149,14 +149,6 @@
   "coal": "Carbone",
   "oil": "Petrolio",
   "unknown": "Sconosciuto",
-  "electricityComesFrom": "Il <b>{{percentageUsage}} %</b> dell'elettricità di {{zoneFlag}} <b>{{zoneName}}</b> proviene dal/dalla {{selectedLayerKey}}",
-  "emissionsComeFrom": "Il <b>{{percentageUsage}} %</b> delle emissioni di CO₂ di {{zoneFlag}} <b>{{zoneName}}</b> proviene dal/dalla {{selectedLayerKey}}",
-  "electricityStoredUsing": "Il <b>{{percentageUsage}} %</b> dell'elettricità di {{zoneFlag}} <b>{{zoneName}}</b> è accumulato usando il/la {{selectedLayerKey}}",
-  "emissionsStoredUsing": "Il <b>{{percentageUsage}} %</b> delle emissioni di CO₂ di {{zoneFlag}} <b>{{zoneName}}</b> è accumulato usando il/la {{selectedLayerKey}}",
-  "electricityExportedTo": "Il <b>{{percentageUsage}} %</b> dell'elettricità di {{zoneFlag}} <b>{{zoneName}}</b> è esportata in {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "Il <b>{{percentageUsage}} %</b> delle emissioni di CO₂ di {{zoneFlag}} <b>{{zoneName}}</b> è esportata in {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "Il <b>{{percentageUsage}} %</b> dell'elettricità di {{zoneFlag}} <b>{{zoneName}}</b> è importato da {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "Il <b>{{percentageUsage}} %</b> delle emissioni di CO₂ di {{zoneFlag}} <b>{{zoneName}}</b> è importato da {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "di CO₂eq",
   "theMap": {
     "groupName": "La mappa",
@@ -697,10 +689,6 @@
     },
     "GR": {
       "zoneName": "Grecia"
-    },
-    "GR-IS": {
-      "countryName": "Grecia",
-      "zoneName": "Isole egee"
     },
     "GS": {
       "zoneName": "Georgia del Sud e Isole Sandwich Australi"

@@ -33,9 +33,6 @@
     "carbonintensity": "Ένταση Άνθρακα",
     "lowcarbon": "Χαμηλών εκπομπών άνθρακα",
     "renewable": "Ανανεώσιμες",
-    "electricityproduction": "Παραγωγή ηλεκτρικής ενέργειας",
-    "electricityconsumption": "Κατανάλωση ηλεκτρικής ενέργειας",
-    "emissions": "Εκπομπές άνθρακα",
     "helpfrom": "με συνεισφορά από",
     "noDataAtTimestamp": "Τα δεδομένα για την επιλεγμένη ώρα δεν είναι διαθέσιμα αυτή τη στιγμή",
     "noLiveData": "Τα ζωντανά δεδομένα για την περιοχή αυτή δεν είναι διαθέσιμα αυτή τη στιγμή",
@@ -101,14 +98,6 @@
   "coal": "άνθρακας",
   "oil": "πετρέλαιο",
   "unknown": "άγνωστη",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> προέρχεται από {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθενται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> προέρχεται από {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> αποθηκεύεται σε {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> αποθηκεύεται σε {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> εξάγεται στο/στη(ν) {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> εξάγεται στο/στη(ν) {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> εισάγεται από {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) {{zoneFlag}} <b>{{zoneName}}</b> εισάγεται από {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Ο χάρτης",
     "mapColors-question": "What do the colors on the map mean?",
@@ -616,10 +605,6 @@
     },
     "GR": {
       "zoneName": "Ελλάδα"
-    },
-    "GR-IS": {
-      "countryName": "Ελλάδα",
-      "zoneName": "Νησιά Αιγαίου Πελάγους"
     },
     "GS": {
       "zoneName": "South Georgia and the South Sandwich Islands"

@@ -1,9 +1,9 @@
 {
   "panel-initial-text": {
-    "thisproject": "Acest app este",
+    "thisproject": "Aceasta aplicatie este",
     "opensource": "Open Source",
     "see": "vezi",
-    "datasources": "surse de date",
+    "datasources": "sursele de informatie",
     "contribute": "Contribuie prin <a href=\"{{link}}\" target=\"_blank\">adăugarea teritoriului tău</a>"
   },
   "mobile-main-menu": {
@@ -33,9 +33,9 @@
     "carbonintensity": "Concentrația de dioxid de carbon",
     "lowcarbon": "Carbon redus",
     "renewable": "Energie regenerabilă",
-    "electricityproduction": "Producția de electricitate",
-    "electricityconsumption": "Consumul de electricitate",
-    "emissions": "Emisii de carbon",
+    "electricityproduction": "Producție",
+    "electricityconsumption": "Consum",
+    "emissions": "Emisii",
     "helpfrom": "cu ajutor de la",
     "noDataAtTimestamp": "Datele sunt indisponibile pentru perioada aleasă",
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",
@@ -107,14 +107,6 @@
   "coal": "cărbune",
   "oil": "petrol",
   "unknown": "necunoscută",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> provine din {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> din emisiile din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> provin din {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> este stocată folosind {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> din emisiile din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> sunt stocate folosind {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> este exportată în {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> din emisiile din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> sunt exportate în {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> este importată din {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> din emisiile din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> sunt importate din {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "de CO₂echivalent",
   "theMap": {
     "groupName": "Harta",
@@ -647,10 +639,6 @@
     },
     "GR": {
       "zoneName": "Greece"
-    },
-    "GR-IS": {
-      "countryName": "Greece",
-      "zoneName": "Aegean Islands"
     },
     "GS": {
       "zoneName": "South Georgia and the South Sandwich Islands"

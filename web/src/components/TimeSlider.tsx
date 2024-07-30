@@ -2,12 +2,12 @@ import * as SliderPrimitive from '@radix-ui/react-slider';
 import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { FaArrowsLeftRight, FaMoon, FaSun } from 'react-icons/fa6';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
 
@@ -17,23 +17,20 @@ export interface TimeSliderProps {
   selectedIndex?: number;
 }
 
-export const COLORS = {
-  light: {
-    day: 'rgba(229, 231, 235, 0.5)',
-    night: 'rgba(75, 85, 99, 0.5)',
-  },
-  dark: {
-    night: 'rgba(75, 85, 99, 0.5)',
-    day: 'rgba(156, 163, 175, 0.5)',
-  },
-};
+export enum COLORS {
+  LIGHT_DAY = 'rgba(229, 231, 235, 0.5)',
+  NIGHT = 'rgba(75, 85, 99, 0.5)',
+  DARK_DAY = 'rgba(156, 163, 175, 0.5)',
+}
 
 export const getTrackBackground = (
   isDarkModeEnabled: boolean,
   numberOfEntries: number,
   sets?: NightTimeSet[]
 ) => {
-  const colors = isDarkModeEnabled ? COLORS.dark : COLORS.light;
+  const colors = isDarkModeEnabled
+    ? { day: COLORS.DARK_DAY, night: COLORS.NIGHT }
+    : { day: COLORS.LIGHT_DAY, night: COLORS.NIGHT };
 
   if (!sets || sets.length === 0) {
     return colors.day;
@@ -153,8 +150,8 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 
 function TimeSlider(props: TimeSliderProps) {
   const zoneId = useGetZoneFromPath();
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const showNightTime = zoneId && timeAverage === TimeAverages.HOURLY;
+  const isHourly = useAtomValue(isHourlyAtom);
+  const showNightTime = zoneId && isHourly;
 
   return showNightTime ? (
     <TimeSliderWithNight {...props} />

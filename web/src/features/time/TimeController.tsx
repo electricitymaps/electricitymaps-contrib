@@ -2,13 +2,17 @@ import useGetState from 'api/getState';
 import Accordion from 'components/Accordion';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
-import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+import {
+  isHourlyAtom,
+  selectedDatetimeIndexAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 import { useIsBiggerThanMobile, useIsMobile } from 'utils/styling';
 
 import TimeAxis from './TimeAxis';
@@ -26,6 +30,7 @@ function InternalTimeController({ className }: { className?: string }) {
     timeControllerCollapsedAtom
   );
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
@@ -55,26 +60,32 @@ function InternalTimeController({ className }: { className?: string }) {
     }
   }, [data, datetimes, setSelectedDatetime]);
 
-  const onTimeSliderChange = (index: number) => {
-    // TODO: Does this work properly missing values?
-    if (!datetimes) {
-      return;
-    }
-    setSelectedDatetime({
-      datetime: datetimes[index],
-      index,
-    });
-  };
+  const onTimeSliderChange = useCallback(
+    (index: number) => {
+      // TODO: Does this work properly missing values?
+      if (!datetimes) {
+        return;
+      }
+      setSelectedDatetime({
+        datetime: datetimes[index],
+        index,
+      });
+    },
+    [datetimes, setSelectedDatetime]
+  );
 
-  const onToggleGroupClick = (timeAverage: TimeAverages) => {
-    // Set time slider to latest value before switching aggregate to avoid flickering
-    setSelectedDatetime({
-      datetime: selectedDatetime.datetime,
-      index: numberOfEntries,
-    });
-    setTimeAverage(timeAverage);
-    trackEvent('Time Aggregate Button Clicked', { timeAverage });
-  };
+  const onToggleGroupClick = useCallback(
+    (timeAverage: TimeAverages) => {
+      // Set time slider to latest value before switching aggregate to avoid flickering
+      setSelectedDatetime({
+        datetime: selectedDatetime.datetime,
+        index: numberOfEntries,
+      });
+      setTimeAverage(timeAverage);
+      trackEvent('Time Aggregate Button Clicked', { timeAverage });
+    },
+    [selectedDatetime.datetime, numberOfEntries, setSelectedDatetime, setTimeAverage]
+  );
 
   if (timeControllerCollapsed === null) {
     setTimeControllerCollapsed(isMobile);
@@ -104,7 +115,7 @@ function InternalTimeController({ className }: { className?: string }) {
         isLoading={isLoading}
         className="h-[22px] w-full overflow-visible"
         transform={`translate(12, 0)`}
-        isLiveDisplay={timeAverage === TimeAverages.HOURLY}
+        isLiveDisplay={isHourly}
         isGraph={false}
       />
     </div>

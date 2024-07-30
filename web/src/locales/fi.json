@@ -33,9 +33,6 @@
     "carbonintensity": "Hiili-intensiteetti",
     "lowcarbon": "Vähähiilinen",
     "renewable": "Uusiutuva",
-    "electricityproduction": "Sähkön tuotanto",
-    "electricityconsumption": "Sähkön kulutus",
-    "emissions": "Hiilidioksidipäästöt",
     "helpfrom": "heidän avustuksella",
     "noDataAtTimestamp": "Tiedot eivät ole väliaikaisesti käytettävissä valitulle ajankohdalle",
     "noLiveData": "Live-tiedot eivät ole väliaikaisesti käytettävissä tällä alueella",
@@ -99,14 +96,6 @@
   "coal": "hiili",
   "oil": "öljy",
   "unknown": "tuntematon",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä tulee {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä tulee {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä varastoidaan {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä varastoidaan {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä viedään {{selectedLayerKey}}",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä viedään {{selectedLayerKey}}",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä tuodaan {{selectedLayerKey}}",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä tuodaan {{selectedLayerKey}}",
   "theMap": {
     "groupName": "Kartta",
     "mapColors-question": "Mitä kartan värit tarkoittavat?",
@@ -610,10 +599,6 @@
     },
     "GR": {
       "zoneName": "Kreikka"
-    },
-    "GR-IS": {
-      "countryName": "Kreikka",
-      "zoneName": "Egeanmeren saaret"
     },
     "GS": {
       "zoneName": "Etelä-Georgia ja Eteläiset Sandwichsaaret"
