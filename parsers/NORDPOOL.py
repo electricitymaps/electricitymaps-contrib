@@ -70,7 +70,6 @@ INVERTED_ZONE_MAPPING = {value: key for key, value in ZONE_MAPPING.items()}
 
 
 def _generate_new_nordpool_token(session: Session | None = None) -> str:
-    global NORDPOOL_TOKEN_EXPIRATION
     session = session or Session()
     URL = "https://sts.nordpoolgroup.com/connect/token"
     username = get_token("EMAPS_NORDPOOL_USERNAME")
