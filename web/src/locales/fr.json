@@ -71,12 +71,12 @@
     "electricityconsumption": "Consommation",
     "emissions": "Émissions",
     "by-source": {
-      "emissions": "Émissions de carbone par source",
-      "electricity-production": "Production d'électricité par source",
-      "electricity-consumption": "Consommation d'électricité par source",
-      "total-emissions": "Émissions totales de carbone par source",
-      "total-electricity-production": "Production totale d'électricité par source",
-      "total-electricity-consumption": "Consommation totale d'électricité par source"
+      "emissions": "Émissions carbone",
+      "electricity-production": "Production d'électricité",
+      "electricity-consumption": "Consommation d'électricité",
+      "total-emissions": "Émissions totales de carbone",
+      "total-electricity-production": "Production totale d'électricité",
+      "total-electricity-consumption": "Consommation totale d'électricité"
     },
     "contribute": "Contribuez sur GitHub",
     "helpfrom": "avec l’aide de",
