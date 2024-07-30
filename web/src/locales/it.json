@@ -49,7 +49,7 @@
     "renewable": "Rinnovabile",
     "electricityproduction": "Produzione",
     "electricityconsumption": "Consumo",
-    "emissions": "Emissione",
+    "emissions": "Emissioni",
     "by-source": {
       "emissions": "Emissioni di carbonio per fonte",
       "electricity-production": "Produzione di elettricità per fonte",
