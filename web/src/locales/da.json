@@ -113,14 +113,6 @@
   "coal": "Kul",
   "oil": "Olie",
   "unknown": "Ukendt",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> lagres vha. {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> lagres vha. {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "af CO₂-ækvivalenter",
   "zoneShortName": {
     "AL": {

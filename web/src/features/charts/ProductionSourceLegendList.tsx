@@ -1,5 +1,5 @@
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
-import { HiXMark } from 'react-icons/hi2';
+import { X } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import { ElectricityModeType } from 'types';
 import { useIsMobile } from 'utils/styling';
@@ -49,7 +49,7 @@ function ProductionSourceTooltip({
           <ProductionSourceTooltipInner sources={sources} />
         </div>
         <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-white text-black shadow-md">
-          <HiXMark size="24" />
+          <X />
         </button>
       </>
     );
