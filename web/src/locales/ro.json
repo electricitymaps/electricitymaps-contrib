@@ -1,9 +1,9 @@
 {
   "panel-initial-text": {
-    "thisproject": "Acest app este",
+    "thisproject": "Aceasta aplicatie este",
     "opensource": "Open Source",
     "see": "vezi",
-    "datasources": "surse de date",
+    "datasources": "sursele de informatie",
     "contribute": "Contribuie prin <a href=\"{{link}}\" target=\"_blank\">adăugarea teritoriului tău</a>"
   },
   "mobile-main-menu": {
@@ -33,6 +33,9 @@
     "carbonintensity": "Concentrația de dioxid de carbon",
     "lowcarbon": "Carbon redus",
     "renewable": "Energie regenerabilă",
+    "electricityproduction": "Producție",
+    "electricityconsumption": "Consum",
+    "emissions": "Emisii",
     "helpfrom": "cu ajutor de la",
     "noDataAtTimestamp": "Datele sunt indisponibile pentru perioada aleasă",
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",
