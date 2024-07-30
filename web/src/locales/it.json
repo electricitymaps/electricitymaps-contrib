@@ -72,9 +72,6 @@
     "noParserInfo": "Non abbiamo ancora informazioni per quest'area.<br/> Vuoi aiutarci a sistemare questo problema? Puoi contribuire <a href=\"{{link}}\" target=\"_blank\">aggiungendo i dati dell'area</a>.",
     "now": "Ora"
   },
-  "time-controller": {
-    "title": "Mostra dati dal passato"
-  },
   "left-panel": {
     "zone-list-header-title": "Impatto climatico per area",
     "zone-list-header-subtitle": "Classificazione per intensità di carbonio dell'elettricità consumata (gCO₂eq/kWh)",

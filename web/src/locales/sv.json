@@ -176,7 +176,6 @@
     }
   },
   "time-controller": {
-    "title": "Visa historisk data",
     "daily": "dagvis",
     "hourly": "timvis",
     "monthly": "månadsvis",

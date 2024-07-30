@@ -36,7 +36,6 @@
     "now": "Nu"
   },
   "time-controller": {
-    "title": "Vis historiske data",
     "daily": "daglig",
     "hourly": "timevis",
     "monthly": "månedlig",
