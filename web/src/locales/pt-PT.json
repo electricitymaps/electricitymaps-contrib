@@ -67,9 +67,6 @@
     "carbonintensity": "Intensidade de emissão de carbono",
     "lowcarbon": "Baixo carbono",
     "renewable": "Renovável",
-    "electricityproduction": "Produção de eletricidade",
-    "electricityconsumption": "Consumo de eletricidade",
-    "emissions": "Emissões de carbono",
     "contribute": "Contribua no GitHub",
     "helpfrom": "com ajuda de",
     "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
@@ -90,12 +87,12 @@
     "aggregationDisabled": "Dados não estão disponíveis para o período selecionado. Experimente um periodo maior",
     "now": "Agora",
     "by-source": {
-      "emissions": "Emissões de carbono por fonte",
-      "electricity-production": "Produção de eletricidade por fonte",
-      "electricity-consumption": "Consumo de eletricidade por fonte",
-      "total-emissions": "Emissões totais de carbono por fonte",
-      "total-electricity-production": "Produção total de eletricidade por fonte",
-      "total-electricity-consumption": "Consumo total de eletricidade por fonte"
+      "emissions": "Emissões de carbono",
+      "electricity-production": "Produção de eletricidade",
+      "electricity-consumption": "Consumo de eletricidade",
+      "total-emissions": "Emissões totais de carbono",
+      "total-electricity-production": "Produção total de eletricidade",
+      "total-electricity-consumption": "Consumo total de eletricidade"
     }
   },
   "feedback-card": {
