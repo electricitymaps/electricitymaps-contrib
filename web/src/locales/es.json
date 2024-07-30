@@ -47,8 +47,9 @@
     "carbonintensity": "Intensidad de carbono",
     "lowcarbon": "Baja en emisiones",
     "renewable": "Renovables",
-    "electricityproduction": "Producción de electricidad",
-    "electricityconsumption": "Consumo de electricidad",
+    "electricityproduction": "Generación",
+    "electricityconsumption": "Consumo",
+    "emissions": "Emisiones de CO₂",
     "by-source": {
       "emissions": "Emisiones de CO₂",
       "electricity-production": "Generación de electricidad",
@@ -57,7 +58,6 @@
       "total-electricity-production": "Generación total de electricidad",
       "total-electricity-consumption": "Consumo total de electricidad"
     },
-    "emissions": "Emisiones de CO₂",
     "helpfrom": "con la ayuda de",
     "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
     "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta zona",
