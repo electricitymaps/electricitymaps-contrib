@@ -54,7 +54,7 @@
       "electricity-production": "Generación de electricidad",
       "electricity-consumption": "Consumo de electricidad",
       "total-emissions": "Emisiones totales de CO₂",
-      "total-electricity-production": "Producción total de electricidad",
+      "total-electricity-production": "Generación total de electricidad",
       "total-electricity-consumption": "Consumo total de electricidad"
     },
     "emissions": "Emisiones de CO₂",
