@@ -3,7 +3,7 @@ import type { GridState, ZoneKey } from 'types';
 import { SpatialAggregate } from 'utils/constants';
 import { getCO2IntensityByMode } from 'utils/helpers';
 
-import { getHasSubZones } from '../zone/util';
+import { getHasSubZones, isGenerationOnlyZone } from '../zone/util';
 import { ZoneRowType } from './ZoneList';
 
 function filterZonesBySpatialAggregation(
@@ -63,7 +63,8 @@ export const getRankedState = (
     .filter(
       (zone) =>
         Boolean(zone.co2intensity) &&
-        filterZonesBySpatialAggregation(zone.zoneId, spatialAggregation)
+        filterZonesBySpatialAggregation(zone.zoneId, spatialAggregation) &&
+        !isGenerationOnlyZone(zone.zoneId)
     );
 
   const orderedZones =

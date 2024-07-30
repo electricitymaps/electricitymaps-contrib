@@ -1,7 +1,8 @@
 import { TFunction } from 'i18next';
+import { X } from 'lucide-react';
 import { ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiCheck, HiChevronLeft, HiChevronRight, HiXMark } from 'react-icons/hi2';
+import { HiCheck, HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 
 export interface Page {
   headerImage: { pathname: string };
@@ -90,7 +91,7 @@ function Modal({
               onClick={onDismiss}
               data-test-id="close-modal"
             >
-              <HiXMark size="28" />
+              <X size="28" />
             </button>
           </div>
           <div

@@ -47,10 +47,10 @@ const aggregates = generateAggregates(worldFC, config.zones);
 
 worldFC.features = aggregates;
 
-// Rounds coordinates to 4 decimals
+// Rounds coordinates to 3 decimals
 coordEach(worldFC, (coord) => {
-  coord[0] = round(coord[0], 4);
-  coord[1] = round(coord[1], 4);
+  coord[0] = round(coord[0], 3);
+  coord[1] = round(coord[1], 3);
 });
 
 const { skipped } = generateTopojson(worldFC, GEO_CONFIG);

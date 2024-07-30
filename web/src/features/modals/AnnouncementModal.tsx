@@ -2,8 +2,8 @@ import { Link } from 'components/Link';
 import { SourceColorAnnouncementImage } from 'icons/announcementSourceColorImage';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
+import { X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { HiXMark } from 'react-icons/hi2';
 import { useSearchParams } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
@@ -89,7 +89,7 @@ export default function AnnouncementModal() {
         onClick={handleDismiss}
         className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border border-neutral-200 bg-zinc-50 text-black shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-white"
       >
-        <HiXMark size="24" />
+        <X />
       </button>
     </div>
   );

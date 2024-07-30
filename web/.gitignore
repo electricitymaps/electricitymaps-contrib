@@ -10,6 +10,7 @@ cypress/videos
 cypress/screenshots
 config
 public/client-version.json
+storybook-static
 .swc
 
 tsconfig.node.tsbuildinfo

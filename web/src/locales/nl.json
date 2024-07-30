@@ -83,14 +83,6 @@
   "coal": "steen-/bruinkool",
   "oil": "olie",
   "unknown": "onbekend",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> van de elektriciteit in {{zoneFlag}} <b>{{zoneName}}</b> is afkomstig van {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> van de uitstoot in {{zoneFlag}} <b>{{zoneName}}</b> is afkomstig van {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> van de elektriciteit in {{zoneFlag}} <b>{{zoneName}}</b> wordt opgeslagen dmv {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> van de uitstoot in {{zoneFlag}} <b>{{zoneName}}</b> wordt opgeslagen dmv {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> van de elektriciteit in {{zoneFlag}} <b>{{zoneName}}</b> wordt uitgevoerd naar {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> van de uitstoot in {{zoneFlag}} <b>{{zoneName}}</b> wordt uitgevoerd naar {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> van de elektriciteit in {{zoneFlag}} <b>{{zoneName}}</b> wordt ingevoerd vanuit {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> van de uitstoot in {{zoneFlag}} <b>{{zoneName}}</b> wordt ingevoerd vanuit {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AL": {
       "zoneName": "Albanië"

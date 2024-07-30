@@ -1,6 +1,7 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
-import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
+import HorizontalColorbar from 'components/legend/ColorBar';
+import { useCo2ColorScale } from 'hooks/theme';
 import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
@@ -31,6 +32,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     emissionFactorSourcesToProductionSources,
   } = useZoneDataSources();
   const { t } = useTranslation();
+  const co2ColorScale = useCo2ColorScale();
 
   if (isLoading || isError || !data) {
     return null;
@@ -50,7 +52,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
       <ChartTitle
         translationKey="country-history.carbonintensity"
         badgeText={badgeText}
-        icon={<CloudArrowUpIcon />}
         unit={'gCO₂eq / kWh'}
       />
       <AreaGraph
@@ -66,6 +67,9 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         selectedTimeAggregate={timeAverage}
         tooltip={CarbonChartTooltip}
       />
+      <div className="pb-1 pt-2">
+        <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
+      </div>
       <HorizontalDivider />
       <Accordion
         onOpen={() => {
