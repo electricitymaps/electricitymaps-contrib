@@ -211,9 +211,6 @@
     "light": "Dagmodus",
     "system": "Systeminnstillinger"
   },
-  "time-controller": {
-    "title": "Vis historiske data"
-  },
   "tooltips": {
     "aggregateInfo": "Bytt mellom sone og aggregert visning av land",
     "carbonintensity": "CO₂-intensitet",
