@@ -173,7 +173,6 @@
     "seeHistoricalData-answer": "Dostop do vseh naših zgodovinskih podatkov lahko kupite prek naše <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">zbirke podatkov</a>."
   },
   "methodology": {
-    "groupName": "Our methods",
     "carbonIntensity-question": "Kaj je \"ogljična intenzivnost\"?",
     "carbonIntensity-answer": "Intenzivnost ogljika je merilo emisij toplogrednih plinov, povezanih s proizvodnjo električne energije, ki jo porabite (v gCO₂eq/kWh – gramih ekvivalentov ogljikovega dioksida, izpuščenih na kilovatno uro porabljene električne energije). <br><br>Merimo emisije porabe električne energije (ne proizvodnje), kar pomeni vse emisije toplogrednih plinov (tako CO₂ kot drugih toplogrednih plinov, kot je metan), ki so šli v proizvodnjo električne energije, ki se porablja na območju, ob upoštevanju upoštevati ogljične intenzivnosti električne energije, uvožene z drugih območij. Uporabljamo pristop analize življenjskega cikla (LCA), kar pomeni, da upoštevamo emisije, ki izhajajo iz celotnega življenjskega cikla elektrarn (gradnja, proizvodnja goriva, obratovalne emisije in razgradnja).",
     "renewableLowCarbonDifference-question": "Kakšna je razlika med 'obnovljivo' in 'nizkoogljičnio' energijo?",
