@@ -36,6 +36,12 @@
     "now": "Nu"
   },
   "time-controller": {
+    "title": {
+      "hourly": "Timevis data for:",
+      "daily": "Daglig data for:",
+      "monthly": "Månedlig data for:",
+      "yearly": "Årlig data for:"
+    },
     "daily": "daglig",
     "hourly": "timevis",
     "monthly": "månedlig",
