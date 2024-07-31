@@ -123,6 +123,12 @@
     }
   },
   "time-controller": {
+    "title": {
+      "hourly": "Datos horarios para:",
+      "daily": "Datos diarios para:",
+      "monthly": "Datos mensuales para:",
+      "yearly": "Datos anuales para:"
+    },
     "daily": "diario",
     "hourly": "horario",
     "monthly": "mensual",
