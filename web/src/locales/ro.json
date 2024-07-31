@@ -45,15 +45,15 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "NOT CORRECT ",
-      "daily": "Daily data for:",
-      "monthly": "Monthly data for:",
-      "yearly": "Yearly data for:"
+      "hourly": "Date orare pentru:",
+      "daily": "Date zilnice pentru:",
+      "monthly": "Date lunare pentru:",
+      "yearly": "Date anuale pentru:"
     },
-    "daily": "daily",
-    "hourly": "hourly",
-    "monthly": "monthly",
-    "yearly": "yearly"
+    "daily": "pe zi",
+    "hourly": "pe oră",
+    "monthly": "pe luna",
+    "yearly": "pe an"
   },
   "left-panel": {
     "zone-list-header-title": "Impact asupra climei în funcție de zonă",
