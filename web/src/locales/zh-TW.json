@@ -149,7 +149,6 @@
     }
   },
   "time-controller": {
-    "title": "顯示過去資料",
     "daily": "每日",
     "hourly": "每小時",
     "monthly": "每月",

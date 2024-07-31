@@ -74,7 +74,16 @@
     "now": "Ora"
   },
   "time-controller": {
-    "title": "Mostra dati dal passato"
+    "title": {
+      "hourly": "Dati orari per:",
+      "daily": "Dati giornalieri per:",
+      "monthly": "Dati mensili per:",
+      "yearly": "Dati annuali per:"
+    },
+    "daily": "giornaliero",
+    "hourly": "orario",
+    "monthly": "mensile",
+    "yearly": "annuale"
   },
   "left-panel": {
     "zone-list-header-title": "Impatto climatico per area",

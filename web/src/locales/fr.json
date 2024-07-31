@@ -180,7 +180,12 @@
     }
   },
   "time-controller": {
-    "title": "Afficher les données passées",
+    "title": {
+      "hourly": "Données horaires pour :",
+      "daily": "Données quotidiennes pour :",
+      "monthly": "Données mensuelles pour :",
+      "yearly": "Données annuelles pour :"
+    },
     "daily": "quotidien",
     "hourly": "horaire",
     "monthly": "mensuel",

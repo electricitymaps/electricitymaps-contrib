@@ -198,7 +198,12 @@
     }
   },
   "time-controller": {
-    "title": "Display data from the past",
+    "title": {
+      "hourly": "Hourly data for:",
+      "daily": "Daily data for:",
+      "monthly": "Monthly data for:",
+      "yearly": "Yearly data for:"
+    },
     "daily": "daily",
     "hourly": "hourly",
     "monthly": "monthly",
