@@ -165,7 +165,6 @@ def _get_entsoe_production_data(
     )
     return ENTSOE_parsed_data
 
-
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("NL"),
     session: Session | None = None,
@@ -180,15 +179,39 @@ def fetch_production(
         zone_key, session, target_datetime, logger
     )
 
-    combined_data = ProductionBreakdownList.update_production_breakdowns(
-        production_breakdowns=ENTSOE_data,
-        new_production_breakdowns=NED_data,
-        logger=logger,
-        matching_timestamps_only=True,
-    )
+    non_matching_indices = set()
+    # Reallocate the unknown production from ENTSOE with solar production from NED
+    for idx, entsoe_event in enumerate(ENTSOE_data.events):
+        # O(n^2) but n is small. Change to binary search or dict if too slow
+        ned_events = [e for e in NED_data.events if e.datetime == entsoe_event.datetime]
 
-    return combined_data.to_list()
+        if len(ned_events) == 0:
+            non_matching_indices.add(idx)
+            continue
 
+        ned_event = ned_events[0]
+
+        unknown_production = entsoe_event.production.unknown or 0
+        solar_production = ned_event.production.solar or 0
+
+        # subtract solar production from unknown production
+        new_unknown_production = max(unknown_production - solar_production, 0)
+
+        entsoe_event.production.unknown = new_unknown_production
+        entsoe_event.production.solar = solar_production
+
+        entsoe_event.source += ", ned.nl"
+
+    if len(non_matching_indices) > 0:
+        logger.info(
+            f"Failed to match {len(non_matching_indices)} ENTSOE events with NED events"
+        )
+        ENTSOE_data.events = [
+            event for idx, event in enumerate(ENTSOE_data.events) if idx not in non_matching_indices
+        ]
+
+
+    return ENTSOE_data.to_list()
 
 def _get_entsoe_forecast_data(
     zone_key: ZoneKey,
