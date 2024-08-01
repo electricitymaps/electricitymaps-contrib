@@ -30,7 +30,7 @@ export default function NetExchangeChartTooltip({
     : Math.abs(round(netExchange / formattingFactor));
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[350px] dark:border dark:border-gray-700 dark:bg-gray-800">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}

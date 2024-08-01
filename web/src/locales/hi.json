@@ -47,9 +47,6 @@
     "carbonintensity": "कार्बन तीव्रता",
     "lowcarbon": "कम कार्बन",
     "renewable": "अक्षय",
-    "electricityproduction": "बिजली उत्पादन",
-    "electricityconsumption": "बिजली खर्च",
-    "emissions": "कार्बन उत्सर्जन",
     "helpfrom": "की मदद से",
     "noDataAtTimestamp": "चुने हुए समय के लिए जानकारी अभी उपलब्ध नहीं है",
     "noLiveData": "इस क्षेत्र के लिए इस वक्त की जानकारी अभी उपलब्ध नहीं है",
@@ -63,9 +60,6 @@
     "helpUs": "<a href=\"{{link}}\" target=\"_blank\">runtime logs(रनटाइम लॉग्स)</a> देखकर हमें समस्या पहचानने में मदद करें या data provider(डाटा प्रोवाइडर) से संपर्क करें।",
     "noParserInfo": "इस क्षेत्र के बारे में जानकारी उपलब्ध नहीं हैं।<br/> इस समस्या को सुलझाना चाहते हैं? आप अपना योगदान दे सकते हैं <a href=\"{{link}}\" target=\"_blank\">क्षेत्र के बारे में जानकारी देकर</a>।",
     "now": "अभी"
-  },
-  "time-controller": {
-    "title": "अतीत की जानकारी देखें"
   },
   "misc": {
     "dismiss": "ख़ारिज करें",
