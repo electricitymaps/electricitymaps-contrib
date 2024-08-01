@@ -2,6 +2,7 @@
 import eslintPlugin from '@nabla/vite-plugin-eslint';
 import { sentryVitePlugin, SentryVitePluginOptions } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react-swc';
+import browserslistToEsbuild from 'browserslist-to-esbuild';
 import { defineConfig } from 'vite';
 import { ManifestOptions, VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -149,6 +150,7 @@ export default defineConfig(({ mode }) => ({
   },
   server: { host: '127.0.0.1' },
   build: {
+    target: browserslistToEsbuild(),
     sourcemap: true,
     rollupOptions: {
       output: {
@@ -193,8 +195,9 @@ export default defineConfig(({ mode }) => ({
             ],
           }
     ),
-    ...(mode !== 'test'
-      ? [
+    ...(mode === 'test'
+      ? []
+      : [
           eslintPlugin(),
           VitePWA({
             registerType: 'prompt',
@@ -228,7 +231,6 @@ export default defineConfig(({ mode }) => ({
           }),
           // Used to upload sourcemaps to Sentry
           process.env.SENTRY_AUTH_TOKEN && sentryVitePlugin(sentryPluginOptions),
-        ]
-      : []),
+        ]),
   ],
 }));

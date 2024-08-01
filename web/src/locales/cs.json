@@ -33,17 +33,11 @@
     "carbonintensity": "Uhlíková intenzita",
     "lowcarbon": "Nízké emise",
     "renewable": "Obnovitelné",
-    "electricityproduction": "Produkce elektřiny",
-    "electricityconsumption": "Spotřeba elektřiny",
-    "emissions": "Uhlíkové emise",
     "helpfrom": "s pomocí od",
     "noDataAtTimestamp": "Data pro vybraný čas jsou dočasně nedostupná",
     "noLiveData": "Živá data pro tuto oblast jsou dočasně nedostupná",
     "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href=\"{{link}}\" target=\"_blank\">přidáním dat</a>.",
     "now": "Teď"
-  },
-  "time-controller": {
-    "title": "Zobrazit data za minulé období"
   },
   "left-panel": {
     "zone-list-header-title": "Dopad na klima podle oblasti",

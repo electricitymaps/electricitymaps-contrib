@@ -47,17 +47,17 @@
     "carbonintensity": "Intensidad de carbono",
     "lowcarbon": "Baja en emisiones",
     "renewable": "Renovables",
-    "electricityproduction": "Producción de electricidad",
-    "electricityconsumption": "Consumo de electricidad",
-    "by-source": {
-      "emissions": "Emisiones de CO₂ por fuente",
-      "electricity-production": "Producción de electricidad por fuente",
-      "electricity-consumption": "Consumo de electricidad por fuente",
-      "total-emissions": "Emisiones totales de CO₂ por fuente",
-      "total-electricity-production": "Producción total de electricidad por fuente",
-      "total-electricity-consumption": "Consumo total de electricidad por fuente"
-    },
+    "electricityproduction": "Generación",
+    "electricityconsumption": "Consumo",
     "emissions": "Emisiones de CO₂",
+    "by-source": {
+      "emissions": "Emisiones de CO₂",
+      "electricity-production": "Generación de electricidad",
+      "electricity-consumption": "Consumo de electricidad",
+      "total-emissions": "Emisiones totales de CO₂",
+      "total-electricity-production": "Generación total de electricidad",
+      "total-electricity-consumption": "Consumo total de electricidad"
+    },
     "helpfrom": "con la ayuda de",
     "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
     "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta zona",
@@ -123,7 +123,12 @@
     }
   },
   "time-controller": {
-    "title": "Mostrar datos del pasado",
+    "title": {
+      "hourly": "Datos horarios para:",
+      "daily": "Datos diarios para:",
+      "monthly": "Datos mensuales para:",
+      "yearly": "Datos anuales para:"
+    },
     "daily": "diario",
     "hourly": "horario",
     "monthly": "mensual",
