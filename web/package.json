@@ -93,7 +93,7 @@
     "react-i18next": "^15.0.0",
     "react-icons": "^5.2.1",
     "react-map-gl": "~7.1.7",
-    "react-router-dom": "6.25.1",
+    "react-router-dom": "6.26.0",
     "react-spinners": "^0.14.1",
     "react-spring-bottom-sheet": "3.5.0-alpha.0",
     "recharts": "^2.12.7",
