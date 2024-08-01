@@ -13,7 +13,7 @@ export default function RankingPanelAccordion() {
       title={t('info.title')}
       className="py-1"
       isCollapsedAtom={rankingPanelAccordionCollapsedAtom}
-      isOnTop
+      isTopExpanding
     >
       <InfoText />
       <div className="mt-4 flex flex-wrap gap-2 ">
