@@ -1,7 +1,7 @@
 import useGetState from 'api/getState';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   productionConsumptionAtom,
@@ -22,14 +22,14 @@ export default function RankingPanel(): ReactElement {
   const [searchTerm, setSearchTerm] = useState('');
   const electricityMode = useAtomValue(productionConsumptionAtom);
   const spatialAggregation = useAtomValue(spatialAggregateAtom);
-  const inputHandler = (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
+  const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
 
     if (typeof target?.value === 'string') {
       const lowerCase = target.value.toLowerCase();
       setSearchTerm(lowerCase);
     }
-  };
+  }, []);
 
   const { data } = useGetState();
   const rankedList = getRankedState(
@@ -40,15 +40,13 @@ export default function RankingPanel(): ReactElement {
     electricityMode,
     spatialAggregation
   );
-  const filteredList = rankedList.filter((zone) => {
-    if (zone.countryName?.toLowerCase().includes(searchTerm)) {
-      return true;
-    }
-    if (zone.zoneName?.toLowerCase().includes(searchTerm)) {
-      return true;
-    }
-    return false;
-  });
+
+  const filteredList = rankedList.filter(
+    (zone) =>
+      zone.countryName?.toLowerCase().includes(searchTerm) ||
+      zone.zoneName?.toLowerCase().includes(searchTerm) ||
+      zone.zoneId.toLowerCase().includes(searchTerm)
+  );
 
   return (
     <div className="flex max-h-[calc(100vh_-_230px)] flex-col py-5 pl-5 pr-1 ">
