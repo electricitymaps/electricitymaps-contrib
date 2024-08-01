@@ -49,9 +49,6 @@
     "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
     "search": "Szukaj"
   },
-  "time-controller": {
-    "title": "Wyświetl dane historyczne"
-  },
   "footer": {
     "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
     "here": "tutaj",

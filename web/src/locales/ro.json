@@ -43,6 +43,18 @@
     "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href=\"{{link}}\" target=\"_blank\">date pentru zonă</a>.",
     "now": "Acum"
   },
+  "time-controller": {
+    "title": {
+      "hourly": "Date orare pentru:",
+      "daily": "Date zilnice pentru:",
+      "monthly": "Date lunare pentru:",
+      "yearly": "Date anuale pentru:"
+    },
+    "daily": "pe zi",
+    "hourly": "pe oră",
+    "monthly": "pe luna",
+    "yearly": "pe an"
+  },
   "left-panel": {
     "zone-list-header-title": "Impact asupra climei în funcție de zonă",
     "zone-list-header-subtitle": "În ordinea concentrației de dioxid de carbon a electricității consumate (gCO₂eq/kWh)",

@@ -8,10 +8,8 @@ import { LegendItem } from './LegendItem';
 export default function SolarLegend(): ReactElement {
   const { t } = useTranslation();
   return (
-    <div>
-      <LegendItem label={t('legends.solarpotential')} unit="W/m²">
-        <HorizontalColorbar colorScale={solarColor} id="solar" ticksCount={5} />
-      </LegendItem>
-    </div>
+    <LegendItem label={t('legends.solarpotential')} unit="W/m²">
+      <HorizontalColorbar colorScale={solarColor} id="solar" ticksCount={5} />
+    </LegendItem>
   );
 }
