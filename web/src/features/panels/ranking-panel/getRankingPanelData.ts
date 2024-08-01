@@ -1,5 +1,5 @@
 import { getCountryName, getZoneName } from 'translation/translation';
-import type { GridState, ZoneKey } from 'types';
+import type { GridState, StateZoneData, ZoneKey } from 'types';
 import { SpatialAggregate } from 'utils/constants';
 import { getCO2IntensityByMode } from 'utils/helpers';
 
@@ -39,7 +39,7 @@ export const getRankedState = (
     return [];
   }
 
-  const zoneState = Object.entries(gridState.z);
+  const zoneState = Object.entries(gridState.z) as [keyof GridState, StateZoneData][];
 
   const orderedZones: ZoneRowType[] = [];
 
@@ -73,14 +73,14 @@ export const getRankedState = (
 
     const fillColor = co2intensity ? getCo2colorScale(co2intensity) : undefined;
     orderedZones.push({
-      zoneId: key as keyof GridState,
+      zoneId: key,
       color: fillColor,
       co2intensity,
       countryName: getCountryName(key),
       zoneName: getZoneName(key),
       ranking: ranking,
     });
-    ranking++; // Increment the ranking
+    ranking++; // Increment the ranking for the next zone.
   }
 
   return orderedZones;
