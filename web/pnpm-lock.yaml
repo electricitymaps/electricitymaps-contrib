@@ -111,8 +111,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       lucide-react:
-        specifier: ^0.414.0
-        version: 0.414.0(react@18.3.1)
+        specifier: ^0.418.0
+        version: 0.418.0(react@18.3.1)
       maplibre-gl:
         specifier: ^3.6.2
         version: 3.6.2
@@ -6304,8 +6304,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.414.0:
-    resolution: {integrity: sha512-Krr/MHg9AWoJc52qx8hyJ64X9++JNfS1wjaJviLM1EP/68VNB7Tv0VMldLCB1aUe6Ka9QxURPhQm/eB6cqOM3A==}
+  lucide-react@0.418.0:
+    resolution: {integrity: sha512-7TSd4CLfvT/U9504MSJ+e03pgAvqZQ5WbML4Pm+axjCbYBLTWuDu68bebFr/e51Z32uHMY7MO+SpaHX8NubveA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -16504,7 +16504,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.414.0(react@18.3.1):
+  lucide-react@0.418.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
