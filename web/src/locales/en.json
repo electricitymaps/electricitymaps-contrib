@@ -1,24 +1,31 @@
 {
-  "info-modal": {
-    "title": "Info",
-    "intro-text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">see data sources</a>) and powered by the community.",
-    "feedback-button": "Share feedback",
-    "github-button": "View our GitHub",
-    "twitter-button": "Share on Twitter",
-    "slack-button": "Join the Slack community",
-    "privacy-policy": "Privacy Policy",
-    "legal-notice": "Legal Notice"
+  "info": {
+    "title": "About the app",
+    "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
+    "open-source-text": "This app is <a href='{{link}}' target='_blank'>Open Source</a> and powered by the community.",
+    "version": "App version: {{version}}"
   },
   "settings-modal": {
     "title": "Settings"
   },
-  "panel-initial-text": {
-    "thisproject": "This app is",
-    "opensource": "Open Source",
-    "see": "see",
-    "datasources": "data sources",
-    "contribute": "Contribute by <a href=\"{{link}}\" target=\"_blank\">adding your territory</a>"
+  "ranking-panel": {
+    "title": "Climate Impact by Area",
+    "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
+    "search": "Search areas"
+  },
+  "button": {
+    "github": "Contribute on GitHub",
+    "twitter": "Follow us on Twitter",
+    "twitter-share": "Share on Twitter",
+    "slack": "Join our Slack community",
+    "linkedin": "Follow us on LinkedIn",
+    "linkedin-share": "Share on LinkedIn",
+    "facebook": "Follow us on Facebook",
+    "facebook-share": "Share on Facebook",
+    "feedback": "Share feedback",
+    "faq": "FAQ",
+    "privacy-policy": "Privacy Policy",
+    "legal-notice": "Legal Notice"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -70,7 +77,6 @@
     "electricityproduction": "Production",
     "electricityconsumption": "Consumption",
     "emissions": "Emissions",
-    "contribute": "Contribute on GitHub",
     "helpfrom": "With help from:",
     "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
     "noLiveData": "Live data is temporarily unavailable for this area",
@@ -198,16 +204,12 @@
       "monthly": "Monthly data for:",
       "yearly": "Yearly data for:"
     },
-    "daily": "Daily",
-    "hourly": "Hourly",
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "latest": "Latest"
+    "daily": "daily",
+    "hourly": "hourly",
+    "monthly": "monthly",
+    "yearly": "yearly"
   },
   "left-panel": {
-    "zone-list-header-title": "Climate Impact by Area",
-    "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas",
     "get-data": "See our commercial API offerings",
     "applied-methodologies": {
       "title": "Applied methodologies",

@@ -1,6 +1,6 @@
 import Accordion from 'components/Accordion';
+import { HorizontalDivider } from 'components/Divider';
 import HorizontalColorbar from 'components/legend/ColorBar';
-import Divider from 'features/panels/zone/Divider';
 import { useCo2ColorScale } from 'hooks/theme';
 import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
@@ -70,7 +70,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
       <div className="pb-1 pt-2">
         <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
       </div>
-      <Divider />
+      <HorizontalDivider />
       <Accordion
         onOpen={() => {
           trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });

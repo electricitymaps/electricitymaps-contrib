@@ -79,6 +79,12 @@
     "search": "Land oder Region suchen"
   },
   "time-controller": {
+    "title": {
+      "hourly": "Stündliche Daten für:",
+      "daily": "Tägliche Daten für:",
+      "monthly": "Monatliche Daten für:",
+      "yearly": "Jährliche Daten für:"
+    },
     "daily": "täglich",
     "hourly": "stündlich",
     "monthly": "monatlich",

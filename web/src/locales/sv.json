@@ -1,12 +1,13 @@
 {
-  "info-modal": {
-    "title": "Info",
+  "info": {
     "intro-text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
-    "open-source-text": "Den här appen är <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
-    "feedback-button": "Ge återkoppling",
-    "github-button": "Se vår GitHub",
-    "twitter-button": "Dela på Twitter",
-    "slack-button": "Gå med i Slack-gemenskapen",
+    "open-source-text": "Den här appen har <a href='{{link}}' target='_blank'>Öppen Källkod</a> och drivs av en gemenskap."
+  },
+  "button": {
+    "feedback": "Ge återkoppling",
+    "github": "Se vår GitHub",
+    "twitter": "Dela på Twitter",
+    "slack": "Gå med i Slack-gemenskapen",
     "privacy-policy": "Integritetspolicy",
     "legal-notice": "Rättsligt meddelande"
   },
@@ -176,6 +177,12 @@
     }
   },
   "time-controller": {
+    "title": {
+      "hourly": "Timvis data för:",
+      "daily": "Dagsvis data för:",
+      "monthly": "Månadsvis data för:",
+      "yearly": "Årsvis data för:"
+    },
     "daily": "dagvis",
     "hourly": "timvis",
     "monthly": "månadsvis",

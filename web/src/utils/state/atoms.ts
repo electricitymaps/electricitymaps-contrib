@@ -76,3 +76,8 @@ export const dataSourcesCollapsedEmission = atom<boolean | null>(true);
 export const userLocationAtom = atom(undefined);
 
 export const hasSeenSurveyCardAtom = atomWithStorage('hasSeenSurveyCard', false);
+
+export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
+  'rankingPanelAccordionCollapsed',
+  false
+);

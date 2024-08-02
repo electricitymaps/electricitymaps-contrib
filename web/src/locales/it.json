@@ -1,12 +1,13 @@
 {
-  "info-modal": {
-    "title": "Info",
+  "info": {
     "intro-text": "L'app Electricity Maps fornisce statistiche in tempo reale su web e mobile per cittadini, esperti di energia, ONG e decisori politici promuovendo una comprensione più profonda delle sfide della transizione energetica.",
-    "open-source-text": "Questa app è <a href=\"{{link}}\" target=\"_blank\">Open Source </a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">vedi le fonti dei dati</a>) ed alimentata dalla community.",
-    "feedback-button": "Condividi un feedback",
-    "github-button": "Visualizza il nostro GitHub",
-    "twitter-button": "Condividi su Twitter",
-    "slack-button": "Unisciti alla community Slack",
+    "open-source-text": "Questa app è <a href='{{link}}' target='_blank'>Open Source</a> ed alimentata dalla community."
+  },
+  "button": {
+    "feedback": "Condividi un feedback",
+    "github": "Visualizza il nostro GitHub",
+    "twitter": "Condividi su Twitter",
+    "slack": "Unisciti alla community Slack",
     "privacy-policy": "Politica Privacy",
     "legal-notice": "Nota Legale"
   },
@@ -71,6 +72,18 @@
     "helpUs": "Aiutaci ad identificare il problema dando un'occhiata ai <a href=\"{{link}}\" target=\"_blank\">log di esecuzione</a> o contatta il fornitore dei dati.",
     "noParserInfo": "Non abbiamo ancora informazioni per quest'area.<br/> Vuoi aiutarci a sistemare questo problema? Puoi contribuire <a href=\"{{link}}\" target=\"_blank\">aggiungendo i dati dell'area</a>.",
     "now": "Ora"
+  },
+  "time-controller": {
+    "title": {
+      "hourly": "Dati orari per:",
+      "daily": "Dati giornalieri per:",
+      "monthly": "Dati mensili per:",
+      "yearly": "Dati annuali per:"
+    },
+    "daily": "giornaliero",
+    "hourly": "orario",
+    "monthly": "mensile",
+    "yearly": "annuale"
   },
   "left-panel": {
     "zone-list-header-title": "Impatto climatico per area",
