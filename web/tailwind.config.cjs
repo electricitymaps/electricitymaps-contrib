@@ -11,6 +11,14 @@ const config = {
   darkMode: 'class',
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            '--tw-prose-links': colors.emerald[800],
+            '--tw-prose-invert-links': colors.emerald[500],
+          },
+        },
+      },
       screens: {
         xs: '475px',
       },

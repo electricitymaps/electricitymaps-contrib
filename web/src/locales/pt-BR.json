@@ -1735,14 +1735,15 @@
   },
   "windDataError": "Dados eólicos estão indisponíveis",
   "solarDataError": "Dados solares estão indisponíveis",
-  "info-modal": {
-    "title": "Info",
+  "info": {
     "intro-text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no celular para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios de transição de energia.",
-    "open-source-text": "Esse aplicativo é <a href=\"{{link}}\" target=\"_blank\">de código aberto</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">veja fontes de dados</a>) e apoiado pela comunidade.",
-    "feedback-button": "Compartilhar Feedback",
-    "github-button": "Ver nosso GitHub",
-    "twitter-button": "Compartilhar no Twitter",
-    "slack-button": "Entrar na comunidade do Slack",
+    "open-source-text": "Esse aplicativo é <a href='{{link}}' target='_blank'>de código aberto</a> e apoiado pela comunidade."
+  },
+  "button": {
+    "feedback": "Compartilhar Feedback",
+    "github": "Ver nosso GitHub",
+    "twitter": "Compartilhar no Twitter",
+    "slack": "Entrar na comunidade do Slack",
     "privacy-policy": "Política de Privacidade",
     "legal-notice": "Aviso Legal"
   },
