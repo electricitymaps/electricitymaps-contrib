@@ -188,7 +188,7 @@ def combine_production_data(entsoe_data, ned_data, logger):
         entsoe_event.production.unknown = new_unknown_production
         entsoe_event.production.solar = solar_production
 
-        entsoe_event.source += ", ned.nl"
+        entsoe_event.source += "," + ned_event.source
 
     if len(non_matching_indices) > 0:
         logger.info(
