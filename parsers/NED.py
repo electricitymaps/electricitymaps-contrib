@@ -166,25 +166,12 @@ def _get_entsoe_production_data(
     return ENTSOE_parsed_data
 
 
-def fetch_production(
-    zone_key: ZoneKey = ZoneKey("NL"),
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    session = session or Session()
-    target_datetime = target_datetime or datetime.now(timezone.utc)
-    json_data = call_api(target_datetime)
-    NED_data = format_data(json_data, logger)
-    ENTSOE_data = _get_entsoe_production_data(
-        zone_key, session, target_datetime, logger
-    )
-
+def combine_production_data(entsoe_data, ned_data, logger):
     non_matching_indices = set()
     # Reallocate the unknown production from ENTSOE with solar production from NED
-    for idx, entsoe_event in enumerate(ENTSOE_data.events):
+    for idx, entsoe_event in enumerate(entsoe_data.events):
         # O(n^2) but n is small. Change to binary search or dict if too slow
-        ned_events = [e for e in NED_data.events if e.datetime == entsoe_event.datetime]
+        ned_events = [e for e in ned_data.events if e.datetime == entsoe_event.datetime]
 
         if len(ned_events) == 0:
             non_matching_indices.add(idx)
@@ -207,13 +194,32 @@ def fetch_production(
         logger.info(
             f"Failed to match {len(non_matching_indices)} ENTSOE events with NED events"
         )
-        ENTSOE_data.events = [
+        entsoe_data.events = [
             event
-            for idx, event in enumerate(ENTSOE_data.events)
+            for idx, event in enumerate(entsoe_data.events)
             if idx not in non_matching_indices
         ]
 
-    return ENTSOE_data.to_list()
+    return entsoe_data
+
+
+def fetch_production(
+    zone_key: ZoneKey = ZoneKey("NL"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    session = session or Session()
+    target_datetime = target_datetime or datetime.now(timezone.utc)
+    json_data = call_api(target_datetime)
+    NED_data = format_data(json_data, logger)
+    ENTSOE_data = _get_entsoe_production_data(
+        zone_key, session, target_datetime, logger
+    )
+
+    combined_data = combine_production_data(ENTSOE_data, NED_data, logger)
+
+    return combined_data.to_list()
 
 
 def _get_entsoe_forecast_data(
@@ -266,10 +272,6 @@ def fetch_production_forecast(
     NED_data = format_data(json_data, logger, forecast=True)
     ENTSOE_data = _get_entsoe_forecast_data(zone_key, session, target_datetime, logger)
 
-    combined_data = ProductionBreakdownList.update_production_breakdowns(
-        production_breakdowns=ENTSOE_data,
-        new_production_breakdowns=NED_data,
-        logger=logger,
-        matching_timestamps_only=True,
-    )
+    combined_data = combine_production_data(ENTSOE_data, NED_data, logger)
+
     return combined_data.to_list()
