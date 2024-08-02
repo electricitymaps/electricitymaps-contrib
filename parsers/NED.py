@@ -272,6 +272,11 @@ def fetch_production_forecast(
     NED_data = format_data(json_data, logger, forecast=True)
     ENTSOE_data = _get_entsoe_forecast_data(zone_key, session, target_datetime, logger)
 
-    combined_data = combine_production_data(ENTSOE_data, NED_data, logger)
+    combined_data = ProductionBreakdownList.update_production_breakdowns(
+        production_breakdowns=ENTSOE_data,
+        new_production_breakdowns=NED_data,
+        logger=logger,
+        matching_timestamps_only=True,
+    )
 
     return combined_data.to_list()
