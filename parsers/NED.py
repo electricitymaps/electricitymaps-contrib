@@ -165,6 +165,7 @@ def _get_entsoe_production_data(
     )
     return ENTSOE_parsed_data
 
+
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("NL"),
     session: Session | None = None,
@@ -207,11 +208,13 @@ def fetch_production(
             f"Failed to match {len(non_matching_indices)} ENTSOE events with NED events"
         )
         ENTSOE_data.events = [
-            event for idx, event in enumerate(ENTSOE_data.events) if idx not in non_matching_indices
+            event
+            for idx, event in enumerate(ENTSOE_data.events)
+            if idx not in non_matching_indices
         ]
 
-
     return ENTSOE_data.to_list()
+
 
 def _get_entsoe_forecast_data(
     zone_key: ZoneKey,
