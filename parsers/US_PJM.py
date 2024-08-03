@@ -106,8 +106,6 @@ def fetch_consumption_forecast_7_days(
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-    if not session:
-        session = Session()
 
     # startRow must be set if forecast_area is set.
     # RTO_COMBINED is area for whole PJM zone.
@@ -139,9 +137,9 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """uses PJM API to get generation  by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
+    """uses PJM API to get generation by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
+        target_datetime = datetime.now(TIMEZONE)
 
     params = {
         "download": True,
