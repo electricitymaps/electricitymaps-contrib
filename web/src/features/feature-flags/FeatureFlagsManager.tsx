@@ -75,7 +75,7 @@ export default function FeatureFlagsManager() {
   }
 
   return (
-    <div className="pointer-events-auto invisible flex w-[224px] flex-col rounded bg-white/90 px-4 py-4 shadow-lg backdrop-blur-sm sm:visible dark:bg-gray-800">
+    <div className="pointer-events-auto invisible flex w-[224px] flex-col rounded bg-white/90 px-4 py-4 shadow-lg backdrop-blur-sm dark:bg-gray-800 sm:visible">
       <Content features={features} />
     </div>
   );

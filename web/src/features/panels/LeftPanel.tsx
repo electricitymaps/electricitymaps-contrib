@@ -86,7 +86,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
 
 function MobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] shadow-md sm:hidden dark:bg-gray-900">
+    <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] shadow-md dark:bg-gray-900 sm:hidden">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
     </div>
   );
@@ -101,12 +101,12 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <aside
       data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 sm:flex sm:w-[calc(14vw_+_16rem)] dark:bg-gray-900 dark:[color-scheme:dark] ${
+      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
         location.pathname === '/map' ? 'hidden' : ''
       } ${isOpen ? '' : '-translate-x-full'}`}
     >
       <MobileHeader />
-      <section className="h-full w-full py-2 pr-0">{children}</section>
+      <section className="h-full w-full">{children}</section>
       <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
     </aside>
   );
