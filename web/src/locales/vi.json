@@ -39,9 +39,9 @@
     "noParserInfo": "Chúng tôi vẫn chưa có thông tin cho khu vực này.<br/> Want to help fix this? You can contribute by <a href=\"{{link}}\" target=\"_blank\">adding area data</a>.",
     "now": "Hiện tại"
   },
-  "left-panel": {
-    "zone-list-header-title": "Ảnh hưởng tới thời tiếtClimate Impact by Area",
-    "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Ảnh hưởng tới thời tiếtClimate Impact by Area",
+    "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
     "search": "Tìm khu vực"
   },
   "footer": {

@@ -1,6 +1,6 @@
 {
   "info": {
-    "intro-text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda."
+    "text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda."
   },
   "button": {
     "feedback": "Deli povratne informacije",
@@ -69,9 +69,9 @@
     "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href=\"{{link}}\" target=\"_blank\">dodate območje podatki</a>.",
     "now": "Zdaj"
   },
-  "left-panel": {
-    "zone-list-header-title": "Vpliv na podnebje glede na območje",
-    "zone-list-header-subtitle": "Razvrščeno glede na ogljično intenzivnost porabljene električne energije (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Vpliv na podnebje glede na območje",
+    "subtitle": "Razvrščeno glede na ogljično intenzivnost porabljene električne energije (gCO₂eq/kWh)",
     "search": "Območja iskanja"
   },
   "footer": {

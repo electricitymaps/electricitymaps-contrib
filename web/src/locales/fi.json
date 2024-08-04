@@ -39,9 +39,9 @@
     "noParserInfo": "Meillä ei ole vielä tietoa tästä alueesta.<br/> Haluatko auttaa tämän korjaamisessa? Voit avustaa <a href=\"{{link}}\" target=\"_blank\">lisäämällä alueen tiedot</a>.",
     "now": "Tällä hetkellä"
   },
-  "left-panel": {
-    "zone-list-header-title": "Ilmastovaikutukset alueittain",
-    "zone-list-header-subtitle": "Sijoitus kulutetun sähkön hiili-intensiteetin mukaan (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Ilmastovaikutukset alueittain",
+    "subtitle": "Sijoitus kulutetun sähkön hiili-intensiteetin mukaan (gCO₂eq/kWh)",
     "search": "Etsi alueita"
   },
   "footer": {
