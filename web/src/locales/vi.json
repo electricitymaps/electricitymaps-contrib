@@ -24,7 +24,6 @@
     "carbonintensity": "Mật độ Cacbon",
     "lowcarbon": "Mật độ Cacbon thấp",
     "renewable": "Năng lượng tái tạo",
-    "helpfrom": "with help from",
     "noDataAtTimestamp": "Dữ liệu đang tạm thời chưa có trong khoảng thời gian được chọn",
     "now": "Hiện tại"
   },
@@ -32,8 +31,7 @@
     "search": "Tìm khu vực"
   },
   "legends": {
-    "colorblindmode": "chế độ mù màu",
-    "carbonintensity": "Carbon intensity"
+    "colorblindmode": "chế độ mù màu"
   },
   "misc": {
     "faq": "Các câu hỏi thường gặp",
