@@ -142,6 +142,8 @@ def fetch_production(
     """uses PJM API to get generation by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
     if target_datetime is None:
         target_datetime = datetime.now(TIMEZONE)
+    else:
+        target_datetime = target_datetime.astimezone(TIMEZONE)
 
     if not session:
         session = Session()
