@@ -16,7 +16,7 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 1814.7
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 1810.7
   gas:
@@ -61,7 +61,7 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 555.7
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 763.6
 comment: Northwestern Energy (Nwmt)
