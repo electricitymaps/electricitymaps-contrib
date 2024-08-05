@@ -1,12 +1,12 @@
 {
-  "info-modal": {
-    "title": "Info",
-    "intro-text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda.",
-    "open-source-text": "Ta aplikacija je <a href=\"{{link}}\" target=\"_blank\">odprtokodna</a> (<a href=\"{{sourcesLink}}\" target= '_blank'>glej vire podatkov</a>) .",
-    "feedback-button": "Deli povratne informacije",
-    "github-button": "Oglejte si naš GitHub",
-    "twitter-button": "Deli na Twitterju",
-    "slack-button": "Pridruži se skupnosti Slack",
+  "info": {
+    "intro-text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda."
+  },
+  "button": {
+    "feedback": "Deli povratne informacije",
+    "github": "Oglejte si naš GitHub",
+    "twitter": "Deli na Twitterju",
+    "slack": "Pridruži se skupnosti Slack",
     "privacy-policy": "Politika zasebnosti",
     "legal-notice": "Pravno obvestilo"
   },
@@ -47,17 +47,14 @@
     "carbonintensity": "Intenzivnost ogljika",
     "lowcarbon": "nizkoogljična",
     "renewable": "obnovljiva",
-    "electricityproduction": "Proizvodnja električne energije",
-    "electricityconsumption": "Poraba električne energije",
     "by-source": {
-      "emissions": "Izpusti ogljika po virih",
-      "electricity-production": "Proizvodnja električne energije po virih",
-      "electricity-consumption": "Poraba električne energije po virih",
-      "total-emissions": "Skupni izpusti ogljika po virih",
-      "total-electricity-production": "Skupna proizvodnja električne energije po virih",
-      "total-electricity-consumption": "Skupna poraba električne energije po virih"
+      "emissions": "Izpusti ogljika",
+      "electricity-production": "Proizvodnja električne energije",
+      "electricity-consumption": "Poraba električne energije",
+      "total-emissions": "Skupni izpusti ogljika",
+      "total-electricity-production": "Skupna proizvodnja električne energije",
+      "total-electricity-consumption": "Skupna poraba električne energije"
     },
-    "emissions": "ogljične emisije",
     "helpfrom": "s pomočjo od",
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
     "noLiveData": "Podatki v živo za to območje začasno niso na voljo",
@@ -71,9 +68,6 @@
     "helpUs": "Pomagajte nam prepoznati težavo tako, da si ogledate <a href=\"{{link}}\" target=\"_blank\">dnevnike izvajalnega časa</a> ali se obrnete na ponudnika podatkov.",
     "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href=\"{{link}}\" target=\"_blank\">dodate območje podatki</a>.",
     "now": "Zdaj"
-  },
-  "time-controller": {
-    "title": "Prikaži podatke iz preteklosti"
   },
   "left-panel": {
     "zone-list-header-title": "Vpliv na podnebje glede na območje",

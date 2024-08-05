@@ -1,12 +1,13 @@
 {
-  "info-modal": {
-    "title": "Info",
+  "info": {
     "intro-text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
-    "open-source-text": "Cette application est <a href=\\\"{{link}}\\\" target=\\\"_blank\\\">Open Source</a> (<a href=\\\"{{sourcesLink}}\\\" target=\\\"_blank\\\">voir les sources de données</a>) et alimentée par la communauté.",
-    "feedback-button": "Partagez vos commentaires",
-    "github-button": "Visiter notre Github",
-    "twitter-button": "Partager sur Twitter",
-    "slack-button": "Rejoindre la communauté Slack",
+    "open-source-text": "Cette application est <a href='{{link}}' target='_blank'>Open Source</a> et alimentée par la communauté."
+  },
+  "button": {
+    "feedback": "Partagez vos commentaires",
+    "github": "Visiter notre Github",
+    "twitter": "Partager sur Twitter",
+    "slack": "Rejoindre la communauté Slack",
     "privacy-policy": "Politique de confidentialité",
     "legal-notice": "Informations légales"
   },
@@ -67,17 +68,25 @@
     "renewable": "Renouvelable",
     "carbonintensity": "Intensité carbone",
     "lowcarbon": "Bas carbone",
-    "electricityproduction": "Production électrique",
-    "electricityconsumption": "Consommation électrique",
-    "by-source": {
-      "emissions": "Émissions de carbone par source",
-      "electricity-production": "Production d'électricité par source",
-      "electricity-consumption": "Consommation d'électricité par source",
-      "total-emissions": "Émissions totales de carbone par source",
-      "total-electricity-production": "Production totale d'électricité par source",
-      "total-electricity-consumption": "Consommation totale d'électricité par source"
-    },
+    "electricityproduction": "Production",
+    "electricityconsumption": "Consommation",
     "emissions": "Émissions",
+    "by-source": {
+      "emissions": "Émissions carbone",
+      "electricity-production": "Production d'électricité",
+      "electricity-consumption": "Consommation d'électricité",
+      "total-emissions": "Émissions totales de carbone",
+      "total-electricity-production": "Production totale d'électricité",
+      "total-electricity-consumption": "Consommation totale d'électricité"
+    },
+    "graph-legends": {
+      "installed-capacity": "Capacité installée ",
+      "exchange-capacity": "Capacité d'échange disponible ",
+      "exported": "Exportée",
+      "imported": "Importée",
+      "stored": "Stockée",
+      "produced": "Produite"
+    },
     "contribute": "Contribuez sur GitHub",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
@@ -127,11 +136,12 @@
     "outage-details": "Voir les détails",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "body": "Les données pour cette zone sont estimées à l'aide d'une combinaison de prévisions de production internes et externes et de moyennes de Time Slicer. Cela vise à fournir une représentation plus précise que la moyenne de Time Slicer seule, mais les données peuvent toujours être sujettes à des inexactitudes. Les données seront mises à jour dès que les données en temps réel seront disponibles.",
-      "pill": "Estimé",
+      "pill": "Estimées",
       "title": "Les données sont estimées"
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Les données sont temporaires",
+      "title": "Les données sont préliminaires",
+      "pill": "Préliminaires",
       "body": "Le fournisseur de données n'a encore rien reporté pour cette heure. Les valeurs affichées ont été estimées à partir de données historiques et seront mises à jour dès que les données réelles seront disponibles. Veuillez noter que les valeurs estimées ne tiennent pas toujours compte de la météo en temps réel."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
@@ -179,7 +189,12 @@
     }
   },
   "time-controller": {
-    "title": "Afficher les données passées",
+    "title": {
+      "hourly": "Données horaires pour :",
+      "daily": "Données quotidiennes pour :",
+      "monthly": "Données mensuelles pour :",
+      "yearly": "Données annuelles pour :"
+    },
     "daily": "quotidien",
     "hourly": "horaire",
     "monthly": "mensuel",

@@ -16,8 +16,9 @@ const englishFile = JSON.parse(await readFile(LOCALES_PATH + english));
 
 function cleanLanguageObject(language, reference) {
   for (const key of Object.keys(language)) {
-    if (!reference[key]) {
+    if (!reference[key] || typeof reference[key] !== typeof language[key]) {
       // Delete the key from the current language if not present in the reference
+      // or if the type of the key is different
       delete language[key];
     } else if (typeof language[key] === 'object' && typeof reference[key] === 'object') {
       // Recursively clean nested objects

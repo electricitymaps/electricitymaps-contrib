@@ -46,17 +46,17 @@
     "carbonintensity": "spezifische CO₂-Emissionen",
     "lowcarbon": "CO₂-arm",
     "renewable": "regenerativ",
-    "electricityproduction": "Stromerzeugung",
-    "electricityconsumption": "Stromverbrauch",
+    "electricityproduction": "Produktion",
+    "electricityconsumption": "Verbrauch",
+    "emissions": "Emissionen",
     "by-source": {
-      "emissions": "CO₂-Emissionen nach Quelle",
-      "electricity-production": "Stromerzeugung nach Quelle",
-      "electricity-consumption": "Stromverbrauch nach Quelle",
-      "total-emissions": "Gesamte CO₂-Emissionen nach Quelle",
-      "total-electricity-production": "Gesamte Stromerzeugung nach Quelle",
-      "total-electricity-consumption": "Gesamter Stromverbrauch nach Quelle"
+      "emissions": "CO₂-Emissionen",
+      "electricity-production": "Stromerzeugung",
+      "electricity-consumption": "Stromverbrauch",
+      "total-emissions": "Gesamte CO₂-Emissionen",
+      "total-electricity-production": "Gesamte Stromerzeugung",
+      "total-electricity-consumption": "Gesamter Stromverbrauch"
     },
-    "emissions": "CO₂-Emissionen",
     "helpfrom": "mit Unterstützung von",
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
     "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
@@ -79,7 +79,12 @@
     "search": "Land oder Region suchen"
   },
   "time-controller": {
-    "title": "Historische Daten anzeigen",
+    "title": {
+      "hourly": "Stündliche Daten für:",
+      "daily": "Tägliche Daten für:",
+      "monthly": "Monatliche Daten für:",
+      "yearly": "Jährliche Daten für:"
+    },
     "daily": "täglich",
     "hourly": "stündlich",
     "monthly": "monatlich",

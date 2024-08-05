@@ -1,4 +1,5 @@
 import useGetState from 'api/getState';
+import { HorizontalDivider } from 'components/Divider';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { ReactElement, useState } from 'react';
@@ -10,9 +11,9 @@ import {
 } from 'utils/state/atoms';
 
 import { getRankedState } from './getRankingPanelData';
-import InfoText from './InfoText';
+import RankingPanelAccordion from './RankingPanelAccordion';
 import SearchBar from './SearchBar';
-import SocialButtons from './SocialButtons';
+import SocialIconRow from './SocialIcons';
 import { VirtualizedZoneList } from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
@@ -51,23 +52,23 @@ export default function RankingPanel(): ReactElement {
   });
 
   return (
-    <div className="flex max-h-[calc(100vh_-_230px)] flex-col py-5 pl-5 pr-1 ">
+    <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
       <div className="pb-5">
-        <div className="font-poppins text-lg font-medium">
-          {t('left-panel.zone-list-header-title')}
-        </div>
-        <div className="text-sm">{t('left-panel.zone-list-header-subtitle')}</div>
+        <div className="font-poppins text-lg font-medium">{t('ranking-panel.title')}</div>
+        <div className="text-sm">{t('ranking-panel.subtitle')}</div>
       </div>
 
       <SearchBar
-        placeholder={t('left-panel.search')}
+        placeholder={t('ranking-panel.search')}
         searchHandler={inputHandler}
         value={searchTerm}
       />
       <VirtualizedZoneList data={filteredList} />
-      <div className="space-y-4 p-2">
-        <InfoText />
-        <SocialButtons />
+      {/* TODO: Revise the margin here once the scrollbars are fixed */}
+      <div className="my-2 pr-3">
+        <RankingPanelAccordion />
+        <HorizontalDivider />
+        <SocialIconRow />
       </div>
     </div>
   );
