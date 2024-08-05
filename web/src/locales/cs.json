@@ -33,17 +33,11 @@
     "carbonintensity": "Uhlíková intenzita",
     "lowcarbon": "Nízké emise",
     "renewable": "Obnovitelné",
-    "electricityproduction": "Produkce elektřiny",
-    "electricityconsumption": "Spotřeba elektřiny",
-    "emissions": "Uhlíkové emise",
     "helpfrom": "s pomocí od",
     "noDataAtTimestamp": "Data pro vybraný čas jsou dočasně nedostupná",
     "noLiveData": "Živá data pro tuto oblast jsou dočasně nedostupná",
     "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href=\"{{link}}\" target=\"_blank\">přidáním dat</a>.",
     "now": "Teď"
-  },
-  "time-controller": {
-    "title": "Zobrazit data za minulé období"
   },
   "left-panel": {
     "zone-list-header-title": "Dopad na klima podle oblasti",
@@ -107,14 +101,6 @@
   "coal": "uhlí",
   "oil": "ropa",
   "unknown": "neznámé",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> pochází z {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> pochází z {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je ukládáno do {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je ukládáno do {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je importovaných z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> emisí z elektřiny dostupné v {{zoneFlag}} <b>{{zoneName}}</b> je importovaných z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Co znamenají barvy na mapě?",

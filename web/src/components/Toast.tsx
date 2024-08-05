@@ -1,7 +1,7 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
+import { X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiXMark } from 'react-icons/hi2';
 
 import { Button } from './Button';
 
@@ -43,7 +43,7 @@ function Toast({
         onOpenChange={setOpen}
         duration={duration}
         type="background"
-        className="fixed top-16 z-50 m-2 inline-block max-w-max self-center rounded-lg bg-white/80 shadow backdrop-blur-sm xs:left-1/2 xs:w-max xs:-translate-x-1/2 xs:transform dark:bg-gray-800/80"
+        className="fixed top-16 z-50 m-2 inline-block max-w-max self-center rounded-lg bg-white/80 shadow backdrop-blur-sm dark:bg-gray-800/80 xs:left-1/2 xs:w-max xs:-translate-x-1/2 xs:transform"
       >
         <div className="flex items-center p-2">
           <div className="flex flex-col">
@@ -70,7 +70,7 @@ function Toast({
             onClick={handleToastClose}
             aria-label={toastCloseText ?? t('misc.dismiss')}
           >
-            <HiXMark className="h-4 w-4" />
+            <X />
           </ToastPrimitive.Close>
         </div>
       </ToastPrimitive.Root>
