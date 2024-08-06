@@ -229,6 +229,7 @@ function FeedbackActions({
       <ActionPills
         setFeedbackState={setFeedbackState}
         setFeedbackScore={setFeedbackScore}
+        surveyReference={surveyReference}
       />
       {feedbackState === FeedbackState.OPTIONAL && (
         <div>
@@ -252,14 +253,19 @@ function FeedbackActions({
 function ActionPills({
   setFeedbackState,
   setFeedbackScore,
+  surveyReference,
 }: {
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   setFeedbackScore: Dispatch<SetStateAction<string>>;
+  surveyReference?: string;
 }) {
   const { t } = useTranslation();
-  const agreeText = t('feedback-card.satisfied');
+  const isMapSurvey = surveyReference === 'Map Survey';
+  const agreeText = isMapSurvey ? t('feedback-card.satisfied') : t('feedback-card.agree');
   const [pillContent] = useState(['1', '2', '3', '4', '5']);
-  const disagreeText = t('feedback-card.unsatisfied');
+  const disagreeText = isMapSurvey
+    ? t('feedback-card.unsatisfied')
+    : t('feedback-card.disagree');
   const [currentPillNumber, setPillNumber] = useState('');
 
   const handlePillClick = (identifier: string) => {
