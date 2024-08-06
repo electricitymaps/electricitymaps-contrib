@@ -12,7 +12,7 @@ export default function MobileButtons() {
   return (
     <div className="mr-2 flex gap-2">
       <Button
-        size="lg"
+        size="md"
         type="secondary"
         aria-label="open info modal"
         backgroundClasses="bg-white/80 backdrop-blur dark:bg-gray-800/80"
@@ -20,7 +20,7 @@ export default function MobileButtons() {
         icon={<Info size={20} />}
       />
       <Button
-        size="lg"
+        size="md"
         type="secondary"
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
