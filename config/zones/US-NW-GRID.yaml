@@ -284,6 +284,7 @@ fallbackZoneMixes:
         solar: 0.02771352657165702
         unknown: 2.0436804600482556e-05
         wind: 0.1510388581970516
+generation_only: true
 parsers:
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
@@ -296,4 +297,3 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
-generation_only: true

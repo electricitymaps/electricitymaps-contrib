@@ -60,7 +60,8 @@ function ExchangeArrow({
   };
 
   // Setting the top position from the arrow tooltip preventing overflowing to top.
-  let tooltipClassName = 'max-h-[256px] max-w-[512px] md:flex';
+  let tooltipClassName =
+    'max-h-[256px] max-w-[512px] md:flex rounded-2xl border-neutral-200 bg-white dark:bg-gray-900 dark:border-gray-700 dark:border';
   if (!isMobile) {
     tooltipClassName += transform.y - 76 < headerHeight ? ' top-[76px]' : ' top-[-76px]';
   }
