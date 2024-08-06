@@ -156,7 +156,7 @@ function BaseCard({
     <div
       className={`w-full rounded-lg px-3 py-1.5 ${
         estimationMethod == 'outage'
-          ? 'bg-amber-700/20 dark:bg-amber-500/20'
+          ? 'bg-warning/20 dark:bg-warning-dark/20'
           : 'bg-neutral-100 dark:bg-gray-800'
       } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
     >
@@ -224,7 +224,7 @@ function OutageCard({
       iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
       showMethodologyLink={false}
       pillType="warning"
-      textColorTitle="text-amber-700 dark:text-amber-500"
+      textColorTitle="text-warning dark:text-warning-dark"
       cardType="outage-card"
     />
   );
@@ -259,7 +259,7 @@ function EstimatedCard({
       iconPill={undefined}
       showMethodologyLink={true}
       pillType="default"
-      textColorTitle="text-amber-700 dark:text-amber-500"
+      textColorTitle="text-warning dark:text-warning-dark"
       cardType="estimated-card"
     />
   );
@@ -274,7 +274,7 @@ function EstimatedTSACard() {
       iconPill={undefined}
       showMethodologyLink={true}
       pillType={undefined}
-      textColorTitle="text-amber-700 dark:text-amber-500"
+      textColorTitle="text-warning dark:text-warning-dark"
       cardType="estimated-card"
     />
   );

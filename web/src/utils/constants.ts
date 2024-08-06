@@ -209,6 +209,8 @@ export const sourceLinkMapping: { [key: string]: string } = {
     'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Emission-factors#emission-factors-for-storage',
 };
 
+export const DEFAULT_ICON_SIZE = 16;
+
 export enum EstimationMethods {
   TSA = 'ESTIMATED_TIME_SLICER_AVERAGE',
   CONSTRUCT_BREAKDOWN = 'ESTIMATED_CONSTRUCT_BREAKDOWN',

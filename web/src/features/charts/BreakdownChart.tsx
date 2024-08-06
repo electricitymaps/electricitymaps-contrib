@@ -1,7 +1,6 @@
 import Accordion from 'components/Accordion';
+import { HorizontalDivider } from 'components/Divider';
 import { max, sum } from 'd3-array';
-import Divider from 'features/panels/zone/Divider';
-import { CircleBoltIcon } from 'icons/circleBoltIcon';
 import { IndustryIcon } from 'icons/industryIcon';
 import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtomValue } from 'jotai';
@@ -78,7 +77,6 @@ function BreakdownChart({
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badgeText={isBreakdownGraphOverlayEnabled ? undefined : badgeText}
-        icon={<CircleBoltIcon />}
         unit={valueAxisLabel}
       />
       <div className="relative ">
@@ -115,7 +113,7 @@ function BreakdownChart({
             sources={getProductionSourcesInChart(chartData)}
             className="py-1.5"
           />
-          <Divider />
+          <HorizontalDivider />
           <Accordion
             onOpen={() => {
               trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
