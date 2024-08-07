@@ -88,7 +88,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
 
 function MobileHeader() {
   return (
-    <div className="mt-[env(safe-area-inset-top)] flex w-full items-center justify-between pl-1 shadow-md dark:bg-gray-900">
+    <div className="mt-[env(safe-area-inset-top)] flex w-full items-center justify-between pl-1 dark:bg-gray-900">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
       <MobileButtons />
     </div>
