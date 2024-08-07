@@ -10,12 +10,12 @@ export default function MobileButtons() {
   const handleOpenInfoModal = () => setIsInfoModalOpen(true);
   const handleOpenSettingsModal = () => setIsSettingsModalOpen(true);
   return (
-    <div className="mr-2 flex gap-2">
+    <div className="flex gap-2 p-2">
       <Button
         size="md"
         type="secondary"
         aria-label="open info modal"
-        backgroundClasses="bg-white/80 backdrop-blur dark:bg-gray-800/80"
+        backgroundClasses="bg-white/80 backdrop-blur dark:bg-gray-800/80 pointer-events-auto"
         onClick={handleOpenInfoModal}
         icon={<Info size={20} />}
       />
@@ -24,7 +24,7 @@ export default function MobileButtons() {
         type="secondary"
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
-        backgroundClasses="bg-white/80 backdrop-blur dark:bg-gray-800/80"
+        backgroundClasses="bg-white/80 backdrop-blur dark:bg-gray-800/80 pointer-events-auto"
         icon={<Settings size={20} />}
         data-test-id="settings-button-mobile"
       />

@@ -27,7 +27,7 @@ import ThemeSelector from './ThemeSelector';
 
 function MobileMapControls() {
   return (
-    <div className="absolute right-0 mt-[env(safe-area-inset-top)] p-1 pt-[5px]">
+    <div className="pointer-events-none absolute right-0 mt-[env(safe-area-inset-top)]">
       <MobileButtons />
     </div>
   );
