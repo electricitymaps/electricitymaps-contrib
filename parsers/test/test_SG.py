@@ -34,14 +34,14 @@ class TestSolar(unittest.TestCase):
             .read_bytes(),
         )
         power = SG.get_solar(self.session, logger=self.logger)
-        self.assertEqual(power, 69.64)
+        self.assertEqual(power, 350.55)
 
     @freeze_time("2021-12-23 15:12:00")
     def test_works_when_zero(self):
         power = SG.get_solar(self.session, logger=self.logger)
         self.assertEqual(power, 0.0)
 
-    @freeze_time("2021-12-24 15:12:00")
+    @freeze_time("2024-08-06 15:12:00")
     def test_ignore_data_older_than_one_hour(self):
         with LogCapture():
             power = SG.get_solar(self.session, logger=self.logger)
