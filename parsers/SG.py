@@ -330,7 +330,7 @@ def __preprocess_image_for_ocr(img):
     """
     # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
     inverted_img = ImageOps.invert(
-        img.convert("RGB") # Mode P not supported yet, so we convert to RGB
+        img.convert("RGB")  # Mode P not supported yet, so we convert to RGB
     )  # assumes black background of Singapore solar output image
     gray_text_on_light_bg = ImageOps.grayscale(inverted_img)
     black_text_on_light_bg = ImageOps.autocontrast(gray_text_on_light_bg)
