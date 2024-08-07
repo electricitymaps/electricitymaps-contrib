@@ -3,7 +3,7 @@ import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom, useAtomValue } from 'jotai';
-import { Moon, MoveHorizontal, Sun } from 'lucide-react';
+import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
 import { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
@@ -59,9 +59,9 @@ export const getThumbIcon = (
   selectedIndex?: number,
   sets?: NightTimeSet[]
 ): ReactElement => {
-  const size = 16;
+  const size = 20;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
-    return <MoveHorizontal size={size} pointerEvents="none" />;
+    return <ChevronsLeftRight size={size} pointerEvents="none" />;
   }
   const isValueAtNight = sets.some(
     ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
@@ -112,11 +112,8 @@ export function TimeSliderBasic({
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
         data-test-id="time-slider-input"
-        className={`flex h-6 w-6 items-center justify-center rounded-full bg-white bg-center
-          bg-no-repeat shadow-3xl transition-shadow hover:ring
-          hover:ring-brand-green/10 hover:ring-opacity-75 focus:outline-none focus-visible:ring
-          focus-visible:ring-brand-green/10 focus-visible:ring-opacity-75
-          dark:bg-gray-400 hover:dark:ring-white/70 dark:focus-visible:ring-white/70`}
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white
+           outline outline-neutral-200 dark:bg-gray-800 dark:outline-gray-700"
       >
         {thumbIcon}
       </SliderPrimitive.Thumb>
