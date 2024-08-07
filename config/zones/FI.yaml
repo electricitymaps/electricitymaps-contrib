@@ -110,6 +110,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 754.07
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 970.83
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -117,6 +120,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 295.99
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 491.6
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -182,6 +188,10 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
           hotspots of coal power generation."
         value: 848.9178430000001
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
+        value: 1030.83
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -189,6 +199,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 415.99
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 611.6
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
