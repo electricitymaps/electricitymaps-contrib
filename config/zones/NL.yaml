@@ -87,7 +87,7 @@ emissionFactors:
       value: 0.0
     coal:
       - datetime: '2023-01-01'
-        source: None
+        source: EU-ETS, ENTSO-E 2023
         value: 953.46
     gas:
       - datetime: '2021-01-01'
