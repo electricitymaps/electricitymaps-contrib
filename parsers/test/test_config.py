@@ -38,7 +38,7 @@ class EmissionFactorTestCase(unittest.TestCase):
             "battery discharge": 66.82067058776849,
             "biomass": 230.0,
             "coal": 968.9049130000001,
-            "gas": 501.61,
+            "gas": 640.79,
             "geothermal": 38,
             "hydro": 10.7,
             "hydro charge": 0,
