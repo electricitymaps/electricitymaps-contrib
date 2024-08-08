@@ -12,14 +12,23 @@ capacity:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
       value: 0.0
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 37.9
   coal:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
       value: 370.0
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 0.0
   gas:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
       value: 1905.0
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 1696.0
   geothermal:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
@@ -28,6 +37,9 @@ capacity:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
       value: 966.0
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 340.5
   hydro storage:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
@@ -44,6 +56,9 @@ capacity:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
       value: 0.5
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 15.5
   unknown:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
@@ -52,6 +67,9 @@ capacity:
     - datetime: '2023-01-01'
       source: PSE 2023 IRP
       value: 773.0
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 868.4
 comment: Puget Sound Energy
 contributors:
   - systemcatch
