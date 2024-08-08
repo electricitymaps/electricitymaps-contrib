@@ -12,7 +12,7 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 303.4
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 293.6
   coal:
@@ -23,7 +23,7 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2271.7
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 2167.0
   geothermal:

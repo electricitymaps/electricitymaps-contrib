@@ -1,6 +1,7 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
 import { useAtom, useSetAtom } from 'jotai';
+import { X } from 'lucide-react';
 import {
   ChangeEvent,
   Dispatch,
@@ -10,7 +11,6 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiXMark } from 'react-icons/hi2';
 import { hasSeenSurveyCardAtom, userLocationAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
@@ -108,7 +108,7 @@ export default function FeedbackCard({
           </h2>
         </div>
         <button data-test-id="close-button" onClick={handleClose}>
-          <HiXMark />
+          <X />
         </button>
       </div>
       <div>

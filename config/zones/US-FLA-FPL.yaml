@@ -12,6 +12,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 617.6
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 540.6
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -44,6 +47,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4584.8
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 5478.8
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 6223.8
