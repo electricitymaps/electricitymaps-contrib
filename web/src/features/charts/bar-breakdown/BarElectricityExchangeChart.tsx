@@ -2,7 +2,7 @@ import { CountryFlag } from 'components/Flag';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
-import { ZoneDetail, ZoneKey } from 'types';
+import { ZoneKey } from 'types';
 import { CarbonUnits } from 'utils/units';
 
 import { EXCHANGE_PADDING } from './constants';
@@ -15,7 +15,6 @@ import { ExchangeDataType } from './utils';
 export default function BarElectricityExchangeChart({
   height,
   width,
-  data,
   exchangeData,
   powerScale,
   co2ColorScale,
@@ -26,7 +25,6 @@ export default function BarElectricityExchangeChart({
 }: {
   height: number;
   width: number;
-  data: ZoneDetail;
   exchangeData: ExchangeDataType[];
   powerScale: ScaleLinear<number, number, never>;
   co2ColorScale: ScaleLinear<string, string, string>;
@@ -35,7 +33,6 @@ export default function BarElectricityExchangeChart({
   onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
 }) {
@@ -69,7 +66,7 @@ export default function BarElectricityExchangeChart({
               width={width}
               scale={powerScale}
               value={d.exchange}
-              onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, data, event)}
+              onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={false}
             >

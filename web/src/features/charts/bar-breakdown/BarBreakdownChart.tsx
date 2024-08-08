@@ -10,7 +10,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { X } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
@@ -98,7 +98,6 @@ function BarBreakdownChart({
 
   const onMouseOver = (
     layerKey: ElectricityModeType | ZoneKey,
-    _: ZoneDetail,
     event: React.MouseEvent
   ) => {
     const { clientX, clientY } = event;
@@ -167,7 +166,6 @@ function BarBreakdownChart({
       )}
       {displayByEmissions ? (
         <BarBreakdownEmissionsChart
-          data={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
@@ -181,7 +179,6 @@ function BarBreakdownChart({
       ) : (
         <BarElectricityBreakdownChart
           data={zoneDetails}
-          currentData={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
