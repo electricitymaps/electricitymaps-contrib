@@ -1,4 +1,4 @@
-import { afterEach, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import i18next from './i18n';
 import { translateIfExists } from './translation';
@@ -28,14 +28,10 @@ describe('translateIfExists', () => {
 
 // TODO: Mocking these tests is currently not possible or easy due to the translation
 // setup. We should in the future investigate how to better mock translations.
-describe.skip('getZoneName', () => {
-  it('...', () => {
-    console.log('TODO');
-  });
+describe('getZoneName', () => {
+  it.todo('should return the zone name if it exists');
 });
 
-describe.skip('getShortenedZoneNameWithCountry', () => {
-  it('should return the shortened zone name with country', () => {
-    console.log('TODO');
-  });
+describe('getShortenedZoneNameWithCountry', () => {
+  it.todo('should return the shortened zone name with country');
 });
