@@ -1,3 +1,4 @@
+import { Properties } from '@turf/turf';
 import { Feature, MultiPolygon, Polygon } from 'geojson';
 import { describe, expect, it, vi } from 'vitest';
 
