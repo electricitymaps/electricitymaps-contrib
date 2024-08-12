@@ -229,6 +229,7 @@ function FeedbackActions({
       <ActionPills
         setFeedbackState={setFeedbackState}
         setFeedbackScore={setFeedbackScore}
+        surveyReference={surveyReference}
       />
       {feedbackState === FeedbackState.OPTIONAL && (
         <div>
@@ -252,14 +253,19 @@ function FeedbackActions({
 function ActionPills({
   setFeedbackState,
   setFeedbackScore,
+  surveyReference,
 }: {
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   setFeedbackScore: Dispatch<SetStateAction<string>>;
+  surveyReference?: string;
 }) {
   const { t } = useTranslation();
-  const agreeText = t('feedback-card.agree');
+  const isMapSurvey = surveyReference === 'Map Survey';
+  const agreeText = isMapSurvey ? t('feedback-card.satisfied') : t('feedback-card.agree');
   const [pillContent] = useState(['1', '2', '3', '4', '5']);
-  const disagreeText = t('feedback-card.disagree');
+  const disagreeText = isMapSurvey
+    ? t('feedback-card.unsatisfied')
+    : t('feedback-card.disagree');
   const [currentPillNumber, setPillNumber] = useState('');
 
   const handlePillClick = (identifier: string) => {
@@ -276,13 +282,10 @@ function ActionPills({
         currentPillNumber={currentPillNumber}
       />
       <div className="flex flex-row items-center justify-between pt-1">
-        <div
-          data-test-id="disagree-text"
-          className="text-xs font-medium text-neutral-400"
-        >
+        <div data-test-id="disagree-text" className="text-xs font-bold">
           {disagreeText}
         </div>
-        <div data-test-id="agree-text" className="text-xs font-medium text-neutral-400">
+        <div data-test-id="agree-text" className="text-xs font-bold">
           {agreeText}
         </div>
       </div>
