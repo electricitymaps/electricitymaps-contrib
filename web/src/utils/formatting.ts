@@ -34,10 +34,9 @@ export const formatEnergy = (d: number, numberDigits: number = DEFAULT_NUM_DIGIT
 
 export const formatCo2 = (grams: number, valueToMatch?: number): string => {
   // Validate input
-  if (grams == null || Number.isNaN(grams)) {
+  if (!Number.isFinite(grams)) {
     return '?';
   }
-
   // Ensure both numbers are at the same scale
   const checkAgainst = valueToMatch ?? grams;
 
