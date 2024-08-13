@@ -27,6 +27,7 @@ async function postSurveyResponse({
           version,
           featureFlags: JSON.stringify(featureFlags)?.slice(1, -1),
           userJourney: userJourneyText,
+          device: navigator.userAgent,
         }),
       }
     );
