@@ -15,7 +15,7 @@ import LegendContainer from './legend/LegendContainer';
 export default function MapOverlays() {
   const hasSeenSurveyCard = useAtomValue(hasSeenSurveyCardAtom);
   const hasSeenUsSurveyCard = useAtomValue(hasSeenUsSurveyCardAtom);
-  const [userLocation] = useAtom(userLocationAtom);
+  const userLocation = useAtomValue(userLocationAtom);
   const isBiggerThanMobile = useIsBiggerThanMobile();
   const [searchParameters] = useSearchParams();
   const showManager =
