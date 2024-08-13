@@ -1,5 +1,5 @@
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { lazy, Suspense } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
