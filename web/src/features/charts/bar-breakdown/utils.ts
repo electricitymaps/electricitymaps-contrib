@@ -8,7 +8,8 @@ import {
   ZoneKey,
 } from 'types';
 import { Mode, modeOrderBarBreakdown } from 'utils/constants';
-import { getProductionCo2Intensity } from 'utils/helpers';
+import { getProductionCo2Intensity, round } from 'utils/helpers';
+import { EnergyUnits } from 'utils/units';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
 
@@ -191,4 +192,23 @@ export const getExchangesToDisplay = (
   return uniqueExchangeKeys.filter(
     (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
   );
+};
+
+/**
+ * Convents the price value and unit to the correct value and unit for the matching currency.
+ *
+ * If no currency is provided, the parameters are returned as is.
+ */
+export const convertPrice = (
+  value?: number,
+  currency?: string,
+  unit: EnergyUnits = EnergyUnits.MEGAWATT_HOURS
+): { value?: number; currency?: string; unit: EnergyUnits } => {
+  if (currency === 'EUR') {
+    if (value) {
+      value = round(value / 1000, 4);
+    }
+    return { value: value, currency, unit: EnergyUnits.KILOWATT_HOURS };
+  }
+  return { value, currency, unit };
 };
