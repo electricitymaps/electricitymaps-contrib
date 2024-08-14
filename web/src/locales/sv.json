@@ -1,16 +1,24 @@
 {
   "info": {
     "text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
-    "open-source-text": "Den här appen har <a href='{{link}}' target='_blank'>Öppen Källkod</a> och drivs av en gemenskap."
+    "open-source-text": "Den här appen har <a href='{{link}}' target='_blank'>Öppen Källkod</a> och drivs av en gemenskap.",
+    "title": "Om appen",
+    "version": "App version: {{version}}"
   },
   "button": {
     "feedback": "Ge återkoppling",
     "github": "Se vår GitHub",
-    "twitter": "Dela på Twitter",
+    "twitter": "Följ oss på X (Twitter)",
     "reddit": "Gå med i r/electricitymaps",
     "slack": "Gå med i Slack-gemenskapen",
     "privacy-policy": "Integritetspolicy",
-    "legal-notice": "Rättsligt meddelande"
+    "legal-notice": "Rättsligt meddelande",
+    "twitter-share": "Dela på X (Twitter)",
+    "linkedin": "Följ oss på LinkedIn",
+    "linkedin-share": "Dela på LinkedIn",
+    "facebook": "Följ oss på Facebook",
+    "facebook-share": "Dela på Facebook",
+    "faq": "FAQ"
   },
   "settings-modal": {
     "title": "Inställningar"
@@ -95,7 +103,20 @@
       "total-emissions": "Totala koldioxidutsläpp",
       "total-electricity-production": "Total elproduktion",
       "total-electricity-consumption": "Total ekonsumtion"
-    }
+    },
+    "electricityproduction": "Produktion",
+    "electricityconsumption": "Konsumption",
+    "emissions": "Utsläpp",
+    "graph-legends": {
+      "installed-capacity": "Installerad kapacitet",
+      "exchange-capacity": "Tillgänglig överföringskapacitet",
+      "exported": "Exporterad",
+      "imported": "Importerad",
+      "stored": "Lagrad",
+      "produced": "Producerad"
+    },
+    "emissionFactorDataSourcesTooltip": "Utsläppsfaktorer för elproduktion kan komma från flera olika källor. Detta sker eftersom flera faktorer, som anläggningsspecifika data, produktion och ibland standardkällor, beaktas i utsläppsberäkningar.",
+    "fullyDisabled": "De data som är tillgängliga för denna zon är otillräckliga och visas därför inte. Om du känner till några datakällor för detta område, vänligen <a href='{{link}}' target='_blank'>meddela oss</a>."
   },
   "feedback-card": {
     "title": "Hjälp oss bli bättre!",
@@ -114,7 +135,9 @@
     "agree": "Instämmer helt",
     "disagree": "Instämmer inte alls",
     "placeholder": "Berätta mer med några ord...",
-    "submit": "Skicka"
+    "submit": "Skicka",
+    "satisfied": "Väldigt nöjd",
+    "unsatisfied": "Väldigt missnöjd"
   },
   "estimation-badge": {
     "partially-estimated": "Delvis uppskattad",
@@ -131,7 +154,8 @@
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data är för närvarande uppskattad",
-      "body": "Dataleverantören rapporterar för närvarande inte data för denna timme. De visade värdena är uppskattade baserat på historiska mätningar och kommer att ersättas med konsoliderade data när de blir tillgängliga. Observera att uppskattade värden kanske inte alltid är korrekta eftersom de inte tar hänsyn till specifika realtidshändelser som väder."
+      "body": "Dataleverantören rapporterar för närvarande inte data för denna timme. De visade värdena är uppskattade baserat på historiska mätningar och kommer att ersättas med konsoliderade data när de blir tillgängliga. Observera att uppskattade värden kanske inte alltid är korrekta eftersom de inte tar hänsyn till specifika realtidshändelser som väder.",
+      "pill": "Preliminär"
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data är delvis uppskattad",
@@ -192,7 +216,8 @@
   "ranking-panel": {
     "title": "Klimatpåverkan per region",
     "subtitle": "Rankad efter kolintensitet från elproduktion (gCO₂eq/kWh)",
-    "search": "Sök efter region"
+    "search": "Sök efter region",
+    "share": "Dela appen:"
   },
   "left-panel": {
     "get-data": "Se våra kommersiella API-erbjudanden",
@@ -305,7 +330,8 @@
     "price": "Pris",
     "netExchange": "Nettoöverföring",
     "importing": "Importerar",
-    "exporting": "Exporterar"
+    "exporting": "Exporterar",
+    "temporarilyUnavailable": "Temporät otillgänglig"
   },
   "aria": {
     "label": {
@@ -2053,5 +2079,14 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
-  }
+  },
+  "electricityStoredUsing": "är lagrad med hjälp av",
+  "emissionsStoredUsing": "är lagrad med hjälp av",
+  "electricityExportedTo": "är exporterat till",
+  "emissionsExportedTo": "är exporterat till",
+  "electricityImportedFrom": "är importerat från",
+  "emissionsImportedFrom": "är importerat från",
+  "electricityAvailableIn": "av elektricitet tillgängligt i",
+  "emissionsAvailableIn": "av utsläpp från elektricitet tillgängligt i",
+  "comesFrom": "kommer från"
 }
