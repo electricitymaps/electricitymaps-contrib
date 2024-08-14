@@ -12,7 +12,7 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 15.3
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 12.1
   coal:
@@ -22,7 +22,7 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 7096.9
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 6991.9
   gas:
@@ -32,6 +32,9 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 3706.9
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 3437.2
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 3439.4
@@ -39,7 +42,7 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 83.8
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 77.1
   hydro:
@@ -62,9 +65,15 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 1717.9
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 1917.9
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 1997.9
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 2037.9
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -73,6 +82,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 3451.6
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 3493.2
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 3603.2

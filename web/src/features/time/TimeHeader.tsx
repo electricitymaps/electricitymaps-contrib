@@ -23,7 +23,7 @@ export default function TimeHeader({ className }: TimeHeaderProps) {
       }`}
     >
       <p className="select-none text-left font-poppins text-sm font-medium">
-        {t('time-controller.title')}
+        {t(`time-controller.title.${timeAverage}`)}
       </p>
       <div
         // Setting a fixed height here to prevent the TimeHeader from jumping

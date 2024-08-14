@@ -1,5 +1,6 @@
 import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
+import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
 import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -83,8 +84,9 @@ function CollapseButton() {
 
 function MobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between overflow-x-visible p-1 pt-[env(safe-area-inset-top)] shadow-md dark:bg-gray-900">
+    <div className="mt-[env(safe-area-inset-top)] flex w-full items-center justify-between pl-1 dark:bg-gray-900">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
+      <MobileButtons />
     </div>
   );
 }
@@ -93,6 +95,8 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   const [isOpen] = useAtom(leftPanelOpenAtom);
   const location = useLocation();
   const isMobile = useIsMobile();
+
+  const onCollapse = () => setOpen(!isOpen);
 
   return (
     !(location.pathname === '/map' && isMobile) && (

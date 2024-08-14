@@ -31,7 +31,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const onNavigateBack = () => setIsMapMoving(false);
 
   return (
-    <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
+    <div className="flex w-full grow flex-row overflow-hidden py-2 pl-2">
       <Link
         className="self-center py-4 pr-4 text-xl"
         to={returnToMapLink}
