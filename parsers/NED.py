@@ -166,6 +166,43 @@ def _get_entsoe_production_data(
     return ENTSOE_parsed_data
 
 
+def combine_production_data(entsoe_data, ned_data, logger):
+    non_matching_indices = set()
+    # Reallocate the unknown production from ENTSOE with solar production from NED
+    for idx, entsoe_event in enumerate(entsoe_data.events):
+        # O(n^2) but n is small. Change to binary search or dict if too slow
+        ned_events = [e for e in ned_data.events if e.datetime == entsoe_event.datetime]
+
+        if len(ned_events) == 0:
+            non_matching_indices.add(idx)
+            continue
+
+        ned_event = ned_events[0]
+
+        unknown_production = entsoe_event.production.unknown or 0
+        solar_production = ned_event.production.solar or 0
+
+        # subtract solar production from unknown production
+        new_unknown_production = max(unknown_production - solar_production, 0)
+
+        entsoe_event.production.unknown = new_unknown_production
+        entsoe_event.production.solar = solar_production
+
+        entsoe_event.source += "," + ned_event.source
+
+    if len(non_matching_indices) > 0:
+        logger.info(
+            f"Failed to match {len(non_matching_indices)} ENTSOE events with NED events"
+        )
+        entsoe_data.events = [
+            event
+            for idx, event in enumerate(entsoe_data.events)
+            if idx not in non_matching_indices
+        ]
+
+    return entsoe_data
+
+
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("NL"),
     session: Session | None = None,
@@ -180,12 +217,7 @@ def fetch_production(
         zone_key, session, target_datetime, logger
     )
 
-    combined_data = ProductionBreakdownList.update_production_breakdowns(
-        production_breakdowns=ENTSOE_data,
-        new_production_breakdowns=NED_data,
-        logger=logger,
-        matching_timestamps_only=True,
-    )
+    combined_data = combine_production_data(ENTSOE_data, NED_data, logger)
 
     return combined_data.to_list()
 
@@ -246,4 +278,5 @@ def fetch_production_forecast(
         logger=logger,
         matching_timestamps_only=True,
     )
+
     return combined_data.to_list()

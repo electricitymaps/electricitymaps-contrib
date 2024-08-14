@@ -3,10 +3,10 @@ import { twMerge } from 'tailwind-merge';
 
 type SizeOptions = 'sm' | 'md' | 'lg' | 'xl';
 
-interface ButtonProps {
+export interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
-  disabled?: boolean;
+  isDisabled?: boolean;
   size?: SizeOptions;
   shouldShrink?: boolean;
   type?: 'primary' | 'secondary' | 'tertiary' | 'link';
@@ -20,7 +20,7 @@ interface ButtonProps {
 export function Button({
   icon,
   children,
-  disabled,
+  isDisabled,
   href,
   backgroundClasses, // backgroundColor, borderColor, margin, etc.
   foregroundClasses, // textColor, etc.
@@ -38,7 +38,7 @@ export function Button({
   return (
     <div
       className={twMerge(
-        `items-center justify-center rounded-full ${getBackground(type, disabled)}`,
+        `items-center justify-center rounded-full ${getBackground(type, isDisabled)}`,
         backgroundClasses,
         shouldShrink ? 'w-fit' : ''
       )}
@@ -55,7 +55,7 @@ export function Button({
         ${getForeground(type)} ${getHover(type)}`,
           foregroundClasses
         )}
-        disabled={disabled}
+        disabled={isDisabled}
         href={href}
         type={componentType}
         onClick={onClick}
@@ -96,12 +96,12 @@ function getBackground(type: string, disabled: boolean | undefined) {
   switch (type) {
     case 'primary': {
       if (disabled) {
-        return 'bg-zinc-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700';
+        return 'bg-zinc-50 dark:bg-gray-800 outline outline-neutral-200 dark:outline-gray-700';
       }
       return 'bg-brand-green';
     }
     case 'secondary': {
-      return 'border dark:border-gray-700 border-neutral-200 bg-white dark:bg-gray-900';
+      return 'outline dark:outline-gray-700 outline-neutral-200 bg-white dark:bg-gray-900';
     }
     default: {
       return 'bg-inherit';

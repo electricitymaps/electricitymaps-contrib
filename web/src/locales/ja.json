@@ -33,9 +33,6 @@
     "carbonintensity": "炭素強度",
     "lowcarbon": "低炭素エネルギー",
     "renewable": "再生可能エネルギー",
-    "electricityproduction": "電力生産量",
-    "electricityconsumption": "電力消費量",
-    "emissions": "二酸化炭素排出",
     "helpfrom": "次の方の協力のおかげで",
     "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
     "noLiveData": "このエリアのライブデータは一時的に利用できません",
@@ -43,9 +40,9 @@
     "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"{{link}}\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
     "now": "今"
   },
-  "left-panel": {
-    "zone-list-header-title": "エリアごとの環境への影響",
-    "zone-list-header-subtitle": "電力消費に対する炭素強度(gCO₂eq/kWh)でランク分け",
+  "ranking-panel": {
+    "title": "エリアごとの環境への影響",
+    "subtitle": "電力消費に対する炭素強度(gCO₂eq/kWh)でランク分け",
     "search": "エリアを検索"
   },
   "footer": {

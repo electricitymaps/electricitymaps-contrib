@@ -11,10 +11,7 @@
     "carbonintensity": "интенсивность выбросов CO₂ (CO₂эк/кВт⋅ч)",
     "lowcarbon": "с низким уровнем CO₂",
     "renewable": "ВИЭ",
-    "electricityproduction": "производство электричества",
-    "emissions": "эмиссии CO₂эк",
     "helpfrom": "с помощью",
-    "electricityconsumption": "Потребление электричества",
     "noDataAtTimestamp": "Данные временно недоступны в указанном промежутке времени",
     "noLiveData": "Актуализированные данные временно недоступны для данной зоны",
     "estimated": "приближенные данные",
@@ -26,15 +23,14 @@
     "now": "Сейчас"
   },
   "time-controller": {
-    "title": "Показать исторические данные",
     "daily": "по дням",
     "hourly": "по часам",
     "monthly": "по месяцам",
     "yearly": "по годам"
   },
-  "left-panel": {
-    "zone-list-header-title": "Влияние зон на климат",
-    "zone-list-header-subtitle": "Сортированы по интенсивности CO₂ (CO₂эк/кВт⋅ч)",
+  "ranking-panel": {
+    "title": "Влияние зон на климат",
+    "subtitle": "Сортированы по интенсивности CO₂ (CO₂эк/кВт⋅ч)",
     "search": "Найти зону"
   },
   "footer": {

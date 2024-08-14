@@ -1,12 +1,13 @@
 {
-  "info-modal": {
-    "title": "Info",
-    "intro-text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no telemóvel para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios da transição energética.",
-    "open-source-text": "Esta app é <a href=\"{{link}}\" target=\"_blank\">de código aberto</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">veja fontes de dados</a>) e desenvolvida pela comunidade.",
-    "feedback-button": "Partilhar Feedback",
-    "github-button": "Ver o nosso GitHub",
-    "twitter-button": "Partilhar no Twitter",
-    "slack-button": "Entrar na comunidade do Slack",
+  "info": {
+    "text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no telemóvel para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios da transição energética.",
+    "open-source-text": "Esta app é <a href='{{link}}' target='_blank'>de código aberto</a> e desenvolvida pela comunidade."
+  },
+  "button": {
+    "feedback": "Partilhar Feedback",
+    "github": "Ver o nosso GitHub",
+    "twitter": "Partilhar no Twitter",
+    "slack": "Entrar na comunidade do Slack",
     "privacy-policy": "Política de Privacidade",
     "legal-notice": "Aviso Legal"
   },
@@ -67,9 +68,6 @@
     "carbonintensity": "Intensidade de emissão de carbono",
     "lowcarbon": "Baixo carbono",
     "renewable": "Renovável",
-    "electricityproduction": "Produção de eletricidade",
-    "electricityconsumption": "Consumo de eletricidade",
-    "emissions": "Emissões de carbono",
     "contribute": "Contribua no GitHub",
     "helpfrom": "com ajuda de",
     "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
@@ -90,12 +88,12 @@
     "aggregationDisabled": "Dados não estão disponíveis para o período selecionado. Experimente um periodo maior",
     "now": "Agora",
     "by-source": {
-      "emissions": "Emissões de carbono por fonte",
-      "electricity-production": "Produção de eletricidade por fonte",
-      "electricity-consumption": "Consumo de eletricidade por fonte",
-      "total-emissions": "Emissões totais de carbono por fonte",
-      "total-electricity-production": "Produção total de eletricidade por fonte",
-      "total-electricity-consumption": "Consumo total de eletricidade por fonte"
+      "emissions": "Emissões de carbono",
+      "electricity-production": "Produção de eletricidade",
+      "electricity-consumption": "Consumo de eletricidade",
+      "total-emissions": "Emissões totais de carbono",
+      "total-electricity-production": "Produção total de eletricidade",
+      "total-electricity-consumption": "Consumo total de eletricidade"
     }
   },
   "feedback-card": {
@@ -179,16 +177,17 @@
     }
   },
   "time-controller": {
-    "title": "Exibir dados do passado",
     "daily": "diários",
     "hourly": "horários",
     "monthly": "mensais",
     "yearly": "anuais"
   },
+  "ranking-panel": {
+    "title": "Impacto climático",
+    "subtitle": "Áreas ordenadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
+    "search": "Pesquise por país ou área"
+  },
   "left-panel": {
-    "zone-list-header-title": "Impacto climático",
-    "zone-list-header-subtitle": "Áreas ordenadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
-    "search": "Pesquise por país ou área",
     "get-data": "Veja as ofertas do nosso API comercial",
     "applied-methodologies": {
       "title": "Metodologias aplicadas",

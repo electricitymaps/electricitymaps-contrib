@@ -33,9 +33,6 @@
     "carbonintensity": "Süsiniku intensiivsus",
     "lowcarbon": "Vähese süsinikuga",
     "renewable": "Taastuv",
-    "electricityproduction": "Elektritootmine",
-    "electricityconsumption": "Elektritarbimine",
-    "emissions": "Süsinikheitmed",
     "helpfrom": "koos aitajatega",
     "noDataAtTimestamp": "Andmed pole valitud aja jooksul ajutiselt saadaval",
     "noLiveData": "Muutuvad andmed pole selles piirkonnas ajutiselt saadaval",
@@ -43,9 +40,9 @@
     "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"{{link}}\" target=\"_blank\">lisades piirkonna andmed</a>.",
     "now": "Äsja"
   },
-  "left-panel": {
-    "zone-list-header-title": "Kliimamõju piirkonniti",
-    "zone-list-header-subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Kliimamõju piirkonniti",
+    "subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
     "search": "Otsige piirkondi"
   },
   "footer": {
