@@ -28,7 +28,7 @@ export function getFills(data: AreaGraphElement[]) {
 export function usePriceChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
 
-  if (isLoading || isError) {
+  if (isLoading || isError || !zoneData) {
     return { isLoading, isError };
   }
 
