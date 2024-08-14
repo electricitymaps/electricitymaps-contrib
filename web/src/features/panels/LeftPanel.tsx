@@ -1,10 +1,11 @@
+import { Button } from 'components/Button';
 import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom, useAtomValue } from 'jotai';
+import { ArrowLeftToLine, ArrowRightFromLine } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
   Route,
@@ -69,18 +70,19 @@ function CollapseButton() {
   const isBiggerThanMobile = useIsBiggerThanMobile();
   return (
     isBiggerThanMobile && (
-      <button
+      <Button
         data-test-id="left-panel-collapse-button"
-        className={`pointer-events-auto absolute left-full top-0 z-10 ml-2 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-red-600 transition-all duration-500 ${
+        size="lg"
+        type="secondary"
+        backgroundClasses={`pointer-events-auto absolute left-full top-0 z-10 ml-2 bg-red-600 transition-all duration-500 ${
           leftPanelOpen ? '' : '-translate-x-[calc(500px+0.5rem)]'
         }`}
         onClick={() => setLeftPanelOpen(!leftPanelOpen)}
+        icon={leftPanelOpen ? <ArrowLeftToLine /> : <ArrowRightFromLine />}
         aria-label={
           leftPanelOpen ? t('aria.label.hideSidePanel') : t('aria.label.showSidePanel')
         }
-      >
-        {leftPanelOpen ? <HiChevronLeft /> : <HiChevronRight />}
-      </button>
+      />
     )
   );
 }
