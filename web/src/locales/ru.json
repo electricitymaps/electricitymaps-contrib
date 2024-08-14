@@ -28,9 +28,9 @@
     "monthly": "по месяцам",
     "yearly": "по годам"
   },
-  "left-panel": {
-    "zone-list-header-title": "Влияние зон на климат",
-    "zone-list-header-subtitle": "Сортированы по интенсивности CO₂ (CO₂эк/кВт⋅ч)",
+  "ranking-panel": {
+    "title": "Влияние зон на климат",
+    "subtitle": "Сортированы по интенсивности CO₂ (CO₂эк/кВт⋅ч)",
     "search": "Найти зону"
   },
   "footer": {

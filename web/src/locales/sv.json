@@ -1,6 +1,6 @@
 {
   "info": {
-    "intro-text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
+    "text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
     "open-source-text": "Den här appen har <a href='{{link}}' target='_blank'>Öppen Källkod</a> och drivs av en gemenskap."
   },
   "button": {
@@ -189,10 +189,12 @@
     "monthly": "månadsvis",
     "yearly": "årsvis"
   },
+  "ranking-panel": {
+    "title": "Klimatpåverkan per region",
+    "subtitle": "Rankad efter kolintensitet från elproduktion (gCO₂eq/kWh)",
+    "search": "Sök efter region"
+  },
   "left-panel": {
-    "zone-list-header-title": "Klimatpåverkan per region",
-    "zone-list-header-subtitle": "Rankad efter kolintensitet från elproduktion (gCO₂eq/kWh)",
-    "search": "Sök efter region",
     "get-data": "Se våra kommersiella API-erbjudanden",
     "applied-methodologies": {
       "title": "Tillämpade metoder",

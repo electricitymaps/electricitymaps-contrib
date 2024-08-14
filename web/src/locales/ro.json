@@ -55,9 +55,9 @@
     "monthly": "pe luna",
     "yearly": "pe an"
   },
-  "left-panel": {
-    "zone-list-header-title": "Impact asupra climei în funcție de zonă",
-    "zone-list-header-subtitle": "În ordinea concentrației de dioxid de carbon a electricității consumate (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Impact asupra climei în funcție de zonă",
+    "subtitle": "În ordinea concentrației de dioxid de carbon a electricității consumate (gCO₂eq/kWh)",
     "search": "Căutați zone"
   },
   "footer": {
