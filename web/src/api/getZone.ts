@@ -1,5 +1,5 @@
-import type { UseSuspenseQueryResult } from '@tanstack/react-query';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
@@ -37,10 +37,10 @@ const getZone = async (
 
 // TODO: The frontend (graphs) expects that the datetimes in state are the same as in zone
 // should we add a check for this?
-const useGetZone = (): UseSuspenseQueryResult<ZoneDetails> => {
+const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const zoneId = useGetZoneFromPath();
   const [timeAverage] = useAtom(timeAverageAtom);
-  return useSuspenseQuery<ZoneDetails>({
+  return useQuery<ZoneDetails>({
     queryKey: [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
     queryFn: async () => getZone(timeAverage, zoneId),
   });
