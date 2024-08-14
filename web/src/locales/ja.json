@@ -40,9 +40,9 @@
     "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"{{link}}\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
     "now": "今"
   },
-  "left-panel": {
-    "zone-list-header-title": "エリアごとの環境への影響",
-    "zone-list-header-subtitle": "電力消費に対する炭素強度(gCO₂eq/kWh)でランク分け",
+  "ranking-panel": {
+    "title": "エリアごとの環境への影響",
+    "subtitle": "電力消費に対する炭素強度(gCO₂eq/kWh)でランク分け",
     "search": "エリアを検索"
   },
   "footer": {

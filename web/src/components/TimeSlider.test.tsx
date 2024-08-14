@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { FaArrowsLeftRight, FaMoon, FaSun } from 'react-icons/fa6';
+import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
 import { describe, expect, it } from 'vitest';
 
 import { COLORS, getThumbIcon, getTrackBackground } from './TimeSlider';
@@ -26,35 +26,35 @@ describe('getTrackBackground', () => {
 });
 
 describe('getThumbIcon', () => {
-  it('returns "<FaArrowsLeftRight size={14} />" when no index or sets are provided', () => {
+  it('returns "<ChevronsLeftRight size={20} />" when no index or sets are provided', () => {
     const { container: expected } = render(
-      <FaArrowsLeftRight size={14} pointerEvents="none" />
+      <ChevronsLeftRight size={20} pointerEvents="none" />
     );
     const { container } = render(getThumbIcon());
     expect(container.innerHTML).toEqual(expected.innerHTML);
   });
 
   it.each([[10], [35]])(
-    'returns "<FaMoon size={14} />" when the index %i is within a night time set',
+    'returns "<Moon size={16} />" when the index %i is within a night time set',
     (index) => {
       const sets = [
         [7, 21],
         [30, 40],
       ];
-      const { container: expected } = render(<FaMoon size={14} pointerEvents="none" />);
+      const { container: expected } = render(<Moon size={20} pointerEvents="none" />);
       const { container } = render(getThumbIcon(index, sets));
       expect(container.innerHTML).toEqual(expected.innerHTML);
     }
   );
 
   it.each([[5], [25], [50]])(
-    'returns "<FaSun size={14} />" when the index %i is not within a night time set',
+    'returns "<Sun size={20} />" when the index %i is not within a night time set',
     (index) => {
       const sets = [
         [7, 21],
         [30, 40],
       ];
-      const { container: expected } = render(<FaSun size={14} pointerEvents="none" />);
+      const { container: expected } = render(<Sun size={20} pointerEvents="none" />);
       const { container } = render(getThumbIcon(index, sets));
       expect(container.innerHTML).toEqual(expected.innerHTML);
     }

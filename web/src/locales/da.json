@@ -6,9 +6,9 @@
     "datasources": "kildekode",
     "contribute": "Bidrag ved at <a href=\"{{link}}\" target=\"_blank\">tilføje dit område</a>"
   },
-  "left-panel": {
-    "zone-list-header-title": "Klimapåvirkning per region",
-    "zone-list-header-subtitle": "Sorteret efter CO₂-intensitet fra elforbruget (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Klimapåvirkning per region",
+    "subtitle": "Sorteret efter CO₂-intensitet fra elforbruget (gCO₂eq/kWh)",
     "search": "Søg efter region"
   },
   "country-panel": {

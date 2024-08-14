@@ -39,9 +39,9 @@
     "noParserInfo": "Još nemamo nikakve informacije za ovo područje.<br/> Želih nam ih pomoći dodati? Možeš dati svoj doprinos <a href=\"{{link}}\" target=\"_blank\">dodavanjem podataka za područje</a>.",
     "now": "Sada"
   },
-  "left-panel": {
-    "zone-list-header-title": "Utjecaj na klimu po području",
-    "zone-list-header-subtitle": "Poredak po faktoru emisije upotrijebljene struje (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Utjecaj na klimu po području",
+    "subtitle": "Poredak po faktoru emisije upotrijebljene struje (gCO₂eq/kWh)",
     "search": "Traži"
   },
   "footer": {

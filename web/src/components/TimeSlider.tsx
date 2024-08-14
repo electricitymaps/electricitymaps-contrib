@@ -3,7 +3,8 @@ import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom, useAtomValue } from 'jotai';
-import { FaArrowsLeftRight, FaMoon, FaSun } from 'react-icons/fa6';
+import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
+import { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
@@ -56,18 +57,18 @@ export const getTrackBackground = (
 export const getThumbIcon = (
   selectedIndex?: number,
   sets?: NightTimeSet[]
-): React.ReactNode => {
-  const size = 14;
+): ReactElement => {
+  const size = 20;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
-    return <FaArrowsLeftRight size={size} pointerEvents="none" />;
+    return <ChevronsLeftRight size={size} pointerEvents="none" />;
   }
   const isValueAtNight = sets.some(
     ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
   );
   return isValueAtNight ? (
-    <FaMoon size={size} pointerEvents="none" />
+    <Moon size={size} pointerEvents="none" />
   ) : (
-    <FaSun size={size} pointerEvents="none" />
+    <Sun size={size} pointerEvents="none" />
   );
 };
 
@@ -79,7 +80,7 @@ function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) 
 
 export type TimeSliderBasicProps = TimeSliderProps & {
   trackBackground: string;
-  thumbIcon: React.ReactNode;
+  thumbIcon: ReactElement;
 };
 export function TimeSliderBasic({
   onChange,
@@ -110,12 +111,8 @@ export function TimeSliderBasic({
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
         data-test-id="time-slider-input"
-        className="gray-200/50 flex h-6 w-6 items-center
-          justify-center rounded-full shadow-3xl
-          backdrop-blur-sm transition-shadow hover:ring hover:ring-success/10
-          hover:ring-opacity-50 focus:outline-none
-          focus-visible:ring focus-visible:ring-success/10 focus-visible:ring-opacity-75
-          dark:bg-gray-400/50 hover:dark:ring-success-dark/10 dark:focus-visible:ring-success-dark/10"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white outline
+           outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 dark:bg-gray-900 dark:outline-gray-700"
       >
         {thumbIcon}
       </SliderPrimitive.Thumb>

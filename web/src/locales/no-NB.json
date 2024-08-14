@@ -84,7 +84,7 @@
   "hydro": "Vannkraft",
   "hydro storage": "Pumpekraftverk",
   "info": {
-    "intro-text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
+    "text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
     "open-source-text": "Tjenesten er <a href='{{link}}' target='_blank'>åpen kildekode</a> og utviklet i samarbeid med frivillige."
   },
   "button": {
@@ -95,10 +95,10 @@
     "feedback": "Send tilbakemelding",
     "github": "Se på GitHub"
   },
-  "left-panel": {
+  "ranking-panel": {
     "search": "Søk etter land/region",
-    "zone-list-header-subtitle": "Sortert etter CO₂-intensitet fra strømforbruk (gCO₂eq/kWh)",
-    "zone-list-header-title": "Hver regions klimapåvirkning"
+    "subtitle": "Sortert etter CO₂-intensitet fra strømforbruk (gCO₂eq/kWh)",
+    "title": "Hver regions klimapåvirkning"
   },
   "legends": {
     "carbonintensity": "CO₂-intensitet",
