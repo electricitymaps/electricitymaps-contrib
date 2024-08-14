@@ -35,7 +35,7 @@ function LeftElementsWrapper(): ReactElement {
   const isMobile = useIsMobile();
 
   return isMobile ? (
-    <div className="absolute bottom-0 left-0 top-0 z-50 h-full w-full">
+    <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-50 h-full w-full">
       <Suspense>
         <LeftPanel />
       </Suspense>

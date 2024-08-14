@@ -79,7 +79,7 @@ export default function ZoneDetails(): JSX.Element {
   return (
     <div className="flex h-full flex-col">
       <ZoneHeaderTitle zoneId={zoneId} />
-      <div className="mb-3 h-full overflow-y-scroll p-3 pt-2">
+      <div className="h-full overflow-y-scroll p-3 pt-2">
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
