@@ -38,7 +38,7 @@ ZONES_WITH_BATTERY_STORAGE = ["FR"]
 
 # reallocate B10 to hydro storage
 ENTSOE_CODE_TO_EM_MAPPING = ENTSOE_PARAMETER_BY_GROUP.copy()
-ENTSOE_CODE_TO_EM_MAPPING.update({"B10": "hydro storage"})
+ENTSOE_CODE_TO_EM_MAPPING.update({"B10": "hydro storage", "B25": "battery storage"})
 
 
 def query_capacity(
