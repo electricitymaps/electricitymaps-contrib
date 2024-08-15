@@ -1,15 +1,13 @@
 import { useAtom, useAtomValue } from 'jotai';
+import { EyeOff, Sun, Wind } from 'lucide-react';
 import { useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FiWind } from 'react-icons/fi';
-import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
 import { MoonLoader } from 'react-spinners';
 import trackEvent from 'utils/analytics';
 import { ThemeOptions, ToggleOptions } from 'utils/constants';
 import {
+  areWeatherLayersAllowedAtom,
   colorblindModeAtom,
-  isHourlyAtom,
-  selectedDatetimeIndexAtom,
   solarLayerAtom,
   solarLayerLoadingAtom,
   themeAtom,
@@ -35,14 +33,14 @@ function MobileMapControls() {
 
 export const weatherButtonMap = {
   wind: {
-    icon: FiWind,
-    iconSize: 18,
+    icon: Wind,
+    iconSize: 20,
     enabledAtom: windLayerAtom,
     loadingAtom: windLayerLoadingAtom,
   },
   solar: {
-    icon: HiOutlineSun,
-    iconSize: 21,
+    icon: Sun,
+    iconSize: 20,
     enabledAtom: solarLayerAtom,
     loadingAtom: solarLayerLoadingAtom,
   },
@@ -98,13 +96,9 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
 
 function DesktopMapControls() {
   const { t } = useTranslation();
-  const isHourly = useAtomValue(isHourlyAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
-
-  // We are currently only supporting and fetching weather data for the latest hourly value
-  const areWeatherLayersAllowed = selectedDatetime.index === 24 && isHourly;
 
   const handleColorblindModeToggle = () => {
     setIsColorblindModeEnabled(!isColorblindModeEnabled);
@@ -121,7 +115,7 @@ function DesktopMapControls() {
         <LanguageSelector />
         <MapButton
           icon={
-            <HiOutlineEyeOff
+            <EyeOff
               size={20}
               className={`${isColorblindModeEnabled ? '' : 'opacity-50'}`}
             />
