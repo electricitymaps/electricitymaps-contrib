@@ -1,5 +1,6 @@
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
+import { useCallback } from 'react';
 import { resolvePath, useSearchParams } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
@@ -11,15 +12,12 @@ interface ViewContentProps {
   isDangerouslySet?: boolean;
 }
 
-const HEADER_STYLE = 'mb-2 px-2 text-base font-semibold sm:text-lg sm:mb-4';
 const BODY_STYLE = 'text-sm px-4 sm:text-base pb-4';
 
 function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewContentProps) {
   return (
     <>
-      <div>
-        <h2 className={HEADER_STYLE}>{t(`${translationKey}.header`)}</h2>
-      </div>
+      <h1>{t(`${translationKey}.header`)}</h1>
       {isDangerouslySet ? (
         <p
           dangerouslySetInnerHTML={{
@@ -80,9 +78,9 @@ export function OnboardingModal() {
   const [searchParameters] = useSearchParams();
   const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
   const visible = !hasOnboardingBeenSeen && !skipOnboarding;
-  const handleDismiss = () => {
+  const handleDismiss = useCallback(() => {
     setHasOnboardingBeenSeen(true);
-  };
+  }, [setHasOnboardingBeenSeen]);
   return (
     <Modal
       modalName="onboarding"
