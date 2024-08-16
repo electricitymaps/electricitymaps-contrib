@@ -2,9 +2,8 @@ import * as Portal from '@radix-ui/react-portal';
 import { Link } from 'components/Link';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { TFunction } from 'i18next';
-import { X } from 'lucide-react';
+import { Info, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { IoInformationCircleOutline } from 'react-icons/io5';
 import { ElectricityModeType } from 'types';
 import { sourceLinkMapping } from 'utils/constants';
 import { useBreakpoint } from 'utils/styling';
@@ -56,10 +55,7 @@ export function DataSources({
             isMobile={isMobile}
           >
             <div>
-              <IoInformationCircleOutline
-                className="text-emerald-800 dark:text-emerald-500"
-                size={20}
-              />
+              <Info className="text-emerald-800 dark:text-emerald-500" size={20} />
             </div>
           </TooltipWrapper>
         )}
