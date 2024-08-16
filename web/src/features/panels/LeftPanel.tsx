@@ -2,9 +2,9 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import {
   Navigate,
   Route,
@@ -81,7 +81,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
         isCollapsed ? t('aria.label.showSidePanel') : t('aria.label.hideSidePanel')
       }
     >
-      {isCollapsed ? <HiChevronRight /> : <HiChevronLeft />}
+      {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
     </button>
   );
 }
