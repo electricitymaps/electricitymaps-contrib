@@ -31,27 +31,25 @@ function MenuLink({
     onClick?.();
   };
   return (
-    <div className="relative my-3 flex">
-      <NavigationMenu.Item
-        asChild
-        className="cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+    <NavigationMenu.Item
+      asChild
+      className="relative cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+    >
+      <NavigationMenu.Link
+        onClick={handleClick}
+        href={href}
+        target={isExternal ? '_blank' : '_self'}
+        className="group px-1 py-2 text-sm lg:px-2 lg:text-base"
       >
-        <NavigationMenu.Link
-          onClick={handleClick}
-          href={href}
-          target={isExternal ? '_blank' : '_self'}
-          className="group px-1 py-2 text-sm lg:px-2 lg:text-base"
-        >
-          {children}
-          {isExternal && (
-            <ExternalLink
-              size={16}
-              className="absolute -right-2 -top-2 text-gray-500 opacity-0 transition-opacity group-hover:opacity-80"
-            />
-          )}
-        </NavigationMenu.Link>
-      </NavigationMenu.Item>
-    </div>
+        {children}
+        {isExternal && (
+          <ExternalLink
+            size={16}
+            className="absolute -right-2 -top-2 text-gray-500 opacity-0 transition-opacity group-hover:opacity-80"
+          />
+        )}
+      </NavigationMenu.Link>
+    </NavigationMenu.Item>
   );
 }
 
