@@ -1,6 +1,6 @@
 {
   "info": {
-    "intro-text": "Electricity Maps应用程序在网站和手机程序上为居民，能源专家，非政府组织和决策者们提供即时的信息，从而促使人们更好的理解能源转型的挑战。",
+    "text": "Electricity Maps应用程序在网站和手机程序上为居民，能源专家，非政府组织和决策者们提供即时的信息，从而促使人们更好的理解能源转型的挑战。",
     "open-source-text": "这个应用程序是一个<a href='{{link}}' target='_blank'>开源</a> 并由社区提供支持。"
   },
   "button": {
@@ -1700,9 +1700,9 @@
       "text": "风能和太阳能的生产取决于天气。按下太阳和风按钮以显示全球风和阳光的实时强度。"
     }
   },
-  "left-panel": {
-    "zone-list-header-title": "气候影响-按地域划分",
-    "zone-list-header-subtitle": "按消费电力的碳强度排名gCO₂eq/kWh）",
+  "ranking-panel": {
+    "title": "气候影响-按地域划分",
+    "subtitle": "按消费电力的碳强度排名gCO₂eq/kWh）",
     "search": "搜索地区"
   },
   "battery storage": "电池储能"

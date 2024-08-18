@@ -46,10 +46,10 @@ export const isWindLayerEnabledAtom = atom(
     get(selectedDatetimeIndexAtom).index === 24
 );
 
-export const solarLayerLoadingAtom = atom(false);
-export const windLayerLoadingAtom = atom(false);
+export const solarLayerLoadingAtom = atom<boolean>(false);
+export const windLayerLoadingAtom = atom<boolean>(false);
 
-export const displayByEmissionsAtom = atom(false);
+export const displayByEmissionsAtom = atom<boolean>(false);
 
 export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 
@@ -67,15 +67,17 @@ export const feedbackCardCollapsedNumberAtom = atom(0);
 
 export const colorblindModeAtom = atomWithStorage('colorblindModeEnabled', false);
 
-export const dataSourcesCollapsedBarBreakdown = atom(true);
+export const dataSourcesCollapsedBarBreakdown = atom<boolean>(true);
 
-export const dataSourcesCollapsedBreakdown = atom(true);
+export const dataSourcesCollapsedBreakdown = atom<boolean>(true);
 
-export const dataSourcesCollapsedEmission = atom(true);
+export const dataSourcesCollapsedEmission = atom<boolean>(true);
 
-export const userLocationAtom = atom(undefined);
+export const userLocationAtom = atom<string | undefined>(undefined);
 
 export const hasSeenSurveyCardAtom = atomWithStorage('hasSeenSurveyCard', false);
+
+export const hasSeenUsSurveyCardAtom = atomWithStorage('hasSeenUsSurveyCard', false);
 
 export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
   'rankingPanelAccordionCollapsed',

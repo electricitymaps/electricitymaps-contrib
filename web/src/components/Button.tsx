@@ -96,12 +96,12 @@ function getBackground(type: string, disabled: boolean | undefined) {
   switch (type) {
     case 'primary': {
       if (disabled) {
-        return 'bg-zinc-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700';
+        return 'bg-zinc-50 dark:bg-gray-800 outline outline-1 outline-neutral-200 dark:outline-gray-700';
       }
       return 'bg-brand-green';
     }
     case 'secondary': {
-      return 'border dark:border-gray-700 border-neutral-200 bg-white dark:bg-gray-900';
+      return 'outline outline-1 dark:outline-gray-700 outline-neutral-200 bg-white dark:bg-gray-900';
     }
     default: {
       return 'bg-inherit';

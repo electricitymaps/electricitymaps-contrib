@@ -1,6 +1,6 @@
 {
   "info": {
-    "intro-text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no telemóvel para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios da transição energética.",
+    "text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no telemóvel para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios da transição energética.",
     "open-source-text": "Esta app é <a href='{{link}}' target='_blank'>de código aberto</a> e desenvolvida pela comunidade."
   },
   "button": {
@@ -182,10 +182,12 @@
     "monthly": "mensais",
     "yearly": "anuais"
   },
+  "ranking-panel": {
+    "title": "Impacto climático",
+    "subtitle": "Áreas ordenadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
+    "search": "Pesquise por país ou área"
+  },
   "left-panel": {
-    "zone-list-header-title": "Impacto climático",
-    "zone-list-header-subtitle": "Áreas ordenadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
-    "search": "Pesquise por país ou área",
     "get-data": "Veja as ofertas do nosso API comercial",
     "applied-methodologies": {
       "title": "Metodologias aplicadas",

@@ -55,9 +55,9 @@
     "aggregatedTooltip": "Os dados para essa zona são agregados e baseados em valores históricos de hora em hora.",
     "helpUs": "Nos ajude a identificar o problema dando uma olhada nos <a href=\"{{link}}\" target=\"_blank\">registros</a> ou contactando o provedor de dados."
   },
-  "left-panel": {
-    "zone-list-header-title": "Impacto climático",
-    "zone-list-header-subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Impacto climático",
+    "subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
     "search": "Pesquise por país ou área"
   },
   "footer": {
@@ -1736,7 +1736,7 @@
   "windDataError": "Dados eólicos estão indisponíveis",
   "solarDataError": "Dados solares estão indisponíveis",
   "info": {
-    "intro-text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no celular para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios de transição de energia.",
+    "text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no celular para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios de transição de energia.",
     "open-source-text": "Esse aplicativo é <a href='{{link}}' target='_blank'>de código aberto</a> e apoiado pela comunidade."
   },
   "button": {

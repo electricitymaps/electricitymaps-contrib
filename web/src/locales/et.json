@@ -40,9 +40,9 @@
     "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"{{link}}\" target=\"_blank\">lisades piirkonna andmed</a>.",
     "now": "Äsja"
   },
-  "left-panel": {
-    "zone-list-header-title": "Kliimamõju piirkonniti",
-    "zone-list-header-subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Kliimamõju piirkonniti",
+    "subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
     "search": "Otsige piirkondi"
   },
   "footer": {
