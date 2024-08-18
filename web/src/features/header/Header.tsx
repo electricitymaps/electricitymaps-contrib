@@ -33,7 +33,7 @@ function MenuLink({
   return (
     <NavigationMenu.Item
       asChild
-      className="relative cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+      className="relative my-3 cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
     >
       <NavigationMenu.Link
         onClick={handleClick}
