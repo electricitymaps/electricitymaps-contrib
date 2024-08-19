@@ -86,11 +86,7 @@ export function VirtualizedZoneList({ data }: ZonelistProperties) {
         >
           {items.map((virtualRow) => (
             <div key={virtualRow.key} data-index={virtualRow.index}>
-              <ZoneRow
-                key={virtualRow.index}
-                {...data[virtualRow.index]}
-                ranking={data[virtualRow.index].ranking}
-              />
+              <ZoneRow key={virtualRow.index} {...data[virtualRow.index]} />
             </div>
           ))}
         </div>
