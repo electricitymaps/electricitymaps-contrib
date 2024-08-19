@@ -1,7 +1,6 @@
 import { Button, ButtonProps } from 'components/Button';
 import { CloudCog } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface CommercialApiButtonProps
   extends Omit<
@@ -13,7 +12,7 @@ interface CommercialApiButtonProps
 }
 
 export function CommercialApiButton({
-  iconSize = DEFAULT_ICON_SIZE,
+  iconSize = 20,
   type,
   ...restProps
 }: CommercialApiButtonProps) {
