@@ -81,7 +81,10 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
         isLoadingLayer ? (
           <MoonLoader size={14} color={spinnerColor} />
         ) : (
-          <Icon size={weatherButtonMap[type].iconSize} color={isEnabled ? '' : 'gray'} />
+          <Icon
+            size={weatherButtonMap[type].iconSize}
+            className={isEnabled ? '' : 'opacity-50'}
+          />
         )
       }
       tooltipText={tooltipTexts[type]}
