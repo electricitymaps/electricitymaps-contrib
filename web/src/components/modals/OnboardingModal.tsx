@@ -17,7 +17,7 @@ const BODY_STYLE = 'text-sm px-4 sm:text-base pb-4';
 function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewContentProps) {
   return (
     <>
-      <h1>{t(`${translationKey}.header`)}</h1>
+      <h1 className="mb-4">{t(`${translationKey}.header`)}</h1>
       {isDangerouslySet ? (
         <p
           dangerouslySetInnerHTML={{
@@ -26,7 +26,7 @@ function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewConten
           className={BODY_STYLE}
         ></p>
       ) : (
-        <div className={BODY_STYLE}>{t(`${translationKey}.text`)}</div>
+        <p className={BODY_STYLE}>{t(`${translationKey}.text`)}</p>
       )}
     </>
   );
