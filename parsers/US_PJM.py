@@ -9,7 +9,6 @@ from zoneinfo import ZoneInfo
 
 import demjson3 as demjson
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
 from dateutil import parser
 from requests import Response, Session
@@ -22,7 +21,6 @@ TIMEZONE = ZoneInfo("America/New_York")
 API_ENDPOINT = "https://api.pjm.com/api/v1/"
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
-HOST_PARAM = "?host=https://api.pjm.com"
 DATA_PATH = "api/v1"
 
 # Used for both production and price data.
@@ -85,11 +83,13 @@ def get_api_subscription_key(session: Session) -> str:
 def fetch_api_data(kind: str, params: dict, session: Session) -> dict:
     headers = {
         "Ocp-Apim-Subscription-Key": get_api_subscription_key(session=session),
-        "Accept-Encoding": "identity"
+        "Accept-Encoding": "identity",
     }
 
     url = f"{US_PROXY}/{DATA_PATH}/{kind}"
-    resp: Response = session.get(url=url, params={"host": "https://api.pjm.com", **params}, headers=headers)
+    resp: Response = session.get(
+        url=url, params={"host": "https://api.pjm.com", **params}, headers=headers
+    )
     if resp.status_code == 200:
         data = resp.json()
         return data
@@ -109,7 +109,9 @@ def fetch_production(
 ) -> list:
     """uses PJM API to get generation  by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+        target_datetime = datetime.now(timezone.utc).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
     params = {
         "startRow": 1,
