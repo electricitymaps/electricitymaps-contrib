@@ -1,11 +1,9 @@
 import useGetZone from 'api/getZone';
-import { Button } from 'components/Button';
+import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { MdOutlineCloudDownload } from 'react-icons/md';
 import { Navigate, useParams } from 'react-router-dom';
 import { ZoneMessage } from 'types';
 import { EstimationMethods, SpatialAggregate } from 'utils/constants';
@@ -35,7 +33,6 @@ export default function ZoneDetails(): JSX.Element {
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
-  const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
   const isMobile = !useBreakpoint('sm');
 
@@ -101,15 +98,7 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <Button
-            backgroundClasses="mt-3 mb-1"
-            size="lg"
-            type="link"
-            icon={<MdOutlineCloudDownload size={20} />}
-            href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
-          >
-            {t('left-panel.get-data')}
-          </Button>
+          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="link" />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -120,13 +109,7 @@ export default function ZoneDetails(): JSX.Element {
           <MethodologyCard />
           <Attribution zoneId={zoneId} />
           {isMobile ? (
-            <Button
-              backgroundClasses="mt-3"
-              icon={<MdOutlineCloudDownload size={20} />}
-              href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
-            >
-              {t('header.get-data')}
-            </Button>
+            <CommercialApiButton backgroundClasses="mt-3" />
           ) : (
             <div className="p-2" />
           )}
