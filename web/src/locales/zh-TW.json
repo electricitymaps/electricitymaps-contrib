@@ -1,6 +1,6 @@
 {
   "info": {
-    "intro-text": "這份電力地圖為推動能源轉型的公民、能源專家、NGO 和政策制定者提供即時的用電資料。",
+    "text": "這份電力地圖為推動能源轉型的公民、能源專家、NGO 和政策制定者提供即時的用電資料。",
     "open-source-text": "這個網站是個由社群支持的<a href='{{link}}' target='_blank'>開源</a>軟體。"
   },
   "button": {
@@ -154,9 +154,9 @@
     "monthly": "每月",
     "yearly": "每年"
   },
-  "left-panel": {
-    "zone-list-header-title": "各地區對氣候的影響",
-    "zone-list-header-subtitle": "依據耗電量的碳強度（單位：gCO₂eq/kWh）排名",
+  "ranking-panel": {
+    "title": "各地區對氣候的影響",
+    "subtitle": "依據耗電量的碳強度（單位：gCO₂eq/kWh）排名",
     "search": "搜尋地區"
   },
   "country-history": {

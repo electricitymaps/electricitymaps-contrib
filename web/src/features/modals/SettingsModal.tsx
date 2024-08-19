@@ -6,15 +6,11 @@ import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import ThemeSelector from 'features/map-controls/ThemeSelector';
 import { useAtom, useAtomValue } from 'jotai';
+import { EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineEyeOff } from 'react-icons/hi';
 import { MoonLoader } from 'react-spinners';
 import { ToggleOptions } from 'utils/constants';
-import {
-  colorblindModeAtom,
-  isHourlyAtom,
-  selectedDatetimeIndexAtom,
-} from 'utils/state/atoms';
+import { areWeatherLayersAllowedAtom, colorblindModeAtom } from 'utils/state/atoms';
 
 import { isSettingsModalOpenAtom } from './modalAtoms';
 
@@ -68,13 +64,9 @@ function WeatherToggleButton({
 }
 
 export function SettingsModalContent() {
-  const isHourly = useAtomValue(isHourlyAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
-
-  // We are currently only supporting and fetching weather data for the latest hourly value
-  const areWeatherLayersAllowed = selectedDatetime.index === 24 && isHourly;
 
   const { t } = useTranslation();
   return (
@@ -93,7 +85,7 @@ export function SettingsModalContent() {
         type={isColorblindModeEnabled ? 'primary' : 'secondary'}
         backgroundClasses="w-[330px] h-[45px]"
         onClick={() => setIsColorblindModeEnabled(!isColorblindModeEnabled)}
-        icon={<HiOutlineEyeOff size={21} />}
+        icon={<EyeOff size={20} />}
       >
         {t('legends.colorblindmode')}
       </Button>

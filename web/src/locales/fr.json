@@ -1,6 +1,6 @@
 {
   "info": {
-    "intro-text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
+    "text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
     "open-source-text": "Cette application est <a href='{{link}}' target='_blank'>Open Source</a> et alimentée par la communauté."
   },
   "button": {
@@ -200,6 +200,11 @@
     "monthly": "mensuel",
     "yearly": "annuel"
   },
+  "ranking-panel": {
+    "title": "Impact sur le climat par zone",
+    "subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
+    "search": "Rechercher une zone"
+  },
   "left-panel": {
     "applied-methodologies": {
       "carbonintensity": "Electricity Maps - Intensité carbone",
@@ -207,9 +212,6 @@
       "flowtracing": "Electricity Maps - Traçage des flux",
       "title": "Méthologies utilisées"
     },
-    "zone-list-header-title": "Impact sur le climat par zone",
-    "zone-list-header-subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
-    "search": "Rechercher une zone",
     "get-data": "Voir nos offres commerciales d'API"
   },
   "header": {
