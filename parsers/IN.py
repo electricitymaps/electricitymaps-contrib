@@ -347,12 +347,14 @@ def fetch_consumption(
     ).to_list()
 
 
-def format_ren_production_data(url: str, zone_key: str, target_datetime: datetime) -> dict[str, Any]:
+def format_ren_production_data(
+    url: str, zone_key: str, target_datetime: datetime
+) -> dict[str, Any]:
     """Formats daily renewable production data for each zone"""
     df_ren = pd.read_excel(url, engine="openpyxl", header=5, skipfooter=2)
     df_ren = df_ren.dropna(axis=0, how="all")
-    
-    #They changed format of the data from 2024/07/01
+
+    # They changed format of the data from 2024/07/01
     if target_datetime < datetime(2024, 7, 1, 0, 0, tzinfo=IN_TZ):
         df_ren = df_ren.rename(
             columns={
@@ -371,22 +373,22 @@ def format_ren_production_data(url: str, zone_key: str, target_datetime: datetim
                 df_ren.columns[3]: "unknown",
             }
         )
-    
+
     df_ren.loc[:, "zone_key"] = (
         df_ren["region"].apply(lambda x: x if "Region" in x else np.nan).backfill()
     )
-    
+
     df_ren["zone_key"] = df_ren["zone_key"].str.strip()
     df_ren["zone_key"] = df_ren["zone_key"].map(CEA_REGION_MAPPING)
-    
+
     zone_data = df_ren.loc[
         (df_ren.zone_key == zone_key) & (~df_ren.region.str.contains("Region"))
     ][["wind", "solar", "unknown"]].sum()
-    
+
     renewable_production = {
         key: round(zone_data.get(key) / CONVERSION_GWH_MW, 3) for key in zone_data.index
     }
-    
+
     return renewable_production
 
 
@@ -410,7 +412,7 @@ def fetch_cea_production(
             for elem in all_data
             if target_datetime.strftime("%Y-%m-%d") in elem["date"]
         ]
-        
+
         if len(target_elem) > 0:
             if target_elem[0]["link"] == "file_not_found":
                 raise ParserException(
