@@ -52,7 +52,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
             tooltipContent={showTooltip ? zoneNameFull : undefined}
             side="bottom"
           >
-            <h1 className="grow truncate" data-test-id="zone-name">
+            <h1 className="truncate" data-test-id="zone-name">
               {zoneName}
             </h1>
           </TooltipWrapper>
@@ -63,7 +63,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
           )}
           {disclaimer && (
             <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-              <Info className="shrink-0 text-gray-500" />
+              <Info className="ml-auto shrink-0 text-gray-500" />
             </TooltipWrapper>
           )}
         </div>
