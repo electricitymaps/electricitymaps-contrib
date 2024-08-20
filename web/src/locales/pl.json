@@ -44,9 +44,9 @@
     "dataIsEstimated": "Niektóre dane dla tego obszaru zostały oszacowane. Przeczytaj więcej o naszej metodologii szacowania <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">tutaj</a>.",
     "now": "Obecnie"
   },
-  "left-panel": {
-    "zone-list-header-title": "Wpływ na klimat według obszaru",
-    "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Wpływ na klimat według obszaru",
+    "subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
     "search": "Szukaj"
   },
   "footer": {

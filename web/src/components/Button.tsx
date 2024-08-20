@@ -15,6 +15,7 @@ export interface ButtonProps {
   foregroundClasses?: string;
   asDiv?: boolean;
   onClick?: () => void;
+  dataTestId?: string;
 }
 
 export function Button({
@@ -29,6 +30,7 @@ export function Button({
   type = 'primary',
   asDiv, // If true, renders a div instead of a button to avoid nested buttons in components like ToastPrimitive.Action
   onClick,
+  dataTestId,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
   const As = getComponentType(renderAsLink, asDiv);
@@ -62,6 +64,7 @@ export function Button({
         target="_blank"
         // Used to prevent browser translation crashes on edge, see #6809
         translate="no"
+        data-test-id={dataTestId}
       >
         {icon}
         {children}
@@ -96,12 +99,12 @@ function getBackground(type: string, disabled: boolean | undefined) {
   switch (type) {
     case 'primary': {
       if (disabled) {
-        return 'bg-zinc-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700';
+        return 'bg-zinc-50 dark:bg-gray-800 outline outline-1 outline-neutral-200 dark:outline-gray-700';
       }
       return 'bg-brand-green';
     }
     case 'secondary': {
-      return 'border dark:border-gray-700 border-neutral-200 bg-white dark:bg-gray-900';
+      return 'outline outline-1 dark:outline-gray-700 outline-neutral-200 bg-white dark:bg-gray-900';
     }
     default: {
       return 'bg-inherit';

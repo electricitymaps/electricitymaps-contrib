@@ -39,9 +39,9 @@
     "noParserInfo": "Zatiaľ nemáme žiadne informácie pre túto oblasť.<br/> Chcete nám pomôcť to napraviť? Môžete sa zapojiť <a href=\"{{link}}\" target=\"_blank\">pridaním dát</a>.",
     "now": "Teraz"
   },
-  "left-panel": {
-    "zone-list-header-title": "Dopad na klímu podľa oblasti",
-    "zone-list-header-subtitle": "Hodnotené podľa intezity uhlíka spotrebovanej elektriny (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Dopad na klímu podľa oblasti",
+    "subtitle": "Hodnotené podľa intezity uhlíka spotrebovanej elektriny (gCO₂eq/kWh)",
     "search": "Hľadaj oblasti"
   },
   "footer": {

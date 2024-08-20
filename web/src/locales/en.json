@@ -14,6 +14,7 @@
     "search": "Search areas"
   },
   "button": {
+    "reddit": "Join r/electricitymaps",
     "github": "Contribute on GitHub",
     "twitter": "Follow us on Twitter",
     "twitter-share": "Share on Twitter",
@@ -124,7 +125,7 @@
       "primary-question": "The description of the data estimation was easy to understand:"
     },
 
-    "primary-question": "How satisfied are you with your experience using the Electricity Maps app?",
+    "primary-question": "How would you rate your overall satisfaction with the Electricity Maps app?",
     "secondary-question-low": "What can we do better?",
     "secondary-question-high": "What improvements would you like to see next?",
 
@@ -132,6 +133,8 @@
     "input-question": "Let us know any features you'd like to see?",
     "agree": "Strongly agree",
     "disagree": "Strongly disagree",
+    "satisfied": "Very satisfied",
+    "unsatisfied": "Very unsatisfied",
     "placeholder": "Let us know in a few words...",
     "submit": "Submit"
   },

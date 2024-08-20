@@ -39,9 +39,9 @@
     "noParserInfo": "Kami tidak mempunyai informasi lebih lanjut tentang area yang dipilih.<br/> Ingin memperbaikinya? Kamu bisa berkontribusi dengan <a href=\"{{link}}\" target=\"_blank\">menambahkan data area</a>.",
     "now": "Sekarang"
   },
-  "left-panel": {
-    "zone-list-header-title": "Dampak klimatologi berdasarkan area",
-    "zone-list-header-subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Dampak klimatologi berdasarkan area",
+    "subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
     "search": "Cari area"
   },
   "footer": {

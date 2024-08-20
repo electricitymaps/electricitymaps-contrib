@@ -1,9 +1,9 @@
 import { Button, ButtonProps } from 'components/Button';
-import { MessageSquareText } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { FaReddit } from 'react-icons/fa6';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
-interface FeedbackButtonProps
+interface RedditButtonProps
   extends Omit<
     ButtonProps,
     'icon' | 'children' | 'href' | 'onClick' | 'backgroundClasses' | 'foregroundClasses'
@@ -12,19 +12,21 @@ interface FeedbackButtonProps
   isIconOnly?: boolean;
 }
 
-export function FeedbackButton({
+export function RedditButton({
   isIconOnly,
   iconSize = DEFAULT_ICON_SIZE,
   ...restProps
-}: FeedbackButtonProps) {
+}: RedditButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
-      href="https://forms.gle/VHaeHzXyGodFKZY18"
-      icon={<MessageSquareText size={iconSize} />}
+      backgroundClasses="bg-[#FF4500]"
+      foregroundClasses="text-white dark:text-white focus-visible:outline-[#0A66C2]"
+      href={'https://www.reddit.com/r/electricitymaps/'}
+      icon={<FaReddit size={iconSize} />}
       {...restProps}
     >
-      {isIconOnly ? undefined : t('button.feedback')}
+      {isIconOnly ? undefined : t('button.reddit')}
     </Button>
   );
 }
