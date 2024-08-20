@@ -94,10 +94,14 @@ function BarElectricityBreakdownChart({
   const formatTick = (t: number) => {
     // Use same unit as max value for tick with value 0
     if (t === 0) {
-      const tickValue = isHourly ? formatPower(maxPower, 1) : formatEnergy(maxPower, 1);
+      const tickValue = isHourly
+        ? formatPower({ value: maxPower, numberDigits: 1 })
+        : formatEnergy({ value: maxPower, numberDigits: 1 });
       return tickValue.toString().replace(/[\d.]+/, '0');
     }
-    return isHourly ? formatPower(t, 2) : formatEnergy(t, 2);
+    return isHourly
+      ? formatPower({ value: t, numberDigits: 2 })
+      : formatEnergy({ value: t, numberDigits: 2 });
   };
 
   return (
