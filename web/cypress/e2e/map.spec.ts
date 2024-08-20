@@ -14,6 +14,9 @@ describe('Map', () => {
     // eslint-disable-next-line cypress/require-data-selectors
     cy.get('.maplibregl-map').should('be.visible');
 
+    // Close the info according on the ranking panel
+    cy.get('[data-test-id=collapse-button]').click();
+
     cy.get('[data-test-id=zone-search-bar]').type('Denmark');
     cy.get('[data-index="0"] > .group').click();
     cy.get('[data-test-id=left-panel-back-button]').click();
