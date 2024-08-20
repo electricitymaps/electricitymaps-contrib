@@ -7,7 +7,7 @@ const DEFAULT_NUM_DIGITS = 3;
 
 export interface FormatParameters {
   value: number;
-  total?: number;
+  total?: number | null;
   numberDigits?: number;
 }
 

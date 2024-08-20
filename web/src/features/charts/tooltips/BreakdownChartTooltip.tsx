@@ -143,7 +143,7 @@ export default function BreakdownChartTooltip({
 interface BreakdownChartTooltipContentProperties {
   datetime: Date;
   usage: number;
-  capacity: number | undefined;
+  capacity: number | null | undefined;
   totalElectricity: number;
   totalEmissions: number;
   co2Intensity: number;
