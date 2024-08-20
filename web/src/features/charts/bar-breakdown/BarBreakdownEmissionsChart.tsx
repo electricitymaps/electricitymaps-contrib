@@ -67,7 +67,7 @@ function BarBreakdownEmissionsChart({
   const formatTick = (t: number) => {
     const maxValue = maxCO2eqProduction || 1;
 
-    return formatCo2(t, maxValue);
+    return formatCo2({ value: t, total: maxValue });
   };
 
   return (

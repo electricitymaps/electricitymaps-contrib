@@ -46,15 +46,13 @@ export default meta;
 type Story = StoryObj<typeof Toast>;
 
 export const All: Story = {
-  render: () => {
-    return (
-      <>
-        <p>
-          The toast will pop back up when clicked on in the story but not in production.
-        </p>
-        <br />
-        <ToastWrapperComponent />
-      </>
-    );
-  },
+  render: () => (
+    <>
+      <p>
+        The toast will pop back up when clicked on in the story but not in production.
+      </p>
+      <br />
+      <ToastWrapperComponent />
+    </>
+  ),
 };
