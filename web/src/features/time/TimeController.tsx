@@ -1,8 +1,11 @@
 import useGetState from 'api/getState';
+import Accordion from 'components/Accordion';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom, useAtomValue } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import {
@@ -10,11 +13,22 @@ import {
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+import { useIsBiggerThanMobile, useIsMobile } from 'utils/styling';
 
 import TimeAxis from './TimeAxis';
-import TimeHeader from './TimeHeader';
+import TimeBadge from './TimeBadge';
 
-export default function TimeController({ className }: { className?: string }) {
+const timeControllerCollapsedAtom = atomWithStorage<boolean | null>(
+  'timeControllerCollapsed',
+  null
+);
+
+function InternalTimeController({ className }: { className?: string }) {
+  const { t } = useTranslation();
+  const isMobile = useIsMobile();
+  const [timeControllerCollapsed, setTimeControllerCollapsed] = useAtom(
+    timeControllerCollapsedAtom
+  );
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
@@ -73,16 +87,23 @@ export default function TimeController({ className }: { className?: string }) {
     [selectedDatetime.datetime, numberOfEntries, setSelectedDatetime, setTimeAverage]
   );
 
+  if (timeControllerCollapsed === null) {
+    setTimeControllerCollapsed(isMobile);
+  }
+
   return (
     <div className={className}>
-      <TimeHeader
-        // Hide the header on mobile as it is loaded directly into the BottomSheet header section
-        className="hidden sm:flex"
-      />
-      <TimeAverageToggle
-        timeAverage={timeAverage}
-        onToggleGroupClick={onToggleGroupClick}
-      />
+      <Accordion
+        title={t(`time-controller.title.${timeAverage}`)}
+        badge={<TimeBadge />}
+        isOnTop
+        isCollapsedAtom={timeControllerCollapsedAtom}
+      >
+        <TimeAverageToggle
+          timeAverage={timeAverage}
+          onToggleGroupClick={onToggleGroupClick}
+        />
+      </Accordion>
       <TimeSlider
         onChange={onTimeSliderChange}
         numberOfEntries={numberOfEntries}
@@ -95,7 +116,29 @@ export default function TimeController({ className }: { className?: string }) {
         className="h-[22px] w-full overflow-visible"
         transform={`translate(12, 0)`}
         isLiveDisplay={isHourly}
+        isGraph={false}
       />
     </div>
   );
+}
+
+function FloatingTimeController() {
+  return (
+    <div className="fixed bottom-3 left-3 z-20 w-[calc(14vw_+_16rem)] rounded-2xl bg-white/80 px-4 py-3 shadow-xl drop-shadow-2xl backdrop-blur dark:bg-gray-800/80 min-[780px]:w-[calc((14vw_+_16rem)_-_30px)] xl:px-5">
+      <InternalTimeController />
+    </div>
+  );
+}
+
+function FixedTimeController() {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-20 w-full border-t border-neutral-200 bg-white/80 px-4 py-3 backdrop-blur dark:border-gray-700 dark:bg-gray-800/80">
+      <InternalTimeController />
+    </div>
+  );
+}
+
+export default function TimeController() {
+  const isBiggerThanMobile = useIsBiggerThanMobile();
+  return isBiggerThanMobile ? <FloatingTimeController /> : <FixedTimeController />;
 }

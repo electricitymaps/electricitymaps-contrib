@@ -21,10 +21,13 @@ const renderTick = (
   displayLive: boolean,
   lang: string,
   selectedTimeAggregate: TimeAverages,
-  isLoading: boolean
+  isLoading: boolean,
+  latestString: string,
+  isGraph: boolean
 ) => {
   const shouldShowValue =
     index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
+  const valueOpacity = isGraph ? 0.5 : 1;
   return (
     <g
       key={`timeaxis-tick-${index}`}
@@ -32,9 +35,17 @@ const renderTick = (
       opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
-      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
+      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? valueOpacity : 0.2} />
       {shouldShowValue &&
-        renderTickValue(value, index, displayLive, lang, selectedTimeAggregate)}
+        renderTickValue(
+          value,
+          index,
+          displayLive,
+          lang,
+          selectedTimeAggregate,
+          latestString,
+          isGraph
+        )}
     </g>
   );
 };
@@ -44,20 +55,21 @@ const renderTickValue = (
   index: number,
   displayLive: boolean,
   lang: string,
-  selectedTimeAggregate: TimeAverages
+  selectedTimeAggregate: TimeAverages,
+  latestString: string,
+  isGraph: boolean
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
-  const textOffset = selectedTimeAggregate === TimeAverages.HOURLY ? 5 : 0;
-  return shouldDisplayLive ? (
-    <g>
-      <circle cx="-1em" cy="1.15em" r="2" fill="red" />
-      <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold">
-        LIVE
-      </text>
-    </g>
-  ) : (
-    <text fill="currentColor" y="9" x={textOffset} dy="0.71em" fontSize={'0.65rem'}>
-      {formatDateTick(v, lang, selectedTimeAggregate)}
+  const fontWeight = isGraph ? 'normal' : '600'; // 600 is semibold
+  return (
+    <text
+      fill="currentColor"
+      y="9"
+      dy="0.71em"
+      fontWeight={fontWeight}
+      fontSize={'0.65rem'}
+    >
+      {shouldDisplayLive ? latestString : formatDateTick(v, lang, selectedTimeAggregate)}
     </text>
   );
 };
@@ -74,6 +86,7 @@ interface TimeAxisProps {
   transform?: string;
   scaleWidth?: number;
   className?: string;
+  isGraph?: boolean;
 }
 
 function TimeAxis({
@@ -84,15 +97,16 @@ function TimeAxis({
   scaleWidth,
   isLiveDisplay,
   className,
+  isGraph = true,
 }: TimeAxisProps) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
 
   const width = observerWidth - 24;
 
   if (datetimes === undefined || isLoading) {
     return (
-      <div className="flex h-[22px]  w-full justify-center">
+      <div className="flex h-[22px] w-full justify-center">
         <PulseLoader size={6} color={'#135836'} />
       </div>
     );
@@ -118,7 +132,9 @@ function TimeAxis({
             isLiveDisplay ?? false,
             i18n.language,
             selectedTimeAggregate,
-            isLoading
+            isLoading,
+            t('time-controller.latest'),
+            isGraph
           )
         )}
       </g>

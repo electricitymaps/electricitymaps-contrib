@@ -19,10 +19,9 @@ export interface TimeSliderProps {
 }
 
 export enum COLORS {
-  LIGHT_DAY = 'rgb(243,244,246)', // bg-gray-100
-  LIGHT_NIGHT = 'rgb(209,213,219)', // bg-gray-300
-  DARK_DAY = 'rgb(75,85,99)', // bg-gray-600
-  DARK_NIGHT = 'rgb(55,65,81)', // bg-gray-700
+  LIGHT_DAY = 'rgba(229, 231, 235, 0.5)',
+  NIGHT = 'rgba(75, 85, 99, 0.5)',
+  DARK_DAY = 'rgba(156, 163, 175, 0.5)',
 }
 
 export const getTrackBackground = (
@@ -31,8 +30,8 @@ export const getTrackBackground = (
   sets?: NightTimeSet[]
 ) => {
   const colors = isDarkModeEnabled
-    ? { day: COLORS.DARK_DAY, night: COLORS.DARK_NIGHT }
-    : { day: COLORS.LIGHT_DAY, night: COLORS.LIGHT_NIGHT };
+    ? { day: COLORS.DARK_DAY, night: COLORS.NIGHT }
+    : { day: COLORS.LIGHT_DAY, night: COLORS.NIGHT };
 
   if (!sets || sets.length === 0) {
     return colors.day;
@@ -102,10 +101,10 @@ export function TimeSliderBasic({
         trackTimeSliderEvent(value[0], timeAverage);
       }}
       aria-label="choose time"
-      className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
+      className="relative my-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
     >
       <SliderPrimitive.Track
-        className="relative h-2.5 w-full grow rounded-sm"
+        className="relative h-2.5 w-full grow rounded-full backdrop-blur-sm"
         style={{ background: trackBackground }}
       >
         <SliderPrimitive.Range />
