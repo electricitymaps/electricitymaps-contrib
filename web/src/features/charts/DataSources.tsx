@@ -35,7 +35,7 @@ export function DataSources({
 
   return (
     <div className="flex flex-col py-2">
-      <div className="flex gap-1 pb-2">
+      <div className="flex items-center gap-1 pb-2">
         {icon}
         <p className="font-semibold">{title}</p>
         {emissionFactorSourcesToProductionSources && (
@@ -55,7 +55,7 @@ export function DataSources({
             side="bottom"
             isMobile={isMobile}
           >
-            <Info className="text-emerald-800 dark:text-emerald-500" size={20} />
+            <Info className="text-emerald-800 dark:text-emerald-500" size={16} />
           </TooltipWrapper>
         )}
       </div>
