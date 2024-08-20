@@ -143,7 +143,7 @@ export default function BreakdownChartTooltip({
 interface BreakdownChartTooltipContentProperties {
   datetime: Date;
   usage: number;
-  capacity: Maybe<number>;
+  capacity: number | undefined;
   totalElectricity: number;
   totalEmissions: number;
   co2Intensity: number;
@@ -247,7 +247,7 @@ export function BreakdownChartTooltipContent({
               <br />
               <MetricRatio
                 value={usage}
-                total={(capacity ??= 0)}
+                total={capacity}
                 useTotalUnit
                 format={formatPower}
               />

@@ -2,7 +2,7 @@ import { FormatParameters } from 'utils/formatting';
 
 interface MetricRatioProps {
   value: number;
-  total: number;
+  total: number | undefined;
   format: (paramerters: FormatParameters) => string | number;
   label?: string;
   useTotalUnit?: boolean;
@@ -20,7 +20,7 @@ export function MetricRatio({
     formattedValue = useTotalUnit ? format({ value, total }) : format({ value });
   }
 
-  const formattedTotal = Number.isFinite(total) ? format({ value: total }) : '?';
+  const formattedTotal = total && Number.isFinite(total) ? format({ value: total }) : '?';
   const labelAppendix = label ? ` ${label}` : '';
 
   return <small>{`(${formattedValue} / ${formattedTotal}${labelAppendix})`}</small>;
