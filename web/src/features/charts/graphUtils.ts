@@ -129,15 +129,21 @@ export function determineUnit(
 ) {
   if (displayByEmissions) {
     return getUnit(
-      formatCo2(getTotalEmissionsAvailable(currentZoneDetail, mixMode)) +
+      formatCo2({ value: getTotalEmissionsAvailable(currentZoneDetail, mixMode) }) +
         ' ' +
         t('ofCO2eq')
     );
   }
 
   return isHourly
-    ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode)))
-    : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
+    ? getUnit(
+        formatPower({
+          value: getTotalElectricityAvailable(currentZoneDetail, mixMode),
+        })
+      )
+    : getUnit(
+        formatEnergy({ value: getTotalElectricityAvailable(currentZoneDetail, mixMode) })
+      );
 }
 
 function getUnit(valueAndUnit: string | number) {

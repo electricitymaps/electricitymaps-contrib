@@ -34,7 +34,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
     ...chartData.map((o) => Math.abs(o.layerData.netExchange))
   );
   const formatAxisTick = (t: number) =>
-    displayByEmissions ? formatCo2(t, maxEmissions) : t.toString();
+    displayByEmissions ? formatCo2({ value: t, total: maxEmissions }) : t.toString();
 
   if (!chartData[0]?.layerData?.netExchange) {
     return null;
