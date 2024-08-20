@@ -3,12 +3,12 @@ bounding_box:
     - 38.6
   - - 47.6
     - 40.7
+country: null
 fallbackZoneMixes:
   _comment: Average carbon intensity using 2016 mean production per fuel source (100%
     hydro) and IPCC 2014 default lifecycle emission factor
   powerOriginRatios:
     value:
       hydro: 1
-timezone: null
 region: Asia
-country: null
+timezone: null
