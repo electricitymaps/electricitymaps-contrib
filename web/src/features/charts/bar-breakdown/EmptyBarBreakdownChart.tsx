@@ -50,11 +50,9 @@ function EmptyBarBreakdownChart({
   );
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
-  const formatTick = (t: number) => {
+  const formatTick = (t: number) =>
     // TODO: format tick depending on displayByEmissions
-    return `${t} ${PowerUnits.GIGAWATTS}`;
-  };
-
+    `${t} ${PowerUnits.GIGAWATTS}`;
   return (
     <>
       <div style={{ width, height, position: 'absolute' }}>
