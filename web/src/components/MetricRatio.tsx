@@ -3,7 +3,7 @@ import { FormatParameters } from 'utils/formatting';
 interface MetricRatioProps {
   value: number;
   total: number | null | undefined;
-  format: (paramerters: FormatParameters) => string | number;
+  format: (parameters: FormatParameters) => string | number;
   label?: string;
   useTotalUnit?: boolean;
 }
