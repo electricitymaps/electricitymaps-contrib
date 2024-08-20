@@ -42,7 +42,7 @@ export default function ToggleButton({
   return (
     <div
       className={twMerge(
-        'z-10 flex h-9 min-w-fit items-center gap-1.5 rounded-full bg-gray-200/80 pl-1 pr-1.5 shadow dark:bg-gray-800/80',
+        'z-10 flex min-w-fit items-center gap-1 rounded-full bg-gray-200/80 p-1 shadow dark:bg-gray-800/80',
         transparentBackground ? 'backdrop-blur-sm' : 'bg-gray-200'
       )}
     >
@@ -64,7 +64,7 @@ export default function ToggleButton({
                 : ''
             )}
           >
-            <p className="select-none text-sm capitalize dark:text-white">
+            <p className="grow select-none text-sm capitalize dark:text-white">
               {t(option.translationKey)}
             </p>
           </ToggleGroupItem>
