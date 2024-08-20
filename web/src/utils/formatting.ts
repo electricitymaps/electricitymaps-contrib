@@ -17,7 +17,7 @@ export const formatPower = ({
   numberDigits = DEFAULT_NUM_DIGITS,
 }: FormatParameters) => {
   // Assume MW input
-  if (value == undefined || Number.isNaN(value)) {
+  if (Number.isNaN(value)) {
     return value;
   }
   if (value == 0) {
