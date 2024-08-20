@@ -1,12 +1,13 @@
 {
-  "info-modal": {
-    "title": "Info",
-    "intro-text": "La app Electricity Maps provee información en tiempo real web y móvil para ciudadanos, expertos en energía, ONG y legisladores que promueven un mejor entendimiento de los desafíos de la transición energética.",
-    "open-source-text": "Esta app es de <a href=\"{{link}}\" target=\"_blank\">código abierto</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">ver fuentes de datos</a>) e impulsada por la comunidad.",
-    "feedback-button": "Comparte tus comentarios",
-    "github-button": "Visítanos en GitHub",
-    "twitter-button": "Compártelo en Twitter",
-    "slack-button": "Únete a la comunidad en Slack",
+  "info": {
+    "text": "La app Electricity Maps provee información en tiempo real web y móvil para ciudadanos, expertos en energía, ONG y legisladores que promueven un mejor entendimiento de los desafíos de la transición energética.",
+    "open-source-text": "Esta app es de <a href='{{link}}' target='_blank'>código abierto</a> e impulsada por la comunidad."
+  },
+  "button": {
+    "feedback": "Comparte tus comentarios",
+    "github": "Visítanos en GitHub",
+    "twitter": "Compártelo en Twitter",
+    "slack": "Únete a la comunidad en Slack",
     "privacy-policy": "Política de privacidad",
     "legal-notice": "Aviso legal"
   },
@@ -47,17 +48,17 @@
     "carbonintensity": "Intensidad de carbono",
     "lowcarbon": "Baja en emisiones",
     "renewable": "Renovables",
-    "electricityproduction": "Producción de electricidad",
-    "electricityconsumption": "Consumo de electricidad",
-    "by-source": {
-      "emissions": "Emisiones de CO₂ por fuente",
-      "electricity-production": "Producción de electricidad por fuente",
-      "electricity-consumption": "Consumo de electricidad por fuente",
-      "total-emissions": "Emisiones totales de CO₂ por fuente",
-      "total-electricity-production": "Producción total de electricidad por fuente",
-      "total-electricity-consumption": "Consumo total de electricidad por fuente"
-    },
+    "electricityproduction": "Generación",
+    "electricityconsumption": "Consumo",
     "emissions": "Emisiones de CO₂",
+    "by-source": {
+      "emissions": "Emisiones de CO₂",
+      "electricity-production": "Generación de electricidad",
+      "electricity-consumption": "Consumo de electricidad",
+      "total-emissions": "Emisiones totales de CO₂",
+      "total-electricity-production": "Generación total de electricidad",
+      "total-electricity-consumption": "Consumo total de electricidad"
+    },
     "helpfrom": "con la ayuda de",
     "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
     "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta zona",
@@ -123,15 +124,20 @@
     }
   },
   "time-controller": {
-    "title": "Mostrar datos del pasado",
+    "title": {
+      "hourly": "Datos horarios para:",
+      "daily": "Datos diarios para:",
+      "monthly": "Datos mensuales para:",
+      "yearly": "Datos anuales para:"
+    },
     "daily": "diario",
     "hourly": "horario",
     "monthly": "mensual",
     "yearly": "anual"
   },
-  "left-panel": {
-    "zone-list-header-title": "Impacto climático por zona",
-    "zone-list-header-subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Impacto climático por zona",
+    "subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
     "search": "Buscar zonas"
   },
   "footer": {
@@ -201,14 +207,6 @@
   "coal": "carbón",
   "oil": "petróleo",
   "unknown": "desconocido",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> de la electricidad de {{zoneFlag}} <b>{{zoneName}}</b> es producida por {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> de las emisiones de {{zoneFlag}} <b>{{zoneName}}</b> es producida por {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> de la electricidad de {{zoneFlag}} <b>{{zoneName}}</b> se almacena utilizando {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> de las emisiones de {{zoneFlag}} <b>{{zoneName}}</b> se almacena utilizando {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> de la electricidad de {{zoneFlag}} <b>{{zoneName}}</b> se exporta a {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> de las emisiones de {{zoneFlag}} <b>{{zoneName}}</b> se exporta a {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> de la electricidad de {{zoneFlag}} <b>{{zoneName}}</b> se importa de {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> de las emisiones de {{zoneFlag}} <b>{{zoneName}}</b> se importa de {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "El mapa",

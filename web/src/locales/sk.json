@@ -33,18 +33,15 @@
     "carbonintensity": "Intenzita uhlíka",
     "lowcarbon": "Nízke emisie",
     "renewable": "Obnoviteľné",
-    "electricityproduction": "Produkcia elektriny",
-    "electricityconsumption": "Spotreba elektriny",
-    "emissions": "Uhlíkové emisie",
     "helpfrom": "s pomocou od",
     "noDataAtTimestamp": "Dáta pre vybraný čas sú dočasne nedostupné",
     "noLiveData": "Živé dáta pre túto oblasť sú dočasne nedostupné",
     "noParserInfo": "Zatiaľ nemáme žiadne informácie pre túto oblasť.<br/> Chcete nám pomôcť to napraviť? Môžete sa zapojiť <a href=\"{{link}}\" target=\"_blank\">pridaním dát</a>.",
     "now": "Teraz"
   },
-  "left-panel": {
-    "zone-list-header-title": "Dopad na klímu podľa oblasti",
-    "zone-list-header-subtitle": "Hodnotené podľa intezity uhlíka spotrebovanej elektriny (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Dopad na klímu podľa oblasti",
+    "subtitle": "Hodnotené podľa intezity uhlíka spotrebovanej elektriny (gCO₂eq/kWh)",
     "search": "Hľadaj oblasti"
   },
   "footer": {
@@ -94,14 +91,6 @@
   "coal": "uhlie",
   "oil": "ropa",
   "unknown": "neznáme",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> pochádza z {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> emisii z elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> pochádza z {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je uchovávaných použitím {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> emisii z elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je uchovávaných použitím {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> emisii z elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je exportovaných do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je importovaných z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> emisii z elektriny dostupnej v {{zoneFlag}} <b>{{zoneName}}</b> je importovaných z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Čo znamenajú farby na mape?",

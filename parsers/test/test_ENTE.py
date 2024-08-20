@@ -34,12 +34,16 @@ class TestENTE(TestCase):
         )
 
         self.assertMatchSnapshot(
-            {
-                "datetime": exchange["datetime"].isoformat(),
-                "sortedZoneKeys": exchange["sortedZoneKeys"],
-                "netFlow": exchange["netFlow"],
-                "source": exchange["source"],
-            }
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in exchange
+            ]
         )
 
     def test_fetch_exchange_raises_exception_on_exchange_not_implemented(self):
@@ -61,10 +65,16 @@ class TestENTE(TestCase):
         )
 
         self.assertMatchSnapshot(
-            {
-                "datetime": production["datetime"].isoformat(),
-                "zoneKey": production["zoneKey"],
-                "production": production["production"],
-                "source": production["source"],
-            }
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "zoneKey": element["zoneKey"],
+                    "production": element["production"],
+                    "storage": element["storage"],
+                    "source": element["source"],
+                    "sourceType": element["sourceType"].value,
+                    "correctedModes": element["correctedModes"],
+                }
+                for element in production
+            ]
         )

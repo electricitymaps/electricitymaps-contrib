@@ -1,12 +1,12 @@
 {
-  "info-modal": {
-    "title": "Info",
-    "intro-text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda.",
-    "open-source-text": "Ta aplikacija je <a href=\"{{link}}\" target=\"_blank\">odprtokodna</a> (<a href=\"{{sourcesLink}}\" target= '_blank'>glej vire podatkov</a>) .",
-    "feedback-button": "Deli povratne informacije",
-    "github-button": "Oglejte si naš GitHub",
-    "twitter-button": "Deli na Twitterju",
-    "slack-button": "Pridruži se skupnosti Slack",
+  "info": {
+    "text": "Aplikacija Electricity Maps zagotavlja vpoglede v realnem času na spletu in mobilnih napravah za državljane, energetske strokovnjake, nevladne organizacije in oblikovalce politik, ki spodbujajo globlje razumevanje izzivov energetskega prehoda."
+  },
+  "button": {
+    "feedback": "Deli povratne informacije",
+    "github": "Oglejte si naš GitHub",
+    "twitter": "Deli na Twitterju",
+    "slack": "Pridruži se skupnosti Slack",
     "privacy-policy": "Politika zasebnosti",
     "legal-notice": "Pravno obvestilo"
   },
@@ -47,17 +47,14 @@
     "carbonintensity": "Intenzivnost ogljika",
     "lowcarbon": "nizkoogljična",
     "renewable": "obnovljiva",
-    "electricityproduction": "Proizvodnja električne energije",
-    "electricityconsumption": "Poraba električne energije",
     "by-source": {
-      "emissions": "Izpusti ogljika po virih",
-      "electricity-production": "Proizvodnja električne energije po virih",
-      "electricity-consumption": "Poraba električne energije po virih",
-      "total-emissions": "Skupni izpusti ogljika po virih",
-      "total-electricity-production": "Skupna proizvodnja električne energije po virih",
-      "total-electricity-consumption": "Skupna poraba električne energije po virih"
+      "emissions": "Izpusti ogljika",
+      "electricity-production": "Proizvodnja električne energije",
+      "electricity-consumption": "Poraba električne energije",
+      "total-emissions": "Skupni izpusti ogljika",
+      "total-electricity-production": "Skupna proizvodnja električne energije",
+      "total-electricity-consumption": "Skupna poraba električne energije"
     },
-    "emissions": "ogljične emisije",
     "helpfrom": "s pomočjo od",
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
     "noLiveData": "Podatki v živo za to območje začasno niso na voljo",
@@ -72,12 +69,9 @@
     "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href=\"{{link}}\" target=\"_blank\">dodate območje podatki</a>.",
     "now": "Zdaj"
   },
-  "time-controller": {
-    "title": "Prikaži podatke iz preteklosti"
-  },
-  "left-panel": {
-    "zone-list-header-title": "Vpliv na podnebje glede na območje",
-    "zone-list-header-subtitle": "Razvrščeno glede na ogljično intenzivnost porabljene električne energije (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Vpliv na podnebje glede na območje",
+    "subtitle": "Razvrščeno glede na ogljično intenzivnost porabljene električne energije (gCO₂eq/kWh)",
     "search": "Območja iskanja"
   },
   "footer": {
@@ -151,14 +145,6 @@
   "coal": "premog",
   "oil": "olje",
   "unknown": "neznano",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>{{zoneName}}</b> prihaja iz {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>{{zoneName}}</b> prihaja iz {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>{{zoneName}}</b>, je shranjena z {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>{{zoneName}}</b>, so shranjene z {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>{{zoneName}}</b>, se izvozi v <img id=\"country-exchange-flag\"></img> <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> emisij iz električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>{{zoneName}}</b>, se izvozi v <img id=\"country-exchange-flag\"></img> <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>{{zoneName}}</b>, se uvozi iz <img id=\"country-exchange-flag\"></img> <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> emisij električne energije, ki je na voljo v <img id=\"country-flag\"></img> <b>{{zoneName}}</b>, so uvožene iz<img id=\"country-exchange-flag\"></img> <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Kaj pomenijo barve na zemljevidu?",
@@ -184,7 +170,6 @@
     "seeHistoricalData-answer": "Dostop do vseh naših zgodovinskih podatkov lahko kupite prek naše <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">zbirke podatkov</a>."
   },
   "methodology": {
-    "groupName": "Our methods",
     "carbonIntensity-question": "Kaj je \"ogljična intenzivnost\"?",
     "carbonIntensity-answer": "Intenzivnost ogljika je merilo emisij toplogrednih plinov, povezanih s proizvodnjo električne energije, ki jo porabite (v gCO₂eq/kWh – gramih ekvivalentov ogljikovega dioksida, izpuščenih na kilovatno uro porabljene električne energije). <br><br>Merimo emisije porabe električne energije (ne proizvodnje), kar pomeni vse emisije toplogrednih plinov (tako CO₂ kot drugih toplogrednih plinov, kot je metan), ki so šli v proizvodnjo električne energije, ki se porablja na območju, ob upoštevanju upoštevati ogljične intenzivnosti električne energije, uvožene z drugih območij. Uporabljamo pristop analize življenjskega cikla (LCA), kar pomeni, da upoštevamo emisije, ki izhajajo iz celotnega življenjskega cikla elektrarn (gradnja, proizvodnja goriva, obratovalne emisije in razgradnja).",
     "renewableLowCarbonDifference-question": "Kakšna je razlika med 'obnovljivo' in 'nizkoogljičnio' energijo?",

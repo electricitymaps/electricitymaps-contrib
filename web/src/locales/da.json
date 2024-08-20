@@ -6,9 +6,9 @@
     "datasources": "kildekode",
     "contribute": "Bidrag ved at <a href=\"{{link}}\" target=\"_blank\">tilføje dit område</a>"
   },
-  "left-panel": {
-    "zone-list-header-title": "Klimapåvirkning per region",
-    "zone-list-header-subtitle": "Sorteret efter CO₂-intensitet fra elforbruget (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Klimapåvirkning per region",
+    "subtitle": "Sorteret efter CO₂-intensitet fra elforbruget (gCO₂eq/kWh)",
     "search": "Søg efter region"
   },
   "country-panel": {
@@ -16,17 +16,17 @@
     "carbonintensity": "CO₂-intensitet",
     "lowcarbon": "Lav CO₂",
     "renewable": "Vedvarende",
-    "electricityproduction": "Elproduktion",
-    "electricityconsumption": "Elforbrug",
+    "electricityproduction": "Produktion",
+    "electricityconsumption": "Forbrug",
+    "emissions": "Udledning",
     "by-source": {
-      "emissions": "CO₂-udledning per kilde",
-      "electricity-production": "Elproduktion per kilde",
-      "electricity-consumption": "Elforbrug per kilde",
-      "total-emissions": "Samlede CO₂-udledninger per kilde",
-      "total-electricity-production": "Samlet elproduktion per kilde",
-      "total-electricity-consumption": "Samlet elforbrug per kilde"
+      "emissions": "CO₂-udledning",
+      "electricity-production": "Elproduktion",
+      "electricity-consumption": "Elforbrug",
+      "total-emissions": "Samlede CO₂-udledninger",
+      "total-electricity-production": "Samlet elproduktion",
+      "total-electricity-consumption": "Samlet elforbrug"
     },
-    "emissions": "CO₂-udledning",
     "helpfrom": "med hjælp fra",
     "noDataAtTimestamp": "Data er midlertidigt utilgængeligt for det valgte tidspunkt",
     "noLiveData": "Realtidsdata er midlertidigt utilgængeligt for dette område",
@@ -36,7 +36,12 @@
     "now": "Nu"
   },
   "time-controller": {
-    "title": "Vis historiske data",
+    "title": {
+      "hourly": "Timevis data for:",
+      "daily": "Daglig data for:",
+      "monthly": "Månedlig data for:",
+      "yearly": "Årlig data for:"
+    },
     "daily": "daglig",
     "hourly": "timevis",
     "monthly": "månedlig",
@@ -113,14 +118,6 @@
   "coal": "Kul",
   "oil": "Olie",
   "unknown": "Ukendt",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> lagres vha. {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> lagres vha. {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> af elektricitet i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> af CO₂-udledninger i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "af CO₂-ækvivalenter",
   "zoneShortName": {
     "AL": {
