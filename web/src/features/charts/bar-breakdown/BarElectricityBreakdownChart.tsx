@@ -58,8 +58,8 @@ function BarElectricityBreakdownChart({
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
-  const [minPower, maxPower] = useMemo(() => {
-    return [
+  const [minPower, maxPower] = useMemo(
+    () => [
       d3Min(
         Object.values(data.zoneStates).map((zoneData) =>
           Math.min(
@@ -82,8 +82,9 @@ function BarElectricityBreakdownChart({
           )
         )
       ) || 0,
-    ];
-  }, [data]);
+    ],
+    [data]
+  );
 
   // Power in MW
   const powerScale = scaleLinear()
