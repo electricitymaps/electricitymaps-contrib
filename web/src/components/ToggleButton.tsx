@@ -84,7 +84,7 @@ export default function ToggleButton({
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <Info className="text-gray-500" />
+                <Info className="text-gray-500" size={30} />
               </div>
             </TooltipTrigger>
             <TooltipPortal>
