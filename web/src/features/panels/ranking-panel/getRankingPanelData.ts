@@ -78,6 +78,8 @@ export const getRankedState = (
       co2intensity,
       countryName: getCountryName(key),
       zoneName: getZoneName(key),
+      enCountryName: getCountryName(key, true),
+      enZoneName: getZoneName(key, true),
       ranking: ranking,
     });
     ranking++; // Increment the ranking for the next zone.

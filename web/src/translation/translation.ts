@@ -1,24 +1,24 @@
 import i18next from './i18n';
 
-export const translateIfExists = (key: string) => {
-  return i18next.exists(key) ? i18next.t(key) : '';
-};
+export const translateIfExists = (key: string): string =>
+  i18next.exists(key) ? i18next.t(key) : '';
 
-export const getFullZoneName = (zoneCode: string) => {
-  return translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
-};
-export const getZoneName = (zoneCode: string) => {
-  const displayName = translateIfExists(`zoneShortName.${zoneCode}.displayName`);
-  if (displayName) {
-    return displayName;
-  }
+export const getEnglishTranslation = (key: string): string =>
+  i18next.getFixedT('en')(key);
 
-  const fullName = getFullZoneName(zoneCode);
-  return fullName;
-};
+export const getFullZoneName = (zoneCode: string, inEnglish = false): string =>
+  inEnglish
+    ? getEnglishTranslation(`zoneShortName.${zoneCode}.zoneName`)
+    : translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
 
-export const getCountryName = (zoneCode: string) =>
-  translateIfExists(`zoneShortName.${zoneCode}.countryName`);
+export const getZoneName = (zoneCode: string, inEnglish = false): string =>
+  translateIfExists(`zoneShortName.${zoneCode}.displayName`) ||
+  getFullZoneName(zoneCode, inEnglish);
+
+export const getCountryName = (zoneCode: string, inEnglish = false): string =>
+  inEnglish
+    ? getEnglishTranslation(`zoneShortName.${zoneCode}.countryName`)
+    : translateIfExists(`zoneShortName.${zoneCode}.countryName`);
 
 const DEFAULT_ZONE_NAME_LIMIT = 40;
 /**

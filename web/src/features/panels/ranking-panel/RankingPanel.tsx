@@ -42,11 +42,14 @@ export default function RankingPanel(): ReactElement {
     spatialAggregation
   );
 
-  const filteredList = rankedList.filter(
-    (zone) =>
-      zone.countryName?.toLowerCase().includes(searchTerm) ||
-      zone.zoneName?.toLowerCase().includes(searchTerm) ||
-      zone.zoneId.toLowerCase().includes(searchTerm)
+  const filteredList = rankedList.filter((zone) =>
+    [
+      zone.countryName,
+      zone.zoneName,
+      zone.enCountryName,
+      zone.enZoneName,
+      zone.zoneId,
+    ].some((value) => value?.toLowerCase().includes(searchTerm))
   );
 
   return (
