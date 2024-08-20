@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from 'components/Button';
+import { MessageSquareText } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { FaCommentDots } from 'react-icons/fa6';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface FeedbackButtonProps
@@ -21,7 +21,7 @@ export function FeedbackButton({
   return (
     <Button
       href="https://forms.gle/VHaeHzXyGodFKZY18"
-      icon={<FaCommentDots size={iconSize} />}
+      icon={<MessageSquareText size={iconSize} />}
       {...restProps}
     >
       {isIconOnly ? undefined : t('button.feedback')}
