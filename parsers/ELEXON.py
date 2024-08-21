@@ -98,7 +98,7 @@ ZONEKEY_TO_INTERCONNECTOR = {
     "GB->NO-NO2": ["North Sea Link (INTNSL)"],
 }
 
-#Change direction of exchange for connectors where data is from Elexon and zonekey "GB->*". Due to Elexon showing wrt UK
+# Change direction of exchange for connectors where data is from Elexon and zonekey "GB->*". Due to Elexon showing wrt UK
 EXHANGE_KEY_IS_IMPORT = {
     "BE->GB": False,
     "DK-DK1->GB": False,
@@ -377,9 +377,7 @@ def query_exchange(
 
         if EXHANGE_KEY_IS_IMPORT.get(zone_key):
             for event in exchange_data:
-                event['generation'] = -1 * event['generation']
-
-
+                event["generation"] = -1 * event["generation"]
 
         if not exchange_data:
             raise ParserException(
