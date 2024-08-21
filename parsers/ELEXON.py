@@ -98,6 +98,17 @@ ZONEKEY_TO_INTERCONNECTOR = {
     "GB->NO-NO2": ["North Sea Link (INTNSL)"],
 }
 
+#Change direction of exchange for connectors where data is from Elexon and zonekey "GB->*". Due to Elexon showing wrt UK
+EXHANGE_KEY_IS_IMPORT = {
+    "BE->GB": False,
+    "DK-DK1->GB": False,
+    "FR->GB": False,
+    "GB->GB-NIR": False,
+    "GB->IE": True,
+    "GB->NL": True,
+    "GB->NO-NO2": False,
+}
+
 
 def query_elexon(url: str, session: Session, params: dict) -> list:
     r: Response = session.get(url, params=params)
@@ -329,6 +340,7 @@ def query_production_fuelhh(
     }
 
     fuelhh_data = query_elexon(ELEXON_URLS["production_fuelhh"], session, params)
+
     return fuelhh_data
 
 
@@ -362,6 +374,12 @@ def query_exchange(
         exchange_data = query_elexon(
             ELEXON_URLS["exchange"], session, exchange_params
         ).get("data")
+
+        if EXHANGE_KEY_IS_IMPORT.get(zone_key):
+            for event in exchange_data:
+                event['generation'] = -1 * event['generation']
+
+
 
         if not exchange_data:
             raise ParserException(
@@ -441,6 +459,7 @@ def fetch_production(
             logger,
             matching_timestamps_only=True,
         )
+
     return data.to_list()
 
 
