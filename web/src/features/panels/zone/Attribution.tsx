@@ -36,30 +36,28 @@ function ContributorList({
 
   return (
     <div className="flex flex-wrap gap-1">
-      {zoneContributorsIndexArray.map((contributorIndex) => {
-        return (
-          <a
-            key={contributors.at(contributorIndex)}
-            href={`https://github.com/${contributors.at(contributorIndex)}`}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img
-              src={`https://avatars.githubusercontent.com/${contributors.at(
-                contributorIndex
-              )}?s=20`} // loads the avatar image at a default size of 20px
-              srcSet={`https://avatars.githubusercontent.com/${contributors.at(
-                contributorIndex
-              )}?s=40 2x`} // loads the avatar image at a default size of 40px for high resolution displays
-              alt={contributors.at(contributorIndex)}
-              height="20"
-              width="20"
-              loading="lazy" // makes sure the image don't load until the user scrolls down
-              className="rounded-full"
-            />
-          </a>
-        );
-      })}
+      {zoneContributorsIndexArray.map((contributorIndex) => (
+        <a
+          key={contributors.at(contributorIndex)}
+          href={`https://github.com/${contributors.at(contributorIndex)}`}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <img
+            src={`https://avatars.githubusercontent.com/${contributors.at(
+              contributorIndex
+            )}?s=20`} // loads the avatar image at a default size of 20px
+            srcSet={`https://avatars.githubusercontent.com/${contributors.at(
+              contributorIndex
+            )}?s=40 2x`} // loads the avatar image at a default size of 40px for high resolution displays
+            alt={contributors.at(contributorIndex)}
+            height="20"
+            width="20"
+            loading="lazy" // makes sure the image don't load until the user scrolls down
+            className="rounded-full"
+          />
+        </a>
+      ))}
     </div>
   );
 }
