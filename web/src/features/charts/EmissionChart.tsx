@@ -37,7 +37,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { chartData, layerFill, layerKeys } = data;
 
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
-  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
+  const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
   const badgeText = getBadgeText(chartData, t);
 

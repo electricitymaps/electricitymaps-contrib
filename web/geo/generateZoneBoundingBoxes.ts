@@ -39,9 +39,7 @@ let isAggregate = false;
 if (zoneFeatures.length <= 0) {
   console.info(`Zone ${zoneKey} does not exist in geojson, using subzones instead`);
   isAggregate = true;
-  zoneFeatures = zonesGeo.features.filter((d) => {
-    return d.properties.countryKey === zoneKey;
-  });
+  zoneFeatures = zonesGeo.features.filter((d) => d.properties.countryKey === zoneKey);
 }
 zonesGeo.features = zoneFeatures;
 
