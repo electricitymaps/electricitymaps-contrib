@@ -81,11 +81,11 @@ export default function ToggleButton({
                 role="button"
                 tabIndex={0}
                 className={twMerge(
-                  'inline-flex select-none items-center justify-center',
+                  'inline-flex h-7 w-7 select-none items-center justify-center rounded-full bg-white dark:bg-gray-600',
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <Info className="text-gray-500" size={30} />
+                <Info className="text-brand-green dark:text-white" />
               </div>
             </TooltipTrigger>
             <TooltipPortal>
