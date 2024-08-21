@@ -11,7 +11,7 @@ interface ZonelistProperties {
 
 export interface ZoneRowType {
   zoneId: keyof GridState;
-  ranking?: number;
+  ranking: number;
   color?: string;
   co2intensity?: number | null;
   countryName?: string;
@@ -73,11 +73,7 @@ export function VirtualizedZoneList({ data }: ZonelistProperties) {
         >
           {items.map((virtualRow) => (
             <div key={virtualRow.key} data-index={virtualRow.index}>
-              <ZoneRow
-                key={virtualRow.index}
-                {...data[virtualRow.index]}
-                ranking={virtualRow.index + 1}
-              />
+              <ZoneRow key={virtualRow.index} {...data[virtualRow.index]} />
             </div>
           ))}
         </div>
