@@ -1,13 +1,6 @@
 import Badge from 'components/Badge';
+import { Asterisk } from 'lucide-react';
 
 export default function EstimationBadge({ text }: { text: string }) {
-  return (
-    <Badge
-      type={'warning'}
-      icon={
-        "h-[16px] w-[16px] bg-[url('/images/estimated_light.svg')] bg-center dark:bg-[url('/images/estimated_dark.svg')]"
-      }
-      pillText={text}
-    />
-  );
+  return <Badge type={'warning'} icon={<Asterisk size={16} />} pillText={text} />;
 }

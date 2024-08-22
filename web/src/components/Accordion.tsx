@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { PrimitiveAtom, useAtom } from 'jotai';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, LucideIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -48,33 +48,26 @@ export default function Accordion({
     setCollapsedAtom?.((previous: boolean) => !previous);
   };
 
+  const Icon: LucideIcon = isTopExpanding === isCollapsed ? ChevronUp : ChevronDown;
+
   return (
-    <div className="flex flex-col py-1">
+    <div className="flex flex-col gap-1.5 py-1">
       <button
         data-test-id="collapse-button"
         onClick={handleToggleCollapse}
-        className={twMerge(
-          `flex flex-row items-center justify-between text-sm`,
-          className
-        )}
+        className={twMerge(`flex flex-row items-center gap-2`, className)}
       >
-        <div className="flex w-2/3 items-center">
-          {icon && <div className="pr-2">{icon}</div>}
-          <h3 className="self-center" data-test-id="title">
-            {title}
-          </h3>
-        </div>
-        <div className="flex h-fit flex-row gap-2 text-nowrap">
-          {badge}
-          <div
-            className="text-xl text-black dark:text-white"
-            data-test-id={isCollapsed ? 'collapse-down' : 'collapse-up'}
-          >
-            {isTopExpanding === isCollapsed ? <ChevronUp /> : <ChevronDown />}
-          </div>
-        </div>
+        {icon}
+        <h3 className="grow text-left" data-test-id="title">
+          {title}
+        </h3>
+        {badge}
+        <Icon
+          className="text-black dark:text-white"
+          data-test-id={isCollapsed ? 'collapse-down' : 'collapse-up'}
+        />
       </button>
-      {!isCollapsed && <div className="pt-1.5">{children}</div>}
+      {!isCollapsed && <div>{children}</div>}
     </div>
   );
 }
