@@ -11,11 +11,20 @@ import { cacheBuster, getBasePath, getHeaders, QUERY_KEYS } from './helpers';
 
 const getZone = async (
   timeAverage: TimeAverages,
-  zoneId?: string
+  zoneId?: string,
+  startDate?: string,
+  endDate?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
   const path: URL = new URL(`v8/details/${timeAverage}/${zoneId}`, getBasePath());
   path.searchParams.append('cacheKey', cacheBuster());
+
+  if (startDate) {
+    path.searchParams.append('startDate', startDate);
+  }
+  if (endDate) {
+    path.searchParams.append('endDate', endDate);
+  }
 
   const requestOptions: RequestInit = {
     method: 'GET',
@@ -40,9 +49,18 @@ const getZone = async (
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const zoneId = useGetZoneFromPath();
   const [timeAverage] = useAtom(timeAverageAtom);
+
+  // Get startDate and endDate from URL params
+  const urlParameters = new URLSearchParams(window.location.search);
+  const startDate = urlParameters.get('startDate') || undefined;
+  const endDate = urlParameters.get('endDate') || undefined;
+
   return useQuery<ZoneDetails>({
-    queryKey: [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
-    queryFn: async () => getZone(timeAverage, zoneId),
+    queryKey: [
+      QUERY_KEYS.ZONE,
+      { zone: zoneId, aggregate: timeAverage, startDate, endDate },
+    ],
+    queryFn: async () => getZone(timeAverage, zoneId, startDate, endDate),
   });
 };
 
