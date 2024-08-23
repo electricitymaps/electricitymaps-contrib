@@ -4,7 +4,12 @@ import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtom } from 'jotai';
-import { Asterisk, ChartNoAxesColumn, CircleDashed, TriangleAlert } from 'lucide-react';
+import {
+  ChartNoAxesColumn,
+  CircleDashed,
+  TrendingUpDown,
+  TriangleAlert,
+} from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
@@ -219,7 +224,7 @@ function OutageCard({
     <BaseCard
       estimationMethod={EstimationMethods.OUTAGE}
       zoneMessage={zoneMessageText}
-      icon={<Asterisk size={16} />}
+      icon={<TrendingUpDown size={16} />}
       iconPill={<TriangleAlert size={16} />}
       showMethodologyLink={false}
       pillType="warning"
@@ -254,7 +259,7 @@ function EstimatedCard({
     <BaseCard
       estimationMethod={estimationMethod}
       zoneMessage={undefined}
-      icon={<Asterisk size={16} />}
+      icon={<TrendingUpDown size={16} />}
       iconPill={undefined}
       showMethodologyLink={true}
       pillType="default"
