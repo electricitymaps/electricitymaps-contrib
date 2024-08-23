@@ -1,6 +1,6 @@
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
-import { ElectricityModeType, ZoneDetail } from 'types';
+import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
 import ProductionSourceLegend from '../ProductionSourceLegend';
@@ -15,7 +15,6 @@ export function BarEmissionProductionChart({
   co2Scale,
   productionY,
   productionData,
-  data,
   width,
   onProductionRowMouseOut,
   onProductionRowMouseOver,
@@ -26,12 +25,10 @@ export function BarEmissionProductionChart({
   co2Scale: ScaleLinear<number, number, never>;
   productionY: number;
   productionData: ProductionDataType[];
-  data: ZoneDetail;
   width: number;
   onProductionRowMouseOut: () => void;
   onProductionRowMouseOver: (
     rowKey: ElectricityModeType,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   isMobile: boolean;
@@ -49,7 +46,7 @@ export function BarEmissionProductionChart({
             width={width}
             scale={co2Scale}
             value={Math.abs(d.gCo2eq)}
-            onMouseOver={(event) => onProductionRowMouseOver(d.mode, data, event)}
+            onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
