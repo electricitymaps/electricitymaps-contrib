@@ -1,9 +1,8 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import { max, sum } from 'd3-array';
-import { IndustryIcon } from 'icons/industryIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtomValue } from 'jotai';
+import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
@@ -128,12 +127,12 @@ function BreakdownChart({
           >
             <DataSources
               title={t('data-sources.power')}
-              icon={<WindTurbineIcon />}
+              icon={<Zap size={16} />}
               sources={powerGenerationSources}
             />
             <DataSources
               title={t('data-sources.emission')}
-              icon={<IndustryIcon />}
+              icon={<Factory size={16} />}
               sources={emissionFactorSources}
               emissionFactorSourcesToProductionSources={
                 emissionFactorSourcesToProductionSources
