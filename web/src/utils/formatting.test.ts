@@ -211,17 +211,17 @@ describe('formatPower', () => {
 
 describe('formatCo2', () => {
   it('handles NaN input', () => {
-    const actual = formatCo2(Number.NaN);
+    const actual = formatCo2({ value: Number.NaN });
     const expected = '?';
     expect(actual).to.deep.eq(expected);
   });
   it('handles undefined input', () => {
-    const actual = formatCo2(undefined as unknown as number);
+    const actual = formatCo2({ value: undefined as unknown as number });
     const expected = '?';
     expect(actual).to.deep.eq(expected);
   });
   it('handles null input', () => {
-    const actual = formatCo2(null as unknown as number);
+    const actual = formatCo2({ value: null as unknown as number });
     const expected = '?';
     expect(actual).to.deep.eq(expected);
   });

@@ -80,7 +80,6 @@ export const formatCo2 = ({ value, total, numberDigits }: FormatParameters) => {
 
   const checkAgainst = total ?? value;
 
-
   if (Math.abs(Math.round(checkAgainst)) < 1e6) {
     return format({ value: value, total: total, numberDigits: numberDigits }) + 'g';
   }
