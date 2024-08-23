@@ -39,9 +39,9 @@
     "noParserInfo": "현재 이 지역에 대한 정보를 찾을 수 없습니다. <br/> 더 나은 서비스를 위해 <a href=\"{{link}}\" target=\"_blank\">정보를 제공해 주십시오.</a>.",
     "now": "현재"
   },
-  "left-panel": {
-    "zone-list-header-title": "지역에 따른 기후 영향",
-    "zone-list-header-subtitle": "전력소비에 따른 탄소 밀집도 순위(gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "지역에 따른 기후 영향",
+    "subtitle": "전력소비에 따른 탄소 밀집도 순위(gCO₂eq/kWh)",
     "search": "지역 찾기"
   },
   "footer": {

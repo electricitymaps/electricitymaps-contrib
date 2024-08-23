@@ -26,7 +26,7 @@ export default function NetExchangeChartTooltip({
 
   const unit = displayByEmissions ? t('ofCO2eq') : powerUnit;
   const value = displayByEmissions
-    ? formatCo2(Math.abs(netExchange))
+    ? formatCo2({ value: Math.abs(netExchange) })
     : Math.abs(round(netExchange / formattingFactor));
 
   return (

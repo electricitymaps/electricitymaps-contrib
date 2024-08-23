@@ -3,11 +3,8 @@ import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useHeaderHeight } from 'hooks/headerHeight';
-import { IndustryIcon } from 'icons/industryIcon';
-import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom, useAtomValue } from 'jotai';
-import { X } from 'lucide-react';
+import { Factory, UtilityPole, X, Zap } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
@@ -207,26 +204,24 @@ function BarBreakdownChart({
             className="text-md"
             isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
           >
-            <div>
-              <DataSources
-                title={t('data-sources.capacity')}
-                icon={<UtilityPoleIcon />}
-                sources={capacitySources}
-              />
-              <DataSources
-                title={t('data-sources.power')}
-                icon={<WindTurbineIcon />}
-                sources={powerGenerationSources}
-              />
-              <DataSources
-                title={t('data-sources.emission')}
-                icon={<IndustryIcon />}
-                sources={emissionFactorSources}
-                emissionFactorSourcesToProductionSources={
-                  emissionFactorSourcesToProductionSources
-                }
-              />
-            </div>
+            <DataSources
+              title={t('data-sources.capacity')}
+              icon={<UtilityPole size={16} />}
+              sources={capacitySources}
+            />
+            <DataSources
+              title={t('data-sources.power')}
+              icon={<Zap size={16} />}
+              sources={powerGenerationSources}
+            />
+            <DataSources
+              title={t('data-sources.emission')}
+              icon={<Factory size={16} />}
+              sources={emissionFactorSources}
+              emissionFactorSourcesToProductionSources={
+                emissionFactorSourcesToProductionSources
+              }
+            />
           </Accordion>
         </>
       )}

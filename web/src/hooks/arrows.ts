@@ -98,16 +98,18 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
       : zoneViewExchanges;
   }, [data, selectedDatetimeString, viewMode]);
 
-  const currentExchanges: ExchangeArrowData[] = useMemo(() => {
-    return Object.entries(exchangesToUse).map(([key, value]) => ({
-      co2intensity: shouldHideExchangeIntensity(key, zonesWithOutages, value.f)
-        ? Number.NaN
-        : value.ci,
-      netFlow: value.f,
-      ...exchangesConfig[key],
-      key,
-    }));
-  }, [exchangesToUse, zonesWithOutages]);
+  const currentExchanges: ExchangeArrowData[] = useMemo(
+    () =>
+      Object.entries(exchangesToUse).map(([key, value]) => ({
+        co2intensity: shouldHideExchangeIntensity(key, zonesWithOutages, value.f)
+          ? Number.NaN
+          : value.ci,
+        netFlow: value.f,
+        ...exchangesConfig[key],
+        key,
+      })),
+    [exchangesToUse, zonesWithOutages]
+  );
 
   return currentExchanges;
 }
