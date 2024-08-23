@@ -162,13 +162,14 @@ function BaseCard({
     >
       <Accordion
         onClick={() => handleToggleCollapse()}
-        isCollapsedDefault={isCollapsedDefault}
         badge={
           showBadge && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
         }
         className={textColorTitle}
         icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
         title={title}
+        isCollapsed={isCollapsed}
+        setState={setIsCollapsed}
       >
         <div className="gap-2">
           <div

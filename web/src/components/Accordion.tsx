@@ -1,11 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { PrimitiveAtom, useAtom } from 'jotai';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export default function Accordion({
-  isCollapsedDefault = true,
   onClick,
   onOpen,
   badge,
@@ -13,10 +9,10 @@ export default function Accordion({
   icon,
   children,
   title,
-  isCollapsedAtom,
+  isCollapsed,
+  setState,
   isTopExpanding = false,
 }: {
-  isCollapsedDefault?: boolean;
   onClick?: () => void;
   onOpen?: () => void;
   badge?: React.ReactNode;
@@ -24,28 +20,16 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
-  isCollapsedAtom?: PrimitiveAtom<boolean>;
+  isCollapsed: boolean;
+  setState: (isCollapsed: boolean) => void;
   isTopExpanding?: boolean;
 }) {
-  const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
-    ? useAtom(isCollapsedAtom)
-    : [null, null];
-  const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
-
-  useEffect(() => {
-    if (collapsedAtom) {
-      setIsCollapsed(collapsedAtom);
-    }
-  }, [collapsedAtom]);
-
   const handleToggleCollapse = () => {
     onClick?.();
 
     isCollapsed && onOpen?.();
 
-    setIsCollapsed((previous: boolean) => !previous);
-
-    setCollapsedAtom?.((previous: boolean) => !previous);
+    setState(!isCollapsed);
   };
 
   return (

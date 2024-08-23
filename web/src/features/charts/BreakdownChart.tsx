@@ -1,14 +1,14 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import { max, sum } from 'd3-array';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
 import { Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { dataSourcesCollapsedBreakdown, isHourlyAtom } from 'utils/state/atoms';
+import { dataSourcesCollapsedBreakdownAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
@@ -35,6 +35,9 @@ function BreakdownChart({
   timeAverage,
 }: BreakdownChartProps) {
   const { data, mixMode } = useBreakdownChartData();
+  const [dataSourcesCollapsedBreakdown, setDataSourcesCollapsedBreakdown] = useAtom(
+    dataSourcesCollapsedBreakdownAtom
+  );
   const {
     emissionFactorSources,
     powerGenerationSources,
@@ -123,7 +126,8 @@ function BreakdownChart({
             }}
             title={t('data-sources.title')}
             className="text-md"
-            isCollapsedAtom={dataSourcesCollapsedBreakdown}
+            isCollapsed={dataSourcesCollapsedBreakdown}
+            setState={setDataSourcesCollapsedBreakdown}
           >
             <DataSources
               title={t('data-sources.power')}
