@@ -85,7 +85,7 @@ export default function ToggleButton({
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <Info className="text-brand-green dark:text-white" />
+                <Info className="text-neutral-500 dark:text-gray-300" />
               </div>
             </TooltipTrigger>
             <TooltipPortal>
