@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
 interface ToggleButtonProperties {
-  options: Array<{ value: string; translationKey: string }>;
+  options: Array<{ value: string; translationKey: string; dataTestId?: string }>;
   selectedOption: string;
   onToggle: (option: string) => void;
   tooltipKey?: string;
@@ -51,20 +51,21 @@ export default function ToggleButton({
         aria-label="Toggle between modes"
         value={selectedOption}
       >
-        {options.map((option, key) => (
+        {options.map(({ value, translationKey, dataTestId }, key) => (
           <ToggleGroupItem
             key={`group-item-${key}`}
-            value={option.value}
-            onClick={() => onToggle(option.value)}
+            value={value}
+            onClick={() => onToggle(value)}
+            data-test-id={`toggle-button-${dataTestId}`}
             className={twMerge(
               'inline-flex h-[29px] w-full items-center whitespace-nowrap rounded-full  bg-gray-100/0 px-4 text-xs dark:border dark:border-gray-400/0 dark:bg-transparent',
-              option.value === selectedOption
+              value === selectedOption
                 ? ' bg-white font-bold text-brand-green shadow transition duration-500 ease-in-out dark:border dark:border-gray-400/10 dark:bg-gray-600'
                 : ''
             )}
           >
             <p className="sans grow select-none text-sm capitalize dark:text-white">
-              {t(option.translationKey)}
+              {t(translationKey)}
             </p>
           </ToggleGroupItem>
         ))}

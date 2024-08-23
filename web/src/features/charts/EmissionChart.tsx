@@ -1,7 +1,6 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
-import { IndustryIcon } from 'icons/industryIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
+import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
@@ -37,7 +36,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { chartData, layerFill, layerKeys } = data;
 
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
-  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
+  const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
   const badgeText = getBadgeText(chartData, t);
 
@@ -73,12 +72,12 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
       >
         <DataSources
           title={t('data-sources.power')}
-          icon={<WindTurbineIcon />}
+          icon={<Zap size={16} />}
           sources={powerGenerationSources}
         />
         <DataSources
           title={t('data-sources.emission')}
-          icon={<IndustryIcon />}
+          icon={<Factory size={16} />}
           sources={emissionFactorSources}
           emissionFactorSourcesToProductionSources={
             emissionFactorSourcesToProductionSources

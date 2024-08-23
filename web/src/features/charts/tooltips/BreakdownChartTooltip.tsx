@@ -143,7 +143,7 @@ export default function BreakdownChartTooltip({
 interface BreakdownChartTooltipContentProperties {
   datetime: Date;
   usage: number;
-  capacity: Maybe<number>;
+  capacity: number | null | undefined;
   totalElectricity: number;
   totalEmissions: number;
   co2Intensity: number;
@@ -235,6 +235,7 @@ export function BreakdownChartTooltipContent({
           <MetricRatio
             value={usage}
             total={totalElectricity}
+            useTotalUnit
             format={isHourly ? formatPower : formatEnergy}
           />
           <br />
@@ -244,7 +245,12 @@ export function BreakdownChartTooltipContent({
               {t('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
               {t('tooltips.ofinstalled')}
               <br />
-              <MetricRatio value={usage} total={(capacity ??= 0)} format={formatPower} />
+              <MetricRatio
+                value={usage}
+                total={capacity}
+                useTotalUnit
+                format={formatPower}
+              />
               {capacitySource && (
                 <small>
                   {' '}
