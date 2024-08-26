@@ -8,7 +8,7 @@ export default function OutageBadge() {
   return (
     <Badge
       type={'warning'}
-      icon={<TriangleAlert size={16} />}
+      icon={<TriangleAlert size={12} />}
       pillText={t('estimation-badge.outage')}
     />
   );

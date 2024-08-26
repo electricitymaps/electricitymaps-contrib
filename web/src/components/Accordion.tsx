@@ -55,7 +55,7 @@ export default function Accordion({
       <button
         data-test-id="collapse-button"
         onClick={handleToggleCollapse}
-        className={twMerge('flex flex-row items-center gap-1', className)}
+        className={twMerge('flex flex-row items-center gap-1.5', className)}
       >
         {icon}
         <h3 className="grow text-left" data-test-id="title">
