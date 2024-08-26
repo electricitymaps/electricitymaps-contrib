@@ -2,6 +2,7 @@ import { bisectLeft } from 'd3-array';
 import { ScaleTime, scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
+import { CircleDashed, LucideIcon, TrendingUpDown } from 'lucide-react';
 import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { EstimationMethods, Mode, modeOrder } from 'utils/constants';
@@ -221,20 +222,27 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
   };
 }
 
-export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
+export function getBadgeTextAndIcon(
+  chartData: AreaGraphElement[],
+  t: TFunction
+): { text?: string; icon?: LucideIcon } {
   const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
     analyzeChartData(chartData);
   if (allTimeSlicerAverageMethod) {
-    return t(`estimation-card.${EstimationMethods.TSA}.pill`);
+    return {
+      text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
+      icon: CircleDashed,
+    };
   }
 
   if (allEstimated) {
-    return t('estimation-badge.fully-estimated');
+    return { text: t('estimation-badge.fully-estimated'), icon: TrendingUpDown };
   }
 
   if (hasEstimation) {
-    return t('estimation-badge.partially-estimated');
+    return { text: t('estimation-badge.partially-estimated'), icon: TrendingUpDown };
   }
+  return {};
 }
 
 export function extractLinkFromSource(
