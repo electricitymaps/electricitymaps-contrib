@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/react';
+import { setTag } from '@sentry/react';
 import i18n, { t } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
@@ -32,7 +32,7 @@ i18n.on('languageChanged', (lng: keyof typeof localeToFacebookLocale) => {
     .querySelector('meta[property="og:locale"]')
     ?.setAttribute('content', localeToFacebookLocale[lng || 'en']);
 
-  Sentry.setTag('app_locale', lng);
+  setTag('app_locale', lng);
 });
 
 export { default } from 'i18next';
