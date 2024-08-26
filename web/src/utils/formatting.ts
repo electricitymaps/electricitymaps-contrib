@@ -73,6 +73,7 @@ export const formatEnergy = ({
 
 export const formatCo2 = ({ value, total, numberDigits }: FormatParameters) => {
   // Validate input
+
   if (value == null || Number.isNaN(value)) {
     return '?';
   }

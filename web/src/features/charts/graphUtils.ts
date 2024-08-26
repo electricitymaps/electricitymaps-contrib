@@ -117,6 +117,9 @@ export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) 
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   const index = datetimes.findIndex((d) => d?.getTime() === currentDate?.getTime());
+  if (index === -1 || index === datetimes.length - 1) {
+    return undefined;
+  }
   return datetimes[index + 1];
 };
 
@@ -161,10 +164,13 @@ export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
   if (value === 0 && total === 0) {
     return 0;
   }
+  // TODO: The typeof check is only necessary for TypeScript to properly narrow the types.
+  // Remove it once TypeScript can narrow the type using the Number.isFinite check.
   if (
-    Number.isNaN(value) ||
     typeof value !== 'number' ||
     typeof total !== 'number' ||
+    !Number.isFinite(value) ||
+    !Number.isFinite(total) ||
     total === 0
   ) {
     return '?';
