@@ -1,7 +1,7 @@
 import { CountryFlag } from 'components/Flag';
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
-import { ZoneDetail, ZoneKey } from 'types';
+import { ZoneKey } from 'types';
 
 import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
@@ -12,7 +12,6 @@ import { ExchangeDataType } from './utils';
 export default function BarEmissionExchangeChart({
   height,
   width,
-  data,
   exchangeData,
   co2Scale,
   formatTick,
@@ -21,14 +20,12 @@ export default function BarEmissionExchangeChart({
 }: {
   height: number;
   width: number;
-  data: ZoneDetail;
   exchangeData: ExchangeDataType[];
   co2Scale: ScaleLinear<number, number, never>;
   formatTick: (value: number) => string;
   onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
 }) {
@@ -58,7 +55,7 @@ export default function BarEmissionExchangeChart({
               width={width}
               scale={co2Scale}
               value={d.exchange}
-              onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, data, event)}
+              onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={false}
             >
