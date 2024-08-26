@@ -27,7 +27,7 @@ if (isProduction) {
     tracesSampleRate: 0, // Disables tracing completely as we don't use it and sends a lot of data
     initialScope: (scope) => {
       scope.setUser({ app_uuid: getSentryUuid() }); // Set the user context with a random UUID for Sentry so we can correlate errors with users anonymously
-      scope.setTag('browser_locale', window.navigator.language); // Set the language tag for Sentry to correlate errors with the user's language
+      scope.setTag('browser.locale', window.navigator.language); // Set the language tag for Sentry to correlate errors with the user's language
       return scope;
     },
   });

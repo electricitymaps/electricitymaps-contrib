@@ -32,7 +32,7 @@ i18n.on('languageChanged', (lng: keyof typeof localeToFacebookLocale) => {
     .querySelector('meta[property="og:locale"]')
     ?.setAttribute('content', localeToFacebookLocale[lng || 'en']);
 
-  setTag('app_locale', lng);
+  setTag('app.locale', lng);
 });
 
 export { default } from 'i18next';
