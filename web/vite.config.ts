@@ -28,9 +28,6 @@ const sentryPluginOptions: SentryVitePluginOptions = {
 
   release: {
     name: `app@v${process.env.npm_package_version}`,
-    setCommits: {
-      auto: true,
-    },
   },
   bundleSizeOptimizations: {
     excludeDebugStatements: true,
