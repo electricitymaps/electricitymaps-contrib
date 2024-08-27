@@ -1,8 +1,8 @@
 import Accordion from 'components/Accordion';
-import Divider from 'features/panels/zone/Divider';
-import { CloudArrowUpIcon } from 'icons/cloudArrowUpIcon';
-import { IndustryIcon } from 'icons/industryIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
+import { HorizontalDivider } from 'components/Divider';
+import HorizontalColorbar from 'components/legend/ColorBar';
+import { useCo2ColorScale } from 'hooks/theme';
+import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
@@ -31,6 +31,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     emissionFactorSourcesToProductionSources,
   } = useZoneDataSources();
   const { t } = useTranslation();
+  const co2ColorScale = useCo2ColorScale();
 
   if (isLoading || isError || !data) {
     return null;
@@ -50,7 +51,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
       <ChartTitle
         translationKey="country-history.carbonintensity"
         badgeText={badgeText}
-        icon={<CloudArrowUpIcon />}
         unit={'gCO₂eq / kWh'}
       />
       <AreaGraph
@@ -66,23 +66,25 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         selectedTimeAggregate={timeAverage}
         tooltip={CarbonChartTooltip}
       />
-      <Divider />
+      <div className="pb-1 pt-2">
+        <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
+      </div>
+      <HorizontalDivider />
       <Accordion
         onOpen={() => {
           trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });
         }}
         title={t('data-sources.title')}
-        className="text-md"
         isCollapsedAtom={dataSourcesCollapsedEmission}
       >
         <DataSources
           title={t('data-sources.power')}
-          icon={<WindTurbineIcon />}
+          icon={<Zap size={16} />}
           sources={powerGenerationSources}
         />
         <DataSources
           title={t('data-sources.emission')}
-          icon={<IndustryIcon />}
+          icon={<Factory size={16} />}
           sources={emissionFactorSources}
           emissionFactorSourcesToProductionSources={
             emissionFactorSourcesToProductionSources

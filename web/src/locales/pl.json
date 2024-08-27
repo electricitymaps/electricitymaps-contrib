@@ -33,10 +33,7 @@
     "carbonintensity": "Emisja CO₂",
     "lowcarbon": "Niskoemisyjne",
     "renewable": "Odnawialne",
-    "electricityproduction": "Produkcja energii elektrycznej",
-    "emissions": "Emisje CO₂",
     "helpfrom": "z wkładem",
-    "electricityconsumption": "Zużycie energii elektrycznej",
     "noDataAtTimestamp": "Dla wybranego okresu dane są tymczasowo niedostępne",
     "noLiveData": "Dane na żywo są tymczasowo niedostępne dla tego obszaru",
     "noParserInfo": "Nie posiadamy jeszcze żadnych informacji o tym obszarze.<br/> Chcesz pomóc? Możesz to zrobić <a href=\"{{link}}\" target=\"_blank\">dodając dane dla obszaru</a>.",
@@ -47,13 +44,10 @@
     "dataIsEstimated": "Niektóre dane dla tego obszaru zostały oszacowane. Przeczytaj więcej o naszej metodologii szacowania <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">tutaj</a>.",
     "now": "Obecnie"
   },
-  "left-panel": {
-    "zone-list-header-title": "Wpływ na klimat według obszaru",
-    "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Wpływ na klimat według obszaru",
+    "subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
     "search": "Szukaj"
-  },
-  "time-controller": {
-    "title": "Wyświetl dane historyczne"
   },
   "footer": {
     "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
@@ -179,14 +173,6 @@
   "coal": "węglowa",
   "oil": "naftowa",
   "unknown": "nieznana",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: produkcja {{selectedLayerKey}} tworzy <b>{{percentageUsage}} %</b> energii elektrycznej",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: produkcja {{selectedLayerKey}} tworzy <b>{{percentageUsage}} %</b> emisji",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} przetrzymywują <b>{{percentageUsage}} %</b> energii elektrycznej",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} przetrzymywują <b>{{percentageUsage}} %</b> emisji",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> energii elektrycznej jest eksportowane do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisji jest eksportowane do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> energii elektrycznej jest importowane z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisji jest importowane z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AE": {
       "zoneName": "Zjednoczone Emiraty Arabskie"
@@ -481,10 +467,6 @@
     },
     "GR": {
       "zoneName": "Grecja"
-    },
-    "GR-IS": {
-      "countryName": "Grecja",
-      "zoneName": "Wyspy Egejskie"
     },
     "GT": {
       "zoneName": "Gwatemala"

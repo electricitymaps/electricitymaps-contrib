@@ -1,15 +1,14 @@
 import Accordion from 'components/Accordion';
+import { HorizontalDivider } from 'components/Divider';
 import { max, sum } from 'd3-array';
-import Divider from 'features/panels/zone/Divider';
-import { CircleBoltIcon } from 'icons/circleBoltIcon';
-import { IndustryIcon } from 'icons/industryIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
+import { useAtomValue } from 'jotai';
+import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
 import { Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
+import { dataSourcesCollapsedBreakdown, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
@@ -42,20 +41,20 @@ function BreakdownChart({
     emissionFactorSourcesToProductionSources,
   } = useZoneDataSources();
   const { t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
 
   if (!data) {
     return null;
   }
 
-  const isBreakdownGraphOverlayEnabled =
-    mixMode === Mode.CONSUMPTION && timeAverage !== TimeAverages.HOURLY;
+  const isBreakdownGraphOverlayEnabled = mixMode === Mode.CONSUMPTION && !isHourly;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 
   // Find highest daily emissions to show correct unit on chart
   const maxEmissions = max(chartData.map((day) => sum(Object.values(day.layerData))));
 
-  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
+  const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
   const titleDisplayMode = displayByEmissions ? 'emissions' : 'electricity';
   const titleMixMode = mixMode === Mode.CONSUMPTION ? 'origin' : 'production';
@@ -77,7 +76,6 @@ function BreakdownChart({
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badgeText={isBreakdownGraphOverlayEnabled ? undefined : badgeText}
-        icon={<CircleBoltIcon />}
         unit={valueAxisLabel}
       />
       <div className="relative ">
@@ -114,7 +112,7 @@ function BreakdownChart({
             sources={getProductionSourcesInChart(chartData)}
             className="py-1.5"
           />
-          <Divider />
+          <HorizontalDivider />
           <Accordion
             onOpen={() => {
               trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
@@ -129,12 +127,12 @@ function BreakdownChart({
           >
             <DataSources
               title={t('data-sources.power')}
-              icon={<WindTurbineIcon />}
+              icon={<Zap size={16} />}
               sources={powerGenerationSources}
             />
             <DataSources
               title={t('data-sources.emission')}
-              icon={<IndustryIcon />}
+              icon={<Factory size={16} />}
               sources={emissionFactorSources}
               emissionFactorSourcesToProductionSources={
                 emissionFactorSourcesToProductionSources

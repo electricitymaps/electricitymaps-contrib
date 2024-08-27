@@ -1,12 +1,10 @@
 import i18next from './i18n';
 
-export const translateIfExists = (key: string) => {
-  return i18next.exists(key) ? i18next.t(key) : '';
-};
+export const translateIfExists = (key: string) =>
+  i18next.exists(key) ? i18next.t(key) : '';
 
-export const getFullZoneName = (zoneCode: string) => {
-  return translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
-};
+export const getFullZoneName = (zoneCode: string) =>
+  translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
 export const getZoneName = (zoneCode: string) => {
   const displayName = translateIfExists(`zoneShortName.${zoneCode}.displayName`);
   if (displayName) {

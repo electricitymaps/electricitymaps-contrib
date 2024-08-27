@@ -4,8 +4,8 @@ import { Button } from 'components/Button';
 import { Link } from 'components/Link';
 import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
 import { useSetAtom } from 'jotai';
+import { ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineExternalLink } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 
@@ -31,26 +31,25 @@ function MenuLink({
     onClick?.();
   };
   return (
-    <div className="relative flex py-3">
-      <NavigationMenu.Item
-        asChild
-        className="cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+    <NavigationMenu.Item
+      asChild
+      className="relative my-3 cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+    >
+      <NavigationMenu.Link
+        onClick={handleClick}
+        href={href}
+        target={isExternal ? '_blank' : '_self'}
+        className="group px-1 py-2 text-sm lg:px-2 lg:text-base"
       >
-        <NavigationMenu.Link
-          onClick={handleClick}
-          href={href}
-          target={isExternal ? '_blank' : '_self'}
-          className="group px-1 py-2 text-base lg:px-2 lg:text-[1rem]"
-        >
-          {children}
-          {isExternal && (
-            <div className="absolute bottom-0 top-1 flex w-full justify-end text-gray-400 opacity-0 transition-opacity group-hover:opacity-80 dark:text-gray-600">
-              <HiOutlineExternalLink />
-            </div>
-          )}
-        </NavigationMenu.Link>
-      </NavigationMenu.Item>
-    </div>
+        {children}
+        {isExternal && (
+          <ExternalLink
+            size={16}
+            className="absolute -right-2 -top-2 text-gray-500 opacity-0 transition-opacity group-hover:opacity-80"
+          />
+        )}
+      </NavigationMenu.Link>
+    </NavigationMenu.Item>
   );
 }
 
@@ -64,7 +63,7 @@ export default function Header(): JSX.Element {
   return (
     <header
       className={twMerge(
-        'z-30 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] md:pr-4 dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)]',
+        'z-30 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
         !isMobileApp && 'sm:block md:flex'
       )}
     >

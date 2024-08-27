@@ -11,9 +11,15 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 3416.3
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 3799.4
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 3899.8
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 4143.1
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -32,9 +38,15 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 65817.7
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 65725.6
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 65761.6
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 65693.4
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -58,6 +70,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 786.5
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 854.7
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -65,9 +80,15 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 15456.5
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 16360.2
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 16850.2
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 17287.5
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -79,9 +100,15 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 37266.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 37710.1
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 37732.5
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 38260.9
 comment: Electric Reliability Council Of Texas, Inc.
 contributors:
   - systemcatch

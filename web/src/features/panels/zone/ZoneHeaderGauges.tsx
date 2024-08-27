@@ -1,11 +1,11 @@
 import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
 import { CircularGauge } from 'components/CircularGauge';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { ZoneDetails } from 'types';
 import { Mode } from 'utils/constants';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
-import { productionConsumptionAtom, selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import { productionConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 function LowCarbonTooltip() {
   const { t } = useTranslation();
@@ -21,10 +21,10 @@ function LowCarbonTooltip() {
 
 export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
   const { t } = useTranslation();
-  const [currentMode] = useAtom(productionConsumptionAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const currentMode = useAtomValue(productionConsumptionAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const isConsumption = currentMode === Mode.CONSUMPTION;
-  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
+  const selectedData = data?.zoneStates[selectedDatetimeString];
 
   const {
     co2intensity,

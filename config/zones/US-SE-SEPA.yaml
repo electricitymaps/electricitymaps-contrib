@@ -32,7 +32,7 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 246.0
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 164.0
   nuclear:
@@ -194,6 +194,7 @@ fallbackZoneMixes:
         solar: 0.007555457617158807
         unknown: 0.0025165271044512998
         wind: 1.4690759512266785e-05
+generation_only: true
 parsers:
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity

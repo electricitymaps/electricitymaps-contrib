@@ -1,22 +1,20 @@
-/* eslint-disable unicorn/no-null */
 import { bisectLeft } from 'd3-array';
-// import { pointer } from 'd3-selection';
-// // https://observablehq.com/@d3/d3-selection-2-0
-import { scaleTime } from 'd3-scale';
+import { ScaleTime, scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
+import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { EstimationMethods, Mode, modeOrder, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
 
 export const detectHoveredDatapointIndex = (
-  event_: any,
-  datetimes: any,
-  timeScale: any,
-  svgNode: any
-) => {
+  event_: MouseEvent<SVGRectElement> | MouseEvent<SVGPathElement>,
+  datetimes: Date[],
+  timeScale: ScaleTime<number, number>,
+  svgNode: SVGSVGElement
+): number | null => {
   if (datetimes.length === 0) {
     return null;
   }
@@ -29,8 +27,14 @@ export const detectHoveredDatapointIndex = (
   const datetime = timeScale.invert(adjustedDx);
 
   // Find data point closest to
+
   let index = bisectLeft(datetimes, datetime);
-  if (index > 0 && datetime - datetimes[index - 1] < datetimes[index] - datetime) {
+  // Aligns the hovered point to the chart bar
+  if (
+    index > 0 &&
+    datetime?.getTime() - datetimes[index - 1]?.getTime() <
+      datetimes[index]?.getTime() - datetime?.getTime()
+  ) {
     index -= 1;
   }
   if (index > datetimes.length - 1) {
@@ -113,6 +117,9 @@ export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) 
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   const index = datetimes.findIndex((d) => d?.getTime() === currentDate?.getTime());
+  if (index === -1 || index === datetimes.length - 1) {
+    return undefined;
+  }
   return datetimes[index + 1];
 };
 
@@ -120,20 +127,26 @@ export function determineUnit(
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
   mixMode: Mode,
-  timeAverage: TimeAverages,
+  isHourly: boolean,
   t: TFunction
 ) {
   if (displayByEmissions) {
     return getUnit(
-      formatCo2(getTotalEmissionsAvailable(currentZoneDetail, mixMode)) +
+      formatCo2({ value: getTotalEmissionsAvailable(currentZoneDetail, mixMode) }) +
         ' ' +
         t('ofCO2eq')
     );
   }
 
-  return timeAverage === TimeAverages.HOURLY
-    ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode)))
-    : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
+  return isHourly
+    ? getUnit(
+        formatPower({
+          value: getTotalElectricityAvailable(currentZoneDetail, mixMode),
+        })
+      )
+    : getUnit(
+        formatEnergy({ value: getTotalElectricityAvailable(currentZoneDetail, mixMode) })
+      );
 }
 
 function getUnit(valueAndUnit: string | number) {
@@ -151,10 +164,13 @@ export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
   if (value === 0 && total === 0) {
     return 0;
   }
+  // TODO: The typeof check is only necessary for TypeScript to properly narrow the types.
+  // Remove it once TypeScript can narrow the type using the Number.isFinite check.
   if (
-    Number.isNaN(value) ||
     typeof value !== 'number' ||
     typeof total !== 'number' ||
+    !Number.isFinite(value) ||
+    !Number.isFinite(total) ||
     total === 0
   ) {
     return '?';

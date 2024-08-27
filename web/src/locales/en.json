@@ -1,24 +1,33 @@
 {
-  "info-modal": {
-    "title": "Info",
-    "intro-text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">see data sources</a>) and powered by the community.",
-    "feedback-button": "Share feedback",
-    "github-button": "View our GitHub",
-    "twitter-button": "Share on Twitter",
-    "slack-button": "Join the Slack community",
-    "privacy-policy": "Privacy Policy",
-    "legal-notice": "Legal Notice"
+  "info": {
+    "title": "About the app",
+    "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
+    "open-source-text": "This app is <a href='{{link}}' target='_blank'>Open Source</a> and powered by the community.",
+    "version": "App version: {{version}}",
+    "share-app": "Share the app:"
   },
   "settings-modal": {
     "title": "Settings"
   },
-  "panel-initial-text": {
-    "thisproject": "This app is",
-    "opensource": "Open Source",
-    "see": "see",
-    "datasources": "data sources",
-    "contribute": "Contribute by <a href=\"{{link}}\" target=\"_blank\">adding your territory</a>"
+  "ranking-panel": {
+    "title": "Climate Impact by Area",
+    "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
+    "search": "Search areas"
+  },
+  "button": {
+    "reddit": "Join r/electricitymaps",
+    "github": "Contribute on GitHub",
+    "twitter": "Follow us on Twitter",
+    "twitter-share": "Share on Twitter",
+    "slack": "Join our Slack community",
+    "linkedin": "Follow us on LinkedIn",
+    "linkedin-share": "Share on LinkedIn",
+    "facebook": "Follow us on Facebook",
+    "facebook-share": "Share on Facebook",
+    "feedback": "Share feedback",
+    "faq": "FAQ",
+    "privacy-policy": "Privacy Policy",
+    "legal-notice": "Legal Notice"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -67,10 +76,9 @@
     "carbonintensity": "Carbon Intensity",
     "lowcarbon": "Low-carbon",
     "renewable": "Renewable",
-    "electricityproduction": "Electricity production",
-    "electricityconsumption": "Electricity consumption",
-    "emissions": "Carbon emissions",
-    "contribute": "Contribute on GitHub",
+    "electricityproduction": "Production",
+    "electricityconsumption": "Consumption",
+    "emissions": "Emissions",
     "helpfrom": "With help from:",
     "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
     "noLiveData": "Live data is temporarily unavailable for this area",
@@ -92,12 +100,20 @@
     "fullyDisabled": "The data we have available for this zone is insufficient and therefore not shown. If you are aware of data sources for this area, please <a href=\"{{link}}\" target=\"_blank\">let us know</a>.",
     "now": "Now",
     "by-source": {
-      "emissions": "Carbon emissions by source",
-      "electricity-production": "Electricity production by source",
-      "electricity-consumption": "Electricity consumption by source",
-      "total-emissions": "Total carbon emissions by source",
-      "total-electricity-production": "Total electricity production by source",
-      "total-electricity-consumption": "Total electricity consumption by source"
+      "emissions": "Carbon emissions",
+      "electricity-production": "Electricity production",
+      "electricity-consumption": "Electricity consumption",
+      "total-emissions": "Total carbon emissions",
+      "total-electricity-production": "Total electricity production",
+      "total-electricity-consumption": "Total electricity consumption"
+    },
+    "graph-legends": {
+      "installed-capacity": "Installed capacity ",
+      "exchange-capacity": "Available exchange capacity ",
+      "exported": "Exported",
+      "imported": "Imported",
+      "stored": "Stored",
+      "produced": "Produced"
     }
   },
   "feedback-card": {
@@ -110,7 +126,7 @@
       "primary-question": "The description of the data estimation was easy to understand:"
     },
 
-    "primary-question": "How satisfied are you with your experience using the Electricity Maps app?",
+    "primary-question": "How would you rate your overall satisfaction with the Electricity Maps app?",
     "secondary-question-low": "What can we do better?",
     "secondary-question-high": "What improvements would you like to see next?",
 
@@ -118,6 +134,8 @@
     "input-question": "Let us know any features you'd like to see?",
     "agree": "Strongly agree",
     "disagree": "Strongly disagree",
+    "satisfied": "Very satisfied",
+    "unsatisfied": "Very unsatisfied",
     "placeholder": "Let us know in a few words...",
     "submit": "Submit"
   },
@@ -184,16 +202,18 @@
     }
   },
   "time-controller": {
-    "title": "Display data from the past",
+    "title": {
+      "hourly": "Hourly data for:",
+      "daily": "Daily data for:",
+      "monthly": "Monthly data for:",
+      "yearly": "Yearly data for:"
+    },
     "daily": "daily",
     "hourly": "hourly",
     "monthly": "monthly",
     "yearly": "yearly"
   },
   "left-panel": {
-    "zone-list-header-title": "Climate Impact by Area",
-    "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas",
     "get-data": "See our commercial API offerings",
     "applied-methodologies": {
       "title": "Applied methodologies",
@@ -354,14 +374,15 @@
   "coal": "coal",
   "oil": "oil",
   "unknown": "unknown",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityStoredUsing": "is stored using",
+  "emissionsStoredUsing": "are stored using",
+  "electricityExportedTo": "is exported to",
+  "emissionsExportedTo": "are exported to",
+  "electricityImportedFrom": "is imported from",
+  "emissionsImportedFrom": "are imported from",
+  "electricityAvailableIn": "of electricity available in",
+  "emissionsAvailableIn": "of emissions from electricity available in",
+  "comesFrom": "comes from",
   "ofCO2eq": "of CO₂eq",
   "theMap": {
     "groupName": "The map",
@@ -914,10 +935,6 @@
     },
     "GR": {
       "zoneName": "Greece"
-    },
-    "GR-IS": {
-      "countryName": "Greece",
-      "zoneName": "Aegean Islands"
     },
     "GS": {
       "zoneName": "South Georgia and the South Sandwich Islands"

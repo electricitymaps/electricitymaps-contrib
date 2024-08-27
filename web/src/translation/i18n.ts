@@ -1,4 +1,5 @@
-import i18n from 'i18next';
+import { setTag } from '@sentry/react';
+import i18n, { t } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { initReactI18next } from 'react-i18next';
@@ -22,14 +23,16 @@ i18n
     },
   });
 
-i18n.on('languageChanged', function (lng: keyof typeof localeToFacebookLocale) {
+i18n.on('languageChanged', (lng: keyof typeof localeToFacebookLocale) => {
   document.documentElement.setAttribute('lang', lng);
   // TODO: Use react-helmet to manage meta tags
-  document.title = `Electricity Maps | ${i18n.t('misc.maintitle')}`;
+  document.title = `Electricity Maps | ${t('misc.maintitle')}`;
   // Optional chaining added to ensure jsdom works
   document
     .querySelector('meta[property="og:locale"]')
     ?.setAttribute('content', localeToFacebookLocale[lng || 'en']);
+
+  setTag('app.locale', lng);
 });
 
 export { default } from 'i18next';

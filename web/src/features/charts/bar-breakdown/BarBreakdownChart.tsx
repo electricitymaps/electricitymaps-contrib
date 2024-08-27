@@ -1,23 +1,21 @@
 import * as Portal from '@radix-ui/react-portal';
 import Accordion from 'components/Accordion';
+import { HorizontalDivider } from 'components/Divider';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
-import Divider from 'features/panels/zone/Divider';
-import { IndustryIcon } from 'icons/industryIcon';
-import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
-import { useAtom } from 'jotai';
-import React, { useState } from 'react';
+import { useHeaderHeight } from 'hooks/headerHeight';
+import { useAtom, useAtomValue } from 'jotai';
+import { Factory, UtilityPole, X, Zap } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiXMark } from 'react-icons/hi2';
-import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
 import {
   dataSourcesCollapsedBarBreakdown,
   displayByEmissionsAtom,
+  isHourlyAtom,
   productionConsumptionAtom,
-  timeAverageAtom,
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
@@ -29,8 +27,8 @@ import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import BySource from './elements/BySource';
+import CapacityLegend from './elements/CapacityLegend';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
-import { useHeaderHeight } from './utils';
 
 const X_PADDING = 20;
 
@@ -59,9 +57,16 @@ function BarBreakdownChart({
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
   const width = observerWidth + X_PADDING;
+
+  const graphUnit = useMemo(
+    () =>
+      currentZoneDetail &&
+      determineUnit(displayByEmissions, currentZoneDetail, mixMode, isHourly, t),
+    [displayByEmissions, currentZoneDetail, mixMode, isHourly, t]
+  );
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
@@ -77,7 +82,7 @@ function BarBreakdownChart({
 
   if (!currentZoneDetail) {
     return (
-      <div className="relative w-full text-md" ref={ref}>
+      <div className="text-md relative w-full" ref={ref}>
         <BySource className="opacity-40" />
         <EmptyBarBreakdownChart
           height={height}
@@ -90,7 +95,6 @@ function BarBreakdownChart({
 
   const onMouseOver = (
     layerKey: ElectricityModeType | ZoneKey,
-    _: ZoneDetail,
     event: React.MouseEvent
   ) => {
     const { clientX, clientY } = event;
@@ -129,15 +133,14 @@ function BarBreakdownChart({
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
-        unit={determineUnit(
-          displayByEmissions,
-          currentZoneDetail,
-          mixMode,
-          timeAverage,
-          t
-        )}
+        unit={graphUnit}
         estimationMethod={currentZoneDetail.estimationMethod}
       />
+      {!displayByEmissions && (
+        <CapacityLegend>
+          {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
+        </CapacityLegend>
+      )}
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div
@@ -152,15 +155,14 @@ function BarBreakdownChart({
               zoneDetail={currentZoneDetail}
               hasEstimationPill={hasEstimationPill}
             />
-            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
-              <HiXMark size="24" />
+            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden">
+              <X />
             </button>
           </div>
         </Portal.Root>
       )}
       {displayByEmissions ? (
         <BarBreakdownEmissionsChart
-          data={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
@@ -174,7 +176,6 @@ function BarBreakdownChart({
       ) : (
         <BarElectricityBreakdownChart
           data={zoneDetails}
-          currentData={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
@@ -184,44 +185,41 @@ function BarBreakdownChart({
           width={width}
           height={height}
           isMobile={false}
+          graphUnit={graphUnit}
         />
       )}
       {showDataSourceAccordion && (
         <>
-          <Divider />
-          <div className="py-1">
-            <Accordion
-              onOpen={() => {
-                trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-                  chart: 'bar-breakdown-chart',
-                });
-              }}
-              title={t('data-sources.title')}
-              className="text-md"
-              isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
-            >
-              <div>
-                <DataSources
-                  title={t('data-sources.capacity')}
-                  icon={<UtilityPoleIcon />}
-                  sources={capacitySources}
-                />
-                <DataSources
-                  title={t('data-sources.power')}
-                  icon={<WindTurbineIcon />}
-                  sources={powerGenerationSources}
-                />
-                <DataSources
-                  title={t('data-sources.emission')}
-                  icon={<IndustryIcon />}
-                  sources={emissionFactorSources}
-                  emissionFactorSourcesToProductionSources={
-                    emissionFactorSourcesToProductionSources
-                  }
-                />
-              </div>
-            </Accordion>
-          </div>{' '}
+          <HorizontalDivider />
+          <Accordion
+            onOpen={() => {
+              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                chart: 'bar-breakdown-chart',
+              });
+            }}
+            title={t('data-sources.title')}
+            className="text-md"
+            isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
+          >
+            <DataSources
+              title={t('data-sources.capacity')}
+              icon={<UtilityPole size={16} />}
+              sources={capacitySources}
+            />
+            <DataSources
+              title={t('data-sources.power')}
+              icon={<Zap size={16} />}
+              sources={powerGenerationSources}
+            />
+            <DataSources
+              title={t('data-sources.emission')}
+              icon={<Factory size={16} />}
+              sources={emissionFactorSources}
+              emissionFactorSourcesToProductionSources={
+                emissionFactorSourcesToProductionSources
+              }
+            />
+          </Accordion>
         </>
       )}
     </div>

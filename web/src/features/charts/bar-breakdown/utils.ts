@@ -1,16 +1,15 @@
 import { max as d3Max } from 'd3-array';
-import { useEffect, useState } from 'react';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
   Maybe,
   ZoneDetail,
-  ZoneDetails,
   ZoneKey,
 } from 'types';
 import { Mode, modeOrderBarBreakdown } from 'utils/constants';
-import { getProductionCo2Intensity } from 'utils/helpers';
+import { getProductionCo2Intensity, round } from 'utils/helpers';
+import { EnergyUnits } from 'utils/units';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
 
@@ -119,7 +118,7 @@ export const getDataBlockPositions = (
   const exchangeFlagX =
     LABEL_MAX_WIDTH - 4 * PADDING_X - DEFAULT_FLAG_SIZE - exchangeMax * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
-  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+  const exchangeY = productionY + productionHeight;
 
   return {
     productionHeight,
@@ -195,16 +194,21 @@ export const getExchangesToDisplay = (
   );
 };
 
-export const useHeaderHeight = () => {
-  const [headerHeight, setHeaderHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const headerElement = document.querySelector('header');
-    if (headerElement) {
-      const height = headerElement.offsetHeight;
-      setHeaderHeight(height * 1.1);
+/**
+ * Convents the price value and unit to the correct value and unit for the matching currency.
+ *
+ * If no currency is provided, the parameters are returned as is.
+ */
+export const convertPrice = (
+  value?: number,
+  currency?: string,
+  unit: EnergyUnits = EnergyUnits.MEGAWATT_HOURS
+): { value?: number; currency?: string; unit: EnergyUnits } => {
+  if (currency === 'EUR') {
+    if (value) {
+      value = round(value / 1000, 4);
     }
-  }, [window.innerWidth, window.innerHeight]);
-
-  return headerHeight;
+    return { value: value, currency, unit: EnergyUnits.KILOWATT_HOURS };
+  }
+  return { value, currency, unit };
 };
