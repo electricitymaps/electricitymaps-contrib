@@ -168,6 +168,7 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    session = session or Session()
     target_datetime = target_datetime or datetime.now()
     params = {
         "areas": f"{ZONE_MAPPING[zone_key]}",
