@@ -21,7 +21,7 @@ Sentry.init({
   dsn: Capacitor.isNativePlatform()
     ? 'https://dfa9d3f487a738bcc1abc9329a5877c6@o192958.ingest.us.sentry.io/4507825555767296' // Capacitor DSN
     : 'https://bbe4fb6e5b3c4b96a1df95145a91e744@o192958.ingest.us.sentry.io/4504366922989568', // Web DSN
-  tracesSampleRate: 0, // Disables tracing completely as we don't use it and sends a lot of data
+  tracesSampleRate: 1, // Disables tracing completely as we don't use it and sends a lot of data
   enabled: true,
   sampleRate: 1,
   initialScope: (scope) => {
@@ -30,6 +30,8 @@ Sentry.init({
     return scope;
   },
 });
+
+
 
 /**
  * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
