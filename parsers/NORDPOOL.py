@@ -1,7 +1,8 @@
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
+from json import loads
 
 from requests import Response, Session
 
@@ -15,11 +16,14 @@ NORDPOOL_BASE_URL = "https://data-api.nordpoolgroup.com/api/v2/"
 
 @dataclass
 class NordpoolToken:
-    token: str | None = None
-    expiration: datetime | None = None
+    token: str
+    expiration: datetime
 
+    @property
+    def is_expired(self) -> bool:
+        return datetime.now(tz=timezone.utc) > self.expiration + timedelta(minutes=5)
 
-TOKEN = NordpoolToken()
+CURRENT_TOKEN: NordpoolToken | None = None
 
 SOURCE = "nordpool.com"
 
@@ -69,8 +73,7 @@ ZONE_MAPPING = {
 INVERTED_ZONE_MAPPING = {value: key for key, value in ZONE_MAPPING.items()}
 
 
-def _generate_new_nordpool_token(session: Session | None = None) -> str:
-    session = session or Session()
+def _generate_new_nordpool_token(session: Session) -> NordpoolToken:
     URL = "https://sts.nordpoolgroup.com/connect/token"
     username = get_token("EMAPS_NORDPOOL_USERNAME")
     password = get_token("EMAPS_NORDPOOL_PASSWORD")
@@ -87,19 +90,13 @@ def _generate_new_nordpool_token(session: Session | None = None) -> str:
     }
     response = session.post(URL, headers=headers, data=data)
     response = _handle_status_code(response, getLogger(__name__))
-    TOKEN.expiration = datetime.now() + timedelta(seconds=response.json()["expires_in"])
+    token_data = response.json()
+    token = NordpoolToken(
+        token=token_data["access_token"],
+        expiration= datetime.now(tz=timezone.utc) + timedelta(seconds=token_data["expires_in"])
+    )
 
-    return response.json()["access_token"]
-
-
-def _get_token() -> str:
-    if (
-        TOKEN.token is None
-        or TOKEN.expiration is None
-        or datetime.now() > TOKEN.expiration - timedelta(minutes=5)
-    ):
-        TOKEN.token = _generate_new_nordpool_token()
-    return TOKEN.token
+    return token
 
 
 def _handle_status_code(response: Response, logger: Logger) -> Response:
@@ -132,12 +129,13 @@ def _query_nordpool(
     endpoint: NORDPOOL_API_ENDPOINT,
     params: dict[str, str],
     logger: Logger,
-    session: Session | None = None,
+    session: Session,
 ):
-    TOKEN = _get_token()
-    session = session or Session()
+    global CURRENT_TOKEN
+    if CURRENT_TOKEN is None or CURRENT_TOKEN.is_expired:
+        CURRENT_TOKEN = _generate_new_nordpool_token(session)
     headers = {
-        "Authorization": f"Bearer {TOKEN}",
+        "Authorization": f"Bearer {CURRENT_TOKEN.token}",
     }
 
     response = session.get(
