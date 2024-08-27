@@ -26,7 +26,7 @@ import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
-throw new Error("Testing")
+throw new Error('Testing');
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
