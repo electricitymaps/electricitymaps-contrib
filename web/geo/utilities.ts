@@ -100,4 +100,15 @@ function log(message: string) {
 const round = (number: number, decimals = 2): number =>
   Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
 
-export { fileExists, getHoles, getJSON, getPolygons, isSliver, log, round, writeJSON };
+export {
+  fileExists,
+  getHoles,
+  getJSON,
+  getPolygons,
+  handleMultiPolygon,
+  handlePolygon,
+  isSliver,
+  log,
+  round,
+  writeJSON,
+};
