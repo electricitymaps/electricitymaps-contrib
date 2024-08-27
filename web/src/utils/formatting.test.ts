@@ -3,11 +3,15 @@ import { describe, expect, it, vi } from 'vitest';
 import { TimeAverages } from './constants';
 import {
   formatCo2,
+  formatDataSources,
   formatDate,
+  formatDateTick,
   formatEnergy,
   formatPower,
   getDateTimeFormatOptions,
+  scalePower,
 } from './formatting';
+import { EnergyUnits, PowerUnits } from './units';
 
 describe('formatEnergy', () => {
   it('handles NaN input', () => {
@@ -206,6 +210,21 @@ describe('formatPower', () => {
 });
 
 describe('formatCo2', () => {
+  it('handles NaN input', () => {
+    const actual = formatCo2({ value: Number.NaN });
+    const expected = '?';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles undefined input', () => {
+    const actual = formatCo2({ value: undefined as unknown as number });
+    const expected = '?';
+    expect(actual).to.deep.eq(expected);
+  });
+  it('handles null input', () => {
+    const actual = formatCo2({ value: null as unknown as number });
+    const expected = '?';
+    expect(actual).to.deep.eq(expected);
+  });
   it('handles grams', () => {
     const actual = formatCo2({ value: 20 });
     const expected = '20 g';
@@ -392,6 +411,18 @@ describe('getDateTimeFormatOptions', () => {
 // These tests rely on the internal implementation of the `Intl.DateTimeFormat` object
 // and may fail if the Node version changes. Simply update the snapshot if that is the case.
 describe('formatDate', () => {
+  it('handles invalid date', () => {
+    const actual = formatDate(new Date('invalid-date'), 'en', TimeAverages.HOURLY);
+    const expected = '';
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles a date that is not a Date object', () => {
+    const actual = formatDate('not-a-date' as unknown as Date, 'en', TimeAverages.HOURLY);
+    const expected = '';
+    expect(actual).to.deep.eq(expected);
+  });
+
   it.each(['en', 'sv', 'de', 'fr', 'es', 'it'])(
     'handles hourly data for %s',
     (language) => {
@@ -457,5 +488,138 @@ describe('formatDate', () => {
 
     // Restore the spy
     consoleErrorSpy.mockRestore();
+  });
+});
+
+describe('scalePower', () => {
+  it('should return default unit and formattingFactor when maxPower is undefined', () => {
+    const result = scalePower(undefined);
+    expect(result).toEqual({
+      unit: '?',
+      formattingFactor: 1e3,
+    });
+  });
+
+  it('should return correct unit and formattingFactor for power values', () => {
+    const result = scalePower(1e6, true);
+    expect(result).toEqual({
+      unit: PowerUnits.TERAWATTS,
+      formattingFactor: 1e6,
+    });
+  });
+
+  it('should return correct unit and formattingFactor for energy values', () => {
+    const result = scalePower(1e6, false);
+    expect(result).toEqual({
+      unit: EnergyUnits.TERAWATT_HOURS,
+      formattingFactor: 1e6,
+    });
+  });
+
+  it('should handle negative maxPower values correctly', () => {
+    const result = scalePower(-1e6, true);
+    expect(result).toEqual({
+      unit: PowerUnits.TERAWATTS,
+      formattingFactor: 1e6,
+    });
+  });
+
+  it('should return fallback unit and formattingFactor when no thresholds are met', () => {
+    const result = scalePower(1e-10, false);
+    expect(result).toEqual({
+      unit: EnergyUnits.PETAWATT_HOURS,
+      formattingFactor: 1e9,
+    });
+  });
+});
+
+describe('formatDateTick', () => {
+  it('should return an empty string for invalid date', () => {
+    const result = formatDateTick(new Date('invalid-date'), 'en', TimeAverages.HOURLY);
+    expect(result).toBe('');
+  });
+
+  it('should format date correctly for HOURLY time aggregate', () => {
+    const date = new Date('2023-01-01T12:00:00Z');
+    const result = formatDateTick(date, 'en', TimeAverages.HOURLY);
+    expect(result).toBe(
+      new Intl.DateTimeFormat('en', { timeStyle: 'short' }).format(date)
+    );
+  });
+
+  it('should format date correctly for DAILY time aggregate', () => {
+    const date = new Date('2023-01-01T12:00:00Z');
+    const result = formatDateTick(date, 'en', TimeAverages.DAILY);
+    expect(result).toBe(
+      new Intl.DateTimeFormat('en', {
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC',
+      }).format(date)
+    );
+  });
+
+  it('should format date correctly for MONTHLY time aggregate with language "et"', () => {
+    const date = new Date('2023-01-01T12:00:00Z');
+    const result = formatDateTick(date, 'et', TimeAverages.MONTHLY);
+    const expected = new Intl.DateTimeFormat('et', {
+      month: 'short',
+      day: 'numeric',
+      timeZone: 'UTC',
+    })
+      .formatToParts(date)
+      .find((part) => part.type === 'month')?.value;
+    expect(result).toBe(expected);
+  });
+
+  it('should format date correctly for MONTHLY time aggregate with language not "et"', () => {
+    const date = new Date('2023-01-01T12:00:00Z');
+    const result = formatDateTick(date, 'en', TimeAverages.MONTHLY);
+    expect(result).toBe(
+      new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' }).format(date)
+    );
+  });
+
+  it('should format date correctly for YEARLY time aggregate', () => {
+    const date = new Date('2023-01-01T12:00:00Z');
+    const result = formatDateTick(date, 'en', TimeAverages.YEARLY);
+    expect(result).toBe(
+      new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: 'UTC' }).format(date)
+    );
+  });
+
+  it('should return an empty string for unimplemented time aggregate', () => {
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const result = formatDateTick(
+      new Date('2023-01-01T12:00:00Z'),
+      'en',
+      'UNIMPLEMENTED' as TimeAverages
+    );
+    expect(result).toBe('');
+    expect(consoleSpy).toHaveBeenCalledWith('UNIMPLEMENTED is not implemented');
+    consoleSpy.mockRestore();
+  });
+});
+
+describe('formatDataSources', () => {
+  it('should join data sources with a comma when Intl.ListFormat is undefined', () => {
+    const originalListFormat = Intl.ListFormat;
+    (Intl as any).ListFormat = undefined; // Temporarily set Intl.ListFormat to undefined
+
+    const dataSources = ['source1', 'source2', 'source3'];
+    const result = formatDataSources(dataSources, 'en');
+    expect(result).toBe('source1, source2, source3');
+
+    (Intl as any).ListFormat = originalListFormat; // Restore Intl.ListFormat
+  });
+
+  it('should format data sources correctly using Intl.ListFormat', () => {
+    const dataSources = ['source1', 'source2', 'source3'];
+    const result = formatDataSources(dataSources, 'en');
+    expect(result).toBe(
+      new Intl.ListFormat('en', { style: 'long', type: 'conjunction' }).format(
+        dataSources
+      )
+    );
   });
 });
