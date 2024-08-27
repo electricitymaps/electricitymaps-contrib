@@ -31,8 +31,6 @@ Sentry.init({
   },
 });
 
-
-
 /**
  * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
  * Only enabled on import.meta.env.DEV
