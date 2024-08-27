@@ -48,6 +48,11 @@ class EventList(ABC):
     def __setitem__(self, datetime, event: Event):
         self.events[self.events.index(self[datetime])] = event
 
+    def __add__(self, other: "EventList") -> "EventList":
+        new_list = self.__class__(self.logger)
+        new_list.events = self.events + other.events
+        return new_list
+
     # Abstract method to be implemented by subclasses so that the typing is correct.
     @abstractmethod
     def __getitem__(self, datetime) -> Event:
