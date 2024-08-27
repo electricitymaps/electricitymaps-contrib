@@ -8,6 +8,7 @@ from snapshottest import TestCase
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import NORDPOOL
+from json import loads
 
 base_path_to_mock = Path("parsers/test/mocks/NORDPOOL")
 
@@ -32,17 +33,17 @@ class TestNordpoolPrice(TestNordpool):
         self.adapter.register_uri(
             POST,
             "https://sts.nordpoolgroup.com/connect/token",
-            json=mock_token.read_text(),
+            json=loads(mock_token.read_text()),
         )
         self.adapter.register_uri(
             GET,
-            "https://api.nordpoolgroup.com/marketdata/v1/prices?areas=SE4&currency=EUR&market=DayAhead&date=2024-07-08",
-            json=mock_data_current_day.read_text(),
+            "https://data-api.nordpoolgroup.com/api/v2/Auction/Prices/ByAreas?areas=SE4&currency=EUR&market=DayAhead&date=2024-07-08",
+            json=loads(mock_data_current_day.read_text())
         )
         self.adapter.register_uri(
             GET,
-            "https://api.nordpoolgroup.com/marketdata/v1/prices?areas=SE4&currency=EUR&market=DayAhead&date=2024-07-09",
-            json=mock_data_next_day.read_text(),
+            "https://data-api.nordpoolgroup.com/api/v2/Auction/Prices/ByAreas?areas=SE4&currency=EUR&market=DayAhead&date=2024-07-09",
+            json=loads(mock_data_next_day.read_text())
         )
 
         target_datetime = datetime.fromisoformat("2024-07-08")
