@@ -1,6 +1,5 @@
 import { animated, useSpring } from '@react-spring/web';
-import { ChevronDown, ChevronUp, LucideIcon } from 'lucide-react';
-import { useState } from 'react';
+import { ChevronRight, LucideIcon } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import useResizeObserver from 'use-resize-observer';
 
@@ -27,33 +26,30 @@ export default function Accordion({
   setState: (isCollapsed: boolean) => void;
   isTopExpanding?: boolean;
 }) {
-  const [renderChildren, setRenderChildren] = useState(!isCollapsed);
-  const [isInitialized, setIsInitialized] = useState(false);
   const { ref, height: observerHeight } = useResizeObserver<HTMLDivElement>();
+
+  const [spring, api] = useSpring(() => ({
+    height: isCollapsed ? 0 : observerHeight,
+    // eslint-disable-next-line unicorn/no-nested-ternary -- it interferes with prettier
+    rotate: isCollapsed ? (isTopExpanding ? -90 : 90) : isTopExpanding ? 90 : -90,
+  }));
 
   const handleToggleCollapse = () => {
     onClick?.();
 
     isCollapsed && onOpen?.();
 
-    setState(!isCollapsed);
+    api.start({
+      to: {
+        height: isCollapsed ? observerHeight : 0,
+        // eslint-disable-next-line unicorn/no-nested-ternary -- it interferes with prettier
+        rotate: isCollapsed ? (isTopExpanding ? 90 : -90) : isTopExpanding ? -90 : 90,
+      },
+      onRest: () => setState(!isCollapsed),
+    });
   };
 
-  const spring = useSpring({
-    from: { height: 0, rotate: 0 },
-    // Positive value rotates the icon clockwise and negative value rotates the icon counter-clockwise
-    to: { height: observerHeight, rotate: isTopExpanding ? 180 : -180 },
-    reverse: isCollapsed,
-    config: { tension: 170, friction: 26 },
-    onStart: () => !isCollapsed && setRenderChildren(true),
-    onRest: () => {
-      isCollapsed && setRenderChildren(false);
-      setIsInitialized(true);
-    },
-    immediate: !isInitialized,
-  });
-
-  const AnimatedIcon = animated<LucideIcon>(isTopExpanding ? ChevronUp : ChevronDown);
+  const AnimatedIcon = animated<LucideIcon>(ChevronRight);
 
   return (
     <div className="flex flex-col overflow-hidden py-1">
@@ -77,7 +73,7 @@ export default function Accordion({
         {/* The div below is used to measure the height of the children
          * DO NOT REMOVE IT
          */}
-        {renderChildren && <div ref={ref}>{children}</div>}
+        {<div ref={ref}>{children}</div>}
       </animated.div>
     </div>
   );
