@@ -1,5 +1,6 @@
 import { animated, useSpring } from '@react-spring/web';
 import { ChevronDown, ChevronUp, LucideIcon } from 'lucide-react';
+import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import useResizeObserver from 'use-resize-observer';
 
@@ -26,8 +27,11 @@ export default function Accordion({
   setState: (isCollapsed: boolean) => void;
   isTopExpanding?: boolean;
 }) {
+  const [renderChildren, setRenderChildren] = useState(!isCollapsed);
   const handleToggleCollapse = () => {
     onClick?.();
+
+    !isCollapsed && setRenderChildren(true);
 
     isCollapsed && onOpen?.();
 
@@ -41,6 +45,11 @@ export default function Accordion({
     to: { height: observerHeight, rotate: isTopExpanding ? 180 : -180 },
     reverse: isCollapsed,
     config: { tension: 170, friction: 26 },
+    onRest: () => {
+      if (isCollapsed) {
+        setRenderChildren(false);
+      }
+    },
   });
 
   const AnimatedIcon = animated<LucideIcon>(isTopExpanding ? ChevronUp : ChevronDown);
@@ -67,9 +76,11 @@ export default function Accordion({
         {/* The div below is used to measure the height of the children
          * DO NOT REMOVE IT
          */}
-        <div ref={ref} className={`${isCollapsed ? 'h-0' : 'h-auto'}`}>
-          {children}
-        </div>
+        {renderChildren && (
+          <div ref={ref} className={`${isCollapsed ? 'h-0' : 'h-auto'}`}>
+            {children}
+          </div>
+        )}
       </animated.div>
     </div>
   );
