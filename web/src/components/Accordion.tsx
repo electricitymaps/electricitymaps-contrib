@@ -1,5 +1,7 @@
+import { animated, useSpring } from '@react-spring/web';
 import { ChevronDown, ChevronUp, LucideIcon } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
+import useResizeObserver from 'use-resize-observer';
 
 export default function Accordion({
   onClick,
@@ -32,10 +34,19 @@ export default function Accordion({
     setState(!isCollapsed);
   };
 
-  const Icon: LucideIcon = isTopExpanding === isCollapsed ? ChevronUp : ChevronDown;
+  const { ref, height: observerHeight } = useResizeObserver<HTMLDivElement>();
+
+  const spring = useSpring({
+    from: { height: 0, rotate: 0 },
+    to: { height: observerHeight, rotate: isTopExpanding ? 180 : -180 },
+    reverse: isCollapsed,
+    config: { tension: 170, friction: 26 },
+  });
+
+  const AnimatedIcon = animated<LucideIcon>(isTopExpanding ? ChevronUp : ChevronDown);
 
   return (
-    <div className="flex flex-col gap-1.5 py-1">
+    <div className={`flex flex-col overflow-hidden py-1`}>
       <button
         data-test-id="collapse-button"
         onClick={handleToggleCollapse}
@@ -46,12 +57,20 @@ export default function Accordion({
           {title}
         </h3>
         {badge}
-        <Icon
+        <AnimatedIcon
           className="text-black dark:text-white"
+          style={{ rotate: spring.rotate.to((r) => `${r}deg`) }}
           data-test-id={isCollapsed ? 'collapse-down' : 'collapse-up'}
         />
       </button>
-      {!isCollapsed && <div>{children}</div>}
+      <animated.div style={{ height: spring.height }}>
+        {/* The div below is used to measure the height of the children
+         * DO NOT REMOVE IT
+         */}
+        <div ref={ref} className={`${isCollapsed ? 'h-0' : 'h-auto'}`}>
+          {children}
+        </div>
+      </animated.div>
     </div>
   );
 }
