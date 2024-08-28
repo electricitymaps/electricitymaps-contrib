@@ -3,6 +3,7 @@ import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import {
@@ -10,6 +11,7 @@ import {
   selectedDatetimeIndexAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+import { useIsBiggerThanMobile } from 'utils/styling';
 
 import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
@@ -20,6 +22,7 @@ export default function TimeController({ className }: { className?: string }) {
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
+  const isBiggerThanMobile = useIsBiggerThanMobile();
 
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
@@ -74,28 +77,28 @@ export default function TimeController({ className }: { className?: string }) {
   );
 
   return (
-    <div className={className}>
-      <TimeHeader
-        // Hide the header on mobile as it is loaded directly into the BottomSheet header section
-        className="hidden sm:flex"
-      />
+    <div className={twMerge(className, 'flex flex-col gap-2')}>
+      {isBiggerThanMobile && <TimeHeader />}
       <TimeAverageToggle
         timeAverage={timeAverage}
         onToggleGroupClick={onToggleGroupClick}
       />
-      <TimeSlider
-        onChange={onTimeSliderChange}
-        numberOfEntries={numberOfEntries}
-        selectedIndex={selectedDatetime.index}
-      />
-      <TimeAxis
-        datetimes={datetimes}
-        selectedTimeAggregate={timeAverage}
-        isLoading={isLoading}
-        className="h-[22px] w-full overflow-visible"
-        transform={`translate(12, 0)`}
-        isLiveDisplay={isHourly}
-      />
+      <div>
+        {/* The above div is needed to treat the TimeSlider and TimeAxis as one DOM element */}
+        <TimeSlider
+          onChange={onTimeSliderChange}
+          numberOfEntries={numberOfEntries}
+          selectedIndex={selectedDatetime.index}
+        />
+        <TimeAxis
+          datetimes={datetimes}
+          selectedTimeAggregate={timeAverage}
+          isLoading={isLoading}
+          className="h-[22px] w-full overflow-visible"
+          transform={`translate(12, 0)`}
+          isLiveDisplay={isHourly}
+        />
+      </div>
     </div>
   );
 }
