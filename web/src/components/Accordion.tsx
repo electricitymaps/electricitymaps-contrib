@@ -28,10 +28,14 @@ export default function Accordion({
   isTopExpanding?: boolean;
 }) {
   const [renderChildren, setRenderChildren] = useState(!isCollapsed);
+  const [isInitialized, setIsInitialized] = useState(false);
+
   const handleToggleCollapse = () => {
     onClick?.();
 
-    isCollapsed && onOpen?.();
+    if (isCollapsed) {
+      onOpen?.();
+    }
 
     setState(!isCollapsed);
   };
@@ -40,15 +44,22 @@ export default function Accordion({
 
   const spring = useSpring({
     from: { height: 0, rotate: 0 },
+    // Positive value rotates the icon clockwise and negative value rotates the icon counter-clockwise
     to: { height: observerHeight, rotate: isTopExpanding ? 180 : -180 },
     reverse: isCollapsed,
     config: { tension: 170, friction: 26 },
     onStart: () => {
-      !isCollapsed && setRenderChildren(true);
+      if (!isCollapsed) {
+        setRenderChildren(true);
+      }
     },
     onRest: () => {
-      isCollapsed && setRenderChildren(false);
+      if (isCollapsed) {
+        setRenderChildren(false);
+      }
+      setIsInitialized(true);
     },
+    immediate: !isInitialized,
   });
 
   const AnimatedIcon = animated<LucideIcon>(isTopExpanding ? ChevronUp : ChevronDown);
@@ -75,11 +86,7 @@ export default function Accordion({
         {/* The div below is used to measure the height of the children
          * DO NOT REMOVE IT
          */}
-        {renderChildren && (
-          <div ref={ref} className={`${isCollapsed ? 'h-0' : 'h-auto'}`}>
-            {children}
-          </div>
-        )}
+        {renderChildren && <div ref={ref}>{children}</div>}
       </animated.div>
     </div>
   );
