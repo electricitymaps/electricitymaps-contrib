@@ -27,7 +27,7 @@ const sentryPluginOptions: SentryVitePluginOptions = {
   authToken: process.env.SENTRY_AUTH_TOKEN,
 
   release: {
-    name: `app@v${process.env.npm_package_version}`,
+    name: `app@${process.env.npm_package_version}`,
   },
   bundleSizeOptimizations: {
     excludeDebugStatements: true,
