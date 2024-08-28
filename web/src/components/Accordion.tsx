@@ -29,18 +29,15 @@ export default function Accordion({
 }) {
   const [renderChildren, setRenderChildren] = useState(!isCollapsed);
   const [isInitialized, setIsInitialized] = useState(false);
+  const { ref, height: observerHeight } = useResizeObserver<HTMLDivElement>();
 
   const handleToggleCollapse = () => {
     onClick?.();
 
-    if (isCollapsed) {
-      onOpen?.();
-    }
+    isCollapsed && onOpen?.();
 
     setState(!isCollapsed);
   };
-
-  const { ref, height: observerHeight } = useResizeObserver<HTMLDivElement>();
 
   const spring = useSpring({
     from: { height: 0, rotate: 0 },
@@ -48,15 +45,9 @@ export default function Accordion({
     to: { height: observerHeight, rotate: isTopExpanding ? 180 : -180 },
     reverse: isCollapsed,
     config: { tension: 170, friction: 26 },
-    onStart: () => {
-      if (!isCollapsed) {
-        setRenderChildren(true);
-      }
-    },
+    onStart: () => !isCollapsed && setRenderChildren(true),
     onRest: () => {
-      if (isCollapsed) {
-        setRenderChildren(false);
-      }
+      isCollapsed && setRenderChildren(false);
       setIsInitialized(true);
     },
     immediate: !isInitialized,
