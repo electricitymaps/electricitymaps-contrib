@@ -4,7 +4,13 @@ import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
+import {
+  ChartNoAxesColumn,
+  CircleDashed,
+  TrendingUpDown,
+  TriangleAlert,
+} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
@@ -115,8 +121,8 @@ function BaseCard({
   estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
-  icon: string;
-  iconPill?: string;
+  icon: React.ReactElement;
+  iconPill?: React.ReactElement;
   showMethodologyLink: boolean;
   pillType?: PillType;
   textColorTitle: string;
@@ -158,7 +164,7 @@ function BaseCard({
         estimationMethod == 'outage'
           ? 'bg-warning/20 dark:bg-warning-dark/20'
           : 'bg-neutral-100 dark:bg-gray-800'
-      } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
+      } mb-4 border border-neutral-200 transition-all dark:border-gray-700`}
     >
       <Accordion
         onClick={() => handleToggleCollapse()}
@@ -166,12 +172,12 @@ function BaseCard({
           showBadge && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
         }
         className={textColorTitle}
-        icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
+        icon={icon}
         title={title}
         isCollapsed={isCollapsed}
         setState={setIsCollapsed}
       >
-        <div className="gap-2">
+        <div className="flex flex-col gap-2">
           <div
             data-test-id="body-text"
             className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
@@ -182,22 +188,20 @@ function BaseCard({
             )}
           </div>
           {showMethodologyLink && (
-            <div className="">
-              <a
-                href="https://www.electricitymaps.com/methodology#missing-data"
-                target="_blank"
-                rel="noreferrer"
-                data-test-id="methodology-link"
-                className={`text-sm font-semibold text-black underline dark:text-white`}
-                onClick={() => {
-                  trackEvent('EstimationCard Methodology Link Clicked', {
-                    cardType: cardType,
-                  });
-                }}
-              >
-                <span className="underline">{t(`estimation-card.link`)}</span>
-              </a>
-            </div>
+            <a
+              href="https://www.electricitymaps.com/methodology#missing-data"
+              target="_blank"
+              rel="noreferrer"
+              data-test-id="methodology-link"
+              className={`text-sm font-semibold text-black underline dark:text-white`}
+              onClick={() => {
+                trackEvent('EstimationCard Methodology Link Clicked', {
+                  cardType: cardType,
+                });
+              }}
+            >
+              {t(`estimation-card.link`)}
+            </a>
           )}
         </div>
       </Accordion>
@@ -221,8 +225,8 @@ function OutageCard({
     <BaseCard
       estimationMethod={EstimationMethods.OUTAGE}
       zoneMessage={zoneMessageText}
-      icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
-      iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
+      icon={<TrendingUpDown size={16} />}
+      iconPill={<TriangleAlert size={16} />}
       showMethodologyLink={false}
       pillType="warning"
       textColorTitle="text-warning dark:text-warning-dark"
@@ -237,7 +241,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
       estimationMethod={EstimationMethods.AGGREGATED}
       estimatedPercentage={estimatedPercentage}
       zoneMessage={undefined}
-      icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
+      icon={<ChartNoAxesColumn size={16} />}
       iconPill={undefined}
       showMethodologyLink={false}
       pillType={'warning'}
@@ -256,7 +260,7 @@ function EstimatedCard({
     <BaseCard
       estimationMethod={estimationMethod}
       zoneMessage={undefined}
-      icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
+      icon={<TrendingUpDown size={16} />}
       iconPill={undefined}
       showMethodologyLink={true}
       pillType="default"
@@ -271,7 +275,7 @@ function EstimatedTSACard() {
     <BaseCard
       estimationMethod={EstimationMethods.TSA}
       zoneMessage={undefined}
-      icon="bg-[url('/images/preliminary_light.svg')] dark:bg-[url('/images/preliminary_dark.svg')]"
+      icon={<CircleDashed size={16} />}
       iconPill={undefined}
       showMethodologyLink={true}
       pillType={undefined}
