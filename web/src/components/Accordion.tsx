@@ -31,8 +31,6 @@ export default function Accordion({
   const handleToggleCollapse = () => {
     onClick?.();
 
-    !isCollapsed && setRenderChildren(true);
-
     isCollapsed && onOpen?.();
 
     setState(!isCollapsed);
@@ -45,10 +43,11 @@ export default function Accordion({
     to: { height: observerHeight, rotate: isTopExpanding ? 180 : -180 },
     reverse: isCollapsed,
     config: { tension: 170, friction: 26 },
+    onStart: () => {
+      !isCollapsed && setRenderChildren(true);
+    },
     onRest: () => {
-      if (isCollapsed) {
-        setRenderChildren(false);
-      }
+      isCollapsed && setRenderChildren(false);
     },
   });
 
