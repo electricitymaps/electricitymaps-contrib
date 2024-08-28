@@ -56,7 +56,7 @@ export default function Accordion({
   const AnimatedIcon = animated<LucideIcon>(isTopExpanding ? ChevronUp : ChevronDown);
 
   return (
-    <div className={`flex flex-col overflow-hidden py-1`}>
+    <div className="flex flex-col overflow-hidden py-1">
       <button
         data-test-id="collapse-button"
         onClick={handleToggleCollapse}
