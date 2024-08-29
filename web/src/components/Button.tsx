@@ -1,7 +1,7 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type SizeOptions = 'sm' | 'md' | 'lg' | 'xl';
+type SizeOptions = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps {
   icon?: React.ReactNode;
@@ -137,9 +137,6 @@ function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
       }
       case 'lg': {
         return 'min-w-11 min-h-11';
-      }
-      case 'xl': {
-        return 'min-w-14 min-h-14';
       }
     }
   }
