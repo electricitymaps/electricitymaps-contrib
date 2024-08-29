@@ -3,6 +3,8 @@ import { ChevronRight, LucideIcon } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import useResizeObserver from 'use-resize-observer';
 
+const AnimatedIcon = animated<LucideIcon>(ChevronRight);
+
 export default function Accordion({
   onClick,
   onOpen,
@@ -28,11 +30,14 @@ export default function Accordion({
 }) {
   const { ref, height: observerHeight } = useResizeObserver<HTMLDivElement>();
 
-  const [spring, api] = useSpring(() => ({
-    height: isCollapsed ? 0 : observerHeight,
-    // eslint-disable-next-line unicorn/no-nested-ternary -- it interferes with prettier
-    rotate: isCollapsed ? (isTopExpanding ? -90 : 90) : isTopExpanding ? 90 : -90,
-  }));
+  const [spring, api] = useSpring(
+    () => ({
+      height: isCollapsed ? 0 : observerHeight,
+      // eslint-disable-next-line unicorn/no-nested-ternary -- it interferes with prettier
+      rotate: isCollapsed ? (isTopExpanding ? -90 : 90) : isTopExpanding ? 90 : -90,
+    }),
+    [isCollapsed, isTopExpanding, observerHeight]
+  );
 
   const handleToggleCollapse = () => {
     onClick?.();
@@ -48,8 +53,6 @@ export default function Accordion({
       onRest: () => setState(!isCollapsed),
     });
   };
-
-  const AnimatedIcon = animated<LucideIcon>(ChevronRight);
 
   return (
     <div className="flex flex-col overflow-hidden py-1">
@@ -73,7 +76,7 @@ export default function Accordion({
         {/* The div below is used to measure the height of the children
          * DO NOT REMOVE IT
          */}
-        {<div ref={ref}>{children}</div>}
+        <div ref={ref}>{children}</div>
       </animated.div>
     </div>
   );
