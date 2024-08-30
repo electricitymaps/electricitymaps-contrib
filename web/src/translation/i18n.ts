@@ -1,3 +1,4 @@
+import { setTag } from '@sentry/react';
 import i18n, { t } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
@@ -22,7 +23,7 @@ i18n
     },
   });
 
-i18n.on('languageChanged', function (lng: keyof typeof localeToFacebookLocale) {
+i18n.on('languageChanged', (lng: keyof typeof localeToFacebookLocale) => {
   document.documentElement.setAttribute('lang', lng);
   // TODO: Use react-helmet to manage meta tags
   document.title = `Electricity Maps | ${t('misc.maintitle')}`;
@@ -30,6 +31,8 @@ i18n.on('languageChanged', function (lng: keyof typeof localeToFacebookLocale) {
   document
     .querySelector('meta[property="og:locale"]')
     ?.setAttribute('content', localeToFacebookLocale[lng || 'en']);
+
+  setTag('app.locale', lng);
 });
 
 export { default } from 'i18next';
