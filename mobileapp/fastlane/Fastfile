@@ -62,8 +62,7 @@ platform :ios do
     )
     bump_version
     build_web_app
-    get_certificates           # invokes cert
-    get_provisioning_profile   # invokes sigh
+    match(type: "appstore")
     build_app(
       workspace: File.join(ios_dir, "App/App.xcworkspace")
     )
