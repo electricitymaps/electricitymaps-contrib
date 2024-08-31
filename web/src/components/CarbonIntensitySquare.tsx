@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
 import { useCo2ColorScale } from '../hooks/theme';
+import InfoIconWithTooltip from './InfoIconWithTooltip';
 
 /**
  * This function finds the optimal text color based on a custom formula
@@ -29,39 +30,47 @@ const getTextColor = (rgbColor: string) => {
 interface CarbonIntensitySquareProps {
   intensity: number;
   withSubtext?: boolean;
+  tooltipContent?: string | JSX.Element;
 }
 
-function CarbonIntensitySquare({ intensity, withSubtext }: CarbonIntensitySquareProps) {
+function CarbonIntensitySquare({
+  intensity,
+  withSubtext,
+  tooltipContent,
+}: CarbonIntensitySquareProps) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
-  const backgroundColor = useSpring({
-    backgroundColor: co2ColorScale(intensity),
-  }).backgroundColor;
+  const [{ backgroundColor }] = useSpring(
+    {
+      backgroundColor: co2ColorScale(intensity),
+    },
+    [co2ColorScale, intensity]
+  );
 
   return (
-    <div>
-      <div>
+    <div className="relative flex flex-col items-center">
+      <div className="size-20 p-1">
         <animated.div
           style={{
             color: getTextColor(co2ColorScale(intensity)),
             backgroundColor,
           }}
-          className="mx-auto flex h-[65px] w-[65px] flex-col items-center justify-center rounded-2xl"
+          className="flex h-full w-full flex-col items-center justify-center rounded-2xl"
         >
-          <p className="select-none text-[1rem]" data-test-id="co2-square-value">
-            <span className="font-bold">{Math.round(intensity) || '?'}</span>
-            &nbsp;
-            <span>g</span>
+          <p className="select-none text-base" data-test-id="co2-square-value">
+            <span className="font-semibold">{Math.round(intensity) || '?'}</span>
+            <span className="text-xs font-semibold">g</span>
           </p>
         </animated.div>
       </div>
+      {tooltipContent && <InfoIconWithTooltip tooltipContent={tooltipContent} />}
       <div className="mt-2 flex flex-col items-center">
         <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
           {t('country-panel.carbonintensity')}
         </div>
         {withSubtext && (
-          <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
-            {CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}
+          <div className="text-xxs font-semibold text-neutral-600 dark:text-neutral-400">
+            {CarbonUnits.CO2EQ_PER_KILOWATT_HOUR}
           </div>
         )}
       </div>
