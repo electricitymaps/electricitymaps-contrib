@@ -9,6 +9,7 @@ import { TimeDisplay } from 'components/TimeDisplay';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
+import { TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { Mode } from 'utils/constants';
@@ -83,7 +84,12 @@ function DataValidityBadge({
     return <OutageBadge />;
   }
   if (estimated === true) {
-    return <EstimationBadge text={t('estimation-badge.fully-estimated')} />;
+    return (
+      <EstimationBadge
+        text={t('estimation-badge.fully-estimated')}
+        Icon={TrendingUpDown}
+      />
+    );
   }
   if (estimated && estimated > 0) {
     return (
@@ -91,6 +97,7 @@ function DataValidityBadge({
         text={t(`estimation-card.aggregated_estimated.pill`, {
           percentage: estimated,
         })}
+        Icon={TrendingUpDown}
       />
     );
   }
