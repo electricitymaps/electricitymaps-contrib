@@ -373,8 +373,8 @@ importers:
         specifier: 13.3.0
         version: 13.3.0(enquirer@2.4.1)
       msw:
-        specifier: 2.3.4
-        version: 2.3.4(typescript@5.5.4)
+        specifier: 2.4.1
+        version: 2.4.1(graphql@16.8.1)(typescript@5.5.4)
       nodemon:
         specifier: ^2.0.22
         version: 2.0.22
@@ -6419,13 +6419,16 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  msw@2.3.4:
-    resolution: {integrity: sha512-sHMlwrajgmZSA2l1o7qRSe+azm/I+x9lvVVcOxAzi4vCtH8uVPJk1K5BQYDkzGl+tt0RvM9huEXXdeGrgcc79g==}
+  msw@2.4.1:
+    resolution: {integrity: sha512-HXcoQPzYTwEmVk+BGIcRa0vLabBT+J20SSSeYh/QfajaK5ceA6dlD4ZZjfz2dqGEq4vRNCPLP6eXsB94KllPFg==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
+      graphql: '>= 16.8.x'
       typescript: '>= 4.7.x'
     peerDependenciesMeta:
+      graphql:
+        optional: true
       typescript:
         optional: true
 
@@ -15145,7 +15148,8 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  graphql@16.8.1: {}
+  graphql@16.8.1:
+    optional: true
 
   has-bigints@1.0.2: {}
 
@@ -16352,7 +16356,7 @@ snapshots:
 
   ms@2.1.3: {}
 
-  msw@2.3.4(typescript@5.5.4):
+  msw@2.4.1(graphql@16.8.1)(typescript@5.5.4):
     dependencies:
       '@bundled-es-modules/cookie': 2.0.0
       '@bundled-es-modules/statuses': 1.0.1
@@ -16363,7 +16367,6 @@ snapshots:
       '@types/cookie': 0.6.0
       '@types/statuses': 2.0.4
       chalk: 4.1.2
-      graphql: 16.8.1
       headers-polyfill: 4.0.2
       is-node-process: 1.2.0
       outvariant: 1.4.2
@@ -16372,6 +16375,7 @@ snapshots:
       type-fest: 4.10.1
       yargs: 17.7.2
     optionalDependencies:
+      graphql: 16.8.1
       typescript: 5.5.4
 
   murmurhash-js@1.0.0: {}
