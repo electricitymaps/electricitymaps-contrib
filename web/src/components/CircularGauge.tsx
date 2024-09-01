@@ -1,7 +1,7 @@
 import { animated, useSpring } from '@react-spring/web';
-import { Annotation, Label } from '@visx/annotation';
 import { Group } from '@visx/group';
 import { Arc } from '@visx/shape';
+import { Text } from '@visx/text';
 import { memo } from 'react';
 
 import InfoIconWithTooltip from './InfoIconWithTooltip';
@@ -95,17 +95,14 @@ export function CircularGauge({
           <Group top={centerY} left={centerX} height={height} width={width}>
             <BackgroundArc radius={radius} />
             <SpringAnimatedArc radius={radius} ratio={ratio} />
-            <Annotation>
-              {/* Consider memoizing this */}
-              <Label
-                verticalAnchor="middle"
-                horizontalAnchor="middle"
-                showBackground={false}
-                fontColor="currentColor"
-                showAnchorLine={false}
-                title={Number.isFinite(ratio) ? `${Math.round(ratio * 100)}%` : '?%'}
-              />
-            </Annotation>
+            <Text
+              verticalAnchor="middle"
+              textAnchor="middle"
+              fill="currentColor"
+              className="text-base font-semibold"
+            >
+              {Number.isFinite(ratio) ? `${Math.round(ratio * 100)}%` : '?%'}
+            </Text>
           </Group>
         </svg>
         {tooltipContent && <InfoIconWithTooltip tooltipContent={tooltipContent} />}
