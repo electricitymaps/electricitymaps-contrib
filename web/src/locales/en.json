@@ -114,6 +114,16 @@
       "imported": "Imported",
       "stored": "Stored",
       "produced": "Produced"
+    },
+    "price-chart": {
+      "see": "See upcoming prices",
+      "hide": "Hide upcoming prices",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "disclaimer": "Prices exclude taxes and any grid fees.",
+      "at": "At",
+      "EUR": "€",
+      "now": "Now"
     }
   },
   "feedback-card": {

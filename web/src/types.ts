@@ -221,3 +221,17 @@ export interface MapTheme {
   clickableFill: string;
   nonClickableFill: string;
 }
+
+export interface FuturePriceData {
+  entryCount: number;
+  futurePrices: {
+    [key: string]: Price;
+  };
+  currency: string;
+  source: string;
+  zoneKey: ZoneKey;
+}
+
+export interface Price {
+  price: number;
+}

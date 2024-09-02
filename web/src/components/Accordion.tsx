@@ -13,6 +13,11 @@ export default function Accordion({
   icon,
   children,
   title,
+  expandedTitle,
+  collapsedIcon = ChevronUp,
+  expandedIcon = ChevronDown,
+  iconClassName,
+  iconSize = 24,
   isCollapsedAtom,
   isTopExpanding = false,
 }: {
@@ -24,6 +29,11 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
+  expandedTitle?: string;
+  collapsedIcon?: LucideIcon;
+  expandedIcon?: LucideIcon;
+  iconClassName?: string;
+  iconSize?: number;
   isCollapsedAtom?: PrimitiveAtom<boolean>;
   isTopExpanding?: boolean;
 }) {
@@ -48,7 +58,7 @@ export default function Accordion({
     setCollapsedAtom?.((previous: boolean) => !previous);
   };
 
-  const Icon: LucideIcon = isTopExpanding === isCollapsed ? ChevronUp : ChevronDown;
+  const Icon: LucideIcon = isTopExpanding === isCollapsed ? collapsedIcon : expandedIcon;
 
   return (
     <div className="flex flex-col gap-1.5 py-1">
@@ -59,12 +69,13 @@ export default function Accordion({
       >
         {icon}
         <h3 className="grow text-left" data-test-id="title">
-          {title}
+          {(expandedTitle && !isCollapsed ? expandedTitle : title) || title}
         </h3>
         {badge}
         <Icon
-          className="text-black dark:text-white"
+          className={twMerge('text-black dark:text-white', iconClassName)}
           data-test-id={isCollapsed ? 'collapse-down' : 'collapse-up'}
+          size={iconSize}
         />
       </button>
       {!isCollapsed && <div>{children}</div>}
