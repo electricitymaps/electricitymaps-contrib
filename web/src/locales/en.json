@@ -296,7 +296,9 @@
   "tooltips": {
     "carbonintensity": "Carbon intensity",
     "zoneHeader": {
-      "lowcarbon": "Includes renewables and nuclear"
+      "lowcarbon": "Includes all renewables and nuclear.",
+      "renewable": "Electricity sources that can be replenished naturally. These include solar, wind, hydro, biomass and geothermal.",
+      "carbonIntensity": "The CO2 equivalent (CO2eq) measures the global warming impact of greenhouse gases expressed in the equivalent CO2 emissions. gCO2eq/kWh explains how many grams of CO2 equivalent were used to produce one kilowatt-hour of electricity."
     },
     "crossborderexport": "Cross-border export",
     "carbonintensityexport": "Carbon intensity of export",
