@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Tento app je",
-    "opensource": "Open Source",
-    "see": "viz",
-    "datasources": "zdroje dat",
-    "contribute": "Zapojte se <a href=\"{{link}}\" target=\"_blank\">přidáním své oblasti</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Oblasti",
@@ -58,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "Uhlíková intenzita",
-    "zoneHeader": {},
-    "renewable": "Obnovitelné",
     "crossborderexport": "Zahraniční export",
     "carbonintensityexport": "Uhlíková intenzita exportu",
     "ofinstalled": "instalované kapacity",

@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "See app on",
-    "opensource": "avatud lähtekoodiga",
-    "see": "vaadake",
-    "datasources": "andmeallikaid",
-    "contribute": "Aidake kaasa <a href=\"{{link}}\" target=\"_blank\">lisades enda piirkond</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Piirkonnad",
@@ -62,7 +55,6 @@
     "zoneHeader": {
       "lowcarbon": "Sisaldab taastuvenergiaid ja tuumaenergiat"
     },
-    "renewable": "Taastuv",
     "crossborderexport": "Piiriülene eksport",
     "carbonintensityexport": "Ekspordi süsiniku intensiivsus",
     "ofinstalled": "saadaolevast võimsusest",

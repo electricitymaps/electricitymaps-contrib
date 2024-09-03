@@ -14,13 +14,6 @@
   "settings-modal": {
     "title": "Configuración"
   },
-  "panel-initial-text": {
-    "thisproject": "Esta app es de",
-    "opensource": "código abierto",
-    "see": "ver",
-    "datasources": "las fuentes de los datos",
-    "contribute": "Contribuye <a href=\"{{link}}\" target=\"_blank\">añadiendo tu región o país</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Zonas",
@@ -157,7 +150,6 @@
     "zoneHeader": {
       "lowcarbon": "Incluye renovables y nuclear"
     },
-    "renewable": "Renovables",
     "crossborderexport": "Exportación transfronteriza",
     "carbonintensityexport": "Intensidad de carbono de la energía exportada",
     "ofinstalled": "de la capacidad instalada",

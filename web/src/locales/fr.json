@@ -24,13 +24,6 @@
   "settings-modal": {
     "title": "Paramètres"
   },
-  "panel-initial-text": {
-    "thisproject": "Cette app est",
-    "opensource": "Open Source",
-    "see": "voir",
-    "datasources": "source des données",
-    "contribute": "Contribuez en <a href=\"{{link}}\" target=\"_blank\">ajoutant votre pays</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Zones",
@@ -97,7 +90,6 @@
       "stored": "Stockée",
       "produced": "Produite"
     },
-    "contribute": "Contribuez sur GitHub",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
@@ -300,7 +292,6 @@
     "zoneHeader": {
       "lowcarbon": "Inclut les énergies renouvelables et le nucléaire"
     },
-    "renewable": "Renouvelable",
     "crossborderexport": "Export transfrontalier",
     "carbonintensityexport": "Intensité carbone de l’export",
     "ofinstalled": "de la capacité installée",

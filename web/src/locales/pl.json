@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Ten app jest",
-    "opensource": "Open Source",
-    "see": "zobacz",
-    "datasources": "źródła danych",
-    "contribute": "Pomóż nam <a href=\"{{link}}\" target=\"_blank\">dodając więcej regionów</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Obszary",
@@ -66,7 +59,6 @@
     "zoneHeader": {
       "lowcarbon": "Zawiera niskoemisyjne i jądrowe źródła energii"
     },
-    "renewable": "Odnawialne źródła energii",
     "crossborderexport": "Eksport",
     "carbonintensityexport": "Emisja CO₂ eksportu",
     "ofinstalled": "zainstalowanej mocy",

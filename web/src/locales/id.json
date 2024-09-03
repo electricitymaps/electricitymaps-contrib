@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "App ini",
-    "opensource": "terbuka",
-    "see": "lihat",
-    "datasources": "sumber data",
-    "contribute": "Kontribusi oleh <a href=\"{{link}}\" target=\"_blank\">tambahkan teritori Kamu</a>"
-  },
   "mobile-main-menu": {
     "map": "Peta Kelistrikan",
     "areas": "Area",
@@ -58,7 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "Intensitas Karbon",
-    "renewable": "Terbarukan",
     "crossborderexport": "Ekspor lintas batas",
     "carbonintensityexport": "Intensitas Karbon yang dikeluarkan",
     "ofinstalled": "dalam kapasitas yang dipasang",

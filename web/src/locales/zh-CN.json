@@ -14,13 +14,6 @@
   "settings-modal": {
     "title": "设置"
   },
-  "panel-initial-text": {
-    "thisproject": "这个项目是",
-    "opensource": "开源资料",
-    "see": "看",
-    "datasources": "数据来源",
-    "contribute": "通过<a href=\"{{link}}\" target=\"_blank\">添加你的国家</a>进行贡献"
-  },
   "country-panel": {
     "source": "来源",
     "carbonintensity": "碳强度",
@@ -65,7 +58,6 @@
     "zoneHeader": {
       "lowcarbon": "包含可再生能源及核能"
     },
-    "renewable": "可再生能源",
     "showWindLayer": "显示风力图层",
     "hideWindLayer": "隐藏风力图层",
     "showSolarLayer": "显示太阳能图层",

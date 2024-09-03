@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "이 프로젝트는",
-    "opensource": "오픈된 정보",
-    "see": "보시오",
-    "datasources": "데이터 정보",
-    "contribute": "공헌으로<a href=\"{{link}}\" target=\"_blank\">자기 지역을 추가해주세요</a>"
-  },
   "mobile-main-menu": {
     "map": "전력 지도",
     "areas": "지역",
@@ -58,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "탄소집약도",
-
-    "renewable": "재생가능한",
     "crossborderexport": "국경을 넘는 수출",
     "carbonintensityexport": "수출 탄소집약도",
     "ofinstalled": "설비 용량의",

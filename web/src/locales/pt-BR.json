@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Este é um app de",
-    "opensource": "Código Aberto",
-    "see": "acessar",
-    "datasources": "fonte de dados",
-    "contribute": "Contribua <a href=\"{{link}}\" target=\"_blank\">adicionando seu país ou território</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Áreas",
@@ -77,7 +70,6 @@
     "zoneHeader": {
       "lowcarbon": "Inclui renováveis e nucleares"
     },
-    "renewable": "Renovável",
     "crossborderexport": "Exportação transfronteiriça",
     "carbonintensityexport": "Intensidade de emissões de CO₂ na exportação",
     "ofinstalled": "da capacidade instalada",

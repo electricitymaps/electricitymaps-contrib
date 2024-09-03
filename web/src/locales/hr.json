@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Ovaj app je",
-    "opensource": "Open Source",
-    "see": "vidi",
-    "datasources": "izvore podataka",
-    "contribute": "Daj svoj doprinos <a href=\"{{link}}\" target=\"_blank\">dodavanjem vlastitog područja</a>"
-  },
   "mobile-main-menu": {
     "map": "Mapa",
     "areas": "Područja",
@@ -58,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "Faktor emisije",
-    "zoneZheader": {},
-    "renewable": "Obnovljivi izvori",
     "crossborderexport": "Međugranični izvoz",
     "carbonintensityexport": "Faktor emisije izvoza",
     "ofinstalled": "instaliranog kapaciteta",

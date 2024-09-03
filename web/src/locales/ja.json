@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "このプロジェクトは",
-    "opensource": "オープンソースです",
-    "see": "",
-    "datasources": "データソースを見る",
-    "contribute": "貢献するには <a href=\"{{link}}\" target=\"_blank\">自分の国のデータを追加してください</a>"
-  },
   "mobile-main-menu": {
     "map": "電力マップ",
     "areas": "エリア",
@@ -62,7 +55,6 @@
     "zoneHeader": {
       "lowcarbon": "再生可能エネルギーと原子力を含む"
     },
-    "renewable": "再生可能",
     "crossborderexport": "国境を超える輸出",
     "carbonintensityexport": "輸出された炭素強度",
     "ofinstalled": "of installed capacity",
@@ -79,7 +71,6 @@
     "consumption": "消費",
     "cpinfo": "<b>消費</b> は取り込みと放出を考慮し, <b>生産</b> はそれらを考慮しない",
     "selectLanguage": "言語を選択",
-    "lowCarbDescription": "再生可能エネルギーと原子力を含む",
     "dataIsDelayed": "データが遅延しています"
   },
   "misc": {

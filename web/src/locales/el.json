@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Αυτό το έργο είναι",
-    "opensource": "Ανοικτού Κώδικα",
-    "see": "δείτε τις",
-    "datasources": "πηγές δεδομένων",
-    "contribute": "Συνεισφέρετε <a href=\"{{link}}\" target=\"_blank\">προσθέτοντας την περιοχή σας</a>"
-  },
   "mobile-main-menu": {
     "map": "Χάρτης",
     "areas": "Περιοχές",
@@ -61,7 +54,6 @@
     "zoneHeader": {
       "lowcarbon": "Περιλαμβάνει τις ανανεώσιμες και την πυρηνική"
     },
-    "renewable": "Ανανεώσιμες",
     "crossborderexport": "Διασυνοριακή εξαγωγή",
     "carbonintensityexport": "Ένταση άνθρακα της εξαγωγής",
     "ofinstalled": "της εγκατεστημένης ισχύς",

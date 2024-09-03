@@ -14,13 +14,6 @@
   "settings-modal": {
     "title": "設定"
   },
-  "panel-initial-text": {
-    "thisproject": "這個網站是個",
-    "opensource": "開源專案",
-    "see": "詳見",
-    "datasources": "資料來源",
-    "contribute": "可以透過在地圖上<a href=\"{{link}}\" target=\"_blank\">添加你的國家</a>來進行貢獻"
-  },
   "mobile-main-menu": {
     "map": "電力地圖",
     "areas": "地區",
@@ -227,7 +220,6 @@
     "zoneHeader": {
       "lowcarbon": "包含再生能源和核能"
     },
-    "renewable": "可再生的",
     "crossborderexport": "跨境出口",
     "carbonintensityexport": "出口碳強度",
     "ofinstalled": "的裝載容量",

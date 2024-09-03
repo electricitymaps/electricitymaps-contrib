@@ -24,13 +24,6 @@
   "settings-modal": {
     "title": "Inställningar"
   },
-  "panel-initial-text": {
-    "thisproject": "Denna app har",
-    "opensource": "öppen källkod",
-    "see": "se",
-    "datasources": "datakällor",
-    "contribute": "Bidra genom att <a href=\"{{link}}\" target=\"_blank\">lägga till din region</a>"
-  },
   "mobile-main-menu": {
     "map": "Elkarta",
     "areas": "Regioner",
@@ -78,7 +71,6 @@
     "carbonintensity": "Kolintensitet",
     "lowcarbon": "Fossilfritt",
     "renewable": "Förnybart",
-    "contribute": "Bidra på GitHub",
     "helpfrom": "Med hjälp från:",
     "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
     "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
@@ -217,8 +209,7 @@
   "ranking-panel": {
     "title": "Klimatpåverkan per region",
     "subtitle": "Rankad efter kolintensitet från elproduktion (gCO₂eq/kWh)",
-    "search": "Sök efter region",
-    "share": "Dela appen:"
+    "search": "Sök efter region"
   },
   "left-panel": {
     "get-data": "Se våra kommersiella API-erbjudanden",
@@ -305,7 +296,6 @@
     "zoneHeader": {
       "lowcarbon": "Inkluderar förnybart och kärnkraft"
     },
-    "renewable": "Förnybart",
     "crossborderexport": "Gränsöverskridande export",
     "carbonintensityexport": "Kolintensitet för export",
     "ofinstalled": "av installerad kapacitet",

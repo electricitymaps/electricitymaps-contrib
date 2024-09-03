@@ -13,13 +13,6 @@
   "settings-modal": {
     "title": "Nastavitve"
   },
-  "panel-initial-text": {
-    "thisproject": "Ta aplikacija je",
-    "opensource": "Odprtokodna",
-    "see": "poglej",
-    "datasources": "Viri podatkov",
-    "contribute": "Prispevaj in <a href=\"{{link}}\" target=\"_blank\">dodaj svoj teritorij</a>"
-  },
   "mobile-main-menu": {
     "map": "Mapa elektrike",
     "areas": "Območja",
@@ -91,7 +84,6 @@
     "zoneHeader": {
       "lowcarbon": "Vključuje obnovljive vire in jedrsko energijo"
     },
-    "renewable": "Obnovljivo",
     "crossborderexport": "Čezmejni izvoz",
     "carbonintensityexport": "Ogljična intenzivnost izvoza",
     "ofinstalled": "inštalirane moči",

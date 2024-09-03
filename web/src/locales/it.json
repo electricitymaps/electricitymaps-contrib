@@ -14,13 +14,6 @@
   "settings-modal": {
     "title": "Impostazioni"
   },
-  "panel-initial-text": {
-    "thisproject": "Questa app è",
-    "opensource": "libera",
-    "see": "Vedi",
-    "datasources": "le fonti dei dati",
-    "contribute": "Contribuisci <a href=\"{{link}}\" target=\"_blank\">aggiungendo il tuo territorio</a>"
-  },
   "mobile-main-menu": {
     "map": "Mappa",
     "areas": "Aree",
@@ -107,7 +100,6 @@
     "zoneHeader": {
       "lowcarbon": "Include rinnovabili e nucleare"
     },
-    "renewable": "Rinnovabile",
     "crossborderexport": "Esportazione tra confini",
     "carbonintensityexport": "Intensità di carbonio nell'esportazione",
     "ofinstalled": "della capacità installata",

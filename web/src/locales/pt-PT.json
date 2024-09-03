@@ -14,13 +14,6 @@
   "settings-modal": {
     "title": "Configurações"
   },
-  "panel-initial-text": {
-    "thisproject": "Esta é uma app de",
-    "opensource": "Código Aberto",
-    "see": "aceder",
-    "datasources": "fonte de dados",
-    "contribute": "Contribua <a href=\"{{link}}\" target=\"_blank\">ao adicionar o seu país ou território</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Áreas",
@@ -68,7 +61,6 @@
     "carbonintensity": "Intensidade de emissão de carbono",
     "lowcarbon": "Baixo carbono",
     "renewable": "Renovável",
-    "contribute": "Contribua no GitHub",
     "helpfrom": "com ajuda de",
     "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
     "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
@@ -272,7 +264,6 @@
     "zoneHeader": {
       "lowcarbon": "Inclui renováveis e nucleares"
     },
-    "renewable": "Renovável",
     "crossborderexport": "Exportação transfronteiriça",
     "carbonintensityexport": "Intensidade de emissões de CO₂ na exportação",
     "ofinstalled": "da capacidade instalada",

@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Этот проект",
-    "opensource": "Open Source",
-    "see": "см.",
-    "datasources": "источники данных",
-    "contribute": "Помочь проекту <a href=\"{{link}}\" target=\"_blank\">добавив свою территорию</a>"
-  },
   "country-panel": {
     "source": "источник",
     "carbonintensity": "интенсивность выбросов CO₂ (CO₂эк/кВт⋅ч)",
@@ -50,7 +43,6 @@
     "zoneHeader": {
       "lowcarbon": "Включая возобновляемые и ядерные источники"
     },
-    "renewable": "ВИЭ",
     "crossborderexport": "Экспорт через границу",
     "carbonintensityexport": "Интенсивность выбросов CO₂ экспорта",
     "ofinstalled": "установленной мощности",
