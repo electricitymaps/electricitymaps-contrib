@@ -59,7 +59,9 @@
   },
   "tooltips": {
     "carbonintensity": "炭素強度",
-    "lowcarbon": "低二酸化炭素",
+    "zoneHeader": {
+      "lowcarbon": "再生可能エネルギーと原子力を含む"
+    },
     "renewable": "再生可能",
     "crossborderexport": "国境を超える輸出",
     "carbonintensityexport": "輸出された炭素強度",

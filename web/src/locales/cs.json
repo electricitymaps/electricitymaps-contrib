@@ -58,7 +58,7 @@
   },
   "tooltips": {
     "carbonintensity": "Uhlíková intenzita",
-    "lowcarbon": "Nízko-emisní",
+    "zoneHeader": {},
     "renewable": "Obnovitelné",
     "crossborderexport": "Zahraniční export",
     "carbonintensityexport": "Uhlíková intenzita exportu",

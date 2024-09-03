@@ -225,8 +225,9 @@
     "hideSolarLayer": "Skjul sol",
     "hideWindLayer": "Skjul vind",
     "importing": "Importerer",
-    "lowCarbDescription": "Inkluderer fornybar og kjernekraft",
-    "lowcarbon": "Lavutslipp (CO₂)",
+    "zoneHeader": {
+      "lowcarbon": "Inkluderer fornybar og kjernekraft"
+    },
     "netExchange": "Netto utveksling",
     "noParserInfo": "Ingen data tilgjengelig",
     "ofemissions": "av utslipp",

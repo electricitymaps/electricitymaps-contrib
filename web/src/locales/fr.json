@@ -297,7 +297,9 @@
   },
   "tooltips": {
     "carbonintensity": "Intensité carbone",
-    "lowcarbon": "Bas carbone",
+    "zoneHeader": {
+      "lowcarbon": "Inclut les énergies renouvelables et le nucléaire"
+    },
     "renewable": "Renouvelable",
     "crossborderexport": "Export transfrontalier",
     "carbonintensityexport": "Intensité carbone de l’export",
@@ -315,7 +317,6 @@
     "consumption": "consommation",
     "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
     "selectLanguage": "Choisissez une langue",
-    "lowCarbDescription": "Inclut les énergies renouvelables et le nucléaire",
     "dataIsDelayed": "Données en retard",
     "representing": "représentant",
     "ofemissions": "des émissions",

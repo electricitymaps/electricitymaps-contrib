@@ -302,7 +302,9 @@
   },
   "tooltips": {
     "carbonintensity": "Kolintensitet",
-    "lowcarbon": "Fossilfritt",
+    "zoneHeader": {
+      "lowcarbon": "Inkluderar förnybart och kärnkraft"
+    },
     "renewable": "Förnybart",
     "crossborderexport": "Gränsöverskridande export",
     "carbonintensityexport": "Kolintensitet för export",
@@ -326,7 +328,6 @@
     "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
     "aggregateInfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy",
     "selectLanguage": "Välj språk",
-    "lowCarbDescription": "Inkluderar förnybart och kärnkraft",
     "dataIsDelayed": "Data är fördröjd",
     "price": "Pris",
     "netExchange": "Nettoöverföring",

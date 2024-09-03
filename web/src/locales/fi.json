@@ -58,7 +58,9 @@
   },
   "tooltips": {
     "carbonintensity": "Hiili-intensiteetti",
-    "lowcarbon": "Vähähiilinen",
+    "zoneHeader": {
+      "lowcarbon": "Sisältää uusiutuvat energialähteet ja ydinvoiman"
+    },
     "renewable": "Uusiutuva",
     "crossborderexport": "Rajat ylittävä vienti",
     "carbonintensityexport": "Viennin hiili-intensiteetti",
@@ -75,8 +77,7 @@
     "production": "tuotanto",
     "consumption": "kulutus",
     "cpinfo": "<b>kulutus</b> ottaa huomioon tuonnin ja viennin, <b>tuotanto</b> jättää ne huomioimatta",
-    "selectLanguage": "Valitse kieli",
-    "lowCarbDescription": "Sisältää uusiutuvat energialähteet ja ydinvoiman"
+    "selectLanguage": "Valitse kieli"
   },
   "misc": {
     "maintitle": "Sähkönkulutuksen reaaliaikiaset hiilidioksidipäästöt",

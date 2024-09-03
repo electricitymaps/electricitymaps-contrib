@@ -7,14 +7,15 @@ import { Mode } from 'utils/constants';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
-function LowCarbonTooltip() {
+function LowCarbonTooltip({
+  type,
+}: {
+  type: 'lowcarbon' | 'renewable' | 'carbonIntensity';
+}) {
   const { t } = useTranslation();
   return (
     <div className="text-left">
-      <b>{t('tooltips.lowcarbon')}</b>
-      <br />
-      <small>{t('tooltips.lowCarbDescription')}</small>
-      <br />
+      <p>{t(`tooltips.${type}.description`)}</p>
     </div>
   );
 }

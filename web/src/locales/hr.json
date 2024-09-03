@@ -58,7 +58,7 @@
   },
   "tooltips": {
     "carbonintensity": "Faktor emisije",
-    "lowcarbon": "Izvori niske emisije",
+    "zoneZheader": {},
     "renewable": "Obnovljivi izvori",
     "crossborderexport": "Međugranični izvoz",
     "carbonintensityexport": "Faktor emisije izvoza",

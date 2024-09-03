@@ -295,8 +295,9 @@
   },
   "tooltips": {
     "carbonintensity": "Carbon intensity",
-    "lowcarbon": "Low-carbon",
-    "renewable": "Renewable",
+    "zoneHeader": {
+      "lowcarbon": "Includes renewables and nuclear"
+    },
     "crossborderexport": "Cross-border export",
     "carbonintensityexport": "Carbon intensity of export",
     "ofinstalled": "of installed capacity",
@@ -320,7 +321,6 @@
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
     "aggregateInfo": "Toggle between a granular zone view and an aggregated country view",
     "selectLanguage": "Select language",
-    "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed",
     "price": "Price",
     "netExchange": "Net exchange",

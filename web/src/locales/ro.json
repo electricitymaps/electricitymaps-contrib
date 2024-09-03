@@ -74,7 +74,9 @@
   },
   "tooltips": {
     "carbonintensity": "Concentrația de dioxid de carbon",
-    "lowcarbon": "Carbon-redus",
+    "zoneHeader": {
+      "lowcarbon": "Include energie regenerabilă și nucleară"
+    },
     "renewable": "Energie regenerabilă",
     "crossborderexport": "Export peste granițe",
     "carbonintensityexport": "Concentrația de dioxid de carbon a exportului",
@@ -96,7 +98,6 @@
     "consumption": "consum",
     "cpinfo": "<b>consumul</b> ia în vedere importul și exportul, <b>producția</b> le ignoră",
     "selectLanguage": "Alegeți limba",
-    "lowCarbDescription": "Include energie regenerabilă și nucleară",
     "dataIsDelayed": "Datele sunt întârziate"
   },
   "misc": {

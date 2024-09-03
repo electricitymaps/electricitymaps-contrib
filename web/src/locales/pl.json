@@ -63,7 +63,9 @@
   },
   "tooltips": {
     "carbonintensity": "Emisja CO₂",
-    "lowcarbon": "Niskoemisyjne źródła energii",
+    "zoneHeader": {
+      "lowcarbon": "Zawiera niskoemisyjne i jądrowe źródła energii"
+    },
     "renewable": "Odnawialne źródła energii",
     "crossborderexport": "Eksport",
     "carbonintensityexport": "Emisja CO₂ eksportu",
@@ -82,8 +84,7 @@
     "production": "produkcja",
     "consumption": "konsumpcja",
     "cpinfo": "<b>konsumpcja</b> uwzględnia import i eksport, <b>produkcja</b> je pomija",
-    "selectLanguage": "Wybierz język",
-    "lowCarbDescription": "Zawiera niskoemisyjne i jądrowe źródła energii"
+    "selectLanguage": "Wybierz język"
   },
   "updatePrompt": {
     "title": "Dostępna aktualizacja",

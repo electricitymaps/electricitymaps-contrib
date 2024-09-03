@@ -269,7 +269,9 @@
   },
   "tooltips": {
     "carbonintensity": "Intensidade de emissões de CO₂",
-    "lowcarbon": "Baixo carbono",
+    "zoneHeader": {
+      "lowcarbon": "Inclui renováveis e nucleares"
+    },
     "renewable": "Renovável",
     "crossborderexport": "Exportação transfronteiriça",
     "carbonintensityexport": "Intensidade de emissões de CO₂ na exportação",
@@ -293,7 +295,6 @@
     "cpinfo": "<b>consumo</b> leva em consideração importações e exportações, <b>produção</b> ignora-as",
     "aggregateInfo": "Países são agregados quando a capacidade anual da zona é maior que 90% da capacidade total",
     "selectLanguage": "Selecione a linguagem",
-    "lowCarbDescription": "Inclui renováveis e nucleares",
     "dataIsDelayed": "Dados estão atrasados",
     "price": "Preço",
     "netExchange": "Troca líquida",

@@ -59,7 +59,9 @@
   },
   "tooltips": {
     "carbonintensity": "Süsiniku intensiivsus",
-    "lowcarbon": "Vähese süsinikuga",
+    "zoneHeader": {
+      "lowcarbon": "Sisaldab taastuvenergiaid ja tuumaenergiat"
+    },
     "renewable": "Taastuv",
     "crossborderexport": "Piiriülene eksport",
     "carbonintensityexport": "Ekspordi süsiniku intensiivsus",
@@ -79,7 +81,6 @@
     "consumption": "tarbimine",
     "cpinfo": "<b>tarbimine</b> võtab arvesse impordi ja ekspordi, <b>tootmine</b> eirab neid",
     "selectLanguage": "Vali keel",
-    "lowCarbDescription": "Sisaldab taastuvenergiaid ja tuumaenergiat",
     "dataIsDelayed": "Andmed viibivad"
   },
   "misc": {

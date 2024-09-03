@@ -69,7 +69,9 @@
     "ofinstalled": "af installeret kapacitet",
     "utilizing": "udnytter",
     "withcarbonintensity": "med en CO₂-intensitet på",
-    "lowcarbon": "Lav CO₂",
+    "zoneHeader": {
+      "lowcarbon": "Inkluderer vedvarende og atomkraft"
+    },
     "renewable": "Vedvarende",
     "showWindLayer": "Vis vind",
     "hideWindLayer": "Skjul vind",
@@ -82,7 +84,6 @@
     "consumption": "forbrug",
     "cpinfo": "<b>forbrug</b> regner import og eksport med, <b>produktion</b> ignorer dem",
     "selectLanguage": "Skift sprog",
-    "lowCarbDescription": "Inkluderer vedvarende og atomkraft",
     "dataIsDelayed": "Data er forsinket",
     "representing": "forårsager",
     "ofemissions": "af CO₂-udledninger",

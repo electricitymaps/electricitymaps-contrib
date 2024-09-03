@@ -62,7 +62,9 @@
     "ofinstalled": "的装载容量",
     "utilizing": "利用",
     "withcarbonintensity": "具有碳强度",
-    "lowcarbon": "低碳能源",
+    "zoneHeader": {
+      "lowcarbon": "包含可再生能源及核能"
+    },
     "renewable": "可再生能源",
     "showWindLayer": "显示风力图层",
     "hideWindLayer": "隐藏风力图层",
@@ -73,8 +75,7 @@
     "temporaryDataOutage": "无可用实时数据",
     "production": "发电",
     "consumption": "用电",
-    "selectLanguage": "语言",
-    "lowCarbDescription": "包含可再生能源及核能"
+    "selectLanguage": "语言"
   },
   "misc": {
     "maintitle": "生活用电二氧化碳排放量",

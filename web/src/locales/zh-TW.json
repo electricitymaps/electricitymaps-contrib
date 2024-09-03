@@ -224,7 +224,9 @@
   },
   "tooltips": {
     "carbonintensity": "碳強度",
-    "lowcarbon": "低碳",
+    "zoneHeader": {
+      "lowcarbon": "包含再生能源和核能"
+    },
     "renewable": "可再生的",
     "crossborderexport": "跨境出口",
     "carbonintensityexport": "出口碳強度",
@@ -248,7 +250,6 @@
     "cpinfo": "<b>消耗量</b>會將電力進出口納入計算, <b>產出量</b>則否",
     "aggregateInfo": "以小區域爲單位 / 以整體國家爲單位",
     "selectLanguage": "選擇語言",
-    "lowCarbDescription": "包含再生能源和核能",
     "dataIsDelayed": "資料非即時",
     "price": "價格",
     "netExchange": "淨交換",

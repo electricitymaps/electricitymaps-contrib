@@ -162,7 +162,9 @@
   },
   "tooltips": {
     "carbonintensity": "CO₂-Intensität",
-    "lowcarbon": "CO₂-arm",
+    "zoneHeader": {
+      "lowcarbon": "Beinhaltet regenerative Energien und Kernenergie"
+    },
     "renewable": "regenerativ",
     "crossborderexport": "Stromexport",
     "carbonintensityexport": "CO₂-Intensität der Exporte",
@@ -180,7 +182,6 @@
     "consumption": "Verbrauch",
     "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
     "selectLanguage": "Sprache auswählen",
-    "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie",
     "dataIsDelayed": "Die Daten sind verzögert",
     "representing": "macht",
     "ofemissions": "der Emissionen aus",
