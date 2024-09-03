@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
 import { useCo2ColorScale } from '../hooks/theme';
-import InfoIconWithTooltip from './InfoIconWithTooltip';
+import InfoIconWithPadding from './InfoIconWithPadding';
+import TooltipWrapper from './tooltips/TooltipWrapper';
 
 /**
  * This function finds the optimal text color based on a custom formula
@@ -49,21 +50,25 @@ function CarbonIntensitySquare({
 
   return (
     <div className="relative flex flex-col items-center">
-      <div className="size-20 p-1">
-        <animated.div
-          style={{
-            color: getTextColor(co2ColorScale(intensity)),
-            backgroundColor,
-          }}
-          className="flex h-full w-full flex-col items-center justify-center rounded-2xl"
-        >
-          <p className="select-none text-base" data-test-id="co2-square-value">
-            <span className="font-semibold">{Math.round(intensity) || '?'}</span>
-            <span className="text-xs font-semibold">g</span>
-          </p>
-        </animated.div>
-      </div>
-      {tooltipContent && <InfoIconWithTooltip tooltipContent={tooltipContent} />}
+      <TooltipWrapper tooltipContent={tooltipContent} side="bottom">
+        <>
+          <div className="size-20 p-1">
+            <animated.div
+              style={{
+                color: getTextColor(co2ColorScale(intensity)),
+                backgroundColor,
+              }}
+              className="flex h-full w-full flex-col items-center justify-center rounded-2xl"
+            >
+              <p className="select-none text-base" data-test-id="co2-square-value">
+                <span className="font-semibold">{Math.round(intensity) || '?'}</span>
+                <span className="text-xs font-semibold">g</span>
+              </p>
+            </animated.div>
+          </div>
+          {tooltipContent && <InfoIconWithPadding />}
+        </>
+      </TooltipWrapper>
       <div className="mt-2 flex flex-col items-center">
         <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
           {t('country-panel.carbonintensity')}

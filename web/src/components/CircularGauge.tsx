@@ -4,7 +4,8 @@ import { Arc } from '@visx/shape';
 import { Text } from '@visx/text';
 import { memo } from 'react';
 
-import InfoIconWithTooltip from './InfoIconWithTooltip';
+import InfoIconWithPadding from './InfoIconWithPadding';
+import TooltipWrapper from './tooltips/TooltipWrapper';
 
 /** The degrees in a full circle */
 const FULL_CIRCLE = 360;
@@ -70,7 +71,7 @@ const SpringAnimatedArc = memo(function SpringAnimatedArc({
       startAngle={PIE_START_ANGLE}
       endAngle={spring.ratio.to((ratio) => calculateEndAngle(ratio))}
       cornerRadius={radius}
-      className="fill-brand-green"
+      className="fill-brand-green dark:fill-brand-green-dark"
     />
   );
 });
@@ -90,23 +91,25 @@ export function CircularGauge({
   return (
     <div className="flex flex-col items-center">
       {/* Div required to ensure Tooltip is rendered in right place */}
-      <div data-test-id={testId} className="relative flex flex-col items-center">
-        <svg height={height} width={width}>
-          <Group top={centerY} left={centerX} height={height} width={width}>
-            <BackgroundArc radius={radius} />
-            <SpringAnimatedArc radius={radius} ratio={ratio} />
-            <Text
-              verticalAnchor="middle"
-              textAnchor="middle"
-              fill="currentColor"
-              className="text-base font-semibold"
-            >
-              {Number.isFinite(ratio) ? `${Math.round(ratio * 100)}%` : '?%'}
-            </Text>
-          </Group>
-        </svg>
-        {tooltipContent && <InfoIconWithTooltip tooltipContent={tooltipContent} />}
-      </div>
+      <TooltipWrapper tooltipContent={tooltipContent} side="bottom">
+        <div data-test-id={testId} className="relative flex flex-col items-center">
+          <svg height={height} width={width}>
+            <Group top={centerY} left={centerX} height={height} width={width}>
+              <BackgroundArc radius={radius} />
+              <SpringAnimatedArc radius={radius} ratio={ratio} />
+              <Text
+                verticalAnchor="middle"
+                textAnchor="middle"
+                fill="currentColor"
+                className="text-base font-semibold"
+              >
+                {Number.isFinite(ratio) ? `${Math.round(ratio * 100)}%` : '?%'}
+              </Text>
+            </Group>
+          </svg>
+          {tooltipContent && <InfoIconWithPadding />}
+        </div>
+      </TooltipWrapper>
       <p className="mt-2 text-center text-xs font-semibold text-neutral-600 dark:text-neutral-400">
         {name}
       </p>

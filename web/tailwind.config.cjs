@@ -45,6 +45,7 @@ const config = {
       },
       colors: {
         'brand-green': '#135836',
+        'brand-green-dark': '#41866B',
         'brand-yellow': '#E9B73B',
         'brand-brown': '#702214',
         success: {
