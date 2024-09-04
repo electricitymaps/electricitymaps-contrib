@@ -13,14 +13,12 @@ export const sanitizeLocale = (locale: string): string => {
   const validLocaleRegex = /^[A-Za-z]{2}(-[A-Za-z]{2})?$/;
 
   if (validLocaleRegex.test(locale)) {
-    try {
-      return Intl.getCanonicalLocales(locale)[0];
-    } catch (error) {
-      console.warn(`Error getting canonical locale: ${error}`);
-    }
+    return Intl.getCanonicalLocales(locale)[0];
   }
 
-  console.warn(`Invalid locale string: ${locale}, defaulting to 'en'`);
+  console.warn(
+    `Invalid locale string: ${locale}, could not sanitize, defaulting to 'en'`
+  );
   return 'en';
 };
 
