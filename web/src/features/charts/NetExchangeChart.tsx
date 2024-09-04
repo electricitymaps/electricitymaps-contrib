@@ -7,7 +7,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
-import RoundedCard from './RoundedCard';
+import { RoundedCard } from './RoundedCard';
 import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
 
 interface NetExchangeChartProps {

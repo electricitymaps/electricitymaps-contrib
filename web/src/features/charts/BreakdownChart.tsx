@@ -20,7 +20,7 @@ import useBreakdownChartData from './hooks/useBreakdownChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import ProductionSourceLegendList from './ProductionSourceLegendList';
-import RoundedCard from './RoundedCard';
+import { RoundedCard } from './RoundedCard';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 import { AreaGraphElement } from './types';
 

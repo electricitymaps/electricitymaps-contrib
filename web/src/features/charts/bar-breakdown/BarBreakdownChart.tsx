@@ -23,7 +23,7 @@ import { DataSources } from '../DataSources';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import useZoneDataSources from '../hooks/useZoneDataSources';
-import RoundedCard from '../RoundedCard';
+import { RoundedCard } from '../RoundedCard';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
