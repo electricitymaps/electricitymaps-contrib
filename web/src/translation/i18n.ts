@@ -5,6 +5,25 @@ import resourcesToBackend from 'i18next-resources-to-backend';
 import { initReactI18next } from 'react-i18next';
 import { localeToFacebookLocale } from 'translation/locales';
 
+export const sanitizeLocale = (locale: string): string => {
+  // Get the first 5 characters and strip all non-alphabetic characters except hyphens from the locale string
+  locale = locale.slice(0, 5).replaceAll(/[^A-Za-z-]/g, '');
+
+  // Regular expression for valid language or locale strings
+  const validLocaleRegex = /^[A-Za-z]{2}(-[A-Za-z]{2})?$/;
+
+  if (validLocaleRegex.test(locale)) {
+    try {
+      return Intl.getCanonicalLocales(locale)[0];
+    } catch (error) {
+      console.warn(`Error getting canonical locale: ${error}`);
+    }
+  }
+
+  console.warn(`Invalid locale string: ${locale}, defaulting to 'en'`);
+  return 'en';
+};
+
 // Init localisation package and ensure it uses relevant plugins
 // eslint-disable-next-line import/no-named-as-default-member
 i18n
@@ -17,14 +36,7 @@ i18n
       order: ['querystring', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       lookupQuerystring: 'lang',
       caches: ['localStorage'],
-      convertDetectedLanguage: (lng: string) => {
-        try {
-          return Intl.getCanonicalLocales(lng)[0];
-        } catch (error) {
-          console.warn('Error getting canonical locales, defaulting to English', error);
-          return 'en';
-        }
-      },
+      convertDetectedLanguage: sanitizeLocale,
     },
     interpolation: {
       escapeValue: false, // Not needed for react as it escapes by default
