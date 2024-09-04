@@ -8,7 +8,7 @@ export const RoundedCard = forwardRef<
   return (
     <div
       className={twMerge(
-        'mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 dark:border-gray-700',
+        'my-2 rounded-2xl border border-neutral-200 px-4 pb-2 dark:border-gray-700',
         className
       )}
       ref={reference}
