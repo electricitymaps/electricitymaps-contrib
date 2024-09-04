@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
@@ -71,8 +72,9 @@ def _str_to_datetime(date_string: str) -> datetime:
 def fetch_ticket_TGT() -> str:
     url = "https://giris.epias.com.tr/cas/v1/tickets"
 
-    TR_USERNAME = get_token("TR_USERNAME")
-    TR_PASSWORD = get_token("TR_PASSWORD")
+    TR_USERNAME = urllib.parse.quote_plus(get_token("TR_USERNAME"))
+    TR_PASSWORD = urllib.parse.quote_plus(get_token("TR_PASSWORD"))
+
     payload = f"username={TR_USERNAME}&password={TR_PASSWORD}"
 
     headers = {
