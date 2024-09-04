@@ -215,15 +215,13 @@ def fetch_production(
         # infer 'unknown'
         if row["total_generation"] is not None:
             # Total generation includes all sources, including imports so we need to subtract them to get the unknown source
-
             # Before this date Adani import in NoneType
-            if target_datetime > datetime(2024, 8, 27):
+            if target_datetime is not None and target_datetime < datetime(2024, 8, 28):
                 unknown_source_mw = (
                     row["total_generation"]
                     - known_sources_sum_mw
                     - row["bd_import_bheramara"]
                     - row["bd_import_tripura"]
-                    - row["bd_import_adani"]
                 )
 
             else:
@@ -232,6 +230,7 @@ def fetch_production(
                     - known_sources_sum_mw
                     - row["bd_import_bheramara"]
                     - row["bd_import_tripura"]
+                    - row["bd_import_adani"]
                 )
 
             production.add_value(
@@ -306,7 +305,10 @@ def fetch_exchange(
             bd_import = row["bd_import_tripura"]
         elif zone_key2 == "IN-EA":
             # Export to India East via Bheramara and Adani (Jharkhand plant)
-            bd_import = row["bd_import_bheramara"] + row["bd_import_adani"]
+            if target_datetime is not None and target_datetime < datetime(2024, 8, 28):
+                bd_import = row["bd_import_bheramara"]
+            else:
+                bd_import = row["bd_import_bheramara"] + row["bd_import_adani"]
 
         else:
             raise ParserException(
