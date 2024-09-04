@@ -14,7 +14,7 @@ import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
-import { RoundedCard } from './RoundedCard';
+import RoundedCard from './RoundedCard';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 
 interface EmissionChartProps {

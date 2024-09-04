@@ -7,7 +7,7 @@ import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
-import { RoundedCard } from './RoundedCard';
+import RoundedCard from './RoundedCard';
 import PriceChartTooltip from './tooltips/PriceChartTooltip';
 
 interface PriceChartProps {

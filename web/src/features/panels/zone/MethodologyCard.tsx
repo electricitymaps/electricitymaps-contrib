@@ -1,6 +1,6 @@
 import Accordion from 'components/Accordion';
 import { Link } from 'components/Link';
-import { RoundedCard } from 'features/charts/RoundedCard';
+import RoundedCard from 'features/charts/RoundedCard';
 import { t } from 'i18next';
 import { EmapsIcon } from 'icons/emapsIcon';
 import trackEvent from 'utils/analytics';
@@ -14,7 +14,7 @@ export default function MethodologyCard() {
         className="text-md pt-2"
         onOpen={() => trackEvent('AppliedMethodologies Expanded')}
       >
-        <div className="flex flex-col gap-2 py-1 ">
+        <div className="flex flex-col gap-2 py-1">
           <Link href="https://www.electricitymaps.com/methodology#missing-data">
             {t('left-panel.applied-methodologies.estimations')}
           </Link>

@@ -23,6 +23,7 @@ import { DataSources } from '../DataSources';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import useZoneDataSources from '../hooks/useZoneDataSources';
+import RoundedCard from '../RoundedCard';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
@@ -126,10 +127,7 @@ function BarBreakdownChart({
   );
 
   return (
-    <div
-      className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
-      ref={ref}
-    >
+    <RoundedCard ref={ref}>
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
@@ -222,7 +220,7 @@ function BarBreakdownChart({
           </Accordion>
         </>
       )}
-    </div>
+    </RoundedCard>
   );
 }
 

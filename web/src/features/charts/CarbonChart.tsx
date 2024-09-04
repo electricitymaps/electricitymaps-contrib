@@ -16,7 +16,7 @@ import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
-import { RoundedCard } from './RoundedCard';
+import RoundedCard from './RoundedCard';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 
 interface CarbonChartProps {
