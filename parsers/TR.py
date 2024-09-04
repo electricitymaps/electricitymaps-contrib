@@ -53,22 +53,6 @@ IGNORED_KEYS = ["total", "date", "importExport", "hour"]
 SOURCE = "epias.com.tr"
 
 
-def _str_to_datetime(date_string: str) -> datetime:
-    """
-    Converts string received into datetime format.
-    String received is almost in isoformat, just missing : in the timezone
-    """
-
-    try:
-        return datetime.fromisoformat(date_string)
-    except ValueError as e:
-        raise ParserException(
-            parser="TR.py",
-            message="Datetime string cannot be parsed: expected "
-            f"format has changed and is now {date_string}",
-        ) from e
-
-
 def fetch_ticket_TGT() -> str:
     url = "https://giris.epias.com.tr/cas/v1/tickets"
 
@@ -173,7 +157,7 @@ def fetch_production(
 
         production_breakdowns.append(
             zoneKey=zone_key,
-            datetime=_str_to_datetime(item.get("date")).replace(tzinfo=TR_TZ),
+            datetime=datetime.fromisoformat(item.get("date")).replace(tzinfo=TR_TZ),
             production=mix,
             source=SOURCE,
         )
@@ -205,7 +189,7 @@ def fetch_consumption(
     for item in data:
         consumptions.append(
             zoneKey=zone_key,
-            datetime=_str_to_datetime(item.get("date")).replace(tzinfo=TR_TZ),
+            datetime=datetime.fromisoformat(item.get("date")).replace(tzinfo=TR_TZ),
             consumption=item.get("consumption"),
             source=SOURCE,
         )
@@ -228,7 +212,7 @@ def fetch_price(
     for item in data:
         prices.append(
             zoneKey=zone_key,
-            datetime=_str_to_datetime(item.get("date")).replace(tzinfo=TR_TZ),
+            datetime=datetime.fromisoformat(item.get("date")).replace(tzinfo=TR_TZ),
             price=item.get("price"),
             source=SOURCE,
             currency="TRY",
