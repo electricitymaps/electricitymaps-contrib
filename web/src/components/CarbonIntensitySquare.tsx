@@ -30,13 +30,11 @@ const getTextColor = (rgbColor: string) => {
 
 interface CarbonIntensitySquareProps {
   intensity: number;
-  withSubtext?: boolean;
   tooltipContent?: string | JSX.Element;
 }
 
 function CarbonIntensitySquare({
   intensity,
-  withSubtext,
   tooltipContent,
 }: CarbonIntensitySquareProps) {
   const { t } = useTranslation();
@@ -60,10 +58,16 @@ function CarbonIntensitySquare({
               }}
               className="flex h-full w-full flex-col items-center justify-center rounded-2xl"
             >
-              <p className="select-none text-base" data-test-id="co2-square-value">
+              <p
+                className="select-none text-base leading-none"
+                data-test-id="co2-square-value"
+              >
                 <span className="font-semibold">{Math.round(intensity) || '?'}</span>
                 <span className="text-xs font-semibold">g</span>
               </p>
+              <div className="text-xxs font-semibold leading-none">
+                {CarbonUnits.CO2EQ_PER_KILOWATT_HOUR}
+              </div>
             </animated.div>
           </div>
           {tooltipContent && <InfoIconWithPadding />}
@@ -73,11 +77,6 @@ function CarbonIntensitySquare({
         <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
           {t('country-panel.carbonintensity')}
         </div>
-        {withSubtext && (
-          <div className="text-xxs font-semibold text-neutral-600 dark:text-neutral-400">
-            {CarbonUnits.CO2EQ_PER_KILOWATT_HOUR}
-          </div>
-        )}
       </div>
     </div>
   );

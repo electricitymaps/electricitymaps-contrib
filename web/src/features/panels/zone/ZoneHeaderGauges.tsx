@@ -51,7 +51,6 @@ export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
         data-test-id="co2-square-value"
         intensity={intensity}
         tooltipContent={<ZoneHeaderTooptips type="carbonIntensity" />}
-        withSubtext
       />
       <CircularGauge
         name={t('country-panel.lowcarbon')}
