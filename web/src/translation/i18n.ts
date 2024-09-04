@@ -17,6 +17,14 @@ i18n
       order: ['querystring', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       lookupQuerystring: 'lang',
       caches: ['localStorage'],
+      convertDetectedLanguage: (lng: string) => {
+        try {
+          return Intl.getCanonicalLocales(lng)[0];
+        } catch (error) {
+          console.warn('Error getting canonical locales, defaulting to English', error);
+          return 'en';
+        }
+      },
     },
     interpolation: {
       escapeValue: false, // Not needed for react as it escapes by default
