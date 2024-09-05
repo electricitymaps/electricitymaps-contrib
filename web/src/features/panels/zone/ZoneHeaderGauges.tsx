@@ -7,15 +7,6 @@ import { Mode } from 'utils/constants';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import { productionConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
-function ZoneHeaderTooptips({
-  type,
-}: {
-  type: 'lowcarbon' | 'renewable' | 'carbonIntensity';
-}) {
-  const { t } = useTranslation();
-  return <p>{t(`tooltips.zoneHeader.${type}`)}</p>;
-}
-
 export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
   const { t } = useTranslation();
   const currentMode = useAtomValue(productionConsumptionAtom);
@@ -50,18 +41,18 @@ export function ZoneHeaderGauges({ data }: { data?: ZoneDetails }) {
       <CarbonIntensitySquare
         data-test-id="co2-square-value"
         intensity={intensity}
-        tooltipContent={<ZoneHeaderTooptips type="carbonIntensity" />}
+        tooltipContent={<p>{t('tooltips.zoneHeader.carbonIntensity')}</p>}
       />
       <CircularGauge
         name={t('country-panel.lowcarbon')}
         ratio={fossilFuelPercentage}
-        tooltipContent={<ZoneHeaderTooptips type="lowcarbon" />}
+        tooltipContent={<p>{t('tooltips.zoneHeader.lowcarbon')}</p>}
         testId="zone-header-lowcarbon-gauge"
       />
       <CircularGauge
         name={t('country-panel.renewable')}
         ratio={renewable}
-        tooltipContent={<ZoneHeaderTooptips type="renewable" />}
+        tooltipContent={<p>{t('tooltips.zoneHeader.renewable')}</p>}
         testId="zone-header-renewable-gauge"
       />
     </div>
