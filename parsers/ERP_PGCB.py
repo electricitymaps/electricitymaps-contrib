@@ -216,22 +216,16 @@ def fetch_production(
         if row["total_generation"] is not None:
             # Total generation includes all sources, including imports so we need to subtract them to get the unknown source
             # Before this date Adani import in NoneType
-            if target_datetime is not None and target_datetime < datetime(2024, 8, 28):
-                unknown_source_mw = (
-                    row["total_generation"]
-                    - known_sources_sum_mw
-                    - row["bd_import_bheramara"]
-                    - row["bd_import_tripura"]
-                )
 
-            else:
-                unknown_source_mw = (
-                    row["total_generation"]
-                    - known_sources_sum_mw
-                    - row["bd_import_bheramara"]
-                    - row["bd_import_tripura"]
-                    - row["bd_import_adani"]
-                )
+            unknown_source_mw = (
+                row["total_generation"]
+                - known_sources_sum_mw
+                - row["bd_import_bheramara"]
+                - row["bd_import_tripura"]
+            )
+            # Adani import was added after this date
+            if target_datetime is None or target_datetime > datetime(2024, 8, 27):
+                unknown_source_mw -= row["bd_import_adani"]
 
             production.add_value(
                 "unknown", unknown_source_mw, correct_negative_with_zero=True
@@ -305,10 +299,10 @@ def fetch_exchange(
             bd_import = row["bd_import_tripura"]
         elif zone_key2 == "IN-EA":
             # Export to India East via Bheramara and Adani (Jharkhand plant)
-            if target_datetime is not None and target_datetime < datetime(2024, 8, 28):
-                bd_import = row["bd_import_bheramara"]
-            else:
-                bd_import = row["bd_import_bheramara"] + row["bd_import_adani"]
+            bd_import = row["bd_import_bheramara"]
+
+            if target_datetime is None or target_datetime > datetime(2024, 8, 27):
+                bd_import += row["bd_import_adani"]
 
         else:
             raise ParserException(
