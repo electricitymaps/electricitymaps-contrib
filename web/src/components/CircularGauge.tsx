@@ -7,22 +7,17 @@ import { memo } from 'react';
 import InfoIconWithPadding from './InfoIconWithPadding';
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
-/** The degrees in a full circle */
 const FULL_CIRCLE = 360;
-/** The degrees in a half circle */
 const HALF_CIRCLE = FULL_CIRCLE / 2;
+const PIE_PADDING = 30;
 
-/** Converts degrees to radians */
 const degreesToRadians = (degrees: number) => (degrees * Math.PI) / HALF_CIRCLE;
 
-/** The padding on each end of the pie chart */
-const PIE_PADDING = 30;
 /** The start angle of the pie chart, calculated from the `PIE_PADDING` and then adjusted for rotation */
 const PIE_START_ANGLE = degreesToRadians(PIE_PADDING + HALF_CIRCLE);
 /** The end angle of the pie chart, calculated from the `PIE_PADDING` and then adjusted for rotation */
 const PIE_END_ANGLE = degreesToRadians(FULL_CIRCLE - PIE_PADDING + HALF_CIRCLE);
 
-/** Calculate the end angle of the pie chart based on the ratio, based on the `PIE_START_ANGLE` and `PIE_PADDING` */
 const calculateEndAngle = (ratio: number) =>
   PIE_START_ANGLE + degreesToRadians(ratio * (FULL_CIRCLE - PIE_PADDING * 2));
 
