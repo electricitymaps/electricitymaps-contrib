@@ -4,6 +4,7 @@ import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
+import { AppStoreBanner } from 'components/AppStoreBanner';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
@@ -60,21 +61,22 @@ export default function App(): ReactElement {
 
   return (
     <Suspense fallback={<div />}>
-      <main className="fixed flex h-screen w-screen flex-col">
+      <main className="fixed flex h-full w-full flex-col">
+        <AppStoreBanner />
         <ToastProvider duration={20_000}>
           <Suspense>
             <Header />
+          </Suspense>
+          <Suspense>
+            <LoadingOverlay />
+          </Suspense>
+          <Suspense>
+            <OnboardingModal />
           </Suspense>
           <div className="relative flex flex-auto items-stretch">
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               <Suspense>
                 <UpdatePrompt />
-              </Suspense>
-              <Suspense>
-                <LoadingOverlay />
-              </Suspense>
-              <Suspense>
-                <OnboardingModal />
               </Suspense>
               <Suspense>
                 <FAQModal />

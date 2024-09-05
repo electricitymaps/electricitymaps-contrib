@@ -1,9 +1,9 @@
-export function EmapsIcon() {
+export function EmapsIcon({ size = 22 }: { size?: number }) {
   return (
     <div className="text-black dark:text-white">
       <svg
-        width="22"
-        height="22"
+        width={size}
+        height={size}
         viewBox="0 0 512 512"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

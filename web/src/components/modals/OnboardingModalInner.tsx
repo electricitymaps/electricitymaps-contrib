@@ -62,7 +62,7 @@ function Modal({
         role="presentation"
       />
       <div
-        className="px-auto absolute top-auto z-50 mx-auto flex w-full items-center justify-center
+        className="px-auto absolute top-auto z-50 mx-auto flex h-full w-full items-center justify-center
        self-center sm:top-20 sm:min-w-[500px]"
         data-test-id={modalName}
       >

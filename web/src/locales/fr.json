@@ -29,6 +29,10 @@
     "areas": "Zones",
     "about": "À propos"
   },
+  "app-banner": {
+    "cta": "Téléchargez l'application",
+    "description": "Données d'électricité en direct"
+  },
   "onboarding-modal": {
     "view1": {
       "header": "Bienvenue sur Electricity Maps",

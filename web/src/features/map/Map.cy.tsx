@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider } from 'jotai';
-import { useHydrateAtoms } from 'jotai/utils';
 import { BrowserRouter } from 'react-router-dom';
+import { TestProvider } from 'testing/testUtils';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
 import Map from './Map';
@@ -122,18 +121,6 @@ const zonesSnapshot: ZonesSnapshot = {
     layout: {},
   },
 };
-const HydrateAtoms = ({ initialValues, children }: any) => {
-  useHydrateAtoms(initialValues);
-  return children;
-};
-
-function TestProvider({ initialValues, children }: any) {
-  return (
-    <Provider>
-      <HydrateAtoms initialValues={initialValues}>{children}</HydrateAtoms>
-    </Provider>
-  );
-}
 
 const handleMapLoad = (map: any) => {
   const features = map.queryRenderedFeatures({ layers: ['zones-clickable-layer'] });
