@@ -85,7 +85,6 @@ export function CircularGauge({
 
   return (
     <div className="flex flex-col items-center">
-      {/* Div required to ensure Tooltip is rendered in right place */}
       <TooltipWrapper tooltipContent={tooltipContent} side="bottom">
         <div data-test-id={testId} className="relative flex flex-col items-center">
           <svg height={height} width={width}>
