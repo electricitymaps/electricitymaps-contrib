@@ -60,10 +60,10 @@ capacity:
       value: 1310
     - datetime: '2021-09-14'
       source: IAEA PRIS
-      value: 1310
+      value: 2620
     - datetime: '2022-10-08'
       source: IAEA PRIS
-      value: 1310
+      value: 3930
     - datetime: '2024-03-24'
       source: IAEA PRIS
       value: 5240
