@@ -19,6 +19,9 @@ const config = {
           },
         },
       },
+      spacing: {
+        15: '3.75rem',
+      },
       screens: {
         xs: '475px',
       },
