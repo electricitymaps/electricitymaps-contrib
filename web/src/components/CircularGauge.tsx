@@ -84,8 +84,8 @@ export function CircularGauge({
   const centerX = width / 2;
 
   return (
-    <div className="flex flex-col items-center">
-      <TooltipWrapper tooltipContent={tooltipContent} side="bottom">
+    <div className="flex flex-col items-center gap-2">
+      <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
         <div data-test-id={testId} className="relative flex flex-col items-center">
           <svg height={height} width={width}>
             <Group top={centerY} left={centerX} height={height} width={width}>
@@ -104,7 +104,7 @@ export function CircularGauge({
           {tooltipContent && <InfoIconWithPadding />}
         </div>
       </TooltipWrapper>
-      <p className="mt-2 text-center text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+      <p className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
         {name}
       </p>
     </div>

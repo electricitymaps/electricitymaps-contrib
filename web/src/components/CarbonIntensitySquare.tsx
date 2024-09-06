@@ -47,8 +47,8 @@ function CarbonIntensitySquare({
   );
 
   return (
-    <div className="flex flex-col items-center">
-      <TooltipWrapper tooltipContent={tooltipContent} side="bottom">
+    <div className="flex flex-col items-center gap-2">
+      <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
         <div className="relative flex flex-col items-center">
           <div className="size-20 p-1">
             <animated.div
@@ -73,11 +73,9 @@ function CarbonIntensitySquare({
           {tooltipContent && <InfoIconWithPadding />}
         </div>
       </TooltipWrapper>
-      <div className="mt-2 flex flex-col items-center">
-        <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
-          {t('country-panel.carbonintensity')}
-        </div>
-      </div>
+      <p className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+        {t('country-panel.carbonintensity')}
+      </p>
     </div>
   );
 }
