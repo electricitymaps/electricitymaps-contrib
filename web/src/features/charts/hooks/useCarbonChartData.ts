@@ -20,13 +20,14 @@ export function useCarbonChartData() {
   const chartData: AreaGraphElement[] = Object.entries(data.zoneStates).map(
     ([datetimeString, value]) => {
       const datetime = new Date(datetimeString);
-      const carbonIntensity = getCarbonIntensity(
-        {
-          c: { ci: value.co2intensity },
-          p: { ci: value.co2intensityProduction },
-        },
-        isConsumption
-      );
+      const carbonIntensity =
+        getCarbonIntensity(
+          {
+            c: { ci: value.co2intensity },
+            p: { ci: value.co2intensityProduction },
+          },
+          isConsumption
+        ) || 0;
 
       return {
         datetime,
