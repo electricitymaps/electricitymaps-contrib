@@ -12,9 +12,8 @@ import { useAtomValue } from 'jotai';
 import { TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
-import { Mode } from 'utils/constants';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
-import { productionConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
+import { isConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
@@ -42,8 +41,7 @@ export function TooltipInner({
 
   const { t } = useTranslation();
 
-  const currentMode = useAtomValue(productionConsumptionAtom);
-  const isConsumption = currentMode === Mode.CONSUMPTION;
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const intensity = getCarbonIntensity(zoneData, isConsumption);
   const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
   const renewable = getRenewableRatio(zoneData, isConsumption);

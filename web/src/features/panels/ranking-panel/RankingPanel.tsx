@@ -4,9 +4,8 @@ import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mode } from 'utils/constants';
 import {
-  productionConsumptionAtom,
+  isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
@@ -22,8 +21,7 @@ export default function RankingPanel(): ReactElement {
   const getCo2colorScale = useCo2ColorScale();
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const [searchTerm, setSearchTerm] = useState('');
-  const electricityMode = useAtomValue(productionConsumptionAtom);
-  const isConsumption = electricityMode === Mode.CONSUMPTION;
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const spatialAggregation = useAtomValue(spatialAggregateAtom);
   const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;

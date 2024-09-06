@@ -1,5 +1,3 @@
-import { Mode } from 'utils/constants';
-
 import {
   convertPrice,
   ExchangeDataType,
@@ -348,11 +346,7 @@ describe('getExchangeData', () => {
       exchange: { AT: -934, ES: 934 },
       exchangeCapacities: { ES: exchangeCapacity, AT: exchangeCapacity },
     };
-    const result = getExchangeData(
-      exchangeCapacitiesZoneDetailsData,
-      ['ES', 'AT'],
-      Mode.CONSUMPTION
-    );
+    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES', 'AT'], true);
 
     expect(result).to.deep.eq([
       {
@@ -375,11 +369,7 @@ describe('getExchangeData', () => {
     const exchangeCapacitiesZoneDetailsData = {
       ...zoneDetailsData,
     };
-    const result = getExchangeData(
-      exchangeCapacitiesZoneDetailsData,
-      ['ES'],
-      Mode.CONSUMPTION
-    );
+    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES'], true);
 
     expect(result).to.deep.eq([
       {
@@ -398,11 +388,7 @@ describe('getExchangeData', () => {
       exchange: {},
       exchangeCapacity: { ES: exchangeCapacity },
     };
-    const result = getExchangeData(
-      exchangeCapacitiesZoneDetailsData,
-      ['ES'],
-      Mode.CONSUMPTION
-    );
+    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES'], true);
 
     expect(result).to.deep.equal([
       {
@@ -424,11 +410,7 @@ describe('getExchangeCo2Intensity', () => {
       exchangeCo2Intensities: { ES: 999 },
     };
 
-    const result = getExchangeCo2Intensity(
-      'ES',
-      exchangeCapacitiesZoneDetailsData,
-      Mode.CONSUMPTION
-    );
+    const result = getExchangeCo2Intensity('ES', exchangeCapacitiesZoneDetailsData, true);
     expect(result).to.eq(999);
   });
   describe('when exchange value is less than 0', () => {
@@ -442,7 +424,7 @@ describe('getExchangeCo2Intensity', () => {
       const result = getExchangeCo2Intensity(
         'ES',
         exchangeCapacitiesZoneDetailsData,
-        Mode.CONSUMPTION
+        true
       );
       expect(result).to.eq(187.32);
     });
@@ -456,7 +438,7 @@ describe('getExchangeCo2Intensity', () => {
       const result = getExchangeCo2Intensity(
         'ES',
         exchangeCapacitiesZoneDetailsData,
-        Mode.PRODUCTION
+        false
       );
       expect(result).to.eq(190.6);
     });
