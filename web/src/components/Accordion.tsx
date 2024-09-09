@@ -50,8 +50,8 @@ export default function Accordion({
         // eslint-disable-next-line unicorn/no-nested-ternary -- it interferes with prettier
         rotate: isCollapsed ? (isTopExpanding ? 90 : -90) : isTopExpanding ? -90 : 90,
       },
-      onRest: () => setState(!isCollapsed),
     });
+    setState(!isCollapsed);
   };
 
   return (
