@@ -133,7 +133,7 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     # API returns normally status 200 but content type text/html when data is missing
     if (
         "Content-Type" not in response.headers
-        or response.headers["Content-Type"] != "application/octet-stream"
+        or response.headers["Content-Type"] == "text/html"
     ):
         raise Exception(
             f"Error while fetching csv for date {datestr}: No CSV was returned by the API. Probably the data for this date has not yet been published."
