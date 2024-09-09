@@ -20,15 +20,14 @@ const useZoneDataSources = () => {
 export default useZoneDataSources;
 
 const getCapacitySources = (zoneData?: ZoneDetails): string[] => {
-  if (!zoneData) {
-    return [];
-  }
   const capacitySources: string[] = [];
-  for (const state of Object.values(zoneData.zoneStates)) {
-    const currentSources = extractUniqueSourcesFromDictionary(state.capacitySources);
-    for (const source of currentSources) {
-      if (!capacitySources.includes(source)) {
-        capacitySources.push(source);
+  if (zoneData) {
+    for (const state of Object.values(zoneData.zoneStates)) {
+      const currentSources = extractUniqueSourcesFromDictionary(state.capacitySources);
+      for (const source of currentSources) {
+        if (!capacitySources.includes(source)) {
+          capacitySources.push(source);
+        }
       }
     }
   }
@@ -58,16 +57,13 @@ const extractUniqueSourcesFromDictionary = (
 };
 
 const getPowerGenerationSources = (zoneData?: ZoneDetails) => {
-  if (!zoneData) {
-    return [];
-  }
-
   const sourceSet = new Set<string>();
-
-  for (const state of Object.values(zoneData.zoneStates)) {
-    const currentSources = state.source;
-    for (const source of currentSources) {
-      sourceSet.add(source);
+  if (zoneData) {
+    for (const state of Object.values(zoneData.zoneStates)) {
+      const currentSources = state.source;
+      for (const source of currentSources) {
+        sourceSet.add(source);
+      }
     }
   }
 
@@ -75,47 +71,43 @@ const getPowerGenerationSources = (zoneData?: ZoneDetails) => {
 };
 
 const getEmissionFactorSource = (zoneData?: ZoneDetails) => {
-  if (!zoneData) {
-    return [];
-  }
-
   const emissionFactorSources = new Set<string>();
 
-  const processSources = (sources: Record<string, string>) => {
-    for (const source of Object.entries(sources)) {
-      for (const emissionFactorSource of source[1].split('; ')) {
-        if (!emissionFactorSource.startsWith('assumes')) {
-          emissionFactorSources.add(emissionFactorSource);
+  if (zoneData) {
+    const processSources = (sources: Record<string, string>) => {
+      for (const source of Object.entries(sources)) {
+        for (const emissionFactorSource of source[1].split('; ')) {
+          if (!emissionFactorSource.startsWith('assumes')) {
+            emissionFactorSources.add(emissionFactorSource);
+          }
         }
       }
-    }
-  };
+    };
 
-  for (const state of Object.values(zoneData.zoneStates)) {
-    processSources(state.productionCo2IntensitySources);
-    processSources(state.dischargeCo2IntensitySources);
+    for (const state of Object.values(zoneData.zoneStates)) {
+      processSources(state.productionCo2IntensitySources);
+      processSources(state.dischargeCo2IntensitySources);
+    }
   }
 
   return [...emissionFactorSources];
 };
 
 const getEmissionFactorSourcesToProductionSource = (zoneData?: ZoneDetails) => {
-  if (!zoneData) {
-    return {};
-  }
-
   const emissionFactorsourceToProductionSource = {};
 
-  for (const state of Object.values(zoneData.zoneStates)) {
-    updateEmissionFactorSourcesWithProductionSources(
-      state.dischargeCo2IntensitySources,
-      emissionFactorsourceToProductionSource,
-      true
-    );
-    updateEmissionFactorSourcesWithProductionSources(
-      state.productionCo2IntensitySources,
-      emissionFactorsourceToProductionSource
-    );
+  if (zoneData) {
+    for (const state of Object.values(zoneData.zoneStates)) {
+      updateEmissionFactorSourcesWithProductionSources(
+        state.dischargeCo2IntensitySources,
+        emissionFactorsourceToProductionSource,
+        true
+      );
+      updateEmissionFactorSourcesWithProductionSources(
+        state.productionCo2IntensitySources,
+        emissionFactorsourceToProductionSource
+      );
+    }
   }
 
   return emissionFactorsourceToProductionSource;
