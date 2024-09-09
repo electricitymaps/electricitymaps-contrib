@@ -22,10 +22,9 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-MX_PRODUCTION_URL = (
-    "https://www.cenace.gob.mx/Paginas/SIM/Reportes/EnergiaGeneradaTipoTec.aspx"
-)
-MX_EXCHANGE_URL = "https://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
+CAISO_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
+MX_PRODUCTION_URL = f"{CAISO_PROXY}/Paginas/SIM/Reportes/EnergiaGeneradaTipoTec.aspx?host=https://www.cenace.gob.mx"
+MX_EXCHANGE_URL = f"{CAISO_PROXY}/Paginas/Publicas/Info/DemandaRegional.aspx?host=https://www.cenace.gob.mx"
 
 EXCHANGES = {
     "MX-NO->MX-NW": "IntercambioNTE-NOR",
