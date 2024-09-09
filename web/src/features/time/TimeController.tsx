@@ -77,7 +77,7 @@ export default function TimeController({ className }: { className?: string }) {
   );
 
   return (
-    <div className={twMerge(className, 'flex flex-col gap-2')}>
+    <div className={twMerge(className, 'flex flex-col gap-3')}>
       {isBiggerThanMobile && <TimeHeader />}
       <TimeAverageToggle
         timeAverage={timeAverage}

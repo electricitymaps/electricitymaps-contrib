@@ -14,7 +14,7 @@ export default function TimeHeader() {
   const date = formatDate(selectedDatetime.datetime, i18n.language, timeAverage);
 
   return (
-    <div className="flex h-6 flex-row items-center">
+    <div className="flex min-h-6 flex-row items-center">
       <h3 className="grow select-none text-left">
         {t(`time-controller.title.${timeAverage}`)}
       </h3>

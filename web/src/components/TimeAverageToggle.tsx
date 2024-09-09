@@ -31,7 +31,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
   return (
     <ToggleGroupRoot
       className={
-        'flex h-11 min-w-fit grow items-center justify-between gap-1 rounded-full bg-gray-300/50 p-1 backdrop-blur-sm dark:bg-gray-700/50'
+        'mt-1 flex h-11 min-w-fit grow items-center justify-between gap-1 rounded-full bg-gray-300/50 p-1 backdrop-blur-sm dark:bg-gray-700/50'
       }
       type="multiple"
       aria-label="Toggle between time averages"
