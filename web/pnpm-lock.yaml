@@ -233,7 +233,7 @@ importers:
         version: 5.55.4(@tanstack/react-query@5.55.4(react@18.3.1))(react@18.3.1)
       '@testing-library/cypress':
         specifier: 10.0.2
-        version: 10.0.2(cypress@13.14.1)
+        version: 10.0.2(cypress@13.14.2)
       '@testing-library/dom':
         specifier: 9.3.4
         version: 9.3.4
@@ -322,8 +322,8 @@ importers:
         specifier: 0.1.2
         version: 0.1.2
       cypress:
-        specifier: 13.14.1
-        version: 13.14.1
+        specifier: 13.14.2
+        version: 13.14.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -4442,8 +4442,8 @@ packages:
   currency-symbol-map@5.1.0:
     resolution: {integrity: sha512-LO/lzYRw134LMDVnLyAf1dHE5tyO6axEFkR3TXjQIOmMkAM9YL6QsiUwuXzZAmFnuDJcs4hayOgyIYtViXFrLw==}
 
-  cypress@13.14.1:
-    resolution: {integrity: sha512-Wo+byPmjps66hACEH5udhXINEiN3qS3jWNGRzJOjrRJF3D0+YrcP2LVB1T7oYaVQM/S+eanqEvBWYc8cf7Vcbg==}
+  cypress@13.14.2:
+    resolution: {integrity: sha512-lsiQrN17vHMB2fnvxIrKLAjOr9bPwsNbPZNrWf99s4u+DVmCY6U+w7O3GGG9FvP4EUVYaDu+guWeNLiUzBrqvA==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -11524,11 +11524,11 @@ snapshots:
 
   '@tanstack/virtual-core@3.10.7': {}
 
-  '@testing-library/cypress@10.0.2(cypress@13.14.1)':
+  '@testing-library/cypress@10.0.2(cypress@13.14.2)':
     dependencies:
       '@babel/runtime': 7.25.6
       '@testing-library/dom': 10.2.0
-      cypress: 13.14.1
+      cypress: 13.14.2
 
   '@testing-library/dom@10.1.0':
     dependencies:
@@ -13798,7 +13798,7 @@ snapshots:
 
   currency-symbol-map@5.1.0: {}
 
-  cypress@13.14.1:
+  cypress@13.14.2:
     dependencies:
       '@cypress/request': 3.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
