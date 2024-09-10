@@ -20,7 +20,7 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
     priceObject?.currency
   );
   const currencySymbol = getSymbolFromCurrency(currency) ?? '?';
-  const price = value ?? Number.NaN;
+  const price = Number.isFinite(value) ? value : '?';
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-64">
