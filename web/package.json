@@ -126,7 +126,7 @@
     "@storybook/react-vite": "^8.2.9",
     "@storybook/test": "^8.2.9",
     "@swc-jotai/debug-label": "^0.1.1",
-    "@swc-jotai/react-refresh": "^0.1.1",
+    "@swc-jotai/react-refresh": "^0.2.0",
     "@tanstack/react-query-devtools": "^5.55.4",
     "@testing-library/cypress": "10.0.2",
     "@testing-library/dom": "9.3.4",
