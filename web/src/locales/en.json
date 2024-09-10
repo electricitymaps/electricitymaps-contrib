@@ -3,7 +3,8 @@
     "title": "About the app",
     "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
     "open-source-text": "This app is <a href='{{link}}' target='_blank'>Open Source</a> and powered by the community.",
-    "version": "App version: {{version}}"
+    "version": "App version: {{version}}",
+    "share-app": "Share the app:"
   },
   "settings-modal": {
     "title": "Settings"

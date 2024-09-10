@@ -1,6 +1,6 @@
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
-import { ElectricityModeType, ZoneDetail } from 'types';
+import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
 import ProductionSourceLegend from '../ProductionSourceLegend';
@@ -16,7 +16,6 @@ export function BarElectricityProductionChart({
   formatTick,
   productionY,
   productionData,
-  currentData,
   width,
   onProductionRowMouseOver,
   onProductionRowMouseOut,
@@ -27,11 +26,9 @@ export function BarElectricityProductionChart({
   formatTick: (t: number) => string | number;
   productionY: number;
   productionData: ProductionDataType[];
-  currentData: ZoneDetail;
   width: number;
   onProductionRowMouseOver: (
     rowKey: ElectricityModeType,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onProductionRowMouseOut: () => void;
@@ -58,7 +55,7 @@ export function BarElectricityProductionChart({
             width={width}
             scale={powerScale}
             value={getElectricityProductionValue(d)}
-            onMouseOver={(event) => onProductionRowMouseOver(d.mode, currentData, event)}
+            onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >

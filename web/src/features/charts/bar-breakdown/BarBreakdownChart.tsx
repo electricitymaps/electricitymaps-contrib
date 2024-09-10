@@ -3,14 +3,11 @@ import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useHeaderHeight } from 'hooks/headerHeight';
-import { IndustryIcon } from 'icons/industryIcon';
-import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useAtom, useAtomValue } from 'jotai';
-import { X } from 'lucide-react';
+import { Factory, UtilityPole, X, Zap } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
@@ -26,6 +23,7 @@ import { DataSources } from '../DataSources';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import useZoneDataSources from '../hooks/useZoneDataSources';
+import { RoundedCard } from '../RoundedCard';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
@@ -98,7 +96,6 @@ function BarBreakdownChart({
 
   const onMouseOver = (
     layerKey: ElectricityModeType | ZoneKey,
-    _: ZoneDetail,
     event: React.MouseEvent
   ) => {
     const { clientX, clientY } = event;
@@ -130,10 +127,7 @@ function BarBreakdownChart({
   );
 
   return (
-    <div
-      className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
-      ref={ref}
-    >
+    <RoundedCard ref={ref}>
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
@@ -167,7 +161,6 @@ function BarBreakdownChart({
       )}
       {displayByEmissions ? (
         <BarBreakdownEmissionsChart
-          data={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
@@ -181,7 +174,6 @@ function BarBreakdownChart({
       ) : (
         <BarElectricityBreakdownChart
           data={zoneDetails}
-          currentData={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
@@ -207,30 +199,28 @@ function BarBreakdownChart({
             className="text-md"
             isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
           >
-            <div>
-              <DataSources
-                title={t('data-sources.capacity')}
-                icon={<UtilityPoleIcon />}
-                sources={capacitySources}
-              />
-              <DataSources
-                title={t('data-sources.power')}
-                icon={<WindTurbineIcon />}
-                sources={powerGenerationSources}
-              />
-              <DataSources
-                title={t('data-sources.emission')}
-                icon={<IndustryIcon />}
-                sources={emissionFactorSources}
-                emissionFactorSourcesToProductionSources={
-                  emissionFactorSourcesToProductionSources
-                }
-              />
-            </div>
+            <DataSources
+              title={t('data-sources.capacity')}
+              icon={<UtilityPole size={16} />}
+              sources={capacitySources}
+            />
+            <DataSources
+              title={t('data-sources.power')}
+              icon={<Zap size={16} />}
+              sources={powerGenerationSources}
+            />
+            <DataSources
+              title={t('data-sources.emission')}
+              icon={<Factory size={16} />}
+              sources={emissionFactorSources}
+              emissionFactorSourcesToProductionSources={
+                emissionFactorSourcesToProductionSources
+              }
+            />
           </Accordion>
         </>
       )}
-    </div>
+    </RoundedCard>
   );
 }
 
