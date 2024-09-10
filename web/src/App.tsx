@@ -67,16 +67,16 @@ export default function App(): ReactElement {
           <Suspense>
             <Header />
           </Suspense>
-          <Suspense>
-            <LoadingOverlay />
-          </Suspense>
-          <Suspense>
-            <OnboardingModal />
-          </Suspense>
           <div className="relative flex flex-auto items-stretch">
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               <Suspense>
                 <UpdatePrompt />
+              </Suspense>
+              <Suspense>
+                <LoadingOverlay />
+              </Suspense>
+              <Suspense>
+                <OnboardingModal />
               </Suspense>
               <Suspense>
                 <FAQModal />
