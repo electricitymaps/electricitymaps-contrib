@@ -143,7 +143,7 @@
     "@types/d3-shape": "^3.1.6",
     "@types/geojson": "^7946.0.14",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.16.2",
+    "@types/node": "^20.16.5",
     "@types/react": "18.3.5",
     "@types/react-dom": "18.3.0",
     "@types/react-router-dom": "5.3.3",
