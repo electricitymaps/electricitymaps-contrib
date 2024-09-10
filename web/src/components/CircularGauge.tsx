@@ -1,8 +1,25 @@
-import { Label, Pie, PieChart } from 'recharts';
+import { animated, useSpring } from '@react-spring/web';
+import { Group } from '@visx/group';
+import { Arc } from '@visx/shape';
+import { Text } from '@visx/text';
+import { memo } from 'react';
 
+import InfoIconWithPadding from './InfoIconWithPadding';
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
-const PIE_START_ANGLE = 90;
+const FULL_CIRCLE = 360;
+const HALF_CIRCLE = FULL_CIRCLE / 2;
+const PIE_PADDING = 30;
+
+const degreesToRadians = (degrees: number) => (degrees * Math.PI) / HALF_CIRCLE;
+
+/** The start angle of the pie chart, calculated from the `PIE_PADDING` and then adjusted for rotation */
+const PIE_START_ANGLE = degreesToRadians(PIE_PADDING + HALF_CIRCLE);
+/** The end angle of the pie chart, calculated from the `PIE_PADDING` and then adjusted for rotation */
+const PIE_END_ANGLE = degreesToRadians(FULL_CIRCLE - PIE_PADDING + HALF_CIRCLE);
+
+const calculateEndAngle = (ratio: number) =>
+  PIE_START_ANGLE + degreesToRadians(ratio * (FULL_CIRCLE - PIE_PADDING * 2));
 
 export interface CircularGaugeProps {
   ratio: number;
@@ -11,70 +28,83 @@ export interface CircularGaugeProps {
   testId?: string;
 }
 
+const BackgroundArc = memo(function BackgroundArc({ radius }: { radius: number }) {
+  return (
+    <Arc
+      outerRadius={radius}
+      innerRadius={radius * 0.8}
+      startAngle={PIE_START_ANGLE}
+      endAngle={PIE_END_ANGLE}
+      className="fill-gray-200/60 dark:fill-gray-600/50"
+      cornerRadius={radius}
+    />
+  );
+});
+
+const AnimatedArc = animated(Arc);
+
+// Memoized to avoid unnecessary re-renders due to floating point precision issues
+const SpringAnimatedArc = memo(function SpringAnimatedArc({
+  radius,
+  ratio,
+}: {
+  radius: number;
+  ratio: number;
+}) {
+  const [spring] = useSpring(
+    {
+      to: { ratio: Number.isFinite(ratio) ? ratio : 0 },
+      from: { ratio: 0 },
+    },
+    [ratio]
+  );
+
+  return (
+    <AnimatedArc
+      innerRadius={radius * 0.8}
+      outerRadius={radius}
+      startAngle={PIE_START_ANGLE}
+      endAngle={spring.ratio.to((ratio) => calculateEndAngle(ratio))}
+      cornerRadius={radius}
+      className="fill-brand-green dark:fill-brand-green-dark"
+    />
+  );
+});
+
 export function CircularGauge({
   ratio,
   name,
-  tooltipContent,
   testId,
+  tooltipContent,
 }: CircularGaugeProps) {
-  // TODO: To improve performance, the background pie does not need to rerender on percentage change
-  const data = [{ value: ratio }];
-  const percentageAsAngle = ratio * 360;
-  const endAngle = PIE_START_ANGLE - percentageAsAngle;
+  const height = 80;
+  const width = 80;
+  const radius = Math.min(width, height) / 2;
+  const centerY = height / 2;
+  const centerX = width / 2;
 
   return (
-    <div className="flex flex-col items-center">
-      <TooltipWrapper
-        side="right"
-        tooltipContent={tooltipContent}
-        tooltipClassName="max-w-44"
-      >
-        {/* Div required to ensure Tooltip is rendered in right place */}
-        <div data-test-id={testId}>
-          <PieChart
-            width={65}
-            height={65}
-            margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
-          >
-            <Pie
-              innerRadius="80%"
-              outerRadius="100%"
-              startAngle={90}
-              endAngle={-360}
-              paddingAngle={0}
-              dataKey="value"
-              data={[{ value: 100 }]}
-              className="fill-gray-200/60 dark:fill-gray-600/50"
-              isAnimationActive={false}
-              strokeWidth={0}
-            >
-              <Label
-                className="select-none fill-gray-900 text-[1rem] font-bold dark:fill-gray-300"
-                position="center"
-                offset={0}
-                formatter={(value: number) =>
-                  Number.isNaN(value) ? '?%' : `${Math.round(value * 100)}%`
-                }
-                value={ratio}
-              />
-            </Pie>
-            <Pie
-              data={data}
-              innerRadius="80%"
-              outerRadius="100%"
-              startAngle={90}
-              endAngle={endAngle}
-              fill="#3C764A"
-              paddingAngle={0}
-              dataKey="value"
-              animationDuration={500}
-              animationBegin={0}
-              strokeWidth={0}
-            />
-          </PieChart>
+    <div className="flex flex-col items-center gap-2">
+      <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
+        <div data-test-id={testId} className="relative flex flex-col items-center">
+          <svg height={height} width={width}>
+            <Group top={centerY} left={centerX} height={height} width={width}>
+              <BackgroundArc radius={radius} />
+              <SpringAnimatedArc radius={radius} ratio={ratio} />
+              <Text
+                verticalAnchor="middle"
+                textAnchor="middle"
+                fill="currentColor"
+                className="text-base font-semibold"
+              >
+                {Number.isFinite(ratio) ? `${Math.round(ratio * 100)}%` : '?%'}
+              </Text>
+            </Group>
+          </svg>
+          {tooltipContent && <InfoIconWithPadding />}
         </div>
       </TooltipWrapper>
-      <p className="mt-2 text-center text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+      <p className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
         {name}
       </p>
     </div>
