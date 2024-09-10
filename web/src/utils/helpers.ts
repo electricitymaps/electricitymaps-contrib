@@ -131,12 +131,9 @@ export function getRenewableRatio(
  * @param {number} decimals - Defaults to 2 decimals.
  * @returns {number} Rounded number.
  */
-export const round = (number: number, decimals = 2): number => {
-  return (
-    (Math.round((Math.abs(number) + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
-    Math.sign(number)
-  );
-};
+export const round = (number: number, decimals = 2): number =>
+  (Math.round((Math.abs(number) + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
+  Math.sign(number);
 
 /**
  * Returns the net exchange of a zone

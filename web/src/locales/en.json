@@ -3,7 +3,8 @@
     "title": "About the app",
     "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
     "open-source-text": "This app is <a href='{{link}}' target='_blank'>Open Source</a> and powered by the community.",
-    "version": "App version: {{version}}"
+    "version": "App version: {{version}}",
+    "share-app": "Share the app:"
   },
   "settings-modal": {
     "title": "Settings"
@@ -294,8 +295,11 @@
   },
   "tooltips": {
     "carbonintensity": "Carbon intensity",
-    "lowcarbon": "Low-carbon",
-    "renewable": "Renewable",
+    "zoneHeader": {
+      "lowcarbon": "Includes all renewables and nuclear",
+      "renewable": "Includes solar, wind, hydro, biomass and geothermal",
+      "carbonIntensity": "Grams of CO2 equivalent per kilowatt-hour (gCO2eq/kWh) measuring the greenhouse gas emissions from generating electricity"
+    },
     "crossborderexport": "Cross-border export",
     "carbonintensityexport": "Carbon intensity of export",
     "ofinstalled": "of installed capacity",
@@ -319,7 +323,6 @@
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
     "aggregateInfo": "Toggle between a granular zone view and an aggregated country view",
     "selectLanguage": "Select language",
-    "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed",
     "price": "Price",
     "netExchange": "Net exchange",

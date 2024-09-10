@@ -14,13 +14,6 @@
   "settings-modal": {
     "title": "设置"
   },
-  "panel-initial-text": {
-    "thisproject": "这个项目是",
-    "opensource": "开源资料",
-    "see": "看",
-    "datasources": "数据来源",
-    "contribute": "通过<a href=\"{{link}}\" target=\"_blank\">添加你的国家</a>进行贡献"
-  },
   "country-panel": {
     "source": "来源",
     "carbonintensity": "碳强度",
@@ -62,8 +55,9 @@
     "ofinstalled": "的装载容量",
     "utilizing": "利用",
     "withcarbonintensity": "具有碳强度",
-    "lowcarbon": "低碳能源",
-    "renewable": "可再生能源",
+    "zoneHeader": {
+      "lowcarbon": "包含可再生能源及核能"
+    },
     "showWindLayer": "显示风力图层",
     "hideWindLayer": "隐藏风力图层",
     "showSolarLayer": "显示太阳能图层",
@@ -73,8 +67,7 @@
     "temporaryDataOutage": "无可用实时数据",
     "production": "发电",
     "consumption": "用电",
-    "selectLanguage": "语言",
-    "lowCarbDescription": "包含可再生能源及核能"
+    "selectLanguage": "语言"
   },
   "misc": {
     "maintitle": "生活用电二氧化碳排放量",

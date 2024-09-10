@@ -3,7 +3,8 @@
     "text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
     "open-source-text": "Den här appen har <a href='{{link}}' target='_blank'>Öppen Källkod</a> och drivs av en gemenskap.",
     "title": "Om appen",
-    "version": "App version: {{version}}"
+    "version": "App version: {{version}}",
+    "share-app": "Dela appen:"
   },
   "button": {
     "feedback": "Ge återkoppling",
@@ -22,13 +23,6 @@
   },
   "settings-modal": {
     "title": "Inställningar"
-  },
-  "panel-initial-text": {
-    "thisproject": "Denna app har",
-    "opensource": "öppen källkod",
-    "see": "se",
-    "datasources": "datakällor",
-    "contribute": "Bidra genom att <a href=\"{{link}}\" target=\"_blank\">lägga till din region</a>"
   },
   "mobile-main-menu": {
     "map": "Elkarta",
@@ -77,7 +71,6 @@
     "carbonintensity": "Kolintensitet",
     "lowcarbon": "Fossilfritt",
     "renewable": "Förnybart",
-    "contribute": "Bidra på GitHub",
     "helpfrom": "Med hjälp från:",
     "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
     "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
@@ -216,8 +209,7 @@
   "ranking-panel": {
     "title": "Klimatpåverkan per region",
     "subtitle": "Rankad efter kolintensitet från elproduktion (gCO₂eq/kWh)",
-    "search": "Sök efter region",
-    "share": "Dela appen:"
+    "search": "Sök efter region"
   },
   "left-panel": {
     "get-data": "Se våra kommersiella API-erbjudanden",
@@ -301,8 +293,9 @@
   },
   "tooltips": {
     "carbonintensity": "Kolintensitet",
-    "lowcarbon": "Fossilfritt",
-    "renewable": "Förnybart",
+    "zoneHeader": {
+      "lowcarbon": "Inkluderar förnybart och kärnkraft"
+    },
     "crossborderexport": "Gränsöverskridande export",
     "carbonintensityexport": "Kolintensitet för export",
     "ofinstalled": "av installerad kapacitet",
@@ -325,7 +318,6 @@
     "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
     "aggregateInfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy",
     "selectLanguage": "Välj språk",
-    "lowCarbDescription": "Inkluderar förnybart och kärnkraft",
     "dataIsDelayed": "Data är fördröjd",
     "price": "Pris",
     "netExchange": "Nettoöverföring",
