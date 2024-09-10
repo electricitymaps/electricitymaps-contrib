@@ -1,7 +1,10 @@
 import { extent } from 'd3-array';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 
-const spreadOverDomain = (scale: any, count: number) => {
+export const spreadOverDomain = (
+  scale: ScaleLinear<string | number, string | number, string | number>,
+  count: number
+) => {
   const [x1, x2] = (extent(scale.domain()) as unknown as [number, number]) ?? [0, 0];
   return [...Array.from({ length: count }).keys()].map(
     (v) => x1 + ((x2 - x1) * v) / (count - 1)
@@ -17,53 +20,40 @@ function HorizontalColorbar({
   id: string;
   ticksCount?: number;
 }) {
-  const width = 176;
-  const height = 10;
-
-  const linearScale = scaleLinear()
-    .domain(extent(colorScale.domain()) as unknown as [number, number])
-    .range([0, width]);
+  const linearScale = scaleLinear().domain(
+    extent(colorScale.domain()) as unknown as [number, number]
+  );
 
   return (
-    <svg className="flex h-10 w-full flex-col  px-2">
-      <g transform={`translate(8,0)`}>
-        <linearGradient id={`${id}-gradient`} x2="100%">
-          {spreadOverDomain(colorScale, 10).map((value, index) => (
-            <stop key={value} offset={index / 9} stopColor={colorScale(value)} />
-          ))}
-        </linearGradient>
-        <rect fill={`url(#${id}-gradient)`} width={width} height={height} />
-
-        <rect
-          className="border"
-          shapeRendering="crispEdges"
-          strokeWidth="1"
-          fill="none"
-          width={width}
-          height={height}
-        />
-        <g
-          className="x axis"
-          transform={`translate(0,${height})`}
-          fill="none"
-          fontSize="10"
-          fontFamily="sans-serif"
-          textAnchor="middle"
-        >
-          {spreadOverDomain(linearScale, ticksCount).map((t) => (
-            <g
-              key={`colorbar-tick-${t}`}
-              className="tick"
-              transform={`translate(${linearScale(t)},0)`}
-            >
-              <text fill="currentColor" y="8" dy="0.81em">
-                {Math.round(t)}
-              </text>
-            </g>
-          ))}
+    <>
+      <svg className="flex h-3 w-full flex-col overflow-visible">
+        <g transform={`translate(8,0)`}>
+          <linearGradient id={`${id}-gradient`} x2="100%">
+            {spreadOverDomain(colorScale, 10).map((value, index) => (
+              <stop key={value} offset={index / 9} stopColor={colorScale(value)} />
+            ))}
+          </linearGradient>
+          <rect
+            fill={`url(#${id}-gradient)`}
+            width="100%"
+            height={8}
+            rx={5}
+            transform="translate(-10,0)"
+          />
         </g>
-      </g>
-    </svg>
+      </svg>
+
+      <div className="flex flex-row justify-between pr-0.5">
+        {spreadOverDomain(linearScale, ticksCount).map((t) => (
+          <div
+            key={`colorbar-tick-${t}`}
+            className="text-xs font-medium text-neutral-600 dark:text-gray-300"
+          >
+            {Math.round(t)}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 

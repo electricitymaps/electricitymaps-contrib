@@ -1,10 +1,10 @@
 import useGetZone from 'api/getZone';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import { Mode, SpatialAggregate } from 'utils/constants';
 import {
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 
@@ -21,17 +21,17 @@ export default function useBarBreakdownChartData() {
   // TODO: Create hook for using "current" selectedTimeIndex of data instead
   const { data: zoneData, isLoading } = useGetZone();
   const { zoneId } = useParams();
-  const [viewMode] = useAtom(spatialAggregateAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const viewMode = useAtomValue(spatialAggregateAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const mixMode = useAtomValue(productionConsumptionAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
-  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
+  const currentData = zoneData?.zoneStates?.[selectedDatetimeString];
   const isConsumption = mixMode === Mode.CONSUMPTION;
   if (isLoading) {
     return { isLoading };
   }
 
-  if (!zoneId || !zoneData || !selectedDatetime.datetimeString || !currentData) {
+  if (!zoneId || !zoneData || !selectedDatetimeString || !currentData) {
     return {
       height: DEFAULT_BAR_PX_HEIGHT,
       zoneDetails: undefined,
@@ -49,15 +49,13 @@ export default function useBarBreakdownChartData() {
     ? getExchangeData(currentData, exchangeKeys, mixMode)
     : []; // TODO: Consider memoing this
 
-  const { exchangeY, exchangeHeight } = getDataBlockPositions(
+  const { exchangeY } = getDataBlockPositions(
     //TODO this naming could be more descriptive
     productionData.length,
     exchangeData
   );
-  const height = isConsumption ? exchangeY + exchangeHeight : exchangeY;
-
   return {
-    height,
+    height: exchangeY,
     zoneDetails: zoneData, // TODO: Data is returned here just to pass it back to the tooltip
     currentZoneDetail: currentData,
     exchangeData,

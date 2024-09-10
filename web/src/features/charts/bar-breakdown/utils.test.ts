@@ -1,6 +1,7 @@
 import { Mode } from 'utils/constants';
 
 import {
+  convertPrice,
   ExchangeDataType,
   getDataBlockPositions,
   getElectricityProductionValue,
@@ -42,7 +43,7 @@ const zoneDetailsData = {
     battery: 'electricityMap, 2021 average',
     hydro: 'electricityMap, 2021 average',
   },
-  estimationMethod: 'MEASURED',
+  estimationMethod: undefined,
   exchange: { ES: -934 },
   exchangeCapacities: {},
   exchangeCo2Intensities: { ES: 187.32 },
@@ -299,7 +300,7 @@ describe('getDataBlockPositions', () => {
     expect(result).to.deep.eq({
       exchangeFlagX: 50,
       exchangeHeight: 40,
-      exchangeY: 282,
+      exchangeY: 262,
       productionY: 22,
       productionHeight: 240,
     });
@@ -459,5 +460,37 @@ describe('getExchangeCo2Intensity', () => {
       );
       expect(result).to.eq(190.6);
     });
+  });
+});
+
+describe('convertPrice', () => {
+  it('converts EUR to price/KWh', () => {
+    const result = convertPrice(120, 'EUR');
+    expect(result).to.deep.eq({ value: 0.12, currency: 'EUR', unit: 'kWh' });
+  });
+
+  it('dont convert USD to price/KWh', () => {
+    const result = convertPrice(120, 'USD');
+    expect(result).to.deep.eq({ value: 120, currency: 'USD', unit: 'MWh' });
+  });
+
+  it('handles missing currency', () => {
+    const result = convertPrice(120, undefined);
+    expect(result).to.deep.eq({ value: 120, currency: undefined, unit: 'MWh' });
+  });
+
+  it('handles missing price with EUR', () => {
+    const result = convertPrice(undefined, 'EUR');
+    expect(result).to.deep.eq({ value: undefined, currency: 'EUR', unit: 'kWh' });
+  });
+
+  it('handles missing price without EUR', () => {
+    const result = convertPrice(undefined, 'USD');
+    expect(result).to.deep.eq({ value: undefined, currency: 'USD', unit: 'MWh' });
+  });
+
+  it('handles missing price and currency', () => {
+    const result = convertPrice(undefined, undefined);
+    expect(result).to.deep.eq({ value: undefined, currency: undefined, unit: 'MWh' });
   });
 });

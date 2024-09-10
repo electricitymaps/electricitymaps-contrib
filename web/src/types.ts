@@ -6,6 +6,7 @@ import type {
   Polygon,
 } from '@turf/turf';
 import { LineString, MultiLineString, Point } from 'geojson';
+import { EstimationMethods } from 'utils/constants';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -83,7 +84,7 @@ export interface ZoneOverview {
   stateDatetime: string;
   fossilFuelRatio: number;
   renewableRatio: number;
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
 }
 

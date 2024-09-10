@@ -1,12 +1,13 @@
 {
-  "info-modal": {
-    "title": "資料",
-    "intro-text": "這份電力地圖為推動能源轉型的公民、能源專家、NGO 和政策制定者提供即時的用電資料。",
-    "open-source-text": "這個網站是個由社群支持的<a href=\"{{link}}\" target=\"_blank\">開源</a>(<a href=\"{{sourcesLink}}\" target=\"_blank\">見資料來源</a>)軟體。",
-    "feedback-button": "提供回饋",
-    "github-button": "GitHub",
-    "twitter-button": "Twitter 上分享",
-    "slack-button": "加入 Slack",
+  "info": {
+    "text": "這份電力地圖為推動能源轉型的公民、能源專家、NGO 和政策制定者提供即時的用電資料。",
+    "open-source-text": "這個網站是個由社群支持的<a href='{{link}}' target='_blank'>開源</a>軟體。"
+  },
+  "button": {
+    "feedback": "提供回饋",
+    "github": "GitHub",
+    "twitter": "Twitter 上分享",
+    "slack": "加入 Slack",
     "privacy-policy": "隱私權政策",
     "legal-notice": "法律聲明"
   },
@@ -60,9 +61,6 @@
     "carbonintensity": "碳強度",
     "lowcarbon": "低碳能源",
     "renewable": "可再生能源",
-    "electricityproduction": "電力生產",
-    "electricityconsumption": "用電量",
-    "emissions": "碳排放量",
     "helpfrom": "with help from",
     "noDataAtTimestamp": "尚無該時段的資料",
     "noLiveData": "尚無該地區的即時資料",
@@ -79,15 +77,7 @@
     "helpUs": "請檢視<a href=\"{{link}}\" target=\"_blank\">執行環境日誌</a>並幫助我們找出問題。",
     "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href=\"{{link}}\" target=\"_blank\">新增這個地區的資料</a>！",
     "aggregationDisabled": "由於缺少詳細細分，無法取得所選時間段的資料。請嘗試選擇一個更廣泛的時間段。",
-    "now": "現在",
-    "by-source": {
-      "emissions": "碳排放量的來源",
-      "electricity-production": "電力生產的來源",
-      "electricity-consumption": "用電量的來源",
-      "total-emissions": "總碳排放量的來源",
-      "total-electricity-production": "總電力生產的來源",
-      "total-electricity-consumption": "總用電量的來源"
-    }
+    "now": "現在"
   },
   "feedback-card": {
     "title": "幫助我們改進!",
@@ -110,16 +100,16 @@
   },
   "estimation-card": {
     "link": "了解我們的估計模型",
-    "estimated_time_slicer_average": {
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "數據為初步的值",
       "body": "資料提供者未提供此小時的數據。目前顯示的數值是基於歷史測量值估計的，一旦實際數據可用將立即更新。\n\n請注意，估計值可能未考慮到即時的天氣事件。"
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "數據部分為估計值",
       "pill": "不完整",
       "body": "該區域發電數據不完整； 缺失值是使用估計模型計算的。"
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "數據始終為估計值",
       "pill": "不精確",
       "body": "該區域發布的數據僅提供總產量。可再生能源是使用即時天氣數據估算的，而化石能源是根據每個生產來源的歷史數據扣除的。"
@@ -129,12 +119,12 @@
       "pill": "不精確",
       "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "數據始終為估計值",
       "pill": "非即時",
       "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "數據始終為估計值",
       "pill": "非即時",
       "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
@@ -159,15 +149,14 @@
     }
   },
   "time-controller": {
-    "title": "顯示過去資料",
     "daily": "每日",
     "hourly": "每小時",
     "monthly": "每月",
     "yearly": "每年"
   },
-  "left-panel": {
-    "zone-list-header-title": "各地區對氣候的影響",
-    "zone-list-header-subtitle": "依據耗電量的碳強度（單位：gCO₂eq/kWh）排名",
+  "ranking-panel": {
+    "title": "各地區對氣候的影響",
+    "subtitle": "依據耗電量的碳強度（單位：gCO₂eq/kWh）排名",
     "search": "搜尋地區"
   },
   "country-history": {
@@ -307,14 +296,6 @@
   "coal": "煤炭",
   "oil": "石油",
   "unknown": "未知",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力來自 {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量來自 {{selectedLayerKey}}",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力使用 {{selectedLayerKey}} 儲存",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量使用 {{selectedLayerKey}} 儲存",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力被匯出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量被匯出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力從 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> 匯入",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量從 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> 匯入",
   "ofCO2eq": "of CO₂eq",
   "theMap": {
     "groupName": "地圖",
@@ -860,10 +841,6 @@
     },
     "GR": {
       "zoneName": "希臘"
-    },
-    "GR-IS": {
-      "countryName": "希臘",
-      "zoneName": "愛琴群島"
     },
     "GS": {
       "zoneName": "南喬治亞與南桑威奇群島"

@@ -48,6 +48,11 @@ class EventList(ABC):
     def __setitem__(self, datetime, event: Event):
         self.events[self.events.index(self[datetime])] = event
 
+    def __add__(self, other: "EventList") -> "EventList":
+        new_list = self.__class__(self.logger)
+        new_list.events = self.events + other.events
+        return new_list
+
     # Abstract method to be implemented by subclasses so that the typing is correct.
     @abstractmethod
     def __getitem__(self, datetime) -> Event:
@@ -363,31 +368,6 @@ class ProductionBreakdownList(AggregatableEventList):
                     )
 
         return updated_production_breakdowns
-
-    @staticmethod
-    def filter_only_zero_production(
-        breakdowns: "ProductionBreakdownList",
-    ) -> "ProductionBreakdownList":
-        """
-        TODO: Remove once the internal outlier detection is able to handle this.
-        A method to filter out production breakdowns with a total production of 0 MW."""
-        production_events = ProductionBreakdownList(breakdowns.logger)
-        for event in breakdowns.events:
-            if event.production is not None and not any(
-                v for _mode, v in event.production
-            ):
-                production_events.logger.warning(
-                    f"Discarded production event for {event.zoneKey} at {event.datetime} because all production values are 0 or None."
-                )
-                continue
-            production_events.append(
-                zoneKey=event.zoneKey,
-                datetime=event.datetime,
-                production=event.production,
-                storage=event.storage,
-                source=event.source,
-            )
-        return production_events
 
     @staticmethod
     def filter_expected_modes(

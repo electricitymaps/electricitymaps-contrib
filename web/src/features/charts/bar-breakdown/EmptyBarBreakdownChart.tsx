@@ -50,11 +50,9 @@ function EmptyBarBreakdownChart({
   );
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
-  const formatTick = (t: number) => {
+  const formatTick = (t: number) =>
     // TODO: format tick depending on displayByEmissions
-    return `${t} ${PowerUnits.GIGAWATTS}`;
-  };
-
+    `${t} ${PowerUnits.GIGAWATTS}`;
   return (
     <>
       <div style={{ width, height, position: 'absolute' }}>
@@ -67,7 +65,7 @@ function EmptyBarBreakdownChart({
       <svg
         className={`${
           overLayText ? 'opacity-40' : 'opacity-1'
-        } w-full overflow-visible text-md`}
+        } text-md w-full overflow-visible`}
         height={height}
       >
         <Axis formatTick={formatTick} height={height} scale={co2Scale} />

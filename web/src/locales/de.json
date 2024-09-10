@@ -46,17 +46,17 @@
     "carbonintensity": "spezifische CO₂-Emissionen",
     "lowcarbon": "CO₂-arm",
     "renewable": "regenerativ",
-    "electricityproduction": "Stromerzeugung",
-    "electricityconsumption": "Stromverbrauch",
+    "electricityproduction": "Produktion",
+    "electricityconsumption": "Verbrauch",
+    "emissions": "Emissionen",
     "by-source": {
-      "emissions": "CO₂-Emissionen nach Quelle",
-      "electricity-production": "Stromerzeugung nach Quelle",
-      "electricity-consumption": "Stromverbrauch nach Quelle",
-      "total-emissions": "Gesamte CO₂-Emissionen nach Quelle",
-      "total-electricity-production": "Gesamte Stromerzeugung nach Quelle",
-      "total-electricity-consumption": "Gesamter Stromverbrauch nach Quelle"
+      "emissions": "CO₂-Emissionen",
+      "electricity-production": "Stromerzeugung",
+      "electricity-consumption": "Stromverbrauch",
+      "total-emissions": "Gesamte CO₂-Emissionen",
+      "total-electricity-production": "Gesamte Stromerzeugung",
+      "total-electricity-consumption": "Gesamter Stromverbrauch"
     },
-    "emissions": "CO₂-Emissionen",
     "helpfrom": "mit Unterstützung von",
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
     "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
@@ -73,13 +73,18 @@
     "aggregatedTooltip": "Die Daten für diese Zone sind zusammengefasst, basierend auf den stündlichen Werten der historischen Daten",
     "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"{{link}}\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
   },
-  "left-panel": {
-    "zone-list-header-title": "Klimaeinfluss der Regionen",
-    "zone-list-header-subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
+  "ranking-panel": {
+    "title": "Klimaeinfluss der Regionen",
+    "subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
     "search": "Land oder Region suchen"
   },
   "time-controller": {
-    "title": "Historische Daten anzeigen",
+    "title": {
+      "hourly": "Stündliche Daten für:",
+      "daily": "Tägliche Daten für:",
+      "monthly": "Monatliche Daten für:",
+      "yearly": "Jährliche Daten für:"
+    },
     "daily": "täglich",
     "hourly": "stündlich",
     "monthly": "monatlich",
@@ -92,16 +97,16 @@
   },
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
-    "estimated_time_slicer_average": {
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Vorläufige Daten",
       "body": "Der Datenanbieter hat für diese Stunde keine Daten zur Verfügung gestellt. Die angezeigten Werte wurden anhand historischer Werte geschätzt und werden aktualisiert, sobald gemessene Daten verfügbar sind. Geschätzte Daten können unpräzise sein, da sie in manchen Fällen Echtzeit-Wetterereignisse vernachlässigen."
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Teils geschätzte Daten",
       "pill": "Unvollständig",
       "body": "Die Daten zur Stromerzeugung in diesem Gebiet sind unvollständig. Die fehlenden Werte wurden anhand eines statistischen Schätzmodells berechnet."
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Unpräzise",
       "body": "Die Datenquelle gibt ausschließlich die Gesamtproduktion an. Die Stromproduktion aus erneuerbaren Quellen wird anhand aktueller Wetterdaten geschätzt. Die übrige Stromproduktion wird fossilen Energieträgern zugeordnet, wobei die Verteilung auf historischen Daten basiert."
@@ -111,12 +116,12 @@
       "pill": "Unpräzise",
       "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Nicht in Echtzeit",
       "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Nicht in Echtzeit",
       "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
@@ -216,14 +221,6 @@
   "coal": "Kohle",
   "oil": "Öl",
   "unknown": "unbekannt",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden aus der Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> importiert",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden aus der Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> importiert",
   "ofCO2eq": "CO₂äq",
   "theMap": {
     "groupName": "Die Karte",
@@ -712,10 +709,6 @@
     },
     "GR": {
       "zoneName": "Griechenland"
-    },
-    "GR-IS": {
-      "countryName": "Griechenland",
-      "zoneName": "Ägäische Inseln"
     },
     "GS": {
       "zoneName": "Südgeorgien und die südlichen Sandwichinseln"
