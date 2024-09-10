@@ -62,34 +62,34 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const futurePriceData: FuturePriceData = {
     entryCount: 24,
     futurePrices: {
-      '2024-09-01 22:00:00+00:00': { price: 0.03 },
-      '2024-09-01 23:00:00+00:00': { price: 0.02 },
-      '2024-09-02 00:00:00+00:00': { price: 0.01 },
-      '2024-09-02 01:00:00+00:00': { price: 0.01 },
-      '2024-09-02 02:00:00+00:00': { price: 0.01 },
-      '2024-09-02 03:00:00+00:00': { price: 0.01 },
-      '2024-09-02 04:00:00+00:00': { price: 0.01 },
-      '2024-09-02 05:00:00+00:00': { price: 0.01 },
-      '2024-09-02 06:00:00+00:00': { price: 0.01 },
-      '2024-09-02 07:00:00+00:00': { price: 0.01 },
-      '2024-09-02 08:00:00+00:00': { price: 0.01 },
-      '2024-09-02 09:00:00+00:00': { price: 0.01 },
-      '2024-09-02 10:00:00+00:00': { price: 0.01 },
-      '2024-09-02 11:00:00+00:00': { price: 0.01 },
-      '2024-09-02 12:00:00+00:00': { price: 0.01 },
-      '2024-09-02 13:00:00+00:00': { price: 0.04 },
-      '2024-09-02 14:00:00+00:00': { price: 0.01 },
-      '2024-09-02 15:00:00+00:00': { price: 0.01 },
-      '2024-09-02 16:00:00+00:00': { price: 0.01 },
-      '2024-09-02 17:00:00+00:00': { price: 0.01 },
-      '2024-09-02 18:00:00+00:00': { price: 0.01 },
-      '2024-09-02 19:00:00+00:00': { price: 0.01 },
-      '2024-09-02 20:00:00+00:00': { price: 0.01 },
-      '2024-09-02 21:00:00+00:00': { price: 0.05 },
-      '2024-09-02 22:00:00+00:00': { price: 0.11 },
-      '2024-09-02 23:00:00+00:00': { price: 0.09 },
-      '2024-09-03 00:00:00+00:00': { price: 0.05 },
-      '2024-09-04 01:00:00+00:00': { price: 0.04 },
+      '2024-09-01 22:00:00+00:00': { price: 25 },
+      '2024-09-01 23:00:00+00:00': { price: 15 },
+      '2024-09-02 00:00:00+00:00': { price: 12 },
+      '2024-09-02 01:00:00+00:00': { price: 28 },
+      '2024-09-02 02:00:00+00:00': { price: 21 },
+      '2024-09-02 03:00:00+00:00': { price: 16 },
+      '2024-09-02 04:00:00+00:00': { price: 19 },
+      '2024-09-02 05:00:00+00:00': { price: 24 },
+      '2024-09-02 06:00:00+00:00': { price: 27 },
+      '2024-09-02 07:00:00+00:00': { price: 22 },
+      '2024-09-02 08:00:00+00:00': { price: 13 },
+      '2024-09-02 09:00:00+00:00': { price: 29 },
+      '2024-09-02 10:00:00+00:00': { price: 18 },
+      '2024-09-02 11:00:00+00:00': { price: 20 },
+      '2024-09-02 12:00:00+00:00': { price: 26 },
+      '2024-09-02 13:00:00+00:00': { price: 14 },
+      '2024-09-02 14:00:00+00:00': { price: 23 },
+      '2024-09-02 15:00:00+00:00': { price: 30 },
+      '2024-09-02 16:00:00+00:00': { price: 17 },
+      '2024-09-02 17:00:00+00:00': { price: 11 },
+      '2024-09-02 18:00:00+00:00': { price: 22 },
+      '2024-09-02 19:00:00+00:00': { price: 13 },
+      '2024-09-02 20:00:00+00:00': { price: 28 },
+      '2024-09-02 21:00:00+00:00': { price: 19 },
+      '2024-09-02 22:00:00+00:00': { price: 29 },
+      '2024-09-02 23:00:00+00:00': { price: 16 },
+      '2024-09-03 00:00:00+00:00': { price: 24 },
+      '2024-09-04 01:00:00+00:00': { price: 15 },
     },
     currency: 'EUR',
     source: 'nordpool.com',
@@ -188,11 +188,12 @@ function FuturePrice({ priceData }: { priceData: FuturePriceData | null }) {
                 )
                 .map(([date, price]: [string, Price]) => (
                   <li key={date}>
-                    <div className="flex flex-row justify-items-end gap-1">
+                    <div className="flex flex-row justify-items-end gap-2">
                       <TimeDisplay date={date} />
-                      <p className="min-w-16 text-sm font-semibold">
-                        {price.price.toFixed(2)}{' '}
-                        {t(`country-panel.price-chart.${priceData.currency}`)}
+                      <p className="text-nowrap text-sm font-semibold tabular-nums">
+                        {`${price.price.toFixed(2)} ${t(
+                          `country-panel.price-chart.${priceData.currency}`
+                        )}`}
                       </p>
                       <div className="h-full w-full self-center">
                         <PriceBars
@@ -254,15 +255,15 @@ function TimeDisplay({ date }: { date: string }) {
     datetime.getDate() === new Date().getDate() &&
     datetime.getHours() === new Date().getHours()
   ) {
-    return <p className="min-w-[85px] text-sm"> {t(`country-panel.price-chart.now`)}</p>;
+    return <p className="min-w-[82px] text-sm"> {t(`country-panel.price-chart.now`)}</p>;
   }
 
   const formatdate = formatDateTick(datetime, i18n.language, TimeAverages.HOURLY);
 
   return (
-    <p className="min-w-[85px] text-sm">{`${t(
-      `country-panel.price-chart.at`
-    )} ${formatdate}`}</p>
+    <p className="min-w-[82px] text-nowrap text-sm tabular-nums">
+      {`${t(`country-panel.price-chart.at`)}  ${formatdate}`}
+    </p>
   );
 }
 
