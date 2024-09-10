@@ -3,13 +3,15 @@ import { twMerge } from 'tailwind-merge';
 
 type SizeOptions = 'sm' | 'md' | 'lg';
 
+type ButtonTypes = 'primary' | 'secondary' | 'tertiary' | 'link';
+
 export interface ButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   isDisabled?: boolean;
   size?: SizeOptions;
   shouldShrink?: boolean;
-  type?: 'primary' | 'secondary' | 'tertiary' | 'link';
+  type?: ButtonTypes;
   href?: string;
   backgroundClasses?: string;
   foregroundClasses?: string;
@@ -84,7 +86,7 @@ function getComponentType(renderAsLink: boolean, asDiv?: boolean) {
   return 'button';
 }
 
-function getHover(type: string) {
+function getHover(type: ButtonTypes) {
   switch (type) {
     case 'primary': {
       return 'hover:bg-black/20';
@@ -95,7 +97,7 @@ function getHover(type: string) {
   }
 }
 
-function getBackground(type: string, disabled: boolean | undefined) {
+function getBackground(type: ButtonTypes, disabled: boolean | undefined) {
   switch (type) {
     case 'primary': {
       if (disabled) {
@@ -112,7 +114,7 @@ function getBackground(type: string, disabled: boolean | undefined) {
   }
 }
 
-function getForeground(type: string) {
+function getForeground(type: ButtonTypes) {
   switch (type) {
     case 'primary': {
       return 'text-white';
@@ -126,7 +128,7 @@ function getForeground(type: string) {
   }
 }
 
-function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
+function getSize(size: SizeOptions, type: ButtonTypes, isIconOnly: boolean) {
   if (isIconOnly) {
     switch (size) {
       case 'sm': {
