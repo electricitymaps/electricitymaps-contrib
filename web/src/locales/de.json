@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Diese App ist",
-    "opensource": "Open Source",
-    "see": "siehe",
-    "datasources": "Datenquellen",
-    "contribute": "Wirke mit, indem du <a href=\"{{link}}\" target=\"_blank\">dein Land hinzufügst</a>"
-  },
   "mobile-main-menu": {
     "map": "Karte",
     "areas": "Regionen",
@@ -162,8 +155,9 @@
   },
   "tooltips": {
     "carbonintensity": "CO₂-Intensität",
-    "lowcarbon": "CO₂-arm",
-    "renewable": "regenerativ",
+    "zoneHeader": {
+      "lowcarbon": "Beinhaltet regenerative Energien und Kernenergie"
+    },
     "crossborderexport": "Stromexport",
     "carbonintensityexport": "CO₂-Intensität der Exporte",
     "ofinstalled": "der installierten Leistung",
@@ -180,7 +174,6 @@
     "consumption": "Verbrauch",
     "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
     "selectLanguage": "Sprache auswählen",
-    "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie",
     "dataIsDelayed": "Die Daten sind verzögert",
     "representing": "macht",
     "ofemissions": "der Emissionen aus",
