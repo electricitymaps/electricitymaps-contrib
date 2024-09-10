@@ -20,7 +20,6 @@ const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
 const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
-const AnnouncementModal = lazy(() => import('features/modals/AnnouncementModal'));
 
 const isProduction = import.meta.env.PROD;
 
@@ -76,7 +75,6 @@ export default function App(): ReactElement {
               </Suspense>
               <Suspense>
                 <OnboardingModal />
-                <AnnouncementModal />
               </Suspense>
               <Suspense>
                 <FAQModal />
