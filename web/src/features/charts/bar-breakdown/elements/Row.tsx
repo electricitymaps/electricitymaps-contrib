@@ -71,7 +71,7 @@ export default function Row({
       {!Number.isFinite(value) && (
         <text
           transform={`translate(3, ${TEXT_ADJUST_Y})`}
-          className="pointer-events-none"
+          className="pointer-events-none text-xs"
           fill="darkgray"
           x={LABEL_MAX_WIDTH + scale(0)}
         >
