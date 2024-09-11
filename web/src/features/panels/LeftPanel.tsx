@@ -2,7 +2,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Share2Icon } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -74,7 +74,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
     <button
       data-test-id="left-panel-collapse-button"
       className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
+        'absolute left-full top-2 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-r-xl bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
       }
       onClick={onCollapse}
       aria-label={
@@ -82,6 +82,20 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
       }
     >
       {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
+    </button>
+  );
+}
+
+function ShareButton() {
+  return (
+    <button
+      data-test-id="share-button"
+      className={
+        'absolute left-full top-3 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-r-xl bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
+      }
+      aria-label={'aria.label.showSidePanel'}
+    >
+      {<Share2Icon />}
     </button>
   );
 }
@@ -111,7 +125,10 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     >
       {isMobile && <MobileHeader />}
       <section className="h-full w-full">{children}</section>
-      <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
+      <div className="left-full top-2 flex flex-col space-y-20">
+        <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
+        <ShareButton />
+      </div>
     </aside>
   );
 }
