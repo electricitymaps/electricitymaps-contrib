@@ -5,12 +5,13 @@
 //  Created by Mads Nedergaard on 10/11/2023.
 //
 
-//import WidgetKit
-//import SwiftUI
+import WidgetKit
+import SwiftUI
 
-//@main
-//struct Electricity_Maps_WidgetsBundle: WidgetBundle {
-//    var body: some Widget {
-//        Electricity_Maps_Widgets()
-//    }
-//}
+@main
+struct Electricity_Maps_WidgetsBundle: WidgetBundle {
+    var body: some Widget {
+        CO2IntensityWidget()
+        //DayAheadWidget()
+    }
+}

@@ -9,10 +9,6 @@ import Intents
 import SwiftUI
 import WidgetKit
 
-// TODO: V2
-// - Run for ios17 using xcode 15
-// - use dropdown for picking zones
-
 struct ViewSizeTimelineProvider: IntentTimelineProvider {
   typealias Entry = ViewSizeEntry
 
@@ -29,11 +25,9 @@ struct ViewSizeTimelineProvider: IntentTimelineProvider {
   ) {
     let entry = ViewSizeEntry(date: Date(), intensity: 123, zone: "DK")
     completion(entry)
-
   }
 
   // Provides an array of timeline entries for the current time and, optionally, any future times to update a widget
-
   func getTimeline(
     for configuration: CustomWidgetConfIntent,
     in context: Context, completion: @escaping (Timeline<Entry>) -> Void
@@ -62,15 +56,12 @@ struct ViewSizeTimelineProvider: IntentTimelineProvider {
         }
       }
     }
-
     return
   }
 }
 
-// TODO: Change this from main to something else if we have multiple widgets
-@main
-struct ViewSizeWidget: Widget {
-  let kind: String = "ViewSizeWidget"
+struct CO2IntensityWidget: Widget {
+  let kind: String = "CO2IntensityWidget"
 
   var body: some WidgetConfiguration {
     IntentConfiguration(
@@ -78,7 +69,7 @@ struct ViewSizeWidget: Widget {
       intent: CustomWidgetConfIntent.self,
       provider: ViewSizeTimelineProvider()
     ) {
-      entry in ViewSizeWidgetView(entry: entry)
+      entry in CO2IntensityWidgetView(entry: entry)
     }
     .configurationDisplayName("Electricity Maps")
     .description("See the carbon intensity of your location")
@@ -92,7 +83,7 @@ struct ViewSizeWidget: Widget {
 struct Widget_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      ViewSizeWidgetView(
+        CO2IntensityWidgetView(
         entry: ViewSizeEntry(
           date: Date(),
           intensity: 300,

@@ -20,13 +20,13 @@
 		F7DF63F82AFE7E2F0012D585 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1E0F72AFE2610000D8BB0 /* WidgetKit.framework */; };
 		F7DF63F92AFE7E2F0012D585 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1E0F92AFE2610000D8BB0 /* SwiftUI.framework */; };
 		F7DF63FC2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */; };
-		F7DF63FE2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FD2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift */; };
+		F7DF63FE2AFE7E2F0012D585 /* CO2IntensityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FD2AFE7E2F0012D585 /* CO2IntensityWidget.swift */; };
 		F7DF64012AFE7E320012D585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DF64002AFE7E320012D585 /* Assets.xcassets */; };
 		F7DF64032AFE7E320012D585 /* Electricity_Maps_Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */; };
 		F7DF64042AFE7E320012D585 /* Electricity_Maps_Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */; };
 		F7DF64072AFE7E320012D585 /* Electricity Maps WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F7DF63F72AFE7E2F0012D585 /* Electricity Maps WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F7DF640F2AFE7EA80012D585 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF640D2AFE7EA80012D585 /* api.swift */; };
-		F7DF64122AFE7F0C0012D585 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF64102AFE7F0C0012D585 /* View.swift */; };
+		F7DF64122AFE7F0C0012D585 /* CO2IntensityWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF64102AFE7F0C0012D585 /* CO2IntensityWidgetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,18 +67,19 @@
 		7DBACBBDEFF7153DC7073FCB /* Pods_Electricity_Maps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Electricity_Maps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		DD6B85F918BC667614C21DD0 /* Pods-Electricity Maps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Electricity Maps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Electricity Maps/Pods-Electricity Maps.debug.xcconfig"; sourceTree = "<group>"; };
+		F788DF702C91C8E90016417C /* Electricity Maps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Electricity Maps.entitlements"; sourceTree = "<group>"; };
 		F7A1E0F72AFE2610000D8BB0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		F7A1E0F92AFE2610000D8BB0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		F7BC622D2AFECEB90003B125 /* colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		F7BC622F2AFED06D0003B125 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		F7DF63F72AFE7E2F0012D585 /* Electricity Maps WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Electricity Maps WidgetsExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Electricity_Maps_WidgetsBundle.swift; sourceTree = "<group>"; };
-		F7DF63FD2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Electricity_Maps_Widgets.swift; sourceTree = "<group>"; };
+		F7DF63FD2AFE7E2F0012D585 /* CO2IntensityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CO2IntensityWidget.swift; sourceTree = "<group>"; };
 		F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Electricity_Maps_Widgets.intentdefinition; sourceTree = "<group>"; };
 		F7DF64002AFE7E320012D585 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7DF64022AFE7E320012D585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7DF640D2AFE7EA80012D585 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
-		F7DF64102AFE7F0C0012D585 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		F7DF64102AFE7F0C0012D585 /* CO2IntensityWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CO2IntensityWidgetView.swift; sourceTree = "<group>"; };
 		FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +117,7 @@
 		504EC2FB1FED79650016851F = {
 			isa = PBXGroup;
 			children = (
+				F788DF702C91C8E90016417C /* Electricity Maps.entitlements */,
 				504EC3061FED79650016851F /* App */,
 				F7DF63FA2AFE7E2F0012D585 /* Electricity Maps Widgets */,
 				504EC3051FED79650016851F /* Products */,
@@ -163,10 +165,10 @@
 			isa = PBXGroup;
 			children = (
 				F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */,
-				F7DF63FD2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift */,
+				F7DF63FD2AFE7E2F0012D585 /* CO2IntensityWidget.swift */,
 				F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */,
 				F7DF640D2AFE7EA80012D585 /* api.swift */,
-				F7DF64102AFE7F0C0012D585 /* View.swift */,
+				F7DF64102AFE7F0C0012D585 /* CO2IntensityWidgetView.swift */,
 				F7BC622F2AFED06D0003B125 /* utils.swift */,
 				F7BC622D2AFECEB90003B125 /* colors.swift */,
 				F7DF64002AFE7E320012D585 /* Assets.xcassets */,
@@ -328,11 +330,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7DF63FE2AFE7E2F0012D585 /* Electricity_Maps_Widgets.swift in Sources */,
+				F7DF63FE2AFE7E2F0012D585 /* CO2IntensityWidget.swift in Sources */,
 				F7BC622E2AFECEB90003B125 /* colors.swift in Sources */,
 				F7DF63FC2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift in Sources */,
 				F7DF640F2AFE7EA80012D585 /* api.swift in Sources */,
-				F7DF64122AFE7F0C0012D585 /* View.swift in Sources */,
+				F7DF64122AFE7F0C0012D585 /* CO2IntensityWidgetView.swift in Sources */,
 				F7DF64032AFE7E320012D585 /* Electricity_Maps_Widgets.intentdefinition in Sources */,
 				F7BC62302AFED06D0003B125 /* utils.swift in Sources */,
 			);
@@ -482,6 +484,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Electricity Maps.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.146.1;
 				DEVELOPMENT_TEAM = MP3LBAUPG8;
@@ -512,6 +515,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Electricity Maps.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.146.1;
 				DEVELOPMENT_TEAM = MP3LBAUPG8;
@@ -552,7 +556,7 @@
 				INFOPLIST_FILE = "Electricity Maps Widgets/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Electricity Maps Widgets";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -587,7 +591,7 @@
 				INFOPLIST_FILE = "Electricity Maps Widgets/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Electricity Maps Widgets";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
