@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "這個項目是",
-    "opensource": "開源資料",
-    "see": "看",
-    "datasources": "數據來源",
-    "contribute": "通過<a href=\"{{link}}\" target=\"_blank\">添加你的國家</a>進行貢獻"
-  },
   "country-panel": {
     "source": "來源",
     "carbonintensity": "碳強度"
