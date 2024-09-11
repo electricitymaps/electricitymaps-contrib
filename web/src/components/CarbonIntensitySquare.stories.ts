@@ -18,13 +18,11 @@ export const Primary: Story = {
 export const WithLabel: Story = {
   args: {
     intensity: 234,
-    withSubtext: true,
   },
 };
 
 export const InvalidNumber: Story = {
   args: {
     intensity: undefined,
-    withSubtext: true,
   },
 };

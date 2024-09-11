@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "هذا المشروع",
-    "opensource": "مفتوح المصدر",
-    "see": "انظر",
-    "datasources": "مصادر البيانات",
-    "contribute": "مساهمة من <a href=\"{{link}}\" target=\"_blank\">إضافة منطقتك</a>"
-  },
   "country-panel": {
     "source": "المصدر",
     "carbonintensity": "كثافة الكربون"
