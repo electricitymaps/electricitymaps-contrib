@@ -39,7 +39,7 @@ export default function EmissionToggle(): ReactElement {
   };
 
   return (
-    <div className="pt-3">
+    <div className="my-4">
       <ToggleButton
         options={options}
         selectedOption={

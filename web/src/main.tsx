@@ -26,7 +26,7 @@ if (isProduction) {
       : 'https://bbe4fb6e5b3c4b96a1df95145a91e744@o192958.ingest.us.sentry.io/4504366922989568', // Web DSN
     tracesSampleRate: 0, // Disables tracing completely as we don't use it and sends a lot of data
     initialScope: (scope) => {
-      scope.setUser({ app_uuid: getSentryUuid() }); // Set the user context with a random UUID for Sentry so we can correlate errors with users anonymously
+      scope.setUser({ id: getSentryUuid() }); // Set the user context with a random UUID for Sentry so we can correlate errors with users anonymously
       scope.setTag('browser.locale', window.navigator.language); // Set the language tag for Sentry to correlate errors with the user's language
       return scope;
     },

@@ -7,6 +7,7 @@ exports[`getContributors > should return contributors for a zone 1`] = `
     "autipial",
     "q--",
     "florianscheidl",
+    "MisterClean",
     "corradio",
     "nessie2013",
     "tmslaine",
@@ -106,15 +107,14 @@ exports[`getContributors > should return contributors for a zone 1`] = `
     "kepiej",
     "danielmatsuda",
     "miniksa",
-    "MisterClean",
     "ZachEichen",
     "ananyasharma20",
   ],
   "zoneContributorsIndexArray": [
-    4,
     5,
-    20,
-    51,
+    6,
+    21,
+    52,
   ],
 }
 `;

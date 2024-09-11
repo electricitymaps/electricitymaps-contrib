@@ -1,6 +1,7 @@
 import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
+import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
 import LoadingOverlay from 'components/LoadingOverlay';
@@ -19,7 +20,6 @@ const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
 const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
-const AnnouncementModal = lazy(() => import('features/modals/AnnouncementModal'));
 
 const isProduction = import.meta.env.PROD;
 
@@ -31,6 +31,9 @@ if (isProduction) {
 }
 
 export default function App(): ReactElement {
+  // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
+  useReducedMotion();
+
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
@@ -72,7 +75,6 @@ export default function App(): ReactElement {
               </Suspense>
               <Suspense>
                 <OnboardingModal />
-                <AnnouncementModal />
               </Suspense>
               <Suspense>
                 <FAQModal />

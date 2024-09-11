@@ -14,13 +14,6 @@
   "settings-modal": {
     "title": "Impostazioni"
   },
-  "panel-initial-text": {
-    "thisproject": "Questa app è",
-    "opensource": "libera",
-    "see": "Vedi",
-    "datasources": "le fonti dei dati",
-    "contribute": "Contribuisci <a href=\"{{link}}\" target=\"_blank\">aggiungendo il tuo territorio</a>"
-  },
   "mobile-main-menu": {
     "map": "Mappa",
     "areas": "Aree",
@@ -104,8 +97,9 @@
   },
   "tooltips": {
     "carbonintensity": "Intensità di carbonio",
-    "lowcarbon": "Basse emissioni",
-    "renewable": "Rinnovabile",
+    "zoneHeader": {
+      "lowcarbon": "Include rinnovabili e nucleare"
+    },
     "crossborderexport": "Esportazione tra confini",
     "carbonintensityexport": "Intensità di carbonio nell'esportazione",
     "ofinstalled": "della capacità installata",
@@ -128,7 +122,6 @@
     "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora",
     "aggregateInfo": "Visualizza dati per zona o aggregati per nazione",
     "selectLanguage": "Seleziona la lingua",
-    "lowCarbDescription": "Include rinnovabili e nucleare",
     "dataIsDelayed": "I dati sono in ritardo",
     "price": "Prezzo"
   },
