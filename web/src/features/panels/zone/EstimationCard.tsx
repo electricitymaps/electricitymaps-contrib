@@ -139,7 +139,6 @@ function BaseCard({
       trackEvent('EstimationCard Expanded', { cardType: cardType });
     }
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
-    setIsCollapsed((previous: boolean) => !previous);
   };
   const { t } = useTranslation();
 

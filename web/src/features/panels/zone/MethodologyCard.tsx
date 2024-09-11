@@ -15,8 +15,8 @@ export default function MethodologyCard() {
         title={t('left-panel.applied-methodologies.title')}
         className="text-md pt-2"
         onOpen={() => trackEvent('AppliedMethodologies Expanded')}
-        isCollapsed={accordionState}
-        setState={setAccordionState}
+        isCollapsed={isCollapsed}
+        setState={setIsCollapsed}
       >
         <div className="flex flex-col gap-2 py-1 ">
           <Link href="https://www.electricitymaps.com/methodology#missing-data">
