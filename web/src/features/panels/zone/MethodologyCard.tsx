@@ -7,7 +7,7 @@ import { useState } from 'react';
 import trackEvent from 'utils/analytics';
 
 export default function MethodologyCard() {
-  const [accordionState, setAccordionState] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   return (
     <RoundedCard>
       <Accordion
