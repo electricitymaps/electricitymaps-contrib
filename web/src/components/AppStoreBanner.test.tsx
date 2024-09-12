@@ -49,6 +49,16 @@ describe('AppStoreBanner', () => {
     expect(screen.queryAllByRole('banner')).toHaveLength(0);
   });
 
+  test('clicking cta button sets local storage', async () => {
+    mocks.isAndroid.mockReturnValue(true);
+
+    render(<AppStoreBanner />);
+
+    await userEvent.click(screen.getByText('app-banner.cta'));
+
+    expect(screen.queryAllByRole('banner')).toHaveLength(0);
+  });
+
   test('cta href should match on android', () => {
     mocks.isAndroid.mockReturnValue(true);
     mocks.isIphone.mockReturnValue(false);

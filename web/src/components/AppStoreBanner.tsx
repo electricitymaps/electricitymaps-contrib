@@ -10,7 +10,13 @@ import { TrackEvent } from 'utils/constants';
 import { isAndroid, isIphone } from '../features/weather-layers/wind-layer/util';
 import { Button } from './Button';
 
-export const appStoreDismissedAtom = atomWithStorage('isAppBannerDismissed', false);
+export const appStoreDismissedAtom = atomWithStorage(
+  'isAppBannerDismissed',
+  Boolean(localStorage.getItem('isAppBannerDismissed')) ?? false
+);
+
+export const trackCTAClick = () => trackEvent(TrackEvent.APP_BANNER_CTA_CLICKED);
+export const trackDismissClick = () => trackEvent(TrackEvent.APP_BANNER_DISMISSED);
 
 export enum AppStoreURLs {
   APPLE = 'https://apps.apple.com/us/app/electricity-maps/id1224594248',
@@ -27,6 +33,9 @@ export function AppStoreBanner({
   const { appStoreUrl, closeBanner } = useAppStoreBannerState();
   const { t } = useTranslation();
 
+  const onCTAClick = () => closeBanner(trackCTAClick);
+  const onDismissClick = () => closeBanner(trackDismissClick);
+
   return (
     appStoreUrl && (
       <div
@@ -34,7 +43,7 @@ export function AppStoreBanner({
         aria-live="polite"
         className="sticky z-50 flex h-14 min-h-14 w-full items-center border-b border-solid border-neutral-300 bg-neutral-100 px-3"
       >
-        <CloseButton onClose={closeBanner} />
+        <CloseButton onClose={onDismissClick} />
         <div className="flex flex-grow gap-2">
           <div className="items-center justify-center self-center rounded-md border border-neutral-200 bg-white">
             <EmapsIcon size={40} />
@@ -48,7 +57,7 @@ export function AppStoreBanner({
           size="md"
           backgroundClasses={'h-9'}
           href={appStoreUrl}
-          onClick={trackCTAClick}
+          onClick={onCTAClick}
         >
           {t('app-banner.cta')}
         </Button>
@@ -56,8 +65,6 @@ export function AppStoreBanner({
     )
   );
 }
-
-export const trackCTAClick = () => trackEvent(TrackEvent.APP_BANNER_CTA_CLICKED);
 
 interface DefaultCloseButtonProps {
   onClose(): void;
@@ -79,7 +86,7 @@ function DefaultCloseButton({ onClose }: DefaultCloseButtonProps) {
 
 interface AppStoreBannerState {
   appStoreUrl: string | undefined;
-  closeBanner(): void;
+  closeBanner(trackCallback?: () => void): void;
 }
 
 const useAppStoreBannerState = (): AppStoreBannerState => {
@@ -88,9 +95,9 @@ const useAppStoreBannerState = (): AppStoreBannerState => {
 
   return {
     appStoreUrl,
-    closeBanner: () => {
+    closeBanner: (trackCallback?: () => void) => {
       setAppStoreIsDismissed(true);
-      trackEvent(TrackEvent.APP_BANNER_DISMISSED);
+      trackCallback && trackCallback();
       setAppStoreUrl(undefined);
     },
   };
