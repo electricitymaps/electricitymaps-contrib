@@ -75,6 +75,7 @@
     "@visx/group": "^3.3.0",
     "@visx/shape": "^3.5.0",
     "@visx/text": "^3.3.0",
+    "clipboard": "^2.0.11",
     "country-flag-icons": "^1.5.13",
     "currency-symbol-map": "^5.1.0",
     "d3-array": "^3.2.4",
