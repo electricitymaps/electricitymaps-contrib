@@ -1,5 +1,6 @@
 import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
+import { loadingMapAtom } from 'features/map/mapAtoms';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
 import { ChevronLeft, ChevronRight, Share2Icon } from 'lucide-react';
@@ -13,6 +14,8 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
+import { BottomSheet } from 'react-spring-bottom-sheet';
+import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
@@ -115,7 +118,17 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   const isMobile = useIsMobile();
 
   const onCollapse = () => setOpen(!isOpen);
+  const [isLoadingMap] = useAtom(loadingMapAtom);
+  const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
+  const safeAreaBottomString = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue('--sab');
 
+  const safeAreaBottom = safeAreaBottomString
+    ? Number.parseInt(safeAreaBottomString.replace('px', ''))
+    : 0;
+  const SNAP_POINTS = [60 + safeAreaBottom, 160 + safeAreaBottom];
+  const snapPoints = hasOnboardingBeenSeen && !isLoadingMap ? SNAP_POINTS : [0, 0];
   return (
     <aside
       data-test-id="left-panel"
@@ -128,6 +141,16 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
       <div className="left-full top-2 flex flex-col space-y-20">
         <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
         <ShareButton />
+        <BottomSheet
+          scrollLocking={false} // Ensures scrolling is not blocked on IOS
+          open={!isLoadingMap}
+          snapPoints={() => snapPoints}
+          blocking={true}
+          header={<div />}
+          style={{ zIndex: 10_000 }}
+        >
+          <div className="p-2 min-[370px]:px-4">HI</div>
+        </BottomSheet>
       </div>
     </aside>
   );
