@@ -10,6 +10,7 @@ capacity:
 contributors:
   - hectorespert
   - systemcatch
+  - silimotion
 emissionFactors:
   direct:
     battery discharge:
