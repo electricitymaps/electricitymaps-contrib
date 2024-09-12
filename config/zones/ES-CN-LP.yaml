@@ -6,6 +6,7 @@ bounding_box:
 contributors:
   - hectorespert
   - systemcatch
+  - silimotion
 emissionFactors:
   direct:
     battery discharge:
