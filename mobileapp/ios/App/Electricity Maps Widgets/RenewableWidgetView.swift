@@ -1,8 +1,8 @@
 //
-//  CO2IntensityView.swift
+//  RenewableWidgetView.swift
 //  Electricity Maps Widget
 //
-//  Created by Mads Nedergaard on 10/11/2023.
+//  Created by SilkeBonnen on 12/09/2024.
 //
 
 import Foundation
@@ -10,36 +10,37 @@ import SwiftUI
 import UIKit
 import WidgetKit
 
-struct ViewSizeEntry: TimelineEntry {
+struct ViewRenewableEntry: TimelineEntry {
   let date: Date
-  let intensity: Int?
+  let renewablePercentage: Int?
   let zone: String?
 
-  static var placeholder: ViewSizeEntry {
-    ViewSizeEntry(
+  static var placeholder: ViewRenewableEntry {
+    ViewRenewableEntry(
 
       date: Date(),
-      intensity: 123,
+      renewablePercentage: 90,
       zone: nil
     )
   }
 }
 
-struct CO2IntensityWidgetView: View {
-    let entry: ViewSizeEntry
+
+struct RenewableWidgetView: View {
+    let entry: ViewRenewableEntry
     
     @Environment(\.widgetFamily) var widgetFamily
 
   var body: some View {
       switch widgetFamily {
           case .systemSmall:
-              SmallWidgetView(entry: entry)
+              SmallRenewableWidgetView(entry: entry)
           case .systemMedium:
-              SmallWidgetView(entry: entry)
+              SmallRenewableWidgetView(entry: entry)
           case .accessoryRectangular:
-            LockscreenRecWidgetView(entry: entry)
+            LockscreenRecRenewableWidgetView(entry: entry)
         case .accessoryCircular:
-              CircularWidgetView()
+          CircularRenewableWidgetView(entry: entry)
           
           default:
               Text("Unsupported widget size")
@@ -48,13 +49,20 @@ struct CO2IntensityWidgetView: View {
   }
 }
 
-struct CircularWidgetView: View {
+struct CircularRenewableWidgetView: View {
+    var entry: ViewRenewableEntry
+    
     var body: some View {
         if #available(iOS 17.0, *) {
             ZStack {
-                Image("electricitymaps-icon-white") // Your icon name here
-                    .resizable()
-                    .scaledToFit()
+                Gauge(value: Double(entry.renewablePercentage ?? 0) * 0.01){
+                    VStack {
+                        //Text(String(entry.renewablePercentage ?? 0) + "%")
+                        Text("RE")
+                    }
+                }
+                .gaugeStyle(.accessoryCircularCapacity)
+
             }
             .containerBackground(for: .widget) {
                 Color.black
@@ -71,18 +79,19 @@ struct CircularWidgetView: View {
 }
 
 
-struct LockscreenRecWidgetView: View {
-    var entry: ViewSizeEntry
+struct LockscreenRecRenewableWidgetView: View {
+    var entry: ViewRenewableEntry
     
     var body: some View {
         if entry.zone != nil {
           VStack(alignment: .center) {
               HStack {
-                  Text(String(entry.intensity ?? 0) + "g")
+                  Text(String(entry.renewablePercentage ?? 0) + "%")
                       .font(.system(size: 30))
                   .fontWeight(.bold)              }
-                Text("CO₂eq/kWh")
-                    .font(.headline)
+                Text("Renewable")
+                    .font(.system(size: 18))
+                    .fontWeight(.semibold)
 
           }
           .padding(4)
@@ -90,7 +99,8 @@ struct LockscreenRecWidgetView: View {
           .backgroundColor(for: entry)
           .overlay(
               RoundedRectangle(cornerRadius: 10) // Adjust the corner radius as needed
-                  .stroke(Color.blue, lineWidth: 5) // Set the color and width of the border
+                .backgroundColor(for: entry)
+                .opacity(0.35)// Set the color and width of the border
           )
         } else {
           VStack(alignment: .center) {
@@ -105,8 +115,8 @@ struct LockscreenRecWidgetView: View {
     }
 }
 
-struct SmallWidgetView: View {
-    var entry: ViewSizeEntry
+struct SmallRenewableWidgetView: View {
+    var entry: ViewRenewableEntry
     
     var body: some View {
         if entry.zone != nil {
@@ -115,33 +125,29 @@ struct SmallWidgetView: View {
             VStack {
               Spacer()
               HStack {
-                Text(String(entry.intensity ?? 0))
+                Text(String(entry.renewablePercentage ?? 0))
                   .font(.largeTitle)
                   .fontWeight(.heavy)
-                  .foregroundColor(getTextColor(intensity: entry.intensity, type: "main"))
+                  .foregroundColor(Color.white)
                 Text("g")
                   .font(.system(.title))
-                  .foregroundColor(getTextColor(intensity: entry.intensity, type: "main"))
+                  .foregroundColor(Color.white)
               }
               .padding(.top)
 
               Text("CO₂eq/kWh")
                 .font(.footnote)
-                .foregroundColor(getTextColor(intensity: entry.intensity, type: "subtitle"))
+                .foregroundColor(Color.white)
                 .opacity(0.75)
 
               Spacer()
             }
             HStack {
-              Text("\(formatDate(entry.date)) · \(entry.zone ?? "?")")
+              Text("\(formatDatee(entry.date)) · \(entry.zone ?? "?")")
                 .font(.caption)
                 .foregroundColor(Color(red: 0, green: 0, blue: 0, opacity: 0.4))
                 .padding(.bottom, 5.0)
             }
-              // TODO: Widget deep link to specific zone?
-              // This depends on some changes to the app in an open PR, so let's park it for now.
-            //.widgetURL(URL(string: "com.tmrow.electricitymap://zone/DE"))
-
           }
 
           .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -159,16 +165,37 @@ struct SmallWidgetView: View {
     }
 }
 
-struct View_co2_Previews: PreviewProvider {
+@available(iOS 16.0, *)
+struct View_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-        CO2IntensityWidgetView(
-        entry: ViewSizeEntry(
+        RenewableWidgetView(
+        entry: ViewRenewableEntry(
           date: Date(),
-          intensity: 290,
+          renewablePercentage: 70,
           zone: "DE")
       )
       .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
     }
   }
 }
+
+func formatDatee(_ date: Date) -> String {
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateFormat = "h:mm a"
+  return dateFormatter.string(from: date)
+}
+
+extension View {
+    @ViewBuilder
+    func backgroundColor(for entry: ViewRenewableEntry) -> some View {
+        if #available(iOS 17.0, *) {
+            self.containerBackground(for: .widget) {
+                Color.black
+            }
+        } else {
+            self.background(Color.black)
+        }
+    }
+}
+

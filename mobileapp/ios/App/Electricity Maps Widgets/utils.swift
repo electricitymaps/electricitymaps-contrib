@@ -21,4 +21,37 @@ func getNextHourStart() -> Date {
   }
 
   return nextHourStartDate
+    
 }
+
+func formatDate(_ date: Date) -> String {
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateFormat = "h:mm a"
+  return dateFormatter.string(from: date)
+}
+
+extension View {
+    @ViewBuilder
+    func backgroundColor(for entry: ViewSizeEntry) -> some View {
+        if #available(iOS 17.0, *) {
+            self.containerBackground(for: .widget) {
+                Color(getBackgroundColor(intensity: entry.intensity))
+            }
+        } else {
+            self.background(Color(getBackgroundColor(intensity: entry.intensity)))
+        }
+    }
+    
+    @ViewBuilder
+    func backgroundColor() -> some View {
+        if #available(iOS 17.0, *) {
+            self.containerBackground(for: .widget) {
+                Color.black
+            }
+        } else {
+            self.background(Color.black)
+        }
+    }
+}
+
+

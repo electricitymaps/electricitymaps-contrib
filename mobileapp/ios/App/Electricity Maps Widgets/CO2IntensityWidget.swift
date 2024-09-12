@@ -75,7 +75,7 @@ struct CO2IntensityWidget: Widget {
     .description("See the carbon intensity of your location")
     // TODO: Support other families for lock screen widgets when upgrading to ios 17
     .supportedFamilies([
-      .systemSmall
+        .systemSmall, .systemMedium, .accessoryRectangular, .accessoryCircular
     ])
   }
 }
