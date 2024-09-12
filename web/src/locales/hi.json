@@ -1,6 +1,5 @@
 {
   "info": {
-    "intro-text": "Electricity Maps(बिजली नक्शे) ऐप वेब और मोबाइल पर नागरिकों, ऊर्जा विशेषज्ञों, एनजीओ और नीति निर्धारकों के लिए इस वक्त की जानकारी देता है ताकि वो ऊर्जा बदलाव से जुड़ी कठिनाइयों को गहराई से समझ सकें।",
     "open-source-text": "यह ऐप <a href='{{link}}' target='_blank'>Open Source (ओपन सोर्स)</a> है और लोगों द्वारा संचालित है।"
   },
   "button": {
@@ -13,13 +12,6 @@
   },
   "settings-modal": {
     "title": "सेटिंग"
-  },
-  "panel-initial-text": {
-    "thisproject": "यह ऐप",
-    "opensource": "Open Source (ओपन सोर्स)",
-    "see": "देखें",
-    "datasources": "जानकारी के श्रोत",
-    "contribute": "<a href=\"{{link}}\" target=\"_blank\">अपना क्षेत डाल कर</a> अपना सहयोग दें"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps(बिजली नक्शे)",

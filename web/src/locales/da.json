@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "App'en er",
-    "opensource": "Open Source",
-    "see": "se",
-    "datasources": "kildekode",
-    "contribute": "Bidrag ved at <a href=\"{{link}}\" target=\"_blank\">tilføje dit område</a>"
-  },
   "ranking-panel": {
     "title": "Klimapåvirkning per region",
     "subtitle": "Sorteret efter CO₂-intensitet fra elforbruget (gCO₂eq/kWh)",
@@ -69,8 +62,9 @@
     "ofinstalled": "af installeret kapacitet",
     "utilizing": "udnytter",
     "withcarbonintensity": "med en CO₂-intensitet på",
-    "lowcarbon": "Lav CO₂",
-    "renewable": "Vedvarende",
+    "zoneHeader": {
+      "lowcarbon": "Inkluderer vedvarende og atomkraft"
+    },
     "showWindLayer": "Vis vind",
     "hideWindLayer": "Skjul vind",
     "showSolarLayer": "Vis sol",
@@ -82,7 +76,6 @@
     "consumption": "forbrug",
     "cpinfo": "<b>forbrug</b> regner import og eksport med, <b>produktion</b> ignorer dem",
     "selectLanguage": "Skift sprog",
-    "lowCarbDescription": "Inkluderer vedvarende og atomkraft",
     "dataIsDelayed": "Data er forsinket",
     "representing": "forårsager",
     "ofemissions": "af CO₂-udledninger",
