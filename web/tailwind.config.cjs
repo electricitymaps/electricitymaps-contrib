@@ -19,8 +19,14 @@ const config = {
           },
         },
       },
+      spacing: {
+        15: '3.75rem',
+      },
       screens: {
         xs: '475px',
+      },
+      fontSize: {
+        xxs: '0.625rem', // 10px
       },
       animation: {
         'slide-down': 'slide-down 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
@@ -42,6 +48,7 @@ const config = {
       },
       colors: {
         'brand-green': '#135836',
+        'brand-green-dark': '#41866B',
         'brand-yellow': '#E9B73B',
         'brand-brown': '#702214',
         success: {

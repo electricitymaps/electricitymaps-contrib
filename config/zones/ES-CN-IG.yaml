@@ -55,12 +55,27 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 880.9
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS, REE
+        value: 683.958
+      - datetime: '2018-01-01'
+        source: EU-ETS, REE
+        value: 696.102
+      - datetime: '2019-01-01'
+        source: EU-ETS, REE
+        value: 692.636
+      - datetime: '2020-01-01'
+        source: EU-ETS, REE
+        value: 697.33
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 880.903938
+        source: EU-ETS, REE
+        value: 707.279
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 925.95
+        source: EU-ETS, REE
+        value: 693.63
+      - datetime: '2023-01-01'
+        source: EU-ETS, REE
+        value: 713.29
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -117,12 +132,27 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 927.958
+      - datetime: '2018-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 940.102
+      - datetime: '2019-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 936.636
+      - datetime: '2020-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 941.33
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 1124.903938
+        source: EU-ETS, REE; IPCC 2014
+        value: 951.279
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1169.95
+        source: EU-ETS, REE; IPCC 2014
+        value: 937.63
+      - datetime: '2023-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 957.29
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -198,6 +228,8 @@ parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
 sources:
+  EU-ETS, REE:
+    link: https://colab.research.google.com/github/silimotion/Emission_factors_research/blob/main/Spanish_non_peninsular_factors.ipynb
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:

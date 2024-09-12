@@ -57,12 +57,24 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 635.0561225236347
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS, REE
+        value: 773.092
+      - datetime: '2018-01-01'
+        source: EU-ETS, REE
+        value: 814.399
+      - datetime: '2019-01-01'
+        source: EU-ETS, REE
+        value: 812.544
+      - datetime: '2020-01-01'
+        source: EU-ETS, REE
+        value: 777.284
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 880.903938
+        source: EU-ETS, REE
+        value: 781.398
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 925.95
+        source: EU-ETS, REE
+        value: 838.759
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -119,12 +131,24 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 1017.092
+      - datetime: '2018-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 1058.399
+      - datetime: '2019-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 1056.544
+      - datetime: '2020-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 1021.284
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 1124.903938
+        source: EU-ETS, REE; IPCC 2014
+        value: 1025.398
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1169.95
+        source: EU-ETS, REE; IPCC 2014
+        value: 1082.759
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -201,6 +225,8 @@ parsers:
   production: ES.fetch_production
 region: Europe
 sources:
+  EU-ETS, REE:
+    link: https://colab.research.google.com/github/silimotion/Emission_factors_research/blob/main/Spanish_non_peninsular_factors.ipynb
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:

@@ -18,7 +18,7 @@ export default function MethodologyCard() {
         isCollapsed={isCollapsed}
         setState={setIsCollapsed}
       >
-        <div className="flex flex-col gap-2 py-1 ">
+        <div className="flex flex-col gap-2 py-1">
           <Link href="https://www.electricitymaps.com/methodology#missing-data">
             {t('left-panel.applied-methodologies.estimations')}
           </Link>
