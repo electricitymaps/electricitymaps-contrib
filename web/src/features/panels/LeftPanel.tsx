@@ -4,7 +4,7 @@ import { loadingMapAtom } from 'features/map/mapAtoms';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
 import { ChevronLeft, ChevronRight, Share2Icon } from 'lucide-react';
-import { lazy, Suspense, useRef, useState } from 'react';
+import { forwardRef, lazy, RefObject, Suspense, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Navigate,
@@ -24,12 +24,25 @@ import { leftPanelOpenAtom, screenshotAtom } from './panelAtoms';
 const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
-const handleShareClick = async () => {
+type ZoneDetailsProps = {
+  reference: RefObject<HTMLDivElement>;
+  // ... other props ...
+};
+// eslint-disable-next-line react/display-name
+const ZoneDetailsWrapper = forwardRef<
+  HTMLDivElement,
+  Omit<ZoneDetailsProps, 'reference'>
+>((props, zoneReference) => (
+  <Suspense fallback={<LoadingSpinner />}>
+    <ZoneDetails {...props} reference={zoneReference as RefObject<HTMLDivElement>} />
+  </Suspense>
+));
+
+const handleShareClick = async (screenshot) => {
   try {
-    // Fetch the local image (adjust the path to your image)
-    const response = await fetch('/path/to/your/image.png');
+    // Convert the base64 screenshot to a blob
+    const response = await fetch(screenshot);
     const blob = await response.blob();
-    console.log(blob);
 
     // Check if the clipboard API and ClipboardItem are available
     if (navigator.clipboard && window.ClipboardItem) {
@@ -44,6 +57,33 @@ const handleShareClick = async () => {
     console.error('Failed to copy image to clipboard:', error);
   }
 };
+
+function ScrollableBottomSheet({ screenshot, isLoadingMap, snapPoints }) {
+  return (
+    <BottomSheet
+      scrollLocking={false}
+      open={!isLoadingMap}
+      snapPoints={() => snapPoints}
+      blocking={true}
+      header={<div className="p-4 text-lg font-semibold">Captured Screenshot:</div>}
+      style={{ zIndex: 10_000 }}
+    >
+      <div className="flex h-full flex-col items-center">
+        <div className="w-ful max-h-96 flex-grow overflow-y-auto p-4">
+          <img src={screenshot} alt="Screenshot" className="mt-12 w-full " />
+        </div>
+        <div className="w-full p-4">
+          <button
+            onClick={() => handleShareClick(screenshot)}
+            className="flex w-full items-center justify-center rounded-full bg-brand-green px-4 py-2 text-white transition-colors duration-300 hover:bg-brand-green-dark"
+          >
+            Share Story
+          </button>
+        </div>
+      </div>
+    </BottomSheet>
+  );
+}
 
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
@@ -111,49 +151,6 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
   );
 }
 
-function ShareButton({
-  panelReference,
-}: {
-  panelReference: React.RefObject<HTMLElement>;
-}) {
-  const [, takeScreenshot] = useScreenshot();
-  const [screenshot, setScreenshot] = useState<string | null>(null); // Store screenshot
-
-  const captureScreenshot = async () => {
-    if (panelReference.current) {
-      const img = await takeScreenshot(panelReference.current);
-      setScreenshot(img);
-      console.log('Screenshot captured:', img);
-      return img;
-    }
-  };
-
-  return (
-    <div>
-      <button
-        onClick={captureScreenshot}
-        className={
-          'absolute right-0 top-96 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-l-xl border-b-2 border-l-2 border-t-2 border-zinc-300 bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
-        }
-        aria-label={'aria.label.showSidePanel'}
-      >
-        <Share2Icon />
-      </button>
-      {/* Conditionally render the screenshot */}
-      {screenshot && (
-        <div style={{ marginTop: '20px' }}>
-          <h3>Captured Screenshot:</h3>
-          <img
-            src={screenshot}
-            alt="Screenshot"
-            style={{ maxWidth: '100%', border: '1px solid #ccc' }}
-          />
-        </div>
-      )}
-    </div>
-  );
-}
-
 function MobileHeader() {
   return (
     <div className="mt-[env(safe-area-inset-top)] flex w-full items-center justify-between pl-1 dark:bg-gray-900">
@@ -163,11 +160,17 @@ function MobileHeader() {
   );
 }
 
-function OuterPanel({ children }: { children: React.ReactNode }) {
+function OuterPanel({
+  children,
+  panelReference,
+}: {
+  children: React.ReactNode;
+  panelReference: React.RefObject<HTMLDivElement>;
+}) {
   const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
   const location = useLocation();
   const isMobile = useIsMobile();
-  const panelReference = useRef<HTMLDivElement>(null);
+  // const panelReference = useRef<HTMLDivElement>(null);
   const [, takeScreenshot] = useScreenshot();
   const [screenshot, setScreenshot] = useAtom(screenshotAtom); // Store screenshot
 
@@ -191,7 +194,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   const safeAreaBottom = safeAreaBottomString
     ? Number.parseInt(safeAreaBottomString.replace('px', ''))
     : 0;
-  const SNAP_POINTS = [60 + safeAreaBottom, 460 + safeAreaBottom];
+  const SNAP_POINTS = [60 + safeAreaBottom, 500 + safeAreaBottom];
   const snapPoints = hasOnboardingBeenSeen && !isLoadingMap ? SNAP_POINTS : [0, 0];
 
   console.log('panel ref', panelReference);
@@ -199,7 +202,6 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <aside
       data-test-id="left-panel"
-      ref={panelReference}
       className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
         location.pathname === '/map' ? 'hidden' : ''
       } ${isOpen ? '' : '-translate-x-full'}`}
@@ -219,22 +221,11 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
         </div>
         <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
         {screenshot && (
-          <BottomSheet
-            scrollLocking={false}
-            open={!isLoadingMap}
-            snapPoints={() => snapPoints}
-            blocking={true}
-            header={<div className="p-4 text-lg font-semibold">Captured Screenshot:</div>}
-            style={{ zIndex: 10_000 }}
-          >
-            <div className="overflow-y-auto p-4">
-              <img
-                src={screenshot}
-                alt="Screenshot"
-                className="w-full border-2 border-gray-300"
-              />
-            </div>
-          </BottomSheet>
+          <ScrollableBottomSheet
+            screenshot={screenshot}
+            isLoadingMap={isLoadingMap}
+            snapPoints={snapPoints}
+          />
         )}
       </div>
     </aside>
@@ -242,8 +233,9 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
 }
 
 export default function LeftPanel() {
+  const panelReference = useRef(null);
   return (
-    <OuterPanel>
+    <OuterPanel panelReference={panelReference}>
       <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
         <Route
@@ -251,7 +243,7 @@ export default function LeftPanel() {
           element={
             <ValidZoneIdGuardWrapper>
               <Suspense fallback={<LoadingSpinner />}>
-                <ZoneDetails />
+                <ZoneDetailsWrapper ref={panelReference} />
               </Suspense>
             </ValidZoneIdGuardWrapper>
           }

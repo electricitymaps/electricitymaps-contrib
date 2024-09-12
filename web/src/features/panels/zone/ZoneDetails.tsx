@@ -26,7 +26,11 @@ import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
-export default function ZoneDetails(): JSX.Element {
+export default function ZoneDetails({
+  reference,
+}: {
+  reference: React.RefObject<HTMLDivElement>;
+}): JSX.Element {
   const { zoneId } = useParams();
   const timeAverage = useAtomValue(timeAverageAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
@@ -97,7 +101,9 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+          <div ref={reference}>
+            <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+          </div>
           <CommercialApiButton backgroundClasses="mt-3 mb-1" type="link" />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer

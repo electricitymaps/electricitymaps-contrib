@@ -3,7 +3,7 @@ import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useHeaderHeight } from 'hooks/headerHeight';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { Factory, UtilityPole, X, Zap } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,7 @@ import {
   displayByEmissionsAtom,
   isHourlyAtom,
   productionConsumptionAtom,
+  screenshotReferenceAtom,
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
@@ -56,6 +57,8 @@ function BarBreakdownChart({
 
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
+  const setScreenshotReference = useSetAtom(screenshotReferenceAtom);
+  setScreenshotReference(ref);
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
   const isHourly = useAtomValue(isHourlyAtom);
