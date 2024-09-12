@@ -65,12 +65,12 @@ function ScrollableBottomSheet({ screenshot, isLoadingMap, snapPoints }) {
       open={!isLoadingMap}
       snapPoints={() => snapPoints}
       blocking={true}
-      header={<div className="p-4 text-lg font-semibold">Captured Screenshot:</div>}
+      header={<div className="p-3 text-lg font-semibold">Captured Screenshot:</div>}
       style={{ zIndex: 10_000 }}
     >
       <div className="flex h-full flex-col items-center">
         <div className="w-ful max-h-96 flex-grow overflow-y-auto p-4">
-          <img src={screenshot} alt="Screenshot" className="mt-12 w-full " />
+          <img src={screenshot} alt="Screenshot" className=" w-full " />
         </div>
         <div className="w-full p-4">
           <button

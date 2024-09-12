@@ -1,9 +1,13 @@
 import EstimationBadge from 'components/EstimationBadge';
+import { CountryFlag } from 'components/Flag';
+import { TimeDisplay } from 'components/TimeDisplay';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import { getFullZoneName } from 'translation/translation';
 import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -57,9 +61,23 @@ export default function BySource({
     estimationMethod,
     estimatedPercentage
   );
+  const { zoneId } = useParams();
+  const zoneNameFull = zoneId ? getFullZoneName(zoneId) : null;
 
   return (
-    <div className="flex flex-col pb-1 pt-4">
+    <div className="flex flex-col pb-1 pt-3">
+      {zoneId && (
+        <div>
+          <div className="flex w-full flex-row items-center">
+            <CountryFlag
+              zoneId={zoneId}
+              size={18}
+              className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+            />
+            <h1 className="pl-2">{zoneNameFull}</h1>
+          </div>
+        </div>
+      )}
       <div
         className={`text-md relative flex flex-row justify-between font-bold ${className}`}
       >
@@ -75,6 +93,7 @@ export default function BySource({
           />
         )}
       </div>
+      <TimeDisplay className="whitespace-nowrap text-sm" />
       {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>
   );
