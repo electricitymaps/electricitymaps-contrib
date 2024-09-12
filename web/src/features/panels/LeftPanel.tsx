@@ -87,13 +87,35 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
 }
 
 function ShareButton() {
+  const handleShareClick = async () => {
+    try {
+      // Fetch the local image (adjust the path to your image)
+      const response = await fetch('images/mocked-screenshot.png');
+      const blob = await response.blob();
+      console.log(blob);
+
+      // Check if the clipboard API and ClipboardItem are available
+      if (navigator.clipboard && window.ClipboardItem) {
+        const clipboardItem = new ClipboardItem({ 'image/png': blob });
+        await navigator.clipboard.write([clipboardItem]);
+
+        alert('Screenshot copied to clipboard!');
+      } else {
+        alert('Clipboard API not supported');
+      }
+    } catch (error) {
+      console.error('Failed to copy image to clipboard:', error);
+    }
+  };
+
   return (
     <button
       data-test-id="share-button"
       className={
-        'absolute left-full top-3 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-r-xl bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
+        'absolute left-full top-3 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-r-xl bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-pink-400 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-amber-300'
       }
       aria-label={'aria.label.showSidePanel'}
+      onClick={handleShareClick} // Trigger image copy on click
     >
       {<Share2Icon />}
     </button>
@@ -132,6 +154,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </aside>
   );
 }
+
 export default function LeftPanel() {
   return (
     <OuterPanel>
