@@ -17,6 +17,8 @@
 		70CDAFD436C19DF53F6F732A /* Pods_Electricity_Maps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DBACBBDEFF7153DC7073FCB /* Pods_Electricity_Maps.framework */; };
 		F7BC622E2AFECEB90003B125 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC622D2AFECEB90003B125 /* colors.swift */; };
 		F7BC62302AFED06D0003B125 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC622F2AFED06D0003B125 /* utils.swift */; };
+		F7C37B9C2C92EE8300887E3D /* DayAheadWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C37B9A2C92EE8300887E3D /* DayAheadWidget.swift */; };
+		F7C37B9F2C92EE9900887E3D /* DayAheadWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C37B9D2C92EE9900887E3D /* DayAheadWidgetView.swift */; };
 		F7DF63F82AFE7E2F0012D585 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1E0F72AFE2610000D8BB0 /* WidgetKit.framework */; };
 		F7DF63F92AFE7E2F0012D585 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1E0F92AFE2610000D8BB0 /* SwiftUI.framework */; };
 		F7DF63FC2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */; };
@@ -72,6 +74,8 @@
 		F7A1E0F92AFE2610000D8BB0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		F7BC622D2AFECEB90003B125 /* colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		F7BC622F2AFED06D0003B125 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		F7C37B9A2C92EE8300887E3D /* DayAheadWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayAheadWidget.swift; sourceTree = "<group>"; };
+		F7C37B9D2C92EE9900887E3D /* DayAheadWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayAheadWidgetView.swift; sourceTree = "<group>"; };
 		F7DF63F72AFE7E2F0012D585 /* Electricity Maps WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Electricity Maps WidgetsExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Electricity_Maps_WidgetsBundle.swift; sourceTree = "<group>"; };
 		F7DF63FD2AFE7E2F0012D585 /* CO2IntensityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CO2IntensityWidget.swift; sourceTree = "<group>"; };
@@ -166,7 +170,9 @@
 			children = (
 				F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */,
 				F7DF63FD2AFE7E2F0012D585 /* CO2IntensityWidget.swift */,
+				F7C37B9D2C92EE9900887E3D /* DayAheadWidgetView.swift */,
 				F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */,
+				F7C37B9A2C92EE8300887E3D /* DayAheadWidget.swift */,
 				F7DF640D2AFE7EA80012D585 /* api.swift */,
 				F7DF64102AFE7F0C0012D585 /* CO2IntensityWidgetView.swift */,
 				F7BC622F2AFED06D0003B125 /* utils.swift */,
@@ -332,8 +338,10 @@
 			files = (
 				F7DF63FE2AFE7E2F0012D585 /* CO2IntensityWidget.swift in Sources */,
 				F7BC622E2AFECEB90003B125 /* colors.swift in Sources */,
+				F7C37B9F2C92EE9900887E3D /* DayAheadWidgetView.swift in Sources */,
 				F7DF63FC2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift in Sources */,
 				F7DF640F2AFE7EA80012D585 /* api.swift in Sources */,
+				F7C37B9C2C92EE8300887E3D /* DayAheadWidget.swift in Sources */,
 				F7DF64122AFE7F0C0012D585 /* CO2IntensityWidgetView.swift in Sources */,
 				F7DF64032AFE7E320012D585 /* Electricity_Maps_Widgets.intentdefinition in Sources */,
 				F7BC62302AFED06D0003B125 /* utils.swift in Sources */,

@@ -12,6 +12,6 @@ import SwiftUI
 struct Electricity_Maps_WidgetsBundle: WidgetBundle {
     var body: some Widget {
         CO2IntensityWidget()
-        //DayAheadWidget()
+        DayAheadWidget()
     }
 }
