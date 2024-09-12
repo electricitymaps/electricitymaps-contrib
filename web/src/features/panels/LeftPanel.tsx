@@ -15,8 +15,8 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { BottomSheet } from 'react-spring-bottom-sheet';
-import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useScreenshot } from 'use-react-screenshot';
+import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
@@ -26,9 +26,8 @@ const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
 const handleShareClick = async () => {
   try {
-    
     // Fetch the local image (adjust the path to your image)
-    const response = captureScreenshot();
+    const response = await fetch('/path/to/your/image.png');
     const blob = await response.blob();
     console.log(blob);
 
@@ -132,7 +131,7 @@ function ShareButton({
   return (
     <div>
       <button
-        onClick={handleShareClick}
+        onClick={captureScreenshot}
         className={
           'absolute right-0 top-96 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-l-xl border-b-2 border-l-2 border-t-2 border-zinc-300 bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
         }
@@ -169,6 +168,17 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const isMobile = useIsMobile();
   const panelReference = useRef<HTMLDivElement>(null);
+  const [, takeScreenshot] = useScreenshot();
+  const [screenshot, setScreenshot] = useState<string | null>(null); // Store screenshot
+
+  const captureScreenshot = async () => {
+    if (panelReference.current) {
+      const img = await takeScreenshot(panelReference.current);
+      setScreenshot(img);
+      console.log('Screenshot captured:', img);
+      return img;
+    }
+  };
 
   const onCollapse = () => setOpen(!isOpen);
 
@@ -181,7 +191,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   const safeAreaBottom = safeAreaBottomString
     ? Number.parseInt(safeAreaBottomString.replace('px', ''))
     : 0;
-  const SNAP_POINTS = [60 + safeAreaBottom, 160 + safeAreaBottom];
+  const SNAP_POINTS = [60 + safeAreaBottom, 460 + safeAreaBottom];
   const snapPoints = hasOnboardingBeenSeen && !isLoadingMap ? SNAP_POINTS : [0, 0];
 
   console.log('panel ref', panelReference);
@@ -196,24 +206,39 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     >
       {isMobile && <MobileHeader />}
       <section className="h-full w-full">{children}</section>
-      
+
       <div className="left-full top-2 flex flex-col space-y-20">
-        <ShareButton panelReference={panelReference} />
+        <div>
+          <button
+            onClick={captureScreenshot}
+            className={
+              'absolute right-0 top-96 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-l-xl border-b-2 border-l-2 border-t-2 border-zinc-300 bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
+            }
+            aria-label={'aria.label.showSidePanel'}
+          >
+            <Share2Icon />
+          </button>
+        </div>
         <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
-
-        <ShareButton />
-        <BottomSheet
-          scrollLocking={false} // Ensures scrolling is not blocked on IOS
-          open={!isLoadingMap}
-          snapPoints={() => snapPoints}
-          blocking={true}
-          header={<div />}
-          style={{ zIndex: 10_000 }}
-        >
-          <div className="p-2 min-[370px]:px-4">HI</div>
-        </BottomSheet>
-
-
+        {screenshot && (
+          <BottomSheet
+            scrollLocking={false} // Ensures scrolling is not blocked on IOS
+            open={!isLoadingMap}
+            snapPoints={() => snapPoints}
+            blocking={true}
+            header={<div />}
+            style={{ zIndex: 10_000 }}
+          >
+            <div className="overflow-auto p-2 min-[370px]:px-4 ">
+              <h3>Captured Screenshot:</h3>
+              <img
+                src={screenshot}
+                alt="Screenshot"
+                className="max-w-full overflow-scroll border-2 border-gray-300"
+              />
+            </div>
+          </BottomSheet>
+        )}
       </div>
     </aside>
   );
