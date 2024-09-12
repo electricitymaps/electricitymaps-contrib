@@ -4,7 +4,7 @@ import { loadingMapAtom } from 'features/map/mapAtoms';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
 import { ChevronLeft, ChevronRight, Share2Icon } from 'lucide-react';
-import { forwardRef, lazy, RefObject, Suspense, useRef, useState } from 'react';
+import { forwardRef, lazy, RefObject, Suspense, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Navigate,
@@ -26,9 +26,7 @@ const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
 type ZoneDetailsProps = {
   reference: RefObject<HTMLDivElement>;
-  // ... other props ...
 };
-// eslint-disable-next-line react/display-name
 const ZoneDetailsWrapper = forwardRef<
   HTMLDivElement,
   Omit<ZoneDetailsProps, 'reference'>
@@ -37,8 +35,9 @@ const ZoneDetailsWrapper = forwardRef<
     <ZoneDetails {...props} reference={zoneReference as RefObject<HTMLDivElement>} />
   </Suspense>
 ));
+ZoneDetailsWrapper.displayName = 'ZoneDetailsWrapper';
 
-const handleShareClick = async (screenshot) => {
+const handleShareClick = async (screenshot: string) => {
   try {
     // Convert the base64 screenshot to a blob
     const response = await fetch(screenshot);
@@ -58,7 +57,17 @@ const handleShareClick = async (screenshot) => {
   }
 };
 
-function ScrollableBottomSheet({ screenshot, isLoadingMap, snapPoints }) {
+type ScrollableBottomSheetProps = {
+  screenshot: string;
+  isLoadingMap: boolean;
+  snapPoints: number[];
+};
+
+function ScrollableBottomSheet({
+  screenshot,
+  isLoadingMap,
+  snapPoints,
+}: ScrollableBottomSheetProps) {
   return (
     <BottomSheet
       scrollLocking={false}
