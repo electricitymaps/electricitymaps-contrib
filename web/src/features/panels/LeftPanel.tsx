@@ -211,10 +211,8 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
         <div>
           <button
             onClick={captureScreenshot}
-            className={
-              'absolute right-0 top-96 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-l-xl border-b-2 border-l-2 border-t-2 border-zinc-300 bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
-            }
-            aria-label={'aria.label.showSidePanel'}
+            className="absolute right-0 top-96 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-l-xl border-b-2 border-l-2 border-t-2 border-zinc-300 bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800"
+            aria-label="aria.label.showSidePanel"
           >
             <Share2Icon />
           </button>
@@ -222,19 +220,18 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
         <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
         {screenshot && (
           <BottomSheet
-            scrollLocking={false} // Ensures scrolling is not blocked on IOS
+            scrollLocking={false}
             open={!isLoadingMap}
             snapPoints={() => snapPoints}
             blocking={true}
-            header={<div />}
+            header={<div className="p-4 text-lg font-semibold">Captured Screenshot:</div>}
             style={{ zIndex: 10_000 }}
           >
-            <div className="overflow-auto p-2 min-[370px]:px-4 ">
-              <h3>Captured Screenshot:</h3>
+            <div className="overflow-y-auto p-4">
               <img
                 src={screenshot}
                 alt="Screenshot"
-                className="max-w-full overflow-scroll border-2 border-gray-300"
+                className="w-full border-2 border-gray-300"
               />
             </div>
           </BottomSheet>
