@@ -21,6 +21,28 @@ import { leftPanelOpenAtom } from './panelAtoms';
 const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
+const handleShareClick = async () => {
+  try {
+    
+    // Fetch the local image (adjust the path to your image)
+    const response = captureScreenshot();
+    const blob = await response.blob();
+    console.log(blob);
+
+    // Check if the clipboard API and ClipboardItem are available
+    if (navigator.clipboard && window.ClipboardItem) {
+      const clipboardItem = new ClipboardItem({ 'image/png': blob });
+      await navigator.clipboard.write([clipboardItem]);
+
+      alert('Screenshot copied to clipboard!');
+    } else {
+      alert('Clipboard API not supported');
+    }
+  } catch (error) {
+    console.error('Failed to copy image to clipboard:', error);
+  }
+};
+
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
 
@@ -100,13 +122,14 @@ function ShareButton({
       const img = await takeScreenshot(panelReference.current);
       setScreenshot(img);
       console.log('Screenshot captured:', img);
+      return img;
     }
   };
 
   return (
     <div>
       <button
-        onClick={captureScreenshot}
+        onClick={handleShareClick}
         className={
           'absolute right-0 top-96 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-l-xl border-b-2 border-l-2 border-t-2 border-zinc-300 bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
         }
@@ -164,6 +187,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </aside>
   );
 }
+
 export default function LeftPanel() {
   return (
     <OuterPanel>
