@@ -156,7 +156,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     >
       {isMobile && <MobileHeader />}
       <section className="h-full w-full">{children}</section>
-
+      
       <div className="left-full top-2 flex flex-col space-y-20">
         <ShareButton panelReference={panelReference} />
         <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
