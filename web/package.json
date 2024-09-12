@@ -52,6 +52,8 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "html2canvas": "^1.4.1",
+    "use-react-screenshot": "^4.0.0",
     "@capacitor/app": "^6.0.1",
     "@capacitor/core": "^6.1.2",
     "@radix-ui/react-accordion": "^1.2.0",
