@@ -20,6 +20,27 @@ import { leftPanelOpenAtom } from './panelAtoms';
 const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
 
+const handleShareClick = async () => {
+  try {
+    // Fetch the local image (adjust the path to your image)
+    const response = await fetch('images/mocked-screenshot.png');
+    const blob = await response.blob();
+    console.log(blob);
+
+    // Check if the clipboard API and ClipboardItem are available
+    if (navigator.clipboard && window.ClipboardItem) {
+      const clipboardItem = new ClipboardItem({ 'image/png': blob });
+      await navigator.clipboard.write([clipboardItem]);
+
+      alert('Screenshot copied to clipboard!');
+    } else {
+      alert('Clipboard API not supported');
+    }
+  } catch (error) {
+    console.error('Failed to copy image to clipboard:', error);
+  }
+};
+
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
 
@@ -87,27 +108,6 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
 }
 
 function ShareButton() {
-  const handleShareClick = async () => {
-    try {
-      // Fetch the local image (adjust the path to your image)
-      const response = await fetch('images/mocked-screenshot.png');
-      const blob = await response.blob();
-      console.log(blob);
-
-      // Check if the clipboard API and ClipboardItem are available
-      if (navigator.clipboard && window.ClipboardItem) {
-        const clipboardItem = new ClipboardItem({ 'image/png': blob });
-        await navigator.clipboard.write([clipboardItem]);
-
-        alert('Screenshot copied to clipboard!');
-      } else {
-        alert('Clipboard API not supported');
-      }
-    } catch (error) {
-      console.error('Failed to copy image to clipboard:', error);
-    }
-  };
-
   return (
     <button
       data-test-id="share-button"
