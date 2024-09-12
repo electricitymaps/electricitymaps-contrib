@@ -112,8 +112,8 @@ jobs:
         run: |
           jsonlint -q web/src/locales/*.json
 
-  check-translation-files-out-of-sync:
-    name: Translations sync
+  validate_translation_files:
+    name: Frontend / Validate Translation Files
     needs: [setup]
     if: >-
       needs.setup.outputs.json != 'false' ||
