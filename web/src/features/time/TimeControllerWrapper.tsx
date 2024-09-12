@@ -23,7 +23,7 @@ function BottomSheetWrappedTimeController() {
   // But it still has to be rendered to avoid re-querying data and showing loading
   // indicators again. Therefore we set the snap points to 0 until modal is closed.
   const snapPoints = hasOnboardingBeenSeen && !isLoadingMap ? SNAP_POINTS : [0, 0];
-
+  return null;
   return (
     <BottomSheet
       scrollLocking={false} // Ensures scrolling is not blocked on IOS
