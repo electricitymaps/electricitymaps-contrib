@@ -19,7 +19,7 @@ import { useScreenshot } from 'use-react-screenshot';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
-import { leftPanelOpenAtom } from './panelAtoms';
+import { leftPanelOpenAtom, screenshotAtom } from './panelAtoms';
 
 const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
@@ -169,7 +169,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   const isMobile = useIsMobile();
   const panelReference = useRef<HTMLDivElement>(null);
   const [, takeScreenshot] = useScreenshot();
-  const [screenshot, setScreenshot] = useState<string | null>(null); // Store screenshot
+  const [screenshot, setScreenshot] = useAtom(screenshotAtom); // Store screenshot
 
   const captureScreenshot = async () => {
     if (panelReference.current) {

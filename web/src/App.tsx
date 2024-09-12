@@ -4,7 +4,6 @@ import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
-import { BottomSheet } from 'components/BottomSheet';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
