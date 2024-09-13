@@ -15,7 +15,7 @@ struct DayAheadTimelineProvider: IntentTimelineProvider {
   //  Providing dummy data to the system to render a placeholder UI while waiting for the widget to get ready.
   func placeholder(in context: Context) -> Entry {
     // This will be masked, so actual input does not matter
-    return DayAheadEntry(date: Date(), intensity: 200, zone: "DE")
+      return DayAheadEntry(date: Date(), zone: "DE", data: [DayAheadShape(hour: Date(), price: 0)])
   }
 
   // Provides data required to render the widget in the widget gallery (size/type selection page)
@@ -23,7 +23,7 @@ struct DayAheadTimelineProvider: IntentTimelineProvider {
     for configuration: CustomWidgetConfIntent, in context: Context,
     completion: @escaping (Entry) -> Void
   ) {
-    let entry = DayAheadEntry(date: Date(), intensity: 123, zone: "DK")
+      let entry = DayAheadEntry(date: Date(), zone: "DK", data: [DayAheadShape(hour: Date(), price: 3.26)])
     completion(entry)
   }
 
@@ -36,7 +36,7 @@ struct DayAheadTimelineProvider: IntentTimelineProvider {
       let zone = configuration.area ?? "?"
 
       if zone == "?" {
-        let entry = DayAheadEntry(date: Date(), intensity: nil, zone: nil)
+        let entry = DayAheadEntry(date: Date(), zone: nil, data: [DayAheadShape(hour: Date(), price: 0)])
         let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
       } else {
@@ -44,13 +44,13 @@ struct DayAheadTimelineProvider: IntentTimelineProvider {
         do {
           let nextHourStart = getNextHourStart()
 
-          let intensity = try await DataFetcher.fetchIntensity(zone: zone)
-          let entry = DayAheadEntry(date: Date(), intensity: intensity, zone: zone)
+          let data = try await DataFetcher.fetchDayAhead(zone: zone)
+            let entry = DayAheadEntry(date: Date(), zone: zone, data: data)
           let timeline = Timeline(entries: [entry], policy: .after(nextHourStart))
           completion(timeline)
         } catch {
           print("Error fetching intensity: \(error)")
-          let entry = DayAheadEntry(date: Date(), intensity: nil, zone: "?")
+          let entry = DayAheadEntry(date: Date(), zone: "?", data: [DayAheadShape(hour: Date(), price: 0)])
           let timeline = Timeline(entries: [entry], policy: .never)
           completion(timeline)
         }
@@ -87,8 +87,8 @@ struct DayAhead_Previews: PreviewProvider {
         DayAheadWidgetView(
         entry: DayAheadEntry(
           date: Date(),
-          intensity: 300,
-          zone: "DE")
+          zone: "DE",
+          data: [DayAheadShape(hour:Date(), price: 7.21)])
       )
       .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
