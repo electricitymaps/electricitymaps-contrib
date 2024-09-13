@@ -1,9 +1,10 @@
 import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
+import { loadingMapAtom } from 'features/map/mapAtoms';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { lazy, Suspense } from 'react';
+import { ChevronLeft, ChevronRight, Share2Icon } from 'lucide-react';
+import { forwardRef, lazy, RefObject, Suspense, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Navigate,
@@ -13,12 +14,85 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
+import { BottomSheet } from 'react-spring-bottom-sheet';
+import { useScreenshot } from 'use-react-screenshot';
+import { hasOnboardingBeenSeenAtom, isTakingScreenshotAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
-import { leftPanelOpenAtom } from './panelAtoms';
+import { leftPanelOpenAtom, screenshotAtom } from './panelAtoms';
 
 const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
+
+type ZoneDetailsProps = {
+  reference: RefObject<HTMLDivElement>;
+};
+const ZoneDetailsWrapper = forwardRef<
+  HTMLDivElement,
+  Omit<ZoneDetailsProps, 'reference'>
+>((props, zoneReference) => (
+  <Suspense fallback={<LoadingSpinner />}>
+    <ZoneDetails {...props} reference={zoneReference as RefObject<HTMLDivElement>} />
+  </Suspense>
+));
+ZoneDetailsWrapper.displayName = 'ZoneDetailsWrapper';
+
+const handleShareClick = async (screenshot: string) => {
+  try {
+    // Convert the base64 screenshot to a blob
+    const response = await fetch(screenshot);
+    const blob = await response.blob();
+
+    // Check if the clipboard API and ClipboardItem are available
+    if (navigator.clipboard && window.ClipboardItem) {
+      const clipboardItem = new ClipboardItem({ 'image/png': blob });
+      await navigator.clipboard.write([clipboardItem]);
+
+      alert('Screenshot copied to clipboard!');
+    } else {
+      alert('Clipboard API not supported');
+    }
+  } catch (error) {
+    console.error('Failed to copy image to clipboard:', error);
+  }
+};
+
+type ScrollableBottomSheetProps = {
+  screenshot: string;
+  isLoadingMap: boolean;
+  snapPoints: number[];
+};
+
+function ScrollableBottomSheet({
+  screenshot,
+  isLoadingMap,
+  snapPoints,
+}: ScrollableBottomSheetProps) {
+  return (
+    <BottomSheet
+      scrollLocking={false}
+      open={!isLoadingMap}
+      snapPoints={() => snapPoints}
+      blocking={false}
+      header={<div className="p-3 text-lg font-semibold ">Captured Screenshot:</div>}
+      style={{ zIndex: 10_000, maxWidth: '250px' }}
+    >
+      <div className="flex h-full  flex-col items-center ">
+        <div className="w-ful max-h-96 flex-grow overflow-y-auto p-4">
+          <img src={screenshot} alt="Screenshot" className=" w-full " />
+        </div>
+        <div className="w-full p-4">
+          <button
+            onClick={() => handleShareClick(screenshot)}
+            className="flex w-full items-center justify-center rounded-full bg-brand-green px-4 py-2 text-white transition-colors duration-300 hover:bg-brand-green-dark"
+          >
+            Share Story
+          </button>
+        </div>
+      </div>
+    </BottomSheet>
+  );
+}
 
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
@@ -74,7 +148,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
     <button
       data-test-id="left-panel-collapse-button"
       className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
+        'absolute left-full top-2 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-r-xl bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
       }
       onClick={onCollapse}
       aria-label={
@@ -95,12 +169,66 @@ function MobileHeader() {
   );
 }
 
-function OuterPanel({ children }: { children: React.ReactNode }) {
+function OuterPanel({
+  children,
+  panelReference,
+}: {
+  children: React.ReactNode;
+  panelReference: React.RefObject<HTMLDivElement>;
+}) {
   const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
   const location = useLocation();
   const isMobile = useIsMobile();
+  // const panelReference = useRef<HTMLDivElement>(null);
+  const [, takeScreenshot] = useScreenshot();
+  const [screenshot, setScreenshot] = useAtom(screenshotAtom); // Store screenshot
+  const [isTakingScreenShot, setIsTakingScreenshot] = useAtom(isTakingScreenshotAtom);
+  const timeoutReference = useRef<number | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timeoutReference.current) {
+        clearTimeout(timeoutReference.current);
+      }
+    },
+    [timeoutReference]
+  );
+
+  const captureScreenshot = async () => {
+    if (panelReference.current) {
+      setIsTakingScreenshot(true);
+
+      // Wait for the next render cycle
+      await new Promise<void>((resolve) => {
+        timeoutReference.current = window.setTimeout(() => {
+          resolve();
+        }, 0);
+      });
+
+      // Now take the screenshot
+      const img = await takeScreenshot(panelReference.current);
+      setScreenshot(img);
+      console.log('Screenshot captured:', img);
+      setIsTakingScreenshot(false);
+      return img;
+    }
+  };
 
   const onCollapse = () => setOpen(!isOpen);
+
+  const [isLoadingMap] = useAtom(loadingMapAtom);
+  const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
+  const safeAreaBottomString = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue('--sab');
+
+  const safeAreaBottom = safeAreaBottomString
+    ? Number.parseInt(safeAreaBottomString.replace('px', ''))
+    : 0;
+  const SNAP_POINTS = [60 + safeAreaBottom, 550 + safeAreaBottom];
+  const snapPoints = hasOnboardingBeenSeen && !isLoadingMap ? SNAP_POINTS : [0, 0];
+
+  console.log('panel ref', panelReference);
 
   return (
     <aside
@@ -111,13 +239,34 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     >
       {isMobile && <MobileHeader />}
       <section className="h-full w-full">{children}</section>
-      <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
+
+      <div className="left-full top-2 flex flex-col space-y-20">
+        <div>
+          <button
+            onClick={captureScreenshot}
+            className="absolute right-0 top-96 z-10 flex h-12 w-10 cursor-pointer items-center justify-center rounded-l-xl border-b-2 border-l-2 border-t-2 border-zinc-300 bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800"
+            aria-label="aria.label.showSidePanel"
+          >
+            <Share2Icon />
+          </button>
+        </div>
+        <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
+        {screenshot && (
+          <ScrollableBottomSheet
+            screenshot={screenshot}
+            isLoadingMap={isLoadingMap}
+            snapPoints={snapPoints}
+          />
+        )}
+      </div>
     </aside>
   );
 }
+
 export default function LeftPanel() {
+  const panelReference = useRef(null);
   return (
-    <OuterPanel>
+    <OuterPanel panelReference={panelReference}>
       <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
         <Route
@@ -125,7 +274,7 @@ export default function LeftPanel() {
           element={
             <ValidZoneIdGuardWrapper>
               <Suspense fallback={<LoadingSpinner />}>
-                <ZoneDetails />
+                <ZoneDetailsWrapper ref={panelReference} />
               </Suspense>
             </ValidZoneIdGuardWrapper>
           }
