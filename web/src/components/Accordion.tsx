@@ -3,6 +3,7 @@ import { PrimitiveAtom, useAtom } from 'jotai';
 import { ChevronDown, ChevronUp, LucideIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { isTakingScreenshotAtom } from 'utils/state/atoms';
 
 export default function Accordion({
   isCollapsedDefault = true,
@@ -27,16 +28,19 @@ export default function Accordion({
   isCollapsedAtom?: PrimitiveAtom<boolean>;
   isTopExpanding?: boolean;
 }) {
-  const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
-    ? useAtom(isCollapsedAtom)
-    : [null, null];
+  const [, setCollapsedAtom] = isCollapsedAtom ? useAtom(isCollapsedAtom) : [null, null];
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
+  const [isTakingScreenshot] = useAtom(isTakingScreenshotAtom);
 
   useEffect(() => {
-    if (collapsedAtom) {
-      setIsCollapsed(collapsedAtom);
+    if (isTakingScreenshot) {
+      setIsCollapsed(false);
+      setCollapsedAtom?.(false);
+    } else {
+      setIsCollapsed(true);
+      setCollapsedAtom?.(true);
     }
-  }, [collapsedAtom]);
+  }, [isTakingScreenshot, setCollapsedAtom]);
 
   const handleToggleCollapse = () => {
     onClick?.();
