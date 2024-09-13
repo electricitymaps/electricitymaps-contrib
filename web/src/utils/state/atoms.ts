@@ -85,3 +85,5 @@ export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
 export const screenshotReferenceAtom = atom<React.RefCallback<HTMLDivElement> | null>(
   null
 );
+
+export const isTakingScreenshotAtom = atom<boolean>(false);

@@ -1,6 +1,8 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { CountryFlag } from 'components/Flag';
+import { Link } from 'components/Link';
 import { TimeDisplay } from 'components/TimeDisplay';
+import Logo from 'features/header/Logo';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
@@ -11,6 +13,7 @@ import { getFullZoneName } from 'translation/translation';
 import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
+  isTakingScreenshotAtom,
   productionConsumptionAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
@@ -63,20 +66,23 @@ export default function BySource({
   );
   const { zoneId } = useParams();
   const zoneNameFull = zoneId ? getFullZoneName(zoneId) : null;
-
+  const [isTakingScreenShot, setIsTakingScreenshot] = useAtom(isTakingScreenshotAtom);
   return (
-    <div className="flex flex-col pb-1 pt-3">
-      {zoneId && (
-        <div>
-          <div className="flex w-full flex-row items-center">
+    <div className=" pt-2">
+      {zoneId && isTakingScreenShot && (
+        <>
+          <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2">
             <CountryFlag
               zoneId={zoneId}
-              size={18}
+              size={24}
               className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
             />
-            <h1 className="pl-2">{zoneNameFull}</h1>
+            <h1 className="mb-5 ">{zoneNameFull}</h1>
+            <Logo className="h-10 w-48 fill-black" />
           </div>
-        </div>
+
+          <Link href="app.electricitymaps.com">app.electricitymaps.com</Link>
+        </>
       )}
       <div
         className={`text-md relative flex flex-row justify-between font-bold ${className}`}

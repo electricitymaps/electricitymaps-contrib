@@ -4,7 +4,7 @@ import { loadingMapAtom } from 'features/map/mapAtoms';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
 import { ChevronLeft, ChevronRight, Share2Icon } from 'lucide-react';
-import { forwardRef, lazy, RefObject, Suspense, useRef } from 'react';
+import { forwardRef, lazy, RefObject, Suspense, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Navigate,
@@ -16,7 +16,7 @@ import {
 } from 'react-router-dom';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import { useScreenshot } from 'use-react-screenshot';
-import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
+import { hasOnboardingBeenSeenAtom, isTakingScreenshotAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom, screenshotAtom } from './panelAtoms';
@@ -73,11 +73,11 @@ function ScrollableBottomSheet({
       scrollLocking={false}
       open={!isLoadingMap}
       snapPoints={() => snapPoints}
-      blocking={true}
-      header={<div className="p-3 text-lg font-semibold">Captured Screenshot:</div>}
-      style={{ zIndex: 10_000 }}
+      blocking={false}
+      header={<div className="p-3 text-lg font-semibold ">Captured Screenshot:</div>}
+      style={{ zIndex: 10_000, maxWidth: '250px' }}
     >
-      <div className="flex h-full flex-col items-center">
+      <div className="flex h-full  flex-col items-center ">
         <div className="w-ful max-h-96 flex-grow overflow-y-auto p-4">
           <img src={screenshot} alt="Screenshot" className=" w-full " />
         </div>
@@ -182,12 +182,34 @@ function OuterPanel({
   // const panelReference = useRef<HTMLDivElement>(null);
   const [, takeScreenshot] = useScreenshot();
   const [screenshot, setScreenshot] = useAtom(screenshotAtom); // Store screenshot
+  const [isTakingScreenShot, setIsTakingScreenshot] = useAtom(isTakingScreenshotAtom);
+  const timeoutReference = useRef<number | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timeoutReference.current) {
+        clearTimeout(timeoutReference.current);
+      }
+    },
+    [timeoutReference]
+  );
 
   const captureScreenshot = async () => {
     if (panelReference.current) {
+      setIsTakingScreenshot(true);
+
+      // Wait for the next render cycle
+      await new Promise<void>((resolve) => {
+        timeoutReference.current = window.setTimeout(() => {
+          resolve();
+        }, 0);
+      });
+
+      // Now take the screenshot
       const img = await takeScreenshot(panelReference.current);
       setScreenshot(img);
       console.log('Screenshot captured:', img);
+      setIsTakingScreenshot(false);
       return img;
     }
   };
@@ -203,7 +225,7 @@ function OuterPanel({
   const safeAreaBottom = safeAreaBottomString
     ? Number.parseInt(safeAreaBottomString.replace('px', ''))
     : 0;
-  const SNAP_POINTS = [60 + safeAreaBottom, 500 + safeAreaBottom];
+  const SNAP_POINTS = [60 + safeAreaBottom, 550 + safeAreaBottom];
   const snapPoints = hasOnboardingBeenSeen && !isLoadingMap ? SNAP_POINTS : [0, 0];
 
   console.log('panel ref', panelReference);

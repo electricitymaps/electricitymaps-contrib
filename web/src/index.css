@@ -71,6 +71,9 @@
   --rsbs-bg: theme(colors.gray.800);
   --rsbs-handle-bg: rgba(255, 255, 255, 0.2);
 }
+[data-rsbs-root] {
+  --rsbs-max-w: 410px;
+}
 [data-rsbs-header] {
   padding-bottom: 0;
   box-shadow: none;
