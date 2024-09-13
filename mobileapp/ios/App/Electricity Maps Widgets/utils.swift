@@ -22,3 +22,10 @@ func getNextHourStart() -> Date {
 
   return nextHourStartDate
 }
+
+
+// Helper function to convert ISO 8601 strings to Date
+func iso8601Date(from string: String) -> Date? {
+    let isoFormatter = ISO8601DateFormatter()
+    return isoFormatter.date(from: string)
+}
