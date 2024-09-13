@@ -170,11 +170,11 @@
 			children = (
 				F7DF63FB2AFE7E2F0012D585 /* Electricity_Maps_WidgetsBundle.swift */,
 				F7DF63FD2AFE7E2F0012D585 /* CO2IntensityWidget.swift */,
+				F7DF64102AFE7F0C0012D585 /* CO2IntensityWidgetView.swift */,
+				F7C37B9A2C92EE8300887E3D /* DayAheadWidget.swift */,
 				F7C37B9D2C92EE9900887E3D /* DayAheadWidgetView.swift */,
 				F7DF63FF2AFE7E300012D585 /* Electricity_Maps_Widgets.intentdefinition */,
-				F7C37B9A2C92EE8300887E3D /* DayAheadWidget.swift */,
 				F7DF640D2AFE7EA80012D585 /* api.swift */,
-				F7DF64102AFE7F0C0012D585 /* CO2IntensityWidgetView.swift */,
 				F7BC622F2AFED06D0003B125 /* utils.swift */,
 				F7BC622D2AFECEB90003B125 /* colors.swift */,
 				F7DF64002AFE7E320012D585 /* Assets.xcassets */,
