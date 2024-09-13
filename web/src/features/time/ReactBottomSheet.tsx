@@ -1,5 +1,6 @@
-import { createBottomSheet } from 'bottom-sheet-dialog';
 import React, { useEffect, useRef } from 'react';
+
+import { createBottomSheet } from './BottomSheet';
 
 interface ReactBottomSheetProps {
   children: React.ReactNode;
@@ -15,7 +16,6 @@ export function ReactBottomSheet({
   excludeElementRef,
 }: ReactBottomSheetProps) {
   const bottomSheetReference = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (bottomSheetReference.current) {
       const bottomSheet = createBottomSheet(bottomSheetReference.current, {

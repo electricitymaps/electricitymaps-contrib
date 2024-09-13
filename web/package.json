@@ -72,7 +72,6 @@
     "@tanstack/react-query": "5.55.4",
     "@tanstack/react-virtual": "^3.10.7",
     "@turf/helpers": "^6.5.0",
-    "bottom-sheet-dialog": "^1.0.0",
     "@visx/group": "^3.3.0",
     "@visx/shape": "^3.5.0",
     "@visx/text": "^3.3.0",

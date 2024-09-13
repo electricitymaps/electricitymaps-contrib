@@ -14,14 +14,29 @@ export interface BottomSheetProps extends BottomSheetEvents {
 
 function createBackdropElement(bgColor: string): HTMLDivElement {
   const backdrop = document.createElement('div');
-  Object.assign(backdrop.style, {
-    position: 'absolute',
-    left: '0',
-    right: '0',
-    bottom: '0',
-    backgroundColor: bgColor,
-    transition: 'height 0.3s ease-out',
-  });
+  const hasTailwindBackground = bgColor.includes('bg-');
+
+  if (!hasTailwindBackground) {
+    Object.assign(backdrop.style, {
+      position: 'absolute',
+      left: '0',
+      right: '0',
+      bottom: '0',
+      backgroundColor: bgColor,
+      transition: 'height 0.3s ease-out',
+    });
+  }
+  if (hasTailwindBackground) {
+    Object.assign(backdrop.style, {
+      position: 'absolute',
+      left: '0',
+      right: '0',
+      bottom: '0',
+      transition: 'height 0.3s ease-out',
+    });
+    backdrop.classList.add(bgColor);
+  }
+
   return backdrop;
 }
 
@@ -40,6 +55,7 @@ function isExcludedElement(props: BottomSheetProps, target: EventTarget | null):
 
 export function createBottomSheet(element: HTMLElement, props: BottomSheetProps) {
   const { backgroundColor = 'white' } = props;
+
   const state = {
     currentSnap: 0,
     childrenHeight: 0,
@@ -285,11 +301,6 @@ export function createBottomSheet(element: HTMLElement, props: BottomSheetProps)
   function setSnap(snapIndex: number): void {
     state.currentSnap = snapIndex;
     const snapValue = state.snapPointsWithChildHeight[snapIndex];
-    console.log(
-      'snapPointswithChildHeight',
-      state.snapPointsWithChildHeight,
-      state.currentSnap
-    );
 
     setHeight(snapValue);
     props.onSnap?.(snapIndex);
@@ -312,6 +323,18 @@ export function createBottomSheet(element: HTMLElement, props: BottomSheetProps)
     snapTo,
     destroy: () => {
       removeListeners();
+      backdropElement.remove();
+      // Reset styles
+      element.style.position = '';
+      element.style.bottom = '';
+      element.style.left = '';
+      element.style.right = '';
+      element.style.touchAction = '';
+      element.style.transition = '';
+      element.style.height = '';
+      // Remove accessibility attributes
+      element.removeAttribute('role');
+      element.removeAttribute('aria-modal');
     },
   };
 }
