@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { createBottomSheet } from './BottomSheet';
 
@@ -16,19 +16,38 @@ export function ReactBottomSheet({
   excludeElementRef,
 }: ReactBottomSheetProps) {
   const bottomSheetReference = useRef<HTMLDivElement>(null);
+  const bottomSheetInstanceReference = useRef<ReturnType<
+    typeof createBottomSheet
+  > | null>(null);
+  const [currentSnapIndex, setCurrentSnapIndex] = useState(0);
+
   useEffect(() => {
     if (bottomSheetReference.current) {
-      const bottomSheet = createBottomSheet(bottomSheetReference.current, {
-        snapPoints,
-        backgroundColor,
-        excludeElement: excludeElementRef?.current || undefined,
-      });
+      bottomSheetInstanceReference.current = createBottomSheet(
+        bottomSheetReference.current,
+        {
+          snapPoints,
+          backgroundColor,
+          excludeElement: excludeElementRef?.current || undefined,
+          onSnap: (snapIndex) => {
+            setCurrentSnapIndex(snapIndex);
+          },
+        }
+      );
 
       return () => {
-        bottomSheet.destroy();
+        if (bottomSheetInstanceReference.current) {
+          bottomSheetInstanceReference.current.destroy();
+        }
       };
     }
   }, [snapPoints, backgroundColor, excludeElementRef]);
+
+  useEffect(() => {
+    if (bottomSheetInstanceReference.current) {
+      bottomSheetInstanceReference.current.snapTo(currentSnapIndex);
+    }
+  }, [snapPoints, currentSnapIndex]);
 
   return <div ref={bottomSheetReference}>{children}</div>;
 }
