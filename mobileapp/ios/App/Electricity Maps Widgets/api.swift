@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import WidgetKit
+import CryptoKit
 
 struct APIResponse: Decodable {
   let _disclaimer: String
@@ -42,21 +43,51 @@ struct APIResponseDayAhead: Decodable {
 }
 
 struct DataFetcher {
+    static func fetchDayAhead(zone: String) async throws -> [DayAheadShape] {
+        // TODO: Validate zone name here?
+         let url = URL(string: "https://app-backend.electricitymap.org/v8/details/hourly/\(zone)")!
 
-    static func fetchDayAhead(zone: String) async throws -> Int {
-        // TODO: Make this work with the actual backend with authentication
-        let url = URL(string: "http://localhost:8001/v8/details/hourly/\(zone)")!
-        // let url = URL(string: "https://app-backend.electricitymap.org/v8/details/hourly/\(zone)")!
-        // let path = ...
-        // let token = ...
-        // let timestamp = String(Date().timeIntervalSince1970)
-        // url.addValue("x-request-timestamp", forHTTPHeaderField: timestamp)
-        // url.addValue("x-signature", forHTTPHeaderField: getHeaders(path: "/v8/details/hourly/\(zone)", timestamp: timestamp, token: token))
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let path = "/v8/details/hourly/\(zone)"
+        
+        guard let apiToken = ProcessInfo.processInfo.environment["APP_BACKEND_TOKEN"] else {
+            print("API Token not set")
+            throw NSError(domain: "FetchErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "APP_BACKEND_TOKEN is missing from environment variables."])
+        }
+        
+        let timestamp = String(Int(Date().timeIntervalSince1970 * 1000))
+        let dataToHash = "\(apiToken)\(path)\(timestamp)".utf8
+        let hash = SHA256.hash(data: Data(dataToHash)).compactMap { String(format: "%02x", $0) }.joined()
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        request.addValue(timestamp, forHTTPHeaderField: "x-request-timestamp")
+        request.addValue(hash, forHTTPHeaderField: "x-signature")
+        
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        // Check and print the status code
+       if let httpResponse = response as? HTTPURLResponse {
+           print("Status code: \(httpResponse.statusCode)")
+       } else {
+           print("Failed to get HTTPURLResponse")
+       }
+        
+        
         let result = try JSONDecoder().decode(APIResponseDayAhead.self, from: data)
+        
+        
+        let shapes = result.data.futurePrice.priceData.compactMap { (hour, price) -> DayAheadShape? in
+            if let date = iso8601Date(from: hour) {
+                return DayAheadShape(hour: date, price: Double(price), currency: result.data.futurePrice.currency)
+            } else {
+                print("Invalid date string: \(hour)")
+                return nil // Exclude invalid date entries
+            }
+        }
+        let sortedShapes = shapes.sorted { $0.hour < $1.hour }
 
-        // TODO: Return the full list in an appropriate format for the view to show
-        return Int(result.data.futurePrice.entryCount)
+        return sortedShapes
     }
     static func fetchIntensity(zone: String) async throws -> Int {
         // TODO: Validate zone name here
