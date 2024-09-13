@@ -1,5 +1,4 @@
 // Init CSS
-import 'react-spring-bottom-sheet/dist/style.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './index.css';
 
