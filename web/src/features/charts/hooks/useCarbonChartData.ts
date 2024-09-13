@@ -11,7 +11,7 @@ export function useCarbonChartData() {
   const co2ColorScale = useCo2ColorScale();
   const [mixMode] = useAtom(productionConsumptionAtom);
 
-  if (isLoading || isError) {
+  if (isLoading || isError || !data) {
     return { isLoading, isError };
   }
 

@@ -1,8 +1,8 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
-import { PlugCircleBoltIcon } from 'icons/plugCircleBoltIcon';
 import { useAtom } from 'jotai';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
@@ -64,12 +64,16 @@ export default function BySource({
         className={`text-md relative flex flex-row justify-between font-bold ${className}`}
       >
         <div className="flex gap-1">
-          <div className="pt-0.5">
-            <PlugCircleBoltIcon />
-          </div>
           <h2>{text}</h2>
         </div>
-        {hasEstimationPill && <EstimationBadge text={pillText} />}
+        {hasEstimationPill && (
+          <EstimationBadge
+            text={pillText}
+            Icon={
+              estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
+            }
+          />
+        )}
       </div>
       {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>

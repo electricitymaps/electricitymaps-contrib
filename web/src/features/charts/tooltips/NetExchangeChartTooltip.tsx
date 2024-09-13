@@ -26,11 +26,11 @@ export default function NetExchangeChartTooltip({
 
   const unit = displayByEmissions ? t('ofCO2eq') : powerUnit;
   const value = displayByEmissions
-    ? formatCo2(Math.abs(netExchange))
+    ? formatCo2({ value: Math.abs(netExchange) })
     : Math.abs(round(netExchange / formattingFactor));
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[350px] dark:border dark:border-gray-700 dark:bg-gray-800">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}

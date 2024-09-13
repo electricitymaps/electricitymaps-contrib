@@ -38,12 +38,12 @@
     "aggregatedTooltip": "Data for denne sonen er aggregert fra historiske verdier for hver time",
     "aggregationDisabled": "Data er ikke tilgjengelig for det valgte tidsrom på grunn av manglende detaljnivå på tidsserie. Velg en lengre tidsperiode.",
     "by-source": {
-      "electricity-consumption": "Elektrisitetsforbruk etter kilde",
-      "electricity-production": "Elektrisitetsproduksjon etter kilde",
-      "emissions": "Karbonutslipp etter kilde",
-      "total-electricity-consumption": "Samlet elektrisitetsforbruk etter kilde",
-      "total-electricity-production": "Samlet elektrisitetsproduksjon etter kilde",
-      "total-emissions": "Samlet karbonutslipp etter kilde"
+      "electricity-consumption": "Elektrisitetsforbruk",
+      "electricity-production": "Elektrisitetsproduksjon",
+      "emissions": "Karbonutslipp",
+      "total-electricity-consumption": "Samlet elektrisitetsforbruk",
+      "total-electricity-production": "Samlet elektrisitetsproduksjon",
+      "total-emissions": "Samlet karbonutslipp"
     },
     "carbonintensity": "CO₂-intensitet",
     "dataIsDelayed": "Data fra denne regionen kan være {{hours}} timer forsinka. Sanntidsdata kan derfor ikke vises.",
@@ -51,9 +51,6 @@
     "disabledPriceReasons": {
       "licensing": "Elektrisitetspriser er utilgjengelige for dette området på grunn av rettighetsbegrensninger"
     },
-    "electricityconsumption": "Strømforbruk",
-    "electricityproduction": "Strømproduksjon",
-    "emissions": "CO₂-utslipp",
     "estimated": "anslag",
     "estimatedTooltip": "Sanntidsdata for denne sonen er estimert fra kilden basert på antagelser i modellen.",
     "exchangesAreMissing": "Utveksling er tatt hensyn til i kalkulasjonene en vises for tiden ikke. Les mer om våre historiske aggregeringer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
@@ -76,14 +73,6 @@
     "dataOrigins-question": "Hvordan får dere tak i dataene?",
     "groupName": "Våre data"
   },
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> av elektrisitet i {{zoneFlag}} <b>{{zoneName}}</b> lagres gjennom {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> kommer fra {{selectedLayerKey}}",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> eksporteres til {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> importeres fra {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> av CO₂-utslipp i {{zoneFlag}} <b>{{zoneName}}</b> lagres gjennom {{selectedLayerKey}}",
   "footer": {
     "faq": "ofte stilte spørsmål",
     "faq-text": "Er som er vanskelig å forstå? Se de",
@@ -94,21 +83,22 @@
   "geothermal": "Jordvarme",
   "hydro": "Vannkraft",
   "hydro storage": "Pumpekraftverk",
-  "info-modal": {
-    "feedback-button": "Send tilbakemelding",
-    "github-button": "Se på GitHub",
-    "intro-text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
-    "legal-notice": "Juridisk",
-    "open-source-text": "Tjenesten er <a href=\"{{link}}\" target=\"_blank\">åpen kildekode</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">se datakilder</a>) og utviklet i samarbeid med frivillige.",
-    "privacy-policy": "Personvern",
-    "slack-button": "Bli med i Slack-kanalen",
-    "title": "info",
-    "twitter-button": "Del på X/Twitter"
+  "info": {
+    "text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
+    "open-source-text": "Tjenesten er <a href='{{link}}' target='_blank'>åpen kildekode</a> og utviklet i samarbeid med frivillige."
   },
-  "left-panel": {
+  "button": {
+    "privacy-policy": "Personvern",
+    "legal-notice": "Juridisk",
+    "slack": "Bli med i Slack-kanalen",
+    "twitter": "Del på X/Twitter",
+    "feedback": "Send tilbakemelding",
+    "github": "Se på GitHub"
+  },
+  "ranking-panel": {
     "search": "Søk etter land/region",
-    "zone-list-header-subtitle": "Sortert etter CO₂-intensitet fra strømforbruk (gCO₂eq/kWh)",
-    "zone-list-header-title": "Hver regions klimapåvirkning"
+    "subtitle": "Sortert etter CO₂-intensitet fra strømforbruk (gCO₂eq/kWh)",
+    "title": "Hver regions klimapåvirkning"
   },
   "legends": {
     "carbonintensity": "CO₂-intensitet",
@@ -192,13 +182,6 @@
       "text": "Vind- og solenergiproduksjon er væravhengig. Klikk på sol- og vind-knappene for å få oversikt over forholdene for solskinn og vind i verden akkurat nå."
     }
   },
-  "panel-initial-text": {
-    "contribute": "Bidra ved å <a href=\"{{link}}\" target=\"_blank\">legge til data for ditt område</a>",
-    "datasources": "kildekode",
-    "opensource": "åpen kildekode",
-    "see": "se",
-    "thisproject": "Prosjektet er"
-  },
   "settings-modal": {
     "title": "Innstillinger"
   },
@@ -222,9 +205,6 @@
     "light": "Dagmodus",
     "system": "Systeminnstillinger"
   },
-  "time-controller": {
-    "title": "Vis historiske data"
-  },
   "tooltips": {
     "aggregateInfo": "Bytt mellom sone og aggregert visning av land",
     "carbonintensity": "CO₂-intensitet",
@@ -238,15 +218,15 @@
     "hideSolarLayer": "Skjul sol",
     "hideWindLayer": "Skjul vind",
     "importing": "Importerer",
-    "lowCarbDescription": "Inkluderer fornybar og kjernekraft",
-    "lowcarbon": "Lavutslipp (CO₂)",
+    "zoneHeader": {
+      "lowcarbon": "Inkluderer fornybar og kjernekraft"
+    },
     "netExchange": "Netto utveksling",
     "noParserInfo": "Ingen data tilgjengelig",
     "ofemissions": "av utslipp",
     "ofinstalled": "av installeret kapasitet",
     "price": "Pris",
     "production": "produksjon",
-    "renewable": "Fornybar",
     "representing": "representerer",
     "selectLanguage": "Bytt språk",
     "showSolarLayer": "Vis sol",

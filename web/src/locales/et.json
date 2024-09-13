@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "See app on",
-    "opensource": "avatud lähtekoodiga",
-    "see": "vaadake",
-    "datasources": "andmeallikaid",
-    "contribute": "Aidake kaasa <a href=\"{{link}}\" target=\"_blank\">lisades enda piirkond</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Piirkonnad",
@@ -33,9 +26,6 @@
     "carbonintensity": "Süsiniku intensiivsus",
     "lowcarbon": "Vähese süsinikuga",
     "renewable": "Taastuv",
-    "electricityproduction": "Elektritootmine",
-    "electricityconsumption": "Elektritarbimine",
-    "emissions": "Süsinikheitmed",
     "helpfrom": "koos aitajatega",
     "noDataAtTimestamp": "Andmed pole valitud aja jooksul ajutiselt saadaval",
     "noLiveData": "Muutuvad andmed pole selles piirkonnas ajutiselt saadaval",
@@ -43,9 +33,9 @@
     "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"{{link}}\" target=\"_blank\">lisades piirkonna andmed</a>.",
     "now": "Äsja"
   },
-  "left-panel": {
-    "zone-list-header-title": "Kliimamõju piirkonniti",
-    "zone-list-header-subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Kliimamõju piirkonniti",
+    "subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
     "search": "Otsige piirkondi"
   },
   "footer": {
@@ -62,8 +52,9 @@
   },
   "tooltips": {
     "carbonintensity": "Süsiniku intensiivsus",
-    "lowcarbon": "Vähese süsinikuga",
-    "renewable": "Taastuv",
+    "zoneHeader": {
+      "lowcarbon": "Sisaldab taastuvenergiaid ja tuumaenergiat"
+    },
     "crossborderexport": "Piiriülene eksport",
     "carbonintensityexport": "Ekspordi süsiniku intensiivsus",
     "ofinstalled": "saadaolevast võimsusest",
@@ -82,7 +73,6 @@
     "consumption": "tarbimine",
     "cpinfo": "<b>tarbimine</b> võtab arvesse impordi ja ekspordi, <b>tootmine</b> eirab neid",
     "selectLanguage": "Vali keel",
-    "lowCarbDescription": "Sisaldab taastuvenergiaid ja tuumaenergiat",
     "dataIsDelayed": "Andmed viibivad"
   },
   "misc": {
@@ -103,14 +93,6 @@
   "coal": "süsi",
   "oil": "õli",
   "unknown": "teadmata",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> imporditakse riigist {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> imporditakse riigist {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Kaart",
     "mapColors-question": "Mida värvid kaardil tähistavad?",

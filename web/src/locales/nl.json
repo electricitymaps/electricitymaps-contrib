@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Deze app is",
-    "opensource": "Open Source",
-    "see": "zie",
-    "datasources": "databronnen",
-    "contribute": "Draag bij door <a href=\"{{link}}\" target=\"_blank\">jouw land toe te voegen</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Gebieden",
@@ -16,17 +9,15 @@
     "lowcarbon": "Lage-uitstoot",
     "renewable": "Hernieuwbaar",
     "carbonintensity": "Koolstofintensiteit",
-    "electricityproduction": "Elektriciteitsproductie",
-    "emissions": "CO₂ uitstoot",
     "helpfrom": "met de hulp van",
     "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
     "noLiveData": "Live data is tijdelijk niet beschikbaar voor dit gebied",
     "noParserInfo": "We hebben op dit moment geen informatie over dit gebied.<br/> Wil je dit helpen oplossen? Help mee door <a href=\"{{link}}\" target=\"_blank\">gebiedsinformatie toe te voegen</a>.",
     "now": "Nu"
   },
-  "left-panel": {
-    "zone-list-header-title": "Invloed op klimaat per Gebied",
-    "zone-list-header-subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Invloed op klimaat per Gebied",
+    "subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO₂eq/kWh)",
     "search": "Zoek gebieden"
   },
   "footer": {
@@ -56,8 +47,7 @@
     "production": "productie",
     "consumption": "consumptie",
     "cpinfo": "<b>consumptie</b> houdt rekening met in- en uitvoer, <b>productie</b> doet dat niet",
-    "selectLanguage": "Selecteer taal",
-    "lowCarbDescription": "Inclusief hernieuwbaar en nucleair"
+    "selectLanguage": "Selecteer taal"
   },
   "updatePrompt": {
     "title": "Update beschikbaar",
@@ -83,14 +73,6 @@
   "coal": "steen-/bruinkool",
   "oil": "olie",
   "unknown": "onbekend",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> van de elektriciteit in {{zoneFlag}} <b>{{zoneName}}</b> is afkomstig van {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> van de uitstoot in {{zoneFlag}} <b>{{zoneName}}</b> is afkomstig van {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> van de elektriciteit in {{zoneFlag}} <b>{{zoneName}}</b> wordt opgeslagen dmv {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> van de uitstoot in {{zoneFlag}} <b>{{zoneName}}</b> wordt opgeslagen dmv {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> van de elektriciteit in {{zoneFlag}} <b>{{zoneName}}</b> wordt uitgevoerd naar {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> van de uitstoot in {{zoneFlag}} <b>{{zoneName}}</b> wordt uitgevoerd naar {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> van de elektriciteit in {{zoneFlag}} <b>{{zoneName}}</b> wordt ingevoerd vanuit {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> van de uitstoot in {{zoneFlag}} <b>{{zoneName}}</b> wordt ingevoerd vanuit {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AL": {
       "zoneName": "Albanië"

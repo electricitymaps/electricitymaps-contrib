@@ -1,20 +1,10 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Этот проект",
-    "opensource": "Open Source",
-    "see": "см.",
-    "datasources": "источники данных",
-    "contribute": "Помочь проекту <a href=\"{{link}}\" target=\"_blank\">добавив свою территорию</a>"
-  },
   "country-panel": {
     "source": "источник",
     "carbonintensity": "интенсивность выбросов CO₂ (CO₂эк/кВт⋅ч)",
     "lowcarbon": "с низким уровнем CO₂",
     "renewable": "ВИЭ",
-    "electricityproduction": "производство электричества",
-    "emissions": "эмиссии CO₂эк",
     "helpfrom": "с помощью",
-    "electricityconsumption": "Потребление электричества",
     "noDataAtTimestamp": "Данные временно недоступны в указанном промежутке времени",
     "noLiveData": "Актуализированные данные временно недоступны для данной зоны",
     "estimated": "приближенные данные",
@@ -26,15 +16,14 @@
     "now": "Сейчас"
   },
   "time-controller": {
-    "title": "Показать исторические данные",
     "daily": "по дням",
     "hourly": "по часам",
     "monthly": "по месяцам",
     "yearly": "по годам"
   },
-  "left-panel": {
-    "zone-list-header-title": "Влияние зон на климат",
-    "zone-list-header-subtitle": "Сортированы по интенсивности CO₂ (CO₂эк/кВт⋅ч)",
+  "ranking-panel": {
+    "title": "Влияние зон на климат",
+    "subtitle": "Сортированы по интенсивности CO₂ (CO₂эк/кВт⋅ч)",
     "search": "Найти зону"
   },
   "footer": {
@@ -51,8 +40,9 @@
   },
   "tooltips": {
     "carbonintensity": "Интенсивность выбросов CO₂",
-    "lowcarbon": "низкий уровень CO₂",
-    "renewable": "ВИЭ",
+    "zoneHeader": {
+      "lowcarbon": "Включая возобновляемые и ядерные источники"
+    },
     "crossborderexport": "Экспорт через границу",
     "carbonintensityexport": "Интенсивность выбросов CO₂ экспорта",
     "ofinstalled": "установленной мощности",
@@ -70,8 +60,7 @@
     "production": "производство",
     "consumption": "потребление",
     "cpinfo": "<b>потребление</b> берет в расчет импорт и экспорт энергии, <b>производство</b> не учитывает эти данные",
-    "selectLanguage": "Выбрать язык",
-    "lowCarbDescription": "Включая возобновляемые и ядерные источники"
+    "selectLanguage": "Выбрать язык"
   },
   "misc": {
     "maintitle": "Эмиссии CO₂ производства электроенергии в реальном времени",
@@ -91,14 +80,6 @@
   "coal": "уголь",
   "oil": "нефтепродукты",
   "unknown": "неизвестно",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> доступного электричества зоны {{zoneFlag}} <b>{{zoneName}}</b> вырабатываются на базе (топлива) <b>{{selectedZoneName}}</b>",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> эмисии CO₂ зоны {{zoneFlag}} <b>{{zoneName}}</b> выпущены из-за использования (топлива) <b>{{selectedZoneName}}</b>",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> доступного электричества зоны {{zoneFlag}} <b>{{zoneName}}</b> использованы для аккумуляции в {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> эмисии CO₂ зоны {{zoneFlag}} <b>{{zoneName}}</b> выпущены из-за аккумуляции в {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> доступного электричества зоны {{zoneFlag}} <b>{{zoneName}}</b> экспортируются в зону {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> эмисии CO₂ зоны {{zoneFlag}} <b>{{zoneName}}</b> экспортируются в зону {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> доступного электричества зоны {{zoneFlag}} <b>{{zoneName}}</b> имспортируются из зоны {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> эмисии CO₂ зоны {{zoneFlag}} <b>{{zoneName}}</b> импортируются из зоны {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AD": {
       "zoneName": "Андорра"

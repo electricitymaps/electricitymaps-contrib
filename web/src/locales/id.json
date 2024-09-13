@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "App ini",
-    "opensource": "terbuka",
-    "see": "lihat",
-    "datasources": "sumber data",
-    "contribute": "Kontribusi oleh <a href=\"{{link}}\" target=\"_blank\">tambahkan teritori Kamu</a>"
-  },
   "mobile-main-menu": {
     "map": "Peta Kelistrikan",
     "areas": "Area",
@@ -33,18 +26,15 @@
     "carbonintensity": "Intensitas Karbon",
     "lowcarbon": "Karbon-rendah",
     "renewable": "Terbarukan",
-    "electricityproduction": "Produksi listrik",
-    "electricityconsumption": "Konsumsi Listrik",
-    "emissions": "Emisi Karbon",
     "helpfrom": "dengan bantuan dari",
     "noDataAtTimestamp": "Data belum tersedia pada waktu yang dipilih",
     "noLiveData": "Data belum tersedia pada area yang dipilih",
     "noParserInfo": "Kami tidak mempunyai informasi lebih lanjut tentang area yang dipilih.<br/> Ingin memperbaikinya? Kamu bisa berkontribusi dengan <a href=\"{{link}}\" target=\"_blank\">menambahkan data area</a>.",
     "now": "Sekarang"
   },
-  "left-panel": {
-    "zone-list-header-title": "Dampak klimatologi berdasarkan area",
-    "zone-list-header-subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Dampak klimatologi berdasarkan area",
+    "subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
     "search": "Cari area"
   },
   "footer": {
@@ -61,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "Intensitas Karbon",
-    "lowcarbon": "Karbon-rendah",
-    "renewable": "Terbarukan",
     "crossborderexport": "Ekspor lintas batas",
     "carbonintensityexport": "Intensitas Karbon yang dikeluarkan",
     "ofinstalled": "dalam kapasitas yang dipasang",
@@ -98,14 +86,6 @@
   "coal": "batu bara",
   "oil": "minyak",
   "unknown": "tidak diketahui",
-  "electricityComesFrom": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> berasal dari {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> berasal dari {{selectedLayerKey}}",
-  "electricityStoredUsing": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> tersimpan menggunakan {{selectedLayerKey}}",
-  "emissionsStoredUsing": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> tersimpan menggunakan {{selectedLayerKey}}",
-  "electricityExportedTo": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diekspor ke {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diekspor ke {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diimport dari {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{percentageUsage}} % emisi energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diimport dari {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Peta",
     "mapColors-question": "Apa arti dari warna di dalam peta?",

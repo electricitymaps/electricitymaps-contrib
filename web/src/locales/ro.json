@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Acest app este",
-    "opensource": "Open Source",
-    "see": "vezi",
-    "datasources": "surse de date",
-    "contribute": "Contribuie prin <a href=\"{{link}}\" target=\"_blank\">adăugarea teritoriului tău</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Zone",
@@ -33,9 +26,9 @@
     "carbonintensity": "Concentrația de dioxid de carbon",
     "lowcarbon": "Carbon redus",
     "renewable": "Energie regenerabilă",
-    "electricityproduction": "Producția de electricitate",
-    "electricityconsumption": "Consumul de electricitate",
-    "emissions": "Emisii de carbon",
+    "electricityproduction": "Producție",
+    "electricityconsumption": "Consum",
+    "emissions": "Emisii",
     "helpfrom": "cu ajutor de la",
     "noDataAtTimestamp": "Datele sunt indisponibile pentru perioada aleasă",
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",
@@ -43,9 +36,21 @@
     "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href=\"{{link}}\" target=\"_blank\">date pentru zonă</a>.",
     "now": "Acum"
   },
-  "left-panel": {
-    "zone-list-header-title": "Impact asupra climei în funcție de zonă",
-    "zone-list-header-subtitle": "În ordinea concentrației de dioxid de carbon a electricității consumate (gCO₂eq/kWh)",
+  "time-controller": {
+    "title": {
+      "hourly": "Date orare pentru:",
+      "daily": "Date zilnice pentru:",
+      "monthly": "Date lunare pentru:",
+      "yearly": "Date anuale pentru:"
+    },
+    "daily": "pe zi",
+    "hourly": "pe oră",
+    "monthly": "pe luna",
+    "yearly": "pe an"
+  },
+  "ranking-panel": {
+    "title": "Impact asupra climei în funcție de zonă",
+    "subtitle": "În ordinea concentrației de dioxid de carbon a electricității consumate (gCO₂eq/kWh)",
     "search": "Căutați zone"
   },
   "footer": {
@@ -62,8 +67,9 @@
   },
   "tooltips": {
     "carbonintensity": "Concentrația de dioxid de carbon",
-    "lowcarbon": "Carbon-redus",
-    "renewable": "Energie regenerabilă",
+    "zoneHeader": {
+      "lowcarbon": "Include energie regenerabilă și nucleară"
+    },
     "crossborderexport": "Export peste granițe",
     "carbonintensityexport": "Concentrația de dioxid de carbon a exportului",
     "ofinstalled": "din capacitatea instalată",
@@ -84,7 +90,6 @@
     "consumption": "consum",
     "cpinfo": "<b>consumul</b> ia în vedere importul și exportul, <b>producția</b> le ignoră",
     "selectLanguage": "Alegeți limba",
-    "lowCarbDescription": "Include energie regenerabilă și nucleară",
     "dataIsDelayed": "Datele sunt întârziate"
   },
   "misc": {
@@ -107,14 +112,6 @@
   "coal": "cărbune",
   "oil": "petrol",
   "unknown": "necunoscută",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> provine din {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> din emisiile din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> provin din {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> este stocată folosind {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> din emisiile din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> sunt stocate folosind {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> este exportată în {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> din emisiile din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> sunt exportate în {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> este importată din {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> din emisiile din electricitatea disponibilă în {{zoneFlag}} <b>{{zoneName}}</b> sunt importate din {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "ofCO2eq": "de CO₂echivalent",
   "theMap": {
     "groupName": "Harta",

@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
+import json
+import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
+import requests
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -15,22 +18,21 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
-from parsers.lib.session import get_session_with_legacy_adapter
 from parsers.lib.validation import validate
+
+from .lib.utils import get_token
 
 TR_TZ = ZoneInfo("Europe/Istanbul")
 
-EPIAS_MAIN_URL = "https://seffaflik.epias.com.tr/transparency/service"
+EPIAS_MAIN_URL = "https://seffaflik.epias.com.tr/electricity-service/v1"
 KINDS_MAPPING = {
     "production": {
-        "url": "production/real-time-generation",
-        "json_key": "hourlyGenerations",
+        "url": "generation/data/realtime-generation",
     },
     "consumption": {
-        "url": "consumption/real-time-consumption",
-        "json_key": "hourlyConsumptions",
+        "url": "consumption/data/realtime-consumption",
     },
-    "price": {"url": "market/day-ahead-mcp", "json_key": "dayAheadMCPList"},
+    "price": {"url": "markets/dam/data/mcp"},
 }
 PRODUCTION_MAPPING = {
     "biomass": ["biomass"],
@@ -47,39 +49,71 @@ PRODUCTION_MAPPING = {
 INVERT_PRODUCTION_MAPPPING = {
     val: mode for mode in PRODUCTION_MAPPING for val in PRODUCTION_MAPPING[mode]
 }
-IGNORED_KEYS = ["total", "date", "importExport"]
+IGNORED_KEYS = ["total", "date", "importExport", "hour"]
 SOURCE = "epias.com.tr"
 
 
-def _str_to_datetime(date_string: str) -> datetime:
-    """
-    Converts string received into datetime format.
-    String received is almost in isoformat, just missing : in the timezone
-    """
-    try:
-        return datetime.fromisoformat(date_string[:-2] + ":" + date_string[-2:])
-    except ValueError as e:
-        raise ParserException(
-            parser="TR.py",
-            message="Datetime string cannot be parsed: expected "
-            f"format has changed and is now {date_string}",
-        ) from e
+def fetch_ticket_TGT() -> str:
+    url = "https://giris.epias.com.tr/cas/v1/tickets"
+
+    TR_USERNAME = urllib.parse.quote_plus(get_token("TR_USERNAME"))
+    TR_PASSWORD = urllib.parse.quote_plus(get_token("TR_PASSWORD"))
+
+    payload = f"username={TR_USERNAME}&password={TR_PASSWORD}"
+
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept": "text/plain",
+    }
+
+    response_TGT = requests.request("POST", url, headers=headers, data=payload)
+
+    return response_TGT.text
 
 
 def fetch_data(target_datetime: datetime, kind: str) -> dict:
+    TGT_ticket = fetch_ticket_TGT()
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
-    params = {
-        "startDate": (target_datetime).strftime("%Y-%m-%d"),
-        "endDate": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
-    }
-    r: Response = get_session_with_legacy_adapter().get(url=url, params=params)
-    if r.status_code == 200:
-        return r.json()["body"][KINDS_MAPPING[kind]["json_key"]]
-    else:
-        raise ParserException(
-            parser="TR.py",
-            message=f"{target_datetime}: {kind} data is not available for TR",
+
+    is_last_page = False
+    pagenum = 1
+    results = []
+
+    target_datetime = target_datetime.replace(tzinfo=TR_TZ)
+
+    while not is_last_page:
+        payload = json.dumps(
+            {
+                "startDate": (target_datetime).strftime("%Y-%m-%dT%H:%M:%S+03:00"),
+                "endDate": (target_datetime).strftime("%Y-%m-%dT%H:%M:%S+03:00"),
+                "page": {
+                    "number": pagenum,
+                    "size": 24,
+                    "sort": {"field": "date", "direction": "ASC"},
+                },
+            }
         )
+        headers = {
+            "TGT": TGT_ticket,
+            "Content-Type": "application/json",
+        }
+
+        r: Response = requests.request("POST", url, headers=headers, data=payload)
+
+        if r.status_code == 200:
+            results += r.json()["items"]
+            pagenum += 1
+
+        else:
+            raise ParserException(
+                parser="TR.py",
+                message=f"{target_datetime}: {kind} data is not available for TR",
+            )
+
+        if r.json()["items"] == [] or pagenum > 20:
+            is_last_page = True
+
+    return results
 
 
 def validate_production_data(
@@ -123,7 +157,7 @@ def fetch_production(
 
         production_breakdowns.append(
             zoneKey=zone_key,
-            datetime=_str_to_datetime(item.get("date")),
+            datetime=datetime.fromisoformat(item.get("date")).replace(tzinfo=TR_TZ),
             production=mix,
             source=SOURCE,
         )
@@ -145,7 +179,9 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     if target_datetime is None:
-        target_datetime = datetime.now(tz=TR_TZ) - timedelta(hours=2)
+        target_datetime = datetime.now(tz=TR_TZ).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
 
     data = fetch_data(target_datetime=target_datetime, kind="consumption")
 
@@ -153,7 +189,7 @@ def fetch_consumption(
     for item in data:
         consumptions.append(
             zoneKey=zone_key,
-            datetime=_str_to_datetime(item.get("date")),
+            datetime=datetime.fromisoformat(item.get("date")).replace(tzinfo=TR_TZ),
             consumption=item.get("consumption"),
             source=SOURCE,
         )
@@ -176,7 +212,7 @@ def fetch_price(
     for item in data:
         prices.append(
             zoneKey=zone_key,
-            datetime=_str_to_datetime(item.get("date")),
+            datetime=datetime.fromisoformat(item.get("date")).replace(tzinfo=TR_TZ),
             price=item.get("price"),
             source=SOURCE,
             currency="TRY",

@@ -4,14 +4,14 @@ import { TimeAverages } from 'utils/constants';
 import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
 import { CombinedZonesConfig } from '../../../../geo/types';
 
-const config = zonesConfigJSON as unknown as CombinedZonesConfig;
+const { zones, contributors } = zonesConfigJSON as unknown as CombinedZonesConfig;
 
 export const getHasSubZones = (zoneId?: string) => {
   if (!zoneId) {
     return null;
   }
 
-  const zoneConfig = config.zones[zoneId];
+  const zoneConfig = zones[zoneId];
   if (!zoneConfig || !zoneConfig.subZoneNames) {
     return false;
   }
@@ -43,16 +43,16 @@ export const getZoneDataStatus = (
   }
 
   // If there is no config for the zone, we assume we do not have any data
-  const zoneConfig = config.zones[zoneId];
+  const zoneConfig = zones[zoneId];
   if (!zoneConfig) {
     return ZoneDataStatus.NO_INFORMATION;
   }
 
   if (
-    config.zones[zoneId].aggregates_displayed &&
-    !config.zones[zoneId].aggregates_displayed.includes(timeAverage)
+    zones[zoneId].aggregates_displayed &&
+    !zones[zoneId].aggregates_displayed.includes(timeAverage)
   ) {
-    if (config.zones[zoneId].aggregates_displayed[0] === 'none') {
+    if (zones[zoneId].aggregates_displayed[0] === 'none') {
       return ZoneDataStatus.FULLY_DISABLED;
     }
     return ZoneDataStatus.AGGREGATE_DISABLED;
@@ -68,24 +68,17 @@ export const getZoneDataStatus = (
   return ZoneDataStatus.NO_REAL_TIME_DATA;
 };
 
-export function getContributors(zoneId: string) {
-  return {
-    zoneContributorsIndexArray: config.zones[zoneId]?.contributors as number[],
-    contributors: config.contributors,
-  };
-}
+export const getContributors = (zoneId: string) =>
+  zones[zoneId]?.contributors?.map((index) => contributors[index]) ?? [];
 
-export function getDisclaimer(zoneId: string) {
-  const zoneConfig = config.zones[zoneId];
-  return zoneConfig?.disclaimer;
-}
+export const getDisclaimer = (zoneId: string) => zones[zoneId]?.disclaimer;
 
-export function showEstimationFeedbackCard(
+export const showEstimationFeedbackCard = (
   collapsedNumber: number,
   isFeedbackCardVisibile: boolean,
   hasFeedbackCardBeenSeen: string | boolean,
   setHasFeedbackCardBeenSeen: (value: boolean) => void
-) {
+) => {
   if ((!hasFeedbackCardBeenSeen && collapsedNumber > 0) || isFeedbackCardVisibile) {
     if (!hasFeedbackCardBeenSeen) {
       setHasFeedbackCardBeenSeen(true);
@@ -93,7 +86,7 @@ export function showEstimationFeedbackCard(
     return true;
   }
   return false;
-}
+};
 
 export const isGenerationOnlyZone = (zoneId: string): boolean =>
-  config.zones[zoneId]?.generation_only ?? false;
+  zones[zoneId]?.generation_only ?? false;
