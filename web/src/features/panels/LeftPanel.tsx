@@ -195,22 +195,31 @@ function OuterPanel({
   );
 
   const captureScreenshot = async () => {
-    if (panelReference.current) {
-      setIsTakingScreenshot(true);
+    // Open the accordion first
+    setOpen(true);
 
+    // Indicate that a screenshot is about to be taken
+    setIsTakingScreenshot(true);
+
+    if (panelReference.current) {
       // Wait for the next render cycle
       await new Promise<void>((resolve) => {
         timeoutReference.current = window.setTimeout(() => {
           resolve();
-        }, 0);
+        }, 300);
       });
 
-      // Now take the screenshot
-      const img = await takeScreenshot(panelReference.current);
-      setScreenshot(img);
-      console.log('Screenshot captured:', img);
-      setIsTakingScreenshot(false);
-      return img;
+      try {
+        const img = await takeScreenshot(panelReference.current);
+        setScreenshot(img);
+        console.log('Screenshot captured:', img);
+
+        handleShareClick(img);
+      } catch (error) {
+        console.error('Failed to capture screenshot:', error);
+      } finally {
+        setIsTakingScreenshot(false);
+      }
     }
   };
 
