@@ -1,13 +1,16 @@
 import { loadingMapAtom } from 'features/map/mapAtoms';
+import { useDarkMode } from 'hooks/theme';
 import { useAtom } from 'jotai';
-import { BottomSheet } from 'react-spring-bottom-sheet';
+import { useRef } from 'react';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import { ReactBottomSheet } from './ReactBottomSheet';
 import TimeController from './TimeController';
 import TimeHeader from './TimeHeader';
 
-function BottomSheetWrappedTimeController() {
+function ReactBottomSheetWrappedTimeController() {
+  const isDarkModeEnabled = useDarkMode();
   const [isLoadingMap] = useAtom(loadingMapAtom);
   const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
   const safeAreaBottomString = getComputedStyle(
@@ -23,17 +26,23 @@ function BottomSheetWrappedTimeController() {
   // But it still has to be rendered to avoid re-querying data and showing loading
   // indicators again. Therefore we set the snap points to 0 until modal is closed.
   const snapPoints = hasOnboardingBeenSeen && !isLoadingMap ? SNAP_POINTS : [0, 0];
-
+  const ExcludedElementReference = useRef<HTMLDivElement>(null);
   return (
-    <BottomSheet
-      scrollLocking={false} // Ensures scrolling is not blocked on IOS
-      open={!isLoadingMap}
-      snapPoints={() => snapPoints}
-      blocking={false}
-      header={<TimeHeader />}
+    <ReactBottomSheet
+      excludeElementRef={ExcludedElementReference}
+      backgroundColor={isDarkModeEnabled ? 'rgb(31, 41, 55)' : 'white'}
     >
-      <TimeController className="p-2 pt-1 min-[370px]:px-4" />
-    </BottomSheet>
+      <div className="rounded-t-2xl bg-white px-4 pt-2 shadow-2xl dark:bg-gray-800">
+        <div className="mb-2 flex justify-center">
+          <div className="h-[3px] w-9 rounded-full bg-gray-300"></div>
+        </div>
+        <TimeHeader />
+        <TimeController
+          ref={ExcludedElementReference}
+          className="min-[370px] pb-2 pt-1"
+        />
+      </div>
+    </ReactBottomSheet>
   );
 }
 
@@ -50,6 +59,6 @@ export default function TimeControllerWrapper() {
   return isBiggerThanMobile ? (
     <FloatingTimeController />
   ) : (
-    <BottomSheetWrappedTimeController />
+    <ReactBottomSheetWrappedTimeController />
   );
 }

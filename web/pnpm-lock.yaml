@@ -65,6 +65,9 @@ importers:
       '@turf/helpers':
         specifier: ^6.5.0
         version: 6.5.0
+      bottom-sheet-dialog:
+        specifier: ^1.0.0
+        version: 1.0.0
       country-flag-icons:
         specifier: ^1.5.12
         version: 1.5.12
@@ -4207,6 +4210,9 @@ packages:
 
   body-scroll-lock@3.1.5:
     resolution: {integrity: sha512-Yi1Xaml0EvNA0OYWxXiYNqY24AfWkbA6w5vxE7GWxtKfzIbZM+Qw+aSmkgsbWzbHiy/RCSkUZBplVxTA+E4jJg==}
+
+  bottom-sheet-dialog@1.0.0:
+    resolution: {integrity: sha512-F04THSdS9D8F+wwHx36cUr2ge9AaqpKCUAPVMjAfh3HtuNH18YvAtU4BsF9uQWxm3pqnWpRcwh9fCyXvJLnXgQ==}
 
   bplist-parser@0.2.0:
     resolution: {integrity: sha512-z0M+byMThzQmD9NILRniCUXYsYpjwnlO8N5uCFaCqIOpqRsJCrQL9NK3JsD67CN5a08nF5oIL2bD6loTdHOuKw==}
@@ -11193,7 +11199,7 @@ snapshots:
 
   '@react-three/fiber@8.16.1(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(react@18.3.1))(react@18.3.1)(three@0.163.0)':
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.24.8
       '@types/react-reconciler': 0.26.7
       '@types/webxr': 0.5.19
       base64-js: 1.5.1
@@ -14058,6 +14064,8 @@ snapshots:
 
   body-scroll-lock@3.1.5: {}
 
+  bottom-sheet-dialog@1.0.0: {}
+
   bplist-parser@0.2.0:
     dependencies:
       big-integer: 1.6.52
@@ -16739,7 +16747,7 @@ snapshots:
 
   metro-runtime@0.80.9:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.24.8
 
   metro-source-map@0.80.9:
     dependencies:
