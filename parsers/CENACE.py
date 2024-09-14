@@ -10,6 +10,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from dateutil import tz
 from requests import Response, Session
+import json
 
 from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.lib.models.event_lists import (
@@ -91,28 +92,30 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     session = session or Session()
 
     response = session.get(MX_PRODUCTION_URL)
+    response.raise_for_status()
+
+    # extract necessary viewstate, validation tokens
     soup = BeautifulSoup(response.content, "html.parser")
+    try:
+        viewstate = soup.find("input", {"name": "__VIEWSTATE"})["value"]
+        eventvalidation = soup.find("input", {"name": "__EVENTVALIDATION"})["value"]
+    except TypeError:
+        raise ValueError("Failed to retrieve necessary form tokens (VIEWSTATE, EVENTVALIDATION)")
 
-    viewstate = soup.find("input", {"name": "__VIEWSTATE"})["value"]
-    viewstategenerator = soup.find("input", {"name": "__VIEWSTATEGENERATOR"})["value"]
-    eventvalidation = soup.find("input", {"name": "__EVENTVALIDATION"})["value"]
-
-    # build the parameters and fill in the requested date
-    # TODO find something prettier than string concatenation which works
+    # format date string for the requested date
     datestr = dt.strftime("%m/%d/%Y")
+    client_state = {
+        "minDateStr": f"{datestr} 0:0:0",
+        "maxDateStr": f"{datestr} 0:0:0"
+    }
+
+    # build parameters for POST request
     parameters = {
-        "__EVENTTARGET": "",
-        "__EVENTARGUMENT": "",
         "__VIEWSTATE": viewstate,
-        "__VIEWSTATEGENERATOR": viewstategenerator,
         "__EVENTVALIDATION": eventvalidation,
-        "ctl00_ContentPlaceHolder1_FechaConsulta_ClientState": '{"minDateStr":"'
-        + datestr
-        + '+0:0:0","maxDateStr":"'
-        + datestr
-        + '+0:0:0"}',
-        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.x": "10",
-        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.y": "9",
+        "ctl00_ContentPlaceHolder1_FechaConsulta_ClientState": json.dumps(client_state),
+        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.x": "0",
+        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.y": "0",
     }
 
     # urlencode the data in the weird form which is expected by the API
@@ -141,11 +144,20 @@ def fetch_csv_for_date(dt, session: Session | None = None):
 
     # skip non-csv data, the header starts with "Sistema"
     csv_str = response.text
-    csv_str = csv_str[csv_str.find('"Sistema"') :]
-
-    return pd.read_csv(
-        StringIO(csv_str), parse_dates={"instante": [1, 2]}, date_parser=parse_date
+    df = pd.read_csv(
+        StringIO(csv_str),
+        skiprows=7,
     )
+
+    # cleanup and parse the data
+    df.columns = df.columns.str.strip()
+    df['Hora'] = df['Hora'].apply(lambda x: '00' if int(x) == 24 else f'{int(x):02d}')
+    df['Dia'] = pd.to_datetime(df['Dia'], format='%d/%m/%Y')
+    df.loc[df['Hora'] == '00', 'Dia'] = df['Dia'] + pd.Timedelta(days=1)
+    df['Dia'] = df['Dia'].dt.strftime('%d/%m/%Y')
+    df['instante'] = pd.to_datetime(df['Dia'] + ' ' + df['Hora'], format='%d/%m/%Y %H')
+    df['instante'] = df['instante'].dt.tz_localize(TIMEZONE)
+    return df
 
 
 def convert_production(series: pd.Series) -> ProductionMix:
