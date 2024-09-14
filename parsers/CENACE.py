@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 import urllib
 from datetime import datetime, timedelta
 from io import StringIO
@@ -10,7 +11,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from dateutil import tz
 from requests import Response, Session
-import json
 
 from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.lib.models.event_lists import (
@@ -96,18 +96,12 @@ def fetch_csv_for_date(dt, session: Session | None = None):
 
     # extract necessary viewstate, validation tokens
     soup = BeautifulSoup(response.content, "html.parser")
-    try:
-        viewstate = soup.find("input", {"name": "__VIEWSTATE"})["value"]
-        eventvalidation = soup.find("input", {"name": "__EVENTVALIDATION"})["value"]
-    except TypeError:
-        raise ValueError("Failed to retrieve necessary form tokens (VIEWSTATE, EVENTVALIDATION)")
+    viewstate = soup.find("input", {"name": "__VIEWSTATE"})["value"]
+    eventvalidation = soup.find("input", {"name": "__EVENTVALIDATION"})["value"]
 
     # format date string for the requested date
     datestr = dt.strftime("%m/%d/%Y")
-    client_state = {
-        "minDateStr": f"{datestr} 0:0:0",
-        "maxDateStr": f"{datestr} 0:0:0"
-    }
+    client_state = {"minDateStr": f"{datestr} 0:0:0", "maxDateStr": f"{datestr} 0:0:0"}
 
     # build parameters for POST request
     parameters = {
@@ -151,12 +145,12 @@ def fetch_csv_for_date(dt, session: Session | None = None):
 
     # cleanup and parse the data
     df.columns = df.columns.str.strip()
-    df['Hora'] = df['Hora'].apply(lambda x: '00' if int(x) == 24 else f'{int(x):02d}')
-    df['Dia'] = pd.to_datetime(df['Dia'], format='%d/%m/%Y')
-    df.loc[df['Hora'] == '00', 'Dia'] = df['Dia'] + pd.Timedelta(days=1)
-    df['Dia'] = df['Dia'].dt.strftime('%d/%m/%Y')
-    df['instante'] = pd.to_datetime(df['Dia'] + ' ' + df['Hora'], format='%d/%m/%Y %H')
-    df['instante'] = df['instante'].dt.tz_localize(TIMEZONE)
+    df["Hora"] = df["Hora"].apply(lambda x: "00" if int(x) == 24 else f"{int(x):02d}")
+    df["Dia"] = pd.to_datetime(df["Dia"], format="%d/%m/%Y")
+    df.loc[df["Hora"] == "00", "Dia"] = df["Dia"] + pd.Timedelta(days=1)
+    df["Dia"] = df["Dia"].dt.strftime("%d/%m/%Y")
+    df["instante"] = pd.to_datetime(df["Dia"] + " " + df["Hora"], format="%d/%m/%Y %H")
+    df["instante"] = df["instante"].dt.tz_localize(TIMEZONE)
     return df
 
 
