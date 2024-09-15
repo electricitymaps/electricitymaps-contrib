@@ -42,14 +42,6 @@ i18n
   });
 
 i18n.on('languageChanged', (lng: keyof typeof localeToFacebookLocale) => {
-  document.documentElement.setAttribute('lang', lng);
-  // TODO: Use react-helmet to manage meta tags
-  document.title = `Electricity Maps | ${t('misc.maintitle')}`;
-  // Optional chaining added to ensure jsdom works
-  document
-    .querySelector('meta[property="og:locale"]')
-    ?.setAttribute('content', localeToFacebookLocale[lng || 'en']);
-
   setTag('app.locale', lng);
 });
 
