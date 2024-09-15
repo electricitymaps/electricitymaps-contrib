@@ -1,10 +1,10 @@
 import { HorizontalDivider } from 'components/Divider';
 import EstimationBadge from 'components/EstimationBadge';
+import { FormattedTime } from 'components/Time';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, TimeAverages } from 'utils/constants';
-import { formatDate } from 'utils/formatting';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
 
@@ -56,9 +56,11 @@ export default function AreaGraphToolTipHeader({
           />
         )}
       </div>
-      <p className="whitespace-nowrap text-sm">
-        {formatDate(datetime, i18n.language, timeAverage)}
-      </p>
+      <FormattedTime
+        datetime={datetime}
+        language={i18n.languages[0]}
+        timeAverage={timeAverage}
+      />
       <HorizontalDivider />
     </>
   );

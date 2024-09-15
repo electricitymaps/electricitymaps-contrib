@@ -6,7 +6,7 @@ export const RoundedCard = forwardRef<
   { children: ReactNode; className?: string }
 >(function RoundedCard({ children, className }, reference) {
   return (
-    <div
+    <section
       className={twMerge(
         'my-2 rounded-2xl border border-neutral-200 px-4 pb-2 dark:border-gray-700',
         className
@@ -14,6 +14,6 @@ export const RoundedCard = forwardRef<
       ref={reference}
     >
       {children}
-    </div>
+    </section>
   );
 });
