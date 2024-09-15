@@ -60,6 +60,7 @@ export default function AreaGraphToolTipHeader({
         datetime={datetime}
         language={i18n.languages[0]}
         timeAverage={timeAverage}
+        className="text-sm"
       />
       <HorizontalDivider />
     </>

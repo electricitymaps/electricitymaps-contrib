@@ -14,6 +14,7 @@ export function TimeDisplay({ className }: { className?: string }) {
       datetime={selectedDatetime.datetime}
       language={i18n.languages[0]}
       timeAverage={timeAverage}
+      className={className}
     />
   );
 }
