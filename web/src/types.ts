@@ -163,6 +163,7 @@ export interface ZoneDetail extends ZoneOverview {
 
 export interface ZoneDetails {
   hasData: boolean;
+  futurePrice: FuturePriceData;
   stateAggregation: 'daily' | 'hourly' | 'monthly' | 'yearly';
   zoneStates: {
     [key: string]: ZoneDetail;
@@ -224,14 +225,10 @@ export interface MapTheme {
 
 export interface FuturePriceData {
   entryCount: number;
-  futurePrices: {
-    [key: string]: Price;
+  priceData: {
+    [key: string]: number;
   };
   currency: string;
   source: string;
   zoneKey: ZoneKey;
-}
-
-export interface Price {
-  price: number;
 }

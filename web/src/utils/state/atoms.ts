@@ -3,7 +3,6 @@ import { atomWithStorage } from 'jotai/utils';
 import { dateToDatetimeString } from 'utils/helpers';
 
 import {
-  Day,
   Mode,
   SpatialAggregate,
   ThemeOptions,
@@ -83,4 +82,4 @@ export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
   false
 );
 
-export const dayAheadPriceDayAtom = atom<string>(Day.Today);
+export const futurePriceCollapsed = atom<boolean>(true);
