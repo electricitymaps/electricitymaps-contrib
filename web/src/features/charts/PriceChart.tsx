@@ -44,7 +44,11 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     }));
   }
 
-  if (!chartData[0]?.layerData?.price) {
+  if (
+    chartData[0]?.layerData?.price === undefined ||
+    Number.isNaN(chartData[0]?.layerData?.price) ||
+    chartData[0]?.layerData?.price === null
+  ) {
     return null;
   }
 
