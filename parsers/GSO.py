@@ -51,6 +51,7 @@ def get_api_data(session: Session, url, data):
     # JSON, access the lone value, and parse it as JSON again!
     return json.loads(session.post(url, json=data).json()["d"])
 
+
 @use_proxy(country_code="MY")
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
@@ -79,6 +80,7 @@ def fetch_consumption(
             source=DOMAIN,
         )
     return all_consumption_data.to_list()
+
 
 @refetch_frequency(timedelta(days=1))
 @use_proxy(country_code="MY")
