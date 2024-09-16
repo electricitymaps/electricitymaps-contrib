@@ -52,8 +52,8 @@ export default function RankingPanel(): ReactElement {
   return (
     <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
       <div className="pb-5">
-        <div className="font-poppins text-lg font-medium">{t('ranking-panel.title')}</div>
-        <div className="text-sm">{t('ranking-panel.subtitle')}</div>
+        <h1>{t('ranking-panel.title')}</h1>
+        <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
       </div>
 
       <SearchBar
