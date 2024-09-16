@@ -41,14 +41,14 @@ export function AppStoreBanner({
       <div
         role="banner"
         aria-live="polite"
-        className="sticky z-50 flex h-14 min-h-14 w-full items-center border-b border-solid border-neutral-300 bg-neutral-100 px-3"
+        className="sticky z-50 flex h-14 min-h-14 w-full items-center border-b border-solid border-neutral-300 bg-neutral-100 px-3 dark:border-b dark:border-gray-700 dark:bg-gray-800"
       >
         <CloseButton onClose={onDismissClick} />
         <div className="flex flex-grow gap-2">
-          <div className="items-center justify-center self-center rounded-md border border-neutral-200 bg-white">
+          <div className="items-center justify-center self-center rounded-md border border-neutral-200 bg-white dark:text-black">
             <EmapsIcon size={40} />
           </div>
-          <div className="content-center text-neutral-600">
+          <div className="content-center text-neutral-600 dark:text-gray-300">
             <h3>Electricity Maps</h3>
             <p className="text-xs">{t('app-banner.description')}</p>
           </div>
@@ -77,7 +77,7 @@ function DefaultCloseButton({ onClose }: DefaultCloseButtonProps) {
       aria-label={t('misc.dismiss')}
       data-testid="dismiss-btn"
       onClick={onClose}
-      className="pointer-events-auto flex h-6 w-6 items-center justify-center self-center pr-2 text-neutral-400"
+      className="pointer-events-auto flex h-6 w-6 items-center justify-center self-center pr-2 text-neutral-400 dark:text-gray-300"
     >
       <X />
     </button>

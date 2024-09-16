@@ -9,7 +9,7 @@ export default function MethodologyCard() {
   return (
     <RoundedCard>
       <Accordion
-        icon={<EmapsIcon />}
+        icon={<EmapsIcon styling="dark:text-white" />}
         title={t('left-panel.applied-methodologies.title')}
         className="text-md pt-2"
         onOpen={() => trackEvent('AppliedMethodologies Expanded')}

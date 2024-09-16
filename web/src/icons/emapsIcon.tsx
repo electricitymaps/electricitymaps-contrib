@@ -1,6 +1,6 @@
-export function EmapsIcon({ size = 22 }: { size?: number }) {
+export function EmapsIcon({ size = 22, styling }: { size?: number; styling?: string }) {
   return (
-    <div className="text-black dark:text-white">
+    <div className={`text-black ${styling || ''}`}>
       <svg
         width={size}
         height={size}
