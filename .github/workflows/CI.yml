@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 2
       - name: Check which files have changed
         id: check-changed-files
-        uses: tj-actions/changed-files@v44.5.2
+        uses: tj-actions/changed-files@v45.0.1
         with:
           files_yaml_from_source_file: .github/filter-groups.yml
       - name: Log outputs
@@ -111,6 +111,23 @@ jobs:
       - name: Lint json
         run: |
           jsonlint -q web/src/locales/*.json
+
+  validate_translation_files:
+    name: Frontend / Validate Translation Files
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.json != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Run script
+        run: node web/scripts/detectTranslationsOutOfSync.js
 
   #                 #
   # Frontend checks #

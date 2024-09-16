@@ -12,7 +12,7 @@ import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
 import {
-  dataSourcesCollapsedBarBreakdown,
+  dataSourcesCollapsedBarBreakdownAtom,
   displayByEmissionsAtom,
   isHourlyAtom,
   productionConsumptionAtom,
@@ -23,6 +23,7 @@ import { DataSources } from '../DataSources';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
 import useZoneDataSources from '../hooks/useZoneDataSources';
+import { RoundedCard } from '../RoundedCard';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
@@ -73,6 +74,10 @@ function BarBreakdownChart({
     x: number;
     y: number;
   } | null>(null);
+
+  const [dataSourcesCollapsedBarBreakdown, setDataSourcesCollapsedBarBreakdown] = useAtom(
+    dataSourcesCollapsedBarBreakdownAtom
+  );
 
   const headerHeight = useHeaderHeight();
 
@@ -126,10 +131,7 @@ function BarBreakdownChart({
   );
 
   return (
-    <div
-      className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
-      ref={ref}
-    >
+    <RoundedCard ref={ref}>
       <BySource
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
@@ -178,7 +180,7 @@ function BarBreakdownChart({
           data={zoneDetails}
           productionData={productionData}
           exchangeData={exchangeData}
-          onProductionRowMouseOver={onMouseOver}
+          onProductionRowMouseOver={onMouseOver} // TODO(Viktor): change this to onMouseEnter to avoid repeated calls to the same function with the same data
           onProductionRowMouseOut={onMouseOut}
           onExchangeRowMouseOver={onMouseOver}
           onExchangeRowMouseOut={onMouseOut}
@@ -199,7 +201,8 @@ function BarBreakdownChart({
             }}
             title={t('data-sources.title')}
             className="text-md"
-            isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
+            isCollapsed={dataSourcesCollapsedBarBreakdown}
+            setState={setDataSourcesCollapsedBarBreakdown}
           >
             <DataSources
               title={t('data-sources.capacity')}
@@ -222,7 +225,7 @@ function BarBreakdownChart({
           </Accordion>
         </>
       )}
-    </div>
+    </RoundedCard>
   );
 }
 

@@ -4,17 +4,22 @@ import { LinkedinButton } from 'components/buttons/LinkedinButton';
 import { RedditButton } from 'components/buttons/RedditButton';
 import { SlackButton } from 'components/buttons/SlackButton';
 import InfoText from 'features/modals/InfoText';
+import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { rankingPanelAccordionCollapsedAtom } from 'utils/state/atoms';
 
 export default function RankingPanelAccordion() {
   const { t } = useTranslation();
+  const [rankingPanelAccordionCollapsed, setRankingPanelAccordionCollapsed] = useAtom(
+    rankingPanelAccordionCollapsedAtom
+  );
   return (
     <Accordion
       title={t('info.title')}
       className="py-1"
-      isCollapsedAtom={rankingPanelAccordionCollapsedAtom}
       isTopExpanding
+      isCollapsed={rankingPanelAccordionCollapsed}
+      setState={setRankingPanelAccordionCollapsed}
     >
       <InfoText />
       <div className="mt-4 flex flex-wrap gap-2 ">
