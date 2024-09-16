@@ -27,6 +27,10 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     () => calculatePrice(filteredPriceData, Math.max, granularity),
     [filteredPriceData, granularity]
   );
+  const minPriceTotal = useMemo(
+    () => calculatePrice(filteredPriceData, Math.min, granularity),
+    [filteredPriceData, granularity]
+  );
   const maxPriceFuture = useMemo(
     () => calculatePrice(filteredPriceData, Math.max, granularity, true),
     [filteredPriceData, granularity]
@@ -39,6 +43,9 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   if (!futurePrice) {
     return null;
   }
+
+  const hasNegativePrice = minPriceTotal < 0;
+  const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
 
   return (
     <div className="pt-2">
@@ -60,7 +67,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
               {Object.entries(filteredPriceData).map(
                 ([date, price]: [string, number]) => (
                   <li key={date}>
-                    {dateIsFirstHourOfDay(new Date(date)) && (
+                    {dateIsFirstHourOfTomorrow(new Date(date)) && (
                       <div className="flex flex-col py-1">
                         <HorizontalDivider />
                         <TommorowLabel date={date} t={t} i18n={i18n} />
@@ -68,23 +75,55 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                     )}
                     <div className="flex flex-row justify-items-end gap-2">
                       <TimeDisplay date={date} granularity={granularity} />
-                      <p className="min-w-[65px] text-nowrap text-sm font-semibold tabular-nums">
+                      <p className="min-w-[62px] text-nowrap text-sm font-semibold tabular-nums">
                         {`${getValueOfConvertPrice(price, futurePrice.currency)} ${t(
                           `country-panel.price-chart.${futurePrice.currency}`
                         )}`}
                       </p>
-                      <div className="h-full w-full self-center">
-                        <PriceBars
-                          price={price}
-                          maxPrice={maxPriceTotal}
-                          color={getColor(
-                            price,
-                            maxPriceFuture,
-                            minPriceFuture,
-                            date,
-                            granularity
+                      <div className="flex h-full w-full flex-row self-center ">
+                        {hasNegativePrice && (
+                          <div
+                            className="flex flex-row justify-end "
+                            style={{
+                              width: `${hasNegativePrice ? negativePercentage : 0}%`,
+                            }}
+                          >
+                            {price < 0 && (
+                              <PriceBars
+                                price={price * -1}
+                                maxPrice={-1 * minPriceTotal}
+                                color={getColor(
+                                  price,
+                                  maxPriceFuture,
+                                  minPriceFuture,
+                                  date,
+                                  granularity
+                                )}
+                              />
+                            )}
+                          </div>
+                        )}
+                        <div
+                          style={{
+                            width: `${
+                              hasNegativePrice ? 100 - negativePercentage : 100
+                            }%`,
+                          }}
+                        >
+                          {price > 0 && (
+                            <PriceBars
+                              price={price}
+                              maxPrice={maxPriceTotal}
+                              color={getColor(
+                                price,
+                                maxPriceFuture,
+                                minPriceFuture,
+                                date,
+                                granularity
+                              )}
+                            />
                           )}
-                        />
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -96,6 +135,10 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
       </Accordion>
     </div>
   );
+}
+
+function negativeToPostivePercentage(minPrice: number, maxPrice: number): number {
+  return Math.round(Math.abs((minPrice / (maxPrice + Math.abs(minPrice))) * 100));
 }
 
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
@@ -110,7 +153,8 @@ function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i1
   );
 }
 
-const dateIsFirstHourOfDay = (date: Date): boolean => date.getHours() === 0;
+const dateIsFirstHourOfTomorrow = (date: Date): boolean =>
+  date.getHours() === 0 && date.getMinutes() == 0 && date.getDay() != new Date().getDay();
 
 const filterPriceData = (
   priceData: { [key: string]: number },
