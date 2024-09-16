@@ -1,4 +1,6 @@
 import Accordion from 'components/Accordion';
+import { HorizontalDivider } from 'components/Divider';
+import { i18n, TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Info } from 'lucide-react';
 import { useMemo } from 'react';
@@ -11,21 +13,27 @@ import { futurePriceCollapsed } from 'utils/state/atoms';
 import { convertPrice } from './bar-breakdown/utils';
 
 export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isCollapsed = useAtomValue(futurePriceCollapsed);
   const granularity = getGranularity(futurePrice?.priceData ?? {});
+  const usedGranularity = 30;
+
+  const filteredPriceData = filterPriceData(
+    futurePrice?.priceData ?? {},
+    usedGranularity
+  );
 
   const maxPriceTotal = useMemo(
-    () => calculatePrice(futurePrice, Math.max, granularity),
-    [futurePrice, granularity]
+    () => calculatePrice(filteredPriceData, Math.max, granularity),
+    [filteredPriceData, granularity]
   );
   const maxPriceFuture = useMemo(
-    () => calculatePrice(futurePrice, Math.max, granularity, true),
-    [futurePrice, granularity]
+    () => calculatePrice(filteredPriceData, Math.max, granularity, true),
+    [filteredPriceData, granularity]
   );
   const minPriceFuture = useMemo(
-    () => calculatePrice(futurePrice, Math.min, granularity, true),
-    [futurePrice, granularity]
+    () => calculatePrice(filteredPriceData, Math.min, granularity, true),
+    [filteredPriceData, granularity]
   );
 
   if (!futurePrice) {
@@ -49,9 +57,15 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
           <PriceDisclaimer />
           {futurePrice?.priceData && (
             <ul>
-              {Object.entries(futurePrice.priceData).map(
+              {Object.entries(filteredPriceData).map(
                 ([date, price]: [string, number]) => (
                   <li key={date}>
+                    {dateIsFirstHourOfDay(new Date(date)) && (
+                      <div className="flex flex-col py-1">
+                        <HorizontalDivider />
+                        <TommorowLabel date={date} t={t} i18n={i18n} />
+                      </div>
+                    )}
                     <div className="flex flex-row justify-items-end gap-2">
                       <TimeDisplay date={date} granularity={granularity} />
                       <p className="min-w-[65px] text-nowrap text-sm font-semibold tabular-nums">
@@ -84,6 +98,31 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   );
 }
 
+function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
+  return (
+    <p className="py-1 font-semibold">
+      {`${t('country-panel.price-chart.tomorrow')}, ${formatDateTick(
+        new Date(date),
+        i18n.language,
+        TimeAverages.DAILY
+      )} ${formatDateTick(new Date(date), i18n.language, TimeAverages.YEARLY)}`}
+    </p>
+  );
+}
+
+const dateIsFirstHourOfDay = (date: Date): boolean => date.getHours() === 0;
+
+const filterPriceData = (
+  priceData: { [key: string]: number },
+  granularity: number
+): { [key: string]: number } =>
+  Object.fromEntries(
+    Object.entries(priceData).filter(([dateString]) => {
+      const date = new Date(dateString);
+      return date.getMinutes() % granularity === 0;
+    })
+  );
+
 const getGranularity = (priceData: { [key: string]: number | undefined }): number => {
   const priceDataKeys = Object.keys(priceData);
   return priceDataKeys.length > 1
@@ -98,16 +137,16 @@ const getValueOfConvertPrice = (price: number, currency: string): number | undef
 };
 
 const calculatePrice = (
-  futurePrice: FuturePriceData | null,
+  priceData: { [key: string]: number },
   callback: (...values: number[]) => number,
   granularity: number,
   isFuture: boolean = false
 ) => {
-  if (!futurePrice) {
+  if (!priceData) {
     return 0;
   }
 
-  const prices = Object.entries(futurePrice.priceData)
+  const prices = Object.entries(priceData)
     .filter(([dateString]) => {
       if (!isFuture) {
         return true;
