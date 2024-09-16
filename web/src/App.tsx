@@ -9,6 +9,7 @@ import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
+import { useGetCanonicalLink } from 'hooks/getCanonicalLink';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -42,6 +43,7 @@ export default function App(): ReactElement {
   useGetState();
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
+  const canonicalLink = useGetCanonicalLink();
 
   // Update classes on theme change
   useLayoutEffect(() => {
@@ -73,6 +75,7 @@ export default function App(): ReactElement {
       >
         <title>{`Electricity Maps | ${t('misc.maintitle')}`}</title>
         <meta property="og:locale" content={i18n.languages[0]} />
+        {canonicalLink}
       </Helmet>
       <main className="fixed flex h-screen w-screen flex-col">
         <ToastProvider duration={20_000}>
