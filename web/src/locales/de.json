@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Diese App ist",
-    "opensource": "Open Source",
-    "see": "siehe",
-    "datasources": "Datenquellen",
-    "contribute": "Wirke mit, indem du <a href=\"{{link}}\" target=\"_blank\">dein Land hinzufügst</a>"
-  },
   "mobile-main-menu": {
     "map": "Karte",
     "areas": "Regionen",
@@ -46,17 +39,17 @@
     "carbonintensity": "spezifische CO₂-Emissionen",
     "lowcarbon": "CO₂-arm",
     "renewable": "regenerativ",
-    "electricityproduction": "Stromerzeugung",
-    "electricityconsumption": "Stromverbrauch",
+    "electricityproduction": "Produktion",
+    "electricityconsumption": "Verbrauch",
+    "emissions": "Emissionen",
     "by-source": {
-      "emissions": "CO₂-Emissionen nach Quelle",
-      "electricity-production": "Stromerzeugung nach Quelle",
-      "electricity-consumption": "Stromverbrauch nach Quelle",
-      "total-emissions": "Gesamte CO₂-Emissionen nach Quelle",
-      "total-electricity-production": "Gesamte Stromerzeugung nach Quelle",
-      "total-electricity-consumption": "Gesamter Stromverbrauch nach Quelle"
+      "emissions": "CO₂-Emissionen",
+      "electricity-production": "Stromerzeugung",
+      "electricity-consumption": "Stromverbrauch",
+      "total-emissions": "Gesamte CO₂-Emissionen",
+      "total-electricity-production": "Gesamte Stromerzeugung",
+      "total-electricity-consumption": "Gesamter Stromverbrauch"
     },
-    "emissions": "CO₂-Emissionen",
     "helpfrom": "mit Unterstützung von",
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
     "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
@@ -65,7 +58,6 @@
       "licensing": "Aufgrund von Lizenzbedingungen sind für dieses Gebiet keine Strompreise verfügbar"
     },
     "now": "Jetzt",
-    "electricity": "Elektrizität",
     "dataIsDelayed": "Die Daten in dieser Region können bis zu {{hours}} Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
     "estimated": "Geschätzt",
     "aggregated": "Zusammengefasst",
@@ -74,13 +66,18 @@
     "aggregatedTooltip": "Die Daten für diese Zone sind zusammengefasst, basierend auf den stündlichen Werten der historischen Daten",
     "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"{{link}}\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
   },
-  "left-panel": {
-    "zone-list-header-title": "Klimaeinfluss der Regionen",
-    "zone-list-header-subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
+  "ranking-panel": {
+    "title": "Klimaeinfluss der Regionen",
+    "subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
     "search": "Land oder Region suchen"
   },
   "time-controller": {
-    "title": "Historische Daten anzeigen",
+    "title": {
+      "hourly": "Stündliche Daten für:",
+      "daily": "Tägliche Daten für:",
+      "monthly": "Monatliche Daten für:",
+      "yearly": "Jährliche Daten für:"
+    },
     "daily": "täglich",
     "hourly": "stündlich",
     "monthly": "monatlich",
@@ -93,17 +90,16 @@
   },
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
-    "estimated_time_slicer_average": {
-      "title": "Die Daten werden derzeit geschätzt",
-      "pill": "Nicht verfügbar",
-      "body": "Unsere Datenquellen stellen aktuell keine Werte für diese Zone zur Verfügung. Die angezeigten Werte sind Schätzungen, die auf historischen Messungen basieren und durch verifizierte Daten ersetzt werden, sobald diese verfügbar sind. Bitte beachten Sie, dass geschätzte Werte nicht immer genau sind, da sie aktuelle Wetterereignisse nicht berücksichtigen."
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
+      "title": "Vorläufige Daten",
+      "body": "Der Datenanbieter hat für diese Stunde keine Daten zur Verfügung gestellt. Die angezeigten Werte wurden anhand historischer Werte geschätzt und werden aktualisiert, sobald gemessene Daten verfügbar sind. Geschätzte Daten können unpräzise sein, da sie in manchen Fällen Echtzeit-Wetterereignisse vernachlässigen."
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Teils geschätzte Daten",
       "pill": "Unvollständig",
       "body": "Die Daten zur Stromerzeugung in diesem Gebiet sind unvollständig. Die fehlenden Werte wurden anhand eines statistischen Schätzmodells berechnet."
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Unpräzise",
       "body": "Die Datenquelle gibt ausschließlich die Gesamtproduktion an. Die Stromproduktion aus erneuerbaren Quellen wird anhand aktueller Wetterdaten geschätzt. Die übrige Stromproduktion wird fossilen Energieträgern zugeordnet, wobei die Verteilung auf historischen Daten basiert."
@@ -113,12 +109,12 @@
       "pill": "Unpräzise",
       "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Nicht in Echtzeit",
       "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Ausschließlich geschätzte Daten",
       "pill": "Nicht in Echtzeit",
       "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
@@ -159,8 +155,9 @@
   },
   "tooltips": {
     "carbonintensity": "CO₂-Intensität",
-    "lowcarbon": "CO₂-arm",
-    "renewable": "regenerativ",
+    "zoneHeader": {
+      "lowcarbon": "Beinhaltet regenerative Energien und Kernenergie"
+    },
     "crossborderexport": "Stromexport",
     "carbonintensityexport": "CO₂-Intensität der Exporte",
     "ofinstalled": "der installierten Leistung",
@@ -177,7 +174,6 @@
     "consumption": "Verbrauch",
     "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
     "selectLanguage": "Sprache auswählen",
-    "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie",
     "dataIsDelayed": "Die Daten sind verzögert",
     "representing": "macht",
     "ofemissions": "der Emissionen aus",
@@ -194,16 +190,15 @@
     "light": "Hell",
     "system": "System"
   },
+  "updatePrompt": {
+    "title": "Aktualisierung verfügbar",
+    "description": "Eine neue Version der App ist verfügbar, jetzt aktualisieren?",
+    "update": "Aktualisieren",
+    "dismiss": "Schließen"
+  },
   "misc": {
     "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
-    "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",
-    "newversion": "Eine neuere Version ist verfügbar!",
-    "retrynow": "Erneut versuchen",
-    "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
-    "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
-    "legend": "Legende",
     "faq": "Häufig gestellte Fragen",
-    "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt.",
     "dismiss": "Schließen",
     "reload": "Neu laden"
   },
@@ -219,14 +214,6 @@
   "coal": "Kohle",
   "oil": "Öl",
   "unknown": "unbekannt",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> stammen aus {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden gespeichert in {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden in die Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> exportiert",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> der Elektrizität der Region {{zoneFlag}} <b>{{zoneName}}</b> werden aus der Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> importiert",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> der CO₂-Emissionen der Region {{zoneFlag}} <b>{{zoneName}}</b> werden aus der Region {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> importiert",
   "ofCO2eq": "CO₂äq",
   "theMap": {
     "groupName": "Die Karte",
@@ -256,8 +243,6 @@
     "groupName": "Unsere Methoden",
     "carbonIntensity-question": "Was ist \"Kohlenstoffintensität\"?",
     "carbonIntensity-answer": "Die Kohlenstoffintensität (bzw. CO₂-Intensität) ist ein Maß für die Treibhausgasemissionen im Zusammenhang mit der Erzeugung des verbrauchten Stroms (in gCO₂äq/kWh - Gramm Kohlendioxidäquivalente pro verbrauchter Kilowattstunde). Wir bewerten die Emissionen des Stromverbrauchs (nicht der Produktion), d.h. alle Treibhausgasemissionen (sowohl CO₂ als auch andere Treibhausgase wie Methan), die in die Produktion des Stroms eingeflossen sind, der in einer Region verbraucht wird, unter Berücksichtigung der CO₂-Intensität des aus anderen Gebieten importierten Stroms. Wir verwenden einen Ökobilanzansatz (Life Cycle Analysis, LCA), d.h. wir berücksichtigen die Emissionen aus dem gesamten Lebenszyklus von Kraftwerken (Bau, Brennstoffproduktion, betriebliche Emissionen und Stilllegung).",
-    "consumptionFocus-question": "Warum wird die CO₂-Intensität des Stromverbrauchs statt der der Stromproduktion berechnet?",
-    "consumptionFocus-answer": "Wir glauben, dass die Bürger für den Strom, den sie verbrauchen, verantwortlich sein sollten und nicht für den Strom, der in dem Bereich produziert wird, in dem sie leben. Darüber hinaus sind wir der Meinung, dass Regionen nicht in der Lage sein sollten, einen geringeren Klimaeinfluss zu \"fälschen\", indem sie die Stromerzeugung in andere Regionen verlagern und dann den Strom aus diesen Gebieten importieren.",
     "renewableLowCarbonDifference-question": "Was ist der Unterschied zwischen \"erneuerbar\" und \"kohlenstoffarm\"?",
     "renewableLowCarbonDifference-answer": "Erneuerbare Energieerzeugung basiert auf erneuerbaren Energiequellen wie Wind- und Wasserströmung, Sonnenschein und Geothermie. Kohlenstoffarme Energieerzeugung bedeutet, dass die Produktion mit sehr geringen Treibhausgasemissionen verbunden ist, z.B. bei der Kernkraft.",
     "importsAndExports-question": "Werden Stromimporte und -exporte berücksichtigt?",
@@ -526,10 +511,6 @@
     "CK": {
       "zoneName": "Cook Inseln"
     },
-    "CL-SING": {
-      "countryName": "Chile",
-      "zoneName": "SING"
-    },
     "CL-SEM": {
       "countryName": "Chile",
       "zoneName": "Sistema Eléctrico de Aysén"
@@ -624,10 +605,6 @@
       "countryName": "Spanien",
       "zoneName": "Ceuta"
     },
-    "ES-IB": {
-      "countryName": "Spanien",
-      "zoneName": "Balearen"
-    },
     "ES-CN-FVLZ": {
       "countryName": "Spanien",
       "zoneName": "Fuerteventura/Lanzarote"
@@ -685,11 +662,9 @@
       "zoneName": "Gabun"
     },
     "GB": {
-      "countryName": "Vereinigtes Königreich",
       "zoneName": "Großbritannien"
     },
     "GB-NIR": {
-      "countryName": "Vereinigtes Königreich",
       "zoneName": "Nordirland"
     },
     "GD": {
@@ -727,10 +702,6 @@
     },
     "GR": {
       "zoneName": "Griechenland"
-    },
-    "GR-IS": {
-      "countryName": "Griechenland",
-      "zoneName": "Ägäische Inseln"
     },
     "GS": {
       "zoneName": "Südgeorgien und die südlichen Sandwichinseln"
@@ -800,7 +771,6 @@
       "countryName": "Indien",
       "zoneName": "Westindien"
     },
-
     "IN-AN": {
       "countryName": "Indien",
       "zoneName": "Andamanen und Nicobaren"
@@ -1384,10 +1354,6 @@
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
     },
-    "US-HI": {
-      "zoneName": "Hawaii",
-      "countryName": "Vereinigte Staaten"
-    },
     "UY": {
       "zoneName": "Uruguay"
     },
@@ -1568,10 +1534,6 @@
     "AU-TAS-KI": {
       "countryName": "Tasmanien",
       "zoneName": "King Island"
-    },
-    "CL-SING-SIC": {
-      "countryName": "Chile",
-      "zoneName": "SING/SIC"
     },
     "US": {
       "zoneName": "Zusammenhängende Vereinigte Staaten"
@@ -1871,11 +1833,6 @@
       "countryName": "Neuseeland",
       "zoneName": "Stewart Island"
     }
-  },
-  "mobile-info-tab": {
-    "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO₂-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO₂-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
-    "electricity-origins-text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten.",
-    "wind-solar-text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial dieser Ressourcen anzuzeigen."
   },
   "windDataError": "Winddaten aktuell nicht verfügbar",
   "solarDataError": "Solardaten aktuell nicht verfügbar"

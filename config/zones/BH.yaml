@@ -1,3 +1,5 @@
+aggregates_displayed:
+  - none # We are not showing this zone due to lack of data
 bounding_box:
   - - 49.94890384200005
     - 25.289536851000037
@@ -12,3 +14,5 @@ contributors:
 parsers:
   consumption: GCCIA.fetch_consumption
 timezone: Asia/Bahrain
+region: Asia
+country: BH

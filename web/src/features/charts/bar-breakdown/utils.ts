@@ -1,16 +1,15 @@
 import { max as d3Max } from 'd3-array';
-import { useEffect, useState } from 'react';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
   Maybe,
   ZoneDetail,
-  ZoneDetails,
   ZoneKey,
 } from 'types';
-import { Mode, modeOrder } from 'utils/constants';
-import { getProductionCo2Intensity } from 'utils/helpers';
+import { Mode, modeOrderBarBreakdown } from 'utils/constants';
+import { getProductionCo2Intensity, round } from 'utils/helpers';
+import { EnergyUnits } from 'utils/units';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
 
@@ -51,7 +50,7 @@ export interface ProductionDataType {
 }
 
 export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
-  modeOrder.map((mode) => {
+  modeOrderBarBreakdown.map((mode) => {
     const isStorage = mode.includes('storage');
     const generationMode = mode.replace(' storage', '') as GenerationType;
     // Power in MW
@@ -119,7 +118,7 @@ export const getDataBlockPositions = (
   const exchangeFlagX =
     LABEL_MAX_WIDTH - 4 * PADDING_X - DEFAULT_FLAG_SIZE - exchangeMax * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
-  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+  const exchangeY = productionY + productionHeight;
 
   return {
     productionHeight,
@@ -195,73 +194,21 @@ export const getExchangesToDisplay = (
   );
 };
 
-export const useHeaderHeight = () => {
-  const [headerHeight, setHeaderHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const headerElement = document.querySelector('header');
-    if (headerElement) {
-      const height = headerElement.offsetHeight;
-      setHeaderHeight(height * 1.1);
+/**
+ * Convents the price value and unit to the correct value and unit for the matching currency.
+ *
+ * If no currency is provided, the parameters are returned as is.
+ */
+export const convertPrice = (
+  value?: number,
+  currency?: string,
+  unit: EnergyUnits = EnergyUnits.MEGAWATT_HOURS
+): { value?: number; currency?: string; unit: EnergyUnits } => {
+  if (currency === 'EUR') {
+    if (value) {
+      value = round(value / 1000, 4);
     }
-  }, [window.innerWidth, window.innerHeight]);
-
-  return headerHeight;
+    return { value: value, currency, unit: EnergyUnits.KILOWATT_HOURS };
+  }
+  return { value, currency, unit };
 };
-
-export function getEmissionData(zoneData: ZoneDetails) {
-  const sourceInfoToProductionSource = new Map<string, string[]>();
-
-  for (const state of Object.values(zoneData.zoneStates)) {
-    updateMapWithSources(
-      state.dischargeCo2IntensitySources,
-      sourceInfoToProductionSource,
-      true
-    );
-    updateMapWithSources(
-      state.productionCo2IntensitySources,
-      sourceInfoToProductionSource
-    );
-  }
-
-  return sourceInfoToProductionSource;
-}
-
-function updateMapWithSources(
-  sources: { [key: string]: string },
-  sourceInfoToProductionSource: Map<string, string[]>,
-  storageType?: boolean
-) {
-  for (const entry of Object.entries(sources)) {
-    for (const sourceInfo of entry[1].split('; ')) {
-      const productionSource = getProductionSourcesToAdd(
-        entry,
-        sourceInfoToProductionSource.get(sourceInfo),
-        storageType
-      );
-      if (productionSource.length > 0) {
-        sourceInfoToProductionSource.set(sourceInfo, productionSource);
-      }
-    }
-  }
-}
-
-function getProductionSourcesToAdd(
-  entry: [string, string],
-  productionSourceArray: string[] | undefined,
-  storageType?: boolean
-): string[] {
-  const productionSource = storageType ? `${entry[0]} storage` : entry[0];
-  const sourceInfo = entry[1];
-
-  if (sourceInfo.startsWith('assumes')) {
-    return [];
-  }
-  if (productionSourceArray === undefined) {
-    return [productionSource];
-  } else if (!productionSourceArray?.includes(productionSource)) {
-    productionSourceArray?.push(productionSource);
-    return productionSourceArray;
-  }
-  return [];
-}

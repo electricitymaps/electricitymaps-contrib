@@ -62,6 +62,9 @@ capacity:
 contributors:
   - corradio
   - Frantisek12
+country: CZ
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -337,6 +340,7 @@ parsers:
   production: CZ.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

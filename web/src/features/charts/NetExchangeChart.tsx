@@ -1,14 +1,13 @@
-import { ExchangeIcon } from 'icons/exchangeIcon';
 import { useAtom } from 'jotai';
 import { TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
-import { RoundedCard } from './bar-breakdown/RoundedCard';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
+import { RoundedCard } from './RoundedCard';
 import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
 
 interface NetExchangeChartProps {
@@ -35,7 +34,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
     ...chartData.map((o) => Math.abs(o.layerData.netExchange))
   );
   const formatAxisTick = (t: number) =>
-    displayByEmissions ? formatCo2(t, maxEmissions) : t.toString();
+    displayByEmissions ? formatCo2({ value: t, total: maxEmissions }) : t.toString();
 
   if (!chartData[0]?.layerData?.netExchange) {
     return null;
@@ -43,11 +42,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
 
   return (
     <RoundedCard className="pb-2">
-      <ChartTitle
-        translationKey="country-history.netExchange"
-        icon={<ExchangeIcon />}
-        unit={valueAxisLabel}
-      />
+      <ChartTitle translationKey="country-history.netExchange" unit={valueAxisLabel} />
       <div className="relative">
         <AreaGraph
           testId="history-exchange-graph"

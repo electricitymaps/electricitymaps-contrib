@@ -11,6 +11,9 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 336.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 316.3
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 362.1
@@ -21,16 +24,22 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 2133.5
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 2118.6
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 41332.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 37693.8
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 37334.8
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 38555.2
   gas:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -38,9 +47,12 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 103416.7
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 105136.5
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 105137.5
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -64,9 +76,15 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 4980.8
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 4960.6
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 5319.6
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 5336.5
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -74,9 +92,15 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 10280.5
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 11192.8
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 11474.2
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 11617.6
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -88,6 +112,9 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 11182.6
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 11271.6
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 11270.6
@@ -96,6 +123,9 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+country: US
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -362,6 +392,7 @@ parsers:
   price: US_PJM.fetch_price
   production: US_PJM.fetch_production
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

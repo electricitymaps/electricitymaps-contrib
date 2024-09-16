@@ -21,7 +21,9 @@ contributors:
   - sahitya-pavurala
   - willbeaufoy
   - mathilde-daugy
-timezone: Asia/Kolkata
+country: IN
+delays:
+  production: 75
 emissionFactors:
   direct:
     unknown:
@@ -40,3 +42,5 @@ isRenewable:
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
+region: Asia
+timezone: Asia/Kolkata

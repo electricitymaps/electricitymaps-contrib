@@ -1,3 +1,4 @@
+import { callerLocation, useMeta } from 'api/getMeta';
 import { useMatch, useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
@@ -14,6 +15,18 @@ export function useGetZoneFromPath() {
     return zoneId;
   }
   return match?.params.id || undefined;
+}
+
+export function useUserLocation(): callerLocation {
+  const { callerLocation } = useMeta();
+  if (
+    callerLocation &&
+    callerLocation.length === 2 &&
+    callerLocation.every((x) => Number.isFinite(x))
+  ) {
+    return callerLocation;
+  }
+  return null;
 }
 
 export function getCO2IntensityByMode(
@@ -118,12 +131,9 @@ export function getRenewableRatio(
  * @param {number} decimals - Defaults to 2 decimals.
  * @returns {number} Rounded number.
  */
-export const round = (number: number, decimals = 2): number => {
-  return (
-    (Math.round((Math.abs(number) + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
-    Math.sign(number)
-  );
-};
+export const round = (number: number, decimals = 2): number =>
+  (Math.round((Math.abs(number) + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
+  Math.sign(number);
 
 /**
  * Returns the net exchange of a zone

@@ -67,6 +67,9 @@ contributors:
   - lorrieq
   - nessie2013
   - lgrigoryeva1
+country: TR
+delays:
+  production: 8
 emissionFactors:
   direct:
     battery discharge:
@@ -277,6 +280,7 @@ parsers:
   production: TR.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Asia
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

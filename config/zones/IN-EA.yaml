@@ -13,9 +13,13 @@ capacity:
   solar: 917.72
   unknown: 0
   wind: 0
-timezone: Asia/Kolkata
 contributors:
   - unitrium
+country: IN
+delays:
+  production: 75
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
+region: Asia
+timezone: Asia/Kolkata

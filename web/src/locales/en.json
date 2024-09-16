@@ -1,24 +1,33 @@
 {
-  "info-modal": {
-    "title": "Info",
-    "intro-text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href=\"{{link}}\" target=\"_blank\">Open Source</a> (<a href=\"{{sourcesLink}}\" target=\"_blank\">see data sources</a>) and powered by the community.",
-    "feedback-button": "Share feedback",
-    "github-button": "View our GitHub",
-    "twitter-button": "Share on Twitter",
-    "slack-button": "Join the Slack community",
-    "privacy-policy": "Privacy Policy",
-    "legal-notice": "Legal Notice"
+  "info": {
+    "title": "About the app",
+    "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
+    "open-source-text": "This app is <a href='{{link}}' target='_blank'>Open Source</a> and powered by the community.",
+    "version": "App version: {{version}}",
+    "share-app": "Share the app:"
   },
   "settings-modal": {
     "title": "Settings"
   },
-  "panel-initial-text": {
-    "thisproject": "This app is",
-    "opensource": "Open Source",
-    "see": "see",
-    "datasources": "data sources",
-    "contribute": "Contribute by <a href=\"{{link}}\" target=\"_blank\">adding your territory</a>"
+  "ranking-panel": {
+    "title": "Climate Impact by Area",
+    "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
+    "search": "Search areas"
+  },
+  "button": {
+    "reddit": "Join r/electricitymaps",
+    "github": "Contribute on GitHub",
+    "twitter": "Follow us on Twitter",
+    "twitter-share": "Share on Twitter",
+    "slack": "Join our Slack community",
+    "linkedin": "Follow us on LinkedIn",
+    "linkedin-share": "Share on LinkedIn",
+    "facebook": "Follow us on Facebook",
+    "facebook-share": "Share on Facebook",
+    "feedback": "Share feedback",
+    "faq": "FAQ",
+    "privacy-policy": "Privacy Policy",
+    "legal-notice": "Legal Notice"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -67,16 +76,16 @@
     "carbonintensity": "Carbon Intensity",
     "lowcarbon": "Low-carbon",
     "renewable": "Renewable",
-    "electricityproduction": "Electricity production",
-    "electricityconsumption": "Electricity consumption",
-    "emissions": "Carbon emissions",
-    "contribute": "Contribute on GitHub",
+    "electricityproduction": "Production",
+    "electricityconsumption": "Consumption",
+    "emissions": "Emissions",
     "helpfrom": "With help from:",
     "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
     "noLiveData": "Live data is temporarily unavailable for this area",
     "disabledPriceReasons": {
       "licensing": "Electricity prices are unavailable for this area due to licensing terms"
     },
+    "emissionFactorDataSourcesTooltip": "Electricity production emission factors can originate from multiple sources. This happens as several factors, like plant-specific data, generation and sometimes fallback sources, are considered in emission calculations.",
     "disabledBreakdownChartReason": "Disabled for the consumption view. Please switch to the production view to enable the origin chart",
     "dataIsDelayed": "Data for this region can be up to {{hours}} hours delayed. Live data cannot be displayed.",
     "estimated": "estimated",
@@ -88,14 +97,23 @@
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> or contact the data provider.",
     "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"{{link}}\" target=\"_blank\">adding area data</a>.",
     "aggregationDisabled": "Data is not available for the selected time period due to missing granular breakdown. Try a broader time period.",
+    "fullyDisabled": "The data we have available for this zone is insufficient and therefore not shown. If you are aware of data sources for this area, please <a href=\"{{link}}\" target=\"_blank\">let us know</a>.",
     "now": "Now",
     "by-source": {
-      "emissions": "Carbon emissions by source",
-      "electricity-production": "Electricity production by source",
-      "electricity-consumption": "Electricity consumption by source",
-      "total-emissions": "Total carbon emissions by source",
-      "total-electricity-production": "Total electricity production by source",
-      "total-electricity-consumption": "Total electricity consumption by source"
+      "emissions": "Carbon emissions",
+      "electricity-production": "Electricity production",
+      "electricity-consumption": "Electricity consumption",
+      "total-emissions": "Total carbon emissions",
+      "total-electricity-production": "Total electricity production",
+      "total-electricity-consumption": "Total electricity consumption"
+    },
+    "graph-legends": {
+      "installed-capacity": "Installed capacity ",
+      "exchange-capacity": "Available exchange capacity ",
+      "exported": "Exported",
+      "imported": "Imported",
+      "stored": "Stored",
+      "produced": "Produced"
     }
   },
   "feedback-card": {
@@ -108,7 +126,7 @@
       "primary-question": "The description of the data estimation was easy to understand:"
     },
 
-    "primary-question": "How satisfied are you with your experience using the Electricity Maps app?",
+    "primary-question": "How would you rate your overall satisfaction with the Electricity Maps app?",
     "secondary-question-low": "What can we do better?",
     "secondary-question-high": "What improvements would you like to see next?",
 
@@ -116,6 +134,8 @@
     "input-question": "Let us know any features you'd like to see?",
     "agree": "Strongly agree",
     "disagree": "Strongly disagree",
+    "satisfied": "Very satisfied",
+    "unsatisfied": "Very unsatisfied",
     "placeholder": "Let us know in a few words...",
     "submit": "Submit"
   },
@@ -127,22 +147,22 @@
   "estimation-card": {
     "link": "Read about our estimation models",
     "outage-details": "See details",
-    "estimated_forecasts_hierarchy": {
+    "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data is estimated",
       "pill": "Estimated",
       "body": "The data for this zone is estimated using a combination of internal and external production forecasts and Time Slicer Averages. This aims to provide a more accurate representation than Time Slicer Average alone but the data may still be subject to inaccuracies. The data will be updated as soon as real-time data becomes available."
     },
-    "estimated_time_slicer_average": {
-      "title": "Data is currently estimated",
-      "pill": "Unavailable",
-      "body": "The data provider is currently not reporting data for this hour. The displayed values are estimated based on historical measurements and will be replaced with consolidated data once available. Please be aware that estimated values might not always be accurate since they do not account for specific real-time weather events."
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
+      "title": "Data is preliminary",
+      "pill": "Preliminary",
+      "body": "The data provider is not reporting data for this hour. The displayed values are estimated based on historical measurements and will be updated once measured data is available. Note that estimated values may not account for real-time weather events."
     },
-    "estimated_mode_breakdown": {
+    "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data is partially estimated",
       "pill": "Incomplete",
       "body": "Electricity generation data for this zone is incomplete; missing values have been calculated using an estimation model."
     },
-    "estimated_reconstruct_breakdown": {
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Data is always estimated",
       "pill": "Imprecise",
       "body": "The published data for this zone only provides the total production. Renewable sources are estimated using live weather data, while the fossil sources are deducted based on historical data for each production source."
@@ -152,12 +172,12 @@
       "pill": "Imprecise",
       "body": "The published data for this zone is unavailable or incomplete. The data shown on the map is estimated using our best effort, but might differ from the actual values."
     },
-    "estimated_construct_breakdown": {
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Data is always estimated",
       "pill": "Not realtime",
       "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
     },
-    "estimated_construct_zero_breakdown": {
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Data is always estimated",
       "pill": "Not realtime",
       "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
@@ -182,16 +202,18 @@
     }
   },
   "time-controller": {
-    "title": "Display data from the past",
+    "title": {
+      "hourly": "Hourly data for:",
+      "daily": "Daily data for:",
+      "monthly": "Monthly data for:",
+      "yearly": "Yearly data for:"
+    },
     "daily": "daily",
     "hourly": "hourly",
     "monthly": "monthly",
     "yearly": "yearly"
   },
   "left-panel": {
-    "zone-list-header-title": "Climate Impact by Area",
-    "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas",
     "get-data": "See our commercial API offerings",
     "applied-methodologies": {
       "title": "Applied methodologies",
@@ -273,8 +295,11 @@
   },
   "tooltips": {
     "carbonintensity": "Carbon intensity",
-    "lowcarbon": "Low-carbon",
-    "renewable": "Renewable",
+    "zoneHeader": {
+      "lowcarbon": "Includes all renewables and nuclear",
+      "renewable": "Includes solar, wind, hydro, biomass and geothermal",
+      "carbonIntensity": "Grams of CO2 equivalent per kilowatt-hour (gCO2eq/kWh) measuring the greenhouse gas emissions from generating electricity"
+    },
     "crossborderexport": "Cross-border export",
     "carbonintensityexport": "Carbon intensity of export",
     "ofinstalled": "of installed capacity",
@@ -292,12 +317,12 @@
     "changeTheme": "Change theme",
     "noParserInfo": "No data available",
     "temporaryDataOutage": "Live data temporarily unavailable",
+    "temporarilyUnavailable": "Temporarily unavailable",
     "production": "production",
     "consumption": "consumption",
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
     "aggregateInfo": "Toggle between a granular zone view and an aggregated country view",
     "selectLanguage": "Select language",
-    "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed",
     "price": "Price",
     "netExchange": "Net exchange",
@@ -324,18 +349,15 @@
     "light": "Light",
     "system": "System"
   },
+  "updatePrompt": {
+    "title": "Update available",
+    "description": "A new version of the app is available, update now?",
+    "update": "Update",
+    "dismiss": "Dismiss"
+  },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
-    "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-    "newversion": "A new app version is available!",
-    "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
-    "retrynow": "Retry now",
-    "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-    "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
-    "legend": "Legend",
     "faq": "Frequently Asked Questions",
-    "privacyPolicy": "Privacy Policy",
-    "legalNotice": "Legal Notice",
     "dismiss": "Dismiss",
     "reload": "Reload",
     "slow-loading-text": "Still loading, if this continues try reloading..."
@@ -354,14 +376,15 @@
   "coal": "coal",
   "oil": "oil",
   "unknown": "unknown",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
+  "electricityStoredUsing": "is stored using",
+  "emissionsStoredUsing": "are stored using",
+  "electricityExportedTo": "is exported to",
+  "emissionsExportedTo": "are exported to",
+  "electricityImportedFrom": "is imported from",
+  "emissionsImportedFrom": "are imported from",
+  "electricityAvailableIn": "of electricity available in",
+  "emissionsAvailableIn": "of emissions from electricity available in",
+  "comesFrom": "comes from",
   "ofCO2eq": "of CO₂eq",
   "theMap": {
     "groupName": "The map",
@@ -374,7 +397,7 @@
     "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
     "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated with nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
     "mapColorBlind-question": "I am color blind. How can I read your map?",
-    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
+    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on right side of the app on desktop and in the settings panel on the mobile app."
   },
   "mapAreas": {
     "groupName": "Areas in the map",
@@ -875,7 +898,7 @@
       "countryName": "Great Britain",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Great Britain",
       "zoneName": "Shetland Islands"
     },
@@ -914,10 +937,6 @@
     },
     "GR": {
       "zoneName": "Greece"
-    },
-    "GR-IS": {
-      "countryName": "Greece",
-      "zoneName": "Aegean Islands"
     },
     "GS": {
       "zoneName": "South Georgia and the South Sandwich Islands"

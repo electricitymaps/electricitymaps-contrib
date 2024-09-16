@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "이 프로젝트는",
-    "opensource": "오픈된 정보",
-    "see": "보시오",
-    "datasources": "데이터 정보",
-    "contribute": "공헌으로<a href=\"{{link}}\" target=\"_blank\">자기 지역을 추가해주세요</a>"
-  },
   "mobile-main-menu": {
     "map": "전력 지도",
     "areas": "지역",
@@ -33,19 +26,15 @@
     "carbonintensity": "탄소 밀집도",
     "lowcarbon": "낮은 탄소밀집도",
     "renewable": "재생 가능한",
-    "electricityproduction": "전력 생산",
-    "electricityconsumption": "전력 소비",
-    "bysource": "발생원에 따라",
-    "emissions": "탄소 배출",
     "helpfrom": "의 도움으로",
     "noDataAtTimestamp": "지정된 시간 동안 데이터를 일시적으로 사용할 수 없습니다.",
     "noLiveData": "이 지역의 실시간 정보를 일시적으로 사용할 수 없습니다.",
     "noParserInfo": "현재 이 지역에 대한 정보를 찾을 수 없습니다. <br/> 더 나은 서비스를 위해 <a href=\"{{link}}\" target=\"_blank\">정보를 제공해 주십시오.</a>.",
     "now": "현재"
   },
-  "left-panel": {
-    "zone-list-header-title": "지역에 따른 기후 영향",
-    "zone-list-header-subtitle": "전력소비에 따른 탄소 밀집도 순위(gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "지역에 따른 기후 영향",
+    "subtitle": "전력소비에 따른 탄소 밀집도 순위(gCO₂eq/kWh)",
     "search": "지역 찾기"
   },
   "footer": {
@@ -62,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "탄소집약도",
-    "lowcarbon": "저탄소",
-    "renewable": "재생가능한",
     "crossborderexport": "국경을 넘는 수출",
     "carbonintensityexport": "수출 탄소집약도",
     "ofinstalled": "설비 용량의",
@@ -83,12 +70,6 @@
   },
   "misc": {
     "maintitle": "전력 소비로 인한 실시간 CO₂ 배출",
-    "oops": "이런! 서버 접속에 문제가 있네요. 잠시 후 다시 시도해보겠습니다.",
-    "newversion": "새 버전이 출시되었습니다!",
-    "retrynow": "지금 다시 눌러보세요",
-    "database-ad": "역사학적 데이터를 찾으시나요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">데이터 베이스를 확인해보세요!</a>",
-    "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
-    "legend": "범주",
     "faq": "자주 묻는 질문",
     "dismiss": "닫기",
     "reload": "다시 로드"
@@ -105,14 +86,6 @@
   "coal": "석탄",
   "oil": "오일",
   "unknown": "알 수 없음",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity available in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions from electricity available in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "지도",
     "mapColors-question": "지도에서 색은 무엇을 의미 합니까?",
@@ -141,8 +114,6 @@
     "groupName": "접근 방법/연구 방법",
     "carbonIntensity-question": "탄소집약도란?",
     "carbonIntensity-answer": "탄소집약도란 우리가 소비하는 전력의 생산과 관련하여 온실가스 배출량을 측정한 수치를 말합니다.(gCO₂eq/kWh; 소비전력 킬로와트시당 방출되는 이산화탄소 그램 양). <br><br>다만, 우리는 생산된 전력의 온실가스 방출량이 아니라 소비 전력의 온실가스 방출량을 측정합니다. 즉, 한 지역에서 소비되는 전력을 생산하는 과정에서 배출되는 모든 온실가스(이산화탄소뿐만 아니라 메탄과 같은 다른 온실가스도 포함)의 방출량을 측정하는 것입니다. 이때 다른 지역에서 수입된 전력의 탄소집약도까지 고려하게 됩니다. 우리는 라이프사이클 분석(LCA) 기법을 적용하여, 연료 생산 및 발전소 운영에 따른 방출량을 포함해 발전소 건설 단계에서부터 폐기 단계까지 발전소의 전체 라이프사이클에서 발생되는 배출량을 고려합니다.",
-    "consumptionFocus-question": "생산 전력 대신 소비 전력의 탄소집약도를 측정하는 이유는 무엇입니까?",
-    "consumptionFocus-answer": "우리는 사람들이 살고 있는 지역에서 생산된 전력이 아니라 그들이 소비한 전력에 대해 책임이 있다고 생각합니다. 또한 각 지자체는 오염된 에너지를 그저 다른 지역으로 이전시키고 그곳에서 다시 전력을 수입하는 방식을 통해 해당 지역이 환경에 미치는 영향이 적다고 ‘거짓' 홍보를 해서는 안됩니다.",
     "renewableLowCarbonDifference-question": "재생 에너지와 저탄소 에너지의 차이점은 무엇입니까?",
     "renewableLowCarbonDifference-answer": "재생 에너지는 풍력, 수력, 태양열, 지열과 같이 재생가능한 자원을 바탕으로 생산됩니다. 저탄소 에너지는 원자력처럼 에너지 생산 시 매우 적은 양의 온실가스가 배출되는 에너지를 말합니다.",
     "importsAndExports-question": "전력의 수입 및 수출도 고려 대상입니까?",
@@ -407,10 +378,6 @@
     "CK": {
       "zoneName": "쿡 제도"
     },
-    "CL-SING-SIC": {
-      "countryName": "칠레",
-      "zoneName": "SING/SIC"
-    },
     "CL-SEM": {
       "countryName": "칠레",
       "zoneName": "SEM"
@@ -614,10 +581,6 @@
     },
     "GR": {
       "zoneName": "그리스"
-    },
-    "GR-IS": {
-      "countryName": "그리스",
-      "zoneName": "에게해 제도"
     },
     "GS": {
       "zoneName": "사우스조지아 사우스샌드위치 제도"

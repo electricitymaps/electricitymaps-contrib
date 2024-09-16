@@ -31,6 +31,9 @@ contributors:
   - veqtrus
   - q--
   - nessie2013
+country: CY
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -257,6 +260,7 @@ fallbackZoneMixes:
 parsers:
   production: CY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Asia
 sources:
   EU-ETS, CERA 2018 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2018_gr.pdf#page=128

@@ -53,3 +53,5 @@ contributors:
 parsers:
   consumption: GCCIA.fetch_consumption
 timezone: Asia/Qatar
+region: Asia
+country: QA

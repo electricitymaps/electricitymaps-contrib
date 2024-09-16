@@ -40,10 +40,10 @@ const getZone = async (
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const zoneId = useGetZoneFromPath();
   const [timeAverage] = useAtom(timeAverageAtom);
-  return useQuery<ZoneDetails>(
-    [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
-    async () => getZone(timeAverage, zoneId)
-  );
+  return useQuery<ZoneDetails>({
+    queryKey: [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
+    queryFn: async () => getZone(timeAverage, zoneId),
+  });
 };
 
 export default useGetZone;

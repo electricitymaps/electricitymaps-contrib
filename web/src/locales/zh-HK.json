@@ -1,17 +1,7 @@
 {
-  "panel-initial-text": {
-    "thisproject": "這個項目是",
-    "opensource": "開源資料",
-    "see": "看",
-    "datasources": "數據來源",
-    "contribute": "通過<a href=\"{{link}}\" target=\"_blank\">添加你的國家</a>進行貢獻"
-  },
   "country-panel": {
     "source": "來源",
-    "carbonintensity": "碳強度",
-    "electricityproduction": "電力生產",
-    "bysource": "按來源",
-    "emissions": "碳排放量"
+    "carbonintensity": "碳強度"
   },
   "footer": {
     "foundbugs": "發現錯誤或有其他想法？請回報",
@@ -33,8 +23,6 @@
   },
   "misc": {
     "maintitle": "生活用電二氧化碳排放量",
-    "oops": "哎呀！ 我們無法連線到服務器。 我們會在幾秒鐘後再試一次。",
-    "newversion": "有新版本可用!",
     "dismiss": "移除",
     "reload": "重新載入"
   },
@@ -48,14 +36,6 @@
   "coal": "煤炭",
   "oil": "石油",
   "unknown": "未知",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力來自 {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量來自 {{selectedLayerKey}}",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力使用 {{selectedLayerKey}} 儲存",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量使用 {{selectedLayerKey}} 儲存",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力被匯出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量被匯出到 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的電力從 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> 匯入",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> <b>{{percentageUsage}} %</b> 的排放量從 {{selectedZoneFlag}} <b>{{selectedZoneName}}</b> 匯入",
   "zoneShortName": {
     "AL": {
       "zoneName": "阿爾巴尼亞"

@@ -15,6 +15,9 @@ capacity:
 contributors:
   - alixunderplatz
   - VIKTORVAV99
+country: HN
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -86,4 +89,5 @@ fallbackZoneMixes:
 parsers:
   production: HN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Americas
 timezone: America/Tegucigalpa

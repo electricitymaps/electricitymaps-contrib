@@ -210,7 +210,6 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
@@ -232,3 +231,5 @@ subZoneNames:
   - DK-DK2
   - DK-BHM
 timezone: Europe/Copenhagen
+region: Europe
+country: DK

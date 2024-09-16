@@ -58,3 +58,5 @@ parsers:
   production: CO.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: America/Bogota
+region: Americas
+country: CO

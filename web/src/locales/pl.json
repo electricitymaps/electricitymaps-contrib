@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Ten app jest",
-    "opensource": "Open Source",
-    "see": "zobacz",
-    "datasources": "źródła danych",
-    "contribute": "Pomóż nam <a href=\"{{link}}\" target=\"_blank\">dodając więcej regionów</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Obszary",
@@ -33,11 +26,7 @@
     "carbonintensity": "Emisja CO₂",
     "lowcarbon": "Niskoemisyjne",
     "renewable": "Odnawialne",
-    "electricityproduction": "Produkcja energii elektrycznej",
-    "bysource": "według źródeł energii",
-    "emissions": "Emisje CO₂",
     "helpfrom": "z wkładem",
-    "electricityconsumption": "Zużycie energii elektrycznej",
     "noDataAtTimestamp": "Dla wybranego okresu dane są tymczasowo niedostępne",
     "noLiveData": "Dane na żywo są tymczasowo niedostępne dla tego obszaru",
     "noParserInfo": "Nie posiadamy jeszcze żadnych informacji o tym obszarze.<br/> Chcesz pomóc? Możesz to zrobić <a href=\"{{link}}\" target=\"_blank\">dodając dane dla obszaru</a>.",
@@ -48,13 +37,10 @@
     "dataIsEstimated": "Niektóre dane dla tego obszaru zostały oszacowane. Przeczytaj więcej o naszej metodologii szacowania <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">tutaj</a>.",
     "now": "Obecnie"
   },
-  "left-panel": {
-    "zone-list-header-title": "Wpływ na klimat według obszaru",
-    "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Wpływ na klimat według obszaru",
+    "subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
     "search": "Szukaj"
-  },
-  "time-controller": {
-    "title": "Wyświetl dane historyczne"
   },
   "footer": {
     "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
@@ -70,8 +56,9 @@
   },
   "tooltips": {
     "carbonintensity": "Emisja CO₂",
-    "lowcarbon": "Niskoemisyjne źródła energii",
-    "renewable": "Odnawialne źródła energii",
+    "zoneHeader": {
+      "lowcarbon": "Zawiera niskoemisyjne i jądrowe źródła energii"
+    },
     "crossborderexport": "Eksport",
     "carbonintensityexport": "Emisja CO₂ eksportu",
     "ofinstalled": "zainstalowanej mocy",
@@ -89,19 +76,17 @@
     "production": "produkcja",
     "consumption": "konsumpcja",
     "cpinfo": "<b>konsumpcja</b> uwzględnia import i eksport, <b>produkcja</b> je pomija",
-    "selectLanguage": "Wybierz język",
-    "lowCarbDescription": "Zawiera niskoemisyjne i jądrowe źródła energii"
+    "selectLanguage": "Wybierz język"
+  },
+  "updatePrompt": {
+    "title": "Dostępna aktualizacja",
+    "description": "Dostępna jest nowa wersja aplikacji, zaktualizować teraz?",
+    "update": "Aktualizuj",
+    "dismiss": "Odrzuć"
   },
   "misc": {
     "maintitle": "Emisja CO₂ konsumpcji energii elektrycznej w czasie rzeczywistym",
-    "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
-    "newversion": "Jest dostępna nowa wersja!",
-    "retrynow": "Spróbuj teraz",
-    "database-ad": "Szukasz danych historycznych? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
-    "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na urządzeniu? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
-    "legend": "Legenda",
     "faq": "Najczęściej Zadawane Pytania",
-    "webgl-not-supported": "Nie można wyrenderować mapy, ponieważ wykorzystywana przeglądarka nie obsługuje WebGL.",
     "dismiss": "Ignoruj",
     "reload": "Odśwież"
   },
@@ -133,8 +118,6 @@
     "groupName": "Nasze metody",
     "carbonIntensity-question": "Co to jest „Intensywność emisji CO₂”?",
     "carbonIntensity-answer": "Intensywność emisji CO₂ (w gCO₂eq/kWh - gramach ekwiwalentów dwutlenku węgla wyemitowanego na kilowatogodzinę zużytej energii elektrycznej). <br><br>Mierzymy emisje zużycia energii elektrycznej (nie produkcji), co oznacza wszystkie emisje gazów cieplarnianych (zarówno CO₂, jaki i innych gazów cieplarnianych, takich jak metan), które zostały wykorzystane do produkcji energii elektrycznej zużywanej na danym obszarze, biorąc pod uwagę intensywność emisji CO₂ importowanej z innych obszarów. Stosujemy podejście analizy cyklu życia (LCA, life cycle analysis), co oznacza, że bierzemy pod uwagę emisje z całego cyklu życia elektrowni (budowa, produkcja paliw, emisje eksploatacyjne i likwidacja).",
-    "consumptionFocus-question": "Dlaczego obliczacie intensywność emisji CO₂ zużycia energii elektrycznej zamiast jej produkcji?",
-    "consumptionFocus-answer": "Uważamy, że obywatele powinni być odpowiedzialni za zużywaną przez nich energię elektryczną, a nie za energię elektryczną wytwarzaną w obszarze, w którym akurat mieszkają. Co więcej uważamy, że obszary nie powinny być w stanie 'udawać' niskiego wpływu na klimat, po prostu przenosząc produkcję brudnej energii na inne obszary, a następnie ją z nich importując.",
     "renewableLowCarbonDifference-question": "Jaka jest różnica pomiędzy „odnawialne” i „niskoemisyjne”?",
     "renewableLowCarbonDifference-answer": "Produkcja energii odnawialnej opiera się na odnawialnych źródłach energii, takich jak energia wiatrowa, wodna, słoneczna i geotermalna. Niskoemisyjna produkcja energii oznacza, że produkcja wiąże się z bardzo niskim poziomem emisji gazów cieplarnianych, tak jak w przypadku energii jądrowej.",
     "importsAndExports-question": "Czy bierzecie pod uwagę import i eksport energii elektrycznej?",
@@ -183,14 +166,6 @@
   "coal": "węglowa",
   "oil": "naftowa",
   "unknown": "nieznana",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: produkcja {{selectedLayerKey}} tworzy <b>{{percentageUsage}} %</b> energii elektrycznej",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: produkcja {{selectedLayerKey}} tworzy <b>{{percentageUsage}} %</b> emisji",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} przetrzymywują <b>{{percentageUsage}} %</b> energii elektrycznej",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b>: {{selectedLayerKey}} przetrzymywują <b>{{percentageUsage}} %</b> emisji",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> energii elektrycznej jest eksportowane do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisji jest eksportowane do {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> energii elektrycznej jest importowane z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b>: <b>{{percentageUsage}} %</b> emisji jest importowane z {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AE": {
       "zoneName": "Zjednoczone Emiraty Arabskie"
@@ -348,9 +323,6 @@
     "CI": {
       "zoneName": "Wybrzeże Kości Słoniowej"
     },
-    "CL": {
-      "zoneName": "Chile"
-    },
     "CM": {
       "zoneName": "Kamerun"
     },
@@ -421,26 +393,6 @@
       "countryName": "Hiszpania",
       "zoneName": "Ceuta"
     },
-    "ES-IB": {
-      "countryName": "Hiszpania",
-      "zoneName": "Baleary"
-    },
-    "ES-IB-ML": {
-      "countryName": "Hiszpania",
-      "zoneName": "Majorka"
-    },
-    "ES-IB-MN": {
-      "countryName": "Hiszpania",
-      "zoneName": "Minorka"
-    },
-    "ES-IB-IB": {
-      "countryName": "Hiszpania",
-      "zoneName": "Ibiza"
-    },
-    "ES-IB-FM": {
-      "countryName": "Hiszpania",
-      "zoneName": "Formentera"
-    },
     "ES-CN-FVLZ": {
       "countryName": "Hiszpania",
       "zoneName": "Fuerteventura i Lanzarote"
@@ -508,10 +460,6 @@
     },
     "GR": {
       "zoneName": "Grecja"
-    },
-    "GR-IS": {
-      "countryName": "Grecja",
-      "zoneName": "Wyspy Egejskie"
     },
     "GT": {
       "zoneName": "Gwatemala"
@@ -643,10 +591,6 @@
     "IN-SK": {
       "countryName": "Indie",
       "zoneName": "Sikkim"
-    },
-    "IN-TL": {
-      "countryName": "Indie",
-      "zoneName": "Tamilnadu"
     },
     "IN-TR": {
       "countryName": "Indie",

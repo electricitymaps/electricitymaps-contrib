@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "このプロジェクトは",
-    "opensource": "オープンソースです",
-    "see": "",
-    "datasources": "データソースを見る",
-    "contribute": "貢献するには <a href=\"{{link}}\" target=\"_blank\">自分の国のデータを追加してください</a>"
-  },
   "mobile-main-menu": {
     "map": "電力マップ",
     "areas": "エリア",
@@ -33,10 +26,6 @@
     "carbonintensity": "炭素強度",
     "lowcarbon": "低炭素エネルギー",
     "renewable": "再生可能エネルギー",
-    "electricityproduction": "電力生産量",
-    "electricityconsumption": "電力消費量",
-    "bysource": "ソース分け",
-    "emissions": "二酸化炭素排出",
     "helpfrom": "次の方の協力のおかげで",
     "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
     "noLiveData": "このエリアのライブデータは一時的に利用できません",
@@ -44,9 +33,9 @@
     "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"{{link}}\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
     "now": "今"
   },
-  "left-panel": {
-    "zone-list-header-title": "エリアごとの環境への影響",
-    "zone-list-header-subtitle": "電力消費に対する炭素強度(gCO₂eq/kWh)でランク分け",
+  "ranking-panel": {
+    "title": "エリアごとの環境への影響",
+    "subtitle": "電力消費に対する炭素強度(gCO₂eq/kWh)でランク分け",
     "search": "エリアを検索"
   },
   "footer": {
@@ -63,8 +52,9 @@
   },
   "tooltips": {
     "carbonintensity": "炭素強度",
-    "lowcarbon": "低二酸化炭素",
-    "renewable": "再生可能",
+    "zoneHeader": {
+      "lowcarbon": "再生可能エネルギーと原子力を含む"
+    },
     "crossborderexport": "国境を超える輸出",
     "carbonintensityexport": "輸出された炭素強度",
     "ofinstalled": "of installed capacity",
@@ -81,21 +71,12 @@
     "consumption": "消費",
     "cpinfo": "<b>消費</b> は取り込みと放出を考慮し, <b>生産</b> はそれらを考慮しない",
     "selectLanguage": "言語を選択",
-    "lowCarbDescription": "再生可能エネルギーと原子力を含む",
     "dataIsDelayed": "データが遅延しています"
   },
   "misc": {
     "maintitle": "電力消費による二酸化炭素排出のライブ地図",
-    "oops": "すみません!サーバーにの接続に問題がありました、数秒後にまた試します",
-    "newversion": "新しいバージョンが使える!",
-    "webgl-not-supported": "ブラウザがWebGLをサポートしていないため、マップを表示できません。",
-    "retrynow": "今すぐリトライ",
-    "database-ad": "過去のデータをお探しですか? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">データベースをチェックしてください!</a>",
-    "api-ad": "あなたのアプリやデバイスにデータを取り込みたいですか? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">私たちのAPIをお試しください!</a>",
-    "legend": "Legend",
     "faq": "よくある質問",
-    "dismiss": "閉じる",
-    "realod": "再読み込み"
+    "dismiss": "閉じる"
   },
   "wind": "風力",
   "solar": "太陽光",
@@ -109,14 +90,6 @@
   "coal": "石炭",
   "oil": "石油",
   "unknown": "不明",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> comes from {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> come from {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> is stored using {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> are stored using {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> is exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> are exported to {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> of electricity in {{zoneFlag}} <b>{{zoneName}}</b> is imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> of emissions in {{zoneFlag}} <b>{{zoneName}}</b> are imported from {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "地図",
     "mapColors-question": "地図中の色は何を意味しますか?",
@@ -145,8 +118,6 @@
     "groupName": "手法",
     "carbonIntensity-question": "\"炭素強度(carbon intensity)\"とは何ですか?",
     "carbonIntensity-answer": "炭素強度は発電に伴い排出される温室効果ガスの計測値です(gCO₂eq/kWh : 1時間に1キロワット電力消費する際に排出される、グラム単位の二酸化炭素排出量)。私たちは(発電ではなく)電力消費に伴う排出を測定しており、発電された地域で消費される電力の排出値も、他地域から輸入された電力による値も考慮した全ての排出ガス(CO₂もメタンのような他の温室効果ガスも)を意味します。私たちは発電所のライフサイクル全体(建設、燃料製造、運用による排出、運用終了後の解体)から生じる排出値を考慮したライフサイクル分析(LCA: life cycle analysis)によるアプローチをとります。",
-    "consumptionFocus-question": "なぜ発電ではなく電力消費による炭素強度を計測するのですか?",
-    "consumptionFocus-answer": "私たちは市民は自らが消費する電気に責任を負うべきで、住んでいる地域で発電されている電気に責任を負うべきでは無いと信じています。さらには各地域が、クリーンではない発電を他の地域に移すことや他の地域から電気を輸入することでは気候への影響が少ないと'偽る'ことはできないはずだと私たちは信じています。",
     "renewableLowCarbonDifference-question": "“再生可能”と“低炭素”の違いは何ですか??",
     "renewableLowCarbonDifference-answer": "再生可能な発電は風力、水力、太陽光、地熱などの再生可能なエネルギー源による発電です。低炭素な発電は原子力発電などの非常に少ない温室効果ガスの排出を伴う発電を意味します。",
     "importsAndExports-question": "電力の輸入と輸出も考慮していますか?",
@@ -619,10 +590,6 @@
     "GR": {
       "zoneName": "ギリシャ"
     },
-    "GR-IS": {
-      "countryName": "ギリシャ",
-      "zoneName": "エーゲ海諸島"
-    },
     "GS": {
       "zoneName": "サウスジョージア・サウスサンドウィッチ諸島"
     },
@@ -775,10 +742,6 @@
     "IN-SK": {
       "countryName": "インド",
       "zoneName": "シッキム"
-    },
-    "IN-TL": {
-      "countryName": "インド",
-      "zoneName": "タミルナードゥ州"
     },
     "IN-TR": {
       "countryName": "インド",

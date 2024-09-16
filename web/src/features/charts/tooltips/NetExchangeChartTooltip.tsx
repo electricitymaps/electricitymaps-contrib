@@ -1,9 +1,8 @@
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
 import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
-import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
+import { displayByEmissionsAtom, isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
@@ -13,13 +12,13 @@ export default function NetExchangeChartTooltip({
 }: InnerAreaGraphTooltipProps) {
   const [timeAverage] = useAtom(timeAverageAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const { t } = useTranslation();
 
   if (!zoneDetail) {
     return null;
   }
 
-  const isHourly = timeAverage === TimeAverages.HOURLY;
   const { stateDatetime } = zoneDetail;
 
   const netExchange = getNetExchange(zoneDetail, displayByEmissions);
@@ -27,11 +26,11 @@ export default function NetExchangeChartTooltip({
 
   const unit = displayByEmissions ? t('ofCO2eq') : powerUnit;
   const value = displayByEmissions
-    ? formatCo2(Math.abs(netExchange))
+    ? formatCo2({ value: Math.abs(netExchange) })
     : Math.abs(round(netExchange / formattingFactor));
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[350px] dark:border dark:border-gray-700 dark:bg-gray-800">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}

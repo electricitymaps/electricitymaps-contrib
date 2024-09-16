@@ -9,6 +9,9 @@ capacity:
 contributors:
   - systemcatch
   - maxbellec
+country: GB
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -68,15 +71,15 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 43.6
+    unknown:
+      _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
+      source: assumes 95% wind, 5% solar
+      value: 14.169
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
-    unknown:
-      _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
-      source: assumes 95% wind, 5% solar
-      value: 14.169
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -147,6 +150,7 @@ isRenewable:
     value: 1
 parsers:
   production: GB_ORK.fetch_production
+region: Europe
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

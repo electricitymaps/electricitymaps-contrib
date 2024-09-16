@@ -19,12 +19,12 @@ const generateAggregates = (fc: WorldFeatureCollection, zones: OptimizedZonesCon
   const { features } = fc;
 
   const countryZonesToCombine = Object.values(zones)
-    .filter((zone) => zone.subZoneNames && zone.subZoneNames.length > 0)
+    .filter((zone) => zone.subZoneNames?.length > 0)
     .map((zone) => zone.subZoneNames);
 
   const zonesToFlagAsNotAggregated = new Set(
     Object.values(zones)
-      .filter((zone) => zone.subZoneNames && zone.subZoneNames.length > 0)
+      .filter((zone) => zone.subZoneNames?.length > 0)
       .flatMap((zone) => zone.subZoneNames)
   );
 
@@ -85,8 +85,11 @@ const generateAggregates = (fc: WorldFeatureCollection, zones: OptimizedZonesCon
     })
     .filter((zone) => zone !== null);
 
-  if (skippedZones.length > 0) {
-    for (const zone of skippedZones) {
+  const skippedZonesWithConsumption = skippedZones.filter(
+    (z) => !zones[z].generation_only
+  );
+  if (skippedZonesWithConsumption.length > 0) {
+    for (const zone of skippedZonesWithConsumption) {
       console.error(
         `ERROR: Could not find geometry feature for ${zone}, make sure it has geometry in world.geojson.`
       );
