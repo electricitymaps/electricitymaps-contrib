@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"storybook-mock-date-decorator": "^2.0.6"
+	}
+}
