@@ -39,7 +39,7 @@ export default function NetExchangeChartTooltip({
       />
       <p className="flex justify-center text-base">
         {netExchange >= 0 ? t('tooltips.importing') : t('tooltips.exporting')}{' '}
-        <b className="mx-1">{value}</b> {unit}
+        <b className="mx-1">{Number.isFinite(value) ? value : '?'}</b> {unit}
       </p>
     </div>
   );
