@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function SocialIconRow() {
   const { t } = useTranslation();
+
   return (
     <div className="flex w-full items-center justify-between gap-1">
       <section className="flex items-center gap-1">
