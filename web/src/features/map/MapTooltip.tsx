@@ -1,20 +1,17 @@
 import * as Portal from '@radix-ui/react-portal';
 import useGetState from 'api/getState';
-import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
-import { CircularGauge } from 'components/CircularGauge';
 import EstimationBadge from 'components/EstimationBadge';
 import NoDataBadge from 'components/NoDataBadge';
 import OutageBadge from 'components/OutageBadge';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
+import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
 import { TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
-import { Mode } from 'utils/constants';
-import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
-import { productionConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
+import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
@@ -23,7 +20,7 @@ export function TooltipInner({
   zoneId,
 }: {
   zoneId: string;
-  zoneData: StateZoneData | undefined;
+  zoneData?: StateZoneData;
 }) {
   const hasZoneData = Boolean(zoneData);
   zoneData ??= {
@@ -40,28 +37,16 @@ export function TooltipInner({
   };
   const { e, o } = zoneData;
 
-  const { t } = useTranslation();
-
-  const currentMode = useAtomValue(productionConsumptionAtom);
-  const isConsumption = currentMode === Mode.CONSUMPTION;
-  const intensity = getCarbonIntensity(zoneData, isConsumption);
-  const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
-  const renewable = getRenewableRatio(zoneData, isConsumption);
-
   return (
-    <div className="w-full p-3 text-center">
-      <div className="flex flex-col">
+    <div className="flex w-full flex-col gap-2 py-3 text-center">
+      <div className="flex flex-col px-3">
         <div className="flex w-full flex-row justify-between">
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
         </div>
         <TimeDisplay className="self-start text-neutral-600 dark:text-neutral-400" />
       </div>
-      <div className="flex w-full grow justify-around py-1 pt-4 sm:pr-2">
-        <CarbonIntensitySquare intensity={intensity} />
-        <CircularGauge name={t('country-panel.lowcarbon')} ratio={fossilFuelPercentage} />
-        <CircularGauge name={t('country-panel.renewable')} ratio={renewable} />
-      </div>
+      <ZoneGaugesWithCO2Square zoneData={zoneData} />
     </div>
   );
 }

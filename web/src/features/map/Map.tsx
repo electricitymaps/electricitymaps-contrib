@@ -10,7 +10,7 @@ import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Mode } from 'utils/constants';
-import { createToWithState, getCO2IntensityByMode, useUserLocation } from 'utils/helpers';
+import { createToWithState, getCarbonIntensity, useUserLocation } from 'utils/helpers';
 import {
   productionConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -64,8 +64,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const theme = useTheme();
-  const currentMode = useAtomValue(productionConsumptionAtom);
-  const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
+  const mixMode = useAtomValue(productionConsumptionAtom);
+  const isConsumption = mixMode === Mode.CONSUMPTION;
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const spatialAggregate = useAtomValue(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
@@ -113,7 +113,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
       const zone = data?.data.datetimes[selectedDatetimeString]?.z[zoneId];
-      const co2intensity = zone ? getCO2IntensityByMode(zone, mixMode) : undefined;
+      const co2intensity = zone ? getCarbonIntensity(zone, isConsumption) : undefined;
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
         : theme.clickableFill;
@@ -138,7 +138,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     map,
     data,
     getCo2colorScale,
-    mixMode,
     isLoadingMap,
     isSourceLoaded,
     spatialAggregate,
@@ -148,6 +147,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     worldGeometries.features,
     theme.clickableFill,
     selectedDatetimeString,
+    isConsumption,
   ]);
 
   useEffect(() => {
