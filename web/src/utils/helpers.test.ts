@@ -6,36 +6,11 @@ import {
   createToWithState,
   dateToDatetimeString,
   getCarbonIntensity,
-  getCO2IntensityByMode,
   getFossilFuelRatio,
   getNetExchange,
   getProductionCo2Intensity,
   getRenewableRatio,
 } from './helpers';
-
-describe('getCO2IntensityByMode', () => {
-  // Tests for consumption
-  describe('consumption', () => {
-    it('returns 100 when the mode is consumption', () => {
-      const actual = getCO2IntensityByMode(
-        { c: { ci: 100 }, p: { ci: 200 } },
-        'consumption'
-      );
-      expect(actual).to.eq(100);
-    });
-  });
-
-  // Tests for production
-  describe('production', () => {
-    it('returns 200 when the mode is production', () => {
-      const actual = getCO2IntensityByMode(
-        { c: { ci: 100 }, p: { ci: 200 } },
-        'production'
-      );
-      expect(actual).to.eq(200);
-    });
-  });
-});
 
 describe('dateToDatetimeString', () => {
   it('returns the correct datetime string', () => {

@@ -103,7 +103,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   const onCollapse = () => setOpen(!isOpen);
 
   return (
-    <aside
+    <div
       data-test-id="left-panel"
       className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
         location.pathname === '/map' ? 'hidden' : ''
@@ -112,7 +112,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
       {isMobile && <MobileHeader />}
       <section className="h-full w-full">{children}</section>
       <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
-    </aside>
+    </div>
   );
 }
 export default function LeftPanel() {

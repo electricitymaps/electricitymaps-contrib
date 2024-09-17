@@ -6,6 +6,7 @@ import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { Mode } from 'utils/constants';
 import {
   productionConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -24,6 +25,7 @@ export default function RankingPanel(): ReactElement {
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const [searchTerm, setSearchTerm] = useState('');
   const electricityMode = useAtomValue(productionConsumptionAtom);
+  const isConsumption = electricityMode === Mode.CONSUMPTION;
   const spatialAggregation = useAtomValue(spatialAggregateAtom);
   const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
@@ -42,7 +44,7 @@ export default function RankingPanel(): ReactElement {
     getCo2colorScale,
     'asc',
     selectedDatetimeString,
-    electricityMode,
+    isConsumption,
     spatialAggregation
   );
 
@@ -57,8 +59,8 @@ export default function RankingPanel(): ReactElement {
     <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
       <Helmet prioritizeSeoTags>{canonicalLink}</Helmet>
       <div className="pb-5">
-        <div className="font-poppins text-lg font-medium">{t('ranking-panel.title')}</div>
-        <div className="text-sm">{t('ranking-panel.subtitle')}</div>
+        <h1>{t('ranking-panel.title')}</h1>
+        <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
       </div>
 
       <SearchBar

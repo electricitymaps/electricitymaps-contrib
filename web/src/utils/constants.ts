@@ -39,6 +39,7 @@ export enum LeftPanelToggleOptions {
 
 export enum TrackEvent {
   DATA_SOURCES_CLICKED = 'Data Sources Clicked',
+  SHARE_BUTTON_CLICKED = 'Share Button Clicked',
 }
 
 // color of different production modes are based on various industry standards

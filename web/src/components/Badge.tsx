@@ -3,7 +3,7 @@ import React from 'react';
 export type PillType = 'default' | 'warning' | 'success';
 
 type BadgeProps = {
-  pillText: string;
+  pillText: string | JSX.Element;
   type?: PillType;
   icon?: React.ReactElement;
 };
