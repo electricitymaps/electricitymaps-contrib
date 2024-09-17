@@ -68,11 +68,11 @@ export const feedbackCardCollapsedNumberAtom = atom(0);
 
 export const colorblindModeAtom = atomWithStorage('colorblindModeEnabled', false);
 
-export const dataSourcesCollapsedBarBreakdown = atom<boolean>(true);
+export const dataSourcesCollapsedBarBreakdownAtom = atom<boolean>(true);
 
-export const dataSourcesCollapsedBreakdown = atom<boolean>(true);
+export const dataSourcesCollapsedBreakdownAtom = atom<boolean>(true);
 
-export const dataSourcesCollapsedEmission = atom<boolean>(true);
+export const dataSourcesCollapsedEmissionAtom = atom<boolean>(true);
 
 export const userLocationAtom = atom<string | undefined>(undefined);
 

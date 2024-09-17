@@ -19,12 +19,12 @@ const generateAggregates = (fc: WorldFeatureCollection, zones: OptimizedZonesCon
   const { features } = fc;
 
   const countryZonesToCombine = Object.values(zones)
-    .filter((zone) => zone.subZoneNames?.length > 0)
+    .filter((zone) => zone.subZoneNames && zone.subZoneNames.length > 0)
     .map((zone) => zone.subZoneNames);
 
   const zonesToFlagAsNotAggregated = new Set(
     Object.values(zones)
-      .filter((zone) => zone.subZoneNames?.length > 0)
+      .filter((zone) => zone.subZoneNames && zone.subZoneNames.length > 0)
       .flatMap((zone) => zone.subZoneNames)
   );
 

@@ -1,12 +1,13 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import EstimationBadge from 'components/EstimationBadge';
+import { useAtom } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
+import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
@@ -24,6 +25,9 @@ interface EmissionChartProps {
 
 function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
+  const [dataSourcesCollapsedEmission, setDataSourcesCollapsedEmission] = useAtom(
+    dataSourcesCollapsedEmissionAtom
+  );
   const {
     emissionFactorSources,
     powerGenerationSources,
@@ -70,7 +74,8 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         }}
         title={t('data-sources.title')}
         className="text-md"
-        isCollapsedAtom={dataSourcesCollapsedEmission}
+        isCollapsed={dataSourcesCollapsedEmission}
+        setState={setDataSourcesCollapsedEmission}
       >
         <DataSources
           title={t('data-sources.power')}

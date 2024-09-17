@@ -12,7 +12,7 @@ import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
 import {
-  dataSourcesCollapsedBarBreakdown,
+  dataSourcesCollapsedBarBreakdownAtom,
   displayByEmissionsAtom,
   isConsumptionAtom,
   isHourlyAtom,
@@ -74,6 +74,10 @@ function BarBreakdownChart({
     x: number;
     y: number;
   } | null>(null);
+
+  const [dataSourcesCollapsedBarBreakdown, setDataSourcesCollapsedBarBreakdown] = useAtom(
+    dataSourcesCollapsedBarBreakdownAtom
+  );
 
   const headerHeight = useHeaderHeight();
 
@@ -176,7 +180,7 @@ function BarBreakdownChart({
           data={zoneDetails}
           productionData={productionData}
           exchangeData={exchangeData}
-          onProductionRowMouseOver={onMouseOver}
+          onProductionRowMouseOver={onMouseOver} // TODO(Viktor): change this to onMouseEnter to avoid repeated calls to the same function with the same data
           onProductionRowMouseOut={onMouseOut}
           onExchangeRowMouseOver={onMouseOver}
           onExchangeRowMouseOut={onMouseOut}
@@ -197,7 +201,8 @@ function BarBreakdownChart({
             }}
             title={t('data-sources.title')}
             className="text-md"
-            isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
+            isCollapsed={dataSourcesCollapsedBarBreakdown}
+            setState={setDataSourcesCollapsedBarBreakdown}
           >
             <DataSources
               title={t('data-sources.capacity')}

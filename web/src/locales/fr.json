@@ -24,13 +24,6 @@
   "settings-modal": {
     "title": "Paramètres"
   },
-  "panel-initial-text": {
-    "thisproject": "Cette app est",
-    "opensource": "Open Source",
-    "see": "voir",
-    "datasources": "source des données",
-    "contribute": "Contribuez en <a href=\"{{link}}\" target=\"_blank\">ajoutant votre pays</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Zones",
@@ -97,7 +90,6 @@
       "stored": "Stockée",
       "produced": "Produite"
     },
-    "contribute": "Contribuez sur GitHub",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
@@ -297,8 +289,11 @@
   },
   "tooltips": {
     "carbonintensity": "Intensité carbone",
-    "lowcarbon": "Bas carbone",
-    "renewable": "Renouvelable",
+    "zoneHeader": {
+      "lowcarbon": "Inclut les énergies renouvelables et le nucléaire",
+      "renewable": "Inclut le solaire, l'éolien, l'hydroélectricité, la biomasse et la géothermie",
+      "carbonIntensity": "Grammes d'équivalent CO2 par kilowattheure (gCO2eq/kWh) mesurant les émissions de gaz à effet de serre issues de la production d'électricité"
+    },
     "crossborderexport": "Export transfrontalier",
     "carbonintensityexport": "Intensité carbone de l’export",
     "ofinstalled": "de la capacité installée",
@@ -315,7 +310,6 @@
     "consumption": "consommation",
     "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
     "selectLanguage": "Choisissez une langue",
-    "lowCarbDescription": "Inclut les énergies renouvelables et le nucléaire",
     "dataIsDelayed": "Données en retard",
     "representing": "représentant",
     "ofemissions": "des émissions",

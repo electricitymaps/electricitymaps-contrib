@@ -1,6 +1,7 @@
 import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
+import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
 import LoadingOverlay from 'components/LoadingOverlay';
@@ -10,6 +11,8 @@ import Header from 'features/header/Header';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
 import { useDarkMode } from 'hooks/theme';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
@@ -19,7 +22,6 @@ const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
 const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
-const AnnouncementModal = lazy(() => import('features/modals/AnnouncementModal'));
 
 const isProduction = import.meta.env.PROD;
 
@@ -31,11 +33,15 @@ if (isProduction) {
 }
 
 export default function App(): ReactElement {
+  // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
+  useReducedMotion();
+
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
   useGetState();
   const shouldUseDarkMode = useDarkMode();
+  const { t, i18n } = useTranslation();
 
   // Update classes on theme change
   useLayoutEffect(() => {
@@ -57,6 +63,17 @@ export default function App(): ReactElement {
 
   return (
     <Suspense fallback={<div />}>
+      <Helmet
+        htmlAttributes={{
+          lang: i18n.languages[0],
+          xmlns: 'http://www.w3.org/1999/xhtml',
+          'xmlns:fb': 'http://ogp.me/ns/fb#',
+        }}
+        prioritizeSeoTags
+      >
+        <title>{`Electricity Maps | ${t('misc.maintitle')}`}</title>
+        <meta property="og:locale" content={i18n.languages[0]} />
+      </Helmet>
       <main className="fixed flex h-screen w-screen flex-col">
         <ToastProvider duration={20_000}>
           <Suspense>
@@ -72,7 +89,6 @@ export default function App(): ReactElement {
               </Suspense>
               <Suspense>
                 <OnboardingModal />
-                <AnnouncementModal />
               </Suspense>
               <Suspense>
                 <FAQModal />
