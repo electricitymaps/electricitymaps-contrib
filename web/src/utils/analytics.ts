@@ -26,11 +26,11 @@ export default function trackEvent(
   window.plausible?.(eventId, { props: additionalProps });
 }
 
-export enum SocialNetwork {
+export enum ShareType {
   FACEBOOK = 'facebook',
   LINKEDIN = 'linkedin',
   TWITTER = 'twitter',
 }
 
-export const trackShare = (social: SocialNetwork) => () =>
-  trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { social });
+export const trackShare = (shareType: ShareType) => () =>
+  trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType });

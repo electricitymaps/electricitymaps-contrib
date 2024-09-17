@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from 'components/Button';
 import { useTranslation } from 'react-i18next';
 import { FaXTwitter } from 'react-icons/fa6';
-import { SocialNetwork, trackShare } from 'utils/analytics';
+import { ShareType, trackShare } from 'utils/analytics';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface TwitterButtonProps
@@ -13,7 +13,7 @@ interface TwitterButtonProps
   isIconOnly?: boolean;
   isShareLink?: boolean;
 }
-const trackTwitterShare = trackShare(SocialNetwork.TWITTER);
+const trackTwitterShare = trackShare(ShareType.TWITTER);
 
 export function TwitterButton({
   isIconOnly,

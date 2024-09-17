@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from 'components/Button';
 import { useTranslation } from 'react-i18next';
 import { FaLinkedin } from 'react-icons/fa6';
-import { SocialNetwork, trackShare } from 'utils/analytics';
+import { ShareType, trackShare } from 'utils/analytics';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface LinkedinButtonProps
@@ -14,7 +14,7 @@ interface LinkedinButtonProps
   isShareLink?: boolean;
 }
 
-const trackLinkedinShare = trackShare(SocialNetwork.LINKEDIN);
+const trackLinkedinShare = trackShare(ShareType.LINKEDIN);
 
 export function LinkedinButton({
   isIconOnly,
