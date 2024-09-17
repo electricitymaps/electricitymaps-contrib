@@ -1,6 +1,6 @@
 import useGetState from 'api/getState';
+import { CanonicalLink } from 'components/CanonicalLink';
 import { HorizontalDivider } from 'components/Divider';
-import { useGetCanonicalLink } from 'hooks/getCanonicalLink';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
@@ -37,8 +37,6 @@ export default function RankingPanel(): ReactElement {
   }, []);
 
   const { data } = useGetState();
-
-  const canonicalLink = useGetCanonicalLink();
   const rankedList = getRankedState(
     data,
     getCo2colorScale,
@@ -57,7 +55,9 @@ export default function RankingPanel(): ReactElement {
 
   return (
     <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
-      <Helmet prioritizeSeoTags>{canonicalLink}</Helmet>
+      <Helmet prioritizeSeoTags>
+        <CanonicalLink />
+      </Helmet>
       <div className="pb-5">
         <h1>{t('ranking-panel.title')}</h1>
         <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>

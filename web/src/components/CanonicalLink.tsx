@@ -6,7 +6,7 @@ import { baseUrl } from 'utils/constants';
  * Generates the canonical link for the current page.
  * The returned element should be placed inside a Helmet component to function correctly.
  */
-export const useGetCanonicalLink = () => {
+export function CanonicalLink() {
   const { i18n } = useTranslation();
   const { pathname } = useLocation();
   const currentLanguageKey = i18n.languages[0];
@@ -14,8 +14,8 @@ export const useGetCanonicalLink = () => {
     <link
       rel="canonical"
       href={`${baseUrl}${pathname}${
-        currentLanguageKey == 'en' ? '' : `?lang=${currentLanguageKey}`
+        currentLanguageKey === 'en' ? '' : `?lang=${currentLanguageKey}`
       }`}
     />
   );
-};
+}
