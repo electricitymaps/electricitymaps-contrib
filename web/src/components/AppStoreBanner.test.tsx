@@ -15,6 +15,9 @@ const mocks = vi.hoisted(() => ({
 vi.mock('features/weather-layers/wind-layer/util', () => mocks);
 
 describe('AppStoreBanner', () => {
+  beforeEach(() => {
+    mocks.isMobileWeb.mockReturnValue(true);
+  });
   afterEach(() => {
     vi.restoreAllMocks();
     const { result } = renderHook(() => useAtom(appStoreDismissedAtom));
@@ -77,5 +80,13 @@ describe('AppStoreBanner', () => {
 
     const node = screen.getByText('app-banner.cta');
     expect(node.getAttribute('href')).toBe(AppStoreURLs.APPLE);
+  });
+
+  test('does not render if isMobileWeb is false', () => {
+    mocks.isMobileWeb.mockReturnValue(false);
+
+    render(<AppStoreBanner />);
+
+    expect(screen.queryAllByRole('banner')).toHaveLength(0);
   });
 });

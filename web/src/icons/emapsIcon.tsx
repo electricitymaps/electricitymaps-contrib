@@ -1,6 +1,8 @@
+import { twMerge } from 'tailwind-merge';
+
 export function EmapsIcon({ size = 22, styling }: { size?: number; styling?: string }) {
   return (
-    <div className={`text-black ${styling || ''}`}>
+    <div className={twMerge('text-black', 'styling')}>
       <svg
         width={size}
         height={size}

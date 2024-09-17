@@ -7,7 +7,11 @@ import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
 
-import { isAndroid, isIphone } from '../features/weather-layers/wind-layer/util';
+import {
+  isAndroid,
+  isIphone,
+  isMobileWeb,
+} from '../features/weather-layers/wind-layer/util';
 import { Button } from './Button';
 
 export const appStoreDismissedAtom = atomWithStorage(
@@ -97,14 +101,14 @@ const useAppStoreBannerState = (): AppStoreBannerState => {
     appStoreUrl,
     closeBanner: (trackCallback?: () => void) => {
       setAppStoreIsDismissed(true);
-      trackCallback && trackCallback();
+      trackCallback?.();
       setAppStoreUrl(undefined);
     },
   };
 };
 
-function getAppStoreUrl(appStoreIsDismissed: boolean): AppStoreURLs | undefined {
-  if (appStoreIsDismissed) {
+const getAppStoreUrl = (appStoreIsDismissed: boolean): AppStoreURLs | undefined => {
+  if (appStoreIsDismissed || !isMobileWeb()) {
     return undefined;
   }
 
@@ -115,4 +119,4 @@ function getAppStoreUrl(appStoreIsDismissed: boolean): AppStoreURLs | undefined 
   if (isIphone()) {
     return AppStoreURLs.APPLE;
   }
-}
+};
