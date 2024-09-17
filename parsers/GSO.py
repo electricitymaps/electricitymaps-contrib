@@ -24,7 +24,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Local library imports
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency, use_proxy
 
 DEFAULT_ZONE_KEY = ZoneKey("MY-WM")
 DOMAIN = "www.gso.org.my"
@@ -52,6 +52,7 @@ def get_api_data(session: Session, url, data):
     return json.loads(session.post(url, json=data).json()["d"])
 
 
+@use_proxy(country_code="MY")
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
@@ -82,6 +83,7 @@ def fetch_consumption(
 
 
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="MY")
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -149,6 +151,7 @@ def fetch_exchange(
     return all_exchange_data.to_list()
 
 
+@use_proxy(country_code="MY")
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
@@ -180,24 +183,3 @@ def fetch_production(
             datetime=item_datetime,
         )
     return all_production_data.to_list()
-
-
-if __name__ == "__main__":
-    # Never used by the electricityMap back-end, but handy for testing.
-    DATE = "2020"
-    print("fetch_consumption():")
-    print(fetch_consumption())
-    print(f"fetch_consumption(target_datetime='{DATE}')")
-    print(fetch_consumption(target_datetime=DATE))
-    print("fetch_production():")
-    print(fetch_production())
-    print(f"fetch_production(target_datetime='{DATE}')")
-    print(fetch_production(target_datetime=DATE))
-    print("fetch_exchange('MY-WM', 'SG'):")
-    print(fetch_exchange("MY-WM", "SG"))
-    print(f"fetch_exchange(MY-WM, SG, target_datetime='{DATE}'):")
-    print(fetch_exchange("MY-WM", "SG", target_datetime=DATE))
-    print("fetch_exchange('MY-WM', 'TH'):")
-    print(fetch_exchange("MY-WM", "TH"))
-    print(f"fetch_exchange('MY-WM', 'TH', target_datetime='{DATE}'):")
-    print(fetch_exchange("MY-WM", "TH", target_datetime=DATE))

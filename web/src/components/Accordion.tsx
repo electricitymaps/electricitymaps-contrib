@@ -35,7 +35,7 @@ export default function Accordion({
   const Icon: LucideIcon = isTopExpanding === isCollapsed ? ChevronUp : ChevronDown;
 
   return (
-    <div className="flex flex-col gap-1.5 py-1">
+    <section className="flex flex-col gap-1.5 py-1">
       <button
         data-test-id="collapse-button"
         onClick={handleToggleCollapse}
@@ -52,6 +52,6 @@ export default function Accordion({
         />
       </button>
       {!isCollapsed && <div>{children}</div>}
-    </div>
+    </section>
   );
 }

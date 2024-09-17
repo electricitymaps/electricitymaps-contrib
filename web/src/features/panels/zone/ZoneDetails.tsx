@@ -87,7 +87,7 @@ export default function ZoneDetails(): JSX.Element {
               estimatedPercentage={selectedData?.estimatedPercentage}
             />
           )}
-        <ZoneHeaderGauges data={data} />
+        <ZoneHeaderGauges zoneKey={zoneId} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
             <DisplayByEmissionToggle />
