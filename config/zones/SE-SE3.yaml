@@ -96,9 +96,8 @@ emissionFactors:
     unknown:
       - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
           the sources in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
         datetime: '2022-01-01'
-        source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
+        source: Eurostat 2022; assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
         value: 28.6
   lifecycle:
     battery discharge:
@@ -193,9 +192,8 @@ emissionFactors:
     unknown:
       - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
           the sources in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
         datetime: '2022-01-01'
-        source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
+        source: Eurostat 2022; assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
         value: 258
     wind:
       datetime: '2021-01-01'
@@ -325,6 +323,8 @@ sources:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2023:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
+  Eurostat 2022:
+    link: https://doi.org/10.2908/NRG_BAL_C
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
