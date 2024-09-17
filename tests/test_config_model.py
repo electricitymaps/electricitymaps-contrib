@@ -49,7 +49,7 @@ class ConfigModelTestcase(unittest.TestCase):
                                 msg=f"{zone_key}: missing required field: sources",
                             )
                             assert zone_sources is not None  # pyright type-narrowing
-                            self.assertIn(source, zone_sources)
+                            self.assertIn(source, zone_sources, f"zone: {zone_key}")
 
 
 if __name__ == "__main__":
