@@ -187,6 +187,9 @@ parsers:
   production: RU.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+sources:
+  IEA 2015:
+    link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
 timezone: Europe/Moscow
 region: Europe
 country: RU

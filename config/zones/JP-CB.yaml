@@ -38,5 +38,8 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
+sources:
+  Chubu Electric Power 2022:
+    link: https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
 region: Asia
 timezone: Asia/Tokyo
