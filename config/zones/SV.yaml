@@ -100,9 +100,8 @@ emissionFactors:
     unknown:
       _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
         factors
-      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
       datetime: '2022-01-01'
-      source: assumes 51% gas, 49% oil
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
       value: 387.6470588235294
   lifecycle:
     battery discharge:
@@ -166,7 +165,7 @@ emissionFactors:
         factors
       _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
       datetime: '2022-01-01'
-      source: assumes 51% gas, 49% oil
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
       value: 568.4313725490196
 fallbackZoneMixes:
   powerOriginRatios:
@@ -248,6 +247,11 @@ fallbackZoneMixes:
 parsers:
   production: ESTADISTICO_UT.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  Our World in Data 2022:
+    link: https://ourworldindata.org/grapher/electricity-prod-source-stacked?country=~SLV
 timezone: America/El_Salvador
 region: Americas
 country: SV
