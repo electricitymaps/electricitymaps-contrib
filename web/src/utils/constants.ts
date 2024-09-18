@@ -1,6 +1,8 @@
 import type { Duration } from 'date-fns';
 import { ElectricityModeType } from 'types';
 
+export const baseUrl = 'https://app.electricitymaps.com';
+
 // The order here determines the order displayed
 export enum TimeAverages {
   HOURLY = 'hourly',

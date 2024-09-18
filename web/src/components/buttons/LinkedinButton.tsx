@@ -2,7 +2,7 @@ import { Button, ButtonProps } from 'components/Button';
 import { useTranslation } from 'react-i18next';
 import { FaLinkedin } from 'react-icons/fa6';
 import { ShareType, trackShare } from 'utils/analytics';
-import { DEFAULT_ICON_SIZE } from 'utils/constants';
+import { baseUrl, DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface LinkedinButtonProps
   extends Omit<
@@ -30,7 +30,7 @@ export function LinkedinButton({
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#0A66C2]"
       href={
         isShareLink
-          ? 'https://www.linkedin.com/shareArticle?mini=true&url=https://app.electricitymaps.com'
+          ? `https://www.linkedin.com/shareArticle?mini=true&url=${baseUrl}`
           : 'https://www.linkedin.com/company/electricitymaps/'
       }
       onClick={isShareLink ? trackLinkedinShare : undefined}

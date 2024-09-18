@@ -2,8 +2,10 @@ import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useSetAtom } from 'jotai';
 import { ArrowLeft, Info } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import { createToWithState } from 'utils/helpers';
@@ -27,11 +29,15 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const disclaimer = getDisclaimer(zoneId);
   const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
   const setIsMapMoving = useSetAtom(mapMovingAtom);
+  const canonicalUrl = useGetCanonicalUrl();
 
   const onNavigateBack = () => setIsMapMoving(false);
 
   return (
     <div className="flex w-full pl-2 pt-2">
+      <Helmet prioritizeSeoTags>
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
       <Link
         className="self-center py-4 pr-4 text-xl"
         to={returnToMapLink}
