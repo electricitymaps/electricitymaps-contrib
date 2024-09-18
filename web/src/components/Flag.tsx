@@ -26,7 +26,7 @@ export function CountryFlag({
   }
   return (
     <FlagIcon
-      title="TODO"
+      title={countryName}
       width={size}
       height={Math.floor((size / 3) * 2)}
       style={{
