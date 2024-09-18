@@ -3,11 +3,12 @@ import { HorizontalDivider } from 'components/Divider';
 import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { useCo2ColorScale } from 'hooks/theme';
+import { useAtom } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
+import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
@@ -26,6 +27,9 @@ interface CarbonChartProps {
 
 function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
+  const [dataSourcesCollapsedEmission, setDataSourcesCollapsedEmission] = useAtom(
+    dataSourcesCollapsedEmissionAtom
+  );
   const {
     emissionFactorSources,
     powerGenerationSources,
@@ -77,7 +81,8 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
           trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });
         }}
         title={t('data-sources.title')}
-        isCollapsedAtom={dataSourcesCollapsedEmission}
+        isCollapsed={dataSourcesCollapsedEmission}
+        setState={setDataSourcesCollapsedEmission}
       >
         <DataSources
           title={t('data-sources.power')}

@@ -29,13 +29,6 @@ export function useUserLocation(): callerLocation {
   return null;
 }
 
-export function getCO2IntensityByMode(
-  zoneData: StateZoneData,
-  electricityMixMode: string
-) {
-  return electricityMixMode === 'consumption' ? zoneData?.c?.ci : zoneData?.p?.ci;
-}
-
 /**
  * Converts date to format returned by API
  */
@@ -106,24 +99,20 @@ export function getFossilFuelRatio(
  * @param co2intensity - The carbon intensity for consumption
  * @param co2intensityProduction - The carbon intensity for production
  */
-export function getCarbonIntensity(
+export const getCarbonIntensity = (
   zoneData: StateZoneData,
   isConsumption: boolean
-): number {
-  return (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
-}
+): number => (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
 
 /**
  * Returns the renewable ratio of a zone
  * @param zoneData - The zone data
  * @param isConsumption - Whether the ratio is for consumption or production
  */
-export function getRenewableRatio(
+export const getRenewableRatio = (
   zoneData: StateZoneData,
   isConsumption: boolean
-): number {
-  return (isConsumption ? zoneData?.c?.rr : zoneData?.p?.rr) ?? Number.NaN;
-}
+): number => (isConsumption ? zoneData?.c?.rr : zoneData?.p?.rr) ?? Number.NaN;
 
 /**
  * Function to round a number to a specific amount of decimals.

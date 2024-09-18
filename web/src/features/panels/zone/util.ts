@@ -68,10 +68,8 @@ export const getZoneDataStatus = (
   return ZoneDataStatus.NO_REAL_TIME_DATA;
 };
 
-export const getContributors = (zoneId: string) => ({
-  zoneContributorsIndexArray: zones[zoneId]?.contributors as number[],
-  contributors: contributors,
-});
+export const getContributors = (zoneId: string) =>
+  zones[zoneId]?.contributors?.map((index) => contributors[index]) ?? [];
 
 export const getDisclaimer = (zoneId: string) => zones[zoneId]?.disclaimer;
 
