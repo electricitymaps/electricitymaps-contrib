@@ -52,8 +52,8 @@ def get_api_data(session: Session, url, data):
     return json.loads(session.post(url, json=data).json()["d"])
 
 
-@use_proxy(country_code="MY")
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="MY")
 def fetch_consumption(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session = Session(),
@@ -151,8 +151,8 @@ def fetch_exchange(
     return all_exchange_data.to_list()
 
 
-@use_proxy(country_code="MY")
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="MY")
 def fetch_production(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session = Session(),
