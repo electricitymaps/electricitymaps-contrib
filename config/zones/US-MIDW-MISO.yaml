@@ -8,9 +8,12 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 82.0
-    - datetime: '2024-03-01'
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 81.5
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 126.5
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -24,6 +27,12 @@ capacity:
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 2266.7
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 2239.7
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 2240.5
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -37,6 +46,9 @@ capacity:
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 50130.1
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 49433.7
   gas:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -47,12 +59,21 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 82747.5
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 82734.2
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 82306.0
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 82216.8
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 82274.4
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 81889.2
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -70,6 +91,12 @@ capacity:
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 2451.3
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 2453.1
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 2448.6
   hydro storage:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -94,6 +121,9 @@ capacity:
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 3942.9
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 3940.6
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -104,12 +134,21 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 7194.7
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 7276.9
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 7364.8
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 7388.8
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 8123.7
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 8168.7
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov

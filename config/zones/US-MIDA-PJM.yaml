@@ -14,7 +14,7 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 316.3
-    - datetime: '2024-03-01'
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 362.1
   biomass:
@@ -27,6 +27,12 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 2118.6
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 2108.5
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 2085.3
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -34,12 +40,18 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 37693.8
-    - datetime: '2024-03-01'
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 37334.8
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 38555.2
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 39420.1
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 39191.1
   gas:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -53,6 +65,12 @@ capacity:
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 105137.5
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 104271.0
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 104186.2
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -79,12 +97,18 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 4960.6
-    - datetime: '2024-03-01'
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 5319.6
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 5336.5
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 5338.3
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 5213.7
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -95,12 +119,21 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 11192.8
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 11325.7
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 11474.2
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 11617.6
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 11980.3
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 12414.2
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -115,7 +148,7 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 11271.6
-    - datetime: '2024-03-01'
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 11270.6
 comment: Pjm Interconnection, Llc
