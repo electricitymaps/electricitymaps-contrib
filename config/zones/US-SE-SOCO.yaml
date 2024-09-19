@@ -18,9 +18,18 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 1916.4
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 1855.5
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 1821.5
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 1816.5
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 1878.8
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -32,9 +41,18 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 38536.7
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 38565.5
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 38570.5
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 39380.9
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 39113.5
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -58,6 +76,15 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2001.3
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 1190.9
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 1458.3
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 1387.9
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -68,6 +95,12 @@ capacity:
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 4893.6
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 5052.1
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 5132.1
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -82,10 +115,11 @@ contributors:
   - robertahunt
   - KabelWlan
   - MisterClean
+country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 30
+  production: 34
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:
@@ -353,6 +387,7 @@ parsers:
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

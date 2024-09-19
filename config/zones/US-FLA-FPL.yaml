@@ -12,6 +12,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 617.6
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 540.6
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -44,9 +47,15 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4584.8
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 5478.8
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 6223.8
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 6223.4
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -60,10 +69,11 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 30
+  production: 35
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:
@@ -319,6 +329,7 @@ parsers:
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

@@ -25,6 +25,9 @@ contributors:
   - corradio
   - systemcatch
   - nessie2013
+country: BR
+delays:
+  production: 5
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
   coal and oil.
 emissionFactors:
@@ -213,4 +216,5 @@ fallbackZoneMixes:
 parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity
+region: Americas
 timezone: null

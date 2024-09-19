@@ -1,4 +1,3 @@
-import { CoinsIcon } from 'icons/coinsIcon';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
@@ -57,7 +56,6 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     <RoundedCard>
       <ChartTitle
         translationKey="country-history.electricityprices"
-        icon={<CoinsIcon />}
         unit={valueAxisLabel}
       />
       <div className="relative">

@@ -1,7 +1,8 @@
 import useGetZone from 'api/getZone';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
-import { getCO2IntensityByMode } from 'utils/helpers';
+import { useAtomValue } from 'jotai';
+import { Mode } from 'utils/constants';
+import { getCarbonIntensity } from 'utils/helpers';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
 import { AreaGraphElement } from '../types';
@@ -9,9 +10,10 @@ import { AreaGraphElement } from '../types';
 export function useCarbonChartData() {
   const { data, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const mixMode = useAtomValue(productionConsumptionAtom);
+  const isConsumption = mixMode === Mode.CONSUMPTION;
 
-  if (isLoading || isError) {
+  if (isLoading || isError || !data) {
     return { isLoading, isError };
   }
 
@@ -19,13 +21,13 @@ export function useCarbonChartData() {
     ([datetimeString, value]) => {
       const datetime = new Date(datetimeString);
       const carbonIntensity =
-        getCO2IntensityByMode(
+        getCarbonIntensity(
           {
-            c: { ci: value.co2intensity ?? 0 },
-            p: { ci: value.co2intensityProduction ?? 0 },
+            c: { ci: value.co2intensity },
+            p: { ci: value.co2intensityProduction },
           },
-          mixMode
-        ) ?? 0;
+          isConsumption
+        ) || 0;
 
       return {
         datetime,

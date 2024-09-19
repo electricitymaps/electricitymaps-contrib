@@ -1,37 +1,16 @@
 import { zoneDetailMock } from 'stories/mockData';
+import { ZoneDetail } from 'types';
+import { describe, expect, it } from 'vitest';
 
 import {
+  createToWithState,
   dateToDatetimeString,
   getCarbonIntensity,
-  getCO2IntensityByMode,
   getFossilFuelRatio,
+  getNetExchange,
   getProductionCo2Intensity,
   getRenewableRatio,
 } from './helpers';
-
-describe('getCO2IntensityByMode', () => {
-  // Tests for consumption
-  describe('consumption', () => {
-    it('returns 100 when the mode is consumption', () => {
-      const actual = getCO2IntensityByMode(
-        { c: { ci: 100 }, p: { ci: 200 } },
-        'consumption'
-      );
-      expect(actual).to.eq(100);
-    });
-  });
-
-  // Tests for production
-  describe('production', () => {
-    it('returns 200 when the mode is production', () => {
-      const actual = getCO2IntensityByMode(
-        { c: { ci: 100 }, p: { ci: 200 } },
-        'production'
-      );
-      expect(actual).to.eq(200);
-    });
-  });
-});
 
 describe('dateToDatetimeString', () => {
   it('returns the correct datetime string', () => {
@@ -48,7 +27,7 @@ describe('getProductionCo2Intensity', () => {
 
   it('returns the correct value when the type is battery storage', () => {
     const actual = getProductionCo2Intensity('battery storage', zoneDetailMock);
-    expect(actual).to.eq(155.11);
+    expect(actual).to.eq(0);
   });
 });
 
@@ -183,5 +162,95 @@ describe('getRenewableRatio', () => {
       const actual = getRenewableRatio({ c: {}, p: {} }, false);
       expect(actual).to.be.NaN;
     });
+  });
+});
+
+describe('createToWithState', () => {
+  it('should return the correct URL when location.search and location.hash are empty', () => {
+    const originalLocation = global.location;
+    global.location = { ...global.location, search: '', hash: '' } as Location;
+
+    const to = '/path';
+    const result = createToWithState(to);
+    expect(result).toBe('/path');
+
+    global.location = originalLocation; // Restore original location
+  });
+
+  it('should return the correct URL when location.search and location.hash have values', () => {
+    const originalLocation = global.location;
+    global.location = {
+      ...global.location,
+      search: '?query=1',
+      hash: '#section',
+    } as Location;
+
+    const to = '/path';
+    const result = createToWithState(to);
+    expect(result).toBe('/path?query=1#section');
+
+    global.location = originalLocation; // Restore original location
+  });
+});
+
+describe('getNetExchange', () => {
+  it('should return NaN when zoneData.exchange is empty', () => {
+    const zoneData = {
+      exchange: {},
+      totalImport: null,
+      totalExport: null,
+      totalCo2Import: null,
+      totalCo2Export: null,
+    } as ZoneDetail;
+    const result = getNetExchange(zoneData, false);
+    expect(result).toBeNaN();
+  });
+
+  it('should return NaN when displayByEmissions is false and both totalImport and totalExport are null', () => {
+    const zoneData = {
+      exchange: { someKey: 1 },
+      totalImport: null,
+      totalExport: null,
+      totalCo2Import: null,
+      totalCo2Export: null,
+    } as unknown as ZoneDetail;
+    const result = getNetExchange(zoneData, false);
+    expect(result).toBeNaN();
+  });
+
+  it('should return NaN when displayByEmissions is true and both totalCo2Import and totalCo2Export are null', () => {
+    const zoneData = {
+      exchange: { someKey: 1 },
+      totalImport: null,
+      totalExport: null,
+      totalCo2Import: null,
+      totalCo2Export: null,
+    } as unknown as ZoneDetail;
+    const result = getNetExchange(zoneData, true);
+    expect(result).toBeNaN();
+  });
+
+  it('should return the correct net exchange value when displayByEmissions is false and totalImport and totalExport have values', () => {
+    const zoneData = {
+      exchange: { someKey: 1 },
+      totalImport: 100,
+      totalExport: 50,
+      totalCo2Import: null,
+      totalCo2Export: null,
+    } as unknown as ZoneDetail;
+    const result = getNetExchange(zoneData, false);
+    expect(result).toBe(50);
+  });
+
+  it('should return the correct net exchange value when displayByEmissions is true and totalCo2Import and totalCo2Export have values', () => {
+    const zoneData = {
+      exchange: { someKey: 1 },
+      totalImport: null,
+      totalExport: null,
+      totalCo2Import: 200,
+      totalCo2Export: 100,
+    } as unknown as ZoneDetail;
+    const result = getNetExchange(zoneData, true);
+    expect(result).toBe(100);
   });
 });

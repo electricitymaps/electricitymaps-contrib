@@ -1,9 +1,10 @@
 import EstimationBadge from 'components/EstimationBadge';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
-import { PlugCircleBoltIcon } from 'icons/plugCircleBoltIcon';
 import { useAtom } from 'jotai';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
@@ -31,23 +32,6 @@ const getText = (
   return translations[period][dataType];
 };
 
-function getEstimatedText(
-  t: TFunction,
-  estimatedPercentage?: number,
-  estimationMethod?: string
-) {
-  if (estimatedPercentage) {
-    return t('estimation-card.aggregated_estimated.pill', {
-      percentage: estimatedPercentage,
-    });
-  }
-  if (estimationMethod === 'threshold_filtered') {
-    return t('estimation-card.threshold_filtered.pill');
-  }
-
-  return t('estimation-badge.fully-estimated');
-}
-
 export default function BySource({
   className,
   hasEstimationPill = false,
@@ -59,7 +43,7 @@ export default function BySource({
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   unit?: string | number;
-  estimationMethod?: string;
+  estimationMethod?: EstimationMethods;
 }) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -68,23 +52,30 @@ export default function BySource({
 
   const dataType = displayByEmissions ? 'emissions' : mixMode;
   const text = getText(timeAverage, dataType, t);
+  const pillText = useGetEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
 
   return (
     <div className="flex flex-col pb-1 pt-4">
       <div
-        className={`relative flex flex-row justify-between text-md font-bold ${className}`}
+        className={`text-md relative flex flex-row justify-between font-bold ${className}`}
       >
         <div className="flex gap-1">
-          <PlugCircleBoltIcon />
-          {text}
+          <h2>{text}</h2>
         </div>
         {hasEstimationPill && (
           <EstimationBadge
-            text={getEstimatedText(t, estimatedPercentage, estimationMethod)}
+            text={pillText}
+            Icon={
+              estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
+            }
           />
         )}
       </div>
-      {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
+      {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>
   );
 }

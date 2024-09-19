@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "See app on",
-    "opensource": "avatud lähtekoodiga",
-    "see": "vaadake",
-    "datasources": "andmeallikaid",
-    "contribute": "Aidake kaasa <a href=\"{{link}}\" target=\"_blank\">lisades enda piirkond</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Piirkonnad",
@@ -33,10 +26,6 @@
     "carbonintensity": "Süsiniku intensiivsus",
     "lowcarbon": "Vähese süsinikuga",
     "renewable": "Taastuv",
-    "electricityproduction": "Elektritootmine",
-    "electricityconsumption": "Elektritarbimine",
-    "bysource": "allikas",
-    "emissions": "Süsinikheitmed",
     "helpfrom": "koos aitajatega",
     "noDataAtTimestamp": "Andmed pole valitud aja jooksul ajutiselt saadaval",
     "noLiveData": "Muutuvad andmed pole selles piirkonnas ajutiselt saadaval",
@@ -44,9 +33,9 @@
     "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"{{link}}\" target=\"_blank\">lisades piirkonna andmed</a>.",
     "now": "Äsja"
   },
-  "left-panel": {
-    "zone-list-header-title": "Kliimamõju piirkonniti",
-    "zone-list-header-subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Kliimamõju piirkonniti",
+    "subtitle": "Järjestatud elektritarbimise süsiniku intensiivsuse järgi (gCO₂eq/kWh)",
     "search": "Otsige piirkondi"
   },
   "footer": {
@@ -63,8 +52,9 @@
   },
   "tooltips": {
     "carbonintensity": "Süsiniku intensiivsus",
-    "lowcarbon": "Vähese süsinikuga",
-    "renewable": "Taastuv",
+    "zoneHeader": {
+      "lowcarbon": "Sisaldab taastuvenergiaid ja tuumaenergiat"
+    },
     "crossborderexport": "Piiriülene eksport",
     "carbonintensityexport": "Ekspordi süsiniku intensiivsus",
     "ofinstalled": "saadaolevast võimsusest",
@@ -83,18 +73,10 @@
     "consumption": "tarbimine",
     "cpinfo": "<b>tarbimine</b> võtab arvesse impordi ja ekspordi, <b>tootmine</b> eirab neid",
     "selectLanguage": "Vali keel",
-    "lowCarbDescription": "Sisaldab taastuvenergiaid ja tuumaenergiat",
     "dataIsDelayed": "Andmed viibivad"
   },
   "misc": {
     "maintitle": "Reaalajas elektritarbimise CO₂ heitmed",
-    "oops": "Ups! Meil on probleem serveriga ühendamisel. Proovime mõne sekundi pärast uuesti.",
-    "newversion": "Saadaval on uus versioon!",
-    "webgl-not-supported": "Kaarti ei saa renderdada, kuna see brauser ei toeta WebGL-i.",
-    "retrynow": "Proovi kohe uuesti",
-    "database-ad": "Otsite ajaloo andmeid? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
-    "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
-    "legend": "Legend",
     "faq": "Korduma kippuvad küsimused",
     "dismiss": "Sule",
     "reload": "Laadi uuesti"
@@ -111,14 +93,6 @@
   "coal": "süsi",
   "oil": "õli",
   "unknown": "teadmata",
-  "electricityComesFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> tuleb allikast {{selectedLayerKey}}",
-  "electricityStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
-  "emissionsStoredUsing": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> hoiustatakse kasutades {{selectedLayerKey}}",
-  "electricityExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> eksporditakse riiki {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektrist <b>{{percentageUsage}} %</b> imporditakse riigist {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{zoneFlag}} <b>{{zoneName}}</b> saadaolevast elektri heitmetest <b>{{percentageUsage}} %</b> imporditakse riigist {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Kaart",
     "mapColors-question": "Mida värvid kaardil tähistavad?",
@@ -147,8 +121,6 @@
     "groupName": "Meie meetodid",
     "carbonIntensity-question": "Mis on \"süsiniku intensiivsus\"?",
     "carbonIntensity-answer": "Süsiniku intensiivsus on kasvuhoonegaaside heitmete mõõt, mis tuleneb teie elektritarbimisest (gCO₂eq/kWh - süsinikdioksiidi võrdsete grammide heide tarbitud elektri kilovatt-tunni kohta). <br><br>Me mõõdame heitmeid elektritarbimise pealt (mitte tootmise), mis tähendab kõiki kasvuhoonegaaside heitmed (nii CO₂ kui ka teised kasvuhoonegaasid nagu näiteks metaan), mis on kulunud piirkonnas tarbitava elektri tootmiseks, võttes arvesse ka teistest piirkondadest imporditud elektri süsiniku intensiivsust. Me kasutame olelustsüklianalüüsi (LCA) meetodit, mis tähendab, et me võtame arvesse kogu elektrijaamade elutsüklist tulenevaid heitkoguseid (ehitus, kütusetootmine, käitamise heitmed ja käitusest kõrvaldamine).",
-    "consumptionFocus-question": "Miks te arvutate elektritarbimise süsiniku intensiivsust tootmise asemel?",
-    "consumptionFocus-answer": "Usume, et kodanikud peaksid vastutama elektri eest, mida nad tarbivad, mitte piirkonnas toodetud elektri eest, kus nad juhtumisi elavad. Lisaks leiame, et piirkondadel ei tohiks olla võimalik saada 'võltsida' madalat kliimamõju, viies lihtsalt musta energiatootmise teistesse piirkondadesse ja siis nende aladelt elektrit importida.",
     "renewableLowCarbonDifference-question": "Mis vahe on “taastuv” ja “vähese süsinikuga” vahel?",
     "renewableLowCarbonDifference-answer": "Taastuvenergia tootmine põhineb taastuvatel energiaallikatel nagu tuul, vesi, päike ja maasoojus. Vähese süsinikuga energiatootmine tähendab, et tootmisega kaasneb väga madal kasvuhoonegaaside heitmete eraldumine, näiteks tuumaenergia tootmisel.",
     "importsAndExports-question": "Kas te võtate arvesse ka elektri impordi ja ekspordi?",
@@ -652,10 +624,6 @@
     },
     "GR": {
       "zoneName": "Kreeka"
-    },
-    "GR-IS": {
-      "countryName": "Kreeka",
-      "zoneName": "Egeuse saared"
     },
     "GS": {
       "zoneName": "Lõuna-Georgia ja Lõuna-Sandwichi saared"

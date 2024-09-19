@@ -11,7 +11,7 @@ export function useEmissionChartData() {
   const { data, isLoading, isError } = useGetZone();
   const [mixMode] = useAtom(productionConsumptionAtom);
 
-  if (isLoading || isError) {
+  if (isLoading || isError || !data) {
     return { isLoading, isError };
   }
 

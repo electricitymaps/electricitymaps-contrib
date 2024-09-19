@@ -94,7 +94,7 @@ mobileapp
 ├── android
 ├── assets
 ├── icons
-└──ios
+└── ios
 web
 ├── config
 ├── cypress

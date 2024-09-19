@@ -441,7 +441,7 @@
       "countryName": "Great Britain",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Great Britain",
       "zoneName": "Shetland Islands"
     },
@@ -480,10 +480,6 @@
     },
     "GR": {
       "zoneName": "Greece"
-    },
-    "GR-IS": {
-      "countryName": "Greece",
-      "zoneName": "Aegean Islands"
     },
     "GS": {
       "zoneName": "South Georgia and the South Sandwich Islands"

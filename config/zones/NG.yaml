@@ -34,6 +34,7 @@ contributors:
   - byronwilliams
   - kruschk
   - nessie2013
+  - silimotion
 emissionFactors:
   direct:
     battery discharge:
@@ -74,3 +75,5 @@ parsers:
   production: NG.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 timezone: Africa/Lagos
+region: Africa
+country: NG

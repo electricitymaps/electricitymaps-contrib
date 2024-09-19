@@ -39,6 +39,9 @@ contributors:
   - kruschk
   - tmslaine
   - amv213
+country: GE
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -118,4 +121,5 @@ parsers:
   production: GE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Asia
 timezone: Asia/Tbilisi

@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "App ini",
-    "opensource": "terbuka",
-    "see": "lihat",
-    "datasources": "sumber data",
-    "contribute": "Kontribusi oleh <a href=\"{{link}}\" target=\"_blank\">tambahkan teritori Kamu</a>"
-  },
   "mobile-main-menu": {
     "map": "Peta Kelistrikan",
     "areas": "Area",
@@ -33,19 +26,15 @@
     "carbonintensity": "Intensitas Karbon",
     "lowcarbon": "Karbon-rendah",
     "renewable": "Terbarukan",
-    "electricityproduction": "Produksi listrik",
-    "electricityconsumption": "Konsumsi Listrik",
-    "bysource": "menurut sumber",
-    "emissions": "Emisi Karbon",
     "helpfrom": "dengan bantuan dari",
     "noDataAtTimestamp": "Data belum tersedia pada waktu yang dipilih",
     "noLiveData": "Data belum tersedia pada area yang dipilih",
     "noParserInfo": "Kami tidak mempunyai informasi lebih lanjut tentang area yang dipilih.<br/> Ingin memperbaikinya? Kamu bisa berkontribusi dengan <a href=\"{{link}}\" target=\"_blank\">menambahkan data area</a>.",
     "now": "Sekarang"
   },
-  "left-panel": {
-    "zone-list-header-title": "Dampak klimatologi berdasarkan area",
-    "zone-list-header-subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Dampak klimatologi berdasarkan area",
+    "subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
     "search": "Cari area"
   },
   "footer": {
@@ -62,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "Intensitas Karbon",
-    "lowcarbon": "Karbon-rendah",
-    "renewable": "Terbarukan",
     "crossborderexport": "Ekspor lintas batas",
     "carbonintensityexport": "Intensitas Karbon yang dikeluarkan",
     "ofinstalled": "dalam kapasitas yang dipasang",
@@ -83,12 +70,6 @@
   },
   "misc": {
     "maintitle": "Emisi CO₂ langsung dari pemakaian energi listrik",
-    "oops": "Oops! Kami mengalami masalah menghubungkan ke dalam server. Kami akan coba beberapa detik lagi.",
-    "newversion": "Versi baru tersedia!",
-    "retrynow": "Ulangi sekarang",
-    "database-ad": "Mencari data historikal? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Periksa di database Kami!</a>",
-    "api-ad": "Ingin mendapatkan data langsung di aplikasi atau perangkat Anda? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Coba API kami!</a>",
-    "legend": "Legenda",
     "faq": "Pertanyaan yang Sering Diajukan",
     "dismiss": "Tutup",
     "reload": "Muat Ulang"
@@ -105,14 +86,6 @@
   "coal": "batu bara",
   "oil": "minyak",
   "unknown": "tidak diketahui",
-  "electricityComesFrom": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> berasal dari {{selectedLayerKey}}",
-  "emissionsComeFrom": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> berasal dari {{selectedLayerKey}}",
-  "electricityStoredUsing": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> tersimpan menggunakan {{selectedLayerKey}}",
-  "emissionsStoredUsing": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> tersimpan menggunakan {{selectedLayerKey}}",
-  "electricityExportedTo": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diekspor ke {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "{{percentageUsage}} % emisi dari energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diekspor ke {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "{{percentageUsage}} % energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diimport dari {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "{{percentageUsage}} % emisi energi listrik tersedia di {{zoneFlag}} <b>{{zoneName}}</b> diimport dari {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "theMap": {
     "groupName": "Peta",
     "mapColors-question": "Apa arti dari warna di dalam peta?",
@@ -141,8 +114,6 @@
     "groupName": "Metode Kami",
     "carbonIntensity-question": "Apa itu \"intensitas Karbon\"?",
     "carbonIntensity-answer": "Intensitas karbon adalah ukuran emisi gas rumah kaca yang terkait dengan menghasilkan listrik yang Anda konsumsi (dalam gCO₂eq / kWh - gram setara karbon dioksida yang dipancarkan per kilowatt hour dari konsumsi listrik). <br> <br> Kami mengukur emisi konsumsi listrik (bukan produksi), yang berarti semua emisi gas rumah kaca (baik CO₂ dan gas rumah kaca lainnya seperti metana) yang telah menghasilkan listrik yang dikonsumsi di suatu daerah, dengan mengambil memperhitungkan intensitas karbon dari listrik yang diimpor dari daerah lain. Kami menggunakan pendekatan analisis siklus hidup (LCA), yang berarti bahwa kami memperhitungkan emisi yang muncul dari seluruh siklus hidup pembangkit listrik (konstruksi, produksi bahan bakar, emisi operasional, dan penonaktifan).",
-    "consumptionFocus-question": "Mengapa Anda menghitung intensitas karbon dari konsumsi listrik daripada produksinya?",
-    "consumptionFocus-answer": "Kami percaya warga harus bertanggung jawab atas listrik yang mereka konsumsi, dan bukan untuk listrik yang diproduksi di daerah tempat mereka tinggal. Selain itu, kami percaya bahwa daerah tidak boleh 'memalsukan' dampak iklim rendah hanya dengan merelokasi produksi energi kotor ke daerah lain dan kemudian mengimpor listrik dari daerah tersebut. ",
     "renewableLowCarbonDifference-question": "Apa perbedaan dari “terbarukan” and “karbon-rendah”?",
     "renewableLowCarbonDifference-answer": "Produksi energi terbarukan didasarkan pada sumber energi terbarukan seperti angin dan aliran air, sinar matahari, dan energi panas bumi. Produksi energi rendah karbon berarti bahwa produksi tersebut melibatkan tingkat emisi gas rumah kaca yang sangat rendah, seperti dalam produksi tenaga nuklir.",
     "importsAndExports-question": "Apakah Anda memperhitungkan impor dan ekspor listrik?",
@@ -407,10 +378,6 @@
     "CK": {
       "zoneName": "Pulau Cook"
     },
-    "CL-SING-SIC": {
-      "countryName": "Chili",
-      "zoneName": "SING/SIC"
-    },
     "CL-SEM": {
       "countryName": "Chili",
       "zoneName": "SEM"
@@ -622,10 +589,6 @@
     },
     "GR": {
       "zoneName": "Yunani"
-    },
-    "GR-IS": {
-      "countryName": "Yunani",
-      "zoneName": "Pulau Aegean"
     },
     "GS": {
       "zoneName": "Georgia Selatan dan Pulau Sandwich Selatan"

@@ -8,11 +8,17 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 186.8
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 236.8
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 238.0
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4.4
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 3.3
   coal:
@@ -26,7 +32,7 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 1732.7
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 1733.8
   geothermal:
@@ -53,9 +59,18 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 596.3
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 896.3
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 1086.3
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 1084.0
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 1284.0
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -70,10 +85,11 @@ contributors:
   - robertahunt
   - KabelWlan
   - brandongalbraith
+country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 30
+  production: 33
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:
@@ -317,6 +333,7 @@ parsers:
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

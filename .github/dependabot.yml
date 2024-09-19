@@ -27,8 +27,12 @@ updates:
       - 'VIKTORVAV99'
     ignore:
       - dependency-name: '*'
-        update-types: ['version-update:semver-major', 'version-update:semver-patch']
+        update-types: ['version-update:semver-major']
     groups:
+      react:
+        patterns:
+          - 'react'
+          - 'react-dom'
       radix-ui:
         patterns:
           - '@radix-ui/*'
@@ -74,6 +78,9 @@ updates:
       sentry:
         patterns:
           - '@sentry/*'
+      visx:
+        patterns:
+          - '@visx/*'
 
   # Ensure ruff is updated.
   - package-ecosystem: 'pip'

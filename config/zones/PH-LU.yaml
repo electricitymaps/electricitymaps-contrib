@@ -22,6 +22,10 @@ contributors:
   - mathilde-daugy
   - pierresegonne
   - xomanuel
+country: PH
+delays:
+  production: 25
 parsers:
   production: IEMOP.fetch_production
+region: Asia
 timezone: Asia/Manila

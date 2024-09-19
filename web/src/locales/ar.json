@@ -1,17 +1,7 @@
 {
-  "panel-initial-text": {
-    "thisproject": "هذا المشروع",
-    "opensource": "مفتوح المصدر",
-    "see": "انظر",
-    "datasources": "مصادر البيانات",
-    "contribute": "مساهمة من <a href=\"{{link}}\" target=\"_blank\">إضافة منطقتك</a>"
-  },
   "country-panel": {
     "source": "المصدر",
-    "carbonintensity": "كثافة الكربون",
-    "electricityproduction": "إنتاج الكهرباء",
-    "bysource": "عبر المصدر",
-    "emissions": "انبعاثات الكربون"
+    "carbonintensity": "كثافة الكربون"
   },
   "footer": {
     "foundbugs": "وجدت أخطاء برمجية أو لديك اقتراحات؟ أبلغنا عنها",
@@ -33,9 +23,6 @@
   },
   "misc": {
     "maintitle": "انبعاثات غاز ثاني أكسيد الكربون الحية من استهلاك الكهرباء",
-    "oops": "نواجه مشكلات عند الاتصال بالخادم، سنعاود المحاولة خلال ثوان",
-    "newversion": "يوجد نسخة جديدة متوفرة!",
-    "retrynow": "أعد المحاولة الآن",
     "dismiss": "تجاهل",
     "reload": "إعادة التحميل"
   },
@@ -51,14 +38,6 @@
   "coal": "فحم",
   "oil": "نفط",
   "unknown": "غير معروف",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> من الكهرباء {{zoneFlag}} <b>{{zoneName}}</b> مصدره  {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> من الانبعاثات{{zoneFlag}} <b>{{zoneName}}</b> مصدره {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> من الكهرباء في {{zoneFlag}} <b>{{zoneName}}</b>مخزنة باستخدام  {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> من الانبعاثات في {{zoneFlag}} <b>{{zoneName}}</b> مخزنة باستخدام {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> من الكهرباء في {{zoneFlag}} <b>{{zoneName}}</b> تصدر إلى {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> من الانبعاثات في {{zoneFlag}} <b>{{zoneName}}</b> تصدر إلى {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> من الكهرباء في {{zoneFlag}} <b>{{zoneName}}</b> تستورد من {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> من الانبعاثات في {{zoneFlag}} <b>{{zoneName}}</b> تستورد من {{selectedZoneFlag}} <b>{{selectedZoneName}}</b>",
   "zoneShortName": {
     "AD": {
       "zoneName": "أندورا"
@@ -202,14 +181,6 @@
     },
     "ES": {
       "zoneName": "إسبانيا"
-    },
-    "ES-IB": {
-      "countryName": "إسبانيا",
-      "zoneName": "جزر البليار"
-    },
-    "ES-CN": {
-      "countryName": "إسبانيا",
-      "zoneName": "جزر الكناري"
     },
     "FI": {
       "zoneName": "فنلندا"

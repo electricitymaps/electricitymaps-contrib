@@ -35,7 +35,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
   return (
     <div
       data-test-id="carbon-chart-tooltip"
-      className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[410px] dark:border dark:border-gray-700 dark:bg-gray-800"
+      className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]"
     >
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
@@ -44,6 +44,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
         title={t('tooltips.carbonintensity')}
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
+        estimationMethod={estimationMethod}
       />
       <CarbonIntensityDisplay
         co2Intensity={intensity}

@@ -1,7 +1,7 @@
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { modeOrder } from 'utils/constants';
+import { modeOrderBarBreakdown } from 'utils/constants';
 import { PowerUnits } from 'utils/units';
 
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
@@ -23,7 +23,7 @@ function EmptyBarBreakdownChart({
   overLayText,
   width,
 }: EmptyBarBreakdownChartProps) {
-  const productionData = modeOrder.map((d) => ({
+  const productionData = modeOrderBarBreakdown.map((d) => ({
     mode: d,
     gCo2eq: 0,
     gCo2eqByFuel: {},
@@ -50,11 +50,9 @@ function EmptyBarBreakdownChart({
   );
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
-  const formatTick = (t: number) => {
+  const formatTick = (t: number) =>
     // TODO: format tick depending on displayByEmissions
-    return `${t} ${PowerUnits.GIGAWATTS}`;
-  };
-
+    `${t} ${PowerUnits.GIGAWATTS}`;
   return (
     <>
       <div style={{ width, height, position: 'absolute' }}>
@@ -67,7 +65,7 @@ function EmptyBarBreakdownChart({
       <svg
         className={`${
           overLayText ? 'opacity-40' : 'opacity-1'
-        } w-full overflow-visible text-md`}
+        } text-md w-full overflow-visible`}
         height={height}
       >
         <Axis formatTick={formatTick} height={height} scale={co2Scale} />

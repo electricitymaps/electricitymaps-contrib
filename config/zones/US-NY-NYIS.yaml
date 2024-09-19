@@ -8,14 +8,20 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 217.5
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 221.3
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 231.5
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 236.5
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 506.9
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 451.4
   coal:
@@ -29,7 +35,10 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 25779.1
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 25778.8
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 25777.0
   geothermal:
@@ -40,9 +49,12 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4617.3
-    - datetime: '2024-03-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 4604.4
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 4353.9
   hydro storage:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -58,6 +70,9 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 3444.4
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 3423.1
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -65,9 +80,24 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 1487.0
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 1521.9
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 1596.2
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 1614.7
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 1663.0
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 1731.4
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 1804.0
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -85,6 +115,9 @@ contributors:
   - robertahunt
   - KabelWlan
   - brandongalbraith
+country: US
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -343,6 +376,7 @@ parsers:
   consumptionForecast: EIA.fetch_consumption_forecast
   production: US_NY.fetch_production
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

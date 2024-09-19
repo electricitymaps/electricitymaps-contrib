@@ -25,6 +25,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
 
+    "arrow-body-style": "error",
     "curly": "error",
     "no-promise-executor-return": "error",
     "no-unreachable-loop": "error",
@@ -127,6 +128,12 @@
     "react/jsx-no-constructed-context-values": "error",
     "react/jsx-no-script-url": "error",
     "react/jsx-no-useless-fragment": "error",
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        "allowReferrer": true
+      }
+    ],
 
     "unicorn/filename-case": [
       "error",

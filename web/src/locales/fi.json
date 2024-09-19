@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Tämä app on",
-    "opensource": "avoin lähdekoodi",
-    "see": "katso",
-    "datasources": "tietolähteet",
-    "contribute": "Avusta <a href=\"{{link}}\" target=\"_blank\">lisäämällä alueesi</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Alueet",
@@ -33,19 +26,15 @@
     "carbonintensity": "Hiili-intensiteetti",
     "lowcarbon": "Vähähiilinen",
     "renewable": "Uusiutuva",
-    "electricityproduction": "Sähkön tuotanto",
-    "electricityconsumption": "Sähkön kulutus",
-    "bysource": "alkuperä",
-    "emissions": "Hiilidioksidipäästöt",
     "helpfrom": "heidän avustuksella",
     "noDataAtTimestamp": "Tiedot eivät ole väliaikaisesti käytettävissä valitulle ajankohdalle",
     "noLiveData": "Live-tiedot eivät ole väliaikaisesti käytettävissä tällä alueella",
     "noParserInfo": "Meillä ei ole vielä tietoa tästä alueesta.<br/> Haluatko auttaa tämän korjaamisessa? Voit avustaa <a href=\"{{link}}\" target=\"_blank\">lisäämällä alueen tiedot</a>.",
     "now": "Tällä hetkellä"
   },
-  "left-panel": {
-    "zone-list-header-title": "Ilmastovaikutukset alueittain",
-    "zone-list-header-subtitle": "Sijoitus kulutetun sähkön hiili-intensiteetin mukaan (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Ilmastovaikutukset alueittain",
+    "subtitle": "Sijoitus kulutetun sähkön hiili-intensiteetin mukaan (gCO₂eq/kWh)",
     "search": "Etsi alueita"
   },
   "footer": {
@@ -62,8 +51,9 @@
   },
   "tooltips": {
     "carbonintensity": "Hiili-intensiteetti",
-    "lowcarbon": "Vähähiilinen",
-    "renewable": "Uusiutuva",
+    "zoneHeader": {
+      "lowcarbon": "Sisältää uusiutuvat energialähteet ja ydinvoiman"
+    },
     "crossborderexport": "Rajat ylittävä vienti",
     "carbonintensityexport": "Viennin hiili-intensiteetti",
     "ofinstalled": "asennetusta kapasiteetista",
@@ -79,17 +69,10 @@
     "production": "tuotanto",
     "consumption": "kulutus",
     "cpinfo": "<b>kulutus</b> ottaa huomioon tuonnin ja viennin, <b>tuotanto</b> jättää ne huomioimatta",
-    "selectLanguage": "Valitse kieli",
-    "lowCarbDescription": "Sisältää uusiutuvat energialähteet ja ydinvoiman"
+    "selectLanguage": "Valitse kieli"
   },
   "misc": {
     "maintitle": "Sähkönkulutuksen reaaliaikiaset hiilidioksidipäästöt",
-    "oops": "Meillä on vaikeuksia palvelimen saavuttamisessa. Yritämme uudelleen muutamassa sekunnissa.",
-    "newversion": "Uusi versio saatavilla!",
-    "retrynow": "Yritä uudelleen nyt",
-    "database-ad": "Etsitkö historiallista tietoa? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Tutustu tietokantaamme!</a>",
-    "api-ad": "Haluatko live-tietoja sovelluksessasi tai laitteessasi? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Kokeile meidän API:ta!</a>",
-    "legend": "Selite",
     "faq": "Usein Kysytyt Kysymykset",
     "dismiss": "Ohita",
     "reload": "Lataa uudelleen"
@@ -106,14 +89,6 @@
   "coal": "hiili",
   "oil": "öljy",
   "unknown": "tuntematon",
-  "electricityComesFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä tulee {{selectedLayerKey}}",
-  "emissionsComeFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä tulee {{selectedLayerKey}}",
-  "electricityStoredUsing": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä varastoidaan {{selectedLayerKey}}",
-  "emissionsStoredUsing": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä varastoidaan {{selectedLayerKey}}",
-  "electricityExportedTo": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä viedään {{selectedLayerKey}}",
-  "emissionsExportedTo": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä viedään {{selectedLayerKey}}",
-  "electricityImportedFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevasta sähköstä tuodaan {{selectedLayerKey}}",
-  "emissionsImportedFrom": "<b>{{percentageUsage}} %</b> {{zoneFlag}} <b>{{zoneName}}</b> saatavilla olevista sähkön päästöistä tuodaan {{selectedLayerKey}}",
   "theMap": {
     "groupName": "Kartta",
     "mapColors-question": "Mitä kartan värit tarkoittavat?",
@@ -142,8 +117,6 @@
     "groupName": "Menetelmämme",
     "carbonIntensity-question": "Mikä on \"hiili-intensiteetti\"?",
     "carbonIntensity-answer": "Hiili-intensiteetti on lukema kasvihuonekaasupäästöistä, jotka liittyvät kuluttamasi sähkön tuotantoon (gCO₂eq / kWh - grammaa hiilidioksidia vastaavia päästöjä kilowattitunnin kulutuksesta). <br> <br> Mittaamme sähkönkulutuksen (ei tuotannon) päästöt, tarkoittaen kaikkia kasvihuonekaasupäästöjä (sekä hiilidioksidi että muut kasvihuonekaasut, kuten metaani), joita on käytetty tuottamaan alueella kuluttamaa sähköä ottaen huomioon muilta alueilta tuodun sähkön hiili-intensiteetit. Käytämme elinkaarianalyysimenetelmää (LCA), jossa otamme huomioon voimalaitosten koko elinkaaren päästöt (rakentaminen, polttoaineen tuotanto, toiminnalliset päästöt ja käytöstäpoisto).",
-    "consumptionFocus-question": "Miksi laskette sähkönkulutuksen hiili-intensiteetin tuotannon sijasta?",
-    "consumptionFocus-answer": "Uskomme, että kansalaisten olisi oltava vastuussa kuluttamastaan sähköstä, ei sähköstä, jota tuotetaan alueella, jolla he sattuvat asumaan. Lisäksi uskomme, että alueiden ei pitäisi pystyä 'väärentämään' heikkoa ilmastovaikutusta yksinkertaisesti siirtämällä likaisen energiantuotannon muille alueille ja tuomalla sähkön kyseisiltä alueilta.",
     "renewableLowCarbonDifference-question": "Mitä eroa on 'uusiutuvilla' ja 'vähähiilisillä' energianlähteillä?",
     "renewableLowCarbonDifference-answer": "Uusiutuvan energiantuotanto perustuu uusiutuviin energialähteisiin, kuten tuulen ja veden virtaukseen, auringonpaisteeseen ja maalämpöön. Vähähiilinen energiantuotanto tarkoittaa, että tuotantoon liittyy erittäin alhainen kasvihuonekaasupäästö, esimerkiksi ydinvoiman tuotannossa.",
     "importsAndExports-question": "Otattekoko huomioon sähkön tuonnin ja viennin?",
@@ -408,10 +381,6 @@
     "CK": {
       "zoneName": "Cookinsaaret"
     },
-    "CL-SING-SIC": {
-      "countryName": "Chile",
-      "zoneName": "SING/SIC"
-    },
     "CL-SEM": {
       "countryName": "Chile",
       "zoneName": "SEM"
@@ -623,10 +592,6 @@
     },
     "GR": {
       "zoneName": "Kreikka"
-    },
-    "GR-IS": {
-      "countryName": "Kreikka",
-      "zoneName": "Egeanmeren saaret"
     },
     "GS": {
       "zoneName": "Etelä-Georgia ja Eteläiset Sandwichsaaret"
@@ -1019,9 +984,6 @@
     },
     "MW": {
       "zoneName": "Malawi"
-    },
-    "MX": {
-      "countryName": "Meksiko"
     },
     "MX-BC": {
       "countryName": "Meksiko",

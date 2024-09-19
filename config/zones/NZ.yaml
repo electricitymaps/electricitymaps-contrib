@@ -53,6 +53,9 @@ contributors:
   - corradio
   - davidcole1340
   - drc38
+country: NZ
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -255,4 +258,5 @@ parsers:
   price: NZ.fetch_price
   production: NZ.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Oceania
 timezone: Pacific/Auckland
