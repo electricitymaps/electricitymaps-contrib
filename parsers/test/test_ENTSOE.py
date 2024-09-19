@@ -3,7 +3,6 @@ import os
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
-from unittest.mock import patch
 
 from requests import Session
 from requests_mock import ANY, GET, Adapter
@@ -218,29 +217,51 @@ class TestFetchProduction(TestENTSOE):
                 content=production_no_data.read(),
             )
             logger = logging.Logger("test")
-            with patch.object(logger, "info") as mock_warning:
-                production = ENTSOE.fetch_production(
-                    ZoneKey("NO-NO5"), self.session, logger=logger
-                )
-                self.assertEqual(len(production), 47)
-                self.assertEqual(production[0]["zoneKey"], "NO-NO5")
-                self.assertEqual(production[0]["source"], "entsoe.eu")
-                self.assertEqual(
-                    production[0]["datetime"],
-                    datetime(2023, 5, 9, 9, 0, tzinfo=timezone.utc),
-                )
-                # Small negative values have been set to 0.
-                self.assertEqual(production[0]["production"]["gas"], 0)
-                self.assertEqual(production[1]["production"]["gas"], 0)
+            production = ENTSOE.fetch_production(
+                ZoneKey("NO-NO5"), self.session, logger=logger
+            )
+            self.assertEqual(len(production), 47)
+            self.assertEqual(production[0]["zoneKey"], "NO-NO5")
+            self.assertEqual(production[0]["source"], "entsoe.eu")
+            self.assertEqual(
+                production[0]["datetime"],
+                datetime(2023, 5, 9, 9, 0, tzinfo=timezone.utc),
+            )
+            # Small negative values have been set to 0.
+            self.assertEqual(production[0]["production"]["gas"], 0)
+            self.assertEqual(production[1]["production"]["gas"], 0)
+            # Large negative values have been set to None.
+            self.assertEqual(
+                production[-1]["datetime"],
+                datetime(2023, 5, 11, 7, 0, tzinfo=timezone.utc),
+            )
+            self.assertEqual(production[-1]["production"]["gas"], 0)
 
-                # Large negative values have been set to None.
-                self.assertEqual(
-                    production[-1]["datetime"],
-                    datetime(2023, 5, 11, 7, 0, tzinfo=timezone.utc),
+    def test_production_with_snapshot(self):
+        for zone in ["FI", "LU", "NO-NO5"]:
+            with self.subTest(zone=zone):
+                raw_data = Path(base_path_to_mock, f"{zone}_production.xml")
+                self.adapter.register_uri(
+                    GET,
+                    ANY,
+                    content=raw_data.read_bytes(),
                 )
-                self.assertEqual(production[-1]["production"]["gas"], None)
-                # A warning has been logged for this.
-                mock_warning.assert_called()
+                production = ENTSOE.fetch_production(ZoneKey(zone), self.session)
+
+                self.assert_match_snapshot(
+                    [
+                        {
+                            "datetime": element["datetime"].isoformat(),
+                            "zoneKey": element["zoneKey"],
+                            "production": element["production"],
+                            "storage": element["storage"],
+                            "source": element["source"],
+                            "sourceType": element["sourceType"].value,
+                            "correctedModes": element["correctedModes"],
+                        }
+                        for element in production
+                    ]
+                )
 
 
 class TestFetchExchange(TestENTSOE):

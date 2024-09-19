@@ -62,6 +62,9 @@ contributors:
   - brandongalbraith
   - jarek
   - corradio
+country: AU
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -249,4 +252,5 @@ parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENNEM.fetch_production_capacity
+region: Oceania
 timezone: Australia/Brisbane

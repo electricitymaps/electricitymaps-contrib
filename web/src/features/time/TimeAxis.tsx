@@ -1,7 +1,7 @@
 import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
-import useResizeObserver from 'use-resize-observer';
+import useResizeObserver from 'use-resize-observer/polyfilled';
 import { TimeAverages } from 'utils/constants';
 
 import { formatDateTick } from '../../utils/formatting';
@@ -15,7 +15,7 @@ const TIME_TO_TICK_FREQUENCY = {
 };
 
 const renderTick = (
-  scale: any,
+  scale: ScaleTime<number, number, never>,
   value: Date,
   index: number,
   displayLive: boolean,
@@ -56,7 +56,7 @@ const renderTickValue = (
       </text>
     </g>
   ) : (
-    <text fill="currentColor" y="9" x={textOffset} dy="0.71em">
+    <text fill="currentColor" y="9" x={textOffset} dy="0.71em" fontSize={'0.65rem'}>
       {formatDateTick(v, lang, selectedTimeAggregate)}
     </text>
   );
@@ -87,6 +87,7 @@ function TimeAxis({
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
+
   const width = observerWidth - 24;
 
   if (datetimes === undefined || isLoading) {

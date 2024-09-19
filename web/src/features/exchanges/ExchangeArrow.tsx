@@ -1,5 +1,6 @@
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
+import { useHeaderHeight } from 'hooks/headerHeight';
 import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { resolvePath } from 'react-router-dom';
@@ -26,37 +27,9 @@ function ExchangeArrow({
   isMobile,
 }: ExchangeArrowProps) {
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
-  if (!lonlat) {
-    return null;
-  }
-
-  const absFlow = Math.abs(netFlow ?? 0);
-  // Don't render if the flow is very low ...
-  if (absFlow < 1) {
-    return null;
-  }
-  const mapZoom = map.getZoom();
-  const projection = map.project(lonlat);
-  const transform = {
-    x: projection.x,
-    y: projection.y,
-    k: 0.04 + (mapZoom - 1.5) * 0.1,
-    r: rotation + (netFlow > 0 ? 180 : 0),
-  };
-
-  if (
-    // or if the arrow would be very tiny
-    transform.k < 0.1 ||
-    // or if it would be rendered outside of viewport.
-    transform.x + 100 * transform.k < 0 ||
-    transform.y + 100 * transform.k < 0 ||
-    transform.x - 100 * transform.k > viewportWidth ||
-    transform.y - 100 * transform.k > viewportHeight
-  ) {
-    return null;
-  }
 
   const setIsMoving = useSetAtom(mapMovingAtom);
+  const headerHeight = useHeaderHeight();
 
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
@@ -70,6 +43,41 @@ function ExchangeArrow({
     return () => exchangeLayer.removeEventListener('wheel', cancelWheel);
   }, []);
 
+  const absFlow = Math.abs(netFlow ?? 0);
+
+  // Don't render if there is no position or if flow is very low ...
+  if (!lonlat || absFlow < 1) {
+    return null;
+  }
+
+  const mapZoom = map.getZoom();
+  const projection = map.project(lonlat);
+  const transform = {
+    x: projection.x,
+    y: projection.y,
+    k: 0.04 + (mapZoom - 1.5) * 0.1,
+    r: rotation + (netFlow > 0 ? 180 : 0),
+  };
+
+  // Setting the top position from the arrow tooltip preventing overflowing to top.
+  let tooltipClassName =
+    'max-h-[256px] max-w-[512px] md:flex rounded-2xl border-neutral-200 bg-white dark:bg-gray-900 dark:border-gray-700 dark:border';
+  if (!isMobile) {
+    tooltipClassName += transform.y - 76 < headerHeight ? ' top-[76px]' : ' top-[-76px]';
+  }
+
+  if (
+    // or if the arrow would be very tiny
+    transform.k < 0.1 ||
+    // or if it would be rendered outside of viewport.
+    transform.x + 100 * transform.k < 0 ||
+    transform.y + 100 * transform.k < 0 ||
+    transform.x - 100 * transform.k > viewportWidth ||
+    transform.y - 100 * transform.k > viewportHeight
+  ) {
+    return null;
+  }
+
   const prefix = colorBlindMode ? 'colorblind-' : '';
   const intensity = quantizedCo2IntensityScale(co2intensity);
   const speed = quantizedExchangeSpeedScale(absFlow);
@@ -79,7 +87,7 @@ function ExchangeArrow({
 
   return (
     <TooltipWrapper
-      tooltipClassName={`max-h-[256px] max-w-[512px] ${isMobile ? '' : 'top-[-76px]'}`}
+      tooltipClassName={tooltipClassName}
       tooltipContent={<ExchangeTooltip exchangeData={data} isMobile={isMobile} />}
       side={isMobile ? 'top' : 'right'}
       sideOffset={10}
@@ -97,6 +105,7 @@ function ExchangeArrow({
           top: '-41px',
         }}
         onWheel={() => setIsMoving(true)}
+        data-test-id={`exchange-arrow-${key}`}
       >
         <source srcSet={`${imageSource}.webp`} type="image/webp" />
         <img src={`${imageSource}.gif`} alt="" draggable={false} />

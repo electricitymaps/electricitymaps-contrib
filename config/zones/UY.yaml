@@ -8,6 +8,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 420.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 740.0
   hydro:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -16,10 +19,16 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 280.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 300.0
   unknown:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1150.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1180.0
   wind:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -30,6 +39,9 @@ contributors:
   - nessie2013
   - ZachEichen
   - ananyasharma20
+country: UY
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -232,4 +244,5 @@ parsers:
   consumption: UY.fetch_consumption
   production: UY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Americas
 timezone: America/Montevideo

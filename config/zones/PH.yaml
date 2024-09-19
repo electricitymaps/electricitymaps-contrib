@@ -22,3 +22,5 @@ subZoneNames:
   - PH-MI
   - PH-VI
 timezone: Asia/Manila
+region: Asia
+country: PH

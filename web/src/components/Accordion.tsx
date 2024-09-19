@@ -1,10 +1,7 @@
-import { PrimitiveAtom, useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
+import { ChevronDown, ChevronUp, LucideIcon } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 export default function Accordion({
-  isCollapsedDefault = true,
   onClick,
   onOpen,
   badge,
@@ -12,9 +9,10 @@ export default function Accordion({
   icon,
   children,
   title,
-  isCollapsedAtom,
+  isCollapsed,
+  setState,
+  isTopExpanding = false,
 }: {
-  isCollapsedDefault?: boolean;
   onClick?: () => void;
   onOpen?: () => void;
   badge?: React.ReactNode;
@@ -22,68 +20,38 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
-  isCollapsedAtom?: PrimitiveAtom<boolean>;
+  isCollapsed: boolean;
+  setState: (isCollapsed: boolean) => void;
+  isTopExpanding?: boolean;
 }) {
-  const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
-    ? useAtom(isCollapsedAtom)
-    : [null, null];
-  const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
-
-  useEffect(() => {
-    if (collapsedAtom !== null) {
-      setIsCollapsed(collapsedAtom);
-    }
-  }, [collapsedAtom]);
-
   const handleToggleCollapse = () => {
-    if (onClick != undefined) {
-      onClick();
-    }
+    onClick?.();
 
-    if (isCollapsed && onOpen != undefined) {
-      onOpen();
-    }
+    isCollapsed && onOpen?.();
 
-    setIsCollapsed((previous: boolean) => !previous);
-    if (setCollapsedAtom != null) {
-      setCollapsedAtom((previous: boolean) => !previous);
-    }
+    setState(!isCollapsed);
   };
 
+  const Icon: LucideIcon = isTopExpanding === isCollapsed ? ChevronUp : ChevronDown;
+
   return (
-    <div className="flex flex-col">
-      <button data-test-id="collapse-button" onClick={handleToggleCollapse}>
-        <div
-          className={twMerge(
-            `flex flex-row items-center justify-between text-sm`,
-            className
-          )}
-        >
-          <div className="flex w-2/3 flex-initial flex-row">
-            {icon && (
-              <div className={`flex items-center justify-center pr-2`}>{icon}</div>
-            )}
-            <h2 className={`self-center text-left font-semibold`} data-test-id="title">
-              {title}
-            </h2>
-          </div>
-          <div className="flex h-fit flex-row gap-2 text-nowrap">
-            {badge}
-            <div className="text-lg text-black dark:text-white">
-              {isCollapsed ? (
-                <div data-test-id="collapse-down">
-                  <HiChevronDown />
-                </div>
-              ) : (
-                <div data-test-id="collapse-up">
-                  <HiChevronUp />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+    <section className="flex flex-col gap-1.5 py-1">
+      <button
+        data-test-id="collapse-button"
+        onClick={handleToggleCollapse}
+        className={twMerge('flex flex-row items-center gap-1.5', className)}
+      >
+        {icon}
+        <h3 className="grow text-left" data-test-id="title">
+          {title}
+        </h3>
+        {badge}
+        <Icon
+          className="text-black dark:text-white"
+          data-test-id={isCollapsed ? 'collapse-down' : 'collapse-up'}
+        />
       </button>
-      {!isCollapsed && <div className="pt-1.5">{children}</div>}
-    </div>
+      {!isCollapsed && <div>{children}</div>}
+    </section>
   );
 }

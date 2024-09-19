@@ -1,23 +1,26 @@
 import Accordion from 'components/Accordion';
+import { HorizontalDivider } from 'components/Divider';
+import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
-import Divider from 'features/panels/zone/Divider';
-import { CircleBoltIcon } from 'icons/circleBoltIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
+import { useAtom, useAtomValue } from 'jotai';
+import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
 import { Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { dataSourcesCollapsedBreakdown } from 'utils/state/atoms';
+import { dataSourcesCollapsedBreakdownAtom, isHourlyAtom } from 'utils/state/atoms';
 
-import { DataSources } from './bar-breakdown/DataSources';
-import { GraphCard } from './bar-breakdown/GraphCard';
-import ProductionSourceLegendList from './bar-breakdown/ProductionSourceLegendList';
 import { ChartTitle } from './ChartTitle';
+import { DataSources } from './DataSources';
+import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, getGenerationTypeKey, noop } from './graphUtils';
+import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
+import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
+import ProductionSourceLegendList from './ProductionSourceLegendList';
+import { RoundedCard } from './RoundedCard';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 import { AreaGraphElement } from './types';
 
@@ -32,29 +35,39 @@ function BreakdownChart({
   datetimes,
   timeAverage,
 }: BreakdownChartProps) {
-  const { sources, data, mixMode } = useBreakdownChartData();
+  const { data, mixMode } = useBreakdownChartData();
+  const [dataSourcesCollapsedBreakdown, setDataSourcesCollapsedBreakdown] = useAtom(
+    dataSourcesCollapsedBreakdownAtom
+  );
+  const {
+    emissionFactorSources,
+    powerGenerationSources,
+    emissionFactorSourcesToProductionSources,
+  } = useZoneDataSources();
   const { t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
 
   if (!data) {
     return null;
   }
 
-  const isBreakdownGraphOverlayEnabled =
-    mixMode === Mode.CONSUMPTION && timeAverage !== TimeAverages.HOURLY;
+  const isBreakdownGraphOverlayEnabled = mixMode === Mode.CONSUMPTION && !isHourly;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 
   // Find highest daily emissions to show correct unit on chart
   const maxEmissions = max(chartData.map((day) => sum(Object.values(day.layerData))));
 
-  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
+  const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
   const titleDisplayMode = displayByEmissions ? 'emissions' : 'electricity';
   const titleMixMode = mixMode === Mode.CONSUMPTION ? 'origin' : 'production';
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const badgeText = getBadgeText(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+
+  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -65,21 +78,15 @@ function BreakdownChart({
   }
 
   return (
-    <GraphCard>
+    <RoundedCard>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
-        badgeText={badgeText}
-        icon={<CircleBoltIcon />}
+        badge={isBreakdownGraphOverlayEnabled ? undefined : badge}
         unit={valueAxisLabel}
       />
-      <div className="relative">
+      <div className="relative ">
         {isBreakdownGraphOverlayEnabled && (
-          <div className="absolute top-0 h-full w-full">
-            <div className=" h-full w-full bg-white opacity-50 dark:bg-gray-800" />
-            <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:bg-gray-900">
-              Temporarily disabled for consumption. <br /> Switch to production view
-            </div>
-          </div>
+          <DisabledMessage message={t(`country-panel.disabledBreakdownChartReason`)} />
         )}
 
         <AreaGraph
@@ -91,7 +98,7 @@ function BreakdownChart({
           markerHideHandler={noop}
           isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
           height="10em"
-          isOverlayEnabled={isBreakdownGraphOverlayEnabled}
+          isDisabled={isBreakdownGraphOverlayEnabled}
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
           tooltip={BreakdownChartTooltip}
@@ -105,30 +112,43 @@ function BreakdownChart({
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
-      <ProductionSourceLegendList
-        sources={getProductionSourcesInChart(chartData)}
-        className="py-1.5"
-      />
-      <Divider />
-      <Accordion
-        onOpen={() => {
-          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-            chart: displayByEmissions
-              ? 'emission-origin-chart'
-              : 'electricity-origin-chart',
-          });
-        }}
-        title={t('data-sources.title')}
-        className="text-md"
-        isCollapsedAtom={dataSourcesCollapsedBreakdown}
-      >
-        <DataSources
-          title={t('data-sources.power')}
-          icon={<WindTurbineIcon />}
-          sources={sources}
-        />
-      </Accordion>
-    </GraphCard>
+      {!isBreakdownGraphOverlayEnabled && (
+        <>
+          <ProductionSourceLegendList
+            sources={getProductionSourcesInChart(chartData)}
+            className="py-1.5"
+          />
+          <HorizontalDivider />
+          <Accordion
+            onOpen={() => {
+              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+                chart: displayByEmissions
+                  ? 'emission-origin-chart'
+                  : 'electricity-origin-chart',
+              });
+            }}
+            title={t('data-sources.title')}
+            className="text-md"
+            isCollapsed={dataSourcesCollapsedBreakdown}
+            setState={setDataSourcesCollapsedBreakdown}
+          >
+            <DataSources
+              title={t('data-sources.power')}
+              icon={<Zap size={16} />}
+              sources={powerGenerationSources}
+            />
+            <DataSources
+              title={t('data-sources.emission')}
+              icon={<Factory size={16} />}
+              sources={emissionFactorSources}
+              emissionFactorSourcesToProductionSources={
+                emissionFactorSourcesToProductionSources
+              }
+            />
+          </Accordion>
+        </>
+      )}
+    </RoundedCard>
   );
 }
 

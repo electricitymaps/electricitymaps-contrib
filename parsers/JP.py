@@ -91,7 +91,7 @@ def fetch_production(
                 "unknown": df.loc[i, "unknown"],
             },
             "capacity": {"wind": capacity if capacity is not None else {}},
-            "source": f"occtonet.or.jp, {sources[zone_key]}",
+            "source": f"occto.or.jp, {sources[zone_key]}",
         }
         datalist.append(data)
     return datalist
@@ -160,7 +160,7 @@ def fetch_consumption_df(
     consumption_url = {
         "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
         "JP-TH": f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{datestamp}.csv",
-        "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d-j.csv",
+        "JP-TK": "https://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv",
         "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
@@ -184,6 +184,8 @@ def fetch_consumption_df(
 
     if zone_key in ["JP-TH"]:
         df.columns = ["Date", "Time", "cons", "solar", "wind"]
+    elif zone_key in ["JP-TK"]:
+        df.columns = ["Date", "Time", "cons", "solar", "solar_pct"]
     else:
         df.columns = ["Date", "Time", "cons", "solar"]
     # Convert 万kW to MW

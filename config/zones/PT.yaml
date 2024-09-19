@@ -67,6 +67,9 @@ capacity:
     - datetime: '2024-03-01'
       source: ren.pt
       value: 2744.0
+    - datetime: '2024-07-01'
+      source: ren.pt
+      value: 3129.0
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -81,11 +84,17 @@ capacity:
     - datetime: '2024-03-01'
       source: ren.pt
       value: 5374.0
+    - datetime: '2024-07-01'
+      source: ren.pt
+      value: 5380.0
 contributors:
   - corradio
   - nessie2013
   - Musketeiro
   - RGarrido03
+country: PT
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -128,6 +137,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 371.49
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 375.95
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -200,6 +212,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 491.49
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 495.95
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -361,11 +376,14 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2023:
+    link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:

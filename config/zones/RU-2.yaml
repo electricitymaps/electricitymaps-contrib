@@ -137,3 +137,5 @@ fallbackZoneMixes:
 parsers:
   production: RU.fetch_production
 timezone: Europe/Moscow
+region: Europe
+country: RU

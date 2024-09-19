@@ -1,22 +1,21 @@
-/* eslint-disable unicorn/no-null */
 import { bisectLeft } from 'd3-array';
-// import { pointer } from 'd3-selection';
-// // https://observablehq.com/@d3/d3-selection-2-0
-import { scaleTime } from 'd3-scale';
+import { ScaleTime, scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
+import { CircleDashed, LucideIcon, TrendingUpDown } from 'lucide-react';
+import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { Mode, modeOrder, TimeAverages } from 'utils/constants';
+import { EstimationMethods, Mode, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
 
 export const detectHoveredDatapointIndex = (
-  event_: any,
-  datetimes: any,
-  timeScale: any,
-  svgNode: any
-) => {
+  event_: MouseEvent<SVGRectElement> | MouseEvent<SVGPathElement>,
+  datetimes: Date[],
+  timeScale: ScaleTime<number, number>,
+  svgNode: SVGSVGElement
+): number | null => {
   if (datetimes.length === 0) {
     return null;
   }
@@ -29,8 +28,14 @@ export const detectHoveredDatapointIndex = (
   const datetime = timeScale.invert(adjustedDx);
 
   // Find data point closest to
+
   let index = bisectLeft(datetimes, datetime);
-  if (index > 0 && datetime - datetimes[index - 1] < datetimes[index] - datetime) {
+  // Aligns the hovered point to the chart bar
+  if (
+    index > 0 &&
+    datetime?.getTime() - datetimes[index - 1]?.getTime() <
+      datetimes[index]?.getTime() - datetime?.getTime()
+  ) {
     index -= 1;
   }
   if (index > datetimes.length - 1) {
@@ -44,17 +49,20 @@ export const detectHoveredDatapointIndex = (
 export const getTooltipPosition = (isMobile: boolean, marker: { x: number; y: number }) =>
   isMobile ? { x: 0, y: 0 } : marker;
 
-// TODO: Deprecate this
-export const isEmpty = (object: any) =>
-  [Object, Array].includes((object || {}).constructor) &&
-  Object.entries(object || {}).length === 0;
-
 export const noop = () => undefined;
 
-export const getTimeScale = (width: number, startTime: Date, endTime: Date) =>
-  scaleTime()
+export const getTimeScale = (
+  width: number,
+  startTime?: Date | null,
+  endTime?: Date | null
+) => {
+  if (!startTime || !endTime) {
+    return null;
+  }
+  return scaleTime()
     .domain([new Date(startTime), new Date(endTime)])
     .range([0, width]);
+};
 
 export const getStorageKey = (name: ElectricityStorageType): string | undefined => {
   switch (name) {
@@ -110,6 +118,9 @@ export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) 
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   const index = datetimes.findIndex((d) => d?.getTime() === currentDate?.getTime());
+  if (index === -1 || index === datetimes.length - 1) {
+    return undefined;
+  }
   return datetimes[index + 1];
 };
 
@@ -117,20 +128,26 @@ export function determineUnit(
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
   mixMode: Mode,
-  timeAverage: TimeAverages,
+  isHourly: boolean,
   t: TFunction
 ) {
   if (displayByEmissions) {
     return getUnit(
-      formatCo2(getTotalEmissionsAvailable(currentZoneDetail, mixMode)) +
+      formatCo2({ value: getTotalEmissionsAvailable(currentZoneDetail, mixMode) }) +
         ' ' +
         t('ofCO2eq')
     );
   }
 
-  return timeAverage === TimeAverages.HOURLY
-    ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode)))
-    : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
+  return isHourly
+    ? getUnit(
+        formatPower({
+          value: getTotalElectricityAvailable(currentZoneDetail, mixMode),
+        })
+      )
+    : getUnit(
+        formatEnergy({ value: getTotalElectricityAvailable(currentZoneDetail, mixMode) })
+      );
 }
 
 function getUnit(valueAndUnit: string | number) {
@@ -148,10 +165,13 @@ export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
   if (value === 0 && total === 0) {
     return 0;
   }
+  // TODO: The typeof check is only necessary for TypeScript to properly narrow the types.
+  // Remove it once TypeScript can narrow the type using the Number.isFinite check.
   if (
-    Number.isNaN(value) ||
     typeof value !== 'number' ||
     typeof total !== 'number' ||
+    !Number.isFinite(value) ||
+    !Number.isFinite(total) ||
     total === 0
   ) {
     return '?';
@@ -190,20 +210,66 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
-export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
-  const allEstimated = chartData.every(
-    (day) => day.meta.estimationMethod || day.meta.estimatedPercentage === 100
-  );
+function analyzeChartData(chartData: AreaGraphElement[]) {
+  let estimatedCount = 0;
+  let tsaCount = 0;
+  for (const chartElement of chartData) {
+    if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
+      tsaCount++;
+    }
+    if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
+      estimatedCount++;
+    }
+  }
+  return {
+    allTimeSlicerAverageMethod: tsaCount === chartData.length,
+    allEstimated: estimatedCount === chartData.length,
+    hasEstimation: estimatedCount > 0,
+  };
+}
+
+export function getBadgeTextAndIcon(
+  chartData: AreaGraphElement[],
+  t: TFunction
+): { text?: string; icon?: LucideIcon } {
+  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
+    analyzeChartData(chartData);
+  if (allTimeSlicerAverageMethod) {
+    return {
+      text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
+      icon: CircleDashed,
+    };
+  }
 
   if (allEstimated) {
-    return t('estimation-badge.fully-estimated');
+    return { text: t('estimation-badge.fully-estimated'), icon: TrendingUpDown };
   }
-
-  const hasEstimation = chartData.some(
-    (day) => day.meta.estimationMethod || Boolean(day.meta.estimatedPercentage)
-  );
 
   if (hasEstimation) {
-    return t('estimation-badge.partially-estimated');
+    return { text: t('estimation-badge.partially-estimated'), icon: TrendingUpDown };
   }
+  return {};
+}
+
+export function extractLinkFromSource(
+  source: string,
+  sourceToLinkMapping: {
+    [key: string]: string;
+  }
+) {
+  const link = sourceToLinkMapping[source];
+  if (link) {
+    return link;
+  }
+
+  if (!source.includes('.')) {
+    return null;
+  }
+
+  if (source.includes('http')) {
+    return source;
+  }
+
+  // We on purpose don't use https due to some sources not supporting it (and the majority that does will automatically redirect anyway)
+  return `http://${source}`;
 }

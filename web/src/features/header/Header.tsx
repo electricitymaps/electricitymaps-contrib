@@ -1,10 +1,11 @@
 import { Capacitor } from '@capacitor/core';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Button } from 'components/Button';
+import { Link } from 'components/Link';
 import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
 import { useSetAtom } from 'jotai';
+import { ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineExternalLink } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 
@@ -27,28 +28,28 @@ function MenuLink({
 }: MenuLinkProps): JSX.Element {
   const handleClick = () => {
     trackEvent('HeaderLink Clicked', { linkId: id });
-    onClick && onClick();
+    onClick?.();
   };
   return (
-    <div className="relative flex py-3">
-      <NavigationMenu.Item
-        asChild
-        className="cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+    <NavigationMenu.Item
+      asChild
+      className="relative my-3 cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+    >
+      <NavigationMenu.Link
+        onClick={handleClick}
+        href={href}
+        target={isExternal ? '_blank' : '_self'}
+        className="group px-1 py-2 text-sm lg:px-2 lg:text-base"
       >
-        <NavigationMenu.Link
-          onClick={handleClick}
-          href={href}
-          className="group px-1 py-2 text-base lg:px-2 lg:text-[1rem]"
-        >
-          {children}
-          {isExternal && (
-            <div className="absolute bottom-0 top-1 flex w-full justify-end text-gray-400 opacity-0 transition-opacity group-hover:opacity-80 dark:text-gray-600">
-              <HiOutlineExternalLink />
-            </div>
-          )}
-        </NavigationMenu.Link>
-      </NavigationMenu.Item>
-    </div>
+        {children}
+        {isExternal && (
+          <ExternalLink
+            size={16}
+            className="absolute -right-2 -top-2 text-gray-500 opacity-0 transition-opacity group-hover:opacity-80"
+          />
+        )}
+      </NavigationMenu.Link>
+    </NavigationMenu.Item>
   );
 }
 
@@ -62,11 +63,13 @@ export default function Header(): JSX.Element {
   return (
     <header
       className={twMerge(
-        'z-30 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] md:pr-4 dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)]',
+        'z-30 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
         !isMobileApp && 'sm:block md:flex'
       )}
     >
-      <Logo className="h-12 w-56 fill-black dark:fill-white" />
+      <Link href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral">
+        <Logo className="h-12 w-56 fill-black dark:fill-white" />
+      </Link>
       <NavigationMenu.Root className="hidden sm:block">
         <NavigationMenu.List className="flex w-full justify-around md:space-x-2">
           <MenuLink id="faq" onClick={onFAQClick}>

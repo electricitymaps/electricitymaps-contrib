@@ -1,6 +1,7 @@
 import { Mode } from 'utils/constants';
 
 import {
+  convertPrice,
   ExchangeDataType,
   getDataBlockPositions,
   getElectricityProductionValue,
@@ -42,7 +43,7 @@ const zoneDetailsData = {
     battery: 'electricityMap, 2021 average',
     hydro: 'electricityMap, 2021 average',
   },
-  estimationMethod: 'MEASURED',
+  estimationMethod: undefined,
   exchange: { ES: -934 },
   exchangeCapacities: {},
   exchangeCo2Intensities: { ES: 187.32 },
@@ -113,11 +114,11 @@ const zoneDetailsData = {
 const productionData = [
   {
     isStorage: false,
-    production: null,
+    production: 350,
     storage: undefined,
-    capacity: 0,
-    mode: 'nuclear',
-    gCo2eq: 0,
+    capacity: 700,
+    mode: 'biomass',
+    gCo2eq: 153_701_032.1,
   },
   {
     isStorage: false,
@@ -129,27 +130,11 @@ const productionData = [
   },
   {
     isStorage: false,
-    production: 350,
-    storage: undefined,
-    capacity: 700,
-    mode: 'biomass',
-    gCo2eq: 153_701_032.1,
-  },
-  {
-    isStorage: false,
-    production: 0,
-    storage: undefined,
-    capacity: 0,
-    mode: 'coal',
-    gCo2eq: 0,
-  },
-  {
-    isStorage: false,
-    production: 2365,
-    storage: undefined,
-    capacity: 5389,
-    mode: 'wind',
-    gCo2eq: 29_846_300,
+    storage: -395,
+    production: 1445,
+    capacity: 4578,
+    mode: 'hydro',
+    gCo2eq: 15_461_500,
   },
   {
     isStorage: false,
@@ -161,11 +146,27 @@ const productionData = [
   },
   {
     isStorage: false,
-    storage: -395,
-    production: 1445,
-    capacity: 4578,
-    mode: 'hydro',
-    gCo2eq: 15_461_500,
+    production: 2365,
+    storage: undefined,
+    capacity: 5389,
+    mode: 'wind',
+    gCo2eq: 29_846_300,
+  },
+  {
+    isStorage: false,
+    production: null,
+    storage: undefined,
+    capacity: 0,
+    mode: 'nuclear',
+    gCo2eq: 0,
+  },
+  {
+    isStorage: true,
+    storage: null,
+    capacity: null,
+    mode: 'battery storage',
+    production: undefined,
+    gCo2eq: 0,
   },
   {
     isStorage: true,
@@ -176,11 +177,11 @@ const productionData = [
     gCo2eq: -53_894_853.608_163_215,
   },
   {
-    isStorage: true,
-    storage: null,
-    capacity: null,
-    mode: 'battery storage',
-    production: undefined,
+    isStorage: false,
+    production: 0,
+    storage: undefined,
+    capacity: 0,
+    mode: 'coal',
     gCo2eq: 0,
   },
   {
@@ -299,7 +300,7 @@ describe('getDataBlockPositions', () => {
     expect(result).to.deep.eq({
       exchangeFlagX: 50,
       exchangeHeight: 40,
-      exchangeY: 282,
+      exchangeY: 262,
       productionY: 22,
       productionHeight: 240,
     });
@@ -459,5 +460,37 @@ describe('getExchangeCo2Intensity', () => {
       );
       expect(result).to.eq(190.6);
     });
+  });
+});
+
+describe('convertPrice', () => {
+  it('converts EUR to price/KWh', () => {
+    const result = convertPrice(120, 'EUR');
+    expect(result).to.deep.eq({ value: 0.12, currency: 'EUR', unit: 'kWh' });
+  });
+
+  it('dont convert USD to price/KWh', () => {
+    const result = convertPrice(120, 'USD');
+    expect(result).to.deep.eq({ value: 120, currency: 'USD', unit: 'MWh' });
+  });
+
+  it('handles missing currency', () => {
+    const result = convertPrice(120, undefined);
+    expect(result).to.deep.eq({ value: 120, currency: undefined, unit: 'MWh' });
+  });
+
+  it('handles missing price with EUR', () => {
+    const result = convertPrice(undefined, 'EUR');
+    expect(result).to.deep.eq({ value: undefined, currency: 'EUR', unit: 'kWh' });
+  });
+
+  it('handles missing price without EUR', () => {
+    const result = convertPrice(undefined, 'USD');
+    expect(result).to.deep.eq({ value: undefined, currency: 'USD', unit: 'MWh' });
+  });
+
+  it('handles missing price and currency', () => {
+    const result = convertPrice(undefined, undefined);
+    expect(result).to.deep.eq({ value: undefined, currency: undefined, unit: 'MWh' });
   });
 });

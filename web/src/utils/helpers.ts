@@ -1,3 +1,4 @@
+import { callerLocation, useMeta } from 'api/getMeta';
 import { useMatch, useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
@@ -7,20 +8,25 @@ import {
   ZoneDetail,
 } from 'types';
 
-export function getZoneFromPath() {
+export function useGetZoneFromPath() {
   const { zoneId } = useParams();
+  const match = useMatch('/zone/:id');
   if (zoneId) {
     return zoneId;
   }
-  const match = useMatch('/zone/:id');
   return match?.params.id || undefined;
 }
 
-export function getCO2IntensityByMode(
-  zoneData: StateZoneData,
-  electricityMixMode: string
-) {
-  return electricityMixMode === 'consumption' ? zoneData?.c?.ci : zoneData?.p?.ci;
+export function useUserLocation(): callerLocation {
+  const { callerLocation } = useMeta();
+  if (
+    callerLocation &&
+    callerLocation.length === 2 &&
+    callerLocation.every((x) => Number.isFinite(x))
+  ) {
+    return callerLocation;
+  }
+  return null;
 }
 
 /**
@@ -93,24 +99,20 @@ export function getFossilFuelRatio(
  * @param co2intensity - The carbon intensity for consumption
  * @param co2intensityProduction - The carbon intensity for production
  */
-export function getCarbonIntensity(
+export const getCarbonIntensity = (
   zoneData: StateZoneData,
   isConsumption: boolean
-): number {
-  return (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
-}
+): number => (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
 
 /**
  * Returns the renewable ratio of a zone
  * @param zoneData - The zone data
  * @param isConsumption - Whether the ratio is for consumption or production
  */
-export function getRenewableRatio(
+export const getRenewableRatio = (
   zoneData: StateZoneData,
   isConsumption: boolean
-): number {
-  return (isConsumption ? zoneData?.c?.rr : zoneData?.p?.rr) ?? Number.NaN;
-}
+): number => (isConsumption ? zoneData?.c?.rr : zoneData?.p?.rr) ?? Number.NaN;
 
 /**
  * Function to round a number to a specific amount of decimals.
@@ -118,12 +120,9 @@ export function getRenewableRatio(
  * @param {number} decimals - Defaults to 2 decimals.
  * @returns {number} Rounded number.
  */
-export const round = (number: number, decimals = 2): number => {
-  return (
-    (Math.round((Math.abs(number) + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
-    Math.sign(number)
-  );
-};
+export const round = (number: number, decimals = 2): number =>
+  (Math.round((Math.abs(number) + Number.EPSILON) * 10 ** decimals) / 10 ** decimals) *
+  Math.sign(number);
 
 /**
  * Returns the net exchange of a zone
