@@ -5,62 +5,78 @@ bounding_box:
     - 49.50244
 capacity:
   battery storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 32.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 32.0
   biomass:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 303.4
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 303.4
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 293.6
   coal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 729.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 729.9
   gas:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 2271.7
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 2271.7
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 2167.0
   geothermal:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 18.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 18.0
   hydro:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 19577.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 19577.9
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 19737.6
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 19752.0
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 19732.0
   hydro storage:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 314.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 314.0
   nuclear:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 1200.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 1200.0
   oil:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   solar:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 137.9
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 137.9
   unknown:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 0.0
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 0.0
   wind:
-    datetime: '2023-10-01'
-    source: EIA.gov
-    value: 3617.1
+    - datetime: '2023-10-01'
+      source: EIA.gov
+      value: 3617.1
 comment: Bonneville Power Administration
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 30
+  production: 32
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available. This zone includes all wind related electricity production
   from the generation-only balancing authority Avangrid Renewables, LLC. Read more
@@ -266,6 +282,7 @@ parsers:
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

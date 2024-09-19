@@ -5,26 +5,35 @@ bounding_box:
     - 35.1731247015
 capacity:
   biomass:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 10.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
   oil:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 1850.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1850.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1790.0
   solar:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 430.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 430.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 610.0
   wind:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 160.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
 contributors:
   - ultibo
   - veqtrus
   - q--
   - nessie2013
+country: CY
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -54,6 +63,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 1075.5
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 1037.31
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -61,6 +73,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 412.38
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 410.39
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
@@ -90,6 +105,9 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: EU-ETS, TSOC 2021 Report
         value: 709.61
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 641.08
   lifecycle:
     battery discharge:
       - datetime: '2017-01-01'
@@ -118,6 +136,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 1135.5
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 1097.31
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -125,6 +146,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 532.38
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 530.39
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -162,6 +186,9 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: EU-ETS, TSOC 2021 Report; IPCC 2014
         value: 953.61
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 885.08
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -251,6 +278,7 @@ fallbackZoneMixes:
 parsers:
   production: CY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Asia
 sources:
   EU-ETS, CERA 2018 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/CERA_Annual_Report_2018_gr.pdf#page=128
@@ -262,6 +290,8 @@ sources:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2023:
+    link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   EU-ETS, TSOC 2021 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2021.pdf#page=34
   INCER ACV:

@@ -5,33 +5,33 @@ bounding_box:
     - -8.740166924999826
 capacity:
   battery storage:
-    datetime: '2024-01-01'
-    source: opennem.org.au
-    value: 336.0
+    - datetime: '2024-01-01'
+      source: opennem.org.au
+      value: 336.0
   biomass:
-    datetime: '2020-01-01'
-    source: opennem.org.au
-    value: 276.5
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 276.5
   coal:
-    datetime: '2020-01-01'
-    source: opennem.org.au
-    value: 8119.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 8119.0
   gas:
-    datetime: '2020-01-01'
-    source: opennem.org.au
-    value: 2692.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 2692.0
   hydro:
-    datetime: '2020-01-01'
-    source: opennem.org.au
-    value: 726.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 726.0
   hydro storage:
-    datetime: '2020-01-01'
-    source: opennem.org.au
-    value: 480.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 480.0
   oil:
-    datetime: '2020-01-01'
-    source: opennem.org.au
-    value: 449.0
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 449.0
   solar:
     - datetime: '2023-01-01'
       source: opennem.org.au
@@ -62,6 +62,9 @@ contributors:
   - brandongalbraith
   - jarek
   - corradio
+country: AU
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -249,4 +252,5 @@ parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENNEM.fetch_production_capacity
+region: Oceania
 timezone: Australia/Brisbane

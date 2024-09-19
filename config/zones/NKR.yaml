@@ -10,3 +10,6 @@ fallbackZoneMixes:
     value:
       hydro: 1
 timezone: null
+region: Asia
+country: null
+disclaimer: This zone no longer exists. It was merged Azerbaijan in 2024.

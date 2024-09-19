@@ -5,6 +5,7 @@
     "ms-python.vscode-pylance",
     "esbenp.prettier-vscode",
     "redhat.vscode-yaml",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss"
   ]
 }

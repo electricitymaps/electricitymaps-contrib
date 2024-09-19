@@ -62,10 +62,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
         data_type
     ][zone]
 
-    if data_type in ["exchange", "exchangeForecast"]:
-        args = zone.split("->")
-    else:
-        args = [zone]
+    args = zone.split("->") if data_type in ["exchange", "exchangeForecast"] else [zone]
     res = parser(
         *args, target_datetime=parsed_target_datetime, logger=getLogger(__name__)
     )
@@ -74,10 +71,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
         raise ValueError(f"Error: parser returned nothing ({res})")
 
     elapsed_time = time.time() - start
-    if isinstance(res, list | tuple):
-        res_list = list(res)
-    else:
-        res_list = [res]
+    res_list = list(res) if isinstance(res, list | tuple) else [res]
 
     try:
         dts = [e["datetime"] for e in res_list]

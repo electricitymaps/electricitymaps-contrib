@@ -6,43 +6,61 @@ bounding_box:
     - 46.8523859727
 capacity:
   biomass:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 47.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 47.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 49.0
   coal:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 1191.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1191.0
   gas:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 742.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 618.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 756.0
   hydro:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 1102.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1129.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1125.0
   hydro storage:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 180.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 180.0
   nuclear:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 696.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 696.0
   oil:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 58.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 58.0
   solar:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 294.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 702.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1110.0
   wind:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 2.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 3.0
 contributors:
   - corradio
+country: SI
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -78,6 +96,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 1032.39
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 1037.31
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -85,6 +106,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 412.38
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 410.39
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -114,6 +138,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 925.95
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 641.08
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -150,6 +177,9 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
           hotspots of coal power generation."
         value: 1041.927754
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 1097.31
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -157,6 +187,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 532.38
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 530.39
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -194,6 +227,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 1169.95
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 885.08
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -318,11 +354,14 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2023:
+    link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:

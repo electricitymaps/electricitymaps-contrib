@@ -2,12 +2,10 @@
 
 """Parser for the Orkney Islands"""
 
-
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
-import dateutil
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
@@ -16,7 +14,7 @@ from parsers.lib.session import get_session_with_legacy_adapter
 # There is a 2MW storage battery on the islands.
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
 
-TZ = "Europe/London"
+TIMEZONE = ZoneInfo("Europe/London")
 DATETIME_LINK = "https://distribution.ssen.co.uk/anmorkneygraph/"
 GENERATION_LINK = "https://distribution.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Handlers/ActiveNetworkManagementHandler.ashx?action=graph&contentId=14973&_=1537467858726"
 
@@ -44,7 +42,7 @@ def get_json_data():
         production[gen_type] = val
 
     for k in list(production.keys()):
-        if k not in GENERATION_MAPPING.keys():
+        if k not in GENERATION_MAPPING:
             # Get rid of unneeded keys.
             production.pop(k)
 
@@ -54,7 +52,7 @@ def get_json_data():
 def get_datetime():
     """
     Extracts data timestamp from html and checks it's less than 2 hours old.
-    Returns an arrow object.
+    Returns a Python datetime object.
     """
     req: Response = get_session_with_legacy_adapter().get(DATETIME_LINK)
     soup = BeautifulSoup(req.text, "html.parser")
@@ -63,20 +61,18 @@ def get_datetime():
 
     last_updated = data_table.find("div", {"class": "button"}).contents
     raw_dt = last_updated[-1].strip().split("  ", 1)[-1]
-    naive_dt = arrow.get(raw_dt, "DD MMMM YYYY HH:mm:ss")
-    aware_dt = naive_dt.replace(tzinfo=dateutil.tz.gettz(TZ))
+    naive_dt = datetime.strptime(raw_dt, "%d %B %Y %H:%M:%S")
+    aware_dt = naive_dt.replace(tzinfo=TIMEZONE)
 
-    current_time = arrow.now(TZ)
+    current_time = datetime.now(tz=TIMEZONE)
     diff = current_time - aware_dt
 
     if diff.total_seconds() > 7200:
         raise ValueError(
-            "Orkney data is too old to use, data is {} hours old.".format(
-                diff.total_seconds() / 3600
-            )
+            f"Orkney data is too old to use, data is {int(diff.total_seconds() / 3600)} hours old."
         )
 
-    return aware_dt.datetime
+    return aware_dt
 
 
 def fetch_production(

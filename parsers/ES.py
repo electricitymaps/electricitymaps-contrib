@@ -149,13 +149,13 @@ def check_valid_parameters(
     target_datetime: datetime | None,
 ):
     """Raise an exception if the parameters are not valid for this parser."""
-    if "->" not in zone_key and zone_key not in ZONE_MAPPING.keys():
+    if "->" not in zone_key and zone_key not in ZONE_MAPPING:
         raise ParserException(
             "ES.py",
             f"This parser cannot parse data for zone: {zone_key}",
             zone_key,
         )
-    elif "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP.keys():
+    elif "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP:
         zone_key1, zone_key2 = zone_key.split("->")
         raise ParserException(
             "ES.py",
@@ -208,6 +208,32 @@ def get_ree_data(
     return json["valoresHorariosGeneracion"]
 
 
+# Parses the date. In DST end days, the repeated hours are distinguished using a leter, this needs to be parsed
+def parse_date(str_date, tz):
+    if "A" in str_date:
+        index = str_date.index("A")
+        new_value = (
+            str_date[: index - 1] + "0" + str_date[index - 1] + str_date[index + 1 :]
+        )
+        # If A, we use the timezone from yesterday
+        return datetime.fromisoformat(
+            new_value
+            + f" +0{ZoneInfo(tz).utcoffset(datetime.fromisoformat(new_value) - timedelta(days=1))}"
+        )
+    elif "B" in str_date:
+        index = str_date.index("B")
+        new_value = (
+            str_date[: index - 1] + "0" + str_date[index - 1] + str_date[index + 1 :]
+        )
+        # If B, we use the timezone from tomorrow
+        return datetime.fromisoformat(
+            new_value
+            + f" +0{ZoneInfo(tz).utcoffset(datetime.fromisoformat(new_value) + timedelta(days=1))}"
+        )
+    else:
+        return datetime.fromisoformat(str_date).replace(tzinfo=ZoneInfo(tz))
+
+
 def fetch_and_preprocess_data(
     zone_key: ZoneKey,
     session: Session,
@@ -219,9 +245,9 @@ def fetch_and_preprocess_data(
     data = get_ree_data(zone_key, session, target_datetime, tz)
     for value in data:
         # Add timezone info to time object
-        value["ts"] = datetime.fromisoformat(value["ts"]).replace(tzinfo=ZoneInfo(tz))
+        value["ts"] = parse_date(value["ts"], tz)
 
-        for key in value.keys():
+        for key in value:
             check_known_key(key, logger)
     if data:
         return data
@@ -288,7 +314,7 @@ def fetch_production(
 
         production = ProductionMix()
         for key in event:
-            if key in data_mapping.keys():
+            if key in data_mapping:
                 production.add_value(data_mapping[key], event[key])
 
         productionEventList.append(
@@ -325,7 +351,7 @@ def fetch_exchange(
     for event in data:
         exchanges = {}
         for key in event:
-            if key in EXCHANGE_PARSE_MAPPING.keys():
+            if key in EXCHANGE_PARSE_MAPPING:
                 exchanges[EXCHANGE_PARSE_MAPPING[key]] = event[key]
 
         net_flow: float

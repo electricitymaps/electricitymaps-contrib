@@ -4,3 +4,5 @@ bounding_box:
   - - -101.48658586274732
     - 79.26634349200017
 timezone: America/Yellowknife
+region: Americas
+country: CA

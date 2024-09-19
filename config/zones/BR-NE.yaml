@@ -5,26 +5,29 @@ bounding_box:
     - -9.026808362815672
 capacity:
   hydro:
-    datetime: '2023-01-01'
-    source: ons.org.br
-    value: 10831.0
+    - datetime: '2023-01-01'
+      source: ons.org.br
+      value: 10831.0
   solar:
-    datetime: '2023-01-01'
-    source: ons.org.br
-    value: 9851.0
+    - datetime: '2023-01-01'
+      source: ons.org.br
+      value: 9851.0
   unknown:
-    datetime: '2023-01-01'
-    source: ons.org.br
-    value: 7332.0
+    - datetime: '2023-01-01'
+      source: ons.org.br
+      value: 7332.0
   wind:
-    datetime: '2023-01-01'
-    source: ons.org.br
-    value: 24209.0
+    - datetime: '2023-01-01'
+      source: ons.org.br
+      value: 24209.0
 contributors:
   - alexanmtz
   - corradio
   - systemcatch
   - nessie2013
+country: BR
+delays:
+  production: 5
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
   coal and oil.
 emissionFactors:
@@ -198,4 +201,5 @@ fallbackZoneMixes:
 parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity
+region: Americas
 timezone: null

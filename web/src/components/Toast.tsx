@@ -1,21 +1,38 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
+import { X } from 'lucide-react';
 import { useState } from 'react';
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
+
+import { Button } from './Button';
 
 type Props = {
   title: string;
   description?: string;
   isCloseable?: boolean;
   toastAction?: () => void;
+  toastClose?: () => void;
   toastActionText?: string;
+  toastCloseText?: string;
+  duration?: number;
 };
 
-function Toast(props: Props) {
-  const { __ } = useTranslation();
-  const { title, description, toastAction, toastActionText } = props;
+function Toast({
+  title,
+  description,
+  toastAction,
+  toastActionText,
+  toastClose,
+  toastCloseText,
+  duration,
+}: Props) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(true);
   const handleToastAction = () => {
-    toastAction && toastAction();
+    toastAction?.();
+    setOpen(false);
+  };
+  const handleToastClose = () => {
+    toastClose?.();
     setOpen(false);
   };
 
@@ -24,39 +41,37 @@ function Toast(props: Props) {
       <ToastPrimitive.Root
         open={open}
         onOpenChange={setOpen}
-        className="radix-state-open:animate-toast-slide-in-right radix-swipe-end:animate-toast-swipe-out radix-state-closed:animate-toast-hide fixed left-1/2 top-16 z-50 w-1/4 self-center rounded-lg  bg-white shadow translate-x-radix-toast-swipe-move-x radix-swipe-cancel:translate-x-0 radix-swipe-cancel:duration-200 radix-swipe-cancel:ease-[ease] dark:bg-gray-900"
+        duration={duration}
+        type="background"
+        className="fixed top-16 z-50 m-2 inline-block max-w-max self-center rounded-lg bg-white/80 shadow backdrop-blur-sm dark:bg-gray-800/80 xs:left-1/2 xs:w-max xs:-translate-x-1/2 xs:transform"
       >
-        <div className="flex">
-          <div className="flex w-0 flex-1 items-center p-4">
-            <div className="radix w-full">
-              <ToastPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                {title}
-              </ToastPrimitive.Title>
-              <ToastPrimitive.Description className="mt-1 text-sm text-gray-700 dark:text-gray-400">
-                {description}
-              </ToastPrimitive.Description>
-            </div>
+        <div className="flex items-center p-2">
+          <div className="flex flex-col">
+            <ToastPrimitive.Title className="text-md font-medium text-gray-900 dark:text-gray-100">
+              {title}
+            </ToastPrimitive.Title>
+            <ToastPrimitive.Description className="text-sm text-gray-700 dark:text-gray-400">
+              {description}
+            </ToastPrimitive.Description>
           </div>
-          <div className="flex">
-            <div className="flex flex-col space-y-1 px-3 py-2">
-              <div className="flex h-0 flex-1">
-                {toastAction && (
-                  <ToastPrimitive.Action
-                    altText="view now"
-                    className="flex h-6 w-full items-center justify-center rounded border border-transparent px-3 py-2 text-sm font-medium shadow"
-                    onClick={handleToastAction}
-                  >
-                    {toastActionText}
-                  </ToastPrimitive.Action>
-                )}
-              </div>
-              <div className="flex h-0 flex-1 ">
-                <ToastPrimitive.Close className="flex h-6 w-full items-center justify-center rounded border border-transparent px-3 py-2 text-sm font-medium shadow">
-                  {__('misc.dismiss')}
-                </ToastPrimitive.Close>
-              </div>
-            </div>
-          </div>
+          {toastAction && (
+            <ToastPrimitive.Action
+              altText="view now"
+              className="mx-2 flex items-center justify-center"
+              onClick={handleToastAction}
+            >
+              <Button size="md" asDiv>
+                {toastActionText}
+              </Button>
+            </ToastPrimitive.Action>
+          )}
+          <ToastPrimitive.Close
+            className="mx-2 flex items-center justify-center"
+            onClick={handleToastClose}
+            aria-label={toastCloseText ?? t('misc.dismiss')}
+          >
+            <X />
+          </ToastPrimitive.Close>
         </div>
       </ToastPrimitive.Root>
       <ToastPrimitive.Viewport />

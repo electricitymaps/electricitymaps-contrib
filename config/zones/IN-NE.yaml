@@ -38,8 +38,12 @@ capacity:
     value: 0.0
 contributors:
   - unitrium
+country: IN
+delays:
+  production: 75
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
   productionCapacity: CEA.fetch_production_capacity
+region: Asia
 timezone: Asia/Kolkata

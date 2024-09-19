@@ -5,39 +5,40 @@ bounding_box:
     - 42.3202595078
 capacity:
   biomass:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 7.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 7.0
   coal:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 824.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 824.0
   gas:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 251.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 251.0
   hydro:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 644.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 644.0
   oil:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 165.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 165.0
   solar:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 22.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 22.0
   wind:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 37.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 37.0
+country: MK
 delays:
   consumption: 24
   consumptionForecast: 24
   generationForecast: 24
   price: 24
-  production: 24
+  production: 34
   productionPerModeForecast: 24
 emissionFactors:
   direct:
@@ -118,6 +119,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 477.10041160023616
+    hydro:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 10.7
+    nuclear:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 5.13
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -218,4 +227,8 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
+sources:
+  UNECE 2022:
+    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Europe/Skopje

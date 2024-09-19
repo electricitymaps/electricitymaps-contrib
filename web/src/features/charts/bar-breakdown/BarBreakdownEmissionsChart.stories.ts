@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { zoneDetailMock } from 'stories/mockData';
 
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import type { ExchangeDataType, ProductionDataType } from './utils';
@@ -10,9 +9,6 @@ const meta: Meta<typeof BarBreakdownEmissionsChart> = {
 };
 
 type Story = StoryObj<typeof BarBreakdownEmissionsChart>;
-
-// Copying the mock data here to be able to make changes to it
-const zoneDetail = { ...zoneDetailMock };
 
 const productionData: ProductionDataType[] = [
   {
@@ -134,7 +130,6 @@ export const IncludesStorage: Story = {
   // More on args: https://storybook.js.org/docs/react/writing-stories/args
   args: {
     //testId: 'none',
-    data: zoneDetail,
     productionData: productionData,
     exchangeData: exchangeData,
     onExchangeRowMouseOut: () => {},

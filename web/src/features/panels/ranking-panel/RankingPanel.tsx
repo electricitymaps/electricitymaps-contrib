@@ -1,73 +1,80 @@
 import useGetState from 'api/getState';
+import { HorizontalDivider } from 'components/Divider';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
-import { ReactElement, useState } from 'react';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { useAtomValue } from 'jotai';
+import { ReactElement, useCallback, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+import { Mode } from 'utils/constants';
 import {
   productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 
-import { useTranslation } from '../../../translation/translation';
 import { getRankedState } from './getRankingPanelData';
-import InfoText from './InfoText';
+import RankingPanelAccordion from './RankingPanelAccordion';
 import SearchBar from './SearchBar';
-import SocialButtons from './SocialButtons';
-import ZoneList from './ZoneList';
+import SocialIconRow from './SocialIcons';
+import { VirtualizedZoneList } from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const getCo2colorScale = useCo2ColorScale();
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const [searchTerm, setSearchTerm] = useState('');
-  const [electricityMode] = useAtom(productionConsumptionAtom);
-  const [spatialAggregation] = useAtom(spatialAggregateAtom);
-  const inputHandler = (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
+  const electricityMode = useAtomValue(productionConsumptionAtom);
+  const isConsumption = electricityMode === Mode.CONSUMPTION;
+  const spatialAggregation = useAtomValue(spatialAggregateAtom);
+  const canonicalUrl = useGetCanonicalUrl();
+  const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
 
-    if (target && typeof target.value === 'string') {
+    if (typeof target?.value === 'string') {
       const lowerCase = target.value.toLowerCase();
       setSearchTerm(lowerCase);
     }
-  };
+  }, []);
 
   const { data } = useGetState();
   const rankedList = getRankedState(
     data,
     getCo2colorScale,
     'asc',
-    selectedDatetime.datetimeString,
-    electricityMode,
+    selectedDatetimeString,
+    isConsumption,
     spatialAggregation
   );
-  const filteredList = rankedList.filter((zone) => {
-    if (zone.countryName && zone.countryName.toLowerCase().includes(searchTerm)) {
-      return true;
-    }
-    if (zone.zoneName && zone.zoneName.toLowerCase().includes(searchTerm)) {
-      return true;
-    }
-    return false;
-  });
+
+  const filteredList = rankedList.filter(
+    (zone) =>
+      zone.countryName?.toLowerCase().includes(searchTerm) ||
+      zone.zoneName?.toLowerCase().includes(searchTerm) ||
+      zone.zoneId.toLowerCase().includes(searchTerm)
+  );
 
   return (
-    <div className="flex max-h-[calc(100vh_-_230px)] flex-col py-5 pl-5 pr-1 ">
+    <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
+      <Helmet prioritizeSeoTags>
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
       <div className="pb-5">
-        <div className="font-poppins text-lg font-medium">
-          {__('left-panel.zone-list-header-title')}
-        </div>
-        <div className="text-sm">{__('left-panel.zone-list-header-subtitle')}</div>
+        <h1>{t('ranking-panel.title')}</h1>
+        <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
       </div>
 
       <SearchBar
-        placeholder={__('left-panel.search')}
+        placeholder={t('ranking-panel.search')}
         searchHandler={inputHandler}
         value={searchTerm}
       />
-      <ZoneList data={filteredList} />
-      <div className="space-y-4 p-2">
-        <InfoText />
-        <SocialButtons />
+      <VirtualizedZoneList data={filteredList} />
+      {/* TODO: Revise the margin here once the scrollbars are fixed */}
+      <div className="my-2 pr-3">
+        <RankingPanelAccordion />
+        <HorizontalDivider />
+        <SocialIconRow />
       </div>
     </div>
   );

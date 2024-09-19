@@ -2,7 +2,13 @@ import { ScaleLinear } from 'd3-scale';
 import { MouseEventHandler } from 'react';
 import type { Maybe } from 'types';
 
-import { LABEL_MAX_WIDTH, PADDING_Y, ROW_HEIGHT, TEXT_ADJUST_Y } from '../constants';
+import {
+  ICON_PLUS_PADDING,
+  LABEL_MAX_WIDTH,
+  PADDING_Y,
+  ROW_HEIGHT,
+  TEXT_ADJUST_Y,
+} from '../constants';
 
 type Props = {
   children: React.ReactNode;
@@ -50,10 +56,10 @@ export default function Row({
 
       {/* Row label */}
       <text
-        className="pointer-events-none"
-        textAnchor="end"
+        className="pointer-events-none text-xs"
+        textAnchor="start"
         fill="currentColor"
-        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
+        transform={`translate(${ICON_PLUS_PADDING}, ${TEXT_ADJUST_Y})`}
       >
         {label}
       </text>
@@ -65,7 +71,7 @@ export default function Row({
       {!Number.isFinite(value) && (
         <text
           transform={`translate(3, ${TEXT_ADJUST_Y})`}
-          className="pointer-events-none"
+          className="pointer-events-none text-xs"
           fill="darkgray"
           x={LABEL_MAX_WIDTH + scale(0)}
         >

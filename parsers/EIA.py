@@ -8,6 +8,7 @@ and exposes them via a unified API.
 Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
+
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
@@ -382,7 +383,6 @@ FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
     "US-TEN-TVA": ["biomass", "geothermal", "oil"],
     "US-SE-SOCO": ["biomass", "geothermal", "oil"],
-    "US-SE-SEPA": ["biomass", "geothermal", "oil"],
     "US-FLA-FPL": ["biomass", "geothermal", "oil"],
 }
 

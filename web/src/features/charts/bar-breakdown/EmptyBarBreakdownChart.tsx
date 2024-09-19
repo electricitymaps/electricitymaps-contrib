@@ -1,7 +1,7 @@
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
-import { useTranslation } from 'translation/translation';
-import { modeOrder } from 'utils/constants';
+import { useTranslation } from 'react-i18next';
+import { modeOrderBarBreakdown } from 'utils/constants';
 import { PowerUnits } from 'utils/units';
 
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
@@ -23,14 +23,14 @@ function EmptyBarBreakdownChart({
   overLayText,
   width,
 }: EmptyBarBreakdownChartProps) {
-  const productionData = modeOrder.map((d) => ({
+  const productionData = modeOrderBarBreakdown.map((d) => ({
     mode: d,
     gCo2eq: 0,
     gCo2eqByFuel: {},
     gCo2eqByFuelAndSource: {},
     isStorage: false,
   }));
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const { productionY } = getDataBlockPositions(0, []);
 
   const maxCO2eqExport = 1;
@@ -50,16 +50,14 @@ function EmptyBarBreakdownChart({
   );
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
-  const formatTick = (t: number) => {
+  const formatTick = (t: number) =>
     // TODO: format tick depending on displayByEmissions
-    return `${t} ${PowerUnits.GIGAWATTS}`;
-  };
-
+    `${t} ${PowerUnits.GIGAWATTS}`;
   return (
     <>
       <div style={{ width, height, position: 'absolute' }}>
         {overLayText && (
-          <div className="absolute left-[50%] top-[50%] z-10 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-sm dark:bg-gray-900">
+          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-sm dark:bg-gray-900">
             {overLayText}
           </div>
         )}
@@ -67,7 +65,7 @@ function EmptyBarBreakdownChart({
       <svg
         className={`${
           overLayText ? 'opacity-40' : 'opacity-1'
-        } w-full overflow-visible text-md`}
+        } text-md w-full overflow-visible`}
         height={height}
       >
         <Axis formatTick={formatTick} height={height} scale={co2Scale} />
@@ -76,7 +74,7 @@ function EmptyBarBreakdownChart({
             <Row
               key={d.mode}
               index={index}
-              label={__(d.mode)}
+              label={t(d.mode)}
               width={width}
               scale={co2Scale}
               value={Math.abs(d.gCo2eq)}

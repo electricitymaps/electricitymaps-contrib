@@ -16,6 +16,7 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react/jsx-runtime",
     "plugin:unicorn/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:react-prefer-function-component/recommended",
     "prettier"
   ],
@@ -24,6 +25,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
 
+    "arrow-body-style": "error",
     "curly": "error",
     "no-promise-executor-return": "error",
     "no-unreachable-loop": "error",
@@ -64,6 +66,7 @@
       "error",
       { "ignoreArrowShorthand": true }
     ],
+    "@typescript-eslint/no-explicit-any": "warn",
     "import/no-deprecated": "error",
     "import/no-unresolved": "off", // Off as TS handles this
     "import/no-extraneous-dependencies": [
@@ -125,6 +128,12 @@
     "react/jsx-no-constructed-context-values": "error",
     "react/jsx-no-script-url": "error",
     "react/jsx-no-useless-fragment": "error",
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        "allowReferrer": true
+      }
+    ],
 
     "unicorn/filename-case": [
       "error",
@@ -201,8 +210,7 @@
         ],
         "testing-library/no-manual-cleanup": "error",
         "testing-library/prefer-explicit-assert": "error",
-        "testing-library/prefer-user-event": "error",
-        "testing-library/prefer-wait-for": "error"
+        "testing-library/prefer-user-event": "error"
       }
     }
   ]

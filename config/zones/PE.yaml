@@ -5,36 +5,51 @@ bounding_box:
     - 0.47090728800013437
 capacity:
   biomass:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 190.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
   coal:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 0.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   gas:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 5700.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 5700.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 6690.0
   hydro:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 5500.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 5500.0
   solar:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 330.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 330.0
   unknown:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 1370.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1370.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 2060.0
   wind:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 410.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 410.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 710.0
 contributors:
   - corradio
   - nessie2013
+country: PE
+delays:
+  production: 22
 emissionFactors:
   direct:
     battery discharge:
@@ -236,4 +251,5 @@ fallbackZoneMixes:
 parsers:
   production: PE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Americas
 timezone: America/Lima

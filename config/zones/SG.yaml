@@ -5,29 +5,41 @@ bounding_box:
     - 1.9486351580000445
 capacity:
   biomass:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 80.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
   coal:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 350.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 350.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 230.0
   gas:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 10350.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 10350.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 10850.0
   solar:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 570.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 570.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 770.0
   unknown:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 200.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
   wind:
-    datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 0.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 contributors:
   - corradio
   - jarek
@@ -36,6 +48,9 @@ contributors:
   - alixunderplatz
   - q--
   - nessie2013
+country: SG
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -244,4 +259,5 @@ parsers:
   price: SG.fetch_price
   production: SG.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Asia
 timezone: Asia/Singapore

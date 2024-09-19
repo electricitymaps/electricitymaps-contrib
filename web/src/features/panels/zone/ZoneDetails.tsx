@@ -1,22 +1,26 @@
 import useGetZone from 'api/getZone';
+import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
-import { useAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { SpatialAggregate, TimeAverages } from 'utils/constants';
+import { ZoneMessage } from 'types';
+import { EstimationMethods, SpatialAggregate } from 'utils/constants';
 import {
   displayByEmissionsAtom,
-  selectedDatetimeIndexAtom,
+  isHourlyAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+import { useBreakpoint } from 'utils/styling';
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
-import Divider from './Divider';
 import EstimationCard from './EstimationCard';
+import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
@@ -24,21 +28,16 @@ import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
-  if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [_, setViewMode] = useAtom(spatialAggregateAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const setViewMode = useSetAtom(spatialAggregateAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const { data, isError, isLoading } = useGetZone();
+  const isHourly = useAtomValue(isHourlyAtom);
+  const isMobile = !useBreakpoint('sm');
+
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
-  const { data, isError, isLoading } = useGetZone();
-  // TODO: App-backend should not return an empty array as "data" if the zone does not
-  // exist.
-  if (Array.isArray(data)) {
-    return <Navigate to="/" replace />;
-  }
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -52,33 +51,43 @@ export default function ZoneDetails(): JSX.Element {
     if (!hasSubZones && isSubZone) {
       setViewMode(SpatialAggregate.ZONE);
     }
-  }, []);
+  }, [hasSubZones, isSubZone, setViewMode]);
+
+  if (!zoneId) {
+    return <Navigate to="/" replace />;
+  }
+
+  // TODO: App-backend should not return an empty array as "data" if the zone does not
+  // exist.
+  if (Array.isArray(data)) {
+    return <Navigate to="/" replace />;
+  }
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
 
-  const selectedData = data?.zoneStates[selectedDatetime.datetimeString];
+  const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
-  const cardType = getCardType({ estimationMethod, zoneMessage, timeAverage });
-  const hasEstimationPill =
-    ['estimated', 'outage'].includes(cardType) || Boolean(estimatedPercentage);
+  const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
+  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
-      <div className="h-[calc(100%-110px)] overflow-y-scroll p-4 pb-40 pt-2 sm:h-[calc(100%-130px)]">
+      <div className="mb-3 h-[calc(100%-120px)] overflow-y-scroll p-3 pb-40 pt-2 sm:h-[calc(100%-150px)]">
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
             <EstimationCard
               cardType={cardType}
               estimationMethod={estimationMethod}
-              outageMessage={zoneMessage}
+              zoneMessage={zoneMessage}
               estimatedPercentage={selectedData?.estimatedPercentage}
-            ></EstimationCard>
+            />
           )}
-        <ZoneHeaderGauges data={data} />
+        <ZoneHeaderGauges zoneKey={zoneId} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
             <DisplayByEmissionToggle />
@@ -89,7 +98,7 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <Divider />
+          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="link" />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -97,7 +106,13 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
-          <Attribution data={data} zoneId={zoneId} />
+          <MethodologyCard />
+          <Attribution zoneId={zoneId} />
+          {isMobile ? (
+            <CommercialApiButton backgroundClasses="mt-3" />
+          ) : (
+            <div className="p-2" />
+          )}
         </ZoneDetailsContent>
       </div>
     </>
@@ -107,23 +122,24 @@ export default function ZoneDetails(): JSX.Element {
 function getCardType({
   estimationMethod,
   zoneMessage,
-  timeAverage,
+  isHourly,
 }: {
-  estimationMethod: string | undefined;
-  zoneMessage: { message: string; issue: string } | undefined;
-  timeAverage: TimeAverages;
+  estimationMethod?: EstimationMethods;
+  zoneMessage?: ZoneMessage;
+  isHourly: boolean;
 }): 'estimated' | 'aggregated' | 'outage' | 'none' {
   if (
-    zoneMessage !== undefined &&
-    zoneMessage?.message !== undefined &&
-    zoneMessage?.issue !== undefined
+    (zoneMessage !== undefined &&
+      zoneMessage?.message !== undefined &&
+      zoneMessage?.issue !== undefined) ||
+    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
   ) {
     return 'outage';
   }
-  if (timeAverage !== TimeAverages.HOURLY) {
+  if (!isHourly) {
     return 'aggregated';
   }
-  if (estimationMethod !== undefined) {
+  if (estimationMethod) {
     return 'estimated';
   }
   return 'none';
@@ -156,9 +172,11 @@ function ZoneDetailsContent({
   }
 
   if (
-    [ZoneDataStatus.NO_INFORMATION, ZoneDataStatus.AGGREGATE_DISABLED].includes(
-      zoneDataStatus
-    )
+    [
+      ZoneDataStatus.NO_INFORMATION,
+      ZoneDataStatus.AGGREGATE_DISABLED,
+      ZoneDataStatus.FULLY_DISABLED,
+    ].includes(zoneDataStatus)
   ) {
     return <NoInformationMessage status={zoneDataStatus} />;
   }

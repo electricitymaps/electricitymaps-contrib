@@ -5,21 +5,22 @@ bounding_box:
     - 43.269883
 capacity:
   coal:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 1288.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1288.0
   hydro:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 68.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 68.0
   wind:
-    datetime: '2023-01-01'
-    source: entsoe.eu
-    value: 136.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 136.0
 contributors:
   - veqtrus
+country: XK
 delays:
-  production: 48
+  production: 8
 emissionFactors:
   direct:
     battery discharge:
@@ -64,4 +65,5 @@ parsers:
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
   productionPerUnit: ENTSOE.fetch_production_per_units
+region: Europe
 timezone: Europe/Belgrade

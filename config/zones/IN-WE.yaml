@@ -42,6 +42,9 @@ contributors:
   - systemcatch
   - Manu1400
   - gopikrishna1793
+country: IN
+delays:
+  production: 75
 emissionFactors:
   direct:
     battery discharge:
@@ -121,4 +124,5 @@ parsers:
   consumption: IN_WE.fetch_consumption
   production: IN.fetch_production
   productionCapacity: CEA.fetch_production_capacity
+region: Asia
 timezone: Asia/Kolkata

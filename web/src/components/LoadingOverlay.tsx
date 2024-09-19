@@ -3,7 +3,6 @@ import useGetState from 'api/getState';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'translation/translation';
 
 import LoadingSpinner from './LoadingSpinner';
 
@@ -14,8 +13,6 @@ const TIME_BEFORE_SHOWING_RELOAD_BUTTON = 8000;
 // TODO: Consider loading svg directly or via img tag instead of the background-image
 // approach used here.
 function FadingOverlay({ isVisible }: { isVisible: boolean }) {
-  const { __ } = useTranslation();
-
   const [showButton, setShowButton] = useState(false);
   const transitions = useTransition(isVisible, {
     from: { opacity: 1 },
@@ -34,7 +31,7 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
       clearTimeout(timeoutId);
       setShowButton(false);
     };
-  }, [isVisible]);
+  }, [isVisible, showButton]);
 
   return transitions(
     (styles, isVisible) =>

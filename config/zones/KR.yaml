@@ -26,9 +26,9 @@ capacity:
       source: IRENA.org
       value: 42996.0
   geothermal:
-    datetime: '2021-01-01'
-    source: IRENA.org
-    value: 0.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 0.0
   hydro:
     - datetime: '2022-01-01'
       source: IRENA.org
@@ -37,9 +37,9 @@ capacity:
       source: IRENA.org
       value: 1841.0
   hydro storage:
-    datetime: '2021-01-01'
-    source: IRENA.org
-    value: 4700.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 4700.0
   nuclear:
     - datetime: '2022-01-01'
       source: IRENA.org
@@ -80,6 +80,9 @@ contributors:
   - alixunderplatz
   - IV1T3
   - gadakast
+country: KR
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -290,4 +293,5 @@ parsers:
   price: KPX.fetch_price
   production: KPX.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
+region: Asia
 timezone: Asia/Seoul

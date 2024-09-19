@@ -1,10 +1,12 @@
+import { TrackEvent } from 'utils/constants';
+
 type PlausibleEventProps = { readonly [propName: string]: string | number | boolean };
 type PlausibleArguments = [string, { props: PlausibleEventProps }];
 
-// TODO: Consider moving this to it's own global file
+// TODO: Consider moving this to its own global file
 declare global {
   const plausible: {
-    (...arguments: PlausibleArguments): void;
+    (...arguments_: PlausibleArguments): void; // Renamed 'arguments' to 'arguments_' to avoid conflict with the reserved keyword 'arguments'
     q?: PlausibleArguments[];
   };
 
@@ -12,14 +14,23 @@ declare global {
     plausible?: typeof plausible | undefined;
   }
 }
+
 export default function trackEvent(
   eventId: string,
   additionalProps: PlausibleEventProps = {}
 ): void {
-  const isDevelopment = import.meta.env.MODE === 'development';
-  if (isDevelopment) {
+  if (import.meta.env.DEV) {
     console.log("not sending event to plausible because we're not in production");
     return;
   }
-  window.plausible && window.plausible(eventId, { props: additionalProps });
+  window.plausible?.(eventId, { props: additionalProps });
 }
+
+export enum ShareType {
+  FACEBOOK = 'facebook',
+  LINKEDIN = 'linkedin',
+  TWITTER = 'twitter',
+}
+
+export const trackShare = (shareType: ShareType) => () =>
+  trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType });

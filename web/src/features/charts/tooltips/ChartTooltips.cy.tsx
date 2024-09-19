@@ -10,7 +10,7 @@ it('Carbon chart tooltip', () => {
     <CarbonChartTooltip zoneDetail={zoneDetailMock} selectedLayerKey="carbonIntensity" />
   );
   cy.contains('Carbon intensity');
-  cy.contains(`213 ${CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}`);
+  cy.contains(`213 ${CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR}`);
   cy.contains('2023');
 });
 it('Breakdown chart tooltip', () => {
@@ -24,7 +24,7 @@ it('Breakdown chart tooltip', () => {
 });
 it('Emmisions chart tooltip', () => {
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
-  cy.contains('Carbon emissions');
+  cy.contains('Emissions');
   cy.contains(`1.42 kt of CO₂eq`);
   cy.contains('5');
 });
@@ -35,7 +35,7 @@ it('Carbon chart tooltip mobile', () => {
     <CarbonChartTooltip zoneDetail={zoneDetailMock} selectedLayerKey="carbonIntensity" />
   );
   cy.contains('Carbon intensity');
-  cy.contains(`213 ${CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}`);
+  cy.contains(`213 ${CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR}`);
   cy.contains('2023');
 });
 it('Breakdown chart tooltip mobile', () => {
@@ -51,7 +51,7 @@ it('Breakdown chart tooltip mobile', () => {
 it('Emmisions chart tooltip mobile', () => {
   cy.viewport(500, 500);
   cy.mount(<EmissionChartTooltip zoneDetail={zoneDetailMock} />);
-  cy.contains('Carbon emissions');
+  cy.contains('Emissions');
   cy.contains(`1.42 kt of CO₂eq`);
   cy.contains('5');
 });

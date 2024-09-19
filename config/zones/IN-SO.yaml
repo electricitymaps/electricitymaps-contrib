@@ -40,6 +40,9 @@ contributors:
   - hectorespert
   - gopikrishna1793
   - unitrium
+country: IN
+delays:
+  production: 75
 emissionFactors:
   direct:
     unknown:
@@ -61,4 +64,5 @@ parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
   productionCapacity: CEA.fetch_production_capacity
+region: Asia
 timezone: Asia/Kolkata
