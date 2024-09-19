@@ -48,6 +48,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 8789.0
+    - datetime: '2024-06-06'
+      source: elia.be
+      value: 9986.05
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
