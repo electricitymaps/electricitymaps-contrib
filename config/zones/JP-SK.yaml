@@ -3,33 +3,39 @@ bounding_box:
     - 32.53
   - - 134.69
     - 34.63
-contributors:
-  - tmslaine
-  - lorrieq
-  - wobniarin
-  - PPsyrius
 capacity:
   biomass: 406
-  geothermal: 0
   coal: 950
   gas: 935
+  geothermal: 0
   hydro: 1153
   hydro storage: 615
   nuclear: 890
   oil: 1350
   solar: 2230
   wind: 227
-disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+contributors:
+  - tmslaine
+  - lorrieq
+  - wobniarin
+  - PPsyrius
+country: JP
+delays:
+  production: 5
+disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live
+  data only for solar and unknown. We are working on improving the data quality for
+  this zone.
 emissionFactors:
   lifecycle:
     unknown:
-      source: 'Enerdata 2022 Japanese National Average'
+      source: Enerdata 2022 Japanese National Average
       value: 462
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
-  production: JP.fetch_production
-timezone: Asia/Tokyo
+  production: JP_SK.fetch_production
+region: Asia
 sources:
   Enerdata 2022 Japanese National Average:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
+timezone: Asia/Tokyo

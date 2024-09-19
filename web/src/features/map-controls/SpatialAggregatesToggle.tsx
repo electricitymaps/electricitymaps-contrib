@@ -7,8 +7,16 @@ import { spatialAggregateAtom } from 'utils/state/atoms';
 
 export default function SpatialAggregatesToggle(): ReactElement {
   const options = [
-    { value: SpatialAggregate.COUNTRY, translationKey: 'aggregateButtons.country' },
-    { value: SpatialAggregate.ZONE, translationKey: 'aggregateButtons.zone' },
+    {
+      value: SpatialAggregate.COUNTRY,
+      translationKey: 'aggregateButtons.country',
+      dataTestId: 'country-toggle',
+    },
+    {
+      value: SpatialAggregate.ZONE,
+      translationKey: 'aggregateButtons.zone',
+      dataTestId: 'zone-toggle',
+    },
   ];
   const [currentMode, setCurrentMode] = useAtom(spatialAggregateAtom);
   const onSetCurrentMode = (option: string) => {

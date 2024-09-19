@@ -1,68 +1,47 @@
-import { Button } from 'components/Button';
-import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
+import { EyeOff, Sun, Wind } from 'lucide-react';
 import { useTransition } from 'react';
-import { FiWind } from 'react-icons/fi';
-import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
-import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
+import { useTranslation } from 'react-i18next';
 import { MoonLoader } from 'react-spinners';
-import { useTranslation } from 'translation/translation';
 import trackEvent from 'utils/analytics';
-import { ThemeOptions, TimeAverages, ToggleOptions } from 'utils/constants';
+import { ThemeOptions, ToggleOptions } from 'utils/constants';
 import {
+  areWeatherLayersAllowedAtom,
   colorblindModeAtom,
-  selectedDatetimeIndexAtom,
-  solarLayerEnabledAtom,
+  solarLayerAtom,
   solarLayerLoadingAtom,
   themeAtom,
-  timeAverageAtom,
   windLayerAtom,
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
+import { useIsMobile } from 'utils/styling';
 
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
+import MobileButtons from './MobileButtons';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 import ThemeSelector from './ThemeSelector';
 
 function MobileMapControls() {
-  const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
-  const setIsSettingsModalOpen = useSetAtom(isSettingsModalOpenAtom);
-
-  const handleOpenInfoModal = () => setIsInfoModalOpen(true);
-  const handleOpenSettingsModal = () => setIsSettingsModalOpen(true);
-
   return (
-    <div className="absolute right-2 top-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
-      <Button
-        className="m-0 bg-white/80 p-3 backdrop-blur-sm dark:bg-gray-800/80"
-        aria-label="open info modal"
-        onClick={handleOpenInfoModal}
-        icon={<HiOutlineInformationCircle size={21} />}
-      />
-      <Button
-        className="m-0 bg-white/80 p-3 backdrop-blur-sm dark:bg-gray-800/80"
-        aria-label="open settings modal"
-        onClick={handleOpenSettingsModal}
-        icon={<HiCog6Tooth size={20} />}
-        data-test-id="settings-button-mobile"
-      />
+    <div className="pointer-events-none absolute right-0 mt-[env(safe-area-inset-top)]">
+      <MobileButtons />
     </div>
   );
 }
 
 export const weatherButtonMap = {
   wind: {
-    icon: FiWind,
-    iconSize: 18,
+    icon: Wind,
+    iconSize: 20,
     enabledAtom: windLayerAtom,
     loadingAtom: windLayerLoadingAtom,
   },
   solar: {
-    icon: HiOutlineSun,
-    iconSize: 21,
-    enabledAtom: solarLayerEnabledAtom,
+    icon: Sun,
+    iconSize: 20,
+    enabledAtom: solarLayerAtom,
     loadingAtom: solarLayerLoadingAtom,
   },
 };
@@ -70,14 +49,14 @@ export const weatherButtonMap = {
 function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
   const [theme] = useAtom(themeAtom);
   const [, startTransition] = useTransition();
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
   const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
   const isEnabled = enabled === ToggleOptions.ON;
   const Icon = weatherButtonMap[type].icon;
   const tooltipTexts = {
-    wind: isEnabled ? __('tooltips.hideWindLayer') : __('tooltips.showWindLayer'),
-    solar: isEnabled ? __('tooltips.hideSolarLayer') : __('tooltips.showSolarLayer'),
+    wind: isEnabled ? t('tooltips.hideWindLayer') : t('tooltips.showWindLayer'),
+    solar: isEnabled ? t('tooltips.hideSolarLayer') : t('tooltips.showSolarLayer'),
   };
 
   const spinnerColor = theme === ThemeOptions.DARK ? 'white' : 'black';
@@ -102,34 +81,31 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
         isLoadingLayer ? (
           <MoonLoader size={14} color={spinnerColor} />
         ) : (
-          <Icon size={weatherButtonMap[type].iconSize} color={isEnabled ? '' : 'gray'} />
+          <Icon
+            size={weatherButtonMap[type].iconSize}
+            className={isEnabled ? '' : 'opacity-50'}
+          />
         )
       }
       tooltipText={tooltipTexts[type]}
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={isLoadingLayer ? () => {} : onToggle}
-      ariaLabel={
-        type == 'wind' ? __('aria.label.windLayer') : __('aria.label.solarLayer')
-      }
+      ariaLabel={type == 'wind' ? t('aria.label.windLayer') : t('aria.label.solarLayer')}
       asToggle
     />
   );
 }
 
 function DesktopMapControls() {
-  const { __ } = useTranslation();
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const { t } = useTranslation();
+  const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
 
-  // We are currently only supporting and fetching weather data for the latest hourly value
-  const areWeatherLayersAllowed =
-    selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
-
   const handleColorblindModeToggle = () => {
     setIsColorblindModeEnabled(!isColorblindModeEnabled);
+    trackEvent('Colorblind Mode Toggled');
   };
 
   return (
@@ -142,16 +118,16 @@ function DesktopMapControls() {
         <LanguageSelector />
         <MapButton
           icon={
-            <HiOutlineEyeOff
+            <EyeOff
               size={20}
               className={`${isColorblindModeEnabled ? '' : 'opacity-50'}`}
             />
           }
           dataTestId="colorblind-layer-button"
-          tooltipText={__('legends.colorblindmode')}
+          tooltipText={t('legends.colorblindmode')}
           onClick={handleColorblindModeToggle}
           asToggle
-          ariaLabel={__('aria.label.colorBlindMode')}
+          ariaLabel={t('aria.label.colorBlindMode')}
         />
         {areWeatherLayersAllowed && (
           <>
@@ -166,10 +142,6 @@ function DesktopMapControls() {
 }
 
 export default function MapControls() {
-  return (
-    <>
-      <MobileMapControls />
-      <DesktopMapControls />
-    </>
-  );
+  const isMobile = useIsMobile();
+  return isMobile ? <MobileMapControls /> : <DesktopMapControls />;
 }

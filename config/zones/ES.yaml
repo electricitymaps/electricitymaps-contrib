@@ -7,17 +7,54 @@ bounding_box:
   - - 3.6474609375
     - 43.6758180933
 capacity:
-  biomass: 1219
-  coal: 3223
-  gas: 30163
-  geothermal: 0
-  hydro: 17093
-  hydro storage: 5645
-  nuclear: 7117
-  oil: 670
-  solar: 22065
-  unknown: 387
-  wind: 29465
+  biomass:
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 1219.0
+  coal:
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 3223.0
+  gas:
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 30152.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 30160.0
+  hydro:
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 17096.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 17093.0
+  hydro storage:
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 3331.0
+  nuclear:
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 7117.0
+  solar:
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 26866.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 21815.0
+  unknown:
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 387.0
+  wind:
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 30100.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 29556.0
 contributors:
   - brandongalbraith
   - corradio
@@ -25,6 +62,9 @@ contributors:
   - nessie2013
   - KabelWlan
   - gadakast
+country: ES
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -60,6 +100,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 1156.28
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 1221.36
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -67,6 +110,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 426.61
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 399.79
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -96,6 +142,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 925.95
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 641.08
   lifecycle:
     battery discharge:
       - datetime: '2015-01-01'
@@ -132,6 +181,9 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
           hotspots of coal power generation."
         value: 1235.586989
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 1281.36
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -139,6 +191,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 546.61
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 519.79
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -176,6 +231,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 1169.95
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 885.08
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -270,11 +328,14 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: REE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2023:
+    link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:

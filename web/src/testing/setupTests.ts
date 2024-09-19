@@ -1,6 +1,3 @@
-import '@testing-library/jest-dom';
-import 'whatwg-fetch';
-
 import mediaQuery from 'css-mediaquery';
 
 import server from './mocks/server';

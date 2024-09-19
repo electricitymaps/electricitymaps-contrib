@@ -49,7 +49,7 @@ def fetch_production_capacity(
     df = df[["mode", "value"]]
     df["mode"] = df["mode"].apply(lambda x: MODE_MAPPING[x])
     capacity = {}
-    for idx, data in df.iterrows():
+    for _idx, data in df.iterrows():
         capacity[data["mode"]] = {
             "datetime": target_datetime.strftime("%Y-%m-%d"),
             "value": round(data["value"], 0),

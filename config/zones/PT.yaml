@@ -4,22 +4,97 @@ bounding_box:
   - - -5.705947224999932
     - 42.65362965999999
 capacity:
-  biomass: 700
-  coal: 0
-  gas: 4461
-  geothermal: 0
-  hydro: 4636
-  hydro storage: 3585
-  nuclear: 0
-  oil: 0
-  solar: 2611
-  unknown: 28
-  wind: 5374
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 647.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 681.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 700.0
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4585.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 4433.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 4434.0
+  geothermal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4489.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 4485.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 4711.0
+  hydro storage:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 3707.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 3585.0
+  nuclear:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  oil:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1332.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1811.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 2744.0
+    - datetime: '2024-07-01'
+      source: ren.pt
+      value: 3129.0
+  unknown:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 28.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 5353.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 5358.0
+    - datetime: '2024-03-01'
+      source: ren.pt
+      value: 5374.0
+    - datetime: '2024-07-01'
+      source: ren.pt
+      value: 5380.0
 contributors:
   - corradio
   - nessie2013
   - Musketeiro
   - RGarrido03
+country: PT
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -62,6 +137,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 371.49
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 375.95
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -134,6 +212,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 491.49
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 495.95
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -295,11 +376,14 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2023:
+    link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:

@@ -1,0 +1,1925 @@
+{
+    "data": [],
+    "aggs": [
+        {
+            "fecha": "2024-02-23",
+            "hora": 1,
+            "tipo_central": "eolica",
+            "generacion_sum": 1280.7808852966,
+            "energia_ernc_sum": 1280.7808852966,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 1,
+            "tipo_central": "geotermica",
+            "generacion_sum": 53.14,
+            "energia_ernc_sum": 53.14,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 1,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2700.9066568497,
+            "energia_ernc_sum": 276.38943307069997,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 1,
+            "tipo_central": "solar",
+            "generacion_sum": 100.0000323916,
+            "energia_ernc_sum": 100.0000323916,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 1,
+            "tipo_central": "termica",
+            "generacion_sum": 5268.1704992332,
+            "energia_ernc_sum": 357.1267742110999,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 2,
+            "tipo_central": "eolica",
+            "generacion_sum": 1189.9152097284,
+            "energia_ernc_sum": 1189.9152097284,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 2,
+            "tipo_central": "geotermica",
+            "generacion_sum": 53.26,
+            "energia_ernc_sum": 53.26,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 2,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2462.4756248742997,
+            "energia_ernc_sum": 275.94207487430003,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 2,
+            "tipo_central": "solar",
+            "generacion_sum": 81.105924654,
+            "energia_ernc_sum": 81.105924654,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 2,
+            "tipo_central": "termica",
+            "generacion_sum": 5170.74326917,
+            "energia_ernc_sum": 356.9054485502,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 3,
+            "tipo_central": "eolica",
+            "generacion_sum": 1117.3972692012,
+            "energia_ernc_sum": 1117.3972692012,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 3,
+            "tipo_central": "geotermica",
+            "generacion_sum": 53.79,
+            "energia_ernc_sum": 53.79,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 3,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2379.2390392355,
+            "energia_ernc_sum": 274.6449142355,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 3,
+            "tipo_central": "solar",
+            "generacion_sum": 8.3000328443,
+            "energia_ernc_sum": 8.3000328443,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 3,
+            "tipo_central": "termica",
+            "generacion_sum": 5117.478787098001,
+            "energia_ernc_sum": 353.54479164839995,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 4,
+            "tipo_central": "eolica",
+            "generacion_sum": 1090.9073706277,
+            "energia_ernc_sum": 1090.9073706277,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 4,
+            "tipo_central": "geotermica",
+            "generacion_sum": 54.379999999999995,
+            "energia_ernc_sum": 54.379999999999995,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 4,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2354.2432406993,
+            "energia_ernc_sum": 273.0322406993,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 4,
+            "tipo_central": "solar",
+            "generacion_sum": 59.902852045399996,
+            "energia_ernc_sum": 59.902852045399996,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 4,
+            "tipo_central": "termica",
+            "generacion_sum": 5094.783765706899,
+            "energia_ernc_sum": 356.6994609264,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 5,
+            "tipo_central": "eolica",
+            "generacion_sum": 1084.9738485366,
+            "energia_ernc_sum": 1084.9738485366,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 5,
+            "tipo_central": "geotermica",
+            "generacion_sum": 53.56,
+            "energia_ernc_sum": 53.56,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 5,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2283.7444266507,
+            "energia_ernc_sum": 272.56322665069996,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 5,
+            "tipo_central": "solar",
+            "generacion_sum": 120.72477577969998,
+            "energia_ernc_sum": 120.72477577969998,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 5,
+            "tipo_central": "termica",
+            "generacion_sum": 5087.7323287188,
+            "energia_ernc_sum": 340.0560019225,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 6,
+            "tipo_central": "eolica",
+            "generacion_sum": 1155.4998925629,
+            "energia_ernc_sum": 1155.4998925629,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 6,
+            "tipo_central": "geotermica",
+            "generacion_sum": 53.559999999999995,
+            "energia_ernc_sum": 53.559999999999995,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 6,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2303.1314665768,
+            "energia_ernc_sum": 270.1625165768,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 6,
+            "tipo_central": "solar",
+            "generacion_sum": 122.795106511,
+            "energia_ernc_sum": 122.795106511,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 6,
+            "tipo_central": "termica",
+            "generacion_sum": 5009.660574943101,
+            "energia_ernc_sum": 345.4568217537,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 7,
+            "tipo_central": "eolica",
+            "generacion_sum": 1224.985926912,
+            "energia_ernc_sum": 1224.985926912,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 7,
+            "tipo_central": "geotermica",
+            "generacion_sum": 54.17,
+            "energia_ernc_sum": 54.17,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 7,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2410.3081941544997,
+            "energia_ernc_sum": 265.92561915450005,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 7,
+            "tipo_central": "solar",
+            "generacion_sum": 125.6164396124,
+            "energia_ernc_sum": 125.6164396124,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 7,
+            "tipo_central": "termica",
+            "generacion_sum": 5045.7554548518,
+            "energia_ernc_sum": 348.74388398139996,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 8,
+            "tipo_central": "eolica",
+            "generacion_sum": 1302.9882926569999,
+            "energia_ernc_sum": 1302.9882926569999,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 8,
+            "tipo_central": "geotermica",
+            "generacion_sum": 54.959999999999994,
+            "energia_ernc_sum": 54.959999999999994,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 8,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2631.7401560783,
+            "energia_ernc_sum": 264.3751310783,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 8,
+            "tipo_central": "solar",
+            "generacion_sum": 245.07827741170001,
+            "energia_ernc_sum": 245.07827741170001,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 8,
+            "tipo_central": "termica",
+            "generacion_sum": 4924.8545360602,
+            "energia_ernc_sum": 354.1269341649,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 9,
+            "tipo_central": "eolica",
+            "generacion_sum": 1288.6180916442001,
+            "energia_ernc_sum": 1288.6180916442001,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 9,
+            "tipo_central": "geotermica",
+            "generacion_sum": 54.56,
+            "energia_ernc_sum": 54.56,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 9,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2611.3825795720995,
+            "energia_ernc_sum": 247.17497957209997,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 9,
+            "tipo_central": "solar",
+            "generacion_sum": 2278.5033599788003,
+            "energia_ernc_sum": 2278.5033599788003,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 9,
+            "tipo_central": "termica",
+            "generacion_sum": 3316.6257340337997,
+            "energia_ernc_sum": 324.83097604380004,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 10,
+            "tipo_central": "eolica",
+            "generacion_sum": 1075.4499853850002,
+            "energia_ernc_sum": 1075.4499853850002,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 10,
+            "tipo_central": "geotermica",
+            "generacion_sum": 52.89999999999999,
+            "energia_ernc_sum": 52.89999999999999,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 10,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2576.7303595877,
+            "energia_ernc_sum": 236.4900095877,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 10,
+            "tipo_central": "solar",
+            "generacion_sum": 4210.0161374217005,
+            "energia_ernc_sum": 4210.0161374217005,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 10,
+            "tipo_central": "termica",
+            "generacion_sum": 2046.0373702917,
+            "energia_ernc_sum": 291.3493331482,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 11,
+            "tipo_central": "eolica",
+            "generacion_sum": 974.6763642224,
+            "energia_ernc_sum": 974.6763642224,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 11,
+            "tipo_central": "geotermica",
+            "generacion_sum": 52.15,
+            "energia_ernc_sum": 52.15,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 11,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2319.6892700866,
+            "energia_ernc_sum": 231.66584508660003,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 11,
+            "tipo_central": "solar",
+            "generacion_sum": 5132.126591815599,
+            "energia_ernc_sum": 5132.126591815599,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 11,
+            "tipo_central": "termica",
+            "generacion_sum": 1755.3378083953999,
+            "energia_ernc_sum": 275.4293534851,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 12,
+            "tipo_central": "eolica",
+            "generacion_sum": 932.9308359217001,
+            "energia_ernc_sum": 932.9308359217001,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 12,
+            "tipo_central": "geotermica",
+            "generacion_sum": 49.11,
+            "energia_ernc_sum": 49.11,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 12,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2234.2453188153004,
+            "energia_ernc_sum": 227.5072688153,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 12,
+            "tipo_central": "solar",
+            "generacion_sum": 5484.558118224601,
+            "energia_ernc_sum": 5484.558118224601,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 12,
+            "tipo_central": "termica",
+            "generacion_sum": 1696.2424616408,
+            "energia_ernc_sum": 273.145811737,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 13,
+            "tipo_central": "eolica",
+            "generacion_sum": 931.1214195824001,
+            "energia_ernc_sum": 931.1214195824001,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 13,
+            "tipo_central": "geotermica",
+            "generacion_sum": 48.82,
+            "energia_ernc_sum": 48.82,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 13,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2172.6245904928,
+            "energia_ernc_sum": 220.1157154928,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 13,
+            "tipo_central": "solar",
+            "generacion_sum": 5671.553406349901,
+            "energia_ernc_sum": 5671.553406349901,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 13,
+            "tipo_central": "termica",
+            "generacion_sum": 1678.2303592728,
+            "energia_ernc_sum": 282.09162406609994,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 14,
+            "tipo_central": "eolica",
+            "generacion_sum": 1099.3867215344999,
+            "energia_ernc_sum": 1099.3867215344999,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 14,
+            "tipo_central": "geotermica",
+            "generacion_sum": 49.19,
+            "energia_ernc_sum": 49.19,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 14,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2144.2436749626995,
+            "energia_ernc_sum": 215.20178238469998,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 14,
+            "tipo_central": "solar",
+            "generacion_sum": 5578.896808596201,
+            "energia_ernc_sum": 5578.896808596201,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 14,
+            "tipo_central": "termica",
+            "generacion_sum": 1736.0368319609001,
+            "energia_ernc_sum": 286.15787338610005,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 15,
+            "tipo_central": "eolica",
+            "generacion_sum": 1230.2315382824,
+            "energia_ernc_sum": 1230.2315382824,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 15,
+            "tipo_central": "geotermica",
+            "generacion_sum": 46.03,
+            "energia_ernc_sum": 46.03,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 15,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2263.6550162188005,
+            "energia_ernc_sum": 227.8889294998,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 15,
+            "tipo_central": "solar",
+            "generacion_sum": 5422.101832014798,
+            "energia_ernc_sum": 5422.101832014798,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 15,
+            "tipo_central": "termica",
+            "generacion_sum": 1778.5533055768,
+            "energia_ernc_sum": 308.8749027404,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 16,
+            "tipo_central": "eolica",
+            "generacion_sum": 1361.2188694076,
+            "energia_ernc_sum": 1361.2188694076,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 16,
+            "tipo_central": "geotermica",
+            "generacion_sum": 42.120000000000005,
+            "energia_ernc_sum": 42.120000000000005,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 16,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2246.2642772384997,
+            "energia_ernc_sum": 229.11583407450001,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 16,
+            "tipo_central": "solar",
+            "generacion_sum": 5389.58674556,
+            "energia_ernc_sum": 5389.58674556,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 16,
+            "tipo_central": "termica",
+            "generacion_sum": 1751.5393264347,
+            "energia_ernc_sum": 301.4619591257999,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 17,
+            "tipo_central": "eolica",
+            "generacion_sum": 1421.0111564712001,
+            "energia_ernc_sum": 1421.0111564712001,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 17,
+            "tipo_central": "geotermica",
+            "generacion_sum": 42.29,
+            "energia_ernc_sum": 42.29,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 17,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2129.3635944671,
+            "energia_ernc_sum": 230.61262835410005,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 17,
+            "tipo_central": "solar",
+            "generacion_sum": 5202.744164690799,
+            "energia_ernc_sum": 5202.744164690799,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 17,
+            "tipo_central": "termica",
+            "generacion_sum": 1878.3353426625,
+            "energia_ernc_sum": 294.8453365993,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 18,
+            "tipo_central": "eolica",
+            "generacion_sum": 1461.5318987237,
+            "energia_ernc_sum": 1461.5318987237,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 18,
+            "tipo_central": "geotermica",
+            "generacion_sum": 43.370000000000005,
+            "energia_ernc_sum": 43.370000000000005,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 18,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2269.3064434291,
+            "energia_ernc_sum": 233.84346447410002,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 18,
+            "tipo_central": "solar",
+            "generacion_sum": 4613.716848127102,
+            "energia_ernc_sum": 4613.716848127102,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 18,
+            "tipo_central": "termica",
+            "generacion_sum": 2089.7487412962,
+            "energia_ernc_sum": 316.7831942286,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 19,
+            "tipo_central": "eolica",
+            "generacion_sum": 1285.3606247331,
+            "energia_ernc_sum": 1285.3606247331,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 19,
+            "tipo_central": "geotermica",
+            "generacion_sum": 42.92,
+            "energia_ernc_sum": 42.92,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 19,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2130.0772277782,
+            "energia_ernc_sum": 229.85205703819997,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 19,
+            "tipo_central": "solar",
+            "generacion_sum": 4030.7961523990007,
+            "energia_ernc_sum": 4030.7961523990007,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 19,
+            "tipo_central": "termica",
+            "generacion_sum": 2880.6434384275,
+            "energia_ernc_sum": 297.63828440919997,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 20,
+            "tipo_central": "eolica",
+            "generacion_sum": 1485.3186691931999,
+            "energia_ernc_sum": 1485.3186691931999,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 20,
+            "tipo_central": "geotermica",
+            "generacion_sum": 49.96,
+            "energia_ernc_sum": 49.96,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 20,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2679.4531312902,
+            "energia_ernc_sum": 243.19785629020004,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 20,
+            "tipo_central": "solar",
+            "generacion_sum": 1850.6596979495002,
+            "energia_ernc_sum": 1850.6596979495002,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 20,
+            "tipo_central": "termica",
+            "generacion_sum": 4302.6272421488,
+            "energia_ernc_sum": 285.1656313427,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 21,
+            "tipo_central": "eolica",
+            "generacion_sum": 1607.0770907421,
+            "energia_ernc_sum": 1607.0770907421,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 21,
+            "tipo_central": "geotermica",
+            "generacion_sum": 52.22,
+            "energia_ernc_sum": 52.22,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 21,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 3204.5307554093,
+            "energia_ernc_sum": 244.98513040930004,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 21,
+            "tipo_central": "solar",
+            "generacion_sum": 238.57622582730005,
+            "energia_ernc_sum": 238.57622582730005,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 21,
+            "tipo_central": "termica",
+            "generacion_sum": 5535.7498325676,
+            "energia_ernc_sum": 323.8662240996,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 22,
+            "tipo_central": "eolica",
+            "generacion_sum": 1596.8745090636999,
+            "energia_ernc_sum": 1596.8745090636999,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 22,
+            "tipo_central": "geotermica",
+            "generacion_sum": 53.13,
+            "energia_ernc_sum": 53.13,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 22,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 3339.0807726662006,
+            "energia_ernc_sum": 246.1806495702,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 22,
+            "tipo_central": "solar",
+            "generacion_sum": 183.0334448396,
+            "energia_ernc_sum": 183.0334448396,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 22,
+            "tipo_central": "termica",
+            "generacion_sum": 5590.1212612305,
+            "energia_ernc_sum": 347.56291457220004,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 23,
+            "tipo_central": "eolica",
+            "generacion_sum": 1475.9104185334,
+            "energia_ernc_sum": 1475.9104185334,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 23,
+            "tipo_central": "geotermica",
+            "generacion_sum": 53.31,
+            "energia_ernc_sum": 53.31,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 23,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 3397.7034800242,
+            "energia_ernc_sum": 249.9882829542,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 23,
+            "tipo_central": "solar",
+            "generacion_sum": 126.82,
+            "energia_ernc_sum": 126.82,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 23,
+            "tipo_central": "termica",
+            "generacion_sum": 5451.2679582333,
+            "energia_ernc_sum": 337.8989522045,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 24,
+            "tipo_central": "eolica",
+            "generacion_sum": 1468.8752169513002,
+            "energia_ernc_sum": 1468.8752169513002,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 24,
+            "tipo_central": "geotermica",
+            "generacion_sum": 54.39,
+            "energia_ernc_sum": 54.39,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 24,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 3050.8250420519007,
+            "energia_ernc_sum": 247.95964605589998,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 24,
+            "tipo_central": "solar",
+            "generacion_sum": 124.8,
+            "energia_ernc_sum": 124.8,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-23",
+            "hora": 24,
+            "tipo_central": "termica",
+            "generacion_sum": 5427.3849259018,
+            "energia_ernc_sum": 344.64013129619997,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 1,
+            "tipo_central": "eolica",
+            "generacion_sum": 1394.0066557508003,
+            "energia_ernc_sum": 1394.0066557508003,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 1,
+            "tipo_central": "geotermica",
+            "generacion_sum": 55.44,
+            "energia_ernc_sum": 55.44,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 1,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2921.1350528007997,
+            "energia_ernc_sum": 263.42907780080003,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 1,
+            "tipo_central": "solar",
+            "generacion_sum": 97.9,
+            "energia_ernc_sum": 97.9,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 1,
+            "tipo_central": "termica",
+            "generacion_sum": 5242.052760494999,
+            "energia_ernc_sum": 341.0925553221,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 2,
+            "tipo_central": "eolica",
+            "generacion_sum": 1278.1971093101997,
+            "energia_ernc_sum": 1278.1971093101997,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 2,
+            "tipo_central": "geotermica",
+            "generacion_sum": 54.72,
+            "energia_ernc_sum": 54.72,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 2,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2873.6390785840995,
+            "energia_ernc_sum": 258.70945358409995,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 2,
+            "tipo_central": "solar",
+            "generacion_sum": 12.0,
+            "energia_ernc_sum": 12.0,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 2,
+            "tipo_central": "termica",
+            "generacion_sum": 5092.2766205650005,
+            "energia_ernc_sum": 321.345868888,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 3,
+            "tipo_central": "eolica",
+            "generacion_sum": 1255.2514755153998,
+            "energia_ernc_sum": 1255.2514755153998,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 3,
+            "tipo_central": "geotermica",
+            "generacion_sum": 45.19,
+            "energia_ernc_sum": 45.19,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 3,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2779.0061381370997,
+            "energia_ernc_sum": 261.58943813710005,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 3,
+            "tipo_central": "solar",
+            "generacion_sum": 3.28443e-05,
+            "energia_ernc_sum": 3.28443e-05,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 3,
+            "tipo_central": "termica",
+            "generacion_sum": 5017.079483460999,
+            "energia_ernc_sum": 308.16751210940004,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 4,
+            "tipo_central": "eolica",
+            "generacion_sum": 1216.9786442791003,
+            "energia_ernc_sum": 1216.9786442791003,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 4,
+            "tipo_central": "geotermica",
+            "generacion_sum": 36.36,
+            "energia_ernc_sum": 36.36,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 4,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2535.7191593707003,
+            "energia_ernc_sum": 263.5281593707,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 4,
+            "tipo_central": "solar",
+            "generacion_sum": 0.0026821607,
+            "energia_ernc_sum": 0.0026821607,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 4,
+            "tipo_central": "termica",
+            "generacion_sum": 5161.3465379084,
+            "energia_ernc_sum": 300.1558926338,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 5,
+            "tipo_central": "eolica",
+            "generacion_sum": 1190.1354002182,
+            "energia_ernc_sum": 1190.1354002182,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 5,
+            "tipo_central": "geotermica",
+            "generacion_sum": 50.56,
+            "energia_ernc_sum": 50.56,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 5,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2455.6831442096,
+            "energia_ernc_sum": 263.9668692096,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 5,
+            "tipo_central": "solar",
+            "generacion_sum": 0.6664249064000001,
+            "energia_ernc_sum": 0.6664249064000001,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 5,
+            "tipo_central": "termica",
+            "generacion_sum": 5156.5003874298,
+            "energia_ernc_sum": 310.48223330639996,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 6,
+            "tipo_central": "eolica",
+            "generacion_sum": 1265.9490491408,
+            "energia_ernc_sum": 1265.9490491408,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 6,
+            "tipo_central": "geotermica",
+            "generacion_sum": 50.599999999999994,
+            "energia_ernc_sum": 50.599999999999994,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 6,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2344.0224302964,
+            "energia_ernc_sum": 261.4351052964,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 6,
+            "tipo_central": "solar",
+            "generacion_sum": 2.7877797557,
+            "energia_ernc_sum": 2.7877797557,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 6,
+            "tipo_central": "termica",
+            "generacion_sum": 5173.1816552309,
+            "energia_ernc_sum": 299.5442479352,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 7,
+            "tipo_central": "eolica",
+            "generacion_sum": 1340.5897909408,
+            "energia_ernc_sum": 1340.5897909408,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 7,
+            "tipo_central": "geotermica",
+            "generacion_sum": 49.93,
+            "energia_ernc_sum": 49.93,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 7,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2436.9283624249,
+            "energia_ernc_sum": 257.5710124249,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 7,
+            "tipo_central": "solar",
+            "generacion_sum": 4.67160883,
+            "energia_ernc_sum": 4.67160883,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 7,
+            "tipo_central": "termica",
+            "generacion_sum": 5066.0645311498,
+            "energia_ernc_sum": 306.55032826670003,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 8,
+            "tipo_central": "eolica",
+            "generacion_sum": 1252.8668564542,
+            "energia_ernc_sum": 1252.8668564542,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 8,
+            "tipo_central": "geotermica",
+            "generacion_sum": 50.17,
+            "energia_ernc_sum": 50.17,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 8,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2612.4578301554,
+            "energia_ernc_sum": 254.5241551554,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 8,
+            "tipo_central": "solar",
+            "generacion_sum": 128.86801930540003,
+            "energia_ernc_sum": 128.86801930540003,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 8,
+            "tipo_central": "termica",
+            "generacion_sum": 4821.509307829499,
+            "energia_ernc_sum": 301.4151902758,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 9,
+            "tipo_central": "eolica",
+            "generacion_sum": 980.6847294541001,
+            "energia_ernc_sum": 980.6847294541001,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 9,
+            "tipo_central": "geotermica",
+            "generacion_sum": 49.769999999999996,
+            "energia_ernc_sum": 49.769999999999996,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 9,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2416.6009526112,
+            "energia_ernc_sum": 253.80842761120002,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 9,
+            "tipo_central": "solar",
+            "generacion_sum": 2229.9832247096992,
+            "energia_ernc_sum": 2229.9832247096992,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 9,
+            "tipo_central": "termica",
+            "generacion_sum": 3304.3937874043,
+            "energia_ernc_sum": 288.05004074709996,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 10,
+            "tipo_central": "eolica",
+            "generacion_sum": 738.1091109495999,
+            "energia_ernc_sum": 738.1091109495999,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 10,
+            "tipo_central": "geotermica",
+            "generacion_sum": 48.89,
+            "energia_ernc_sum": 48.89,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 10,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2422.6866201271996,
+            "energia_ernc_sum": 250.85437012719996,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 10,
+            "tipo_central": "solar",
+            "generacion_sum": 4072.759647310101,
+            "energia_ernc_sum": 4072.759647310101,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 10,
+            "tipo_central": "termica",
+            "generacion_sum": 2101.0125258484,
+            "energia_ernc_sum": 249.20936980739998,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 11,
+            "tipo_central": "eolica",
+            "generacion_sum": 586.7263741101999,
+            "energia_ernc_sum": 586.7263741101999,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 11,
+            "tipo_central": "geotermica",
+            "generacion_sum": 50.32,
+            "energia_ernc_sum": 50.32,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 11,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2125.2263121554997,
+            "energia_ernc_sum": 245.5987121555,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 11,
+            "tipo_central": "solar",
+            "generacion_sum": 4940.913316201801,
+            "energia_ernc_sum": 4940.913316201801,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 11,
+            "tipo_central": "termica",
+            "generacion_sum": 1942.6116230137995,
+            "energia_ernc_sum": 242.5128046937,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 12,
+            "tipo_central": "eolica",
+            "generacion_sum": 572.9012763364,
+            "energia_ernc_sum": 572.9012763364,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 12,
+            "tipo_central": "geotermica",
+            "generacion_sum": 47.35,
+            "energia_ernc_sum": 47.35,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 12,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2150.0541449206,
+            "energia_ernc_sum": 237.74414492059998,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 12,
+            "tipo_central": "solar",
+            "generacion_sum": 5228.110012046602,
+            "energia_ernc_sum": 5228.110012046602,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 12,
+            "tipo_central": "termica",
+            "generacion_sum": 1821.1329038577,
+            "energia_ernc_sum": 226.6206932861,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 13,
+            "tipo_central": "eolica",
+            "generacion_sum": 473.0080792504,
+            "energia_ernc_sum": 473.0080792504,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 13,
+            "tipo_central": "geotermica",
+            "generacion_sum": 45.0,
+            "energia_ernc_sum": 45.0,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 13,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2085.7750458032,
+            "energia_ernc_sum": 234.29322080319997,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 13,
+            "tipo_central": "solar",
+            "generacion_sum": 5508.1719497426,
+            "energia_ernc_sum": 5508.1719497426,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 13,
+            "tipo_central": "termica",
+            "generacion_sum": 1796.2123590141996,
+            "energia_ernc_sum": 229.7046038505,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 14,
+            "tipo_central": "eolica",
+            "generacion_sum": 472.35443146520004,
+            "energia_ernc_sum": 472.35443146520004,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 14,
+            "tipo_central": "geotermica",
+            "generacion_sum": 43.41,
+            "energia_ernc_sum": 43.41,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 14,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2192.2331651873005,
+            "energia_ernc_sum": 231.97289018729998,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 14,
+            "tipo_central": "solar",
+            "generacion_sum": 5395.869377760901,
+            "energia_ernc_sum": 5395.869377760901,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 14,
+            "tipo_central": "termica",
+            "generacion_sum": 1908.4693105126003,
+            "energia_ernc_sum": 229.1823806744,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 15,
+            "tipo_central": "eolica",
+            "generacion_sum": 649.9123907145,
+            "energia_ernc_sum": 649.9123907145,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 15,
+            "tipo_central": "geotermica",
+            "generacion_sum": 43.09,
+            "energia_ernc_sum": 43.09,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 15,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2270.6858387676,
+            "energia_ernc_sum": 238.8327637676,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 15,
+            "tipo_central": "solar",
+            "generacion_sum": 5182.934049883201,
+            "energia_ernc_sum": 5182.934049883201,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 15,
+            "tipo_central": "termica",
+            "generacion_sum": 1935.4658515786,
+            "energia_ernc_sum": 235.3949442442,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 16,
+            "tipo_central": "eolica",
+            "generacion_sum": 699.7381126555,
+            "energia_ernc_sum": 699.7381126555,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 16,
+            "tipo_central": "geotermica",
+            "generacion_sum": 42.77,
+            "energia_ernc_sum": 42.77,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 16,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2267.5933400877,
+            "energia_ernc_sum": 244.9684650877,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 16,
+            "tipo_central": "solar",
+            "generacion_sum": 5130.073940795801,
+            "energia_ernc_sum": 5130.073940795801,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 16,
+            "tipo_central": "termica",
+            "generacion_sum": 1906.3814851096997,
+            "energia_ernc_sum": 233.8192828643,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 17,
+            "tipo_central": "eolica",
+            "generacion_sum": 787.0739551012,
+            "energia_ernc_sum": 787.0739551012,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 17,
+            "tipo_central": "geotermica",
+            "generacion_sum": 43.33,
+            "energia_ernc_sum": 43.33,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 17,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2122.8224447129,
+            "energia_ernc_sum": 241.4824947129,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 17,
+            "tipo_central": "solar",
+            "generacion_sum": 4822.331978742899,
+            "energia_ernc_sum": 4822.331978742899,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 17,
+            "tipo_central": "termica",
+            "generacion_sum": 2014.2353310592998,
+            "energia_ernc_sum": 232.26827333900002,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 18,
+            "tipo_central": "eolica",
+            "generacion_sum": 906.5164118995999,
+            "energia_ernc_sum": 906.5164118995999,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 18,
+            "tipo_central": "geotermica",
+            "generacion_sum": 43.589999999999996,
+            "energia_ernc_sum": 43.589999999999996,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 18,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 1975.8318429595997,
+            "energia_ernc_sum": 241.14876795959998,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 18,
+            "tipo_central": "solar",
+            "generacion_sum": 4641.8379593436,
+            "energia_ernc_sum": 4641.8379593436,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 18,
+            "tipo_central": "termica",
+            "generacion_sum": 2248.5937095062,
+            "energia_ernc_sum": 234.84652101310002,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 19,
+            "tipo_central": "eolica",
+            "generacion_sum": 981.2588013841,
+            "energia_ernc_sum": 981.2588013841,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 19,
+            "tipo_central": "geotermica",
+            "generacion_sum": 41.33,
+            "energia_ernc_sum": 41.33,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 19,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 1941.2401342409999,
+            "energia_ernc_sum": 254.14845924099996,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 19,
+            "tipo_central": "solar",
+            "generacion_sum": 3826.1862229506996,
+            "energia_ernc_sum": 3826.1862229506996,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 19,
+            "tipo_central": "termica",
+            "generacion_sum": 3076.0054384784,
+            "energia_ernc_sum": 241.2878844092,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 20,
+            "tipo_central": "eolica",
+            "generacion_sum": 1472.0802836036999,
+            "energia_ernc_sum": 1472.0802836036999,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 20,
+            "tipo_central": "geotermica",
+            "generacion_sum": 40.66,
+            "energia_ernc_sum": 40.66,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 20,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2542.8851514586995,
+            "energia_ernc_sum": 262.50955145870006,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 20,
+            "tipo_central": "solar",
+            "generacion_sum": 1591.8772877703004,
+            "energia_ernc_sum": 1591.8772877703004,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 20,
+            "tipo_central": "termica",
+            "generacion_sum": 4176.509648638899,
+            "energia_ernc_sum": 270.8767313427,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 21,
+            "tipo_central": "eolica",
+            "generacion_sum": 1940.6881042081,
+            "energia_ernc_sum": 1940.6881042081,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 21,
+            "tipo_central": "geotermica",
+            "generacion_sum": 41.99,
+            "energia_ernc_sum": 41.99,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 21,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2792.108541416,
+            "energia_ernc_sum": 243.599641416,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 21,
+            "tipo_central": "solar",
+            "generacion_sum": 205.7286349895,
+            "energia_ernc_sum": 205.7286349895,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 21,
+            "tipo_central": "termica",
+            "generacion_sum": 5133.1586531939,
+            "energia_ernc_sum": 324.3122740996,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 22,
+            "tipo_central": "eolica",
+            "generacion_sum": 1764.6543294829003,
+            "energia_ernc_sum": 1764.6543294829003,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 22,
+            "tipo_central": "geotermica",
+            "generacion_sum": 42.709999999999994,
+            "energia_ernc_sum": 42.709999999999994,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 22,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 2986.5561507892,
+            "energia_ernc_sum": 251.7575757892,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 22,
+            "tipo_central": "solar",
+            "generacion_sum": 237.4587900896,
+            "energia_ernc_sum": 237.4587900896,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 22,
+            "tipo_central": "termica",
+            "generacion_sum": 5099.3373507539,
+            "energia_ernc_sum": 335.3922145722,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 23,
+            "tipo_central": "eolica",
+            "generacion_sum": 1643.7624225771,
+            "energia_ernc_sum": 1643.7624225771,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 23,
+            "tipo_central": "geotermica",
+            "generacion_sum": 42.06,
+            "energia_ernc_sum": 42.06,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 23,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 3103.2899919356996,
+            "energia_ernc_sum": 248.4851169357,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 23,
+            "tipo_central": "solar",
+            "generacion_sum": 237.524,
+            "energia_ernc_sum": 237.524,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 23,
+            "tipo_central": "termica",
+            "generacion_sum": 4833.360662028799,
+            "energia_ernc_sum": 346.3107022045,
+            "tecnologia_orden": 2
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 24,
+            "tipo_central": "eolica",
+            "generacion_sum": 1475.7504745044,
+            "energia_ernc_sum": 1475.7504745044,
+            "tecnologia_orden": 3
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 24,
+            "tipo_central": "geotermica",
+            "generacion_sum": 42.01,
+            "energia_ernc_sum": 42.01,
+            "tecnologia_orden": 5
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 24,
+            "tipo_central": "hidraulica",
+            "generacion_sum": 3043.4955198107,
+            "energia_ernc_sum": 234.90529481069998,
+            "tecnologia_orden": 1
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 24,
+            "tipo_central": "solar",
+            "generacion_sum": 151.308,
+            "energia_ernc_sum": 151.308,
+            "tecnologia_orden": 4
+        },
+        {
+            "fecha": "2024-02-24",
+            "hora": 24,
+            "tipo_central": "termica",
+            "generacion_sum": 4832.761209688701,
+            "energia_ernc_sum": 354.3649812962,
+            "tecnologia_orden": 2
+        }
+    ]
+}

@@ -18,16 +18,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}

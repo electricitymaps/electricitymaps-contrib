@@ -4,14 +4,25 @@ bounding_box:
   - - 20.3398
     - 43.52384
 capacity:
-  coal: 210
-  hydro: 649
-  solar: 3
-  wind: 118
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 210.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 649.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 118.0
 contributors:
   - corradio
   - nessie2013
   - Pantkowsky
+country: ME
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -103,6 +114,14 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 400.03933900187366
+    hydro:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 10.7
+    nuclear:
+      datetime: '2020-01-01'
+      source: UNECE 2022
+      value: 5.13
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -218,4 +237,8 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
+sources:
+  UNECE 2022:
+    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Europe/Podgorica

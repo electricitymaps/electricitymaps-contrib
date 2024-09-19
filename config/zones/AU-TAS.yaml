@@ -4,20 +4,37 @@ bounding_box:
   - - 148.98454837300017
     - -39.07146575299984
 capacity:
-  battery storage: 0
-  biomass: 2
-  coal: 0
-  gas: 372
-  hydro: 2361
-  hydro storage: 0
-  nuclear: 0
-  oil: 48
-  solar: 187
-  wind: 567
+  biomass:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 2.0
+  gas:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 371.6
+  hydro:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 2361.0
+  oil:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 48.0
+  solar:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 303.37
+  wind:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 567.0
 contributors:
   - brandongalbraith
   - jarek
   - corradio
+country: AU
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -205,4 +222,5 @@ parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENNEM.fetch_production_capacity
+region: Oceania
 timezone: Australia/Hobart

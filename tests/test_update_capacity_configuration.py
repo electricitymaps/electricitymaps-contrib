@@ -12,11 +12,13 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
     def test_capacity_config(self):
         capacity_config = {
             "wind": 1,
-            "solar": {
-                "datetime": "2022-01-01",
-                "source": "abc",
-                "value": 2,
-            },
+            "solar": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 2,
+                }
+            ],
             "biomass": [
                 {
                     "datetime": "2022-01-01",
@@ -71,11 +73,13 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
         }
 
         expected = {
-            "wind": {
-                "datetime": "2023-01-01",
-                "source": "abc",
-                "value": 3,
-            },
+            "wind": [
+                {
+                    "datetime": "2023-01-01",
+                    "source": "abc",
+                    "value": 3,
+                }
+            ],
             "solar": [
                 {
                     "datetime": "2022-01-01",
@@ -100,11 +104,13 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                     "value": 5,
                 },
             ],
-            "hydro": {
-                "datetime": "2023-01-01",
-                "source": "abc",
-                "value": 6,
-            },
+            "hydro": [
+                {
+                    "datetime": "2023-01-01",
+                    "source": "abc",
+                    "value": 6,
+                }
+            ],
             "unknown": [
                 {
                     "datetime": "2022-01-01",
@@ -123,7 +129,6 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                 },
             ],
         }
-
         self.assertEqual(generate_zone_capacity_config(capacity_config, data), expected)
 
     def test_generate_zone_capacity_list(self):
@@ -152,6 +157,42 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                     "value": 4,
                 },
             ],
+            "wind": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2022-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
+            "solar": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2022-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
+            "hydro": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2023-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
         }
 
         data = {
@@ -164,6 +205,21 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                 "datetime": "2023-01-01",
                 "source": "abc",
                 "value": 5,
+            },
+            "wind": {
+                "datetime": "2023-01-01",
+                "source": "abc",
+                "value": 4,
+            },
+            "solar": {
+                "datetime": "2020-01-01",
+                "source": "abc",
+                "value": 3,
+            },
+            "hydro": {
+                "datetime": "2023-01-01",
+                "source": "abc",
+                "value": 3,
             },
         }
 
@@ -197,6 +253,42 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                     "value": 5,
                 },
             ],
+            "wind": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2022-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
+            "solar": [
+                {
+                    "datetime": "2020-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2022-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
+            "hydro": [
+                {
+                    "datetime": "2022-01-01",
+                    "source": "abc",
+                    "value": 3,
+                },
+                {
+                    "datetime": "2023-10-01",
+                    "source": "abc",
+                    "value": 4,
+                },
+            ],
         }
 
         self.assertEqual(
@@ -206,6 +298,18 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
         self.assertEqual(
             generate_zone_capacity_list("biomass", capacity_config, data),
             expected["biomass"],
+        )
+        self.assertEqual(
+            generate_zone_capacity_list("wind", capacity_config, data),
+            expected["wind"],
+        )
+        self.assertEqual(
+            generate_zone_capacity_list("solar", capacity_config, data),
+            expected["solar"],
+        )
+        self.assertEqual(
+            generate_zone_capacity_list("hydro", capacity_config, data),
+            expected["hydro"],
         )
 
     def test_generate_aggregated_capacity_config_dict(self):

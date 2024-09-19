@@ -152,16 +152,13 @@ describe('Map Component', () => {
   it('should display loading state initially', () => {
     const queryClient = new QueryClient();
 
-    cy.intercept('v7/state/hourly', { fixture: 'v7/state/hourly' });
-    cy.intercept('v7/state/last_hour', { fixture: 'v7/state/last_hour' });
-
     cy.mount(
       <TestProvider
         initialValues={[
           [
             selectedDatetimeIndexAtom,
             {
-              datetimeString: '2022-12-05T08:00:00Z',
+              datetime: new Date('2022-12-05T08:00:00+00:00'),
               index: 0,
             },
           ],
@@ -176,6 +173,6 @@ describe('Map Component', () => {
     );
     cy.get('[data-test-id=exchange-layer]').should('be.visible');
     cy.get('[data-test-id=wind-layer]').should('exist');
-    cy.get('.mapboxgl-map').should('be.visible');
+    cy.get('.maplibregl-map').should('be.visible');
   });
 });

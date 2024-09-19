@@ -4,20 +4,67 @@ bounding_box:
   - - 18.8531441586
     - 51.1172677679
 capacity:
-  biomass: 510
-  coal: 8360
-  gas: 1240
-  geothermal: 0
-  hydro: 1112
-  hydro storage: 1172
-  nuclear: 4040
-  oil: 0
-  solar: 2083
-  unknown: 410
-  wind: 339
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 510.0
+  coal:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 8360.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 8400.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1620.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1112.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1106.0
+  hydro storage:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1172.0
+  nuclear:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4040.0
+  oil:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 2083.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 3548.0
+  unknown:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 410.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 460.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 339.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 342.0
 contributors:
   - corradio
   - Frantisek12
+country: CZ
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -53,6 +100,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 1055.67
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 1051.99
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -60,6 +110,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 412.38
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 364.25
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -125,6 +178,9 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
           hotspots of coal power generation."
         value: 1061.994964
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 1111.99
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -132,6 +188,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 532.38
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 484.25
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -293,11 +352,14 @@ parsers:
   production: CZ.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2023:
+    link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:

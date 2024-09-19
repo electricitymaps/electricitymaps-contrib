@@ -46,7 +46,7 @@ class ModeCapacity(StrictBaseModelWithAlias):
     comment: str | None = Field(None, alias="_comment")
     url: str | list[str] | None = Field(None, alias="_url")
     datetime: date | datetime | None
-    value: NonNegativeFloat
+    value: NonNegativeFloat | None
 
 
 class Capacity(StrictBaseModel):
@@ -78,7 +78,7 @@ def _get_parser_folder(parser_key: str) -> str:
 
 
 class ParsersBaseModel(StrictBaseModel):
-    def get_function(self, type: str) -> Callable | None:
+    def get_function(self, data_type: str) -> Callable | None:
         """Lazy load parser functions.
 
         This requires the consumer to have install all parser dependencies.
@@ -86,10 +86,10 @@ class ParsersBaseModel(StrictBaseModel):
         Returns:
             Optional[Callable]: parser function
         """
-        function_str = getattr(self, type)
+        function_str = getattr(self, data_type)
 
         if function_str:
-            parser_folder = _get_parser_folder(type)
+            parser_folder = _get_parser_folder(data_type)
             return import_string(f"{parser_folder}.{function_str}")
 
 
@@ -131,11 +131,14 @@ class Zone(StrictBaseModelWithAlias):
     parsers: Parsers = Parsers()
     price_displayed: bool | None
     aggregates_displayed: list[str] | None
+    generation_only: bool | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
     timezone: str | None
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     estimation_method: str | None
     sources: dict[str, Source] | None
+    region: str | None
+    country: str | None
 
     def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])
@@ -267,12 +270,12 @@ class ModeEmissionFactor(StrictBaseModelWithAlias):
 
 
 class AllModesEmissionFactors(StrictBaseModelWithAlias):
-    battery_charge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
-        None, alias="battery charge"
-    )
-    battery_discharge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
-        None, alias="battery discharge"
-    )
+    battery_charge: None | (
+        list[ModeEmissionFactor] | ModeEmissionFactor
+    ) = Field(None, alias="battery charge")
+    battery_discharge: None | (
+        list[ModeEmissionFactor] | ModeEmissionFactor
+    ) = Field(None, alias="battery discharge")
     biomass: list[ModeEmissionFactor] | ModeEmissionFactor | None
     coal: list[ModeEmissionFactor] | ModeEmissionFactor | None
     gas: list[ModeEmissionFactor] | ModeEmissionFactor | None
@@ -280,9 +283,9 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
     hydro_charge: list[ModeEmissionFactor] | ModeEmissionFactor | None = Field(
         None, alias="hydro charge"
     )
-    hydro_discharge: None | (list[ModeEmissionFactor] | ModeEmissionFactor) = Field(
-        None, alias="hydro discharge"
-    )
+    hydro_discharge: None | (
+        list[ModeEmissionFactor] | ModeEmissionFactor
+    ) = Field(None, alias="hydro discharge")
     hydro: list[ModeEmissionFactor] | ModeEmissionFactor | None
     nuclear: list[ModeEmissionFactor] | ModeEmissionFactor | None
     oil: list[ModeEmissionFactor] | ModeEmissionFactor | None

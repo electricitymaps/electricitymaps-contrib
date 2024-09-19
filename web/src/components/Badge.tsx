@@ -1,25 +1,39 @@
+import React from 'react';
+
+export type PillType = 'default' | 'warning' | 'success';
+
 type BadgeProps = {
-  children: string;
-  type?: 'default' | 'warning';
-  className?: string;
+  pillText: string | JSX.Element;
+  type?: PillType;
+  icon?: React.ReactElement;
 };
 
-export default function Badge({ children, type = 'default', className }: BadgeProps) {
-  // set background and text color classes depending on type
-  const bgColorClasses = {
-    default: 'bg-gray-300 dark:bg-gray-500/40',
-    warning: 'bg-yellow-400 dark:bg-yellow-500',
-  }[type];
-  const textColorClasses = {
-    default: 'text-gray-800/90 dark:text-gray-200/90',
-    warning: 'text-yellow-900/95 dark:text-gray-900/95',
-  }[type];
+export default function Badge({ pillText, type, icon }: BadgeProps) {
+  let classes = '';
+
+  switch (type) {
+    case 'warning': {
+      classes =
+        'bg-warning/10 dark:bg-warning-dark/10 text-warning dark:text-warning-dark';
+      break;
+    }
+    case 'success': {
+      classes =
+        'bg-success/10 dark:bg-success-dark/10 text-success dark:text-success-dark';
+      break;
+    }
+    default: {
+      classes = 'bg-neutral-200 dark:bg-gray-700 text-black dark:text-white';
+    }
+  }
 
   return (
     <span
-      className={`rounded-full px-2 py-[1px] text-sm font-medium ${bgColorClasses} ${textColorClasses} ${className}`}
+      className={`flex h-6 flex-row items-center gap-1 whitespace-nowrap rounded-full px-2 py-1 text-xs font-semibold ${classes}`}
+      data-test-id="badge"
     >
-      {children}
+      {icon}
+      {pillText}
     </span>
   );
 }

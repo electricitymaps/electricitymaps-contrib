@@ -1,11 +1,13 @@
-import { useTranslation } from 'translation/translation';
+import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
+import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
+import { RoundedCard } from './RoundedCard';
 import PriceChartTooltip from './tooltips/PriceChartTooltip';
 
 interface PriceChartProps {
@@ -15,7 +17,7 @@ interface PriceChartProps {
 
 function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const { data, isLoading, isError } = usePriceChartData();
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
 
   if (isLoading || isError || !data) {
     return null;
@@ -51,16 +53,16 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   }
 
   return (
-    <>
-      <ChartTitle translationKey="country-history.electricityprices" />
-      <div className="relative overflow-hidden">
+    <RoundedCard>
+      <ChartTitle
+        translationKey="country-history.electricityprices"
+        unit={valueAxisLabel}
+      />
+      <div className="relative">
         {isPriceDisabled && (
-          <div className="absolute top-0 -ml-3 h-full w-[115%]">
-            <div className="h-full w-full rounded bg-white opacity-90 dark:bg-gray-900" />
-            <div className="absolute left-[45%] top-[50%] z-10 w-60 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-lg dark:border dark:border-gray-700 dark:bg-gray-800">
-              {__(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
-            </div>
-          </div>
+          <DisabledMessage
+            message={t(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
+          />
         )}
         <AreaGraph
           testId="history-prices-graph"
@@ -69,7 +71,6 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           layerStroke={layerStroke}
           layerFill={layerFill}
           markerFill={markerFill}
-          valueAxisLabel={valueAxisLabel}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
           isMobile={false}
@@ -77,9 +78,10 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
           tooltip={PriceChartTooltip}
+          isDisabled={isPriceDisabled}
         />
       </div>
-    </>
+    </RoundedCard>
   );
 }
 

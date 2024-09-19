@@ -6,14 +6,42 @@ bounding_box:
   - - 46.6379081561
     - 43.553104153
 capacity:
-  gas: 1189
-  hydro: 3552
-  nuclear: 0
-  wind: 29
+  gas:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 2010.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 2040.0
+  hydro:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3080.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 3450.0
+  solar:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+  wind:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
 contributors:
   - alixunderplatz
   - kruschk
   - tmslaine
+  - amv213
+country: GE
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -93,4 +121,5 @@ parsers:
   production: GE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Asia
 timezone: Asia/Tbilisi

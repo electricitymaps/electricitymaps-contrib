@@ -11,6 +11,9 @@ contributors:
   - denplis
   - systemcatch
   - alixunderplatz
+country: RU
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -138,4 +141,5 @@ fallbackZoneMixes:
         wind: 0.000262088192472771
 parsers:
   production: RU.fetch_production
+region: Europe
 timezone: Europe/Moscow

@@ -39,7 +39,7 @@ COLUMN_MAPPING = {
     16: "wind",  # Wind
     17: "solar",  # PV
     18: "solar",  # CSP
-    19: "unknown",  # Other_RE
+    19: "biomass",  # Other_RE - looking at capacity data and the IEA annual balances, other RE is likely to be biomass
 }
 
 # Ignored values

@@ -402,16 +402,16 @@ class TestEIAProduction(TestEIA):
         self.check_production_matches(data_list, expected)
 
     def test_check_transfer_mixes(self):
-        for supplied_zone, production in EIA.PRODUCTION_ZONES_TRANSFERS.items():
+        for production in EIA.PRODUCTION_ZONES_TRANSFERS.values():
             all_production = production.get("all", {})
-            for type, supplying_zones in production.items():
-                if type == "all":
+            for production_type, supplying_zones in production.items():
+                if production_type == "all":
                     continue
                 for zone in supplying_zones:
                     if zone in all_production:
                         raise Exception(
                             f"{zone} is both in the all production export\
-                            and exporting its {type} production. \
+                            and exporting its {production_type} production. \
                             This is not possible please fix this ambiguity."
                         )
 
@@ -577,6 +577,7 @@ class TestEIAProduction(TestEIA):
             fpl_exchange_data["response"]["data"],
             nsb_exchange_data["response"]["data"],
             data_list,
+            strict=True,
         ):
             assert fpl["value"] + nsb["value"] == parser["netFlow"]
 

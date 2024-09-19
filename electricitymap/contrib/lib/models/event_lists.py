@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
+from operator import itemgetter
 from typing import Any
 
 import pandas as pd
@@ -21,9 +22,15 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
+CAPACITY_STRICT_THRESHOLD = 0
+CAPACITY_LOOSE_THRESHOLD = 0.02
+
 
 class EventList(ABC):
-    """A wrapper around Events lists."""
+    """
+    A wrapper around Events lists.
+    Events are indexed by datetimes.
+    """
 
     logger: Logger
     events: list[Event]
@@ -35,6 +42,22 @@ class EventList(ABC):
     def __len__(self):
         return len(self.events)
 
+    def __contains__(self, datetime) -> bool:
+        return any(event.datetime == datetime for event in self.events)
+
+    def __setitem__(self, datetime, event: Event):
+        self.events[self.events.index(self[datetime])] = event
+
+    def __add__(self, other: "EventList") -> "EventList":
+        new_list = self.__class__(self.logger)
+        new_list.events = self.events + other.events
+        return new_list
+
+    # Abstract method to be implemented by subclasses so that the typing is correct.
+    @abstractmethod
+    def __getitem__(self, datetime) -> Event:
+        pass
+
     @abstractmethod
     def append(self, **kwargs):
         """Handles creation of events and adding it to the batch."""
@@ -43,7 +66,7 @@ class EventList(ABC):
 
     def to_list(self) -> list[dict[str, Any]]:
         return sorted(
-            [event.to_dict() for event in self.events], key=lambda x: x["datetime"]
+            [event.to_dict() for event in self.events], key=itemgetter("datetime")
         )
 
     @property
@@ -139,6 +162,9 @@ class AggregatableEventList(EventList, ABC):
 class ExchangeList(AggregatableEventList):
     events: list[Exchange]
 
+    def __getitem__(self, datetime) -> Exchange:
+        return next(event for event in self.events if event.datetime == datetime)
+
     def append(
         self,
         zoneKey: ZoneKey,
@@ -186,9 +212,38 @@ class ExchangeList(AggregatableEventList):
 
         return exchanges
 
+    @staticmethod
+    def update_exchanges(
+        exchanges: "ExchangeList", new_exchanges: "ExchangeList", logger: Logger
+    ) -> "ExchangeList":
+        """Given a new batch of exchanges, update the existing ones."""
+        if len(new_exchanges) == 0:
+            return exchanges
+        elif len(exchanges) == 0:
+            return new_exchanges
+
+        for new_event in new_exchanges.events:
+            if new_event.datetime in exchanges:
+                existing_event = exchanges[new_event.datetime]
+                updated_event = Exchange._update(existing_event, new_event)
+                exchanges[new_event.datetime] = updated_event
+            else:
+                exchanges.append(
+                    new_event.zoneKey,
+                    new_event.datetime,
+                    new_event.source,
+                    new_event.netFlow,
+                    new_event.sourceType,
+                )
+
+        return exchanges
+
 
 class ProductionBreakdownList(AggregatableEventList):
     events: list[ProductionBreakdown]
+
+    def __getitem__(self, datetime) -> ProductionBreakdown:
+        return next(event for event in self.events if event.datetime == datetime)
 
     def append(
         self,
@@ -249,23 +304,103 @@ class ProductionBreakdownList(AggregatableEventList):
         return production_breakdowns
 
     @staticmethod
+    def update_production_breakdowns(
+        production_breakdowns: "ProductionBreakdownList",
+        new_production_breakdowns: "ProductionBreakdownList",
+        logger: Logger,
+        matching_timestamps_only: bool = False,
+    ) -> "ProductionBreakdownList":
+        """
+        Given a new batch of production breakdowns, update the existing ones.
+
+        Params:
+        - production_breakdowns: The existing production breakdowns to be updated.
+        - new_production_breakdowns: The new batch of production breakdowns.
+        - logger: The logger object used for logging information.
+        - matching_timestamps_only: Flag indicating whether to update only the events with matching timestamps from both the production breakdowns.
+        """
+
+        if len(new_production_breakdowns) == 0:
+            return production_breakdowns
+        elif len(production_breakdowns) == 0:
+            return new_production_breakdowns
+
+        updated_production_breakdowns = ProductionBreakdownList(logger)
+
+        if matching_timestamps_only:
+            diff = abs(len(new_production_breakdowns) - len(production_breakdowns))
+            logger.info(
+                f"Filtering production breakdowns to keep only the events where both the production breakdowns have matching datetimes, {diff} events where discarded."
+            )
+
+        for new_event in new_production_breakdowns.events:
+            if new_event.datetime in production_breakdowns:
+                existing_event = production_breakdowns[new_event.datetime]
+                updated_event = ProductionBreakdown._update(existing_event, new_event)
+                updated_production_breakdowns.append(
+                    updated_event.zoneKey,
+                    updated_event.datetime,
+                    updated_event.source,
+                    updated_event.production,
+                    updated_event.storage,
+                    updated_event.sourceType,
+                )
+            elif matching_timestamps_only is False:
+                updated_production_breakdowns.append(
+                    new_event.zoneKey,
+                    new_event.datetime,
+                    new_event.source,
+                    new_event.production,
+                    new_event.storage,
+                    new_event.sourceType,
+                )
+
+        if matching_timestamps_only is False:
+            for existing_event in production_breakdowns.events:
+                if existing_event.datetime not in new_production_breakdowns:
+                    updated_production_breakdowns.append(
+                        existing_event.zoneKey,
+                        existing_event.datetime,
+                        existing_event.source,
+                        existing_event.production,
+                        existing_event.storage,
+                        existing_event.sourceType,
+                    )
+
+        return updated_production_breakdowns
+
+    @staticmethod
     def filter_expected_modes(
         breakdowns: "ProductionBreakdownList",
         strict_storage: bool = False,
-        by_passed_modes: list[str] = [],
+        strict_capacity: bool = False,
+        by_passed_modes: list[str] | None = None,
     ) -> "ProductionBreakdownList":
         """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
         This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
         TODO: Remove this method once the outlier detection is able to handle it.
         """
+
+        if by_passed_modes is None:
+            by_passed_modes = []
+
+        def select_capacity(capacity_value: float, total_capacity: float) -> bool:
+            if strict_capacity:
+                return capacity_value > CAPACITY_STRICT_THRESHOLD
+            return capacity_value / total_capacity > CAPACITY_LOOSE_THRESHOLD
+
         events = ProductionBreakdownList(breakdowns.logger)
         for event in breakdowns.events:
             capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
             capacity = get_capacity_data(capacity_config, event.datetime)
+            total_capacity = sum(capacity.values())
             valid = True
             required_modes = [
-                mode for mode, capacity_value in capacity.items() if capacity_value > 0
+                mode
+                for mode, capacity_value in capacity.items()
+                if select_capacity(capacity_value, total_capacity)
             ]
+            required_modes = list(set(required_modes))
             if not strict_storage:
                 required_modes = [
                     mode for mode in required_modes if "storage" not in mode
@@ -298,6 +433,9 @@ class ProductionBreakdownList(AggregatableEventList):
 class TotalProductionList(EventList):
     events: list[TotalProduction]
 
+    def __getitem__(self, datetime) -> TotalProduction:
+        return next(event for event in self.events if event.datetime == datetime)
+
     def append(
         self,
         zoneKey: ZoneKey,
@@ -316,6 +454,9 @@ class TotalProductionList(EventList):
 class TotalConsumptionList(EventList):
     events: list[TotalConsumption]
 
+    def __getitem__(self, datetime) -> TotalConsumption:
+        return next(event for event in self.events if event.datetime == datetime)
+
     def append(
         self,
         zoneKey: ZoneKey,
@@ -333,6 +474,9 @@ class TotalConsumptionList(EventList):
 
 class PriceList(EventList):
     events: list[Price]
+
+    def __getitem__(self, datetime) -> Price:
+        return next(event for event in self.events if event.datetime == datetime)
 
     def append(
         self,

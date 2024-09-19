@@ -4,12 +4,38 @@ bounding_box:
   - - -87.7235029772
     - 14.4241327987
 capacity:
-  biomass: 301
-  geothermal: 204
-  hydro: 572
-  oil: 756
-  solar: 664
-  wind: 54
+  biomass:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 300.0
+  geothermal:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 230.0
+  hydro:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 570.0
+  solar:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 550.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 590.0
+  unknown:
+    - _comment: Sum of fossil (gas + other fossils) from Ember. The parser aggregates
+        thermal into unknown.
+      datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 930
+  wind:
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
 contributors:
   - systemcatch
   - nessie2013
@@ -71,6 +97,12 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 122.47919108267666
+    unknown:
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
+        factors
+      datetime: '2022-01-01'
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
+      value: 387.6470588235294
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -128,6 +160,13 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 185.88457877410704
+    unknown:
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
+        factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
+      value: 568.4313725490196
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -206,6 +245,13 @@ fallbackZoneMixes:
         unknown: 0.057362415139040494
         wind: 0.03768562954230214
 parsers:
-  production: SV.fetch_production
+  production: ESTADISTICO_UT.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  Our World in Data 2022:
+    link: https://ourworldindata.org/grapher/electricity-prod-source-stacked?country=~SLV
 timezone: America/El_Salvador
+region: Americas
+country: SV

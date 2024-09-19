@@ -11,10 +11,12 @@ import { WorldFeatureCollection } from './types.js';
 import { getJSON, round } from './utilities.js';
 import { validateGeometry } from './validate.js';
 
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+
 export const GEO_CONFIG = {
-  WORLD_PATH: path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url))),
-  OUT_PATH: path.resolve(fileURLToPath(new URL('../config/world.json', import.meta.url))),
-  ERROR_PATH: path.resolve(fileURLToPath(new URL('.', import.meta.url))),
+  WORLD_PATH: path.resolve(currentDirectory, 'world.geojson'),
+  OUT_PATH: path.resolve(currentDirectory, '../config/world.json'),
+  ERROR_PATH: path.resolve(currentDirectory, '.'),
   // TODO: The numbers here may not line up with the expected values in validateGeometry, as these numbers seem to be
   // somewhat arbitrarily picked to make the validation pass. We should probably revisit these numbers and see if they
   // can be improved.
@@ -26,18 +28,15 @@ export const GEO_CONFIG = {
 } as const;
 
 const STATES_CONFIG = {
-  STATES_PATH: path.resolve(
-    fileURLToPath(new URL('usa_states.geojson', import.meta.url))
-  ),
-  OUT_PATH: path.resolve(
-    fileURLToPath(new URL('../config/usa_states.json', import.meta.url))
-  ),
-  ERROR_PATH: path.resolve(fileURLToPath(new URL('.', import.meta.url))),
+  STATES_PATH: path.resolve(currentDirectory, 'usa_states.geojson'),
+  OUT_PATH: path.resolve(currentDirectory, '../config/usa_states.json'),
+  ERROR_PATH: path.resolve(currentDirectory, '.'),
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 } as const;
 
 const EXCHANGE_OUT_PATH = path.resolve(
-  fileURLToPath(new URL('../config/excluded_aggregated_exchanges.json', import.meta.url))
+  currentDirectory,
+  '../config/excluded_aggregated_exchanges.json'
 );
 
 const worldFC: WorldFeatureCollection = getJSON(GEO_CONFIG.WORLD_PATH);
@@ -48,10 +47,10 @@ const aggregates = generateAggregates(worldFC, config.zones);
 
 worldFC.features = aggregates;
 
-// Rounds coordinates to 4 decimals
+// Rounds coordinates to 3 decimals
 coordEach(worldFC, (coord) => {
-  coord[0] = round(coord[0], 4);
-  coord[1] = round(coord[1], 4);
+  coord[0] = round(coord[0], 3);
+  coord[1] = round(coord[1], 3);
 });
 
 const { skipped } = generateTopojson(worldFC, GEO_CONFIG);

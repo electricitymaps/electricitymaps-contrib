@@ -10,14 +10,20 @@ Exchange Forecast
 Day-ahead Price
 Generation Forecast
 Consumption Forecast
+
+Link to the API documentation:
+https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
+
 import itertools
 import re
 from datetime import datetime, timedelta, timezone
+from enum import Enum
+from functools import lru_cache
 from logging import Logger, getLogger
+from operator import itemgetter
 from typing import Any
 
-import arrow
 import numpy as np
 from bs4 import BeautifulSoup
 from requests import Response, Session
@@ -44,6 +50,25 @@ from .lib.validation import validate
 SOURCE = "entsoe.eu"
 
 ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
+
+DEFAULT_LOOKBACK_HOURS_REALTIME = 72
+DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
+DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
+
+
+class WindAndSolarProductionForecastTypes(Enum):
+    DAY_AHEAD = "A01"
+    INTRADAY = "A40"
+    CURRENT = "A18"
+
+
+# The order of the forecast types is important for the parser to use the most recent data
+# This ensures that the order is consistent across all runs even if the enum is changed
+ORDERED_FORECAST_TYPES = [
+    WindAndSolarProductionForecastTypes.DAY_AHEAD,
+    WindAndSolarProductionForecastTypes.INTRADAY,
+    WindAndSolarProductionForecastTypes.CURRENT,
+]
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
@@ -85,9 +110,9 @@ ENTSOE_PARAMETER_GROUPS = {
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
-    ENTSOE_key: type
+    ENTSOE_key: data_type
     for key in ["production", "storage"]
-    for type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
+    for data_type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
     for ENTSOE_key in groups
 }
 
@@ -192,10 +217,12 @@ ZONE_KEY_AGGREGATES: dict[str, list[str]] = {
 ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: dict[str, list[str]] = {
     "AT->IT-NO": [ENTSOE_DOMAIN_MAPPINGS["AT"], ENTSOE_DOMAIN_MAPPINGS["IT"]],
     "BY->UA": [ENTSOE_DOMAIN_MAPPINGS["BY"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
+    "CH->DE": [ENTSOE_DOMAIN_MAPPINGS["CH"], ENTSOE_DOMAIN_MAPPINGS["DE-LU"]],
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
     "DE->DK-DK2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK2"]],
     "DE->NO-NO2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NO-NO2"]],
     "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
+    "DE->NL": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NL"]],
     "EE->RU-1": [ENTSOE_DOMAIN_MAPPINGS["EE"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "FI->RU-1": [ENTSOE_DOMAIN_MAPPINGS["FI"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "FR-COR->IT-CNO": [
@@ -232,6 +259,7 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
+    "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
 }
 
@@ -339,25 +367,18 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
     # It will still work if data is present but 0.
     # "expected_range" and "floor" only count production and storage
     # - not exchanges!
-    "AT": {
-        "required": ["hydro"],
-    },
-    "BA": {"required": ["coal", "hydro", "wind"], "expected_range": (500, 6500)},
+    "BA": {"expected_range": (500, 6500)},
     "BE": {
-        "required": ["gas", "nuclear"],
         "expected_range": (3000, 25000),
     },
     "BG": {
-        "required": ["coal", "nuclear", "hydro"],
         "expected_range": (2000, 20000),
     },
     "CH": {
-        "required": ["hydro", "nuclear"],
         "expected_range": (2000, 25000),
     },
     "CZ": {
         # usual load is in 7-12 GW range
-        "required": ["coal", "nuclear"],
         "expected_range": (3000, 25000),
     },
     "DE": {
@@ -366,99 +387,49 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         # and when those are missing this can indicate that others are missing as well.
         # We have also never seen unknown being 0.
         # Usual load is in 30 to 80 GW range.
-        "required": [
-            "coal",
-            "gas",
-            "nuclear",
-            "wind",
-            "biomass",
-            "hydro",
-            "unknown",
-            "solar",
-        ],
         "expected_range": (20000, 100000),
     },
-    "EE": {
-        "required": ["coal"],
-    },
     "ES": {
-        "required": ["coal", "nuclear"],
         "expected_range": (10000, 80000),
     },
     "FI": {
-        "required": ["coal", "nuclear", "hydro", "biomass"],
         "expected_range": (2000, 20000),
     },
     "GB": {
-        # usual load is in 15 to 50 GW range
-        "required": ["coal", "gas", "nuclear"],
         "expected_range": (10000, 80000),
     },
     "GR": {
-        "required": ["coal", "gas"],
         "expected_range": (2000, 20000),
     },
-    "HR": {
-        "required": [
-            "coal",
-            "gas",
-            "wind",
-            "biomass",
-            "oil",
-            "solar",
-        ],
-    },
-    "HU": {
-        "required": ["coal", "nuclear"],
-    },
     "IE": {
-        "required": ["coal"],
         "expected_range": (1000, 15000),
     },
     "IT": {
-        "required": ["coal"],
         "expected_range": (5000, 50000),
     },
     "PL": {
-        # usual load is in 10-20 GW range and coal is always present
-        "required": ["coal"],
+        # usual load is in 10-20 GW range
         "expected_range": (5000, 35000),
     },
     "PT": {
-        "required": ["coal", "gas"],
         "expected_range": (1000, 20000),
     },
     "RO": {
-        "required": ["coal", "nuclear", "hydro"],
         "expected_range": (2000, 25000),
     },
     "RS": {
-        "required": ["coal"],
         "expected_range": {
+            "coal": (
+                800,
+                7000,
+            ),  # 7 GW is 1 GW more than the production capacity of Serbia.
             "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
         },
     },
-    "SE": {
-        "required": ["hydro", "nuclear", "wind", "unknown"],
-    },
-    "SE-SE1": {
-        "required": ["hydro", "wind", "unknown", "solar"],
-    },
-    "SE-SE2": {
-        "required": ["gas", "hydro", "wind", "unknown", "solar"],
-    },
-    "SE-SE3": {
-        "required": ["gas", "hydro", "nuclear", "wind", "unknown", "solar"],
-    },
-    "SE-SE4": {
-        "required": ["gas", "hydro", "wind", "unknown", "solar"],
-    },
     "SI": {
         # own total generation capacity is around 4 GW
-        "required": ["nuclear"],
         "expected_range": (140, 5000),
     },
-    "SK": {"required": ["nuclear"]},
 }
 
 
@@ -472,8 +443,8 @@ def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datet
 def query_ENTSOE(
     session: Session,
     params: dict[str, str],
+    span: tuple,
     target_datetime: datetime | None = None,
-    span: tuple = (-48, 24),
     function_name: str = "",
 ) -> str:
     """
@@ -491,7 +462,6 @@ def query_ENTSOE(
             message="target_datetime has to be a datetime in query_entsoe",
         )
 
-    # make sure we have an arrow object
     params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
         "%Y%m%d%H00"  # YYYYMMDDHH00
     )
@@ -539,6 +509,7 @@ def query_consumption(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_consumption.__name__,
     )
 
@@ -555,7 +526,7 @@ def query_production(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-48, 0),
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_production.__name__,
     )
 
@@ -576,7 +547,7 @@ def query_production_per_units(
     return query_ENTSOE(
         session,
         params,
-        target_datetime,
+        target_datetime=target_datetime,
         span=(-24, 0),
         function_name=query_production_per_units.__name__,
     )
@@ -597,6 +568,7 @@ def query_exchange(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_exchange.__name__,
     )
 
@@ -618,6 +590,7 @@ def query_exchange_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_exchange_forecast.__name__,
     )
 
@@ -625,6 +598,8 @@ def query_exchange_forecast(
 def query_price(
     domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
+    """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
+
     params = {
         "documentType": "A44",
         "in_Domain": domain,
@@ -634,6 +609,7 @@ def query_price(
         session,
         params,
         target_datetime=target_datetime,
+        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, 24),
         function_name=query_price.__name__,
     )
 
@@ -653,6 +629,7 @@ def query_generation_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_generation_forecast.__name__,
     )
 
@@ -671,31 +648,42 @@ def query_consumption_forecast(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_consumption_forecast.__name__,
     )
 
 
 def query_wind_solar_production_forecast(
-    in_domain: str, session: Session, target_datetime: datetime | None = None
+    in_domain: str,
+    session: Session,
+    data_type: WindAndSolarProductionForecastTypes,
+    target_datetime: datetime | None = None,
 ) -> str | None:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
         "documentType": "A69",  # Forecast
-        "processType": "A01",
+        "processType": WindAndSolarProductionForecastTypes(data_type).value,
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
         session,
         params,
         target_datetime=target_datetime,
+        span=DEFAULT_TARGET_HOURS_FORECAST,
         function_name=query_wind_solar_production_forecast.__name__,
     )
 
 
-def datetime_from_position(
-    start: arrow.Arrow, position: int, resolution: str
-) -> datetime:
+# TODO: Remove this when we run on Python 3.11 or above
+@lru_cache(maxsize=8)
+def zulu_to_utc(datetime_string: str) -> str:
+    """Converts a zulu time string to a UTC time string."""
+    return datetime_string.replace("Z", "+00:00")
+
+
+@lru_cache(maxsize=1024)
+def datetime_from_position(start: datetime, position: int, resolution: str) -> datetime:
     """Finds time granularity of data."""
 
     m = re.search(r"PT(\d+)([M])", resolution)
@@ -703,8 +691,8 @@ def datetime_from_position(
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == "M":
-            return start.shift(minutes=(position - 1) * digits).datetime
-    raise NotImplementedError("Could not recognise resolution %s" % resolution)
+            return start + timedelta(minutes=(position - 1) * digits)
+    raise NotImplementedError(f"Could not recognise resolution {resolution}")
 
 
 def parse_scalar(
@@ -720,42 +708,25 @@ def parse_scalar(
     datetimes: list[datetime] = []
     for timeseries in soup.find_all("timeseries"):
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
-        if only_inBiddingZone_Domain:
-            if not len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())):
-                continue
-        elif only_outBiddingZone_Domain:
-            if not len(timeseries.find_all("outBiddingZone_Domain.mRID".lower())):
-                continue
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
+        )
+        if (
+            only_inBiddingZone_Domain
+            and not timeseries.find("inBiddingZone_Domain.mRID".lower())
+        ) or (
+            only_outBiddingZone_Domain
+            and not timeseries.find("outBiddingZone_Domain.mRID".lower())
+        ):
+            continue
         for entry in timeseries.find_all("point"):
-            position = int(entry.find_all("position")[0].contents[0])
-            value = float(entry.find_all("quantity")[0].contents[0])
+            position = int(entry.find("position").contents[0])
+            value = float(entry.find("quantity").contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
             values.append(value)
             datetimes.append(dt)
 
     return list(zip(values, datetimes, strict=True))
-
-
-def create_production_storage(
-    fuel_code: str, quantity: float, logger: Logger, zoneKey: ZoneKey
-) -> tuple[ProductionMix | None, StorageMix | None]:
-    production = ProductionMix()
-    storage = StorageMix()
-    fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
-    if fuel_code in ENTSOE_STORAGE_PARAMETERS:
-        # Only include consumption if it's for storage. In other cases
-        # it is power plant self-consumption which should be ignored.
-        storage.add_value(fuel_em_type, -quantity)
-        return None, storage
-    if 0 > quantity > -50:
-        logger.info(
-            f"Self consumption value {quantity} for {fuel_em_type} has been set to 0.",
-            extra={"key": zoneKey, "fuel_type": fuel_em_type},
-        )
-        quantity = 0
-    production.add_value(fuel_em_type, quantity)
-    return production, None
 
 
 def parse_production(
@@ -764,50 +735,144 @@ def parse_production(
     zoneKey: ZoneKey,
     forecasted: bool = False,
 ) -> ProductionBreakdownList:
-    all_production_breakdowns = []
+    production_breakdowns = ProductionBreakdownList(logger)
     source_type = EventSourceType.forecasted if forecasted else EventSourceType.measured
     if not xml:
-        return ProductionBreakdownList.merge_production_breakdowns(
-            all_production_breakdowns, logger
-        )
+        return production_breakdowns
     soup = BeautifulSoup(xml, "html.parser")
+    list_of_raw_data = _get_raw_production_events(soup)
 
+    grouped_data = _group_production_data_by_datetime(list_of_raw_data)
+
+    expected_length = _get_expected_production_group_length(grouped_data)
+
+    # Loop over the grouped data and create production and storage mixes for each datetime.
+    for dt, values in grouped_data.items():
+        production, storage = _create_production_and_storage_mixes(
+            zoneKey, dt, values, expected_length, logger
+        )
+        # If production and storage are None, the datapoint is considered invalid and is skipped
+        # in order to not crash the parser.
+        if production is None and storage is None:
+            continue
+
+        production_breakdowns.append(
+            zoneKey=zoneKey,
+            datetime=dt,
+            source=SOURCE,
+            sourceType=source_type,
+            production=production,
+            storage=storage,
+        )
+
+    return production_breakdowns
+
+
+def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
+    """
+    Extracts the raw production events from the soup object and returns a list of dictionaries containing the raw production events.
+    """
+    list_of_raw_data = []
     # Each timeserie is dedicated to a different fuel type.
     for timeseries in soup.find_all("timeseries"):
-        production_breakdowns = ProductionBreakdownList(logger)
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
+        # The resolution is the time between each point in the timeseries.
+        resolution = str(timeseries.find("resolution").contents[0])
+        # The start time of the timeseries.
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find("start").contents[0])
         )
-        fuel_code = str(
-            timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
-        )
-
+        # The fuel code is the ENTSOE code for the fuel type.
+        fuel_code = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
+        # Loop over all the points in the timeseries.
         for entry in timeseries.find_all("point"):
-            quantity = float(entry.find_all("quantity")[0].contents[0])
-            position = int(entry.find_all("position")[0].contents[0])
+            # The quantity is the amount of energy produced or consumed at the given position.
+            quantity = float(entry.find("quantity").contents[0])
+            # The position is the index of the point in the timeseries.
+            position = int(entry.find("position").contents[0])
             # Since all values in ENTSOE are positive, we need to check if
             # the value is production or consumption so we can set the quantity
             # to a negative value if it is consumption.
-            is_production = (
-                len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
+            is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
+            # Calculate the datetime of the point based on the start time and the position.
+            dt = datetime_from_position(datetime_start, position, resolution)
+            # Appends the raw data to a master list so it later can be sorted and grouped by datetime.
+            list_of_raw_data.append(
+                {
+                    "datetime": dt,
+                    "fuel_code": fuel_code,
+                    "quantity": quantity if is_production else -quantity,
+                }
             )
-            datetime = datetime_from_position(datetime_start, position, resolution)
-            production, storage = create_production_storage(
-                fuel_code, quantity if is_production else -quantity, logger, zoneKey
+
+    return list_of_raw_data
+
+
+def _create_production_and_storage_mixes(
+    zoneKey: ZoneKey,
+    dt: datetime,
+    values: list[dict[str, Any]],
+    expected_length: int,
+    logger: Logger,
+) -> tuple[ProductionMix, StorageMix] | tuple[None, None]:
+    """
+    Creates a populated ProductionMix and StorageMix object from a list of production values and ensures that the expected length is met.
+    If the expected length is not met, the datapoint is discarded. And the function returns (None, None).
+    """
+    value_length = len(values)
+    # Checks that the number of values have the expected length and skips the datapoint if not.
+    if value_length < expected_length:
+        if zoneKey == "BE" and value_length == expected_length - 1:
+            logger.warning(
+                f"BE only has {value_length} production values for {dt}, but should have {expected_length}. BE doesn't report 0 values for storage so we will continue."
             )
-            production_breakdowns.append(
-                zoneKey=zoneKey,
-                datetime=datetime,
-                source=SOURCE,
-                sourceType=source_type,
-                production=production,
-                storage=storage,
+        else:
+            logger.warning(
+                f"Expected {expected_length} production values for {dt}, received {value_length} instead. Discarding datapoint..."
             )
-        all_production_breakdowns.append(production_breakdowns)
-    return ProductionBreakdownList.merge_production_breakdowns(
-        all_production_breakdowns, logger
-    )
+            return None, None
+    production = ProductionMix()
+    storage = StorageMix()
+    for production_mode in values:
+        _datetime, fuel_code, quantity = production_mode.values()
+        fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
+        if fuel_code in ENTSOE_STORAGE_PARAMETERS:
+            storage.add_value(fuel_em_type, -quantity)
+        else:
+            production.add_value(
+                fuel_em_type, quantity, correct_negative_with_zero=True
+            )
+
+    return production, storage
+
+
+def _get_expected_production_group_length(
+    grouped_data: dict[datetime, list[dict[str, Any]]],
+) -> int:
+    """
+    Returns the expected length of the grouped data. This is the maximum length of the grouped data values.
+    """
+    expected_length = 0
+    if grouped_data:
+        expected_length = max(len(v) for v in grouped_data.values())
+    return expected_length
+
+
+def _group_production_data_by_datetime(
+    list_of_raw_data,
+) -> dict[datetime, list[dict[str, Any]]]:
+    """
+    Sorts and groups raw production objects in the format of `{datetime: datetime.datetime, fuel_code: str, quantity: float}` by the datetime key.
+    And returns a dictionary with the datetime as the key and a list of the grouped data as the value.
+    """
+    # Sort the data in place by the datetime key so we can group it by datetime.
+    list_of_raw_data.sort(key=itemgetter("datetime"))
+    # Group the data by the datetime key. It requires the data to be sorted by the datetime key first.
+    grouped_data = {
+        k: list(v)
+        for k, v in itertools.groupby(list_of_raw_data, key=itemgetter("datetime"))
+    }
+
+    return grouped_data
 
 
 def parse_production_per_units(xml_text: str) -> Any | None:
@@ -818,35 +883,31 @@ def parse_production_per_units(xml_text: str) -> Any | None:
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
+        resolution = str(timeseries.find("resolution").contents[0])
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find("start").contents[0])
         )
-        is_production = (
-            len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
-        )
-        psr_type = str(
-            timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
-        )
+        is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
+        psr_type = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
         unit_key = str(
-            timeseries.find_all("mktpsrtype")[0]
-            .find_all("powersystemresources")[0]
-            .find_all("mrid")[0]
+            timeseries.find("mktpsrtype")
+            .find("powersystemresources")
+            .find("mrid")
             .contents[0]
         )
         unit_name = str(
-            timeseries.find_all("mktpsrtype")[0]
-            .find_all("powersystemresources")[0]
-            .find_all("name")[0]
+            timeseries.find("mktpsrtype")
+            .find("powersystemresources")
+            .find("name")
             .contents[0]
         )
         if not is_production:
             continue
         for entry in timeseries.find_all("point"):
-            quantity = float(entry.find_all("quantity")[0].contents[0])
-            position = int(entry.find_all("position")[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
-            key = (unit_key, datetime)
+            quantity = float(entry.find("quantity").contents[0])
+            position = int(entry.find("position").contents[0])
+            dt = datetime_from_position(datetime_start, position, resolution)
+            key = (unit_key, dt)
             if key in values:
                 if is_production:
                     values[key]["production"] += quantity
@@ -854,7 +915,7 @@ def parse_production_per_units(xml_text: str) -> Any | None:
                     values[key]["production"] -= quantity
             else:
                 values[key] = {
-                    "datetime": datetime,
+                    "datetime": dt,
                     "production": quantity,
                     "productionType": ENTSOE_PARAMETER_BY_GROUP[psr_type],
                     "unitKey": unit_key,
@@ -876,28 +937,27 @@ def parse_exchange(
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
+        resolution = str(timeseries.find("resolution").contents[0])
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find("start").contents[0])
         )
         # Only use contract_marketagreement.type == A01 (Total to avoid double counting some columns)
         if (
-            timeseries.find_all("contract_marketagreement.type")
-            and timeseries.find_all("contract_marketagreement.type")[0].contents[0]
-            != "A05"
+            timeseries.find("contract_marketagreement.type")
+            and timeseries.find("contract_marketagreement.type").contents[0] != "A05"
         ):
             continue
 
         for entry in timeseries.find_all("point"):
-            quantity = float(entry.find_all("quantity")[0].contents[0])
+            quantity = float(entry.find("quantity").contents[0])
             if is_import:
                 quantity *= -1
-            position = int(entry.find_all("position")[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
+            position = int(entry.find("position").contents[0])
+            dt = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             exchange_list.append(
                 zoneKey=sorted_zone_keys,
-                datetime=datetime,
+                datetime=dt,
                 source=SOURCE,
                 netFlow=quantity,
                 sourceType=EventSourceType.forecasted
@@ -918,18 +978,18 @@ def parse_prices(
     soup = BeautifulSoup(xml_text, "html.parser")
     prices = PriceList(logger)
     for timeseries in soup.find_all("timeseries"):
-        currency = str(timeseries.find_all("currency_unit.name")[0].contents[0])
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start: arrow.Arrow = arrow.get(
-            timeseries.find_all("start")[0].contents[0]
+        currency = str(timeseries.find("currency_unit.name").contents[0])
+        resolution = str(timeseries.find("resolution").contents[0])
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find("start").contents[0])
         )
         for entry in timeseries.find_all("point"):
-            position = int(entry.find_all("position")[0].contents[0])
+            position = int(entry.find("position").contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
             prices.append(
                 zoneKey=zoneKey,
                 datetime=dt,
-                price=float(entry.find_all("price.amount")[0].contents[0]),
+                price=float(entry.find("price.amount").contents[0]),
                 source="entsoe.eu",
                 currency=currency,
             )
@@ -955,18 +1015,10 @@ def validate_production(
 
     if validation_criteria:
         return validate(datapoint, logger=logger, **validation_criteria)
-
-    # NOTE: Why are there sepcial checks for these zones?
-    if zone_key.startswith("DK-"):
-        return validate(datapoint, logger=logger, required=["coal", "solar", "wind"])
-
-    if zone_key.startswith("NO-"):
-        return validate(datapoint, logger=logger, required=["hydro"])
-
     return True
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1004,7 +1056,7 @@ def fetch_production(
     aggregated_zone_data = ProductionBreakdownList.merge_production_breakdowns(
         non_aggregated_data, logger
     ).to_list()
-    return list(filter(lambda x: validate_production(x, logger), aggregated_zone_data))
+    return [x for x in aggregated_zone_data if validate_production(x, logger)]
 
 
 @refetch_frequency(timedelta(days=1))
@@ -1029,7 +1081,7 @@ def fetch_production_per_units(
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
     # Iterate over all psr types
-    for k in ENTSOE_PARAMETER_DESC.keys():
+    for k in ENTSOE_PARAMETER_DESC:
         try:
             raw_production_per_units = query_production_per_units(
                 k, domain, session, target_datetime
@@ -1137,7 +1189,7 @@ def get_raw_exchange(
     return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1158,7 +1210,7 @@ def fetch_exchange(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange_forecast(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1180,7 +1232,7 @@ def fetch_exchange_forecast(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1214,7 +1266,7 @@ def fetch_price(
 # ------------------- #
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_generation_forecast(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1314,7 +1366,7 @@ def get_raw_consumption_list(
     return consumption_list
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1328,7 +1380,7 @@ def fetch_consumption(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1346,7 +1398,7 @@ def fetch_consumption_forecast(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1358,27 +1410,35 @@ def fetch_wind_solar_forecasts(
     """
     if not session:
         session = Session()
+    raw_forecasts = {}
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    try:
-        raw_renewable_forecast = query_wind_solar_production_forecast(
-            domain, session, target_datetime=target_datetime
+    for data_type in ORDERED_FORECAST_TYPES:
+        try:
+            raw_forecasts[data_type.name] = query_wind_solar_production_forecast(
+                domain, session, data_type, target_datetime=target_datetime
+            )
+        except Exception as e:
+            logger.error(
+                f"Failed to fetch {data_type.name} wind and solar forecast for {zone_key}: {e}",
+                extra={"zone_key": zone_key},
+            )
+    if raw_forecasts == {}:
+        logger.warning(
+            f"No wind and solar forecast data found for {zone_key}",
+            extra={"zone_key": zone_key},
         )
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to fetch renewable forecast for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_renewable_forecast is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No production per mode forecast data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    # Grab production
-    parsed = parse_production(raw_renewable_forecast, logger, zone_key, forecasted=True)
+        return []
 
-    return parsed.to_list()
+    forcast_breakdown_list = ProductionBreakdownList(logger)
+    for raw_forecast in raw_forecasts.values():
+        parsed_forecast = parse_production(
+            raw_forecast, logger, zone_key, forecasted=True
+        )
+        forcast_breakdown_list = ProductionBreakdownList.update_production_breakdowns(
+            forcast_breakdown_list, parsed_forecast, logger
+        )
+
+    return forcast_breakdown_list.to_list()
 
 
 if __name__ == "__main__":

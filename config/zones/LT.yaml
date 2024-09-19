@@ -4,20 +4,59 @@ bounding_box:
   - - 26.5882792498
     - 56.3725283881
 capacity:
-  biomass: 169
-  coal: 0
-  gas: 1518
-  geothermal: 0
-  hydro: 128
-  hydro storage: 900
-  nuclear: 0
-  oil: 0
-  solar: 954
-  unknown: 37
-  wind: 1208
+  biomass:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 169.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 266.0
+  gas:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 1518.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1503.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 128.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 129.0
+  hydro storage:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 900.0
+  oil:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 0.0
+  solar:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 578.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1165.0
+  unknown:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 37.0
+  wind:
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 814.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1288.0
 contributors:
   - corradio
   - nessie2013
+country: LT
+delays:
+  production: 6
 emissionFactors:
   direct:
     battery discharge:
@@ -53,6 +92,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 1075.5
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 1037.31
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -60,6 +102,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022
         value: 364.92
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 375.63
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -123,6 +168,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 1135.5
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 1097.31
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -130,6 +178,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, ENTSO-E 2022; IPCC 2014
         value: 484.92
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 495.63
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -180,16 +231,18 @@ parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
-  price: ENTSOE.fetch_price
+  price: NORDPOOL.fetch_price
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
+  EU-ETS, ENTSO-E 2023:
+    link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:

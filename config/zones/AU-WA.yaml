@@ -4,12 +4,50 @@ bounding_box:
   - - 129.50011656788791
     - -13.223565362999949
 capacity:
-  solar: 1884
-  wind: 491
+  battery storage:
+    - datetime: '2024-01-01'
+      source: opennem.org.au
+      value: 100.0
+  biomass:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 65.13
+  coal:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 1371.1
+  gas:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 3430.4
+  oil:
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 104.1
+  solar:
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 2765.64
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 2665.64
+  wind:
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 1090.42
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 1014.82
+    - datetime: '2020-01-01'
+      source: opennem.org.au
+      value: 611.57
 contributors:
   - jarek
   - corradio
   - MariusKroon
+country: AU
+delays:
+  production: 28
 disclaimer: Western Australia's power grid is not connected to the (Australian) National
   Electricity Market or the Northern Territory grid.
 emissionFactors:
@@ -214,4 +252,5 @@ parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENNEM.fetch_production_capacity
+region: Oceania
 timezone: Australia/Perth
