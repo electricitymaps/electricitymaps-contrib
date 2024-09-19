@@ -11,24 +11,36 @@ capacity:
     - datetime: '2022-12-01'
       source: ree.es
       value: 1219.0
+    - datetime: '2024-09-01'
+      source: ree.es
+      value: 1222.0
   coal:
     - datetime: '2022-12-01'
       source: ree.es
       value: 3223.0
-  gas:
-    - datetime: '2023-12-01'
+    - datetime: '2024-09-01'
       source: ree.es
-      value: 30152.0
+      value: 1820.0
+  gas:
     - datetime: '2022-12-01'
       source: ree.es
       value: 30160.0
-  hydro:
     - datetime: '2023-12-01'
       source: ree.es
-      value: 17096.0
+      value: 30152.0
+    - datetime: '2024-09-01'
+      source: ree.es
+      value: 30088.0
+  hydro:
     - datetime: '2022-12-01'
       source: ree.es
       value: 17093.0
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 17096.0
+    - datetime: '2024-09-01'
+      source: ree.es
+      value: 17097.0
   hydro storage:
     - datetime: '2022-12-01'
       source: ree.es
@@ -38,23 +50,29 @@ capacity:
       source: ree.es
       value: 7117.0
   solar:
-    - datetime: '2023-12-01'
-      source: ree.es
-      value: 26866.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 21815.0
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 26866.0
+    - datetime: '2024-09-01'
+      source: ree.es
+      value: 30070.0
   unknown:
     - datetime: '2022-12-01'
       source: ree.es
       value: 387.0
   wind:
-    - datetime: '2023-12-01'
-      source: ree.es
-      value: 30100.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 29556.0
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 30100.0
+    - datetime: '2024-09-01'
+      source: ree.es
+      value: 30848.0
 contributors:
   - brandongalbraith
   - corradio
@@ -62,6 +80,7 @@ contributors:
   - nessie2013
   - KabelWlan
   - gadakast
+  - silimotion
 country: ES
 delays:
   production: 6
