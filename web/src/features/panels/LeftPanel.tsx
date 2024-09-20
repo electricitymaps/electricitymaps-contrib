@@ -3,7 +3,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom, useAtomValue } from 'jotai';
-import { ArrowLeftToLine, ArrowRightFromLine , ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeftToLine, ArrowRightFromLine } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -109,7 +109,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
           className={`pointer-events-auto relative z-20 w-full grow overflow-y-scroll bg-zinc-50  shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] ${
             location.pathname === '/map' && isMobile ? 'hidden' : ''
           } ${isOpen ? '' : '-translate-x-[calc(500px+0.5rem)]'}
-          ${isMobile ? 'h-full' : 'rounded-2xl px-2 pt-4'}`}
+          ${isMobile ? 'h-full' : 'rounded-2xl p-2'}`}
         >
           {isMobile && <MobileHeader />}
           {children}

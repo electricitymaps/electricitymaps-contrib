@@ -35,7 +35,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const onNavigateBack = () => setIsMapMoving(false);
 
   return (
-    <div className="flex w-full pl-2 pt-2">
+    <div className="flex w-full pl-2">
       <Helmet prioritizeSeoTags>
         <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
