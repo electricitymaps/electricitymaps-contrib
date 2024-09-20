@@ -6,7 +6,7 @@ import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { Mode } from 'utils/constants';
+import { metaTitleSuffix, Mode } from 'utils/constants';
 import {
   productionConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -57,6 +57,7 @@ export default function RankingPanel(): ReactElement {
   return (
     <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
       <Helmet prioritizeSeoTags>
+        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
       <div className="pb-5">
