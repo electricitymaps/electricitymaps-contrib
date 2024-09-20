@@ -11,7 +11,10 @@ import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
 import { useDarkMode } from 'hooks/theme';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
@@ -40,6 +43,8 @@ export default function App(): ReactElement {
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
   useGetState();
   const shouldUseDarkMode = useDarkMode();
+  const { t, i18n } = useTranslation();
+  const canonicalUrl = useGetCanonicalUrl();
 
   // Update classes on theme change
   useLayoutEffect(() => {
@@ -61,6 +66,18 @@ export default function App(): ReactElement {
 
   return (
     <Suspense fallback={<div />}>
+      <Helmet
+        htmlAttributes={{
+          lang: i18n.languages[0],
+          xmlns: 'http://www.w3.org/1999/xhtml',
+          'xmlns:fb': 'http://ogp.me/ns/fb#',
+        }}
+        prioritizeSeoTags
+      >
+        <title>{`Electricity Maps | ${t('misc.maintitle')}`}</title>
+        <meta property="og:locale" content={i18n.languages[0]} />
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
       <main className="fixed flex h-full w-full flex-col">
         <AppStoreBanner />
         <ToastProvider duration={20_000}>

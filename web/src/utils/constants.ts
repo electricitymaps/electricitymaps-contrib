@@ -1,6 +1,8 @@
 import type { Duration } from 'date-fns';
 import { ElectricityModeType } from 'types';
 
+export const baseUrl = 'https://app.electricitymaps.com';
+
 // The order here determines the order displayed
 export enum TimeAverages {
   HOURLY = 'hourly',
@@ -39,6 +41,7 @@ export enum TrackEvent {
   DATA_SOURCES_CLICKED = 'Data Sources Clicked',
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
   APP_BANNER_DISMISSED = 'App Banner Dismissed',
+  SHARE_BUTTON_CLICKED = 'Share Button Clicked',
 }
 
 // color of different production modes are based on various industry standards

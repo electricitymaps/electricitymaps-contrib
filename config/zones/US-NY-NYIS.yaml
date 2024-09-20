@@ -11,6 +11,12 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 221.3
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 231.5
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 236.5
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -32,7 +38,7 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 25778.8
-    - datetime: '2024-03-01'
+    - datetime: '2024-02-01'
       source: EIA.gov
       value: 25777.0
   geothermal:
@@ -46,6 +52,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 4604.4
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 4353.9
   hydro storage:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -74,12 +83,21 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 1521.9
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 1596.2
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 1614.7
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 1663.0
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 1731.4
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 1804.0
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov

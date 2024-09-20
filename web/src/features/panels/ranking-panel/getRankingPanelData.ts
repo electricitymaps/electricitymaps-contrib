@@ -1,7 +1,7 @@
 import { getCountryName, getZoneName } from 'translation/translation';
 import type { GridState, StateZoneData, ZoneKey } from 'types';
 import { SpatialAggregate } from 'utils/constants';
-import { getCO2IntensityByMode } from 'utils/helpers';
+import { getCarbonIntensity } from 'utils/helpers';
 
 import { getHasSubZones, isGenerationOnlyZone } from '../zone/util';
 import { ZoneRowType } from './ZoneList';
@@ -27,7 +27,7 @@ export const getRankedState = (
   getCo2colorScale: (co2intensity: number) => string,
   sortOrder: 'asc' | 'desc',
   datetimeIndex: string,
-  electricityMode: string,
+  isConsumption: boolean,
   spatialAggregation: string
 ): ZoneRowType[] => {
   if (!data) {
@@ -45,8 +45,8 @@ export const getRankedState = (
 
   zoneState.sort((a, b) => {
     // Sort by carbon intensity
-    const aCarbonIntensity = getCO2IntensityByMode(a[1], electricityMode) ?? 0;
-    const bCarbonIntensity = getCO2IntensityByMode(b[1], electricityMode) ?? 0;
+    const aCarbonIntensity = getCarbonIntensity(a[1], isConsumption) || 0;
+    const bCarbonIntensity = getCarbonIntensity(b[1], isConsumption) || 0;
     return sortOrder === 'asc'
       ? aCarbonIntensity - bCarbonIntensity
       : bCarbonIntensity - aCarbonIntensity;
@@ -56,9 +56,7 @@ export const getRankedState = (
   let ranking = 1;
 
   for (const [key, value] of zoneState) {
-    const co2intensity = value
-      ? getCO2IntensityByMode(value, electricityMode)
-      : undefined;
+    const co2intensity = getCarbonIntensity(value, isConsumption);
 
     // Filter out zones that don't have a carbon intensity value
     // or are generation only zones

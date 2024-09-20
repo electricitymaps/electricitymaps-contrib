@@ -1,3 +1,5 @@
+import { TrackEvent } from 'utils/constants';
+
 type PlausibleEventProps = { readonly [propName: string]: string | number | boolean };
 type PlausibleArguments = [string, { props: PlausibleEventProps }];
 
@@ -12,6 +14,7 @@ declare global {
     plausible?: typeof plausible | undefined;
   }
 }
+
 export default function trackEvent(
   eventId: string,
   additionalProps: PlausibleEventProps = {}
@@ -22,3 +25,12 @@ export default function trackEvent(
   }
   window.plausible?.(eventId, { props: additionalProps });
 }
+
+export enum ShareType {
+  FACEBOOK = 'facebook',
+  LINKEDIN = 'linkedin',
+  TWITTER = 'twitter',
+}
+
+export const trackShare = (shareType: ShareType) => () =>
+  trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType });
