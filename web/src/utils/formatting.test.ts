@@ -359,7 +359,7 @@ describe('getDateTimeFormatOptions', () => {
     const actual = getDateTimeFormatOptions(TimeAverages.HOURLY);
     const expected = {
       year: 'numeric',
-      month: 'long',
+      month: 'short',
       day: 'numeric',
       hour: 'numeric',
       minute: 'numeric',

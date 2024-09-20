@@ -56,6 +56,12 @@ capacity:
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 1414.8
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 1414.6
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 1489.5
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov

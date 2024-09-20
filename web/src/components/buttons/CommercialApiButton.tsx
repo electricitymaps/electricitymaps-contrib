@@ -21,7 +21,7 @@ export function CommercialApiButton({
     <Button
       icon={<CloudCog size={iconSize} />}
       type={type}
-      href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
+      href="https://electricitymaps.com/get-our-data?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
       {...restProps}
     >
       {t('header.get-data')}
