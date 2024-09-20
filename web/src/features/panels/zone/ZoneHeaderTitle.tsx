@@ -8,6 +8,7 @@ import { ArrowLeft, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
+import { metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
 
 import { getDisclaimer } from './util';
@@ -36,6 +37,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   return (
     <div className="flex w-full pl-2 pt-2">
       <Helmet prioritizeSeoTags>
+        <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
       <Link

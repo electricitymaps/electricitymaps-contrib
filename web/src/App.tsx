@@ -15,6 +15,7 @@ import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
+import { metaTitleSuffix } from 'utils/constants';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -73,7 +74,7 @@ export default function App(): ReactElement {
         }}
         prioritizeSeoTags
       >
-        <title>{`Electricity Maps | ${t('misc.maintitle')}`}</title>
+        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
         <meta property="og:locale" content={i18n.languages[0]} />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
