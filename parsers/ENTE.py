@@ -2,9 +2,17 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
+from typing import Any
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
+
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 
 # This parser gets all real time interconnection flows from the
 # Central American Electrical Interconnection System (SIEPAC).
@@ -13,6 +21,8 @@ from requests import Session
 # https://www.enteoperador.org/flujos-regionales-en-tiempo-real/
 
 DATA_URL = "https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic"
+
+TIMEZONE = ZoneInfo("America/Tegucigalpa")
 
 JSON_MAPPING = {
     "GT->MX-OR": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
@@ -25,28 +35,33 @@ JSON_MAPPING = {
 }
 
 
+def floor_to_minute(dt: datetime) -> datetime:
+    return dt.replace(second=0, microsecond=0)
+
+
 def fetch_production(
-    zone_key: str = "HN",
+    zone_key: ZoneKey = ZoneKey("HN"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     r = session or Session()
     response = r.get(DATA_URL).json()
 
     # Total production data for HN from the ENTE-data is the 57th element in the JSON ('4SISTEMA.GTOT.OSYMGENTOTR.-.MW')
     production = round(response[56]["value"], 1)
 
-    dt = arrow.now("UTC-6").floor("minute")
+    dt = floor_to_minute(datetime.now(tz=TIMEZONE))
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": dt.datetime,
-        "production": {"unknown": production},
-        "source": "enteoperador.org",
-    }
+    production_list = ProductionBreakdownList(logger)
+    production_list.append(
+        zoneKey=zone_key,
+        datetime=dt,
+        production=ProductionMix(unknown=production),
+        source="enteoperador.org",
+    )
 
-    return data
+    return production_list.to_list()
 
 
 def extract_exchange(raw_data, exchange) -> float | None:
@@ -74,7 +89,7 @@ def fetch_exchange(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Gets an exchange pair from the SIEPAC system."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -88,16 +103,17 @@ def fetch_exchange(
 
     raw_data = s.get(DATA_URL).json()
     flow = round(extract_exchange(raw_data, sorted_zones), 1)
-    dt = arrow.now("UTC-6").floor("minute")
+    dt = floor_to_minute(datetime.now(tz=TIMEZONE))
 
-    exchange = {
-        "sortedZoneKeys": sorted_zones,
-        "datetime": dt.datetime,
-        "netFlow": flow,
-        "source": "enteoperador.org",
-    }
+    exchanges = ExchangeList(logger)
+    exchanges.append(
+        zoneKey=ZoneKey(sorted_zones),
+        datetime=dt,
+        netFlow=flow,
+        source="enteoperador.org",
+    )
 
-    return exchange
+    return exchanges.to_list()
 
 
 if __name__ == "__main__":

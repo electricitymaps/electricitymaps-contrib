@@ -46,7 +46,7 @@ class ModeCapacity(StrictBaseModelWithAlias):
     comment: str | None = Field(None, alias="_comment")
     url: str | list[str] | None = Field(None, alias="_url")
     datetime: date | datetime | None
-    value: NonNegativeFloat
+    value: NonNegativeFloat | None
 
 
 class Capacity(StrictBaseModel):
@@ -131,11 +131,14 @@ class Zone(StrictBaseModelWithAlias):
     parsers: Parsers = Parsers()
     price_displayed: bool | None
     aggregates_displayed: list[str] | None
+    generation_only: bool | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
     timezone: str | None
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
     estimation_method: str | None
     sources: dict[str, Source] | None
+    region: str | None
+    country: str | None
 
     def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])

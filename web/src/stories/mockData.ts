@@ -1,7 +1,9 @@
+import { StateZoneData } from 'types';
+
 export const zoneDetailMock = {
   _isFinestGranularity: true,
   capacity: {
-    'battery storage': null,
+    'battery storage': 10,
     biomass: 700,
     coal: 0,
     gas: 4461,
@@ -87,10 +89,10 @@ export const zoneDetailMock = {
   },
   renewableRatio: 0.6874,
   renewableRatioProduction: 0.7044,
-  source: 'entsoe.eu',
+  source: ['entsoe.eu'],
   stateDatetime: '2023-09-05T18:00:00Z',
   storage: {
-    battery: null,
+    battery: 7,
     hydro: -1970,
   },
   totalCo2Consumption: 1_415_116_000.8,
@@ -107,4 +109,18 @@ export const zoneDetailMock = {
   totalProduction: 4367,
   totalStorage: 0,
   zoneKey: 'PT',
+};
+
+export const zoneStateMock: StateZoneData = {
+  c: {
+    ci: 176.01,
+    fr: 0.1664,
+    rr: 0.683,
+  },
+  p: {
+    ci: 342.58,
+    fr: 0.345,
+    rr: 0.655,
+  },
+  e: 0,
 };

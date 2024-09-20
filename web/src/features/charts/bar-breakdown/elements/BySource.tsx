@@ -1,8 +1,10 @@
 import EstimationBadge from 'components/EstimationBadge';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
@@ -34,10 +36,14 @@ export default function BySource({
   className,
   hasEstimationPill = false,
   estimatedPercentage,
+  unit,
+  estimationMethod,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
+  unit?: string | number;
+  estimationMethod?: EstimationMethods;
 }) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -46,23 +52,30 @@ export default function BySource({
 
   const dataType = displayByEmissions ? 'emissions' : mixMode;
   const text = getText(timeAverage, dataType, t);
+  const pillText = useGetEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
 
   return (
-    <div
-      className={`relative flex flex-row justify-between pb-2 pt-4 text-md font-bold ${className}`}
-    >
-      {text}
-      {hasEstimationPill && (
-        <EstimationBadge
-          text={
-            estimatedPercentage
-              ? t('estimation-card.aggregated_estimated.pill', {
-                  percentage: estimatedPercentage,
-                })
-              : t('estimation-badge.fully-estimated')
-          }
-        />
-      )}
+    <div className="flex flex-col pb-1 pt-4">
+      <div
+        className={`text-md relative flex flex-row justify-between font-bold ${className}`}
+      >
+        <div className="flex gap-1">
+          <h2>{text}</h2>
+        </div>
+        {hasEstimationPill && (
+          <EstimationBadge
+            text={pillText}
+            Icon={
+              estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
+            }
+          />
+        )}
+      </div>
+      {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>
   );
 }

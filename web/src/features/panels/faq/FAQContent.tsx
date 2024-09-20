@@ -1,6 +1,6 @@
 import * as Accordion from '@radix-ui/react-accordion';
+import { ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { HiChevronRight } from 'react-icons/hi2';
 
 const orderings = [
   {
@@ -57,13 +57,13 @@ function FAQContent() {
             >
               <Accordion.Header className="w-full">
                 <Accordion.Trigger className="group flex items-center space-x-2 text-left hover:text-gray-600 dark:hover:text-gray-400">
-                  <HiChevronRight className="flex-none duration-300 group-radix-state-open:rotate-90" />{' '}
+                  <ChevronRight className="flex-none duration-300 group-radix-state-open:rotate-90" />{' '}
                   <span>{t(`${groupKey}.${entryKey}-question`)}</span>
                 </Accordion.Trigger>
               </Accordion.Header>
               <Accordion.Content className="ml-2 border-l border-gray-300 pl-4 radix-state-closed:animate-slide-up radix-state-open:animate-slide-down">
                 <div
-                  className="prose prose-sm text-md leading-5 dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline md:max-w-none dark:prose-a:invert"
+                  className="text-md prose prose-sm leading-5 dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:invert md:max-w-none"
                   dangerouslySetInnerHTML={{
                     __html: t(`${groupKey}.${entryKey}-answer`),
                   }}

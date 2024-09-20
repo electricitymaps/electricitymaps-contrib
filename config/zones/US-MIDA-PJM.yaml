@@ -8,18 +8,69 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 316.1
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 336.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 316.3
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 362.1
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2140.3
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 2133.5
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 2118.6
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 2108.5
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 2085.3
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 41332.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 37693.8
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 37334.8
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 38555.2
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 39420.1
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 39191.1
   gas:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 103431.3
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 103416.7
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 105136.5
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 105137.5
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 104271.0
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 104186.2
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -40,10 +91,49 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 4990.7
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 4980.8
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 4960.6
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 5319.6
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 5336.5
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 5338.3
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 5213.7
   solar:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 8720.7
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 10280.5
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 11192.8
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 11325.7
+    - datetime: '2024-03-01'
+      source: EIA.gov
+      value: 11474.2
+    - datetime: '2024-04-01'
+      source: EIA.gov
+      value: 11617.6
+    - datetime: '2024-05-01'
+      source: EIA.gov
+      value: 11980.3
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 12414.2
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -52,11 +142,23 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 11168.6
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 11182.6
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 11271.6
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 11270.6
 comment: Pjm Interconnection, Llc
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+country: US
+delays:
+  production: 7
 emissionFactors:
   direct:
     battery discharge:
@@ -323,6 +425,7 @@ parsers:
   price: US_PJM.fetch_price
   production: US_PJM.fetch_production
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing

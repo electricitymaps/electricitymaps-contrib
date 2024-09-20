@@ -5,16 +5,12 @@ import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import ThemeSelector from 'features/map-controls/ThemeSelector';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
+import { EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineEyeOff } from 'react-icons/hi';
 import { MoonLoader } from 'react-spinners';
-import { TimeAverages, ToggleOptions } from 'utils/constants';
-import {
-  colorblindModeAtom,
-  selectedDatetimeIndexAtom,
-  timeAverageAtom,
-} from 'utils/state/atoms';
+import { ToggleOptions } from 'utils/constants';
+import { areWeatherLayersAllowedAtom, colorblindModeAtom } from 'utils/state/atoms';
 
 import { isSettingsModalOpenAtom } from './modalAtoms';
 
@@ -47,7 +43,7 @@ function WeatherToggleButton({
         onClick={isLoadingLayer ? () => {} : onToggle}
         size="lg"
         type={isEnabled ? 'primary' : 'secondary'}
-        disabled={!allowed}
+        isDisabled={!allowed}
         backgroundClasses="w-[330px] h-[45px]"
         icon={
           isLoadingLayer ? (
@@ -68,14 +64,9 @@ function WeatherToggleButton({
 }
 
 export function SettingsModalContent() {
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
-
-  // We are currently only supporting and fetching weather data for the latest hourly value
-  const areWeatherLayersAllowed =
-    selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
 
   const { t } = useTranslation();
   return (
@@ -94,7 +85,7 @@ export function SettingsModalContent() {
         type={isColorblindModeEnabled ? 'primary' : 'secondary'}
         backgroundClasses="w-[330px] h-[45px]"
         onClick={() => setIsColorblindModeEnabled(!isColorblindModeEnabled)}
-        icon={<HiOutlineEyeOff size={21} />}
+        icon={<EyeOff size={20} />}
       >
         {t('legends.colorblindmode')}
       </Button>

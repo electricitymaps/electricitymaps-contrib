@@ -208,6 +208,32 @@ def get_ree_data(
     return json["valoresHorariosGeneracion"]
 
 
+# Parses the date. In DST end days, the repeated hours are distinguished using a leter, this needs to be parsed
+def parse_date(str_date, tz):
+    if "A" in str_date:
+        index = str_date.index("A")
+        new_value = (
+            str_date[: index - 1] + "0" + str_date[index - 1] + str_date[index + 1 :]
+        )
+        # If A, we use the timezone from yesterday
+        return datetime.fromisoformat(
+            new_value
+            + f" +0{ZoneInfo(tz).utcoffset(datetime.fromisoformat(new_value) - timedelta(days=1))}"
+        )
+    elif "B" in str_date:
+        index = str_date.index("B")
+        new_value = (
+            str_date[: index - 1] + "0" + str_date[index - 1] + str_date[index + 1 :]
+        )
+        # If B, we use the timezone from tomorrow
+        return datetime.fromisoformat(
+            new_value
+            + f" +0{ZoneInfo(tz).utcoffset(datetime.fromisoformat(new_value) + timedelta(days=1))}"
+        )
+    else:
+        return datetime.fromisoformat(str_date).replace(tzinfo=ZoneInfo(tz))
+
+
 def fetch_and_preprocess_data(
     zone_key: ZoneKey,
     session: Session,
@@ -219,7 +245,7 @@ def fetch_and_preprocess_data(
     data = get_ree_data(zone_key, session, target_datetime, tz)
     for value in data:
         # Add timezone info to time object
-        value["ts"] = datetime.fromisoformat(value["ts"]).replace(tzinfo=ZoneInfo(tz))
+        value["ts"] = parse_date(value["ts"], tz)
 
         for key in value:
             check_known_key(key, logger)

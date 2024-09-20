@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
+from operator import itemgetter
 from typing import Any
 
 import pandas as pd
@@ -55,6 +56,11 @@ class EventList(ABC):
     def __iter__(self):
         pass
 
+    def __add__(self, other: "EventList") -> "EventList":
+        new_list = self.__class__(self.logger)
+        new_list.events = {**self.events, **other.events}
+        return new_list
+
     # Abstract method to be implemented by subclasses so that the typing is correct.
     @abstractmethod
     def __getitem__(self, event: Event):
@@ -80,7 +86,7 @@ class EventList(ABC):
         """Gives a sorted list representation of the events."""
         return sorted(
             [event.to_dict() for event in self.events.values()],
-            key=lambda x: x["datetime"],
+            key=itemgetter("datetime"),
         )
 
     @property
@@ -325,40 +331,66 @@ class ProductionBreakdownList(AggregatableEventList):
         production_breakdowns: "ProductionBreakdownList",
         new_production_breakdowns: "ProductionBreakdownList",
         logger: Logger,
+        matching_timestamps_only: bool = False,
     ) -> "ProductionBreakdownList":
-        """Given a new batch of production breakdowns, update the existing ones."""
+        """
+        Given a new batch of production breakdowns, update the existing ones.
+
+        Params:
+        - production_breakdowns: The existing production breakdowns to be updated.
+        - new_production_breakdowns: The new batch of production breakdowns.
+        - logger: The logger object used for logging information.
+        - matching_timestamps_only: Flag indicating whether to update only the events with matching timestamps from both the production breakdowns.
+        """
+
         if len(new_production_breakdowns) == 0:
             return production_breakdowns
         elif len(production_breakdowns) == 0:
             return new_production_breakdowns
 
+        updated_production_breakdowns = ProductionBreakdownList(logger)
+
+        if matching_timestamps_only:
+            diff = abs(len(new_production_breakdowns) - len(production_breakdowns))
+            logger.info(
+                f"Filtering production breakdowns to keep only the events where both the production breakdowns have matching datetimes, {diff} events where discarded."
+            )
+
         for new_event in new_production_breakdowns:
             if new_event in production_breakdowns:
-                new_event = ProductionBreakdown._update(
-                    production_breakdowns[new_event], new_event
+                existing_event = production_breakdowns[new_event]
+                updated_event = ProductionBreakdown._update(existing_event, new_event)
+                updated_production_breakdowns.append(
+                    updated_event.zoneKey,
+                    updated_event.datetime,
+                    updated_event.source,
+                    updated_event.production,
+                    updated_event.storage,
+                    updated_event.sourceType,
                 )
-            production_breakdowns._append_event(new_event)
-
-        return production_breakdowns
-
-    @staticmethod
-    def filter_only_zero_production(
-        breakdowns: "ProductionBreakdownList",
-    ) -> "ProductionBreakdownList":
-        """
-        TODO: Remove once the internal outlier detection is able to handle this.
-        A method to filter out production breakdowns with a total production of 0 MW."""
-        production_events = ProductionBreakdownList(breakdowns.logger)
-        for event in breakdowns:
-            if event.production is not None and not any(
-                v for _mode, v in event.production
-            ):
-                production_events.logger.warning(
-                    f"Discarded production event for {event.zoneKey} at {event.datetime} because all production values are 0 or None."
+            elif matching_timestamps_only is False:
+                updated_production_breakdowns.append(
+                    new_event.zoneKey,
+                    new_event.datetime,
+                    new_event.source,
+                    new_event.production,
+                    new_event.storage,
+                    new_event.sourceType,
                 )
-                continue
-            production_events._append_event(event)
-        return production_events
+
+        if matching_timestamps_only is False:
+            for existing_event in production_breakdowns:
+                if existing_event not in new_production_breakdowns:
+                    updated_production_breakdowns.append(
+                        existing_event.zoneKey,
+                        existing_event.datetime,
+                        existing_event.source,
+                        existing_event.production,
+                        existing_event.storage,
+                        existing_event.sourceType,
+                    )
+
+        return updated_production_breakdowns
 
     @staticmethod
     def filter_expected_modes(

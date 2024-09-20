@@ -4,3 +4,5 @@ bounding_box:
   - - 69.53394616000008
     - 82.35871002800013
 timezone: Europe/Moscow
+region: Europe
+country: RU

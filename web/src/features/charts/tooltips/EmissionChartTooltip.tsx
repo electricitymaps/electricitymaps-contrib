@@ -21,7 +21,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
   const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl sm:w-[410px] dark:border dark:border-gray-700 dark:bg-gray-800">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeAverage={timeAverage}
@@ -29,9 +29,10 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
         title={t('country-panel.emissions')}
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
+        estimationMethod={estimationMethod}
       />
       <p className="flex justify-center text-base">
-        <b className="mr-1">{formatCo2(totalEmissions)}</b> {t('ofCO2eq')}
+        <b className="mr-1">{formatCo2({ value: totalEmissions })}</b> {t('ofCO2eq')}
       </p>
     </div>
   );

@@ -1,3 +1,4 @@
+_comment: Capacity calculations are available at https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
 bounding_box:
   - - 50.250987175000034
     - 24.059871521000062
@@ -6,45 +7,45 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2016-01-01'
-      source: 'Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing'
+      source: Climatescope
       value: 38
     - datetime: '2022-01-01'
-      source: 'Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing'
+      source: Climatescope
       value: 23
   gas:
     - datetime: '2016-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 8560.5
     - datetime: '2017-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 8599
     - datetime: '2018-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 10170
     - datetime: '2019-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 10579
     - datetime: '2020-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 10590
     - datetime: '2022-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 10576
     - datetime: '2023-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 10320
   solar:
     - datetime: '2016-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 2
     - datetime: '2019-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 4
     - datetime: '2022-01-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
+      source: Climatescope
       value: 354
     - datetime: '2022-10-01'
-      source: Climatescope, https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing,
+      source: Climatescope
       value: 899
 contributors:
   - q--
@@ -52,3 +53,5 @@ contributors:
 parsers:
   consumption: GCCIA.fetch_consumption
 timezone: Asia/Qatar
+region: Asia
+country: QA
