@@ -1,18 +1,19 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
+import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { useCo2ColorScale } from 'hooks/theme';
-import { IndustryIcon } from 'icons/industryIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
+import { useAtom } from 'jotai';
+import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
+import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, noop } from './graphUtils';
+import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -26,6 +27,9 @@ interface CarbonChartProps {
 
 function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
+  const [dataSourcesCollapsedEmission, setDataSourcesCollapsedEmission] = useAtom(
+    dataSourcesCollapsedEmissionAtom
+  );
   const {
     emissionFactorSources,
     powerGenerationSources,
@@ -42,7 +46,8 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const badgeText = getBadgeText(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   if (!hasEnoughDataToDisplay) {
     return <NotEnoughDataMessage title="country-history.carbonintensity" />;
@@ -51,7 +56,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     <RoundedCard className="pb-2">
       <ChartTitle
         translationKey="country-history.carbonintensity"
-        badgeText={badgeText}
+        badge={badge}
         unit={'gCO₂eq / kWh'}
       />
       <AreaGraph
@@ -76,16 +81,17 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
           trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });
         }}
         title={t('data-sources.title')}
-        isCollapsedAtom={dataSourcesCollapsedEmission}
+        isCollapsed={dataSourcesCollapsedEmission}
+        setState={setDataSourcesCollapsedEmission}
       >
         <DataSources
           title={t('data-sources.power')}
-          icon={<WindTurbineIcon />}
+          icon={<Zap size={16} />}
           sources={powerGenerationSources}
         />
         <DataSources
           title={t('data-sources.emission')}
-          icon={<IndustryIcon />}
+          icon={<Factory size={16} />}
           sources={emissionFactorSources}
           emissionFactorSourcesToProductionSources={
             emissionFactorSourcesToProductionSources

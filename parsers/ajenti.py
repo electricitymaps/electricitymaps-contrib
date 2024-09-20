@@ -18,29 +18,33 @@ from requests import Session
 from signalr import Connection
 
 ZONE_PARAMS = {
+    # King Island
+    # https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island
     "AU-TAS-KI": {
         "hub": "TagHub",
         "method": "Dashboard",
         "tz": "Australia/Currie",
-        "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island",  # Iframe: https://data.ajenti.com.au/KIREIP/index.html
+        "source": "hydro.com.au",  # Iframe: https://data.ajenti.com.au/KIREIP/index.html
     },
     # Flinders Island
     # https://github.com/electricitymaps/electricitymaps-contrib/issues/2533
     # https://en.wikipedia.org/wiki/Flinders_Island
+    # https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/flinders-island
     "AU-TAS-FI": {
         "hub": "flindershub",
         "method": "SendDashboard",
         "tz": "Australia/Hobart",
-        "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/flinders-island",
+        "source": "hydro.com.au",
     },
     # Rottnest Island
     # https://github.com/electricitymaps/electricitymaps-contrib/issues/2534
     # https://en.wikipedia.org/wiki/Rottnest_Island
+    # https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/rottnest-island
     "AU-WA-RI": {
         "hub": "HogsHub",
         "method": "SendDashboard",
         "tz": "Australia/Perth",
-        "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/rottnest-island",
+        "source": "hydro.com.au",
     },
 }
 

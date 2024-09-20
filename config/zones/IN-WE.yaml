@@ -4,15 +4,38 @@ bounding_box:
   - - 92.944336
     - 27.332735
 capacity:
-  biomass: 3154.24
-  coal: 85586.0
-  gas: 10806.49
-  hydro: 8578.23
-  nuclear: 1840.0
-  oil: 0
-  solar: 15029.55
-  unknown: 0
-  wind: 17655.64
+  biomass:
+    datetime: '2023-12-01'
+    source: mnre.gov.in
+    value: 3167.6
+  coal:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 84386.0
+  gas:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 10806.49
+  hydro:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 8065.7
+  nuclear:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 2540.0
+  oil:
+    datetime: '2023-12-01'
+    source: cea.nic.in
+    value: 0.0
+  solar:
+    datetime: '2023-12-01'
+    source: mnre.gov.in
+    value: 19907.4
+  wind:
+    datetime: '2023-12-01'
+    source: mnre.gov.in
+    value: 19226.1
 contributors:
   - GitMatze
   - alixunderplatz
@@ -100,5 +123,6 @@ isRenewable:
 parsers:
   consumption: IN_WE.fetch_consumption
   production: IN.fetch_production
+  productionCapacity: CEA.fetch_production_capacity
 region: Asia
 timezone: Asia/Kolkata

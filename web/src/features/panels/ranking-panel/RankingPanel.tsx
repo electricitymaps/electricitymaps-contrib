@@ -1,9 +1,12 @@
 import useGetState from 'api/getState';
 import { HorizontalDivider } from 'components/Divider';
 import { useCo2ColorScale } from 'hooks/theme';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useAtomValue } from 'jotai';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { metaTitleSuffix, Mode } from 'utils/constants';
 import {
   productionConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -22,15 +25,17 @@ export default function RankingPanel(): ReactElement {
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const [searchTerm, setSearchTerm] = useState('');
   const electricityMode = useAtomValue(productionConsumptionAtom);
+  const isConsumption = electricityMode === Mode.CONSUMPTION;
   const spatialAggregation = useAtomValue(spatialAggregateAtom);
-  const inputHandler = (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
+  const canonicalUrl = useGetCanonicalUrl();
+  const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
 
     if (typeof target?.value === 'string') {
       const lowerCase = target.value.toLowerCase();
       setSearchTerm(lowerCase);
     }
-  };
+  }, []);
 
   const { data } = useGetState();
   const rankedList = getRankedState(
@@ -38,24 +43,26 @@ export default function RankingPanel(): ReactElement {
     getCo2colorScale,
     'asc',
     selectedDatetimeString,
-    electricityMode,
+    isConsumption,
     spatialAggregation
   );
-  const filteredList = rankedList.filter((zone) => {
-    if (zone.countryName?.toLowerCase().includes(searchTerm)) {
-      return true;
-    }
-    if (zone.zoneName?.toLowerCase().includes(searchTerm)) {
-      return true;
-    }
-    return false;
-  });
+
+  const filteredList = rankedList.filter(
+    (zone) =>
+      zone.countryName?.toLowerCase().includes(searchTerm) ||
+      zone.zoneName?.toLowerCase().includes(searchTerm) ||
+      zone.zoneId.toLowerCase().includes(searchTerm)
+  );
 
   return (
     <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
+      <Helmet prioritizeSeoTags>
+        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
       <div className="pb-5">
-        <div className="font-poppins text-lg font-medium">{t('ranking-panel.title')}</div>
-        <div className="text-sm">{t('ranking-panel.subtitle')}</div>
+        <h1>{t('ranking-panel.title')}</h1>
+        <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
       </div>
 
       <SearchBar

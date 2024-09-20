@@ -3,7 +3,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom, useAtomValue } from 'jotai';
-import { ArrowLeftToLine, ArrowRightFromLine } from 'lucide-react';
+import { ArrowLeftToLine, ArrowRightFromLine , ChevronLeft, ChevronRight } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {

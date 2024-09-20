@@ -3,6 +3,7 @@ import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TimeAverages } from 'utils/constants';
 import {
@@ -76,30 +77,28 @@ export default function TimeController({ className }: { className?: string }) {
   );
 
   return (
-    <div className={className}>
-      {
-        isBiggerThanMobile && (
-          <TimeHeader />
-        ) /* Hide the header on mobile as it is loaded directly into the BottomSheet header section */
-      }
-
+    <div className={twMerge(className, 'flex flex-col gap-3')}>
+      {isBiggerThanMobile && <TimeHeader />}
       <TimeAverageToggle
         timeAverage={timeAverage}
         onToggleGroupClick={onToggleGroupClick}
       />
-      <TimeSlider
-        onChange={onTimeSliderChange}
-        numberOfEntries={numberOfEntries}
-        selectedIndex={selectedDatetime.index}
-      />
-      <TimeAxis
-        datetimes={datetimes}
-        selectedTimeAggregate={timeAverage}
-        isLoading={isLoading}
-        className="h-[22px] w-full overflow-visible"
-        transform={`translate(12, 0)`}
-        isLiveDisplay={isHourly}
-      />
+      <div>
+        {/* The above div is needed to treat the TimeSlider and TimeAxis as one DOM element */}
+        <TimeSlider
+          onChange={onTimeSliderChange}
+          numberOfEntries={numberOfEntries}
+          selectedIndex={selectedDatetime.index}
+        />
+        <TimeAxis
+          datetimes={datetimes}
+          selectedTimeAggregate={timeAverage}
+          isLoading={isLoading}
+          className="h-[22px] w-full overflow-visible"
+          transform={`translate(12, 0)`}
+          isLiveDisplay={isHourly}
+        />
+      </div>
     </div>
   );
 }
