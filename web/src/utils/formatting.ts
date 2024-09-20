@@ -144,7 +144,7 @@ export const getDateTimeFormatOptions = (
     case TimeAverages.HOURLY: {
       return {
         year: 'numeric',
-        month: 'long',
+        month: 'short',
         day: 'numeric',
         hour: 'numeric',
         minute: 'numeric',
