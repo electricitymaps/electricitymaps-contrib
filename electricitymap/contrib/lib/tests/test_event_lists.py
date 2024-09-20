@@ -916,14 +916,14 @@ class TestProductionBreakdownList(unittest.TestCase):
         updated_list = ProductionBreakdownList.update_production_breakdowns(
             production_list1, production_list2, logging.Logger("test")
         )
+
+        key = datetime(2023, 1, 1, tzinfo=timezone.utc)
         assert len(updated_list.events) == 1
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].production is not None
-        assert updated_list.events[0].production.wind == 20
-        assert updated_list.events[0].production.coal == 20
-        assert updated_list.events[0].source == ", ".join(
+        assert key in updated_list.events
+        assert updated_list.events[key].production is not None
+        assert updated_list.events[key].production.wind == 20
+        assert updated_list.events[key].production.coal == 20
+        assert updated_list.events[key].source == ", ".join(
             set("trust.me, trust.me.too".split(", "))
         )
 
