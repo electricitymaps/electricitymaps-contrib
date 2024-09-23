@@ -14,7 +14,6 @@ import {
   calculatePriceBound,
   dateIsFirstHourOfTomorrow,
   filterPriceData,
-  getColor,
   getGranularity,
   getValueOfConvertPrice,
   negativeToPostivePercentage,
@@ -96,7 +95,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                             data-test-id="negative-price"
                           >
                             {price < 0 && (
-                              <PriceBars
+                              <PriceBar
                                 price={price * -1}
                                 maxPrice={-1 * minPriceTotal}
                                 color={getColor(
@@ -117,7 +116,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                           data-test-id="positive-price"
                         >
                           {price > 0 && (
-                            <PriceBars
+                            <PriceBar
                               price={price}
                               maxPrice={maxPriceTotal}
                               color={getColor(
@@ -149,7 +148,6 @@ function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i1
     year: 'numeric',
     day: 'numeric',
   }).formatToParts(new Date(date));
-  console.log(formattedDate);
   return (
     <p className="py-1 font-semibold">
       {`${t('country-panel.price-chart.tomorrow')}, ${formattedDate[0].value} ${
@@ -159,7 +157,7 @@ function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i1
   );
 }
 
-export function PriceBars({
+export function PriceBar({
   price,
   maxPrice,
   color,
@@ -267,3 +265,24 @@ function Disclaimer({
     </div>
   );
 }
+
+const getColor = (
+  price: number,
+  maxPrice: number,
+  minPrice: number,
+  date: string,
+  granularity: number
+): string => {
+  if (price === maxPrice) {
+    return 'bg-danger dark:bg-red-400';
+  } else if (price === minPrice) {
+    return 'bg-success dark:bg-emerald-500';
+  } else if (
+    normalizeToGranularity(new Date(date), granularity) <
+    normalizeToGranularity(new Date(), granularity)
+  ) {
+    return 'bg-[#18214F] dark:bg-[#848EC0] opacity-50';
+  } else {
+    return 'bg-[#18214F] dark:bg-[#848EC0]';
+  }
+};

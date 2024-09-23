@@ -76,23 +76,3 @@ export const negativeToPostivePercentage = (
 
   return Math.round(Math.abs((minPrice / (maxPrice + Math.abs(minPrice))) * 100));
 };
-export const getColor = (
-  price: number,
-  maxPrice: number,
-  minPrice: number,
-  date: string,
-  granularity: number
-): string => {
-  if (price === maxPrice) {
-    return 'bg-danger dark:bg-red-400';
-  } else if (price === minPrice) {
-    return 'bg-success dark:bg-emerald-500';
-  } else if (
-    normalizeToGranularity(new Date(date), granularity) <
-    normalizeToGranularity(new Date(), granularity)
-  ) {
-    return 'bg-[#18214F] dark:bg-[#848EC0] opacity-50';
-  } else {
-    return 'bg-[#18214F] dark:bg-[#848EC0]';
-  }
-};
