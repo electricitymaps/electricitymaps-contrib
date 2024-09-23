@@ -6,17 +6,8 @@ import { CombinedZonesConfig } from '../../../../geo/types';
 
 const { zones, contributors } = zonesConfigJSON as unknown as CombinedZonesConfig;
 
-export const getHasSubZones = (zoneId?: string) => {
-  if (!zoneId) {
-    return null;
-  }
-
-  const zoneConfig = zones[zoneId];
-  if (!zoneConfig || !zoneConfig.subZoneNames) {
-    return false;
-  }
-  return zoneConfig.subZoneNames.length > 0;
-};
+export const getHasSubZones = (zoneId?: string): boolean | null =>
+  zoneId ? Boolean(zones[zoneId]?.subZoneNames?.length) : null;
 
 export enum ZoneDataStatus {
   AGGREGATE_DISABLED = 'aggregate_disabled',
