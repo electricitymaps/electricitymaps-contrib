@@ -2,12 +2,12 @@ import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import { i18n, TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
-import { ChevronsDownUpIcon, ChevronsUpDownIcon, Info } from 'lucide-react';
+import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { formatDateTick } from 'utils/formatting';
+import { formatDateTick, getDateTimeFormatOptions } from 'utils/formatting';
 import { futurePriceCollapsed } from 'utils/state/atoms';
 
 import { convertPrice } from './bar-breakdown/utils';
@@ -60,22 +60,23 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
         iconSize={20}
         isCollapsedAtom={futurePriceCollapsed}
       >
-        <>
+        <div data-test-id="future-price">
           <PriceDisclaimer />
+          <TimeDisclaimer />
           {futurePrice?.priceData && (
             <ul>
               {Object.entries(filteredPriceData).map(
                 ([date, price]: [string, number]) => (
                   <li key={date}>
                     {dateIsFirstHourOfTomorrow(new Date(date)) && (
-                      <div className="flex flex-col py-1">
+                      <div className="flex flex-col py-1" data-test-id="tomorrow-label">
                         <HorizontalDivider />
                         <TommorowLabel date={date} t={t} i18n={i18n} />
                       </div>
                     )}
                     <div className="flex flex-row justify-items-end gap-2">
                       <TimeDisplay date={date} granularity={granularity} />
-                      <p className="min-w-[62px] text-nowrap text-sm font-semibold tabular-nums">
+                      <p className="min-w-[64px] text-nowrap text-sm font-semibold tabular-nums">
                         {`${getValueOfConvertPrice(price, futurePrice.currency)} ${t(
                           `country-panel.price-chart.${futurePrice.currency}`
                         )}`}
@@ -87,6 +88,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                             style={{
                               width: `${hasNegativePrice ? negativePercentage : 0}%`,
                             }}
+                            data-test-id="negative-price"
                           >
                             {price < 0 && (
                               <PriceBars
@@ -109,6 +111,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                               hasNegativePrice ? 100 - negativePercentage : 100
                             }%`,
                           }}
+                          data-test-id="positive-price"
                         >
                           {price > 0 && (
                             <PriceBars
@@ -131,7 +134,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
               )}
             </ul>
           )}
-        </>
+        </div>
       </Accordion>
     </div>
   );
@@ -142,13 +145,17 @@ function negativeToPostivePercentage(minPrice: number, maxPrice: number): number
 }
 
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
+  const formattedDate = Intl.DateTimeFormat(i18n.language, {
+    month: 'short',
+    year: 'numeric',
+    day: 'numeric',
+  }).formatToParts(new Date(date));
+  console.log(formattedDate);
   return (
     <p className="py-1 font-semibold">
-      {`${t('country-panel.price-chart.tomorrow')}, ${formatDateTick(
-        new Date(date),
-        i18n.language,
-        TimeAverages.DAILY
-      )} ${formatDateTick(new Date(date), i18n.language, TimeAverages.YEARLY)}`}
+      {`${t('country-panel.price-chart.tomorrow')}, ${formattedDate[0].value} ${
+        formattedDate[2].value
+      } ${formattedDate[4].value}`}
     </p>
   );
 }
@@ -219,6 +226,7 @@ export function PriceBars({
     <div
       className={`h-3 rounded-full ${color}`}
       style={{ width: `${(price / maxPrice) * 100}%` }}
+      data-test-id="price-bar"
     ></div>
   );
 }
@@ -261,7 +269,12 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
     normalizeToGranularity(datetime, granularity).getTime() ==
     normalizeToGranularity(new Date(), granularity).getTime()
   ) {
-    return <p className="min-w-[84px] text-sm"> {t(`country-panel.price-chart.now`)}</p>;
+    return (
+      <p className="min-w-[84px] text-sm" data-test-id="now-label">
+        {' '}
+        {t(`country-panel.price-chart.now`)}
+      </p>
+    );
   }
 
   const formatdate = formatDateTick(datetime, i18n.language, TimeAverages.HOURLY);
@@ -276,10 +289,34 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 function PriceDisclaimer() {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-row py-3 text-neutral-600 dark:text-gray-300">
+    <div
+      className="flex flex-row py-2 text-amber-700 dark:text-amber-500"
+      data-test-id="price-disclaimer"
+    >
       <Info size={16} />
       <p className="pl-1 text-xs font-semibold">
-        {t('country-panel.price-chart.disclaimer')}
+        {t('country-panel.price-chart.price-disclaimer')}
+      </p>
+    </div>
+  );
+}
+
+function TimeDisclaimer() {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  return (
+    <div
+      className="flex flex-row pb-3 text-neutral-600 dark:text-gray-300"
+      data-test-id="time-disclaimer"
+    >
+      <Clock3 size={16} />
+      <p className="pl-1 text-xs font-semibold">
+        {`${t('country-panel.price-chart.time-disclaimer')} ${
+          Intl.DateTimeFormat(
+            i18n.language,
+            getDateTimeFormatOptions(TimeAverages.HOURLY)
+          ).formatToParts(new Date())[12].value
+        }.`}
       </p>
     </div>
   );
