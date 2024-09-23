@@ -10,7 +10,16 @@ import { TimeAverages } from 'utils/constants';
 import { formatDateTick, getDateTimeFormatOptions } from 'utils/formatting';
 import { futurePriceCollapsed } from 'utils/state/atoms';
 
-import { convertPrice } from './bar-breakdown/utils';
+import {
+  calculatePriceBound,
+  dateIsFirstHourOfTomorrow,
+  filterPriceData,
+  getColor,
+  getGranularity,
+  getValueOfConvertPrice,
+  negativeToPostivePercentage,
+  normalizeToGranularity,
+} from './futurePriceUtils';
 
 export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
   const { t, i18n } = useTranslation();
@@ -24,19 +33,19 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   );
 
   const maxPriceTotal = useMemo(
-    () => calculatePrice(filteredPriceData, Math.max, granularity),
+    () => calculatePriceBound(filteredPriceData, Math.max, granularity),
     [filteredPriceData, granularity]
   );
   const minPriceTotal = useMemo(
-    () => calculatePrice(filteredPriceData, Math.min, granularity),
+    () => calculatePriceBound(filteredPriceData, Math.min, granularity),
     [filteredPriceData, granularity]
   );
   const maxPriceFuture = useMemo(
-    () => calculatePrice(filteredPriceData, Math.max, granularity, true),
+    () => calculatePriceBound(filteredPriceData, Math.max, granularity, true),
     [filteredPriceData, granularity]
   );
   const minPriceFuture = useMemo(
-    () => calculatePrice(filteredPriceData, Math.min, granularity, true),
+    () => calculatePriceBound(filteredPriceData, Math.min, granularity, true),
     [filteredPriceData, granularity]
   );
 
@@ -76,17 +85,13 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                     )}
                     <div className="flex flex-row justify-items-end gap-2">
                       <TimeDisplay date={date} granularity={granularity} />
-                      <p className="min-w-[64px] text-nowrap text-sm font-semibold tabular-nums">
-                        {`${getValueOfConvertPrice(price, futurePrice.currency)} ${t(
-                          `country-panel.price-chart.${futurePrice.currency}`
-                        )}`}
-                      </p>
-                      <div className="flex h-full w-full flex-row self-center ">
+                      <PriceDisplay price={price} currency={futurePrice.currency} t={t} />
+                      <div className="flex h-full w-full flex-row self-center">
                         {hasNegativePrice && (
                           <div
-                            className="flex flex-row justify-end "
+                            className="flex flex-row justify-end"
                             style={{
-                              width: `${hasNegativePrice ? negativePercentage : 0}%`,
+                              width: `${negativePercentage}%`,
                             }}
                             data-test-id="negative-price"
                           >
@@ -107,9 +112,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                         )}
                         <div
                           style={{
-                            width: `${
-                              hasNegativePrice ? 100 - negativePercentage : 100
-                            }%`,
+                            width: `${100 - negativePercentage}%`,
                           }}
                           data-test-id="positive-price"
                         >
@@ -140,10 +143,6 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   );
 }
 
-function negativeToPostivePercentage(minPrice: number, maxPrice: number): number {
-  return Math.round(Math.abs((minPrice / (maxPrice + Math.abs(minPrice))) * 100));
-}
-
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
     month: 'short',
@@ -160,59 +159,6 @@ function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i1
   );
 }
 
-const dateIsFirstHourOfTomorrow = (date: Date): boolean =>
-  date.getHours() === 0 && date.getMinutes() == 0 && date.getDay() != new Date().getDay();
-
-const filterPriceData = (
-  priceData: { [key: string]: number },
-  granularity: number
-): { [key: string]: number } =>
-  Object.fromEntries(
-    Object.entries(priceData).filter(([dateString]) => {
-      const date = new Date(dateString);
-      return date.getMinutes() % granularity === 0;
-    })
-  );
-
-const getGranularity = (priceData: { [key: string]: number | undefined }): number => {
-  const priceDataKeys = Object.keys(priceData);
-  return priceDataKeys.length > 1
-    ? (new Date(priceDataKeys[1]).getTime() - new Date(priceDataKeys[0]).getTime()) /
-        60_000
-    : 0;
-};
-
-const getValueOfConvertPrice = (price: number, currency: string): number | undefined => {
-  const { value } = convertPrice(price, currency);
-  return value;
-};
-
-const calculatePrice = (
-  priceData: { [key: string]: number },
-  callback: (...values: number[]) => number,
-  granularity: number,
-  isFuture: boolean = false
-) => {
-  if (!priceData) {
-    return 0;
-  }
-
-  const prices = Object.entries(priceData)
-    .filter(([dateString]) => {
-      if (!isFuture) {
-        return true;
-      }
-      const date = new Date(dateString);
-      return (
-        normalizeToGranularity(date, granularity) >=
-        normalizeToGranularity(new Date(), granularity)
-      );
-    })
-    .map(([_, price]: [string, number]) => price);
-
-  return callback(...prices);
-};
-
 export function PriceBars({
   price,
   maxPrice,
@@ -227,38 +173,27 @@ export function PriceBars({
       className={`h-3 rounded-full ${color}`}
       style={{ width: `${(price / maxPrice) * 100}%` }}
       data-test-id="price-bar"
-    ></div>
+    />
   );
 }
 
-const getColor = (
-  price: number,
-  maxPrice: number,
-  minPrice: number,
-  date: string,
-  granularity: number
-): string => {
-  if (price === maxPrice) {
-    return 'bg-danger dark:bg-red-400';
-  } else if (price === minPrice) {
-    return 'bg-success dark:bg-emerald-500';
-  } else if (
-    normalizeToGranularity(new Date(date), granularity) <
-    normalizeToGranularity(new Date(), granularity)
-  ) {
-    return 'bg-[#18214F] dark:bg-[#848EC0] opacity-50';
-  } else {
-    return 'bg-[#18214F] dark:bg-[#848EC0]';
-  }
-};
-
-const normalizeToGranularity = (date: Date, granularity: number) => {
-  const normalizedDate = new Date(date);
-  const minutes = normalizedDate.getMinutes();
-  const normalizedMinutes = Math.floor(minutes / granularity) * granularity;
-  normalizedDate.setMinutes(normalizedMinutes, 0, 0);
-  return normalizedDate;
-};
+function PriceDisplay({
+  price,
+  currency,
+  t,
+}: {
+  price: number;
+  currency: string;
+  t: TFunction;
+}) {
+  return (
+    <p className="min-w-[64px] text-nowrap text-sm font-semibold tabular-nums">
+      {`${getValueOfConvertPrice(price, currency)} ${t(
+        `country-panel.price-chart.${currency}`
+      )}`}
+    </p>
+  );
+}
 
 function TimeDisplay({ date, granularity }: { date: string; granularity: number }) {
   const { i18n } = useTranslation();
@@ -271,7 +206,6 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
   ) {
     return (
       <p className="min-w-[84px] text-sm" data-test-id="now-label">
-        {' '}
         {t(`country-panel.price-chart.now`)}
       </p>
     );
@@ -281,7 +215,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 
   return (
     <p className="min-w-[84px] text-nowrap text-sm tabular-nums">
-      {`${t(`country-panel.price-chart.at`)}  ${formatdate}`}
+      {`${t(`country-panel.price-chart.at`)} ${formatdate}`}
     </p>
   );
 }
@@ -289,15 +223,12 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 function PriceDisclaimer() {
   const { t } = useTranslation();
   return (
-    <div
+    <Disclaimer
+      testId="price-disclaimer"
+      Icon={<Info size={16} />}
+      text={t('country-panel.price-chart.price-disclaimer')}
       className="flex flex-row py-2 text-amber-700 dark:text-amber-500"
-      data-test-id="price-disclaimer"
-    >
-      <Info size={16} />
-      <p className="pl-1 text-xs font-semibold">
-        {t('country-panel.price-chart.price-disclaimer')}
-      </p>
-    </div>
+    />
   );
 }
 
@@ -305,19 +236,34 @@ function TimeDisclaimer() {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
   return (
-    <div
+    <Disclaimer
+      Icon={<Clock3 size={16} />}
+      text={`${t('country-panel.price-chart.time-disclaimer')} ${
+        Intl.DateTimeFormat(
+          i18n.language,
+          getDateTimeFormatOptions(TimeAverages.HOURLY)
+        ).formatToParts(new Date())[12].value
+      }.`}
       className="flex flex-row pb-3 text-neutral-600 dark:text-gray-300"
-      data-test-id="time-disclaimer"
-    >
-      <Clock3 size={16} />
-      <p className="pl-1 text-xs font-semibold">
-        {`${t('country-panel.price-chart.time-disclaimer')} ${
-          Intl.DateTimeFormat(
-            i18n.language,
-            getDateTimeFormatOptions(TimeAverages.HOURLY)
-          ).formatToParts(new Date())[12].value
-        }.`}
-      </p>
+    />
+  );
+}
+
+function Disclaimer({
+  className,
+  testId,
+  Icon,
+  text,
+}: {
+  className?: string;
+  testId?: string;
+  Icon: React.ReactNode;
+  text: string;
+}) {
+  return (
+    <div className={className} data-test-id={testId}>
+      {Icon}
+      <p className="pl-1 text-xs font-semibold">{text}</p>
     </div>
   );
 }
