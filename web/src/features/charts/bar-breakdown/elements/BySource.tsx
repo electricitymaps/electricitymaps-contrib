@@ -2,6 +2,7 @@ import EstimationBadge from 'components/EstimationBadge';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
@@ -65,7 +66,14 @@ export default function BySource({
         <div className="flex gap-1">
           <h2>{text}</h2>
         </div>
-        {hasEstimationPill && <EstimationBadge text={pillText} />}
+        {hasEstimationPill && (
+          <EstimationBadge
+            text={pillText}
+            Icon={
+              estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
+            }
+          />
+        )}
       </div>
       {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>

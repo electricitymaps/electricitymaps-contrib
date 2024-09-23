@@ -92,7 +92,7 @@ export default function BarElectricityExchangeChart({
       </svg>
       <div className="pb-2 pt-6">
         <div className="mb-1 text-xs font-medium text-neutral-600 dark:text-gray-300">
-          {t('legends.carbonintensity')} ({CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR})
+          {t('legends.carbonintensity')} ({CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR})
         </div>
         <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
       </div>

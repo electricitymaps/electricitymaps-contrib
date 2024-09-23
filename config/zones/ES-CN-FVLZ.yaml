@@ -6,6 +6,7 @@ bounding_box:
 contributors:
   - hectorespert
   - systemcatch
+  - silimotion
 emissionFactors:
   direct:
     battery discharge:
@@ -53,12 +54,27 @@ emissionFactors:
         source: Electricity Maps, 2021 average
         value: 749.5381775116632
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS, REE
+        value: 724.189
+      - datetime: '2018-01-01'
+        source: EU-ETS, REE
+        value: 722.096
+      - datetime: '2019-01-01'
+        source: EU-ETS, REE
+        value: 722.005
+      - datetime: '2020-01-01'
+        source: EU-ETS, REE
+        value: 709.958
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 880.903938
+        source: EU-ETS, REE
+        value: 701.966
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 925.95
+        source: EU-ETS, REE
+        value: 726.59
+      - datetime: '2023-01-01'
+        source: EU-ETS, REE
+        value: 699.295
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -115,12 +131,27 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
+      - datetime: '2017-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 968.189
+      - datetime: '2018-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 966.096
+      - datetime: '2019-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 966.005
+      - datetime: '2020-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 953.958
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 1124.903938
+        source: EU-ETS, REE; IPCC 2014
+        value: 945.966
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1169.95
+        source: EU-ETS, REE; IPCC 2014
+        value: 970.59
+      - datetime: '2023-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 943.295
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -196,6 +227,8 @@ parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
 sources:
+  EU-ETS, REE:
+    link: https://colab.research.google.com/github/silimotion/Emission_factors_research/blob/main/Spanish_non_peninsular_factors.ipynb
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:

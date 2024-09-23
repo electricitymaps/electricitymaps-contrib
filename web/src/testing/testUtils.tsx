@@ -1,5 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
+import { Provider, WritableAtom } from 'jotai';
+import { useHydrateAtoms } from 'jotai/utils';
 import type { PropsWithChildren, ReactElement } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -29,4 +31,22 @@ export default function renderWithProviders(
       </QueryClientProvider>
     ),
   });
+}
+
+export interface HydrateProps {
+  initialValues: (readonly [WritableAtom<any, any, any>, unknown])[];
+  children: React.ReactNode;
+}
+
+export const HydrateAtoms = ({ initialValues, children }: HydrateProps) => {
+  useHydrateAtoms(initialValues);
+  return children;
+};
+
+export function TestProvider({ initialValues, children }: HydrateProps) {
+  return (
+    <Provider>
+      <HydrateAtoms initialValues={initialValues}>{children}</HydrateAtoms>
+    </Provider>
+  );
 }

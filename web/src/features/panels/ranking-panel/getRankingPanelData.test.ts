@@ -29,7 +29,7 @@ describe('getRankedState', () => {
       () => 'color',
       'asc',
       'datetimeIndex',
-      'electricityMode',
+      true,
       'spatialAggregation'
     );
     expect(actual).toEqual([]);
@@ -48,7 +48,7 @@ describe('getRankedState', () => {
       () => 'color',
       'asc',
       'datetimeIndex',
-      'electricityMode',
+      true,
       'spatialAggregation'
     );
     expect(actual).toEqual([]);
@@ -60,7 +60,7 @@ describe('getRankedState', () => {
       () => 'color',
       'asc',
       'datetimeIndex',
-      'electricityMode',
+      true,
       'spatialAggregation'
     );
     expect(actual).toMatchSnapshot();
@@ -72,7 +72,7 @@ describe('getRankedState', () => {
       () => 'color',
       'desc',
       'datetimeIndex',
-      'electricityMode',
+      true,
       'spatialAggregation'
     );
     expect(actual).toMatchSnapshot();
