@@ -1,5 +1,6 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
+import getSymbolFromCurrency from 'currency-symbol-map';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
@@ -7,7 +8,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { formatDateTick, getDateTimeFormatOptions } from 'utils/formatting';
+import { getDateTimeFormatOptions } from 'utils/formatting';
 import { futurePriceCollapsed } from 'utils/state/atoms';
 
 import {
@@ -15,7 +16,6 @@ import {
   dateIsFirstHourOfTomorrow,
   filterPriceData,
   getGranularity,
-  getValueOfConvertPrice,
   negativeToPostivePercentage,
   normalizeToGranularity,
 } from './futurePriceUtils';
@@ -84,7 +84,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                     )}
                     <div className="flex flex-row justify-items-end gap-2">
                       <TimeDisplay date={date} granularity={granularity} />
-                      <PriceDisplay price={price} currency={futurePrice.currency} t={t} />
+                      <PriceDisplay price={price} currency={futurePrice.currency} />
                       <div className="flex h-full w-full flex-row self-center">
                         {hasNegativePrice && (
                           <div
@@ -142,6 +142,10 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   );
 }
 
+const isNow = (date: string, granularity: number): boolean =>
+  normalizeToGranularity(new Date(date), granularity).getTime() ==
+  normalizeToGranularity(new Date(), granularity).getTime();
+
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
     month: 'short',
@@ -175,20 +179,10 @@ export function PriceBar({
   );
 }
 
-function PriceDisplay({
-  price,
-  currency,
-  t,
-}: {
-  price: number;
-  currency: string;
-  t: TFunction;
-}) {
+function PriceDisplay({ price, currency }: { price: number; currency: string }) {
   return (
-    <p className="min-w-[64px] text-nowrap text-sm font-semibold tabular-nums">
-      {`${getValueOfConvertPrice(price, currency)} ${t(
-        `country-panel.price-chart.${currency}`
-      )}`}
+    <p className="min-w-[66px] text-nowrap text-sm font-semibold tabular-nums">
+      {`${price} ${getSymbolFromCurrency(currency)}`}
     </p>
   );
 }
@@ -198,22 +192,22 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
   const { t } = useTranslation();
   const datetime = new Date(date);
 
-  if (
-    normalizeToGranularity(datetime, granularity).getTime() ==
-    normalizeToGranularity(new Date(), granularity).getTime()
-  ) {
+  if (isNow(date, granularity)) {
     return (
-      <p className="min-w-[84px] text-sm" data-test-id="now-label">
+      <p className="min-w-[82px] text-sm" data-test-id="now-label">
         {t(`country-panel.price-chart.now`)}
       </p>
     );
   }
 
-  const formatdate = formatDateTick(datetime, i18n.language, TimeAverages.HOURLY);
+  const formattedDate = Intl.DateTimeFormat(i18n.language, {
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(datetime);
 
   return (
-    <p className="min-w-[84px] text-nowrap text-sm tabular-nums">
-      {`${t(`country-panel.price-chart.at`)} ${formatdate}`}
+    <p className="min-w-[82px] text-nowrap text-sm tabular-nums">
+      {`${t(`country-panel.price-chart.at`)} ${formattedDate}`}
     </p>
   );
 }
@@ -233,15 +227,14 @@ function PriceDisclaimer() {
 function TimeDisclaimer() {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
+  const date = Intl.DateTimeFormat(
+    i18n.language,
+    getDateTimeFormatOptions(TimeAverages.HOURLY)
+  ).formatToParts(new Date());
   return (
     <Disclaimer
       Icon={<Clock3 size={16} />}
-      text={`${t('country-panel.price-chart.time-disclaimer')} ${
-        Intl.DateTimeFormat(
-          i18n.language,
-          getDateTimeFormatOptions(TimeAverages.HOURLY)
-        ).formatToParts(new Date())[12].value
-      }.`}
+      text={`${t('country-panel.price-chart.time-disclaimer')} ${date.at(-1)?.value}.`}
       className="flex flex-row pb-3 text-neutral-600 dark:text-gray-300"
       testId="time-disclaimer"
     />

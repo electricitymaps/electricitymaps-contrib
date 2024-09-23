@@ -1,5 +1,3 @@
-import { convertPrice } from './bar-breakdown/utils';
-
 export const normalizeToGranularity = (date: Date, granularity: number) => {
   const normalizedDate = new Date(date);
   const minutes = normalizedDate.getMinutes();
@@ -30,14 +28,6 @@ export const getGranularity = (priceData: {
     ? (new Date(priceDataKeys[1]).getTime() - new Date(priceDataKeys[0]).getTime()) /
         60_000
     : 0;
-};
-
-export const getValueOfConvertPrice = (
-  price: number,
-  currency: string
-): number | undefined => {
-  const { value } = convertPrice(price, currency);
-  return value;
 };
 
 export const calculatePriceBound = (
