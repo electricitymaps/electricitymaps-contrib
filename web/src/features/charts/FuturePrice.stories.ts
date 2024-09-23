@@ -12,7 +12,7 @@ export default meta;
 
 type Story = StoryObj<typeof FuturePrice>;
 
-const positivePriceData = {
+const priceData = {
   entryCount: 24,
   priceData: {
     '2024-09-01 22:00:00+00:00': 25,
@@ -42,7 +42,7 @@ const positivePriceData = {
     '2024-09-02 22:00:00+00:00': 29,
     '2024-09-02 23:00:00+00:00': 16,
     '2024-09-03 00:00:00+00:00': 24,
-    '2024-09-04 01:00:00+00:00': 15,
+    '2024-09-03 01:00:00+00:00': 15,
   },
   currency: 'EUR',
   source: 'nordpool.com',
@@ -51,53 +51,37 @@ const positivePriceData = {
 
 export const PositivePrices: Story = {
   args: {
-    futurePrice: positivePriceData,
+    futurePrice: priceData,
   },
   parameters: {
     date: new Date('2024-09-02 01:00:00+00:00'),
   },
 };
 
-const negaticePriceData = {
-  entryCount: 28,
-  priceData: {
-    '2024-09-01 22:00:00+00:00': 25,
-    '2024-09-01 23:00:00+00:00': 15,
-    '2024-09-02 00:00:00+00:00': 12,
-    '2024-09-02 01:00:00+00:00': 28,
-    '2024-09-02 02:00:00+00:00': 21,
-    '2024-09-02 03:00:00+00:00': -5,
-    '2024-09-02 04:00:00+00:00': 19,
-    '2024-09-02 05:00:00+00:00': 24,
-    '2024-09-02 06:00:00+00:00': 27,
-    '2024-09-02 07:00:00+00:00': 22,
-    '2024-09-02 08:00:00+00:00': -8,
-    '2024-09-02 09:00:00+00:00': 29,
-    '2024-09-02 10:00:00+00:00': 18,
-    '2024-09-02 11:00:00+00:00': 20,
-    '2024-09-02 12:00:00+00:00': 26,
-    '2024-09-02 13:00:00+00:00': -3,
-    '2024-09-02 14:00:00+00:00': 23,
-    '2024-09-02 15:00:00+00:00': 30,
-    '2024-09-02 16:00:00+00:00': 17,
-    '2024-09-02 17:00:00+00:00': 11,
-    '2024-09-02 18:00:00+00:00': 22,
-    '2024-09-02 19:00:00+00:00': 13,
-    '2024-09-02 20:00:00+00:00': 28,
-    '2024-09-02 21:00:00+00:00': 19,
-    '2024-09-02 22:00:00+00:00': 29,
-    '2024-09-02 23:00:00+00:00': 16,
-    '2024-09-03 00:00:00+00:00': 24,
-    '2024-09-04 01:00:00+00:00': 15,
-  },
-  currency: 'EUR',
-  source: 'nordpool.com',
-  zoneKey: 'DE',
-};
+const negativePriceData = JSON.parse(JSON.stringify(priceData));
+
+negativePriceData.priceData['2024-09-02 03:00:00+00:00'] = -0.2;
+negativePriceData.priceData['2024-09-02 13:00:00+00:00'] = -0.9;
+negativePriceData.priceData['2024-09-02 08:00:00+00:00'] = -0.3;
 
 export const NegativePrices: Story = {
   args: {
-    futurePrice: negaticePriceData,
+    futurePrice: negativePriceData,
+  },
+  parameters: {
+    date: new Date('2024-09-02 01:00:00+00:00'),
+  },
+};
+
+const zeroPriceData = JSON.parse(JSON.stringify(priceData));
+
+zeroPriceData.priceData['2024-09-02 03:00:00+00:00'] = 0;
+zeroPriceData.priceData['2024-09-02 13:00:00+00:00'] = 0;
+zeroPriceData.priceData['2024-09-02 08:00:00+00:00'] = 3;
+
+export const ZeroPrices: Story = {
+  args: {
+    futurePrice: zeroPriceData,
   },
   parameters: {
     date: new Date('2024-09-02 01:00:00+00:00'),
