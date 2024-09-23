@@ -34,6 +34,10 @@
     "areas": "Areas",
     "about": "About"
   },
+  "app-banner": {
+    "cta": "Get the app",
+    "description": "Live electricity data"
+  },
   "onboarding-modal": {
     "view1": {
       "header": "Welcome to Electricity Maps",
