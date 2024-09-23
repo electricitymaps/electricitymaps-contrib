@@ -1,7 +1,7 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import { i18n, TFunction } from 'i18next';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +22,7 @@ import {
 
 export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
   const { t, i18n } = useTranslation();
-  const isCollapsed = useAtomValue(futurePriceCollapsed);
+  const [isCollapsed, setIsCollapsed] = useAtom(futurePriceCollapsed);
   const granularity = getGranularity(futurePrice?.priceData ?? {});
   const usedGranularity = 30;
 
@@ -58,7 +58,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   return (
     <div className="pt-2">
       <Accordion
-        isCollapsedDefault={isCollapsed}
+        isCollapsed={isCollapsed}
         title={t(`country-panel.price-chart.see`)}
         expandedTitle={t(`country-panel.price-chart.hide`)}
         className="text-success dark:text-emerald-500"
@@ -66,7 +66,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
         collapsedIcon={ChevronsDownUpIcon}
         iconClassName="text-success dark:text-emerald-500"
         iconSize={20}
-        isCollapsedAtom={futurePriceCollapsed}
+        setState={setIsCollapsed}
       >
         <div data-test-id="future-price">
           <PriceDisclaimer />
@@ -243,6 +243,7 @@ function TimeDisclaimer() {
         ).formatToParts(new Date())[12].value
       }.`}
       className="flex flex-row pb-3 text-neutral-600 dark:text-gray-300"
+      testId="time-disclaimer"
     />
   );
 }
