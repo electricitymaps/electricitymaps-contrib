@@ -16,6 +16,7 @@ import {
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
+import { zoneExists } from './zone/util';
 
 const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
@@ -48,16 +49,22 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   if (!zoneId) {
     return <Navigate to="/" replace />;
   }
+  const upperCaseZoneId = zoneId.toUpperCase();
+  if (zoneId !== upperCaseZoneId) {
+    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+  }
 
   // Handle legacy Australia zone names
-  if (zoneId.startsWith('AUS')) {
+  if (upperCaseZoneId.startsWith('AUS')) {
     return (
       <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
     );
   }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+
+  // Only allow valid zone ids
+  // TODO: This should redirect to a 404 page specifically for zones
+  if (!zoneExists(upperCaseZoneId)) {
+    return <Navigate to="/" replace />;
   }
 
   return children;
@@ -120,6 +127,7 @@ export default function LeftPanel() {
     <OuterPanel>
       <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
+        <Route path="/zone" element={<Navigate to="/" replace />} />
         <Route
           path="/zone/:zoneId"
           element={
