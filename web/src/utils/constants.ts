@@ -40,6 +40,8 @@ export enum LeftPanelToggleOptions {
 
 export enum TrackEvent {
   DATA_SOURCES_CLICKED = 'Data Sources Clicked',
+  APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
+  APP_BANNER_DISMISSED = 'App Banner Dismissed',
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
 }
 

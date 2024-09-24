@@ -4,6 +4,7 @@ import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
+import { AppStoreBanner } from 'components/AppStoreBanner';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
@@ -78,7 +79,8 @@ export default function App(): ReactElement {
         <meta property="og:locale" content={i18n.languages[0]} />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <main className="fixed flex h-screen w-screen flex-col">
+      <main className="fixed flex h-full w-full flex-col">
+        <AppStoreBanner />
         <ToastProvider duration={20_000}>
           <Suspense>
             <Header />
