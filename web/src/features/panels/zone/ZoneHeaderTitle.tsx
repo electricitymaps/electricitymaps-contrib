@@ -1,15 +1,20 @@
+import { Button } from 'components/Button';
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { ArrowLeft, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
-import { metaTitleSuffix } from 'utils/constants';
+import { ZoneKey } from 'types';
+import { ShareType, trackShare } from 'utils/analytics';
+import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
+import { selectedDatetimeStringAtom } from 'utils/state/atoms';
+import { useIsMobile } from 'utils/styling';
 
 import { getDisclaimer } from './util';
 
@@ -21,6 +26,18 @@ interface ZoneHeaderTitleProps {
 
 const MAX_TITLE_LENGTH = 25;
 
+function generateCurrentSelectedDatetimeUrl({
+  selectedDatetimeString,
+  zoneId,
+}: {
+  selectedDatetimeString: string;
+  zoneId: ZoneKey;
+}) {
+  const url =
+    baseUrl + (zoneId ? `/zone/${zoneId}` : '/map') + `?${selectedDatetimeString}`;
+  return url;
+}
+
 export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
@@ -31,15 +48,38 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
   const setIsMapMoving = useSetAtom(mapMovingAtom);
   const canonicalUrl = useGetCanonicalUrl();
-
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const onNavigateBack = () => setIsMapMoving(false);
+  const isMobile = useIsMobile();
 
+  const copyUrlToClipboard = async () => {
+    const url = generateCurrentSelectedDatetimeUrl({ selectedDatetimeString, zoneId });
+    trackShare(ShareType.ZONE);
+
+    if (isMobile && navigator.canShare({ url })) {
+      try {
+        await navigator.share({ title: 'Electricity Maps', text: 'TODO', url: url });
+      } catch (error) {
+        console.error('Failed to share URL:', error);
+      }
+    } else {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          alert('Copied to clipboard, TODO deploy the toast');
+        })
+        .catch((error) => {
+          console.error('Failed to copy URL:', error);
+        });
+    }
+  };
   return (
     <div className="flex w-full pl-2 pt-2">
       <Helmet prioritizeSeoTags>
         <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
+
       <Link
         className="self-center py-4 pr-4 text-xl"
         to={returnToMapLink}
@@ -74,6 +114,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
               <Info className="ml-auto shrink-0 text-gray-500" />
             </TooltipWrapper>
           )}
+          <Button onClick={copyUrlToClipboard}>Test</Button>
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
