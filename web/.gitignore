@@ -10,6 +10,7 @@ cypress/videos
 cypress/screenshots
 config
 public/client-version.json
+public/sitemap.xml
 storybook-static
 .swc
 
