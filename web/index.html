@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, viewport-fit=cover" />
     <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;" />
-    <title>Electricity Maps | Live 24/7 CO₂ emissions of electricity consumption</title>
     <meta name="description" content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
     <meta property="og:description" content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
     <meta property="og:image" content="https://app.electricitymaps.com/images/electricitymap_social_image.png" />
@@ -38,7 +37,6 @@
     <link rel="alternate" href="ios-app://1224594248/http/app.electricitymaps.com" />
 
     <!-- Language -->
-    <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="ar_AR" />
     <meta property="og:locale:alternate" content="cs_CZ" />
     <meta property="og:locale:alternate" content="da_DK" />
@@ -60,6 +58,7 @@
     <meta property="og:locale:alternate" content="no_NB" />
     <meta property="og:locale:alternate" content="pl_PL" />
     <meta property="og:locale:alternate" content="pt_BR" />
+    <meta property="og:locale:alternate" content="pt_PT" />
     <meta property="og:locale:alternate" content="ro_RO" />
     <meta property="og:locale:alternate" content="ru_RU" />
     <meta property="og:locale:alternate" content="sk_SK" />
@@ -91,6 +90,7 @@
     <link rel="alternate" href="https://app.electricitymaps.com?lang=no-NB" hreflang="no-NB" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=pl" hreflang="pl" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=pt-BR" hreflang="pt-BR" />
+    <link rel="alternate" href="https://app.electricitymaps.com?lang=pt-PT" hreflang="pt-PT" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=ro" hreflang="ro" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=ru" hreflang="ru" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=sk" hreflang="sk" />
@@ -100,9 +100,6 @@
     <link rel="alternate" href="https://app.electricitymaps.com?lang=zh-CN" hreflang="zh-CN" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=zh-HK" hreflang="zh-HK" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=zh-TW" hreflang="zh-TW" />
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://app.electricitymaps.com" />
 
     <!-- Pre-connect to backend to improve performance -->
     <link rel="preconnect" href="https://app-backend.electricitymaps.com/" />
@@ -140,15 +137,6 @@
       } else {
         document.documentElement.classList.remove('dark');
       }
-      // Init Mouseflow tracking
-      window._mfq = window._mfq || [];
-      (function () {
-        var mf = document.createElement('script');
-        mf.type = 'text/javascript';
-        mf.defer = true;
-        mf.src = '//cdn.mouseflow.com/projects/8964f228-0fea-41ca-a8a6-dc23a38dc526.js';
-        document.getElementsByTagName('head')[0].appendChild(mf);
-      })();
     </script>
     <script type="module" src="/src/main.tsx"></script>
   </head>

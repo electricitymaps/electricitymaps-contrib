@@ -1,14 +1,9 @@
 import { GfsForecastResponse, useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import useResizeObserver from 'use-resize-observer';
-import { ToggleOptions } from 'utils/constants';
-import {
-  selectedDatetimeIndexAtom,
-  windLayerAtom,
-  windLayerLoadingAtom,
-} from 'utils/state/atoms';
+import { isWindLayerEnabledAtom, windLayerLoadingAtom } from 'utils/state/atoms';
 
 import { Windy } from './windy';
 
@@ -48,11 +43,8 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
     };
   }, [map, width, height]);
 
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [windLayerToggle] = useAtom(windLayerAtom);
   const setIsLoadingWindLayer = useSetAtom(windLayerLoadingAtom);
-  const isWindLayerEnabled =
-    windLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
+  const isWindLayerEnabled = useAtomValue(isWindLayerEnabledAtom);
   const { data: windData, isSuccess } = useGetWind({ enabled: isWindLayerEnabled });
   const isVisible = isSuccess && !isMapMoving && isWindLayerEnabled;
 
@@ -75,14 +67,23 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
       windy.stop();
       setWindy(null);
     }
-  }, [isVisible, isSuccess, reference.current, windy]);
+  }, [
+    isVisible,
+    isSuccess,
+    windy,
+    map,
+    isWindLayerEnabled,
+    windData,
+    setIsLoadingWindLayer,
+    viewport,
+  ]);
 
   useEffect(() => {
     if (windy) {
       const { bounds, width, height } = viewport;
       windy.start(bounds, width, height);
     }
-  }, [viewport]);
+  }, [viewport, windy]);
 
   return (
     <canvas

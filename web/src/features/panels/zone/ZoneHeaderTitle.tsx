@@ -1,9 +1,14 @@
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
-import { HiArrowLeft } from 'react-icons/hi2';
+import { mapMovingAtom } from 'features/map/mapAtoms';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { useSetAtom } from 'jotai';
+import { ArrowLeft, Info } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
+import { metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
 
 import { getDisclaimer } from './util';
@@ -24,50 +29,51 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
   const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
+  const setIsMapMoving = useSetAtom(mapMovingAtom);
+  const canonicalUrl = useGetCanonicalUrl();
+
+  const onNavigateBack = () => setIsMapMoving(false);
 
   return (
-    <div className="flex w-full grow flex-row overflow-hidden pb-2 pl-2">
+    <div className="flex w-full pl-2 pt-2">
+      <Helmet prioritizeSeoTags>
+        <title>{zoneName + metaTitleSuffix}</title>
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
       <Link
-        className="text-3xl self-center py-4 pr-4"
+        className="self-center py-4 pr-4 text-xl"
         to={returnToMapLink}
         data-test-id="left-panel-back-button"
+        onClick={onNavigateBack}
       >
-        <HiArrowLeft />
+        <ArrowLeft />
       </Link>
 
       <div className="w-full overflow-hidden">
-        <div className="flex w-full  flex-row justify-between">
-          <div className="mb-0.5 flex  w-full  justify-between">
-            <div className="flex w-full flex-row items-center pr-4 sm:pr-0 ">
-              <CountryFlag
-                zoneId={zoneId}
-                size={18}
-                className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
-              />
-              <TooltipWrapper
-                tooltipContent={showTooltip ? zoneNameFull : undefined}
-                side="bottom"
-              >
-                <div className="ml-2 flex w-full flex-row overflow-hidden">
-                  <h2 className="truncate text-lg font-medium" data-test-id="zone-name">
-                    {zoneName}
-                  </h2>
-                  {showCountryPill && (
-                    <div className="ml-2 flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5  text-sm dark:bg-gray-800/80">
-                      <p className="w-full truncate">{countryName ?? zoneId}</p>
-                    </div>
-                  )}
-                </div>
-              </TooltipWrapper>
-              {disclaimer && (
-                <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-                  <div className="ml-2 mr-4 h-6 w-6 shrink-0 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900">
-                    <p>i</p>
-                  </div>
-                </TooltipWrapper>
-              )}
+        <div className="flex w-full items-center gap-2 pr-4 ">
+          <CountryFlag
+            zoneId={zoneId}
+            size={18}
+            className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+          />
+          <TooltipWrapper
+            tooltipContent={showTooltip ? zoneNameFull : undefined}
+            side="bottom"
+          >
+            <h1 className="truncate" data-test-id="zone-name">
+              {zoneName}
+            </h1>
+          </TooltipWrapper>
+          {showCountryPill && (
+            <div className="flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5 text-sm dark:bg-gray-800/80">
+              <p className="w-full truncate">{countryName ?? zoneId}</p>
             </div>
-          </div>
+          )}
+          {disclaimer && (
+            <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
+              <Info className="ml-auto shrink-0 text-gray-500" />
+            </TooltipWrapper>
+          )}
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>

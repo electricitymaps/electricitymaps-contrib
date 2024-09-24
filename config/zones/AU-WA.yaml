@@ -45,6 +45,9 @@ contributors:
   - jarek
   - corradio
   - MariusKroon
+country: AU
+delays:
+  production: 28
 disclaimer: Western Australia's power grid is not connected to the (Australian) National
   Electricity Market or the Northern Territory grid.
 emissionFactors:
@@ -249,4 +252,5 @@ parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENNEM.fetch_production_capacity
+region: Oceania
 timezone: Australia/Perth

@@ -55,12 +55,18 @@ capacity:
       source: Climatescope
       value: 5414
   nuclear:
-    - datetime: '2022-01-01'
-      source: Climatescope
-      value: 1390
-    - datetime: '2023-01-01'
-      source: Climatescope
-      value: 2780
+    - datetime: '2020-08-19'
+      source: IAEA PRIS
+      value: 1310
+    - datetime: '2021-09-14'
+      source: IAEA PRIS
+      value: 2620
+    - datetime: '2022-10-08'
+      source: IAEA PRIS
+      value: 3930
+    - datetime: '2024-03-24'
+      source: IAEA PRIS
+      value: 5240
   oil:
     - datetime: '2016-01-01'
       source: Climatescope
@@ -74,9 +80,14 @@ capacity:
 contributors:
   - q--
   - florianscheidl
+  - MisterClean
 parsers:
   consumption: GCCIA.fetch_consumption
 sources:
   Climatescope:
     link: https://www.global-climatescope.org/markets/ae/
+  IAEA PRIS:
+    link: https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=AE
 timezone: Asia/Dubai
+region: Asia
+country: AE

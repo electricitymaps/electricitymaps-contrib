@@ -16,6 +16,9 @@ capacity:
 contributors:
   - tmslaine
   - lorrieq
+country: JP
+delays:
+  production: 5
 emissionFactors:
   direct:
     battery discharge:
@@ -159,4 +162,5 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
+region: Asia
 timezone: Asia/Tokyo

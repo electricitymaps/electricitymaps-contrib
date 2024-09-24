@@ -70,6 +70,8 @@ export function getBasePath() {
 
 export function cacheBuster(): string {
   const currentDate = new Date();
+  const minutes = currentDate.getMinutes();
+  currentDate.setMinutes(minutes - (minutes % 5));
   currentDate.setSeconds(0);
   currentDate.setMilliseconds(0);
 
@@ -79,5 +81,5 @@ export function cacheBuster(): string {
 export const QUERY_KEYS = {
   STATE: 'state',
   ZONE: 'zone',
-  FEATURE_FLAGS: 'feature-flags',
+  META: 'meta',
 };

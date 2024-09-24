@@ -47,8 +47,8 @@ function AreaGraphLayers({
   let mouseOutTimeout: string | number | NodeJS.Timeout | undefined;
   const handleLayerMouseMove = (
     event_:
-      | React.MouseEvent<SVGPathElement, MouseEvent>
-      | React.FocusEvent<SVGPathElement, Element>,
+      | React.MouseEvent<SVGRectElement, MouseEvent>
+      | React.MouseEvent<SVGPathElement, MouseEvent>,
     layerIndex: number
   ) => {
     if (mouseOutTimeout) {
@@ -110,7 +110,6 @@ function AreaGraphLayers({
               d={layerArea(datapoints) || undefined}
               /* Support only click events in mobile mode, otherwise react to mouse hovers */
               onClick={isMobile ? (event_) => handleLayerMouseMove(event_, ind) : noop}
-              onFocus={isMobile ? noop : (event_) => handleLayerMouseMove(event_, ind)}
               onMouseOver={
                 isMobile ? noop : (event_) => handleLayerMouseMove(event_, ind)
               }

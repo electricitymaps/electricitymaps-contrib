@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider } from 'jotai';
-import { useHydrateAtoms } from 'jotai/utils';
 import { BrowserRouter } from 'react-router-dom';
+import { TestProvider } from 'testing/testUtils';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
 import Map from './Map';
@@ -122,18 +121,6 @@ const zonesSnapshot: ZonesSnapshot = {
     layout: {},
   },
 };
-const HydrateAtoms = ({ initialValues, children }: any) => {
-  useHydrateAtoms(initialValues);
-  return children;
-};
-
-function TestProvider({ initialValues, children }: any) {
-  return (
-    <Provider>
-      <HydrateAtoms initialValues={initialValues}>{children}</HydrateAtoms>
-    </Provider>
-  );
-}
 
 const handleMapLoad = (map: any) => {
   const features = map.queryRenderedFeatures({ layers: ['zones-clickable-layer'] });
@@ -152,16 +139,13 @@ describe('Map Component', () => {
   it('should display loading state initially', () => {
     const queryClient = new QueryClient();
 
-    cy.intercept('v8/state/hourly', { fixture: 'v8/state/hourly' });
-    cy.intercept('v8/state/last_hour', { fixture: 'v8/state/last_hour' });
-
     cy.mount(
       <TestProvider
         initialValues={[
           [
             selectedDatetimeIndexAtom,
             {
-              datetimeString: '2022-12-05T08:00:00Z',
+              datetime: new Date('2022-12-05T08:00:00+00:00'),
               index: 0,
             },
           ],

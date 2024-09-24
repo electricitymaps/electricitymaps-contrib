@@ -16,6 +16,7 @@ contributors:
   - corradio
   - igorarduin
   - kruschk
+  - amv213
 emissionFactors:
   direct:
     battery discharge:
@@ -185,3 +186,5 @@ sources:
   Guatemala AMM 2021-2022:
     link: https://www.amm.org.gt/portal
 timezone: America/Guatemala
+region: Americas
+country: GT
