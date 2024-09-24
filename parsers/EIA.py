@@ -681,9 +681,10 @@ def _fetch(
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
     else:
-        end = datetime.now(tz=tz.gettz("UTC")).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
+        end = datetime.now(tz=tz.gettz("UTC")).replace(
+            minute=0, second=0, microsecond=0
+        ) + timedelta(hours=1)
         start = end - timedelta(hours=72)
-
 
     eia_ts_format = "%Y-%m-%dT%H"
     url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
