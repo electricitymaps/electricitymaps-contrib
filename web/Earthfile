@@ -19,6 +19,7 @@ prepare:
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.ts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
   COPY scripts/register-tsNodeESM.js ./scripts/register-tsNodeESM.js
+  COPY scripts/generateSitemap.js ./scripts/generateSitemap.js
   COPY --dir geo public src ./
 
 test:
