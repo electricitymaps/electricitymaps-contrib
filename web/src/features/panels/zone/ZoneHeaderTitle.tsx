@@ -13,7 +13,7 @@ import { ZoneKey } from 'types';
 import { ShareType, trackShare } from 'utils/analytics';
 import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
-import { selectedDatetimeStringAtom } from 'utils/state/atoms';
+import { isHourlyAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
 import { getDisclaimer } from './util';
@@ -50,6 +50,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const canonicalUrl = useGetCanonicalUrl();
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const onNavigateBack = () => setIsMapMoving(false);
+  const isHourly = useAtomValue(isHourlyAtom);
   const isMobile = useIsMobile();
 
   const copyUrlToClipboard = async () => {
@@ -114,7 +115,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
               <Info className="ml-auto shrink-0 text-gray-500" />
             </TooltipWrapper>
           )}
-          <Button onClick={copyUrlToClipboard}>Test</Button>
+          {isHourly && <Button onClick={copyUrlToClipboard}>Test</Button>}
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
