@@ -354,7 +354,6 @@
     "system": "System"
   },
   "updatePrompt": {
-    "title": "A new version is available",
     "description": "A new version is available",
     "update": "Reload",
     "dismiss": "Dismiss"

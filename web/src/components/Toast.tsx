@@ -79,7 +79,7 @@ export function Toast({
         duration={duration}
         type="background"
         className={twMerge(
-          'fixed left-1/2 top-16 z-50 inline-block flex w-max min-w-80 max-w-full -translate-x-1/2 transform rounded-lg shadow',
+          'fixed left-1/2 top-16 z-50 inline-block flex w-11/12 min-w-96 max-w-full -translate-x-1/2 transform rounded-lg shadow xs:w-max',
           'border border-solid border-neutral-50 bg-neutral-50 dark:border-gray-700 dark:bg-gray-700 dark:bg-gray-900',
           "before:content[''] before:absolute before:block before:h-full before:w-1 before:rounded-bl-md before:rounded-tl-md",
           color,
@@ -88,9 +88,7 @@ export function Toast({
       >
         <div className="flex w-full items-center p-2">
           <div className="flex items-center gap-2 px-2">
-            <div className={color}>
-              <Icon size={16} data-testid="toast-icon" />
-            </div>
+            <Icon size={16} className={color} data-testid="toast-icon" />
             <div className="flex flex-col">
               {title && (
                 <ToastPrimitive.Title className="text-md font-bold">
