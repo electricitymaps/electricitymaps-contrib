@@ -8,9 +8,9 @@ import { ArrowLeft, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
-import { metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
 
+import { ShareButton } from './ShareButton';
 import { getDisclaimer } from './util';
 
 interface ZoneHeaderTitleProps {
@@ -37,7 +37,6 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   return (
     <div className="flex w-full pl-2 pt-2">
       <Helmet prioritizeSeoTags>
-        <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
       <Link
@@ -50,7 +49,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
       </Link>
 
       <div className="w-full overflow-hidden">
-        <div className="flex w-full items-center gap-2 pr-4 ">
+        <div className="flex w-full items-center gap-2 pr-2 md:pr-4">
           <CountryFlag
             zoneId={zoneId}
             size={18}
@@ -71,11 +70,14 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
           )}
           {disclaimer && (
             <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-              <Info className="ml-auto shrink-0 text-gray-500" />
+              <Info className="text-gray-500" />
             </TooltipWrapper>
           )}
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
+      </div>
+      <div className="ml-auto self-center px-3">
+        <ShareButton />
       </div>
     </div>
   );

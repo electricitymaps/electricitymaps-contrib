@@ -1,6 +1,6 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import { CircleCheck, Info, OctagonX, TriangleAlert, X } from 'lucide-react';
-import { useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
@@ -46,18 +46,34 @@ export const ToastTypeTheme = {
   },
 };
 
-export function Toast({
-  title,
-  description,
-  toastAction,
-  toastActionText,
-  toastClose,
-  toastCloseText,
-  duration,
-  type = ToastType.INFO,
-}: ToastProps) {
+export interface ToastController {
+  publish(): void;
+  close(): void;
+}
+
+export const useToastReference = () => useRef<ToastController>(null);
+
+export const Toast = forwardRef<ToastController, ToastProps>(function Toast(
+  {
+    title,
+    description,
+    toastAction,
+    toastActionText,
+    toastClose,
+    toastCloseText,
+    duration,
+    type = ToastType.INFO,
+  }: ToastProps,
+  forwardedReference
+) {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useImperativeHandle(forwardedReference, () => ({
+    publish: () => setOpen(true),
+    close: () => setOpen(false),
+  }));
+
   const handleToastAction = () => {
     toastAction?.();
     setOpen(false);
@@ -128,4 +144,4 @@ export function Toast({
       <ToastPrimitive.Viewport />
     </>
   );
-}
+});
