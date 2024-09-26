@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { getDateTimeFormatOptions } from 'utils/formatting';
-import { futurePriceCollapsed } from 'utils/state/atoms';
+import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
 import {
   calculatePriceBound,
@@ -22,7 +22,7 @@ import {
 
 export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
   const { t, i18n } = useTranslation();
-  const [isCollapsed, setIsCollapsed] = useAtom(futurePriceCollapsed);
+  const [isCollapsed, setIsCollapsed] = useAtom(futurePriceCollapsedAtom);
   const granularity = getGranularity(futurePrice?.priceData ?? {});
   const usedGranularity = 30;
 
