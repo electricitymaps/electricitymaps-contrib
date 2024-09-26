@@ -79,7 +79,7 @@ export function Toast({
         duration={duration}
         type="background"
         className={twMerge(
-          'fixed left-1/2 top-16 z-50 flex w-11/12 max-w-full -translate-x-1/2 transform rounded-lg shadow xs:w-max xs:min-w-96',
+          'fixed left-1/2 top-16 z-50 flex w-11/12 max-w-md -translate-x-1/2 transform rounded-lg shadow',
           'border border-solid border-neutral-50 bg-white/80 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-900',
           "before:content[''] before:absolute before:block before:h-full before:w-1 before:rounded-bl-md before:rounded-tl-md",
           color,
@@ -96,7 +96,7 @@ export function Toast({
                 </ToastPrimitive.Title>
               )}
               {description && (
-                <ToastPrimitive.Description className="text-sm font-semibold">
+                <ToastPrimitive.Description className="line-clamp-2 text-sm font-semibold">
                   {description}
                 </ToastPrimitive.Description>
               )}
