@@ -43,6 +43,7 @@ export enum TrackEvent {
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
   APP_BANNER_DISMISSED = 'App Banner Dismissed',
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
+  FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
 }
 
 // color of different production modes are based on various industry standards
