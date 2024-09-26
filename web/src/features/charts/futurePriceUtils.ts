@@ -10,18 +10,25 @@ export const dateIsFirstHourOfTomorrow = (date: Date): boolean =>
   date.getHours() === 0 && date.getMinutes() == 0 && date.getDay() != new Date().getDay();
 
 export const filterPriceData = (
-  priceData: { [key: string]: number },
+  priceData: { [key: string]: number } | undefined,
   granularity: number
-): { [key: string]: number } =>
-  Object.fromEntries(
+): { [key: string]: number } => {
+  if (!priceData) {
+    return {};
+  }
+  return Object.fromEntries(
     Object.entries(priceData).filter(
       ([dateString]) => new Date(dateString).getMinutes() % granularity === 0
     )
   );
+};
 
-export const getGranularity = (priceData: {
-  [key: string]: number | undefined;
-}): number => {
+export const getGranularity = (
+  priceData: { [key: string]: number } | undefined
+): number => {
+  if (!priceData) {
+    return 0;
+  }
   const priceDataKeys = Object.keys(priceData);
   return priceDataKeys.length > 1
     ? (new Date(priceDataKeys[1]).getTime() - new Date(priceDataKeys[0]).getTime()) /

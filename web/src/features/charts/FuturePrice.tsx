@@ -23,13 +23,10 @@ import {
 export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
   const { t, i18n } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useAtom(futurePriceCollapsedAtom);
-  const granularity = getGranularity(futurePrice?.priceData ?? {});
+  const granularity = getGranularity(futurePrice?.priceData);
   const usedGranularity = 30;
 
-  const filteredPriceData = filterPriceData(
-    futurePrice?.priceData ?? {},
-    usedGranularity
-  );
+  const filteredPriceData = filterPriceData(futurePrice?.priceData, usedGranularity);
 
   const maxPriceTotal = useMemo(
     () => calculatePriceBound(filteredPriceData, Math.max, granularity),
