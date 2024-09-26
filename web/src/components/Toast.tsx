@@ -79,8 +79,8 @@ export function Toast({
         duration={duration}
         type="background"
         className={twMerge(
-          'fixed left-1/2 top-16 z-50 inline-block flex w-11/12 min-w-96 max-w-full -translate-x-1/2 transform rounded-lg shadow xs:w-max',
-          'border border-solid border-neutral-50 bg-white/80 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-700 dark:bg-gray-900',
+          'fixed left-1/2 top-16 z-50 flex w-11/12 max-w-full -translate-x-1/2 transform rounded-lg shadow xs:w-max xs:min-w-96',
+          'border border-solid border-neutral-50 bg-white/80 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-900',
           "before:content[''] before:absolute before:block before:h-full before:w-1 before:rounded-bl-md before:rounded-tl-md",
           color,
           toastAction ? 'h-[52px]' : 'h-11'
