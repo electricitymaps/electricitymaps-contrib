@@ -148,15 +148,12 @@ const isNow = (date: string, granularity: number): boolean =>
 
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
-    month: 'short',
-    year: 'numeric',
-    day: 'numeric',
-  }).formatToParts(new Date(date));
+    dateStyle: 'medium',
+  }).format(new Date(date));
+
   return (
     <p className="py-1 font-semibold">
-      {`${t('country-panel.price-chart.tomorrow')}, ${formattedDate[0].value} ${
-        formattedDate[2].value
-      } ${formattedDate[4].value}`}
+      {`${t('country-panel.price-chart.tomorrow')}, ${formattedDate}`}
     </p>
   );
 }
