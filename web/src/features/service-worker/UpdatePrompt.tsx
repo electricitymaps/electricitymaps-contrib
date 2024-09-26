@@ -1,5 +1,5 @@
 import { ONE_HOUR } from 'api/helpers';
-import Toast from 'components/Toast';
+import { Toast } from 'components/Toast';
 import { useTranslation } from 'react-i18next';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 
@@ -31,7 +31,6 @@ function UpdatePrompt() {
   return (
     needRefresh && (
       <Toast
-        title={t('updatePrompt.title')}
         description={t('updatePrompt.description')}
         toastAction={update}
         isCloseable={true}

@@ -79,7 +79,6 @@
     "selectLanguage": "Wybierz język"
   },
   "updatePrompt": {
-    "title": "Dostępna aktualizacja",
     "description": "Dostępna jest nowa wersja aplikacji, zaktualizować teraz?",
     "update": "Aktualizuj",
     "dismiss": "Odrzuć"

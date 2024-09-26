@@ -346,7 +346,6 @@
     "system": "System"
   },
   "updatePrompt": {
-    "title": "Uppdatering tillgänglig",
     "description": "En ny version av appen är tillgänglig, uppdatera nu?",
     "update": "Uppdatera",
     "dismiss": "Avvisa"

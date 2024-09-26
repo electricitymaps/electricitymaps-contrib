@@ -113,7 +113,6 @@
     "zone": "območje"
   },
   "updatePrompt": {
-    "title": "Posodobitev na voljo",
     "description": "Na voljo je nova različica aplikacije, želite zdaj posodobiti?",
     "update": "Posodobi",
     "dismiss": "Zavrni"
