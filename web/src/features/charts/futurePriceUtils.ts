@@ -49,7 +49,7 @@ export const calculatePriceBound = (
         normalizeToGranularity(new Date(), granularity)
       );
     })
-    .map(([_, price]: [string, number]) => price);
+    .map(([, price]: [string, number]) => price);
 
   return boundFunction(...prices);
 };
