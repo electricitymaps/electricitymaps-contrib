@@ -50,7 +50,6 @@
     "selectLanguage": "Selecteer taal"
   },
   "updatePrompt": {
-    "title": "Update beschikbaar",
     "description": "Er is een nieuwe versie van de app beschikbaar, nu updaten?",
     "update": "Bijwerken",
     "dismiss": "Negeren"

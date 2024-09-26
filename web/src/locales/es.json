@@ -175,7 +175,6 @@
     "dataIsDelayed": "Datos con retraso"
   },
   "updatePrompt": {
-    "title": "Actualización disponible",
     "description": "Una nueva versión de la aplicación está disponible, ¿actualizar ahora?",
     "update": "Actualizar",
     "dismiss": "Descartar"

@@ -347,7 +347,6 @@
     "system": "Système"
   },
   "updatePrompt": {
-    "title": "Mise à jour disponible",
     "description": "Une nouvelle version de l'application est disponible, mettre à jour maintenant ?",
     "update": "Mettre à jour",
     "dismiss": "Ignorer"
