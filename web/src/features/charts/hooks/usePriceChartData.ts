@@ -56,6 +56,8 @@ export function usePriceChartData() {
     });
   }
 
+  const futurePrice = zoneData.futurePrice;
+
   const currencySymbol: string = getSymbolFromCurrency(currency?.toUpperCase());
   const valueAxisLabel = `${currencySymbol || '?'} / ${unit}`;
 
@@ -71,6 +73,7 @@ export function usePriceChartData() {
     valueAxisLabel,
     layerStroke: undefined,
     priceDisabledReason,
+    futurePrice,
   };
 
   return { data: result, isLoading, isError };

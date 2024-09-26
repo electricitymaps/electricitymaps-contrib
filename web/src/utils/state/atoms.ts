@@ -81,3 +81,5 @@ export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
   'rankingPanelAccordionCollapsed',
   false
 );
+
+export const futurePriceCollapsedAtom = atom<boolean>(true);
