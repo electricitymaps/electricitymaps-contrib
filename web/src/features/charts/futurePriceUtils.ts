@@ -14,10 +14,8 @@ export const filterPriceData = (
   granularity: number
 ): { [key: string]: number } =>
   Object.fromEntries(
-    Object.entries(priceData).filter(([dateString]) => {
-      const date = new Date(dateString);
-      return date.getMinutes() % granularity === 0;
-    })
+    Object.entries(priceData).filter(([dateString]) =>
+      new Date(dateString).getMinutes() % granularity === 0)
   );
 
 export const getGranularity = (priceData: {
