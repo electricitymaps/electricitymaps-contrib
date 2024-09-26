@@ -7,7 +7,8 @@ import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-rea
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
-import { TimeAverages } from 'utils/constants';
+import trackEvent from 'utils/analytics';
+import { TimeAverages, TrackEvent } from 'utils/constants';
 import { getDateTimeFormatOptions } from 'utils/formatting';
 import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
@@ -64,6 +65,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
         iconClassName="text-success dark:text-emerald-500"
         iconSize={20}
         setState={setIsCollapsed}
+        onOpen={() => trackEvent(TrackEvent.FUTURE_PRICE_EXPANDED)}
       >
         <div data-test-id="future-price">
           <PriceDisclaimer />
