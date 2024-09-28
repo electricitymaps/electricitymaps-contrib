@@ -15,6 +15,6 @@ export const useGetCanonicalUrl = () => {
 
   const currentLanguageKey = i18n.languages[0];
   return `${baseUrl}${pathname ?? '/map'}${
-    currentLanguageKey === 'en' ? '' : `?lang=${currentLanguageKey}`
+    currentLanguageKey.startsWith('en') ? '' : `?lang=${currentLanguageKey}`
   }`;
 };
