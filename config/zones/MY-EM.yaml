@@ -3,5 +3,6 @@ aggregates_displayed:
 country: MY
 contributors:
   - FelixDQ
+estimation_method: CONSTRUCT_BREAKDOWN
 region: Asia
 timezone: Asia/Kuala_Lumpur
