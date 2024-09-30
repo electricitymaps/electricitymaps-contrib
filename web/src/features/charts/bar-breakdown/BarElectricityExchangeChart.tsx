@@ -1,4 +1,3 @@
-import { CountryFlag } from 'components/Flag';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
@@ -69,11 +68,8 @@ export default function BarElectricityExchangeChart({
               onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={false}
+              isExchange={true}
             >
-              <g transform={`translate(-2, 0)`}>
-                <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
-              </g>
-
               <HorizontalBar
                 className="text-black/10 dark:text-white/10"
                 fill="currentColor"

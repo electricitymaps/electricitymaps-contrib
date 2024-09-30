@@ -1,6 +1,10 @@
+import { CountryFlag } from 'components/Flag';
 import { ScaleLinear } from 'd3-scale';
+import ProductionSourceLegend from 'features/charts/ProductionSourceLegend';
 import { MouseEventHandler } from 'react';
-import type { Maybe } from 'types';
+import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router-dom';
+import type { ElectricityModeType, Maybe } from 'types';
 
 import {
   ICON_PLUS_PADDING,
@@ -20,6 +24,7 @@ type Props = {
   onMouseOver?: MouseEventHandler<SVGRectElement>;
   onMouseOut?: () => void;
   width: number;
+  isExchange: boolean;
 };
 
 export default function Row({
@@ -32,17 +37,34 @@ export default function Row({
   onMouseOver,
   onMouseOut,
   width,
+  isExchange,
 }: Props) {
+  const { search } = useLocation();
+  const { t } = useTranslation();
   // Don't render if the width is not positive
   if (width <= 0) {
     return null;
   }
+  const textElement = (
+    <text
+      className="text-xs"
+      textAnchor="start"
+      fill="currentColor"
+      transform={`translate(${ICON_PLUS_PADDING}, ${TEXT_ADJUST_Y})`}
+    >
+      {isExchange ? label : t(label)}
+    </text>
+  );
+  const iconElement = isExchange ? (
+    <CountryFlag zoneId={label} />
+  ) : (
+    <ProductionSourceLegend electricityType={label as ElectricityModeType} />
+  );
 
   return (
     <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
       {/* Row background */}
       <rect
-        y="-1"
         fill="transparent"
         width={width}
         height={ROW_HEIGHT + PADDING_Y}
@@ -55,14 +77,17 @@ export default function Row({
       />
 
       {/* Row label */}
-      <text
-        className="pointer-events-none text-xs"
-        textAnchor="start"
-        fill="currentColor"
-        transform={`translate(${ICON_PLUS_PADDING}, ${TEXT_ADJUST_Y})`}
-      >
-        {label}
-      </text>
+      {isExchange ? (
+        <Link to={`/zone/${label}${search}`}>
+          {textElement}
+          {iconElement}
+        </Link>
+      ) : (
+        <g className="pointer-events-none">
+          {textElement}
+          {iconElement}
+        </g>
+      )}
 
       {/* Row content */}
       {children}

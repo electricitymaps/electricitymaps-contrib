@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
-import ProductionSourceLegend from '../ProductionSourceLegend';
 import { AXIS_LEGEND_PADDING } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
@@ -51,15 +50,15 @@ export function BarElectricityProductionChart({
           <Row
             key={d.mode}
             index={index}
-            label={t(d.mode)}
+            label={d.mode}
             width={width}
             scale={powerScale}
             value={getElectricityProductionValue(d)}
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
+            isExchange={false}
           >
-            <ProductionSourceLegend electricityType={d.mode} />
             <HorizontalBar
               className="text-black/10 dark:text-white/10"
               fill="currentColor"
