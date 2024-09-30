@@ -1,6 +1,7 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import getSymbolFromCurrency from 'currency-symbol-map';
+import { last } from 'cypress/types/lodash';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
@@ -46,7 +47,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     [filteredPriceData, granularity]
   );
 
-  if (!futurePrice) {
+  if (!futurePrice || !isFuturePrice(futurePrice)) {
     return null;
   }
 
@@ -140,10 +141,6 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     </div>
   );
 }
-
-const isNow = (date: string, granularity: number): boolean =>
-  normalizeToGranularity(new Date(date), granularity).getTime() ==
-  normalizeToGranularity(new Date(), granularity).getTime();
 
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
@@ -275,4 +272,17 @@ const getColor = (
   } else {
     return 'bg-[#18214F] dark:bg-[#848EC0]';
   }
+};
+
+const isNow = (date: string, granularity: number): boolean =>
+  normalizeToGranularity(new Date(date), granularity).getTime() ==
+  normalizeToGranularity(new Date(), granularity).getTime();
+
+const isFuturePrice = (FuturePriceData: FuturePriceData): boolean => {
+  const keys = Object.keys(FuturePriceData.priceData);
+  const lastKey = keys.at(-1);
+  if (!lastKey) {
+    return false;
+  }
+  return new Date(lastKey) > new Date();
 };
