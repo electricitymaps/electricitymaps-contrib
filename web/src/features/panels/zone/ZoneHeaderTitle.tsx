@@ -32,6 +32,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
   const setIsMapMoving = useSetAtom(mapMovingAtom);
   const canonicalUrl = useGetCanonicalUrl();
+  const isShareButtonEnabled = useFeatureFlag('share-button');
 
   const onNavigateBack = () => setIsMapMoving(false);
 
@@ -77,7 +78,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
-      {useFeatureFlag('share-button') && (
+      {isShareButtonEnabled && (
         <div className="ml-auto self-center px-3">
           <ShareButton />
         </div>
