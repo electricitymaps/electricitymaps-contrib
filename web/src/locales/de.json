@@ -195,7 +195,6 @@
     "system": "System"
   },
   "updatePrompt": {
-    "title": "Aktualisierung verfügbar",
     "description": "Eine neue Version der App ist verfügbar, jetzt aktualisieren?",
     "update": "Aktualisieren",
     "dismiss": "Schließen"
