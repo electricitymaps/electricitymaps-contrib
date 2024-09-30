@@ -16,14 +16,14 @@ class EmissionFactorTestCase(unittest.TestCase):
         # KR - no override
         expected = {
             "battery charge": 0,
-            "battery discharge": 490.50488607461506,
+            "battery discharge": 421.93595411096464,
             "biomass": 230,
             "coal": 820,
             "gas": 490,
             "geothermal": 38,
             "hydro": 24,
             "hydro charge": 0,
-            "hydro discharge": 490.50488607461506,
+            "hydro discharge": 421.93595411096464,
             "nuclear": 12,
             "oil": 650,
             "solar": 45,
