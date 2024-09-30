@@ -21,16 +21,35 @@ Object.defineProperty(window.navigator, 'clipboard', {
   },
 });
 
-const mocks = vi.hoisted(() => ({
+const utilMocks = vi.hoisted(() => ({
   isMobile: vi.fn(),
   isiOS: vi.fn(),
 }));
 
-vi.mock('features/weather-layers/wind-layer/util', () => mocks);
+vi.mock('features/weather-layers/wind-layer/util', () => utilMocks);
+
+const ffMocks = vi.hoisted(() => ({
+  useFeatureFlag: vi.fn(),
+}));
+
+vi.mock('features/feature-flags/api', () => ffMocks);
 
 describe('ShareButton', () => {
+  beforeEach(() => {
+    ffMocks.useFeatureFlag.mockReturnValue(true);
+  });
   afterEach(() => {
     vi.restoreAllMocks();
+  });
+
+  test('does not render', () => {
+    ffMocks.useFeatureFlag.mockReturnValue(false);
+    render(
+      <ToastProvider>
+        <ShareButton />
+      </ToastProvider>
+    );
+    expect(screen.queryByRole('button')).toBeNull();
   });
 
   test('renders', () => {
@@ -44,7 +63,7 @@ describe('ShareButton', () => {
 
   describe('share icon', () => {
     test('uses iOS share icon on iOS', () => {
-      mocks.isiOS.mockReturnValue(true);
+      utilMocks.isiOS.mockReturnValue(true);
       render(
         <ToastProvider>
           <ShareButton />
@@ -54,7 +73,7 @@ describe('ShareButton', () => {
     });
 
     test('uses iOS share icon on iOS', () => {
-      mocks.isiOS.mockReturnValue(false);
+      utilMocks.isiOS.mockReturnValue(false);
       render(
         <ToastProvider>
           <ShareButton />
@@ -66,7 +85,7 @@ describe('ShareButton', () => {
 
   test('uses navigator if on mobile and can share', async () => {
     navMocks.canShare.mockReturnValue(true);
-    mocks.isMobile.mockReturnValue(true);
+    utilMocks.isMobile.mockReturnValue(true);
     render(
       <ToastProvider>
         <ShareButton />
@@ -80,7 +99,7 @@ describe('ShareButton', () => {
   describe('copies to clipboard', () => {
     test('if not on mobile', async () => {
       navMocks.canShare.mockReturnValue(true);
-      mocks.isMobile.mockReturnValue(false);
+      utilMocks.isMobile.mockReturnValue(false);
       render(
         <ToastProvider>
           <ShareButton />
@@ -94,7 +113,7 @@ describe('ShareButton', () => {
 
     test('if navigator.share is not available', async () => {
       navMocks.canShare.mockReturnValue(false);
-      mocks.isMobile.mockReturnValue(true);
+      utilMocks.isMobile.mockReturnValue(true);
       render(
         <ToastProvider>
           <ShareButton />
