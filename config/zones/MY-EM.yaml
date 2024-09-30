@@ -1,3 +1,5 @@
+aggregates_displayed:
+  - yearly # The estimation model will only have variation at a yearly aggregation
 country: MY
 contributors:
   - FelixDQ
