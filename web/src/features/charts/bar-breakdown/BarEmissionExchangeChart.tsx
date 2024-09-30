@@ -1,4 +1,3 @@
-import { CountryFlag } from 'components/Flag';
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
@@ -58,10 +57,8 @@ export default function BarEmissionExchangeChart({
               onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={false}
+              isExchange={true}
             >
-              <g transform={`translate(-2, 0)`}>
-                <CountryFlag zoneId={d.zoneKey} className="pointer-events-none" />
-              </g>
               <HorizontalBar
                 className="exchange"
                 fill={'gray'}

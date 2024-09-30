@@ -1,9 +1,7 @@
 import { ScaleLinear } from 'd3-scale';
-import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
-import ProductionSourceLegend from '../ProductionSourceLegend';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import Row from './elements/Row';
@@ -33,7 +31,6 @@ export function BarEmissionProductionChart({
   ) => void;
   isMobile: boolean;
 }) {
-  const { t } = useTranslation();
   return (
     <svg className="w-full overflow-visible" height={height}>
       <Axis formatTick={formatTick} height={height} scale={co2Scale} />
@@ -42,15 +39,15 @@ export function BarEmissionProductionChart({
           <Row
             key={d.mode}
             index={index}
-            label={t(d.mode)}
+            label={d.mode}
             width={width}
             scale={co2Scale}
             value={Math.abs(d.gCo2eq)}
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
+            isExchange={false}
           >
-            <ProductionSourceLegend electricityType={d.mode} />
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}
