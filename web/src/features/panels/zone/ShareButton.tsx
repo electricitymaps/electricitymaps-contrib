@@ -1,6 +1,5 @@
 import { Button, ButtonProps } from 'components/Button';
 import { Toast, useToastReference } from 'components/Toast';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { isiOS, isMobile } from 'features/weather-layers/wind-layer/util';
 import { t } from 'i18next';
 import { Share, Share2 } from 'lucide-react';
@@ -66,10 +65,6 @@ export function ShareButton({
     }
     trackShareClick();
   };
-
-  if (!useFeatureFlag('share-button')) {
-    return;
-  }
 
   return (
     <>

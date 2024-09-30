@@ -1,6 +1,7 @@
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useSetAtom } from 'jotai';
@@ -76,9 +77,11 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
-      <div className="ml-auto self-center px-3">
-        <ShareButton />
-      </div>
+      {useFeatureFlag('share-button') && (
+        <div className="ml-auto self-center px-3">
+          <ShareButton />
+        </div>
+      )}
     </div>
   );
 }
