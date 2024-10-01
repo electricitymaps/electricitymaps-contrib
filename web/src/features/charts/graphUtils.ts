@@ -227,7 +227,7 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
   }
   const calculatedTotal = round(estimatedTotal / total, 2);
   return {
-    estimatedTotal: calculatedTotal > 0.1 ? calculatedTotal : Number.NaN,
+    estimatedTotal: calculatedTotal > 1 ? calculatedTotal : Number.NaN,
     allTimeSlicerAverageMethod: tsaCount === total,
     allEstimated: estimatedCount === total,
     hasEstimation: estimatedCount > 0,
