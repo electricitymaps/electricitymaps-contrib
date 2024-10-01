@@ -79,7 +79,6 @@
     "selectLanguage": "Wybierz język"
   },
   "updatePrompt": {
-    "title": "Dostępna aktualizacja",
     "description": "Dostępna jest nowa wersja aplikacji, zaktualizować teraz?",
     "update": "Aktualizuj",
     "dismiss": "Odrzuć"
@@ -808,6 +807,9 @@
     "MX-PN": {
       "countryName": "Meksyk",
       "zoneName": "Meksyk Południowo Wschodni"
+    },
+    "MY": {
+      "zoneName": "Malezja"
     },
     "MY-EM": {
       "countryName": "Malezja",

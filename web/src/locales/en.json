@@ -118,6 +118,16 @@
       "imported": "Imported",
       "stored": "Stored",
       "produced": "Produced"
+    },
+    "price-chart": {
+      "see": "See upcoming prices",
+      "hide": "Hide upcoming prices",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "price-disclaimer": "Prices exclude taxes and any grid fees.",
+      "time-disclaimer": "All times shown are in",
+      "at": "At",
+      "now": "Now"
     }
   },
   "feedback-card": {
@@ -354,9 +364,8 @@
     "system": "System"
   },
   "updatePrompt": {
-    "title": "Update available",
-    "description": "A new version of the app is available, update now?",
-    "update": "Update",
+    "description": "A new version is available",
+    "update": "Reload",
     "dismiss": "Dismiss"
   },
   "misc": {
@@ -1398,6 +1407,9 @@
     "MX-PN": {
       "countryName": "Mexico",
       "zoneName": "Peninsula"
+    },
+    "MY": {
+      "zoneName": "Malaysia"
     },
     "MY-EM": {
       "countryName": "Malaysia",

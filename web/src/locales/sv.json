@@ -346,7 +346,6 @@
     "system": "System"
   },
   "updatePrompt": {
-    "title": "Uppdatering tillgänglig",
     "description": "En ny version av appen är tillgänglig, uppdatera nu?",
     "update": "Uppdatera",
     "dismiss": "Avvisa"
@@ -1380,6 +1379,9 @@
     "MX-PN": {
       "countryName": "Mexico",
       "zoneName": "Peninsula"
+    },
+    "MY": {
+      "zoneName": "Malaysia"
     },
     "MY-EM": {
       "countryName": "Malaysia",
