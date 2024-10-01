@@ -225,8 +225,9 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
       estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
     }
   }
+  const calculatedTotal = round(estimatedTotal / total, 2);
   return {
-    estimatedTotal: round(estimatedTotal / total, 2),
+    estimatedTotal: calculatedTotal > 0.1 ? calculatedTotal : 0,
     allTimeSlicerAverageMethod: tsaCount === total,
     allEstimated: estimatedCount === total,
     hasEstimation: estimatedCount > 0,
