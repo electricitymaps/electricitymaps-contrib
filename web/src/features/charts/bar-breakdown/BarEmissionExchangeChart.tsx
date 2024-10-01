@@ -5,7 +5,7 @@ import { ZoneKey } from 'types';
 import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
-import Row from './elements/Row';
+import { ExchangeRow } from './elements/Row';
 import { ExchangeDataType } from './utils';
 
 export default function BarEmissionExchangeChart({
@@ -47,17 +47,16 @@ export default function BarEmissionExchangeChart({
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (
-            <Row
+            <ExchangeRow
               key={d.zoneKey}
               index={index}
-              label={d.zoneKey}
+              zoneKey={d.zoneKey}
               width={width}
               scale={co2Scale}
               value={d.exchange}
               onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={false}
-              isExchange={true}
             >
               <HorizontalBar
                 className="exchange"
@@ -65,7 +64,7 @@ export default function BarEmissionExchangeChart({
                 range={[0, d.gCo2eq]}
                 scale={co2Scale}
               />
-            </Row>
+            </ExchangeRow>
           ))}
         </g>
       </svg>

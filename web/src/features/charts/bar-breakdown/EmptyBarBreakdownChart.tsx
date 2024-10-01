@@ -6,7 +6,7 @@ import { PowerUnits } from 'utils/units';
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
-import Row from './elements/Row';
+import { ProductionRow } from './elements/Row';
 import { getDataBlockPositions } from './utils';
 
 interface EmptyBarBreakdownChartProps {
@@ -69,15 +69,14 @@ function EmptyBarBreakdownChart({
         <Axis formatTick={formatTick} height={height} scale={co2Scale} />
         <g transform={`translate(0, ${productionY})`}>
           {productionData.map((d, index) => (
-            <Row
+            <ProductionRow
               key={d.mode}
               index={index}
-              label={d.mode}
+              productionMode={d.mode}
               width={width}
               scale={co2Scale}
               value={Math.abs(d.gCo2eq)}
               isMobile={Boolean(isMobile)}
-              isExchange={false}
             >
               <HorizontalBar
                 className="production"
@@ -85,7 +84,7 @@ function EmptyBarBreakdownChart({
                 range={[0, Math.floor(Math.random() * 10)]}
                 scale={co2Scale}
               />
-            </Row>
+            </ProductionRow>
           ))}
         </g>
       </svg>
