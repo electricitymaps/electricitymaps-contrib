@@ -1018,6 +1018,9 @@
       "countryName": "Mexiko",
       "zoneName": "Poloostrov"
     },
+    "MY": {
+      "zoneName": "Malajsie"
+    },
     "MY-EM": {
       "countryName": "Malajsie",
       "zoneName": "Borneo"

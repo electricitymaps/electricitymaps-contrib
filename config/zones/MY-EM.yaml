@@ -1,3 +1,8 @@
+aggregates_displayed:
+  - yearly # The estimation model will only have variation at a yearly aggregation
 country: MY
+contributors:
+  - FelixDQ
+estimation_method: CONSTRUCT_BREAKDOWN
 region: Asia
 timezone: Asia/Kuala_Lumpur
