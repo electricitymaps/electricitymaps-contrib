@@ -1,3 +1,4 @@
+import { Group } from '@visx/group';
 import { CountryFlag } from 'components/Flag';
 import { ScaleLinear } from 'd3-scale';
 import ProductionSourceLegend from 'features/charts/ProductionSourceLegend';
@@ -101,7 +102,7 @@ export function ProductionRow({
   }
 
   return (
-    <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
+    <Group top={index * (ROW_HEIGHT + PADDING_Y)}>
       {/* Row background */}
       <RowBackground
         width={width}
@@ -122,7 +123,7 @@ export function ProductionRow({
 
       {/* Question mark if the value is not defined */}
       {!Number.isFinite(value) && <FallbackQuestionMark scale={scale} />}
-    </g>
+    </Group>
   );
 }
 
@@ -145,7 +146,7 @@ export function ExchangeRow({
     return null;
   }
   return (
-    <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
+    <Group top={index * (ROW_HEIGHT + PADDING_Y)}>
       {/* Row background */}
       <RowBackground
         width={width}
@@ -165,6 +166,6 @@ export function ExchangeRow({
 
       {/* Question mark if the value is not defined */}
       {!Number.isFinite(value) && <FallbackQuestionMark scale={scale} />}
-    </g>
+    </Group>
   );
 }
