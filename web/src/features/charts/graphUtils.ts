@@ -7,6 +7,7 @@ import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { EstimationMethods, Mode, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
+import { round } from 'utils/helpers';
 
 import { AreaGraphElement } from './types';
 
@@ -213,18 +214,21 @@ export function getElectricityProductionValue({
 function analyzeChartData(chartData: AreaGraphElement[]) {
   let estimatedCount = 0;
   let tsaCount = 0;
+  let estimatedTotal = 0;
+  const total = chartData.length;
   for (const chartElement of chartData) {
     if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
       tsaCount++;
     }
     if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
       estimatedCount++;
+      estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
     }
   }
   return {
-    allTimeSlicerAverageMethod: tsaCount === chartData.length,
-    allEstimated: estimatedCount === chartData.length,
-    hasEstimation: estimatedCount > 0,
+    estimatedTotal: estimatedTotal / total,
+    allTimeSlicerAverageMethod: tsaCount === total,
+    allEstimated: estimatedCount === total,
   };
 }
 
@@ -232,8 +236,18 @@ export function getBadgeTextAndIcon(
   chartData: AreaGraphElement[],
   t: TFunction
 ): { text?: string; icon?: LucideIcon } {
-  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
+  const { allTimeSlicerAverageMethod, allEstimated, estimatedTotal } =
     analyzeChartData(chartData);
+
+  if (estimatedTotal) {
+    return {
+      text: t('estimation-card.aggregated_estimated.pill', {
+        percentage: round(estimatedTotal, 2),
+      }),
+      icon: TrendingUpDown,
+    };
+  }
+
   if (allTimeSlicerAverageMethod) {
     return {
       text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
@@ -245,9 +259,6 @@ export function getBadgeTextAndIcon(
     return { text: t('estimation-badge.fully-estimated'), icon: TrendingUpDown };
   }
 
-  if (hasEstimation) {
-    return { text: t('estimation-badge.partially-estimated'), icon: TrendingUpDown };
-  }
   return {};
 }
 
