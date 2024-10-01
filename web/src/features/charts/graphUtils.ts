@@ -222,12 +222,12 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
     }
     if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
       estimatedCount++;
-      estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
     }
+    estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
   }
   const calculatedTotal = round(estimatedTotal / total, 2);
   return {
-    estimatedTotal: calculatedTotal > 0.1 ? calculatedTotal : 0,
+    estimatedTotal: calculatedTotal > 0.1 ? calculatedTotal : Number.NaN,
     allTimeSlicerAverageMethod: tsaCount === total,
     allEstimated: estimatedCount === total,
     hasEstimation: estimatedCount > 0,
@@ -240,6 +240,11 @@ export function getBadgeTextAndIcon(
 ): { text?: string; icon?: LucideIcon } {
   const { allTimeSlicerAverageMethod, allEstimated, hasEstimation, estimatedTotal } =
     analyzeChartData(chartData);
+
+  // If the total is NaN, it means that the estimation percentage is too low to be displayed
+  if (Number.isNaN(estimatedTotal)) {
+    return {};
+  }
 
   if (estimatedTotal) {
     return {
