@@ -237,7 +237,7 @@ def parse_production(
                 )
         else:
             production_value = get_event_value(event, quantity_key)
-            if production_value:
+            if production_value is not None:
                 production_mix.add_value(
                     production_mode, production_value, correct_negative_with_zero=True
                 )
