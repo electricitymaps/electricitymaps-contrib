@@ -37,7 +37,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const onNavigateBack = () => setIsMapMoving(false);
 
   return (
-    <div className="flex w-full pl-2 pt-2">
+    <div className="flex w-full items-center pl-2 pr-3 pt-2">
       <Helmet prioritizeSeoTags>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
@@ -78,11 +78,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
-      {isShareButtonEnabled && (
-        <div className="ml-auto self-center px-3">
-          <ShareButton />
-        </div>
-      )}
+      {isShareButtonEnabled && <ShareButton />}
     </div>
   );
 }

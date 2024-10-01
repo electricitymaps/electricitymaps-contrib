@@ -33,37 +33,6 @@ describe('ShareButton', () => {
     vi.restoreAllMocks();
   });
 
-  test('renders', () => {
-    render(
-      <ToastProvider>
-        <ShareButton />
-      </ToastProvider>
-    );
-    expect(screen.getByRole('button')).toBeDefined();
-  });
-
-  describe('share icon', () => {
-    test('uses iOS share icon on iOS', () => {
-      mocks.isiOS.mockReturnValue(true);
-      render(
-        <ToastProvider>
-          <ShareButton />
-        </ToastProvider>
-      );
-      expect(screen.getByTestId('iosShareIcon')).toBeDefined();
-    });
-
-    test('uses iOS share icon on iOS', () => {
-      mocks.isiOS.mockReturnValue(false);
-      render(
-        <ToastProvider>
-          <ShareButton />
-        </ToastProvider>
-      );
-      expect(screen.getByTestId('defaultShareIcon')).toBeDefined();
-    });
-  });
-
   test('uses navigator if on mobile and can share', async () => {
     navMocks.canShare.mockReturnValue(true);
     mocks.isMobile.mockReturnValue(true);

@@ -15,6 +15,7 @@ interface ShareButtonProps
   > {
   iconSize?: number;
   shareUrl?: string;
+  showiOSIcon?: boolean;
 }
 const trackShareClick = trackShare(ShareType.SHARE);
 const DURATION = 3 * 1000;
@@ -22,6 +23,7 @@ const DURATION = 3 * 1000;
 export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
   shareUrl,
+  showiOSIcon = isiOS(),
   ...restProps
 }: ShareButtonProps) {
   const reference = useToastReference();
@@ -40,7 +42,7 @@ export function ShareButton({
       await navigator.share(shareData);
     } catch (error) {
       console.error(error);
-      setToastMessage('Error sharing');
+      setToastMessage('Error sharing URL');
       reference.current?.publish();
     }
   };
@@ -48,10 +50,10 @@ export function ShareButton({
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(url);
-      setToastMessage('Url copied!');
+      setToastMessage('URL copied to clipboard!');
     } catch (error) {
       console.error(error);
-      setToastMessage('Error copying current url');
+      setToastMessage('Error copying URL to clipboard');
     } finally {
       reference.current?.publish();
     }
@@ -69,18 +71,19 @@ export function ShareButton({
   return (
     <>
       <Button
+        dataTestId="share-btn"
         size="md"
         backgroundClasses="bg-brand-green"
         foregroundClasses={twMerge(
           'text-white dark:text-white focus-visible:outline-black',
-          isiOS() ? '' : '-translate-x-px'
+          showiOSIcon ? '' : '-translate-x-px'
         )}
         onClick={onClick}
         icon={
-          isiOS() ? (
-            <Share data-testid="iosShareIcon" size={iconSize} />
+          showiOSIcon ? (
+            <Share data-test-id="iosShareIcon" size={iconSize} />
           ) : (
-            <Share2 data-testid="defaultShareIcon" size={iconSize} />
+            <Share2 data-test-id="defaultShareIcon" size={iconSize} />
           )
         }
         {...restProps}
