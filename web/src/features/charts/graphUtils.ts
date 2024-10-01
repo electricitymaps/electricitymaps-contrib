@@ -226,9 +226,10 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
     }
   }
   return {
-    estimatedTotal: estimatedTotal / total,
+    estimatedTotal: round(estimatedTotal / total, 2),
     allTimeSlicerAverageMethod: tsaCount === total,
     allEstimated: estimatedCount === total,
+    hasEstimation: estimatedCount > 0,
   };
 }
 
@@ -236,13 +237,13 @@ export function getBadgeTextAndIcon(
   chartData: AreaGraphElement[],
   t: TFunction
 ): { text?: string; icon?: LucideIcon } {
-  const { allTimeSlicerAverageMethod, allEstimated, estimatedTotal } =
+  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation, estimatedTotal } =
     analyzeChartData(chartData);
 
   if (estimatedTotal) {
     return {
       text: t('estimation-card.aggregated_estimated.pill', {
-        percentage: round(estimatedTotal, 2),
+        percentage: estimatedTotal,
       }),
       icon: TrendingUpDown,
     };
@@ -259,6 +260,9 @@ export function getBadgeTextAndIcon(
     return { text: t('estimation-badge.fully-estimated'), icon: TrendingUpDown };
   }
 
+  if (hasEstimation) {
+    return { text: t('estimation-badge.partially-estimated'), icon: TrendingUpDown };
+  }
   return {};
 }
 
