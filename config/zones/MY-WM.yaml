@@ -200,4 +200,4 @@ parsers:
   production: GSO.fetch_production
   productionCapacity: MY_WM.fetch_production_capacity
 region: Asia
-timezone: null
+timezone: Asia/Kuala_Lumpur

@@ -1015,6 +1015,9 @@
       "countryName": "Meksiko",
       "zoneName": "Poluotok"
     },
+    "MY": {
+      "zoneName": "Malezija"
+    },
     "MY-EM": {
       "countryName": "Malezija",
       "zoneName": "Borneo"
