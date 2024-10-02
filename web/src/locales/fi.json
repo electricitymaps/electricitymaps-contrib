@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Tämä app on",
-    "opensource": "avoin lähdekoodi",
-    "see": "katso",
-    "datasources": "tietolähteet",
-    "contribute": "Avusta <a href=\"{{link}}\" target=\"_blank\">lisäämällä alueesi</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Alueet",
@@ -58,8 +51,9 @@
   },
   "tooltips": {
     "carbonintensity": "Hiili-intensiteetti",
-    "lowcarbon": "Vähähiilinen",
-    "renewable": "Uusiutuva",
+    "zoneHeader": {
+      "lowcarbon": "Sisältää uusiutuvat energialähteet ja ydinvoiman"
+    },
     "crossborderexport": "Rajat ylittävä vienti",
     "carbonintensityexport": "Viennin hiili-intensiteetti",
     "ofinstalled": "asennetusta kapasiteetista",
@@ -75,8 +69,7 @@
     "production": "tuotanto",
     "consumption": "kulutus",
     "cpinfo": "<b>kulutus</b> ottaa huomioon tuonnin ja viennin, <b>tuotanto</b> jättää ne huomioimatta",
-    "selectLanguage": "Valitse kieli",
-    "lowCarbDescription": "Sisältää uusiutuvat energialähteet ja ydinvoiman"
+    "selectLanguage": "Valitse kieli"
   },
   "misc": {
     "maintitle": "Sähkönkulutuksen reaaliaikiaset hiilidioksidipäästöt",
@@ -1023,6 +1016,9 @@
     "MX-PN": {
       "countryName": "Meksiko",
       "zoneName": "Niemi"
+    },
+    "MY": {
+      "zoneName": "Malesia"
     },
     "MY-EM": {
       "countryName": "Malesia",

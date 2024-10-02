@@ -14,13 +14,6 @@
   "settings-modal": {
     "title": "Configurações"
   },
-  "panel-initial-text": {
-    "thisproject": "Esta é uma app de",
-    "opensource": "Código Aberto",
-    "see": "aceder",
-    "datasources": "fonte de dados",
-    "contribute": "Contribua <a href=\"{{link}}\" target=\"_blank\">ao adicionar o seu país ou território</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Áreas",
@@ -68,7 +61,6 @@
     "carbonintensity": "Intensidade de emissão de carbono",
     "lowcarbon": "Baixo carbono",
     "renewable": "Renovável",
-    "contribute": "Contribua no GitHub",
     "helpfrom": "com ajuda de",
     "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
     "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
@@ -269,8 +261,9 @@
   },
   "tooltips": {
     "carbonintensity": "Intensidade de emissões de CO₂",
-    "lowcarbon": "Baixo carbono",
-    "renewable": "Renovável",
+    "zoneHeader": {
+      "lowcarbon": "Inclui renováveis e nucleares"
+    },
     "crossborderexport": "Exportação transfronteiriça",
     "carbonintensityexport": "Intensidade de emissões de CO₂ na exportação",
     "ofinstalled": "da capacidade instalada",
@@ -293,7 +286,6 @@
     "cpinfo": "<b>consumo</b> leva em consideração importações e exportações, <b>produção</b> ignora-as",
     "aggregateInfo": "Países são agregados quando a capacidade anual da zona é maior que 90% da capacidade total",
     "selectLanguage": "Selecione a linguagem",
-    "lowCarbDescription": "Inclui renováveis e nucleares",
     "dataIsDelayed": "Dados estão atrasados",
     "price": "Preço",
     "netExchange": "Troca líquida",
@@ -1347,6 +1339,9 @@
     "MX-PN": {
       "countryName": "México",
       "zoneName": "Península"
+    },
+    "MY": {
+      "zoneName": "Malásia"
     },
     "MY-EM": {
       "countryName": "Malásia",

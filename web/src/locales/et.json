@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "See app on",
-    "opensource": "avatud lähtekoodiga",
-    "see": "vaadake",
-    "datasources": "andmeallikaid",
-    "contribute": "Aidake kaasa <a href=\"{{link}}\" target=\"_blank\">lisades enda piirkond</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Piirkonnad",
@@ -59,8 +52,9 @@
   },
   "tooltips": {
     "carbonintensity": "Süsiniku intensiivsus",
-    "lowcarbon": "Vähese süsinikuga",
-    "renewable": "Taastuv",
+    "zoneHeader": {
+      "lowcarbon": "Sisaldab taastuvenergiaid ja tuumaenergiat"
+    },
     "crossborderexport": "Piiriülene eksport",
     "carbonintensityexport": "Ekspordi süsiniku intensiivsus",
     "ofinstalled": "saadaolevast võimsusest",
@@ -79,7 +73,6 @@
     "consumption": "tarbimine",
     "cpinfo": "<b>tarbimine</b> võtab arvesse impordi ja ekspordi, <b>tootmine</b> eirab neid",
     "selectLanguage": "Vali keel",
-    "lowCarbDescription": "Sisaldab taastuvenergiaid ja tuumaenergiat",
     "dataIsDelayed": "Andmed viibivad"
   },
   "misc": {
@@ -1058,6 +1051,9 @@
     "MX-PN": {
       "countryName": "Mehhiko",
       "zoneName": "Peninsula"
+    },
+    "MY": {
+      "zoneName": "Malaisia"
     },
     "MY-EM": {
       "countryName": "Malaisia",

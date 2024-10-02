@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Этот проект",
-    "opensource": "Open Source",
-    "see": "см.",
-    "datasources": "источники данных",
-    "contribute": "Помочь проекту <a href=\"{{link}}\" target=\"_blank\">добавив свою территорию</a>"
-  },
   "country-panel": {
     "source": "источник",
     "carbonintensity": "интенсивность выбросов CO₂ (CO₂эк/кВт⋅ч)",
@@ -47,8 +40,9 @@
   },
   "tooltips": {
     "carbonintensity": "Интенсивность выбросов CO₂",
-    "lowcarbon": "низкий уровень CO₂",
-    "renewable": "ВИЭ",
+    "zoneHeader": {
+      "lowcarbon": "Включая возобновляемые и ядерные источники"
+    },
     "crossborderexport": "Экспорт через границу",
     "carbonintensityexport": "Интенсивность выбросов CO₂ экспорта",
     "ofinstalled": "установленной мощности",
@@ -66,8 +60,7 @@
     "production": "производство",
     "consumption": "потребление",
     "cpinfo": "<b>потребление</b> берет в расчет импорт и экспорт энергии, <b>производство</b> не учитывает эти данные",
-    "selectLanguage": "Выбрать язык",
-    "lowCarbDescription": "Включая возобновляемые и ядерные источники"
+    "selectLanguage": "Выбрать язык"
   },
   "misc": {
     "maintitle": "Эмиссии CO₂ производства электроенергии в реальном времени",
@@ -811,6 +804,9 @@
     },
     "MX": {
       "zoneName": "Мексика"
+    },
+    "MY": {
+      "zoneName": "Малайзия"
     },
     "MY-EM": {
       "countryName": "Малайзия",

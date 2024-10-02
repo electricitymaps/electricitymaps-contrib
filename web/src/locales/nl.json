@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Deze app is",
-    "opensource": "Open Source",
-    "see": "zie",
-    "datasources": "databronnen",
-    "contribute": "Draag bij door <a href=\"{{link}}\" target=\"_blank\">jouw land toe te voegen</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Gebieden",
@@ -54,11 +47,9 @@
     "production": "productie",
     "consumption": "consumptie",
     "cpinfo": "<b>consumptie</b> houdt rekening met in- en uitvoer, <b>productie</b> doet dat niet",
-    "selectLanguage": "Selecteer taal",
-    "lowCarbDescription": "Inclusief hernieuwbaar en nucleair"
+    "selectLanguage": "Selecteer taal"
   },
   "updatePrompt": {
-    "title": "Update beschikbaar",
     "description": "Er is een nieuwe versie van de app beschikbaar, nu updaten?",
     "update": "Bijwerken",
     "dismiss": "Negeren"

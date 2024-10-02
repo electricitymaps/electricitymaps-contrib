@@ -76,7 +76,7 @@ export default function ZoneDetails(): JSX.Element {
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
-      <div className="mb-3 h-[calc(100%-120px)] overflow-y-scroll p-3 pb-40 pt-2 sm:h-[calc(100%-150px)]">
+      <div className="mb-3 h-[calc(100%-120px)] overflow-y-scroll p-3 pb-20 pt-2 sm:h-[calc(100%-150px)]">
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
@@ -87,7 +87,7 @@ export default function ZoneDetails(): JSX.Element {
               estimatedPercentage={selectedData?.estimatedPercentage}
             />
           )}
-        <ZoneHeaderGauges data={data} />
+        <ZoneHeaderGauges zoneKey={zoneId} />
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
             <DisplayByEmissionToggle />

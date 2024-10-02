@@ -3,6 +3,7 @@ bounding_box:
     - -18.569231871999946
   - - 34.17420251500005
     - -7.694124042999917
+country: ZM
 fallbackZoneMixes:
   _source: Our world in data 2019
   _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZMB
@@ -11,6 +12,5 @@ fallbackZoneMixes:
       coal: 0.11
       hydro: 0.83
       oil: 0.06
-timezone: Africa/Maputo
 region: Africa
-country: ZM
+timezone: Africa/Maputo

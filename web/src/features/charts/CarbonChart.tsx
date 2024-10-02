@@ -1,5 +1,6 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
+import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
@@ -12,7 +13,7 @@ import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, noop } from './graphUtils';
+import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -45,7 +46,8 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const badgeText = getBadgeText(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   if (!hasEnoughDataToDisplay) {
     return <NotEnoughDataMessage title="country-history.carbonintensity" />;
@@ -54,7 +56,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     <RoundedCard className="pb-2">
       <ChartTitle
         translationKey="country-history.carbonintensity"
-        badgeText={badgeText}
+        badge={badge}
         unit={'gCO₂eq / kWh'}
       />
       <AreaGraph

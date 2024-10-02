@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Tento app je",
-    "opensource": "Open Source",
-    "see": "viď",
-    "datasources": "zdroje dát",
-    "contribute": "Zapojte sa <a href=\"{{link}}\" target=\"_blank\">pridaním svojej oblasti</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Oblasti",
@@ -58,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "Intenzita uhlíka",
-    "lowcarbon": "Nízke emisie",
-    "renewable": "Obnoviteľné",
     "crossborderexport": "Cezhraničný export",
     "carbonintensityexport": "Uhlíková intenzita exportu",
     "ofinstalled": "nainštalovanej kapacity",
@@ -1017,6 +1008,9 @@
     "MX-PN": {
       "countryName": "Mexiko",
       "zoneName": "Poloostrov"
+    },
+    "MY": {
+      "zoneName": "Malajzia"
     },
     "MY-EM": {
       "countryName": "Malajzia",

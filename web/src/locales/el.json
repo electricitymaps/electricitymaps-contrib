@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Αυτό το έργο είναι",
-    "opensource": "Ανοικτού Κώδικα",
-    "see": "δείτε τις",
-    "datasources": "πηγές δεδομένων",
-    "contribute": "Συνεισφέρετε <a href=\"{{link}}\" target=\"_blank\">προσθέτοντας την περιοχή σας</a>"
-  },
   "mobile-main-menu": {
     "map": "Χάρτης",
     "areas": "Περιοχές",
@@ -58,8 +51,9 @@
   },
   "tooltips": {
     "carbonintensity": "Ένταση άνθρακα",
-    "lowcarbon": "Χαμηλών εκπομπών άνθρακα",
-    "renewable": "Ανανεώσιμες",
+    "zoneHeader": {
+      "lowcarbon": "Περιλαμβάνει τις ανανεώσιμες και την πυρηνική"
+    },
     "crossborderexport": "Διασυνοριακή εξαγωγή",
     "carbonintensityexport": "Ένταση άνθρακα της εξαγωγής",
     "ofinstalled": "της εγκατεστημένης ισχύς",
@@ -77,8 +71,7 @@
     "production": "παραγωγή",
     "consumption": "κατανάλωση",
     "cpinfo": "Η <b>κατανάλωση</b> λαμβάνει υπόψη τις εισαγωγές και εξαγωγές, η <b>παραγωγή</b> τις αγνοεί",
-    "selectLanguage": "Επιλογή γλώσσας",
-    "lowCarbDescription": "Περιλαμβάνει τις ανανεώσιμες και την πυρηνική"
+    "selectLanguage": "Επιλογή γλώσσας"
   },
   "misc": {
     "maintitle": "Ζωντανές εκπομπές CO₂ κατανάλωσης ηλεκτρικής ενέργειας",
@@ -979,6 +972,9 @@
     "MX-PN": {
       "countryName": "Μεξικό",
       "zoneName": "Peninsula"
+    },
+    "MY": {
+      "zoneName": "Μαλαισία"
     },
     "MY-EM": {
       "countryName": "Μαλαισία",

@@ -134,12 +134,11 @@ function BaseCard({
   const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
-  const handleToggleCollapse = () => {
+  const trackToggle = () => {
     if (isCollapsed) {
       trackEvent('EstimationCard Expanded', { cardType: cardType });
     }
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
-    setIsCollapsed((previous: boolean) => !previous);
   };
   const { t } = useTranslation();
 
@@ -167,7 +166,7 @@ function BaseCard({
       } mb-4 border border-neutral-200 transition-all dark:border-gray-700`}
     >
       <Accordion
-        onClick={() => handleToggleCollapse()}
+        onClick={() => trackToggle()}
         badge={
           showBadge && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
         }

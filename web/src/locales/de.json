@@ -1,15 +1,12 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Diese App ist",
-    "opensource": "Open Source",
-    "see": "siehe",
-    "datasources": "Datenquellen",
-    "contribute": "Wirke mit, indem du <a href=\"{{link}}\" target=\"_blank\">dein Land hinzufügst</a>"
-  },
   "mobile-main-menu": {
     "map": "Karte",
     "areas": "Regionen",
     "about": "Über"
+  },
+  "app-banner": {
+    "cta": "App laden",
+    "description": "Live-Elektrizitätsdaten"
   },
   "onboarding-modal": {
     "view1": {
@@ -162,8 +159,9 @@
   },
   "tooltips": {
     "carbonintensity": "CO₂-Intensität",
-    "lowcarbon": "CO₂-arm",
-    "renewable": "regenerativ",
+    "zoneHeader": {
+      "lowcarbon": "Beinhaltet regenerative Energien und Kernenergie"
+    },
     "crossborderexport": "Stromexport",
     "carbonintensityexport": "CO₂-Intensität der Exporte",
     "ofinstalled": "der installierten Leistung",
@@ -180,7 +178,6 @@
     "consumption": "Verbrauch",
     "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
     "selectLanguage": "Sprache auswählen",
-    "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie",
     "dataIsDelayed": "Die Daten sind verzögert",
     "representing": "macht",
     "ofemissions": "der Emissionen aus",
@@ -198,7 +195,6 @@
     "system": "System"
   },
   "updatePrompt": {
-    "title": "Aktualisierung verfügbar",
     "description": "Eine neue Version der App ist verfügbar, jetzt aktualisieren?",
     "update": "Aktualisieren",
     "dismiss": "Schließen"
@@ -1062,6 +1058,9 @@
     },
     "MX": {
       "zoneName": "Mexiko"
+    },
+    "MY": {
+      "zoneName": "Malaysia"
     },
     "MY-EM": {
       "countryName": "Malaysia",

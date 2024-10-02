@@ -1,3 +1,4 @@
+from calendar import monthrange
 from datetime import datetime
 from logging import getLogger
 from typing import Any
@@ -60,9 +61,11 @@ def fetch_production_capacity(
     geo_ids = GEO_LIMIT_TO_GEO_IDS[geo_limit]
     url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada"
     params = {
-        "start_date": target_datetime.strftime("%Y-01-01T00:00"),
-        "end_date": target_datetime.strftime("%Y-12-31T23:59"),
-        "time_trunc": "year",
+        "start_date": target_datetime.strftime("%Y-%m-01T00:00"),
+        "end_date": target_datetime.strftime(
+            f"%Y-%m-{monthrange(target_datetime.year, target_datetime.month)[1]}T23:59"
+        ),
+        "time_trunc": "month",
         "geo_trunc": "electric_system",
         "geo_limit": geo_limit,
         "geo_ids": geo_ids,
@@ -74,7 +77,7 @@ def fetch_production_capacity(
         data = r.json()["included"]
         capacity = {}
         for item in data:
-            value: float = round(item["attributes"]["total"], 0)
+            value: float = round(item["attributes"]["values"][0]["value"], 0)
             if item["type"] in MODE_MAPPING:
                 mode = MODE_MAPPING[item["type"]]
                 if mode in capacity:

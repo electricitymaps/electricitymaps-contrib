@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Tento app je",
-    "opensource": "Open Source",
-    "see": "viz",
-    "datasources": "zdroje dat",
-    "contribute": "Zapojte se <a href=\"{{link}}\" target=\"_blank\">přidáním své oblasti</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Oblasti",
@@ -58,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "Uhlíková intenzita",
-    "lowcarbon": "Nízko-emisní",
-    "renewable": "Obnovitelné",
     "crossborderexport": "Zahraniční export",
     "carbonintensityexport": "Uhlíková intenzita exportu",
     "ofinstalled": "instalované kapacity",
@@ -78,7 +69,6 @@
     "selectLanguage": "Vyberte jazyk"
   },
   "updatePrompt": {
-    "title": "Dostupná aktualizace",
     "description": "Je dostupná nová verze aplikace, aktualizovat nyní?",
     "update": "Aktualizovat",
     "dismiss": "Zavřít"
@@ -1027,6 +1017,9 @@
     "MX-PN": {
       "countryName": "Mexiko",
       "zoneName": "Poloostrov"
+    },
+    "MY": {
+      "zoneName": "Malajsie"
     },
     "MY-EM": {
       "countryName": "Malajsie",

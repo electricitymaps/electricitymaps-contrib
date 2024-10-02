@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Ten app jest",
-    "opensource": "Open Source",
-    "see": "zobacz",
-    "datasources": "źródła danych",
-    "contribute": "Pomóż nam <a href=\"{{link}}\" target=\"_blank\">dodając więcej regionów</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Obszary",
@@ -63,8 +56,9 @@
   },
   "tooltips": {
     "carbonintensity": "Emisja CO₂",
-    "lowcarbon": "Niskoemisyjne źródła energii",
-    "renewable": "Odnawialne źródła energii",
+    "zoneHeader": {
+      "lowcarbon": "Zawiera niskoemisyjne i jądrowe źródła energii"
+    },
     "crossborderexport": "Eksport",
     "carbonintensityexport": "Emisja CO₂ eksportu",
     "ofinstalled": "zainstalowanej mocy",
@@ -82,11 +76,9 @@
     "production": "produkcja",
     "consumption": "konsumpcja",
     "cpinfo": "<b>konsumpcja</b> uwzględnia import i eksport, <b>produkcja</b> je pomija",
-    "selectLanguage": "Wybierz język",
-    "lowCarbDescription": "Zawiera niskoemisyjne i jądrowe źródła energii"
+    "selectLanguage": "Wybierz język"
   },
   "updatePrompt": {
-    "title": "Dostępna aktualizacja",
     "description": "Dostępna jest nowa wersja aplikacji, zaktualizować teraz?",
     "update": "Aktualizuj",
     "dismiss": "Odrzuć"
@@ -815,6 +807,9 @@
     "MX-PN": {
       "countryName": "Meksyk",
       "zoneName": "Meksyk Południowo Wschodni"
+    },
+    "MY": {
+      "zoneName": "Malezja"
     },
     "MY-EM": {
       "countryName": "Malezja",

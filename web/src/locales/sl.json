@@ -13,13 +13,6 @@
   "settings-modal": {
     "title": "Nastavitve"
   },
-  "panel-initial-text": {
-    "thisproject": "Ta aplikacija je",
-    "opensource": "Odprtokodna",
-    "see": "poglej",
-    "datasources": "Viri podatkov",
-    "contribute": "Prispevaj in <a href=\"{{link}}\" target=\"_blank\">dodaj svoj teritorij</a>"
-  },
   "mobile-main-menu": {
     "map": "Mapa elektrike",
     "areas": "Območja",
@@ -88,8 +81,9 @@
   },
   "tooltips": {
     "carbonintensity": "Intenzivnost ogljika",
-    "lowcarbon": "Nizkoogljična",
-    "renewable": "Obnovljivo",
+    "zoneHeader": {
+      "lowcarbon": "Vključuje obnovljive vire in jedrsko energijo"
+    },
     "crossborderexport": "Čezmejni izvoz",
     "carbonintensityexport": "Ogljična intenzivnost izvoza",
     "ofinstalled": "inštalirane moči",
@@ -112,7 +106,6 @@
     "cpinfo": "<b>Potrošnja</b> upošteva uvoz in izvoz, <b>proizvodnja</b> ju ne upošteva",
     "aggregateInfo": "Države se združijo, ko je letna zmogljivost cone večja od 90 % celotne zmogljivosti",
     "selectLanguage": "Izberi jezik",
-    "lowCarbDescription": "Vključuje obnovljive vire in jedrsko energijo",
     "dataIsDelayed": "Podatki zamujajo"
   },
   "aggregateButtons": {
@@ -120,7 +113,6 @@
     "zone": "območje"
   },
   "updatePrompt": {
-    "title": "Posodobitev na voljo",
     "description": "Na voljo je nova različica aplikacije, želite zdaj posodobiti?",
     "update": "Posodobi",
     "dismiss": "Zavrni"
@@ -1107,6 +1099,9 @@
     "MX-PN": {
       "countryName": "Mehika",
       "zoneName": "Polotok Jukatan"
+    },
+    "MY": {
+      "zoneName": "Malezija"
     },
     "MY-EM": {
       "countryName": "Malezija",

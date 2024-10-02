@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Aceasta aplicatie este",
-    "opensource": "Open Source",
-    "see": "vezi",
-    "datasources": "sursele de informatie",
-    "contribute": "Contribuie prin <a href=\"{{link}}\" target=\"_blank\">adăugarea teritoriului tău</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Zone",
@@ -74,8 +67,9 @@
   },
   "tooltips": {
     "carbonintensity": "Concentrația de dioxid de carbon",
-    "lowcarbon": "Carbon-redus",
-    "renewable": "Energie regenerabilă",
+    "zoneHeader": {
+      "lowcarbon": "Include energie regenerabilă și nucleară"
+    },
     "crossborderexport": "Export peste granițe",
     "carbonintensityexport": "Concentrația de dioxid de carbon a exportului",
     "ofinstalled": "din capacitatea instalată",
@@ -96,7 +90,6 @@
     "consumption": "consum",
     "cpinfo": "<b>consumul</b> ia în vedere importul și exportul, <b>producția</b> le ignoră",
     "selectLanguage": "Alegeți limba",
-    "lowCarbDescription": "Include energie regenerabilă și nucleară",
     "dataIsDelayed": "Datele sunt întârziate"
   },
   "misc": {
@@ -1078,6 +1071,9 @@
     "MX-PN": {
       "countryName": "Mexico",
       "zoneName": "Peninsula"
+    },
+    "MY": {
+      "zoneName": "Malaysia"
     },
     "MY-EM": {
       "countryName": "Malaysia",

@@ -464,11 +464,6 @@ describe('getExchangeCo2Intensity', () => {
 });
 
 describe('convertPrice', () => {
-  it('converts EUR to price/KWh', () => {
-    const result = convertPrice(120, 'EUR');
-    expect(result).to.deep.eq({ value: 0.12, currency: 'EUR', unit: 'kWh' });
-  });
-
   it('dont convert USD to price/KWh', () => {
     const result = convertPrice(120, 'USD');
     expect(result).to.deep.eq({ value: 120, currency: 'USD', unit: 'MWh' });
@@ -481,7 +476,7 @@ describe('convertPrice', () => {
 
   it('handles missing price with EUR', () => {
     const result = convertPrice(undefined, 'EUR');
-    expect(result).to.deep.eq({ value: undefined, currency: 'EUR', unit: 'kWh' });
+    expect(result).to.deep.eq({ value: undefined, currency: 'EUR', unit: 'MWh' });
   });
 
   it('handles missing price without EUR', () => {

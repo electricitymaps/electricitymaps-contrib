@@ -24,17 +24,14 @@
   "settings-modal": {
     "title": "Paramètres"
   },
-  "panel-initial-text": {
-    "thisproject": "Cette app est",
-    "opensource": "Open Source",
-    "see": "voir",
-    "datasources": "source des données",
-    "contribute": "Contribuez en <a href=\"{{link}}\" target=\"_blank\">ajoutant votre pays</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Zones",
     "about": "À propos"
+  },
+  "app-banner": {
+    "cta": "Installer",
+    "description": "Données sur l'électricité en direct"
   },
   "onboarding-modal": {
     "view1": {
@@ -81,23 +78,6 @@
     "electricityproduction": "Production",
     "electricityconsumption": "Consommation",
     "emissions": "Émissions",
-    "by-source": {
-      "emissions": "Émissions carbone",
-      "electricity-production": "Production d'électricité",
-      "electricity-consumption": "Consommation d'électricité",
-      "total-emissions": "Émissions totales de carbone",
-      "total-electricity-production": "Production totale d'électricité",
-      "total-electricity-consumption": "Consommation totale d'électricité"
-    },
-    "graph-legends": {
-      "installed-capacity": "Capacité installée ",
-      "exchange-capacity": "Capacité d'échange disponible ",
-      "exported": "Exportée",
-      "imported": "Importée",
-      "stored": "Stockée",
-      "produced": "Produite"
-    },
-    "contribute": "Contribuez sur GitHub",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
@@ -115,7 +95,33 @@
     "exchangesAreMissing": "Les échanges sont pris en compte dans les calculs mais ne sont pas indiqués actuellement. En savoir plus sur notre agrégation historique  <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
     "estimatedTooltip": "Les données en temps réel pour cette zone sont estimées sur la base des données de la source et des hypothèses du modèle.",
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
-    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
+    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données.",
+    "by-source": {
+      "emissions": "Émissions carbone",
+      "electricity-production": "Production d'électricité",
+      "electricity-consumption": "Consommation d'électricité",
+      "total-emissions": "Émissions totales de carbone",
+      "total-electricity-production": "Production totale d'électricité",
+      "total-electricity-consumption": "Consommation totale d'électricité"
+    },
+    "graph-legends": {
+      "installed-capacity": "Capacité installée ",
+      "exchange-capacity": "Capacité d'échange disponible ",
+      "exported": "Exportée",
+      "imported": "Importée",
+      "stored": "Stockée",
+      "produced": "Produite"
+    },
+    "price-chart": {
+      "see": "Afficher les prix à venir",
+      "hide": "Masquer les prix à venir",
+      "today": "Aujourd'hui",
+      "tomorrow": "Demain",
+      "price-disclaimer": "Les prix excluent les taxes et les éventuels frais de réseau.",
+      "time-disclaimer": "Tous les horaires indiqués sont en",
+      "at": "A",
+      "now": "Maintenant"
+    }
   },
   "feedback-card": {
     "agree": "D'accord",
@@ -297,8 +303,11 @@
   },
   "tooltips": {
     "carbonintensity": "Intensité carbone",
-    "lowcarbon": "Bas carbone",
-    "renewable": "Renouvelable",
+    "zoneHeader": {
+      "lowcarbon": "Inclut les énergies renouvelables et le nucléaire",
+      "renewable": "Inclut le solaire, l'éolien, l'hydroélectricité, la biomasse et la géothermie",
+      "carbonIntensity": "Grammes d'équivalent CO2 par kilowattheure (gCO2eq/kWh) mesurant les émissions de gaz à effet de serre issues de la production d'électricité"
+    },
     "crossborderexport": "Export transfrontalier",
     "carbonintensityexport": "Intensité carbone de l’export",
     "ofinstalled": "de la capacité installée",
@@ -315,7 +324,6 @@
     "consumption": "consommation",
     "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
     "selectLanguage": "Choisissez une langue",
-    "lowCarbDescription": "Inclut les énergies renouvelables et le nucléaire",
     "dataIsDelayed": "Données en retard",
     "representing": "représentant",
     "ofemissions": "des émissions",
@@ -349,7 +357,6 @@
     "system": "Système"
   },
   "updatePrompt": {
-    "title": "Mise à jour disponible",
     "description": "Une nouvelle version de l'application est disponible, mettre à jour maintenant ?",
     "update": "Mettre à jour",
     "dismiss": "Ignorer"
@@ -1391,6 +1398,9 @@
     "MX-PN": {
       "countryName": "Mexique",
       "zoneName": "Péninsule"
+    },
+    "MY": {
+      "zoneName": "Malaisie"
     },
     "MY-EM": {
       "countryName": "Malaisie",

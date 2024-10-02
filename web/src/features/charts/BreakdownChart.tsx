@@ -1,5 +1,6 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
+import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtom, useAtomValue } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
@@ -14,7 +15,7 @@ import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
 import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, getGenerationTypeKey, noop } from './graphUtils';
+import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -64,7 +65,9 @@ function BreakdownChart({
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const badgeText = getBadgeText(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+
+  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -78,7 +81,7 @@ function BreakdownChart({
     <RoundedCard>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
-        badgeText={isBreakdownGraphOverlayEnabled ? undefined : badgeText}
+        badge={isBreakdownGraphOverlayEnabled ? undefined : badge}
         unit={valueAxisLabel}
       />
       <div className="relative ">

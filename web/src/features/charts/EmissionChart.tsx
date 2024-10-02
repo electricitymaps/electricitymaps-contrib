@@ -1,5 +1,6 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
+import EstimationBadge from 'components/EstimationBadge';
 import { useAtom } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +12,7 @@ import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, noop } from './graphUtils';
+import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
 import useZoneDataSources from './hooks/useZoneDataSources';
 import { RoundedCard } from './RoundedCard';
@@ -42,13 +43,14 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
   const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
-  const badgeText = getBadgeText(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
         translationKey="country-history.emissions"
-        badgeText={badgeText}
+        badge={badge}
         unit={'CO₂eq'}
       />
       <AreaGraph
