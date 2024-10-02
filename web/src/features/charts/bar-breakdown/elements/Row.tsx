@@ -26,7 +26,7 @@ type BaseProps = {
   width: number;
 };
 
-function TextElement({ text }: { text: string }) {
+const TextElement = memo(function TextElement({ text }: { text: string }) {
   return (
     <text
       className="text-xs"
@@ -37,7 +37,7 @@ function TextElement({ text }: { text: string }) {
       {text}
     </text>
   );
-}
+});
 
 const FallbackQuestionMark = memo(function FallbackQuestionMark({
   scale,
@@ -56,7 +56,7 @@ const FallbackQuestionMark = memo(function FallbackQuestionMark({
   );
 });
 
-function RowBackground({
+const RowBackground = memo(function RowBackground({
   width,
   isMobile,
   onMouseOver,
@@ -80,6 +80,39 @@ function RowBackground({
       onBlur={onMouseOut}
     />
   );
+});
+
+function BaseRow({
+  children,
+  width,
+  isMobile,
+  onMouseOver,
+  onMouseOut,
+  value,
+  scale,
+  index,
+}: BaseProps) {
+  // Don't render if the width is not positive
+  if (width <= 0) {
+    return null;
+  }
+  return (
+    <Group top={index * (ROW_HEIGHT + PADDING_Y)}>
+      {/* Row background */}
+      <RowBackground
+        width={width}
+        isMobile={isMobile}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      />
+
+      {/* Row content */}
+      {children}
+
+      {/* Question mark if the value is not defined */}
+      {!Number.isFinite(value) && <FallbackQuestionMark scale={scale} />}
+    </Group>
+  );
 }
 
 type ProductionProps = { productionMode: ElectricityModeType } & BaseProps;
@@ -96,23 +129,16 @@ export function ProductionRow({
   width,
 }: ProductionProps) {
   const { t } = useTranslation();
-  // Don't render if the width is not positive
-  if (width <= 0) {
-    return null;
-  }
-
   return (
-    <Group top={index * (ROW_HEIGHT + PADDING_Y)}>
-      {/* Row background */}
-      <RowBackground
-        width={width}
-        isMobile={isMobile}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-      />
-
-      {/* Row label */}
-
+    <BaseRow
+      index={index}
+      isMobile={isMobile}
+      scale={scale}
+      value={value}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+      width={width}
+    >
       <g className="pointer-events-none">
         <TextElement text={t(productionMode)} />
         <ProductionSourceLegend electricityType={productionMode} />
@@ -120,10 +146,7 @@ export function ProductionRow({
 
       {/* Row content */}
       {children}
-
-      {/* Question mark if the value is not defined */}
-      {!Number.isFinite(value) && <FallbackQuestionMark scale={scale} />}
-    </Group>
+    </BaseRow>
   );
 }
 
@@ -141,20 +164,16 @@ export function ExchangeRow({
   width,
 }: ExchangeProps) {
   const { search } = useLocation();
-  // Don't render if the width is not positive
-  if (width <= 0) {
-    return null;
-  }
   return (
-    <Group top={index * (ROW_HEIGHT + PADDING_Y)}>
-      {/* Row background */}
-      <RowBackground
-        width={width}
-        isMobile={isMobile}
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-      />
-
+    <BaseRow
+      index={index}
+      isMobile={isMobile}
+      scale={scale}
+      value={value}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+      width={width}
+    >
       {/* Row label */}
       <Link to={`/zone/${zoneKey}${search}`}>
         <TextElement text={zoneKey} />
@@ -163,9 +182,6 @@ export function ExchangeRow({
 
       {/* Row content */}
       {children}
-
-      {/* Question mark if the value is not defined */}
-      {!Number.isFinite(value) && <FallbackQuestionMark scale={scale} />}
-    </Group>
+    </BaseRow>
   );
 }
