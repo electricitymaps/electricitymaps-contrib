@@ -46,6 +46,36 @@ describe('ShareButton', () => {
     expect(window.navigator.share).toHaveBeenCalled();
   });
 
+  test('does not display error toast on share abort', async () => {
+    navMocks.canShare.mockReturnValue(true);
+    mocks.isMobile.mockReturnValue(true);
+    render(
+      <ToastProvider>
+        <ShareButton />
+      </ToastProvider>
+    );
+    expect(window.navigator.share).not.toHaveBeenCalled();
+    await userEvent.click(screen.getByRole('button'));
+    expect(window.navigator.share).toHaveBeenCalled();
+    await userEvent.click(document.body);
+    expect(screen.queryAllByTestId('toast')).toHaveLength(0);
+  });
+
+  test('displays error toast on share error', async () => {
+    navMocks.canShare.mockReturnValue(true);
+    navMocks.share.mockRejectedValue(new Error('Error!'));
+    mocks.isMobile.mockReturnValue(true);
+    render(
+      <ToastProvider>
+        <ShareButton />
+      </ToastProvider>
+    );
+    expect(window.navigator.share).not.toHaveBeenCalled();
+    await userEvent.click(screen.getByRole('button'));
+    expect(window.navigator.share).toHaveBeenCalled();
+    expect(screen.queryAllByTestId('toast')).toHaveLength(1);
+  });
+
   describe('copies to clipboard', () => {
     test('if not on mobile', async () => {
       navMocks.canShare.mockReturnValue(true);
