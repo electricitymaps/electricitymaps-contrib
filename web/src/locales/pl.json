@@ -808,6 +808,9 @@
       "countryName": "Meksyk",
       "zoneName": "Meksyk Południowo Wschodni"
     },
+    "MY": {
+      "zoneName": "Malezja"
+    },
     "MY-EM": {
       "countryName": "Malezja",
       "zoneName": "Borneo"

@@ -1,6 +1,6 @@
+country: BB
 parsers:
   consumption: BB.fetch_consumption
   production: BB.fetch_production
-timezone: America/Barbados
 region: Americas
-country: BB
+timezone: America/Barbados

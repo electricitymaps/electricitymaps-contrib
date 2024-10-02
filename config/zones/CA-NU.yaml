@@ -3,6 +3,6 @@ bounding_box:
     - 51.41864655200018
   - - -60.585479295999846
     - 83.61652252800013
-timezone: America/Rankin_Inlet
-region: Americas
 country: CA
+region: Americas
+timezone: America/Rankin_Inlet
