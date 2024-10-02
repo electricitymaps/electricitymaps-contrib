@@ -1,10 +1,12 @@
 import useGetState from 'api/getState';
 import { HorizontalDivider } from 'components/Divider';
 import { useCo2ColorScale } from 'hooks/theme';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { Mode } from 'utils/constants';
+import { metaTitleSuffix, Mode } from 'utils/constants';
 import {
   isConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -24,6 +26,7 @@ export default function RankingPanel(): ReactElement {
   const [searchTerm, setSearchTerm] = useState('');
   const isConsumption = useAtomValue(isConsumptionAtom);
   const spatialAggregation = useAtomValue(spatialAggregateAtom);
+  const canonicalUrl = useGetCanonicalUrl();
   const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
 
@@ -52,6 +55,10 @@ export default function RankingPanel(): ReactElement {
 
   return (
     <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
+      <Helmet prioritizeSeoTags>
+        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
       <div className="pb-5">
         <h1>{t('ranking-panel.title')}</h1>
         <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>

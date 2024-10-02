@@ -3,6 +3,6 @@ bounding_box:
     - 15.27537669500009
   - - 135.27257938700006
     - 54.06944447900007
-timezone: Asia/Shanghai
-region: Asia
 country: CN
+region: Asia
+timezone: Asia/Shanghai

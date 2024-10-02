@@ -4,16 +4,19 @@ import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
+import { AppStoreBanner } from 'components/AppStoreBanner';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
 import { useDarkMode } from 'hooks/theme';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
+import { metaTitleSuffix } from 'utils/constants';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -42,6 +45,7 @@ export default function App(): ReactElement {
   useGetState();
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
+  const canonicalUrl = useGetCanonicalUrl();
 
   // Update classes on theme change
   useLayoutEffect(() => {
@@ -71,10 +75,12 @@ export default function App(): ReactElement {
         }}
         prioritizeSeoTags
       >
-        <title>{`Electricity Maps | ${t('misc.maintitle')}`}</title>
+        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
         <meta property="og:locale" content={i18n.languages[0]} />
+        <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <main className="fixed flex h-screen w-screen flex-col">
+      <main className="fixed flex h-full w-full flex-col">
+        <AppStoreBanner />
         <ToastProvider duration={20_000}>
           <Suspense>
             <Header />

@@ -203,12 +203,8 @@ export const convertPrice = (
   value?: number,
   currency?: string,
   unit: EnergyUnits = EnergyUnits.MEGAWATT_HOURS
-): { value?: number; currency?: string; unit: EnergyUnits } => {
-  if (currency === 'EUR') {
-    if (value) {
-      value = round(value / 1000, 4);
-    }
-    return { value: value, currency, unit: EnergyUnits.KILOWATT_HOURS };
-  }
-  return { value, currency, unit };
-};
+): { value?: number; currency?: string; unit: EnergyUnits } => ({
+  value,
+  currency,
+  unit,
+});

@@ -16,6 +16,7 @@ capacity:
   wind: 1220
 contributors:
   - veqtrus
+country: MA
 fallbackZoneMixes:
   _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~MAR
   powerOriginRatios:
@@ -27,6 +28,5 @@ fallbackZoneMixes:
       solar: 0.0474
       wind: 0.1409
 parsers: {}
-timezone: Africa/Casablanca
 region: Africa
-country: MA
+timezone: Africa/Casablanca

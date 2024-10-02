@@ -113,7 +113,6 @@
     "zone": "območje"
   },
   "updatePrompt": {
-    "title": "Posodobitev na voljo",
     "description": "Na voljo je nova različica aplikacije, želite zdaj posodobiti?",
     "update": "Posodobi",
     "dismiss": "Zavrni"
@@ -1100,6 +1099,9 @@
     "MX-PN": {
       "countryName": "Mehika",
       "zoneName": "Polotok Jukatan"
+    },
+    "MY": {
+      "zoneName": "Malezija"
     },
     "MY-EM": {
       "countryName": "Malezija",

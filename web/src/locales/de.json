@@ -4,6 +4,10 @@
     "areas": "Regionen",
     "about": "Über"
   },
+  "app-banner": {
+    "cta": "App laden",
+    "description": "Live-Elektrizitätsdaten"
+  },
   "onboarding-modal": {
     "view1": {
       "header": "Willkommen bei Electricity Maps",
@@ -191,7 +195,6 @@
     "system": "System"
   },
   "updatePrompt": {
-    "title": "Aktualisierung verfügbar",
     "description": "Eine neue Version der App ist verfügbar, jetzt aktualisieren?",
     "update": "Aktualisieren",
     "dismiss": "Schließen"
@@ -1055,6 +1058,9 @@
     },
     "MX": {
       "zoneName": "Mexiko"
+    },
+    "MY": {
+      "zoneName": "Malaysia"
     },
     "MY-EM": {
       "countryName": "Malaysia",
