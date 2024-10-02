@@ -1,9 +1,9 @@
 import { Button, ButtonProps } from 'components/Button';
 import { Toast, useToastReference } from 'components/Toast';
 import { isiOS, isMobile } from 'features/weather-layers/wind-layer/util';
-import { t } from 'i18next';
 import { Share, Share2 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { ShareType, trackShare } from 'utils/analytics';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
@@ -26,6 +26,7 @@ export function ShareButton({
   showiOSIcon = isiOS(),
   ...restProps
 }: ShareButtonProps) {
+  const { t } = useTranslation();
   const reference = useToastReference();
   const [toastMessage, setToastMessage] = useState('');
 
@@ -42,7 +43,7 @@ export function ShareButton({
       await navigator.share(shareData);
     } catch (error) {
       console.error(error);
-      setToastMessage('Error sharing URL');
+      setToastMessage(t('share-button.share-error'));
       reference.current?.publish();
     }
   };
@@ -50,10 +51,10 @@ export function ShareButton({
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(url);
-      setToastMessage('URL copied to clipboard!');
+      setToastMessage(t('share-button.clipboard'));
     } catch (error) {
       console.error(error);
-      setToastMessage('Error copying URL to clipboard');
+      setToastMessage(t('share-button.clipboard-error'));
     } finally {
       reference.current?.publish();
     }

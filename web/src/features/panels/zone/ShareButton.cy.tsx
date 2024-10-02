@@ -49,4 +49,18 @@ describe('Share Button', () => {
     cy.get('[data-test-id="share-btn"]').click();
     cy.get('[data-testid="toast"]').should('exist');
   });
+
+  it('should close toast on click', () => {
+    cy.mount(
+      <QueryClientProvider client={queryClient}>
+        <ToastProvider>
+          <ShareButton showiOSIcon={false} />
+        </ToastProvider>
+      </QueryClientProvider>
+    );
+    cy.get('[data-test-id="share-btn"]').click();
+    cy.get('[data-testid="toast"]').should('be.visible');
+    cy.get('[data-testid="toast-dismiss"]').click();
+    cy.get('[data-testid="toast"]').should('not.exist');
+  });
 });
