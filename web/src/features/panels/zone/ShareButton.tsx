@@ -61,7 +61,7 @@ export function ShareButton({
   };
 
   const onClick = () => {
-    if (isMobile() && navigator.canShare()) {
+    if (isMobile() && navigator.canShare({ url })) {
       share();
     } else {
       copyToClipboard();
