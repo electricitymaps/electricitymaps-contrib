@@ -42,9 +42,11 @@ export function ShareButton({
     try {
       await navigator.share(shareData);
     } catch (error) {
-      console.error(error);
-      setToastMessage(t('share-button.share-error'));
-      reference.current?.publish();
+      if (error instanceof Error && !/AbortError/.test(error.toString())) {
+        console.error(error);
+        setToastMessage(t('share-button.share-error'));
+        reference.current?.publish();
+      }
     }
   };
 
