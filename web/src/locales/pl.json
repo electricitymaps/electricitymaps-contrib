@@ -10,7 +10,7 @@
     "title": "Ustawienia"
   },
   "ranking-panel": {
-    "title": "Climate Impact by Area",
+    "title": "Wpływ na klimat według obszaru",
     "subtitle": "Podział według intensywności emisji dwutlenku węgla w zużytej energii elektrycznej (gCO₂eq/kWh)",
     "search": "Szukaj"
   },
@@ -1424,10 +1424,10 @@
       "zoneName": "Newfoundland"
     },
     "CC": {
-      "zoneName": "Cocos Islands"
+      "zoneName": "Wyspy Kokosowe"
     },
     "CK": {
-      "zoneName": "Cook Islands"
+      "zoneName": "Wyspy Cooka"
     },
     "CL-CHP": {
       "countryName": "Chile",
@@ -1455,7 +1455,7 @@
       "zoneName": "Cypr"
     },
     "DM": {
-      "zoneName": "Dominica"
+      "zoneName": "Dominika"
     },
     "ES-IB-FO": {
       "countryName": "Hiszpania",
@@ -1467,27 +1467,27 @@
     },
     "ES-IB-MA": {
       "countryName": "Hiszpania",
-      "zoneName": "Mallorca"
+      "zoneName": "Majorka"
     },
     "ES-IB-ME": {
       "countryName": "Hiszpania",
-      "zoneName": "Menorca"
+      "zoneName": "Minorka"
     },
     "FJ": {
       "zoneName": "Fiji"
     },
     "FK": {
-      "zoneName": "Falkland Islands"
+      "zoneName": "Falklandy"
     },
     "FM": {
       "zoneName": "Mikronezja"
     },
     "FO-MI": {
-      "countryName": "Faroe Islands",
+      "countryName": "Wyspy Owcze",
       "zoneName": "Main Islands"
     },
     "FO-SI": {
-      "countryName": "Faroe Islands",
+      "countryName": "Wyspy Owcze",
       "zoneName": "South Island"
     },
     "GA": {
@@ -1517,10 +1517,10 @@
       "zoneName": "Gambia"
     },
     "GP": {
-      "zoneName": "Guadeloupe"
+      "zoneName": "Gwadelupa"
     },
     "GS": {
-      "zoneName": "South Georgia and the South Sandwich Islands"
+      "zoneName": "Georgia Południowa i Sandwich Południowy"
     },
     "GU": {
       "zoneName": "Guam"
@@ -1529,7 +1529,7 @@
       "zoneName": "Hong Kong"
     },
     "HM": {
-      "zoneName": "Heard Island and McDonald Islands"
+      "zoneName": "Wyspy Heard i McDonalda"
     },
     "HT": {
       "zoneName": "Haiti"
@@ -1671,7 +1671,7 @@
       "zoneName": "Pitcairn"
     },
     "PR": {
-      "zoneName": "Puerto Rico"
+      "zoneName": "Portoryko"
     },
     "PW": {
       "zoneName": "Palau"
@@ -1692,15 +1692,15 @@
       "zoneName": "Sudan"
     },
     "SE-SE1": {
-      "countryName": "Sweden",
+      "countryName": "Szwecja",
       "zoneName": "Północna Szwecja"
     },
     "SE-SE2": {
-      "countryName": "Sweden",
+      "countryName": "Szwecja",
       "zoneName": "Północno-Centralna Szwecja"
     },
     "SE-SE3": {
-      "countryName": "Sweden",
+      "countryName": "Szwecja",
       "zoneName": "Południowo-Centralna Szwecja"
     },
     "SE-SE4": {
@@ -1708,7 +1708,7 @@
       "zoneName": "Południowa Szwecja"
     },
     "SH": {
-      "zoneName": "Saint Helena, Ascension and Tristan da Cunha"
+      "zoneName": "Wyspa Świętej Heleny, Wyspa Wniebowstąpienia i Tristan da Cunha"
     },
     "SL": {
       "zoneName": "Sierra Leone"
@@ -1730,10 +1730,10 @@
       "zoneName": "Syria"
     },
     "TC": {
-      "zoneName": "Turks and Caicos Islands"
+      "zoneName": "Turks i Caicos"
     },
     "TF": {
-      "zoneName": "French Southern Territories"
+      "zoneName": "Francuskie Terytoria Południowe"
     },
     "TG": {
       "zoneName": "Togo"
@@ -2073,34 +2073,34 @@
       "zoneName": "Wyspy Dziewicze"
     },
     "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": " Vietnam"
+      "countryName": "Wietnam",
+      "zoneName": " Wietnam"
     },
     "VN-N": {
-      "countryName": "Vietnam",
+      "countryName": "Wietnam",
       "zoneName": "Północny Wietnam"
     },
     "VN-S": {
-      "countryName": "Vietnam",
+      "countryName": "Wietnam",
       "zoneName": "Południowy Wietnam"
     },
     "VU": {
       "zoneName": "Vanuatu"
     },
     "WF": {
-      "zoneName": "Wallis and Futuna"
+      "zoneName": "Wallis i Futuna"
     },
     "WS": {
       "zoneName": "Samoa"
     },
     "XK": {
-      "zoneName": "Kosovo"
+      "zoneName": "Kosowo"
     },
     "XX": {
       "zoneName": "Cypr Północny"
     },
     "YT": {
-      "zoneName": "Mayotte"
+      "zoneName": "Majotta"
     }
   }
 }
