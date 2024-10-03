@@ -180,9 +180,17 @@ export function PriceBar({
 }
 
 function PriceDisplay({ price, currency }: { price: number; currency: string }) {
+  const symbol = getSymbolFromCurrency(currency);
+  if (symbol == '€') {
+    return (
+      <p className="min-w-[66px] text-nowrap text-end text-sm font-semibold tabular-nums">
+        {`${price} ${symbol}`}
+      </p>
+    );
+  }
   return (
     <p className="min-w-[66px] text-nowrap text-sm font-semibold tabular-nums">
-      {`${price} ${getSymbolFromCurrency(currency)}`}
+      {`${symbol}${price}`}
     </p>
   );
 }
