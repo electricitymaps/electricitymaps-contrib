@@ -40,7 +40,7 @@ export default function Accordion({
   isTopExpanding?: boolean;
 }) {
   const { ref, height: observerHeight } = useResizeObserver<HTMLDivElement>();
-  const [renderChildren, setRenderChildren] = useState(true);
+  const [renderChildren, setRenderChildren] = useState(false);
 
   const [spring, api] = useSpring(
     () => ({
