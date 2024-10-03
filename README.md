@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.app.electricitymaps.com">
+  <a href="https://app.electricitymaps.com">
     <img alt="Electricity Maps" src="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricitymaps-icon.svg" width="100" />
   </a>
 </p>
