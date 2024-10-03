@@ -75,14 +75,21 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
             <ul>
               {Object.entries(filteredPriceData).map(
                 ([date, price]: [string, number]) => (
-                  <li key={date}>
+                  <li
+                    key={date}
+                    className={
+                      isNow(date, granularity)
+                        ? `rounded-md bg-[#18214F]/10 dark:bg-[#848EC0]/10`
+                        : ''
+                    }
+                  >
                     {dateIsFirstHourOfTomorrow(new Date(date)) && (
                       <div className="flex flex-col py-1" data-test-id="tomorrow-label">
                         <HorizontalDivider />
                         <TommorowLabel date={date} t={t} i18n={i18n} />
                       </div>
                     )}
-                    <div className="flex flex-row justify-items-end gap-2">
+                    <div className="flex flex-row justify-items-end gap-2 px-1">
                       <TimeDisplay date={date} granularity={granularity} />
                       <PriceDisplay price={price} currency={futurePrice.currency} />
                       <div className="flex h-full w-full flex-row self-center">
