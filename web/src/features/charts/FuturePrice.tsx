@@ -1,7 +1,6 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import getSymbolFromCurrency from 'currency-symbol-map';
-import { last } from 'cypress/types/lodash';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
@@ -75,58 +74,79 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
             <ul>
               {Object.entries(filteredPriceData).map(
                 ([date, price]: [string, number]) => (
-                  <li key={date}>
-                    {dateIsFirstHourOfTomorrow(new Date(date)) && (
-                      <div className="flex flex-col py-1" data-test-id="tomorrow-label">
-                        <HorizontalDivider />
-                        <TommorowLabel date={date} t={t} i18n={i18n} />
-                      </div>
-                    )}
-                    <div className="flex flex-row justify-items-end gap-2">
-                      <TimeDisplay date={date} granularity={granularity} />
-                      <PriceDisplay price={price} currency={futurePrice.currency} />
-                      <div className="flex h-full w-full flex-row self-center">
-                        {hasNegativePrice && (
-                          <div
-                            className="flex flex-row justify-end"
-                            style={{
-                              width: `${negativePercentage}%`,
-                            }}
-                            data-test-id="negative-price"
-                          >
-                            {price < 0 && (
-                              <PriceBar
-                                price={price * -1}
-                                maxPrice={-1 * minPriceTotal}
-                                color={getColor(
-                                  price,
-                                  maxPriceFuture,
-                                  minPriceFuture,
-                                  date,
-                                  granularity
-                                )}
-                              />
-                            )}
-                          </div>
-                        )}
-                        <div
-                          style={{
-                            width: `${100 - negativePercentage}%`,
-                          }}
-                          data-test-id="positive-price"
-                        >
-                          {price > 0 && (
-                            <PriceBar
-                              price={price}
-                              maxPrice={maxPriceTotal}
-                              color={getColor(
-                                price,
-                                maxPriceFuture,
-                                minPriceFuture,
-                                date,
-                                granularity
+                  <li
+                    key={date}
+                    className={
+                      isNow(date, granularity)
+                        ? `rounded-md bg-[#18214F]/10 dark:bg-[#848EC0]/10`
+                        : ''
+                    }
+                  >
+                    <div>
+                      {dateIsFirstHourOfTomorrow(new Date(date)) && (
+                        <div className="flex flex-col py-1" data-test-id="tomorrow-label">
+                          <HorizontalDivider />
+                          <TommorowLabel date={date} t={t} i18n={i18n} />
+                        </div>
+                      )}
+                      <div className="flex flex-row justify-items-end gap-2 px-1">
+                        <TimeDisplay date={date} granularity={granularity} />
+                        <PriceDisplay price={price} currency={futurePrice.currency} />
+                        <div className="flex h-full w-full flex-row self-center">
+                          {hasNegativePrice && (
+                            <div
+                              className="flex flex-row justify-end"
+                              style={{
+                                width: `calc(${negativePercentage}% - 6px)`,
+                              }}
+                              data-test-id="negative-price"
+                            >
+                              {price < 0 && (
+                                <PriceBar
+                                  price={price}
+                                  maxPrice={-1 * minPriceTotal}
+                                  color={getColor(
+                                    price,
+                                    maxPriceFuture,
+                                    minPriceFuture,
+                                    date,
+                                    granularity
+                                  )}
+                                />
                               )}
-                            />
+                            </div>
+                          )}
+                          <Middle
+                            color={getColor(
+                              price,
+                              maxPriceFuture,
+                              minPriceFuture,
+                              date,
+                              granularity
+                            )}
+                            price={price}
+                          />
+                          {price >= 0 && (
+                            <div
+                              data-test-id="positive-price"
+                              style={{
+                                width: `calc(${100 - negativePercentage}% - 6px)`,
+                              }}
+                            >
+                              {price >= 0 && (
+                                <PriceBar
+                                  price={price}
+                                  maxPrice={maxPriceTotal}
+                                  color={getColor(
+                                    price,
+                                    maxPriceFuture,
+                                    minPriceFuture,
+                                    date,
+                                    granularity
+                                  )}
+                                />
+                              )}
+                            </div>
                           )}
                         </div>
                       </div>
@@ -141,6 +161,25 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     </div>
   );
 }
+
+function Middle({ color, price }: { color: string; price: number }) {
+  return (
+    <div
+      className={`h-3 w-3
+    ${getRounding(price)} ${color}`}
+    />
+  );
+}
+
+const getRounding = (price: number): string => {
+  if (price == 0) {
+    return 'rounded-full';
+  }
+  if (price < 0) {
+    return 'rounded-r-full';
+  }
+  return 'rounded-l-full';
+};
 
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
@@ -163,10 +202,11 @@ export function PriceBar({
   maxPrice: number;
   color: string;
 }) {
+  const nonNegativePrice = Math.abs(price);
   return (
     <div
-      className={`h-3 rounded-full ${color}`}
-      style={{ width: `${(price / maxPrice) * 100}%` }}
+      className={`h-3 ${getRounding(price * -1)} ${color}`}
+      style={{ width: `${(nonNegativePrice / maxPrice) * 100}%` }}
       data-test-id="price-bar"
     />
   );
@@ -174,7 +214,7 @@ export function PriceBar({
 
 function PriceDisplay({ price, currency }: { price: number; currency: string }) {
   return (
-    <p className="min-w-[66px] text-nowrap text-sm font-semibold tabular-nums">
+    <p className="min-w-[66px] justify-end text-nowrap text-end text-sm font-semibold">
       {`${price} ${getSymbolFromCurrency(currency)}`}
     </p>
   );
@@ -187,7 +227,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 
   if (isNow(date, granularity)) {
     return (
-      <p className="min-w-[82px] text-sm font-semibold" data-test-id="now-label">
+      <p className="min-w-[82px] pl-2 text-sm font-semibold" data-test-id="now-label">
         {t(`country-panel.price-chart.now`)}
       </p>
     );
