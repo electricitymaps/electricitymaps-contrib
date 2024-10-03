@@ -44,6 +44,6 @@ export function isMobileWeb() {
   return Capacitor.getPlatform() === 'web' && (isIphone() || isAndroid() || isMobile());
 }
 
-export function isiOS() {
+export function isIos() {
   return /Mac/.test(navigator.userAgent) || isIphone();
 }

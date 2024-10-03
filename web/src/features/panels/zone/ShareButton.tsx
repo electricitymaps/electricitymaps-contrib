@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from 'components/Button';
 import { Toast, useToastReference } from 'components/Toast';
-import { isiOS, isMobile } from 'features/weather-layers/wind-layer/util';
+import { isIos, isMobile } from 'features/weather-layers/wind-layer/util';
 import { Share, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ interface ShareButtonProps
   > {
   iconSize?: number;
   shareUrl?: string;
-  showiOSIcon?: boolean;
+  showIosIcon?: boolean;
 }
 const trackShareClick = trackShare(ShareType.SHARE);
 const DURATION = 3 * 1000;
@@ -23,7 +23,7 @@ const DURATION = 3 * 1000;
 export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
   shareUrl,
-  showiOSIcon = isiOS(),
+  showIosIcon = isIos(),
   ...restProps
 }: ShareButtonProps) {
   const { t } = useTranslation();
@@ -79,11 +79,11 @@ export function ShareButton({
         backgroundClasses="bg-brand-green"
         foregroundClasses={twMerge(
           'text-white dark:text-white focus-visible:outline-black',
-          showiOSIcon ? '' : '-translate-x-px'
+          showIosIcon ? '' : '-translate-x-px'
         )}
         onClick={onClick}
         icon={
-          showiOSIcon ? (
+          showIosIcon ? (
             <Share data-test-id="iosShareIcon" size={iconSize} />
           ) : (
             <Share2 data-test-id="defaultShareIcon" size={iconSize} />

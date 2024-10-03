@@ -16,7 +16,7 @@ describe('Share Button', () => {
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showiOSIcon={true} />
+          <ShareButton showIosIcon={true} />
         </ToastProvider>
       </QueryClientProvider>
     );
@@ -28,7 +28,7 @@ describe('Share Button', () => {
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showiOSIcon={false} />
+          <ShareButton showIosIcon={false} />
         </ToastProvider>
       </QueryClientProvider>
     );
@@ -40,7 +40,7 @@ describe('Share Button', () => {
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showiOSIcon={false} />
+          <ShareButton showIosIcon={false} />
         </ToastProvider>
       </QueryClientProvider>
     );
@@ -54,7 +54,7 @@ describe('Share Button', () => {
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showiOSIcon={false} />
+          <ShareButton showIosIcon={false} />
         </ToastProvider>
       </QueryClientProvider>
     );

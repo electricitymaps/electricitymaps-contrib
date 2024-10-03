@@ -23,7 +23,7 @@ Object.defineProperty(window.navigator, 'clipboard', {
 
 const mocks = vi.hoisted(() => ({
   isMobile: vi.fn(),
-  isiOS: vi.fn(),
+  isIos: vi.fn(),
 }));
 
 vi.mock('features/weather-layers/wind-layer/util', () => mocks);
