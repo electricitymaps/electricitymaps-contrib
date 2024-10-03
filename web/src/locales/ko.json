@@ -1009,6 +1009,9 @@
       "countryName": "멕시코",
       "zoneName": "반도"
     },
+    "MY": {
+      "zoneName": "말레이시아"
+    },
     "MY-EM": {
       "countryName": "말레이시아",
       "zoneName": "보르네오"
