@@ -1,6 +1,5 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
-import getSymbolFromCurrency from 'currency-symbol-map';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
@@ -212,10 +211,28 @@ export function PriceBar({
   );
 }
 
-function PriceDisplay({ price, currency }: { price: number; currency: string }) {
+function PriceDisplay({
+  price,
+  currency,
+  i18n,
+}: {
+  price: number;
+  currency: string;
+  i18n: i18n;
+}) {
+  const priceString = Intl.NumberFormat(i18n.languages[0], {
+    style: 'currency',
+    currency: currency,
+    maximumSignificantDigits: 4,
+    currencyDisplay: 'narrowSymbol',
+  }).format(price);
   return (
-    <p className="min-w-[66px] justify-end text-nowrap text-end text-sm font-semibold">
-      {`${price} ${getSymbolFromCurrency(currency)}`}
+    <p
+      className={`min-w-[66px] overflow-clip text-nowrap text-sm font-semibold tabular-nums ${
+        Number.isNaN(Number(priceString[0])) ? 'text-start' : 'text-end'
+      }`}
+    >
+      {priceString}
     </p>
   );
 }
@@ -300,15 +317,15 @@ const getColor = (
   date: string,
   granularity: number
 ): string => {
-  if (price === maxPrice) {
-    return 'bg-danger dark:bg-red-400';
-  } else if (price === minPrice) {
-    return 'bg-success dark:bg-emerald-500';
-  } else if (
+  if (
     normalizeToGranularity(new Date(date), granularity) <
     normalizeToGranularity(new Date(), granularity)
   ) {
     return 'bg-[#18214F] dark:bg-[#848EC0] opacity-50';
+  } else if (price === maxPrice) {
+    return 'bg-danger dark:bg-red-400';
+  } else if (price === minPrice) {
+    return 'bg-success dark:bg-emerald-500';
   } else {
     return 'bg-[#18214F] dark:bg-[#848EC0]';
   }

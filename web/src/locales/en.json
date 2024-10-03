@@ -38,6 +38,11 @@
     "cta": "Get the app",
     "description": "Live electricity data"
   },
+  "share-button": {
+    "clipboard": "URL copied to clipboard!",
+    "clipboard-error": "Error copying URL to clipboard",
+    "share-error": "Error sharing URL"
+  },
   "onboarding-modal": {
     "view1": {
       "header": "Welcome to Electricity Maps",
@@ -1407,6 +1412,9 @@
     "MX-PN": {
       "countryName": "Mexico",
       "zoneName": "Peninsula"
+    },
+    "MY": {
+      "zoneName": "Malaysia"
     },
     "MY-EM": {
       "countryName": "Malaysia",

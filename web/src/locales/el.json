@@ -973,6 +973,9 @@
       "countryName": "Μεξικό",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Μαλαισία"
+    },
     "MY-EM": {
       "countryName": "Μαλαισία",
       "zoneName": "Borneo"

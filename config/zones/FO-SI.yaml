@@ -51,6 +51,13 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2023
         value: 641.08
   lifecycle:
+    battery discharge:
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 445.25908039651796
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 522.4273022697698
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -80,6 +87,13 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
+    hydro discharge:
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 445.25908039651796
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 522.4273022697698
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -99,6 +113,38 @@ emissionFactors:
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.16629657000647302
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.37425561773806565
+        solar: 0.0029396081032061127
+        unknown: 0.0
+        wind: 0.4564911544252566
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.11800670796717387
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.4408138238297388
+        solar: 0.005933823038562434
+        unknown: 0.0
+        wind: 0.43524042559796317
 parsers:
   production: FO.fetch_production
 region: Europe

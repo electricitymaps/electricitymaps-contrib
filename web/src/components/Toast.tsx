@@ -1,6 +1,6 @@
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import { CircleCheck, Info, OctagonX, TriangleAlert, X } from 'lucide-react';
-import { useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
@@ -46,18 +46,34 @@ export const ToastTypeTheme = {
   },
 };
 
-export function Toast({
-  title,
-  description,
-  toastAction,
-  toastActionText,
-  toastClose,
-  toastCloseText,
-  duration,
-  type = ToastType.INFO,
-}: ToastProps) {
+export interface ToastController {
+  publish(): void;
+  close(): void;
+}
+
+export const useToastReference = () => useRef<ToastController>(null);
+
+export const Toast = forwardRef<ToastController, ToastProps>(function Toast(
+  {
+    title,
+    description,
+    toastAction,
+    toastActionText,
+    toastClose,
+    toastCloseText,
+    duration,
+    type = ToastType.INFO,
+  }: ToastProps,
+  forwardedReference
+) {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useImperativeHandle(forwardedReference, () => ({
+    publish: () => setOpen(true),
+    close: () => setOpen(false),
+  }));
+
   const handleToastAction = () => {
     toastAction?.();
     setOpen(false);
@@ -79,7 +95,7 @@ export function Toast({
         duration={duration}
         type="background"
         className={twMerge(
-          'fixed left-1/2 top-16 z-50 flex w-11/12 max-w-md -translate-x-1/2 transform rounded-lg shadow',
+          'fixed left-1/2 top-16 z-50 flex w-11/12 min-w-fit max-w-sm -translate-x-1/2 transform rounded-lg shadow',
           'border border-solid border-neutral-50 bg-white/80 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-900',
           "before:content[''] before:absolute before:block before:h-full before:w-1 before:rounded-bl-md before:rounded-tl-md",
           color,
@@ -128,4 +144,4 @@ export function Toast({
       <ToastPrimitive.Viewport />
     </>
   );
-}
+});
