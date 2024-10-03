@@ -6,7 +6,7 @@ import { modeColor } from 'utils/constants';
 import { AXIS_LEGEND_PADDING } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
-import { ProductionRow } from './elements/Row';
+import { ProductionSourceRow } from './elements/Row';
 import { getElectricityProductionValue, ProductionDataType } from './utils';
 
 export function BarElectricityProductionChart({
@@ -47,7 +47,7 @@ export function BarElectricityProductionChart({
       />
       <g transform={`translate(0, ${productionY})`}>
         {productionData.map((d, index) => (
-          <ProductionRow
+          <ProductionSourceRow
             key={d.mode}
             index={index}
             productionMode={d.mode}
@@ -70,7 +70,7 @@ export function BarElectricityProductionChart({
               range={[0, getElectricityProductionValue(d)]}
               scale={powerScale}
             />
-          </ProductionRow>
+          </ProductionSourceRow>
         ))}
       </g>
     </svg>

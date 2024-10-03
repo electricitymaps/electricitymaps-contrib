@@ -4,7 +4,7 @@ import { modeColor } from 'utils/constants';
 
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
-import { ProductionRow } from './elements/Row';
+import { ProductionSourceRow } from './elements/Row';
 import { ProductionDataType } from './utils';
 
 export function BarEmissionProductionChart({
@@ -36,7 +36,7 @@ export function BarEmissionProductionChart({
       <Axis formatTick={formatTick} height={height} scale={co2Scale} />
       <g transform={`translate(0, ${productionY})`}>
         {productionData.map((d, index) => (
-          <ProductionRow
+          <ProductionSourceRow
             key={d.mode}
             index={index}
             productionMode={d.mode}
@@ -53,7 +53,7 @@ export function BarEmissionProductionChart({
               range={[0, Math.abs(d.gCo2eq)]}
               scale={co2Scale}
             />
-          </ProductionRow>
+          </ProductionSourceRow>
         ))}
       </g>
     </svg>

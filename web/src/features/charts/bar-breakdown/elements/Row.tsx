@@ -117,7 +117,7 @@ function BaseRow({
 
 type ProductionProps = { productionMode: ElectricityModeType } & BaseProps;
 
-export function ProductionRow({
+export function ProductionSourceRow({
   children,
   index,
   isMobile,
