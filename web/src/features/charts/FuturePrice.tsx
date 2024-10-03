@@ -1,7 +1,6 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
 import getSymbolFromCurrency from 'currency-symbol-map';
-import { last } from 'cypress/types/lodash';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
@@ -275,15 +274,15 @@ const getColor = (
   date: string,
   granularity: number
 ): string => {
-  if (price === maxPrice) {
-    return 'bg-danger dark:bg-red-400';
-  } else if (price === minPrice) {
-    return 'bg-success dark:bg-emerald-500';
-  } else if (
+  if (
     normalizeToGranularity(new Date(date), granularity) <
     normalizeToGranularity(new Date(), granularity)
   ) {
     return 'bg-[#18214F] dark:bg-[#848EC0] opacity-50';
+  } else if (price === maxPrice) {
+    return 'bg-danger dark:bg-red-400';
+  } else if (price === minPrice) {
+    return 'bg-success dark:bg-emerald-500';
   } else {
     return 'bg-[#18214F] dark:bg-[#848EC0]';
   }
