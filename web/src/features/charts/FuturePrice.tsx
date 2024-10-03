@@ -24,16 +24,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   const { t, i18n } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useAtom(futurePriceCollapsedAtom);
   const granularity = getGranularity(futurePrice?.priceData);
-  const divReference = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState<number | null>(null);
   const usedGranularity = 30;
-
-  useEffect(() => {
-    if (divReference.current) {
-      const divWidth = divReference.current.getBoundingClientRect().width;
-      setWidth(divWidth);
-    }
-  }, []);
 
   const filteredPriceData = filterPriceData(futurePrice?.priceData, usedGranularity);
 
@@ -54,14 +45,36 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     [filteredPriceData, granularity]
   );
 
-  if (!futurePrice || !isFuturePrice(futurePrice)) {
-    return null;
-  }
-
+  const divReference = useRef<HTMLDivElement>(null);
+  const [positiveWidth, setPositiveWidth] = useState<number>(0);
+  const [negativeWidth, setNegativeWidth] = useState<number>(0);
   const hasNegativePrice = minPriceTotal < 0;
   const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
 
-  console.log(width);
+  useEffect(() => {
+    const handleResize = () => {
+      const divWidth = divReference?.current?.getBoundingClientRect().width;
+      setPositiveWidth(calculateWidth(divWidth ?? 0, negativePercentage, false));
+      setNegativeWidth(calculateWidth(divWidth ?? 0, negativePercentage, true));
+    };
+
+    const observer = new ResizeObserver(handleResize);
+    const current = divReference.current;
+
+    if (current) {
+      observer.observe(current);
+    }
+
+    return () => {
+      if (current) {
+        observer.unobserve(current);
+      }
+    };
+  }, [divReference, negativePercentage]);
+
+  if (!futurePrice || !isFuturePrice(futurePrice)) {
+    return null;
+  }
 
   return (
     <div className="pt-2">
@@ -110,35 +123,35 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                           ref={divReference}
                           className="flex h-full w-full flex-row self-center"
                         >
-                          {hasNegativePrice && (
+                          {hasNegativePrice && price < 0 && (
                             <div
                               className="flex flex-row justify-end"
                               style={{
-                                width: `calc(${negativePercentage}% - 6px)`,
+                                width: negativeWidth,
                               }}
                               data-test-id="negative-price"
                             >
-                              {price < 0 && (
-                                <PriceBar
-                                  price={price}
-                                  maxPrice={-1 * minPriceTotal}
-                                  color={getColor(
-                                    price,
-                                    maxPriceFuture,
-                                    minPriceFuture,
-                                    date,
-                                    granularity
-                                  )}
-                                />
-                              )}
+                              <PriceBar
+                                price={price}
+                                maxPrice={-1 * minPriceTotal}
+                                color={getColor(
+                                  price,
+                                  maxPriceFuture,
+                                  minPriceFuture,
+                                  date,
+                                  granularity
+                                )}
+                                maxWidth={negativeWidth}
+                              />
                             </div>
                           )}
                           {price >= 0 && (
                             <div
                               data-test-id="positive-price"
                               style={{
-                                width: `calc(${100 - negativePercentage}% - 6px)`,
+                                width: positiveWidth,
                               }}
+                              className="ml-auto"
                             >
                               {price >= 0 && (
                                 <PriceBar
@@ -151,6 +164,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                                     date,
                                     granularity
                                   )}
+                                  maxWidth={positiveWidth}
                                 />
                               )}
                             </div>
@@ -169,6 +183,20 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   );
 }
 
+const calculateWidth = (
+  width: number | null,
+  negativePercentage: number,
+  isNegative: boolean
+): number => {
+  if (width === null) {
+    return 0;
+  }
+  if (isNegative) {
+    return ((width - 12) * negativePercentage) / 100 + 12;
+  }
+  return ((width - 12) * (100 - negativePercentage)) / 100 + 12;
+};
+
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
     dateStyle: 'medium',
@@ -185,16 +213,19 @@ export function PriceBar({
   price,
   maxPrice,
   color,
+  maxWidth,
 }: {
   price: number;
   maxPrice: number;
   color: string;
+  maxWidth: number;
 }) {
   const nonNegativePrice = Math.abs(price);
+  const width = (nonNegativePrice / maxPrice) * (maxWidth - 12) + 12;
   return (
     <div
       className={`h-3 rounded-full ${color}`}
-      style={{ width: `${(nonNegativePrice / maxPrice) * 100}%` }}
+      style={{ width: width }}
       data-test-id="price-bar"
     />
   );
@@ -218,9 +249,7 @@ function PriceDisplay({
   return (
     <p
       className={`min-w-[66px] overflow-clip text-nowrap text-sm font-semibold tabular-nums ${
-        Number.isNaN(Number(priceString[0])) && priceString[0] != '-'
-          ? 'text-start'
-          : 'text-end'
+        Number.isNaN(Number(priceString.at(-1))) ? 'text-end' : 'text-start'
       }`}
     >
       {priceString}
