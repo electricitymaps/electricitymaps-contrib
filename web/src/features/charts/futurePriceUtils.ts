@@ -72,3 +72,30 @@ export const negativeToPostivePercentage = (
 
   return Math.round(Math.abs((minPrice / (maxPrice + Math.abs(minPrice))) * 100));
 };
+
+export const calculateWidth = (
+  width: number | null | undefined,
+  negativePercentage: number,
+  isNegative: boolean
+): number => {
+  if (!width) {
+    return 0;
+  }
+  if (isNegative) {
+    return ((width - 12) * negativePercentage) / 100 + 12;
+  }
+  return ((width - 12) * (100 - negativePercentage)) / 100 + 12;
+};
+
+export const priceIn5Percentile = (
+  price: number,
+  maxPrice: number,
+  minPrice: number,
+  inTop: boolean
+): boolean => {
+  const priceRange = maxPrice - minPrice;
+  if (inTop) {
+    return price >= maxPrice - priceRange * 0.05;
+  }
+  return price <= minPrice + priceRange * 0.05;
+};

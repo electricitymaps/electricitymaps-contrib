@@ -13,11 +13,13 @@ import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
 import {
   calculatePriceBound,
+  calculateWidth,
   dateIsFirstHourOfTomorrow,
   filterPriceData,
   getGranularity,
   negativeToPostivePercentage,
   normalizeToGranularity,
+  priceIn5Percentile,
 } from './futurePriceUtils';
 
 export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
@@ -45,21 +47,21 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     [filteredPriceData, granularity]
   );
 
-  const divReference = useRef<HTMLDivElement>(null);
-  const [positiveWidth, setPositiveWidth] = useState<number>(0);
-  const [negativeWidth, setNegativeWidth] = useState<number>(0);
+  const priceBarContainerReference = useRef<HTMLDivElement>(null);
+  const [positiveWidth, setPositiveWidth] = useState(0);
+  const [negativeWidth, setNegativeWidth] = useState(0);
   const hasNegativePrice = minPriceTotal < 0;
   const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
 
   useEffect(() => {
     const handleResize = () => {
-      const divWidth = divReference?.current?.getBoundingClientRect().width;
-      setPositiveWidth(calculateWidth(divWidth ?? 0, negativePercentage, false));
-      setNegativeWidth(calculateWidth(divWidth ?? 0, negativePercentage, true));
+      const divWidth = priceBarContainerReference?.current?.getBoundingClientRect().width;
+      setPositiveWidth(calculateWidth(divWidth, negativePercentage, false));
+      setNegativeWidth(calculateWidth(divWidth, negativePercentage, true));
     };
 
     const observer = new ResizeObserver(handleResize);
-    const current = divReference.current;
+    const current = priceBarContainerReference.current;
 
     if (current) {
       observer.observe(current);
@@ -70,7 +72,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
         observer.unobserve(current);
       }
     };
-  }, [divReference, negativePercentage]);
+  }, [priceBarContainerReference, negativePercentage, isCollapsed]);
 
   if (!futurePrice || !isFuturePrice(futurePrice)) {
     return null;
@@ -120,7 +122,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                           i18n={i18n}
                         />
                         <div
-                          ref={divReference}
+                          ref={priceBarContainerReference}
                           className="flex h-full w-full flex-row self-center"
                         >
                           {hasNegativePrice && price < 0 && (
@@ -182,20 +184,6 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     </div>
   );
 }
-
-const calculateWidth = (
-  width: number | null,
-  negativePercentage: number,
-  isNegative: boolean
-): number => {
-  if (width === null) {
-    return 0;
-  }
-  if (isNegative) {
-    return ((width - 12) * negativePercentage) / 100 + 12;
-  }
-  return ((width - 12) * (100 - negativePercentage)) / 100 + 12;
-};
 
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
@@ -342,9 +330,15 @@ const getColor = (
     normalizeToGranularity(new Date(), granularity)
   ) {
     return 'bg-[#18214F] dark:bg-[#848EC0] opacity-50';
-  } else if (price === maxPrice) {
+  } else if (
+    priceIn5Percentile(price, maxPrice, minPrice, true) &&
+    maxPrice != minPrice
+  ) {
     return 'bg-danger dark:bg-red-400';
-  } else if (price === minPrice) {
+  } else if (
+    priceIn5Percentile(price, maxPrice, minPrice, false) &&
+    maxPrice != minPrice
+  ) {
     return 'bg-success dark:bg-emerald-500';
   } else {
     return 'bg-[#18214F] dark:bg-[#848EC0]';
