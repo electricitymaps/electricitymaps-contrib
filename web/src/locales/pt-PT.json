@@ -1340,6 +1340,9 @@
       "countryName": "México",
       "zoneName": "Península"
     },
+    "MY": {
+      "zoneName": "Malásia"
+    },
     "MY-EM": {
       "countryName": "Malásia",
       "zoneName": "Borneo"

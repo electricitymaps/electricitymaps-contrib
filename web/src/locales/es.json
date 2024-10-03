@@ -1139,6 +1139,9 @@
       "countryName": "México",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Malasia"
+    },
     "MY-EM": {
       "countryName": "Malasia",
       "zoneName": "Borneo"
