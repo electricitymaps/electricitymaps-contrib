@@ -199,7 +199,7 @@ function PriceDisplay({
   return (
     <p
       className={`min-w-[66px] overflow-clip text-nowrap text-sm font-semibold tabular-nums ${
-        Number.isNaN(Number(priceString[0])) ? 'text-start' : 'text-end'
+        Number.isNaN(Number(priceString.at(-1))) ? 'text-end' : 'text-start'
       }`}
     >
       {priceString}
