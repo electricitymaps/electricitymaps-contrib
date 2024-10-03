@@ -3,7 +3,7 @@ import { HorizontalDivider } from 'components/Divider';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import trackEvent from 'utils/analytics';
@@ -24,7 +24,16 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   const { t, i18n } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useAtom(futurePriceCollapsedAtom);
   const granularity = getGranularity(futurePrice?.priceData);
+  const divReference = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState<number | null>(null);
   const usedGranularity = 30;
+
+  useEffect(() => {
+    if (divReference.current) {
+      const divWidth = divReference.current.getBoundingClientRect().width;
+      setWidth(divWidth);
+    }
+  }, []);
 
   const filteredPriceData = filterPriceData(futurePrice?.priceData, usedGranularity);
 
@@ -51,6 +60,8 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
 
   const hasNegativePrice = minPriceTotal < 0;
   const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
+
+  console.log(width);
 
   return (
     <div className="pt-2">
@@ -90,8 +101,15 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                       )}
                       <div className="flex flex-row justify-items-end gap-2 px-1">
                         <TimeDisplay date={date} granularity={granularity} />
-                        <PriceDisplay price={price} currency={futurePrice.currency} />
-                        <div className="flex h-full w-full flex-row self-center">
+                        <PriceDisplay
+                          price={price}
+                          currency={futurePrice.currency}
+                          i18n={i18n}
+                        />
+                        <div
+                          ref={divReference}
+                          className="flex h-full w-full flex-row self-center"
+                        >
                           {hasNegativePrice && (
                             <div
                               className="flex flex-row justify-end"
@@ -115,16 +133,6 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                               )}
                             </div>
                           )}
-                          <Middle
-                            color={getColor(
-                              price,
-                              maxPriceFuture,
-                              minPriceFuture,
-                              date,
-                              granularity
-                            )}
-                            price={price}
-                          />
                           {price >= 0 && (
                             <div
                               data-test-id="positive-price"
@@ -161,25 +169,6 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   );
 }
 
-function Middle({ color, price }: { color: string; price: number }) {
-  return (
-    <div
-      className={`h-3 w-3
-    ${getRounding(price)} ${color}`}
-    />
-  );
-}
-
-const getRounding = (price: number): string => {
-  if (price == 0) {
-    return 'rounded-full';
-  }
-  if (price < 0) {
-    return 'rounded-r-full';
-  }
-  return 'rounded-l-full';
-};
-
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
     dateStyle: 'medium',
@@ -204,7 +193,7 @@ export function PriceBar({
   const nonNegativePrice = Math.abs(price);
   return (
     <div
-      className={`h-3 ${getRounding(price * -1)} ${color}`}
+      className={`h-3 rounded-full ${color}`}
       style={{ width: `${(nonNegativePrice / maxPrice) * 100}%` }}
       data-test-id="price-bar"
     />
@@ -229,7 +218,9 @@ function PriceDisplay({
   return (
     <p
       className={`min-w-[66px] overflow-clip text-nowrap text-sm font-semibold tabular-nums ${
-        Number.isNaN(Number(priceString[0])) ? 'text-start' : 'text-end'
+        Number.isNaN(Number(priceString[0])) && priceString[0] != '-'
+          ? 'text-start'
+          : 'text-end'
       }`}
     >
       {priceString}
