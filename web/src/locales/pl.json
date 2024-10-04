@@ -1435,18 +1435,18 @@
     },
     "CL-SEA": {
       "countryName": "Chile",
-      "zoneName": "Sistema El\u00e9ctrico de Ays\u00e9n"
+      "zoneName": "Sistema Electrico de Aysen"
     },
     "CL-SEM": {
       "countryName": "Chile",
-      "zoneName": "Sistema El\u00e9ctrico de Magallanes"
+      "zoneName": "Sistema Electrico de Magallanes"
     },
     "CL-SEN": {
       "countryName": "Chile",
-      "zoneName": "Sistema El\u00e9ctrico Nacional"
+      "zoneName": "Sistema Electrico Nacional"
     },
     "CW": {
-      "zoneName": "Cura\u00e7ao"
+      "zoneName": "Curaçao"
     },
     "CX": {
       "zoneName": "Wyspa Bożego Narodzenia"
@@ -1677,7 +1677,7 @@
       "zoneName": "Palau"
     },
     "RE": {
-      "zoneName": "R\u00e9union"
+      "zoneName": "Reunion"
     },
     "RW": {
       "zoneName": "Rwanda"
