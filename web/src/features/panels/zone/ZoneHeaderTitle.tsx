@@ -38,12 +38,11 @@ function generateCurrentSelectedDatetimeUrl({
   selectedDatetimeString: string;
   zoneId: ZoneKey;
 }) {
-  const pathVariableDatetime = selectedDatetimeString.replaceAll(':', '-');
   const url =
     baseUrl +
     (zoneId ? `/zone/${zoneId}` : '/map') +
     `/${timeResolution}/` +
-    `${pathVariableDatetime}`;
+    `${selectedDatetimeString}`;
   return url;
 }
 
