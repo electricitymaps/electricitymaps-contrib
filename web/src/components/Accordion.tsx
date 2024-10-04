@@ -53,21 +53,29 @@ export default function Accordion({
 
   const handleToggleCollapse = () => {
     onClick?.();
-
-    isCollapsed && onOpen?.();
-
     setRenderChildren(true);
 
-    api.start({
-      to: {
-        height: isCollapsed ? observerHeight : 0,
-        // eslint-disable-next-line unicorn/no-nested-ternary -- it interferes with prettier
-        rotate: isCollapsed ? (isTopExpanding ? 90 : -90) : isTopExpanding ? -90 : 90,
-      },
-      onRest: () => {
-        setRenderChildren(isCollapsed);
-      },
-    });
+    if (isCollapsed) {
+      onOpen?.();
+
+      api.start({
+        to: {
+          height: observerHeight,
+          rotate: isTopExpanding ? 90 : -90,
+        },
+      });
+    } else {
+      api.start({
+        to: {
+          height: 0,
+          rotate: isTopExpanding ? -90 : 90,
+        },
+        onRest: () => {
+          setRenderChildren(false);
+        },
+      });
+    }
+
     setState(!isCollapsed);
   };
 
