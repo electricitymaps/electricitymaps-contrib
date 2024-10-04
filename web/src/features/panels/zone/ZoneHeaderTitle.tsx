@@ -30,20 +30,19 @@ interface ZoneHeaderTitleProps {
 const MAX_TITLE_LENGTH = 25;
 
 function generateCurrentSelectedDatetimeUrl({
-  timeResolution,
+  timeAverage,
   selectedDatetimeString,
   zoneId,
 }: {
-  timeResolution: string;
+  timeAverage: string;
   selectedDatetimeString: string;
   zoneId: ZoneKey;
 }) {
-  const pathVariableDatetime = selectedDatetimeString.replaceAll(':', '-');
   const url =
     baseUrl +
     (zoneId ? `/zone/${zoneId}` : '/map') +
-    `/${timeResolution}/` +
-    `${pathVariableDatetime}`;
+    `/${timeAverage}/` +
+    `${selectedDatetimeString}`;
   return url;
 }
 
@@ -60,11 +59,11 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const isShareButtonEnabled = useFeatureFlag('share-button') && isHourly;
-  const timeResolution = useAtomValue(timeAverageAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
 
   const onNavigateBack = () => setIsMapMoving(false);
   const shareUrl = generateCurrentSelectedDatetimeUrl({
-    timeResolution,
+    timeAverage,
     selectedDatetimeString,
     zoneId,
   });

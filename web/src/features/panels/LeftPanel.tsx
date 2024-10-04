@@ -121,7 +121,7 @@ export default function LeftPanel() {
       <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
         <Route
-          path="/zone/:zoneId"
+          path="/zone/:zoneId/:urlTimeAverage?/:urlDatetime?"
           element={
             <ValidZoneIdGuardWrapper>
               <Suspense fallback={<LoadingSpinner />}>
