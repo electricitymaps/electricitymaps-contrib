@@ -2,7 +2,7 @@ import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
 import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
@@ -10,17 +10,11 @@ import {
   ElectricityStorageType,
   ZoneDetail,
 } from 'types';
-import {
-  Mode,
-  modeColor,
-  modeOrder,
-  SpatialAggregate,
-  TimeAverages,
-} from 'utils/constants';
+import { modeColor, modeOrder, SpatialAggregate, TimeAverages } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
-  productionConsumptionAtom,
+  isConsumptionAtom,
   spatialAggregateAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
@@ -48,10 +42,10 @@ export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
   const { zoneId } = useParams();
-  const [mixMode] = useAtom(productionConsumptionAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [viewMode] = useAtom(spatialAggregateAtom);
-  const [timeAggregate] = useAtom(timeAverageAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const viewMode = useAtomValue(spatialAggregateAtom);
+  const timeAggregate = useAtomValue(timeAverageAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
@@ -94,7 +88,7 @@ export default function useBreakdownChartData() {
         : getGenerationValue(mode, value, valueFactor, displayByEmissions);
     }
 
-    if (mixMode === Mode.CONSUMPTION) {
+    if (isConsumption) {
       // Add exchanges
       for (const [key, exchangeValue] of Object.entries(value.exchange)) {
         // in GW or MW
@@ -131,7 +125,6 @@ export default function useBreakdownChartData() {
 
   return {
     data: result,
-    mixMode,
     isLoading,
     isError,
   };
@@ -190,8 +183,8 @@ function getValuesInfo(
 ): ValuesInfo {
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     displayByEmissions
-      ? getTotalEmissionsAvailable(d, Mode.CONSUMPTION)
-      : getTotalElectricityAvailable(d, Mode.CONSUMPTION)
+      ? getTotalEmissionsAvailable(d, true)
+      : getTotalElectricityAvailable(d, true)
   );
   const isHourly = timeAggregate === TimeAverages.HOURLY;
   const format = displayByEmissions
