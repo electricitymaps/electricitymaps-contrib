@@ -79,10 +79,12 @@ export default function Accordion({
     setState(!isCollapsed);
   };
 
+  // Temporary workaround to allow for custom icons to be used (which will not be animated)
+  // We will remove this once we have a alternative solution
   const Icon: LucideIcon =
-    (collapsedIcon && expandedIcon && isTopExpanding === isCollapsed
+    (collapsedIcon && expandedIcon && isTopExpanding === isCollapsed // Only use the custom icons if they are both provided and invert them if the accordion is top expanding
       ? collapsedIcon
-      : expandedIcon) ?? ChevronRight;
+      : expandedIcon) ?? ChevronRight; // The default icon here is just to satisfy the type checker
 
   return (
     <section className="flex flex-col overflow-hidden py-1">
