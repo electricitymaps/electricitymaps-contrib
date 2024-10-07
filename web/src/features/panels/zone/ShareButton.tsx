@@ -17,7 +17,7 @@ interface ShareButtonProps
   shareUrl?: string;
   showIosIcon?: boolean;
 }
-const trackShareClick = trackShare(ShareType.SHARE);
+const trackShareClick = trackShare(ShareType.ZONE);
 const DURATION = 3 * 1000;
 
 export function ShareButton({
@@ -63,7 +63,7 @@ export function ShareButton({
   };
 
   const onClick = () => {
-    if (isMobile() && navigator.canShare({ url })) {
+    if (isMobile() && navigator.canShare(shareData)) {
       share();
     } else {
       copyToClipboard();
