@@ -91,6 +91,11 @@ ENTSOE_PARAMETER_DESC = {
     "B18": "Wind Offshore",
     "B19": "Wind Onshore",
     "B20": "Other",
+    "B21": "AC Link",
+    "B22": "DC Link",
+    "B23": "Substation",
+    "B24": "Transformer",
+    "B25": "Energy storage",
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
@@ -104,9 +109,12 @@ ENTSOE_PARAMETER_GROUPS = {
         "oil": ["B06"],
         "solar": ["B16"],
         "wind": ["B18", "B19"],
-        "unknown": ["B20", "B13", "B15"],
+        "unknown": ["B20", "B13", "B15", "B21", "B22", "B23", "B24"],
     },
-    "storage": {"hydro": ["B10"]},
+    "storage": {
+        "hydro": ["B10"],
+        "battery": ["B25"],
+    },
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
