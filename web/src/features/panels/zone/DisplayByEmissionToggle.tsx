@@ -1,22 +1,21 @@
 import ToggleButton from 'components/ToggleButton';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
-import { LeftPanelToggleOptions, Mode } from 'utils/constants';
-import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
+import { LeftPanelToggleOptions } from 'utils/constants';
+import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 
 export default function EmissionToggle(): ReactElement {
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
 
   // TODO: perhaps togglebutton should accept boolean values
   const options = [
     {
       value: LeftPanelToggleOptions.ELECTRICITY,
-      translationKey:
-        mixMode === Mode.PRODUCTION
-          ? 'country-panel.electricityproduction'
-          : 'country-panel.electricityconsumption',
+      translationKey: isConsumption
+        ? 'country-panel.electricityconsumption'
+        : 'country-panel.electricityproduction',
     },
     {
       value: LeftPanelToggleOptions.EMISSIONS,
