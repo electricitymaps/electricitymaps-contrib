@@ -2,16 +2,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-
+import { fileURLToPath } from 'url';
 import zonesConfig from '../config/zones.json' assert { type: 'json' };
 
-let dirname = path.dirname(new URL(import.meta.url).pathname);
-
 // Fix the paths for Windows/Linux consistency
-// Extra / or \\ in begenning gives a broken path
-if (dirname.startsWith('/') || dirname.startsWith('\\')) {
-  dirname = dirname.substring(1);
-}
+let dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const __dirname = decodeURIComponent(dirname);
 const SITEMAP_DIR = path.join(__dirname, '..', 'public');
