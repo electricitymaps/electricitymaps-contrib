@@ -252,7 +252,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 
   if (isNow(date, granularity)) {
     return (
-      <p className="min-w-[82px] pl-2 text-sm font-semibold" data-test-id="now-label">
+      <p className={`min-w-[72px] pl-1 text-sm font-semibold`} data-test-id="now-label">
         {t(`country-panel.price-chart.now`)}
       </p>
     );
@@ -264,9 +264,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
   }).format(datetime);
 
   return (
-    <p className="min-w-[82px] text-nowrap text-sm tabular-nums">
-      {`${t(`country-panel.price-chart.at`)} ${formattedDate}`}
-    </p>
+    <p className={`min-w-[72px] text-nowrap text-sm tabular-nums`}>{formattedDate}</p>
   );
 }
 
