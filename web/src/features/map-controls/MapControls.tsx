@@ -4,7 +4,7 @@ import { useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MoonLoader } from 'react-spinners';
 import trackEvent from 'utils/analytics';
-import { ThemeOptions, ToggleOptions } from 'utils/constants';
+import { ThemeOptions, ToggleOptions, TrackEvent } from 'utils/constants';
 import {
   areWeatherLayersAllowedAtom,
   colorblindModeAtom,
@@ -105,7 +105,7 @@ function DesktopMapControls() {
 
   const handleColorblindModeToggle = () => {
     setIsColorblindModeEnabled(!isColorblindModeEnabled);
-    trackEvent('Colorblind Mode Toggled');
+    trackEvent(TrackEvent.COLORBLIND_MODE_TOGGLED);
   };
 
   return (
