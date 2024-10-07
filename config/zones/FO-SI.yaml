@@ -54,10 +54,10 @@ emissionFactors:
     battery discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 445.25908039651796
+        value: 445.26
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 522.4273022697698
+        value: 522.43
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -90,10 +90,10 @@ emissionFactors:
     hydro discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 445.25908039651796
+        value: 445.26
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 522.4273022697698
+        value: 522.43
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

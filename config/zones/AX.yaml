@@ -75,27 +75,27 @@ emissionFactors:
         value: 641.08
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 49.17843651621915
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 32.88191425524841
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 27.595966193483754
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 38.57083410386509
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 98.81527820902238
+        value: 98.82
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 49.18
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 32.88
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 27.6
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 38.57
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 26.647582398683756
+        value: 26.65
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 22.150543574420823
+        value: 22.15
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -119,27 +119,27 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 49.17843651621915
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 32.88191425524841
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 27.595966193483754
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 38.57083410386509
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 98.81527820902238
+        value: 98.82
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 49.18
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 32.88
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 27.6
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 38.57
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 26.647582398683756
+        value: 26.65
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 22.150543574420823
+        value: 22.15
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -161,6 +161,21 @@ emissionFactors:
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.3916076049049387
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0009224884688941389
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.6073799077511531
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
@@ -221,21 +236,6 @@ fallbackZoneMixes:
         solar: 0.00036411835940856684
         unknown: 0.06393762928373665
         wind: 0.3251014539829839
-    - _source: Electricity Maps, 2017 average
-      datetime: '2017-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.3916076049049387
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0009224884688941389
-        solar: 0.0
-        unknown: 0.0
-        wind: 0.6073799077511531
     - _source: Electricity Maps, 2022 average
       datetime: '2022-01-01'
       value:
