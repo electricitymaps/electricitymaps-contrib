@@ -59,6 +59,10 @@ export enum TrackEvent {
   ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
   APPLIED_METHODOLOGIES_EXPANDED = 'AppliedMethodologies Expanded',
   TIME_AGGREGATE_BUTTON_CLICKED = 'Time Aggregate Button Clicked',
+  SOLAR_ENABLED = 'Solar Enabled',
+  SOLAR_DISABLED = 'Solar Disabled',
+  WIND_ENABLED = 'Wind Enabled',
+  WIND_DISABLED = 'Wind Disabled',
 }
 
 // color of different production modes are based on various industry standards

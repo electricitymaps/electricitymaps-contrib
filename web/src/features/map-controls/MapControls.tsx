@@ -64,10 +64,14 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
 
   const onToggle = () => {
     if (isEnabled) {
-      trackEvent(`${weatherId} Disabled`);
+      trackEvent(
+        weatherId == 'Wind' ? TrackEvent.WIND_DISABLED : TrackEvent.SOLAR_DISABLED
+      );
     } else {
       setIsLoadingLayer(true);
-      trackEvent(`${weatherId} Enabled`);
+      trackEvent(
+        weatherId == 'Wind' ? TrackEvent.WIND_ENABLED : TrackEvent.SOLAR_ENABLED
+      );
     }
 
     startTransition(() => {
