@@ -7,9 +7,13 @@ import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
-import { Mode, TimeAverages, TrackEvent } from 'utils/constants';
+import { TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { dataSourcesCollapsedBreakdownAtom, isHourlyAtom } from 'utils/state/atoms';
+import {
+  dataSourcesCollapsedBreakdownAtom,
+  isConsumptionAtom,
+  isHourlyAtom,
+} from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
@@ -35,7 +39,8 @@ function BreakdownChart({
   datetimes,
   timeAverage,
 }: BreakdownChartProps) {
-  const { data, mixMode } = useBreakdownChartData();
+  const { data } = useBreakdownChartData();
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const [dataSourcesCollapsedBreakdown, setDataSourcesCollapsedBreakdown] = useAtom(
     dataSourcesCollapsedBreakdownAtom
   );
@@ -51,7 +56,7 @@ function BreakdownChart({
     return null;
   }
 
-  const isBreakdownGraphOverlayEnabled = mixMode === Mode.CONSUMPTION && !isHourly;
+  const isBreakdownGraphOverlayEnabled = isConsumption && !isHourly;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 
@@ -61,7 +66,7 @@ function BreakdownChart({
   const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
   const titleDisplayMode = displayByEmissions ? 'emissions' : 'electricity';
-  const titleMixMode = mixMode === Mode.CONSUMPTION ? 'origin' : 'production';
+  const titleMixMode = isConsumption ? 'origin' : 'production';
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
