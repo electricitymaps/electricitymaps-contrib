@@ -36,11 +36,11 @@ emissionFactors:
     battery discharge:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 712.2357223753118
+        value: 712.24
     hydro discharge:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 712.2357223753118
+        value: 712.24
     unknown:
       - _url: https://www.iea.org/fuels-and-technologies/electricity
         datetime: '2020-01-01'

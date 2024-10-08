@@ -26,47 +26,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 562.4545215946243
+        value: 562.45
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 525.3215791863836
+        value: 525.32
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 521.0704325213983
+        value: 521.07
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 516.5891396553358
+        value: 516.59
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 470.7311033765594
+        value: 470.73
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 498.7506914391316
+        value: 498.75
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 466.1834685343868
+        value: 466.18
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 562.4545215946243
+        value: 562.45
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 525.3215791863836
+        value: 525.32
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 521.0704325213983
+        value: 521.07
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 516.5891396553358
+        value: 516.59
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 470.7311033765594
+        value: 470.73
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 498.7506914391316
+        value: 498.75
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 466.1834685343868
+        value: 466.18
     unknown:
       source: Enerdata 2022 Japanese National Average
       value: 462
