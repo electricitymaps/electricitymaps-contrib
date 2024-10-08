@@ -38,14 +38,14 @@ emissionFactors:
         value: 475.16042054489543
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 494.2083458391532
+        value: 494.21
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 475.16042054489543
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 494.2083458391532
+        value: 494.21
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average

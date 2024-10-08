@@ -145,25 +145,25 @@ emissionFactors:
         value: 595.4541895887378
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 584.1642118936297
+        value: 584.16
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 634.7746835336239
+        value: 634.77
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 603.6347767805239
+        value: 603.63
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 589.5676342543705
+        value: 589.57
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 565.5302980884977
+        value: 565.53
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 541.0804053357359
+        value: 541.08
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 512.7746925491305
+        value: 512.77
     biomass:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -196,25 +196,25 @@ emissionFactors:
         value: 595.4541895887378
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 584.1642118936297
+        value: 584.16
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 634.7746835336239
+        value: 634.77
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 603.6347767805239
+        value: 603.63
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 589.5676342543705
+        value: 589.57
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 565.5302980884977
+        value: 565.53
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 541.0804053357359
+        value: 541.08
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 512.7746925491305
+        value: 512.77
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021

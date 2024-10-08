@@ -60,6 +60,8 @@ describe('FuturePrice negative values', () => {
   });
 
   it('Price data is visible', () => {
+    cy.get('[data-test-id="collapse-button"]').click();
+    cy.get('[data-test-id="collapse-button"]').click();
     cy.get('[data-test-id="negative-price"]').should('be.visible');
     cy.get('[data-test-id="price-bar"]').should('be.visible');
     cy.get('[data-test-id="positive-price"]').should('be.visible');
