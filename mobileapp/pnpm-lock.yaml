@@ -20,6 +20,9 @@ importers:
       '@capacitor/ios':
         specifier: ^6.0.0
         version: 6.0.0(@capacitor/core@6.0.0)
+      '@capacitor/share':
+        specifier: ^6.0.2
+        version: 6.0.2(@capacitor/core@6.0.0)
     devDependencies:
       '@capacitor/assets':
         specifier: ^1.0.14
@@ -78,6 +81,11 @@ packages:
 
   '@capacitor/ios@6.0.0':
     resolution: {integrity: sha512-7mAs3gjWiE5DPM4AGPduqFSDGXCPwwqQRMzbohVway7/cTWnHomHV8mIojMZE4GILeWO2fILbyu3C8q9pHg2vg==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
+
+  '@capacitor/share@6.0.2':
+    resolution: {integrity: sha512-qQIeyjzFB1VgP4ojyNg2O98TCigDWLKZ5melVMSVeDO0YQov5OeammsVgaCGSzvYBPSgyOwX41QvcDWG4yHN1A==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -1816,6 +1824,10 @@ snapshots:
       tslib: 2.6.2
 
   '@capacitor/ios@6.0.0(@capacitor/core@6.0.0)':
+    dependencies:
+      '@capacitor/core': 6.0.0
+
+  '@capacitor/share@6.0.2(@capacitor/core@6.0.0)':
     dependencies:
       '@capacitor/core': 6.0.0
 
