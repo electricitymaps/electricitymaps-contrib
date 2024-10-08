@@ -20,11 +20,11 @@ emissionFactors:
     battery discharge:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 410.99059690347167
+        value: 410.99
     hydro discharge:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 410.99059690347167
+        value: 410.99
     unknown:
       - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
           coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
