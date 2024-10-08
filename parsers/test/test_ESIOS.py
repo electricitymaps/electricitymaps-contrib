@@ -49,23 +49,26 @@ class TestESIOS(TestCase):
                 .read_text()
             ),
         )
+        try:
+            os.environ["ESIOS_TOKEN"] = "token"
+            exchange = ESIOS.fetch_exchange(
+                zone_key1=ZoneKey("ES"), zone_key2=ZoneKey("MA"), session=self.session
+            )
 
-        exchange = ESIOS.fetch_exchange(
-            zone_key1=ZoneKey("ES"), zone_key2=ZoneKey("MA"), session=self.session
-        )
-
-        self.assertMatchSnapshot(
-            [
-                {
-                    "datetime": element["datetime"].isoformat(),
-                    "netFlow": element["netFlow"],
-                    "source": element["source"],
-                    "sortedZoneKeys": element["sortedZoneKeys"],
-                    "sourceType": element["sourceType"].value,
-                }
-                for element in exchange
-            ]
-        )
+            self.assertMatchSnapshot(
+                [
+                    {
+                        "datetime": element["datetime"].isoformat(),
+                        "netFlow": element["netFlow"],
+                        "source": element["source"],
+                        "sortedZoneKeys": element["sortedZoneKeys"],
+                        "sourceType": element["sourceType"].value,
+                    }
+                    for element in exchange
+                ]
+            )
+        except Exception as ex:
+            self.fail(ex.message)
 
 
 if __name__ == "__main__":
