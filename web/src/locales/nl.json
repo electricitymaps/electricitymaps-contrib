@@ -126,31 +126,31 @@
   "onboarding-modal": {
     "view1": {
       "header": "Welkom bij Electricity Maps",
-      "text": "Hier kunt u de klimaatimpact van elektriciteit voor veel landen wereldwijd verkennen. <br/><br/>Laten we u in een paar eenvoudige stappen door onze kaart leiden!"
+      "text": "Hier kunt u de klimaatimpact van elektriciteit voor landen wereldwijd verkennen. <br/><br/>Via een paar eenvoudige stappen leiden wij u door onze kaart."
     },
     "view2": {
-      "header": "Zie hoeveel CO2 er wordt uitgestoten bij de productie van uw elektriciteit, in realtime",
+      "header": "Check hoeveel CO2 er wordt uitgestoten bij de productie van uw elektriciteit, en dat in realtime",
       "text": "We kleuren gebieden over de hele wereld op basis van de koolstofintensiteit van de verbruikte elektriciteit (inclusief alle broeikasgassen). Hoe groener de kleur, hoe klimaatvriendelijker de elektriciteit."
     },
     "view3": {
       "header": "Weet waar uw elektriciteit vandaan komt",
-      "text": "Pijlen op de kaart geven de stromen van elektriciteit tussen verschillende gebieden aan. Klik op een gebied om meer informatie te zien over de herkomst van de elektriciteit."
+      "text": "De pijlen op de kaart geven de verplaatsing van elektriciteit tussen verschillende gebieden aan. Klik op een gebied om meer informatie te krijgen over de herkomst van de elektriciteit."
     },
     "view4": {
-      "header": "Schakel tussen verschillende weergaven",
-      "text": "Schakel tussen elektriciteitsproductie en -verbruik, evenals tussen land- of zoneweergaven, en ontdek realtime inzichten in mondiale energiedynamiek en maak geïnformeerde keuzes voor een duurzame toekomst."
+      "header": "Schakel tussen verschillende overzichten",
+      "text": "Schakel tussen elektriciteitsproductie en verbruik,tussen land- of zoneweergaven en ontdek realtime inzichten in mondiale energiedynamiek en maak geïnformeerde keuzes voor een duurzame toekomst."
     },
     "view5": {
       "header": "Schakel tussen elektriciteits- en emissieweergaven",
-      "text": "Schakel om te wisselen tussen grafieken die de elektriciteitsinformatie of koolstofemissies van een zone weergeven. De getoonde waarden vertegenwoordigen het totaal voor de geselecteerde periode, en de informatie komt overeen met de gekozen productie- of verbruiksmodus."
+      "text": "Wissel tussen grafieken die de elektriciteitsinformatie of koolstofemissies van een zone weergeven. De getoonde waarden vertegenwoordigen het totaal voor de geselecteerde periode, en de informatie komt overeen met de gekozen productie- of verbruiksmodus."
     },
     "view6": {
       "header": "Verken het verleden",
-      "text": "In de linkerbenedenhoek kunt u zowel realtime als historische emissie- en elektriciteitsgegevens over de hele wereld bekijken. Wijzig de geaggregeerde gegevens met de schakelaars of blader door de tijdlijn om de veranderingen in de loop van de tijd te zien."
+      "text": "In de hoek links onder kunt u zowel realtime als historische emissie- en elektriciteitsgegevens over de hele wereld bekijken. Verander de geaggregeerde gegevens met de schakelaars of blader door de tijdslijn om de historische veranderingen te zien."
     },
     "view7": {
       "header": "Realtime wind- en zonne-omstandigheden",
-      "text": "Wind- en zonne-energieproductie zijn afhankelijk van het weer. Druk op de zon- en windknoppen om de realtime sterkte van wind en zonneschijn over de hele wereld weer te geven."
+      "text": "Wind- en zonne-energieproductie zijn afhankelijk van het weer. Gebruik de zon- en windknoppen om de realtime sterkte van wind en zonneschijn over de hele wereld weer te geven."
     }
   },
   "data-sources": {
