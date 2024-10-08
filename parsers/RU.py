@@ -115,7 +115,7 @@ def fetch_production_1st_synchronous_zone(
         raise NotImplementedError("This parser is not able to parse given zone")
 
     if target_datetime:
-        target_datetime_tz = target_datetime.replace(tzinfo=TIMEZONE)
+        target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
     else:
         target_datetime_tz = datetime.now(TIMEZONE)
     # Query at t gives production from t to t+1
@@ -182,7 +182,7 @@ def fetch_production_2nd_synchronous_zone(
         raise NotImplementedError("This parser is not able to parse given zone")
 
     if target_datetime:
-        target_datetime_tz = target_datetime.replace(tzinfo=TIMEZONE)
+        target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
     else:
         target_datetime_tz = datetime.now(TIMEZONE)
     # Here we should shift 30 minutes but it would be inconsistent with 1st zone
@@ -270,7 +270,7 @@ def fetch_exchange(
     """Requests the last known power exchange (in MW) between two zones."""
     today = target_datetime if target_datetime else datetime.now(timezone.utc)
 
-    date = today.strftime("%Y-%m-%d")
+    date = today.date().isoformat()
     r = session or Session()
     DATE = f"Date={date}"
 
