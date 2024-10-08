@@ -17,7 +17,7 @@ import { GfsForecastResponse } from 'api/getWeatherData';
 import { buildBounds, distort, WindVector } from './calc';
 import Field from './Field';
 import Grid from './Grid';
-import { MAX_WIND,windIntensityColorScale } from './scales';
+import { MAX_WIND, windIntensityColorScale } from './scales';
 import { isMobile } from './util';
 
 const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
