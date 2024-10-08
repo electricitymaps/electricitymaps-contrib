@@ -80,31 +80,31 @@ emissionFactors:
     battery discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 67.04206935014815
+        value: 67.04
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 58.555309136036634
+        value: 58.56
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 53.004485879099235
+        value: 53.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 55.97421650464496
+        value: 55.97
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 55.92418351333918
+        value: 55.92
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 47.94552948051728
+        value: 47.95
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 29.60671754549398
+        value: 29.61
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 43.748239544848715
+        value: 43.75
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 51.62607083363441
+        value: 51.63
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -121,31 +121,31 @@ emissionFactors:
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
-        value: 67.04206935014815
+        value: 67.04
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 58.555309136036634
+        value: 58.56
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 53.004485879099235
+        value: 53.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 55.97421650464496
+        value: 55.97
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 55.92418351333918
+        value: 55.92
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 47.94552948051728
+        value: 47.95
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 29.60671754549398
+        value: 29.61
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 43.748239544848715
+        value: 43.75
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 51.62607083363441
+        value: 51.63
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
