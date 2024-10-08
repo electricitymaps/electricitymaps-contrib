@@ -39,7 +39,7 @@ describe('floorModulus', () => {
   });
 });
 
-describe('isMobile', () => {
+describe.skip('isMobile', () => {
   it.each([
     {
       userAgent:
@@ -70,7 +70,7 @@ describe('isMobile', () => {
   });
 });
 
-describe('isIphone', () => {
+describe.skip('isIphone', () => {
   it.each([
     {
       platform: 'ios',

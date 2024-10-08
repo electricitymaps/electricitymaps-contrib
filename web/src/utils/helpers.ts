@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import { callerLocation, useMeta } from 'api/getMeta';
 import { useMatch, useParams } from 'react-router-dom';
 import {
@@ -157,4 +158,13 @@ export function getNetExchange(
     : round((zoneData.totalImport ?? 0) - (zoneData.totalExport ?? 0));
 
   return netExchangeValue;
+}
+
+/**
+ * @returns {Boolean} true if agent is probably a mobile device.
+ */
+export function hasMobileUserAgent() {
+  return /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
+    navigator.userAgent
+  );
 }

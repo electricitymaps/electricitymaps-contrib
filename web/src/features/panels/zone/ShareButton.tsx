@@ -1,12 +1,19 @@
+import { Capacitor } from '@capacitor/core';
 import { Button, ButtonProps } from 'components/Button';
 import { Toast, useToastReference } from 'components/Toast';
-import { isIos, isMobile } from 'features/weather-layers/wind-layer/util';
 import { Share, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { ShareType, trackShare } from 'utils/analytics';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
+import { hasMobileUserAgent } from 'utils/helpers';
+
+export function defaultShouldShowIosIcon() {
+  return (
+    /Mac|iPad|iPhone|iPod/.test(navigator.userAgent) || Capacitor.getPlatform() === 'ios'
+  );
+}
 
 interface ShareButtonProps
   extends Omit<
@@ -23,7 +30,7 @@ const DURATION = 3 * 1000;
 export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
   shareUrl,
-  showIosIcon = isIos(),
+  showIosIcon = defaultShouldShowIosIcon(),
   ...restProps
 }: ShareButtonProps) {
   const { t } = useTranslation();
@@ -63,7 +70,7 @@ export function ShareButton({
   };
 
   const onClick = () => {
-    if (isMobile() && navigator.canShare({ url })) {
+    if (hasMobileUserAgent() && navigator.canShare({ url })) {
       share();
     } else {
       copyToClipboard();
