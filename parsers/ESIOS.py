@@ -88,9 +88,9 @@ def fetch_exchange(
 
         net_flow *= EXCHANGE_MULTIPLICATION_FACTOR_MAP[zone_key]
 
-        exchange_datetime = datetime.strptime(
-            value["datetime_utc"], "%Y-%m-%dT%H:%M:%SZ"
-        ).replace(tzinfo=TIMEZONE)
+        exchange_datetime = datetime.fromisoformat(
+            value["datetime_utc"].replace("Z", "+00:00")
+        )
 
         exchanges.append(
             zoneKey=zone_key,
