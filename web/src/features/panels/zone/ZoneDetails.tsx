@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
 import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
 import LoadingSpinner from 'components/LoadingSpinner';
@@ -5,6 +6,7 @@ import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
 import { EstimationMethods, SpatialAggregate } from 'utils/constants';
 import {
@@ -14,7 +16,7 @@ import {
   spatialAggregateAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
-import { useBreakpoint } from 'utils/styling';
+import { useIsMobile } from 'utils/styling';
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
@@ -34,8 +36,7 @@ export default function ZoneDetails(): JSX.Element {
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
   const isHourly = useAtomValue(isHourlyAtom);
-  const isMobile = !useBreakpoint('sm');
-
+  const isMobile = useIsMobile();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
 
@@ -72,11 +73,17 @@ export default function ZoneDetails(): JSX.Element {
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
   const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
-
+  const isIosCapacitor =
+    Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
-      <div className="mb-3 h-[calc(100%-120px)] overflow-y-scroll p-3 pb-20 pt-2 sm:h-[calc(100%-150px)]">
+      <div
+        className={twMerge(
+          'mb-3 h-full overflow-y-scroll px-3  pt-2 sm:h-full sm:pb-60',
+          isIosCapacitor ? 'pb-72' : 'pb-48'
+        )}
+      >
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (

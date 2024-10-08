@@ -53,47 +53,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 564.4063589073857
+        value: 564.41
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 564.4063589073857
+        value: 564.41
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 564.4418551289972
+        value: 564.44
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 597.0799137922081
+        value: 597.08
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 504.10730799933606
+        value: 504.11
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 509.2196483972904
+        value: 509.22
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 556.0057459665567
+        value: 556.01
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 564.4063589073857
+        value: 564.41
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 564.4063589073857
+        value: 564.41
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 564.4418551289972
+        value: 564.44
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 597.0799137922081
+        value: 597.08
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 504.10730799933606
+        value: 504.11
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 509.2196483972904
+        value: 509.22
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 556.0057459665567
+        value: 556.01
     unknown:
       - datetime: '2020-01-01'
         source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
