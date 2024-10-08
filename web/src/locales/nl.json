@@ -89,7 +89,6 @@
   "coal": "kool",
   "oil": "olie",
   "unknown": "onbekend",
-
   "info": {
     "title": "Over de app",
     "text": "De Electricity Maps app biedt realtime inzichten op web en mobiel voor burgers, energie-experts, NGO's en beleidsmakers, ter bevordering van een dieper begrip van de uitdagingen van de energietransitie.",
@@ -483,9 +482,6 @@
     "BR-S": {
       "countryName": "Brazilië",
       "zoneName": "Zuid-Brazilië"
-    },
-    "CA": {
-      "zoneName": "Canada"
     },
     "CA-AB": {
       "countryName": "Canada",
