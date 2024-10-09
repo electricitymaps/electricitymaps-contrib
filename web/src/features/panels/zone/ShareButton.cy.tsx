@@ -5,7 +5,7 @@ import { ShareButton } from './ShareButton';
 
 const queryClient = new QueryClient();
 
-describe.skip('Share Button', () => {
+describe('Share Button', () => {
   beforeEach(() => {
     cy.intercept('/feature-flags', {
       body: { 'share-button': true },

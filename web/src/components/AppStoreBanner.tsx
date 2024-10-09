@@ -108,7 +108,7 @@ const getAppStoreUrl = (appStoreIsDismissed: boolean): AppStoreURLs | undefined 
     return undefined;
   }
 
-  if (/Android/.test(navigator.userAgent)) {
+  if (/Android|android/.test(navigator.userAgent)) {
     return AppStoreURLs.GOOGLE;
   }
 

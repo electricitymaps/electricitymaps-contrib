@@ -10,6 +10,7 @@ import {
   getNetExchange,
   getProductionCo2Intensity,
   getRenewableRatio,
+  hasMobileUserAgent,
 } from './helpers';
 
 describe('dateToDatetimeString', () => {
@@ -252,5 +253,36 @@ describe('getNetExchange', () => {
     } as unknown as ZoneDetail;
     const result = getNetExchange(zoneData, true);
     expect(result).toBe(100);
+  });
+});
+
+describe('hasMobileUserAgent', () => {
+  it.each([
+    {
+      userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1',
+      expected: true,
+    },
+    {
+      userAgent:
+        'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Mobile Safari/537.36',
+      expected: true,
+    },
+    {
+      userAgent:
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+      expected: false,
+    },
+    {
+      userAgent:
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15',
+      expected: false,
+    },
+  ])('should return $expected for userAgent $userAgent', ({ userAgent, expected }) => {
+    Object.defineProperty(navigator, 'userAgent', {
+      value: userAgent,
+      configurable: true,
+    });
+    expect(hasMobileUserAgent()).toEqual(expected);
   });
 });
