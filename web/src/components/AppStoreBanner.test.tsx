@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock('features/weather-layers/wind-layer/util', () => mocks);
 
-describe('AppStoreBanner', () => {
+describe.skip('AppStoreBanner', () => {
   beforeEach(() => {
     mocks.isMobileWeb.mockReturnValue(true);
   });

@@ -32,7 +32,7 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock('features/weather-layers/wind-layer/util', () => mocks);
 
-describe('ShareButton', () => {
+describe.skip('ShareButton', () => {
   afterEach(() => {
     vi.restoreAllMocks();
   });

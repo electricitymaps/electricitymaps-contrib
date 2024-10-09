@@ -158,3 +158,12 @@ export function getNetExchange(
 
   return netExchangeValue;
 }
+
+/**
+ * @returns {Boolean} true if agent is probably a mobile device.
+ */
+export function hasMobileUserAgent() {
+  return /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
+    navigator.userAgent
+  );
+}

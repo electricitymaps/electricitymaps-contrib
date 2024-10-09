@@ -13,6 +13,7 @@
 */
 
 import { GfsForecastResponse } from 'api/getWeatherData';
+import { hasMobileUserAgent } from 'utils/helpers';
 
 import { buildBounds, distort, WindVector } from './calc';
 import Field from './Field';
@@ -139,7 +140,7 @@ export class Windy {
     let particleCount = Math.round(
       bounds.width * PARTICLE_MULTIPLIER * this.zoomScaling()
     );
-    if (isMobile()) {
+    if (hasMobileUserAgent()) {
       particleCount *= PARTICLE_REDUCTION;
     }
 
