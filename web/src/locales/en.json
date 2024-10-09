@@ -236,7 +236,11 @@
     "daily": "daily",
     "hourly": "hourly",
     "monthly": "monthly",
-    "yearly": "yearly"
+    "yearly": "yearly",
+    "new-feature-popover": {
+      "title": "Select a Date to Explore",
+      "content": "Use the date picker to view historical data on electricity sources, CO2 emissions, and prices."
+    }
   },
   "left-panel": {
     "get-data": "See our commercial API offerings",
