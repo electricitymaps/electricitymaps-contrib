@@ -5,6 +5,7 @@ import { t } from 'i18next';
 import { EmapsIcon } from 'icons/emapsIcon';
 import { useState } from 'react';
 import trackEvent from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 
 export default function MethodologyCard() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -14,7 +15,7 @@ export default function MethodologyCard() {
         icon={<EmapsIcon styling="dark:text-white" />}
         title={t('left-panel.applied-methodologies.title')}
         className="text-md pt-2"
-        onOpen={() => trackEvent('AppliedMethodologies Expanded')}
+        onOpen={() => trackEvent(TrackEvent.APPLIED_METHODOLOGIES_EXPANDED)}
         isCollapsed={isCollapsed}
         setState={setIsCollapsed}
       >

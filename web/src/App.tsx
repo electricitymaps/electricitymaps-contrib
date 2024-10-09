@@ -16,7 +16,7 @@ import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { metaTitleSuffix } from 'utils/constants';
+import { metaTitleSuffix, TrackEvent } from 'utils/constants';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -29,7 +29,7 @@ const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWra
 const isProduction = import.meta.env.PROD;
 
 if (isProduction) {
-  trackEvent('App Loaded', {
+  trackEvent(TrackEvent.APP_LOADED, {
     isNative: Capacitor.isNativePlatform(),
     platform: Capacitor.getPlatform(),
   });

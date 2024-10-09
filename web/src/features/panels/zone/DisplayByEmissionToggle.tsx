@@ -2,7 +2,7 @@ import ToggleButton from 'components/ToggleButton';
 import { useAtom, useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
-import { LeftPanelToggleOptions } from 'utils/constants';
+import { LeftPanelToggleOptions, TrackEvent } from 'utils/constants';
 import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 
 export default function EmissionToggle(): ReactElement {
@@ -25,9 +25,9 @@ export default function EmissionToggle(): ReactElement {
 
   const onSetCurrentMode = (option: string) => {
     if (displayByEmissions) {
-      trackEvent('PanelProductionButton Clicked');
+      trackEvent(TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED);
     } else {
-      trackEvent('PanelEmissionButton Clicked');
+      trackEvent(TrackEvent.PANEL_EMISSION_BUTTON_CLICKED);
     }
     if (
       (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
