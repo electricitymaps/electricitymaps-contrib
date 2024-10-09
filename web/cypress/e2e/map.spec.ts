@@ -19,6 +19,9 @@ describe('Map', () => {
 
     cy.get('[data-test-id=zone-search-bar]').type('Denmark');
     cy.get('[data-index="0"] > .group').click();
+    // Check that the page title contains the zone name
+    cy.title().should('contain', 'Bornholm');
+
     cy.get('[data-test-id=left-panel-back-button]').click();
 
     // closes left panel
