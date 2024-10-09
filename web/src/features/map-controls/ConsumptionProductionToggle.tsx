@@ -2,7 +2,7 @@ import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
-import { Mode } from 'utils/constants';
+import { Mode, TrackEvent } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
 export default function ConsumptionProductionToggle(): ReactElement {
@@ -23,7 +23,9 @@ export default function ConsumptionProductionToggle(): ReactElement {
     if (option === currentMode) {
       return;
     }
-    trackEvent('Production Consumption Clicked', { productionConsumption: option });
+    trackEvent(TrackEvent.PRODUCTION_CONSUMPTION_CLICKED, {
+      productionConsumption: option,
+    });
     setCurrentMode(currentMode === Mode.PRODUCTION ? Mode.CONSUMPTION : Mode.PRODUCTION);
   };
 
