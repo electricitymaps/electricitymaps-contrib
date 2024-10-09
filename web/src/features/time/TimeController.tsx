@@ -5,7 +5,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
-import { TimeAverages } from 'utils/constants';
+import { TimeAverages, TrackEvent } from 'utils/constants';
 import {
   isHourlyAtom,
   selectedDatetimeIndexAtom,
@@ -71,7 +71,7 @@ export default function TimeController({ className }: { className?: string }) {
         index: numberOfEntries,
       });
       setTimeAverage(timeAverage);
-      trackEvent('Time Aggregate Button Clicked', { timeAverage });
+      trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeAverage });
     },
     [selectedDatetime.datetime, numberOfEntries, setSelectedDatetime, setTimeAverage]
   );
