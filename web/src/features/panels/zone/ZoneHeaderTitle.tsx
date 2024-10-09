@@ -36,7 +36,8 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
-  const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
+  const showCountryPill =
+    zoneId.includes('-') && !zoneName.toLowerCase().includes(countryName.toLowerCase());
   const setIsMapMoving = useSetAtom(mapMovingAtom);
   const canonicalUrl = useGetCanonicalUrl();
   const isShareButtonEnabled = useFeatureFlag('share-button');
