@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import { ZoneKey } from 'types';
-import { baseUrl } from 'utils/constants';
+import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
 
 import { ShareButton } from './ShareButton';
@@ -47,6 +47,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">
       <Helmet prioritizeSeoTags>
+        <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
       <Link
