@@ -103,7 +103,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                     key={date}
                     className={
                       isNow(date, granularity)
-                        ? `rounded-md bg-[#18214F]/10 dark:bg-[#848EC0]/10`
+                        ? `rounded-md bg-price-light/10 dark:bg-price-dark/10`
                         : ''
                     }
                   >
@@ -327,7 +327,7 @@ const getColor = (
     normalizeToGranularity(new Date(date), granularity) <
     normalizeToGranularity(new Date(), granularity)
   ) {
-    return 'bg-[#18214F] dark:bg-[#848EC0] opacity-50';
+    return 'bg-price-light dark:bg-price-dark opacity-50';
   } else if (
     priceIn5Percentile(price, maxPrice, minPrice, true) &&
     maxPrice != minPrice
@@ -339,12 +339,12 @@ const getColor = (
   ) {
     return 'bg-success dark:bg-emerald-500';
   } else {
-    return 'bg-[#18214F] dark:bg-[#848EC0]';
+    return 'bg-price-light dark:bg-price-dark';
   }
 };
 
 const isNow = (date: string, granularity: number): boolean =>
-  normalizeToGranularity(new Date(date), granularity).getTime() ==
+  normalizeToGranularity(new Date(date), granularity).getTime() ===
   normalizeToGranularity(new Date(), granularity).getTime();
 
 const isFuturePrice = (FuturePriceData: FuturePriceData): boolean => {

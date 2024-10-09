@@ -1,11 +1,8 @@
 country: MY
-disclaimer: 'This zone is partially using fully estimated data from MY-EM'
-estimation_method:
-  CONSTRUCT_BREAKDOWN
-  # We need either a parser or a estimation method for the frontend to display any data.
-  # This just has to be a truthy value but we'll use the same as the subzone estimation method for simplicity.
+disclaimer: This zone is partially using fully estimated data from MY-EM
+estimation_method: CONSTRUCT_BREAKDOWN
+region: Asia
 subZoneNames:
   - MY-WM
   - MY-EM
-region: Asia
 timezone: Asia/Kuala_Lumpur

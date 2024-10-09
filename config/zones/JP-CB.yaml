@@ -29,47 +29,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 546.5387723390452
+        value: 546.54
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 545.9900006037426
+        value: 545.99
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 545.1461569781733
+        value: 545.15
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 518.6511289255802
+        value: 518.65
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 513.0469607569149
+        value: 513.05
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 508.3569166775055
+        value: 508.36
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 478.72196894648187
+        value: 478.72
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 546.5387723390452
+        value: 546.54
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 545.9900006037426
+        value: 545.99
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 545.1461569781733
+        value: 545.15
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 518.6511289255802
+        value: 518.65
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 513.0469607569149
+        value: 513.05
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 508.3569166775055
+        value: 508.36
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 478.72196894648187
+        value: 478.72
     unknown:
       _comment: 'Source: Derived from 2016-2019 Chubu area supply statistics and 2017-2018
         Chubu Electric report'

@@ -123,22 +123,22 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 47.03585555652582
+        value: 47.04
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 50.36352818965378
+        value: 50.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 39.1598382663306
+        value: 39.16
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 42.45124293885544
+        value: 42.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 37.55526214517685
+        value: 37.56
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 57.795787906898234
+        value: 57.8
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
@@ -159,22 +159,22 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 47.03585555652582
+        value: 47.04
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 50.36352818965378
+        value: 50.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 39.1598382663306
+        value: 39.16
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 42.45124293885544
+        value: 42.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 37.55526214517685
+        value: 37.56
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 57.795787906898234
+        value: 57.8
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021

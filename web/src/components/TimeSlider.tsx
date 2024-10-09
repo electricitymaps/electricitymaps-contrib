@@ -6,7 +6,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
 import { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
-import { TimeAverages } from 'utils/constants';
+import { TimeAverages, TrackEvent } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
 import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
 
@@ -74,7 +74,7 @@ export const getThumbIcon = (
 };
 
 function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
-  trackEvent('Time Slider Button Interaction', {
+  trackEvent(TrackEvent.TIME_SLIDER_BUTTON, {
     selectedIndex: `${timeAverage}: ${selectedIndex}`,
   });
 }
