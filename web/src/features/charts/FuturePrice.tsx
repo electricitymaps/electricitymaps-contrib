@@ -302,7 +302,7 @@ const getColor = (
 };
 
 const isNow = (date: string, granularity: number): boolean =>
-  normalizeToGranularity(new Date(date), granularity).getTime() ==
+  normalizeToGranularity(new Date(date), granularity).getTime() ===
   normalizeToGranularity(new Date(), granularity).getTime();
 
 const isFuturePrice = (FuturePriceData: FuturePriceData): boolean => {
