@@ -1,5 +1,6 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
+import { NewFeaturePopover } from 'components/NewFeaturePopover';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
@@ -11,6 +12,10 @@ import { TimeAverages, TrackEvent } from 'utils/constants';
 import { getDateTimeFormatOptions } from 'utils/formatting';
 import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
+import {
+  FuturePriceFeaturePopoverContent,
+  newFuturePriceDismissed,
+} from './FuturePriceFeaturePopoverContent';
 import {
   calculatePriceBound,
   dateIsFirstHourOfTomorrow,
@@ -45,6 +50,9 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     [filteredPriceData, granularity]
   );
 
+  const [isDismissed, setIsDismissed] = useAtom(newFuturePriceDismissed);
+  const onPopoverDismiss = () => setIsDismissed(true);
+
   if (!futurePrice || !isFuturePrice(futurePrice)) {
     return null;
   }
@@ -54,59 +62,87 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
 
   return (
     <div className="pt-2">
-      <Accordion
-        isCollapsed={isCollapsed}
-        title={t(`country-panel.price-chart.see`)}
-        expandedTitle={t(`country-panel.price-chart.hide`)}
-        className="text-success dark:text-emerald-500"
-        expandedIcon={ChevronsUpDownIcon}
-        collapsedIcon={ChevronsDownUpIcon}
-        iconClassName="text-success dark:text-emerald-500"
-        iconSize={20}
-        setState={setIsCollapsed}
-        onOpen={() => trackEvent(TrackEvent.FUTURE_PRICE_EXPANDED)}
+      <NewFeaturePopover
+        isOpen={!isDismissed}
+        onDismiss={onPopoverDismiss}
+        side="top"
+        portal={false}
+        content={<FuturePriceFeaturePopoverContent />}
       >
-        <div data-test-id="future-price">
-          <PriceDisclaimer />
-          <TimeDisclaimer />
-          {futurePrice?.priceData && (
-            <ul>
-              {Object.entries(filteredPriceData).map(
-                ([date, price]: [string, number]) => (
-                  <li
-                    key={date}
-                    className={
-                      isNow(date, granularity)
-                        ? `rounded-md bg-price-light/10 dark:bg-price-dark/10`
-                        : ''
-                    }
-                  >
-                    {dateIsFirstHourOfTomorrow(new Date(date)) && (
-                      <div className="flex flex-col py-1" data-test-id="tomorrow-label">
-                        <HorizontalDivider />
-                        <TommorowLabel date={date} t={t} i18n={i18n} />
-                      </div>
-                    )}
-                    <div className="flex flex-row justify-items-end gap-2 px-1">
-                      <TimeDisplay date={date} granularity={granularity} />
-                      <PriceDisplay
-                        price={price}
-                        currency={futurePrice.currency}
-                        i18n={i18n}
-                      />
-                      <div className="flex h-full w-full flex-row self-center">
-                        {hasNegativePrice && (
+        <Accordion
+          isCollapsed={isCollapsed}
+          title={t(`country-panel.price-chart.see`)}
+          expandedTitle={t(`country-panel.price-chart.hide`)}
+          className="text-success dark:text-emerald-500"
+          expandedIcon={ChevronsUpDownIcon}
+          collapsedIcon={ChevronsDownUpIcon}
+          iconClassName="text-success dark:text-emerald-500"
+          iconSize={20}
+          setState={setIsCollapsed}
+          onOpen={() => trackEvent(TrackEvent.FUTURE_PRICE_EXPANDED)}
+        >
+          <div data-test-id="future-price">
+            <PriceDisclaimer />
+            <TimeDisclaimer />
+            {futurePrice?.priceData && (
+              <ul>
+                {Object.entries(filteredPriceData).map(
+                  ([date, price]: [string, number]) => (
+                    <li
+                      key={date}
+                      className={
+                        isNow(date, granularity)
+                          ? `rounded-md bg-price-light/10 dark:bg-price-dark/10`
+                          : ''
+                      }
+                    >
+                      {dateIsFirstHourOfTomorrow(new Date(date)) && (
+                        <div className="flex flex-col py-1" data-test-id="tomorrow-label">
+                          <HorizontalDivider />
+                          <TommorowLabel date={date} t={t} i18n={i18n} />
+                        </div>
+                      )}
+                      <div className="flex flex-row justify-items-end gap-2 px-1">
+                        <TimeDisplay date={date} granularity={granularity} />
+                        <PriceDisplay
+                          price={price}
+                          currency={futurePrice.currency}
+                          i18n={i18n}
+                        />
+                        <div className="flex h-full w-full flex-row self-center">
+                          {hasNegativePrice && (
+                            <div
+                              className="flex flex-row justify-end"
+                              style={{
+                                width: `${negativePercentage}%`,
+                              }}
+                              data-test-id="negative-price"
+                            >
+                              {price < 0 && (
+                                <PriceBar
+                                  price={price * -1}
+                                  maxPrice={-1 * minPriceTotal}
+                                  color={getColor(
+                                    price,
+                                    maxPriceFuture,
+                                    minPriceFuture,
+                                    date,
+                                    granularity
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
                           <div
-                            className="flex flex-row justify-end"
                             style={{
-                              width: `${negativePercentage}%`,
+                              width: `${100 - negativePercentage}%`,
                             }}
-                            data-test-id="negative-price"
+                            data-test-id="positive-price"
                           >
-                            {price < 0 && (
+                            {price > 0 && (
                               <PriceBar
-                                price={price * -1}
-                                maxPrice={-1 * minPriceTotal}
+                                price={price}
+                                maxPrice={maxPriceTotal}
                                 color={getColor(
                                   price,
                                   maxPriceFuture,
@@ -117,36 +153,16 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                               />
                             )}
                           </div>
-                        )}
-                        <div
-                          style={{
-                            width: `${100 - negativePercentage}%`,
-                          }}
-                          data-test-id="positive-price"
-                        >
-                          {price > 0 && (
-                            <PriceBar
-                              price={price}
-                              maxPrice={maxPriceTotal}
-                              color={getColor(
-                                price,
-                                maxPriceFuture,
-                                minPriceFuture,
-                                date,
-                                granularity
-                              )}
-                            />
-                          )}
                         </div>
                       </div>
-                    </div>
-                  </li>
-                )
-              )}
-            </ul>
-          )}
-        </div>
-      </Accordion>
+                    </li>
+                  )
+                )}
+              </ul>
+            )}
+          </div>
+        </Accordion>
+      </NewFeaturePopover>
     </div>
   );
 }
