@@ -84,10 +84,10 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
         isCollapsed={isCollapsed}
         title={t(`country-panel.price-chart.see`)}
         expandedTitle={t(`country-panel.price-chart.hide`)}
-        className="text-success dark:text-emerald-500"
+        className="text-success dark:text-success-dark"
         expandedIcon={ChevronsUpDownIcon}
         collapsedIcon={ChevronsDownUpIcon}
-        iconClassName="text-success dark:text-emerald-500"
+        iconClassName="text-success dark:text-success-dark"
         iconSize={20}
         setState={setIsCollapsed}
         onOpen={() => trackEvent(TrackEvent.FUTURE_PRICE_EXPANDED)}
@@ -335,7 +335,7 @@ const getColor = (
     priceIn5Percentile(price, maxPrice, minPrice, false) &&
     maxPrice != minPrice
   ) {
-    return 'bg-success dark:bg-emerald-500';
+    return 'bg-success dark:bg-success-dark';
   } else {
     return 'bg-price-light dark:bg-price-dark';
   }
