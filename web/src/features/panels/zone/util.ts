@@ -6,6 +6,8 @@ import { CombinedZonesConfig } from '../../../../geo/types';
 
 const { zones, contributors } = zonesConfigJSON as unknown as CombinedZonesConfig;
 
+export const zoneExists = (zoneId: string) => Boolean(zones[zoneId]);
+
 export const getHasSubZones = (zoneId?: string) => {
   if (!zoneId) {
     return null;
