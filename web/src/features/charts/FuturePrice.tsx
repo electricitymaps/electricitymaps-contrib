@@ -3,7 +3,7 @@ import { HorizontalDivider } from 'components/Divider';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import trackEvent from 'utils/analytics';
@@ -13,11 +13,13 @@ import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
 import {
   calculatePriceBound,
+  calculateWidth,
   dateIsFirstHourOfTomorrow,
   filterPriceData,
   getGranularity,
   negativeToPostivePercentage,
   normalizeToGranularity,
+  priceIn5Percentile,
 } from './futurePriceUtils';
 
 export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
@@ -45,12 +47,36 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     [filteredPriceData, granularity]
   );
 
+  const priceBarContainerReference = useRef<HTMLDivElement>(null);
+  const [positiveWidth, setPositiveWidth] = useState(0);
+  const [negativeWidth, setNegativeWidth] = useState(0);
+  const hasNegativePrice = minPriceTotal < 0;
+  const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const divWidth = priceBarContainerReference?.current?.getBoundingClientRect().width;
+      setPositiveWidth(calculateWidth(divWidth, negativePercentage, false));
+      setNegativeWidth(calculateWidth(divWidth, negativePercentage, true));
+    };
+
+    const observer = new ResizeObserver(handleResize);
+    const current = priceBarContainerReference.current;
+
+    if (current) {
+      observer.observe(current);
+    }
+
+    return () => {
+      if (current) {
+        observer.unobserve(current);
+      }
+    };
+  }, [priceBarContainerReference, negativePercentage, isCollapsed]);
+
   if (!futurePrice || !isFuturePrice(futurePrice)) {
     return null;
   }
-
-  const hasNegativePrice = minPriceTotal < 0;
-  const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
 
   return (
     <div className="pt-2">
@@ -58,10 +84,10 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
         isCollapsed={isCollapsed}
         title={t(`country-panel.price-chart.see`)}
         expandedTitle={t(`country-panel.price-chart.hide`)}
-        className="text-success dark:text-emerald-500"
+        className="text-success dark:text-success-dark"
         expandedIcon={ChevronsUpDownIcon}
         collapsedIcon={ChevronsDownUpIcon}
-        iconClassName="text-success dark:text-emerald-500"
+        iconClassName="text-success dark:text-success-dark"
         iconSize={20}
         setState={setIsCollapsed}
         onOpen={() => trackEvent(TrackEvent.FUTURE_PRICE_EXPANDED)}
@@ -81,31 +107,34 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                         : ''
                     }
                   >
-                    {dateIsFirstHourOfTomorrow(new Date(date)) && (
-                      <div className="flex flex-col py-1" data-test-id="tomorrow-label">
-                        <HorizontalDivider />
-                        <TommorowLabel date={date} t={t} i18n={i18n} />
-                      </div>
-                    )}
-                    <div className="flex flex-row justify-items-end gap-2 px-1">
-                      <TimeDisplay date={date} granularity={granularity} />
-                      <PriceDisplay
-                        price={price}
-                        currency={futurePrice.currency}
-                        i18n={i18n}
-                      />
-                      <div className="flex h-full w-full flex-row self-center">
-                        {hasNegativePrice && (
-                          <div
-                            className="flex flex-row justify-end"
-                            style={{
-                              width: `${negativePercentage}%`,
-                            }}
-                            data-test-id="negative-price"
-                          >
-                            {price < 0 && (
+                    <div>
+                      {dateIsFirstHourOfTomorrow(new Date(date)) && (
+                        <div className="flex flex-col py-1" data-test-id="tomorrow-label">
+                          <HorizontalDivider />
+                          <TommorowLabel date={date} t={t} i18n={i18n} />
+                        </div>
+                      )}
+                      <div className="flex flex-row justify-items-end gap-2 px-1">
+                        <TimeDisplay date={date} granularity={granularity} />
+                        <PriceDisplay
+                          price={price}
+                          currency={futurePrice.currency}
+                          i18n={i18n}
+                        />
+                        <div
+                          ref={priceBarContainerReference}
+                          className="flex h-full w-full flex-row self-center"
+                        >
+                          {hasNegativePrice && price < 0 && (
+                            <div
+                              className="flex flex-row justify-end"
+                              style={{
+                                width: negativeWidth,
+                              }}
+                              data-test-id="negative-price"
+                            >
                               <PriceBar
-                                price={price * -1}
+                                price={price}
                                 maxPrice={-1 * minPriceTotal}
                                 color={getColor(
                                   price,
@@ -114,28 +143,33 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                                   date,
                                   granularity
                                 )}
+                                maxWidth={negativeWidth}
                               />
-                            )}
-                          </div>
-                        )}
-                        <div
-                          style={{
-                            width: `${100 - negativePercentage}%`,
-                          }}
-                          data-test-id="positive-price"
-                        >
-                          {price > 0 && (
-                            <PriceBar
-                              price={price}
-                              maxPrice={maxPriceTotal}
-                              color={getColor(
-                                price,
-                                maxPriceFuture,
-                                minPriceFuture,
-                                date,
-                                granularity
+                            </div>
+                          )}
+                          {price >= 0 && (
+                            <div
+                              data-test-id="positive-price"
+                              style={{
+                                width: positiveWidth,
+                              }}
+                              className="ml-auto"
+                            >
+                              {price >= 0 && (
+                                <PriceBar
+                                  price={price}
+                                  maxPrice={maxPriceTotal}
+                                  color={getColor(
+                                    price,
+                                    maxPriceFuture,
+                                    minPriceFuture,
+                                    date,
+                                    granularity
+                                  )}
+                                  maxWidth={positiveWidth}
+                                />
                               )}
-                            />
+                            </div>
                           )}
                         </div>
                       </div>
@@ -167,15 +201,19 @@ export function PriceBar({
   price,
   maxPrice,
   color,
+  maxWidth,
 }: {
   price: number;
   maxPrice: number;
   color: string;
+  maxWidth: number;
 }) {
+  const nonNegativePrice = Math.abs(price);
+  const width = (nonNegativePrice / maxPrice) * (maxWidth - 12) + 12;
   return (
     <div
       className={`h-3 rounded-full ${color}`}
-      style={{ width: `${(price / maxPrice) * 100}%` }}
+      style={{ width: width }}
       data-test-id="price-bar"
     />
   );
@@ -214,7 +252,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 
   if (isNow(date, granularity)) {
     return (
-      <p className="min-w-[82px] text-sm font-semibold" data-test-id="now-label">
+      <p className={`min-w-18 pl-1 text-sm font-semibold`} data-test-id="now-label">
         {t(`country-panel.price-chart.now`)}
       </p>
     );
@@ -225,11 +263,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
     minute: '2-digit',
   }).format(datetime);
 
-  return (
-    <p className="min-w-[82px] text-nowrap text-sm tabular-nums">
-      {`${t(`country-panel.price-chart.at`)} ${formattedDate}`}
-    </p>
-  );
+  return <p className={`min-w-18 text-nowrap text-sm tabular-nums`}>{formattedDate}</p>;
 }
 
 function PriceDisclaimer() {
@@ -292,10 +326,16 @@ const getColor = (
     normalizeToGranularity(new Date(), granularity)
   ) {
     return 'bg-price-light dark:bg-price-dark opacity-50';
-  } else if (price === maxPrice) {
+  } else if (
+    priceIn5Percentile(price, maxPrice, minPrice, true) &&
+    maxPrice != minPrice
+  ) {
     return 'bg-danger dark:bg-red-400';
-  } else if (price === minPrice) {
-    return 'bg-success dark:bg-emerald-500';
+  } else if (
+    priceIn5Percentile(price, maxPrice, minPrice, false) &&
+    maxPrice != minPrice
+  ) {
+    return 'bg-success dark:bg-success-dark';
   } else {
     return 'bg-price-light dark:bg-price-dark';
   }
