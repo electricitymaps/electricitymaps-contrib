@@ -1,3 +1,4 @@
+import { Share as CapShare } from '@capacitor/share';
 import { Button, ButtonProps } from 'components/Button';
 import { Toast, useToastReference } from 'components/Toast';
 import { isIos, isMobile } from 'features/weather-layers/wind-layer/util';
@@ -40,9 +41,9 @@ export function ShareButton({
 
   const share = async () => {
     try {
-      await navigator.share(shareData);
+      await CapShare.share(shareData);
     } catch (error) {
-      if (error instanceof Error && !/AbortError/.test(error.toString())) {
+      if (error instanceof Error && !/AbortError|canceled/.test(error.toString())) {
         console.error(error);
         setToastMessage(t('share-button.share-error'));
         reference.current?.publish();
@@ -62,8 +63,8 @@ export function ShareButton({
     }
   };
 
-  const onClick = () => {
-    if (isMobile() && navigator.canShare({ url })) {
+  const onClick = async () => {
+    if (isMobile() && (await CapShare.canShare())) {
       share();
     } else {
       copyToClipboard();

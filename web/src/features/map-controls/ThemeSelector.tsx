@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { LaptopMinimal, Moon, Palette, Smartphone, Sun } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { ThemeOptions } from 'utils/constants';
+import { ThemeOptions, TrackEvent } from 'utils/constants';
 import { themeAtom } from 'utils/state/atoms';
 
 import MapButton from './MapButton';
@@ -17,7 +17,7 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
 
   const handleThemeChange = (mode: ThemeOptions) => {
     setSelectedTheme(mode);
-    trackEvent('Theme Selected', { theme: mode });
+    trackEvent(TrackEvent.THEME_SELECTED, { theme: mode });
   };
 
   const ICONS = {

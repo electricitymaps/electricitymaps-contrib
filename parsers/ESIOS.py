@@ -5,8 +5,6 @@ from logging import Logger, getLogger
 from urllib.parse import urlencode
 from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import arrow
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
@@ -90,9 +88,13 @@ def fetch_exchange(
 
         net_flow *= EXCHANGE_MULTIPLICATION_FACTOR_MAP[zone_key]
 
+        exchange_datetime = datetime.fromisoformat(
+            value["datetime_utc"].replace("Z", "+00:00")
+        )
+
         exchanges.append(
             zoneKey=zone_key,
-            datetime=arrow.get(value["datetime_utc"]).datetime,
+            datetime=exchange_datetime,
             netFlow=net_flow,
             source="api.esios.ree.es",
         )
