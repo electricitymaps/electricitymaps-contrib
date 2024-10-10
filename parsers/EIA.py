@@ -589,10 +589,11 @@ def fetch_production_mix(
     latest_timeframe = max(timeframes, key=lambda x: x[-1])
 
     for production_list in all_production_breakdowns:
-        correct_mix = []
-        for production_mix in production_list.events:
-            if production_mix.datetime in latest_timeframe:
-                correct_mix.append(production_mix)
+        correct_mix = [
+            production_mix
+            for production_mix in production_list.events
+            if production_mix.datetime in latest_timeframe
+        ]
         production_list.events = correct_mix
     events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
