@@ -66,6 +66,7 @@ const config = {
           dark: colors.red[400],
         },
       },
+      minWidth: { 17: '4.5rem' },
     },
     fontFamily: {
       sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
