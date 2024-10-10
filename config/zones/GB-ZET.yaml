@@ -6,6 +6,6 @@ bounding_box:
 contributors:
   - systemcatch
   - maxbellec
-timezone: Europe/London
-region: Europe
 country: GB
+region: Europe
+timezone: Europe/London

@@ -30,8 +30,8 @@
     "about": "À propos"
   },
   "app-banner": {
-    "cta": "Télécharger l'app",
-    "description": "Données d'électricité en direct"
+    "cta": "Installer",
+    "description": "Données sur l'électricité en direct"
   },
   "onboarding-modal": {
     "view1": {
@@ -78,22 +78,6 @@
     "electricityproduction": "Production",
     "electricityconsumption": "Consommation",
     "emissions": "Émissions",
-    "by-source": {
-      "emissions": "Émissions carbone",
-      "electricity-production": "Production d'électricité",
-      "electricity-consumption": "Consommation d'électricité",
-      "total-emissions": "Émissions totales de carbone",
-      "total-electricity-production": "Production totale d'électricité",
-      "total-electricity-consumption": "Consommation totale d'électricité"
-    },
-    "graph-legends": {
-      "installed-capacity": "Capacité installée ",
-      "exchange-capacity": "Capacité d'échange disponible ",
-      "exported": "Exportée",
-      "imported": "Importée",
-      "stored": "Stockée",
-      "produced": "Produite"
-    },
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
@@ -111,7 +95,33 @@
     "exchangesAreMissing": "Les échanges sont pris en compte dans les calculs mais ne sont pas indiqués actuellement. En savoir plus sur notre agrégation historique  <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
     "estimatedTooltip": "Les données en temps réel pour cette zone sont estimées sur la base des données de la source et des hypothèses du modèle.",
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
-    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
+    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données.",
+    "by-source": {
+      "emissions": "Émissions carbone",
+      "electricity-production": "Production d'électricité",
+      "electricity-consumption": "Consommation d'électricité",
+      "total-emissions": "Émissions totales de carbone",
+      "total-electricity-production": "Production totale d'électricité",
+      "total-electricity-consumption": "Consommation totale d'électricité"
+    },
+    "graph-legends": {
+      "installed-capacity": "Capacité installée ",
+      "exchange-capacity": "Capacité d'échange disponible ",
+      "exported": "Exportée",
+      "imported": "Importée",
+      "stored": "Stockée",
+      "produced": "Produite"
+    },
+    "price-chart": {
+      "see": "Afficher les prix à venir",
+      "hide": "Masquer les prix à venir",
+      "today": "Aujourd'hui",
+      "tomorrow": "Demain",
+      "price-disclaimer": "Les prix excluent les taxes et les éventuels frais de réseau.",
+      "time-disclaimer": "Tous les horaires indiqués sont en",
+      "at": "A",
+      "now": "Maintenant"
+    }
   },
   "feedback-card": {
     "agree": "D'accord",
@@ -347,7 +357,6 @@
     "system": "Système"
   },
   "updatePrompt": {
-    "title": "Mise à jour disponible",
     "description": "Une nouvelle version de l'application est disponible, mettre à jour maintenant ?",
     "update": "Mettre à jour",
     "dismiss": "Ignorer"
@@ -1389,6 +1398,9 @@
     "MX-PN": {
       "countryName": "Mexique",
       "zoneName": "Péninsule"
+    },
+    "MY": {
+      "zoneName": "Malaisie"
     },
     "MY-EM": {
       "countryName": "Malaisie",

@@ -29,6 +29,9 @@ export const spatialAggregateAtom = atomWithStorage(
   SpatialAggregate.ZONE
 );
 export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTION);
+export const isConsumptionAtom = atom<boolean>(
+  (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
+);
 
 export const areWeatherLayersAllowedAtom = atom<boolean>(
   (get) => get(isHourlyAtom) && get(selectedDatetimeIndexAtom).index === 24
@@ -81,3 +84,5 @@ export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
   'rankingPanelAccordionCollapsed',
   false
 );
+
+export const futurePriceCollapsedAtom = atom<boolean>(true);

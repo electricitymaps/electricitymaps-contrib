@@ -1,9 +1,9 @@
 import useGetZone from 'api/getZone';
 import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
-import { Mode, SpatialAggregate } from 'utils/constants';
+import { SpatialAggregate } from 'utils/constants';
 import {
-  productionConsumptionAtom,
+  isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
@@ -23,10 +23,9 @@ export default function useBarBreakdownChartData() {
   const { zoneId } = useParams();
   const viewMode = useAtomValue(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
-  const mixMode = useAtomValue(productionConsumptionAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   const currentData = zoneData?.zoneStates?.[selectedDatetimeString];
-  const isConsumption = mixMode === Mode.CONSUMPTION;
+  const isConsumption = useAtomValue(isConsumptionAtom);
   if (isLoading) {
     return { isLoading };
   }
@@ -46,7 +45,7 @@ export default function useBarBreakdownChartData() {
 
   const productionData = getProductionData(currentData); // TODO: Consider memoing this
   const exchangeData = isConsumption
-    ? getExchangeData(currentData, exchangeKeys, mixMode)
+    ? getExchangeData(currentData, exchangeKeys, isConsumption)
     : []; // TODO: Consider memoing this
 
   const { exchangeY } = getDataBlockPositions(

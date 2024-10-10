@@ -14,8 +14,8 @@ import { TrackEvent } from 'utils/constants';
 import {
   dataSourcesCollapsedBarBreakdownAtom,
   displayByEmissionsAtom,
+  isConsumptionAtom,
   isHourlyAtom,
-  productionConsumptionAtom,
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
@@ -59,14 +59,14 @@ function BarBreakdownChart({
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
   const isHourly = useAtomValue(isHourlyAtom);
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const width = observerWidth + X_PADDING;
 
   const graphUnit = useMemo(
     () =>
       currentZoneDetail &&
-      determineUnit(displayByEmissions, currentZoneDetail, mixMode, isHourly, t),
-    [displayByEmissions, currentZoneDetail, mixMode, isHourly, t]
+      determineUnit(displayByEmissions, currentZoneDetail, isConsumption, isHourly, t),
+    [currentZoneDetail, displayByEmissions, isConsumption, isHourly, t]
   );
 
   const [tooltipData, setTooltipData] = useState<{
