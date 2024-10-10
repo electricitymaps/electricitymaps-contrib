@@ -24,32 +24,39 @@
     @apply text-gray-900 dark:text-gray-200;
     /* Disables mobile touch specific blue user select effect */
     -webkit-tap-highlight-color: transparent;
-  }
-  h1 {
-    @apply text-xl;
-    @apply font-poppins;
-    @apply font-medium;
-  }
-  h2 {
-    @apply text-base;
-    @apply font-poppins;
-    @apply font-medium;
-  }
-  h3 {
-    @apply text-sm;
-    @apply font-poppins;
-    @apply font-medium;
-  }
-  h4 {
-    @apply text-xs;
-    @apply font-poppins;
-    @apply font-medium;
-  }
-  p {
-    @apply text-sm;
-    @apply font-inter;
+
+    /* Added safe area insets for iOS */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
+h1 {
+  @apply text-xl;
+  @apply font-poppins;
+  @apply font-medium;
+}
+h2 {
+  @apply text-base;
+  @apply font-poppins;
+  @apply font-medium;
+}
+h3 {
+  @apply text-sm;
+  @apply font-poppins;
+  @apply font-medium;
+}
+h4 {
+  @apply text-xs;
+  @apply font-poppins;
+  @apply font-medium;
+}
+p {
+  @apply text-sm;
+  @apply font-inter;
+}
+
 *::-webkit-scrollbar {
   /*remove scrollbar track chrome*/
   background-color: transparent;
