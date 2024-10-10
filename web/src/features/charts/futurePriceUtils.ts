@@ -78,13 +78,15 @@ export const calculateWidth = (
   negativePercentage: number,
   isNegative: boolean
 ): number => {
+  const zeroWidth = 12; // this is the width in px of the circle that is always shown
+
   if (!width) {
     return 0;
   }
   if (isNegative) {
-    return ((width - 12) * negativePercentage) / 100 + 12;
+    return ((width - zeroWidth) * negativePercentage) / 100 + zeroWidth;
   }
-  return ((width - 12) * (100 - negativePercentage)) / 100 + 12;
+  return ((width - zeroWidth) * (100 - negativePercentage)) / 100 + zeroWidth;
 };
 
 export const priceIn5Percentile = (
@@ -93,9 +95,11 @@ export const priceIn5Percentile = (
   minPrice: number,
   inTop: boolean
 ): boolean => {
+  const fivePercent = 0.05;
   const priceRange = maxPrice - minPrice;
+
   if (inTop) {
-    return price >= maxPrice - priceRange * 0.05;
+    return price >= maxPrice - priceRange * fivePercent;
   }
-  return price <= minPrice + priceRange * 0.05;
+  return price <= minPrice + priceRange * fivePercent;
 };
