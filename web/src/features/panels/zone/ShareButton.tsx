@@ -43,7 +43,7 @@ export function ShareButton({
     try {
       await CapShare.share(shareData);
     } catch (error) {
-      if (error instanceof Error && !/AbortError/.test(error.toString())) {
+      if (error instanceof Error && !/AbortError|canceled/.test(error.toString())) {
         console.error(error);
         setToastMessage(t('share-button.share-error'));
         reference.current?.publish();

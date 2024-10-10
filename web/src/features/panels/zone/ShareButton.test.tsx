@@ -52,7 +52,23 @@ describe('ShareButton', () => {
 
   test('does not display error toast on share abort', async () => {
     vi.mocked(Share.canShare).mockResolvedValue({ value: true });
-    vi.mocked(Share.share).mockRejectedValue({ message: 'Share canceled' });
+    vi.mocked(Share.share).mockRejectedValue(new Error('AbortError'));
+    mocks.isMobile.mockReturnValue(true);
+    render(
+      <ToastProvider>
+        <ShareButton />
+      </ToastProvider>
+    );
+    expect(Share.share).not.toHaveBeenCalled();
+    await userEvent.click(screen.getByRole('button'));
+    expect(Share.share).toHaveBeenCalled();
+    await userEvent.click(document.body);
+    expect(screen.queryAllByTestId('toast')).toHaveLength(0);
+  });
+
+  test('does not display error toast on share cancel', async () => {
+    vi.mocked(Share.canShare).mockResolvedValue({ value: true });
+    vi.mocked(Share.share).mockRejectedValue(new Error('Share canceled'));
     mocks.isMobile.mockReturnValue(true);
     render(
       <ToastProvider>
