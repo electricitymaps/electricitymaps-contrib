@@ -25,7 +25,7 @@
     "noLiveData": "Realtidsdata er midlertidigt utilgængeligt for dette område",
     "estimated": "anslået",
     "aggregated": "aggregeret",
-    "noParserInfo": "Vi har endnu ingen information om dette område.<br/>Vil du hjælpe med at løse det? Du kan bidrage ved at <a href=\"{{link}}\" target=\"_blank\">tilføje områdedata</a>.",
+    "noParserInfo": "Vi har endnu ingen information om dette område.<br/>Vil du hjælpe med at løse det? Du kan bidrage ved at <a href='{{link}}' target='_blank'>tilføje områdedata</a>.",
     "now": "Nu"
   },
   "time-controller": {
