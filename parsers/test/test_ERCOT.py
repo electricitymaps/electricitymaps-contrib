@@ -4,13 +4,11 @@
 
 import json
 import logging
-import os
 import unittest
 from datetime import datetime
 from unittest.mock import patch
 
 import pytz
-from arrow import get
 from testfixtures import LogCapture
 
 from parsers import US_ERCOT
@@ -24,10 +22,9 @@ class TestUSERCOT(unittest.TestCase):
         with open(filename) as f:
             fake_data = json.load(f)
 
-        with LogCapture() as log:
-            with patch("parsers.US_ERCOT.get_data") as gjd:
-                gjd.return_value = fake_data
-                data = US_ERCOT.fetch_production(logger=logging.getLogger("test"))
+        with LogCapture(), patch("parsers.US_ERCOT.get_data") as gjd:
+            gjd.return_value = fake_data
+            data = US_ERCOT.fetch_production(logger=logging.getLogger("test"))
 
         with self.subTest():
             self.assertIsNotNone(data)
@@ -50,10 +47,9 @@ class TestUSERCOT(unittest.TestCase):
         with open(filename) as f:
             fake_data = json.load(f)
 
-        with LogCapture() as log:
-            with patch("parsers.US_ERCOT.get_data") as gjd:
-                gjd.return_value = fake_data
-                data = US_ERCOT.fetch_consumption(logger=logging.getLogger("test"))
+        with LogCapture(), patch("parsers.US_ERCOT.get_data") as gjd:
+            gjd.return_value = fake_data
+            data = US_ERCOT.fetch_consumption(logger=logging.getLogger("test"))
 
         with self.subTest():
             self.assertIsNotNone(data)
