@@ -64,8 +64,9 @@ export default function Header(): JSX.Element {
   return (
     <header
       className={twMerge(
-        'z-40 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
-        !isMobileApp && 'sm:block md:flex'
+        'z-40 hidden w-full items-center justify-between bg-white px-4 pt-safe-top shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
+        !isMobileApp && 'sm:block md:flex',
+        'fixed left-0 right-0 top-0 pt-safe-top pt-status-bar'
       )}
     >
       <Link href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral">

@@ -11,6 +11,17 @@ const config = {
   darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        xs: '475px',
+        // Add iPad-specific breakpoints:
+        ipad: { raw: '(min-width: 768px) and (max-width: 1024px)' },
+        'ipad-portrait': {
+          raw: '(min-width: 768px) and (max-width: 1024px) and (orientation: portrait)',
+        },
+        'ipad-landscape': {
+          raw: '(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)',
+        },
+      },
       typography: {
         DEFAULT: {
           css: {
@@ -21,6 +32,9 @@ const config = {
       },
       spacing: {
         15: '3.75rem',
+        // IPad insets and status bar height
+        'safe-top': 'env(safe-area-inset-top)',
+        'status-bar': '24px',
       },
       screens: {
         xs: '475px',
