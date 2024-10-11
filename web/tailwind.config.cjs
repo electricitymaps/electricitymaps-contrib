@@ -13,7 +13,7 @@ const config = {
     extend: {
       screens: {
         xs: '475px',
-        // Add iPad-specific breakpoints:
+        // Add iPad-specific breakpoints
         ipad: { raw: '(min-width: 768px) and (max-width: 1024px)' },
         'ipad-portrait': {
           raw: '(min-width: 768px) and (max-width: 1024px) and (orientation: portrait)',
@@ -34,7 +34,7 @@ const config = {
         15: '3.75rem',
         // IPad insets and status bar height
         'safe-top': 'env(safe-area-inset-top)',
-        'status-bar': '24px',
+        'ipad-status-bar': '24px',
       },
       screens: {
         xs: '475px',

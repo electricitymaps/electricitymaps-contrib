@@ -79,7 +79,7 @@ export default function App(): ReactElement {
         <meta property="og:locale" content={i18n.languages[0]} />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <main className="fixed flex h-full w-full flex-col pt-safe-top pt-status-bar">
+      <main className="ipad:pt-ipad-status-bar fixed flex h-full w-full flex-col pt-safe-top">
         <AppStoreBanner />
         <ToastProvider duration={20_000}>
           <Suspense>
