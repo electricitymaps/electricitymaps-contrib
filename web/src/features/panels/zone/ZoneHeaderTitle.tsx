@@ -9,6 +9,8 @@ import { ArrowLeft, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
+import { ZoneKey } from 'types';
+import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
 
 import { ShareButton } from './ShareButton';
@@ -22,6 +24,11 @@ interface ZoneHeaderTitleProps {
 
 const MAX_TITLE_LENGTH = 25;
 
+function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
+  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
+  return url;
+}
+
 export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
@@ -29,16 +36,19 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
-  const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
+  const showCountryPill =
+    zoneId.includes('-') && !zoneName.toLowerCase().includes(countryName.toLowerCase());
   const setIsMapMoving = useSetAtom(mapMovingAtom);
   const canonicalUrl = useGetCanonicalUrl();
   const isShareButtonEnabled = useFeatureFlag('share-button');
 
   const onNavigateBack = () => setIsMapMoving(false);
+  const shareUrl = getCurrentUrl({ zoneId });
 
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">
       <Helmet prioritizeSeoTags>
+        <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
       <Link
@@ -78,7 +88,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
-      {isShareButtonEnabled && <ShareButton />}
+      {isShareButtonEnabled && <ShareButton shareUrl={shareUrl} />}
     </div>
   );
 }
