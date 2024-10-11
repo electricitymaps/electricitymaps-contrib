@@ -1,20 +1,19 @@
 """Parser for the ERCOT grid area of the United States."""
 
-
 import gzip
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
 import arrow
-import pytz
 from requests import Response, Session
 
 import parsers.EIA as EIA
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.validation import validate_exchange
 
-TX_TZ = pytz.timezone("US/Central")
+TX_TZ = ZoneInfo("US/Central")
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "host=https://www.ercot.com"
 
@@ -119,7 +118,7 @@ def fetch_live_exchange(
 
     # aggregate data points in the same minute interval
     aggregated_data_points = []
-    for dt in sorted(list(set([item["datetime"] for item in all_data_points]))):
+    for dt in sorted({item["datetime"] for item in all_data_points}):
         agg_data_point = {}
         agg_data_point["datetime"] = dt
         values_dt = [
@@ -134,13 +133,12 @@ def fetch_live_exchange(
 
 
 def fetch_production(
-    zone_key: str = "US-TEX-ERCO",
+    zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
-    now = datetime.now(tz=pytz.utc)
+    now = datetime.now(tz=timezone.utc)
     if (
         target_datetime is None
         or target_datetime > arrow.get(now).floor("day").shift(days=-1).datetime
@@ -159,13 +157,12 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key: str = "US-TEX-ERCO",
+    zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
-    now = datetime.now(tz=pytz.UTC)
+    now = datetime.now(tz=timezone.utc)
     if (
         target_datetime is None
         or target_datetime > arrow.get(now).floor("day").shift(days=-1).datetime
@@ -184,21 +181,20 @@ def fetch_consumption(
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-
     now = datetime.now(tz=TX_TZ)
     if (
         target_datetime is None
         or target_datetime > arrow.get(now).floor("day").datetime
     ):
         target_datetime = now
-        exchanges = fetch_live_exchange(zone_key1, zone_key2, session, target_datetime)
+        exchanges = fetch_live_exchange(zone_key1, zone_key2, session, logger)
 
     else:
-        exchanges = EIA.fetch_exchange(zone_key1, zone_key2, session, target_datetime)
+        exchanges = EIA.fetch_exchange(zone_key1, zone_key2, session, target_datetime, logger)
     return exchanges
