@@ -2,25 +2,35 @@ import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
-import { SpatialAggregate, ToggleOptions } from 'utils/constants';
+import { SpatialAggregate, TrackEvent } from 'utils/constants';
 import { spatialAggregateAtom } from 'utils/state/atoms';
 
 export default function SpatialAggregatesToggle(): ReactElement {
   const options = [
-    { value: SpatialAggregate.COUNTRY, translationKey: 'aggregateButtons.country' },
-    { value: SpatialAggregate.ZONE, translationKey: 'aggregateButtons.zone' },
+    {
+      value: SpatialAggregate.COUNTRY,
+      translationKey: 'aggregateButtons.country',
+      dataTestId: 'country-toggle',
+    },
+    {
+      value: SpatialAggregate.ZONE,
+      translationKey: 'aggregateButtons.zone',
+      dataTestId: 'zone-toggle',
+    },
   ];
   const [currentMode, setCurrentMode] = useAtom(spatialAggregateAtom);
   const onSetCurrentMode = (option: string) => {
     if (
-      (option === SpatialAggregate.ZONE && currentMode === ToggleOptions.OFF) ||
-      (option === SpatialAggregate.COUNTRY && currentMode === ToggleOptions.ON)
+      (option === SpatialAggregate.ZONE && currentMode === SpatialAggregate.ZONE) ||
+      (option === SpatialAggregate.COUNTRY && currentMode === SpatialAggregate.COUNTRY)
     ) {
       return;
     }
-    trackEvent('Spatial Aggregate Clicked', { spatialAggregate: option });
+    trackEvent(TrackEvent.SPATIAL_AGGREGATE_CLICKED, { spatialAggregate: option });
     setCurrentMode(
-      currentMode === ToggleOptions.OFF ? ToggleOptions.ON : ToggleOptions.OFF
+      currentMode === SpatialAggregate.COUNTRY
+        ? SpatialAggregate.ZONE
+        : SpatialAggregate.COUNTRY
     );
   };
 
@@ -29,9 +39,10 @@ export default function SpatialAggregatesToggle(): ReactElement {
       options={options}
       tooltipKey="tooltips.aggregateInfo"
       selectedOption={
-        currentMode === ToggleOptions.OFF ? options[1].value : options[0].value
+        currentMode === SpatialAggregate.ZONE ? options[1].value : options[0].value
       }
       onToggle={onSetCurrentMode}
+      transparentBackground
     />
   );
 }

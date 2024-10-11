@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
 
 """Real time parser for the state of New York."""
+
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Optional
+from typing import Any
 from urllib.error import HTTPError
+from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 
 # Pumped storage is present but is not split into a separate category.
-from arrow.parser import ParserError
 from requests import Session
 
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.config import refetch_frequency
 
 # Dual Fuel systems can run either Natural Gas or Oil, they represent
@@ -25,6 +31,9 @@ from parsers.lib.config import refetch_frequency
 # consumption in the Dual Fuel systems is roughly ~1%, and to a first
 # approximation it's just Natural Gas.
 
+SOURCE = "nyiso.com"
+TIMEZONE = ZoneInfo("America/New_York")
+ZONE = "US-NY-NYIS"
 
 mapping = {
     "Dual Fuel": "gas",
@@ -37,7 +46,7 @@ mapping = {
 }
 
 
-def read_csv_data(url):
+def read_csv_data(url: str):
     """Gets csv data from a url and returns a dataframe."""
 
     csv_data = pd.read_csv(url)
@@ -45,23 +54,23 @@ def read_csv_data(url):
     return csv_data
 
 
-def timestamp_converter(timestamp_string):
+def timestamp_converter(timestamp_string: str) -> datetime:
     """Converts timestamps in nyiso data into aware datetime objects."""
     try:
-        dt_naive = arrow.get(timestamp_string, "MM/DD/YYYY HH:mm:ss")
-    except ParserError:
-        dt_naive = arrow.get(timestamp_string, "MM/DD/YYYY HH:mm")
-    dt_aware = dt_naive.replace(tzinfo="America/New_York").datetime
+        dt_naive = datetime.strptime(timestamp_string, "%m/%d/%Y %H:%M:%S")
+    except ValueError:
+        dt_naive = datetime.strptime(timestamp_string, "%m/%d/%Y %H:%M")
+    dt_aware = dt_naive.replace(tzinfo=TIMEZONE)
 
     return dt_aware
 
 
-def data_parser(df) -> list:
+def data_parser(df, logger) -> list[tuple[datetime, ProductionMix]]:
     """
     Takes dataframe and loops over rows to form dictionaries consisting of datetime and generation type.
     Merges these dictionaries using datetime key.
 
-    :return: list of tuples containing datetime string and production.
+    :return: list of tuples containing datetime and production.
     """
 
     chunks = []
@@ -80,78 +89,68 @@ def data_parser(df) -> list:
 
     mapped_generation = []
     for item in ordered:
-        mapped_types = [(mapping.get(k, k), v) for k, v in item.items()]
-
-        # Need to avoid multiple 'unknown' keys overwriting.
-        complete_production = defaultdict(lambda: 0.0)
-        for key, val in mapped_types:
+        mix = ProductionMix()
+        dt = timestamp_converter(item.pop("datetime"))
+        for key, val in item.items():
             try:
-                complete_production[key] += val
-            except TypeError:
-                # Datetime is a string at this point!
-                complete_production[key] = val
+                mix.add_value(mapping[key], val)
+            except KeyError:
+                logger.warning("Unrecognized production key '%s'", key)
 
-        dt = complete_production.pop("datetime")
-        final = (dt, dict(complete_production))
-        mapped_generation.append(final)
+        mapped_generation.append((dt, mix))
 
     return mapped_generation
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "US-NY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: ZoneKey = ZoneKey(ZONE),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given zone."""
-    if target_datetime:
-        # ensure we have an arrow object
-        target_datetime = arrow.get(target_datetime)
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TIMEZONE)
     else:
-        target_datetime = arrow.now("America/New_York")
+        # assume passed in correct timezone
+        target_datetime = target_datetime.replace(tzinfo=TIMEZONE)
 
-    if (arrow.now() - target_datetime).days > 9:
+    if (datetime.now(tz=TIMEZONE) - target_datetime).days > 9:
         raise NotImplementedError(
             "you can get data older than 9 days at the "
             "url http://mis.nyiso.com/public/"
         )
 
-    ny_date = target_datetime.format("YYYYMMDD")
-    mix_url = "http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv".format(
-        ny_date
-    )
+    ny_date = target_datetime.strftime("%Y%m%d")
+    mix_url = f"http://mis.nyiso.com/public/csv/rtfuelmix/{ny_date}rtfuelmix.csv"
     try:
         raw_data = read_csv_data(mix_url)
     except HTTPError:
         # this can happen when target_datetime has no data available
-        return None
+        return []
 
-    clean_data = data_parser(raw_data)
+    clean_data = data_parser(raw_data, logger)
 
-    production_mix = []
-    for datapoint in clean_data:
-        data = {
-            "zoneKey": zone_key,
-            "datetime": timestamp_converter(datapoint[0]),
-            "production": datapoint[1],
-            "storage": {},
-            "source": "nyiso.com",
-        }
+    production_breakdowns = ProductionBreakdownList(logger=logger)
+    for dt, mix in clean_data:
+        production_breakdowns.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            production=mix,
+            source=SOURCE,
+        )
 
-        production_mix.append(data)
-
-    return production_mix
+    return production_breakdowns.to_list()
 
 
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two zones."""
     url = (
         "http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv"
@@ -190,16 +189,11 @@ def fetch_exchange(
         direction = 1
         relevant_exchanges = ["SCH - HQ_CEDARS", "SCH - HQ - NY"]
     else:
-        raise NotImplementedError(
-            "Exchange pair not supported: {}".format(sorted_zone_keys)
-        )
+        raise NotImplementedError(f"Exchange pair not supported: {sorted_zone_keys}")
 
-    if target_datetime:
-        # ensure we have an arrow object
-        target_datetime = arrow.get(target_datetime)
-    else:
-        target_datetime = arrow.now("America/New_York")
-    ny_date = target_datetime.format("YYYYMMDD")
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TIMEZONE)
+    ny_date = target_datetime.strftime("%Y%m%d")
     exchange_url = url.format(ny_date)
 
     try:
@@ -213,9 +207,9 @@ def fetch_exchange(
     ]
     consolidated_flows = new_england_exs.reset_index().groupby("Timestamp").sum()
 
-    now = arrow.utcnow()
+    now = datetime.now(tz=TIMEZONE)
 
-    exchange_5min = []
+    exchange_5min = ExchangeList(logger)
     for row in consolidated_flows.itertuples():
         flow = float(row[3]) * direction
         # Timestamp for exchange does not include seconds.
@@ -230,16 +224,11 @@ def fetch_exchange(
             # it's weird/unexpected and thus worthy of failure and logging.
             continue
 
-        exchange = {
-            "sortedZoneKeys": sorted_zone_keys,
-            "datetime": dt,
-            "netFlow": flow,
-            "source": "nyiso.com",
-        }
+        exchange_5min.append(
+            source=SOURCE, datetime=dt, netFlow=flow, zoneKey=sorted_zone_keys
+        )
 
-        exchange_5min.append(exchange)
-
-    return exchange_5min
+    return exchange_5min.to_list()
 
 
 if __name__ == "__main__":
@@ -250,11 +239,11 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     pprint(fetch_production())
 
-    print('fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z")))
+    print("fetch_production(target_datetime=datetime(2018, 3, 13, 12, 0)) ->")
+    pprint(fetch_production(target_datetime=datetime(2018, 3, 13, 12, 0)))
 
-    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
+    print("fetch_production(target_datetime=datetime(2007, 3, 13, 12)) ->")
+    pprint(fetch_production(target_datetime=datetime(2007, 3, 13, 12)))
 
     print("fetch_exchange(US-NY, US-NEISO)")
     pprint(fetch_exchange("US-NY", "US-NEISO"))
@@ -263,15 +252,13 @@ if __name__ == "__main__":
     pprint(fetch_exchange("US-NY", "CA-QC"))
 
     print(
-        'fetch_exchange("US-NY", "CA-QC", target_datetime=arrow.get("2018-03-13T12:00Z"))'
+        'fetch_exchange("US-NY", "CA-QC", target_datetime=datetime(2018, 3, 13, 12, 0))'
     )
     pprint(
-        fetch_exchange("US-NY", "CA-QC", target_datetime=arrow.get("2018-03-13T12:00Z"))
+        fetch_exchange("US-NY", "CA-QC", target_datetime=datetime(2018, 3, 13, 12, 0))
     )
 
     print(
-        'fetch_exchange("US-NY", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")))'
+        'fetch_exchange("US-NY", "CA-QC", target_datetime=datetime(2007, 3, 13, 12)))'
     )
-    pprint(
-        fetch_exchange("US-NY", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z"))
-    )
+    pprint(fetch_exchange("US-NY", "CA-QC", target_datetime=datetime(2007, 3, 13, 12)))

@@ -2,7 +2,6 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 from requests import Session
 
@@ -12,8 +11,8 @@ from .lib.exceptions import ParserException
 
 def fetch_consumption(
     zone_key: str = "IN-KA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Karnataka consumption"""
@@ -39,8 +38,8 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = "IN-KA",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Karnataka  production"""
@@ -134,7 +133,7 @@ def fetch_production(
     )
 
     # Check ncep date is similar than state gen date
-    if abs((india_date_time - ncep_date_time).seconds) > 600:
+    if abs((india_date_time - ncep_date_time).total_seconds()) > 600:
         raise ParserException("IN-KA", "NCEP or State datetime is not valid")
 
     # cogen type is sugarcane bagasee. Proof in Issue #1867
@@ -149,7 +148,7 @@ def fetch_production(
 
     wind_value = IN.read_value_from_span_id(ncep_html, "lbl_tw")
 
-    solar_value = IN.read_value_from_span_id(ncep_html, "lbl_ts")
+    solar_value = IN.read_value_from_span_id(ncep_html, "lbl_kar_slr")
 
     # Hydro production
     hydro_value = (

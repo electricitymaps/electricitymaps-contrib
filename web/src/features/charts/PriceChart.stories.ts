@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { zoneDetailMock } from 'stories/mockData';
+import { EnergyUnits } from 'utils/units';
+
 import { TimeAverages } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
 import { getFills } from './hooks/usePriceChartData';
-import { zoneDetailMock } from 'stories/mockData';
 
 const meta: Meta<typeof AreaGraph> = {
   title: 'charts/PriceChart',
@@ -166,7 +168,6 @@ export const NegativePrices: Story = {
     layerFill: getFills(negativePrices).layerFill,
     markerFill: getFills(negativePrices).markerFill,
     selectedTimeAggregate: TimeAverages.HOURLY,
-    valueAxisLabel: '€ / MWh',
     isMobile: false,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),
@@ -200,7 +201,6 @@ export const MissingEntries: Story = {
     layerFill: getFills(missingEntriesData).layerFill,
     markerFill: getFills(missingEntriesData).markerFill,
     selectedTimeAggregate: TimeAverages.HOURLY,
-    valueAxisLabel: '€ / MWh',
     isMobile: false,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),

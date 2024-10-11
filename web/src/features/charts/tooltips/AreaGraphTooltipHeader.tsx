@@ -1,37 +1,68 @@
+import { HorizontalDivider } from 'components/Divider';
+import EstimationBadge from 'components/EstimationBadge';
+import { FormattedTime } from 'components/Time';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { modeColor, TimeAverages } from 'utils/constants';
-import { formatDate } from 'utils/formatting';
+import { EstimationMethods, TimeAverages } from 'utils/constants';
+
+import ProductionSourceIcon from '../ProductionsSourceIcons';
 
 interface AreaGraphToolTipHeaderProps {
   squareColor: string;
   datetime: Date;
   timeAverage: TimeAverages;
   title: string;
+  hasEstimationPill?: boolean;
+  estimatedPercentage?: number;
+  productionSource?: string;
+  estimationMethod?: EstimationMethods;
 }
 
-export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {
-  const { squareColor, datetime, timeAverage, title } = props;
+export default function AreaGraphToolTipHeader({
+  squareColor,
+  datetime,
+  timeAverage,
+  title,
+  hasEstimationPill = false,
+  estimatedPercentage,
+  productionSource,
+  estimationMethod,
+}: AreaGraphToolTipHeaderProps) {
   const { i18n } = useTranslation();
-
+  const pillText = useGetEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
   return (
     <>
-      <div className="mb-2 flex justify-between">
-        <div className="inline-flex items-center gap-x-1 font-bold">
-          <div
-            style={{
-              backgroundColor: squareColor,
-              height: 16,
-              width: 16,
-            }}
-            className="rounded-sm font-bold"
-          ></div>
-          <p className="text-base">{title}</p>
+      <div className="flex items-center gap-1 font-bold">
+        <div
+          style={{
+            backgroundColor: squareColor,
+          }}
+          className="flex h-4 w-4 items-center justify-center rounded-sm"
+        >
+          {productionSource && <ProductionSourceIcon source={productionSource} />}
         </div>
-        <div className="my-1 h-[32px] max-w-[160px] select-none rounded-full bg-brand-green/10 py-2 px-3 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
-          {formatDate(datetime, i18n.language, timeAverage)}
-        </div>
+        <h2 className="grow px-1">{title}</h2>
+        {hasEstimationPill && (
+          <EstimationBadge
+            text={pillText}
+            Icon={
+              estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
+            }
+          />
+        )}
       </div>
-      <hr className="my-1 mb-3" />
+      <FormattedTime
+        datetime={datetime}
+        language={i18n.languages[0]}
+        timeAverage={timeAverage}
+        className="text-sm"
+      />
+      <HorizontalDivider />
     </>
   );
 }

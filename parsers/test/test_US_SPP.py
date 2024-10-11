@@ -4,13 +4,13 @@
 
 import logging
 import unittest
-from datetime import datetime
+from datetime import datetime, timezone
 from unittest.mock import patch
 
-from arrow import get
 from pandas import read_pickle
 from testfixtures import LogCapture
 
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import US_SPP
 
 
@@ -22,11 +22,12 @@ class TestUSSPP(unittest.TestCase):
         fake_data = read_pickle(filename)
 
         # Suppress log messages to prevent interfering with test formatting.
-        with LogCapture() as log:
-            with patch("parsers.US_SPP.get_data") as gd:
-                gd.return_value = fake_data
-                data = US_SPP.fetch_production(logger=logging.getLogger("test"))
-                datapoint = data[-1]
+        with LogCapture(), patch("parsers.US_SPP.get_data") as gd:
+            gd.return_value = fake_data
+            data = US_SPP.fetch_production(
+                zone_key=ZoneKey("US-SW-AZPS"), logger=logging.getLogger("test")
+            )
+            datapoint = data[-1]
 
         with self.subTest():
             self.assertIsInstance(data, list)
@@ -39,14 +40,14 @@ class TestUSSPP(unittest.TestCase):
             self.assertEqual(round(datapoint["production"]["unknown"], 2), 33.1)
 
         with self.subTest():
-            expected_dt = get(datetime(2018, 7, 27, 11, 45), "UTC").datetime
+            expected_dt = datetime(2018, 7, 27, 11, 45, tzinfo=timezone.utc)
             self.assertEqual(datapoint["datetime"], expected_dt)
 
         with self.subTest():
             self.assertEqual(datapoint["source"], "spp.org")
 
         with self.subTest():
-            self.assertEqual(datapoint["zoneKey"], "US-SPP")
+            self.assertEqual(datapoint["zoneKey"], "US-SW-AZPS")
 
         with self.subTest():
             self.assertIsInstance(datapoint["storage"], dict)
@@ -60,7 +61,9 @@ class TestUSSPP(unittest.TestCase):
         with LogCapture() as log:
             with patch("parsers.US_SPP.get_data") as gd:
                 gd.return_value = fake_data
-                data = US_SPP.fetch_production(logger=logging.getLogger("test"))
+                _data = US_SPP.fetch_production(
+                    zone_key=ZoneKey("US-SW-AZPS"), logger=logging.getLogger("test")
+                )
             log.check(
                 (
                     "test",

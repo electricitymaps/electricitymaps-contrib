@@ -5,6 +5,8 @@ import type {
   MultiPolygon,
   Polygon,
 } from '@turf/turf';
+import { LineString, MultiLineString, Point } from 'geojson';
+import { EstimationMethods } from 'utils/constants';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -13,44 +15,59 @@ export type ZoneKey = string;
 export interface GridState {
   callerLocation?: [number, number];
   data: {
-    zones: { [key: string]: StateZoneDataForTimePeriod };
+    _disclaimer: string;
     createdAt: string;
-    datetime: string;
-    datetimes: Array<string>;
-    exchanges: { [key: string]: ExchangeResponse };
-    stateAggregation: string;
+    datetimes: {
+      /** Object representing the grid state at a single point in time */
+      [datetimeKey: string]: {
+        /** Array of all exchanges */
+        e: {
+          [key: ZoneKey]: StateExchangeData;
+        };
+        /** Array of all zones */
+        z: {
+          [key: ZoneKey]: StateZoneData;
+        };
+      };
+    };
   };
-}
-
-interface StateZoneDataForTimePeriod {
-  [timestamp: string]: StateZoneData;
 }
 
 export interface StateZoneData {
-  co2intensity: number; //TODO https://linear.app/electricitymaps/issue/ELE-1495/update-app-backend-variable-naming-to-use-camel-case-update-the
-  co2intensityProduction: number;
-  fossilFuelRatio: number;
-  fossilFuelRatioProduction: number;
-  renewableRatio: number;
-  renewableRatioProduction: number;
-  stateDatetime: number;
-  zoneKey: string;
-  // TODO: Add spatial aggregate info to the request so we can use it for filtering in ranking panel
-}
-
-export interface ExchangeResponse {
-  [datetimeKey: string]: {
-    netFlow: number;
-    co2intensity: number;
+  /** Object representing all production values */
+  p: {
+    /** Carbon intensity */
+    ci?: number | null;
+    /** Fossil ratio */
+    fr?: number | null;
+    /** Renewable ratio */
+    rr?: number | null;
   };
+  /** Object representing all consumption values */
+  c: {
+    /** Carbon intensity */
+    ci?: number | null;
+    /** Fossil ratio */
+    fr?: number | null;
+    /** Renewable ratio */
+    rr?: number | null;
+  };
+  /** Represents if a zone is estimated or not, will be true for hourly data else number */
+  e?: boolean | number | null;
+  /** Represents if the zone has a outage message or not */
+  o?: boolean | null;
 }
 
-export interface ExchangeOverview {
-  netFlow: number;
+export interface StateExchangeData {
+  /** The carbon intensity of the exchange */
+  ci: number;
+  /** The net flow of the exchange */
+  f: number;
+}
+
+export interface ExchangeArrowData {
   co2intensity: number;
-}
-
-export interface ExchangeArrowData extends ExchangeOverview {
+  netFlow: number;
   rotation: number;
   lonlat: [number, number];
   key: string;
@@ -59,6 +76,7 @@ export interface ExchangeArrowData extends ExchangeOverview {
 export interface ZoneOverviewForTimePeriod {
   [dateTimeKey: string]: ZoneOverview;
 }
+
 export interface ZoneOverview {
   zoneKey: string;
   co2intensity?: number;
@@ -66,7 +84,8 @@ export interface ZoneOverview {
   stateDatetime: string;
   fossilFuelRatio: number;
   renewableRatio: number;
-  estimationMethod: string;
+  estimationMethod?: EstimationMethods;
+  estimatedPercentage?: number;
 }
 
 export type GenerationType =
@@ -90,12 +109,17 @@ export type Exchange = { [key: string]: number };
 
 export interface ZoneDetail extends ZoneOverview {
   _isFinestGranularity: boolean;
-  capacity?: { [key in ElectricityModeType]: Maybe<number> };
+  estimatedPercentage?: number;
+  measuredPercentage?: number;
+  completenessPercentage?: number;
+  // Capacity is only available on hourly details
+  capacity?: { [key in ElectricityModeType]: number | null };
+  capacitySources?: { [key in ElectricityModeType]: string[] | null };
   dischargeCo2Intensities: { [key in ElectricityStorageKeyType]: number };
   dischargeCo2IntensitySources: { [key in ElectricityStorageKeyType]: string };
   exchange: Exchange;
   exchangeCapacities?: {
-    [key: string]: number[]; // TODO: Why can I not use [number, number] here?
+    [key: ZoneKey]: number[];
   };
   exchangeCo2Intensities: Exchange;
   fossilFuelRatio: number;
@@ -113,47 +137,77 @@ export interface ZoneDetail extends ZoneOverview {
   price?: {
     value: number;
     currency: string;
+    disabledReason?: string;
   };
   production: { [key in GenerationType]: Maybe<number> };
   productionCo2Intensities: { [key in GenerationType]: number };
   productionCo2IntensitySources: { [key in GenerationType]: string };
   renewableRatio: number;
   renewableRatioProduction: number;
-  source: string;
+  source: string[];
   storage: { [key in ElectricityStorageKeyType]: Maybe<number> };
-  totalCo2Discharge: number;
-  totalCo2Export: number;
-  totalCo2Import: number;
-  totalCo2NetExchange: number;
+  totalCo2Consumption: number;
+  totalCo2Discharge: number | null;
+  totalCo2Export: number | null;
+  totalCo2Import: number | null;
+  totalCo2NetExchange: number | null;
   totalCo2Production: number;
-  totalCo2Storage: number;
+  totalCo2Storage: number | null;
   totalConsumption: number;
-  totalDischarge: number;
-  totalExport: number;
-  totalImport: number;
-  totalProduction: number;
-  totalStorage: number;
+  totalDischarge: number | null;
+  totalExport: number | null;
+  totalImport: number | null;
+  totalProduction: number | null;
+  totalStorage: number | null;
 }
 
 export interface ZoneDetails {
   hasData: boolean;
+  futurePrice: FuturePriceData;
   stateAggregation: 'daily' | 'hourly' | 'monthly' | 'yearly';
   zoneStates: {
     [key: string]: ZoneDetail;
   };
+  zoneMessage?: ZoneMessage;
+}
+
+export interface ZoneMessage {
+  message: string;
+  issue?: string;
+}
+
+export interface GeometryProperties {
+  center: [number, number];
+  color: string;
+  countryKey: string;
+  isAggregatedView: boolean;
+  isHighestGranularity: boolean;
+  zoneId: string;
+  zoneName: string;
+}
+export interface StateGeometryProperties {
+  center?: [number, number];
+  stateName?: string;
+  stateId?: string;
 }
 
 export interface MapGeometries extends FeatureCollection<Geometry> {
   features: Array<MapGeometry>;
 }
+
+export interface StatesGeometries extends FeatureCollection<Geometry> {
+  features: Array<StatesGeometry>;
+}
 export interface MapGeometry extends Feature<Polygon | MultiPolygon> {
   geometry: MultiPolygon | Polygon;
   Id?: number;
-  properties: {
-    zoneId: string;
-    color: string;
-    center: [number, number];
-  };
+  properties: GeometryProperties;
+}
+
+export interface StatesGeometry extends Feature<LineString | MultiLineString | Point> {
+  geometry: LineString | MultiLineString | Point;
+  Id?: number;
+  properties: StateGeometryProperties;
 }
 
 export interface MapTheme {
@@ -164,6 +218,17 @@ export interface MapTheme {
   oceanColor: string;
   strokeWidth: number;
   strokeColor: string;
+  stateBorderColor: string;
   clickableFill: string;
   nonClickableFill: string;
+}
+
+export interface FuturePriceData {
+  entryCount: number;
+  priceData: {
+    [key: string]: number;
+  };
+  currency: string;
+  source: string;
+  zoneKey: ZoneKey;
 }

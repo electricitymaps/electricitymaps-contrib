@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Optional
+from zoneinfo import ZoneInfo
 
 import arrow
 import requests
@@ -35,10 +35,10 @@ def calculate_average_timestamp(timestamps):
 
 def fetch_production(
     zone_key: str = "IN-PB",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError(
@@ -75,8 +75,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "IN-PB",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known consumption (in MW) of a given zone."""
@@ -93,7 +93,7 @@ def fetch_consumption(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": arrow.now("Asia/Kolkata").datetime,
+        "datetime": datetime.now(tz=ZoneInfo("Asia/Kolkata")),
         "consumption": consumption,
         "source": "punjasldc.org",
     }

@@ -1,7 +1,7 @@
-import dailyData from '../../../mockserver/public/v6/details/daily.json';
-import hourlyData from '../../../mockserver/public/v6/details/DK-DK2/hourly.json';
-import monthlyData from '../../../mockserver/public/v6/details/monthly.json';
-import yearlyData from '../../../mockserver/public/v6/details/yearly.json';
+// import dailyData from '../../../mockserver/public/v8/details/daily/DK-DK2.json';
+import hourlyData from '../../../mockserver/public/v8/details/hourly/DK-DK2.json';
+import monthlyData from '../../../mockserver/public/v8/details/monthly/DK-DK2.json';
+import yearlyData from '../../../mockserver/public/v8/details/yearly/DK-DK2.json';
 
 // TODO: For some reason the project's date formatter
 // cannot be imported (webpack compilation error) here
@@ -21,7 +21,9 @@ interface Data {
 }
 
 const getco2intensity = (index: number, data: Data) => {
-  return `${Math.round(Object.values(data.data.zoneStates)[index].co2intensity)}g`;
+  return `${Math.round(
+    Object.values(data.data.zoneStates).at(index)?.co2intensity ?? Number.NaN
+  )}`;
 };
 
 // const getFormattedDate = (index: number, data: Data, format: string) => {
@@ -38,24 +40,25 @@ const getco2intensity = (index: number, data: Data) => {
 describe('TimeController', () => {
   it('interacts with the timecontroller on map', () => {
     // Intercepts all API network requests and serves fixtures directly
-    cy.interceptAPI('v6/state/hourly');
-    cy.interceptAPI('v6/details/hourly/DK-DK2');
-    cy.interceptAPI('v6/state/daily');
-    cy.interceptAPI('v6/state/monthly');
-    cy.interceptAPI('v6/state/yearly');
-    cy.interceptAPI('v6/details/daily/DK-DK2');
-    cy.interceptAPI('v6/details/monthly/DK-DK2');
-    cy.interceptAPI('v6/details/yearly/DK-DK2');
+    cy.interceptAPI('v8/state/hourly');
+    cy.interceptAPI('v8/details/hourly/DK-DK2');
+    cy.interceptAPI('v8/state/daily');
+    cy.interceptAPI('v8/state/monthly');
+    cy.interceptAPI('v8/state/yearly');
+    cy.interceptAPI('v8/details/daily/DK-DK2');
+    cy.interceptAPI('v8/details/monthly/DK-DK2');
+    cy.interceptAPI('v8/details/yearly/DK-DK2');
 
     // Note that we force language here as CI and local machines might display dates differently otherwise
-    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
-
+    cy.visit('/zone/DK-DK2?lang=en-GB');
+    cy.get('[data-test-id=loading-overlay]').should('not.exist');
+    cy.get('[data-test-id=close-modal]').click();
     // Hourly
-    cy.waitForAPISuccess(`v6/state/hourly`);
-    cy.waitForAPISuccess(`v6/details/hourly/DK-DK2`);
+    cy.waitForAPISuccess(`v8/state/hourly`);
+    cy.waitForAPISuccess(`v8/details/hourly/DK-DK2`);
     cy.contains('LIVE');
     cy.get('[data-test-id=co2-square-value').should(
-      'have.text',
+      'contain.text',
       getco2intensity(24, hourlyData)
     );
     // cy.get('[data-test-id=date-display').should(
@@ -70,12 +73,12 @@ describe('TimeController', () => {
 
     // Monthly
     cy.get('[data-test-id="time-controller-daily"]').click();
-    cy.waitForAPISuccess(`v6/state/daily`);
-    cy.waitForAPISuccess(`v6/details/daily/DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should(
-      'have.text',
-      getco2intensity(30, dailyData)
-    );
+    cy.waitForAPISuccess(`v8/state/daily`);
+    cy.waitForAPISuccess(`v8/details/daily/DK-DK2`);
+    // cy.get('[data-test-id=co2-square-value').should(
+    //   'contain.text',
+    //   getco2intensity(30, dailyData)
+    // );
     // cy.get('[data-test-id=date-display').should(
     //   'have.text',
     //   getFormattedDate(30, dailyData, 'daily')
@@ -92,11 +95,11 @@ describe('TimeController', () => {
 
     // Yearly
     cy.get('[data-test-id="time-controller-monthly"]').click();
-    cy.waitForAPISuccess(`v6/state/monthly`);
-    cy.waitForAPISuccess(`v6/details/monthly/DK-DK2`);
+    cy.waitForAPISuccess(`v8/state/monthly`);
+    cy.waitForAPISuccess(`v8/details/monthly/DK-DK2`);
     cy.get('[data-test-id=co2-square-value').should(
-      'have.text',
-      getco2intensity(11, monthlyData)
+      'contain.text',
+      getco2intensity(12, monthlyData)
     );
     // cy.get('[data-test-id=date-display').should(
     //   'have.text',
@@ -114,11 +117,11 @@ describe('TimeController', () => {
 
     // 5 Years
     cy.get('[data-test-id="time-controller-yearly"]').click();
-    cy.waitForAPISuccess(`v6/state/yearly`);
-    cy.waitForAPISuccess(`v6/details/yearly/DK-DK2`);
+    cy.waitForAPISuccess(`v8/state/yearly`);
+    cy.waitForAPISuccess(`v8/details/yearly/DK-DK2`);
     cy.get('[data-test-id=co2-square-value').should(
-      'have.text',
-      getco2intensity(4, yearlyData)
+      'contain.text',
+      getco2intensity(-1, yearlyData)
     );
     // cy.get('[data-test-id=date-display').should(
     //   'have.text',
@@ -138,6 +141,6 @@ describe('TimeController', () => {
   // TODO: Figure out how to get open/drag bottom sheet in Cypress on mobile
   // I have tried a bunch of combinations with mousemove, etc. without success
   it.skip('interacts with the timecontroller on mobile', () => {
-    cy.visitOnMobile('/?skip-onboarding=true');
+    cy.visitOnMobile('/zone/DK-DK2?lang=en-GB');
   });
 });

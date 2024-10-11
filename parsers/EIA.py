@@ -8,18 +8,28 @@ and exposes them via a unified API.
 Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
+
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import arrow
 from dateutil import parser, tz
 from requests import Session
 
-from parsers.ENTSOE import merge_production_outputs
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.utils import get_token
-from parsers.lib.validation import validate
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
@@ -39,6 +49,8 @@ REVERSE_EXCHANGES = [
     "US-SW-PNM->US-SW-SRP",  # For some reason EBA.SRP-PNM.ID.H exists in EIA, but PNM-SRP does not. Probably because it is unidirectional
 ]
 
+# Those threshold correspond to the ranges where the negative values are most likely
+# self consumption and should be set to 0 for production that is being injected into the grid.
 NEGATIVE_PRODUCTION_THRESHOLDS_TYPE = {
     "default": -10,
     "coal": -50,
@@ -83,7 +95,7 @@ REGIONS = {
     "US-FLA-GVL": "GVL",  # Gainesville Regional Utilities
     "US-FLA-HST": "HST",  # City Of Homestead
     "US-FLA-JEA": "JEA",  # Jea
-    #    "US-FLA-NSB": "NSB",  # Utilities Commission Of New Smyrna Beach, Decomissioned data is directly integrated in another balancing authority
+    "US-FLA-NSB": "NSB",  # Utilities Commission Of New Smyrna Beach, Decomissioned data is directly integrated in another balancing authority
     # Some solar plants within this zone are operated by Florida Power & Light, therefore on the map the zones got merged.
     "US-FLA-SEC": "SEC",  # Seminole Electric Cooperative
     "US-FLA-TAL": "TAL",  # City Of Tallahassee
@@ -116,7 +128,7 @@ REGIONS = {
     "US-NW-WAUW": "WAUW",  # Western Area Power Administration Ugp West
     "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc, integrated with US-NW-NWMT
     "US-NY-NYIS": "NYIS",  # New York Independent System Operator
-    # "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative, decomissioned merged with US-SE-SOCO
+    "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative, decomissioned merged with US-SE-SOCO
     # Though it is unclear which BA took over AEC.
     "US-SE-SEPA": "SEPA",  # Southeastern Power Administration
     "US-SE-SOCO": "SOCO",  # Southern Company Services, Inc. - Trans
@@ -124,7 +136,7 @@ REGIONS = {
     "US-SW-DEAA": "DEAA",  # Arlington Valley, LLC, integrated with US-SW-SRP
     "US-SW-EPE": "EPE",  # El Paso Electric Company
     "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc, integrated with US-SW-WALC
-    #   "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
+    "US-SW-GRMA": "GRMA",  # Gila River Power, Llc Decommissioned,
     #  The only gas power plant is owned by US-SW-SRP but there's a PPA with US-SW-AZPS, so it was merged with
     # US-SW-AZPS https://www.power-technology.com/marketdata/gila-river-power-station-us/
     "US-SW-HGMA": "HGMA",  # New Harquahala Generating Company, Llc - Hgba, integrated with US-SW-SRP
@@ -211,7 +223,7 @@ EXCHANGES = {
     "US-FLA-FPC->US-FLA-SEC": "&facets[fromba][]=FPC&facets[toba][]=SEC",
     "US-FLA-FPC->US-SE-SOCO": "&facets[fromba][]=FPC&facets[toba][]=SOCO",
     "US-FLA-FPC->US-FLA-TEC": "&facets[fromba][]=FPC&facets[toba][]=TEC",
-    #    "US-FLA-FPC->US-FLA-NSB": "&facets[fromba][]=FPC&facets[toba][]=NSB", decomissioned NSB zone
+    "US-FLA-FPC->US-FLA-NSB": "&facets[fromba][]=FPC&facets[toba][]=NSB",  # decomissioned NSB zone, merged with FPL, exchange transfered
     "US-FLA-FPL->US-FLA-HST": "&facets[fromba][]=FPL&facets[toba][]=HST",
     "US-FLA-FPL->US-FLA-GVL": "&facets[fromba][]=FPL&facets[toba][]=GVL",
     "US-FLA-FPL->US-FLA-JEA": "&facets[fromba][]=FPL&facets[toba][]=JEA",
@@ -233,7 +245,7 @@ EXCHANGES = {
     # "US-MIDW-GLHB->US-TEN-TVA": "&facets[fromba][]=EEI&facets[toba][]=TVA", US-MIDW-GLHB decommissioned no more powerplant
     "US-MIDW-LGEE->US-MIDW-MISO": "&facets[fromba][]=LGEE&facets[toba][]=MISO",
     "US-MIDW-LGEE->US-TEN-TVA": "&facets[fromba][]=LGEE&facets[toba][]=TVA",
-    "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC",
+    "US-MIDW-MISO->US-SE-AEC": "&facets[fromba][]=MISO&facets[toba][]=AEC",  # US-SE-AEC decommissioned, merged with US-SE-SOCO, exchange transfered
     "US-MIDW-MISO->US-SE-SOCO": "&facets[fromba][]=MISO&facets[toba][]=SOCO",
     "US-MIDW-MISO->US-TEN-TVA": "&facets[fromba][]=MISO&facets[toba][]=TVA",
     "US-NE-ISNE->US-NY-NYIS": "&facets[fromba][]=ISNE&facets[toba][]=NYIS",
@@ -284,7 +296,7 @@ EXCHANGES = {
     # "US-SE-AEC->US-SE-SOCO": "&facets[fromba][]=AEC&facets[toba][]=SOCO", Decommisioned BA
     "US-SE-SEPA->US-SE-SOCO": "&facets[fromba][]=SEPA&facets[toba][]=SOCO",
     "US-SE-SOCO->US-TEN-TVA": "&facets[fromba][]=SOCO&facets[toba][]=TVA",
-    #    "US-SW-AZPS->US-SW-GRMA": "&facets[fromba][]=AZPS&facets[toba][]=GRMA", Decommissioned
+    # "US-SW-AZPS->US-SW-GRMA": "&facets[fromba][]=AZPS&facets[toba][]=GRMA", , directly integrated in US-SW-AZPS
     "US-SW-AZPS->US-SW-PNM": "&facets[fromba][]=AZPS&facets[toba][]=PNM",
     "US-SW-AZPS->US-SW-SRP": "&facets[fromba][]=AZPS&facets[toba][]=SRP",
     "US-SW-AZPS->US-SW-TEPC": "&facets[fromba][]=AZPS&facets[toba][]=TEPC",
@@ -307,6 +319,7 @@ EXCHANGES = {
 SC_VIRGIL_OWNERSHIP = 0.3333333
 
 PRODUCTION_ZONES_TRANSFERS = {
+    # key receives production from the dict of keys
     "US-SW-SRP": {"all": {"US-SW-DEAA": 1.0, "US-SW-HGMA": 1.0}},
     "US-NW-NWMT": {"all": {"US-NW-GWA": 1.0, "US-NW-WWA": 1.0}},
     "US-SW-WALC": {"all": {"US-SW-GRIF": 1.0}},
@@ -315,6 +328,15 @@ PRODUCTION_ZONES_TRANSFERS = {
         "wind": {"US-NW-AVRN": 1.0},
     },
     "US-CAR-SC": {"nuclear": {"US-CAR-SCEG": SC_VIRGIL_OWNERSHIP}},
+    "US-SE-SOCO": {"all": {"US-SE-AEC": 1.0}},
+    "US-FLA-FPL": {"all": {"US-FLA-NSB": 1.0}},
+    "US-SW-AZPS": {"gas": {"US-SW-GRMA": 1.0}},
+}
+
+EXCHANGE_TRANSFERS = {
+    # key receives the exchange from the set of keys
+    "US-FLA-FPC->US-FLA-FPL": {"US-FLA-FPC->US-FLA-NSB"},
+    "US-MIDW-MISO->US-SE-SOCO": {"US-MIDW-MISO->US-SE-AEC"},
 }
 
 TYPES = {
@@ -349,12 +371,27 @@ PRODUCTION_MIX = (
 )
 EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourly"
 
+FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
+    "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
+    "US-NW-PGE": [
+        "biomass",
+        "geothermal",
+        "oil",
+        "solar",
+    ],  # Solar is not reported by PGE.
+    "US-NW-PACE": ["biomass", "geothermal", "oil"],
+    "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
+    "US-TEN-TVA": ["biomass", "geothermal", "oil"],
+    "US-SE-SOCO": ["biomass", "geothermal", "oil"],
+    "US-FLA-FPL": ["biomass", "geothermal", "oil"],
+}
+
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     return _fetch(
@@ -368,11 +405,12 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
-    zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
+) -> list[dict[str, Any]]:
+    consumption_list = TotalConsumptionList(logger)
     consumption = _fetch(
         zone_key,
         CONSUMPTION.format(REGIONS[zone_key]),
@@ -381,38 +419,79 @@ def fetch_consumption(
         logger=logger,
     )
     for point in consumption:
-        point["consumption"] = point.pop("value")
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=point["datetime"],
+            consumption=point["value"],
+            source="eia.gov",
+        )
 
-    return consumption
+    return consumption_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
-    zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    return _fetch(
+    consumptions = TotalConsumptionList(logger)
+    consumption_forecasts = _fetch(
         zone_key,
         CONSUMPTION_FORECAST.format(REGIONS[zone_key]),
         session=session,
         target_datetime=target_datetime,
         logger=logger,
     )
+    for forecast in consumption_forecasts:
+        consumptions.append(
+            zoneKey=zone_key,
+            datetime=forecast["datetime"],
+            consumption=forecast["value"],
+            source="eia.gov",
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumptions.to_list()
+
+
+def create_production_storage(
+    fuel_type: str, production_point: dict[str, float], negative_threshold: float
+) -> tuple[ProductionMix | None, StorageMix | None]:
+    """Create a production mix or a storage mix from a production point
+    handling the special cases of hydro storage and self consumption"""
+    production_value = production_point["value"]
+    production_mix = ProductionMix()
+    storage_mix = StorageMix()
+    if production_value < 0 and fuel_type == "hydro":
+        # Negative hydro is reported by some BAs, according to the EIA those are pumped storage.
+        # https://www.eia.gov/electricity/gridmonitor/about
+        storage_mix.add_value("hydro", abs(production_value))
+        return None, storage_mix
+    # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
+    # Lower values are set to None as they are most likely outliers.
+    production_mix.add_value(
+        fuel_type, production_value, production_value > negative_threshold
+    )
+    return production_mix, None
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production_mix(
-    zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    mixes = []
-    for type, code in TYPES.items():
+    all_production_breakdowns: list[ProductionBreakdownList] = []
+    # TODO: We could be smarter in the future and only fetch the expected production types.
+    for production_mode, code in TYPES.items():
+        negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
+            production_mode, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
+        )
+        production_breakdown = ProductionBreakdownList(logger)
         url_prefix = PRODUCTION_MIX.format(REGIONS[zone_key], code)
-        mix = _fetch(
+        production_values = _fetch(
             zone_key,
             url_prefix,
             session=session,
@@ -423,7 +502,11 @@ def fetch_production_mix(
         # As null values can cause problems in the estimation models if there's
         # only null values.
         # Integrate with data quality layer later.
-        mix = [datapoint for datapoint in mix if datapoint["value"] is not None]
+        production_values = [
+            datapoint
+            for datapoint in production_values
+            if datapoint["value"] is not None
+        ]
 
         # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
@@ -433,20 +516,32 @@ def fetch_production_mix(
         # This split can be found in the eGRID data,
         # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
 
-        if zone_key == "US-CAR-SCEG" and type == "nuclear":
-            for point in mix:
+        if zone_key == "US-CAR-SCEG" and production_mode == "nuclear":
+            for point in production_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
-
+        for point in production_values:
+            production_mix, storage_mix = create_production_storage(
+                production_mode, point, negative_threshold
+            )
+            production_breakdown.append(
+                zoneKey=zone_key,
+                datetime=point["datetime"],
+                production=production_mix,
+                storage=storage_mix,
+                source="eia.gov",
+            )
+        all_production_breakdowns.append(production_breakdown)
         # Integrate the supplier zones in the zones they supply
 
         supplying_zones = PRODUCTION_ZONES_TRANSFERS.get(zone_key, {})
         zones_to_integrate = {
             **supplying_zones.get("all", {}),
-            **supplying_zones.get(type, {}),
+            **supplying_zones.get(production_mode, {}),
         }
         for zone, percentage in zones_to_integrate.items():
             url_prefix = PRODUCTION_MIX.format(REGIONS[zone], code)
-            additional_mix = _fetch(
+            additional_breakdown = ProductionBreakdownList(logger)
+            additional_production = _fetch(
                 zone,
                 url_prefix,
                 session=session,
@@ -457,79 +552,68 @@ def fetch_production_mix(
             # As null values can cause problems in the estimation models if there's
             # only null values.
             # Integrate with data quality layer later.
-            additional_mix = [
+            additional_production = [
                 datapoint
-                for datapoint in additional_mix
+                for datapoint in additional_production
                 if datapoint["value"] is not None
             ]
-            for point in additional_mix:
+            for point in additional_production:
                 point.update({"value": point["value"] * percentage})
-            mix = _merge_production_mix([mix, additional_mix])
-        if not mix:
-            continue
-
-        for point in mix:
-            negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
-                type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
-            )
-
-            if (
-                type != "hydro"
-                and point["value"]
-                and 0 > point["value"] >= negative_threshold
-            ):
-                point["value"] = 0
-
-            if type == "hydro" and point["value"] and point["value"] < 0:
-                point.update(
-                    {
-                        "production": {},  # required by merge_production_outputs()
-                        "storage": {type: point.pop("value")},
-                    }
+                production_mix, storage_mix = create_production_storage(
+                    production_mode, point, negative_threshold
                 )
-            else:
-                point.update(
-                    {
-                        "production": {type: point.pop("value")},
-                        "storage": {},  # required by merge_production_outputs()
-                    }
+                additional_breakdown.append(
+                    zoneKey=zone_key,
+                    datetime=point["datetime"],
+                    production=production_mix,
+                    storage=storage_mix,
+                    source="eia.gov",
                 )
+            all_production_breakdowns.append(additional_breakdown)
 
-            # replace small negative values (>-5) with 0s This is necessary for solar
-            point = validate(point, logger=logger, remove_negative=True)
-        mixes.append(mix)
+    all_production_breakdowns = list(
+        filter(lambda x: len(x.events) > 0, all_production_breakdowns)
+    )
 
-    if not mixes:
+    if len(all_production_breakdowns) == 0:
         logger.warning(f"No production mix data found for {zone_key}")
-        return []
-
+        return ProductionBreakdownList(logger).to_list()
     # Some of the returned mixes could be for older timeframes.
     # Fx the latest oil data could be 6 months old.
     # In this case we want to discard the old data as we won't be able to merge it
-    timeframes = [sorted(map(lambda x: x["datetime"], mix)) for mix in mixes]
+    timeframes = [
+        sorted(x.datetime for x in breakdowns.events)
+        for breakdowns in all_production_breakdowns
+        if len(breakdowns.events) > 0
+    ]
     latest_timeframe = max(timeframes, key=lambda x: x[-1])
 
-    correct_mixes = []
-    for mix in mixes:
+    for production_list in all_production_breakdowns:
         correct_mix = []
-        for production_in_mix in mix:
-            if production_in_mix["datetime"] in latest_timeframe:
-                correct_mix.append(production_in_mix)
-        if len(correct_mix) > 0:
-            correct_mixes.append(correct_mix)
-
-    return merge_production_outputs(correct_mixes, zone_key, merge_source="eia.gov")
+        for production_mix in production_list.events:
+            if production_mix.datetime in latest_timeframe:
+                correct_mix.append(production_mix)
+        production_list.events = correct_mix
+    events = ProductionBreakdownList.merge_production_breakdowns(
+        all_production_breakdowns, logger
+    )
+    if zone_key in FILTER_INCOMPLETE_DATA_BYPASSED_MODES:
+        events = ProductionBreakdownList.filter_expected_modes(
+            events, by_passed_modes=FILTER_INCOMPLETE_DATA_BYPASSED_MODES[zone_key]
+        )
+    return events.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
+) -> list[dict[str, Any]]:
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
+    exchange_list = ExchangeList(logger)
     exchange = _fetch(
         sortedcodes,
         url_prefix=EXCHANGE.format(EXCHANGES[sortedcodes]),
@@ -538,42 +622,72 @@ def fetch_exchange(
         logger=logger,
     )
     for point in exchange:
-        point.update(
-            {
-                "sortedZoneKeys": point.pop("zoneKey"),
-                "netFlow": point.pop("value"),
-            }
+        exchange_list.append(
+            zoneKey=ZoneKey(point["zoneKey"]),
+            datetime=point["datetime"],
+            netFlow=-point["value"]
+            if sortedcodes in REVERSE_EXCHANGES
+            else point["value"],
+            source="eia.gov",
         )
-        if sortedcodes in REVERSE_EXCHANGES:
-            point["netFlow"] = -point["netFlow"]
 
-    return exchange
+    # Integrate remapped exchanges
+    remapped_exchanges = EXCHANGE_TRANSFERS.get(sortedcodes, {})
+    remapped_exchange_list = ExchangeList(logger)
+    for remapped_exchange in remapped_exchanges:
+        exchange = _fetch(
+            remapped_exchange,
+            url_prefix=EXCHANGE.format(EXCHANGES[remapped_exchange]),
+            session=session,
+            target_datetime=target_datetime,
+            logger=logger,
+        )
+        for point in exchange:
+            remapped_exchange_list.append(
+                zoneKey=ZoneKey(sortedcodes),
+                datetime=point["datetime"],
+                netFlow=-point["value"]
+                if remapped_exchange in REVERSE_EXCHANGES
+                else point["value"],
+                source="eia.gov",
+            )
+
+    exchange_list = ExchangeList.merge_exchanges(
+        [exchange_list, remapped_exchange_list], logger
+    )
+
+    return exchange_list.to_list()
 
 
 def _fetch(
     zone_key: str,
     url_prefix: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     # get EIA API key
     API_KEY = get_token("EIA_KEY")
 
+    start, end = None, None
     if target_datetime:
         try:
             target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError:
+        except arrow.parser.ParserError as e:
             raise ValueError(
                 f"target_datetime must be a valid datetime - received {target_datetime}"
-            )
+            ) from e
         utc = tz.gettz("UTC")
-        eia_ts_format = "%Y-%m-%dT%H"
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
-        url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
     else:
-        url = f"{url_prefix}&api_key={API_KEY}&sort[0][column]=period&sort[0][direction]=desc&length=24"
+        end = datetime.now(tz=tz.gettz("UTC")).replace(
+            minute=0, second=0, microsecond=0
+        ) + timedelta(hours=1)
+        start = end - timedelta(hours=72)
+
+    eia_ts_format = "%Y-%m-%dT%H"
+    url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
 
     s = session or Session()
     req = s.get(url)
@@ -586,30 +700,11 @@ def _fetch(
             "datetime": _get_utc_datetime_from_datapoint(
                 parser.parse(datapoint["period"])
             ),
-            "value": datapoint["value"],
+            "value": float(datapoint["value"]) if datapoint["value"] else None,
             "source": "eia.gov",
         }
         for datapoint in raw_data["response"]["data"]
     ]
-
-
-def _index_by_timestamp(datapoints: List[dict]) -> Dict[str, dict]:
-    indexed_data = {}
-    for datapoint in datapoints:
-        indexed_data[datapoint["datetime"]] = datapoint
-    return indexed_data
-
-
-def _merge_production_mix(mixes: List[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
-    merged_data = {}
-    for mix in mixes:
-        indexed_mix = _index_by_timestamp(mix)
-        for timestamp, mix_value in indexed_mix.items():
-            if not timestamp in merged_data.keys():
-                merged_data[timestamp] = mix_value
-            else:
-                merged_data[timestamp]["value"] += mix_value["value"]
-    return list(merged_data.values())
 
 
 def _conform_timestamp_convention(dt: datetime):

@@ -1,16 +1,18 @@
 import { ScaleLinear } from 'd3-scale';
+import { Maybe } from 'types';
+
 import { LABEL_MAX_WIDTH, RECT_OPACITY, ROW_HEIGHT } from '../constants';
 
 type Props = {
   className: string;
   fill: string;
-  range: [number, number];
+  range: Maybe<number>[];
   scale: ScaleLinear<number, number, never>;
 };
 
 export default function HorizontalBar({ className, fill, range, scale }: Props) {
   // Don't render if the range is not valid
-  if (!Array.isArray(range) || !Number.isFinite(range[0]) || !Number.isFinite(range[1])) {
+  if (!Array.isArray(range) || range[0] == null || range[1] == null) {
     return null;
   }
 
@@ -31,6 +33,7 @@ export default function HorizontalBar({ className, fill, range, scale }: Props) 
       opacity={RECT_OPACITY}
       shapeRendering="crispEdges"
       x={LABEL_MAX_WIDTH + scale(x1)}
+      y={1}
       width={width}
     />
   );

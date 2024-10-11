@@ -1,11 +1,19 @@
-import Badge from 'components/Badge';
 import { CountryFlag } from 'components/Flag';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
-import { HiArrowLeft } from 'react-icons/hi2';
+import { useFeatureFlag } from 'features/feature-flags/api';
+import { mapMovingAtom } from 'features/map/mapAtoms';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { useSetAtom } from 'jotai';
+import { ArrowLeft, Info } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { getCountryName, getZoneName, useTranslation } from 'translation/translation';
+import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
+import { ZoneKey } from 'types';
+import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
+
+import { ShareButton } from './ShareButton';
 import { getDisclaimer } from './util';
 
 interface ZoneHeaderTitleProps {
@@ -14,71 +22,73 @@ interface ZoneHeaderTitleProps {
   isAggregated?: boolean;
 }
 
-export default function ZoneHeaderTitle({
-  zoneId,
-  isAggregated,
-  isEstimated,
-}: ZoneHeaderTitleProps) {
-  const { __ } = useTranslation();
-  const title = getZoneName(zoneId);
-  const isSubZone = zoneId.includes('-');
+const MAX_TITLE_LENGTH = 25;
+
+function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
+  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
+  return url;
+}
+
+export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
+  const zoneName = getZoneName(zoneId);
+  const zoneNameFull = getFullZoneName(zoneId);
+  const showTooltip = zoneName !== zoneNameFull || zoneName.length >= MAX_TITLE_LENGTH;
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
+  const showCountryPill =
+    zoneId.includes('-') && !zoneName.toLowerCase().includes(countryName.toLowerCase());
+  const setIsMapMoving = useSetAtom(mapMovingAtom);
+  const canonicalUrl = useGetCanonicalUrl();
+  const isShareButtonEnabled = useFeatureFlag('share-button');
+
+  const onNavigateBack = () => setIsMapMoving(false);
+  const shareUrl = getCurrentUrl({ zoneId });
+
   return (
-    <div className="flex w-full grow flex-row pl-2">
+    <div className="flex w-full items-center pl-2 pr-3 pt-2">
+      <Helmet prioritizeSeoTags>
+        <title>{zoneName + metaTitleSuffix}</title>
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
       <Link
-        className="text-3xl self-center py-4 pr-4"
+        className="self-center py-4 pr-4 text-xl"
         to={returnToMapLink}
         data-test-id="left-panel-back-button"
+        onClick={onNavigateBack}
       >
-        <HiArrowLeft />
+        <ArrowLeft />
       </Link>
 
-      <div className="w-full">
-        <div className="flex  flex-row justify-between">
-          <div className="mb-0.5 flex  w-full  justify-between">
-            <div className="flex  flex-row items-center ">
-              <CountryFlag
-                zoneId={zoneId}
-                size={18}
-                className="mr-2 shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
-              />
-              <div className="flex flex-row">
-                <h2
-                  className="max-w-[300px] overflow-hidden truncate text-lg font-medium sm:max-w-[230px] md:max-w-[270px]"
-                  data-test-id="zone-name"
-                >
-                  {title}
-                </h2>
-                {isSubZone && (
-                  <p className="ml-2 flex w-auto items-center whitespace-nowrap rounded-full bg-gray-200 py-0.5 px-2  text-sm dark:bg-gray-900">
-                    {countryName || zoneId}
-                  </p>
-                )}
-              </div>
+      <div className="w-full overflow-hidden">
+        <div className="flex w-full items-center gap-2 pr-2 md:pr-4">
+          <CountryFlag
+            zoneId={zoneId}
+            size={18}
+            className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+          />
+          <TooltipWrapper
+            tooltipContent={showTooltip ? zoneNameFull : undefined}
+            side="bottom"
+          >
+            <h1 className="truncate" data-test-id="zone-name">
+              {zoneName}
+            </h1>
+          </TooltipWrapper>
+          {showCountryPill && (
+            <div className="flex w-auto items-center rounded-full bg-gray-200 px-2 py-0.5 text-sm dark:bg-gray-800/80">
+              <p className="w-full truncate">{countryName ?? zoneId}</p>
             </div>
-            {disclaimer && (
-              <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
-                <div className="mr-1 h-6 w-6 select-none rounded-full bg-white text-center drop-shadow dark:border dark:border-gray-500 dark:bg-gray-900 sm:mr-0">
-                  <p>i</p>
-                </div>
-              </TooltipWrapper>
-            )}
-          </div>
-        </div>
-        <div className="flex h-3 flex-wrap items-center gap-1 text-center">
-          {isEstimated && (
-            <Badge type="warning" key={'badge-est'}>
-              {__('country-panel.estimated')}
-            </Badge>
           )}
-          {isAggregated && (
-            <Badge key={'badge-agg'}>{__('country-panel.aggregated')}</Badge>
+          {disclaimer && (
+            <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
+              <Info className="text-gray-500" />
+            </TooltipWrapper>
           )}
-          <TimeDisplay className="whitespace-nowrap text-sm" />
         </div>
+        <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
+      {isShareButtonEnabled && <ShareButton shareUrl={shareUrl} />}
     </div>
   );
 }

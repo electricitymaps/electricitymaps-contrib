@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2023-07-02T15:31:00+00:00",
+    "total": 240.489,
+    "moteur_diesel": 110.23200000000001,
+    "tac": 0.0,
+    "hydraulique": 1.68,
+    "micro_hydro": 3.7460000000000004,
+    "photovoltaique0": 74.562,
+    "eolien": 2.3480000000000003,
+    "bioenergies": 0.38,
+    "liaisons": 47.542,
+    "solde_stockage": 0.0,
+    "statut": "Estim\u00e9"
+  },
+  {
+    "date": "2023-07-02T15:26:00+00:00",
+    "total": 235.736,
+    "moteur_diesel": 108.956,
+    "tac": 0.0,
+    "hydraulique": 1.74,
+    "micro_hydro": 3.732,
+    "photovoltaique0": 73.23,
+    "eolien": 2.386,
+    "bioenergies": 0.38,
+    "liaisons": 45.632,
+    "solde_stockage": -0.32,
+    "statut": "Estim\u00e9"
+  }
+]

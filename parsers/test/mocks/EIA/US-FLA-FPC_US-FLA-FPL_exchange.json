@@ -1,0 +1,247 @@
+{
+  "response": {
+    "total": 25,
+    "dateFormat": "YYYY-MM-DD\"T\"HH24",
+    "frequency": "hourly",
+    "data": [
+      {
+        "period": "2020-01-06T06",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -329,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T07",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -323,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T08",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -375,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T09",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -372,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T10",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -394,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T11",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -349,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T12",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -451,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T13",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -679,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T14",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -620,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T15",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -540,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T16",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -489,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T17",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -478,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T18",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -501,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T19",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -492,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T20",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -460,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T21",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -418,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T22",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -314,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-06T23",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -360,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-07T00",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -351,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-07T01",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -300,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-07T02",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -281,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-07T03",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -320,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-07T04",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -342,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-07T05",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -341,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2020-01-07T06",
+        "fromba": "FPC",
+        "fromba-name": "Duke Energy Florida, Inc.",
+        "toba": "FPL",
+        "toba-name": "Florida Power & Light Co.",
+        "value": -368,
+        "value-units": "megawatthours"
+      }
+    ],
+    "description": "Daily interchange between neighboring balancing authorities.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+  },
+  "request": {
+    "command": "/v2/electricity/rto/interchange-data/data/",
+    "params": {
+      "data": ["value"],
+      "facets": { "fromba": ["FPC"], "toba": ["FPL"] },
+      "frequency": "hourly",
+      "api_key": "e36b66258fd3e86e1be559504a49b3cf",
+      "start": "2020-01-06T06",
+      "end": "2020-01-07T06"
+    }
+  },
+  "apiVersion": "2.1.4"
+}

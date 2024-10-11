@@ -1,7 +1,12 @@
 import {
+  convertPrice,
+  ExchangeDataType,
   getDataBlockPositions,
-  getProductionData,
   getElectricityProductionValue,
+  getExchangeCo2Intensity,
+  getExchangeData,
+  getExchangesToDisplay,
+  getProductionData,
 } from './utils';
 
 const zoneDetailsData = {
@@ -36,7 +41,7 @@ const zoneDetailsData = {
     battery: 'electricityMap, 2021 average',
     hydro: 'electricityMap, 2021 average',
   },
-  estimationMethod: 'MEASURED',
+  estimationMethod: undefined,
   exchange: { ES: -934 },
   exchangeCapacities: {},
   exchangeCo2Intensities: { ES: 187.32 },
@@ -87,13 +92,14 @@ const zoneDetailsData = {
     unknown: 'assumes thermal (coal, gas, oil or biomass)',
     wind: 'UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)',
   },
-  source: 'entsoe.eu',
+  source: ['entsoe.eu'],
   storage: { battery: null, hydro: -395 },
   totalCo2Discharge: 53_894_853.608_163_215,
   totalCo2Export: 174_956_880,
   totalCo2Import: 0,
   totalCo2NetExchange: -174_956_880,
   totalCo2Production: 1_169_515_098.83,
+  totalCo2Consumption: 1_232_232_232,
   totalCo2Storage: 0,
   totalConsumption: 5597,
   totalDischarge: 395,
@@ -106,11 +112,11 @@ const zoneDetailsData = {
 const productionData = [
   {
     isStorage: false,
-    production: null,
+    production: 350,
     storage: undefined,
-    capacity: 0,
-    mode: 'nuclear',
-    tCo2eqPerMin: 0,
+    capacity: 700,
+    mode: 'biomass',
+    gCo2eq: 153_701_032.1,
   },
   {
     isStorage: false,
@@ -118,39 +124,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'geothermal',
-    tCo2eqPerMin: 0,
-  },
-  {
-    isStorage: false,
-    production: 350,
-    storage: undefined,
-    capacity: 700,
-    mode: 'biomass',
-    tCo2eqPerMin: 2.561_683_868_333_333,
-  },
-  {
-    isStorage: false,
-    production: 0,
-    storage: undefined,
-    capacity: 0,
-    mode: 'coal',
-    tCo2eqPerMin: 0,
-  },
-  {
-    isStorage: false,
-    production: 2365,
-    storage: undefined,
-    capacity: 5389,
-    mode: 'wind',
-    tCo2eqPerMin: 0.497_438_333_333_333_3,
-  },
-  {
-    isStorage: false,
-    production: 17,
-    storage: undefined,
-    capacity: 1616,
-    mode: 'solar',
-    tCo2eqPerMin: 0.007_253_333_333_333_333,
+    gCo2eq: 0,
   },
   {
     isStorage: false,
@@ -158,15 +132,31 @@ const productionData = [
     production: 1445,
     capacity: 4578,
     mode: 'hydro',
-    tCo2eqPerMin: 0.257_691_666_666_666_65,
+    gCo2eq: 15_461_500,
   },
   {
-    isStorage: true,
-    storage: -395,
-    production: 1445,
-    capacity: 3585,
-    mode: 'hydro storage',
-    tCo2eqPerMin: -0.898_247_560_136_053_7,
+    isStorage: false,
+    production: 17,
+    storage: undefined,
+    capacity: 1616,
+    mode: 'solar',
+    gCo2eq: 435_200,
+  },
+  {
+    isStorage: false,
+    production: 2365,
+    storage: undefined,
+    capacity: 5389,
+    mode: 'wind',
+    gCo2eq: 29_846_300,
+  },
+  {
+    isStorage: false,
+    production: null,
+    storage: undefined,
+    capacity: 0,
+    mode: 'nuclear',
+    gCo2eq: 0,
   },
   {
     isStorage: true,
@@ -174,7 +164,23 @@ const productionData = [
     capacity: null,
     mode: 'battery storage',
     production: undefined,
-    tCo2eqPerMin: 0,
+    gCo2eq: 0,
+  },
+  {
+    isStorage: true,
+    storage: -395,
+    production: 1445,
+    capacity: 3585,
+    mode: 'hydro storage',
+    gCo2eq: -53_894_853.608_163_215,
+  },
+  {
+    isStorage: false,
+    production: 0,
+    storage: undefined,
+    capacity: 0,
+    mode: 'coal',
+    gCo2eq: 0,
   },
   {
     isStorage: false,
@@ -182,7 +188,7 @@ const productionData = [
     storage: undefined,
     capacity: 4520,
     mode: 'gas',
-    tCo2eqPerMin: 15.829_517_778_833_331,
+    gCo2eq: 949_771_066.729_999_9,
   },
   {
     isStorage: false,
@@ -190,7 +196,7 @@ const productionData = [
     storage: undefined,
     capacity: 0,
     mode: 'oil',
-    tCo2eqPerMin: 0,
+    gCo2eq: 0,
   },
   {
     isStorage: false,
@@ -198,20 +204,32 @@ const productionData = [
     storage: undefined,
     capacity: null,
     mode: 'unknown',
-    tCo2eqPerMin: 0.338_333_333_333_333_3,
+    gCo2eq: 20_300_000,
   },
 ];
 
-const exchangeData = [
-  { exchange: -934, mode: 'ES', gCo2eqPerkWh: 187.32, tCo2eqPerMin: -2.915_948 },
-  { exchange: 200, mode: 'FR', gCo2eqPerkWh: 999.32, tCo2eqPerMin: 45.915_948 },
+const exchangeData: ExchangeDataType[] = [
+  {
+    exchange: -934,
+    zoneKey: 'ES',
+    gCo2eqPerkWh: 187.32,
+    gCo2eq: -2.915_948,
+    exchangeCapacityRange: [-1000, 1000],
+  },
+  {
+    exchange: 200,
+    zoneKey: 'FR',
+    gCo2eqPerkWh: 999.32,
+    gCo2eq: 45.915_948,
+    exchangeCapacityRange: [0, 1000],
+  },
 ];
 
 describe('getProductionData', () => {
   it('returns correct data', () => {
     const result = getProductionData(zoneDetailsData);
     // TODO: Match snapshot
-    expect(result).toStrictEqual(productionData);
+    expect(result).to.deep.eq(productionData);
   });
 });
 
@@ -223,7 +241,7 @@ describe('getElectricityProductionValue', () => {
       production: 500,
       storage: 0,
     });
-    expect(result).toStrictEqual(500);
+    expect(result).to.eq(500);
   });
   it('handles missing production value with zero capacity', () => {
     const result = getElectricityProductionValue({
@@ -232,7 +250,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 0,
     });
-    expect(result).toStrictEqual(0);
+    expect(result).to.eq(0);
   });
 
   it('handles missing production value', () => {
@@ -243,7 +261,7 @@ describe('getElectricityProductionValue', () => {
       storage: 0,
     });
 
-    expect(result).toStrictEqual(null);
+    expect(result).to.eq(null);
   });
   it('handles storage', () => {
     const result = getElectricityProductionValue({
@@ -252,7 +270,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 300,
     });
-    expect(result).toStrictEqual(-300);
+    expect(result).to.eq(-300);
   });
   it('handles zero storage', () => {
     const result = getElectricityProductionValue({
@@ -261,7 +279,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 0,
     });
-    expect(result).toStrictEqual(0);
+    expect(result).to.eq(0);
   });
   it('handles missing storage', () => {
     const result = getElectricityProductionValue({
@@ -270,19 +288,186 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: null,
     });
-    expect(result).toStrictEqual(null);
+    expect(result).to.eq(null);
   });
 });
 
 describe('getDataBlockPositions', () => {
   it('returns correct data', () => {
     const result = getDataBlockPositions(productionData.length, exchangeData);
-    expect(result).toStrictEqual({
+    expect(result).to.deep.eq({
       exchangeFlagX: 50,
       exchangeHeight: 40,
-      exchangeY: 282,
+      exchangeY: 262,
       productionY: 22,
       productionHeight: 240,
     });
+  });
+});
+
+describe('getExchangesToDisplay', () => {
+  it('shows aggregated exchanges only when required', () => {
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: { AT: -934, BE: 934, NO: -934, 'NO-NO2': -500 },
+      },
+    };
+    const result = getExchangesToDisplay('DE', true, ZoneStates);
+    expect(result).to.deep.eq(['AT', 'BE', 'NO']);
+  });
+  it('shows non-aggregated exchanges only when required', () => {
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: { AT: -934, BE: 934, NO: -934, 'NO-NO2': -500 },
+      },
+    };
+    const result = getExchangesToDisplay('DE', false, ZoneStates);
+    expect(result).to.deep.eq(['AT', 'BE', 'NO-NO2']);
+  });
+  it('handles empty exchange', () => {
+    const ZoneStates = {
+      date1: {
+        ...zoneDetailsData,
+        exchange: {},
+      },
+    };
+    const result = getExchangesToDisplay('DE', false, ZoneStates);
+    expect(result).to.deep.eq([]);
+  });
+});
+
+describe('getExchangeData', () => {
+  it('returns array of exchange data', () => {
+    const exchangeCapacity: [number, number] = [-1000, 1000];
+    const exchangeCapacitiesZoneDetailsData = {
+      ...zoneDetailsData,
+      exchange: { AT: -934, ES: 934 },
+      exchangeCapacities: { ES: exchangeCapacity, AT: exchangeCapacity },
+    };
+    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES', 'AT'], true);
+
+    expect(result).to.deep.eq([
+      {
+        exchange: 934,
+        exchangeCapacityRange: [-1000, 1000],
+        zoneKey: 'ES',
+        gCo2eqPerkWh: 187.32,
+        gCo2eq: 174_956_880,
+      },
+      {
+        exchange: -934,
+        exchangeCapacityRange: [-1000, 1000],
+        zoneKey: 'AT',
+        gCo2eqPerkWh: 187.32,
+        gCo2eq: -174_956_880,
+      },
+    ]);
+  });
+  it('handles missing exchange capacity', () => {
+    const exchangeCapacitiesZoneDetailsData = {
+      ...zoneDetailsData,
+    };
+    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES'], true);
+
+    expect(result).to.deep.eq([
+      {
+        exchange: -934,
+        exchangeCapacityRange: [0, 0],
+        zoneKey: 'ES',
+        gCo2eqPerkWh: 187.32,
+        gCo2eq: -174_956_880,
+      },
+    ]);
+  });
+  it('handles missing exchange data', () => {
+    const exchangeCapacity: [number, number] = [-1000, 1000];
+    const exchangeCapacitiesZoneDetailsData = {
+      ...zoneDetailsData,
+      exchange: {},
+      exchangeCapacity: { ES: exchangeCapacity },
+    };
+    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES'], true);
+
+    expect(result).to.deep.equal([
+      {
+        exchange: undefined,
+        exchangeCapacityRange: [0, 0],
+        zoneKey: 'ES',
+        gCo2eqPerkWh: 187.32,
+        gCo2eq: Number.NaN,
+      },
+    ]);
+  });
+});
+
+describe('getExchangeCo2Intensity', () => {
+  it('returns exchange Co2 intensity if exhange value is greater than or equal to 0', () => {
+    const exchangeCapacitiesZoneDetailsData = {
+      ...zoneDetailsData,
+      exchange: { ES: 1000 },
+      exchangeCo2Intensities: { ES: 999 },
+    };
+
+    const result = getExchangeCo2Intensity('ES', exchangeCapacitiesZoneDetailsData, true);
+    expect(result).to.eq(999);
+  });
+  describe('when exchange value is less than 0', () => {
+    it('returns Co2 insensity when in Consumption mode', () => {
+      const exchangeCapacitiesZoneDetailsData = {
+        ...zoneDetailsData,
+        exchange: { ES: -1000 },
+        exchangeCo2Intensities: { ES: 999 },
+      };
+
+      const result = getExchangeCo2Intensity(
+        'ES',
+        exchangeCapacitiesZoneDetailsData,
+        true
+      );
+      expect(result).to.eq(187.32);
+    });
+    it('returns Co2 insensity production when in Production mode', () => {
+      const exchangeCapacitiesZoneDetailsData = {
+        ...zoneDetailsData,
+        exchange: { ES: -1000 },
+        exchangeCo2Intensities: { ES: 999 },
+      };
+
+      const result = getExchangeCo2Intensity(
+        'ES',
+        exchangeCapacitiesZoneDetailsData,
+        false
+      );
+      expect(result).to.eq(190.6);
+    });
+  });
+});
+
+describe('convertPrice', () => {
+  it('dont convert USD to price/KWh', () => {
+    const result = convertPrice(120, 'USD');
+    expect(result).to.deep.eq({ value: 120, currency: 'USD', unit: 'MWh' });
+  });
+
+  it('handles missing currency', () => {
+    const result = convertPrice(120, undefined);
+    expect(result).to.deep.eq({ value: 120, currency: undefined, unit: 'MWh' });
+  });
+
+  it('handles missing price with EUR', () => {
+    const result = convertPrice(undefined, 'EUR');
+    expect(result).to.deep.eq({ value: undefined, currency: 'EUR', unit: 'MWh' });
+  });
+
+  it('handles missing price without EUR', () => {
+    const result = convertPrice(undefined, 'USD');
+    expect(result).to.deep.eq({ value: undefined, currency: 'USD', unit: 'MWh' });
+  });
+
+  it('handles missing price and currency', () => {
+    const result = convertPrice(undefined, undefined);
+    expect(result).to.deep.eq({ value: undefined, currency: undefined, unit: 'MWh' });
   });
 });

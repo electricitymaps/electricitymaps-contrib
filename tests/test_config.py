@@ -1,136 +1,56 @@
-import json
+"""Tests for the configs provided by the electricitymap.contrib.config
+package.
+
+The values in these configs should be loaded from the config files in the
+config/ directory. The tests in this file ensure that the values are loaded.
+It doesn't check all or most values, but serves as a sanity check that the
+configs are loaded correctly.
+"""
+
 import unittest
 from pathlib import Path
 
-from deepdiff import DeepDiff
-
 from electricitymap.contrib import config
+from electricitymap.contrib.lib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.joinpath("config").resolve()
 
 
 class ConfigTestcase(unittest.TestCase):
-    def test_generate_zone_neighbours_two_countries(self):
-        exchanges = {
-            "DE->FR": {"parsers": {"exchange": "source"}},
-        }
-        zones = {
-            "DE": {},
-            "FR": {},
-        }
-        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
-        self.assertDictEqual(zone_neighbours, {"DE": ["FR"], "FR": ["DE"]})
+    def test_zones_config(self):
+        # ZONES_CONFIG is a dict mapping zones to their config,
+        # which includes lots of keys with information about the zone.
+        self.assertIn("DK-DK1", config.ZONES_CONFIG.keys())
+        self.assertIn("bounding_box", config.ZONES_CONFIG[ZoneKey("DK-DK1")].keys())
+        self.assertIn("capacity", config.ZONES_CONFIG[ZoneKey("DK-DK1")].keys())
 
-    def test_generate_zone_neighbours_one_country_one_subzone(self):
-        exchanges = {
-            "DE->SE-SE4": {"parsers": {"exchange": "source"}},
-        }
-        zones = {
-            "DE": {},
-            "SE": {
-                "subZoneNames": ["SE-SE4"],
-            },
-            "SE-SE4": {},
-        }
-        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
-        self.assertDictEqual(zone_neighbours, {"DE": ["SE-SE4"], "SE-SE4": ["DE"]})
+    def test_zone_parent(self):
+        # ZONE_PARENT is a dict mapping zones to their parent zones.
+        self.assertIn("DK-DK1", config.ZONE_PARENT.keys())
+        self.assertEqual(config.ZONE_PARENT[ZoneKey("DK-DK1")], "DK")
 
-    def test_generate_zone_neighbours_two_subzones(self):
-        exchanges = {
-            "NO-NO1->SE-SE3": {"parsers": {"exchange": "source"}},
-            "NO-NO3->SE-SE2": {"parsers": {"exchange": "source"}},
-            "NO-NO4->SE-SE1": {"parsers": {"exchange": "source"}},
-            "NO-NO4->SE-SE2": {"parsers": {"exchange": "source"}},
-        }
-        zones = {
-            "NO": {
-                "subZoneNames": ["NO-NO1", "NO-NO2", "NO-NO3", "NO-NO4", "NO-NO5"],
-            },
-            "NO-NO1": {},
-            "NO-NO2": {},
-            "NO-NO3": {},
-            "NO-NO4": {},
-            "NO-NO5": {},
-            "SE": {
-                "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
-            },
-            "SE-SE1": {},
-            "SE-SE2": {},
-            "SE-SE3": {},
-            "SE-SE4": {},
-        }
-        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
-        self.assertDictEqual(
-            zone_neighbours,
-            {
-                "NO-NO1": ["SE-SE3"],
-                "NO-NO3": ["SE-SE2"],
-                "NO-NO4": ["SE-SE1", "SE-SE2"],
-                "SE-SE1": ["NO-NO4"],
-                "SE-SE2": ["NO-NO3", "NO-NO4"],
-                "SE-SE3": ["NO-NO1"],
-            },
-        )
+    def test_zone_bounding_box(self):
+        # ZONE_BOUNDING_BOX is a dict mapping zones to their bounding box,
+        # which is a list like [[12.343, 1.343], [34.4333, 23.3434]].
+        self.assertIn("DK-DK1", config.ZONE_BOUNDING_BOXES.keys())
+        self.assertEqual(len(config.ZONE_BOUNDING_BOXES[ZoneKey("DK-DK1")]), 2)
 
-    def test_generate_zone_neighbours_two_subzones_from_same(self):
-        exchanges = {
-            "SE-SE1->SE-SE2": {"parsers": {"exchange": "source"}},
-        }
-        zones = {
-            "SE": {
-                "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
-            },
-            "SE-SE1": {},
-            "SE-SE2": {},
-            "SE-SE3": {},
-            "SE-SE4": {},
-        }
-        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
-        self.assertDictEqual(
-            zone_neighbours,
-            {"SE-SE1": ["SE-SE2"], "SE-SE2": ["SE-SE1"]},
-        )
-
-    def test_generate_zone_neighbours_GB(self):
-        # That's an interesting case as GB has islands, which are not subzones
-        # It means that GB->GB-NIR are valid exchanges and that
-        # GB and GB-NIR are neighbours
-        exchanges = {
-            "GB->GB-NIR": {"parsers": {"exchange": "source"}},
-            "GB->GB-ORK": {"parsers": {"exchange": "source"}},
-        }
-        zones = {
-            "GB": {},
-            "GB-NIR": {},
-            "GB-ORK": {},
-        }
-        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
-        self.assertDictEqual(
-            zone_neighbours,
-            {"GB": ["GB-NIR", "GB-ORK"], "GB-NIR": ["GB"], "GB-ORK": ["GB"]},
-        )
-
-    def test_generate_zone_neighbours_no_exchange_parser(self):
-        exchanges = {
-            "DE->FR": {"parsers": {}},
-        }
-        zones = {
-            "DE": {},
-            "FR": {},
-        }
-        zone_neighbours = config.generate_zone_neighbours(zones, exchanges)
-        self.assertDictEqual(zone_neighbours, {})
-
-    def test_ZONE_NEIGHBOURS(self):
-        zone_neighbours = config.generate_zone_neighbours(
-            config.ZONES_CONFIG, config.EXCHANGES_CONFIG
-        )
-        self.assertIn("DK-DK1", zone_neighbours.keys())
-        dk_neighbours = zone_neighbours["DK-DK1"]
-
+    def test_zone_neighbours(self):
+        # ZONE_NEIGHBOURS is a dict mapping zones to their neighbours.
+        self.assertIn("DK-DK1", config.ZONE_NEIGHBOURS.keys())
+        dk_neighbours = config.ZONE_NEIGHBOURS[ZoneKey("DK-DK1")]
         self.assertGreater(
             len(dk_neighbours), 1, "expected a few neighbours for DK-DK1"
         )
+
+    def test_emission_factors(self):
+        # The emission_factors returns a dict of emission factors for a zone.
+        # The keys are the fuel types and the values are the emission factors.
+        factors = config.emission_factors(ZoneKey("DK-DK1"))
+        self.assertIn("biomass", factors.keys())
+        self.assertIn("gas", factors.keys())
+        self.assertIn("wind", factors.keys())
+        self.assertGreater(factors["gas"], 0)
 
 
 if __name__ == "__main__":

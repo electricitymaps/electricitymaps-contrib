@@ -1,13 +1,14 @@
-import { ReactElement, useState } from 'react';
+import { Button } from 'components/Button';
+import { TFunction } from 'i18next';
+import { Check, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ReactElement, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { HiCheck, HiChevronLeft, HiChevronRight, HiXMark } from 'react-icons/hi2';
-import { useTranslation } from 'translation/translation';
-
-interface Page {
+export interface Page {
   headerImage: { pathname: string };
   isMainTitle?: boolean;
-  renderContent: (translator: any) => ReactElement;
-  title?: (translator: any) => ReactElement;
+  renderContent: (translator: TFunction) => ReactElement;
+  hasWebp?: boolean;
 }
 
 function Modal({
@@ -21,21 +22,25 @@ function Modal({
   visible: boolean;
   onDismiss: () => void;
 }) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
-  const isOnLastView = () => currentViewIndex === views.length - 1;
-  const isOnFirstView = () => currentViewIndex === 0;
+  const isOnLastView = useCallback(
+    () => currentViewIndex === views.length - 1,
+    [currentViewIndex, views.length]
+  );
+  const isOnFirstView = useCallback(() => currentViewIndex === 0, [currentViewIndex]);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     if (!isOnFirstView()) {
       setCurrentViewIndex(currentViewIndex - 1);
     }
-  };
-  const handleForward = () => {
+  }, [currentViewIndex, isOnFirstView]);
+
+  const handleForward = useCallback(() => {
     if (!isOnLastView()) {
       setCurrentViewIndex(currentViewIndex + 1);
     }
-  };
+  }, [currentViewIndex, isOnLastView]);
 
   if (!visible) {
     return null;
@@ -43,82 +48,87 @@ function Modal({
   const currentView = views[currentViewIndex];
 
   const RightButton = isOnLastView() ? (
-    <button
-      className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green shadow"
-      onClick={onDismiss}
-    >
-      <HiCheck size="24" color="white" />
-    </button>
+    <Button icon={<Check />} onClick={onDismiss} dataTestId="close-modal" />
   ) : (
-    <button
-      className="flex h-10 w-10 items-center justify-center rounded-full bg-white pl-1 shadow dark:bg-gray-900"
-      onClick={handleForward}
-    >
-      <HiChevronRight size="24" />
-    </button>
+    <Button icon={<ChevronRight />} onClick={handleForward} type="secondary" />
   );
 
   return (
     <>
       <div
-        className="absolute inset-0 z-40  bg-gray-800   bg-opacity-20"
+        className="absolute inset-0 z-50 bg-gray-800/20"
         onClick={onDismiss}
         onKeyDown={onDismiss}
         role="presentation"
       />
       <div
-        className="px-auto pointer-events-none  absolute top-auto z-50 mx-auto flex w-full items-center justify-center
+        className="px-auto absolute top-auto z-50 mx-auto flex w-full items-center justify-center
        self-center sm:top-20 sm:min-w-[500px]"
         data-test-id={modalName}
       >
-        <div className="pointer-events-auto z-10 flex w-full max-w-[35px] shrink flex-col justify-around px-2 sm:max-w-[60px]">
+        <div className="z-10 flex w-full max-w-[35px] shrink flex-col justify-around px-2 sm:max-w-[60px]">
           {!isOnFirstView() && (
-            <button
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white pr-1 shadow dark:bg-gray-900"
+            <Button
+              icon={<ChevronLeft />}
               onClick={handleBack}
-            >
-              <HiChevronLeft size="24" />
-            </button>
+              type="secondary"
+              dataTestId="back-button"
+            />
           )}
         </div>
-        <div className="color-white pointer-events-auto relative flex h-[450px] w-auto max-w-[500px] flex-col rounded-3xl bg-gray-50 shadow-lg dark:bg-gray-700  sm:h-[500px]">
-          <div className="absolute self-end p-4 align-baseline">
-            <button
-              className="p-auto pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white shadow dark:bg-gray-900"
-              onClick={onDismiss}
-            >
-              <HiXMark size="28" />
-            </button>
-          </div>
+        <div className="relative flex h-[450px] w-auto max-w-[500px] flex-col rounded-3xl bg-gray-50 shadow-lg dark:bg-gray-700 sm:h-[500px]">
+          <Button
+            icon={<X />}
+            backgroundClasses="absolute self-end m-4"
+            onClick={onDismiss}
+            type="secondary"
+            dataTestId="close-modal"
+          />
           <div
-            className={`flex h-1/2 max-h-[264px] w-full flex-grow
-              self-center rounded-t-xl bg-auto bg-center bg-no-repeat ${
-                isOnFirstView() ? 'max-w-[12rem] dark:invert' : ''
+            className={`flex h-1/2 max-h-[264px] w-full grow self-center
+              rounded-t-3xl bg-auto bg-center bg-no-repeat ${
+                isOnFirstView() ? 'max-w-[10rem] dark:invert' : ''
               }`}
             style={
-              currentView.headerImage && {
-                backgroundImage: `url("${currentView.headerImage.pathname}")`,
-                backgroundSize: `${currentView.isMainTitle ? 'contain' : 'cover'} `,
-              }
+              currentView.headerImage && !currentView.hasWebp
+                ? {
+                    backgroundImage: `url("${currentView.headerImage.pathname}")`,
+                    backgroundSize: `${currentView.isMainTitle ? 'contain' : 'cover'} `,
+                  }
+                : {}
             }
           >
-            <div>{currentView.title && <h1>{currentView.title(__)}</h1>}</div>
+            {currentView.headerImage && currentView.hasWebp && (
+              <picture className="overflow-hidden" style={{}}>
+                <source
+                  srcSet={`${currentView.headerImage.pathname}.webp`}
+                  type="image/webp"
+                />
+                <img
+                  src={`${currentView.headerImage.pathname}.png`}
+                  alt=""
+                  className="w-full rounded-t-3xl object-top"
+                  draggable={false}
+                />
+              </picture>
+            )}
           </div>
           <div className="flex w-auto flex-col justify-center px-4 pt-6 text-center dark:bg-gray-700">
-            {currentView.renderContent(__)}
+            {currentView.renderContent(t)}
           </div>
         </div>
-        <div className="absolute bottom-[-60px] left-auto h-[40px] self-center  ">
+        <div className="absolute bottom-[-60px] left-auto  h-[40px] self-center">
           {views.map((view: Page, index: number) => (
-            <div
+            <button
               key={`modal-step-item-${index}`}
-              className={`mx-2 inline-block h-[14px] w-[14px] rounded-xl bg-white ${
-                index === currentViewIndex ? 'bg-brand-green' : ''
+              className={` mx-2 inline-block h-[14px] w-[14px] rounded-xl ${
+                index === currentViewIndex ? 'bg-brand-green' : 'bg-white'
               }`}
+              onClick={() => setCurrentViewIndex(index)}
             />
           ))}
         </div>
-        <div className="pointer-events-auto z-10 flex w-full max-w-[35px] flex-col items-end px-2 sm:max-w-[60px]">
+        <div className="z-10 flex w-full max-w-[35px] flex-col items-end px-2 sm:max-w-[60px]">
           {RightButton}
         </div>
       </div>

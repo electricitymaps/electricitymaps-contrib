@@ -5,14 +5,27 @@ export default defineConfig({
   fixturesFolder: '../mockserver/public',
   projectId: '9z8tgk',
   video: false,
+  watchForFileChanges: true,
   e2e: {
-    baseUrl: 'http://localhost:5173/',
+    baseUrl: 'http://127.0.0.1:5173/',
     specPattern: 'cypress/e2e/**/*.ts',
   },
   component: {
     devServer: {
       framework: 'react',
       bundler: 'vite',
+    },
+    setupNodeEvents(on, _config) {
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (browser.family === 'chromium' && browser.name !== 'electron') {
+          launchOptions.preferences.default.intl = {
+            accept_languages: 'en-US,en',
+            selected_languages: 'en-US,en',
+          };
+
+          return launchOptions;
+        }
+      });
     },
   },
 });

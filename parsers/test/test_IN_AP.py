@@ -1,6 +1,6 @@
 import unittest
+from importlib import resources
 
-from pkg_resources import resource_string
 from requests import Session
 from requests_mock import ANY, Adapter
 
@@ -12,8 +12,13 @@ class Test_IN_AP(unittest.TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount("https://", self.adapter)
-        response_text = resource_string("parsers.test.mocks", "IN_AP.html")
-        self.adapter.register_uri(ANY, ANY, text=str(response_text))
+        self.adapter.register_uri(
+            ANY,
+            ANY,
+            text=resources.files("parsers.test.mocks")
+            .joinpath("IN_AP.html")
+            .read_text(),
+        )
 
     def test_fetch_production(self):
         try:
@@ -25,7 +30,7 @@ class Test_IN_AP(unittest.TestCase):
             self.assertIsNotNone(data["production"])
             self.assertIsNotNone(data["storage"])
         except Exception as ex:
-            self.fail("IN_AP.fetch_production() raised Exception: {0}".format(ex))
+            self.fail(f"IN_AP.fetch_production() raised Exception: {ex}")
 
     def test_fetch_consumption(self):
         try:
@@ -36,7 +41,7 @@ class Test_IN_AP(unittest.TestCase):
             self.assertIsNotNone(data["datetime"])
             self.assertIsNotNone(data["consumption"])
         except Exception as ex:
-            self.fail("IN_AP.fetch_consumption() raised Exception: {0}".format(ex))
+            self.fail(f"IN_AP.fetch_consumption() raised Exception: {ex}")
 
 
 if __name__ == "__main__":

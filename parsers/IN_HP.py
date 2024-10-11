@@ -5,9 +5,8 @@
 from datetime import datetime
 from enum import Enum
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
-import arrow
 from bs4 import BeautifulSoup
 from requests import Session
 
@@ -16,7 +15,7 @@ from requests import Session
 # page to load the data.
 DATA_URL = "https://hpsldc.com/wp-admin/admin-ajax.php"
 ZONE_KEY = "IN-HP"
-TZ = "Asia/Kolkata"
+TZ = ZoneInfo("Asia/Kolkata")
 
 
 class GenType(Enum):
@@ -74,8 +73,8 @@ PLANT_NAMES_TO_TYPES = {
 
 def fetch_production(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of Himachal Pradesh (India)"""
@@ -86,13 +85,13 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
     res = r.post(url, {"action": "intra_state_power_transaction"})
     assert res.status_code == 200, (
-        f"Exception when fetching production for "
+        "Exception when fetching production for "
         "{zone_key}: {res.status_code} error when calling url={url}"
     )
     soup = BeautifulSoup(res.text, "html.parser")
     return {
         "zoneKey": ZONE_KEY,
-        "datetime": arrow.now(TZ).datetime,
+        "datetime": datetime.now(tz=TZ),
         "production": combine_gen(
             get_state_gen(soup, logger), get_isgs_gen(soup, logger)
         ),
@@ -157,7 +156,7 @@ def get_table_rows(soup, container_class, table_name):
             raise ValueError
         return rows
     except (AttributeError, ValueError) as err:
-        raise Exception(f"Error reading table {table_name}: {err}")
+        raise Exception(f"Error reading table {table_name}: {err}") from err
 
 
 def combine_gen(gen1, gen2):
@@ -179,8 +178,8 @@ def combine_gen(gen1, gen2):
 
 def fetch_consumption(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger=getLogger(__name__),
 ):
     # Not currently implemented as this function is not used by the map,
@@ -191,8 +190,8 @@ def fetch_consumption(
 
 def fetch_price(
     zone_key: str = ZONE_KEY,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger=getLogger(__name__),
 ):
     # The only price data available in the source is 'DSM Rate'.

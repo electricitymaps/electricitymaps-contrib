@@ -1,17 +1,21 @@
-#!/usr/bin/env python3
-# coding=utf-8
-
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
-from typing import Optional, Union
+from typing import Any
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
-from .lib.validation import validate
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.exceptions import ParserException
 
-TIMEZONE = "America/Managua"
+TIMEZONE = ZoneInfo("America/Managua")
 
 MAP_URL = "http://www.cndc.org.ni/graficos/MapaSIN/index.php"
 SUMMARY_URL = "http://www.cndc.org.ni/graficos/graficaGeneracion_Tipo_TReal0000.php"
@@ -67,7 +71,7 @@ PLANT_CLASSIFICATIONS = [
 # REFERENCE_TOTAL_PRODUCTION = 433  # MW
 
 
-def extract_text(full_text: str, start_text: str, end_text: Union[str, None] = None):
+def extract_text(full_text: str, start_text: str, end_text: str | None = None):
     start = full_text.find(start_text)
 
     if start == -1:
@@ -86,14 +90,13 @@ def extract_text(full_text: str, start_text: str, end_text: Union[str, None] = N
         return full_text[start:end]
 
 
-def get_time_from_system_map(text: str):
-    # date format is: "'Actualizado: 07/07/2017 01:00:50 PM'"
-
-    datetime_text = extract_text(text, "Actualizado: ", "'")
-    datetime_arrow = arrow.get(datetime_text, "DD/MM/YYYY hh:mm:ss A")
-    datetime_datetime = arrow.get(datetime_arrow.datetime, TIMEZONE).datetime
-
-    return datetime_datetime
+def get_time_from_system_map(text: str) -> datetime:
+    # date format is: "'InformaciÃ³n en Tiempo Real al 02/04/2024 05:57:40 AM'"
+    datetime_text = extract_text(text, "en Tiempo Real al ", "'")
+    # time is referring to local (NI) time
+    return datetime.strptime(datetime_text, "%d/%m/%Y %I:%M:%S %p").replace(
+        tzinfo=TIMEZONE
+    )
 
 
 def get_production_from_map(requests_obj) -> tuple:
@@ -164,8 +167,7 @@ def get_production_from_summary(requests_obj) -> tuple:
     datetime_text = extract_text(gentype_html, "Consultado a las ", "'")
     hour = extract_text(datetime_text, "", " horas")
     d = extract_text(datetime_text, "del dia ")
-    datetime_arrow = arrow.get(d + " " + hour, "DD/MM/YYYY HH")
-    datetime_datetime = arrow.get(datetime_arrow.datetime, TIMEZONE).datetime
+    dt = datetime.strptime(d + " " + hour, "%d/%m/%Y %H").replace(tzinfo=TIMEZONE)
 
     gen_type_text = extract_text(gentype_html, "Tipo de Generación", "center:")
     gen_type_text = extract_text(gen_type_text, "[")
@@ -198,15 +200,15 @@ def get_production_from_summary(requests_obj) -> tuple:
 
     production = {k: sum(v) for k, v in production.items()}
 
-    return production, datetime_datetime
+    return production, dt
 
 
 def fetch_production(
     zone_key: str = "NI",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of Nicaragua."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -218,28 +220,36 @@ def fetch_production(
     # in order to get solar production.
     production, data_datetime = get_production_from_summary(requests_obj)
 
-    # Explicitly report types that are not used in Nicaragua as zero.
-    # Source for the installed capacity of Nicaragua is INE (Nicaraguan Institute of Energy -- see link in DATA_SOURCES.md).
-    production.update({"nuclear": 0, "coal": 0, "gas": 0})
+    total_production = sum(production.values())
+    if 86.6 <= total_production <= 2165:
+        production_mix = ProductionMix()
 
-    data = {
-        "datetime": data_datetime,
-        "zoneKey": zone_key,
-        "production": production,
-        "storage": {},
-        "source": "cndc.org.ni",
-    }
+        for mode, value in production.items():
+            production_mix.add_value(mode, value)
 
-    return validate(data, logger, expected_range=(86.6, 2165))
+        production_list = ProductionBreakdownList(logger)
+        production_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=data_datetime,
+            production=production_mix,
+            source="cndc.org.ni",
+        )
+        return production_list.to_list()
+    else:
+        raise ParserException(
+            parser="NI.py",
+            message=f"{data_datetime}: production data not available",
+            zone_key=zone_key,
+        )
 
 
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -273,23 +283,22 @@ def fetch_exchange(
         flow = -1 * (interchange_list[2] + interchange_list[3])
     else:
         raise NotImplementedError("This exchange pair is not implemented")
-
-    data = {
-        "datetime": get_time_from_system_map(map_html),
-        "sortedZoneKeys": sorted_zone_keys,
-        "netFlow": flow,
-        "source": "cndc.org.ni",
-    }
-
-    return data
+    exchange_list = ExchangeList(logger)
+    exchange_list.append(
+        zoneKey=ZoneKey(sorted_zone_keys),
+        datetime=get_time_from_system_map(map_html),
+        netFlow=flow,
+        source="cndc.org.ni",
+    )
+    return exchange_list.to_list()
 
 
 def fetch_price(
     zone_key: str = "NI",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the most recent known power prices in Nicaragua grid."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -299,14 +308,13 @@ def fetch_price(
     response.encoding = "utf-8"
     prices_html = response.text
 
-    now_local_time = arrow.utcnow().to(TIMEZONE)
-    midnight_local_time = (
-        arrow.utcnow().to(TIMEZONE).replace(hour=0, minute=0, second=0, microsecond=0)
-    )
+    now_local_time = datetime.now(TIMEZONE)
+    midnight_local_time = datetime.combine(
+        now_local_time, time(), tzinfo=TIMEZONE
+    )  # truncate to day
 
     hours_text = prices_html.split("<br />")
 
-    data = []
     for hour_data in hours_text:
         if not hour_data:
             # there is usually an empty item at the end of the list, ignore it
@@ -316,22 +324,20 @@ def fetch_price(
         hour = int(extract_text(hour_data, "Hora ", ":"))
         price = float(extract_text(hour_data, "&nbsp;   ").replace(",", "."))
 
-        price_date = midnight_local_time.replace(hour=hour)
+        price_date = midnight_local_time + timedelta(hours=hour)
         if price_date > now_local_time:
             # data for previous day is also included
-            price_date = price_date.replace(days=-1)
+            price_date = price_date - timedelta(days=1)
 
-        data.append(
-            {
-                "zoneKey": zone_key,
-                "datetime": price_date.datetime,
-                "currency": "USD",
-                "price": price,
-                "source": "cndc.org.ni",
-            }
-        )
-
-    return data
+    price_list = PriceList(logger)
+    price_list.append(
+        zoneKey=ZoneKey(zone_key),
+        datetime=price_date,
+        price=price,
+        currency="USD",
+        source="cndc.org.ni",
+    )
+    return price_list.to_list()
 
 
 if __name__ == "__main__":
@@ -342,8 +348,8 @@ if __name__ == "__main__":
 
     print('fetch_exchange("NI", "HN") ->')
     print(fetch_exchange("NI", "HN"))
-    print('fetch_exchange("NI", "CR") ->')
-    print(fetch_exchange("NI", "CR"))
+    # print('fetch_exchange("NI", "CR") ->')
+    # print(fetch_exchange("NI", "CR"))
 
     print('fetch_price("NI") ->')
     print(fetch_price("NI"))

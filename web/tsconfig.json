@@ -13,15 +13,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["vite/client", "vitest/globals", "vite-plugin-pwa/client"]
+    "types": ["vite/client", "vitest/globals", "vite-plugin-pwa/react"]
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "ESNext"
-    },
-    "transpileOnly": true
-  },
-  "include": ["src", "./cypress/cypress.d.ts", "viteEnvironment.d.ts"],
-  "exclude": ["node_modules", "dist"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "./cypress/cypress.d.ts", "viteEnvironment.d.ts", "testSetup.ts"],
+  "exclude": ["node_modules", "dist"]
 }

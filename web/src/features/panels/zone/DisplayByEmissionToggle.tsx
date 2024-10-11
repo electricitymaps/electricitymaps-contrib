@@ -1,43 +1,52 @@
 import ToggleButton from 'components/ToggleButton';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
-import { Mode } from 'utils/constants';
-import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
+import { LeftPanelToggleOptions, TrackEvent } from 'utils/constants';
+import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 
 export default function EmissionToggle(): ReactElement {
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
 
   // TODO: perhaps togglebutton should accept boolean values
   const options = [
     {
-      value: false.toString(),
-      translationKey:
-        mixMode === Mode.PRODUCTION
-          ? 'country-panel.electricityproduction'
-          : 'country-panel.electricityconsumption',
+      value: LeftPanelToggleOptions.ELECTRICITY,
+      translationKey: isConsumption
+        ? 'country-panel.electricityconsumption'
+        : 'country-panel.electricityproduction',
     },
-    { value: true.toString(), translationKey: 'country-panel.emissions' },
+    {
+      value: LeftPanelToggleOptions.EMISSIONS,
+      translationKey: 'country-panel.emissions',
+    },
   ];
 
-  const onSetCurrentMode = () => {
+  const onSetCurrentMode = (option: string) => {
     if (displayByEmissions) {
-      trackEvent('PanelProductionButton Clicked');
+      trackEvent(TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED);
     } else {
-      trackEvent('PanelEmissionButton Clicked');
+      trackEvent(TrackEvent.PANEL_EMISSION_BUTTON_CLICKED);
     }
-
-    setDisplayByEmissions(!displayByEmissions);
+    if (
+      (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
+      (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
+    ) {
+      setDisplayByEmissions(!displayByEmissions);
+    }
   };
 
   return (
-    <div className="px-4 pt-3 xl:px-10">
+    <div className="my-4">
       <ToggleButton
         options={options}
-        selectedOption={displayByEmissions.toString()}
+        selectedOption={
+          displayByEmissions
+            ? LeftPanelToggleOptions.EMISSIONS
+            : LeftPanelToggleOptions.ELECTRICITY
+        }
         onToggle={onSetCurrentMode}
-        fontSize="text-sm"
       />
     </div>
   );

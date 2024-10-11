@@ -17,6 +17,7 @@ capacity:
   wind: 70.4
 contributors:
   - admetny
+country: BY
 fallbackZoneMixes:
   _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~BLR
   powerOriginRatios:
@@ -30,5 +31,7 @@ parsers:
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-timezone: null
+region: Europe
+timezone: Europe/Minsk

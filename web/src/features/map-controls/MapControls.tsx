@@ -1,152 +1,137 @@
-import { Button } from 'components/Button';
-import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
-import { useAtom, useSetAtom } from 'jotai';
-import { useState } from 'react';
-import { FiWind } from 'react-icons/fi';
-import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
-import { HiCog6Tooth, HiLanguage, HiOutlineInformationCircle } from 'react-icons/hi2';
+import { useAtom, useAtomValue } from 'jotai';
+import { EyeOff, Sun, Wind } from 'lucide-react';
+import { useTransition } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MoonLoader } from 'react-spinners';
-import { useTranslation } from 'translation/translation';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, ToggleOptions } from 'utils/constants';
+import { ThemeOptions, ToggleOptions, TrackEvent } from 'utils/constants';
 import {
+  areWeatherLayersAllowedAtom,
   colorblindModeAtom,
-  selectedDatetimeIndexAtom,
-  solarLayerEnabledAtom,
+  solarLayerAtom,
   solarLayerLoadingAtom,
-  timeAverageAtom,
+  themeAtom,
   windLayerAtom,
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
+import { useIsMobile } from 'utils/styling';
+
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
-import LanguageSelector from './LanguageSelector';
+import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
+import MobileButtons from './MobileButtons';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
+import ThemeSelector from './ThemeSelector';
 
 function MobileMapControls() {
-  const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
-  const setIsSettingsModalOpen = useSetAtom(isSettingsModalOpenAtom);
-
-  const handleOpenInfoModal = () => setIsInfoModalOpen(true);
-  const handleOpenSettingsModal = () => setIsSettingsModalOpen(true);
-
   return (
-    <div className="absolute top-2 right-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
-      <Button
-        className="m-0 p-3"
-        aria-label="open info modal"
-        onClick={handleOpenInfoModal}
-        icon={<HiOutlineInformationCircle size={21} />}
-      />
-      <Button
-        className="m-0 p-3"
-        aria-label="open settings modal"
-        onClick={handleOpenSettingsModal}
-        icon={<HiCog6Tooth size={20} />}
-      />
+    <div className="pointer-events-none absolute right-0 mt-[env(safe-area-inset-top)]">
+      <MobileButtons />
     </div>
   );
 }
 
 export const weatherButtonMap = {
   wind: {
-    icon: FiWind,
-    iconSize: 18,
+    icon: Wind,
+    iconSize: 20,
     enabledAtom: windLayerAtom,
     loadingAtom: windLayerLoadingAtom,
   },
   solar: {
-    icon: HiOutlineSun,
-    iconSize: 21,
-    enabledAtom: solarLayerEnabledAtom,
+    icon: Sun,
+    iconSize: 20,
+    enabledAtom: solarLayerAtom,
     loadingAtom: solarLayerLoadingAtom,
   },
 };
 
 function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
-  const { __ } = useTranslation();
+  const [theme] = useAtom(themeAtom);
+  const [, startTransition] = useTransition();
+  const { t } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
   const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
   const isEnabled = enabled === ToggleOptions.ON;
   const Icon = weatherButtonMap[type].icon;
   const tooltipTexts = {
-    wind: isEnabled ? __('tooltips.hideWindLayer') : __('tooltips.showWindLayer'),
-    solar: isEnabled ? __('tooltips.hideSolarLayer') : __('tooltips.showSolarLayer'),
+    wind: isEnabled ? t('tooltips.hideWindLayer') : t('tooltips.showWindLayer'),
+    solar: isEnabled ? t('tooltips.hideSolarLayer') : t('tooltips.showSolarLayer'),
   };
 
+  const spinnerColor = theme === ThemeOptions.DARK ? 'white' : 'black';
   const weatherId = `${type.charAt(0).toUpperCase() + type.slice(1)}`; // Capitalize first letter
 
   const onToggle = () => {
-    if (!isEnabled) {
-      setIsLoadingLayer(true);
-      trackEvent(`${weatherId} Enabled`);
+    if (isEnabled) {
+      trackEvent(
+        weatherId == 'Wind' ? TrackEvent.WIND_DISABLED : TrackEvent.SOLAR_DISABLED
+      );
     } else {
-      trackEvent(`${weatherId} Disabled`);
+      setIsLoadingLayer(true);
+      trackEvent(
+        weatherId == 'Wind' ? TrackEvent.WIND_ENABLED : TrackEvent.SOLAR_ENABLED
+      );
     }
 
-    setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
+    startTransition(() => {
+      setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
+    });
   };
 
   return (
     <MapButton
       icon={
         isLoadingLayer ? (
-          <MoonLoader size={14} color="#135836" />
+          <MoonLoader size={14} color={spinnerColor} />
         ) : (
-          <Icon size={weatherButtonMap[type].iconSize} color={isEnabled ? '' : 'gray'} />
+          <Icon
+            size={weatherButtonMap[type].iconSize}
+            className={isEnabled ? '' : 'opacity-50'}
+          />
         )
       }
       tooltipText={tooltipTexts[type]}
       dataTestId={`${type}-layer-button`}
       className={`${isLoadingLayer ? 'cursor-default' : 'cursor-pointer'}`}
-      onClick={!isLoadingLayer ? onToggle : () => {}}
+      onClick={isLoadingLayer ? () => {} : onToggle}
+      ariaLabel={type == 'wind' ? t('aria.label.windLayer') : t('aria.label.solarLayer')}
+      asToggle
     />
   );
 }
 
 function DesktopMapControls() {
-  const { __ } = useTranslation();
-  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const { t } = useTranslation();
+  const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
 
-  // We are currently only supporting and fetching weather data for the latest hourly value
-  const areWeatherLayersAllowed =
-    selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
-
   const handleColorblindModeToggle = () => {
     setIsColorblindModeEnabled(!isColorblindModeEnabled);
+    trackEvent(TrackEvent.COLORBLIND_MODE_TOGGLED);
   };
 
   return (
-    <div className="pointer-events-none absolute right-3 top-3 z-30 hidden flex-col items-end md:flex">
+    <div className="pointer-events-none absolute right-3 top-2 z-20 hidden flex-col items-end md:flex">
       <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-2">
         <ConsumptionProductionToggle />
         <SpatialAggregatesToggle />
       </div>
       <div className="mt-5 space-y-2">
-        <MapButton
-          icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
-          tooltipText={__('tooltips.selectLanguage')}
-          dataTestId="language-selector-open-button"
-          onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
-        />
-        {isLanguageSelectorOpen && (
-          <LanguageSelector setLanguageSelectorOpen={setIsLanguageSelectorOpen} />
-        )}
-
+        <LanguageSelector />
         <MapButton
           icon={
-            <HiOutlineEyeOff
+            <EyeOff
               size={20}
               className={`${isColorblindModeEnabled ? '' : 'opacity-50'}`}
             />
           }
           dataTestId="colorblind-layer-button"
-          tooltipText={__('legends.colorblindmode')}
+          tooltipText={t('legends.colorblindmode')}
           onClick={handleColorblindModeToggle}
+          asToggle
+          ariaLabel={t('aria.label.colorBlindMode')}
         />
         {areWeatherLayersAllowed && (
           <>
@@ -154,16 +139,13 @@ function DesktopMapControls() {
             <WeatherButton type="solar" />
           </>
         )}
+        <ThemeSelector />
       </div>
     </div>
   );
 }
 
 export default function MapControls() {
-  return (
-    <>
-      <MobileMapControls />
-      <DesktopMapControls />
-    </>
-  );
+  const isMobile = useIsMobile();
+  return isMobile ? <MobileMapControls /> : <DesktopMapControls />;
 }

@@ -2,9 +2,7 @@
 # Archive reason: No longer in use.
 
 import datetime
-import json
 import logging
-import os
 import re
 
 import pandas as pd
@@ -45,7 +43,7 @@ def get_data(region, year, month, day):
     assert r.status_code == 200, "Could not get url"
 
     jsonval_matches = re.findall(
-        "(?<=var jsonval = JSON.parse\(').*(?='\)\n\t)", r.text
+        "(?<=var jsonval = JSON.parse\\(').*(?='\\)\n\t)", r.text
     )
     assert len(
         jsonval_matches

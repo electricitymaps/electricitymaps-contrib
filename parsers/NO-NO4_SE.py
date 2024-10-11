@@ -1,6 +1,7 @@
-from datetime import datetime, timedelta
+from collections.abc import Callable
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Literal, Optional
+from typing import Literal
 
 from requests import Session
 
@@ -15,7 +16,7 @@ by wrapping the ENTSOE.py parser and combining the data from the two
 to produce a single data list for the NO-NO4->SE exchange.
 """
 
-EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
+EXCHANGE_FUNCTION_MAP: dict[str, Callable] = {
     "exchange": fetch_ENTSOE_exchange,
     "exchange_forecast": fetch_ENTSOE_exchange_forecast,
 }
@@ -24,17 +25,16 @@ EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
 def fetch_data(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session],
-    target_datetime: Optional[datetime],
+    session: Session | None,
+    target_datetime: datetime | None,
     logger: Logger,
-    type: Literal["exchange", "exchange_forecast"],
-) -> List[dict]:
-
+    exchange_type: Literal["exchange", "exchange_forecast"],
+) -> list[dict]:
     if target_datetime is None:
-        target_datetime = datetime.utcnow()
+        target_datetime = datetime.now(timezone.utc)
 
     # NO-NO4 to SE-SE1
-    SE1_dataList = EXCHANGE_FUNCTION_MAP[type](
+    SE1_dataList = EXCHANGE_FUNCTION_MAP[exchange_type](
         zone_key1="NO-NO4",
         zone_key2="SE-SE1",
         session=session,
@@ -42,14 +42,14 @@ def fetch_data(
         logger=logger,
     )
     # NO-NO4 to SE-SE2
-    SE2_dataList = EXCHANGE_FUNCTION_MAP[type](
+    SE2_dataList = EXCHANGE_FUNCTION_MAP[exchange_type](
         zone_key1="NO-NO4",
         zone_key2="SE-SE2",
         session=session,
         target_datetime=target_datetime,
         logger=logger,
     )
-    returnList: List[dict] = []
+    returnList: list[dict] = []
 
     # Compare the length and datetimes of the two data lists and
     # if they are the same combine the data from the two lists.
@@ -59,7 +59,7 @@ def fetch_data(
         and SE1_dataList[-1]["datetime"] == SE2_dataList[-1]["datetime"]
     ):
         logger.info("Clean match! Merging data with zip")
-        for SE1, SE2 in zip(SE1_dataList, SE2_dataList):
+        for SE1, SE2 in zip(SE1_dataList, SE2_dataList, strict=True):
             returnList.append(
                 {
                     "datetime": SE1["datetime"],
@@ -97,17 +97,17 @@ def fetch_data(
 def fetch_exchange(
     zone_key1: str = "NO-NO4",
     zone_key2: str = "SE",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     return fetch_data(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
-        type="exchange",
+        exchange_type="exchange",
     )
 
 
@@ -115,15 +115,15 @@ def fetch_exchange(
 def fetch_exchange_forecast(
     zone_key1: str = "NO-NO4",
     zone_key2: str = "SE",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     return fetch_data(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
-        type="exchange_forecast",
+        exchange_type="exchange_forecast",
     )

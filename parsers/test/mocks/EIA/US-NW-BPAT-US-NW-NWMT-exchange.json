@@ -1,0 +1,38 @@
+{
+  "response": {
+    "total": 3,
+    "dateFormat": "YYYY-MM-DD\"T\"HH24",
+    "frequency": "hourly",
+    "data": [
+      {
+        "period": "2022-02-28T23",
+        "fromba": "SWPP",
+        "fromba-name": "Southwest Power Pool",
+        "toba": "SPC",
+        "toba-name": "Saskatchewan Power Corporation",
+        "value": -12,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2022-03-01T00",
+        "fromba": "SWPP",
+        "fromba-name": "Southwest Power Pool",
+        "toba": "SPC",
+        "toba-name": "Saskatchewan Power Corporation",
+        "value": -11,
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2022-03-01T01",
+        "fromba": "SWPP",
+        "fromba-name": "Southwest Power Pool",
+        "toba": "SPC",
+        "toba-name": "Saskatchewan Power Corporation",
+        "value": -2,
+        "value-units": "megawatthours"
+      }
+    ],
+    "description": "Daily interchange between neighboring balancing authorities.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+  },
+  "apiVersion": "2.1.4"
+}

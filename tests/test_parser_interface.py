@@ -1,15 +1,17 @@
 import glob
 import inspect
 import unittest
+from collections.abc import Callable
 from inspect import isfunction
 from pathlib import Path
-from typing import Any, Callable, Dict, List, NamedTuple, Union
+from typing import Any, NamedTuple
 
 from electricitymap.contrib.config.model import CONFIG_MODEL
 
 PARSER_FOLDERS = Path(__file__).parent.resolve() / "../parsers"
 PARSER_FILES_GLOB = f"{PARSER_FOLDERS.resolve()}/*.py"
 _PARSER_FUNCTION_ARGS = ["zone_key", "session", "target_datetime", "logger"]
+_CAPACITY_PARSER_FUNCTION_ARGS = ["zone_key", "target_datetime", "session"]
 _EXCHANGE_FUNCTION_ARGS = [
     "zone_key1",
     "zone_key2",
@@ -27,16 +29,18 @@ EXPECTED_MODE_FUNCTION_ARGS = {
     "production": _PARSER_FUNCTION_ARGS,
     "productionPerModeForecast": _PARSER_FUNCTION_ARGS,
     "productionPerUnit": _PARSER_FUNCTION_ARGS,
+    "productionCapacity": _CAPACITY_PARSER_FUNCTION_ARGS,
 }
 _RETURN_PARSER_TYPE = [
     dict,
     list,
-    List[dict],
-    List[Dict[str, Any]],
-    Union[list, dict],
-    Union[List[dict], dict],
-    Dict[str, Any],
-    Union[Dict[str, Any], List[Dict[str, Any]]],
+    list[dict],
+    list[dict[str, Any]],
+    list | dict,
+    list[dict] | dict,
+    dict[str, Any],
+    dict[str, Any] | list[dict[str, Any]],
+    dict[str, Any] | None,
 ]
 EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "consumption": _RETURN_PARSER_TYPE,
@@ -48,6 +52,7 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "production": _RETURN_PARSER_TYPE,
     "productionPerModeForecast": _RETURN_PARSER_TYPE,
     "productionPerUnit": _RETURN_PARSER_TYPE,
+    "productionCapacity": _RETURN_PARSER_TYPE,
 }
 
 
@@ -82,10 +87,10 @@ def undecorated(o):
 
 class ParserInterfaceTestcase(unittest.TestCase):
     def setUp(self):
-        self.zone_parser_functions: List[ZoneParserFunction] = []
+        self.zone_parser_functions: list[ZoneParserFunction] = []
 
         for model_map in [CONFIG_MODEL.exchanges, CONFIG_MODEL.zones]:
-            for zone in model_map.keys():
+            for zone in model_map:
                 model = model_map[zone]
                 if not model.parsers:
                     continue
@@ -134,19 +139,17 @@ class ParserInterfaceTestcase(unittest.TestCase):
             )
 
             self.assertEqual(
-                [a for a in args],
-                EXPECTED_MODE_FUNCTION_ARGS[_mode],
+                sorted(args),
+                sorted(EXPECTED_MODE_FUNCTION_ARGS[_mode]),
                 f"invalid args for {function_name}, arg_spec={arg_spec}",
             )
 
             if annotations and "return" in annotations:
                 expected = EXPECTED_MODE_RETURN_ANNOTATIONS[_mode]
-                correct_annotations = any(
-                    [annotations["return"] == a for a in expected]
-                )
+                correct_annotations = any(annotations["return"] == a for a in expected)
                 self.assertTrue(
                     correct_annotations,
-                    f"expected annotation for {function_name} to be in {expected} not {annotations}",
+                    f"expected annotation for {function_name} to be in {expected} not {annotations['return']}",
                 )
 
     def test_unused_files(self):

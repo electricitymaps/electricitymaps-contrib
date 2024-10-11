@@ -1,2 +1,8 @@
-flag_file_name: my.png
+aggregates_displayed:
+  - yearly
+contributors:
+  - FelixDQ
+country: MY
+estimation_method: CONSTRUCT_BREAKDOWN
+region: Asia
 timezone: Asia/Kuala_Lumpur

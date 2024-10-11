@@ -1,40 +1,33 @@
-import { CountryFlag } from 'components/Flag';
 import { max as d3Max } from 'd3-array';
-
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
-import { useTranslation } from 'translation/translation';
-import { ElectricityModeType, ZoneDetail } from 'types';
-import { modeColor } from 'utils/constants';
-import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
-import Axis from './elements/Axis';
-import HorizontalBar from './elements/HorizontalBar';
-import Row from './elements/Row';
-import { ExchangeDataType, ProductionDataType, getDataBlockPositions } from './utils';
+import { ElectricityModeType, ZoneKey } from 'types';
+import { formatCo2 } from 'utils/formatting';
+
+import BarEmissionExchangeChart from './BarEmissionExchangeChart';
+import { BarEmissionProductionChart } from './BarEmissionProductionChart';
+import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
   height: number;
   width: number;
-  data: ZoneDetail;
   exchangeData: ExchangeDataType[];
   productionData: ProductionDataType[];
   isMobile: boolean;
   onProductionRowMouseOver: (
-    mode: ElectricityModeType,
-    data: ZoneDetail,
+    rowKey: ElectricityModeType,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
-    mode: ElectricityModeType,
-    data: ZoneDetail,
+    rowKey: ZoneKey,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onExchangeRowMouseOut: () => void;
 }
 
 function BarBreakdownEmissionsChart({
-  data,
   exchangeData,
   height,
   isMobile,
@@ -45,17 +38,17 @@ function BarBreakdownEmissionsChart({
   onExchangeRowMouseOut,
   width,
 }: BarBreakdownEmissionsChartProps) {
-  const { __ } = useTranslation();
-  const { productionY, exchangeY } = getDataBlockPositions(
+  const { productionY, exchangeHeight } = getDataBlockPositions(
     productionData.length > 0 ? productionData.length : 0,
     exchangeData
   );
 
-  const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.tCo2eqPerMin)) || 0;
-  const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.tCo2eqPerMin));
-  const maxCO2eqProduction = d3Max(productionData, (d) => d.tCo2eqPerMin);
+  const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.gCo2eq)) || 0;
+  const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.gCo2eq));
+  const maxCO2eqProduction = d3Max(productionData, (d) => d.gCo2eq);
 
-  // in tCO₂eq/min
+  // in CO₂eq
+
   const co2Scale = useMemo(
     () =>
       scaleLinear()
@@ -68,62 +61,34 @@ function BarBreakdownEmissionsChart({
   );
 
   const formatTick = (t: number) => {
-    const [x1, x2] = co2Scale.domain();
-    if (x2 - x1 <= 1) {
-      return `${t * 1e3} kg/min`;
-    }
-    return `${t} t/min`;
+    const maxValue = maxCO2eqProduction || 1;
+
+    return formatCo2({ value: t, total: maxValue });
   };
 
   return (
-    <svg className="w-full overflow-visible" height={height}>
-      <Axis formatTick={formatTick} height={height} scale={co2Scale} />
-      <g transform={`translate(0, ${productionY})`}>
-        {productionData.map((d, index) => (
-          <Row
-            key={d.mode}
-            index={index}
-            label={__(d.mode)}
-            width={width}
-            scale={co2Scale}
-            value={Math.abs(d.tCo2eqPerMin)}
-            onMouseOver={(event) => onProductionRowMouseOver(d.mode, data, event)}
-            onMouseOut={onProductionRowMouseOut}
-            isMobile={isMobile}
-          >
-            <HorizontalBar
-              className="production"
-              fill={modeColor[d.mode]}
-              range={[0, Math.abs(d.tCo2eqPerMin)]}
-              scale={co2Scale}
-            />
-          </Row>
-        ))}
-      </g>
-      <g transform={`translate(0, ${exchangeY})`}>
-        {exchangeData.map((d, index) => (
-          <Row
-            key={d.mode}
-            index={index}
-            label={d.mode}
-            width={width}
-            scale={co2Scale}
-            value={d.exchange}
-            onMouseOver={(event) => onExchangeRowMouseOver(d.mode, data, event)}
-            onMouseOut={onExchangeRowMouseOut}
-            isMobile={isMobile}
-          >
-            <CountryFlag zoneId={d.mode} className="pointer-events-none" />
-            <HorizontalBar
-              className="exchange"
-              fill={'gray'}
-              range={[0, d.tCo2eqPerMin]}
-              scale={co2Scale}
-            />
-          </Row>
-        ))}
-      </g>
-    </svg>
+    <>
+      <BarEmissionProductionChart
+        height={height}
+        formatTick={formatTick}
+        co2Scale={co2Scale}
+        productionY={productionY}
+        productionData={productionData}
+        width={width}
+        onProductionRowMouseOut={onProductionRowMouseOut}
+        onProductionRowMouseOver={onProductionRowMouseOver}
+        isMobile={isMobile}
+      />
+      <BarEmissionExchangeChart
+        height={exchangeHeight + EXCHANGE_PADDING}
+        onExchangeRowMouseOut={onExchangeRowMouseOut}
+        onExchangeRowMouseOver={onExchangeRowMouseOver}
+        exchangeData={exchangeData}
+        width={width}
+        co2Scale={co2Scale}
+        formatTick={formatTick}
+      />
+    </>
   );
 }
 

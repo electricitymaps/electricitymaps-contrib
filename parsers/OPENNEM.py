@@ -1,8 +1,7 @@
+from collections.abc import Mapping
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Mapping, Optional, Tuple, Union
 
-import arrow
 import pandas as pd
 import requests
 from requests import Session
@@ -66,17 +65,14 @@ SOURCE = "opennem.org.au"
 def dataset_to_df(dataset):
     series = dataset["history"]
     interval = series["interval"]
-    dt_start = arrow.get(series["start"]).datetime
-    dt_end = arrow.get(series["last"]).datetime
+    dt_start = datetime.fromisoformat(series["start"])
+    dt_end = datetime.fromisoformat(series["last"])
     data_type = dataset["data_type"]
     _id = dataset.get("id")
 
-    if data_type != "power":
-        name = data_type.upper()
-    else:
-        # When `power` is given, the multiple power sources will be given
-        # we therefore set `name` to the power source
-        name = _id.split(".")[-2].upper()
+    # When `power` is given, the multiple power sources will be given
+    # we therefore set `name` to the power source
+    name = data_type.upper() if data_type != "power" else _id.split(".")[-2].upper()
 
     # Turn into minutes
     if interval[-1] == "m":
@@ -97,15 +93,13 @@ def process_solar_rooftop(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def get_capacities(filtered_datasets: List[Mapping], region: str) -> pd.Series:
+def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
     # Parse capacity data
-    capacities = dict(
-        [
-            (obj["id"].split(".")[-2].upper(), obj.get("x_capacity_at_present"))
-            for obj in filtered_datasets
-            if obj["region"] == region
-        ]
-    )
+    capacities = {
+        obj["id"].split(".")[-2].upper(): obj.get("x_capacity_at_present")
+        for obj in filtered_datasets
+        if obj["region"] == region
+    }
     return pd.Series(capacities)
 
 
@@ -123,9 +117,9 @@ def sum_vector(pd_series, keys, ignore_nans=False):
 
 
 def filter_production_objs(
-    objs: List[Dict], logger: Logger = getLogger(__name__)
-) -> List[Dict]:
-    def filter_solar_production(obj: Dict) -> bool:
+    objs: list[dict], logger: Logger = getLogger(__name__)
+) -> list[dict]:
+    def filter_solar_production(obj: dict) -> bool:
         if (
             "solar" in obj.get("production", {})
             and obj["production"]["solar"] is not None
@@ -151,12 +145,12 @@ def filter_production_objs(
 
 
 def generate_url(
-    zone_key: str, is_flow, target_datetime: datetime, logger: Logger
+    zone_key: str, is_flow, target_datetime: datetime | None, logger: Logger
 ) -> str:
     if target_datetime:
         network = ZONE_KEY_TO_NETWORK[zone_key]
         # We will fetch since the beginning of the current month
-        month = arrow.get(target_datetime).floor("month").format("YYYY-MM-DD")
+        month = target_datetime.strftime("%Y-%m-%d")
         if is_flow:
             url = (
                 f"http://api.opennem.org.au/stats/flow/network/{network}?month={month}"
@@ -166,16 +160,16 @@ def generate_url(
             url = f"http://api.opennem.org.au/stats/power/network/fueltech/{network}/{region}?month={month}"
     else:
         # Contains flows and production combined
-        url = f"https://data.opennem.org.au/v3/clients/em/latest.json"
+        url = "https://data.opennem.org.au/v3/clients/em/latest.json"
 
     return url
 
 
 def fetch_main_price_df(
-    zone_key: Union[str, None] = None,
-    sorted_zone_keys: Union[str, None] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: str | None = None,
+    sorted_zone_keys: str | None = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> pd.DataFrame:
     return _fetch_main_df(
@@ -189,12 +183,12 @@ def fetch_main_price_df(
 
 
 def fetch_main_power_df(
-    zone_key: Union[str, None] = None,
-    sorted_zone_keys: Union[str, None] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: str | None = None,
+    sorted_zone_keys: list[str] | None = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> Tuple[pd.DataFrame, list]:
+) -> tuple[pd.DataFrame, list]:
     df, filtered_datasets = _fetch_main_df(
         "power",
         zone_key=zone_key,
@@ -215,7 +209,7 @@ def _fetch_main_df(
     session: Session,
     target_datetime: datetime,
     logger: Logger,
-) -> Tuple[pd.DataFrame, list]:
+) -> tuple[pd.DataFrame, list]:
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
         zone_key=zone_key or sorted_zone_keys[0],
@@ -261,9 +255,9 @@ def _fetch_main_df(
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_production(
-    zone_key: Union[str, None] = None,
-    session: Optional[Session] = None,
-    target_datetime: Optional[Session] = None,
+    zone_key: str | None = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     df, filtered_datasets = fetch_main_power_df(
@@ -273,10 +267,7 @@ def fetch_production(
         logger=logger,
     )
     region = ZONE_KEY_TO_REGION.get(zone_key)
-    if region:
-        capacities = get_capacities(filtered_datasets, region)
-    else:
-        capacities = pd.Series()
+    capacities = get_capacities(filtered_datasets, region) if region else pd.Series()
 
     # Drop interconnectors
     df = df.drop([x for x in df.columns if "->" in x], axis=1)
@@ -289,7 +280,7 @@ def fetch_production(
     logger.debug("Preparing final objects..")
     objs = [
         {
-            "datetime": arrow.get(dt.to_pydatetime()).datetime,
+            "datetime": dt.to_pydatetime(),
             "production": {  # Unit is MW
                 "coal": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["coal"]),
                 "gas": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["gas"]),
@@ -351,8 +342,8 @@ def fetch_production(
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_price(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     df = fetch_main_price_df(
@@ -364,7 +355,7 @@ def fetch_price(
     df = df.loc[~df["PRICE"].isna()]  # Only keep prices that are defined
     return [
         {
-            "datetime": arrow.get(dt.to_pydatetime()).datetime,
+            "datetime": dt.to_pydatetime(),
             "price": sum_vector(row, ["PRICE"]),  # currency / MWh
             "currency": "AUD",
             "source": SOURCE,
@@ -378,8 +369,8 @@ def fetch_price(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[Session] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])
@@ -397,7 +388,7 @@ def fetch_exchange(
 
     return [
         {
-            "datetime": arrow.get(dt.to_pydatetime()).datetime,
+            "datetime": dt.to_pydatetime(),
             "netFlow": value * direction,
             "source": SOURCE,
             "sortedZoneKeys": key,
@@ -408,12 +399,11 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
-    # print(fetch_price('AU-SA'))
-    # print(fetch_production('AU-WA'))
-    # print(fetch_production('AU-SA', target_datetime=arrow.get('2020-01-01T00:00:00Z').datetime))
-    # print(
-    #     fetch_production(
-    #         "AU-SA", target_datetime=arrow.get("2020-01-01T00:00:00Z").datetime
-    #     )
-    # )
+    print(fetch_price("AU-SA"))
+
+    print(fetch_production("AU-WA"))
     print(fetch_production("AU-NSW"))
+    target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
+    print(fetch_production("AU-SA", target_datetime=target_datetime))
+
+    print(fetch_exchange("AU-SA", "AU-VIC"))

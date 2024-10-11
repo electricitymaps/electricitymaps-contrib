@@ -1,35 +1,99 @@
 import * as d3 from 'd3-format';
-import { translate } from '../translation/translation';
+
 import { TimeAverages } from './constants';
+import { EnergyUnits, PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 3;
 
-export const formatPower = function (d: number, numberDigits = DEFAULT_NUM_DIGITS) {
+export interface FormatParameters {
+  value: number;
+  total?: number | null;
+  numberDigits?: number;
+}
+
+export const formatPower = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
   // Assume MW input
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
+  if (Number.isNaN(value)) {
+    return value;
   }
-  const power = `${d3.format(`.${numberDigits}s`)(d * 1e6)}W` //Add a space between the number and the unit
-    .replace(/([A-Za-z])/, ' $1')
-    .trim();
-  return power;
-};
-
-export const formatCo2 = function (d, numberDigits = DEFAULT_NUM_DIGITS) {
-  let value = d;
-  // Assume gCO₂ / h input
-  value /= 60; // Convert to gCO₂ / min
-  value /= 1e6; // Convert to tCO₂ / min
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
+  if (value == 0) {
+    return '0 W';
+  }
+  if (value < 1e-6) {
+    return '~0 W';
   }
 
-  return d >= 1
-    ? `${d3.format(`.${numberDigits}s`)(value)}t ${translate('ofCO2eqPerMinute')}` // a ton or more
-    : `${d3.format(`.${numberDigits}s`)(value * 1e6)}g ${translate('ofCO2eqPerMinute')}`;
+  const valueInWatt = value * 1e6;
+  const totalInWatt = total ? total * 1e6 : undefined;
+
+  return format({ value: valueInWatt, total: totalInWatt, numberDigits }) + 'W';
 };
 
-const scalePower = function (maxPower: number | undefined) {
+const format = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
+  if (value == undefined || Number.isNaN(value)) {
+    return value;
+  }
+  const checkAgainst = Math.abs(Math.round(total ?? value));
+
+  if (checkAgainst < 1e3) {
+    return d3.format(`.${numberDigits}~r`)(value) + ' ';
+  }
+  if (checkAgainst < 1e6) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e3) + ' k';
+  }
+  if (checkAgainst < 1e9) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e6) + ' M';
+  }
+  if (checkAgainst < 1e12) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e9) + ' G';
+  }
+  return d3.format(`.${numberDigits}~r`)(value / 1e12) + ' T';
+};
+
+export const formatEnergy = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
+  const power = formatPower({ value, total, numberDigits });
+  // Assume MW input
+  if (power == undefined || Number.isNaN(power)) {
+    return power;
+  }
+  return power + 'h';
+};
+
+export const formatCo2 = ({ value, total, numberDigits }: FormatParameters) => {
+  // Validate input
+
+  if (value == null || Number.isNaN(value)) {
+    return '?';
+  }
+
+  const checkAgainst = total ?? value;
+
+  if (Math.abs(Math.round(checkAgainst)) < 1e6) {
+    return format({ value: value, total: total, numberDigits: numberDigits }) + 'g';
+  }
+
+  return (
+    format({
+      value: value / 1e6,
+      total: total ? total / 1e6 : undefined,
+      numberDigits: numberDigits,
+    }) + 't'
+  );
+};
+
+const scalePower = (maxPower: number | undefined, isPower = false) => {
   // Assume MW input
   if (maxPower == undefined) {
     return {
@@ -38,116 +102,129 @@ const scalePower = function (maxPower: number | undefined) {
     };
   }
 
-  if (maxPower < 1) {
-    return {
-      unit: 'kW',
-      formattingFactor: 1e-3,
-    };
+  const thresholds: [number, EnergyUnits | PowerUnits][] = isPower
+    ? [
+        [1e9, PowerUnits.PETAWATTS],
+        [1e6, PowerUnits.TERAWATTS],
+        [1e3, PowerUnits.GIGAWATTS],
+        [1, PowerUnits.MEGAWATTS],
+        [1e-3, PowerUnits.KILOWATTS],
+      ]
+    : [
+        [1e9, EnergyUnits.PETAWATT_HOURS],
+        [1e6, EnergyUnits.TERAWATT_HOURS],
+        [1e3, EnergyUnits.GIGAWATT_HOURS],
+        [1, EnergyUnits.MEGAWATT_HOURS],
+        [1e-3, EnergyUnits.KILOWATT_HOURS],
+      ];
+
+  // Use absolute value to handle negative values
+  const value = Math.abs(maxPower);
+
+  for (const [threshold, unit] of thresholds) {
+    if (value >= threshold) {
+      return {
+        unit,
+        formattingFactor: threshold,
+      };
+    }
   }
 
-  if (maxPower < 1e3) {
-    return {
-      unit: 'MW',
-      formattingFactor: 1,
-    };
-  }
-
+  // Fallback if none of the thresholds are met
   return {
-    unit: 'GW',
-    formattingFactor: 1e3,
+    unit: EnergyUnits.PETAWATT_HOURS,
+    formattingFactor: 1e9,
   };
 };
 
-const formatDate = function (date: Date, lang: string, time: string) {
-  if (!isValidDate(date) || !time) {
+export const getDateTimeFormatOptions = (
+  timeAverage: TimeAverages
+): Intl.DateTimeFormatOptions => {
+  switch (timeAverage) {
+    case TimeAverages.HOURLY: {
+      return {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZoneName: 'short',
+      };
+    }
+    case TimeAverages.DAILY: {
+      return {
+        dateStyle: 'long',
+        timeZone: 'UTC',
+      };
+    }
+    case TimeAverages.MONTHLY: {
+      return {
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+      };
+    }
+    case TimeAverages.YEARLY: {
+      return {
+        year: 'numeric',
+        timeZone: 'UTC',
+      };
+    }
+    default: {
+      console.error(`${timeAverage} is not implemented`);
+      return {};
+    }
+  }
+};
+
+const formatDate = (date: Date, lang: string, timeAverage: TimeAverages) => {
+  if (!isValidDate(date) || !timeAverage) {
     return '';
   }
-
-  switch (time) {
-    case TimeAverages.HOURLY: {
-      return new Intl.DateTimeFormat(lang, {
-        dateStyle: 'medium',
-        timeStyle: 'short',
-      }).format(date);
-    }
-    case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
-    }
-    case TimeAverages.MONTHLY: {
-      return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(
-        date
-      );
-    }
-    case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
-    }
-    default: {
-      console.error(`${time} is not implemented`);
-      return '';
-    }
-  }
+  return new Intl.DateTimeFormat(lang, getDateTimeFormatOptions(timeAverage)).format(
+    date
+  );
 };
 
-const getLocaleNumberFormat = (lang: string, { unit, unitDisplay, range }: any) => {
-  try {
-    return new Intl.NumberFormat(lang, {
-      style: 'unit',
-      unit,
-      unitDisplay: unitDisplay || 'long',
-    }).format(range);
-  } catch {
-    // As Intl.NumberFormat with custom 'unit' is not supported in all browsers, we fallback to
-    // a simple English based implementation
-    const plural = range !== 1 ? 's' : '';
-    return `${range} ${unit}${plural}`;
-  }
-};
-
-const formatTimeRange = (lang: string, timeAggregate: TimeAverages) => {
-  // Note that not all browsers fully support all languages
-  switch (timeAggregate) {
-    case TimeAverages.HOURLY: {
-      return getLocaleNumberFormat(lang, { unit: 'hour', range: 24 });
-    }
-    case TimeAverages.DAILY: {
-      return getLocaleNumberFormat(lang, { unit: 'day', range: 30 });
-    }
-    case TimeAverages.MONTHLY: {
-      return getLocaleNumberFormat(lang, { unit: 'month', range: 12 });
-    }
-    case TimeAverages.YEARLY: {
-      return getLocaleNumberFormat(lang, { unit: 'year', range: 5 });
-    }
-    default: {
-      console.error(`${timeAggregate} is not implemented`);
-      return '';
-    }
-  }
-};
-
-const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAverages) {
+const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) => {
   if (!isValidDate(date) || !timeAggregate) {
     return '';
   }
 
   switch (timeAggregate) {
     case TimeAverages.HOURLY: {
-      return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        timeStyle: 'short',
+      }).format(date);
     }
+    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
+    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(
-        date
-      );
+      return new Intl.DateTimeFormat(lang, {
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     case TimeAverages.MONTHLY: {
       return lang === 'et'
-        ? new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' })
+        ? new Intl.DateTimeFormat(lang, {
+            month: 'short',
+            day: 'numeric',
+            timeZone: 'UTC',
+          })
             .formatToParts(date)
             .find((part) => part.type === 'month')?.value
-        : new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
+        : new Intl.DateTimeFormat(lang, {
+            month: 'short',
+            timeZone: 'UTC',
+          }).format(date);
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date);
     }
     default: {
       console.error(`${timeAggregate} is not implemented`);
@@ -173,11 +250,11 @@ function isValidDate(date: Date) {
  * @returns {string} formatted string of data sources.
  */
 function formatDataSources(dataSources: string[], language: string) {
-  return typeof Intl.ListFormat !== 'undefined'
-    ? new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
+  return Intl.ListFormat === undefined
+    ? dataSources.join(', ')
+    : new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
         dataSources
-      )
-    : dataSources.join(', ');
+      );
 }
 
-export { scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };
+export { formatDataSources, formatDate, formatDateTick, scalePower };

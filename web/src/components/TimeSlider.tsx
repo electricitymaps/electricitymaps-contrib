@@ -1,32 +1,160 @@
 import * as SliderPrimitive from '@radix-ui/react-slider';
+import { scaleLinear } from 'd3-scale';
+import { useNightTimes } from 'hooks/nightTimes';
+import { useDarkMode } from 'hooks/theme';
+import { useAtom, useAtomValue } from 'jotai';
+import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
+import { ReactElement } from 'react';
+import trackEvent from 'utils/analytics';
+import { TimeAverages, TrackEvent } from 'utils/constants';
+import { useGetZoneFromPath } from 'utils/helpers';
+import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
 
-interface TimeSliderProps {
+type NightTimeSet = number[];
+
+export interface TimeSliderProps {
   onChange: (datetimeIndex: number) => void;
   numberOfEntries: number;
   selectedIndex?: number;
 }
 
-function TimeSlider({ onChange, numberOfEntries, selectedIndex }: TimeSliderProps) {
+export enum COLORS {
+  LIGHT_DAY = 'rgb(243,244,246)', // bg-gray-100
+  LIGHT_NIGHT = 'rgb(209,213,219)', // bg-gray-300
+  DARK_DAY = 'rgb(75,85,99)', // bg-gray-600
+  DARK_NIGHT = 'rgb(55,65,81)', // bg-gray-700
+}
+
+export const getTrackBackground = (
+  isDarkModeEnabled: boolean,
+  numberOfEntries: number,
+  sets?: NightTimeSet[]
+) => {
+  const colors = isDarkModeEnabled
+    ? { day: COLORS.DARK_DAY, night: COLORS.DARK_NIGHT }
+    : { day: COLORS.LIGHT_DAY, night: COLORS.LIGHT_NIGHT };
+
+  if (!sets || sets.length === 0) {
+    return colors.day;
+  }
+
+  const scale = scaleLinear().domain([0, numberOfEntries]).range([0, 100]);
+
+  const nightTimeSets = sets.map(([start, end]) => [scale(start), scale(end)]);
+
+  const gradientSets = nightTimeSets
+    .map(
+      ([start, end]) =>
+        `${colors.day} ${start}%, ${colors.night} ${start}%, ${colors.night} ${end}%, ${colors.day} ${end}%`
+    )
+    .join(',\n');
+
+  return `linear-gradient(
+    90deg,
+    ${gradientSets}
+  )`;
+};
+
+export const getThumbIcon = (
+  selectedIndex?: number,
+  sets?: NightTimeSet[]
+): ReactElement => {
+  const size = 20;
+  if (selectedIndex === undefined || !sets || sets.length === 0) {
+    return <ChevronsLeftRight size={size} pointerEvents="none" />;
+  }
+  const isValueAtNight = sets.some(
+    ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
+  );
+  return isValueAtNight ? (
+    <Moon size={size} pointerEvents="none" />
+  ) : (
+    <Sun size={size} pointerEvents="none" />
+  );
+};
+
+function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
+  trackEvent(TrackEvent.TIME_SLIDER_BUTTON, {
+    selectedIndex: `${timeAverage}: ${selectedIndex}`,
+  });
+}
+
+export type TimeSliderBasicProps = TimeSliderProps & {
+  trackBackground: string;
+  thumbIcon: ReactElement;
+};
+export function TimeSliderBasic({
+  onChange,
+  numberOfEntries,
+  selectedIndex,
+  trackBackground,
+  thumbIcon,
+}: TimeSliderBasicProps) {
+  const [timeAverage] = useAtom(timeAverageAtom);
   return (
     <SliderPrimitive.Root
       defaultValue={[0]}
       max={numberOfEntries}
       step={1}
       value={selectedIndex && selectedIndex > 0 ? [selectedIndex] : [0]}
-      onValueChange={(value) => onChange(value[0])}
-      aria-label="value"
-      className="relative mb-2 flex h-5 w-full touch-none items-center"
+      onValueChange={(value) => {
+        onChange(value[0]);
+        trackTimeSliderEvent(value[0], timeAverage);
+      }}
+      aria-label="choose time"
+      className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
     >
-      <SliderPrimitive.Track className="relative h-2.5 w-full grow rounded-sm bg-gray-100 dark:bg-gray-700">
+      <SliderPrimitive.Track
+        className="relative h-2.5 w-full grow rounded-sm"
+        style={{ background: trackBackground }}
+      >
         <SliderPrimitive.Range />
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
-        className={`block h-6 w-6 rounded-full bg-white bg-[url("/images/slider-thumb.svg")]
-          bg-center bg-no-repeat shadow-3xl focus:outline-none
-          focus-visible:ring focus-visible:ring-brand-green/10
-          focus-visible:ring-opacity-75 dark:bg-gray-400 dark:focus-visible:ring-white/70`}
-      ></SliderPrimitive.Thumb>
+        data-test-id="time-slider-input"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white outline
+           outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 dark:bg-gray-900 dark:outline-gray-700"
+      >
+        {thumbIcon}
+      </SliderPrimitive.Thumb>
     </SliderPrimitive.Root>
+  );
+}
+
+export function TimeSliderWithoutNight(props: TimeSliderProps) {
+  const isDarkModeEnabled = useDarkMode();
+  const thumbIcon = getThumbIcon();
+  const trackBackground = getTrackBackground(isDarkModeEnabled, props.numberOfEntries);
+  return (
+    <TimeSliderBasic {...props} trackBackground={trackBackground} thumbIcon={thumbIcon} />
+  );
+}
+
+export function TimeSliderWithNight(props: TimeSliderProps) {
+  const nightTimeSets = useNightTimes();
+  const isDarkModeEnabled = useDarkMode();
+
+  const thumbIcon = getThumbIcon(props.selectedIndex || 0, nightTimeSets);
+  const trackBackground = getTrackBackground(
+    isDarkModeEnabled,
+    props.numberOfEntries,
+    nightTimeSets
+  );
+
+  return (
+    <TimeSliderBasic {...props} trackBackground={trackBackground} thumbIcon={thumbIcon} />
+  );
+}
+
+function TimeSlider(props: TimeSliderProps) {
+  const zoneId = useGetZoneFromPath();
+  const isHourly = useAtomValue(isHourlyAtom);
+  const showNightTime = zoneId && isHourly;
+
+  return showNightTime ? (
+    <TimeSliderWithNight {...props} />
+  ) : (
+    <TimeSliderWithoutNight {...props} />
   );
 }
 

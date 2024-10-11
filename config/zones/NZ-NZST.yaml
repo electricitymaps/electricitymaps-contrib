@@ -14,5 +14,6 @@ capacity:
   wind: 0
 contributors:
   - madsnedergaard
-flag_file_name: nz.png
+country: NZ
+region: Oceania
 timezone: Pacific/Auckland

@@ -10,6 +10,8 @@ pnpm-lock.yaml
 
 mobileapp/android
 mobileapp/ios
+# Disable auto-generated README by Fastlane
+mobileapp/fastlane/README.md
 
 web/dist/
 web/config/

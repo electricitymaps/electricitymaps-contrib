@@ -1,6 +1,6 @@
 import unittest
+from unittest import mock
 
-import mock
 import requests
 
 import parsers.lib.utils as tested
@@ -19,10 +19,14 @@ class UtilsTestCase(unittest.TestCase):
         with mock.patch.dict("parsers.lib.utils.os.environ", {"token": "42"}):
             self.assertEqual(tested.get_token("token"), "42")
 
-        with mock.patch.dict("parsers.lib.utils.os.environ", {}):
-            with self.assertRaises(Exception):
-                tested.get_token("token")
+        with (
+            mock.patch.dict("parsers.lib.utils.os.environ", {}),
+            self.assertRaises(Exception),
+        ):
+            tested.get_token("token")
 
-        with mock.patch.dict("parsers.lib.utils.os.environ", {"token": ""}):
-            with self.assertRaises(Exception):
-                tested.get_token("token")
+        with (
+            mock.patch.dict("parsers.lib.utils.os.environ", {"token": ""}),
+            self.assertRaises(Exception),
+        ):
+            tested.get_token("token")

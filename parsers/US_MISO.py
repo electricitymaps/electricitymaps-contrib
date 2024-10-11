@@ -2,14 +2,21 @@
 
 """Parser for the MISO area of the United States."""
 
-
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
+from typing import Any
 
 from dateutil import parser, tz
 from requests import Session
 
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
+
+SOURCE = "misoenergy.org"
+ZONE = "US-MIDW-MISO"
 mix_url = (
     "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType"
     "=getfuelmix&returnType=json"
@@ -34,7 +41,7 @@ wind_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerSer
 # Unsure exactly why EST is used, possibly due to operational connections with PJM.
 
 
-def get_json_data(logger: Logger, session: Optional[Session] = None):
+def get_json_data(logger: Logger, session: Session | None = None) -> dict:
     """Returns 5 minute generation data in json format."""
 
     s = session or Session()
@@ -43,7 +50,7 @@ def get_json_data(logger: Logger, session: Optional[Session] = None):
     return json_data
 
 
-def data_processer(json_data, logger: Logger):
+def data_processer(json_data, logger: Logger) -> tuple[datetime, ProductionMix]:
     """
     Identifies any unknown fuel types and logs a warning.
     Returns a tuple containing datetime object and production dictionary.
@@ -51,19 +58,18 @@ def data_processer(json_data, logger: Logger):
 
     generation = json_data["Fuel"]["Type"]
 
-    production = {}
+    mix = ProductionMix()
     for fuel in generation:
         try:
             k = mapping[fuel["CATEGORY"]]
-        except KeyError as e:
+        except KeyError:
             logger.warning(
                 "Key '{}' is missing from the MISO fuel mapping.".format(
                     fuel["CATEGORY"]
                 )
             )
             k = "unknown"
-        v = float(fuel["ACT"])
-        production[k] = production.get(k, 0.0) + v
+        mix.add_value(k, float(fuel["ACT"]))
 
     # Remove unneeded parts of timestamp to allow datetime parsing.
     timestamp = json_data["RefId"]
@@ -78,40 +84,39 @@ def data_processer(json_data, logger: Logger):
     tzinfos = {"EST": tz.gettz("America/New_York")}
     dt = parser.parse(time_data, tzinfos=tzinfos)
 
-    return dt, production
+    return dt, mix
 
 
 def fetch_production(
-    zone_key: str = "US-MISO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: ZoneKey = ZoneKey(ZONE),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     json_data = get_json_data(logger, session=session)
-    processed_data = data_processer(json_data, logger)
+    dt, mix = data_processer(json_data, logger)
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": processed_data[0],
-        "production": processed_data[1],
-        "storage": {},
-        "source": "misoenergy.org",
-    }
-
-    return data
+    production_breakdowns = ProductionBreakdownList(logger)
+    production_breakdowns.append(
+        zoneKey=zone_key,
+        datetime=dt,
+        production=mix,
+        source=SOURCE,
+    )
+    return production_breakdowns.to_list()
 
 
 def fetch_wind_forecast(
-    zone_key: str = "US-MISO",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: ZoneKey = ZoneKey(ZONE),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the day ahead wind forecast (in MW) of a given zone."""
 
     if target_datetime:
@@ -122,22 +127,22 @@ def fetch_wind_forecast(
     raw_json = req.json()
     raw_data = raw_json["Forecast"]
 
-    data = []
+    production_breakdowns = ProductionBreakdownList(logger)
     for item in raw_data:
         dt = parser.parse(item["DateTimeEST"]).replace(
             tzinfo=tz.gettz("America/New_York")
         )
-        value = float(item["Value"])
+        mix = ProductionMix(wind=float(item["Value"]))
 
-        datapoint = {
-            "datetime": dt,
-            "production": {"wind": value},
-            "source": "misoenergy.org",
-            "zoneKey": zone_key,
-        }
-        data.append(datapoint)
+        production_breakdowns.append(
+            datetime=dt,
+            production=mix,
+            source=SOURCE,
+            zoneKey=zone_key,
+            sourceType=EventSourceType.forecasted,
+        )
 
-    return data
+    return production_breakdowns.to_list()
 
 
 if __name__ == "__main__":

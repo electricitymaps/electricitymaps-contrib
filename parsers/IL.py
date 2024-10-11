@@ -15,24 +15,32 @@ Shares of Electricity production in 2019:
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
+from zoneinfo import ZoneInfo
 
 import arrow
 from bs4 import BeautifulSoup
-from requests import Session, get
+from requests import Response, Session, get
+
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalProductionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+
+URL = "https://www.noga-iso.co.il/Umbraco/Api/Documents/GetElectricalData"
 
 IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
 IEC_PRICE = "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
-TZ = "Asia/Jerusalem"
+TZ = ZoneInfo("Asia/Jerusalem")
 
 
 def fetch_all() -> list:
     """Fetch info from IEC dashboard."""
     first = get(IEC_PRODUCTION)
-    first.cookies
     second = get(IEC_PRODUCTION, cookies=first.cookies)
     soup = BeautifulSoup(second.content, "lxml")
 
@@ -50,7 +58,7 @@ def fetch_all() -> list:
         """Flatten the list."""
         flat_list = []
         for element in _2d_list:
-            if type(element) is list:
+            if isinstance(element, list):
                 for item in element:
                     flat_list.append(item)
             else:
@@ -62,8 +70,8 @@ def fetch_all() -> list:
 
 def fetch_price(
     zone_key: str = "IL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch price from IEC table."""
@@ -99,31 +107,76 @@ def extract_price_date(soup):
     return date
 
 
+def fetch_noga_iso_data(session: Session, logger: Logger):
+    """Fetches data from Noga-ISO"""
+    response: Response = session.get(URL)
+    if not response.ok:
+        logger.warning(
+            "IL.py",
+            "Failed to fetch data from www.noga-iso.co.il with error: {response.status_code}",
+        )
+
+    data = response.json()
+    return data
+
+
 def fetch_production(
-    zone_key: str = "IL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: ZoneKey = ZoneKey("IL"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    data = fetch_all()
-    production = [float(item) for item in data]
+    session = session or Session()
 
-    # all mapped to unknown as there is no available breakdown
-    return {
-        "zoneKey": zone_key,
-        "datetime": arrow.now(TZ).datetime,
-        "production": {"unknown": production[0] + production[1]},
-        "source": IEC_URL,
-    }
+    data = fetch_noga_iso_data(session, logger)
+    eventList = ProductionBreakdownList(logger=logger)
+
+    productionMix = ProductionMix()
+
+    productionMix.add_value(
+        mode="unknown", value=float(data.get("Production").replace(",", ""))
+    )
+
+    eventList.append(
+        zoneKey=zone_key,
+        datetime=datetime.now(tz=TZ),
+        production=productionMix,
+        source="noga-iso.co.il",
+    )
+
+    return eventList.to_list()
+
+
+def fetch_total_production(
+    zone_key: ZoneKey = ZoneKey("IL"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+):
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    session = session or Session()
+
+    data = fetch_noga_iso_data(session, logger)
+
+    eventList = TotalProductionList(logger=logger)
+
+    eventList.append(
+        zoneKey=zone_key,
+        datetime=datetime.now(tz=TZ),
+        value=float(data.get("Production").replace(",", "")),
+        source="noga-iso.co.il",
+    )
 
 
 def fetch_consumption(
     zone_key: str = "IL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
@@ -135,7 +188,7 @@ def fetch_consumption(
     # all mapped to unknown as there is no available breakdown
     return {
         "zoneKey": zone_key,
-        "datetime": arrow.now(TZ).datetime,
+        "datetime": datetime.now(tz=TZ),
         "consumption": consumption[0],
         "source": IEC_URL,
     }

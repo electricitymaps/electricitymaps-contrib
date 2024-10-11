@@ -2,10 +2,8 @@
 
 """Parser for the electricity grid of Iraq"""
 
-
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Optional
 
 import arrow
 import requests
@@ -49,8 +47,8 @@ def fetch_data(r: Session):
 
 def fetch_production(
     zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -63,8 +61,8 @@ def fetch_production(
     result = template_response(zone_key, timestamp, DATA_SOURCE)
 
     for production_type, ids in CELL_MAPPING.items():
-        for id in ids:
-            result["production"][production_type] += data["d_" + id]
+        for data_id in ids:
+            result["production"][production_type] += data["d_" + data_id]
 
     return [result]
 
@@ -72,11 +70,10 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
-
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -106,8 +103,8 @@ def fetch_exchange(
 
 def fetch_consumption(
     zone_key: str = "IQ",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:

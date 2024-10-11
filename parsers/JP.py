@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-# coding=utf-8
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
 import pandas as pd
 from requests import Session
 
+from electricitymap.contrib.config import ZONES_CONFIG
 from parsers import occtonet
 from parsers.lib.config import refetch_frequency
 
@@ -39,11 +38,28 @@ sources = {
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
 
+def get_wind_capacity(datetime: datetime, zone_key, logger: Logger):
+    ZONE_CONFIG = ZONES_CONFIG[zone_key]
+    try:
+        capacity = ZONE_CONFIG["capacity"]["wind"]
+        if zone_key == "JP-HKD":
+            if datetime.year <= 2019:
+                capacity = 480
+            elif datetime.year == 2020:
+                capacity = 520
+            elif datetime.year >= 2021:
+                capacity = 577
+    except Exception as e:
+        logger.error(f"Wind capacity not found in configuration file: {e.args}")
+        capacity = None
+    return capacity
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -56,6 +72,9 @@ def fetch_production(
     datalist = []
 
     for i in df.index:
+        capacity = get_wind_capacity(
+            df.loc[i, "datetime"].to_pydatetime(), zone_key, logger
+        )
         data = {
             "zoneKey": zone_key,
             "datetime": df.loc[i, "datetime"].to_pydatetime(),
@@ -71,17 +90,17 @@ def fetch_production(
                 "geothermal": None,
                 "unknown": df.loc[i, "unknown"],
             },
-            "source": "occtonet.or.jp, {}".format(sources[zone_key]),
+            "capacity": {"wind": capacity if capacity is not None else {}},
+            "source": f"occto.or.jp, {sources[zone_key]}",
         }
         datalist.append(data)
-
     return datalist
 
 
 def fetch_production_df(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -123,13 +142,12 @@ def fetch_production_df(
     # When there is solar, remove it from other production
     if "solar" in df.columns:
         df["unknown"] = df["unknown"] - df["solar"]
-
     return df
 
 
 def fetch_consumption_df(
     zone_key: str = "JP-TK",
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -140,34 +158,21 @@ def fetch_consumption_df(
         raise NotImplementedError("This parser can only fetch live data")
     datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
     consumption_url = {
-        "JP-HKD": "http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv".format(
-            datestamp
-        ),
-        "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
-            datestamp
-        ),
-        "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d-j.csv",
-        "JP-HR": "http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{}.csv".format(
-            datestamp
-        ),
+        "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
+        "JP-TH": f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{datestamp}.csv",
+        "JP-TK": "https://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv",
+        "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
-        "JP-CG": "https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{}.csv".format(
-            datestamp
-        ),
+        "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{datestamp}.csv",
         "JP-SK": "http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv",
-        "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
-            datestamp
-        ),
-        "JP-ON": "https://www.okiden.co.jp/denki2/juyo_10_{}.csv".format(datestamp),
+        "JP-KY": f"https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{datestamp}.csv",
+        "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
 
     # First roughly 40 rows of the consumption files have hourly data,
     # the parser skips to the rows with 5-min actual values
-    if zone_key == "JP-KN":
-        startrow = 57
-    else:
-        startrow = 54
+    startrow = 57 if zone_key == "JP-KN" else 54
 
     try:
         df = pd.read_csv(
@@ -179,6 +184,8 @@ def fetch_consumption_df(
 
     if zone_key in ["JP-TH"]:
         df.columns = ["Date", "Time", "cons", "solar", "wind"]
+    elif zone_key in ["JP-TK"]:
+        df.columns = ["Date", "Time", "cons", "solar", "solar_pct"]
     else:
         df.columns = ["Date", "Time", "cons", "solar"]
     # Convert 万kW to MW
@@ -197,8 +204,8 @@ def fetch_consumption_df(
 
 def fetch_consumption_forecast(
     zone_key: str = "JP-KY",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
@@ -213,32 +220,19 @@ def fetch_consumption_forecast(
         )
 
     consumption_url = {
-        "JP-HKD": "http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv".format(
-            datestamp
-        ),
-        "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
-            datestamp
-        ),
+        "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
+        "JP-TH": f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{datestamp}.csv",
         "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv",
-        "JP-HR": "http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{}.csv".format(
-            datestamp
-        ),
+        "JP-HR": f"http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{datestamp}.csv",
         "JP-CB": "https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv",
         "JP-KN": "https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv",
-        "JP-CG": "https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{}.csv".format(
-            datestamp
-        ),
+        "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{datestamp}.csv",
         "JP-SK": "http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv",
-        "JP-KY": "https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv".format(
-            datestamp
-        ),
-        "JP-ON": "https://www.okiden.co.jp/denki2/juyo_10_{}.csv".format(datestamp),
+        "JP-KY": f"https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{datestamp}.csv",
+        "JP-ON": f"https://www.okiden.co.jp/denki2/juyo_10_{datestamp}.csv",
     }
     # Skip non-tabular data at the start of source files
-    if zone_key == "JP-KN":
-        startrow = 16
-    else:
-        startrow = 13
+    startrow = 16 if zone_key == "JP-KN" else 13
     # Read the 24 hourly values
     df = pd.read_csv(
         consumption_url[zone_key], skiprows=startrow, nrows=24, encoding="shift-jis"
@@ -276,8 +270,8 @@ def fetch_consumption_forecast(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "JP-TK",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
@@ -288,7 +282,7 @@ def fetch_price(
         fiscal_year = target_datetime.year - 1
     else:
         fiscal_year = target_datetime.year
-    url = "http://www.jepx.org/market/excel/spot_{}.csv".format(fiscal_year)
+    url = f"http://www.jepx.org/market/excel/spot_{fiscal_year}.csv"
     df = pd.read_csv(url, encoding="shift-jis")
 
     df = df.iloc[:, [0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
@@ -320,7 +314,7 @@ def fetch_price(
         axis=1,
     )
 
-    data = list()
+    data = []
     for row in df.iterrows():
         data.append(
             {

@@ -1,33 +1,31 @@
-#!/usr/bin/env python3
-
-import math
 from copy import copy
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import Optional
 
-import arrow
 import pandas as pd
-import pytz
 from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import DK, ENTSOE
 from parsers.lib.config import refetch_frequency
 
 ZONE_CONFIG = ZONES_CONFIG["NL"]
-UTC = pytz.UTC
+UTC = timezone.utc
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "NL",
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
+    zone_key: ZoneKey = ZoneKey("NL"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+    target_datetime = (
+        datetime.now(UTC)
+        if target_datetime is None
+        else target_datetime.astimezone(UTC)
+    )
 
     r = session or Session()
 
@@ -59,7 +57,7 @@ def fetch_production(
         exchanges.extend(exchange or [])
 
     # add DK1 data (only for dates after operation)
-    if target_datetime > arrow.get("2019-08-24", "YYYY-MM-DD"):
+    if target_datetime > datetime(2019, 8, 24, tzinfo=UTC):
         zone_1, zone_2 = sorted(["DK-DK1", zone_key])
         df_dk = pd.DataFrame(
             DK.fetch_exchange(
@@ -125,7 +123,7 @@ def fetch_production(
     # Flatten production dictionaries (we ignore storage)
     for p in productions:
         # if for some reason theré's no unknown value
-        if not "unknown" in p["production"] or p["production"]["unknown"] == None:
+        if "unknown" not in p["production"] or p["production"]["unknown"] is None:
             p["production"]["unknown"] = 0
 
         Z = sum([x or 0 for x in p["production"].values()])
@@ -138,7 +136,7 @@ def fetch_production(
         # the DSO network and be substantial (e.g. Solar).
         if (
             p["datetime"] in df_total_generations
-            and Z < df_total_generations[p["datetime"]]
+            and df_total_generations[p["datetime"]] > Z
         ):
             p["production"]["unknown"] = round(
                 (df_total_generations[p["datetime"]] - Z + p["production"]["unknown"]),
@@ -157,91 +155,6 @@ def fetch_production(
     # Filter invalid
     # We should probably add logging to this
     return [p for p in productions if p["production"]["unknown"] > 0]
-
-
-def fetch_production_energieopwek_nl(
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    if target_datetime is None:
-        target_datetime = arrow.utcnow()
-
-    # Get production values for target and target-1 day
-    df_current = get_production_data_energieopwek(target_datetime, session=session)
-    df_previous = get_production_data_energieopwek(
-        target_datetime.shift(days=-1), session=session
-    )
-
-    # Concat them, oldest first to keep chronological order intact
-    df = pd.concat([df_previous, df_current])
-
-    output = []
-    base_time = (
-        arrow.get(target_datetime.date(), "Europe/Paris").shift(days=-1).to("utc")
-    )
-
-    for i, prod in enumerate(df.to_dict(orient="records")):
-        output.append(
-            {
-                "zoneKey": "NL",
-                "datetime": base_time.shift(minutes=i * 15).datetime,
-                "production": prod,
-                "source": "energieopwek.nl, entsoe.eu",
-            }
-        )
-    return output
-
-
-def get_production_data_energieopwek(date, session: Optional[Session] = None):
-    r = session or Session()
-
-    # The API returns values per day from local time midnight until the last
-    # round 10 minutes if the requested date is today or for the entire day if
-    # it's in the past. 'sid' can be anything.
-    url = "http://energieopwek.nl/jsonData.php?sid=2ecde3&Day=%s" % date.format(
-        "YYYY-MM-DD"
-    )
-    response = r.get(url)
-    obj = response.json()
-    production_input = obj["TenMin"]["Country"]
-
-    # extract the power values in kW from the different production types
-    # we only need column 0, 1 and 3 contain energy sum values
-    df_solar = (
-        pd.DataFrame(production_input["Solar"])
-        .drop(["1", "3"], axis=1)
-        .astype(int)
-        .rename(columns={"0": "solar"})
-    )
-    df_offshore = (
-        pd.DataFrame(production_input["WindOffshore"])
-        .drop(["1", "3"], axis=1)
-        .astype(int)
-    )
-    df_onshore = (
-        pd.DataFrame(production_input["Wind"]).drop(["1", "3"], axis=1).astype(int)
-    )
-
-    # We don't differentiate between onshore and offshore wind so we sum them
-    # toghether and build a single data frame with named columns
-    df_wind = df_onshore.add(df_offshore).rename(columns={"0": "wind"})
-    df = pd.concat([df_solar, df_wind], axis=1)
-
-    # resample from 10min resolution to 15min resolution to align with ENTSOE data
-    # we duplicate every row and then group them per 3 and take the mean
-    df = (
-        pd.concat([df] * 2)
-        .sort_index(axis=0)
-        .reset_index(drop=True)
-        .groupby(by=lambda x: math.floor(x / 3))
-        .mean()
-    )
-
-    # Convert kW to MW with kW resolution
-    df = df.apply(lambda x: round(x / 1000, 3))
-
-    return df
 
 
 def get_wind_capacities() -> pd.DataFrame:
@@ -271,7 +184,7 @@ def get_solar_capacities() -> pd.DataFrame:
     solar_capacity_base_url = "https://opendata.cbs.nl/ODataApi/odata/82610ENG/UntypedDataSet?$filter=((EnergySourcesTechniques+eq+%27E006590+%27))+and+("
 
     START_YEAR = 2010
-    end_year = arrow.now().year
+    end_year = datetime.now(UTC).year
 
     years = list(range(START_YEAR, end_year + 1))
     url_solar_capacity = copy(solar_capacity_base_url)
@@ -293,11 +206,11 @@ def get_solar_capacities() -> pd.DataFrame:
 
     for yearly_row in per_year_capacity:
         capacity = float(yearly_row["ElectricalCapacityEndOfYear_8"])
-        datetime = arrow.get(yearly_row["Periods"].split("JJ")[0]).format()
+        year = yearly_row["Periods"].split("JJ")[0]
+        dt = datetime(int(year), 1, 1, tzinfo=UTC)
         solar_capacity_df = solar_capacity_df.append(
-            {"datetime": datetime, "capacity (MW)": capacity}, ignore_index=True
+            {"datetime": dt, "capacity (MW)": capacity}, ignore_index=True
         )
-    solar_capacity_df.datetime = pd.to_datetime(solar_capacity_df.datetime)
     solar_capacity_df = solar_capacity_df.set_index("datetime")
 
     return solar_capacity_df

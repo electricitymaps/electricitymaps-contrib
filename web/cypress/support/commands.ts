@@ -36,9 +36,9 @@ Cypress.Commands.add('interceptAPI', (path) => {
       `/history/${zone}/hourly`
     );
   }
-  cy.intercept('GET', `http://localhost:8001/${path}`, {
+  cy.intercept('GET', `**/${pathWithoutParameters}*`, {
     fixture: `${fixturePath}.json`,
-  }).as(path);
+  }).as(pathWithoutParameters);
 });
 
 Cypress.Commands.add('waitForAPISuccess', (path) => {

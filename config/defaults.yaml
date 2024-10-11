@@ -19,9 +19,9 @@ fallbackZoneMixes:
       wind: 0.047716
 isLowCarbon:
   battery charge:
-    _comment: Battery charge does not contribute to the production/consumption mix
+    _comment: Charge does not have any impact (we count emissions at discharge)
     source: Electricity Maps
-    value: 0
+    value: 1
   battery discharge:
     _comment: Battery discharge is assumed to be powered by low-carbon. Ideally this should be overriden per zone.
     source: Electricity Maps
@@ -47,9 +47,9 @@ isLowCarbon:
     source: Electricity Maps
     value: 1
   hydro charge:
-    _comment: Battery charge does not contribute to the production/consumption mix
+    _comment: Charge does not have any impact (we count emissions at discharge)
     source: Electricity Maps
-    value: 0
+    value: 1
   hydro discharge:
     _comment: Hydro discharge is assumed to be powered by low-carbon. Ideally this should be overriden per zone.
     source: Electricity Maps
@@ -77,9 +77,9 @@ isLowCarbon:
     value: 1
 isRenewable:
   battery charge:
-    _comment: Battery charge does not contribute to the production/consumption mix
+    _comment: Charge does not have any impact (we count emissions at discharge)
     source: Electricity Maps
-    value: 0
+    value: 1
   battery discharge:
     _comment: Battery discharge is assumed to be powered by renewables. Ideally this should be overriden per zone.
     source: Electricity Maps
@@ -105,9 +105,9 @@ isRenewable:
     source: Electricity Maps
     value: 1
   hydro charge:
-    _comment: Battery charge does not contribute to the production/consumption mix
+    _comment: Charge does not have any impact (we count emissions at discharge)
     source: Electricity Maps
-    value: 0
+    value: 1
   hydro discharge:
     _comment: Hydro discharge is assumed to be powered by renewables. Ideally this should be overriden per zone.
     source: Electricity Maps

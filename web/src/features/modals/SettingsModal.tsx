@@ -1,21 +1,17 @@
 import { Button } from 'components/Button';
 import Modal from 'components/Modal';
 import ConsumptionProductionToggle from 'features/map-controls/ConsumptionProductionToggle';
-import LanguageSelector from 'features/map-controls/LanguageSelector';
+import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
-import { useAtom } from 'jotai';
-import { useState } from 'react';
-import { HiOutlineEyeOff } from 'react-icons/hi';
-import { HiLanguage } from 'react-icons/hi2';
+import ThemeSelector from 'features/map-controls/ThemeSelector';
+import { useAtom, useAtomValue } from 'jotai';
+import { EyeOff } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { MoonLoader } from 'react-spinners';
-import { useTranslation } from 'translation/translation';
-import { TimeAverages, ToggleOptions } from 'utils/constants';
-import {
-  colorblindModeAtom,
-  selectedDatetimeIndexAtom,
-  timeAverageAtom,
-} from 'utils/state/atoms';
+import { ToggleOptions } from 'utils/constants';
+import { areWeatherLayersAllowedAtom, colorblindModeAtom } from 'utils/state/atoms';
+
 import { isSettingsModalOpenAtom } from './modalAtoms';
 
 function WeatherToggleButton({
@@ -25,7 +21,7 @@ function WeatherToggleButton({
   allowed: boolean;
   type: 'wind' | 'solar';
 }) {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
   const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
   const isEnabled = enabled === ToggleOptions.ON;
@@ -41,14 +37,14 @@ function WeatherToggleButton({
 
   return (
     <>
-      {!allowed && (
-        <p className="text-sm italic text-red-400">{__(`${type}DataError`)}</p>
-      )}
+      {!allowed && <p className="text-sm italic text-red-400">{t(`${type}DataError`)}</p>}
 
       <Button
-        onClick={!isLoadingLayer ? onToggle : () => {}}
-        className={isEnabled ? 'bg-brand-green text-white dark:bg-brand-green' : ''}
-        disabled={!allowed}
+        onClick={isLoadingLayer ? () => {} : onToggle}
+        size="lg"
+        type={isEnabled ? 'primary' : 'secondary'}
+        isDisabled={!allowed}
+        backgroundClasses="w-[330px] h-[45px]"
         icon={
           isLoadingLayer ? (
             <MoonLoader size={14} color="white" className="mr-1" />
@@ -57,7 +53,7 @@ function WeatherToggleButton({
           )
         }
       >
-        {__(
+        {t(
           isEnabled
             ? `tooltips.hide${typeAsTitlecase}Layer`
             : `tooltips.show${typeAsTitlecase}Layer`
@@ -68,54 +64,41 @@ function WeatherToggleButton({
 }
 
 export function SettingsModalContent() {
-  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState(false);
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
 
-  // We are currently only supporting and fetching weather data for the latest hourly value
-  const areWeatherLayersAllowed =
-    selectedDatetime.index === 24 && timeAverage === TimeAverages.HOURLY;
-
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   return (
-    <div className="flex flex-col items-center space-y-4">
-      <ConsumptionProductionToggle />
-      <SpatialAggregatesToggle />
-      <Button
-        onClick={() => setIsLanguageSelectorOpen(!isLanguageSelectorOpen)}
-        icon={<HiLanguage size={21} />}
-      >
-        {__('tooltips.selectLanguage')}
-      </Button>
-      {isLanguageSelectorOpen && (
-        <LanguageSelector
-          className="top-[185px] left-auto right-auto z-10 mt-4 w-60 overflow-x-hidden shadow-lg sm:top-[200px]"
-          setLanguageSelectorOpen={setIsLanguageSelectorOpen}
-        />
-      )}
-
+    <div className="flex flex-col items-center space-y-2">
+      <div className="rounded-full bg-gray-500">
+        <ConsumptionProductionToggle />
+      </div>
+      <div className="rounded-full bg-gray-500">
+        <SpatialAggregatesToggle />
+      </div>
+      <LanguageSelector isMobile />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="solar" />
       <Button
-        className={
-          isColorblindModeEnabled ? 'bg-brand-green text-white dark:bg-brand-green' : ''
-        }
+        size="lg"
+        type={isColorblindModeEnabled ? 'primary' : 'secondary'}
+        backgroundClasses="w-[330px] h-[45px]"
         onClick={() => setIsColorblindModeEnabled(!isColorblindModeEnabled)}
-        icon={<HiOutlineEyeOff size={21} />}
+        icon={<EyeOff size={20} />}
       >
-        {__('legends.colorblindmode')}
+        {t('legends.colorblindmode')}
       </Button>
+      <ThemeSelector isMobile />
     </div>
   );
 }
 
 export default function SettingsModal() {
-  const { __ } = useTranslation();
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useAtom(isSettingsModalOpenAtom);
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={__('settings-modal.title')}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={t('settings-modal.title')}>
       <SettingsModalContent />
     </Modal>
   );

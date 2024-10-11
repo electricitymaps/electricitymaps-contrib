@@ -1,45 +1,40 @@
 import flags from 'country-flag-icons/react/3x2';
+import { getCountryName } from 'translation/translation';
 
 const DEFAULT_FLAG_SIZE = 18;
 
-const SPECIAL_ZONE_NAMES = {
-  AUS: 'AU',
-} as { [index: string]: string };
-
-function getCountryName(zoneId: string) {
-  const country = zoneId.split('-')[0];
-  const flagName = SPECIAL_ZONE_NAMES[country] || country;
+function getCountryCode(zoneId: string) {
+  const flagName = zoneId.split('-')[0];
   return flagName.toUpperCase();
 }
 
-type HTMLSVGElement = HTMLElement & SVGElement;
-interface CountryFlagProps
-  extends React.HTMLAttributes<HTMLSVGElement>,
-    React.SVGAttributes<HTMLSVGElement> {
+interface CountryFlagProps {
   zoneId: string;
   size?: number;
+  className?: string;
 }
 
 export function CountryFlag({
   zoneId,
   size = DEFAULT_FLAG_SIZE,
-  ...props
+  className,
 }: CountryFlagProps) {
-  const countryName = getCountryName(zoneId) as keyof typeof flags;
-  const FlagIcon = flags[countryName];
+  const countryCode = getCountryCode(zoneId) as keyof typeof flags;
+  const FlagIcon = flags[countryCode];
+  const countryName = getCountryName(zoneId);
 
   if (!FlagIcon) {
-    return <span className={`text-[14px]`}>🏴‍☠️</span>;
+    return <span className="h-[12px] w-[18px] bg-gray-400 text-[14px]"></span>;
   }
   return (
     <FlagIcon
-      title="TODO"
+      title={countryName}
       width={size}
       height={Math.floor((size / 3) * 2)}
       style={{
         minWidth: size,
       }}
-      {...props}
+      className={className}
     />
   );
 }

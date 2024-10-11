@@ -1,42 +1,57 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const arguments_ = process.argv.slice(2);
+import { Position } from '@turf/turf';
+import yaml from 'js-yaml';
 
-import { mergeZones } from '../scripts/generateZonesConfig.js';
 import { saveZoneYaml } from './files.js';
+import { WorldFeatureCollection, ZoneConfig } from './types.js';
 import { getJSON } from './utilities.js';
 
-const zonesGeo = getJSON(
-  path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url)))
-);
-const zones = mergeZones();
+const inputArguments = process.argv.slice(2);
 
-if (arguments_.length <= 0) {
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+
+const zonesGeo: WorldFeatureCollection = getJSON(
+  path.resolve(currentDirectory, 'world.geojson')
+);
+
+if (inputArguments.length <= 0) {
   console.error(
-    'ERROR: Please add a zoneName parameter ("ts-node generateZoneBoundingBoxes.ts DE")'
+    'ERROR: Please add a zoneName parameter ("ts-node --esm generateZoneBoundingBoxes.ts DE")'
   );
   process.exit(1);
 }
 
-const zoneKey = arguments_[0];
+const zoneKey = inputArguments[0];
 
-if (!(zoneKey in zones)) {
+const zonePath = path.resolve(currentDirectory, `../../config/zones/${zoneKey}.yaml`);
+const zoneConfig = yaml.load(fs.readFileSync(zonePath, 'utf8')) as ZoneConfig;
+
+if (!zoneConfig) {
   console.error(`ERROR: Zone ${zoneKey} does not exist in configuration`);
   process.exit(1);
 }
 
-zonesGeo.features = zonesGeo.features.filter((d) => d.properties.zoneName === zoneKey);
+let zoneFeatures = zonesGeo.features.filter((d) => d.properties.zoneName === zoneKey);
+let isAggregate = false;
+if (zoneFeatures.length <= 0) {
+  console.info(`Zone ${zoneKey} does not exist in geojson, using subzones instead`);
+  isAggregate = true;
+  zoneFeatures = zonesGeo.features.filter((d) => d.properties.countryKey === zoneKey);
+}
+zonesGeo.features = zoneFeatures;
 
-let allCoords: number[] = [];
-const boundingBoxes: { [key: string]: any } = {};
+let allCoords: Position[] = [];
+let boundingBoxes: { [key: string]: number[][] } = {};
 
 for (const zone of zonesGeo.features) {
   allCoords = [];
   const geometryType = zone.geometry.type;
   for (const coords1 of zone.geometry.coordinates) {
     for (const coord of coords1[0]) {
-      allCoords.push(coord);
+      allCoords.push(coord as Position);
     }
   }
 
@@ -56,8 +71,8 @@ for (const zone of zonesGeo.features) {
       maxLat = Math.max(maxLat, lat);
     }
   } else {
-    const lon = allCoords[0];
-    const lat = allCoords[1];
+    const lon = allCoords[0] as unknown as number;
+    const lat = allCoords[1] as unknown as number;
 
     minLon = Math.min(minLon, lon);
     maxLon = Math.max(maxLon, lon);
@@ -71,18 +86,35 @@ for (const zone of zonesGeo.features) {
   ];
 }
 
+if (isAggregate) {
+  const averageBoundingBox: number[][] = [
+    [200, 200],
+    [-200, -200],
+  ];
+  for (const bbox of Object.values(boundingBoxes)) {
+    averageBoundingBox[0][0] = Math.min(averageBoundingBox[0][0], bbox[0][0]); // minX
+    averageBoundingBox[0][1] = Math.min(averageBoundingBox[0][1], bbox[0][1]); // minY
+    averageBoundingBox[1][0] = Math.max(averageBoundingBox[1][0], bbox[1][0]); // maxX
+    averageBoundingBox[1][1] = Math.max(averageBoundingBox[1][1], bbox[1][1]); // maxY
+  }
+  boundingBoxes = {}; // Reset subzone bounding boxes
+  boundingBoxes[zoneKey] = averageBoundingBox;
+}
+
 for (const [zoneKey, bbox] of Object.entries(boundingBoxes)) {
   // do not add new entries to zones/*.yaml, do not add RU because it crosses the 180th meridian
-  if (!(zoneKey in zones) || zoneKey === 'RU' || zoneKey === 'RU-FE') {
+  if (zoneKey === 'RU' || zoneKey === 'RU-FE' || zoneKey === 'US-AK') {
+    console.log('IGNORING', zoneKey, 'because it is crossing the 180th meridian');
     continue;
   }
   // do not modifiy current bounding boxes
-  if (zones[zoneKey].bounding_box) {
+  if (zoneConfig.bounding_box) {
     continue;
   }
-  zones[zoneKey].bounding_box = [bbox[0], bbox[1]];
 
-  saveZoneYaml(zoneKey, zones[zoneKey]);
+  zoneConfig.bounding_box = [bbox[0], bbox[1]];
+
+  saveZoneYaml(zoneKey, zoneConfig);
 }
 
 console.error(

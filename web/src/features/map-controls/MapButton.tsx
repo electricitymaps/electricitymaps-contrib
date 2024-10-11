@@ -1,28 +1,43 @@
 import * as Toggle from '@radix-ui/react-toggle';
-import type { ReactElement } from 'react';
+import { twMerge } from 'tailwind-merge';
+
 import TooltipWrapper from '../../components/tooltips/TooltipWrapper';
 
 interface MapButtonProperties {
-  onClick: () => void;
-  icon: any;
+  onClick?: () => void;
+  icon: JSX.Element;
   tooltipText?: string;
   className?: string;
   dataTestId?: string;
+  asToggle?: boolean;
+  ariaLabel?: string;
 }
 
-export default function MapButton(properties: MapButtonProperties): ReactElement {
-  const { onClick, icon, tooltipText, className, dataTestId } = properties;
-
+export default function MapButton({
+  icon,
+  tooltipText,
+  className,
+  dataTestId,
+  onClick,
+  asToggle,
+  ariaLabel,
+}: MapButtonProperties) {
+  const Component = asToggle ? Toggle.Root : 'div';
   return (
     <TooltipWrapper tooltipContent={tooltipText}>
-      <Toggle.Root
+      <Component
         onClick={onClick}
-        className={`pointer-events-auto flex h-8 w-8 items-center justify-center rounded bg-white text-left shadow-lg transition hover:bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-800 ${className}`}
-        aria-label="Toggle functionality" // TODO: This should be more precise!
+        className={twMerge(
+          `flex h-8 w-8 items-center justify-center rounded bg-white/80 text-left shadow-lg backdrop-blur-sm transition hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-900/90`,
+          className,
+          asToggle && 'pointer-events-auto'
+        )}
+        aria-label={ariaLabel}
         data-test-id={dataTestId}
+        role="button"
       >
         <div>{icon}</div>
-      </Toggle.Root>
+      </Component>
     </TooltipWrapper>
   );
 }

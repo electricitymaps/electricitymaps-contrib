@@ -32,3 +32,11 @@ export function useBreakpoint(breakpoint: Breakpoint) {
   };
   return useMediaQuery(queries[breakpoint]);
 }
+
+export function useIsMobile() {
+  return !useBreakpoint('sm');
+}
+
+export function useIsBiggerThanMobile() {
+  return useBreakpoint('sm');
+}

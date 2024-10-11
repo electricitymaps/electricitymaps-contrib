@@ -1,8 +1,10 @@
 import * as turf from '@turf/turf';
 import { topology } from 'topojson-server';
+
+import { WorldFeatureCollection } from './types.js';
 import { fileExists, getJSON, round, writeJSON } from './utilities.js';
 
-function getCenter(geojson, zoneName) {
+function getCenter(geojson: WorldFeatureCollection, zoneName: string) {
   switch (zoneName) {
     case 'US-AK': {
       return [-151.77, 65.32];
@@ -18,7 +20,7 @@ function getCenter(geojson, zoneName) {
     }
   }
   const geojsonFeatures = geojson.features.filter(
-    (f) => f.properties.zoneName === zoneName
+    (f) => f.properties?.zoneName === zoneName
   );
   if (geojsonFeatures.length !== 1) {
     console.error(
@@ -49,7 +51,10 @@ function getCenter(geojson, zoneName) {
   ];
 }
 
-function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
+function generateTopojson(
+  fc: WorldFeatureCollection,
+  { OUT_PATH, verifyNoUpdates }: { OUT_PATH: string; verifyNoUpdates: boolean }
+) {
   const output = OUT_PATH.split('/').pop();
   console.info(`Generating new ${output}`);
   const topo = topology({
@@ -57,20 +62,29 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   });
 
   // We do the following to match the specific format needed for visualization
-  const objects: any = topo.objects.objects;
-  const newObjects = {};
+  const objects = topo.objects.objects as any;
+  const newObjects = {} as typeof topo.objects;
   for (const geo of objects.geometries) {
+    const isZoneFC = geo.properties?.zoneName ? true : false;
+    // Remove countryName as it is not used in the frontend
+    if (geo.properties?.countryName) {
+      delete geo.properties.countryName;
+    }
     // Precompute center for enable centering on the zone
-    geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    if (geo.properties?.zoneName) {
+      geo.properties.center = getCenter(fc, geo.properties.zoneName);
+    }
 
-    newObjects[geo.properties.zoneName] = geo;
+    isZoneFC
+      ? (newObjects[geo.properties.zoneName] = geo)
+      : (newObjects[geo.properties.stateName] = geo);
   }
   topo.objects = newObjects;
 
   const currentTopo = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
     console.info(`No changes to ${output}`);
-    return;
+    return { skipped: true };
   }
 
   if (verifyNoUpdates) {
@@ -81,6 +95,7 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   }
 
   writeJSON(OUT_PATH, topo);
+  return { skipped: false };
 }
 
 export { generateTopojson };

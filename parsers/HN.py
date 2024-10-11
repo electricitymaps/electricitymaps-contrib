@@ -1,9 +1,9 @@
 from csv import reader
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any
+from zoneinfo import ZoneInfo
 
-from pytz import timezone
 from requests import Response, Session
 
 from parsers.lib.exceptions import ParserException
@@ -37,15 +37,15 @@ EXCHANGE_DIRECTION_MAP = {
 
 
 def get_data(
-    session: Session, type: str = "production"
-) -> Tuple[List[Any], Dict[str, str]]:
+    session: Session, data_type: str = "production"
+) -> tuple[list[Any], dict[str, str]]:
     """
     Gets the data from otr.ods.org.hn and returns it as a list with
     the data and a dictionary with the plant to type mapping or an exchange mapping.
     """
     CSV_data = []
     PLANT_TO_TYPE_MAP = {}
-    if type == "production":
+    if data_type == "production":
         for index in range(1, 11):
             if index == 7:  # Skip exchanges
                 continue
@@ -66,7 +66,7 @@ def get_data(
                 PLANT_TO_TYPE_MAP[row[1]] = INDEX_TO_TYPE_MAP[index]
                 CSV_data.append(row)
         return CSV_data, PLANT_TO_TYPE_MAP
-    elif type == "exchange":
+    elif data_type == "exchange":
         params = {
             "request": "CSV_N_",
             "p8_indx": 7,
@@ -75,27 +75,29 @@ def get_data(
         CSV_data = list(reader(response.text.splitlines()))
         return CSV_data, EXCHANGE_MAP
     else:
-        raise ParserException("HN.py", f"Invalid data type: {type}")
+        raise ParserException("HN.py", f"Invalid data type: {data_type}")
 
 
 def format_values(
-    values_by_hour: Dict[int, Any],
+    values_by_hour: dict[int, Any],
     mapping: dict,
     value: str,
     kind: str,
-    id: str,
+    plant_name: str,
     index: int,
 ):
     if kind == "production":
-        if mapping[id] in values_by_hour[index].keys():
-            values_by_hour[index][mapping[id]] += (
+        if mapping[plant_name] in values_by_hour[index]:
+            values_by_hour[index][mapping[plant_name]] += (
                 float(value) if float(value) > 0 else 0
             )
         else:
-            values_by_hour[index][mapping[id]] = float(value) if float(value) > 0 else 0
+            values_by_hour[index][mapping[plant_name]] = (
+                float(value) if float(value) > 0 else 0
+            )
     elif kind == "exchange":
-        values_by_hour[index][mapping[id]] = (
-            float(value) * EXCHANGE_DIRECTION_MAP[mapping[id]]
+        values_by_hour[index][mapping[plant_name]] = (
+            float(value) * EXCHANGE_DIRECTION_MAP[mapping[plant_name]]
         )
     else:
         raise ParserException("HN.py", f"Invalid data type: {kind}")
@@ -107,7 +109,7 @@ def get_values(CSV_data: list, mapping: dict, kind: str = "production"):
     Gets the values from the CSV data and returns a dictionary with the values by hour and the date
     """
     values_by_hour = {i: {} for i in range(0, 24)}
-    date: Union[str, None] = None
+    date: str | None = None
     for row in CSV_data:
         if date is None:
             date = row[0] if row[0] != "Fecha" else None
@@ -124,7 +126,7 @@ def get_values(CSV_data: list, mapping: dict, kind: str = "production"):
                     mapping=mapping,
                     value=value,
                     kind=kind,
-                    id=row[1],
+                    plant_name=row[1],
                     index=index,
                 )
             index += 1
@@ -136,14 +138,14 @@ def get_datetime(date: str, hour: int) -> datetime:
     Returns a datetime object with the given date and hour
     """
     return datetime.strptime(date, "%m/%d/%Y").replace(
-        tzinfo=timezone("America/Tegucigalpa")
+        tzinfo=ZoneInfo("America/Tegucigalpa")
     ) + timedelta(hours=hour + 1)
 
 
 def fetch_production(
     zone_key: str = "HN",
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is not None:
@@ -174,7 +176,7 @@ def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
     session: Session = Session(),
-    target_datetime: Optional[datetime] = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is not None:

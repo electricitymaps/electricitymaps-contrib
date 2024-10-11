@@ -8,6 +8,6 @@ def assert_zone_key(zone_key: str, expected, parser_name=None):
             parser_name = zone_key
         raise ParserException(
             parser_name,
-            "zone_key expected {0}, is {1}".format(expected, zone_key),
+            f"zone_key expected {expected}, is {zone_key}",
             zone_key,
         )

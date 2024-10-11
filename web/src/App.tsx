@@ -1,40 +1,57 @@
+import { App as Cap } from '@capacitor/app';
+import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
+import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
-import { useGetAppVersion } from 'api/getAppVersion';
+import useGetState from 'api/getState';
+import { AppStoreBanner } from 'components/AppStoreBanner';
 import LoadingOverlay from 'components/LoadingOverlay';
-import Toast from 'components/Toast';
-import LegendContainer from 'components/legend/LegendContainer';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import Header from 'features/header/Header';
-import FAQModal from 'features/modals/FAQModal';
-import InfoModal from 'features/modals/InfoModal';
-import SettingsModal from 'features/modals/SettingsModal';
-import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
-import { ReactElement, Suspense, lazy, useEffect } from 'react';
-import { Capacitor } from '@capacitor/core';
-import { App as Cap } from '@capacitor/app';
+import UpdatePrompt from 'features/service-worker/UpdatePrompt';
+import { useDarkMode } from 'hooks/theme';
+import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
+import { metaTitleSuffix, TrackEvent } from 'utils/constants';
+
+const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
+const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
+const MapOverlays = lazy(() => import('components/MapOverlays'));
+const FAQModal = lazy(() => import('features/modals/FAQModal'));
+const InfoModal = lazy(() => import('features/modals/InfoModal'));
+const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
+const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
 
 const isProduction = import.meta.env.PROD;
 
 if (isProduction) {
-  trackEvent('App Loaded', {
+  trackEvent(TrackEvent.APP_LOADED, {
     isNative: Capacitor.isNativePlatform(),
     platform: Capacitor.getPlatform(),
   });
 }
 
-const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
-const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
-const handleReload = () => {
-  window.location.reload();
-};
 export default function App(): ReactElement {
-  const currentAppVersion = APP_VERSION;
-  const { data, isSuccess } = useGetAppVersion();
-  const latestAppVersion = data?.version || '0';
-  const isNewVersionAvailable = isProduction && latestAppVersion > currentAppVersion;
+  // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
+  useReducedMotion();
+
+  // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
+  // instead of waiting for the map to be lazy loaded.
+  // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
+  useGetState();
+  const shouldUseDarkMode = useDarkMode();
+  const { t, i18n } = useTranslation();
+  const canonicalUrl = useGetCanonicalUrl();
+
+  // Update classes on theme change
+  useLayoutEffect(() => {
+    document.documentElement.classList.toggle('dark', shouldUseDarkMode);
+  }, [shouldUseDarkMode]);
+
   // Handle back button on Android
   useEffect(() => {
     if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
@@ -47,30 +64,55 @@ export default function App(): ReactElement {
       });
     }
   }, []);
+
   return (
     <Suspense fallback={<div />}>
-      <main className="fixed flex h-screen w-screen flex-col">
+      <Helmet
+        htmlAttributes={{
+          lang: i18n.languages[0],
+          xmlns: 'http://www.w3.org/1999/xhtml',
+          'xmlns:fb': 'http://ogp.me/ns/fb#',
+        }}
+        prioritizeSeoTags
+      >
+        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
+        <meta property="og:locale" content={i18n.languages[0]} />
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
+      <main className="fixed flex h-full w-full flex-col">
+        <AppStoreBanner />
         <ToastProvider duration={20_000}>
-          <Header />
+          <Suspense>
+            <Header />
+          </Suspense>
           <div className="relative flex flex-auto items-stretch">
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
-              {isSuccess && isNewVersionAvailable && (
-                <Toast
-                  title="A new app version is available"
-                  toastAction={handleReload}
-                  isCloseable={true}
-                  toastActionText="Reload"
-                />
-              )}
-              <LoadingOverlay />
-              <OnboardingModal />
-              <FAQModal />
-              <InfoModal />
-              <SettingsModal />
-              <LeftPanel />
-              <MapWrapper />
-              <TimeControllerWrapper />
-              <LegendContainer />
+              <Suspense>
+                <UpdatePrompt />
+              </Suspense>
+              <Suspense>
+                <LoadingOverlay />
+              </Suspense>
+              <Suspense>
+                <OnboardingModal />
+              </Suspense>
+              <Suspense>
+                <FAQModal />
+                <InfoModal />
+                <SettingsModal />
+              </Suspense>
+              <Suspense>
+                <LeftPanel />
+              </Suspense>
+              <Suspense>
+                <MapWrapper />
+              </Suspense>
+              <Suspense>
+                <TimeControllerWrapper />
+              </Suspense>
+              <Suspense>
+                <MapOverlays />
+              </Suspense>
             </Sentry.ErrorBoundary>
           </div>
         </ToastProvider>

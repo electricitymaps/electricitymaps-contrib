@@ -2,5 +2,5 @@ lonlat:
   - -59.408
   - -24.346
 parsers:
-  exchange: AR.fetch_exchange
+  exchange: CAMMESA.fetch_exchange
 rotation: 45

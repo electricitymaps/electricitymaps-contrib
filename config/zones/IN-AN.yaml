@@ -6,5 +6,6 @@ capacity:
   oil: 40.05
 contributors:
   - gopikrishna1793
-flag_file_name: in.png
+country: IN
+region: Asia
 timezone: Asia/Kolkata

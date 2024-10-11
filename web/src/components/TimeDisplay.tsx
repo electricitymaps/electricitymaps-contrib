@@ -1,14 +1,20 @@
-import { useAtom } from 'jotai';
-import { useTranslation } from 'translation/translation';
-import { formatDate } from 'utils/formatting';
+import { useAtomValue } from 'jotai';
+import { useTranslation } from 'react-i18next';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+
+import { FormattedTime } from './Time';
 
 export function TimeDisplay({ className }: { className?: string }) {
   const { i18n } = useTranslation();
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
 
-  const date = new Date(selectedDatetime.datetimeString);
-
-  return <p className={className}>{formatDate(date, i18n.language, timeAverage)}</p>;
+  return (
+    <FormattedTime
+      datetime={selectedDatetime.datetime}
+      language={i18n.languages[0]}
+      timeAverage={timeAverage}
+      className={className}
+    />
+  );
 }

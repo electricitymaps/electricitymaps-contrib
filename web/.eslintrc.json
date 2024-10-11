@@ -6,7 +6,7 @@
     "es2021": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-prefer-function-component"],
+  "plugins": ["react-prefer-function-component", "simple-import-sort", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -16,6 +16,7 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react/jsx-runtime",
     "plugin:unicorn/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:react-prefer-function-component/recommended",
     "prettier"
   ],
@@ -24,6 +25,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
 
+    "arrow-body-style": "error",
     "curly": "error",
     "no-promise-executor-return": "error",
     "no-unreachable-loop": "error",
@@ -64,6 +66,7 @@
       "error",
       { "ignoreArrowShorthand": true }
     ],
+    "@typescript-eslint/no-explicit-any": "warn",
     "import/no-deprecated": "error",
     "import/no-unresolved": "off", // Off as TS handles this
     "import/no-extraneous-dependencies": [
@@ -125,6 +128,12 @@
     "react/jsx-no-constructed-context-values": "error",
     "react/jsx-no-script-url": "error",
     "react/jsx-no-useless-fragment": "error",
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        "allowReferrer": true
+      }
+    ],
 
     "unicorn/filename-case": [
       "error",
@@ -142,9 +151,14 @@
         "ignore": [".*[pP]rops"]
       }
     ],
-    "unicorn/no-nested-ternary": ["error"],
+    "unicorn/no-nested-ternary": "error",
     "unicorn/no-useless-undefined": "off",
-    "unicorn/no-null": "off"
+    "unicorn/no-null": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error"
   },
   "settings": {
     "react": {
@@ -155,7 +169,8 @@
     {
       "files": ["src/**/*.ts?(x)"],
       "parserOptions": {
-        "project": ["./tsconfig.json"]
+        "project": ["./tsconfig.json"],
+        "sourceType": "module"
       }
     },
     {
@@ -174,8 +189,11 @@
       }
     },
     {
-      "files": ["src/**/*.stories.ts?(x)"],
+      // Make rules a bit more relaxed for tests and stories
+      "files": ["src/**/*.{cy,stories,test}.ts?(x)"],
       "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-magic-numbers": ["off"],
         "import/no-extraneous-dependencies": "off"
       }
     },
@@ -183,7 +201,6 @@
       "files": ["src/**/*.test.ts?(x)"],
       "extends": ["plugin:testing-library/react"],
       "rules": {
-        "@typescript-eslint/no-magic-numbers": ["off"],
         "import/default": "off",
         "testing-library/no-await-sync-events": [
           "error",
@@ -193,8 +210,7 @@
         ],
         "testing-library/no-manual-cleanup": "error",
         "testing-library/prefer-explicit-assert": "error",
-        "testing-library/prefer-user-event": "error",
-        "testing-library/prefer-wait-for": "error"
+        "testing-library/prefer-user-event": "error"
       }
     }
   ]

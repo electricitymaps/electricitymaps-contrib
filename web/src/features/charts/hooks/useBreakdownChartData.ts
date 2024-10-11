@@ -1,57 +1,66 @@
 import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
+import type { ScaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom } from 'jotai';
-import { ElectricityStorageType, ZoneDetail } from 'types';
-
-import { Mode, ToggleOptions, modeColor, modeOrder } from 'utils/constants';
+import { useAtomValue } from 'jotai';
+import { useParams } from 'react-router-dom';
+import {
+  ElectricityModeType,
+  ElectricityStorageKeyType,
+  ElectricityStorageType,
+  ZoneDetail,
+} from 'types';
+import { modeColor, modeOrder, SpatialAggregate, TimeAverages } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
-  productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  isConsumptionAtom,
   spatialAggregateAtom,
+  timeAverageAtom,
 } from 'utils/state/atoms';
+
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
-import { getGenerationTypeKey } from '../graphUtils';
-import { AreaGraphElement } from '../types';
+import {
+  getGenerationTypeKey,
+  getTotalElectricityAvailable,
+  getTotalEmissionsAvailable,
+} from '../graphUtils';
+import { AreaGraphElement, LayerKey } from '../types';
 
-export const getLayerFill = (exchangeKeys: string[], co2ColorScale: any) => {
-  const layerFill = (key: string) => {
-    // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
-    if (exchangeKeys.includes(key)) {
-      return (d: { data: AreaGraphElement }) =>
-        co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
+export const getLayerFill =
+  (co2ColorScale: ScaleLinear<string, string, string>) => (key: LayerKey) => {
+    // Use regular production fill.
+    if (key in modeColor) {
+      return () => modeColor[key as ElectricityModeType];
     }
-    // Otherwise use regular production fill.
-    return modeColor[key];
+    // Otherwise it's an exchange, set the horizontal gradient by using a different fill for each datapoint.
+    return (d: { data: AreaGraphElement }) =>
+      co2ColorScale(d.data.meta.exchangeCo2Intensities?.[key]);
   };
-
-  return layerFill;
-};
 
 export default function useBreakdownChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
-  const [mixMode] = useAtom(productionConsumptionAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [aggregateToggle] = useAtom(spatialAggregateAtom);
-  const isAggregateToggled = aggregateToggle === ToggleOptions.ON;
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
-  if (isLoading || isError || !currentData) {
+  const { zoneId } = useParams();
+  const isConsumption = useAtomValue(isConsumptionAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const viewMode = useAtomValue(spatialAggregateAtom);
+  const timeAggregate = useAtomValue(timeAverageAtom);
+  const isCountryView = viewMode === SpatialAggregate.COUNTRY;
+  if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
   }
 
   const exchangesForSelectedAggregate = getExchangesToDisplay(
-    currentData.zoneKey,
-    isAggregateToggled,
-    currentData.exchange
+    zoneId,
+    isCountryView,
+    zoneData.zoneStates
   );
 
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
-    displayByEmissions
+    displayByEmissions,
+    timeAggregate
   );
 
   const chartData: AreaGraphElement[] = [];
@@ -68,32 +77,26 @@ export default function useBreakdownChartData() {
     for (const mode of modeOrder) {
       const isStorage = mode.includes('storage');
 
-      if (isStorage) {
-        entry.layerData[mode] = getStorageValue(
-          mode,
-          value,
-          valueFactor,
-          displayByEmissions
-        );
-        // TODO: handle storage
-      } else {
-        entry.layerData[mode] = getGenerationValue(
-          mode,
-          value,
-          valueFactor,
-          displayByEmissions
-        );
-      }
+      // TODO: handle storage
+      entry.layerData[mode] = isStorage
+        ? getStorageValue(
+            mode as ElectricityStorageType,
+            value,
+            valueFactor,
+            displayByEmissions
+          )
+        : getGenerationValue(mode, value, valueFactor, displayByEmissions);
     }
 
-    if (mixMode === Mode.CONSUMPTION) {
+    if (isConsumption) {
       // Add exchanges
       for (const [key, exchangeValue] of Object.entries(value.exchange)) {
         // in GW or MW
         entry.layerData[key] = Math.max(0, exchangeValue / valueFactor);
         if (displayByEmissions) {
-          // in tCO₂eq/min
-          entry.layerData[key] *= (value.exchangeCo2Intensities || {})[key] / 1e3 / 60;
+          // in gCO₂eq/hour
+          entry.layerData[key] =
+            value.exchangeCo2Intensities?.[key] * Math.max(0, exchangeValue);
         }
       }
     }
@@ -114,29 +117,36 @@ export default function useBreakdownChartData() {
   const result = {
     chartData,
     layerKeys,
-    layerFill: getLayerFill(exchangeKeys, co2ColorScale),
+    layerFill: getLayerFill(co2ColorScale),
     // markerFill,
     valueAxisLabel,
     layerStroke: undefined,
   };
 
-  return { data: result, mixMode, isLoading, isError };
+  return {
+    data: result,
+    isLoading,
+    isError,
+  };
 }
 
 function getStorageValue(
-  key: string,
+  key: ElectricityStorageType,
   value: ZoneDetail,
   valueFactor: number,
   displayByEmissions: boolean
 ) {
-  const storageKey = key.replace(' storage', '') as ElectricityStorageType;
-  let scaledValue = (-1 * Math.min(0, (value.storage || {})[storageKey])) / valueFactor;
-
-  if (displayByEmissions) {
-    scaledValue *= value.dischargeCo2Intensities[storageKey] / 1e3 / 60;
+  const storageKey = key.replace(' storage', '') as ElectricityStorageKeyType;
+  const storageValue = value.storage?.[storageKey];
+  if (storageValue === undefined || storageValue === null) {
+    return Number.NaN;
   }
 
-  return scaledValue ?? Number.NaN;
+  const invertedValue = -1 * Math.min(0, storageValue);
+
+  return displayByEmissions
+    ? invertedValue * value.dischargeCo2Intensities[storageKey] * valueFactor
+    : invertedValue / valueFactor;
 }
 
 function getGenerationValue(
@@ -151,35 +161,37 @@ function getGenerationValue(
   }
 
   const modeProduction = value.production[generationKey];
-  let scaledValue =
-    modeProduction !== undefined ? modeProduction / valueFactor : undefined;
 
-  if (displayByEmissions && scaledValue !== undefined) {
-    scaledValue *= value.productionCo2Intensities[generationKey] / 1e3 / 60;
+  if (modeProduction === undefined || modeProduction === null) {
+    return Number.NaN;
   }
 
-  return scaledValue ?? Number.NaN;
+  return displayByEmissions
+    ? modeProduction * value.productionCo2Intensities[generationKey] * valueFactor
+    : modeProduction / valueFactor;
 }
 
 interface ValuesInfo {
-  valueAxisLabel: string; // For example, GW or tCO₂eq/min
-  valueFactor: number; // TODO: why is this required
+  valueAxisLabel: string; // For example, GW or CO₂eq
+  valueFactor: number;
 }
 
 function getValuesInfo(
   historyData: ZoneDetail[],
-  displayByEmissions: boolean
+  displayByEmissions: boolean,
+  timeAggregate: string
 ): ValuesInfo {
-  const maxTotalValue = d3Max(
-    historyData,
-    (d: ZoneDetail) =>
-      displayByEmissions
-        ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60 // in tCO₂eq/min
-        : d.totalProduction + d.totalImport + d.totalDischarge // in MW
+  const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
+    displayByEmissions
+      ? getTotalEmissionsAvailable(d, true)
+      : getTotalElectricityAvailable(d, true)
   );
-
-  const format = scalePower(maxTotalValue);
-  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
+  const isHourly = timeAggregate === TimeAverages.HOURLY;
+  const format = displayByEmissions
+    ? // Value factor of 1000 to convert from MW to KW
+      { formattingFactor: 1000, unit: 'CO₂eq' }
+    : scalePower(maxTotalValue, isHourly);
+  const valueAxisLabel = format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 }

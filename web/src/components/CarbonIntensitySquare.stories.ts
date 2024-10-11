@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import CarbonIntensitySquare from './CarbonIntensitySquare';
 
 const meta: Meta<typeof CarbonIntensitySquare> = {
@@ -17,13 +18,11 @@ export const Primary: Story = {
 export const WithLabel: Story = {
   args: {
     intensity: 234,
-    withSubtext: true,
   },
 };
 
 export const InvalidNumber: Story = {
   args: {
     intensity: undefined,
-    withSubtext: true,
   },
 };

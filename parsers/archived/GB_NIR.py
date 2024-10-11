@@ -2,10 +2,8 @@
 # Archived reason: Data is no longer available.
 
 import logging
-from collections import defaultdict
 from datetime import datetime, timedelta
 from io import StringIO
-from operator import itemgetter
 
 import pandas as pd
 import requests
@@ -214,7 +212,7 @@ def fetch_production(
             "source": "soni.ltd.uk",
         }
         production_mix_by_quarter_hour.append(
-            validate(production_mix, logger=logger, required=["gas", "coal"], floor=1.0)
+            validate(production_mix, logger=logger, floor=1.0)
         )
 
     return production_mix_by_quarter_hour

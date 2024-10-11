@@ -1,77 +1,136 @@
 /* This script aggregates the per-zone config files into a single zones.json/exchanges.json
 file to enable easy importing within web/ */
-import * as yaml from 'js-yaml';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import * as yaml from 'js-yaml';
+
+import {
+  CombinedZonesConfig,
+  ExchangeConfig,
+  ExchangesConfig,
+  OptimizedZoneConfig,
+  ZoneConfig,
+} from '../geo/types.js';
 import { round } from '../geo/utilities.js';
 
 const BASE_CONFIG_PATH = '../../config';
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 
-const config = {
+const verifyConfig = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
-const mergeZones = () => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
-  );
+const getConfig = (): CombinedZonesConfig => {
+  const basePath = path.resolve(currentDirectory, BASE_CONFIG_PATH.concat('/zones'));
 
   const zoneFiles = fs.readdirSync(basePath);
-  const filesWithDirectory = zoneFiles.map((file) => `${basePath}/${file}`);
+  const filesWithDirectory = zoneFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/${file}`);
 
-  const UNNECESSARY_ZONE_FIELDS = new Set([
-    'fallbackZoneMixes',
-    'isLowCarbon',
-    'isRenewable',
-    'emissionFactors',
-    'capacity',
-    'comment',
-    '_comment',
-    'sources',
-    'flag_file_name',
-    'bypassedSubZones',
+  const USED_CONFIG_FIELDS = new Set([
+    'contributors',
+    'disclaimer',
+    'estimation_method',
+    'parsers',
+    'subZoneNames',
+    'aggregates_displayed',
+    'generation_only',
   ]);
-  const zones = filesWithDirectory.reduce((zones, filepath) => {
-    const zoneConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
-    if (zoneConfig?.bounding_box) {
-      for (const point of zoneConfig.bounding_box) {
-        point[0] = round(point[0], 4);
-        point[1] = round(point[1], 4);
-      }
+
+  const contributors = new Set<string>();
+  const zones: Record<string, OptimizedZoneConfig> = {};
+  const hasSubZones = new Set<string>();
+
+  for (const filepath of filesWithDirectory) {
+    const config = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
+
+    const zoneContributors = new Set<string>();
+
+    for (const contributor of config.contributors ?? []) {
+      contributors.add(contributor);
+      zoneContributors.add(contributor);
     }
 
-    for (const key of Object.keys(zoneConfig)) {
-      if (UNNECESSARY_ZONE_FIELDS.has(key)) {
-        delete zoneConfig[key];
+    // If the zone has subzones, add them to the set to be processed later
+    if (config.subZoneNames) {
+      hasSubZones.add(path.parse(filepath).name);
+    }
+
+    const zoneContributorsArray = [];
+    const contributorArray = [...contributors];
+    for (const contributor of zoneContributors) {
+      const index = contributorArray.indexOf(contributor);
+      zoneContributorsArray.push(index);
+    }
+
+    if (zoneContributorsArray && zoneContributorsArray.length > 0) {
+      (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
+    }
+
+    for (const point of config.bounding_box ?? []) {
+      point[0] = round(point[0], 4);
+      point[1] = round(point[1], 4);
+    }
+
+    for (const key of Object.keys(config)) {
+      if (!USED_CONFIG_FIELDS.has(key)) {
+        delete config[key];
       }
     }
     /*
      * The parsers object is only used to check if there is a production parser in the frontend.
      * This moves this check to the build step, so we can minimize the size of the frontend bundle.
      */
-    zoneConfig.parsers = zoneConfig?.parsers?.production?.length > 0 ? true : false;
-    Object.assign(zones, { [path.parse(filepath).name]: zoneConfig });
-    return zones;
-  }, {});
+    (config as unknown as OptimizedZoneConfig).parsers = config?.parsers?.production
+      ?.length
+      ? true
+      : false;
 
-  return zones;
+    zones[path.parse(filepath).name] = config as unknown as OptimizedZoneConfig;
+  }
+
+  // Upsert subzone contributors to parent zone
+  for (const parentZone of hasSubZones) {
+    const zoneContributors = new Set<number>(zones[parentZone].contributors);
+    for (const subZone of zones[parentZone].subZoneNames ?? []) {
+      for (const contributor of zones[subZone].contributors ?? []) {
+        zoneContributors.add(contributor);
+      }
+    }
+    zones[parentZone].contributors = [...zoneContributors];
+  }
+
+  const combinedZonesConfig = {
+    contributors: [...contributors],
+    zones: zones,
+  };
+
+  return combinedZonesConfig;
 };
 
-const mergeExchanges = () => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/exchanges'), import.meta.url))
-  );
+const mergeExchanges = (): ExchangesConfig => {
+  const basePath = path.resolve(currentDirectory, BASE_CONFIG_PATH.concat('/exchanges'));
 
   const exchangeFiles = fs.readdirSync(basePath);
-  const filesWithDirectory = exchangeFiles.map((file) => `${basePath}/${file}`);
+  const filesWithDirectory = exchangeFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/${file}`);
 
-  const UNNECESSARY_EXCHANGE_FIELDS = new Set(['comment', '_comment', 'parsers']);
+  const UNNECESSARY_EXCHANGE_FIELDS = new Set([
+    'comment',
+    '_comment',
+    'parsers',
+    'capacity',
+  ]);
 
   const exchanges = filesWithDirectory.reduce((exchanges, filepath) => {
-    const exchangeConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const exchangeConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ExchangeConfig;
     exchangeConfig.lonlat[0] = round(exchangeConfig.lonlat[0], 3);
     exchangeConfig.lonlat[1] = round(exchangeConfig.lonlat[1], 3);
+
     for (const key of Object.keys(exchangeConfig)) {
       if (UNNECESSARY_EXCHANGE_FIELDS.has(key)) {
         delete exchangeConfig[key];
@@ -87,14 +146,16 @@ const mergeExchanges = () => {
 
 const mergeRatioParameters = () => {
   // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
-  const basePath = path.resolve(fileURLToPath(new URL('../config', import.meta.url)));
+  const basePath = path.resolve(currentDirectory, '../config');
 
   const defaultParameters: any = yaml.load(
     fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8')
   );
 
   const zoneFiles = fs.readdirSync(`${basePath}/zones`);
-  const filesWithDirectory = zoneFiles.map((file) => `${basePath}/zones/${file}`);
+  const filesWithDirectory = zoneFiles
+    .filter((file) => file.endsWith('.yaml'))
+    .map((file) => `${basePath}/zones/${file}`);
 
   const ratioParameters: any = {
     fallbackZoneMixes: {
@@ -112,7 +173,7 @@ const mergeRatioParameters = () => {
   };
 
   for (const filepath of filesWithDirectory) {
-    const zoneConfig: any = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ZoneConfig;
     const zoneKey = path.parse(filepath).name;
     for (const key of Object.keys(ratioParameters)) {
       if (zoneConfig[key] !== undefined) {
@@ -124,7 +185,7 @@ const mergeRatioParameters = () => {
   return ratioParameters;
 };
 
-const writeJSON = (fileName: any, object: any) => {
+const writeJSON = (fileName: string, object: CombinedZonesConfig | ExchangesConfig) => {
   const directory = path.resolve(path.dirname(fileName));
 
   if (!fs.existsSync(directory)) {
@@ -134,14 +195,12 @@ const writeJSON = (fileName: any, object: any) => {
   fs.writeFileSync(fileName, JSON.stringify(object), { encoding: 'utf8' });
 };
 
-const zonesConfig = mergeZones();
+const zonesConfig = getConfig();
 const exchangesConfig = mergeExchanges();
 
-const autogenConfigPath = path.resolve(
-  fileURLToPath(new URL('../config', import.meta.url))
-);
+const autogenConfigPath = path.resolve(currentDirectory, '../config');
 
-if (config.verifyNoUpdates) {
+if (verifyConfig.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(
     fs.readFileSync(`${autogenConfigPath}/zones.json`, 'utf8')
   );
@@ -165,4 +224,4 @@ if (config.verifyNoUpdates) {
 writeJSON(`${autogenConfigPath}/zones.json`, zonesConfig);
 writeJSON(`${autogenConfigPath}/exchanges.json`, exchangesConfig);
 
-export { mergeZones, mergeExchanges, mergeRatioParameters };
+export { getConfig, mergeExchanges, mergeRatioParameters };

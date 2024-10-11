@@ -2,5 +2,6 @@ lonlat:
   - 28.009764
   - 47.003312
 parsers:
-  exchange: MD.fetch_exchange
+  exchange: ENTSOE.fetch_exchange
+  exchangeForecast: MD.fetch_exchange_forecast
 rotation: -120
