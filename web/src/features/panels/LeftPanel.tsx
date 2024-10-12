@@ -15,6 +15,7 @@ import {
 } from 'react-router-dom';
 import { useIsMobile } from 'utils/styling';
 
+import { ZoneNotFound } from './404';
 import { leftPanelOpenAtom } from './panelAtoms';
 import { zoneExists } from './zone/util';
 
@@ -49,22 +50,23 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   if (!zoneId) {
     return <Navigate to="/" replace />;
   }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+  let sanitizedZoneId = zoneId.replaceAll(/[^\dA-Za-z-]/g, '').toUpperCase();
+  // Avoid issues when people type links with zoneIDs like DK- instead of just DK
+  // This is probably due to subZones using - as a separator
+  if (sanitizedZoneId.endsWith('-')) {
+    sanitizedZoneId = sanitizedZoneId.slice(0, -1);
   }
-
   // Handle legacy Australia zone names
-  if (upperCaseZoneId.startsWith('AUS')) {
-    return (
-      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
-    );
+  if (sanitizedZoneId.startsWith('AUS')) {
+    sanitizedZoneId = sanitizedZoneId.replace('AUS', 'AU');
   }
 
-  // Only allow valid zone ids
-  // TODO: This should redirect to a 404 page specifically for zones
-  if (!zoneExists(upperCaseZoneId)) {
-    return <Navigate to="/" replace />;
+  if (!zoneExists(sanitizedZoneId)) {
+    return <Navigate to={`/zone/404?${searchParameters}`} replace />;
+  }
+
+  if (zoneId !== sanitizedZoneId) {
+    return <Navigate to={`/zone/${sanitizedZoneId}?${searchParameters}`} replace />;
   }
 
   return children;
@@ -123,6 +125,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   );
 }
 export default function LeftPanel() {
+  const [searchParameters] = useSearchParams();
   return (
     <OuterPanel>
       <Routes>
@@ -138,15 +141,16 @@ export default function LeftPanel() {
             </ValidZoneIdGuardWrapper>
           }
         />
-        {/* Alternative: add /map here and have a NotFound component for anything else*/}
+        <Route path="/zone/404" element={<ZoneNotFound />} />
         <Route
-          path="*"
+          path="/map"
           element={
             <Suspense fallback={<LoadingSpinner />}>
               <RankingPanel />
             </Suspense>
           }
         />
+        <Route path="*" element={<Navigate to={`/map?${searchParameters}`} replace />} />
       </Routes>
     </OuterPanel>
   );
