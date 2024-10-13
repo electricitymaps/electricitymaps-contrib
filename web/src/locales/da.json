@@ -434,7 +434,7 @@
     "methodology-answer": "Vi har en detaljeret side om vores metoder på <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a>, med yderligere dokumentation på <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">vores GitHub Wiki</a>.",
     "regionalEmissionFactors-question": "Hvorfor er udledningsfaktorerne forskellige i forskellige områder?",
     "regionalEmissionFactors-answer": "For nogen zoner har vi kunnet finde en mere præcis udledningsfaktor end det globale gennemsnit som vi bruger som reserve. Fx er udledningsfaktorene direkte fra den enkelte energikilde åben for alle i USA og i EU. Vi matcher så disse udledningsfaktorer med energikildens produktions data og udregner udledningen pr. energikilde, hvilket bliver sammenlagt til den totale udledning for zonen. Se <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">detaljer på vores Wiki</a>.",
-    "renewableLowCarbonDifference-question": "Hvad er forskellen på  “vedvarende” and “lav CO₂?",
+    "renewableLowCarbonDifference-question": "Hvad er forskellen på “vedvarende” og “lav CO₂?",
     "renewableLowCarbonDifference-answer": "Vedvarende energi produktion er baseret på vedvarende energikilder så som vind, vandstrømning, sol, og geotermisk energi. Lav CO₂ energi produktion betyder at produktionen involvere meget lave værdier for drivhusgasudledninger, så som atomkraft produktion.",
     "importsAndExports-question": "Tager i højde for import og eksport af elektricitet?",
     "importsAndExports-answer": "Ja, det gør vi. Import og eksport kan ses på kortet som små pile mellem forskellige områder, når tilstanden <strong>forbrug</strong> er valgt. Detaljerede oplysninger kan ses i diagrammerne, der vises, når du klikker på et område.",
@@ -469,7 +469,7 @@
     "workTogether-question": "Kan vi arbejde sammen?",
     "workTogether-answer": "Vi leder altid efter nye muligheder for at samarbejde. <a href=\"mailto:app@electricitymaps.com\">Send os en email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://app.electricitymaps.com/\" target=\"_blank\">Electricity Maps App</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps App, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> offentliggør data og billeder på <a href=\"https://app.electricitymaps.com/\" target=\"_blank\">Electricity Maps App</a> til informationsformål. Der gives ingen garantier for korrekthed eller nogen form for garantier, og vi forbeholder os retten til at ændre indholdet når som helst eller fjerne dele uden at skulle informere dig om dette. Electricity Maps påtager sig intet ansvar for og kan ikke holdes ansvarlig for eventuelle skader eller udgifter, du måtte pådrage dig som følge af unøjagtighed, ufuldstændighed, manglende aktualitet eller forældelse af Electricity Maps App eller de oplysninger, der er afledt heraf. Det er ikke tilladt at inkludere denne webside eller nogen af dens enkelte elementer på en anden webside uden forudgående skriftligt samtykke.<br><br> Alle intellektuelle ejendomsrettigheder tilhører de retmæssige ejere og deres licensgivere. Kopiering, distribution og enhver anden brug af disse materialer, især energidataene, er ikke tilladt uden skriftlig tilladelse fra Electricity Maps, undtagen og kun i det omfang, det er fastsat i ufravigelige lovbestemmelser (såsom retten til at citere), medmindre andet er angivet for specifikke materialer. <br><br>Denne disclaimer kan opdateres fra tid til anden."
   },
   "zoneShortName": {
     "AD": {
@@ -482,7 +482,7 @@
       "zoneName": "Afghanistan"
     },
     "AG": {
-      "zoneName": "Antigua and Barbuda"
+      "zoneName": "Antigua og Barbuda"
     },
     "AI": {
       "zoneName": "Anguilla"
@@ -662,7 +662,7 @@
     },
     "CA-NL": {
       "countryName": "Canada",
-      "zoneName": "Newfoundland and Labrador"
+      "zoneName": "Newfoundland og Labrador"
     },
     "CA-NL-LB": {
       "countryName": "Canada",
@@ -1023,7 +1023,7 @@
     },
     "IN-AN": {
       "countryName": "Indien",
-      "zoneName": "Andaman and Nicobar Islands"
+      "zoneName": "Andaman og Nicobar-øerne"
     },
     "IN-AP": {
       "countryName": "Indien",
@@ -1051,7 +1051,7 @@
     },
     "IN-DN": {
       "countryName": "Indien",
-      "zoneName": "Dadra and Nagar Haveli"
+      "zoneName": "Dadra og Nagar Haveli"
     },
     "IN-GA": {
       "countryName": "Indien",
@@ -1075,7 +1075,7 @@
     },
     "IN-JK": {
       "countryName": "Indien",
-      "zoneName": "Jammu and Kashmir"
+      "zoneName": "Jammu og Kashmir"
     },
     "IN-KA": {
       "countryName": "Indien",
@@ -1569,7 +1569,7 @@
     },
     "RU-1": {
       "countryName": "Rusland",
-      "zoneName": "European Russia and Ural"
+      "zoneName": "Det europæiske Rusland og Ural"
     },
     "RU-2": {
       "countryName": "Rusland",
@@ -1611,19 +1611,19 @@
     },
     "SE-SE1": {
       "countryName": "Sverige",
-      "zoneName": "Luleå / Nord"
+      "zoneName": "Nord Sverige"
     },
     "SE-SE2": {
       "countryName": "Sverige",
-      "zoneName": "Sundsvall / Nord Central"
+      "zoneName": "Nord Central Sverige"
     },
     "SE-SE3": {
       "countryName": "Sverige",
-      "zoneName": "Stockholm / Syd Central"
+      "zoneName": "Syd Central Sverige"
     },
     "SE-SE4": {
       "countryName": "Sverige",
-      "zoneName": "Malmö / Syd"
+      "zoneName": "Syd Sverige"
     },
     "SG": {
       "zoneName": "Singapore"
