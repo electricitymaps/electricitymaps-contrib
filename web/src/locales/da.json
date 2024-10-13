@@ -39,7 +39,7 @@
     "description": "Live elektricitetsdata"
   },
   "share-button": {
-    "clipboard": "URL kopieret til udklipsholder!",
+    "clipboard": "URL kopieret til clipboard!",
     "clipboard-error": "Fejl ved kopiering af URL til clipboard",
     "share-error": "Fejl ved deling af URL"
   },
