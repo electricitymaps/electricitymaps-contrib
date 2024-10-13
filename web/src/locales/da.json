@@ -741,9 +741,6 @@
       "countryName": "Chile",
       "zoneName": "Sistema Eléctrico Nacional"
     },
-    "CL": {
-      "zoneName": "Chile"
-    },
     "CM": {
       "zoneName": "Cameroun"
     },
@@ -1740,10 +1737,6 @@
     },
     "US": {
       "zoneName": "USA"
-    },
-    "US-WY": {
-      "countryName": "USA",
-      "zoneName": "Wyoming"
     },
     "UZ": {
       "zoneName": "Usbekistan"

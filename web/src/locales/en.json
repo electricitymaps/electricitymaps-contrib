@@ -741,6 +741,9 @@
       "countryName": "Chile",
       "zoneName": "Sistema Eléctrico Nacional"
     },
+    "CL": {
+      "zoneName": "Chile"
+    },
     "CM": {
       "zoneName": "Cameroon"
     },
