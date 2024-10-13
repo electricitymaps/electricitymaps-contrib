@@ -472,35 +472,313 @@
     "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://app.electricitymaps.com/\" target=\"_blank\">Electricity Maps App</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps App, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
+    "AD": {
+      "zoneName": "Andorra"
+    },
+    "AE": {
+      "zoneName": "Forenede Arabiske Emirater"
+    },
+    "AF": {
+      "zoneName": "Afghanistan"
+    },
+    "AG": {
+      "zoneName": "Antigua and Barbuda"
+    },
+    "AI": {
+      "zoneName": "Anguilla"
+    },
     "AL": {
       "zoneName": "Albanien"
+    },
+    "AM": {
+      "zoneName": "Armenien"
+    },
+    "AO": {
+      "zoneName": "Angola"
+    },
+    "AQ": {
+      "zoneName": "Antarktis"
+    },
+    "AR": {
+      "zoneName": "Argentina"
+    },
+    "AS": {
+      "zoneName": "Amerikansk Samoa"
     },
     "AT": {
       "zoneName": "Østrig"
     },
+    "AU": {
+      "zoneName": "Australien"
+    },
+    "AU-LH": {
+      "countryName": "Australien",
+      "zoneName": "Lord Howe Island"
+    },
+    "AU-NSW": {
+      "countryName": "Australien",
+      "zoneName": "New South Wales"
+    },
+    "AU-NT": {
+      "countryName": "Australien",
+      "zoneName": "Northern Territory"
+    },
+    "AU-QLD": {
+      "countryName": "Australien",
+      "zoneName": "Queensland"
+    },
+    "AU-SA": {
+      "countryName": "Australien",
+      "zoneName": "South Australia"
+    },
+    "AU-TAS": {
+      "countryName": "Australien",
+      "zoneName": "Tasmania"
+    },
+    "AU-TAS-CBI": {
+      "countryName": "Australien",
+      "zoneName": "Cape Barren Island"
+    },
+    "AU-TAS-KI": {
+      "countryName": "Australien",
+      "zoneName": "King Island"
+    },
+    "AU-TAS-FI": {
+      "countryName": "Australien",
+      "zoneName": "Flinders Island"
+    },
+    "AU-VIC": {
+      "countryName": "Australien",
+      "zoneName": "Victoria"
+    },
+    "AU-WA": {
+      "countryName": "Australien",
+      "zoneName": "Western Australia"
+    },
+    "AU-WA-RI": {
+      "countryName": "Australien",
+      "zoneName": "Rottnest Island"
+    },
+    "AW": {
+      "zoneName": "Aruba"
+    },
     "AX": {
       "zoneName": "Åland"
+    },
+    "AZ": {
+      "zoneName": "Aserbajdsjan"
     },
     "BA": {
       "zoneName": "Bosnien-Hercegovina"
     },
+    "BB": {
+      "zoneName": "Barbados"
+    },
+    "BD": {
+      "zoneName": "Bangladesh"
+    },
     "BE": {
       "zoneName": "Belgien"
+    },
+    "BF": {
+      "zoneName": "Burkina Faso"
     },
     "BG": {
       "zoneName": "Bulgarien"
     },
+    "BH": {
+      "zoneName": "Bahrain"
+    },
+    "BI": {
+      "zoneName": "Burundi"
+    },
+    "BJ": {
+      "zoneName": "Benin"
+    },
+    "BM": {
+      "zoneName": "Bermuda"
+    },
+    "BN": {
+      "zoneName": "Brunei"
+    },
+    "BO": {
+      "zoneName": "Bolivia"
+    },
+    "BQ": {
+      "zoneName": "Bonaire, Sint Eustatius og Saba"
+    },
+    "BR": {
+      "zoneName": "Brasilien"
+    },
+    "BR-CS": {
+      "countryName": "Brasilien",
+      "zoneName": "Central Brasilien"
+    },
+    "BR-N": {
+      "countryName": "Brasilien",
+      "zoneName": "Nord Brasilien"
+    },
+    "BR-NE": {
+      "countryName": "Brasilien",
+      "zoneName": "Nordøst Brasilien"
+    },
+    "BR-S": {
+      "countryName": "Brasilien",
+      "zoneName": "Syd Brasilien"
+    },
+    "BS": {
+      "zoneName": "Bahamas"
+    },
+    "BT": {
+      "zoneName": "Bhutan"
+    },
+    "BV": {
+      "zoneName": "Bouvetøen"
+    },
+    "BW": {
+      "zoneName": "Botswana"
+    },
     "BY": {
       "zoneName": "Belarus"
     },
+    "BZ": {
+      "zoneName": "Belize"
+    },
+    "CA-AB": {
+      "countryName": "Canada",
+      "zoneName": "Alberta"
+    },
+    "CA-BC": {
+      "countryName": "Canada",
+      "zoneName": "British Columbia"
+    },
+    "CA-MB": {
+      "countryName": "Canada",
+      "zoneName": "Manitoba"
+    },
+    "CA-NB": {
+      "countryName": "Canada",
+      "zoneName": "New Brunswick"
+    },
+    "CA-NL": {
+      "countryName": "Canada",
+      "zoneName": "Newfoundland and Labrador"
+    },
+    "CA-NL-LB": {
+      "countryName": "Canada",
+      "zoneName": "Labrador"
+    },
+    "CA-NL-NF": {
+      "countryName": "Canada",
+      "zoneName": "Newfoundland"
+    },
+    "CA-NS": {
+      "countryName": "Canada",
+      "zoneName": "Nova Scotia"
+    },
+    "CA-NT": {
+      "countryName": "Canada",
+      "zoneName": "Northwest Territories"
+    },
+    "CA-NU": {
+      "countryName": "Canada",
+      "zoneName": "Nunavut"
+    },
+    "CA-ON": {
+      "countryName": "Canada",
+      "zoneName": "Ontario"
+    },
+    "CA-PE": {
+      "countryName": "Canada",
+      "zoneName": "Prince Edward Island"
+    },
+    "CA-QC": {
+      "countryName": "Canada",
+      "zoneName": "Quebec"
+    },
+    "CA-SK": {
+      "countryName": "Canada",
+      "zoneName": "Saskatchewan"
+    },
+    "CA-YT": {
+      "countryName": "Canada",
+      "zoneName": "Yukon"
+    },
+    "CC": {
+      "zoneName": "Cocosøerne"
+    },
+    "CD": {
+      "zoneName": "Den Demokratiske Republik Congo"
+    },
+    "CF": {
+      "zoneName": "Den Centralafrikanske Republik"
+    },
+    "CG": {
+      "zoneName": "Congo"
+    },
     "CH": {
       "zoneName": "Schweiz"
+    },
+    "CI": {
+      "zoneName": "Elfenbenskysten"
+    },
+    "CK": {
+      "zoneName": "Cookøerne"
+    },
+    "CL-CHP": {
+      "countryName": "Chile",
+      "zoneName": "Easter Island"
+    },
+    "CL-SEA": {
+      "countryName": "Chile",
+      "zoneName": "Sistema Eléctrico de Aysén"
+    },
+    "CL-SEM": {
+      "countryName": "Chile",
+      "zoneName": "Sistema Eléctrico de Magallanes"
+    },
+    "CL-SEN": {
+      "countryName": "Chile",
+      "zoneName": "Sistema Eléctrico Nacional"
+    },
+    "CL": {
+      "zoneName": "Chile"
+    },
+    "CM": {
+      "zoneName": "Cameroun"
+    },
+    "CN": {
+      "zoneName": "Kina"
+    },
+    "CO": {
+      "zoneName": "Colombia"
+    },
+    "CR": {
+      "zoneName": "Costa Rica"
+    },
+    "CU": {
+      "zoneName": "Cuba"
+    },
+    "CV": {
+      "zoneName": "Kap Verde"
+    },
+    "CW": {
+      "zoneName": "Curaçao"
+    },
+    "CX": {
+      "zoneName": "Juleøerne"
+    },
+    "CY": {
+      "zoneName": "Cypern"
     },
     "CZ": {
       "zoneName": "Tjekkiet"
     },
     "DE": {
       "zoneName": "Tyskland"
+    },
+    "DJ": {
+      "zoneName": "Djibouti"
     },
     "DK": {
       "zoneName": "Danmark"
@@ -513,8 +791,33 @@
       "countryName": "Danmark",
       "zoneName": "Østdanmark"
     },
+    "DK-BHM": {
+      "countryName": "Denmark",
+      "zoneName": "Bornholm"
+    },
+    "DM": {
+      "zoneName": "Dominica"
+    },
+    "DO": {
+      "zoneName": "Den Dominikanske Republik"
+    },
+    "DZ": {
+      "zoneName": "Algeriet"
+    },
+    "EC": {
+      "zoneName": "Ecuador"
+    },
     "EE": {
       "zoneName": "Estland"
+    },
+    "EG": {
+      "zoneName": "Egypten"
+    },
+    "EH": {
+      "zoneName": "Vestsahara"
+    },
+    "ER": {
+      "zoneName": "Eritrea"
     },
     "ES": {
       "zoneName": "Spanien"
@@ -523,15 +826,85 @@
       "countryName": "Spanien",
       "zoneName": "Ceuta"
     },
+    "ES-IB-FO": {
+      "countryName": "Spanien",
+      "zoneName": "Formentera"
+    },
+    "ES-IB-IZ": {
+      "countryName": "Spanien",
+      "zoneName": "Ibiza"
+    },
+    "ES-IB-MA": {
+      "countryName": "Spanien",
+      "zoneName": "Mallorca"
+    },
+    "ES-IB-ME": {
+      "countryName": "Spanien",
+      "zoneName": "Menorca"
+    },
+    "ES-CN-FVLZ": {
+      "countryName": "Spanien",
+      "zoneName": "Fuerteventura/Lanzarote"
+    },
+    "ES-CN-GC": {
+      "countryName": "Spanien",
+      "zoneName": "Gran Canaria"
+    },
+    "ES-CN-HI": {
+      "countryName": "Spanien",
+      "zoneName": "El Hierro"
+    },
+    "ES-CN-IG": {
+      "countryName": "Spanien",
+      "zoneName": "Isla de la Gomera"
+    },
+    "ES-CN-LP": {
+      "countryName": "Spanien",
+      "zoneName": "La Palma"
+    },
+    "ES-CN-TE": {
+      "countryName": "Spanien",
+      "zoneName": "Tenerife"
+    },
     "ES-ML": {
       "countryName": "Spanien",
       "zoneName": "Melilla"
     },
+    "ET": {
+      "zoneName": "Etiopien"
+    },
     "FI": {
       "zoneName": "Finland"
     },
+    "FJ": {
+      "zoneName": "Fiji"
+    },
+    "FK": {
+      "zoneName": "Falklandsøerne"
+    },
+    "FM": {
+      "zoneName": "Mikronesien"
+    },
+    "FO": {
+      "zoneName": "Færøerne"
+    },
+    "FO-MI": {
+      "countryName": "Færøerne",
+      "zoneName": "Main Islands"
+    },
+    "FO-SI": {
+      "countryName": "Færøerne",
+      "zoneName": "South Island"
+    },
     "FR": {
       "zoneName": "Frankrig"
+    },
+    "FR-COR": {
+      "countryName": "Frankrig",
+      "zoneName": "Corsica"
+    },
+    "GA": {
+      "zoneName": "Gabon"
     },
     "GB": {
       "zoneName": "Storbritannien"
@@ -539,23 +912,394 @@
     "GB-NIR": {
       "zoneName": "Nordirland"
     },
+    "GB-ORK": {
+      "countryName": "Storbritannien",
+      "zoneName": "Orkney Islands"
+    },
+    "GB-ZET": {
+      "countryName": "Storbritannien",
+      "zoneName": "Shetland Islands"
+    },
+    "GD": {
+      "zoneName": "Grenada"
+    },
+    "GE": {
+      "zoneName": "Georgien"
+    },
+    "GF": {
+      "zoneName": "Fransk Guyana"
+    },
+    "GG": {
+      "zoneName": "Guernsey"
+    },
+    "GH": {
+      "zoneName": "Ghana"
+    },
+    "GI": {
+      "zoneName": "Gibraltar"
+    },
+    "GL": {
+      "zoneName": "Grønland"
+    },
+    "GM": {
+      "zoneName": "Gambia"
+    },
+    "GN": {
+      "zoneName": "Guinea"
+    },
+    "GP": {
+      "zoneName": "Guadeloupe"
+    },
+    "GQ": {
+      "zoneName": "Ækvatorialguinea"
+    },
     "GR": {
       "zoneName": "Grækenland"
+    },
+    "GS": {
+      "zoneName": "Det sydlige Georgien og De Sydlige Sandwich-øer"
+    },
+    "GT": {
+      "zoneName": "Guatemala"
+    },
+    "GU": {
+      "zoneName": "Guam"
+    },
+    "GW": {
+      "zoneName": "Guinea-Bissau"
+    },
+    "GY": {
+      "zoneName": "Guyana"
+    },
+    "HK": {
+      "zoneName": "Hong Kong"
+    },
+    "HM": {
+      "zoneName": "Heard Island og McDonald Islands"
+    },
+    "HN": {
+      "zoneName": "Honduras"
     },
     "HR": {
       "zoneName": "Kroatien"
     },
+    "HT": {
+      "zoneName": "Haiti"
+    },
     "HU": {
       "zoneName": "Ungarn"
     },
+    "ID": {
+      "zoneName": "Indonesien"
+    },
     "IE": {
       "zoneName": "Irland"
+    },
+    "IL": {
+      "zoneName": "Israel"
+    },
+    "IM": {
+      "zoneName": "Isle of Man"
+    },
+    "IN": {
+      "zoneName": "Indien"
+    },
+    "IN-EA": {
+      "countryName": "Indien",
+      "zoneName": "Eastern India"
+    },
+    "IN-NE": {
+      "countryName": "Indien",
+      "zoneName": "North Eastern India"
+    },
+    "IN-NO": {
+      "countryName": "Indien",
+      "zoneName": "Northern India"
+    },
+    "IN-SO": {
+      "countryName": "Indien",
+      "zoneName": "Southern India"
+    },
+    "IN-WE": {
+      "countryName": "Indien",
+      "zoneName": "Western India"
+    },
+    "IN-AN": {
+      "countryName": "Indien",
+      "zoneName": "Andaman and Nicobar Islands"
+    },
+    "IN-AP": {
+      "countryName": "Indien",
+      "zoneName": "Andhra Pradesh"
+    },
+    "IN-AR": {
+      "countryName": "Indien",
+      "zoneName": "Arunachal Pradesh"
+    },
+    "IN-AS": {
+      "countryName": "Indien",
+      "zoneName": "Assam"
+    },
+    "IN-BR": {
+      "countryName": "Indien",
+      "zoneName": "Bihar"
+    },
+    "IN-CT": {
+      "countryName": "Indien",
+      "zoneName": "Chhattisgarh"
+    },
+    "IN-DL": {
+      "countryName": "Indien",
+      "zoneName": "Delhi"
+    },
+    "IN-DN": {
+      "countryName": "Indien",
+      "zoneName": "Dadra and Nagar Haveli"
+    },
+    "IN-GA": {
+      "countryName": "Indien",
+      "zoneName": "Goa"
+    },
+    "IN-GJ": {
+      "countryName": "Indien",
+      "zoneName": "Gujarat"
+    },
+    "IN-HP": {
+      "countryName": "Indien",
+      "zoneName": "Himachal Pradesh"
+    },
+    "IN-HR": {
+      "countryName": "Indien",
+      "zoneName": "Haryana"
+    },
+    "IN-JH": {
+      "countryName": "Indien",
+      "zoneName": "Jharkhand"
+    },
+    "IN-JK": {
+      "countryName": "Indien",
+      "zoneName": "Jammu and Kashmir"
+    },
+    "IN-KA": {
+      "countryName": "Indien",
+      "zoneName": "Karnataka"
+    },
+    "IN-KL": {
+      "countryName": "Indien",
+      "zoneName": "Kerala"
+    },
+    "IN-MH": {
+      "countryName": "Indien",
+      "zoneName": "Maharashtra"
+    },
+    "IN-ML": {
+      "countryName": "Indien",
+      "zoneName": "Meghalaya"
+    },
+    "IN-MN": {
+      "countryName": "Indien",
+      "zoneName": "Manipur"
+    },
+    "IN-MP": {
+      "countryName": "Indien",
+      "zoneName": "Madhya Pradesh"
+    },
+    "IN-MZ": {
+      "countryName": "Indien",
+      "zoneName": "Mizoram"
+    },
+    "IN-NL": {
+      "countryName": "Indien",
+      "zoneName": "Nagaland"
+    },
+    "IN-OR": {
+      "countryName": "Indien",
+      "zoneName": "Odisha"
+    },
+    "IN-PB": {
+      "countryName": "Indien",
+      "zoneName": "Punjab"
+    },
+    "IN-PY": {
+      "countryName": "Indien",
+      "zoneName": "Puducherry"
+    },
+    "IN-RJ": {
+      "countryName": "Indien",
+      "zoneName": "Rajasthan"
+    },
+    "IN-SK": {
+      "countryName": "Indien",
+      "zoneName": "Sikkim"
+    },
+    "IN-TN": {
+      "countryName": "Indien",
+      "zoneName": "Tamil Nadu"
+    },
+    "IN-TR": {
+      "countryName": "Indien",
+      "zoneName": "Tripura"
+    },
+    "IN-UP": {
+      "countryName": "Indien",
+      "zoneName": "Uttar Pradesh"
+    },
+    "IN-UT": {
+      "countryName": "Indien",
+      "zoneName": "Uttarakhand"
+    },
+    "IN-WB": {
+      "countryName": "Indien",
+      "zoneName": "West Bengal"
+    },
+    "IO": {
+      "zoneName": "Det Britiske Territorium i Det Indiske Ocean"
+    },
+    "IQ": {
+      "zoneName": "Irak"
+    },
+    "IQ-KUR": {
+      "countryName": "Irak",
+      "zoneName": "Kurdistan"
+    },
+    "IR": {
+      "zoneName": "Iran"
     },
     "IS": {
       "zoneName": "Island"
     },
     "IT": {
       "zoneName": "Italien"
+    },
+    "IT-CNO": {
+      "countryName": "Italien",
+      "zoneName": "Central Nord Italien"
+    },
+    "IT-CSO": {
+      "countryName": "Italien",
+      "zoneName": "Central Syd Italien"
+    },
+    "IT-NO": {
+      "countryName": "Italien",
+      "zoneName": "Nord Italien"
+    },
+    "IT-SAR": {
+      "countryName": "Italien",
+      "zoneName": "Sardinien"
+    },
+    "IT-SIC": {
+      "countryName": "Italien",
+      "zoneName": "Sicilien"
+    },
+    "IT-SO": {
+      "countryName": "Italien",
+      "zoneName": "Syd Italien"
+    },
+    "JE": {
+      "zoneName": "Jersey"
+    },
+    "JM": {
+      "zoneName": "Jamaica"
+    },
+    "JO": {
+      "zoneName": "Jordan"
+    },
+    "JP": {
+      "zoneName": "Japan"
+    },
+    "JP-CB": {
+      "countryName": "Japan",
+      "zoneName": "Chūbu"
+    },
+    "JP-CG": {
+      "countryName": "Japan",
+      "zoneName": "Chūgoku"
+    },
+    "JP-HKD": {
+      "countryName": "Japan",
+      "zoneName": "Hokkaidō"
+    },
+    "JP-HR": {
+      "countryName": "Japan",
+      "zoneName": "Hokuriku"
+    },
+    "JP-KN": {
+      "countryName": "Japan",
+      "zoneName": "Kansai"
+    },
+    "JP-KY": {
+      "countryName": "Japan",
+      "zoneName": "Kyūshū"
+    },
+    "JP-ON": {
+      "countryName": "Japan",
+      "zoneName": "Okinawa"
+    },
+    "JP-SK": {
+      "countryName": "Japan",
+      "zoneName": "Shikoku"
+    },
+    "JP-TH": {
+      "countryName": "Japan",
+      "zoneName": "Tōhoku"
+    },
+    "JP-TK": {
+      "countryName": "Japan",
+      "zoneName": "Tōkyō"
+    },
+    "KE": {
+      "zoneName": "Kenya"
+    },
+    "KG": {
+      "zoneName": "Kirgisistan"
+    },
+    "KH": {
+      "zoneName": "Cambodja"
+    },
+    "KI": {
+      "zoneName": "Kiribati"
+    },
+    "KM": {
+      "zoneName": "Comorerne"
+    },
+    "KN": {
+      "zoneName": "Saint Kitts og Nevis"
+    },
+    "KP": {
+      "zoneName": "Nordkorea"
+    },
+    "KR": {
+      "zoneName": "Sydkorea"
+    },
+    "KW": {
+      "zoneName": "Kuwait"
+    },
+    "KY": {
+      "zoneName": "Caymanøerne"
+    },
+    "KZ": {
+      "zoneName": "Kasakhstan"
+    },
+    "LA": {
+      "zoneName": "Laos"
+    },
+    "LB": {
+      "zoneName": "Libanon"
+    },
+    "LC": {
+      "zoneName": "Saint Lucia"
+    },
+    "LI": {
+      "zoneName": "Liechtenstein"
+    },
+    "LK": {
+      "zoneName": "Sri Lanka"
+    },
+    "LR": {
+      "zoneName": "Liberia"
+    },
+    "LS": {
+      "zoneName": "Lesotho"
     },
     "LT": {
       "zoneName": "Litauen"
@@ -566,17 +1310,143 @@
     "LV": {
       "zoneName": "Letland"
     },
+    "LY": {
+      "zoneName": "Libyen"
+    },
+    "MA": {
+      "zoneName": "Marokko"
+    },
+    "MC": {
+      "zoneName": "Monaco"
+    },
     "MD": {
       "zoneName": "Moldavien"
     },
     "ME": {
       "zoneName": "Montenegro"
     },
+    "MF": {
+      "countryName": "Saint Martin",
+      "zoneName": "French"
+    },
+    "MG": {
+      "zoneName": "Madagaskar"
+    },
+    "MH": {
+      "zoneName": "Marshalløerne"
+    },
     "MK": {
       "zoneName": "Nordmakedonien"
     },
+    "ML": {
+      "zoneName": "Mali"
+    },
+    "MM": {
+      "zoneName": "Myanmar"
+    },
+    "MN": {
+      "zoneName": "Mongoliet"
+    },
+    "MO": {
+      "zoneName": "Macao"
+    },
+    "MP": {
+      "zoneName": "Nordmarianerne"
+    },
+    "MQ": {
+      "zoneName": "Martinique"
+    },
+    "MR": {
+      "zoneName": "Mauretanien"
+    },
+    "MS": {
+      "zoneName": "Montserrat"
+    },
     "MT": {
       "zoneName": "Malta"
+    },
+    "MU": {
+      "zoneName": "Mauritius"
+    },
+    "MV": {
+      "zoneName": "Maldiverne"
+    },
+    "MW": {
+      "zoneName": "Malawi"
+    },
+    "MX": {
+      "zoneName": "Mexico"
+    },
+    "MX-BC": {
+      "countryName": "Mexico",
+      "zoneName": "Baja California"
+    },
+    "MX-BCS": {
+      "countryName": "Mexico",
+      "zoneName": "Baja California Sur"
+    },
+    "MX-CE": {
+      "countryName": "Mexico",
+      "zoneName": "Central"
+    },
+    "MX-NE": {
+      "countryName": "Mexico",
+      "zoneName": "North East"
+    },
+    "MX-NO": {
+      "countryName": "Mexico",
+      "zoneName": "North"
+    },
+    "MX-NW": {
+      "countryName": "Mexico",
+      "zoneName": "North West"
+    },
+    "MX-OC": {
+      "countryName": "Mexico",
+      "zoneName": "Occidental"
+    },
+    "MX-OR": {
+      "countryName": "Mexico",
+      "zoneName": "Oriental"
+    },
+    "MX-PN": {
+      "countryName": "Mexico",
+      "zoneName": "Peninsula"
+    },
+    "MY": {
+      "zoneName": "Malaysia"
+    },
+    "MY-EM": {
+      "countryName": "Malaysia",
+      "zoneName": "Østmalaysia"
+    },
+    "MY-WM": {
+      "countryName": "Malaysia",
+      "zoneName": "Vestmalaysia"
+    },
+    "MZ": {
+      "zoneName": "Mozambique"
+    },
+    "NA": {
+      "zoneName": "Namibia"
+    },
+    "NC": {
+      "zoneName": "Ny Kaledonien"
+    },
+    "NE": {
+      "zoneName": "Niger"
+    },
+    "NF": {
+      "zoneName": "Norfolk Island"
+    },
+    "NG": {
+      "zoneName": "Nigeria"
+    },
+    "NI": {
+      "zoneName": "Nicaragua"
+    },
+    "NKR": {
+      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Holland"
@@ -604,14 +1474,92 @@
       "countryName": "Norge",
       "zoneName": "Vestnorge"
     },
+    "NP": {
+      "zoneName": "Nepal"
+    },
+    "NR": {
+      "zoneName": "Nauru"
+    },
+    "NU": {
+      "zoneName": "Niue"
+    },
+    "NZ": {
+      "zoneName": "New Zealand"
+    },
+    "NZ-NZA": {
+      "countryName": "New Zealand",
+      "zoneName": "Auckland Islands"
+    },
+    "NZ-NZC": {
+      "countryName": "New Zealand",
+      "zoneName": "Chatham Islands"
+    },
+    "NZ-NZST": {
+      "countryName": "New Zealand",
+      "zoneName": "Stewart Island"
+    },
+    "OM": {
+      "zoneName": "Oman"
+    },
+    "PA": {
+      "zoneName": "Panama"
+    },
     "PE": {
       "zoneName": "Peru"
+    },
+    "PF": {
+      "zoneName": "Fransk Polynesien"
+    },
+    "PG": {
+      "zoneName": "Papua Ny Guinea"
+    },
+    "PH": {
+      "zoneName": "Filippinerne"
+    },
+    "PH-LU": {
+      "countryName": "Filippinerne",
+      "zoneName": "Luzon"
+    },
+    "PH-MI": {
+      "countryName": "Filippinerne",
+      "zoneName": "Mindanao"
+    },
+    "PH-VI": {
+      "countryName": "Filippinerne",
+      "zoneName": "Visayas"
+    },
+    "PK": {
+      "zoneName": "Pakistan"
     },
     "PL": {
       "zoneName": "Polen"
     },
+    "PM": {
+      "zoneName": "Saint Pierre og Miquelon"
+    },
+    "PN": {
+      "zoneName": "Pitcairn"
+    },
+    "PR": {
+      "zoneName": "Puerto Rico"
+    },
+    "PS": {
+      "zoneName": "Palæstina"
+    },
     "PT": {
       "zoneName": "Portugal"
+    },
+    "PW": {
+      "zoneName": "Palau"
+    },
+    "PY": {
+      "zoneName": "Paraguay"
+    },
+    "QA": {
+      "zoneName": "Qatar"
+    },
+    "RE": {
+      "zoneName": "Réunion"
     },
     "RO": {
       "zoneName": "Rumænien"
@@ -622,29 +1570,204 @@
     "RU": {
       "zoneName": "Rusland"
     },
+    "RU-1": {
+      "countryName": "Rusland",
+      "zoneName": "European Russia and Ural"
+    },
+    "RU-2": {
+      "countryName": "Rusland",
+      "zoneName": "Siberia"
+    },
+    "RU-AS": {
+      "countryName": "Rusland",
+      "zoneName": "Øst Rusland"
+    },
+    "RU-EU": {
+      "countryName": "Rusland",
+      "zoneName": "Arctic"
+    },
+    "RU-FE": {
+      "countryName": "Rusland",
+      "zoneName": "Far East"
+    },
+    "RU-KGD": {
+      "countryName": "Rusland",
+      "zoneName": "Kaliningrad"
+    },
+    "RW": {
+      "zoneName": "Rwanda"
+    },
+    "SA": {
+      "zoneName": "Saudi-Arabien"
+    },
+    "SB": {
+      "zoneName": "Salomonøerne"
+    },
+    "SC": {
+      "zoneName": "Seychellerne"
+    },
+    "SD": {
+      "zoneName": "Sudan"
+    },
     "SE": {
       "zoneName": "Sverige"
+    },
+    "SE-SE1": {
+      "countryName": "Sverige",
+      "zoneName": "Luleå / Nord"
+    },
+    "SE-SE2": {
+      "countryName": "Sverige",
+      "zoneName": "Sundsvall / Nord Central"
+    },
+    "SE-SE3": {
+      "countryName": "Sverige",
+      "zoneName": "Stockholm / Syd Central"
+    },
+    "SE-SE4": {
+      "countryName": "Sverige",
+      "zoneName": "Malmö / Syd"
     },
     "SG": {
       "zoneName": "Singapore"
     },
+    "SH": {
+      "zoneName": "Sankt Helena, Ascension og Tristan da Cunha"
+    },
     "SI": {
       "zoneName": "Slovenien"
+    },
+    "SJ": {
+      "zoneName": "Svalbard og Jan Mayen"
     },
     "SK": {
       "zoneName": "Slovakiet"
     },
+    "SL": {
+      "zoneName": "Sierra Leone"
+    },
+    "SM": {
+      "zoneName": "San Marino"
+    },
+    "SN": {
+      "zoneName": "Senegal"
+    },
+    "SO": {
+      "zoneName": "Somalia"
+    },
+    "SR": {
+      "zoneName": "Surinam"
+    },
+    "SS": {
+      "zoneName": "Sydsudan"
+    },
+    "ST": {
+      "zoneName": "São Tomé og Príncipe"
+    },
+    "SV": {
+      "zoneName": "El Salvador"
+    },
+    "SX": {
+      "countryName": "Sint Maarten",
+      "zoneName": "Dutch"
+    },
+    "SY": {
+      "zoneName": "Syrien"
+    },
+    "SZ": {
+      "zoneName": "Eswatini"
+    },
+    "TC": {
+      "zoneName": "Turks- og Caicosøerne"
+    },
+    "TD": {
+      "zoneName": "Tchad"
+    },
+    "TF": {
+      "zoneName": "De Franske Sydterritorier"
+    },
+    "TG": {
+      "zoneName": "Togo"
+    },
+    "TH": {
+      "zoneName": "Thailand"
+    },
+    "TJ": {
+      "zoneName": "Tadsjikistan"
+    },
+    "TK": {
+      "zoneName": "Tokelau"
+    },
+    "TL": {
+      "zoneName": "Østtimor"
+    },
+    "TM": {
+      "zoneName": "Turkmenistan"
+    },
+    "TN": {
+      "zoneName": "Tunesien"
+    },
+    "TO": {
+      "zoneName": "Tonga"
+    },
     "TR": {
       "zoneName": "Tyrkiet"
+    },
+    "TT": {
+      "zoneName": "Trinidad og Tobago"
+    },
+    "TV": {
+      "zoneName": "Tuvalu"
     },
     "TW": {
       "zoneName": "Taiwan"
     },
+    "TZ": {
+      "zoneName": "Tanzania"
+    },
     "UA": {
       "zoneName": "Ukraine"
     },
-    "UY": {
-      "zoneName": "Uruguay"
+    "UA-CR": {
+      "countryName": "Ukraine",
+      "zoneName": "Krim-halvøen"
+    },
+    "UG": {
+      "zoneName": "Uganda"
+    },
+    "UM": {
+      "zoneName": "USA's ydre småøer"
+    },
+    "US": {
+      "zoneName": "USA"
+    },
+    "US-WY": {
+      "countryName": "USA",
+      "zoneName": "Wyoming"
+    },
+    "UZ": {
+      "zoneName": "Usbekistan"
+    },
+    "VE": {
+      "zoneName": "Venezuela"
+    },
+    "VN": {
+      "zoneName": "Vietnam"
+    },
+    "XK": {
+      "zoneName": "Kosovo"
+    },
+    "YT": {
+      "zoneName": "Mayotte"
+    },
+    "ZA": {
+      "zoneName": "Sydafrika"
+    },
+    "ZM": {
+      "zoneName": "Zambia"
+    },
+    "ZW": {
+      "zoneName": "Zimbabwe"
     }
   }
 }
