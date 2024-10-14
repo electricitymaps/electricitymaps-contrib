@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -12,7 +13,8 @@ describe('Share Button', () => {
     });
   });
 
-  it('should display share icon for iOS', () => {
+  it('should display copy button on desktop web', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(false);
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
@@ -20,20 +22,65 @@ describe('Share Button', () => {
         </ToastProvider>
       </QueryClientProvider>
     );
-    cy.get('[data-test-id="iosShareIcon"]').should('be.visible');
+    cy.get('[data-test-id="linkIcon"]').should('be.visible');
+    cy.get('[data-test-id="iosShareIcon"]').should('not.exist');
     cy.get('[data-test-id="defaultShareIcon"]').should('not.exist');
   });
 
-  it('should display default share icon', () => {
+  it('should display share icon for iOS native app', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(true);
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showIosIcon={false} />
+          <ShareButton showIosIcon={true} hasMobileUserAgent={true} />
+        </ToastProvider>
+      </QueryClientProvider>
+    );
+    cy.get('[data-test-id="iosShareIcon"]').should('be.visible');
+    cy.get('[data-test-id="defaultShareIcon"]').should('not.exist');
+    cy.get('[data-test-id="linkIcon"]').should('not.exist');
+  });
+
+  it('should display share icon for iOS mobile web', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(false);
+    cy.mount(
+      <QueryClientProvider client={queryClient}>
+        <ToastProvider>
+          <ShareButton showIosIcon={true} hasMobileUserAgent={true} />
+        </ToastProvider>
+      </QueryClientProvider>
+    );
+    cy.get('[data-test-id="iosShareIcon"]').should('be.visible');
+    cy.get('[data-test-id="defaultShareIcon"]').should('not.exist');
+    cy.get('[data-test-id="linkIcon"]').should('not.exist');
+  });
+
+  it('should display default share icon for non-iOS native app', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(true);
+    cy.mount(
+      <QueryClientProvider client={queryClient}>
+        <ToastProvider>
+          <ShareButton showIosIcon={false} hasMobileUserAgent={true} />
         </ToastProvider>
       </QueryClientProvider>
     );
     cy.get('[data-test-id="defaultShareIcon"]').should('be.visible');
     cy.get('[data-test-id="iosShareIcon"]').should('not.exist');
+    cy.get('[data-test-id="linkIcon"]').should('not.exist');
+  });
+
+  it('should display default share icon for non-iOS mobile web', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(false);
+    cy.mount(
+      <QueryClientProvider client={queryClient}>
+        <ToastProvider>
+          <ShareButton showIosIcon={false} hasMobileUserAgent={true} />
+        </ToastProvider>
+      </QueryClientProvider>
+    );
+    cy.get('[data-test-id="defaultShareIcon"]').should('be.visible');
+    cy.get('[data-test-id="iosShareIcon"]').should('not.exist');
+    cy.get('[data-test-id="linkIcon"]').should('not.exist');
   });
 
   it('should trigger toast on click', () => {

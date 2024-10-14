@@ -1,8 +1,9 @@
+import { Capacitor } from '@capacitor/core';
 import { Share as CapShare } from '@capacitor/share';
 import { Button, ButtonProps } from 'components/Button';
 import { Toast, useToastReference } from 'components/Toast';
 import { isIos, isMobile } from 'features/weather-layers/wind-layer/util';
-import { Share, Share2 } from 'lucide-react';
+import { Link, Share, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
@@ -17,6 +18,7 @@ interface ShareButtonProps
   iconSize?: number;
   shareUrl?: string;
   showIosIcon?: boolean;
+  hasMobileUserAgent?: boolean;
 }
 const trackShareClick = trackShare(ShareType.SHARE);
 const DURATION = 3 * 1000;
@@ -25,6 +27,7 @@ export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
   shareUrl,
   showIosIcon = isIos(),
+  hasMobileUserAgent = isMobile(),
   ...restProps
 }: ShareButtonProps) {
   const { t } = useTranslation();
@@ -64,13 +67,22 @@ export function ShareButton({
   };
 
   const onClick = async () => {
-    if (isMobile() && (await CapShare.canShare())) {
+    if (hasMobileUserAgent && (await CapShare.canShare())) {
       share();
     } else {
       copyToClipboard();
     }
     trackShareClick();
   };
+
+  let shareIcon = <Link data-test-id="linkIcon" size={iconSize} />;
+  if (hasMobileUserAgent || Capacitor.isNativePlatform()) {
+    shareIcon = showIosIcon ? (
+      <Share data-test-id="iosShareIcon" size={iconSize} />
+    ) : (
+      <Share2 data-test-id="defaultShareIcon" size={iconSize} />
+    );
+  }
 
   return (
     <>
@@ -83,13 +95,7 @@ export function ShareButton({
           showIosIcon ? '' : '-translate-x-px'
         )}
         onClick={onClick}
-        icon={
-          showIosIcon ? (
-            <Share data-test-id="iosShareIcon" size={iconSize} />
-          ) : (
-            <Share2 data-test-id="defaultShareIcon" size={iconSize} />
-          )
-        }
+        icon={shareIcon}
         {...restProps}
       />
       <Toast
