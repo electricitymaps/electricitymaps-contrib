@@ -1,3 +1,4 @@
+
 import { ReactElement, useEffect, useState } from 'react';
 import { NavigationControl } from 'react-map-gl/maplibre';
 
@@ -17,6 +18,7 @@ export default function ZoomControls(): ReactElement {
     window.addEventListener('resize', updateTopMargin);
     return () => window.removeEventListener('resize', updateTopMargin);
   }, []);
+
 
   return (
     <NavigationControl
