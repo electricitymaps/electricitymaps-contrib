@@ -62,7 +62,7 @@
     },
     "view5": {
       "header": "Skift mellem elektricitets- og CO₂ udledningstilstand",
-      "text": "Skift for at veksle mellem diagrammer, der viser en zones elektricitetsoplysninger eller CO₂-udledninger. De viste værdier repræsenterer totalen for den valgte periode, og informationen er i overensstemmelse med den valgte produktions- eller forbrugstilstand."
+      "text": "Skift for at veksle mellem diagrammer, der viser en zones elektricitetsoplysninger eller CO₂-udledninger. De viste værdier repræsenterer totalen for den valgte periode, og værdierne er tilpasset produktion/forbrugstilstand."
     },
     "view6": {
       "header": "Udforsk fortiden",
