@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
+import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
 import {
   isHourlyAtom,
   selectedDatetimeIndexAtom,
@@ -23,6 +24,8 @@ export default function TimeController({ className }: { className?: string }) {
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
   const isBiggerThanMobile = useIsBiggerThanMobile();
+  const zoneId = useGetZoneFromPath();
+  const zoneTimezone = getZoneTimezone(zoneId);
 
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
@@ -97,6 +100,7 @@ export default function TimeController({ className }: { className?: string }) {
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}
           isLiveDisplay={isHourly}
+          timezone={zoneTimezone}
         />
       </div>
     </div>

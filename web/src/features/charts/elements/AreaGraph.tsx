@@ -8,6 +8,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import { TimeAverages, timeAxisMapping } from 'utils/constants';
+import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
@@ -138,6 +139,8 @@ function AreaGraph({
   const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
   const isBiggerThanMobile = useBreakpoint('sm');
+  const zoneId = useGetZoneFromPath();
+  const zoneTimezone = getZoneTimezone(zoneId);
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);
   const containerHeight = Math.max(observerHeight - X_AXIS_HEIGHT, 0);
@@ -277,6 +280,7 @@ function AreaGraph({
           scaleWidth={containerWidth}
           transform={`translate(5 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
+          timezone={zoneTimezone}
         />
         <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
         <GraphHoverLine
