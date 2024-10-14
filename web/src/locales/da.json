@@ -100,7 +100,7 @@
     "estimated": "estimeret",
     "aggregated": "sammenlagt",
     "dataIsEstimated": "Noget af dataen fra dette område er estimeret. Læs mere om hvordan vi estimerer data <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">her</a>.",
-    "exchangesAreMissing": "Der er taget højde for electricitetsudveksling i udregningerne men de er midlertidigt ikke vist. Læs mere om vores historiske aggregationer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
+    "exchangesAreMissing": "Der er taget højde for electricitetsudveksling i udregningerne, men de er midlertidigt ikke vist. Læs mere om vores historiske aggregationer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
     "estimatedTooltip": "Nyeste data for dette område er estimeret baseret på tilgængeligt data.",
     "aggregatedTooltip": "Dataen fra dette område er sammenlagt baseret på historiske timevise værdier.",
     "helpUs": "Hjælp os med at identificere problemet ved at kigge på <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> eller kontakte data udbyderen.",
