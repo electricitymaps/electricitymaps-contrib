@@ -138,7 +138,8 @@ const scalePower = (maxPower: number | undefined, isPower = false) => {
 };
 
 export const getDateTimeFormatOptions = (
-  timeAverage: TimeAverages
+  timeAverage: TimeAverages,
+  timezone?: string
 ): Intl.DateTimeFormatOptions => {
   switch (timeAverage) {
     case TimeAverages.HOURLY: {
@@ -149,6 +150,7 @@ export const getDateTimeFormatOptions = (
         hour: 'numeric',
         minute: 'numeric',
         timeZoneName: 'short',
+        timeZone: timezone,
       };
     }
     case TimeAverages.DAILY: {
@@ -177,13 +179,19 @@ export const getDateTimeFormatOptions = (
   }
 };
 
-const formatDate = (date: Date, lang: string, timeAverage: TimeAverages) => {
+const formatDate = (
+  date: Date,
+  lang: string,
+  timeAverage: TimeAverages,
+  timezone?: string
+) => {
   if (!isValidDate(date) || !timeAverage) {
     return '';
   }
-  return new Intl.DateTimeFormat(lang, getDateTimeFormatOptions(timeAverage)).format(
-    date
-  );
+  return new Intl.DateTimeFormat(
+    lang,
+    getDateTimeFormatOptions(timeAverage, timezone)
+  ).format(date);
 };
 
 const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) => {
