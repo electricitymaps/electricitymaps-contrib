@@ -162,7 +162,7 @@
     "outage": "Utilgængelig"
   },
   "estimation-card": {
-    "link": "Læs om vores estimations modeller",
+    "link": "Læs om vores estimeringsmodeller",
     "outage-details": "Se detaljer",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Dataen er estimeret",
