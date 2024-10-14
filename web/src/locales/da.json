@@ -201,7 +201,7 @@
     },
     "threshold_filtered": {
       "title": "Manglende data",
-      "pill": "Data outage",
+      "pill": "Data problemer",
       "body": "Dataudbyderen for dette område har ikke udbudt data i en længere periode. Vi holder øje med problemet og opdatere området så snart dataen overholder vores kvalitetsgrænse igen."
     },
     "outage": {
