@@ -65,7 +65,7 @@
       "text": "Skift for at veksle mellem diagrammer, der viser en zones elektricitetsoplysninger eller CO₂-udledninger. De viste værdier repræsenterer totalen for den valgte periode, og værdierne er tilpasset produktion/forbrugstilstand."
     },
     "view6": {
-      "header": "Udforsk fortiden",
+      "header": "Se historisk data",
       "text": "I nederste venstre hjørne kan du se både realtids- og historiske CO₂-udledninger og elektricitetsdata fra hele verden. Ændr de aggregerede data ved hjælp af knapperne eller gennemse tidslinjen for at se ændringerne over tid."
     },
     "view7": {
