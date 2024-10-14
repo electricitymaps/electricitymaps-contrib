@@ -12,4 +12,4 @@ fallbackZoneMixes:
     value:
       hydro: 1
 region: Asia
-timezone: null
+timezone: Asia/Baku
