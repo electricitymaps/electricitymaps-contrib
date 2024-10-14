@@ -18,6 +18,7 @@ interface ShareButtonProps
   iconSize?: number;
   shareUrl?: string;
   showIosIcon?: boolean;
+  hasMobileUserAgent?: boolean;
 }
 const trackShareClick = trackShare(ShareType.SHARE);
 const DURATION = 3 * 1000;
@@ -26,6 +27,7 @@ export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
   shareUrl,
   showIosIcon = isIos(),
+  hasMobileUserAgent = isMobile(),
   ...restProps
 }: ShareButtonProps) {
   const { t } = useTranslation();
@@ -65,7 +67,7 @@ export function ShareButton({
   };
 
   const onClick = async () => {
-    if (isMobile() && (await CapShare.canShare())) {
+    if (hasMobileUserAgent && (await CapShare.canShare())) {
       share();
     } else {
       copyToClipboard();
@@ -74,7 +76,7 @@ export function ShareButton({
   };
 
   let shareIcon = <Link data-test-id="linkIcon" size={iconSize} />;
-  if (isMobile() || Capacitor.isNativePlatform()) {
+  if (hasMobileUserAgent || Capacitor.isNativePlatform()) {
     shareIcon = showIosIcon ? (
       <Share data-test-id="iosShareIcon" size={iconSize} />
     ) : (

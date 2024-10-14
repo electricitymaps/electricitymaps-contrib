@@ -1,21 +1,20 @@
 import { Capacitor } from '@capacitor/core';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { s } from 'vite/dist/node/types.d-aGj9QkWt';
 
 import { ShareButton } from './ShareButton';
 
 const queryClient = new QueryClient();
 
-describe.skip('Share Button', () => {
+describe('Share Button', () => {
   beforeEach(() => {
     cy.intercept('/feature-flags', {
       body: { 'share-button': true },
     });
-    cy.stub(Capacitor, 'isNativePlatform').returns(true);
   });
 
   it('should display copy button on desktop web', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(false);
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
@@ -29,10 +28,11 @@ describe.skip('Share Button', () => {
   });
 
   it('should display share icon for iOS native app', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(true);
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showIosIcon={true} />
+          <ShareButton showIosIcon={true} hasMobileUserAgent={true} />
         </ToastProvider>
       </QueryClientProvider>
     );
@@ -42,10 +42,11 @@ describe.skip('Share Button', () => {
   });
 
   it('should display share icon for iOS mobile web', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(false);
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showIosIcon={true} />
+          <ShareButton showIosIcon={true} hasMobileUserAgent={true} />
         </ToastProvider>
       </QueryClientProvider>
     );
@@ -55,10 +56,11 @@ describe.skip('Share Button', () => {
   });
 
   it('should display default share icon for non-iOS native app', () => {
+    cy.stub(Capacitor, 'isNativePlatform').returns(true);
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showIosIcon={false} />
+          <ShareButton showIosIcon={false} hasMobileUserAgent={true} />
         </ToastProvider>
       </QueryClientProvider>
     );
@@ -72,7 +74,7 @@ describe.skip('Share Button', () => {
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <ShareButton showIosIcon={false} />
+          <ShareButton showIosIcon={false} hasMobileUserAgent={true} />
         </ToastProvider>
       </QueryClientProvider>
     );
@@ -96,7 +98,6 @@ describe.skip('Share Button', () => {
   });
 
   it('should close toast on click', () => {
-    s;
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
