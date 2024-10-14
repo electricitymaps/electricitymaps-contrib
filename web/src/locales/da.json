@@ -192,7 +192,7 @@
     "ESTIMATED_CONSTRUCT_BREAKDOWN": {
       "title": "Dataen er altid estimeret",
       "pill": "Ikke realtid",
-      "body": "Dataen fro dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
+      "body": "Dataen for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
     },
     "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
       "title": "Dataen er altid estimeret",
