@@ -165,7 +165,7 @@
     "link": "Læs om vores estimeringsmodeller",
     "outage-details": "Se detaljer",
     "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Dataen er estimeret",
+      "title": "Data er estimeret",
       "pill": "Estimeret",
       "body": "Dataen for dette område er estimeret ved hjælp af en kombination af interne og eksterne fremtidige udsigter for elproduktion og Time Slicer Averages. Formålet med dette er at udbyde en mere korrekt repræsentation end Time Slicer Average alene men dataen kan stadig godt være ukorrekt. Dataen vil blive opdateret så snart realtidsdata bliver tilgængeligt."
     },
