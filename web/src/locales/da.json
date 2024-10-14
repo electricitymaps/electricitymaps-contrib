@@ -417,7 +417,7 @@
   },
   "mapAreas": {
     "groupName": "Områder på kortet",
-    "noData-question": "Hvorfor er der ikke data tilgængeligt for mit område?",
+    "noData-question": "Hvorfor er der ikke data tilgængeligt for alle områder?",
     "noData-answer": "Enten fordi at at områdets dataudbyder er midlertidigt utilgængelig, ellers fordi at vi ikke har en dataudbyder for dette område. Du kan <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources\">hjælpe os med at finde dataudbydere</a>.",
     "whySmallAreas-question": "Hvorfor deler i verden ind i mindre dele og ikke bare lande?",
     "whySmallAreas-answer": "Områderne er de mindste geografiske områder vi har data for. Ved at have adgang til information på den mindste skala kan electricitetsforbrugere i forskellige områder have mere præcis information om oprindelsen af den electricitet de bruger, og det associerede klima aftryk.",
