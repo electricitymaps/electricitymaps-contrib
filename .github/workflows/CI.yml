@@ -539,7 +539,6 @@ jobs:
           restore-keys: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
       - name: Install libxml2-dev and tesseract-ocr
         run: |
-          poetry env use 3.10
           sudo apt-get update
           sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
       - name: Install Poetry dependencies
