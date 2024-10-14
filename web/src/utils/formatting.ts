@@ -194,7 +194,12 @@ const formatDate = (
   ).format(date);
 };
 
-const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) => {
+const formatDateTick = (
+  date: Date,
+  lang: string,
+  timeAggregate: TimeAverages,
+  timezone?: string
+) => {
   if (!isValidDate(date) || !timeAggregate) {
     return '';
   }
@@ -203,6 +208,7 @@ const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) =
     case TimeAverages.HOURLY: {
       return new Intl.DateTimeFormat(lang, {
         timeStyle: 'short',
+        timeZone: timezone,
       }).format(date);
     }
     // Instantiate below DateTimeFormat objects using UTC to avoid displaying

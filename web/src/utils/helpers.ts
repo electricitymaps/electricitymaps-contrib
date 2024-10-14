@@ -162,7 +162,7 @@ export function getNetExchange(
   return netExchangeValue;
 }
 
-export const getZoneTimeZone = (zoneId?: string) => {
+export const getZoneTimezone = (zoneId?: string) => {
   if (!zoneId) {
     return undefined;
   }
