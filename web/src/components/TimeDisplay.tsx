@@ -10,7 +10,7 @@ export function TimeDisplay({
   zoneId,
 }: {
   className?: string;
-  zoneId: ZoneKey;
+  zoneId?: ZoneKey;
 }) {
   const { i18n } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
