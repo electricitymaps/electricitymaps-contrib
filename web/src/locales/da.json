@@ -66,7 +66,7 @@
     },
     "view6": {
       "header": "Se historisk data",
-      "text": "I nederste venstre hjørne kan du se både realtids- og historiske CO₂-udledninger og elektricitetsdata fra hele verden. Ændr de aggregerede data ved hjælp af knapperne eller gennemse tidslinjen for at se ændringerne over tid."
+      "text": "I nederste venstre hjørne kan du ændre tidshorisonten og scrolle tilbage i gennem perioden for at se udviklingen over tid."
     },
     "view7": {
       "header": "Realtids vind- og solforhold",
@@ -99,14 +99,14 @@
     "dataIsDelayed": "Data for dette område kan være op til {{hours}} timer forsinket. Reeltidsdata kan ikke vises.",
     "estimated": "estimeret",
     "aggregated": "sammenlagt",
-    "dataIsEstimated": "Noget af dataen fra dette område er estimeret. Læs mere om hvordan vi estimerer data <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">her</a>.",
+    "dataIsEstimated": "Noget af data fra dette område er estimeret. Læs mere om hvordan vi estimerer data <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">her</a>.",
     "exchangesAreMissing": "Der er taget højde for electricitetsudveksling i udregningerne, men de er midlertidigt ikke vist. Læs mere om vores historiske aggregationer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
     "estimatedTooltip": "Nyeste data for dette område er estimeret baseret på tilgængeligt data.",
-    "aggregatedTooltip": "Dataen fra dette område er sammenlagt baseret på historiske timevise værdier.",
+    "aggregatedTooltip": "Data fra dette område er sammenlagt baseret på historiske timevise værdier.",
     "helpUs": "Hjælp os med at identificere problemet ved at kigge på <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> eller kontakte data udbyderen.",
     "noParserInfo": "Vi har endnu ingen information om dette område.<br/> Vil du hjælpe med at finde det? Du kan bidrage ved at <a href=\"{{link}}\" target=\"_blank\">tilføje områdedata</a>.",
     "aggregationDisabled": "Data er ikke tilgængelig for den valgte tidsperiode på grund af manglende detaljeret opdeling. Prøv en bredere tidsperiode.",
-    "fullyDisabled": "Dataen, vi har tilgængelige for dette område, er utilstrækkelige og vises derfor ikke. Hvis du kender til datakilder for dette område, bedes du venligst <a href=\"{{link}}\" target=\"_blank\">informere os</a>.",
+    "fullyDisabled": "Data, vi har tilgængelige for dette område, er utilstrækkelige og vises derfor ikke. Hvis du kender til datakilder for dette område, bedes du venligst <a href=\"{{link}}\" target=\"_blank\">informere os</a>.",
     "now": "Nu",
     "by-source": {
       "emissions": "CO₂-udledning",
@@ -167,7 +167,7 @@
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data er estimeret",
       "pill": "Estimeret",
-      "body": "Dataen for dette område er estimeret ved hjælp af en kombination af interne og eksterne forudsigelser for elproduktion og vejret. Formålet med dette er at udbyde en mere korrekt repræsentation, men data kan stadig godt være ukorrekt. Data vil blive opdateret så snart realtidsdata bliver tilgængeligt igen."
+      "body": "Data for dette område er estimeret ved hjælp af en kombination af interne og eksterne forudsigelser for elproduktion og vejret. Formålet med dette er at udbyde en mere korrekt repræsentation, men data kan stadig godt være ukorrekt. Data vil blive opdateret så snart realtidsdata bliver tilgængeligt igen."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data er foreløbig",
@@ -175,47 +175,47 @@
       "body": "Dataudbyderen rapporterer ikke data for denne time. De viste værdier er estimeret på baggrund af historiske målinger og vil blive opdateret når der er tilgængelig data igen. Bemærk at estimerede værdier ikke tager højde for kortsigtede ændringer i vejret."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Dataen er delvist estimeret",
+      "title": "Data er delvist estimeret",
       "pill": "Ukomplet",
       "body": "Produktions data for dette område er ufuldkommen; manglende værdier er blevet udregnet vha. en estimations model."
     },
     "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Dataen er altid estimeret",
+      "title": "Data er altid estimeret",
       "pill": "Upræcis",
       "body": "Den publicerede data for dette område indholder kun den samlede produktion. Vedvarende energikilder er estimeret vha. vejrdata, mens fossile energikilder er baseret på historisk data for hver energikilde."
     },
     "estimated_generic_method": {
-      "title": "Dataen er estimeret",
+      "title": "Data er estimeret",
       "pill": "Upræcis",
-      "body": "Den publiserede data for dette område er utilgængelig eller ufuldkommen. Dataen vist på kortet er estimeret ud fra vores bedste kunnen, men den er måske forskellig fra de reelle værdier."
+      "body": "Den publiserede data for dette område er utilgængelig eller ufuldkommen. Data vist på kortet er estimeret ud fra vores bedste kunnen, men den er måske forskellig fra de reelle værdier."
     },
     "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Dataen er altid estimeret",
+      "title": "Data er altid estimeret",
       "pill": "Ikke realtid",
-      "body": "Dataen for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
+      "body": "Data for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
     },
     "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Dataen er altid estimeret",
+      "title": "Data er altid estimeret",
       "pill": "Ikke realtid",
-      "body": "Dataen for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
+      "body": "Data for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
     },
     "threshold_filtered": {
       "title": "Manglende data",
       "pill": "Data problemer",
-      "body": "Dataudbyderen for dette område har ikke udbudt data i en længere periode. Vi holder øje med problemet og opdatere området så snart dataen overholder vores kvalitetsgrænse igen."
+      "body": "Dataudbyderen for dette område har ikke udbudt data i en længere periode. Vi holder øje med problemet og opdatere området så snart data overholder vores kvalitetsgrænse igen."
     },
     "outage": {
       "title": "Igangværende problemer",
       "pill": "Utilgængelig"
     },
     "aggregated": {
-      "title": "Dataen er sammenlagt",
+      "title": "Data er sammenlagt",
       "body": "Data består af en sammenlægning af timevise værdier."
     },
     "aggregated_estimated": {
-      "title": "Dataen er sammenlagt",
+      "title": "Data er sammenlagt",
       "pill": " {{percentage}}% estimeret",
-      "body": "Dataen består af en sammenlægning af timevise værdier. {{percentage}}% af elproduktionen er estimeret."
+      "body": "Data består af en sammenlægning af timevise værdier. {{percentage}}% af elproduktionen er estimeret."
     }
   },
   "time-controller": {
@@ -451,7 +451,7 @@
   },
   "data": {
     "groupName": "Vores data",
-    "dataOrigins-question": "Hvordan får i fat i dataen?",
+    "dataOrigins-question": "Hvordan får i fat i data?",
     "dataOrigins-answer": "Vi udregner alt vores data ud fra åben data, publiceret af electricitets operatorer, officielle agenturer, m.m.. Du kan klikke på et område og se flere detaljer om oprindelsen af denne data.",
     "dataDownload-question": "Kan jeg downloade jeres data?",
     "dataDownload-answer": "Vi publicerer data for tidligere år gratis på vores <a href=\"https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Data Portal</a>. For mere nutidig og realtidsdata kan du bruge <a href=\"https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral\">vores API</a>, som er gratis for ikke kommercielt brug og tilgængeligt mod betaling for kommercielt forbrug.",
