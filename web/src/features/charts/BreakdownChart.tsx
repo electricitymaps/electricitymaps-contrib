@@ -17,7 +17,6 @@ import {
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
-import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
