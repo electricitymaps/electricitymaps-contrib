@@ -182,7 +182,7 @@
     "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
       "title": "Dataen er altid estimeret",
       "pill": "Upræcis",
-      "body": "Den publicerede data for dette område indholder kun den samlede produktion. Vedvarende energikilder er estimeret vha. vejrdata, mens fossile energikilder er basered på historisk data for hver energikilde."
+      "body": "Den publicerede data for dette område indholder kun den samlede produktion. Vedvarende energikilder er estimeret vha. vejrdata, mens fossile energikilder er baseret på historisk data for hver energikilde."
     },
     "estimated_generic_method": {
       "title": "Dataen er estimeret",
