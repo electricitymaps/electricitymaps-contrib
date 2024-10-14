@@ -6,7 +6,7 @@ import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { metaTitleSuffix, Mode } from 'utils/constants';
+import { metaTitleSuffix } from 'utils/constants';
 import {
   isConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -50,7 +50,8 @@ export default function RankingPanel(): ReactElement {
     (zone) =>
       zone.countryName?.toLowerCase().includes(searchTerm) ||
       zone.zoneName?.toLowerCase().includes(searchTerm) ||
-      zone.zoneId.toLowerCase().includes(searchTerm)
+      zone.zoneId.toLowerCase().includes(searchTerm) ||
+      zone.fullZoneName?.toLowerCase().includes(searchTerm)
   );
 
   return (
