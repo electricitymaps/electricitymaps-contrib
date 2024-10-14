@@ -176,7 +176,7 @@
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Dataen er delvist estimeret",
-      "pill": "Inkomplet",
+      "pill": "Ukomplet",
       "body": "Produktions data for dette område er ufuldkommen; manglende værdier er blevet udregnet vha. en estimations model."
     },
     "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
