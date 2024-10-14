@@ -172,7 +172,7 @@
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Dataen er foreløbig",
       "pill": "Foreløbig",
-      "body": "Dataudbyderen rapporterer ikke data for denne time. De viste værdier er estimeret på baggrund af historiske målinger og vil blive opdateret når der tilgængelig data. Bemærk at estimerede værdier ikke tager højde for realtids vejr ændringer."
+      "body": "Dataudbyderen rapporterer ikke data for denne time. De viste værdier er estimeret på baggrund af historiske målinger og vil blive opdateret når der er tilgængelig data igen. Bemærk at estimerede værdier ikke tager højde for kortsigtede ændringer i vejret."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Dataen er delvist estimeret",
