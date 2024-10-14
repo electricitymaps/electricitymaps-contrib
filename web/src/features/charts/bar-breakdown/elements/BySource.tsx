@@ -38,12 +38,14 @@ export default function BySource({
   estimatedPercentage,
   unit,
   estimationMethod,
+  id,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   unit?: string | number;
   estimationMethod?: EstimationMethods;
+  id?: string;
 }) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -64,7 +66,9 @@ export default function BySource({
         className={`text-md relative flex flex-row justify-between font-bold ${className}`}
       >
         <div className="flex gap-1">
-          <h2>{text}</h2>
+          <a href={`#${id}`}>
+            <h2 id={id}>{text}</h2>
+          </a>
         </div>
         {hasEstimationPill && (
           <EstimationBadge

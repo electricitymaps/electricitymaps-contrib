@@ -5,7 +5,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
 import { EstimationMethods, SpatialAggregate } from 'utils/constants';
@@ -53,6 +53,19 @@ export default function ZoneDetails(): JSX.Element {
       setViewMode(SpatialAggregate.ZONE);
     }
   }, [hasSubZones, isSubZone, setViewMode]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = parseHash(location.hash);
+    const hashElement = hash ? document.querySelector(hash) : null;
+    if (!isLoading && hashElement) {
+      hashElement.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'nearest',
+      });
+    }
+  }, [location.hash, isLoading]);
 
   if (!zoneId) {
     return <Navigate to="/" replace />;
@@ -189,4 +202,11 @@ function ZoneDetailsContent({
   }
 
   return children as JSX.Element;
+}
+
+const QUERY_DELIMITER = '?';
+
+function parseHash(hash: string) {
+  const queryIndex = hash.indexOf(QUERY_DELIMITER);
+  return queryIndex > -1 ? hash.slice(0, queryIndex) : hash;
 }

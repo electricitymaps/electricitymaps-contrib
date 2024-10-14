@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { ChartIds, TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
@@ -57,6 +57,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   return (
     <RoundedCard>
       <ChartTitle
+        id={ChartIds.ELECTRICITY_PRICES_CHART}
         translationKey="country-history.electricityprices"
         unit={valueAxisLabel}
       />

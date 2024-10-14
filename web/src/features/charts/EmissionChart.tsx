@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { ChartIds, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
 
@@ -50,6 +50,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
     <RoundedCard className="pb-2">
       <ChartTitle
         translationKey="country-history.emissions"
+        id={ChartIds.EMISSION_CHART}
         badge={badge}
         unit={'CO₂eq'}
       />
