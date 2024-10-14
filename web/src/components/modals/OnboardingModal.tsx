@@ -12,7 +12,7 @@ interface ViewContentProps {
   isDangerouslySet?: boolean;
 }
 
-const BODY_STYLE = 'text-sm px-4 sm:text-base pb-4';
+const BODY_STYLE = 'text-sm px-4 sm:text-base pb-4 overflow-auto max-h-[60vh]'; // Make the body scrollable and set a max height
 
 function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewContentProps) {
   return (
