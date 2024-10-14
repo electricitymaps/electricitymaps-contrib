@@ -12,7 +12,8 @@
   "ranking-panel": {
     "title": "Climate Impact by Area",
     "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas"
+    "search": "Search areas",
+    "no-results": "No results found for this search 🌍"
   },
   "button": {
     "reddit": "Join r/electricitymaps",
