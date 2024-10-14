@@ -1,8 +1,9 @@
+import { Capacitor } from '@capacitor/core';
 import { Share as CapShare } from '@capacitor/share';
 import { Button, ButtonProps } from 'components/Button';
 import { Toast, useToastReference } from 'components/Toast';
 import { isIos, isMobile } from 'features/weather-layers/wind-layer/util';
-import { Share, Share2 } from 'lucide-react';
+import { Link, Share, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
@@ -72,6 +73,15 @@ export function ShareButton({
     trackShareClick();
   };
 
+  let shareIcon = <Link data-test-id="linkIcon" size={iconSize} />;
+  if (isMobile() || Capacitor.isNativePlatform()) {
+    shareIcon = showIosIcon ? (
+      <Share data-test-id="iosShareIcon" size={iconSize} />
+    ) : (
+      <Share2 data-test-id="defaultShareIcon" size={iconSize} />
+    );
+  }
+
   return (
     <>
       <Button
@@ -83,13 +93,7 @@ export function ShareButton({
           showIosIcon ? '' : '-translate-x-px'
         )}
         onClick={onClick}
-        icon={
-          showIosIcon ? (
-            <Share data-test-id="iosShareIcon" size={iconSize} />
-          ) : (
-            <Share2 data-test-id="defaultShareIcon" size={iconSize} />
-          )
-        }
+        icon={shareIcon}
         {...restProps}
       />
       <Toast
