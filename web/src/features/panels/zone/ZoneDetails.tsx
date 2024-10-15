@@ -5,7 +5,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useLocation, useParams } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
 import {
@@ -35,16 +35,12 @@ import ZoneHeaderTitle from './ZoneHeaderTitle';
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
   const timeAverage = useAtomValue(timeAverageAtom);
-  // const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
-  const { data, isError, isLoading } = useGetZone();
+  const { data } = useGetZone();
   const isHourly = useAtomValue(isHourlyAtom);
-  const isMobile = useIsMobile();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
-  const location = useLocation();
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -60,45 +56,16 @@ export default function ZoneDetails(): JSX.Element {
     }
   }, [hasSubZones, isSubZone, setViewMode]);
 
-  useEffect(() => {
-    const lastPath = location.pathname.split('/').at(-1);
-    if (lastPath === LeftPanelToggleOptions.EMISSIONS) {
-      setDisplayByEmissions(true);
-    } else {
-      setDisplayByEmissions(false);
-    }
-  }, [location.pathname, setDisplayByEmissions]);
-
-  useEffect(() => {
-    const hash = parseHash(location.hash);
-    const hashElement = hash ? document.querySelector(hash) : null;
-    if (!isLoading && hashElement) {
-      hashElement.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'nearest',
-      });
-    }
-  }, [location.hash, isLoading]);
-
   if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
-
-  // TODO: App-backend should not return an empty array as "data" if the zone does not
-  // exist.
-  if (Array.isArray(data)) {
     return <Navigate to="/" replace />;
   }
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
 
-  const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
-
   const selectedData = data?.zoneStates[selectedDatetimeString];
-  const { estimationMethod, estimatedPercentage } = selectedData || {};
+  const { estimationMethod } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
@@ -125,30 +92,93 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
             <DisplayByEmissionToggle />
           )}
-        <ZoneDetailsContent
-          isLoading={isLoading}
-          isError={isError}
-          zoneDataStatus={zoneDataStatus}
-        >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="link" />
-          {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
-            <AreaGraphContainer
-              datetimes={datetimes}
-              timeAverage={timeAverage}
-              displayByEmissions={displayByEmissions}
-            />
-          )}
-          <MethodologyCard />
-          <Attribution zoneId={zoneId} />
-          {isMobile ? (
-            <CommercialApiButton backgroundClasses="mt-3" />
-          ) : (
-            <div className="p-2" />
-          )}
-        </ZoneDetailsContent>
+        <ZoneDetailRoutes />
       </div>
     </>
+  );
+}
+
+export function ZoneDetailRoutes() {
+  return (
+    <Routes>
+      <Route index element={<ZoneDetailsContent />} />
+      <Route path={LeftPanelToggleOptions.ELECTRICITY} element={<ZoneDetailsContent />} />
+      <Route
+        path={LeftPanelToggleOptions.EMISSIONS}
+        element={<ZoneDetailsContent displayByEmissions />}
+      />
+    </Routes>
+  );
+}
+
+const useScrollHashIntoView = (isLoading: boolean) => {
+  const location = useLocation();
+  useEffect(() => {
+    const hash = parseHash(location.hash);
+    const hashElement = hash ? document.querySelector(hash) : null;
+    if (!isLoading && hashElement) {
+      hashElement.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'nearest',
+      });
+    }
+  }, [location.hash, isLoading]);
+};
+
+// TODO(cady): Pass displayByEmissions as prop?
+export function ZoneDetailsContent({
+  displayByEmissions = false,
+}: {
+  displayByEmissions?: boolean;
+}) {
+  const { data, isError, isLoading } = useGetZone();
+  const { zoneId } = useParams();
+  const isMobile = useIsMobile();
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const [_, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
+
+  setDisplayByEmissions(displayByEmissions);
+
+  useScrollHashIntoView(isLoading);
+
+  // TODO: App-backend should not return an empty array as "data" if the zone does not
+  // exist.
+  if (!zoneId) {
+    return <Navigate to="/" replace />;
+  }
+
+  // TODO(cady): break out a useEstimation hook?
+  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
+  const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
+  const selectedData = data?.zoneStates[selectedDatetimeString];
+  const { estimationMethod, estimatedPercentage } = selectedData || {};
+  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+
+  // TODO(cady): reconsider where ZoneDetailsContentWrapper should live
+  return (
+    <ZoneDetailsContentWrapper
+      isLoading={isLoading}
+      isError={isError}
+      zoneDataStatus={zoneDataStatus}
+    >
+      <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+      <CommercialApiButton backgroundClasses="mt-3 mb-1" type="link" />
+      {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
+        <AreaGraphContainer
+          datetimes={datetimes}
+          timeAverage={timeAverage}
+          displayByEmissions={displayByEmissions}
+        />
+      )}
+      <MethodologyCard />
+      <Attribution zoneId={zoneId} />
+      {isMobile ? (
+        <CommercialApiButton backgroundClasses="mt-3" />
+      ) : (
+        <div className="p-2" />
+      )}
+    </ZoneDetailsContentWrapper>
   );
 }
 
@@ -178,7 +208,7 @@ function getCardType({
   return 'none';
 }
 
-function ZoneDetailsContent({
+function ZoneDetailsContentWrapper({
   isLoading,
   isError,
   children,

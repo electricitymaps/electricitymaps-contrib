@@ -1,7 +1,7 @@
 import ToggleButton from 'components/ToggleButton';
 import { useAtom, useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import trackEvent from 'utils/analytics';
 import { LeftPanelToggleOptions, TrackEvent } from 'utils/constants';
 import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
@@ -11,8 +11,8 @@ export default function EmissionToggle(): ReactElement {
   const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
   const navigate = useNavigate();
   const { zoneId } = useParams();
-  const [searchParameters] = useSearchParams();
-  const location = useLocation();
+  const { search } = useLocation();
+
   // TODO: perhaps togglebutton should accept boolean values
   const options = [
     {
@@ -37,14 +37,10 @@ export default function EmissionToggle(): ReactElement {
       (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
       (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
     ) {
-      // TODO(cady): clean up
-      const splitHash = location.hash.split('?');
-      const searchParameters_ =
-        (splitHash.length > 0 && splitHash.at(1)) || searchParameters;
-      navigate(
-        `/zone/${zoneId}/${option}${searchParameters_ ? `?${searchParameters_}` : ''}`,
-        { replace: true }
-      );
+      // TODO(cady): clean up; look into using nav links instead
+      // We should be deriving atom state from url, not setting it here
+      setDisplayByEmissions(option === LeftPanelToggleOptions.ELECTRICITY ? false : true);
+      navigate(`/zone/${zoneId}/${option}${search}`, { replace: true });
     }
   };
 

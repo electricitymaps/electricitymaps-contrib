@@ -120,38 +120,16 @@ export default function LeftPanel() {
     <OuterPanel>
       <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
-        <Route path="/zone/:zoneId">
-          <Route
-            index
-            element={
-              <ValidZoneIdGuardWrapper>
-                <Suspense fallback={<LoadingSpinner />}>
-                  <ZoneDetails />
-                </Suspense>
-              </ValidZoneIdGuardWrapper>
-            }
-          />
-          <Route
-            path="electricity"
-            element={
-              <ValidZoneIdGuardWrapper>
-                <Suspense fallback={<LoadingSpinner />}>
-                  <ZoneDetails />
-                </Suspense>
-              </ValidZoneIdGuardWrapper>
-            }
-          />
-          <Route
-            path="emissions"
-            element={
-              <ValidZoneIdGuardWrapper>
-                <Suspense fallback={<LoadingSpinner />}>
-                  <ZoneDetails />
-                </Suspense>
-              </ValidZoneIdGuardWrapper>
-            }
-          />
-        </Route>
+        <Route
+          path="/zone/:zoneId/*"
+          element={
+            <ValidZoneIdGuardWrapper>
+              <Suspense fallback={<LoadingSpinner />}>
+                <ZoneDetails />
+              </Suspense>
+            </ValidZoneIdGuardWrapper>
+          }
+        />
         {/* Alternative: add /map here and have a NotFound component for anything else*/}
         <Route
           path="*"
