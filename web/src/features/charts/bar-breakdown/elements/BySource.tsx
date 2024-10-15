@@ -1,8 +1,10 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
+import { useScrollAnchorIntoView } from 'hooks/useScrollAnchorIntoView';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
@@ -38,12 +40,14 @@ export default function BySource({
   estimatedPercentage,
   unit,
   estimationMethod,
+  id,
 }: {
   className?: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   unit?: string | number;
   estimationMethod?: EstimationMethods;
+  id?: string;
 }) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);
@@ -58,13 +62,18 @@ export default function BySource({
     estimatedPercentage
   );
 
+  const reference = useRef(null);
+  useScrollAnchorIntoView(reference);
+
   return (
     <div className="flex flex-col pb-1 pt-4">
       <div
         className={`text-md relative flex flex-row justify-between font-bold ${className}`}
       >
         <div className="flex gap-1">
-          <h2>{text}</h2>
+          <h2 id={id} ref={reference}>
+            {text}
+          </h2>
         </div>
         {hasEstimationPill && (
           <EstimationBadge

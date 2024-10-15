@@ -7,7 +7,7 @@ import { useAtom } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, TimeAverages, TrackEvent } from 'utils/constants';
 import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
@@ -58,6 +58,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         translationKey="country-history.carbonintensity"
         badge={badge}
         unit={'gCO₂eq / kWh'}
+        id={Charts.CARBON_INTENSITY_CHART}
       />
       <AreaGraph
         testId="details-carbon-graph"

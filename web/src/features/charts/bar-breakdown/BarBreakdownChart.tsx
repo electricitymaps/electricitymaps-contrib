@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
+import { Charts, TrackEvent } from 'utils/constants';
 import {
   dataSourcesCollapsedBarBreakdownAtom,
   displayByEmissionsAtom,
@@ -137,6 +137,11 @@ function BarBreakdownChart({
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
         unit={graphUnit}
         estimationMethod={currentZoneDetail.estimationMethod}
+        id={
+          displayByEmissions
+            ? Charts.CARBON_EMISSIONS_BAR_BREAKDOWN
+            : Charts.ELECTRICITY_CONSUMPTION_BAR_BREAKDOWN
+        }
       />
       {!displayByEmissions && (
         <CapacityLegend>

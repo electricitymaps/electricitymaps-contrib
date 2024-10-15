@@ -3,12 +3,18 @@ import useGetZone from 'api/getZone';
 import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
-import { EstimationMethods, SpatialAggregate } from 'utils/constants';
+import {
+  Charts,
+  ChartsToPanel,
+  EstimationMethods,
+  LeftPanelToggleOptions,
+  SpatialAggregate,
+} from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isHourlyAtom,
@@ -28,6 +34,33 @@ import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
+const useScrollHashIntoView = (isLoading: boolean) => {
+  const location = useLocation();
+  const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
+
+  useEffect(() => {
+    const hash = location.hash.slice(1);
+
+    if (!hash) {
+      return;
+    }
+
+    const panel = ChartsToPanel[hash as Charts];
+
+    if (!panel) {
+      return;
+    }
+
+    if (
+      (displayByEmissions && panel === LeftPanelToggleOptions.EMISSIONS) ||
+      (!displayByEmissions && panel === LeftPanelToggleOptions.ELECTRICITY)
+    ) {
+      return;
+    }
+    setDisplayByEmissions(panel === LeftPanelToggleOptions.EMISSIONS);
+  }, [location.hash, isLoading, displayByEmissions, setDisplayByEmissions]);
+};
+
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
   const timeAverage = useAtomValue(timeAverageAtom);
@@ -39,6 +72,8 @@ export default function ZoneDetails(): JSX.Element {
   const isMobile = useIsMobile();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
+
+  useScrollHashIntoView(isLoading);
 
   useEffect(() => {
     if (hasSubZones === null) {

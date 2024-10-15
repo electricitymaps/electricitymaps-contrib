@@ -38,6 +38,32 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+export enum Charts {
+  CARBON_EMISSIONS_BAR_BREAKDOWN = 'carbon_emissions_bar_breakdown',
+  ELECTRICITY_CONSUMPTION_BAR_BREAKDOWN = 'electricity_consumption_bar_breakdown',
+  ELECTRICITY_NET_EXCHANGE_CHART = 'electricity_net_exchange_chart',
+  EMISSIONS_NET_EXCHANGE_CHART = 'emissions_net_exchange_chart',
+  CARBON_EMISSION_CHART = 'carbon_emission_chart',
+  CARBON_INTENSITY_CHART = 'carbon_intensity_chart',
+  ELECTRICITY_ORIGIN_CHART = 'electricity_origin_chart',
+  CARBON_EMISSION_ORIGIN_CHART = 'carbon_emission_origin_chart',
+  ELECTRICITY_PRICES_CHART = 'electricity_prices_chart',
+  EMISSIONS_ELECTRICITY_PRICES_CHART = 'emissions_electricity_prices_chart',
+}
+
+export const ChartsToPanel = {
+  [Charts.CARBON_EMISSIONS_BAR_BREAKDOWN]: LeftPanelToggleOptions.EMISSIONS,
+  [Charts.ELECTRICITY_CONSUMPTION_BAR_BREAKDOWN]: LeftPanelToggleOptions.ELECTRICITY,
+  [Charts.ELECTRICITY_NET_EXCHANGE_CHART]: LeftPanelToggleOptions.ELECTRICITY,
+  [Charts.EMISSIONS_NET_EXCHANGE_CHART]: LeftPanelToggleOptions.EMISSIONS,
+  [Charts.CARBON_EMISSION_CHART]: LeftPanelToggleOptions.EMISSIONS,
+  [Charts.CARBON_INTENSITY_CHART]: LeftPanelToggleOptions.ELECTRICITY,
+  [Charts.ELECTRICITY_ORIGIN_CHART]: LeftPanelToggleOptions.ELECTRICITY,
+  [Charts.CARBON_EMISSION_ORIGIN_CHART]: LeftPanelToggleOptions.EMISSIONS,
+  [Charts.ELECTRICITY_PRICES_CHART]: LeftPanelToggleOptions.ELECTRICITY,
+  [Charts.EMISSIONS_ELECTRICITY_PRICES_CHART]: LeftPanelToggleOptions.EMISSIONS,
+};
+
 export enum TrackEvent {
   DATA_SOURCES_CLICKED = 'Data Sources Clicked',
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
