@@ -31,6 +31,7 @@ ELEXON_URLS = {
     "production": "/".join((ELEXON_API_ENDPOINT, "datasets/AGPT/stream")),
     "production_fuelhh": "/".join((ELEXON_API_ENDPOINT, "datasets/FUELHH/stream")),
     "exchange": "/".join((ELEXON_API_ENDPOINT, "generation/outturn/interconnectors")),
+    "balancing": "/".join((ELEXON_API_ENDPOINT, "balancing/physical")),
 }
 ELEXON_START_DATE = datetime(
     2019, 1, 1, tzinfo=timezone.utc
@@ -110,7 +111,7 @@ EXHANGE_KEY_IS_IMPORT = {
 }
 
 
-def query_elexon(url: str, session: Session, params: dict) -> list:
+def query_elexon(url: str, session: Session, params: dict) -> list | dict:
     r: Response = session.get(url, params=params)
     if not r.ok:
         raise ParserException(
@@ -146,9 +147,40 @@ def query_production(
     production_data = query_elexon(
         ELEXON_URLS["production"], session, production_params
     )
-
-    parsed_events = parse_production(production_data, logger, "B1620")
+    if isinstance(production_data, list):
+        parsed_events = parse_production(production_data, logger, "B1620")
     return parsed_events
+
+
+def query_IM_exchange(
+    session: Session, target_datetime: datetime, logger: Logger
+) -> ExchangeList:
+    """
+    Fetches balancing mechanism data from the ELEXON API.
+    This is used to get the imbalance quantity for the GB->IM interconnector.
+    """
+    bm_unit = "MANXENR-1"
+    balancing_params = {
+        "bmUnit": bm_unit,
+        "dataset": "PN",  # Physical data
+        "from": (target_datetime - timedelta(days=2)).strftime("%Y-%m-%d"),
+        "to": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
+    }
+    balancing_data = query_elexon(ELEXON_URLS["balancing"], session, balancing_params)
+
+    exchange_list = ExchangeList(logger)
+    if isinstance(balancing_data, dict):
+        for event in balancing_data.get("data", []):
+            event_datetime = datetime.fromisoformat(
+                event["timeFrom"].replace("Z", "+00:00")
+            )
+            exchange_list.append(
+                zoneKey=ZoneKey("GB->IM"),
+                netFlow=event.get("levelFrom") * -1,
+                source=ELEXON_SOURCE,
+                datetime=event_datetime,
+            )
+    return exchange_list
 
 
 def get_event_value(event: dict[str, Any], key: str) -> float | None:
@@ -205,7 +237,7 @@ def parse_production(
                 )
         else:
             production_value = get_event_value(event, quantity_key)
-            if production_value:
+            if production_value is not None:
                 production_mix.add_value(
                     production_mode, production_value, correct_negative_with_zero=True
                 )
@@ -341,7 +373,7 @@ def query_production_fuelhh(
 
     fuelhh_data = query_elexon(ELEXON_URLS["production_fuelhh"], session, params)
 
-    return fuelhh_data
+    return fuelhh_data if isinstance(fuelhh_data, list) else []
 
 
 def query_and_merge_production_fuelhh_and_eso(
@@ -371,9 +403,8 @@ def query_exchange(
             "interconnectorName": interconnector,
             "format": "json",
         }
-        exchange_data = query_elexon(
-            ELEXON_URLS["exchange"], session, exchange_params
-        ).get("data")
+        data = query_elexon(ELEXON_URLS["exchange"], session, exchange_params)
+        exchange_data = data.get("data", []) if isinstance(data, dict) else []
 
         if EXHANGE_KEY_IS_IMPORT.get(zone_key):
             for event in exchange_data:
@@ -412,13 +443,20 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = datetime.now(tz=timezone.utc)
 
+    if target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+
     exchangeKey = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if target_datetime < ELEXON_START_DATE:
         raise ParserException(
             parser="ELEXON.py",
             message=f"Production data is not available before {ELEXON_START_DATE.date()}",
         )
-    exchange_data = query_exchange(exchangeKey, session, target_datetime, logger)
+    exchange_data = (
+        query_exchange(exchangeKey, session, target_datetime, logger)
+        if exchangeKey != "GB->IM"
+        else query_IM_exchange(session, target_datetime, logger)
+    )
 
     return exchange_data.to_list()
 

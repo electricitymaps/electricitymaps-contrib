@@ -15,6 +15,6 @@ capacity:
   oil: 39.09
   solar: 2.96
   wind: 1.8
-timezone: America/Santiago
-region: Americas
 country: CL
+region: Americas
+timezone: America/Santiago

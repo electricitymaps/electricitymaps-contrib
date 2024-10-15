@@ -1,6 +1,5 @@
 import Accordion from 'components/Accordion';
 import { HorizontalDivider } from 'components/Divider';
-import getSymbolFromCurrency from 'currency-symbol-map';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
@@ -46,7 +45,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     [filteredPriceData, granularity]
   );
 
-  if (!futurePrice) {
+  if (!futurePrice || !isFuturePrice(futurePrice)) {
     return null;
   }
 
@@ -74,16 +73,27 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
             <ul>
               {Object.entries(filteredPriceData).map(
                 ([date, price]: [string, number]) => (
-                  <li key={date}>
+                  <li
+                    key={date}
+                    className={
+                      isNow(date, granularity)
+                        ? `rounded-md bg-price-light/10 dark:bg-price-dark/10`
+                        : ''
+                    }
+                  >
                     {dateIsFirstHourOfTomorrow(new Date(date)) && (
                       <div className="flex flex-col py-1" data-test-id="tomorrow-label">
                         <HorizontalDivider />
                         <TommorowLabel date={date} t={t} i18n={i18n} />
                       </div>
                     )}
-                    <div className="flex flex-row justify-items-end gap-2">
+                    <div className="flex flex-row justify-items-end gap-2 px-1">
                       <TimeDisplay date={date} granularity={granularity} />
-                      <PriceDisplay price={price} currency={futurePrice.currency} />
+                      <PriceDisplay
+                        price={price}
+                        currency={futurePrice.currency}
+                        i18n={i18n}
+                      />
                       <div className="flex h-full w-full flex-row self-center">
                         {hasNegativePrice && (
                           <div
@@ -141,10 +151,6 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
   );
 }
 
-const isNow = (date: string, granularity: number): boolean =>
-  normalizeToGranularity(new Date(date), granularity).getTime() ==
-  normalizeToGranularity(new Date(), granularity).getTime();
-
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
     dateStyle: 'medium',
@@ -175,10 +181,28 @@ export function PriceBar({
   );
 }
 
-function PriceDisplay({ price, currency }: { price: number; currency: string }) {
+function PriceDisplay({
+  price,
+  currency,
+  i18n,
+}: {
+  price: number;
+  currency: string;
+  i18n: i18n;
+}) {
+  const priceString = Intl.NumberFormat(i18n.languages[0], {
+    style: 'currency',
+    currency: currency,
+    maximumSignificantDigits: 4,
+    currencyDisplay: 'narrowSymbol',
+  }).format(price);
   return (
-    <p className="min-w-[66px] text-nowrap text-sm font-semibold tabular-nums">
-      {`${price} ${getSymbolFromCurrency(currency)}`}
+    <p
+      className={`min-w-[66px] overflow-clip text-nowrap text-sm font-semibold tabular-nums ${
+        Number.isNaN(Number(priceString.at(-1))) ? 'text-end' : 'text-start'
+      }`}
+    >
+      {priceString}
     </p>
   );
 }
@@ -190,7 +214,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 
   if (isNow(date, granularity)) {
     return (
-      <p className="min-w-[82px] text-sm" data-test-id="now-label">
+      <p className="min-w-[82px] text-sm font-semibold" data-test-id="now-label">
         {t(`country-panel.price-chart.now`)}
       </p>
     );
@@ -263,16 +287,29 @@ const getColor = (
   date: string,
   granularity: number
 ): string => {
-  if (price === maxPrice) {
-    return 'bg-danger dark:bg-red-400';
-  } else if (price === minPrice) {
-    return 'bg-success dark:bg-emerald-500';
-  } else if (
+  if (
     normalizeToGranularity(new Date(date), granularity) <
     normalizeToGranularity(new Date(), granularity)
   ) {
-    return 'bg-[#18214F] dark:bg-[#848EC0] opacity-50';
+    return 'bg-price-light dark:bg-price-dark opacity-50';
+  } else if (price === maxPrice) {
+    return 'bg-danger dark:bg-red-400';
+  } else if (price === minPrice) {
+    return 'bg-success dark:bg-emerald-500';
   } else {
-    return 'bg-[#18214F] dark:bg-[#848EC0]';
+    return 'bg-price-light dark:bg-price-dark';
   }
+};
+
+const isNow = (date: string, granularity: number): boolean =>
+  normalizeToGranularity(new Date(date), granularity).getTime() ===
+  normalizeToGranularity(new Date(), granularity).getTime();
+
+const isFuturePrice = (FuturePriceData: FuturePriceData): boolean => {
+  const keys = Object.keys(FuturePriceData.priceData);
+  const lastKey = keys.at(-1);
+  if (!lastKey) {
+    return false;
+  }
+  return new Date(lastKey) > new Date();
 };

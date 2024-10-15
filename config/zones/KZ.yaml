@@ -3,6 +3,7 @@ bounding_box:
     - 40.08465566000011
   - - 87.82379602100013
     - 55.93455027300003
+country: KZ
 fallbackZoneMixes:
   _source: Our world in data 2019
   _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?stackMode=relative&time=earliest..latest&country=~KAZ
@@ -16,6 +17,5 @@ fallbackZoneMixes:
       solar: 0.00263474788812734
       unknown: 0.00452705822702292
       wind: 0.00449084176120673
-timezone: Asia/Almaty
 region: Asia
-country: KZ
+timezone: Asia/Almaty

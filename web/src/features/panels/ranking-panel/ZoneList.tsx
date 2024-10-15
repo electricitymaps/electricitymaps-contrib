@@ -16,6 +16,7 @@ export interface ZoneRowType {
   co2intensity?: number | null;
   countryName?: string;
   zoneName?: string;
+  fullZoneName?: string;
 }
 
 function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType) {
