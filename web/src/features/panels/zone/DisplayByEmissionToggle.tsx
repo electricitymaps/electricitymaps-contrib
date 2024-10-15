@@ -1,6 +1,7 @@
 import ToggleButton from 'components/ToggleButton';
 import { useAtom, useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
+import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import trackEvent from 'utils/analytics';
 import { LeftPanelToggleOptions, TrackEvent } from 'utils/constants';
 import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
@@ -8,7 +9,10 @@ import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 export default function EmissionToggle(): ReactElement {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
-
+  const navigate = useNavigate();
+  const { zoneId } = useParams();
+  const [searchParameters] = useSearchParams();
+  const location = useLocation();
   // TODO: perhaps togglebutton should accept boolean values
   const options = [
     {
@@ -33,7 +37,14 @@ export default function EmissionToggle(): ReactElement {
       (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
       (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
     ) {
-      setDisplayByEmissions(!displayByEmissions);
+      // TODO(cady): clean up
+      const splitHash = location.hash.split('?');
+      const searchParameters_ =
+        (splitHash.length > 0 && splitHash.at(1)) || searchParameters;
+      navigate(
+        `/zone/${zoneId}/${option}${searchParameters_ ? `?${searchParameters_}` : ''}`,
+        { replace: true }
+      );
     }
   };
 

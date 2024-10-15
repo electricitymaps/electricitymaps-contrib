@@ -3,12 +3,16 @@ import useGetZone from 'api/getZone';
 import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
-import { EstimationMethods, SpatialAggregate } from 'utils/constants';
+import {
+  EstimationMethods,
+  LeftPanelToggleOptions,
+  SpatialAggregate,
+} from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isHourlyAtom,
@@ -31,7 +35,8 @@ import ZoneHeaderTitle from './ZoneHeaderTitle';
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams();
   const timeAverage = useAtomValue(timeAverageAtom);
-  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  // const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
@@ -39,6 +44,7 @@ export default function ZoneDetails(): JSX.Element {
   const isMobile = useIsMobile();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
+  const location = useLocation();
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -54,7 +60,14 @@ export default function ZoneDetails(): JSX.Element {
     }
   }, [hasSubZones, isSubZone, setViewMode]);
 
-  const location = useLocation();
+  useEffect(() => {
+    const lastPath = location.pathname.split('/').at(-1);
+    if (lastPath === LeftPanelToggleOptions.EMISSIONS) {
+      setDisplayByEmissions(true);
+    } else {
+      setDisplayByEmissions(false);
+    }
+  }, [location.pathname, setDisplayByEmissions]);
 
   useEffect(() => {
     const hash = parseHash(location.hash);

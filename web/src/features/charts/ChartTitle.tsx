@@ -21,11 +21,9 @@ export function ChartTitle({ translationKey, unit, id, badge }: Props) {
   return (
     <div className="flex flex-col pb-0.5">
       <div className="flex items-center gap-1.5 pt-4">
-        <a href={`#${id}`}>
-          <h2 className="grow" id={id}>
-            {title}
-          </h2>
-        </a>
+        <h2 className="grow" id={id}>
+          {title}
+        </h2>
         {badge}
       </div>
       {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}

@@ -66,9 +66,7 @@ export default function BySource({
         className={`text-md relative flex flex-row justify-between font-bold ${className}`}
       >
         <div className="flex gap-1">
-          <a href={`#${id}`}>
-            <h2 id={id}>{text}</h2>
-          </a>
+          <h2 id={id}>{text}</h2>
         </div>
         {hasEstimationPill && (
           <EstimationBadge
