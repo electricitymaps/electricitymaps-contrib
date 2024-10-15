@@ -8,6 +8,9 @@ import {
   ZoneDetail,
 } from 'types';
 
+import zonesConfigJSON from '../../config/zones.json';
+import { CombinedZonesConfig } from '../../geo/types';
+
 export function useGetZoneFromPath() {
   const { zoneId } = useParams();
   const match = useMatch('/zone/:id');
@@ -158,3 +161,11 @@ export function getNetExchange(
 
   return netExchangeValue;
 }
+
+export const getZoneTimezone = (zoneId?: string) => {
+  if (!zoneId) {
+    return undefined;
+  }
+  const { zones } = zonesConfigJSON as unknown as CombinedZonesConfig;
+  return zones[zoneId]?.timezone;
+};

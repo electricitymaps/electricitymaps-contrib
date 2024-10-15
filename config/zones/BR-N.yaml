@@ -274,4 +274,4 @@ parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity
 region: Americas
-timezone: null
+timezone: America/Sao_Paulo
