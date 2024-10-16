@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement } from 'react';
 import { NavigationControl } from 'react-map-gl/maplibre';
 
 export default function ZoomControls(): ReactElement {
