@@ -15,6 +15,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 263.0
+    - datetime: '2024-10-01'
+      source: mavir.hu
+      value: 384.5
   coal:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -49,6 +52,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 3888.0
+    - datetime: '2024-10-01'
+      source: mavir.hu
+      value: 3964.8
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
