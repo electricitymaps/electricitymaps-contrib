@@ -17,7 +17,6 @@ import {
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
-import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
 import useBreakdownChartData from './hooks/useBreakdownChartData';
@@ -56,7 +55,7 @@ function BreakdownChart({
     return null;
   }
 
-  const isBreakdownGraphOverlayEnabled = isConsumption && !isHourly;
+  const isConsumptionAndAggregatedResolution = isConsumption && !isHourly;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 
@@ -86,14 +85,10 @@ function BreakdownChart({
     <RoundedCard>
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
-        badge={isBreakdownGraphOverlayEnabled ? undefined : badge}
+        badge={badge}
         unit={valueAxisLabel}
       />
       <div className="relative ">
-        {isBreakdownGraphOverlayEnabled && (
-          <DisabledMessage message={t(`country-panel.disabledBreakdownChartReason`)} />
-        )}
-
         <AreaGraph
           testId="history-mix-graph"
           data={chartData}
@@ -103,7 +98,6 @@ function BreakdownChart({
           markerHideHandler={noop}
           isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
           height="10em"
-          isDisabled={isBreakdownGraphOverlayEnabled}
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
           tooltip={BreakdownChartTooltip}
@@ -111,48 +105,47 @@ function BreakdownChart({
           {...(displayByEmissions && { formatTick: formatAxisTick })}
         />
       </div>
-      {isBreakdownGraphOverlayEnabled && (
+      {isConsumptionAndAggregatedResolution && (
         <div
           className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
-      {!isBreakdownGraphOverlayEnabled && (
-        <>
-          <ProductionSourceLegendList
-            sources={getProductionSourcesInChart(chartData)}
-            className="py-1.5"
+
+      <>
+        <ProductionSourceLegendList
+          sources={getProductionSourcesInChart(chartData)}
+          className="py-1.5"
+        />
+        <HorizontalDivider />
+        <Accordion
+          onOpen={() => {
+            trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
+              chart: displayByEmissions
+                ? 'emission-origin-chart'
+                : 'electricity-origin-chart',
+            });
+          }}
+          title={t('data-sources.title')}
+          className="text-md"
+          isCollapsed={dataSourcesCollapsedBreakdown}
+          setState={setDataSourcesCollapsedBreakdown}
+        >
+          <DataSources
+            title={t('data-sources.power')}
+            icon={<Zap size={16} />}
+            sources={powerGenerationSources}
           />
-          <HorizontalDivider />
-          <Accordion
-            onOpen={() => {
-              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-                chart: displayByEmissions
-                  ? 'emission-origin-chart'
-                  : 'electricity-origin-chart',
-              });
-            }}
-            title={t('data-sources.title')}
-            className="text-md"
-            isCollapsed={dataSourcesCollapsedBreakdown}
-            setState={setDataSourcesCollapsedBreakdown}
-          >
-            <DataSources
-              title={t('data-sources.power')}
-              icon={<Zap size={16} />}
-              sources={powerGenerationSources}
-            />
-            <DataSources
-              title={t('data-sources.emission')}
-              icon={<Factory size={16} />}
-              sources={emissionFactorSources}
-              emissionFactorSourcesToProductionSources={
-                emissionFactorSourcesToProductionSources
-              }
-            />
-          </Accordion>
-        </>
-      )}
+          <DataSources
+            title={t('data-sources.emission')}
+            icon={<Factory size={16} />}
+            sources={emissionFactorSources}
+            emissionFactorSourcesToProductionSources={
+              emissionFactorSourcesToProductionSources
+            }
+          />
+        </Accordion>
+      </>
     </RoundedCard>
   );
 }
