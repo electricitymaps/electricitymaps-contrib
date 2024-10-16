@@ -97,9 +97,6 @@
     "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
     "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
     "now": "Maintenant",
-    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
-    "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
-    "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
       "electricity-production": "Production d'électricité",
