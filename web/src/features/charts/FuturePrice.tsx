@@ -100,9 +100,9 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                             <div
                               className="flex flex-row justify-end"
                               style={{
-                                width: `calc(calc(calc(100% - 12px) * ${
+                                width: `calc(100% * ${
                                   negativePercentage / 100
-                                }) + 12px)`,
+                                } + 12px - 12px * ${negativePercentage / 100})`,
                               }}
                               data-test-id="negative-price"
                             >
@@ -123,9 +123,9 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                             <div
                               data-test-id="positive-price"
                               style={{
-                                width: `calc(calc(calc(100% - 12px) * ${
+                                width: `calc(100% * ${
                                   (100 - negativePercentage) / 100
-                                }) + 12px)`,
+                                } + 12px - 12px * ${(100 - negativePercentage) / 100})`,
                               }}
                               className="ml-auto"
                             >
