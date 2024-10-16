@@ -18,45 +18,6 @@ import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
-const style = document.createElement('style');
-style.textContent = `
-  :root {
-    --sat: env(safe-area-inset-top);
-    --sar: env(safe-area-inset-right);
-    --sab: env(safe-area-inset-bottom);
-    --sal: env(safe-area-inset-left);
-  }
-  
-  body {
-    padding: 0;
-    margin: 0;
-  }
-  
-  #root {
-    padding-top: var(--sat);
-  }
-  
-  .extend-to-top-edge {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    margin-top: calc(var(--sat) * -1);
-  }
-  
-  .content-within-safe-area {
-    position: relative;
-    z-index: 1;
-    padding: var(--sar) var(--sab) var(--sal);
-  }
-  
-  .pad-for-header {
-    padding-top: var(--sat);
-  }
-`;
-document.head.append(style);
-
 const isProduction = import.meta.env.PROD;
 
 if (isProduction) {

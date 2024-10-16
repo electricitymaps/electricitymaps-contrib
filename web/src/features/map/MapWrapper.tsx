@@ -20,13 +20,7 @@ export default function MapWrapper() {
   return (
     <>
       <MapTooltip />
-      {shouldShowFallback ? (
-        <MapFallback />
-      ) : (
-        <div className="extend-to-top-edge absolute inset-0">
-          <Map />
-        </div>
-      )}
+      {shouldShowFallback ? <MapFallback /> : <Map />}
       <MapControls />
     </>
   );
