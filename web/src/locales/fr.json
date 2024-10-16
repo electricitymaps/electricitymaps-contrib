@@ -72,21 +72,19 @@
   },
   "country-panel": {
     "source": "source",
-    "renewable": "Renouvelable",
     "carbonintensity": "Intensité carbone",
     "lowcarbon": "Bas carbone",
+    "renewable": "Renouvelable",
     "electricityproduction": "Production",
     "electricityconsumption": "Consommation",
     "emissions": "Émissions",
     "helpfrom": "avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
-    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
-    "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
     "disabledPriceReasons": {
       "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
     },
-    "now": "Maintenant",
+    "emissionFactorDataSourcesTooltip": "Les facteurs d'émission pour la production d'électricité peuvent provenir de plusieurs sources. Cela se produit lorsque plusieurs facteurs, tels que les données spécifiques à une centrale, la production et parfois les sources de secours, sont pris en compte dans les calculs des émissions.",
     "disabledBreakdownChartReason": "Désactivé pour la vue consommation. Merci de changer la vue en production pour activer le graphique d'origine de l'électricité.",
     "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
     "estimated": "estimé",
@@ -96,6 +94,9 @@
     "estimatedTooltip": "Les données en temps réel pour cette zone sont estimées sur la base des données de la source et des hypothèses du modèle.",
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données.",
+    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
+    "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
+    "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
       "electricity-production": "Production d'électricité",
