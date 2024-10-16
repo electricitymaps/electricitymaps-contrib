@@ -11,7 +11,7 @@ export function useScrollAnchorIntoView(reference: RefObject<HTMLElement | undef
       reference.current.scrollIntoView({ behavior: 'smooth' });
       clearFragment();
     }
-  }, [hash, clearFragment, reference]);
+  }, [hash, clearFragment, reference, reference.current?.id]);
 
   return;
 }

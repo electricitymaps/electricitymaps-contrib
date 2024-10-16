@@ -40,13 +40,11 @@ const useScrollHashIntoView = (isLoading: boolean) => {
 
   useEffect(() => {
     const hash = location.hash.slice(1);
-
     if (!hash) {
       return;
     }
 
     const panel = ChartsToPanel[hash as Charts];
-
     if (!panel) {
       return;
     }

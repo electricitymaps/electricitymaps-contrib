@@ -4,7 +4,7 @@ import { useScrollAnchorIntoView } from 'hooks/useScrollAnchorIntoView';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
@@ -62,7 +62,12 @@ export default function BySource({
     estimatedPercentage
   );
 
-  const reference = useRef(null);
+  const reference = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (id && reference.current) {
+      reference.current.id = id;
+    }
+  }, [reference, id]);
   useScrollAnchorIntoView(reference);
 
   return (
