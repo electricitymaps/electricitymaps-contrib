@@ -16,10 +16,10 @@
   },
   "button": {
     "reddit": "Join os på r/electricitymaps",
-    "github": "Bidrag på GitHub",
+    "github": "Tjek koden ud på GitHub",
     "twitter": "Følg os på Twitter",
     "twitter-share": "Del på Twitter",
-    "slack": "Join os på vores Slack-fællesskab",
+    "slack": "Join vores Slack-fællesskab",
     "linkedin": "Følg os på LinkedIn",
     "linkedin-share": "Del på LinkedIn",
     "facebook": "Følg os på Facebook",
@@ -39,8 +39,8 @@
     "description": "Live elektricitetsdata"
   },
   "share-button": {
-    "clipboard": "URL kopieret til clipboard!",
-    "clipboard-error": "Fejl ved kopiering af URL til clipboard",
+    "clipboard": "URL kopieret til udklipsholder!",
+    "clipboard-error": "Fejl ved kopiering af URL til udklipsholder",
     "share-error": "Fejl ved deling af URL"
   },
   "onboarding-modal": {
@@ -58,7 +58,7 @@
     },
     "view4": {
       "header": "Skift mellem forskellige tilstande",
-      "text": "Skift mellem elproduktion og forbrug, samt lande- eller zonevisninger og opdag realtidsindsigt i den globale energidynamik og træf informerede valg for en bæredygtig fremtid."
+      "text": "Skift mellem produktion og forbrug, samt lande- eller områdevisning for at se hvordan den globale energidynamik hænger sammen."
     },
     "view5": {
       "header": "Skift mellem elektricitets- og CO₂ udledningstilstand",
@@ -98,7 +98,7 @@
     "disabledBreakdownChartReason": "Deaktiveret i forbrugs-tilstand. Skift til produktions-tilstand for at se diagrammet",
     "dataIsDelayed": "Data for dette område kan være op til {{hours}} timer forsinket. Reeltidsdata kan ikke vises.",
     "estimated": "estimeret",
-    "aggregated": "sammenlagt",
+    "aggregated": "aggregeret",
     "dataIsEstimated": "Noget af data fra dette område er estimeret. Læs mere om hvordan vi estimerer data <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">her</a>.",
     "exchangesAreMissing": "Der er taget højde for electricitetsudveksling i udregningerne, men de er midlertidigt ikke vist. Læs mere om vores historiske aggregationer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
     "estimatedTooltip": "Nyeste data for dette område er estimeret baseret på tilgængeligt data.",
