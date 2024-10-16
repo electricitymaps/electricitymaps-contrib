@@ -3,7 +3,7 @@ import { HorizontalDivider } from 'components/Divider';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import trackEvent from 'utils/analytics';
@@ -13,7 +13,6 @@ import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
 import {
   calculatePriceBound,
-  calculateWidth,
   dateIsFirstHourOfTomorrow,
   filterPriceData,
   getGranularity,
@@ -46,33 +45,8 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     () => calculatePriceBound(filteredPriceData, Math.min, granularity, true),
     [filteredPriceData, granularity]
   );
-
-  const priceBarContainerReference = useRef<HTMLDivElement>(null);
-  const [positiveWidth, setPositiveWidth] = useState(0);
-  const [negativeWidth, setNegativeWidth] = useState(0);
   const hasNegativePrice = minPriceTotal < 0;
   const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const divWidth = priceBarContainerReference?.current?.getBoundingClientRect().width;
-      setPositiveWidth(calculateWidth(divWidth, negativePercentage, false));
-      setNegativeWidth(calculateWidth(divWidth, negativePercentage, true));
-    };
-
-    const observer = new ResizeObserver(handleResize);
-    const current = priceBarContainerReference.current;
-
-    if (current) {
-      observer.observe(current);
-    }
-
-    return () => {
-      if (current) {
-        observer.unobserve(current);
-      }
-    };
-  }, [priceBarContainerReference, negativePercentage, isCollapsed]);
 
   if (!futurePrice || !isFuturePrice(futurePrice)) {
     return null;
@@ -121,15 +95,14 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                           currency={futurePrice.currency}
                           i18n={i18n}
                         />
-                        <div
-                          ref={priceBarContainerReference}
-                          className="flex h-full w-full flex-row self-center"
-                        >
+                        <div className="flex h-full w-full flex-row self-center">
                           {hasNegativePrice && price < 0 && (
                             <div
                               className="flex flex-row justify-end"
                               style={{
-                                width: negativeWidth,
+                                width: `calc(calc(calc(100% - 12px) * ${
+                                  negativePercentage / 100
+                                }) + 12px)`,
                               }}
                               data-test-id="negative-price"
                             >
@@ -143,7 +116,6 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                                   date,
                                   granularity
                                 )}
-                                maxWidth={negativeWidth}
                               />
                             </div>
                           )}
@@ -151,7 +123,9 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                             <div
                               data-test-id="positive-price"
                               style={{
-                                width: positiveWidth,
+                                width: `calc(calc(calc(100% - 12px) * ${
+                                  (100 - negativePercentage) / 100
+                                }) + 12px)`,
                               }}
                               className="ml-auto"
                             >
@@ -166,7 +140,6 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                                     date,
                                     granularity
                                   )}
-                                  maxWidth={positiveWidth}
                                 />
                               )}
                             </div>
@@ -201,19 +174,18 @@ export function PriceBar({
   price,
   maxPrice,
   color,
-  maxWidth,
 }: {
   price: number;
   maxPrice: number;
   color: string;
-  maxWidth: number;
 }) {
   const nonNegativePrice = Math.abs(price);
-  const width = (nonNegativePrice / maxPrice) * (maxWidth - 12) + 12;
   return (
     <div
       className={`h-3 rounded-full ${color}`}
-      style={{ width: width }}
+      style={{
+        width: `calc(calc(${nonNegativePrice / maxPrice} * (100% - 12px)) + 12px)`,
+      }}
       data-test-id="price-bar"
     />
   );

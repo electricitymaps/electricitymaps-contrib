@@ -1,6 +1,5 @@
 import {
   calculatePriceBound,
-  calculateWidth,
   dateIsFirstHourOfTomorrow,
   filterPriceData,
   getGranularity,
@@ -86,38 +85,6 @@ describe('FuturePrice Utility Functions', () => {
     const maxPrice = 20;
     const percentage = negativeToPostivePercentage(minPrice, maxPrice);
     expect(percentage).to.equal(0);
-  });
-
-  test('calculateWidth returns 0 if width is null', () => {
-    const width = null;
-    const negativePercentage = 50;
-    const isNegative = true;
-    const result = calculateWidth(width, negativePercentage, isNegative);
-    expect(result).to.equal(0);
-  });
-
-  test('calculateWidth returns correct width for negative price', () => {
-    const width = 100;
-    const negativePercentage = 50;
-    const isNegative = true;
-    const result = calculateWidth(width, negativePercentage, isNegative);
-    expect(result).to.equal(56);
-  });
-
-  test('calculateWidth returns correct width for positive price', () => {
-    const width = 100;
-    const negativePercentage = 50;
-    const isNegative = false;
-    const result = calculateWidth(width, negativePercentage, isNegative);
-    expect(result).to.equal(56);
-  });
-
-  test('calculateWidth returns correct width for max price', () => {
-    const width = 100;
-    const negativePercentage = 0;
-    const isNegative = false;
-    const result = calculateWidth(width, negativePercentage, isNegative);
-    expect(result).to.equal(100);
   });
 
   test('priceIn5Percentile returns true if price is in top 5 percentile', () => {

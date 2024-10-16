@@ -73,22 +73,6 @@ export const negativeToPostivePercentage = (
   return Math.round(Math.abs((minPrice / (maxPrice + Math.abs(minPrice))) * 100));
 };
 
-export const calculateWidth = (
-  width: number | null | undefined,
-  negativePercentage: number,
-  isNegative: boolean
-): number => {
-  const zeroWidth = 12; // this is the width in px of the circle that is always shown
-
-  if (!width) {
-    return 0;
-  }
-  if (isNegative) {
-    return ((width - zeroWidth) * negativePercentage) / 100 + zeroWidth;
-  }
-  return ((width - zeroWidth) * (100 - negativePercentage)) / 100 + zeroWidth;
-};
-
 export const priceIn5Percentile = (
   price: number,
   maxPrice: number,

@@ -28,6 +28,7 @@ negativePriceData.priceData['2024-09-02 03:00:00+00:00'] = -0.2;
 negativePriceData.priceData['2024-09-02 13:00:00+00:00'] = -1;
 negativePriceData.priceData['2024-09-02 08:00:00+00:00'] = -0.3;
 negativePriceData.priceData['2024-09-02 09:00:00+00:00'] = 0;
+negativePriceData.priceData['2024-09-02 10:00:00+00:00'] = -0.0001;
 
 export const NegativePrices: Story = {
   args: {
