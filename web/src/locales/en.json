@@ -12,7 +12,8 @@
   "ranking-panel": {
     "title": "Climate Impact by Area",
     "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas"
+    "search": "Search areas",
+    "no-results": "No results found for this search 🌍"
   },
   "button": {
     "reddit": "Join r/electricitymaps",
@@ -100,7 +101,7 @@
     "estimated": "estimated",
     "aggregated": "aggregated",
     "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">here</a>.",
-    "exchangesAreMissing": "Exchanges are accounted for in the calculations but not currently shown. Read more about our historical aggregations <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
+    "exchangesAreMissing": "This chart does not include exchange data. Exchanges are visible in hourly views. Read more about our historical aggregations <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
     "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> or contact the data provider.",

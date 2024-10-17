@@ -2,13 +2,13 @@ import { Capacitor } from '@capacitor/core';
 import { Share as CapShare } from '@capacitor/share';
 import { Button, ButtonProps } from 'components/Button';
 import { Toast, useToastReference } from 'components/Toast';
-import { Share, Share2 } from 'lucide-react';
+import { Link, Share, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { ShareType, trackShare } from 'utils/analytics';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
-import { hasMobileUserAgent } from 'utils/helpers';
+import { hasMobileUserAgent as _hasMobileUserAgent } from 'utils/helpers';
 
 interface ShareButtonProps
   extends Omit<
@@ -18,6 +18,7 @@ interface ShareButtonProps
   iconSize?: number;
   shareUrl?: string;
   showIosIcon?: boolean;
+  hasMobileUserAgent?: boolean;
 }
 const trackShareClick = trackShare(ShareType.SHARE);
 const DURATION = 3 * 1000;
@@ -26,6 +27,7 @@ export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
   shareUrl,
   showIosIcon = defaultShouldShowIosIcon(),
+  hasMobileUserAgent = _hasMobileUserAgent(),
   ...restProps
 }: ShareButtonProps) {
   const { t } = useTranslation();
@@ -65,13 +67,22 @@ export function ShareButton({
   };
 
   const onClick = async () => {
-    if (hasMobileUserAgent() && (await CapShare.canShare())) {
+    if (hasMobileUserAgent && (await CapShare.canShare())) {
       share();
     } else {
       copyToClipboard();
     }
     trackShareClick();
   };
+
+  let shareIcon = <Link data-test-id="linkIcon" size={iconSize} />;
+  if (hasMobileUserAgent || Capacitor.isNativePlatform()) {
+    shareIcon = showIosIcon ? (
+      <Share data-test-id="iosShareIcon" size={iconSize} />
+    ) : (
+      <Share2 data-test-id="defaultShareIcon" size={iconSize} />
+    );
+  }
 
   return (
     <>
@@ -84,13 +95,7 @@ export function ShareButton({
           showIosIcon ? '' : '-translate-x-px'
         )}
         onClick={onClick}
-        icon={
-          showIosIcon ? (
-            <Share data-test-id="iosShareIcon" size={iconSize} />
-          ) : (
-            <Share2 data-test-id="defaultShareIcon" size={iconSize} />
-          )
-        }
+        icon={shareIcon}
         {...restProps}
       />
       <Toast

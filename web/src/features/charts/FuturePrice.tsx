@@ -18,6 +18,7 @@ import {
   getGranularity,
   negativeToPostivePercentage,
   normalizeToGranularity,
+  priceIn5Percentile,
 } from './futurePriceUtils';
 
 export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
@@ -44,13 +45,12 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
     () => calculatePriceBound(filteredPriceData, Math.min, granularity, true),
     [filteredPriceData, granularity]
   );
+  const hasNegativePrice = minPriceTotal < 0;
+  const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
 
   if (!futurePrice || !isFuturePrice(futurePrice)) {
     return null;
   }
-
-  const hasNegativePrice = minPriceTotal < 0;
-  const negativePercentage = negativeToPostivePercentage(minPriceTotal, maxPriceTotal);
 
   return (
     <div className="pt-2">
@@ -58,10 +58,10 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
         isCollapsed={isCollapsed}
         title={t(`country-panel.price-chart.see`)}
         expandedTitle={t(`country-panel.price-chart.hide`)}
-        className="text-success dark:text-emerald-500"
+        className="text-success dark:text-success-dark"
         expandedIcon={ChevronsUpDownIcon}
         collapsedIcon={ChevronsDownUpIcon}
-        iconClassName="text-success dark:text-emerald-500"
+        iconClassName="text-success dark:text-success-dark"
         iconSize={20}
         setState={setIsCollapsed}
         onOpen={() => trackEvent(TrackEvent.FUTURE_PRICE_EXPANDED)}
@@ -81,31 +81,33 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                         : ''
                     }
                   >
-                    {dateIsFirstHourOfTomorrow(new Date(date)) && (
-                      <div className="flex flex-col py-1" data-test-id="tomorrow-label">
-                        <HorizontalDivider />
-                        <TommorowLabel date={date} t={t} i18n={i18n} />
-                      </div>
-                    )}
-                    <div className="flex flex-row justify-items-end gap-2 px-1">
-                      <TimeDisplay date={date} granularity={granularity} />
-                      <PriceDisplay
-                        price={price}
-                        currency={futurePrice.currency}
-                        i18n={i18n}
-                      />
-                      <div className="flex h-full w-full flex-row self-center">
-                        {hasNegativePrice && (
-                          <div
-                            className="flex flex-row justify-end"
-                            style={{
-                              width: `${negativePercentage}%`,
-                            }}
-                            data-test-id="negative-price"
-                          >
-                            {price < 0 && (
+                    <div>
+                      {dateIsFirstHourOfTomorrow(new Date(date)) && (
+                        <div className="flex flex-col py-1" data-test-id="tomorrow-label">
+                          <HorizontalDivider />
+                          <TommorowLabel date={date} t={t} i18n={i18n} />
+                        </div>
+                      )}
+                      <div className="flex flex-row justify-items-end gap-2 px-1">
+                        <TimeDisplay date={date} granularity={granularity} />
+                        <PriceDisplay
+                          price={price}
+                          currency={futurePrice.currency}
+                          i18n={i18n}
+                        />
+                        <div className="flex h-full w-full flex-row self-center">
+                          {hasNegativePrice && price < 0 && (
+                            <div
+                              className="flex flex-row justify-end"
+                              style={{
+                                width: `calc(100% * ${
+                                  negativePercentage / 100
+                                } + 12px - 12px * ${negativePercentage / 100})`,
+                              }}
+                              data-test-id="negative-price"
+                            >
                               <PriceBar
-                                price={price * -1}
+                                price={price}
                                 maxPrice={-1 * minPriceTotal}
                                 color={getColor(
                                   price,
@@ -115,27 +117,32 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                                   granularity
                                 )}
                               />
-                            )}
-                          </div>
-                        )}
-                        <div
-                          style={{
-                            width: `${100 - negativePercentage}%`,
-                          }}
-                          data-test-id="positive-price"
-                        >
-                          {price > 0 && (
-                            <PriceBar
-                              price={price}
-                              maxPrice={maxPriceTotal}
-                              color={getColor(
-                                price,
-                                maxPriceFuture,
-                                minPriceFuture,
-                                date,
-                                granularity
+                            </div>
+                          )}
+                          {price >= 0 && (
+                            <div
+                              data-test-id="positive-price"
+                              style={{
+                                width: `calc(100% * ${
+                                  (100 - negativePercentage) / 100
+                                } + 12px - 12px * ${(100 - negativePercentage) / 100})`,
+                              }}
+                              className="ml-auto"
+                            >
+                              {price >= 0 && (
+                                <PriceBar
+                                  price={price}
+                                  maxPrice={maxPriceTotal}
+                                  color={getColor(
+                                    price,
+                                    maxPriceFuture,
+                                    minPriceFuture,
+                                    date,
+                                    granularity
+                                  )}
+                                />
                               )}
-                            />
+                            </div>
                           )}
                         </div>
                       </div>
@@ -172,10 +179,13 @@ export function PriceBar({
   maxPrice: number;
   color: string;
 }) {
+  const nonNegativePrice = Math.abs(price);
   return (
     <div
       className={`h-3 rounded-full ${color}`}
-      style={{ width: `${(price / maxPrice) * 100}%` }}
+      style={{
+        width: `calc(calc(${nonNegativePrice / maxPrice} * (100% - 12px)) + 12px)`,
+      }}
       data-test-id="price-bar"
     />
   );
@@ -214,7 +224,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 
   if (isNow(date, granularity)) {
     return (
-      <p className="min-w-[82px] text-sm font-semibold" data-test-id="now-label">
+      <p className={`min-w-18 pl-1 text-sm font-semibold`} data-test-id="now-label">
         {t(`country-panel.price-chart.now`)}
       </p>
     );
@@ -225,11 +235,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
     minute: '2-digit',
   }).format(datetime);
 
-  return (
-    <p className="min-w-[82px] text-nowrap text-sm tabular-nums">
-      {`${t(`country-panel.price-chart.at`)} ${formattedDate}`}
-    </p>
-  );
+  return <p className={`min-w-18 text-nowrap text-sm tabular-nums`}>{formattedDate}</p>;
 }
 
 function PriceDisclaimer() {
@@ -292,10 +298,16 @@ const getColor = (
     normalizeToGranularity(new Date(), granularity)
   ) {
     return 'bg-price-light dark:bg-price-dark opacity-50';
-  } else if (price === maxPrice) {
+  } else if (
+    priceIn5Percentile(price, maxPrice, minPrice, true) &&
+    maxPrice != minPrice
+  ) {
     return 'bg-danger dark:bg-red-400';
-  } else if (price === minPrice) {
-    return 'bg-success dark:bg-emerald-500';
+  } else if (
+    priceIn5Percentile(price, maxPrice, minPrice, false) &&
+    maxPrice != minPrice
+  ) {
+    return 'bg-success dark:bg-success-dark';
   } else {
     return 'bg-price-light dark:bg-price-dark';
   }
