@@ -6,6 +6,8 @@ import { CombinedZonesConfig } from '../../../../geo/types';
 
 const { zones, contributors } = zonesConfigJSON as unknown as CombinedZonesConfig;
 
+export const zoneExists = (zoneId: string) => Boolean(zones[zoneId]);
+
 /**
  * A helper function to check if a zone has any subZones
  * Previously this used the following code,
