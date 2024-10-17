@@ -1,15 +1,12 @@
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { ReactElement } from 'react';
 import { NavigationControl } from 'react-map-gl/maplibre';
 
 export default function ZoomControls(): ReactElement {
-  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
-  const marginTop = isConsumptionOnlyMode ? 54 : 98;
   return (
     <NavigationControl
       style={{
         marginRight: 12,
-        marginTop: marginTop,
+        marginTop: 'calc(98px + var(--sat, 0px))',
         width: '33px',
         boxShadow: '0px 1px 1px  rgb(0 0 0 / 0.1)',
         border: 0,
