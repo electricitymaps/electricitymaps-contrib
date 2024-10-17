@@ -13,12 +13,12 @@
 */
 
 import { GfsForecastResponse } from 'api/getWeatherData';
+import { hasMobileUserAgent } from 'utils/helpers';
 
 import { buildBounds, distort, WindVector } from './calc';
 import Field from './Field';
 import Grid from './Grid';
 import { MAX_WIND, windIntensityColorScale } from './scales';
-import { isMobile } from './util';
 
 const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
 const MAX_WIND_INTENSITY = MAX_WIND; // wind velocity at which particle intensity is maximum (m/s)
@@ -139,7 +139,7 @@ export class Windy {
     let particleCount = Math.round(
       bounds.width * PARTICLE_MULTIPLIER * this.zoomScaling()
     );
-    if (isMobile()) {
+    if (hasMobileUserAgent()) {
       particleCount *= PARTICLE_REDUCTION;
     }
 

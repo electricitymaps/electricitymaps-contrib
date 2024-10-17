@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import { render, renderHook, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { useAtom } from 'jotai';
@@ -6,17 +7,20 @@ import { describe, expect, test, vi } from 'vitest';
 
 import { AppStoreBanner, appStoreDismissedAtom, AppStoreURLs } from './AppStoreBanner';
 
-const mocks = vi.hoisted(() => ({
-  isMobileWeb: vi.fn(),
-  isAndroid: vi.fn(),
-  isIphone: vi.fn(),
+vi.mock('@capacitor/core', () => ({
+  Capacitor: {
+    isNativePlatform: vi.fn(),
+  },
 }));
 
-vi.mock('features/weather-layers/wind-layer/util', () => mocks);
+Object.defineProperty(navigator, 'userAgent', {
+  value: 'android',
+  configurable: true,
+});
 
 describe('AppStoreBanner', () => {
   beforeEach(() => {
-    mocks.isMobileWeb.mockReturnValue(true);
+    vi.mocked(Capacitor.isNativePlatform).mockReturnValue(false);
   });
   afterEach(() => {
     vi.restoreAllMocks();
@@ -25,8 +29,6 @@ describe('AppStoreBanner', () => {
   });
 
   test('renders when isAppBannerDismissed is undefined', () => {
-    mocks.isAndroid.mockReturnValue(true);
-
     render(<AppStoreBanner />);
 
     expect(screen.getByRole('banner')).toBeDefined();
@@ -43,8 +45,6 @@ describe('AppStoreBanner', () => {
   });
 
   test('clicking dismiss sets local storage', async () => {
-    mocks.isAndroid.mockReturnValue(true);
-
     render(<AppStoreBanner />);
 
     await userEvent.click(screen.getByTestId('dismiss-btn'));
@@ -53,8 +53,6 @@ describe('AppStoreBanner', () => {
   });
 
   test('clicking cta button sets local storage', async () => {
-    mocks.isAndroid.mockReturnValue(true);
-
     render(<AppStoreBanner />);
 
     await userEvent.click(screen.getByText('app-banner.cta'));
@@ -63,9 +61,6 @@ describe('AppStoreBanner', () => {
   });
 
   test('cta href should match on android', () => {
-    mocks.isAndroid.mockReturnValue(true);
-    mocks.isIphone.mockReturnValue(false);
-
     render(<AppStoreBanner />);
 
     const node = screen.getByText('app-banner.cta');
@@ -73,17 +68,18 @@ describe('AppStoreBanner', () => {
   });
 
   test('cta href should match on iphone', () => {
-    mocks.isAndroid.mockReturnValue(false);
-    mocks.isIphone.mockReturnValue(true);
-
+    Object.defineProperty(navigator, 'userAgent', {
+      value: 'iPhone',
+      configurable: true,
+    });
     render(<AppStoreBanner />);
 
     const node = screen.getByText('app-banner.cta');
     expect(node.getAttribute('href')).toBe(AppStoreURLs.APPLE);
   });
 
-  test('does not render if isMobileWeb is false', () => {
-    mocks.isMobileWeb.mockReturnValue(false);
+  test('does not render if on native app', () => {
+    vi.mocked(Capacitor.isNativePlatform).mockReturnValue(true);
 
     render(<AppStoreBanner />);
 
