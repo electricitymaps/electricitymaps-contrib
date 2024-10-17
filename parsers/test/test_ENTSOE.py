@@ -363,7 +363,72 @@ class TestFetchExchangeForecast(TestENTSOE):
             zone_key2=ZoneKey("SE-SE4"),
             session=self.session,
         )
-        exchange_forecast.sort(key=lambda x: x["datetime"])
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in exchange_forecast
+            ]
+        )
+
+    def test_fetch_exchange_forecast_15_min(self):
+        imports = Path(base_path_to_mock, "BE_NL_exchange_forecast_imports.xml")
+        exports = Path(base_path_to_mock, "BE_NL_exchange_forecast_exports.xml")
+
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10YBE----------2&out_Domain=10YNL----------L",
+            content=imports.read_bytes(),
+        )
+
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10YNL----------L&out_Domain=10YBE----------2",
+            content=exports.read_bytes(),
+        )
+
+        exchange_forecast = ENTSOE.fetch_exchange_forecast(
+            zone_key1=ZoneKey("BE"), zone_key2=ZoneKey("NL"), session=self.session
+        )
+
+        self.assertMatchSnapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "netFlow": element["netFlow"],
+                    "source": element["source"],
+                    "sortedZoneKeys": element["sortedZoneKeys"],
+                    "sourceType": element["sourceType"].value,
+                }
+                for element in exchange_forecast
+            ]
+        )
+
+    def test_fetch_exchange_forecast_with_longer_day_ahead_than_total(self):
+        imports = Path(base_path_to_mock, "EE_FI_exchange_forecast_imports.xml")
+        exports = Path(base_path_to_mock, "EE_FI_exchange_forecast_exports.xml")
+
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10Y1001A1001A39I&out_Domain=10YFI-1--------U",
+            content=imports.read_bytes(),
+        )
+
+        self.adapter.register_uri(
+            GET,
+            "?documentType=A09&in_Domain=10YFI-1--------U&out_Domain=10Y1001A1001A39I",
+            content=exports.read_bytes(),
+        )
+
+        exchange_forecast = ENTSOE.fetch_exchange_forecast(
+            zone_key1=ZoneKey("EE"), zone_key2=ZoneKey("FI"), session=self.session
+        )
+
         self.assertMatchSnapshot(
             [
                 {
