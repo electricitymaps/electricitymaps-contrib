@@ -7,7 +7,7 @@ import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import {
   dataSourcesCollapsedBreakdownAtom,
@@ -87,6 +87,11 @@ function BreakdownChart({
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badge={badge}
         unit={valueAxisLabel}
+        id={
+          displayByEmissions
+            ? Charts.CARBON_EMISSION_ORIGIN_CHART
+            : Charts.ELECTRICITY_ORIGIN_CHART
+        }
       />
       <div className="relative ">
         <AreaGraph

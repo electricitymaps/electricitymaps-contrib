@@ -5,9 +5,12 @@ import { useAtom } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
+import {
+  dataSourcesCollapsedEmissionAtom,
+  displayByEmissionsAtom,
+} from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DataSources } from './DataSources';
@@ -33,6 +36,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
     powerGenerationSources,
     emissionFactorSourcesToProductionSources,
   } = useZoneDataSources();
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { t } = useTranslation();
   if (isLoading || isError || !data) {
     return null;
@@ -52,6 +56,11 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         translationKey="country-history.emissions"
         badge={badge}
         unit={'CO₂eq'}
+        id={
+          displayByEmissions
+            ? Charts.CARBON_EMISSION_CHART
+            : Charts.CARBON_INTENSITY_CHART
+        }
       />
       <AreaGraph
         testId="history-emissions-graph"

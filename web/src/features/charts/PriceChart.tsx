@@ -1,5 +1,7 @@
+import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { Charts, TimeAverages } from 'utils/constants';
+import { displayByEmissionsAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
@@ -18,6 +20,7 @@ interface PriceChartProps {
 
 function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const { data, isLoading, isError } = usePriceChartData();
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { t } = useTranslation();
 
   if (isLoading || isError || !data) {
@@ -59,6 +62,11 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
       <ChartTitle
         translationKey="country-history.electricityprices"
         unit={valueAxisLabel}
+        id={
+          displayByEmissions
+            ? Charts.EMISSIONS_ELECTRICITY_PRICES_CHART
+            : Charts.ELECTRICITY_PRICES_CHART
+        }
       />
       <div className="relative">
         {isPriceDisabled && (
