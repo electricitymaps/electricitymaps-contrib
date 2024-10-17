@@ -51,6 +51,8 @@ const config = {
         'brand-green-dark': '#41866B',
         'brand-yellow': '#E9B73B',
         'brand-brown': '#702214',
+        'price-light': '#18214F',
+        'price-dark': '#848EC0',
         success: {
           DEFAULT: colors.emerald[800],
           dark: colors.emerald[500],
@@ -64,6 +66,7 @@ const config = {
           dark: colors.red[400],
         },
       },
+      minWidth: { 18: '4.5rem' },
     },
     fontFamily: {
       sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],

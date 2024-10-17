@@ -123,19 +123,25 @@ emissionFactors:
         value: 23.969777262777868
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 23.96977726277787
+        value: 23.97
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 25.90844123887724
+        value: 26.1
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 26.268594978708574
+        value: 26.41
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 24.600201139215834
+        value: 24.72
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 25.414633151379807
+        value: 25.42
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 24.92
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 27.61
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
@@ -153,19 +159,25 @@ emissionFactors:
         value: 23.969777262777868
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 23.96977726277787
+        value: 23.97
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 25.90844123887724
+        value: 26.1
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 26.268594978708574
+        value: 26.41
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 24.600201139215834
+        value: 24.72
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 25.414633151379807
+        value: 25.42
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 24.92
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 27.61
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -210,58 +222,103 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.997648400476363
+        hydro: 0.9977478626854285
         hydro discharge: 0.0
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
         unknown: 0.0
-        wind: 0.0023511678790842754
+        wind: 0.002251242010530567
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
-        battery discharge: 0.0
-        biomass: 4.254773368113501e-05
-        coal: 0.0011340599100295664
-        gas: 0.0017655077001242918
-        geothermal: 2.5265099088874638e-06
-        hydro: 0.9919186476877493
-        hydro discharge: 8.837339616647313e-06
-        nuclear: 0.0014372737694828147
-        oil: 2.8967742920864888e-05
-        solar: 2.0331870689193513e-05
-        unknown: 0.0004158994684283048
-        wind: 0.0033234876585299888
+        battery discharge: 3.26661539967867e-08
+        biomass: 4.976688561410453e-05
+        coal: 0.0011799940364669262
+        gas: 0.0017685782435400287
+        geothermal: 6.163014387393757e-06
+        hydro: 0.9916973525258167
+        hydro discharge: 9.854289789030652e-06
+        nuclear: 0.0013420072715729892
+        oil: 4.850923868522824e-05
+        solar: 2.2795531130757652e-05
+        unknown: 0.00044819596591291186
+        wind: 0.003424420145278147
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
-        biomass: 2.2436647159426915e-05
-        coal: 0.00018395119985846145
-        gas: 0.0006677114633423623
-        geothermal: 2.817966234542441e-08
-        hydro: 0.9951331863271737
-        hydro discharge: 0.0
-        nuclear: 0.000507143747298134
-        oil: 5.47249042748142e-06
-        solar: 1.1824186320140081e-05
-        unknown: 0.0001966602275762479
-        wind: 0.0033127447460034026
+        biomass: 2.651973467067292e-05
+        coal: 0.00024111149188183874
+        gas: 0.0007339356243502406
+        geothermal: 2.81048481037229e-08
+        hydro: 0.9949574281532301
+        hydro discharge: 2.6980654179573987e-06
+        nuclear: 0.00042688453784744707
+        oil: 1.3299214122681675e-05
+        solar: 1.2326786378292865e-05
+        unknown: 0.0002170649838442934
+        wind: 0.003367404859426042
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
-        battery discharge: 2.1462035839679002e-08
-        biomass: 3.711322547576491e-05
-        coal: 0.0005916761350461906
-        gas: 0.0012858281257178883
-        geothermal: 1.1535844263827463e-06
-        hydro: 0.9930386599031852
-        hydro discharge: 1.0731017919839501e-08
-        nuclear: 0.0009079460606886602
-        oil: 1.5737037779444627e-05
-        solar: 7.402256161105289e-05
-        unknown: 0.00037006451847462513
-        wind: 0.003761377380663583
+        battery discharge: 2.1454929921038295e-08
+        biomass: 3.828632244409283e-05
+        coal: 0.0005661848731512402
+        gas: 0.0013175633376484024
+        geothermal: 1.1102926234137318e-06
+        hydro: 0.9929593341059145
+        hydro discharge: 8.850158592428297e-07
+        nuclear: 0.0008220349124596218
+        oil: 1.724976365651479e-05
+        solar: 6.837686165834905e-05
+        unknown: 0.0003738092440142502
+        wind: 0.0038332504180747864
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 2.6823407945734665e-05
+        coal: 0.0009747403855057739
+        gas: 0.0016235666643423798
+        geothermal: 3.063198471153558e-08
+        hydro: 0.9927649498456897
+        hydro discharge: 5.482104197207819e-05
+        nuclear: 0.000990087009846253
+        oil: 5.108393983727084e-05
+        solar: 3.512467580256081e-06
+        unknown: 0.0003810414684883616
+        wind: 0.003128577337189546
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 1.6546118167863377e-07
+        biomass: 1.2590091733183317e-05
+        coal: 0.00042950714378651897
+        gas: 0.0006850794878023773
+        geothermal: 1.0930465941194594e-06
+        hydro: 0.99551032615658
+        hydro discharge: 0.0
+        nuclear: 0.0004176741623088955
+        oil: 1.5583434929005872e-05
+        solar: 5.5003307970139775e-05
+        unknown: 0.0002444262771409612
+        wind: 0.0026263101830577276
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 3.759637194909489e-06
+        biomass: 1.4906986778201019e-05
+        coal: 0.0013550329539537245
+        gas: 0.0034992102130650665
+        geothermal: 2.7349716067948574e-05
+        hydro: 0.9860472728988369
+        hydro discharge: 1.5686238632865974e-06
+        nuclear: 0.0018346624705000041
+        oil: 5.927880180129834e-05
+        solar: 0.00040622297982144525
+        unknown: 0.0008505432792128414
+        wind: 0.005897044071023808
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

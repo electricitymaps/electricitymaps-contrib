@@ -4,6 +4,7 @@ import { TimeAverages } from 'utils/constants';
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
+import { FuturePrice } from './FuturePrice';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -30,6 +31,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     valueAxisLabel,
     markerFill,
     priceDisabledReason,
+    futurePrice,
   } = data;
 
   const isPriceDisabled = Boolean(priceDisabledReason);
@@ -42,7 +44,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     }));
   }
 
-  if (!chartData[0]?.layerData?.price) {
+  if (!Number.isFinite(chartData[0]?.layerData?.price)) {
     return null;
   }
 
@@ -81,6 +83,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           isDisabled={isPriceDisabled}
         />
       </div>
+      <FuturePrice futurePrice={futurePrice} />
     </RoundedCard>
   );
 }

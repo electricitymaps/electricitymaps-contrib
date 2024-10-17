@@ -1,3 +1,8 @@
-timezone: Asia/Kuala_Lumpur
-region: Asia
+aggregates_displayed:
+  - yearly
+contributors:
+  - FelixDQ
 country: MY
+estimation_method: CONSTRUCT_BREAKDOWN
+region: Asia
+timezone: Asia/Kuala_Lumpur
