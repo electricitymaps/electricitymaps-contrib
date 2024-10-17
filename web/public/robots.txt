@@ -1,1 +1,3 @@
 User-agent: *
+
+Sitemap: https://app.electricitymaps.com/sitemap.xml

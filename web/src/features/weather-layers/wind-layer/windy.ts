@@ -17,11 +17,11 @@ import { GfsForecastResponse } from 'api/getWeatherData';
 import { buildBounds, distort, WindVector } from './calc';
 import Field from './Field';
 import Grid from './Grid';
-import { windIntensityColorScale } from './scales';
+import { MAX_WIND, windIntensityColorScale } from './scales';
 import { isMobile } from './util';
 
 const VELOCITY_SCALE = 1 / 50_000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
-const MAX_WIND_INTENSITY = 30; // wind velocity at which particle intensity is maximum (m/s)
+const MAX_WIND_INTENSITY = MAX_WIND; // wind velocity at which particle intensity is maximum (m/s)
 const MAX_PARTICLE_AGE = 100; // max number of frames a particle is drawn before regeneration
 const PARTICLE_LINE_WIDTH = 2; // line width of a drawn particle
 const PARTICLE_MULTIPLIER = 8; // particle count scalar (completely arbitrary--this values looks nice)
@@ -209,23 +209,43 @@ export class Windy {
     }
 
     const draw = () => {
+      // Check if offscreenCanvas and this.canvas are properly initialized
+      if (!offscreenCanvas || !this.canvas) {
+        console.error('Canvas not initialized');
+        return;
+      }
+
       // Clear the offscreen canvas
       offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
 
       // Draw existing content with reduced alpha
       offscreenContext.globalAlpha = 0.97; // Adjust this value to control the fade speed
-      offscreenContext.drawImage(this.canvas, 0, 0);
+      try {
+        offscreenContext.drawImage(this.canvas, 0, 0);
+      } catch (error) {
+        console.error('Error drawing main canvas onto offscreen:', error);
+        return;
+      }
 
       // Reset for drawing new particles
       offscreenContext.globalAlpha = 1;
 
       // Draw new particle trails on the offscreen canvas
-      for (const bucket of buckets) {
-        if (bucket.length > 0) {
+      for (const [index, bucket] of buckets.entries()) {
+        if (bucket && bucket.length > 0) {
           offscreenContext.beginPath();
-          offscreenContext.strokeStyle = colorStyles[buckets.indexOf(bucket)];
-          offscreenContext.lineWidth = 1 + 0.25 * buckets.indexOf(bucket);
+          offscreenContext.strokeStyle = colorStyles[index] || 'white'; // Fallback color
+          offscreenContext.lineWidth = 1 + 0.25 * index;
           for (const particle of bucket) {
+            if (
+              Number.isNaN(particle.x) ||
+              Number.isNaN(particle.y) ||
+              Number.isNaN(particle.xt) ||
+              Number.isNaN(particle.yt)
+            ) {
+              console.warn('Invalid particle coordinates:', particle);
+              continue;
+            }
             offscreenContext.moveTo(particle.x, particle.y);
             offscreenContext.lineTo(particle.xt, particle.yt);
             particle.x = particle.xt;
@@ -237,7 +257,11 @@ export class Windy {
 
       // Copy the offscreen canvas to the visible canvas
       renderContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      renderContext.drawImage(offscreenCanvas, 0, 0);
+      try {
+        renderContext.drawImage(offscreenCanvas, 0, 0);
+      } catch (error) {
+        console.error('Error drawing offscreen canvas onto main canvas:', error);
+      }
     };
 
     const frame = () => {

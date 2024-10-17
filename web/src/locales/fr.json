@@ -72,12 +72,31 @@
   },
   "country-panel": {
     "source": "source",
-    "renewable": "Renouvelable",
     "carbonintensity": "Intensité carbone",
     "lowcarbon": "Bas carbone",
+    "renewable": "Renouvelable",
     "electricityproduction": "Production",
     "electricityconsumption": "Consommation",
     "emissions": "Émissions",
+    "helpfrom": "avec l’aide de",
+    "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
+    "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
+    "disabledPriceReasons": {
+      "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
+    },
+    "emissionFactorDataSourcesTooltip": "Les facteurs d'émission pour la production d'électricité peuvent provenir de plusieurs sources. Cela se produit lorsque plusieurs facteurs, tels que les données spécifiques à une centrale, la production et parfois les sources de secours, sont pris en compte dans les calculs des émissions.",
+    "disabledBreakdownChartReason": "Désactivé pour la vue consommation. Merci de changer la vue en production pour activer le graphique d'origine de l'électricité.",
+    "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
+    "estimated": "estimé",
+    "aggregated": "aggrégé",
+    "dataIsEstimated": "Certaines données de cette région sont estimées. En savoir plus sur notre méthodologie d'estimation <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
+    "exchangesAreMissing": "Les échanges sont pris en compte dans les calculs mais ne sont pas indiqués actuellement. En savoir plus sur notre agrégation historique  <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
+    "estimatedTooltip": "Les données en temps réel pour cette zone sont estimées sur la base des données de la source et des hypothèses du modèle.",
+    "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
+    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données.",
+    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
+    "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
+    "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
       "electricity-production": "Production d'électricité",
@@ -94,24 +113,16 @@
       "stored": "Stockée",
       "produced": "Produite"
     },
-    "helpfrom": "avec l’aide de",
-    "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
-    "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
-    "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"{{link}}\" target=\"_blank\">ajoutant des données de zone</a>.",
-    "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
-    "disabledPriceReasons": {
-      "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
-    },
-    "now": "Maintenant",
-    "disabledBreakdownChartReason": "Désactivé pour la vue consommation. Merci de changer la vue en production pour activer le graphique d'origine de l'électricité.",
-    "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
-    "estimated": "estimé",
-    "aggregated": "aggrégé",
-    "dataIsEstimated": "Certaines données de cette région sont estimées. En savoir plus sur notre méthodologie d'estimation <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
-    "exchangesAreMissing": "Les échanges sont pris en compte dans les calculs mais ne sont pas indiqués actuellement. En savoir plus sur notre agrégation historique  <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">ici</a>.",
-    "estimatedTooltip": "Les données en temps réel pour cette zone sont estimées sur la base des données de la source et des hypothèses du modèle.",
-    "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
-    "helpUs": "Aidez-nous à identifier le problème en consultant les <a href=\"{{link}}\" target=\"_blank\">journaux d'exécution</a> ou contactez le fournisseur de données."
+    "price-chart": {
+      "see": "Afficher les prix à venir",
+      "hide": "Masquer les prix à venir",
+      "today": "Aujourd'hui",
+      "tomorrow": "Demain",
+      "price-disclaimer": "Les prix excluent les taxes et les éventuels frais de réseau.",
+      "time-disclaimer": "Tous les horaires indiqués sont en",
+      "at": "A",
+      "now": "Maintenant"
+    }
   },
   "feedback-card": {
     "agree": "D'accord",
@@ -347,7 +358,6 @@
     "system": "Système"
   },
   "updatePrompt": {
-    "title": "Mise à jour disponible",
     "description": "Une nouvelle version de l'application est disponible, mettre à jour maintenant ?",
     "update": "Mettre à jour",
     "dismiss": "Ignorer"
@@ -1389,6 +1399,9 @@
     "MX-PN": {
       "countryName": "Mexique",
       "zoneName": "Péninsule"
+    },
+    "MY": {
+      "zoneName": "Malaisie"
     },
     "MY-EM": {
       "countryName": "Malaisie",

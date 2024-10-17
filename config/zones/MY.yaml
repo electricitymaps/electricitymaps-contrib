@@ -1,0 +1,8 @@
+country: MY
+disclaimer: This zone is partially using fully estimated data from MY-EM
+estimation_method: CONSTRUCT_BREAKDOWN
+region: Asia
+subZoneNames:
+  - MY-WM
+  - MY-EM
+timezone: Asia/Kuala_Lumpur

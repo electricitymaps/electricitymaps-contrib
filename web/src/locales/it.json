@@ -130,7 +130,6 @@
     "zone": "zona"
   },
   "updatePrompt": {
-    "title": "Aggiornamento disponibile",
     "description": "Una nuova versione dell'app è disponibile, aggiornare ora?",
     "update": "Aggiorna",
     "dismiss": "Ignora"
@@ -1122,6 +1121,9 @@
     "MX-PN": {
       "countryName": "Messico",
       "zoneName": "Penisola"
+    },
+    "MY": {
+      "zoneName": "Malesia"
     },
     "MY-EM": {
       "countryName": "Malesia",

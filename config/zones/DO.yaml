@@ -15,6 +15,7 @@ contributors:
   - systemcatch
   - nessie2013
   - alixunderplatz
+country: DO
 emissionFactors:
   direct:
     battery discharge:
@@ -53,35 +54,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 501.48778269197436
+        value: 501.49
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 510.06702078555355
+        value: 510.07
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 539.1447573796767
+        value: 539.14
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 579.4674295058629
+        value: 579.47
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 543.3047882482156
+        value: 543.3
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 545.14
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 579.89
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 501.48778269197436
+        value: 501.49
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 510.06702078555355
+        value: 510.07
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 539.1447573796767
+        value: 539.14
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 579.4674295058629
+        value: 579.47
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 543.3047882482156
+        value: 543.3
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 545.14
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 579.89
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -159,9 +172,38 @@ fallbackZoneMixes:
         solar: 0.02338202747619552
         unknown: 0.032487597556916416
         wind: 0.05530607768163253
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.009360069753550828
+        coal: 0.30706113423428677
+        gas: 0.3663250345011476
+        geothermal: 0.0
+        hydro: 0.06593871715921543
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.15012609951512484
+        solar: 0.032883204007210086
+        unknown: 0.014951952284648079
+        wind: 0.05335378854481634
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.009579898716066793
+        coal: 0.29764555028062256
+        gas: 0.250097009734473
+        geothermal: 0.0
+        hydro: 0.04692315450715494
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.13098950434235962
+        solar: 0.04339147955807153
+        unknown: 0.1747698109750609
+        wind: 0.046603591886190746
 parsers:
   production: DO.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
-timezone: America/Santo_Domingo
 region: Americas
-country: DO
+timezone: America/Santo_Domingo

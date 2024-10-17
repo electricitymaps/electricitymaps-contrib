@@ -69,7 +69,6 @@
     "selectLanguage": "Vyberte jazyk"
   },
   "updatePrompt": {
-    "title": "Dostupná aktualizace",
     "description": "Je dostupná nová verze aplikace, aktualizovat nyní?",
     "update": "Aktualizovat",
     "dismiss": "Zavřít"
@@ -1018,6 +1017,9 @@
     "MX-PN": {
       "countryName": "Mexiko",
       "zoneName": "Poloostrov"
+    },
+    "MY": {
+      "zoneName": "Malajsie"
     },
     "MY-EM": {
       "countryName": "Malajsie",

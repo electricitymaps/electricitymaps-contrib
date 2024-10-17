@@ -1,5 +1,5 @@
 aggregates_displayed:
-  - none # We are not showing this zone due to lack of data
+  - none
 bounding_box:
   - - 96.85140100100011
     - 5.129890035000059
@@ -45,6 +45,7 @@ capacity:
       value: 1550.0
 contributors:
   - PPsyrius
+country: TH
 emissionFactors:
   direct:
     unknown:
@@ -53,6 +54,20 @@ emissionFactors:
         solar, 1.7% wind, 0.1% other
       value: 386.645
   lifecycle:
+    battery discharge:
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 409.08
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 409.08
+    hydro discharge:
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 409.08
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 409.08
     unknown:
       - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
           SPP, and VSPP
@@ -180,19 +195,37 @@ emissionFactors:
         source: EPPO
         value: 409
 fallbackZoneMixes:
-  _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables'
-    generation not broken down by type). Biomass includes waste.
-  _url: https://www.iea.org/data-and-statistics/data-browser?country=THAILAND&fuel=Energy%20supply&indicator=ElecGenByFuel
   powerOriginRatios:
-    value:
-      biomass: 0.0912401506077485
-      coal: 0.193458983021716
-      gas: 0.646700218606825
-      geothermal: 5.371175052e-06
-      hydro: 0.0248631693155512
-      oil: 0.0007036239318076
-      solar: 0.026469150656089
-      wind: 0.0165593326852115
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.00019062279068365786
+        gas: 0.00011949183793993087
+        geothermal: 0.0
+        hydro: 1.640272240246278e-05
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 8.154954341849907e-07
+        solar: 3.943078585650569e-06
+        unknown: 0.9996687141995129
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0001893533763363284
+        gas: 0.00011455928721752805
+        geothermal: 0.0
+        hydro: 1.2849657433516598e-05
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 2.4125436520767794e-07
+        solar: 4.266456578706064e-06
+        unknown: 0.9996787250198512
+        wind: 0.0
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in TH unknown production
@@ -207,9 +240,8 @@ parsers:
   production: TH.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: TH.fetch_generation_forecast
+region: Asia
 sources:
   EPPO:
     link: https://www.eppo.go.th/index.php/en/en-energystatistics/co2-statistic
 timezone: Asia/Bangkok
-region: Asia
-country: TH
