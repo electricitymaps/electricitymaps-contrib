@@ -1,3 +1,5 @@
 country: NC
 region: Oceania
 timezone: Pacific/Noumea
+parsers:
+  production: ENERCAL.fetch_production
