@@ -65,6 +65,15 @@ export enum TrackEvent {
   WIND_DISABLED = 'Wind Disabled',
 }
 
+export enum ChartIds {
+  ELECTRICITY_PRICES_CHART = 'electricity_prices_chart',
+  ORIGIN_CHART = 'origin_chart',
+  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
+  CARBON_CHART = 'carbon_chart',
+  EMISSION_CHART = 'emission_chart',
+  NET_EXCHANGE_CHART = 'net_exchange_chart',
+}
+
 // color of different production modes are based on various industry standards
 export const modeColor: { [mode in ElectricityModeType]: string } = {
   solar: '#FFC700',
