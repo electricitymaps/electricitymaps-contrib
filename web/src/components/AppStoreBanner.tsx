@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
+import { DEFAULT_ICON_SIZE, TrackEvent } from 'utils/constants';
 
 import {
   isAndroid,
@@ -72,18 +72,25 @@ export function AppStoreBanner({
 
 interface DefaultCloseButtonProps {
   onClose(): void;
+  color?: 'gray' | 'black';
 }
 
-function DefaultCloseButton({ onClose }: DefaultCloseButtonProps) {
+export function DefaultCloseButton({
+  onClose,
+  color = 'black',
+}: DefaultCloseButtonProps) {
   const { t } = useTranslation();
   return (
     <button
       aria-label={t('misc.dismiss')}
       data-testid="dismiss-btn"
       onClick={onClose}
-      className="pointer-events-auto flex h-6 w-6 items-center justify-center self-center pr-2 text-neutral-400 dark:text-gray-300"
+      // pr-2
+      className={`pointer-events-auto flex items-center justify-center self-center ${
+        color === 'gray' ? 'text-neutral-400' : 'text-black'
+      } dark:text-gray-300`}
     >
-      <X />
+      <X size={DEFAULT_ICON_SIZE} />
     </button>
   );
 }

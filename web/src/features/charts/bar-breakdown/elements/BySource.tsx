@@ -1,4 +1,5 @@
 import EstimationBadge from 'components/EstimationBadge';
+import { MoreOptions } from 'components/MoreOptionsDropdown';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
@@ -61,9 +62,9 @@ export default function BySource({
   return (
     <div className="flex flex-col pb-1 pt-4">
       <div
-        className={`text-md relative flex flex-row justify-between font-bold ${className}`}
+        className={`text-md relative flex w-full flex-row gap-1.5 font-bold ${className}`}
       >
-        <div className="flex gap-1">
+        <div className="flex w-full justify-between gap-1">
           <h2>{text}</h2>
         </div>
         {hasEstimationPill && (
@@ -74,6 +75,7 @@ export default function BySource({
             }
           />
         )}
+        <MoreOptions isEstimated={Boolean(pillText)} />
       </div>
       {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>

@@ -67,7 +67,6 @@ export default function ZoneDetails(): JSX.Element {
   const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
-
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
