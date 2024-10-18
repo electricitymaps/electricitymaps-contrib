@@ -7,6 +7,7 @@ import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { EstimationMethods, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
+import { round } from 'utils/helpers';
 
 import { AreaGraphElement } from './types';
 
@@ -214,6 +215,8 @@ export function getElectricityProductionValue({
 function analyzeChartData(chartData: AreaGraphElement[]) {
   let estimatedCount = 0;
   let tsaCount = 0;
+  let estimatedTotal = 0;
+  const total = chartData.length;
   for (const chartElement of chartData) {
     if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
       tsaCount++;
@@ -221,10 +224,13 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
     if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
       estimatedCount++;
     }
+    estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
   }
+  const calculatedTotal = round(estimatedTotal / total, 2);
   return {
-    allTimeSlicerAverageMethod: tsaCount === chartData.length,
-    allEstimated: estimatedCount === chartData.length,
+    estimatedTotal: calculatedTotal > 1 ? calculatedTotal : Number.NaN,
+    allTimeSlicerAverageMethod: tsaCount === total,
+    allEstimated: estimatedCount === total,
     hasEstimation: estimatedCount > 0,
   };
 }
@@ -233,8 +239,23 @@ export function getBadgeTextAndIcon(
   chartData: AreaGraphElement[],
   t: TFunction
 ): { text?: string; icon?: LucideIcon } {
-  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
+  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation, estimatedTotal } =
     analyzeChartData(chartData);
+
+  // If the total is NaN, it means that the estimation percentage is too low to be displayed
+  if (Number.isNaN(estimatedTotal)) {
+    return {};
+  }
+
+  if (estimatedTotal) {
+    return {
+      text: t('estimation-card.aggregated_estimated.pill', {
+        percentage: estimatedTotal,
+      }),
+      icon: TrendingUpDown,
+    };
+  }
+
   if (allTimeSlicerAverageMethod) {
     return {
       text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
