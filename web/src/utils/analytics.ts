@@ -30,7 +30,7 @@ export enum ShareType {
   FACEBOOK = 'facebook',
   LINKEDIN = 'linkedin',
   TWITTER = 'twitter',
-  SHARE = 'share',
+  ZONE = 'zone',
 }
 
 export const trackShare = (shareType: ShareType) => () =>
