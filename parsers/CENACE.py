@@ -130,7 +130,7 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     # API returns normally status 200 but content type text/html when data is missing
     if (
         "Content-Type" not in response.headers
-        or response.headers["Content-Type"] == "text/html"
+        or "text/html" in response.headers.get("Content-Type")
     ):
         raise Exception(
             f"Error while fetching csv for date {datestr}: No CSV was returned by the API. Probably the data for this date has not yet been published."
@@ -178,6 +178,11 @@ def fetch_production(
         raise ValueError(
             "Parser only supports fetching historical production data, please specify a terget_datetime in the past"
         )
+
+    current_date = datetime.now()
+    if target_datetime.year == current_date.year and target_datetime.month == current_date.month:
+        logger.error("Cannot fetch production data for the current month. Returning previous month's data.")
+        target_datetime = (target_datetime.replace(day=1) - timedelta(days=1)).replace(day=1)
 
     # retrieve data for the month either from the cache or fetch it
     cache_key = target_datetime.strftime("%Y-%m")
