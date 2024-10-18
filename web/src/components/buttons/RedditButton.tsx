@@ -26,7 +26,7 @@ export function RedditButton({
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#0A66C2]"
       href={
         isShareLink
-          ? `https://www.reddit.com/submit?url=${baseUrl}`
+          ? `https://www.reddit.com/web/submit?url=${baseUrl}`
           : 'https://www.reddit.com/r/electricitymaps/'
       }
       icon={<FaReddit size={iconSize} />}
