@@ -25,6 +25,11 @@
     /* Disables mobile touch specific blue user select effect */
     -webkit-tap-highlight-color: transparent;
   }
+
+  #root {
+    @apply pt-[var(--sat)];
+  }
+
   h1 {
     @apply text-xl;
     @apply font-poppins;
@@ -50,6 +55,22 @@
     @apply font-inter;
   }
 }
+
+@layer utilities {
+  .extend-to-top-edge {
+    @apply absolute left-0 right-0 top-0 h-full;
+    margin-top: calc(var(--sat) * -1);
+  }
+
+  .content-within-safe-area {
+    @apply relative z-[1] p-[var(--sar)_var(--sab)_var(--sal)];
+  }
+
+  .pad-for-header {
+    @apply pt-[var(--sat)];
+  }
+}
+
 *::-webkit-scrollbar {
   /*remove scrollbar track chrome*/
   background-color: transparent;
