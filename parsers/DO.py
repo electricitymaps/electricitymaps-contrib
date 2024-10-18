@@ -108,13 +108,7 @@ def get_data(session: Session | None = None) -> list[list[str]]:
     tbs = soup.find("table", id="PostdespachoUnidadesTermicasGrid_DXMainTable")
     rows = tbs.find_all("tr")
 
-    data = []
-    for row in rows:
-        row_data = []
-        cols = row.find_all("td")
-        for col in cols:
-            row_data.append(str(col.getText().strip()))
-        data.append(row_data)
+    data = [[str(col.getText().strip()) for col in row.find_all("td")] for row in rows]
 
     return data
 
