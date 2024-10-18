@@ -16,7 +16,7 @@ declare global {
 }
 
 export default function trackEvent(
-  eventId: string,
+  eventId: TrackEvent,
   additionalProps: PlausibleEventProps = {}
 ): void {
   if (import.meta.env.DEV) {

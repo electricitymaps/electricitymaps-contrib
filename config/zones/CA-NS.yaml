@@ -49,29 +49,29 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 426.8445977974951
+        value: 426.84
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 518.2793069399034
+        value: 518.28
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 479.74118532013614
+        value: 479.74
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 443.44608891751625
+        value: 443.45
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 426.8445977974951
+        value: 426.84
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 518.2793069399034
+        value: 518.28
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 479.74118532013614
+        value: 479.74
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 443.44608891751625
+        value: 443.45
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

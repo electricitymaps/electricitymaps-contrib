@@ -29,47 +29,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 526.4198372746504
+        value: 526.42
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 502.48009317162956
+        value: 502.48
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 507.9912358111145
+        value: 507.99
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 513.2831994238893
+        value: 513.28
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 475.793289728023
+        value: 475.79
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 487.4804241103259
+        value: 487.48
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 459.7248847672852
+        value: 459.72
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 526.4198372746504
+        value: 526.42
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 502.48009317162956
+        value: 502.48
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 507.9912358111145
+        value: 507.99
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 513.2831994238893
+        value: 513.28
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 475.793289728023
+        value: 475.79
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 487.4804241103259
+        value: 487.48
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 459.7248847672852
+        value: 459.72
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -189,4 +189,4 @@ subZoneNames:
   - JP-SK
   - JP-TH
   - JP-TK
-timezone: Japan/Tokyo
+timezone: Asia/Tokyo

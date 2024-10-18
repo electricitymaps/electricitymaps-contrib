@@ -128,25 +128,25 @@ emissionFactors:
         value: 520.3362123801293
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 457.64567228661747
+        value: 457.65
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 470.62512466654806
+        value: 470.63
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 407.0335502327385
+        value: 407.03
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 383.17317666126416
+        value: 383.17
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 520.4520898437501
+        value: 520.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 496.68713261648753
+        value: 496.69
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 545.4644012605042
+        value: 545.46
     coal:
       datetime: '2012-01-01'
       source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
@@ -165,25 +165,25 @@ emissionFactors:
         value: 520.3362123801293
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 457.64567228661747
+        value: 457.65
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 470.62512466654806
+        value: 470.63
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 407.0335502327385
+        value: 407.03
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 383.17317666126416
+        value: 383.17
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 520.4520898437501
+        value: 520.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 496.68713261648753
+        value: 496.69
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 545.4644012605042
+        value: 545.46
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021

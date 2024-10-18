@@ -1,4 +1,4 @@
-import { getCountryName, getZoneName } from 'translation/translation';
+import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import type { GridState, StateZoneData, ZoneKey } from 'types';
 import { SpatialAggregate } from 'utils/constants';
 import { getCarbonIntensity } from 'utils/helpers';
@@ -76,6 +76,7 @@ export const getRankedState = (
       co2intensity,
       countryName: getCountryName(key),
       zoneName: getZoneName(key),
+      fullZoneName: getFullZoneName(key),
       ranking: ranking,
     });
     ranking++; // Increment the ranking for the next zone.

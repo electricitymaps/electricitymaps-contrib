@@ -16,6 +16,7 @@ import {
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
+import { zoneExists } from './zone/util';
 
 const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
@@ -48,16 +49,22 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   if (!zoneId) {
     return <Navigate to="/" replace />;
   }
+  const upperCaseZoneId = zoneId.toUpperCase();
+  if (zoneId !== upperCaseZoneId) {
+    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+  }
 
   // Handle legacy Australia zone names
-  if (zoneId.startsWith('AUS')) {
+  if (upperCaseZoneId.startsWith('AUS')) {
     return (
       <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
     );
   }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+
+  // Only allow valid zone ids
+  // TODO: This should redirect to a 404 page specifically for zones
+  if (!zoneExists(upperCaseZoneId)) {
+    return <Navigate to="/" replace />;
   }
 
   return children;
@@ -74,7 +81,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
     <button
       data-test-id="left-panel-collapse-button"
       className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
+        'absolute left-full top-2 z-[21] h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
       }
       onClick={onCollapse}
       aria-label={
@@ -105,7 +112,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <div
       data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
+      className={`absolute left-0 top-0 z-[21] h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
         location.pathname === '/map' ? 'hidden' : ''
       } ${isOpen ? '' : '-translate-x-full'}`}
     >
@@ -120,6 +127,7 @@ export default function LeftPanel() {
     <OuterPanel>
       <Routes>
         <Route path="/" element={<HandleLegacyRoutes />} />
+        <Route path="/zone" element={<Navigate to="/" replace />} />
         <Route
           path="/zone/:zoneId"
           element={

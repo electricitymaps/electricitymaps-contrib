@@ -9,10 +9,9 @@ import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { Mode } from 'utils/constants';
 import { createToWithState, getCarbonIntensity, useUserLocation } from 'utils/helpers';
 import {
-  productionConsumptionAtom,
+  isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   userLocationAtom,
@@ -64,8 +63,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const getCo2colorScale = useCo2ColorScale();
   const navigate = useNavigate();
   const theme = useTheme();
-  const mixMode = useAtomValue(productionConsumptionAtom);
-  const isConsumption = mixMode === Mode.CONSUMPTION;
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const spatialAggregate = useAtomValue(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes

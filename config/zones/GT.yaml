@@ -72,41 +72,41 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 181.42758260014966
+        value: 181.43
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 330.23509556732114
+        value: 330.24
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 411.55477054470884
+        value: 411.55
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 311.9989925861598
+        value: 312.0
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 173.83722298957895
+        value: 173.84
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 304.87273005601173
+        value: 304.87
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 181.42758260014966
+        value: 181.43
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 330.23509556732114
+        value: 330.24
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 411.55477054470884
+        value: 411.55
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 311.9989925861598
+        value: 312.0
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 173.83722298957895
+        value: 173.84
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 304.87273005601173
+        value: 304.87
     unknown:
       _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
       source: Guatemala AMM 2021-2022; IEA 2020

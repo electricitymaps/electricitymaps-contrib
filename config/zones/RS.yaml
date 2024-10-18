@@ -92,25 +92,25 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 581.1024159618794
+        value: 581.1
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 486.7232670295646
+        value: 486.72
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 455.9095124282983
+        value: 455.91
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 572.2426643875989
+        value: 572.24
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 528.8858703250975
+        value: 528.89
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 549.5274451439471
+        value: 549.53
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 544.1536166267986
+        value: 544.15
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -118,25 +118,25 @@ emissionFactors:
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 581.1024159618794
+        value: 581.1
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 486.7232670295646
+        value: 486.72
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 455.9095124282983
+        value: 455.91
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 572.2426643875989
+        value: 572.24
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 528.8858703250975
+        value: 528.89
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 549.5274451439471
+        value: 549.53
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 544.1536166267986
+        value: 544.15
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
