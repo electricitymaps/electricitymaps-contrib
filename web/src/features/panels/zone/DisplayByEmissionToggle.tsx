@@ -1,4 +1,5 @@
 import ToggleButton from 'components/ToggleButton';
+import { useClearFragment } from 'hooks/useClearFragment';
 import { useAtom, useAtomValue } from 'jotai';
 import type { ReactElement } from 'react';
 import trackEvent from 'utils/analytics';
@@ -8,6 +9,7 @@ import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 export default function EmissionToggle(): ReactElement {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
+  const clearFragment = useClearFragment();
 
   // TODO: perhaps togglebutton should accept boolean values
   const options = [
@@ -34,6 +36,7 @@ export default function EmissionToggle(): ReactElement {
       (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
     ) {
       setDisplayByEmissions(!displayByEmissions);
+      clearFragment();
     }
   };
 
