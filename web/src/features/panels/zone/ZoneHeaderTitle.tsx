@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import { ZoneKey } from 'types';
 import { baseUrl, metaTitleSuffix } from 'utils/constants';
-
 import { createToWithState } from 'utils/helpers';
 import {
   isHourlyAtom,
@@ -29,7 +28,6 @@ interface ZoneHeaderTitleProps {
 }
 
 const MAX_TITLE_LENGTH = 25;
-
 
 function generateCurrentSelectedDatetimeUrl({
   timeResolution,
@@ -72,7 +70,6 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
     selectedDatetimeString,
     zoneId,
   });
-
 
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">

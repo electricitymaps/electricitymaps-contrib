@@ -66,7 +66,6 @@ export function ShareButton({
     }
   };
 
-
   const onClick = async () => {
     if (hasMobileUserAgent && (await CapShare.canShare())) {
       share();
