@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { TimeAverages } from 'utils/constants';
+import { Charts, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
@@ -42,7 +42,11 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
 
   return (
     <RoundedCard className="pb-2">
-      <ChartTitle translationKey="country-history.netExchange" unit={valueAxisLabel} />
+      <ChartTitle
+        translationKey="country-history.netExchange"
+        unit={valueAxisLabel}
+        id={Charts.NET_EXCHANGE_CHART}
+      />
       <div className="relative">
         <AreaGraph
           testId="history-exchange-graph"
