@@ -1,8 +1,8 @@
 import useGetState from 'api/getState';
-import Badge from 'components/Badge';
-import { FormattedTime } from 'components/Time';
 import { useAtom, useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
+import trackEvent from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 
 export default function TimeHeader() {
@@ -23,6 +23,7 @@ export default function TimeHeader() {
           type="date" // use month or year
           value={selectedDatetime.datetime.toISOString().slice(0, 10)}
           onChange={(event) => {
+            trackEvent(TrackEvent.DATE_PICKER_CLICKED);
             setSelectedDatetime({ datetime: new Date(event.target.value), index: 0 });
           }}
           aria-label="Select date"

@@ -63,6 +63,7 @@ export enum TrackEvent {
   SOLAR_DISABLED = 'Solar Disabled',
   WIND_ENABLED = 'Wind Enabled',
   WIND_DISABLED = 'Wind Disabled',
+  DATE_PICKER_CLICKED = 'Date Picker Clicked',
 }
 
 // color of different production modes are based on various industry standards
