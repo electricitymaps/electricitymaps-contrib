@@ -5,7 +5,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
 import { EstimationMethods, SpatialAggregate } from 'utils/constants';
@@ -53,6 +53,8 @@ export default function ZoneDetails(): JSX.Element {
       setViewMode(SpatialAggregate.ZONE);
     }
   }, [hasSubZones, isSubZone, setViewMode]);
+
+  useScrollHashIntoView(isLoading);
 
   if (!zoneId) {
     return <Navigate to="/" replace />;
@@ -190,3 +192,18 @@ function ZoneDetailsContent({
 
   return children as JSX.Element;
 }
+
+const useScrollHashIntoView = (isLoading: boolean) => {
+  const { hash, pathname, search } = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const hashElement = hash ? document.querySelector(hash) : null;
+    if (!isLoading && hashElement) {
+      hashElement.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'nearest',
+      });
+    }
+    navigate(`${pathname}${search}`);
+  }, [hash, isLoading, navigate, pathname, search]);
+};
