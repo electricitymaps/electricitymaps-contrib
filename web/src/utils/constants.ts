@@ -44,6 +44,25 @@ export enum TrackEvent {
   APP_BANNER_DISMISSED = 'App Banner Dismissed',
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
   FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
+  APP_LOADED = 'App Loaded',
+  PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
+  HEADER_LINK_CLICKED = 'HeaderLink Clicked',
+  TIME_SLIDER_BUTTON = 'Time Slider Button Interaction',
+  LANGUAGE_SELECTED = 'Language Selected',
+  ESTIMATION_CARD_EXPANDED = 'EstimationCard Expanded',
+  CONTRIBUTE_ON_GITHUB_BUTTON_CLICKED = 'Contribute On GitHub Button Clicked',
+  COLORBLIND_MODE_TOGGLED = 'Colorblind Mode Toggled',
+  SPATIAL_AGGREGATE_CLICKED = 'Spatial Aggregate Clicked',
+  THEME_SELECTED = 'Theme Selected',
+  PANEL_PRODUCTION_BUTTON_CLICKED = 'PanelProductionButton Clicked',
+  PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
+  ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
+  APPLIED_METHODOLOGIES_EXPANDED = 'AppliedMethodologies Expanded',
+  TIME_AGGREGATE_BUTTON_CLICKED = 'Time Aggregate Button Clicked',
+  SOLAR_ENABLED = 'Solar Enabled',
+  SOLAR_DISABLED = 'Solar Disabled',
+  WIND_ENABLED = 'Wind Enabled',
+  WIND_DISABLED = 'Wind Disabled',
 }
 
 // color of different production modes are based on various industry standards
@@ -115,6 +134,8 @@ export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
  */
 export const sourceLinkMapping: { [key: string]: string } = {
   'EU-ETS, ENTSO-E 2022':
+    'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
+  'EU-ETS, ENTSO-E 2023':
     'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
   Climatescope: 'https://www.global-climatescope.org/',
   'ree.es': 'https://www.ree.es/en',

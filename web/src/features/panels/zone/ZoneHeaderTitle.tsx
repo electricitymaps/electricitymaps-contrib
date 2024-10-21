@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import { ZoneKey } from 'types';
-import { baseUrl } from 'utils/constants';
+import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
 import {
   isHourlyAtom,
@@ -43,6 +43,7 @@ function generateCurrentSelectedDatetimeUrl({
     (zoneId ? `/zone/${zoneId}` : '/map') +
     `/${timeAverage}/` +
     `${selectedDatetimeString}`;
+
   return url;
 }
 
@@ -53,7 +54,8 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
-  const showCountryPill = zoneId.includes('-') && !zoneName.includes(countryName);
+  const showCountryPill =
+    zoneId.includes('-') && !zoneName.toLowerCase().includes(countryName.toLowerCase());
   const setIsMapMoving = useSetAtom(mapMovingAtom);
   const canonicalUrl = useGetCanonicalUrl();
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
@@ -62,6 +64,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const timeAverage = useAtomValue(timeAverageAtom);
 
   const onNavigateBack = () => setIsMapMoving(false);
+
   const shareUrl = generateCurrentSelectedDatetimeUrl({
     timeAverage,
     selectedDatetimeString,
@@ -71,6 +74,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">
       <Helmet prioritizeSeoTags>
+        <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
 

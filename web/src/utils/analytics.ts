@@ -16,7 +16,7 @@ declare global {
 }
 
 export default function trackEvent(
-  eventId: string,
+  eventId: TrackEvent,
   additionalProps: PlausibleEventProps = {}
 ): void {
   if (import.meta.env.DEV) {
@@ -30,9 +30,7 @@ export enum ShareType {
   FACEBOOK = 'facebook',
   LINKEDIN = 'linkedin',
   TWITTER = 'twitter',
-  //TODO consolidate these two
   ZONE = 'zone',
-  SHARE = 'share',
 }
 
 export const trackShare = (shareType: ShareType) => () =>

@@ -12,7 +12,8 @@
   "ranking-panel": {
     "title": "Climate Impact by Area",
     "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas"
+    "search": "Search areas",
+    "no-results": "No results found for this search 🌍"
   },
   "button": {
     "reddit": "Join r/electricitymaps",
@@ -100,7 +101,7 @@
     "estimated": "estimated",
     "aggregated": "aggregated",
     "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">here</a>.",
-    "exchangesAreMissing": "Exchanges are accounted for in the calculations but not currently shown. Read more about our historical aggregations <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
+    "exchangesAreMissing": "This chart does not include exchange data. Exchanges are visible in hourly views. Read more about our historical aggregations <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
     "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> or contact the data provider.",
@@ -144,11 +145,9 @@
       "secondary-question": "Anything we can do to improve it?",
       "primary-question": "The description of the data estimation was easy to understand:"
     },
-
     "primary-question": "How would you rate your overall satisfaction with the Electricity Maps app?",
     "secondary-question-low": "What can we do better?",
     "secondary-question-high": "What improvements would you like to see next?",
-
     "optional": "Optional:",
     "input-question": "Let us know any features you'd like to see?",
     "agree": "Strongly agree",
@@ -446,7 +445,6 @@
     "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
     "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
     "otherSources-answer": "We only focus on electricity production for now, as this is <a href=\"https://ourworldindata.org/emissions-by-sector#energy-electricity-heat-and-transport-73-2\" target=\"_blank\">the largest source of emissions</a> and the one that can be most easily decarbonized.",
-
     "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
     "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
     "emissionsPerCapita-question": "Why don't you show emissions per capita?",
@@ -1796,8 +1794,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CAL-IID": {
       "countryName": "USA",

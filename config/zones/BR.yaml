@@ -21,47 +21,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 169.85871579567657
+        value: 169.86
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 120.71146819902333
+        value: 120.71
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 119.2401441723357
+        value: 119.24
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 187.3958431777143
+        value: 187.4
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 169.06683671960457
+        value: 169.07
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 91.76805743942437
+        value: 91.77
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 82.49103552392339
+        value: 82.49
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 169.85871579567657
+        value: 169.86
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 120.71146819902333
+        value: 120.71
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 119.2401441723357
+        value: 119.24
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 187.3958431777143
+        value: 187.4
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 169.06683671960457
+        value: 169.07
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 91.76805743942437
+        value: 91.77
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 82.49103552392339
+        value: 82.49
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
@@ -176,3 +176,4 @@ subZoneNames:
   - BR-N
   - BR-NE
   - BR-S
+timezone: America/Sao_Paulo
