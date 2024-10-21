@@ -8,7 +8,7 @@ import {
   ZoneKey,
 } from 'types';
 import { modeOrderBarBreakdown } from 'utils/constants';
-import { getProductionCo2Intensity, round } from 'utils/helpers';
+import { getProductionCo2Intensity } from 'utils/helpers';
 import { EnergyUnits } from 'utils/units';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
