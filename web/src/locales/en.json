@@ -109,6 +109,8 @@
     "aggregationDisabled": "Data is not available for the selected time period due to missing granular breakdown. Try a broader time period.",
     "fullyDisabled": "The data we have available for this zone is insufficient and therefore not shown. If you are aware of data sources for this area, please <a href=\"{{link}}\" target=\"_blank\">let us know</a>.",
     "now": "Now",
+    "noDataAvailable": "There's no data available for this hour.",
+    "see-latest": "See latest",
     "by-source": {
       "emissions": "Carbon emissions",
       "electricity-production": "Electricity production",

@@ -4,7 +4,9 @@ import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
+import { LucideCalendarClock, LucideCalendarX } from 'lucide-react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
@@ -39,6 +41,7 @@ export default function ZoneDetails(): JSX.Element {
   const isMobile = useIsMobile();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -75,6 +78,36 @@ export default function ZoneDetails(): JSX.Element {
   const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
+
+  // TODO: Move this into a separate component and figure out what the link should link to.
+  return (
+    <>
+      <ZoneHeaderTitle zoneId={zoneId} />
+      <div
+        className={twMerge(
+          'mb-3 h-full overflow-y-scroll px-3  pt-2 sm:h-full sm:pb-60',
+          isIosCapacitor ? 'pb-72' : 'pb-48'
+        )}
+      >
+        <div className="flex h-full w-full flex-col items-center justify-center text-neutral-600 dark:text-gray-300">
+          <LucideCalendarX size={45} color="currentColor" />
+          <p className="p-2 text-sm">{t('country-panel.noDataAvailable')}</p>
+          <div className="flex flex-row ">
+            <a
+              href={`/zone/${zoneId}?datetime=${selectedDatetimeString}`}
+              className="flex flex-row items-center gap-1 text-success dark:text-success-dark"
+            >
+              <LucideCalendarClock size={20} color="currentColor" />
+              <p className="text-sm font-semibold underline">
+                {t('country-panel.see-latest')}
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
