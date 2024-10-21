@@ -185,3 +185,13 @@ noscript img {
     opacity: 0.3;
   }
 }
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(25%) sepia(99%) saturate(604%) hue-rotate(121deg) brightness(88%)
+    contrast(95%);
+}
+
+.dark input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(48%) sepia(98%) saturate(463%) hue-rotate(111deg) brightness(97%)
+    contrast(87%);
+}
