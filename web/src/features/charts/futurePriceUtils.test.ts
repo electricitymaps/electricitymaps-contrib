@@ -5,6 +5,7 @@ import {
   getGranularity,
   negativeToPostivePercentage,
   normalizeToGranularity,
+  priceIn5Percentile,
 } from './futurePriceUtils';
 
 describe('FuturePrice Utility Functions', () => {
@@ -84,5 +85,41 @@ describe('FuturePrice Utility Functions', () => {
     const maxPrice = 20;
     const percentage = negativeToPostivePercentage(minPrice, maxPrice);
     expect(percentage).to.equal(0);
+  });
+
+  test('priceIn5Percentile returns true if price is in top 5 percentile', () => {
+    const price = 95;
+    const maxPrice = 100;
+    const minPrice = 0;
+    const inTop = true;
+    const result = priceIn5Percentile(price, maxPrice, minPrice, inTop);
+    expect(result).to.equal(true);
+  });
+
+  test('priceIn5Percentile returns false if price is not in top 5 percentile', () => {
+    const price = 80;
+    const maxPrice = 100;
+    const minPrice = 50;
+    const inTop = true;
+    const result = priceIn5Percentile(price, maxPrice, minPrice, inTop);
+    expect(result).to.equal(false);
+  });
+
+  test('priceIn5Percentile returns true if price is in bottom 5 percentile', () => {
+    const price = 52;
+    const maxPrice = 100;
+    const minPrice = 50;
+    const inTop = false;
+    const result = priceIn5Percentile(price, maxPrice, minPrice, inTop);
+    expect(result).to.equal(true);
+  });
+
+  test('priceIn5Percentile returns false if price is not in bottom 5 percentile', () => {
+    const price = 60;
+    const maxPrice = 100;
+    const minPrice = 50;
+    const inTop = false;
+    const result = priceIn5Percentile(price, maxPrice, minPrice, inTop);
+    expect(result).to.equal(false);
   });
 });

@@ -3,7 +3,7 @@ import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis';
 import { useHeaderHeight } from 'hooks/headerHeight';
-import { useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
 import { ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
@@ -116,6 +116,8 @@ interface TooltipData {
   zoneDetail: ZoneDetail;
 }
 
+const AreaGraphIndexSelectedAtom = atom<number | null>(null);
+
 function AreaGraph({
   data,
   testId,
@@ -136,7 +138,7 @@ function AreaGraph({
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<HTMLDivElement>({ ref: reference });
 
-  const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
+  const selectedDate = useAtomValue(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
   const isBiggerThanMobile = useBreakpoint('sm');
   const zoneId = useGetZoneFromPath();
@@ -184,7 +186,7 @@ function AreaGraph({
     [containerWidth, startTime, endTime]
   );
 
-  const [graphIndex, setGraphIndex] = useState<number | null>(null);
+  const [graphIndex, setGraphIndex] = useAtom(AreaGraphIndexSelectedAtom);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(null);
 
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;

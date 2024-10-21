@@ -1797,8 +1797,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CAL-IID": {
       "countryName": "USA",
