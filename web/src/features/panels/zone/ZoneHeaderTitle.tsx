@@ -4,7 +4,7 @@ import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { ArrowLeft, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,11 @@ import { getCountryName, getFullZoneName, getZoneName } from 'translation/transl
 import { ZoneKey } from 'types';
 import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { createToWithState } from 'utils/helpers';
+import {
+  isHourlyAtom,
+  selectedDatetimeStringAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 
 import { ShareButton } from './ShareButton';
 import { getDisclaimer } from './util';
@@ -24,8 +29,21 @@ interface ZoneHeaderTitleProps {
 
 const MAX_TITLE_LENGTH = 25;
 
-function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
-  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
+function generateCurrentSelectedDatetimeUrl({
+  timeAverage,
+  selectedDatetimeString,
+  zoneId,
+}: {
+  timeAverage: string;
+  selectedDatetimeString: string;
+  zoneId: ZoneKey;
+}) {
+  const url =
+    baseUrl +
+    (zoneId ? `/zone/${zoneId}` : '/map') +
+    `/${timeAverage}/` +
+    `${selectedDatetimeString}`;
+
   return url;
 }
 
@@ -40,10 +58,18 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
     zoneId.includes('-') && !zoneName.toLowerCase().includes(countryName.toLowerCase());
   const setIsMapMoving = useSetAtom(mapMovingAtom);
   const canonicalUrl = useGetCanonicalUrl();
-  const isShareButtonEnabled = useFeatureFlag('share-button');
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
+  const isShareButtonEnabled = useFeatureFlag('share-button') && isHourly;
+  const timeAverage = useAtomValue(timeAverageAtom);
 
   const onNavigateBack = () => setIsMapMoving(false);
-  const shareUrl = getCurrentUrl({ zoneId });
+
+  const shareUrl = generateCurrentSelectedDatetimeUrl({
+    timeAverage,
+    selectedDatetimeString,
+    zoneId,
+  });
 
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">
@@ -51,6 +77,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
+
       <Link
         className="self-center py-4 pr-4 text-xl"
         to={returnToMapLink}
