@@ -67,8 +67,12 @@ class TestExchangeList(unittest.TestCase):
             [exchange_list_1, exchange_list_2], logging.Logger("test")
         )
         assert len(exchanges) == 1
-        assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert exchanges.events[0].netFlow == 3
+        sorted_events = dict(sorted(exchanges.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.netFlow == 3
 
     def test_merge_exchanges_with_none(self):
         exchange_list_1 = ExchangeList(logging.Logger("test"))
@@ -89,8 +93,12 @@ class TestExchangeList(unittest.TestCase):
             [exchange_list_1, exchange_list_2], logging.Logger("test")
         )
         assert len(exchanges) == 1
-        assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert exchanges.events[0].netFlow == 1
+        sorted_events = dict(sorted(exchanges.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.netFlow == 1
 
     def test_merge_exchanges_with_negatives(self):
         exchange_list_1 = ExchangeList(logging.Logger("test"))
@@ -111,8 +119,12 @@ class TestExchangeList(unittest.TestCase):
             [exchange_list_1, exchange_list_2], logging.Logger("test")
         )
         assert len(exchanges) == 1
-        assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert exchanges.events[0].netFlow == -10
+        sorted_events = dict(sorted(exchanges.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.netFlow == -10
 
     def test_update_exchange_list(self):
         exchange_list1 = ExchangeList(logging.Logger("test"))
@@ -139,39 +151,21 @@ class TestExchangeList(unittest.TestCase):
             exchange_list1, exchange_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 2
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].netFlow == 2
-        assert updated_list.events[0].source == "trust.me"
-        assert updated_list.events[1].datetime == datetime(
-            2023, 1, 2, tzinfo=timezone.utc
-        )
-        assert updated_list.events[1].netFlow == 1
-        assert updated_list.events[1].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
 
-    def test_update_exchange_list_with_different_zoneKey(self):
-        exchange_list1 = ExchangeList(logging.Logger("test"))
-        exchange_list1.append(
-            zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            netFlow=1,
-            source="trust.me",
-        )
-        exchange_list2 = ExchangeList(logging.Logger("test"))
-        exchange_list2.append(
-            zoneKey=ZoneKey("DE->DK-DK1"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            netFlow=2,
-            source="trust.me",
-        )
-        self.assertRaises(
-            ValueError,
-            ExchangeList.update_exchanges,
-            exchange_list1,
-            exchange_list2,
-            logging.Logger("test"),
-        )
+        # Get the first event
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.netFlow == 2
+        assert first_event.source == "trust.me"
+
+        # Get the second event
+        second_event = next(event_iterator)
+        assert second_event.datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert second_event.netFlow == 1
+        assert second_event.source == "trust.me"
 
     def test_update_exchange_list_with_longer_new_list(self):
         exchange_list1 = ExchangeList(logging.Logger("test"))
@@ -198,16 +192,45 @@ class TestExchangeList(unittest.TestCase):
             exchange_list1, exchange_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 2
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
+
+        sorted_events = dict(sorted(updated_list.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+
+        # Get the first event
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.netFlow == 2
+        assert first_event.source == "trust.me"
+
+        # Get the second event
+        second_event = next(event_iterator)
+        assert second_event.datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert second_event.netFlow == 3
+        assert second_event.source == "trust.me"
+
+    def test_update_exchange_list_with_different_zoneKey(self):
+        exchange_list1 = ExchangeList(logging.Logger("test"))
+        exchange_list1.append(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
         )
-        assert updated_list.events[0].netFlow == 2
-        assert updated_list.events[0].source == "trust.me"
-        assert updated_list.events[1].datetime == datetime(
-            2023, 1, 2, tzinfo=timezone.utc
+        exchange_list2 = ExchangeList(logging.Logger("test"))
+        exchange_list2.append(
+            zoneKey=ZoneKey("DE->DK-DK1"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            netFlow=2,
+            source="trust.me",
         )
-        assert updated_list.events[1].netFlow == 3
-        assert updated_list.events[1].source == "trust.me"
+        self.assertRaises(
+            ValueError,
+            ExchangeList.update_exchanges,
+            exchange_list1,
+            exchange_list2,
+            logging.Logger("test"),
+        )
 
 
 class TestConsumptionList(unittest.TestCase):
@@ -351,24 +374,35 @@ class TestProductionBreakdownList(unittest.TestCase):
             logging.Logger("test"),
         )
         assert len(merged.events) == 3
-        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert merged.events[0].production is not None
-        assert merged.events[0].production.wind == 60
-        assert merged.events[0].production.coal is None
-        assert merged.events[0].source == "trust.me, trust2.me, trust3.me"
-        assert merged.events[0].zoneKey == ZoneKey("AT")
-        assert merged.events[0].storage is None
-        assert merged.events[0].sourceType == EventSourceType.measured
 
-        assert merged.events[1].datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
-        assert merged.events[1].production is not None
-        assert merged.events[1].production.wind == 63
-        assert merged.events[1].production.coal == 3
+        sorted_events = dict(sorted(merged.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
 
-        assert merged.events[2].datetime == datetime(2023, 1, 3, tzinfo=timezone.utc)
-        assert merged.events[2].production is not None
-        assert merged.events[2].production.wind == 34
-        assert merged.events[2].production.coal == 4
+        # Get the first event
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production["wind"] == 60
+        assert first_event.production["coal"] is None
+        assert first_event.source == "trust.me, trust2.me, trust3.me"
+        assert first_event.zoneKey == ZoneKey("AT")
+        assert first_event.storage is None
+        assert first_event.sourceType == EventSourceType.measured
+
+        # Get the second event
+        second_event = next(event_iterator)
+        assert second_event.datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert second_event.production is not None
+        assert second_event.production["wind"] == 63
+        assert second_event.production["coal"] == 3
+
+        # Get the third event
+        third_event = next(event_iterator)
+        assert third_event.datetime == datetime(2023, 1, 3, tzinfo=timezone.utc)
+        assert third_event.production is not None
+        assert third_event.production["wind"] == 34
+        assert third_event.production["coal"] == 4
 
     def test_merge_production_list(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
@@ -431,8 +465,15 @@ class TestProductionBreakdownList(unittest.TestCase):
             logging.Logger("test"),
         )
         assert len(merged.events) == 3
-        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert merged.events[0].storage.hydro == 2
+        sorted_events = dict(sorted(merged.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.wind == 60
+        assert first_event.storage is not None
+        assert first_event.storage.hydro == 2
 
     def test_merge_production_list_doesnt_yield_extra_modes(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
@@ -457,10 +498,16 @@ class TestProductionBreakdownList(unittest.TestCase):
             [production_list_1, production_list_2], logging.Logger("test")
         )
         assert len(merged.events) == 1
-        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert merged.events[0].production.hydro is None
-        assert merged.events[0].storage.battery is None
-        merged_dict = merged.events[0].to_dict()
+        sorted_events = dict(sorted(merged.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.hydro is None
+        assert first_event.storage is not None
+        assert first_event.storage.battery is None
+        merged_dict = first_event.to_dict()
         assert merged_dict["production"].keys() == {"coal", "hydro", "wind"}
         assert merged_dict["storage"].keys() == {"hydro"}
 
@@ -503,10 +550,14 @@ class TestProductionBreakdownList(unittest.TestCase):
             logging.Logger("test"),
         )
         assert len(merged.events) == 2
-        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert merged.events[0].storage is not None
-        assert merged.events[0].storage.hydro == 2
-        assert merged.events[0].sourceType == EventSourceType.forecasted
+        sorted_events = dict(sorted(merged.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.storage is not None
+        assert first_event.storage.hydro == 2
+        assert first_event.sourceType == EventSourceType.forecasted
 
     def test_merge_production_retains_corrected_negatives(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
@@ -544,19 +595,25 @@ class TestProductionBreakdownList(unittest.TestCase):
             logging.Logger("test"),
         )
         assert len(merged.events) == 2
-        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert merged.events[0].production is not None
-        assert merged.events[0].production.wind is None
-        assert merged.events[0].production.coal == 30
-        assert merged.events[0].storage.hydro == 2
-        assert merged.events[0].production._corrected_negative_values == {"wind"}
+        sorted_events = dict(sorted(merged.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.wind is None
+        assert first_event.production.coal == 30
+        assert first_event.storage is not None
+        assert first_event.storage.hydro == 2
+        assert first_event.production._corrected_negative_values == {"wind"}
 
-        assert merged.events[1].datetime == datetime(2023, 1, 3, tzinfo=timezone.utc)
-        assert merged.events[1].production is not None
-        assert merged.events[1].production.wind is None
-        assert merged.events[1].production.coal == 34
-        assert merged.events[1].storage.hydro == 2
-        assert merged.events[1].production._corrected_negative_values == {"wind"}
+        second_event = next(event_iterator)
+        assert second_event.datetime == datetime(2023, 1, 3, tzinfo=timezone.utc)
+        assert second_event.production is not None
+        assert second_event.production.wind is None
+        assert second_event.production.coal == 34
+        assert second_event.storage is not None
+        assert second_event.storage.hydro == 2
+        assert second_event.production._corrected_negative_values == {"wind"}
 
     def test_merge_production_retains_corrected_negatives_with_0_and_none(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
@@ -585,13 +642,16 @@ class TestProductionBreakdownList(unittest.TestCase):
             logging.Logger("test"),
         )
         assert len(merged.events) == 1
-        assert merged.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-        assert merged.events[0].production is not None
-        assert merged.events[0].production.wind is None
-        assert merged.events[0].production.solar == 20
-        assert merged.events[0].production.coal == 30
-        assert merged.events[0].production.biomass == 0
-        assert merged.events[0].production._corrected_negative_values == {
+        sorted_events = dict(sorted(merged.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.wind is None
+        assert first_event.production.solar == 20
+        assert first_event.production.coal == 30
+        assert first_event.production.biomass == 0
+        assert first_event.production._corrected_negative_values == {
             "wind",
             "solar",
             "biomass",
@@ -622,18 +682,22 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 2
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].production.wind == 20
-        assert updated_list.events[0].production.coal == 20
-        assert updated_list.events[0].source == "trust.me"
-        assert updated_list.events[1].datetime == datetime(
-            2023, 1, 2, tzinfo=timezone.utc
-        )
-        assert updated_list.events[1].production.wind == 11
-        assert updated_list.events[1].production.coal == 11
-        assert updated_list.events[1].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.wind == 20
+        assert first_event.production.coal == 20
+        assert first_event.source == "trust.me"
+
+        second_event = next(event_iterator)
+        assert second_event.datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert second_event.production is not None
+        assert second_event.production.wind == 11
+        assert second_event.production.coal == 11
+        assert second_event.source == "trust.me"
 
     def test_update_production_list_with_new_list_being_longer(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -660,20 +724,22 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 2
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].production is not None
-        assert updated_list.events[0].production.wind == 20
-        assert updated_list.events[0].production.coal == 20
-        assert updated_list.events[0].source == "trust.me"
-        assert updated_list.events[1].datetime == datetime(
-            2023, 1, 2, tzinfo=timezone.utc
-        )
-        assert updated_list.events[1].production is not None
-        assert updated_list.events[1].production.wind == 21
-        assert updated_list.events[1].production.coal == 21
-        assert updated_list.events[1].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.wind == 20
+        assert first_event.production.coal == 20
+        assert first_event.source == "trust.me"
+
+        second_event = next(event_iterator)
+        assert second_event.datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert second_event.production is not None
+        assert second_event.production.wind == 21
+        assert second_event.production.coal == 21
+        assert second_event.source == "trust.me"
 
     def test_update_storage_list_with_new_list_being_longer(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -700,18 +766,20 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 2
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].storage is not None
-        assert updated_list.events[0].storage.hydro == 2
-        assert updated_list.events[0].source == "trust.me"
-        assert updated_list.events[1].datetime == datetime(
-            2023, 1, 2, tzinfo=timezone.utc
-        )
-        assert updated_list.events[1].storage is not None
-        assert updated_list.events[1].storage.hydro == 3
-        assert updated_list.events[1].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        # Create an iterator over the sorted events
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.storage is not None
+        assert first_event.storage.hydro == 2
+        assert first_event.source == "trust.me"
+
+        second_event = next(event_iterator)
+        assert second_event.datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert second_event.storage is not None
+        assert second_event.storage.hydro == 3
+        assert second_event.source == "trust.me"
 
     def test_update_production_list_with_storage(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -738,18 +806,19 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 2
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].storage is not None
-        assert updated_list.events[0].storage.hydro == 2
-        assert updated_list.events[0].source == "trust.me"
-        assert updated_list.events[1].datetime == datetime(
-            2023, 1, 2, tzinfo=timezone.utc
-        )
-        assert updated_list.events[1].storage is not None
-        assert updated_list.events[1].storage.hydro == 2
-        assert updated_list.events[1].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.storage is not None
+        assert first_event.storage.hydro == 2
+        assert first_event.source == "trust.me"
+
+        second_event = next(event_iterator)
+        assert second_event.datetime == datetime(2023, 1, 2, tzinfo=timezone.utc)
+        assert second_event.storage is not None
+        assert second_event.storage.hydro == 2
+        assert second_event.source == "trust.me"
 
     def test_update_production_list_with_none_in_production(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -770,13 +839,14 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 1
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].production is not None
-        assert updated_list.events[0].production.wind == 10
-        assert updated_list.events[0].production.coal == 20
-        assert updated_list.events[0].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.wind == 10
+        assert first_event.production.coal == 20
+        assert first_event.source == "trust.me"
 
     def test_update_production_list_with_none_in_storage(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -797,11 +867,13 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 1
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].storage.hydro == 1
-        assert updated_list.events[0].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.storage is not None
+        assert first_event.storage.hydro == 1
+        assert first_event.source == "trust.me"
 
     def test_update_production_with_different_zoneKey(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -844,14 +916,14 @@ class TestProductionBreakdownList(unittest.TestCase):
         updated_list = ProductionBreakdownList.update_production_breakdowns(
             production_list1, production_list2, logging.Logger("test")
         )
+
+        key = datetime(2023, 1, 1, tzinfo=timezone.utc)
         assert len(updated_list.events) == 1
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].production is not None
-        assert updated_list.events[0].production.wind == 20
-        assert updated_list.events[0].production.coal == 20
-        assert updated_list.events[0].source == ", ".join(
+        assert key in updated_list.events
+        assert updated_list.events[key].production is not None
+        assert updated_list.events[key].production.wind == 20
+        assert updated_list.events[key].production.coal == 20
+        assert updated_list.events[key].source == ", ".join(
             set("trust.me, trust.me.too".split(", "))
         )
 
@@ -892,13 +964,14 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 1
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].production is not None
-        assert updated_list.events[0].production.wind == 20
-        assert updated_list.events[0].production.coal == 20
-        assert updated_list.events[0].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.wind == 20
+        assert first_event.production.coal == 20
+        assert first_event.source == "trust.me"
 
     def test_update_production_with_empty_new_list(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -913,13 +986,14 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 1
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].production is not None
-        assert updated_list.events[0].production.wind == 10
-        assert updated_list.events[0].production.coal == 10
-        assert updated_list.events[0].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.wind == 10
+        assert first_event.production.coal == 10
+        assert first_event.source == "trust.me"
 
     def test_update_stroage_with_empty_list(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -934,12 +1008,13 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 1
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].storage is not None
-        assert updated_list.events[0].storage.hydro == 1
-        assert updated_list.events[0].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.storage is not None
+        assert first_event.storage.hydro == 1
+        assert first_event.source == "trust.me"
 
     def test_update_stroage_with_empty_new_list(self):
         production_list1 = ProductionBreakdownList(logging.Logger("test"))
@@ -954,12 +1029,13 @@ class TestProductionBreakdownList(unittest.TestCase):
             production_list1, production_list2, logging.Logger("test")
         )
         assert len(updated_list.events) == 1
-        assert updated_list.events[0].datetime == datetime(
-            2023, 1, 1, tzinfo=timezone.utc
-        )
-        assert updated_list.events[0].storage is not None
-        assert updated_list.events[0].storage.hydro == 1
-        assert updated_list.events[0].source == "trust.me"
+        sorted_events = dict(sorted(updated_list.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.storage is not None
+        assert first_event.storage.hydro == 1
+        assert first_event.source == "trust.me"
 
     def test_filter_expected_modes(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
@@ -999,7 +1075,10 @@ class TestProductionBreakdownList(unittest.TestCase):
         )
         output = ProductionBreakdownList.filter_expected_modes(production_list_1)
         assert len(output.events) == 1
-        assert output.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        sorted_events = dict(sorted(output.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
 
     def test_filter_expected_modes_none(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
@@ -1042,7 +1121,12 @@ class TestProductionBreakdownList(unittest.TestCase):
         )
         output = ProductionBreakdownList.filter_expected_modes(production_list_1)
         assert len(output) == 1
-        assert output.events[0].production.corrected_negative_modes == {"solar"}
+        sorted_events = dict(sorted(output.events.items()))
+        event_iterator = iter(sorted_events.values())
+        first_event = next(event_iterator)
+        assert first_event.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+        assert first_event.production is not None
+        assert first_event.production.corrected_negative_modes == {"solar"}
 
     def test_not_strict_mode(self):
         production_list = ProductionBreakdownList(logging.Logger("test"))

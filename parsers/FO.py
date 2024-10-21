@@ -221,7 +221,7 @@ def fetch_production(
 
     # historical API has a ~2:25h delay, so supplement with realtime API data if applicable
     # note that this will still leave a small gap, but at least it will provide a realtime signal
-    if target_datetime > historical_production_breakdown_list.events[-1].datetime:
+    if target_datetime > max(historical_production_breakdown_list.events.keys()):
         live_production_breakdown_list = _fetch_production_live(
             zone_key=zone_key,
             session=session,
