@@ -540,8 +540,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "VS",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CENT-SWPP": {
       "countryName": "VS",
