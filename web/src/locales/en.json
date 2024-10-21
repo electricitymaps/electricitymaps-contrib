@@ -17,9 +17,10 @@
   },
   "button": {
     "reddit": "Join r/electricitymaps",
+    "reddit-share": "Share on Reddit",
     "github": "Contribute on GitHub",
-    "twitter": "Follow us on Twitter",
-    "twitter-share": "Share on Twitter",
+    "twitter": "Follow us on X (Twitter)",
+    "twitter-share": "Share on X (Twitter)",
     "slack": "Join our Slack community",
     "linkedin": "Follow us on LinkedIn",
     "linkedin-share": "Share on LinkedIn",
