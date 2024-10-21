@@ -128,12 +128,40 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Run translation out of sync script
         run: node web/scripts/detectTranslationsOutOfSync.js
+
+  remove_escaped_quotes_from_translation_files:
+    name: Frontend / Remove escaped quotes from translation files
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.json != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version-file: '.python-version'
       - name: Run escaped quotes script
         run: python scripts/remove_escaped_quotes_in_locales.py
+      - name: Commit changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add web/src/locales/*.json
+          git commit -m "Remove escaped quotes in locale files" || echo "No changes to commit"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
 
   #                 #
   # Frontend checks #
