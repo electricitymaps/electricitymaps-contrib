@@ -356,7 +356,7 @@ class AggregatableEvent(Event):
         flattened_sources = [
             source.strip() for sublist in sources for source in sublist.split(",")
         ]
-        unique_sources = set(flattened_sources)
+        unique_sources = sorted(set(flattened_sources))
         return ", ".join(unique_sources)
 
     @staticmethod
