@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
+import { ChartIds, TrackEvent } from 'utils/constants';
 import {
   dataSourcesCollapsedBarBreakdownAtom,
   displayByEmissionsAtom,
@@ -133,6 +133,7 @@ function BarBreakdownChart({
   return (
     <RoundedCard ref={ref}>
       <BySource
+        id={ChartIds.BAR_BREAKDOWN_CHART}
         hasEstimationPill={hasEstimationPill}
         estimatedPercentage={currentZoneDetail.estimatedPercentage}
         unit={graphUnit}
