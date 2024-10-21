@@ -126,8 +126,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: './web/.node-version'
-      - name: Run script
+      - name: Run translation out of sync script
         run: node web/scripts/detectTranslationsOutOfSync.js
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: '.python-version'
+      - name: Run escaped quotes script
+        run: python scripts/remove_escaped_quotes_in_locales.py
 
   #                 #
   # Frontend checks #
