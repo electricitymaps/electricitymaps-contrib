@@ -1723,8 +1723,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "Estados Unidos da América",
-      "displayName": "CAISO",
-      "zoneName": "Operador de sistema independente da Califórnia"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CAL-IID": {
       "countryName": "Estados Unidos da América",

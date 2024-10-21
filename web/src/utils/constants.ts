@@ -135,6 +135,8 @@ export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
 export const sourceLinkMapping: { [key: string]: string } = {
   'EU-ETS, ENTSO-E 2022':
     'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
+  'EU-ETS, ENTSO-E 2023':
+    'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
   Climatescope: 'https://www.global-climatescope.org/',
   'ree.es': 'https://www.ree.es/en',
   'saskpower.com': 'https://www.saskpower.com/Our-Power-Future',
