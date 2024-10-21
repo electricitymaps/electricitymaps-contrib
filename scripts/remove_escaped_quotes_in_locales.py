@@ -43,7 +43,7 @@ def main():
 
     if detect_mode and escaped_quotes_found:
         print(
-            "Error: Escaped quotes detected in JSON files. Run the script remove_escaped_quotes_in_locaes.py without --detect to fix."
+            "Error: Escaped quotes detected in JSON files. Run the script remove_escaped_quotes_in_locales.py without --detect to fix."
         )
         sys.exit(1)
     elif not detect_mode:
