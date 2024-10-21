@@ -26,11 +26,10 @@ Object.defineProperty(window.navigator, 'clipboard', {
 });
 
 const mocks = vi.hoisted(() => ({
-  isMobile: vi.fn(),
-  isIos: vi.fn(),
+  hasMobileUserAgent: vi.fn(),
 }));
 
-vi.mock('features/weather-layers/wind-layer/util', () => mocks);
+vi.mock('utils/helpers', () => mocks);
 
 describe('ShareButton', () => {
   afterEach(() => {
@@ -39,7 +38,7 @@ describe('ShareButton', () => {
 
   test('uses Capacitor Share if on mobile and can share', async () => {
     vi.mocked(Share.canShare).mockResolvedValue({ value: true });
-    mocks.isMobile.mockReturnValue(true);
+    mocks.hasMobileUserAgent.mockReturnValue(true);
     render(
       <ToastProvider>
         <ShareButton />
@@ -53,7 +52,7 @@ describe('ShareButton', () => {
   test('does not display error toast on share abort', async () => {
     vi.mocked(Share.canShare).mockResolvedValue({ value: true });
     vi.mocked(Share.share).mockRejectedValue(new Error('AbortError'));
-    mocks.isMobile.mockReturnValue(true);
+    mocks.hasMobileUserAgent.mockReturnValue(true);
     render(
       <ToastProvider>
         <ShareButton />
@@ -69,7 +68,7 @@ describe('ShareButton', () => {
   test('does not display error toast on share cancel', async () => {
     vi.mocked(Share.canShare).mockResolvedValue({ value: true });
     vi.mocked(Share.share).mockRejectedValue(new Error('Share canceled'));
-    mocks.isMobile.mockReturnValue(true);
+    mocks.hasMobileUserAgent.mockReturnValue(true);
     render(
       <ToastProvider>
         <ShareButton />
@@ -85,7 +84,7 @@ describe('ShareButton', () => {
   test('displays error toast on share error', async () => {
     vi.mocked(Share.canShare).mockResolvedValue({ value: true });
     vi.mocked(Share.share).mockRejectedValue(new Error('Error!'));
-    mocks.isMobile.mockReturnValue(true);
+    mocks.hasMobileUserAgent.mockReturnValue(true);
     render(
       <ToastProvider>
         <ShareButton />
@@ -100,7 +99,7 @@ describe('ShareButton', () => {
   describe('copies to clipboard', () => {
     test('if not on mobile', async () => {
       vi.mocked(Share.canShare).mockResolvedValue({ value: true });
-      mocks.isMobile.mockReturnValue(false);
+      mocks.hasMobileUserAgent.mockReturnValue(false);
       render(
         <ToastProvider>
           <ShareButton />
