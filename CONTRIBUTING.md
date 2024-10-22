@@ -136,7 +136,7 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [wiki python code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#python-code-formatting
 [node homepage]: https://nodejs.org/
 [pnpm homepage]: https://pnpm.io/
-[node installation guide]: https://nodejs.dev/en/learn/how-to-install-nodejs/
+[node installation guide]: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs
 [pnpm installation guide]: https://pnpm.io/installation
 [jotai homepage]: https://jotai.org/
 [jotai atoms]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/web/src/utils/state/atoms.ts
