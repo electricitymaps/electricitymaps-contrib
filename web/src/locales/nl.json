@@ -8,6 +8,7 @@
     "source": "bron",
     "lowcarbon": "Lage-uitstoot",
     "renewable": "Hernieuwbaar",
+    "electricityconsumption": "Elektriciteit",
     "carbonintensity": "Koolstofintensiteit",
     "helpfrom": "met de hulp van",
     "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
