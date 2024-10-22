@@ -10,6 +10,7 @@ import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import Header from 'features/header/Header';
+import { zoneExists } from 'features/panels/zone/util';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
 import { useDarkMode } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
@@ -17,6 +18,7 @@ import { useSetAtom } from 'jotai';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { Navigate, Route, Routes, useParams, useSearchParams } from 'react-router-dom';
 import trackEvent from 'utils/analytics';
 import { metaTitleSuffix, Mode, TrackEvent } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
@@ -31,20 +33,57 @@ const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWra
 
 const isProduction = import.meta.env.PROD;
 
-if (isProduction) {
-  trackEvent(TrackEvent.APP_LOADED, {
-    isNative: Capacitor.isNativePlatform(),
-    platform: Capacitor.getPlatform(),
-  });
+function HandleLegacyRoutes() {
+  const [searchParameters] = useSearchParams();
+
+  const page = (searchParameters.get('page') || 'map')
+    .replace('country', 'zone')
+    .replace('highscore', 'ranking');
+  searchParameters.delete('page');
+
+  const zoneId = searchParameters.get('countryCode');
+  searchParameters.delete('countryCode');
+
+  return (
+    <Navigate
+      to={{
+        pathname: zoneId ? `/zone/${zoneId}` : `/${page}`,
+        search: searchParameters.toString(),
+      }}
+    />
+  );
+}
+
+function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
+  const [searchParameters] = useSearchParams();
+  const { zoneId } = useParams();
+
+  if (!zoneId) {
+    return <Navigate to="/" replace />;
+  }
+  const upperCaseZoneId = zoneId.toUpperCase();
+  if (zoneId !== upperCaseZoneId) {
+    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
+  }
+
+  // Handle legacy Australia zone names
+  if (upperCaseZoneId.startsWith('AUS')) {
+    return (
+      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
+    );
+  }
+
+  // Only allow valid zone ids
+  // TODO: This should redirect to a 404 page specifically for zones
+  if (!zoneExists(upperCaseZoneId)) {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
 }
 
 export default function App(): ReactElement {
-  // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
-
-  // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
-  // instead of waiting for the map to be lazy loaded.
-  // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
   useGetState();
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
@@ -58,12 +97,10 @@ export default function App(): ReactElement {
     }
   }, [isConsumptionOnlyMode, setConsumptionAtom]);
 
-  // Update classes on theme change
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
   }, [shouldUseDarkMode]);
 
-  // Handle back button on Android
   useEffect(() => {
     if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
       Cap.addListener('backButton', () => {
@@ -75,6 +112,13 @@ export default function App(): ReactElement {
       });
     }
   }, []);
+
+  if (isProduction) {
+    trackEvent(TrackEvent.APP_LOADED, {
+      isNative: Capacitor.isNativePlatform(),
+      platform: Capacitor.getPlatform(),
+    });
+  }
 
   return (
     <Suspense fallback={<div />}>
@@ -113,7 +157,20 @@ export default function App(): ReactElement {
                 <SettingsModal />
               </Suspense>
               <Suspense>
-                <LeftPanel />
+                <Suspense>
+                  <Routes>
+                    <Route path="/" element={<HandleLegacyRoutes />} />
+                    <Route
+                      path="/zone/:zoneId/:urlTimeAverage?/:urlDatetime?"
+                      element={
+                        <ValidZoneIdGuardWrapper>
+                          <LeftPanel />
+                        </ValidZoneIdGuardWrapper>
+                      }
+                    />
+                    <Route path="*" element={<LeftPanel />} />
+                  </Routes>
+                </Suspense>
               </Suspense>
               <Suspense>
                 <MapWrapper />
