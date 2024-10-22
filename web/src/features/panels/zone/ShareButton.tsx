@@ -37,14 +37,13 @@ export function ShareButton({
   const [toastMessage, setToastMessage] = useState('');
   const { copyToClipboard, share } = useShare();
 
-  const url = shareUrl;
-
   const shareData = {
     title: 'Electricity Maps',
     text: 'Check this out!',
-    url,
+    url: shareUrl,
   };
 
+  // TODO: callbacks -> individually useCallback'd or useMemo'd as a group
   const toastMessageCallback = (message: string) => {
     setToastMessage(message);
     reference.current?.publish();

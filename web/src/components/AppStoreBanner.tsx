@@ -70,6 +70,7 @@ export function AppStoreBanner({
   );
 }
 
+// TODO: break out into own file
 interface DefaultCloseButtonProps {
   onClose(): void;
   color?: 'gray' | 'black';

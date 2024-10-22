@@ -75,7 +75,7 @@ export default function BySource({
             }
           />
         )}
-        <MoreOptions isEstimated={Boolean(pillText)} />
+        <MoreOptions isEstimated={hasEstimationPill} />
       </div>
       {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>

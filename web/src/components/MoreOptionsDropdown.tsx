@@ -1,9 +1,9 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
-import { t } from 'i18next';
 import { Copy, Ellipsis, ShareIcon } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
 import { baseUrl, DEFAULT_ICON_SIZE } from 'utils/constants';
@@ -15,26 +15,28 @@ import { Toast, useToastReference } from './Toast';
 
 export interface MoreOptionsDropdownProps {
   children: React.ReactElement;
-  shareUrl: string;
-  hasMobileUserAgent: boolean;
+  shareUrl?: string;
+  hasMobileUserAgent?: boolean;
   isEstimated?: boolean;
+  isTest?: boolean; // TODO: fix this
 }
-const DURATION = 3 * 1000;
-// TODO: translations
-const summary = `Discover real-time electricity insights with the @electricitymaps app! ${baseUrl}`;
-const preliminaryData = 'Preliminary data may change over time.';
+const DURATION = 3 * 1000; // 3s
 
 export function MoreOptionsDropdown({
   children,
   shareUrl = baseUrl,
   hasMobileUserAgent = hasMobileUA(),
   isEstimated = false,
+  isTest,
 }: MoreOptionsDropdownProps) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
+  const summary = `${t('more-options-dropdown')} ${baseUrl}`;
 
+  // TODO: maybe wrap all of the following in a useMemo? or multiple use callbacks depending on how many dependencies there are?
   const toastMessageCallback = (message: string) => {
     setToastMessage(message);
     reference.current?.publish();
@@ -60,18 +62,20 @@ export function MoreOptionsDropdown({
           <DropdownMenu.Content
             className={twMerge(
               'border-gray my-2 min-w-60 rounded-2xl border border-solid bg-white shadow-md',
-              hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
+              hasMobileUserAgent ? 'mx-7' : (isTest ? '' : '-translate-x-[42%]')
             )}
           >
             {isEstimated && (
               <div className="w-full rounded-t-2xl bg-warning/10 p-3 text-xs font-semibold text-warning dark:bg-warning-dark/10 dark:text-warning-dark">
-                <p className="text-xs">{preliminaryData}</p>
+                <p className="text-xs">{t('more-options-dropdown.preliminary-data')}</p>
               </div>
             )}
             <div className="p-3">
               <DropdownMenu.Label className="flex flex-col">
                 <div className="align-items flex justify-between">
-                  <h2 className="self-start text-sm">Share</h2>
+                  <h2 className="self-start text-sm">
+                    {t('more-options-dropdown.title')}
+                  </h2>
                   <DefaultCloseButton onClose={onDismiss} />
                 </div>
                 <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600" />
@@ -85,12 +89,12 @@ export function MoreOptionsDropdown({
               >
                 <DropdownMenu.Item onSelect={copyShareUrl}>
                   <Copy size={DEFAULT_ICON_SIZE} />
-                  <p>Copy link to graph</p>
+                  <p>{t('more-options-dropdown.copy-chart-link')}</p>
                 </DropdownMenu.Item>
                 {hasMobileUserAgent && (
                   <DropdownMenu.Item onSelect={onShare}>
                     <ShareIcon size={DEFAULT_ICON_SIZE} />
-                    <p>Share via </p>
+                    <p>{t('more-options-dropdown.mobile-share-via')}</p>
                   </DropdownMenu.Item>
                 )}
                 {!hasMobileUserAgent && (
@@ -102,7 +106,7 @@ export function MoreOptionsDropdown({
                     >
                       <DropdownMenu.Item>
                         <FaXTwitter size={DEFAULT_ICON_SIZE} />
-                        <p>Share on X (Twitter)</p>
+                        <p>{t('button.twitter-share')}</p>
                       </DropdownMenu.Item>
                     </a>
                     <a
@@ -112,7 +116,7 @@ export function MoreOptionsDropdown({
                     >
                       <DropdownMenu.Item>
                         <FaFacebook size={DEFAULT_ICON_SIZE} />
-                        <p>Share on Facebook</p>
+                        <p>{t('button.facebook-share')}</p>
                       </DropdownMenu.Item>
                     </a>
                     <a
@@ -120,7 +124,7 @@ export function MoreOptionsDropdown({
                     >
                       <DropdownMenu.Item>
                         <FaLinkedin size={DEFAULT_ICON_SIZE} />
-                        <p>Share on LinkedIn</p>
+                        <p>{t('button.linkedin-share')}</p>
                       </DropdownMenu.Item>
                     </a>
                   </>
