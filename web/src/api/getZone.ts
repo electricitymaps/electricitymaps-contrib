@@ -18,7 +18,9 @@ const getZone = async (
   invariant(zoneId, 'Zone ID is required');
   const isValidDatetime = datetime && isValidDate(datetime);
   const path: URL = new URL(
-    `v8/details/${timeAverage}/${zoneId}${isValidDatetime ? `/${datetime}` : ''}`,
+    `v8/details/${timeAverage}/${zoneId}${
+      isValidDatetime ? `?targetDate=${datetime}` : ''
+    }`,
     getBasePath()
   );
   path.searchParams.append('cacheKey', isValidDatetime ? datetime : cacheBuster());
@@ -47,7 +49,7 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const zoneId = useGetZoneFromPath();
   const { urlTimeAverage, urlDatetime } = useParams();
   const [timeAverage] = useAtom(timeAverageAtom);
-
+  console.log('shouldQuersdadyLastHour', urlDatetime, urlTimeAverage);
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,
