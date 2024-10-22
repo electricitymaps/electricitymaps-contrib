@@ -81,11 +81,13 @@ export default function ZoneDetails(): JSX.Element {
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
       <div
+        id="panel-scroller"
         className={twMerge(
           'mb-3 h-full overflow-y-scroll px-3  pt-2 sm:h-full sm:pb-60',
           isIosCapacitor ? 'pb-72' : 'pb-48'
         )}
       >
+        {/* move up zone details content? */}
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
@@ -197,13 +199,23 @@ const useScrollHashIntoView = (isLoading: boolean) => {
   const { hash, pathname, search } = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
-    const hashElement = hash ? document.querySelector(hash) : null;
-    if (!isLoading && hashElement) {
-      hashElement.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'nearest',
-      });
+    if (isLoading) {
+      return;
     }
-    navigate(`${pathname}${search}`);
+
+    if (hash) {
+      const hashElement = hash ? document.querySelector(hash) : null;
+      if (hashElement) {
+        hashElement.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'nearest',
+        });
+      }
+    } else {
+      const element = document.querySelector('#panel-scroller');
+      if (element) {
+        element.scrollTop = 0;
+      }
+    }
   }, [hash, isLoading, navigate, pathname, search]);
 };

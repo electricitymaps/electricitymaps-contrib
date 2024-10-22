@@ -253,9 +253,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(createToWithState(`/zone/${zoneId}`));
+        navigate(createToWithState(`/zone/${zoneId}`, false));
       } else {
-        navigate(createToWithState('/map'));
+        navigate(createToWithState('/map', false));
       }
     },
     [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
