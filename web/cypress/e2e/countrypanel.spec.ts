@@ -26,10 +26,16 @@ describe('Country Panel', () => {
     // cy.contains('Includes renewables and nuclear');
     cy.get('[data-test-id=zone-header-lowcarbon-gauge]').trigger('mouseout');
 
-    cy.contains('Emissions').should('have.attr', 'aria-checked', 'false');
-    cy.contains('Emissions').click().should('have.attr', 'aria-checked', 'true');
+    cy.get('[data-test-id=toggle-button-emissions]').should(
+      'have.attr',
+      'aria-checked',
+      'false'
+    );
+    cy.get('[data-test-id=toggle-button-emissions]')
+      .click()
+      .should('have.attr', 'aria-checked', 'true');
     cy.contains('0 t');
-    cy.contains('Consumption').click();
+    cy.get('[data-test-id=toggle-button-electricity]').click();
 
     // // test graph tooltip
     // cy.get('[data-test-id=details-carbon-graph]').trigger('mousemove', 'left');
