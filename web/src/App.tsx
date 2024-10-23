@@ -19,7 +19,12 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
 import { metaTitleSuffix, Mode, TrackEvent } from 'utils/constants';
-import { productionConsumptionAtom } from 'utils/state/atoms';
+import { parsePath } from 'utils/pathUtils';
+import {
+  productionConsumptionAtom,
+  selectedDatetimeIndexAtom,
+  targetDatetimeStringAtom,
+} from 'utils/state/atoms';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -38,10 +43,33 @@ if (isProduction) {
   });
 }
 
+export const useInitialState = () => {
+  const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
+  const setTargetDatetimeString = useSetAtom(targetDatetimeStringAtom);
+  const parsedPath = parsePath(location.pathname);
+
+  // Set initial datetime synchronously
+  useLayoutEffect(() => {
+    if (parsedPath?.datetime) {
+      const pathDate = new Date(parsedPath.datetime);
+      if (!Number.isNaN(pathDate.getTime())) {
+        setTargetDatetimeString(parsedPath.datetime);
+        setSelectedDatetimeIndex({
+          datetime: pathDate,
+          index: 0,
+        });
+      }
+    }
+  }, [parsedPath?.datetime, setSelectedDatetimeIndex, setTargetDatetimeString]); // Empty dependency array to run only once on mount
+
+  return useGetState();
+};
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
-  useGetState();
+
+  useInitialState();
+
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates

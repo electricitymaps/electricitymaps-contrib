@@ -24,6 +24,8 @@ export const selectedDatetimeStringAtom = atom<string>((get) => {
   return dateToDatetimeString(datetime);
 });
 
+export const targetDatetimeStringAtom = atom<string | undefined>(undefined);
+
 export const spatialAggregateAtom = atomWithStorage(
   'country-mode',
   SpatialAggregate.ZONE

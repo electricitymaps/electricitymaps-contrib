@@ -1,12 +1,12 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom } from 'jotai';
-import { useParams } from 'react-router-dom';
+import { useAtom, useAtomValue } from 'jotai';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { parsePath } from 'utils/pathUtils';
+import { targetDatetimeStringAtom, timeAverageAtom } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
 
@@ -16,14 +16,20 @@ const getZone = async (
   datetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
+  const parsedPath = parsePath(location.pathname);
+
   const isValidDatetime = datetime && isValidDate(datetime);
+  const timeAverageToQuery = parsedPath?.timeAverage || timeAverage;
   const path: URL = new URL(
-    `v8/details/${timeAverage}/${zoneId}${
+    `v8/details/${timeAverageToQuery}/${zoneId}${
       isValidDatetime ? `?targetDate=${datetime}` : ''
     }`,
     getBasePath()
   );
-  path.searchParams.append('cacheKey', isValidDatetime ? datetime : cacheBuster());
+  path.searchParams.append(
+    'cacheKey',
+    isValidDatetime && datetime ? datetime : cacheBuster()
+  );
 
   const requestOptions: RequestInit = {
     method: 'GET',
@@ -47,19 +53,17 @@ const getZone = async (
 // should we add a check for this?
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const zoneId = useGetZoneFromPath();
-  const { urlTimeAverage, urlDatetime } = useParams();
+  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
   const [timeAverage] = useAtom(timeAverageAtom);
-  console.log('shouldQuersdadyLastHour', urlDatetime, urlTimeAverage);
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,
       {
         zone: zoneId,
-        aggregate: urlTimeAverage || timeAverage,
-        urlDatetime,
+        aggregate: timeAverage,
       },
     ],
-    queryFn: async () => getZone(timeAverage, zoneId, urlDatetime),
+    queryFn: async () => getZone(timeAverage, zoneId, targetDatetime),
   });
 };
 
