@@ -41,11 +41,11 @@ if (isProduction) {
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
-
+  useGetState();
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
-  useGetState();
+
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
   const canonicalUrl = useGetCanonicalUrl();

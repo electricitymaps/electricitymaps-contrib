@@ -1,3 +1,4 @@
+import useGetState from 'api/getState';
 import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
@@ -7,6 +8,7 @@ import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Navigate,
+  Outlet,
   Route,
   Routes,
   useLocation,
@@ -40,6 +42,41 @@ function HandleLegacyRoutes() {
       }}
     />
   );
+}
+type ZoneRouteParameters = {
+  zoneId: string;
+  urlTimeAverage?: string;
+  urlDatetime?: string;
+};
+
+type MapRouteParameters = {
+  urlTimeAverage?: string;
+  urlDatetime?: string;
+};
+
+// Union type of all possible route parameters
+type RouteParameters = ZoneRouteParameters | MapRouteParameters;
+
+// Type guard to check if we're in a zone route
+function isZoneRoute(
+  parameters: Partial<RouteParameters>
+): parameters is ZoneRouteParameters {
+  return 'zoneId' in parameters;
+}
+
+// Create a component that will only render after route params are available
+function RouteAwareStateProvider() {
+  const parameters = useParams<RouteParameters>();
+  const location = useLocation();
+
+  // Type-safe access to parameters based on route
+  const { urlTimeAverage, urlDatetime } = parameters;
+  const zoneId = isZoneRoute(parameters) ? parameters.zoneId : undefined;
+
+  // Now we can safely use these typed parameters
+  const stateQuery = useGetState();
+
+  return <Outlet />;
 }
 
 function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
@@ -122,31 +159,41 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
 export default function LeftPanel() {
   return (
     <OuterPanel>
       <Routes>
-        <Route path="/" element={<HandleLegacyRoutes />} />
-        <Route path="/zone" element={<Navigate to="/" replace />} />
-        <Route
-          path="/zone/:zoneId/:urlTimeAverage?/:urlDatetime?"
-          element={
-            <ValidZoneIdGuardWrapper>
+        <Route element={<RouteAwareStateProvider />}>
+          <Route path="/" element={<HandleLegacyRoutes />} />
+          <Route path="/zone" element={<Navigate to="/" replace />} />
+          <Route
+            path="/zone/:zoneId/:urlTimeAverage?/:urlDatetime?"
+            element={
+              <ValidZoneIdGuardWrapper>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <ZoneDetails />
+                </Suspense>
+              </ValidZoneIdGuardWrapper>
+            }
+          />
+          <Route
+            path="/map/:urlTimeAverage?/:urlDatetime?"
+            element={
               <Suspense fallback={<LoadingSpinner />}>
-                <ZoneDetails />
+                <RankingPanel />
               </Suspense>
-            </ValidZoneIdGuardWrapper>
-          }
-        />
-        {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<LoadingSpinner />}>
-              <RankingPanel />
-            </Suspense>
-          }
-        />
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <RankingPanel />
+              </Suspense>
+            }
+          />
+        </Route>
       </Routes>
     </OuterPanel>
   );
