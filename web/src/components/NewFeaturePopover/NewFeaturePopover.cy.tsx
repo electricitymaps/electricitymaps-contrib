@@ -3,7 +3,7 @@ import { NewFeaturePopover } from './NewFeaturePopover';
 describe('New Feature Popover', () => {
   it('should display', () => {
     cy.mount(
-      <NewFeaturePopover side="bottom" content={<p>content</p>} isOpen>
+      <NewFeaturePopover side="bottom" content={<p>content</p>}>
         <p className="w-fit">anchor</p>
       </NewFeaturePopover>
     );
@@ -12,7 +12,7 @@ describe('New Feature Popover', () => {
 
   it('should display anchor if no content', () => {
     cy.mount(
-      <NewFeaturePopover content="" side="bottom" isOpen>
+      <NewFeaturePopover content="" side="bottom">
         <p>anchor</p>
       </NewFeaturePopover>
     );
@@ -20,23 +20,14 @@ describe('New Feature Popover', () => {
     cy.contains('content').should('not.exist');
   });
 
-  it('should use a portal by default', () => {
+  it('should close on dismiss', () => {
     cy.mount(
-      <div className="flex justify-items-center">
-        <NewFeaturePopover side="bottom" content={<p>content</p>} isOpen>
-          <p>anchor</p>
-        </NewFeaturePopover>
-      </div>
-    );
-    cy.contains('anchor');
-  });
-
-  it('should not use a portal if specified', () => {
-    cy.mount(
-      <NewFeaturePopover side="bottom" content={<p>content</p>} portal={false} isOpen>
+      <NewFeaturePopover side="bottom" content={<p>content</p>}>
         <p>anchor</p>
       </NewFeaturePopover>
     );
     cy.contains('anchor');
+    cy.get('[data-test-id=dismiss]').click();
+    cy.contains('content').should('not.exist');
   });
 });

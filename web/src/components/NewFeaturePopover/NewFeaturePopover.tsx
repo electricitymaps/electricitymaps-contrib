@@ -1,5 +1,12 @@
 import * as Popover from '@radix-ui/react-popover';
+import { useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { X } from 'lucide-react';
+
+export const newFeatureDismissedAtom = atomWithStorage(
+  'newFeatureDismissed',
+  Boolean(localStorage.getItem('newFeatureDismissed') ?? false)
+);
 
 interface NewFeaturePopoverProps {
   children: React.ReactNode;
@@ -16,10 +23,11 @@ export function NewFeaturePopover({
   content,
   side = 'left',
   sideOffset = 6,
-  isOpen,
-  portal = true,
-  onDismiss,
+  portal = false,
 }: NewFeaturePopoverProps) {
+  const [isDismissed, setIsDismissed] = useAtom(newFeatureDismissedAtom);
+  const onDismiss = () => setIsDismissed(true);
+
   if (!content) {
     return children;
   }
@@ -31,7 +39,11 @@ export function NewFeaturePopover({
       side={side}
     >
       {content}
-      <Popover.Close onClick={onDismiss} className="self-start text-white">
+      <Popover.Close
+        data-test-id="dismiss"
+        onClick={onDismiss}
+        className="self-start text-white"
+      >
         <X size={16} />
       </Popover.Close>
       <Popover.Arrow className="fill-brand-green" />
@@ -39,7 +51,7 @@ export function NewFeaturePopover({
   );
 
   return (
-    <Popover.Root open={isOpen}>
+    <Popover.Root open={!isDismissed}>
       <Popover.Anchor>{children}</Popover.Anchor>
       {portal ? <Popover.Portal>{inner}</Popover.Portal> : inner}
     </Popover.Root>

@@ -52,6 +52,10 @@
     "preliminary-data": "Preliminary data may change over time.",
     "summary": "Discover real-time electricity insights with the Electricity Maps app!"
   },
+  "new-feature-popover": {
+    "title": "Select a Date to Explore",
+    "content": "Use the date picker to view historical data on electricity sources, CO2 emissions, and prices."
+  },
   "onboarding-modal": {
     "view1": {
       "header": "Welcome to Electricity Maps",
@@ -236,11 +240,7 @@
     "daily": "daily",
     "hourly": "hourly",
     "monthly": "monthly",
-    "yearly": "yearly",
-    "new-feature-popover": {
-      "title": "Select a Date to Explore",
-      "content": "Use the date picker to view historical data on electricity sources, CO2 emissions, and prices."
-    }
+    "yearly": "yearly"
   },
   "left-panel": {
     "get-data": "See our commercial API offerings",

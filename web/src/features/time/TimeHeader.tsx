@@ -1,28 +1,21 @@
 import useGetState from 'api/getState';
 import Badge from 'components/Badge';
-import { NewFeaturePopover } from 'components/NewFeaturePopover';
+import { NewFeaturePopover } from 'components/NewFeaturePopover/NewFeaturePopover';
+import { NewFeaturePopoverContent } from 'components/NewFeaturePopover/NewFeaturePopoverContent';
 import { FormattedTime } from 'components/Time';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom, useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
 
-import {
-  DatePickerFeaturePopoverContent,
-  newDatePickerDismissedAtom,
-} from './DatePickerFeaturePopoverContent';
-
 export default function TimeHeader() {
   const { t, i18n } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
   const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
-  const [isDismissed, setIsDismissed] = useAtom(newDatePickerDismissedAtom);
   const { isLoading: isLoadingData } = useGetState();
   const [isLoadingMap] = useAtom(loadingMapAtom);
 
   const allLoaded = !isLoadingMap && !isLoadingData;
-
-  const onPopoverDismiss = () => setIsDismissed(true);
 
   return (
     <div className="flex min-h-6 flex-row items-center">
@@ -31,10 +24,9 @@ export default function TimeHeader() {
       </h3>
       {allLoaded && (
         <NewFeaturePopover
-          isOpen={!isDismissed}
-          onDismiss={onPopoverDismiss}
           side="top"
-          content={<DatePickerFeaturePopoverContent />}
+          content={<NewFeaturePopoverContent />}
+          portal={false}
         >
           <Badge
             pillText={
