@@ -18,10 +18,10 @@ import {
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
-import { zoneExists } from './zone/util';
 
 const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
+
 
 function HandleLegacyRoutes() {
   const [searchParameters] = useSearchParams();
@@ -107,6 +107,7 @@ function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   return children;
 }
 
+
 type CollapseButtonProps = {
   isCollapsed: boolean;
   onCollapse: () => void;
@@ -139,10 +140,11 @@ function MobileHeader() {
   );
 }
 
-function OuterPanel({ children }: { children: React.ReactNode }) {
+export default function LeftPanel() {
   const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
   const location = useLocation();
   const isMobile = useIsMobile();
+  const isZonePath = location.pathname.startsWith('/zone/');
 
   const onCollapse = () => setOpen(!isOpen);
 
@@ -154,11 +156,16 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
       } ${isOpen ? '' : '-translate-x-full'}`}
     >
       {isMobile && <MobileHeader />}
-      <section className="h-full w-full">{children}</section>
+      <section className="h-full w-full">
+        <Suspense fallback={<LoadingSpinner />}>
+          {isZonePath ? <ZoneDetails /> : <RankingPanel />}
+        </Suspense>
+      </section>
       <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
     </div>
   );
 }
+
 
 export default function LeftPanel() {
   return (
@@ -198,3 +205,4 @@ export default function LeftPanel() {
     </OuterPanel>
   );
 }
+
