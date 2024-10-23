@@ -38,55 +38,6 @@ const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWra
 
 const isProduction = import.meta.env.PROD;
 
-function HandleLegacyRoutes() {
-  const [searchParameters] = useSearchParams();
-
-  const page = (searchParameters.get('page') || 'map')
-    .replace('country', 'zone')
-    .replace('highscore', 'ranking');
-  searchParameters.delete('page');
-
-  const zoneId = searchParameters.get('countryCode');
-  searchParameters.delete('countryCode');
-
-  return (
-    <Navigate
-      to={{
-        pathname: zoneId ? `/zone/${zoneId}` : `/${page}`,
-        search: searchParameters.toString(),
-      }}
-    />
-  );
-}
-
-function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
-  const [searchParameters] = useSearchParams();
-  const { zoneId } = useParams();
-
-  if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
-  }
-
-  // Handle legacy Australia zone names
-  if (upperCaseZoneId.startsWith('AUS')) {
-    return (
-      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
-    );
-  }
-
-  // Only allow valid zone ids
-  // TODO: This should redirect to a 404 page specifically for zones
-  if (!zoneExists(upperCaseZoneId)) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-}
-
 export const useInitialState = () => {
   const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
   const setTargetDatetimeString = useSetAtom(targetDatetimeStringAtom);
@@ -114,7 +65,6 @@ export default function App(): ReactElement {
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
-
 
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
@@ -189,18 +139,7 @@ export default function App(): ReactElement {
               </Suspense>
               <Suspense>
                 <Suspense>
-                  <Routes>
-                    <Route path="/" element={<HandleLegacyRoutes />} />
-                    <Route
-                      path="/zone/:zoneId/:urlTimeAverage?/:urlDatetime?"
-                      element={
-                        <ValidZoneIdGuardWrapper>
-                          <LeftPanel />
-                        </ValidZoneIdGuardWrapper>
-                      }
-                    />
-                    <Route path="*" element={<LeftPanel />} />
-                  </Routes>
+                  <LeftPanel />
                 </Suspense>
               </Suspense>
               <Suspense>

@@ -55,10 +55,8 @@ const useGetState = (): UseQueryResult<GridState> => {
   const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
   const parsedPath = parsePath(location.pathname);
   const shouldFetchFullState =
-    isHistoricalQuery ||
-    !isHourly ||
-    hourZeroWasSuccessful ||
-    (last_hour.isError === true && parsedPath?.datetime === targetDatetime);
+    isHistoricalQuery || !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
+  const pathMatchesTargetDatetime = parsedPath?.datetime === targetDatetime;
 
   // Then fetch the rest of the data
   const all_data = useQuery<GridState>({
@@ -71,7 +69,7 @@ const useGetState = (): UseQueryResult<GridState> => {
     ],
     queryFn: async () => getState(timeAverage, targetDatetime),
     // The query should not execute until the last_hour query is done
-    enabled: shouldFetchFullState,
+    enabled: shouldFetchFullState && pathMatchesTargetDatetime,
   });
   return (all_data.data || !isHourly ? all_data : last_hour) ?? {};
 };
