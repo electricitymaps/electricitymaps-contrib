@@ -22,6 +22,7 @@ interface ShareButtonProps
   showIosIcon?: boolean;
   hasMobileUserAgent?: boolean;
 }
+
 const trackShareClick = trackShare(ShareType.SHARE);
 
 export function ShareButton({

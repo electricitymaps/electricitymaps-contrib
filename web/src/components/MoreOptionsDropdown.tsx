@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
+import { ShareType, trackShareChart } from 'utils/analytics';
 import { baseUrl, DEFAULT_ICON_SIZE, DEFAULT_TOAST_DURATION } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
 import { displayByEmissionsAtom, isHourlyAtom } from 'utils/state/atoms';
@@ -15,7 +16,14 @@ import { DefaultCloseButton } from './DefaultCloseButton';
 import { TimeDisplay } from './TimeDisplay';
 import { Toast, useToastReference } from './Toast';
 
-// TODO(cady): add tracking!
+// TODO(cady): bug! able to click on elements on map when popover is open?!
+
+// TODO: add chartId to tracking
+const onTrackShareChartReddit = trackShareChart(ShareType.REDDIT);
+const onTrackShareChartTwitter = trackShareChart(ShareType.TWITTER);
+const onTrackShareChartLinkedin = trackShareChart(ShareType.LINKEDIN);
+const onTrackShareChartFacebook = trackShareChart(ShareType.FACEBOOK);
+const onTrackShareChart = trackShareChart(ShareType.SHARE);
 
 export interface MoreOptionsDropdownProps {
   children: React.ReactElement;
@@ -43,8 +51,11 @@ export function MoreOptionsDropdown({
     setToastMessage(message);
     reference.current?.publish();
   };
-  const copyShareUrl = () => copyToClipboard(shareUrl, toastMessageCallback);
-  const onShare = () =>
+  const copyShareUrl = () => {
+    copyToClipboard(shareUrl, toastMessageCallback);
+    trackShareChart(ShareType.COPY);
+  };
+  const onShare = () => {
     share(
       {
         title: 'Electricity Maps',
@@ -53,6 +64,8 @@ export function MoreOptionsDropdown({
       },
       toastMessageCallback
     );
+    onTrackShareChart();
+  };
   const onDismiss = () => setIsOpen(false);
   const onToggleDropdown = () => setIsOpen((previous) => !previous);
 
@@ -103,6 +116,9 @@ export function MoreOptionsDropdown({
                   <>
                     <a
                       data-test-id="twitter-chart-share"
+                      target="_blank"
+                      rel="noopener"
+                      onClick={onTrackShareChartTwitter}
                       href={`https://twitter.com/intent/tweet?&url=${shareUrl}&text=${encodeURI(
                         summary
                       )}&hashtags=electricitymaps`}
@@ -114,6 +130,9 @@ export function MoreOptionsDropdown({
                     </a>
                     <a
                       data-test-id="facebook-chart-share"
+                      target="_blank"
+                      rel="noopener"
+                      onClick={onTrackShareChartFacebook}
                       href={`https://facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodeURI(
                         summary
                       )}`}
@@ -126,6 +145,9 @@ export function MoreOptionsDropdown({
                     <a
                       data-test-id="linkedin-chart-share"
                       href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`}
+                      target="_blank"
+                      rel="noopener"
+                      onClick={onTrackShareChartLinkedin}
                     >
                       <DropdownMenu.Item>
                         <FaLinkedin size={DEFAULT_ICON_SIZE} />
@@ -135,6 +157,9 @@ export function MoreOptionsDropdown({
                     <a
                       data-test-id="reddit-chart-share"
                       href={`https://www.reddit.com/web/submit?url=${shareUrl}`}
+                      target="_blank"
+                      rel="noopener"
+                      onClick={onTrackShareChartReddit}
                     >
                       <DropdownMenu.Item>
                         <FaReddit size={DEFAULT_ICON_SIZE} />
