@@ -43,8 +43,7 @@
     "carbonintensity": "spezifische CO₂-Emissionen",
     "lowcarbon": "CO₂-arm",
     "renewable": "regenerativ",
-    "electricityproduction": "Produktion",
-    "electricityconsumption": "Verbrauch",
+    "electricityconsumption": "Elektrizität",
     "emissions": "Emissionen",
     "by-source": {
       "emissions": "CO₂-Emissionen",
