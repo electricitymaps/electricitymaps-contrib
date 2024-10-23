@@ -56,7 +56,7 @@ export const useInitialState = () => {
         setTargetDatetimeString(parsedPath.datetime);
         setSelectedDatetimeIndex({
           datetime: pathDate,
-          index: 0,
+          index: 24,
         });
       }
     }
@@ -67,7 +67,6 @@ export const useInitialState = () => {
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
-
   useInitialState();
 
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible

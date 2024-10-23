@@ -14,6 +14,8 @@ import {
   isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
+  targetDatetimeStringAtom,
+  timeAverageAtom,
   userLocationAtom,
 } from 'utils/state/atoms';
 
@@ -73,6 +75,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
+  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
 
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
@@ -253,12 +257,32 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(createToWithState(`/zone/${zoneId}`));
+        navigate(
+          createToWithState(
+            `/zone/${zoneId}${timeAverage ? `/${timeAverage}` : ''}${
+              targetDatetime ? `/${targetDatetime}` : ''
+            }`
+          )
+        );
       } else {
-        navigate(createToWithState('/map'));
+        navigate(
+          createToWithState(
+            `/map${timeAverage ? `/${timeAverage}` : ''}${
+              targetDatetime ? `/${targetDatetime}` : ''
+            }`
+          )
+        );
       }
     },
-    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
+    [
+      map,
+      selectedZoneId,
+      hoveredZone,
+      setHoveredZone,
+      navigate,
+      timeAverage,
+      targetDatetime,
+    ]
   );
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging

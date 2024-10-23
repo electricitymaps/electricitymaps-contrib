@@ -15,11 +15,9 @@ const getState = async (
   timeAverage: string,
   targetDatetime?: string
 ): Promise<GridState> => {
-  console.log('DATETIME222', timeAverage, targetDatetime);
   const parsedPath = parsePath(location.pathname);
   const isValidDatetime = targetDatetime && isValidDate(targetDatetime);
   const timeAverageToQuery = parsedPath?.timeAverage || timeAverage;
-  console.log('DATETIME111', targetDatetime);
   const path: URL = new URL(
     `v8/state/${timeAverageToQuery}${
       isValidDatetime ? `?targetDate=${targetDatetime}` : ''
@@ -55,9 +53,12 @@ const useGetState = (): UseQueryResult<GridState> => {
   });
 
   const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
-
+  const parsedPath = parsePath(location.pathname);
   const shouldFetchFullState =
-    isHistoricalQuery || !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
+    isHistoricalQuery ||
+    !isHourly ||
+    hourZeroWasSuccessful ||
+    (last_hour.isError === true && parsedPath?.datetime === targetDatetime);
 
   // Then fetch the rest of the data
   const all_data = useQuery<GridState>({
@@ -69,7 +70,6 @@ const useGetState = (): UseQueryResult<GridState> => {
       },
     ],
     queryFn: async () => getState(timeAverage, targetDatetime),
-
     // The query should not execute until the last_hour query is done
     enabled: shouldFetchFullState,
   });

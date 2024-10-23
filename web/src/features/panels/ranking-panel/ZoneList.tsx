@@ -1,9 +1,11 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
+import { useAtomValue } from 'jotai';
 import { ChevronRight } from 'lucide-react';
 import { useRef } from 'react';
 import { GridState } from 'types';
+import { targetDatetimeStringAtom, timeAverageAtom } from 'utils/state/atoms';
 
 interface ZonelistProperties {
   data: ZoneRowType[];
@@ -20,11 +22,15 @@ export interface ZoneRowType {
 }
 
 function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType) {
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
   return (
     <InternalLink
       className="group my-1 flex h-11 w-full items-center gap-2 rounded bg-gray-100 px-3 hover:bg-gray-200 focus:border focus:border-gray-400/60 focus-visible:outline-none dark:border dark:border-gray-400/10 dark:bg-gray-800 dark:hover:bg-gray-700/70 dark:focus:border-gray-500/80"
       key={ranking}
-      to={`/zone/${zoneId}`}
+      to={`/zone/${zoneId}${timeAverage ? `/${timeAverage}` : ''}${
+        targetDatetime ? `/${targetDatetime}` : ''
+      }`}
       data-test-id="zone-list-link"
     >
       <span className="flex w-4 justify-end text-xs">{ranking}</span>
