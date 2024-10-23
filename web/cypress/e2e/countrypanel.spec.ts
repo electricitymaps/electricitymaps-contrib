@@ -96,4 +96,19 @@ describe('Country Panel', () => {
     cy.waitForAPISuccess('v8/details/hourly/CN');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
+
+  it('scrolls to element if provided a hash', () => {
+    cy.interceptAPI('v8/details/hourly/DK-DK2');
+
+    cy.visit('/zone/DK-DK2?lang=en-GB#origin_chart', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
+    cy.get('[data-test-id=close-modal]').click();
+    cy.waitForAPISuccess('v8/state/hourly');
+    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
+    // eslint-disable-next-line cypress/require-data-selectors
+    cy.get('#origin_chart').should('be.visible');
+  });
 });

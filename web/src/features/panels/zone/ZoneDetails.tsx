@@ -87,7 +87,6 @@ export default function ZoneDetails(): JSX.Element {
           isIosCapacitor ? 'pb-72' : 'pb-48'
         )}
       >
-        {/* move up zone details content? */}
         {cardType != 'none' &&
           zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
