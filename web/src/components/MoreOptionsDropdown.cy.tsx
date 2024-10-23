@@ -14,7 +14,9 @@ function Providers({ children }: { children: React.ReactElement }) {
     <BrowserRouter>
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={queryClient}>
-          <ToastProvider>{children}</ToastProvider>
+          <ToastProvider>
+            <div className="ml-72">{children}</div>
+          </ToastProvider>
         </QueryClientProvider>
       </I18nextProvider>
     </BrowserRouter>
@@ -35,7 +37,6 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="hello"
           isEstimated={false}
-          isTest
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -54,7 +55,6 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="hello"
           isEstimated={false}
-          isTest
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -73,7 +73,6 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="hello"
           isEstimated={false}
-          isTest
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -81,7 +80,7 @@ describe('MoreOptionsDropdown', () => {
     );
     cy.get('button').click();
     cy.contains('Share via').should('be.visible');
-    cy.get('Share on X').should('not.exist');
+    cy.contains('Share on X (Twitter)').should('not.exist');
     cy.get('Share on LinkedIn').should('not.exist');
     cy.get('Share on Facebook').should('not.exist');
   });
@@ -93,17 +92,40 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="hello"
           isEstimated={false}
-          isTest
         >
           <Ellipsis />
         </MoreOptionsDropdown>
       </Providers>
     );
+
     cy.get('button').click();
     cy.get('Share via').should('not.exist');
+
     cy.contains('Share on X (Twitter)').should('be.visible');
+    cy.get('[data-test-id=twitter-chart-share]')
+      .should('have.attr', 'href')
+      .and(
+        'equal',
+        'https://twitter.com/intent/tweet?&url=hello&text=Discover%20real-time%20electricity%20insights%20with%20the%20@electricitymaps%20app!%20https://app.electricitymaps.com&hashtags=electricitymaps'
+      );
+
     cy.contains('Share on LinkedIn').should('be.visible');
+    cy.get('[data-test-id=linkedin-chart-share]')
+      .should('have.attr', 'href')
+      .and('equal', 'https://www.linkedin.com/shareArticle?mini=true&url=hello');
+
     cy.contains('Share on Facebook').should('be.visible');
+    cy.get('[data-test-id=facebook-chart-share]')
+      .should('have.attr', 'href')
+      .and(
+        'equal',
+        'https://facebook.com/sharer/sharer.php?u=hello&quote=Discover%20real-time%20electricity%20insights%20with%20the%20@electricitymaps%20app!%20https://app.electricitymaps.com'
+      );
+
+    cy.contains('Share on Reddit').should('be.visible');
+    cy.get('[data-test-id=reddit-chart-share]')
+      .should('have.attr', 'href')
+      .and('equal', 'https://www.reddit.com/web/submit?url=hello');
   });
 
   it('displays preliminary data warning', () => {
@@ -113,7 +135,6 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="hello"
           isEstimated={true}
-          isTest
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -130,7 +151,6 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="hello"
           isEstimated={true}
-          isTest
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -150,7 +170,6 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="hello"
           isEstimated={true}
-          isTest
         >
           <Ellipsis />
         </MoreOptionsDropdown>

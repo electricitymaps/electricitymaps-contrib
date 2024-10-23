@@ -1,42 +1,44 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
-import { Copy, Ellipsis, ShareIcon } from 'lucide-react';
+import { useAtomValue } from 'jotai';
+import { Ellipsis, Link, ShareIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaFacebook, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
+import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
-import { baseUrl, DEFAULT_ICON_SIZE } from 'utils/constants';
+import { baseUrl, DEFAULT_ICON_SIZE, DEFAULT_TOAST_DURATION } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
+import { displayByEmissionsAtom, isHourlyAtom } from 'utils/state/atoms';
 
-import { DefaultCloseButton } from './AppStoreBanner';
+import { DefaultCloseButton } from './DefaultCloseButton';
 import { TimeDisplay } from './TimeDisplay';
 import { Toast, useToastReference } from './Toast';
+
+// TODO(cady): add tracking!
 
 export interface MoreOptionsDropdownProps {
   children: React.ReactElement;
   shareUrl?: string;
   hasMobileUserAgent?: boolean;
   isEstimated?: boolean;
-  isTest?: boolean; // TODO: fix this
 }
-const DURATION = 3 * 1000; // 3s
 
 export function MoreOptionsDropdown({
   children,
   shareUrl = baseUrl,
   hasMobileUserAgent = hasMobileUA(),
   isEstimated = false,
-  isTest,
 }: MoreOptionsDropdownProps) {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
-  const summary = `${t('more-options-dropdown')} ${baseUrl}`;
 
-  // TODO: maybe wrap all of the following in a useMemo? or multiple use callbacks depending on how many dependencies there are?
+  const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
+
+  // TODO(cady): maybe wrap all of the following in a useMemo? or multiple use callbacks depending on how many dependencies there are?
   const toastMessageCallback = (message: string) => {
     setToastMessage(message);
     reference.current?.publish();
@@ -61,8 +63,8 @@ export function MoreOptionsDropdown({
         <DropdownMenu.Portal>
           <DropdownMenu.Content
             className={twMerge(
-              'border-gray my-2 min-w-60 rounded-2xl border border-solid bg-white shadow-md',
-              hasMobileUserAgent ? 'mx-7' : (isTest ? '' : '-translate-x-[42%]')
+              'border-gray my-2 min-w-60 rounded-2xl border border-solid bg-white shadow-md dark:border-b dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
+              hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
             )}
           >
             {isEstimated && (
@@ -70,7 +72,7 @@ export function MoreOptionsDropdown({
                 <p className="text-xs">{t('more-options-dropdown.preliminary-data')}</p>
               </div>
             )}
-            <div className="p-3">
+            <div className="px-3 pb-2 pt-3">
               <DropdownMenu.Label className="flex flex-col">
                 <div className="align-items flex justify-between">
                   <h2 className="self-start text-sm">
@@ -78,17 +80,17 @@ export function MoreOptionsDropdown({
                   </h2>
                   <DefaultCloseButton onClose={onDismiss} />
                 </div>
-                <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600" />
+                <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-gray-300" />
               </DropdownMenu.Label>
-              <DropdownMenu.Separator className="my-3 h-px bg-neutral-200" />
+              <DropdownMenu.Separator className="mb-1 mt-3 h-px bg-neutral-200 dark:bg-gray-700" />
               <DropdownMenu.Group
                 className={twMerge(
-                  'flex flex-col space-y-4 [&>div>p]:text-xs [&>div>p]:font-semibold [&>div]:flex [&>div]:items-center [&>div]:gap-2',
-                  'space-y-4 [&>a>div>p]:text-xs [&>a>div>p]:font-semibold [&>a>div]:flex [&>a>div]:gap-2'
+                  'flex cursor-pointer flex-col [&>div>p]:text-xs [&>div>p]:font-semibold [&>div]:flex [&>div]:items-center [&>div]:gap-2 [&>div]:py-2',
+                  '[&>a>div>p]:text-xs [&>a>div>p]:font-semibold [&>a>div]:flex [&>a>div]:gap-2 [&>a]:py-2'
                 )}
               >
                 <DropdownMenu.Item onSelect={copyShareUrl}>
-                  <Copy size={DEFAULT_ICON_SIZE} />
+                  <Link size={DEFAULT_ICON_SIZE} />
                   <p>{t('more-options-dropdown.copy-chart-link')}</p>
                 </DropdownMenu.Item>
                 {hasMobileUserAgent && (
@@ -100,16 +102,18 @@ export function MoreOptionsDropdown({
                 {!hasMobileUserAgent && (
                   <>
                     <a
-                      href={`https://twitter.com/intent/tweet?text=${encodeURI(
+                      data-test-id="twitter-chart-share"
+                      href={`https://twitter.com/intent/tweet?&url=${shareUrl}&text=${encodeURI(
                         summary
-                      )}&url=${shareUrl}&hashtags=electricitymaps`}
+                      )}&hashtags=electricitymaps`}
                     >
                       <DropdownMenu.Item>
-                        <FaXTwitter size={DEFAULT_ICON_SIZE} />
+                        <FaSquareXTwitter size={DEFAULT_ICON_SIZE} />
                         <p>{t('button.twitter-share')}</p>
                       </DropdownMenu.Item>
                     </a>
                     <a
+                      data-test-id="facebook-chart-share"
                       href={`https://facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodeURI(
                         summary
                       )}`}
@@ -120,11 +124,21 @@ export function MoreOptionsDropdown({
                       </DropdownMenu.Item>
                     </a>
                     <a
+                      data-test-id="linkedin-chart-share"
                       href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`}
                     >
                       <DropdownMenu.Item>
                         <FaLinkedin size={DEFAULT_ICON_SIZE} />
                         <p>{t('button.linkedin-share')}</p>
+                      </DropdownMenu.Item>
+                    </a>
+                    <a
+                      data-test-id="reddit-chart-share"
+                      href={`https://www.reddit.com/web/submit?url=${shareUrl}`}
+                    >
+                      <DropdownMenu.Item>
+                        <FaReddit size={DEFAULT_ICON_SIZE} />
+                        <p>{t('button.reddit-share')}</p>
                       </DropdownMenu.Item>
                     </a>
                   </>
@@ -139,21 +153,28 @@ export function MoreOptionsDropdown({
         description={toastMessage}
         isCloseable={true}
         toastCloseText={t('misc.dismiss')}
-        duration={DURATION}
+        duration={DEFAULT_TOAST_DURATION}
       />
     </>
   );
 }
 
-export function MoreOptions({ isEstimated }: { isEstimated?: boolean }) {
-  // TODO: use in individual charts
-  const showMoreOptions = useFeatureFlag('more-options-dropdown');
-  if (!showMoreOptions) {
-    return;
+export interface MoreOptionsProps {
+  isEstimated?: boolean;
+  shareUrl?: string;
+}
+
+export function MoreOptions({ isEstimated, shareUrl }: MoreOptionsProps) {
+  const isMoreOptionsFFOn = useFeatureFlag('more-options-dropdown');
+  const isHourly = useAtomValue(isHourlyAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const showMoreOptions = isMoreOptionsFFOn && isHourly && !displayByEmissions;
+
+  if (showMoreOptions) {
+    return (
+      <MoreOptionsDropdown isEstimated={isEstimated} shareUrl={shareUrl}>
+        <Ellipsis />
+      </MoreOptionsDropdown>
+    );
   }
-  return (
-    <MoreOptionsDropdown isEstimated={isEstimated}>
-      <Ellipsis />
-    </MoreOptionsDropdown>
-  );
 }

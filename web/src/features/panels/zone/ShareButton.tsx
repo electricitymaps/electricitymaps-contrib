@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { ShareType, trackShare } from 'utils/analytics';
-import { baseUrl, DEFAULT_ICON_SIZE } from 'utils/constants';
+import { baseUrl, DEFAULT_ICON_SIZE, DEFAULT_TOAST_DURATION } from 'utils/constants';
 
 interface ShareButtonProps
   extends Omit<
@@ -23,7 +23,6 @@ interface ShareButtonProps
   hasMobileUserAgent?: boolean;
 }
 const trackShareClick = trackShare(ShareType.SHARE);
-const DURATION = 3 * 1000;
 
 export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
@@ -43,7 +42,7 @@ export function ShareButton({
     url: shareUrl,
   };
 
-  // TODO: callbacks -> individually useCallback'd or useMemo'd as a group
+  // TODO(cady): callbacks -> individually useCallback'd or useMemo'd as a group?
   const toastMessageCallback = (message: string) => {
     setToastMessage(message);
     reference.current?.publish();
@@ -62,7 +61,7 @@ export function ShareButton({
 
   let shareIcon = <Link data-test-id="linkIcon" size={iconSize} />;
   if (hasMobileUserAgent || Capacitor.isNativePlatform()) {
-    shareIcon = <ShareIcon />;
+    shareIcon = <ShareIcon showIosIcon={showIosIcon} />;
   }
 
   return (
@@ -84,7 +83,7 @@ export function ShareButton({
         description={toastMessage}
         isCloseable={true}
         toastCloseText={t('misc.dismiss')}
-        duration={DURATION}
+        duration={DEFAULT_TOAST_DURATION}
       />
     </>
   );
