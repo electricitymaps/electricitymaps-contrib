@@ -260,21 +260,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(
-          createToWithState(
-            `/zone/${zoneId}${timeAverage ? `/${timeAverage}` : ''}${
-              targetDatetime ? `/${targetDatetime}` : ''
-            }`
-          )
-        );
+        navigate(createToWithState('/zone', zoneId, timeAverage, targetDatetime));
       } else {
-        navigate(
-          createToWithState(
-            `/map${timeAverage ? `/${timeAverage}` : ''}${
-              targetDatetime ? `/${targetDatetime}` : ''
-            }`
-          )
-        );
+        navigate(createToWithState('/map', undefined, timeAverage, targetDatetime));
       }
     },
     [

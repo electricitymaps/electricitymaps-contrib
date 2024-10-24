@@ -10,6 +10,7 @@ import {
 
 import zonesConfigJSON from '../../config/zones.json';
 import { CombinedZonesConfig } from '../../geo/types';
+import { TimeAverages } from './constants';
 
 export function useGetZoneFromPath() {
   const { zoneId } = useParams();
@@ -60,12 +61,15 @@ export function getProductionCo2Intensity(
   return dischargeCo2Intensity;
 }
 
-/**
- * Returns a link which maintains search and hash parameters
- * @param to
- */
-export function createToWithState(to: string) {
-  return `${to}${location.search}${location.hash}`;
+export function createToWithState(
+  basePath: string,
+  zoneId?: string,
+  timeAverage?: TimeAverages,
+  targetDatetime?: string
+) {
+  return `${basePath}${zoneId ? `/${zoneId}` : ''}${
+    timeAverage ? `/${timeAverage}` : ''
+  }${targetDatetime ? `/${targetDatetime}` : ''}${location.search}${location.hash}`;
 }
 
 /**
