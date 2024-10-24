@@ -75,7 +75,7 @@ export function MoreOptionsDropdown({
 
   return (
     <>
-      <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen}>
+      <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen} modal={false}>
         <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
         <DropdownMenu.Portal>
           <DropdownMenu.Content

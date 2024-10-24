@@ -379,7 +379,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         minWidth: '100vw',
         height: '100vh',
         position: 'absolute',
-        pointerEvents: 'auto',
       }}
       mapStyle={MAP_STYLE as StyleSpecification}
     >
