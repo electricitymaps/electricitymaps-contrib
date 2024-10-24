@@ -1,4 +1,4 @@
-import { hasPathTimeAverageAndDatetime, parsePath } from './pathUtils';
+import { hasPathDatetime, parsePath } from './pathUtils';
 
 describe('pathUtils', () => {
   describe('parsePath', () => {
@@ -52,24 +52,24 @@ describe('pathUtils', () => {
     });
   });
 
-  describe('hasPathTimeAverageAndDatetime', () => {
+  describe('hasPathDatetime', () => {
     it('should return true for zone path with timeAverage', () => {
-      expect(hasPathTimeAverageAndDatetime('/zone/US-CA/hourly')).equals(true);
-      expect(
-        hasPathTimeAverageAndDatetime('/zone/US-CA/daily/2024-10-20T08:00:00Z')
-      ).equals(true);
+      expect(hasPathDatetime('/zone/US-CA/hourly')).equals(false);
+      expect(hasPathDatetime('/map/2024-10-20T08:00:00Z')).equals(true);
+      expect(hasPathDatetime('/2024-10-20T08:00:00Z')).equals(true);
+      expect(hasPathDatetime('/zone/US-CA/daily/2024-10-20T08:00:00Z')).equals(true);
     });
 
     it('should return false for zone path without timeAverage', () => {
-      expect(hasPathTimeAverageAndDatetime('/zone/US-CA')).equals(false);
+      expect(hasPathDatetime('/zone/US-CA')).equals(false);
     });
 
     it('should return false for map path', () => {
-      expect(hasPathTimeAverageAndDatetime('/map/daily')).equals(false);
+      expect(hasPathDatetime('/map/daily')).equals(false);
     });
 
     it('should return false for invalid path', () => {
-      expect(hasPathTimeAverageAndDatetime('/invalid')).equals(false);
+      expect(hasPathDatetime('/invalid')).equals(false);
     });
   });
 });

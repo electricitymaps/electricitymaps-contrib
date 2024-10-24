@@ -1,3 +1,5 @@
+import { isValidDate } from 'api/helpers';
+
 type TimeAverage = 'hourly' | 'daily' | 'monthly' | 'yearly';
 
 type BaseRouteParameters = {
@@ -23,9 +25,17 @@ export function parsePath(path: string): RouteResult {
     return null;
   }
 
-  const [routeType, ...rest] = segments;
+  const [firstSegment, ...rest] = segments;
 
-  if (routeType === 'zone') {
+  // If it's a single segment that looks like a date, return as map with datetime
+  if (segments.length === 1 && isValidDate(firstSegment)) {
+    return {
+      type: 'map',
+      datetime: firstSegment,
+    };
+  }
+
+  if (firstSegment === 'zone') {
     const [zoneId, timeAverage, datetime] = rest;
     if (!zoneId) {
       return null;
@@ -39,20 +49,30 @@ export function parsePath(path: string): RouteResult {
     };
   }
 
-  if (routeType === 'map') {
-    const [timeAverage, datetime] = rest;
+  if (firstSegment === 'map') {
+    const [parameter1, parameter2] = rest;
+
+    if (parameter1 && isValidDate(parameter1)) {
+      return {
+        type: 'map',
+        datetime: parameter1,
+      };
+    }
 
     return {
       type: 'map',
-      ...(timeAverage && { timeAverage: timeAverage as TimeAverage }),
-      ...(datetime && { datetime }),
+      ...(parameter1 && { timeAverage: parameter1 as TimeAverage }),
+      ...(parameter2 && { datetime: parameter2 }),
     };
   }
 
   return null;
 }
 
-export const hasPathTimeAverageAndDatetime = (path: string): boolean => {
+export const hasPathDatetime = (path: string): boolean => {
   const parsedPath = parsePath(path);
-  return parsedPath?.type === 'zone' && parsedPath?.timeAverage !== undefined;
+  if (!parsedPath?.datetime) {
+    return false;
+  }
+  return isValidDate(parsedPath.datetime);
 };

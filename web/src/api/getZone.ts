@@ -13,23 +13,20 @@ import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from '.
 const getZone = async (
   timeAverage: TimeAverages,
   zoneId?: string,
-  datetime?: string
+  targetDatetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
   const parsedPath = parsePath(location.pathname);
 
-  const isValidDatetime = datetime && isValidDate(datetime);
+  const isValidDatetime = targetDatetime && isValidDate(targetDatetime);
   const timeAverageToQuery = parsedPath?.timeAverage || timeAverage;
   const path: URL = new URL(
     `v8/details/${timeAverageToQuery}/${zoneId}${
-      isValidDatetime ? `?targetDate=${datetime}` : ''
+      isValidDatetime ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
   );
-  path.searchParams.append(
-    'cacheKey',
-    isValidDatetime && datetime ? datetime : cacheBuster()
-  );
+  !targetDatetime && path.searchParams.append('cacheKey', cacheBuster());
 
   const requestOptions: RequestInit = {
     method: 'GET',

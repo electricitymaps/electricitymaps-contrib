@@ -1,8 +1,8 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import type { GridState } from 'types';
-import { hasPathTimeAverageAndDatetime, parsePath } from 'utils/pathUtils';
+import { hasPathDatetime, parsePath } from 'utils/pathUtils';
 import {
   isHourlyAtom,
   targetDatetimeStringAtom,
@@ -16,7 +16,7 @@ const getState = async (
   targetDatetime?: string
 ): Promise<GridState> => {
   const parsedPath = parsePath(location.pathname);
-  const isValidDatetime = Boolean(targetDatetime) && isValidDate(targetDatetime);
+  const isValidDatetime = targetDatetime && isValidDate(targetDatetime);
   const timeAverageToQuery = parsedPath?.timeAverage || timeAverage;
   const path: URL = new URL(
     `v8/state/${timeAverageToQuery}${
@@ -25,12 +25,9 @@ const getState = async (
     getBasePath()
   );
 
-  path.searchParams.append(
-    'cacheKey',
-    isValidDatetime && targetDatetime ? targetDatetime : cacheBuster()
-  );
+  !targetDatetime && path.searchParams.append('cacheKey', cacheBuster());
   const response = await fetch(path);
-
+  console.log('fetching');
   if (response.ok) {
     const result = (await response.json()) as GridState;
     return result;
@@ -42,9 +39,10 @@ const getState = async (
 const useGetState = (): UseQueryResult<GridState> => {
   const timeAverage = useAtomValue(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
-  const isHistoricalQuery = hasPathTimeAverageAndDatetime(location.pathname);
+  const isHistoricalQuery = hasPathDatetime(location.pathname);
   const targetDatetime = useAtomValue(targetDatetimeStringAtom);
   const shouldQueryLastHour = isHourly && !isHistoricalQuery;
+
   // First fetch last hour only
   const last_hour = useQuery<GridState>({
     queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
@@ -56,7 +54,7 @@ const useGetState = (): UseQueryResult<GridState> => {
   const parsedPath = parsePath(location.pathname);
   const shouldFetchFullState =
     isHistoricalQuery || !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
-  const pathMatchesTargetDatetime = parsedPath?.datetime === targetDatetime;
+  const pathMatchesTargetDatetime = parsedPath?.datetime == targetDatetime;
 
   // Then fetch the rest of the data
   const all_data = useQuery<GridState>({
