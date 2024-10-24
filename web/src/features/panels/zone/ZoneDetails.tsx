@@ -5,7 +5,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
 import { EstimationMethods, SpatialAggregate } from 'utils/constants';
@@ -54,6 +54,8 @@ export default function ZoneDetails(): JSX.Element {
     }
   }, [hasSubZones, isSubZone, setViewMode]);
 
+  useScrollHashIntoView(isLoading);
+
   if (!zoneId) {
     return <Navigate to="/" replace />;
   }
@@ -79,6 +81,7 @@ export default function ZoneDetails(): JSX.Element {
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
       <div
+        id="panel-scroller"
         className={twMerge(
           'mb-3 h-full overflow-y-scroll px-3  pt-2 sm:h-full sm:pb-60',
           isIosCapacitor ? 'pb-72' : 'pb-48'
@@ -190,3 +193,29 @@ function ZoneDetailsContent({
 
   return children as JSX.Element;
 }
+
+const useScrollHashIntoView = (isLoading: boolean) => {
+  const { hash, pathname, search } = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    if (hash) {
+      const hashElement = hash ? document.querySelector(hash) : null;
+      if (hashElement) {
+        hashElement.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'nearest',
+        });
+      }
+    } else {
+      // If already scrolled to element, then reset scroll on re-navigation (i.e. clicking on new zone on map)
+      const element = document.querySelector('#panel-scroller');
+      if (element) {
+        element.scrollTop = 0;
+      }
+    }
+  }, [hash, isLoading, navigate, pathname, search]);
+};
