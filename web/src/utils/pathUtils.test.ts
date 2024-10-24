@@ -6,44 +6,56 @@ describe('pathUtils', () => {
       expect(parsePath('')).equals(null);
     });
 
-    it('should parse zone path correctly', () => {
-      expect(parsePath('/zone/US-CA')).to.deep.equal({
-        type: 'zone',
-        zoneId: 'US-CA',
+    describe('zone paths', () => {
+      it('should parse basic zone path without timeAverage', () => {
+        expect(parsePath('/zone/US-CA')).to.deep.equal({
+          type: 'zone',
+          zoneId: 'US-CA',
+        });
       });
 
-      expect(parsePath('/zone/US-CA/hourly')).to.deep.equal({
-        type: 'zone',
-        zoneId: 'US-CA',
-        timeAverage: 'hourly',
+      it('should parse zone path with timeAverage', () => {
+        expect(parsePath('/zone/US-CA/hourly')).to.deep.equal({
+          type: 'zone',
+          zoneId: 'US-CA',
+          timeAverage: 'hourly',
+        });
       });
 
-      expect(parsePath('/zone/US-CA/hourly/2024-10-20T08:00:00Z')).to.deep.equal({
-        type: 'zone',
-        zoneId: 'US-CA',
-        timeAverage: 'hourly',
-        datetime: '2024-10-20T08:00:00Z',
+      it('should parse zone path with targetDatetime', () => {
+        expect(parsePath('/zone/US-CA/hourly/2024-10-20T08:00:00Z')).to.deep.equal({
+          type: 'zone',
+          zoneId: 'US-CA',
+          timeAverage: 'hourly',
+          datetime: '2024-10-20T08:00:00Z',
+        });
+      });
+
+      it('should return null for incomplete zone path', () => {
+        expect(parsePath('/zone')).equals(null);
       });
     });
 
-    it('should return null for invalid zone path', () => {
-      expect(parsePath('/zone')).equals(null);
-    });
-
-    it('should parse map path correctly', () => {
-      expect(parsePath('/map')).to.deep.equal({
-        type: 'map',
+    describe('map paths', () => {
+      it('should parse basic map path without timeAverage', () => {
+        expect(parsePath('/map')).to.deep.equal({
+          type: 'map',
+        });
       });
 
-      expect(parsePath('/map/daily')).to.deep.equal({
-        type: 'map',
-        timeAverage: 'daily',
+      it('should parse map path with timeAverage', () => {
+        expect(parsePath('/map/daily')).to.deep.equal({
+          type: 'map',
+          timeAverage: 'daily',
+        });
       });
 
-      expect(parsePath('/map/daily/2024-10-20T08:00:00Z')).to.deep.equal({
-        type: 'map',
-        timeAverage: 'daily',
-        datetime: '2024-10-20T08:00:00Z',
+      it('should parse map path with targetDatetime', () => {
+        expect(parsePath('/map/daily/2024-10-20T08:00:00Z')).to.deep.equal({
+          type: 'map',
+          timeAverage: 'daily',
+          datetime: '2024-10-20T08:00:00Z',
+        });
       });
     });
 
@@ -53,19 +65,32 @@ describe('pathUtils', () => {
   });
 
   describe('hasPathDatetime', () => {
-    it('should return true for zone path with timeAverage', () => {
-      expect(hasPathDatetime('/zone/US-CA/hourly')).equals(false);
-      expect(hasPathDatetime('/map/2024-10-20T08:00:00Z')).equals(true);
+    describe('zone paths', () => {
+      it('should return false for basic zone path', () => {
+        expect(hasPathDatetime('/zone/US-CA')).equals(false);
+      });
+
+      it('should return false for zone path with only timeAverage', () => {
+        expect(hasPathDatetime('/zone/US-CA/hourly')).equals(false);
+      });
+
+      it('should return true for zone path with datetime', () => {
+        expect(hasPathDatetime('/zone/US-CA/daily/2024-10-20T08:00:00Z')).equals(true);
+      });
+    });
+
+    describe('map paths', () => {
+      it('should return false for basic map path', () => {
+        expect(hasPathDatetime('/map/daily')).equals(false);
+      });
+
+      it('should return true for map path with datetime', () => {
+        expect(hasPathDatetime('/map/2024-10-20T08:00:00Z')).equals(true);
+      });
+    });
+
+    it('should return true for root path with datetime', () => {
       expect(hasPathDatetime('/2024-10-20T08:00:00Z')).equals(true);
-      expect(hasPathDatetime('/zone/US-CA/daily/2024-10-20T08:00:00Z')).equals(true);
-    });
-
-    it('should return false for zone path without timeAverage', () => {
-      expect(hasPathDatetime('/zone/US-CA')).equals(false);
-    });
-
-    it('should return false for map path', () => {
-      expect(hasPathDatetime('/map/daily')).equals(false);
     });
 
     it('should return false for invalid path', () => {
