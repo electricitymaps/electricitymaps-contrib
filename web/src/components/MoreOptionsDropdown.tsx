@@ -2,7 +2,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
 import { useAtomValue } from 'jotai';
-import { Ellipsis, Link, ShareIcon } from 'lucide-react';
+import { Link, ShareIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
@@ -15,8 +15,6 @@ import { displayByEmissionsAtom, isHourlyAtom } from 'utils/state/atoms';
 import { DefaultCloseButton } from './DefaultCloseButton';
 import { TimeDisplay } from './TimeDisplay';
 import { Toast, useToastReference } from './Toast';
-
-// TODO(cady): bug! able to click on elements on map when popover is open?!
 
 // TODO: add chartId to tracking
 const onTrackShareChartReddit = trackShareChart(ShareType.REDDIT);
@@ -31,6 +29,9 @@ export interface MoreOptionsDropdownProps {
   hasMobileUserAgent?: boolean;
   isEstimated?: boolean;
 }
+
+const dropdownItemStyle = 'flex items-center gap-2 py-2';
+const dropdownContentStyle = 'font-semibold text-xs';
 
 export function MoreOptionsDropdown({
   children,
@@ -51,10 +52,12 @@ export function MoreOptionsDropdown({
     setToastMessage(message);
     reference.current?.publish();
   };
+
   const copyShareUrl = () => {
     copyToClipboard(shareUrl, toastMessageCallback);
     trackShareChart(ShareType.COPY);
   };
+
   const onShare = () => {
     share(
       {
@@ -96,20 +99,19 @@ export function MoreOptionsDropdown({
                 <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-gray-300" />
               </DropdownMenu.Label>
               <DropdownMenu.Separator className="mb-1 mt-3 h-px bg-neutral-200 dark:bg-gray-700" />
-              <DropdownMenu.Group
-                className={twMerge(
-                  'flex cursor-pointer flex-col [&>div>p]:text-xs [&>div>p]:font-semibold [&>div]:flex [&>div]:items-center [&>div]:gap-2 [&>div]:py-2',
-                  '[&>a>div>p]:text-xs [&>a>div>p]:font-semibold [&>a>div]:flex [&>a>div]:gap-2 [&>a]:py-2'
-                )}
-              >
-                <DropdownMenu.Item onSelect={copyShareUrl}>
+              <DropdownMenu.Group className="flex cursor-pointer flex-col">
+                <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
                   <Link size={DEFAULT_ICON_SIZE} />
-                  <p>{t('more-options-dropdown.copy-chart-link')}</p>
+                  <p className={dropdownContentStyle}>
+                    {t('more-options-dropdown.copy-chart-link')}
+                  </p>
                 </DropdownMenu.Item>
                 {hasMobileUserAgent && (
-                  <DropdownMenu.Item onSelect={onShare}>
+                  <DropdownMenu.Item className={dropdownItemStyle} onSelect={onShare}>
                     <ShareIcon size={DEFAULT_ICON_SIZE} />
-                    <p>{t('more-options-dropdown.mobile-share-via')}</p>
+                    <p className={dropdownContentStyle}>
+                      {t('more-options-dropdown.mobile-share-via')}
+                    </p>
                   </DropdownMenu.Item>
                 )}
                 {!hasMobileUserAgent && (
@@ -123,9 +125,11 @@ export function MoreOptionsDropdown({
                         summary
                       )}&hashtags=electricitymaps`}
                     >
-                      <DropdownMenu.Item>
+                      <DropdownMenu.Item className={dropdownItemStyle}>
                         <FaSquareXTwitter size={DEFAULT_ICON_SIZE} />
-                        <p>{t('button.twitter-share')}</p>
+                        <p className={dropdownContentStyle}>
+                          {t('button.twitter-share')}
+                        </p>
                       </DropdownMenu.Item>
                     </a>
                     <a
@@ -137,9 +141,11 @@ export function MoreOptionsDropdown({
                         summary
                       )}`}
                     >
-                      <DropdownMenu.Item>
+                      <DropdownMenu.Item className={dropdownItemStyle}>
                         <FaFacebook size={DEFAULT_ICON_SIZE} />
-                        <p>{t('button.facebook-share')}</p>
+                        <p className={dropdownContentStyle}>
+                          {t('button.facebook-share')}
+                        </p>
                       </DropdownMenu.Item>
                     </a>
                     <a
@@ -149,9 +155,11 @@ export function MoreOptionsDropdown({
                       rel="noopener"
                       onClick={onTrackShareChartLinkedin}
                     >
-                      <DropdownMenu.Item>
+                      <DropdownMenu.Item className={dropdownItemStyle}>
                         <FaLinkedin size={DEFAULT_ICON_SIZE} />
-                        <p>{t('button.linkedin-share')}</p>
+                        <p className={dropdownContentStyle}>
+                          {t('button.linkedin-share')}
+                        </p>
                       </DropdownMenu.Item>
                     </a>
                     <a
@@ -161,9 +169,9 @@ export function MoreOptionsDropdown({
                       rel="noopener"
                       onClick={onTrackShareChartReddit}
                     >
-                      <DropdownMenu.Item>
+                      <DropdownMenu.Item className={dropdownItemStyle}>
                         <FaReddit size={DEFAULT_ICON_SIZE} />
-                        <p>{t('button.reddit-share')}</p>
+                        <p className={dropdownContentStyle}>{t('button.reddit-share')}</p>
                       </DropdownMenu.Item>
                     </a>
                   </>
@@ -184,22 +192,11 @@ export function MoreOptionsDropdown({
   );
 }
 
-export interface MoreOptionsProps {
-  isEstimated?: boolean;
-  shareUrl?: string;
-}
-
-export function MoreOptions({ isEstimated, shareUrl }: MoreOptionsProps) {
+export function useShowMoreOptions() {
   const isMoreOptionsFFOn = useFeatureFlag('more-options-dropdown');
   const isHourly = useAtomValue(isHourlyAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const showMoreOptions = isMoreOptionsFFOn && isHourly && !displayByEmissions;
 
-  if (showMoreOptions) {
-    return (
-      <MoreOptionsDropdown isEstimated={isEstimated} shareUrl={shareUrl}>
-        <Ellipsis />
-      </MoreOptionsDropdown>
-    );
-  }
+  return showMoreOptions;
 }

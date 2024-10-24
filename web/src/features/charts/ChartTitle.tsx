@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
-import { MoreOptions } from 'components/MoreOptionsDropdown';
+import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { useAtomValue } from 'jotai';
+import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { timeAverageAtom } from 'utils/state/atoms';
 
@@ -14,6 +15,7 @@ type Props = {
 export function ChartTitle({ translationKey, unit, badge, isEstimated }: Props) {
   const { t } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
+  const showMoreOptions = useShowMoreOptions();
   /*
   Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
   */
@@ -22,7 +24,11 @@ export function ChartTitle({ translationKey, unit, badge, isEstimated }: Props) 
       <div className="flex items-center gap-1.5 pt-4">
         <h2 className="grow">{t(`${translationKey}.${timeAverage}`)}</h2>
         {badge}
-        <MoreOptions isEstimated={isEstimated} />
+        {showMoreOptions && (
+          <MoreOptionsDropdown isEstimated={isEstimated}>
+            <Ellipsis />
+          </MoreOptionsDropdown>
+        )}
       </div>
       {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>

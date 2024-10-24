@@ -1,9 +1,9 @@
 import EstimationBadge from 'components/EstimationBadge';
-import { MoreOptions } from 'components/MoreOptionsDropdown';
+import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
-import { CircleDashed, TrendingUpDown } from 'lucide-react';
+import { CircleDashed, Ellipsis, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, TimeAverages } from 'utils/constants';
 import {
@@ -58,6 +58,7 @@ export default function BySource({
     estimationMethod,
     estimatedPercentage
   );
+  const showMoreOptions = useShowMoreOptions();
 
   return (
     <div className="flex flex-col pb-1 pt-4">
@@ -75,7 +76,11 @@ export default function BySource({
             }
           />
         )}
-        <MoreOptions isEstimated={hasEstimationPill} />
+        {showMoreOptions && (
+          <MoreOptionsDropdown isEstimated={hasEstimationPill}>
+            <Ellipsis />
+          </MoreOptionsDropdown>
+        )}
       </div>
       {unit && <p className="dark:text-gray-300">{unit}</p>}
     </div>
