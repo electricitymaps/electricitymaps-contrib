@@ -50,7 +50,7 @@ const getZone = async (
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const zoneId = useGetZoneFromPath();
   const targetDatetime = useAtomValue(targetDatetimeStringAtom);
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,
