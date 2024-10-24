@@ -88,7 +88,7 @@ export function isValidDate(dateString: string) {
     console.error('Invalid date string', dateString);
     return false;
   }
-  const oldestDatetimeToSupport = new Date('2015-01-01T00:00:00Z');
+  const oldestDatetimeToSupport = new Date('2017-01-01T00:00:00Z');
   const parsedDate = new Date(dateString);
   if (parsedDate > oldestDatetimeToSupport) {
     return true;
