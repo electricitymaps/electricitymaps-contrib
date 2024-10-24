@@ -2,3 +2,7 @@
 
 parsers/* @VIKTORVAV99
 config/* @VIKTORVAV99
+web/* @electricitymaps/advocacy
+mobileapp/* @electricitymaps/advocacy
+mockserver/* @electricitymaps/advocacy
+web/public/locales/en.json @electricitymaps/self-service
