@@ -3,7 +3,7 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
 import { useAtomValue } from 'jotai';
 import { Link, ShareIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
@@ -40,37 +40,37 @@ export function MoreOptionsDropdown({
   isEstimated = false,
 }: MoreOptionsDropdownProps) {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const { isOpen, onDismiss, onToggleDropdown } = useDropdownCtl();
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
 
   const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
 
-  // TODO(cady): maybe wrap all of the following in a useMemo? or multiple use callbacks depending on how many dependencies there are?
-  const toastMessageCallback = (message: string) => {
-    setToastMessage(message);
-    reference.current?.publish();
-  };
+  const { onShare, copyShareUrl } = useMemo(() => {
+    const toastMessageCallback = (message: string) => {
+      setToastMessage(message);
+      reference.current?.publish();
+    };
 
-  const copyShareUrl = () => {
-    copyToClipboard(shareUrl, toastMessageCallback);
-    trackShareChart(ShareType.COPY);
-  };
-
-  const onShare = () => {
-    share(
-      {
-        title: 'Electricity Maps',
-        text: summary,
-        url: shareUrl,
+    return {
+      copyShareUrl: () => {
+        copyToClipboard(shareUrl, toastMessageCallback);
+        trackShareChart(ShareType.COPY);
       },
-      toastMessageCallback
-    );
-    onTrackShareChart();
-  };
-  const onDismiss = () => setIsOpen(false);
-  const onToggleDropdown = () => setIsOpen((previous) => !previous);
+      onShare: () => {
+        share(
+          {
+            title: 'Electricity Maps',
+            text: summary,
+            url: shareUrl,
+          },
+          toastMessageCallback
+        );
+        onTrackShareChart();
+      },
+    };
+  }, [reference, shareUrl, summary, share, copyToClipboard]);
 
   return (
     <>
@@ -191,6 +191,19 @@ export function MoreOptionsDropdown({
     </>
   );
 }
+
+const useDropdownCtl = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const methods = useMemo(
+    () => ({
+      onDismiss: () => setIsOpen(false),
+      onToggleDropdown: () => setIsOpen((previous) => !previous),
+    }),
+    [setIsOpen]
+  );
+
+  return { isOpen, ...methods };
+};
 
 export function useShowMoreOptions() {
   const isMoreOptionsFFOn = useFeatureFlag('more-options-dropdown');

@@ -6,7 +6,7 @@ import { Toast, useToastReference } from 'components/Toast';
 import { isIos, isMobile } from 'features/weather-layers/wind-layer/util';
 import { useShare } from 'hooks/useShare';
 import { Link } from 'lucide-react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { ShareType, trackShare } from 'utils/analytics';
@@ -37,28 +37,26 @@ export function ShareButton({
   const [toastMessage, setToastMessage] = useState('');
   const { copyToClipboard, share } = useShare();
 
-  const shareData = {
-    title: 'Electricity Maps',
-    text: 'Check this out!',
-    url: shareUrl,
-  };
+  const onClick = useCallback(async () => {
+    const toastMessageCallback = (message: string) => {
+      setToastMessage(message);
+      reference.current?.publish();
+    };
 
-  // TODO(cady): callbacks -> individually useCallback'd or useMemo'd as a group?
-  const toastMessageCallback = (message: string) => {
-    setToastMessage(message);
-    reference.current?.publish();
-  };
-  const copyShareUrl = () => copyToClipboard(shareUrl, toastMessageCallback);
-  const onShare = () => share(shareData, toastMessageCallback);
-
-  const onClick = async () => {
     if (hasMobileUserAgent && (await CapShare.canShare())) {
-      onShare();
+      share(
+        {
+          title: 'Electricity Maps',
+          text: 'Check this out!',
+          url: shareUrl,
+        },
+        toastMessageCallback
+      );
     } else {
-      copyShareUrl();
+      copyToClipboard(shareUrl, toastMessageCallback);
     }
     trackShareClick();
-  };
+  }, [reference, hasMobileUserAgent, copyToClipboard, share, shareUrl]);
 
   let shareIcon = <Link data-test-id="linkIcon" size={iconSize} />;
   if (hasMobileUserAgent || Capacitor.isNativePlatform()) {
