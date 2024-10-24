@@ -58,6 +58,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         translationKey="country-history.carbonintensity"
         badge={badge}
         unit={'gCO₂eq / kWh'}
+        isEstimated={Boolean(text)}
       />
       <AreaGraph
         testId="details-carbon-graph"
