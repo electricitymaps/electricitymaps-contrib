@@ -1,7 +1,7 @@
 import { animated, useTransition } from '@react-spring/web';
 import useGetState from 'api/getState';
 import { loadingMapAtom } from 'features/map/mapAtoms';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 import LoadingSpinner from './LoadingSpinner';
