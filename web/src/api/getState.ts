@@ -40,7 +40,7 @@ const getState = async (
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const isHistoricalQuery = hasPathTimeAverageAndDatetime(location.pathname);
   const targetDatetime = useAtomValue(targetDatetimeStringAtom);
