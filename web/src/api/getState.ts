@@ -15,19 +15,14 @@ const getState = async (
   timeAverage: string,
   targetDatetime?: string
 ): Promise<GridState> => {
-  const parsedPath = parsePath(location.pathname);
   const isValidDatetime = targetDatetime && isValidDate(targetDatetime);
-  const timeAverageToQuery = parsedPath?.timeAverage || timeAverage;
   const path: URL = new URL(
-    `v8/state/${timeAverageToQuery}${
-      isValidDatetime ? `?targetDate=${targetDatetime}` : ''
-    }`,
+    `v8/state/${timeAverage}${isValidDatetime ? `?targetDate=${targetDatetime}` : ''}`,
     getBasePath()
   );
 
   !targetDatetime && path.searchParams.append('cacheKey', cacheBuster());
   const response = await fetch(path);
-  console.log('fetching');
   if (response.ok) {
     const result = (await response.json()) as GridState;
     return result;
