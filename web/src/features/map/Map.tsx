@@ -8,8 +8,9 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
-import { matchPath, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { createToWithState, getCarbonIntensity, useUserLocation } from 'utils/helpers';
+import { parsePath } from 'utils/pathUtils';
 import {
   isConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -205,7 +206,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    const parsedPath = parsePath(location.pathname);
+    const pathZoneId =
+      parsedPath && 'zoneId' in parsedPath ? parsedPath.zoneId : undefined;
     setSelectedZoneId(pathZoneId);
     if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(

@@ -18,12 +18,13 @@ import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { metaTitleSuffix, Mode, TrackEvent } from 'utils/constants';
+import { metaTitleSuffix, Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { parsePath } from 'utils/pathUtils';
 import {
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
   targetDatetimeStringAtom,
+  timeAverageAtom,
 } from 'utils/state/atoms';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
@@ -39,6 +40,7 @@ const isProduction = import.meta.env.PROD;
 export const useInitialState = () => {
   const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
   const setTargetDatetimeString = useSetAtom(targetDatetimeStringAtom);
+  const setTimeAverage = useSetAtom(timeAverageAtom);
   const parsedPath = parsePath(location.pathname);
 
   // Set initial datetime synchronously
@@ -53,8 +55,16 @@ export const useInitialState = () => {
         });
       }
     }
-  }, [parsedPath?.datetime, setSelectedDatetimeIndex, setTargetDatetimeString]); // Empty dependency array to run only once on mount
-
+    if (parsedPath?.timeAverage) {
+      setTimeAverage(parsedPath.timeAverage as TimeAverages);
+    }
+  }, [
+    parsedPath?.datetime,
+    parsedPath?.timeAverage,
+    setSelectedDatetimeIndex,
+    setTargetDatetimeString,
+    setTimeAverage,
+  ]);
   return useGetState();
 };
 export default function App(): ReactElement {
