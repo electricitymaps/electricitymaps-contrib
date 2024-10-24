@@ -253,6 +253,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
+        // Do not keep hash on navigate so that users are not scrolled to id element in new view
         navigate(createToWithState(`/zone/${zoneId}`, false));
       } else {
         navigate(createToWithState('/map', false));

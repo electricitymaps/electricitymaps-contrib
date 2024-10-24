@@ -211,6 +211,7 @@ const useScrollHashIntoView = (isLoading: boolean) => {
         });
       }
     } else {
+      // If already scrolled to element, then reset scroll on re-navigation (i.e. clicking on new zone on map)
       const element = document.querySelector('#panel-scroller');
       if (element) {
         element.scrollTop = 0;
