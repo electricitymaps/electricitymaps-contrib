@@ -49,7 +49,7 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
 
 export default function LoadingOverlay() {
   const { isSuccess } = useGetState();
-  const [isLoadingMap] = useAtom(loadingMapAtom);
+  const isLoadingMap = useAtomValue(loadingMapAtom);
   const showLoadingOverlay = !isSuccess || isLoadingMap;
 
   return <FadingOverlay isVisible={showLoadingOverlay} />;
