@@ -122,6 +122,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
 export default function LeftPanel() {
   return (
     <OuterPanel>
@@ -129,7 +130,7 @@ export default function LeftPanel() {
         <Route path="/" element={<HandleLegacyRoutes />} />
         <Route path="/zone" element={<Navigate to="/" replace />} />
         <Route
-          path="/zone/:zoneId"
+          path="/zone/:zoneId/:urlTimeAverage?/:urlDatetime?"
           element={
             <ValidZoneIdGuardWrapper>
               <Suspense fallback={<LoadingSpinner />}>
@@ -138,7 +139,14 @@ export default function LeftPanel() {
             </ValidZoneIdGuardWrapper>
           }
         />
-        {/* Alternative: add /map here and have a NotFound component for anything else*/}
+        <Route
+          path="/map/:urlTimeAverage?/:urlDatetime?"
+          element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <RankingPanel />
+            </Suspense>
+          }
+        />
         <Route
           path="*"
           element={

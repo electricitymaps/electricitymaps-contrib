@@ -8,12 +8,15 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
-import { matchPath, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { createToWithState, getCarbonIntensity, useUserLocation } from 'utils/helpers';
+import { parsePath } from 'utils/pathUtils';
 import {
   isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
+  targetDatetimeStringAtom,
+  timeAverageAtom,
   userLocationAtom,
 } from 'utils/state/atoms';
 
@@ -73,6 +76,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
+  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
 
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
@@ -201,7 +206,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+    const parsedPath = parsePath(location.pathname);
+    const pathZoneId =
+      parsedPath && 'zoneId' in parsedPath ? parsedPath.zoneId : undefined;
     setSelectedZoneId(pathZoneId);
     if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
@@ -253,12 +260,20 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(createToWithState(`/zone/${zoneId}`));
+        navigate(createToWithState('/zone', zoneId, timeAverage, targetDatetime));
       } else {
-        navigate(createToWithState('/map'));
+        navigate(createToWithState('/map', undefined, timeAverage, targetDatetime));
       }
     },
-    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
+    [
+      map,
+      selectedZoneId,
+      hoveredZone,
+      setHoveredZone,
+      navigate,
+      timeAverage,
+      targetDatetime,
+    ]
   );
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging

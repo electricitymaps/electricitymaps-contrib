@@ -3,13 +3,16 @@ import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
+import { createToWithState, getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
 import {
   isHourlyAtom,
+  mapOrZoneAtom,
   selectedDatetimeIndexAtom,
+  targetDatetimeStringAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { useIsBiggerThanMobile } from 'utils/styling';
@@ -26,6 +29,9 @@ export default function TimeController({ className }: { className?: string }) {
   const isBiggerThanMobile = useIsBiggerThanMobile();
   const zoneId = useGetZoneFromPath();
   const zoneTimezone = getZoneTimezone(zoneId);
+  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
+  const mapOrZone = useAtomValue(mapOrZoneAtom);
+  const navigate = useNavigate();
 
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
@@ -75,8 +81,18 @@ export default function TimeController({ className }: { className?: string }) {
       });
       setTimeAverage(timeAverage);
       trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeAverage });
+      navigate(createToWithState(mapOrZone, zoneId, timeAverage, targetDatetime));
     },
-    [selectedDatetime.datetime, numberOfEntries, setSelectedDatetime, setTimeAverage]
+    [
+      setSelectedDatetime,
+      selectedDatetime.datetime,
+      numberOfEntries,
+      setTimeAverage,
+      navigate,
+      mapOrZone,
+      zoneId,
+      targetDatetime,
+    ]
   );
 
   return (

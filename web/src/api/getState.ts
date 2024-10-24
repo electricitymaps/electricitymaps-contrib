@@ -1,17 +1,30 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 import type { GridState } from 'types';
-import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
+import {
+  isHourlyAtom,
+  selectedDatetimeIndexAtom,
+  targetDatetimeStringAtom,
+  timeAverageAtom,
+  urlDatetimeAtom,
+} from 'utils/state/atoms';
 
-import { cacheBuster, getBasePath, QUERY_KEYS } from './helpers';
+import { cacheBuster, getBasePath, isValidDate, QUERY_KEYS } from './helpers';
 
-const getState = async (timeAverage: string): Promise<GridState> => {
-  const path: URL = new URL(`v8/state/${timeAverage}`, getBasePath());
-  path.searchParams.append('cacheKey', cacheBuster());
+const getState = async (
+  timeAverage: string,
+  targetDatetime?: string
+): Promise<GridState> => {
+  const isValidDatetime = targetDatetime && isValidDate(targetDatetime);
+  const path: URL = new URL(
+    `v8/state/${timeAverage}${isValidDatetime ? `?targetDate=${targetDatetime}` : ''}`,
+    getBasePath()
+  );
 
+  !targetDatetime && path.searchParams.append('cacheKey', cacheBuster());
   const response = await fetch(path);
-
   if (response.ok) {
     const result = (await response.json()) as GridState;
     return result;
@@ -21,30 +34,54 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
+  const urlDatetime = useAtomValue(urlDatetimeAtom);
+  const isHistoricalQuery = Boolean(urlDatetime);
+
+  const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
+  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
+  const shouldQueryLastHour = isHourly && !isHistoricalQuery;
 
   // First fetch last hour only
   const last_hour = useQuery<GridState>({
     queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
     queryFn: async () => getState('last_hour'),
-    enabled: isHourly,
+    enabled: shouldQueryLastHour,
   });
 
   const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
-
   const shouldFetchFullState =
-    !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
+    isHistoricalQuery || !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
+  const pathMatchesTargetDatetime = urlDatetime == targetDatetime;
 
   // Then fetch the rest of the data
   const all_data = useQuery<GridState>({
-    queryKey: [QUERY_KEYS.STATE, { aggregate: timeAverage }],
-    queryFn: async () => getState(timeAverage),
-
-    // The query should not execute until the last_hour query is done
-    enabled: shouldFetchFullState,
+    queryKey: [
+      QUERY_KEYS.STATE,
+      {
+        aggregate: timeAverage,
+        targetDatetime,
+      },
+    ],
+    queryFn: async () => getState(timeAverage, targetDatetime),
+    enabled: shouldFetchFullState && pathMatchesTargetDatetime,
   });
-  return (all_data.data || !isHourly ? all_data : last_hour) ?? {};
+
+  useEffect(() => {
+    if (isHistoricalQuery && targetDatetime && all_data.data?.data?.datetimes) {
+      const datetimes = Object.keys(all_data.data.data.datetimes);
+      const targetIndex = datetimes.indexOf(targetDatetime);
+      if (targetDatetime) {
+        setSelectedDatetimeIndex({
+          datetime: new Date(targetDatetime),
+          index: targetIndex,
+        });
+      }
+    }
+  }, [isHistoricalQuery, targetDatetime, all_data.data, setSelectedDatetimeIndex]);
+
+  return (all_data.data || !isHourly ? all_data : last_hour) as UseQueryResult<GridState>;
 };
 
 export default useGetState;

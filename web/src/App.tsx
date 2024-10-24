@@ -18,8 +18,16 @@ import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { metaTitleSuffix, Mode, TrackEvent } from 'utils/constants';
-import { productionConsumptionAtom } from 'utils/state/atoms';
+import { metaTitleSuffix, Mode, TimeAverages, TrackEvent } from 'utils/constants';
+import { parsePath } from 'utils/pathUtils';
+import {
+  mapOrZoneAtom,
+  productionConsumptionAtom,
+  selectedDatetimeIndexAtom,
+  targetDatetimeStringAtom,
+  timeAverageAtom,
+  urlDatetimeAtom,
+} from 'utils/state/atoms';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -31,21 +39,48 @@ const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWra
 
 const isProduction = import.meta.env.PROD;
 
-if (isProduction) {
-  trackEvent(TrackEvent.APP_LOADED, {
-    isNative: Capacitor.isNativePlatform(),
-    platform: Capacitor.getPlatform(),
-  });
-}
+export const useInitialState = () => {
+  const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
+  const setTargetDatetimeString = useSetAtom(targetDatetimeStringAtom);
+  const setUrlDatetime = useSetAtom(urlDatetimeAtom);
+  const setTimeAverage = useSetAtom(timeAverageAtom);
+  const setMapOrZone = useSetAtom(mapOrZoneAtom);
+  const parsedPath = parsePath(location.pathname);
 
+  // Sync initial path with atoms
+  useLayoutEffect(() => {
+    if (parsedPath?.datetime) {
+      const pathDate = new Date(parsedPath.datetime);
+      if (!Number.isNaN(pathDate.getTime())) {
+        setTargetDatetimeString(parsedPath.datetime);
+        setUrlDatetime(parsedPath.datetime);
+        setMapOrZone(parsedPath.type);
+      }
+    }
+
+    if (parsedPath?.timeAverage) {
+      setTimeAverage(parsedPath.timeAverage as TimeAverages);
+    }
+    if (parsedPath?.type) {
+      setMapOrZone(parsedPath.type);
+    }
+  }, [
+    parsedPath,
+    setMapOrZone,
+    setSelectedDatetimeIndex,
+    setTargetDatetimeString,
+    setTimeAverage,
+    setUrlDatetime,
+  ]);
+  return useGetState();
+};
 export default function App(): ReactElement {
-  // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
-
+  useInitialState();
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
-  useGetState();
+
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
   const canonicalUrl = useGetCanonicalUrl();
@@ -58,12 +93,10 @@ export default function App(): ReactElement {
     }
   }, [isConsumptionOnlyMode, setConsumptionAtom]);
 
-  // Update classes on theme change
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
   }, [shouldUseDarkMode]);
 
-  // Handle back button on Android
   useEffect(() => {
     if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
       Cap.addListener('backButton', () => {
@@ -75,6 +108,13 @@ export default function App(): ReactElement {
       });
     }
   }, []);
+
+  if (isProduction) {
+    trackEvent(TrackEvent.APP_LOADED, {
+      isNative: Capacitor.isNativePlatform(),
+      platform: Capacitor.getPlatform(),
+    });
+  }
 
   return (
     <Suspense fallback={<div />}>

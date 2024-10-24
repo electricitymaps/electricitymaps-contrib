@@ -1,21 +1,30 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { targetDatetimeStringAtom, timeAverageAtom } from 'utils/state/atoms';
 
-import { cacheBuster, getBasePath, getHeaders, QUERY_KEYS } from './helpers';
+import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
 
 const getZone = async (
   timeAverage: TimeAverages,
-  zoneId?: string
+  zoneId?: string,
+  targetDatetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
-  const path: URL = new URL(`v8/details/${timeAverage}/${zoneId}`, getBasePath());
-  path.searchParams.append('cacheKey', cacheBuster());
+
+  const isValidDatetime = targetDatetime && isValidDate(targetDatetime);
+
+  const path: URL = new URL(
+    `v8/details/${timeAverage}/${zoneId}${
+      isValidDatetime ? `?targetDate=${targetDatetime}` : ''
+    }`,
+    getBasePath()
+  );
+  !targetDatetime && path.searchParams.append('cacheKey', cacheBuster());
 
   const requestOptions: RequestInit = {
     method: 'GET',
@@ -39,10 +48,17 @@ const getZone = async (
 // should we add a check for this?
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const zoneId = useGetZoneFromPath();
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
   return useQuery<ZoneDetails>({
-    queryKey: [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
-    queryFn: async () => getZone(timeAverage, zoneId),
+    queryKey: [
+      QUERY_KEYS.ZONE,
+      {
+        zone: zoneId,
+        aggregate: timeAverage,
+      },
+    ],
+    queryFn: async () => getZone(timeAverage, zoneId, targetDatetime),
   });
 };
 
