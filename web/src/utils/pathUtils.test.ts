@@ -3,7 +3,7 @@ import { hasPathDatetime, parsePath } from './pathUtils';
 describe('pathUtils', () => {
   describe('parsePath', () => {
     it('should return null for empty path', () => {
-      expect(parsePath('')).equals(null);
+      expect(parsePath('')).to.deep.equal({ type: 'map' });
     });
 
     describe('zone paths', () => {
@@ -32,7 +32,7 @@ describe('pathUtils', () => {
       });
 
       it('should return null for incomplete zone path', () => {
-        expect(parsePath('/zone')).equals(null);
+        expect(parsePath('/zone')).to.deep.equal({ type: 'map' });
       });
     });
 
@@ -60,7 +60,7 @@ describe('pathUtils', () => {
     });
 
     it('should return null for unknown route type', () => {
-      expect(parsePath('/unknown')).equals(null);
+      expect(parsePath('/unknown')).to.deep.equal({ type: 'map' });
     });
   });
 

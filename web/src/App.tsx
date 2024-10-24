@@ -21,10 +21,12 @@ import trackEvent from 'utils/analytics';
 import { metaTitleSuffix, Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { parsePath } from 'utils/pathUtils';
 import {
+  mapOrZoneAtom,
   productionConsumptionAtom,
   selectedDatetimeIndexAtom,
   targetDatetimeStringAtom,
   timeAverageAtom,
+  urlDatetimeAtom,
 } from 'utils/state/atoms';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
@@ -40,30 +42,35 @@ const isProduction = import.meta.env.PROD;
 export const useInitialState = () => {
   const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
   const setTargetDatetimeString = useSetAtom(targetDatetimeStringAtom);
+  const setUrlDatetime = useSetAtom(urlDatetimeAtom);
   const setTimeAverage = useSetAtom(timeAverageAtom);
+  const setMapOrZone = useSetAtom(mapOrZoneAtom);
   const parsedPath = parsePath(location.pathname);
 
-  // Set initial datetime synchronously
+  // Sync initial path with atoms
   useLayoutEffect(() => {
     if (parsedPath?.datetime) {
       const pathDate = new Date(parsedPath.datetime);
       if (!Number.isNaN(pathDate.getTime())) {
         setTargetDatetimeString(parsedPath.datetime);
-        setSelectedDatetimeIndex({
-          datetime: pathDate,
-          index: 24,
-        });
+        setUrlDatetime(parsedPath.datetime);
+        setMapOrZone(parsedPath.type);
       }
     }
+
     if (parsedPath?.timeAverage) {
       setTimeAverage(parsedPath.timeAverage as TimeAverages);
     }
+    if (parsedPath?.type) {
+      setMapOrZone(parsedPath.type);
+    }
   }, [
-    parsedPath?.datetime,
-    parsedPath?.timeAverage,
+    parsedPath,
+    setMapOrZone,
     setSelectedDatetimeIndex,
     setTargetDatetimeString,
     setTimeAverage,
+    setUrlDatetime,
   ]);
   return useGetState();
 };

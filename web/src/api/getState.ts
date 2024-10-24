@@ -1,12 +1,14 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 import type { GridState } from 'types';
-import { hasPathDatetime, parsePath } from 'utils/pathUtils';
 import {
   isHourlyAtom,
+  selectedDatetimeIndexAtom,
   targetDatetimeStringAtom,
   timeAverageAtom,
+  urlDatetimeAtom,
 } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, isValidDate, QUERY_KEYS } from './helpers';
@@ -34,7 +36,10 @@ const getState = async (
 const useGetState = (): UseQueryResult<GridState> => {
   const timeAverage = useAtomValue(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
-  const isHistoricalQuery = hasPathDatetime(location.pathname);
+  const urlDatetime = useAtomValue(urlDatetimeAtom);
+  const isHistoricalQuery = Boolean(urlDatetime);
+
+  const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
   const targetDatetime = useAtomValue(targetDatetimeStringAtom);
   const shouldQueryLastHour = isHourly && !isHistoricalQuery;
 
@@ -46,10 +51,9 @@ const useGetState = (): UseQueryResult<GridState> => {
   });
 
   const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
-  const parsedPath = parsePath(location.pathname);
   const shouldFetchFullState =
     isHistoricalQuery || !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
-  const pathMatchesTargetDatetime = parsedPath?.datetime == targetDatetime;
+  const pathMatchesTargetDatetime = urlDatetime == targetDatetime;
 
   // Then fetch the rest of the data
   const all_data = useQuery<GridState>({
@@ -61,10 +65,23 @@ const useGetState = (): UseQueryResult<GridState> => {
       },
     ],
     queryFn: async () => getState(timeAverage, targetDatetime),
-    // The query should not execute until the last_hour query is done
     enabled: shouldFetchFullState && pathMatchesTargetDatetime,
   });
-  return (all_data.data || !isHourly ? all_data : last_hour) ?? {};
+
+  useEffect(() => {
+    if (isHistoricalQuery && targetDatetime && all_data.data?.data?.datetimes) {
+      const datetimes = Object.keys(all_data.data.data.datetimes);
+      const targetIndex = datetimes.indexOf(targetDatetime);
+      if (targetDatetime) {
+        setSelectedDatetimeIndex({
+          datetime: new Date(targetDatetime),
+          index: targetIndex,
+        });
+      }
+    }
+  }, [isHistoricalQuery, targetDatetime, all_data.data, setSelectedDatetimeIndex]);
+
+  return (all_data.data || !isHourly ? all_data : last_hour) as UseQueryResult<GridState>;
 };
 
 export default useGetState;

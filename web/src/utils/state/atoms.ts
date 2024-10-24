@@ -23,6 +23,8 @@ export const selectedDatetimeStringAtom = atom<string>((get) => {
   const { datetime } = get(selectedDatetimeIndexAtom);
   return dateToDatetimeString(datetime);
 });
+export const urlDatetimeAtom = atom<string | undefined>(undefined);
+export const mapOrZoneAtom = atom<string>('map');
 
 export const targetDatetimeStringAtom = atom<string | undefined>(undefined);
 
