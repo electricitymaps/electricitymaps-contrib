@@ -2,7 +2,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
 import { useAtomValue } from 'jotai';
-import { Link, ShareIcon } from 'lucide-react';
+import { Link } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
@@ -13,6 +13,7 @@ import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
 import { displayByEmissionsAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { DefaultCloseButton } from './DefaultCloseButton';
+import { MemoizedShareIcon } from './ShareIcon';
 import { TimeDisplay } from './TimeDisplay';
 import { Toast, useToastReference } from './Toast';
 
@@ -108,7 +109,7 @@ export function MoreOptionsDropdown({
                 </DropdownMenu.Item>
                 {hasMobileUserAgent && (
                   <DropdownMenu.Item className={dropdownItemStyle} onSelect={onShare}>
-                    <ShareIcon size={DEFAULT_ICON_SIZE} />
+                    <MemoizedShareIcon />
                     <p className={dropdownContentStyle}>
                       {t('more-options-dropdown.mobile-share-via')}
                     </p>

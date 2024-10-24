@@ -1,7 +1,7 @@
 import { Capacitor } from '@capacitor/core';
 import { Share as CapShare } from '@capacitor/share';
 import { Button, ButtonProps } from 'components/Button';
-import { ShareIcon } from 'components/ShareIcon';
+import { MemoizedShareIcon } from 'components/ShareIcon';
 import { Toast, useToastReference } from 'components/Toast';
 import { isIos, isMobile } from 'features/weather-layers/wind-layer/util';
 import { useShare } from 'hooks/useShare';
@@ -60,7 +60,7 @@ export function ShareButton({
 
   let shareIcon = <Link data-test-id="linkIcon" size={iconSize} />;
   if (hasMobileUserAgent || Capacitor.isNativePlatform()) {
-    shareIcon = <ShareIcon showIosIcon={showIosIcon} />;
+    shareIcon = <MemoizedShareIcon showIosIcon={showIosIcon} />;
   }
 
   return (

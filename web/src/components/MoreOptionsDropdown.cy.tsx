@@ -106,7 +106,7 @@ describe('MoreOptionsDropdown', () => {
       .should('have.attr', 'href')
       .and(
         'equal',
-        'https://twitter.com/intent/tweet?&url=hello&text=Discover%20real-time%20electricity%20insights%20with%20the%20@electricitymaps%20app!%20https://app.electricitymaps.com&hashtags=electricitymaps'
+        'https://twitter.com/intent/tweet?&url=hello&text=Discover%20real-time%20electricity%20insights%20with%20the%20Electricity%20Maps%20app!%20https://app.electricitymaps.com&hashtags=electricitymaps'
       );
 
     cy.contains('Share on LinkedIn').should('be.visible');
@@ -119,7 +119,7 @@ describe('MoreOptionsDropdown', () => {
       .should('have.attr', 'href')
       .and(
         'equal',
-        'https://facebook.com/sharer/sharer.php?u=hello&quote=Discover%20real-time%20electricity%20insights%20with%20the%20@electricitymaps%20app!%20https://app.electricitymaps.com'
+        'https://facebook.com/sharer/sharer.php?u=hello&quote=Discover%20real-time%20electricity%20insights%20with%20the%20Electricity%20Maps%20app!%20https://app.electricitymaps.com'
       );
 
     cy.contains('Share on Reddit').should('be.visible');

@@ -173,8 +173,7 @@ export const getZoneTimezone = (zoneId?: string) => {
 /**
  * @returns {Boolean} true if agent is probably a mobile device.
  */
-export function hasMobileUserAgent() {
-  return /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
+export const hasMobileUserAgent = () =>
+  /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
     navigator.userAgent
   );
-}
