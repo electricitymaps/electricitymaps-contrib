@@ -153,9 +153,7 @@ export default function App(): ReactElement {
                 <SettingsModal />
               </Suspense>
               <Suspense>
-                <Suspense>
-                  <LeftPanel />
-                </Suspense>
+                <LeftPanel />
               </Suspense>
               <Suspense>
                 <MapWrapper />
