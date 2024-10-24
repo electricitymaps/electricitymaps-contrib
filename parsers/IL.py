@@ -17,7 +17,6 @@ from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 from bs4 import BeautifulSoup
 from requests import Response, Session, get
 
@@ -102,7 +101,7 @@ def extract_price_date(soup):
     date_str = date_str.split(sep=" - ")
     date_str = date_str.pop(1)
 
-    date = arrow.get(date_str, "DD.MM.YYYY").datetime
+    date = datetime.strptime(date_str, "%d.%m.%Y")
 
     return date
 
