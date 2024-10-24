@@ -16,7 +16,7 @@ const getState = async (
   targetDatetime?: string
 ): Promise<GridState> => {
   const parsedPath = parsePath(location.pathname);
-  const isValidDatetime = targetDatetime && isValidDate(targetDatetime);
+  const isValidDatetime = Boolean(targetDatetime) && isValidDate(targetDatetime);
   const timeAverageToQuery = parsedPath?.timeAverage || timeAverage;
   const path: URL = new URL(
     `v8/state/${timeAverageToQuery}${
