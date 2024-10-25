@@ -28,8 +28,8 @@ import trackEvent from 'utils/analytics';
 import { metaTitleSuffix, Mode, TimeAverages, TrackEvent } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
-const MapWrapper = lazy(() => import('features/map/MapWrapper'));
-const LeftPanel = lazy(() => import('features/panels/LeftPanel'));
+const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
+const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const MapOverlays = lazy(() => import('components/MapOverlays'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
@@ -46,6 +46,13 @@ export type RouteParameters = {
 
 // Context for sharing route parameters with child components
 export const RouteContext = React.createContext<RouteParameters>({});
+
+if (isProduction) {
+  trackEvent(TrackEvent.APP_LOADED, {
+    isNative: Capacitor.isNativePlatform(),
+    platform: Capacitor.getPlatform(),
+  });
+}
 
 export default function App(): ReactElement {
   const {
@@ -90,13 +97,6 @@ export default function App(): ReactElement {
       });
     }
   }, []);
-
-  if (isProduction) {
-    trackEvent(TrackEvent.APP_LOADED, {
-      isNative: Capacitor.isNativePlatform(),
-      platform: Capacitor.getPlatform(),
-    });
-  }
 
   return (
     <RouteContext.Provider value={routeParameters}>
