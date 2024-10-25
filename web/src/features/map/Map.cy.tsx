@@ -1,11 +1,34 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { atom, WritableAtom } from 'jotai';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { TestProvider } from 'testing/testUtils';
-import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
 import Map from './Map';
 
 const zonesToTest = ['DE', 'FR', 'NL', 'NO-NO1', 'SE-SE1', 'CH', 'ES'];
+interface DatetimeState {
+  datetime: Date;
+  index: number;
+}
+
+type TestProviderValue = [
+  WritableAtom<DatetimeState, [DatetimeState], void>,
+  DatetimeState
+];
+
+export const selectedDatetimeIndexAtom: WritableAtom<
+  DatetimeState,
+  [DatetimeState],
+  void
+> = atom(
+  {
+    datetime: new Date(),
+    index: 0,
+  },
+  (get, set, newValue: DatetimeState) => {
+    set(selectedDatetimeIndexAtom, newValue);
+  }
+);
 
 type ZoneLayer = {
   id: string;
@@ -139,28 +162,36 @@ describe('Map Component', () => {
   it('should display loading state initially', () => {
     const queryClient = new QueryClient();
 
-    const router = createBrowserRouter([
+    const initialState: DatetimeState = {
+      datetime: new Date('2022-12-05T08:00:00+00:00'),
+      index: 0,
+    };
+
+    const initialValues: [TestProviderValue] = [
+      [selectedDatetimeIndexAtom, initialState],
+    ];
+
+    function TestComponent() {
+      return (
+        <TestProvider initialValues={initialValues as any}>
+          <QueryClientProvider client={queryClient}>
+            <Map onMapLoad={handleMapLoad} />
+          </QueryClientProvider>
+        </TestProvider>
+      );
+    }
+
+    const router = createMemoryRouter(
+      [
+        {
+          path: '*',
+          element: <TestComponent />,
+        },
+      ],
       {
-        path: '/',
-        element: (
-          <TestProvider
-            initialValues={[
-              [
-                selectedDatetimeIndexAtom,
-                {
-                  datetime: new Date('2022-12-05T08:00:00+00:00'),
-                  index: 0,
-                },
-              ],
-            ]}
-          >
-            <QueryClientProvider client={queryClient}>
-              <Map onMapLoad={handleMapLoad} />
-            </QueryClientProvider>
-          </TestProvider>
-        ),
-      },
-    ]);
+        initialEntries: ['/'],
+      }
+    );
 
     cy.mount(<RouterProvider router={router} />);
     cy.get('[data-test-id=exchange-layer]').should('be.visible');
