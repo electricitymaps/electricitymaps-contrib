@@ -54,7 +54,7 @@ export default function renderWithProviders(
 }
 
 export interface HydrateProps {
-  initialValues: (readonly [WritableAtom<any, any, any>, unknown])[];
+  initialValues: (readonly [WritableAtom<unknown, unknown[], unknown>, unknown])[];
   children: React.ReactNode;
 }
 
@@ -79,7 +79,7 @@ export function renderWithAllProviders(
     includeRouter = true,
     initialRouterPath = '/',
   }: {
-    initialValues?: (readonly [WritableAtom<any, any, any>, unknown])[];
+    initialValues?: (readonly [WritableAtom<unknown, unknown[], unknown>, unknown])[];
     includeRouter?: boolean;
     initialRouterPath?: string;
   } = {}

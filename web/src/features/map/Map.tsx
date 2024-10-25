@@ -17,8 +17,6 @@ import {
   isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
-  targetDatetimeStringAtom,
-  timeAverageAtom,
   userLocationAtom,
 } from 'utils/state/atoms';
 
