@@ -34,7 +34,7 @@ describe('AppStoreBanner', () => {
 
   test('does not render when isAppBannerDismissed is true', () => {
     render(
-      <TestProvider initialValues={[[appStoreDismissedAtom, true]]}>
+      <TestProvider initialValues={[[appStoreDismissedAtom, true] as any]}>
         <AppStoreBanner />
       </TestProvider>
     );
