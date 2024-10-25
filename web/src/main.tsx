@@ -7,19 +7,23 @@ import { Capacitor } from '@capacitor/core';
 import * as Sentry from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
-import { StrictMode } from 'react';
+import LoadingSpinner from 'components/LoadingSpinner';
+import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { I18nextProvider } from 'react-i18next';
-import { BrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import i18n from 'translation/i18n';
+import { TimeAverages } from 'utils/constants';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
-const isProduction = import.meta.env.PROD;
+const RankingPanel = lazy(() => import('features/panels/ranking-panel/RankingPanel'));
+const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
 
+const isProduction = import.meta.env.PROD;
 if (isProduction) {
   Sentry.init({
     dsn: Capacitor.isNativePlatform()
@@ -63,6 +67,48 @@ const queryClient = new QueryClient({
 
 refetchDataOnHourChange(queryClient);
 
+// Router configuration
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <Navigate to="/map/hourly" replace />,
+      },
+      {
+        path: '/zone',
+        element: <Navigate to="/map/hourly" replace />,
+      },
+      {
+        path: '/zone/:zoneId',
+        element: <Navigate to={`/zone/:zoneId/${TimeAverages.HOURLY}`} replace />,
+      },
+      {
+        path: '/zone/:zoneId/:urlTimeAverage/:urlDatetime?',
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <ZoneDetails />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/map/:urlTimeAverage/:urlDatetime?',
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <RankingPanel />
+          </Suspense>
+        ),
+      },
+      {
+        path: '*',
+        element: <Navigate to="/map/hourly" replace />,
+      },
+    ],
+  },
+]);
+
 const container = document.querySelector('#root');
 if (container) {
   const root = createRoot(container);
@@ -71,9 +117,7 @@ if (container) {
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
           <QueryClientProvider client={queryClient}>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
+            <RouterProvider router={router} />
           </QueryClientProvider>
         </HelmetProvider>
       </I18nextProvider>

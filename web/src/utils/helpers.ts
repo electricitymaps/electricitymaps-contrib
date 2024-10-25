@@ -14,7 +14,6 @@ import { TimeAverages } from './constants';
 
 export function useGetZoneFromPath() {
   const { zoneId } = useParams();
-  console.log('zoneId123', zoneId);
   const match = useMatch('/zone/:id');
   if (zoneId) {
     return zoneId;

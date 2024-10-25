@@ -1,8 +1,12 @@
 import mediaQuery from 'css-mediaquery';
+import { vi } from 'vitest';
 
 import server from './mocks/server';
 import { DESKTOP_RESOLUTION_HEIGHT, DESKTOP_RESOLUTION_WIDTH } from './testUtils';
 
+vi.mock('../features/service-worker/UpdatePrompt', () => ({
+  UpdatePrompt: () => null,
+}));
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'error' });
 

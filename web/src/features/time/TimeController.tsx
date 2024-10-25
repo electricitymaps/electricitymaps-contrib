@@ -3,14 +3,13 @@ import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import { createToWithState, getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
+import { getZoneTimezone } from 'utils/helpers';
 import {
   isHourlyAtom,
-  mapOrZoneAtom,
   selectedDatetimeIndexAtom,
   targetDatetimeStringAtom,
   timeAverageAtom,
@@ -27,12 +26,10 @@ export default function TimeController({ className }: { className?: string }) {
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
   const isBiggerThanMobile = useIsBiggerThanMobile();
-  const zoneId = useGetZoneFromPath();
+  const { zoneId } = useParams<{ zoneId: string }>();
   const zoneTimezone = getZoneTimezone(zoneId);
   const targetDatetime = useAtomValue(targetDatetimeStringAtom);
-  const mapOrZone = useAtomValue(mapOrZoneAtom);
   const navigate = useNavigate();
-  console.log('zoneId', zoneId);
 
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
@@ -82,8 +79,14 @@ export default function TimeController({ className }: { className?: string }) {
       });
       setTimeAverage(timeAverage);
       trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeAverage });
-      console.log('to with state params', mapOrZone, zoneId, timeAverage, targetDatetime);
-      navigate(createToWithState(mapOrZone, zoneId, timeAverage, targetDatetime));
+
+      // Build the new path based on whether we're in a zone view or map view
+      // We can determine this by checking if zoneId exists in the URL params
+      const basePath = zoneId ? `/zone/${zoneId}` : '/map';
+      const datetimePath = targetDatetime ? `/${targetDatetime}` : '';
+
+      // Navigate to the new path
+      navigate(`${basePath}/${timeAverage}${datetimePath}`);
     },
     [
       setSelectedDatetime,
@@ -91,7 +94,6 @@ export default function TimeController({ className }: { className?: string }) {
       numberOfEntries,
       setTimeAverage,
       navigate,
-      mapOrZone,
       zoneId,
       targetDatetime,
     ]

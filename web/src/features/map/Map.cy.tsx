@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { TestProvider } from 'testing/testUtils';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
@@ -139,25 +139,30 @@ describe('Map Component', () => {
   it('should display loading state initially', () => {
     const queryClient = new QueryClient();
 
-    cy.mount(
-      <TestProvider
-        initialValues={[
-          [
-            selectedDatetimeIndexAtom,
-            {
-              datetime: new Date('2022-12-05T08:00:00+00:00'),
-              index: 0,
-            },
-          ],
-        ]}
-      >
-        <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <Map onMapLoad={handleMapLoad} />
-          </BrowserRouter>
-        </QueryClientProvider>
-      </TestProvider>
-    );
+    const router = createBrowserRouter([
+      {
+        path: '/',
+        element: (
+          <TestProvider
+            initialValues={[
+              [
+                selectedDatetimeIndexAtom,
+                {
+                  datetime: new Date('2022-12-05T08:00:00+00:00'),
+                  index: 0,
+                },
+              ],
+            ]}
+          >
+            <QueryClientProvider client={queryClient}>
+              <Map onMapLoad={handleMapLoad} />
+            </QueryClientProvider>
+          </TestProvider>
+        ),
+      },
+    ]);
+
+    cy.mount(<RouterProvider router={router} />);
     cy.get('[data-test-id=exchange-layer]').should('be.visible');
     cy.get('[data-test-id=wind-layer]').should('exist');
     cy.get('.maplibregl-map').should('be.visible');

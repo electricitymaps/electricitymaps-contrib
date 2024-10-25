@@ -1,4 +1,5 @@
 import useGetState from 'api/getState';
+import { RouteParameters } from 'App';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
@@ -8,8 +9,9 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { createToWithState, getCarbonIntensity, useUserLocation } from 'utils/helpers';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { TimeAverages } from 'utils/constants';
+import { getCarbonIntensity, useUserLocation } from 'utils/helpers';
 import { parsePath } from 'utils/pathUtils';
 import {
   isConsumptionAtom,
@@ -76,8 +78,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
-  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const { urlTimeAverage = TimeAverages.HOURLY, urlDatetime } =
+    useParams<RouteParameters>();
 
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
@@ -258,11 +260,17 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         );
       }
       setHoveredZone(null);
+
+      // Build the new path based on whether a feature was clicked
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(createToWithState('/zone', zoneId, timeAverage, targetDatetime));
+        // Navigate to zone view with current time average and datetime
+        const datetimePath = urlDatetime ? `/${urlDatetime}` : '';
+        navigate(`/zone/${zoneId}/${urlTimeAverage}${datetimePath}`);
       } else {
-        navigate(createToWithState('/map', undefined, timeAverage, targetDatetime));
+        // Navigate back to map view with current time average and datetime
+        const datetimePath = urlDatetime ? `/${urlDatetime}` : '';
+        navigate(`/map/${urlTimeAverage}${datetimePath}`);
       }
     },
     [
@@ -271,8 +279,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       hoveredZone,
       setHoveredZone,
       navigate,
-      timeAverage,
-      targetDatetime,
+      urlTimeAverage,
+      urlDatetime,
     ]
   );
 

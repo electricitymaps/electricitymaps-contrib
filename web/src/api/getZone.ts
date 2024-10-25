@@ -1,12 +1,11 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtomValue } from 'jotai';
+import { useContext } from 'react';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { useGetZoneFromPath } from 'utils/helpers';
-import { targetDatetimeStringAtom, timeAverageAtom } from 'utils/state/atoms';
 
+import { RouteContext } from '../App';
 import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
 
 const getZone = async (
@@ -44,25 +43,27 @@ const getZone = async (
   throw new Error(await response.text());
 };
 
-// TODO: The frontend (graphs) expects that the datetimes in state are the same as in zone
-// should we add a check for this?
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const zoneId = useGetZoneFromPath();
-  const targetDatetime = useAtomValue(targetDatetimeStringAtom);
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const {
+    zoneId,
+    urlTimeAverage = TimeAverages.HOURLY,
+    urlDatetime,
+  } = useContext(RouteContext);
+
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,
       {
         zone: zoneId,
-        aggregate: timeAverage,
+        aggregate: urlTimeAverage,
+        targetDatetime: urlDatetime,
       },
     ],
     queryFn: async () => {
       if (!zoneId) {
         throw new Error('Zone ID is required');
       }
-      return getZone(timeAverage, zoneId, targetDatetime);
+      return getZone(urlTimeAverage, zoneId, urlDatetime);
     },
   });
 };
