@@ -274,6 +274,7 @@ function AreaGraph({
           mouseOutHandler={mouseOutHandler}
           isMobile={isMobile}
           svgNode={reference.current}
+          selectedLayerIndex={selectedLayerIndex}
         />
         <TimeAxis
           isLoading={false}

@@ -17,6 +17,7 @@ interface AreaGraphLayersProps {
   mouseOutHandler: any;
   isMobile: boolean;
   svgNode: any;
+  selectedLayerIndex?: number | null;
 }
 
 function AreaGraphLayers({
@@ -28,6 +29,7 @@ function AreaGraphLayers({
   mouseOutHandler,
   isMobile,
   svgNode,
+  selectedLayerIndex,
 }: AreaGraphLayersProps) {
   const [x1, x2] = timeScale.range();
   const [y2, y1] = valueScale.range();
@@ -100,10 +102,13 @@ function AreaGraphLayers({
           ]
         );
 
+        const isLayerSelected = selectedLayerIndex && selectedLayerIndex === ind;
+        const shouldLayerBeSaturated = isLayerSelected === null || isLayerSelected;
+
         return (
           <React.Fragment key={layer.key}>
             <path
-              className={layers.length > 1 ? 'sm:hover:opacity-75' : ''}
+              className={shouldLayerBeSaturated ? 'sm:hover:opacity-100' : 'opacity-30'}
               style={{ cursor: 'pointer' }}
               stroke={layer.stroke}
               fill={isGradient ? `url(#${gradientId})` : layer.fill(layer.key)}
