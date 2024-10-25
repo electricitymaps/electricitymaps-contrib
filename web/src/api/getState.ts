@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import type { GridState } from 'types';
+import { TimeAverages } from 'utils/constants';
 import {
   isHourlyAtom,
   selectedDatetimeIndexAtom,
@@ -34,14 +35,16 @@ const getState = async (
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
+  const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
+
   const timeAverage = useAtomValue(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const urlDatetime = useAtomValue(urlDatetimeAtom);
-  const isHistoricalQuery = Boolean(urlDatetime);
-
-  const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
   const targetDatetime = useAtomValue(targetDatetimeStringAtom);
-  const shouldQueryLastHour = isHourly && !isHistoricalQuery;
+
+  const isHistoricalQuery = Boolean(urlDatetime);
+  // console.log('hi', urlDatetime);
+  const shouldQueryLastHour = isHourly && !urlDatetime;
 
   // First fetch last hour only
   const last_hour = useQuery<GridState>({
@@ -53,7 +56,6 @@ const useGetState = (): UseQueryResult<GridState> => {
   const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
   const shouldFetchFullState =
     isHistoricalQuery || !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
-  const pathMatchesTargetDatetime = urlDatetime == targetDatetime;
 
   // Then fetch the rest of the data
   const all_data = useQuery<GridState>({
@@ -65,21 +67,31 @@ const useGetState = (): UseQueryResult<GridState> => {
       },
     ],
     queryFn: async () => getState(timeAverage, targetDatetime),
-    enabled: shouldFetchFullState && pathMatchesTargetDatetime,
+    enabled: shouldFetchFullState || isHistoricalQuery,
   });
 
   useEffect(() => {
     if (isHistoricalQuery && targetDatetime && all_data.data?.data?.datetimes) {
       const datetimes = Object.keys(all_data.data.data.datetimes);
-      const targetIndex = datetimes.indexOf(targetDatetime);
+      const targetDatetimeMatchingIndex =
+        timeAverage === TimeAverages.HOURLY
+          ? targetDatetime
+          : new Date(new Date(targetDatetime).setUTCHours(0, 0, 0, 0)).toISOString();
+      const targetIndex = datetimes.indexOf(targetDatetimeMatchingIndex);
       if (targetDatetime) {
         setSelectedDatetimeIndex({
-          datetime: new Date(targetDatetime),
+          datetime: new Date(targetDatetimeMatchingIndex),
           index: targetIndex,
         });
       }
     }
-  }, [isHistoricalQuery, targetDatetime, all_data.data, setSelectedDatetimeIndex]);
+  }, [
+    isHistoricalQuery,
+    targetDatetime,
+    all_data.data,
+    setSelectedDatetimeIndex,
+    timeAverage,
+  ]);
 
   return (all_data.data || !isHourly ? all_data : last_hour) as UseQueryResult<GridState>;
 };

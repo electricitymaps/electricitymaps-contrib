@@ -32,6 +32,7 @@ export default function TimeController({ className }: { className?: string }) {
   const targetDatetime = useAtomValue(targetDatetimeStringAtom);
   const mapOrZone = useAtomValue(mapOrZoneAtom);
   const navigate = useNavigate();
+  console.log('zoneId', zoneId);
 
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
@@ -81,6 +82,7 @@ export default function TimeController({ className }: { className?: string }) {
       });
       setTimeAverage(timeAverage);
       trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeAverage });
+      console.log('to with state params', mapOrZone, zoneId, timeAverage, targetDatetime);
       navigate(createToWithState(mapOrZone, zoneId, timeAverage, targetDatetime));
     },
     [

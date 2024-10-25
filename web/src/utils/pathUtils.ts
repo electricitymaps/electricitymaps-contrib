@@ -89,12 +89,13 @@ export function parsePath(path: string): RouteResult {
     const [parameter1, parameter2] = rest;
 
     if (rest.length === 1) {
-      if (isValidDate(parameter1)) {
-        return { type: 'map', datetime: parameter1 };
-      }
       if (Object.values(TimeAverages).includes(parameter1 as TimeAverages)) {
         return { type: 'map', timeAverage: parameter1 as TimeAverage };
       }
+      if (isValidDate(parameter1)) {
+        return { type: 'map', datetime: parameter1 };
+      }
+
       return { type: 'map' };
     }
 

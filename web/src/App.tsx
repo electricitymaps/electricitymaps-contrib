@@ -39,15 +39,20 @@ const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWra
 
 const isProduction = import.meta.env.PROD;
 
-export const useInitialState = () => {
+export const useStateWithUrl = () => {
+  // Track whether we need to wait for datetime initialization
+
+  // Get atom setters
   const setSelectedDatetimeIndex = useSetAtom(selectedDatetimeIndexAtom);
   const setTargetDatetimeString = useSetAtom(targetDatetimeStringAtom);
   const setUrlDatetime = useSetAtom(urlDatetimeAtom);
   const setTimeAverage = useSetAtom(timeAverageAtom);
   const setMapOrZone = useSetAtom(mapOrZoneAtom);
+
+  // Get current datetime value to check initialization
+
   const parsedPath = parsePath(location.pathname);
 
-  // Sync initial path with atoms
   useLayoutEffect(() => {
     if (parsedPath?.datetime) {
       const pathDate = new Date(parsedPath.datetime);
@@ -72,11 +77,13 @@ export const useInitialState = () => {
     setTimeAverage,
     setUrlDatetime,
   ]);
+
+  // Always call useGetState, but pass readiness parameter
   return useGetState();
 };
 export default function App(): ReactElement {
   useReducedMotion();
-  useInitialState();
+  useStateWithUrl();
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates

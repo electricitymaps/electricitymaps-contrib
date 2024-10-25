@@ -14,6 +14,7 @@ import { TimeAverages } from './constants';
 
 export function useGetZoneFromPath() {
   const { zoneId } = useParams();
+  console.log('zoneId123', zoneId);
   const match = useMatch('/zone/:id');
   if (zoneId) {
     return zoneId;
@@ -67,6 +68,7 @@ export function createToWithState(
   timeAverage?: TimeAverages,
   targetDatetime?: string
 ) {
+  // console.log('targetDatetime', targetDatetime);
   return `${basePath}${zoneId ? `/${zoneId}` : ''}${
     timeAverage ? `/${timeAverage}` : ''
   }${targetDatetime ? `/${targetDatetime}` : ''}${location.search}${location.hash}`;

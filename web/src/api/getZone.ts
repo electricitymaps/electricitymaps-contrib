@@ -11,7 +11,7 @@ import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from '.
 
 const getZone = async (
   timeAverage: TimeAverages,
-  zoneId?: string,
+  zoneId: string,
   targetDatetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
@@ -58,7 +58,12 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
         aggregate: timeAverage,
       },
     ],
-    queryFn: async () => getZone(timeAverage, zoneId, targetDatetime),
+    queryFn: async () => {
+      if (!zoneId) {
+        throw new Error('Zone ID is required');
+      }
+      return getZone(timeAverage, zoneId, targetDatetime);
+    },
   });
 };
 
