@@ -49,7 +49,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        translationKey="country-history.emissions"
+        titleText={t(`country-history.emissions.${timeAverage}`)}
         badge={badge}
         unit={'CO₂eq'}
       />

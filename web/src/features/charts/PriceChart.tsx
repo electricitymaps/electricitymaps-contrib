@@ -57,7 +57,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   return (
     <RoundedCard>
       <ChartTitle
-        translationKey="country-history.electricityprices"
+        titleText={t(`country-history.electricityprices.${timeAverage}`)}
         unit={valueAxisLabel}
       />
       <div className="relative">
