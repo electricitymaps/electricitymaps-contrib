@@ -19,7 +19,8 @@ class TestGSO(TestCase):
         self.session.mount("https://", self.adapter)
 
 
-@freeze_time("2024-10-27 17:58:40", tz_offset=-7)
+# 11am UTC on 27/10/24 = 6pm on 27/10/24
+@freeze_time("2024-10-27 10:58:40")
 class TestFetchProduction(TestGSO):
     def test_production_with_snapshot(self):
         raw_data = Path(base_path_to_mock, "currentGen.json")
@@ -49,7 +50,8 @@ class TestFetchProduction(TestGSO):
         )
 
 
-@freeze_time("2024-10-27 17:58:40", tz_offset=-7)
+# 11am UTC on 27/10/24 = 6pm on 27/10/24
+@freeze_time("2024-10-27 10:58:40")
 class TestFetchConsumption(TestGSO):
     def test_consumption_with_snapshot(self):
         raw_data = Path(base_path_to_mock, "systemDemand.json")
