@@ -13,7 +13,6 @@ from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
 # Third-party library imports
-import arrow
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -30,8 +29,7 @@ from parsers.lib.config import refetch_frequency, use_proxy
 DEFAULT_ZONE_KEY = ZoneKey("MY-WM")
 DOMAIN = "www.gso.org.my"
 PRODUCTION_THRESHOLD = 10  # MW
-TIMEZONE = "Asia/Kuala_Lumpur"
-TZ = ZoneInfo("Asia/Kuala_Lumpur")
+TIMEZONE = ZoneInfo("Asia/Kuala_Lumpur")
 
 CONSUMPTION_URL = f"https://{DOMAIN}/SystemData/SystemDemand.aspx/GetChartDataSource"
 EXCHANGE_URL = f"https://{DOMAIN}/SystemData/TieLine.aspx/GetChartDataSource"
@@ -57,7 +55,11 @@ def get_api_data(session: Session, url, data):
 
 def convert_local_ts_to_datetime(ts: str):
     # convert local TS e.g. 2024-10-27T00:10:00 to utc
-    return arrow.get(ts, tzinfo=TIMEZONE).to("utc").datetime
+    return (
+        datetime.strptime(ts, "%Y-%m-%dT%H:%M:%S")
+        .replace(tzinfo=TIMEZONE)
+        .astimezone(timezone.utc)
+    )
 
 
 @refetch_frequency(timedelta(days=1))
@@ -70,9 +72,9 @@ def fetch_consumption(
 ) -> list:
     """Request the power consumption (in MW) of a given zone."""
     if target_datetime:
-        target_datetime_tz = target_datetime.astimezone(tz=TZ)
+        target_datetime_tz = target_datetime.astimezone(TIMEZONE)
     else:
-        target_datetime_tz = datetime.now(TZ)
+        target_datetime_tz = datetime.now(TIMEZONE)
     date_string = target_datetime_tz.strftime("%d/%m/%Y")
 
     consumption_data = get_api_data(
@@ -106,7 +108,7 @@ def fetch_exchange(
 ) -> list:
     """Request the power exchange (in MW) between two zones."""
     if target_datetime:
-        target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
+        target_datetime_tz = target_datetime.astimezone(TIMEZONE)
     else:
         target_datetime_tz = datetime.now(TIMEZONE)
     date_string = target_datetime_tz.strftime("%d/%m/%Y")
@@ -174,9 +176,9 @@ def fetch_production(
 ) -> list:
     """Request the production mix (in MW) of a given zone."""
     if target_datetime:
-        target_datetime_tz = target_datetime.astimezone(tz=TZ)
+        target_datetime_tz = target_datetime.astimezone(TIMEZONE)
     else:
-        target_datetime_tz = datetime.now(TZ)
+        target_datetime_tz = datetime.now(TIMEZONE)
     date_string = target_datetime_tz.strftime("%d/%m/%Y")
 
     all_production_data = ProductionBreakdownList(logger)
