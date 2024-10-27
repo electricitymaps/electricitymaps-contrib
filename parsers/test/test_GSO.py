@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from freezegun import freeze_time
 from requests import Session
 from requests_mock import POST, Adapter
 from snapshottest import TestCase
@@ -18,6 +19,7 @@ class TestGSO(TestCase):
         self.session.mount("https://", self.adapter)
 
 
+@freeze_time("2024-10-27 17:58:40", tz_offset=-7)
 class TestFetchProduction(TestGSO):
     def test_production_with_snapshot(self):
         raw_data = Path(base_path_to_mock, "currentGen.json")
@@ -27,6 +29,9 @@ class TestFetchProduction(TestGSO):
             content=raw_data.read_bytes(),
         )
         production = GSO.fetch_production(ZoneKey("MY-WM"), self.session)
+
+        req_body = self.adapter.last_request.json()
+        self.assertEqual(req_body, {"Fromdate": "27/10/2024", "Todate": "27/10/2024"})
 
         self.assert_match_snapshot(
             [
@@ -44,6 +49,7 @@ class TestFetchProduction(TestGSO):
         )
 
 
+@freeze_time("2024-10-27 17:58:40", tz_offset=-7)
 class TestFetchConsumption(TestGSO):
     def test_consumption_with_snapshot(self):
         raw_data = Path(base_path_to_mock, "systemDemand.json")
@@ -53,6 +59,9 @@ class TestFetchConsumption(TestGSO):
             content=raw_data.read_bytes(),
         )
         consumption = GSO.fetch_consumption(ZoneKey("MY-WM"), self.session)
+
+        req_body = self.adapter.last_request.json()
+        self.assertEqual(req_body, {"Fromdate": "27/10/2024", "Todate": "27/10/2024"})
 
         self.assert_match_snapshot(
             [
