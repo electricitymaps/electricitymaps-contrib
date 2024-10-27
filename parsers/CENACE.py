@@ -176,7 +176,8 @@ def fetch_production(
 
     original_target_datetime = target_datetime
     df = None
-    for _ in range(6):  # Try up to 6 previous months
+    up_to_months = 6  # Try up to 6 previous months
+    for _ in range(up_to_months):
         cache_key = target_datetime.strftime("%Y-%m")
         if cache_key in DATA_CACHE:
             df = DATA_CACHE[cache_key]
@@ -194,7 +195,7 @@ def fetch_production(
 
     if df is None or df.empty:
         raise Exception(
-            f"No data found for {original_target_datetime}, or any previous 6 months."
+            f"No data found for {original_target_datetime}, or any previous {up_to_months} months."
         )
 
     production = ProductionBreakdownList(logger)
