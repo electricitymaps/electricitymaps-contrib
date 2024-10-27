@@ -4,6 +4,564 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
+snapshots["TestFetchConsumption::test_consumption_with_snapshot 1"] = [
+    {
+        "consumption": 15906.0,
+        "datetime": "2024-10-26T16:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15875.0,
+        "datetime": "2024-10-26T16:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15658.0,
+        "datetime": "2024-10-26T16:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15536.0,
+        "datetime": "2024-10-26T16:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15501.0,
+        "datetime": "2024-10-26T16:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15338.0,
+        "datetime": "2024-10-26T16:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15302.0,
+        "datetime": "2024-10-26T17:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15229.0,
+        "datetime": "2024-10-26T17:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15042.0,
+        "datetime": "2024-10-26T17:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15051.0,
+        "datetime": "2024-10-26T17:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14923.0,
+        "datetime": "2024-10-26T17:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14845.0,
+        "datetime": "2024-10-26T17:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14723.0,
+        "datetime": "2024-10-26T18:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14661.0,
+        "datetime": "2024-10-26T18:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14522.0,
+        "datetime": "2024-10-26T18:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14462.0,
+        "datetime": "2024-10-26T18:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14344.0,
+        "datetime": "2024-10-26T18:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14376.0,
+        "datetime": "2024-10-26T18:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14211.0,
+        "datetime": "2024-10-26T19:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14150.0,
+        "datetime": "2024-10-26T19:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14068.0,
+        "datetime": "2024-10-26T19:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13980.0,
+        "datetime": "2024-10-26T19:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13936.0,
+        "datetime": "2024-10-26T19:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13968.0,
+        "datetime": "2024-10-26T19:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13785.0,
+        "datetime": "2024-10-26T20:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13713.0,
+        "datetime": "2024-10-26T20:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13664.0,
+        "datetime": "2024-10-26T20:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13700.0,
+        "datetime": "2024-10-26T20:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13582.0,
+        "datetime": "2024-10-26T20:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13610.0,
+        "datetime": "2024-10-26T20:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13556.0,
+        "datetime": "2024-10-26T21:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13516.0,
+        "datetime": "2024-10-26T21:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13430.0,
+        "datetime": "2024-10-26T21:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13443.0,
+        "datetime": "2024-10-26T21:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13484.0,
+        "datetime": "2024-10-26T21:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13510.0,
+        "datetime": "2024-10-26T21:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13559.0,
+        "datetime": "2024-10-26T22:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13607.0,
+        "datetime": "2024-10-26T22:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13523.0,
+        "datetime": "2024-10-26T22:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13597.0,
+        "datetime": "2024-10-26T22:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13560.0,
+        "datetime": "2024-10-26T22:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13409.0,
+        "datetime": "2024-10-26T22:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13172.0,
+        "datetime": "2024-10-26T23:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12978.0,
+        "datetime": "2024-10-26T23:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12751.0,
+        "datetime": "2024-10-26T23:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12684.0,
+        "datetime": "2024-10-26T23:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12661.0,
+        "datetime": "2024-10-26T23:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12608.0,
+        "datetime": "2024-10-26T23:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12601.0,
+        "datetime": "2024-10-27T00:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12753.0,
+        "datetime": "2024-10-27T00:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12757.0,
+        "datetime": "2024-10-27T00:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12789.0,
+        "datetime": "2024-10-27T00:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12790.0,
+        "datetime": "2024-10-27T00:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 12901.0,
+        "datetime": "2024-10-27T00:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13002.0,
+        "datetime": "2024-10-27T01:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13077.0,
+        "datetime": "2024-10-27T01:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13161.0,
+        "datetime": "2024-10-27T01:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13190.0,
+        "datetime": "2024-10-27T01:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13154.0,
+        "datetime": "2024-10-27T01:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13282.0,
+        "datetime": "2024-10-27T01:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13421.0,
+        "datetime": "2024-10-27T02:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13529.0,
+        "datetime": "2024-10-27T02:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13701.0,
+        "datetime": "2024-10-27T02:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13660.0,
+        "datetime": "2024-10-27T02:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13676.0,
+        "datetime": "2024-10-27T02:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13693.0,
+        "datetime": "2024-10-27T02:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13838.0,
+        "datetime": "2024-10-27T03:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13855.0,
+        "datetime": "2024-10-27T03:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13900.0,
+        "datetime": "2024-10-27T03:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13967.0,
+        "datetime": "2024-10-27T03:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13847.0,
+        "datetime": "2024-10-27T03:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13875.0,
+        "datetime": "2024-10-27T03:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13862.0,
+        "datetime": "2024-10-27T04:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13861.0,
+        "datetime": "2024-10-27T04:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13957.0,
+        "datetime": "2024-10-27T04:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 13975.0,
+        "datetime": "2024-10-27T04:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14119.0,
+        "datetime": "2024-10-27T04:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14182.0,
+        "datetime": "2024-10-27T04:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14239.0,
+        "datetime": "2024-10-27T05:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14306.0,
+        "datetime": "2024-10-27T05:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14410.0,
+        "datetime": "2024-10-27T05:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14471.0,
+        "datetime": "2024-10-27T05:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14471.0,
+        "datetime": "2024-10-27T05:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14549.0,
+        "datetime": "2024-10-27T05:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14612.0,
+        "datetime": "2024-10-27T06:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14684.0,
+        "datetime": "2024-10-27T06:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14799.0,
+        "datetime": "2024-10-27T06:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14808.0,
+        "datetime": "2024-10-27T06:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14828.0,
+        "datetime": "2024-10-27T06:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14875.0,
+        "datetime": "2024-10-27T06:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 14968.0,
+        "datetime": "2024-10-27T07:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15014.0,
+        "datetime": "2024-10-27T07:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15081.0,
+        "datetime": "2024-10-27T07:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15212.0,
+        "datetime": "2024-10-27T07:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15218.0,
+        "datetime": "2024-10-27T07:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15212.0,
+        "datetime": "2024-10-27T07:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15260.0,
+        "datetime": "2024-10-27T08:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15329.0,
+        "datetime": "2024-10-27T08:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15392.0,
+        "datetime": "2024-10-27T08:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15496.0,
+        "datetime": "2024-10-27T08:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15566.0,
+        "datetime": "2024-10-27T08:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15467.0,
+        "datetime": "2024-10-27T08:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15399.0,
+        "datetime": "2024-10-27T09:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15278.0,
+        "datetime": "2024-10-27T09:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15328.0,
+        "datetime": "2024-10-27T09:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15268.0,
+        "datetime": "2024-10-27T09:30:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15279.0,
+        "datetime": "2024-10-27T09:40:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15326.0,
+        "datetime": "2024-10-27T09:50:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15333.0,
+        "datetime": "2024-10-27T10:00:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15322.0,
+        "datetime": "2024-10-27T10:10:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+    {
+        "consumption": 15468.0,
+        "datetime": "2024-10-27T10:20:00+00:00",
+        "zoneKey": "MY-WM",
+    },
+]
+
 snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     {
         "correctedModes": [],

@@ -42,3 +42,25 @@ class TestFetchProduction(TestGSO):
                 for element in production
             ]
         )
+
+
+class TestFetchConsumption(TestGSO):
+    def test_consumption_with_snapshot(self):
+        raw_data = Path(base_path_to_mock, "systemDemand.json")
+        self.adapter.register_uri(
+            POST,
+            "https://www.gso.org.my/SystemData/SystemDemand.aspx/GetChartDataSource",
+            content=raw_data.read_bytes(),
+        )
+        consumption = GSO.fetch_consumption(ZoneKey("MY-WM"), self.session)
+
+        self.assert_match_snapshot(
+            [
+                {
+                    "datetime": element["datetime"].isoformat(),
+                    "zoneKey": element["zoneKey"],
+                    "consumption": element["consumption"],
+                }
+                for element in consumption
+            ]
+        )
