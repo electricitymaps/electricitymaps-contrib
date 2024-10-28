@@ -77,110 +77,100 @@ export function MoreOptionsDropdown({
     <>
       <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen} modal={false}>
         <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
-        <DropdownMenu.Portal>
-          <DropdownMenu.Content
-            className={twMerge(
-              'border-gray my-2 min-w-60 rounded-2xl border border-solid bg-white shadow-md dark:border-b dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
-              hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
-            )}
-          >
-            {isEstimated && (
-              <div className="w-full rounded-t-2xl bg-warning/10 p-3 text-xs font-semibold text-warning dark:bg-warning-dark/10 dark:text-warning-dark">
-                <p className="text-xs">{t('more-options-dropdown.preliminary-data')}</p>
+        <DropdownMenu.Content
+          className={twMerge(
+            'border-gray my-2 min-w-60 rounded-2xl border border-solid bg-white shadow-md dark:border-b dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
+            hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
+          )}
+        >
+          {isEstimated && (
+            <div className="w-full rounded-t-2xl bg-warning/10 p-3 text-xs font-semibold text-warning dark:bg-warning-dark/10 dark:text-warning-dark">
+              <p className="text-xs">{t('more-options-dropdown.preliminary-data')}</p>
+            </div>
+          )}
+          <div className="px-3 pb-2 pt-3">
+            <DropdownMenu.Label className="flex flex-col">
+              <div className="align-items flex justify-between">
+                <h2 className="self-start text-sm">{t('more-options-dropdown.title')}</h2>
+                <DefaultCloseButton onClose={onDismiss} />
               </div>
-            )}
-            <div className="px-3 pb-2 pt-3">
-              <DropdownMenu.Label className="flex flex-col">
-                <div className="align-items flex justify-between">
-                  <h2 className="self-start text-sm">
-                    {t('more-options-dropdown.title')}
-                  </h2>
-                  <DefaultCloseButton onClose={onDismiss} />
-                </div>
-                <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-gray-300" />
-              </DropdownMenu.Label>
-              <DropdownMenu.Separator className="mb-1 mt-3 h-px bg-neutral-200 dark:bg-gray-700" />
-              <DropdownMenu.Group className="flex cursor-pointer flex-col">
-                <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
-                  <Link size={DEFAULT_ICON_SIZE} />
+              <TimeDisplay className="whitespace-nowrap text-xs font-normal text-neutral-600 dark:text-gray-300" />
+            </DropdownMenu.Label>
+            <DropdownMenu.Separator className="mb-1 mt-3 h-px bg-neutral-200 dark:bg-gray-700" />
+            <DropdownMenu.Group className="flex cursor-pointer flex-col">
+              <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
+                <Link size={DEFAULT_ICON_SIZE} />
+                <p className={dropdownContentStyle}>
+                  {t('more-options-dropdown.copy-chart-link')}
+                </p>
+              </DropdownMenu.Item>
+              {hasMobileUserAgent && (
+                <DropdownMenu.Item className={dropdownItemStyle} onSelect={onShare}>
+                  <MemoizedShareIcon />
                   <p className={dropdownContentStyle}>
-                    {t('more-options-dropdown.copy-chart-link')}
+                    {t('more-options-dropdown.mobile-share-via')}
                   </p>
                 </DropdownMenu.Item>
-                {hasMobileUserAgent && (
-                  <DropdownMenu.Item className={dropdownItemStyle} onSelect={onShare}>
-                    <MemoizedShareIcon />
-                    <p className={dropdownContentStyle}>
-                      {t('more-options-dropdown.mobile-share-via')}
-                    </p>
-                  </DropdownMenu.Item>
-                )}
-                {!hasMobileUserAgent && (
-                  <>
-                    <a
-                      data-test-id="twitter-chart-share"
-                      target="_blank"
-                      rel="noopener"
-                      onClick={onTrackShareChartTwitter}
-                      href={`https://twitter.com/intent/tweet?&url=${shareUrl}&text=${encodeURI(
-                        summary
-                      )}&hashtags=electricitymaps`}
-                    >
-                      <DropdownMenu.Item className={dropdownItemStyle}>
-                        <FaSquareXTwitter size={DEFAULT_ICON_SIZE} />
-                        <p className={dropdownContentStyle}>
-                          {t('button.twitter-share')}
-                        </p>
-                      </DropdownMenu.Item>
-                    </a>
-                    <a
-                      data-test-id="facebook-chart-share"
-                      target="_blank"
-                      rel="noopener"
-                      onClick={onTrackShareChartFacebook}
-                      href={`https://facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodeURI(
-                        summary
-                      )}`}
-                    >
-                      <DropdownMenu.Item className={dropdownItemStyle}>
-                        <FaFacebook size={DEFAULT_ICON_SIZE} />
-                        <p className={dropdownContentStyle}>
-                          {t('button.facebook-share')}
-                        </p>
-                      </DropdownMenu.Item>
-                    </a>
-                    <a
-                      data-test-id="linkedin-chart-share"
-                      href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`}
-                      target="_blank"
-                      rel="noopener"
-                      onClick={onTrackShareChartLinkedin}
-                    >
-                      <DropdownMenu.Item className={dropdownItemStyle}>
-                        <FaLinkedin size={DEFAULT_ICON_SIZE} />
-                        <p className={dropdownContentStyle}>
-                          {t('button.linkedin-share')}
-                        </p>
-                      </DropdownMenu.Item>
-                    </a>
-                    <a
-                      data-test-id="reddit-chart-share"
-                      href={`https://www.reddit.com/web/submit?url=${shareUrl}`}
-                      target="_blank"
-                      rel="noopener"
-                      onClick={onTrackShareChartReddit}
-                    >
-                      <DropdownMenu.Item className={dropdownItemStyle}>
-                        <FaReddit size={DEFAULT_ICON_SIZE} />
-                        <p className={dropdownContentStyle}>{t('button.reddit-share')}</p>
-                      </DropdownMenu.Item>
-                    </a>
-                  </>
-                )}
-              </DropdownMenu.Group>
-            </div>
-          </DropdownMenu.Content>
-        </DropdownMenu.Portal>
+              )}
+              {!hasMobileUserAgent && (
+                <>
+                  <a
+                    data-test-id="twitter-chart-share"
+                    target="_blank"
+                    rel="noopener"
+                    onClick={onTrackShareChartTwitter}
+                    href={`https://twitter.com/intent/tweet?&url=${shareUrl}&text=${encodeURI(
+                      summary
+                    )}&hashtags=electricitymaps`}
+                  >
+                    <DropdownMenu.Item className={dropdownItemStyle}>
+                      <FaSquareXTwitter size={DEFAULT_ICON_SIZE} />
+                      <p className={dropdownContentStyle}>{t('button.twitter-share')}</p>
+                    </DropdownMenu.Item>
+                  </a>
+                  <a
+                    data-test-id="facebook-chart-share"
+                    target="_blank"
+                    rel="noopener"
+                    onClick={onTrackShareChartFacebook}
+                    href={`https://facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodeURI(
+                      summary
+                    )}`}
+                  >
+                    <DropdownMenu.Item className={dropdownItemStyle}>
+                      <FaFacebook size={DEFAULT_ICON_SIZE} />
+                      <p className={dropdownContentStyle}>{t('button.facebook-share')}</p>
+                    </DropdownMenu.Item>
+                  </a>
+                  <a
+                    data-test-id="linkedin-chart-share"
+                    href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`}
+                    target="_blank"
+                    rel="noopener"
+                    onClick={onTrackShareChartLinkedin}
+                  >
+                    <DropdownMenu.Item className={dropdownItemStyle}>
+                      <FaLinkedin size={DEFAULT_ICON_SIZE} />
+                      <p className={dropdownContentStyle}>{t('button.linkedin-share')}</p>
+                    </DropdownMenu.Item>
+                  </a>
+                  <a
+                    data-test-id="reddit-chart-share"
+                    href={`https://www.reddit.com/web/submit?url=${shareUrl}`}
+                    target="_blank"
+                    rel="noopener"
+                    onClick={onTrackShareChartReddit}
+                  >
+                    <DropdownMenu.Item className={dropdownItemStyle}>
+                      <FaReddit size={DEFAULT_ICON_SIZE} />
+                      <p className={dropdownContentStyle}>{t('button.reddit-share')}</p>
+                    </DropdownMenu.Item>
+                  </a>
+                </>
+              )}
+            </DropdownMenu.Group>
+          </div>
+        </DropdownMenu.Content>
       </DropdownMenu.Root>
       <Toast
         ref={reference}
