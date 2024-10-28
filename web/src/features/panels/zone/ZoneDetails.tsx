@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { ZoneMessage } from 'types';
-import { EstimationMethods, SpatialAggregate } from 'utils/constants';
+import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isHourlyAtom,
@@ -83,7 +83,7 @@ export default function ZoneDetails(): JSX.Element {
       <div
         id="panel-scroller"
         className={twMerge(
-          'mb-3 h-full overflow-y-scroll px-3  pt-2 sm:h-full sm:pb-60',
+          'mb-3 h-full scroll-pt-5 overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-60',
           isIosCapacitor ? 'pb-72' : 'pb-48'
         )}
       >
@@ -195,17 +195,18 @@ function ZoneDetailsContent({
 }
 
 const useScrollHashIntoView = (isLoading: boolean) => {
-  const { hash, pathname, search } = useLocation();
+  const { hash: anchor, pathname, search } = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
     if (isLoading) {
       return;
     }
-
-    if (hash) {
-      const hashElement = hash ? document.querySelector(hash) : null;
-      if (hashElement) {
-        hashElement.scrollIntoView({
+    const chartIds = Object.values<string>(Charts);
+    const anchorId = anchor.slice(1); // remove leading #
+    if (anchor && chartIds.includes(anchorId)) {
+      const anchorElement = anchor ? document.querySelector(anchor) : null;
+      if (anchorElement) {
+        anchorElement.scrollIntoView({
           behavior: 'smooth',
           inline: 'nearest',
         });
@@ -217,5 +218,5 @@ const useScrollHashIntoView = (isLoading: boolean) => {
         element.scrollTop = 0;
       }
     }
-  }, [hash, isLoading, navigate, pathname, search]);
+  }, [anchor, isLoading, navigate, pathname, search]);
 };

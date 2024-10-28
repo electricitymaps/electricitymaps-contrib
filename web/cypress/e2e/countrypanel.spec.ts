@@ -97,7 +97,7 @@ describe('Country Panel', () => {
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 
-  it('scrolls to element if provided a hash', () => {
+  it('scrolls to anchor element if provided a hash in url', () => {
     cy.interceptAPI('v8/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB#origin_chart', {

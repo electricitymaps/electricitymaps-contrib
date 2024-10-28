@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
+import { Charts } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type Props = {
   translationKey: string;
   unit?: string;
   badge?: React.ReactElement;
-  id: string;
+  id?: Charts;
 };
 
 export function ChartTitle({ translationKey, unit, badge, id }: Props) {

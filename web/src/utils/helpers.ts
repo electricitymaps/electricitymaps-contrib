@@ -65,7 +65,7 @@ export function getProductionCo2Intensity(
  * @param to
  */
 
-export function createToWithState(to: string, includeHash: boolean = true) {
+export function createToWithState(to: string, includeHash: boolean = false) {
   return `${to}${location.search}${includeHash ? location.hash : ''}`;
 }
 

@@ -4,7 +4,7 @@ import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { EstimationMethods, TimeAverages } from 'utils/constants';
+import { Charts, EstimationMethods, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
@@ -45,7 +45,7 @@ export default function BySource({
   estimatedPercentage?: number;
   unit?: string | number;
   estimationMethod?: EstimationMethods;
-  id: string;
+  id?: Charts;
 }) {
   const { t } = useTranslation();
   const [timeAverage] = useAtom(timeAverageAtom);

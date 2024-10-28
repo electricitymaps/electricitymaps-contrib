@@ -33,7 +33,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
   const showTooltip = zoneName !== zoneNameFull || zoneName.length >= MAX_TITLE_LENGTH;
-  const returnToMapLink = createToWithState('/map');
+  const returnToMapLink = createToWithState('/map', true);
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
   const showCountryPill =
