@@ -195,14 +195,18 @@ function ZoneDetailsContent({
 }
 
 const useScrollHashIntoView = (isLoading: boolean) => {
-  const { hash: anchor, pathname, search } = useLocation();
+  const { hash, pathname, search } = useLocation();
   const navigate = useNavigate();
+  const anchor = hash.toLowerCase();
+
   useEffect(() => {
     if (isLoading) {
       return;
     }
+
     const chartIds = Object.values<string>(Charts);
     const anchorId = anchor.slice(1).toLowerCase(); // remove leading #
+
     if (anchor && chartIds.includes(anchorId)) {
       const anchorElement = anchor ? document.querySelector(anchor) : null;
       if (anchorElement) {
