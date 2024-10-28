@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable react/jsx-handler-names */
 import { area, curveStepAfter } from 'd3-shape';
+import { useDarkMode } from 'hooks/theme';
 import React from 'react';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
@@ -18,6 +19,7 @@ interface AreaGraphLayersProps {
   isMobile: boolean;
   svgNode: any;
   selectedLayerIndex?: number | null;
+  showHoverHighlight?: boolean;
 }
 
 function AreaGraphLayers({
@@ -30,12 +32,17 @@ function AreaGraphLayers({
   isMobile,
   svgNode,
   selectedLayerIndex,
+  showHoverHighlight,
 }: AreaGraphLayersProps) {
+  const isDarkModeEnabled = useDarkMode();
   const [x1, x2] = timeScale.range();
   const [y2, y1] = valueScale.range();
   if (x1 >= x2 || y1 >= y2) {
     return null;
   }
+  const hasSelectedLayer = selectedLayerIndex !== null;
+  const isSingleLayer = layers.length === 1;
+  const shouldHideEmptyData = showHoverHighlight && !isSingleLayer;
 
   // Generate layer paths
   const layerArea = area()
@@ -44,7 +51,8 @@ function AreaGraphLayers({
     .x((d: any) => timeScale(d.data.datetime))
     .y0((d) => valueScale(d[0]))
     .y1((d) => valueScale(d[1]))
-    .defined((d) => Number.isFinite(d[1]));
+    .defined((d) => (shouldHideEmptyData ? d[1] > 0 : Number.isFinite(d[1])));
+
   // Mouse hover events
   let mouseOutTimeout: string | number | NodeJS.Timeout | undefined;
   const handleLayerMouseMove = (
@@ -102,16 +110,26 @@ function AreaGraphLayers({
           ]
         );
 
-        const isLayerSelected = selectedLayerIndex && selectedLayerIndex === ind;
+        const isCurrentLayerSelected =
+          showHoverHighlight && hasSelectedLayer && selectedLayerIndex === ind;
         const shouldLayerBeSaturated =
-          isLayerSelected === null || layers.length === 1 || isLayerSelected;
+          isSingleLayer || !hasSelectedLayer || isCurrentLayerSelected;
+
+        const emphasizeStroke = !isSingleLayer && isCurrentLayerSelected;
+        let stroke = layer.stroke;
+        if (showHoverHighlight && emphasizeStroke) {
+          stroke = isDarkModeEnabled ? 'white' : 'black';
+        }
 
         return (
           <React.Fragment key={layer.key}>
             <path
-              className={shouldLayerBeSaturated ? 'sm:hover:opacity-100' : 'opacity-30'}
+              className={
+                shouldLayerBeSaturated ? 'sm:hover:opacity-100' : 'sm:opacity-30'
+              }
               style={{ cursor: 'pointer' }}
-              stroke={layer.stroke}
+              stroke={stroke}
+              strokeWidth={0.5}
               fill={isGradient ? `url(#${gradientId})` : layer.fill(layer.key)}
               d={layerArea(datapoints) || undefined}
               /* Support only click events in mobile mode, otherwise react to mouse hovers */

@@ -94,6 +94,7 @@ function BreakdownChart({
       <div className="relative ">
         <AreaGraph
           testId="history-mix-graph"
+          showHoverHighlight={true}
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
