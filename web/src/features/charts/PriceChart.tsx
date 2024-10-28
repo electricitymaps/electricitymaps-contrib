@@ -53,7 +53,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
-        id={Charts.ELECTRICITY_PRICES_CHART}
+        id={Charts.PRICE_CHART}
         title="country-history.electricityprices"
       />
     );
@@ -64,7 +64,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
       <ChartTitle
         translationKey="country-history.electricityprices"
         unit={valueAxisLabel}
-        id={Charts.ELECTRICITY_PRICES_CHART}
+        id={Charts.PRICE_CHART}
       />
       <div className="relative">
         {isPriceDisabled && (

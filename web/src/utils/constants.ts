@@ -39,7 +39,7 @@ export enum LeftPanelToggleOptions {
 }
 
 export enum Charts {
-  ELECTRICITY_PRICES_CHART = 'electricity_prices_chart',
+  PRICE_CHART = 'price_chart',
   ORIGIN_CHART = 'origin_chart',
   BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
   CARBON_CHART = 'carbon_chart',
