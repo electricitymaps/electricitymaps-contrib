@@ -202,7 +202,7 @@ const useScrollHashIntoView = (isLoading: boolean) => {
       return;
     }
     const chartIds = Object.values<string>(Charts);
-    const anchorId = anchor.slice(1); // remove leading #
+    const anchorId = anchor.slice(1).toLowerCase(); // remove leading #
     if (anchor && chartIds.includes(anchorId)) {
       const anchorElement = anchor ? document.querySelector(anchor) : null;
       if (anchorElement) {
