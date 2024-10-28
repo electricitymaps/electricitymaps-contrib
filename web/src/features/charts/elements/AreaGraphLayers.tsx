@@ -103,7 +103,8 @@ function AreaGraphLayers({
         );
 
         const isLayerSelected = selectedLayerIndex && selectedLayerIndex === ind;
-        const shouldLayerBeSaturated = isLayerSelected === null || isLayerSelected;
+        const shouldLayerBeSaturated =
+          isLayerSelected === null || layers.length === 1 || isLayerSelected;
 
         return (
           <React.Fragment key={layer.key}>
