@@ -79,7 +79,7 @@ export function MoreOptionsDropdown({
         <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
         <DropdownMenu.Content
           className={twMerge(
-            'border-gray my-2 min-w-60 rounded-2xl border border-solid bg-white shadow-md dark:border-b dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
+            'border-gray z-30 my-2 min-w-60 rounded-2xl border border-solid bg-white shadow-md dark:border-b dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
             hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
           )}
         >
