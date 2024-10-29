@@ -1,5 +1,5 @@
 import { callerLocation, useMeta } from 'api/getMeta';
-import { useMatch, useParams } from 'react-router-dom';
+import { useMatch, useNavigate, useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
@@ -60,12 +60,39 @@ export function getProductionCo2Intensity(
   return dischargeCo2Intensity;
 }
 
-/**
- * Returns a link which maintains search and hash parameters
- * @param to
- */
-export function createToWithState(to: string) {
-  return `${to}${location.search}${location.hash}`;
+export function getDestinationPath({
+  to,
+  zoneId,
+  timeAverage,
+  datetime,
+}: {
+  to: string;
+  zoneId?: string;
+  timeAverage?: string;
+  datetime?: string;
+}) {
+  return `${to}${zoneId ? `/${zoneId}` : ''}${timeAverage ? `/${timeAverage}` : ''}${
+    datetime ? `/${datetime}` : ''
+  }${location.search}${location.hash}`;
+}
+
+export function useNavigateWithParameters() {
+  const navigate = useNavigate();
+
+  return ({
+    to,
+    zoneId,
+    timeAverage,
+    datetime,
+  }: {
+    to: string;
+    zoneId?: string;
+    timeAverage?: string;
+    datetime?: string;
+  }) => {
+    const path = getDestinationPath({ to, zoneId, timeAverage, datetime });
+    navigate(path);
+  };
 }
 
 /**

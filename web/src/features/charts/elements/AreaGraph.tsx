@@ -1,3 +1,4 @@
+import { RouteParameters } from 'App';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
@@ -5,10 +6,11 @@ import TimeAxis from 'features/time/TimeAxis';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import { TimeAverages, timeAxisMapping } from 'utils/constants';
-import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
+import { getZoneTimezone } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
@@ -141,7 +143,7 @@ function AreaGraph({
   const selectedDate = useAtomValue(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
   const isBiggerThanMobile = useBreakpoint('sm');
-  const zoneId = useGetZoneFromPath();
+  const { zoneId } = useParams<RouteParameters>();
   const zoneTimezone = getZoneTimezone(zoneId);
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);

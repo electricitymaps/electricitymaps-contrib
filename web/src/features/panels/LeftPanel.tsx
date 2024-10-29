@@ -1,74 +1,12 @@
-import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
-import { zoneExists } from './zone/util';
-
-const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
-const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
-
-function HandleLegacyRoutes() {
-  const [searchParameters] = useSearchParams();
-
-  const page = (searchParameters.get('page') || 'map')
-    .replace('country', 'zone')
-    .replace('highscore', 'ranking');
-  searchParameters.delete('page');
-
-  const zoneId = searchParameters.get('countryCode');
-  searchParameters.delete('countryCode');
-
-  return (
-    <Navigate
-      to={{
-        pathname: zoneId ? `/zone/${zoneId}` : `/${page}`,
-        search: searchParameters.toString(),
-      }}
-    />
-  );
-}
-
-function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
-  const [searchParameters] = useSearchParams();
-  const { zoneId } = useParams();
-
-  if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
-  }
-
-  // Handle legacy Australia zone names
-  if (upperCaseZoneId.startsWith('AUS')) {
-    return (
-      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
-    );
-  }
-
-  // Only allow valid zone ids
-  // TODO: This should redirect to a 404 page specifically for zones
-  if (!zoneExists(upperCaseZoneId)) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-}
 
 type CollapseButtonProps = {
   isCollapsed: boolean;
@@ -122,32 +60,11 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
 export default function LeftPanel() {
   return (
     <OuterPanel>
-      <Routes>
-        <Route path="/" element={<HandleLegacyRoutes />} />
-        <Route path="/zone" element={<Navigate to="/" replace />} />
-        <Route
-          path="/zone/:zoneId"
-          element={
-            <ValidZoneIdGuardWrapper>
-              <Suspense fallback={<LoadingSpinner />}>
-                <ZoneDetails />
-              </Suspense>
-            </ValidZoneIdGuardWrapper>
-          }
-        />
-        {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<LoadingSpinner />}>
-              <RankingPanel />
-            </Suspense>
-          }
-        />
-      </Routes>
+      <Outlet />
     </OuterPanel>
   );
 }

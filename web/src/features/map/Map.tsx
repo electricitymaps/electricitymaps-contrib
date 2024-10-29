@@ -1,4 +1,5 @@
 import useGetState from 'api/getState';
+import { RouteParameters } from 'App';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
@@ -8,8 +9,13 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
-import { matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { createToWithState, getCarbonIntensity, useUserLocation } from 'utils/helpers';
+import { useLocation, useParams } from 'react-router-dom';
+import { TimeAverages } from 'utils/constants';
+import {
+  getCarbonIntensity,
+  useNavigateWithParameters,
+  useUserLocation,
+} from 'utils/helpers';
 import {
   isConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -61,7 +67,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
-  const navigate = useNavigate();
+  const navigate = useNavigateWithParameters();
   const theme = useTheme();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
@@ -73,6 +79,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
+  const { urlTimeAverage = TimeAverages.HOURLY, zoneId: pathZoneId } =
+    useParams<RouteParameters>();
 
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
@@ -201,7 +209,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+
     setSelectedZoneId(pathZoneId);
     if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
@@ -226,6 +234,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     setHoveredZone,
     worldGeometries.features,
     setLeftPanelOpen,
+    pathZoneId,
   ]);
 
   const onClick = useCallback(
@@ -251,14 +260,16 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         );
       }
       setHoveredZone(null);
+
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(createToWithState(`/zone/${zoneId}`));
+
+        navigate({ to: '/zone', zoneId, timeAverage: urlTimeAverage });
       } else {
-        navigate(createToWithState('/map'));
+        navigate({ to: '/map', timeAverage: urlTimeAverage });
       }
     },
-    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
+    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate, urlTimeAverage]
   );
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging

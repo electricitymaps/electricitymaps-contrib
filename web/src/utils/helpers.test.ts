@@ -3,9 +3,9 @@ import { ZoneDetail } from 'types';
 import { describe, expect, it } from 'vitest';
 
 import {
-  createToWithState,
   dateToDatetimeString,
   getCarbonIntensity,
+  getDestinationPath,
   getFossilFuelRatio,
   getNetExchange,
   getProductionCo2Intensity,
@@ -171,7 +171,7 @@ describe('createToWithState', () => {
     global.location = { ...global.location, search: '', hash: '' } as Location;
 
     const to = '/path';
-    const result = createToWithState(to);
+    const result = getDestinationPath({ to });
     expect(result).toBe('/path');
 
     global.location = originalLocation; // Restore original location
@@ -186,7 +186,7 @@ describe('createToWithState', () => {
     } as Location;
 
     const to = '/path';
-    const result = createToWithState(to);
+    const result = getDestinationPath({ to });
     expect(result).toBe('/path?query=1#section');
 
     global.location = originalLocation; // Restore original location

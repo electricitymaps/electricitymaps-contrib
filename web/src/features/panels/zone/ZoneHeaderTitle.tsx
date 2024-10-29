@@ -7,11 +7,10 @@ import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useSetAtom } from 'jotai';
 import { ArrowLeft, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
 import { ZoneKey } from 'types';
 import { baseUrl, metaTitleSuffix } from 'utils/constants';
-import { createToWithState } from 'utils/helpers';
+import { useNavigateWithParameters } from 'utils/helpers';
 
 import { ShareButton } from './ShareButton';
 import { getDisclaimer } from './util';
@@ -33,7 +32,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
   const showTooltip = zoneName !== zoneNameFull || zoneName.length >= MAX_TITLE_LENGTH;
-  const returnToMapLink = createToWithState('/map');
+  const navigate = useNavigateWithParameters();
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
   const showCountryPill =
@@ -42,7 +41,10 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const canonicalUrl = useGetCanonicalUrl();
   const isShareButtonEnabled = useFeatureFlag('share-button');
 
-  const onNavigateBack = () => setIsMapMoving(false);
+  const onNavigateBack = () => {
+    setIsMapMoving(false);
+    navigate({ to: '/map' });
+  };
   const shareUrl = getCurrentUrl({ zoneId });
 
   return (
@@ -51,14 +53,20 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         <title>{zoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <Link
+      <div
         className="self-center py-4 pr-4 text-xl"
-        to={returnToMapLink}
         data-test-id="left-panel-back-button"
         onClick={onNavigateBack}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            onNavigateBack();
+          }
+        }}
       >
         <ArrowLeft />
-      </Link>
+      </div>
 
       <div className="w-full overflow-hidden">
         <div className="flex w-full items-center gap-2 pr-2 md:pr-4">

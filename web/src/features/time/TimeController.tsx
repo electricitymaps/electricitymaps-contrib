@@ -3,6 +3,7 @@ import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
@@ -18,13 +19,17 @@ import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
-  const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
+  // const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
   const isBiggerThanMobile = useIsBiggerThanMobile();
-  const zoneId = useGetZoneFromPath();
+  const { zoneId, timeAverage } = useParams<{
+    zoneId: string;
+    timeAverage: TimeAverages;
+  }>();
+
   const zoneTimezone = getZoneTimezone(zoneId);
 
   // Show a loading state if isLoading is true or if there is only one datetime,
@@ -74,6 +79,7 @@ export default function TimeController({ className }: { className?: string }) {
         index: numberOfEntries,
       });
       setTimeAverage(timeAverage);
+
       trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeAverage });
     },
     [selectedDatetime.datetime, numberOfEntries, setSelectedDatetime, setTimeAverage]
