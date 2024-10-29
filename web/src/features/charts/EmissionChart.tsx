@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { dataSourcesCollapsedEmissionAtom } from 'utils/state/atoms';
 
@@ -52,6 +52,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         titleText={t(`country-history.emissions.${timeAverage}`)}
         badge={badge}
         unit={'CO₂eq'}
+        id={Charts.EMISSION_CHART}
       />
       <AreaGraph
         testId="history-emissions-graph"

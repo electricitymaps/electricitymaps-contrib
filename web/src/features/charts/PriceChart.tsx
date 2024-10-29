@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { Charts, TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
@@ -51,7 +51,12 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
   if (!hasEnoughDataToDisplay) {
-    return <NotEnoughDataMessage title="country-history.electricityprices" />;
+    return (
+      <NotEnoughDataMessage
+        id={Charts.PRICE_CHART}
+        title="country-history.electricityprices"
+      />
+    );
   }
 
   return (
@@ -59,6 +64,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
       <ChartTitle
         titleText={t(`country-history.electricityprices.${timeAverage}`)}
         unit={valueAxisLabel}
+        id={Charts.PRICE_CHART}
       />
       <div className="relative">
         {isPriceDisabled && (

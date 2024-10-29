@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import trackEvent from 'utils/analytics';
-import { EstimationMethods, TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, EstimationMethods, TimeAverages, TrackEvent } from 'utils/constants';
 import {
   dataSourcesCollapsedBarBreakdownAtom,
   displayByEmissionsAtom,
@@ -101,7 +101,7 @@ function BarBreakdownChart({
   if (!currentZoneDetail) {
     return (
       <div className="text-md relative w-full" ref={ref}>
-        <ChartTitle className="opacity-40" />
+        <ChartTitle className="opacity-40" id={Charts.BAR_BREAKDOWN_CHART} />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
@@ -158,6 +158,7 @@ function BarBreakdownChart({
             />
           ) : undefined
         }
+        id={Charts.BAR_BREAKDOWN_CHART}
       />
       {!displayByEmissions && (
         <CapacityLegend>

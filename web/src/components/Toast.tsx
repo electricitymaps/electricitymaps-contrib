@@ -79,7 +79,10 @@ export const Toast = forwardRef<ToastController, ToastProps>(function Toast(
     setOpen(false);
   };
 
-  const handleToastClose = () => {
+  const handleToastClose = (
+    event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
     toastClose?.();
     setOpen(false);
   };

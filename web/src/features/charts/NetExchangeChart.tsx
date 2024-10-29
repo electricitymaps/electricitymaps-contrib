@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { Charts, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
@@ -47,6 +47,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
       <ChartTitle
         titleText={t(`country-history.netExchange.${timeAverage}`)}
         unit={valueAxisLabel}
+        id={Charts.NET_EXCHANGE_CHART}
       />
       <div className="relative">
         <AreaGraph
