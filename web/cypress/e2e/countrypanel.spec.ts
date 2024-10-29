@@ -112,7 +112,7 @@ describe('Country Panel', () => {
     cy.get('#origin_chart').should('be.visible');
   });
 
-  it.only('scrolls to anchor element if provided a hash with caps in url', () => {
+  it('scrolls to anchor element if provided a hash with caps in url', () => {
     cy.interceptAPI('v8/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB#oRiGiN_ChArT', {
