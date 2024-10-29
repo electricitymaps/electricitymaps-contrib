@@ -6,10 +6,12 @@ import {
   GenerationType,
   StateZoneData,
   ZoneDetail,
+  ZoneKey,
 } from 'types';
 
 import zonesConfigJSON from '../../config/zones.json';
 import { CombinedZonesConfig } from '../../geo/types';
+import { baseUrl } from './constants';
 
 export function useGetZoneFromPath() {
   const { zoneId } = useParams();
@@ -18,6 +20,17 @@ export function useGetZoneFromPath() {
     return zoneId;
   }
   return match?.params.id || undefined;
+}
+
+export function getCurrentUrl({ zoneId }: { zoneId?: ZoneKey }) {
+  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
+  return url;
+}
+
+// TODO: check if valid zoneId?
+export function useGetCurrentUrl() {
+  const zoneId = useGetZoneFromPath();
+  return getCurrentUrl({ zoneId });
 }
 
 export function useUserLocation(): callerLocation {

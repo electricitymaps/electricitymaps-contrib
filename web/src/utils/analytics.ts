@@ -1,4 +1,4 @@
-import { TrackEvent } from 'utils/constants';
+import { Charts, TrackEvent } from 'utils/constants';
 
 type PlausibleEventProps = { readonly [propName: string]: string | number | boolean };
 type PlausibleArguments = [string, { props: PlausibleEventProps }];
@@ -38,7 +38,8 @@ export enum ShareType {
 export const trackShare = (shareType: ShareType) => () =>
   trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType });
 
-export const trackShareChart = (shareType: ShareType) => () =>
+export const trackShareChart = (shareType: ShareType, chartId: Charts) => () =>
   trackEvent(TrackEvent.SHARE_CHART, {
     shareType,
+    chartId,
   });

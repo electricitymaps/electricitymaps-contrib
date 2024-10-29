@@ -8,7 +8,12 @@ import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
 import { ShareType, trackShareChart } from 'utils/analytics';
-import { baseUrl, DEFAULT_ICON_SIZE, DEFAULT_TOAST_DURATION } from 'utils/constants';
+import {
+  baseUrl,
+  Charts,
+  DEFAULT_ICON_SIZE,
+  DEFAULT_TOAST_DURATION,
+} from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
 import { displayByEmissionsAtom, isHourlyAtom } from 'utils/state/atoms';
 
@@ -17,18 +22,12 @@ import { MemoizedShareIcon } from './ShareIcon';
 import { TimeDisplay } from './TimeDisplay';
 import { Toast, useToastReference } from './Toast';
 
-// TODO: add chartId to tracking
-const onTrackShareChartReddit = trackShareChart(ShareType.REDDIT);
-const onTrackShareChartTwitter = trackShareChart(ShareType.TWITTER);
-const onTrackShareChartLinkedin = trackShareChart(ShareType.LINKEDIN);
-const onTrackShareChartFacebook = trackShareChart(ShareType.FACEBOOK);
-const onTrackShareChart = trackShareChart(ShareType.SHARE);
-
 export interface MoreOptionsDropdownProps {
   children: React.ReactElement;
   shareUrl?: string;
   hasMobileUserAgent?: boolean;
   isEstimated?: boolean;
+  id?: Charts;
 }
 
 const dropdownItemStyle = 'flex items-center gap-2 py-2';
@@ -39,6 +38,7 @@ export function MoreOptionsDropdown({
   shareUrl = baseUrl,
   hasMobileUserAgent = hasMobileUA(),
   isEstimated = false,
+  id,
 }: MoreOptionsDropdownProps) {
   const { t } = useTranslation();
   const [toastMessage, setToastMessage] = useState('');
@@ -47,6 +47,23 @@ export function MoreOptionsDropdown({
   const { copyToClipboard, share } = useShare();
 
   const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
+
+  const {
+    onTrackShareChartReddit,
+    onTrackShareChartTwitter,
+    onTrackShareChartLinkedin,
+    onTrackShareChartFacebook,
+    onTrackShareChart,
+  } = useMemo(
+    () => ({
+      onTrackShareChartReddit: trackShareChart(ShareType.REDDIT, id),
+      onTrackShareChartTwitter: trackShareChart(ShareType.TWITTER, id),
+      onTrackShareChartLinkedin: trackShareChart(ShareType.LINKEDIN, id),
+      onTrackShareChartFacebook: trackShareChart(ShareType.FACEBOOK, id),
+      onTrackShareChart: trackShareChart(ShareType.COPY, id),
+    }),
+    [id]
+  );
 
   const { onShare, copyShareUrl } = useMemo(() => {
     const toastMessageCallback = (message: string) => {
@@ -57,7 +74,7 @@ export function MoreOptionsDropdown({
     return {
       copyShareUrl: () => {
         copyToClipboard(shareUrl, toastMessageCallback);
-        trackShareChart(ShareType.COPY);
+        onTrackShareChart();
       },
       onShare: () => {
         share(
@@ -71,7 +88,7 @@ export function MoreOptionsDropdown({
         onTrackShareChart();
       },
     };
-  }, [reference, shareUrl, summary, share, copyToClipboard]);
+  }, [reference, shareUrl, summary, share, copyToClipboard, onTrackShareChart]);
 
   return (
     <>

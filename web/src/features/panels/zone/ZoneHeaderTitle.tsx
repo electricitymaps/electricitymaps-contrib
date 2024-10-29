@@ -9,9 +9,8 @@ import { ArrowLeft, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
-import { ZoneKey } from 'types';
-import { baseUrl, metaTitleSuffix } from 'utils/constants';
-import { createToWithState } from 'utils/helpers';
+import { metaTitleSuffix } from 'utils/constants';
+import { createToWithState, getCurrentUrl } from 'utils/helpers';
 
 import { ShareButton } from './ShareButton';
 import { getDisclaimer } from './util';
@@ -23,11 +22,6 @@ interface ZoneHeaderTitleProps {
 }
 
 const MAX_TITLE_LENGTH = 25;
-
-function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
-  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
-  return url;
-}
 
 export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);

@@ -6,6 +6,7 @@ import { useAtom } from 'jotai';
 import { CircleDashed, Ellipsis, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Charts, EstimationMethods, TimeAverages } from 'utils/constants';
+import { useGetCurrentUrl } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   productionConsumptionAtom,
@@ -61,6 +62,8 @@ export default function BySource({
     estimatedPercentage
   );
   const showMoreOptions = useShowMoreOptions();
+  const url = useGetCurrentUrl();
+  const shareUrl = `${url}#${id}`;
 
   return (
     <div className="flex flex-col pb-1 pt-4">
@@ -79,7 +82,11 @@ export default function BySource({
           />
         )}
         {showMoreOptions && (
-          <MoreOptionsDropdown isEstimated={hasEstimationPill}>
+          <MoreOptionsDropdown
+            id={id}
+            shareUrl={shareUrl}
+            isEstimated={hasEstimationPill}
+          >
             <Ellipsis />
           </MoreOptionsDropdown>
         )}

@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai';
 import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Charts } from 'utils/constants';
+import { useGetCurrentUrl } from 'utils/helpers';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type Props = {
@@ -18,6 +19,8 @@ export function ChartTitle({ translationKey, unit, badge, isEstimated, id }: Pro
   const { t } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
   const showMoreOptions = useShowMoreOptions();
+  const url = useGetCurrentUrl();
+  const shareUrl = `${url}#${id}`;
   /*
   Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
   */
@@ -29,7 +32,7 @@ export function ChartTitle({ translationKey, unit, badge, isEstimated, id }: Pro
         </h2>
         {badge}
         {showMoreOptions && (
-          <MoreOptionsDropdown isEstimated={isEstimated}>
+          <MoreOptionsDropdown id={id} shareUrl={shareUrl} isEstimated={isEstimated}>
             <Ellipsis />
           </MoreOptionsDropdown>
         )}
