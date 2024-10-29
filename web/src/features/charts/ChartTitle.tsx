@@ -1,31 +1,30 @@
-/* eslint-disable react/jsx-no-target-blank */
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
-import { useAtomValue } from 'jotai';
 import { Ellipsis } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { Charts } from 'utils/constants';
-import { timeAverageAtom } from 'utils/state/atoms';
 
 type Props = {
-  translationKey: string;
+  titleText?: string;
   unit?: string;
   badge?: React.ReactElement;
+  className?: string;
   isEstimated?: boolean;
   id?: Charts;
 };
 
-export function ChartTitle({ translationKey, unit, badge, isEstimated, id }: Props) {
-  const { t } = useTranslation();
-  const timeAverage = useAtomValue(timeAverageAtom);
+export function ChartTitle({
+  titleText,
+  unit,
+  badge,
+  className,
+  isEstimated,
+  id,
+}: Props) {
   const showMoreOptions = useShowMoreOptions();
-  /*
-  Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
-  */
   return (
     <div className="flex flex-col pb-0.5">
-      <div className="flex items-center gap-1.5 pt-4">
+      <div className={`flex items-center gap-1.5 pt-4 ${className}`}>
         <h2 id={id} className="grow">
-          {t(`${translationKey}.${timeAverage}`)}
+          {titleText}
         </h2>
         {badge}
         {showMoreOptions && (

@@ -85,7 +85,7 @@ function BreakdownChart({
   return (
     <RoundedCard>
       <ChartTitle
-        translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
+        titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeAverage}`)}
         badge={badge}
         isEstimated={Boolean(text)}
         unit={valueAxisLabel}

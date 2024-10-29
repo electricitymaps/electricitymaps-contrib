@@ -60,7 +60,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        translationKey="country-history.carbonintensity"
+        titleText={t(`country-history.carbonintensity.${timeAverage}`)}
         badge={badge}
         unit={'gCO₂eq / kWh'}
         isEstimated={Boolean(text)}
