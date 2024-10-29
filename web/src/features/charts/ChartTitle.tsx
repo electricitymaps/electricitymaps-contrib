@@ -1,6 +1,7 @@
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { Ellipsis } from 'lucide-react';
-import { Charts } from 'utils/constants';
+import { baseUrl, Charts } from 'utils/constants';
+import { useGetZoneFromPath } from 'utils/helpers';
 
 type Props = {
   titleText?: string;
@@ -8,7 +9,7 @@ type Props = {
   badge?: React.ReactElement;
   className?: string;
   isEstimated?: boolean;
-  id?: Charts;
+  id: Charts;
 };
 
 export function ChartTitle({
@@ -20,6 +21,10 @@ export function ChartTitle({
   id,
 }: Props) {
   const showMoreOptions = useShowMoreOptions();
+  const zoneId = useGetZoneFromPath();
+  const url = `${baseUrl}/zone/${zoneId}`;
+  const shareUrl = id ? `${url}#${id}` : url;
+
   return (
     <div className="flex flex-col pb-0.5">
       <div className={`flex items-center gap-1.5 pt-4 ${className}`}>
@@ -28,7 +33,7 @@ export function ChartTitle({
         </h2>
         {badge}
         {showMoreOptions && (
-          <MoreOptionsDropdown isEstimated={isEstimated}>
+          <MoreOptionsDropdown isEstimated={isEstimated} id={id} shareUrl={shareUrl}>
             <Ellipsis />
           </MoreOptionsDropdown>
         )}
