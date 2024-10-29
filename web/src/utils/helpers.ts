@@ -64,8 +64,9 @@ export function getProductionCo2Intensity(
  * Returns a link which maintains search and hash parameters
  * @param to
  */
-export function createToWithState(to: string) {
-  return `${to}${location.search}${location.hash}`;
+
+export function createToWithState(to: string, includeHash: boolean = false) {
+  return `${to}${location.search}${includeHash ? location.hash : ''}`;
 }
 
 /**

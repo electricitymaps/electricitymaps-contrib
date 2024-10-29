@@ -3,6 +3,7 @@ import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsD
 import { useAtomValue } from 'jotai';
 import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Charts } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state/atoms';
 
 type Props = {
@@ -10,9 +11,10 @@ type Props = {
   unit?: string;
   badge?: React.ReactElement;
   isEstimated?: boolean;
+  id?: Charts;
 };
 
-export function ChartTitle({ translationKey, unit, badge, isEstimated }: Props) {
+export function ChartTitle({ translationKey, unit, badge, isEstimated, id }: Props) {
   const { t } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
   const showMoreOptions = useShowMoreOptions();
@@ -22,7 +24,9 @@ export function ChartTitle({ translationKey, unit, badge, isEstimated }: Props) 
   return (
     <div className="flex flex-col pb-0.5">
       <div className="flex items-center gap-1.5 pt-4">
-        <h2 className="grow">{t(`${translationKey}.${timeAverage}`)}</h2>
+        <h2 id={id} className="grow">
+          {t(`${translationKey}.${timeAverage}`)}
+        </h2>
         {badge}
         {showMoreOptions && (
           <MoreOptionsDropdown isEstimated={isEstimated}>

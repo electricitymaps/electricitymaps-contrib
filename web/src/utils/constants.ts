@@ -38,6 +38,15 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+export enum Charts {
+  PRICE_CHART = 'price_chart',
+  ORIGIN_CHART = 'origin_chart',
+  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
+  CARBON_CHART = 'carbon_chart',
+  EMISSION_CHART = 'emission_chart',
+  NET_EXCHANGE_CHART = 'net_exchange_chart',
+}
+
 export enum TrackEvent {
   DATA_SOURCES_CLICKED = 'Data Sources Clicked',
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
