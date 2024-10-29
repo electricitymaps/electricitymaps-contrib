@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
+import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { useAtomValue } from 'jotai';
+import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Charts } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state/atoms';
@@ -8,12 +10,14 @@ type Props = {
   translationKey: string;
   unit?: string;
   badge?: React.ReactElement;
+  isEstimated?: boolean;
   id?: Charts;
 };
 
-export function ChartTitle({ translationKey, unit, badge, id }: Props) {
+export function ChartTitle({ translationKey, unit, badge, isEstimated, id }: Props) {
   const { t } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
+  const showMoreOptions = useShowMoreOptions();
   /*
   Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
   */
@@ -24,6 +28,11 @@ export function ChartTitle({ translationKey, unit, badge, id }: Props) {
           {t(`${translationKey}.${timeAverage}`)}
         </h2>
         {badge}
+        {showMoreOptions && (
+          <MoreOptionsDropdown isEstimated={isEstimated}>
+            <Ellipsis />
+          </MoreOptionsDropdown>
+        )}
       </div>
       {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>

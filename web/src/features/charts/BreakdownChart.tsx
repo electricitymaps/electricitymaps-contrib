@@ -87,6 +87,7 @@ function BreakdownChart({
       <ChartTitle
         translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
         badge={badge}
+        isEstimated={Boolean(text)}
         unit={valueAxisLabel}
         id={Charts.ORIGIN_CHART}
       />

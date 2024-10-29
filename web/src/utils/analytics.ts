@@ -30,8 +30,15 @@ export enum ShareType {
   FACEBOOK = 'facebook',
   LINKEDIN = 'linkedin',
   TWITTER = 'twitter',
+  REDDIT = 'reddit',
+  COPY = 'copy',
   SHARE = 'share',
 }
 
 export const trackShare = (shareType: ShareType) => () =>
   trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType });
+
+export const trackShareChart = (shareType: ShareType) => () =>
+  trackEvent(TrackEvent.SHARE_CHART, {
+    shareType,
+  });
