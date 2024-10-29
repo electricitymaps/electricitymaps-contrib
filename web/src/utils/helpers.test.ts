@@ -172,7 +172,7 @@ describe('createToWithState', () => {
     global.location = { ...global.location, search: '', hash: '' } as Location;
 
     const to = '/path';
-    const result = createToWithState(to);
+    const result = createToWithState(to, true);
     expect(result).toBe('/path');
 
     global.location = originalLocation; // Restore original location
@@ -187,7 +187,7 @@ describe('createToWithState', () => {
     } as Location;
 
     const to = '/path';
-    const result = createToWithState(to);
+    const result = createToWithState(to, true);
     expect(result).toBe('/path?query=1#section');
 
     global.location = originalLocation; // Restore original location

@@ -64,8 +64,9 @@ export function getProductionCo2Intensity(
  * Returns a link which maintains search and hash parameters
  * @param to
  */
-export function createToWithState(to: string) {
-  return `${to}${location.search}${location.hash}`;
+
+export function createToWithState(to: string, includeHash: boolean = false) {
+  return `${to}${location.search}${includeHash ? location.hash : ''}`;
 }
 
 /**
@@ -162,15 +163,6 @@ export function getNetExchange(
   return netExchangeValue;
 }
 
-/**
- * @returns {Boolean} true if agent is probably a mobile device.
- */
-export function hasMobileUserAgent() {
-  return /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
-    navigator.userAgent
-  );
-}
-
 export const getZoneTimezone = (zoneId?: string) => {
   if (!zoneId) {
     return undefined;
@@ -178,3 +170,11 @@ export const getZoneTimezone = (zoneId?: string) => {
   const { zones } = zonesConfigJSON as unknown as CombinedZonesConfig;
   return zones[zoneId]?.timezone;
 };
+
+/**
+ * @returns {Boolean} true if agent is probably a mobile device.
+ */
+export const hasMobileUserAgent = () =>
+  /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
+    navigator.userAgent
+  );
