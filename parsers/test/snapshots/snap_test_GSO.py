@@ -7,557 +7,557 @@ snapshots = Snapshot()
 snapshots["TestFetchConsumption::test_consumption_with_snapshot 1"] = [
     {
         "consumption": 15906.0,
-        "datetime": "2024-10-26T16:00:00+00:00",
+        "datetime": "2024-10-27T00:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15875.0,
-        "datetime": "2024-10-26T16:10:00+00:00",
+        "datetime": "2024-10-27T00:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15658.0,
-        "datetime": "2024-10-26T16:20:00+00:00",
+        "datetime": "2024-10-27T00:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15536.0,
-        "datetime": "2024-10-26T16:30:00+00:00",
+        "datetime": "2024-10-27T00:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15501.0,
-        "datetime": "2024-10-26T16:40:00+00:00",
+        "datetime": "2024-10-27T00:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15338.0,
-        "datetime": "2024-10-26T16:50:00+00:00",
+        "datetime": "2024-10-27T00:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15302.0,
-        "datetime": "2024-10-26T17:00:00+00:00",
+        "datetime": "2024-10-27T01:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15229.0,
-        "datetime": "2024-10-26T17:10:00+00:00",
+        "datetime": "2024-10-27T01:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15042.0,
-        "datetime": "2024-10-26T17:20:00+00:00",
+        "datetime": "2024-10-27T01:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15051.0,
-        "datetime": "2024-10-26T17:30:00+00:00",
+        "datetime": "2024-10-27T01:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14923.0,
-        "datetime": "2024-10-26T17:40:00+00:00",
+        "datetime": "2024-10-27T01:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14845.0,
-        "datetime": "2024-10-26T17:50:00+00:00",
+        "datetime": "2024-10-27T01:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14723.0,
-        "datetime": "2024-10-26T18:00:00+00:00",
+        "datetime": "2024-10-27T02:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14661.0,
-        "datetime": "2024-10-26T18:10:00+00:00",
+        "datetime": "2024-10-27T02:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14522.0,
-        "datetime": "2024-10-26T18:20:00+00:00",
+        "datetime": "2024-10-27T02:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14462.0,
-        "datetime": "2024-10-26T18:30:00+00:00",
+        "datetime": "2024-10-27T02:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14344.0,
-        "datetime": "2024-10-26T18:40:00+00:00",
+        "datetime": "2024-10-27T02:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14376.0,
-        "datetime": "2024-10-26T18:50:00+00:00",
+        "datetime": "2024-10-27T02:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14211.0,
-        "datetime": "2024-10-26T19:00:00+00:00",
+        "datetime": "2024-10-27T03:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14150.0,
-        "datetime": "2024-10-26T19:10:00+00:00",
+        "datetime": "2024-10-27T03:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14068.0,
-        "datetime": "2024-10-26T19:20:00+00:00",
+        "datetime": "2024-10-27T03:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13980.0,
-        "datetime": "2024-10-26T19:30:00+00:00",
+        "datetime": "2024-10-27T03:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13936.0,
-        "datetime": "2024-10-26T19:40:00+00:00",
+        "datetime": "2024-10-27T03:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13968.0,
-        "datetime": "2024-10-26T19:50:00+00:00",
+        "datetime": "2024-10-27T03:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13785.0,
-        "datetime": "2024-10-26T20:00:00+00:00",
+        "datetime": "2024-10-27T04:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13713.0,
-        "datetime": "2024-10-26T20:10:00+00:00",
+        "datetime": "2024-10-27T04:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13664.0,
-        "datetime": "2024-10-26T20:20:00+00:00",
+        "datetime": "2024-10-27T04:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13700.0,
-        "datetime": "2024-10-26T20:30:00+00:00",
+        "datetime": "2024-10-27T04:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13582.0,
-        "datetime": "2024-10-26T20:40:00+00:00",
+        "datetime": "2024-10-27T04:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13610.0,
-        "datetime": "2024-10-26T20:50:00+00:00",
+        "datetime": "2024-10-27T04:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13556.0,
-        "datetime": "2024-10-26T21:00:00+00:00",
+        "datetime": "2024-10-27T05:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13516.0,
-        "datetime": "2024-10-26T21:10:00+00:00",
+        "datetime": "2024-10-27T05:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13430.0,
-        "datetime": "2024-10-26T21:20:00+00:00",
+        "datetime": "2024-10-27T05:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13443.0,
-        "datetime": "2024-10-26T21:30:00+00:00",
+        "datetime": "2024-10-27T05:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13484.0,
-        "datetime": "2024-10-26T21:40:00+00:00",
+        "datetime": "2024-10-27T05:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13510.0,
-        "datetime": "2024-10-26T21:50:00+00:00",
+        "datetime": "2024-10-27T05:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13559.0,
-        "datetime": "2024-10-26T22:00:00+00:00",
+        "datetime": "2024-10-27T06:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13607.0,
-        "datetime": "2024-10-26T22:10:00+00:00",
+        "datetime": "2024-10-27T06:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13523.0,
-        "datetime": "2024-10-26T22:20:00+00:00",
+        "datetime": "2024-10-27T06:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13597.0,
-        "datetime": "2024-10-26T22:30:00+00:00",
+        "datetime": "2024-10-27T06:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13560.0,
-        "datetime": "2024-10-26T22:40:00+00:00",
+        "datetime": "2024-10-27T06:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13409.0,
-        "datetime": "2024-10-26T22:50:00+00:00",
+        "datetime": "2024-10-27T06:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13172.0,
-        "datetime": "2024-10-26T23:00:00+00:00",
+        "datetime": "2024-10-27T07:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12978.0,
-        "datetime": "2024-10-26T23:10:00+00:00",
+        "datetime": "2024-10-27T07:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12751.0,
-        "datetime": "2024-10-26T23:20:00+00:00",
+        "datetime": "2024-10-27T07:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12684.0,
-        "datetime": "2024-10-26T23:30:00+00:00",
+        "datetime": "2024-10-27T07:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12661.0,
-        "datetime": "2024-10-26T23:40:00+00:00",
+        "datetime": "2024-10-27T07:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12608.0,
-        "datetime": "2024-10-26T23:50:00+00:00",
+        "datetime": "2024-10-27T07:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12601.0,
-        "datetime": "2024-10-27T00:00:00+00:00",
+        "datetime": "2024-10-27T08:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12753.0,
-        "datetime": "2024-10-27T00:10:00+00:00",
+        "datetime": "2024-10-27T08:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12757.0,
-        "datetime": "2024-10-27T00:20:00+00:00",
+        "datetime": "2024-10-27T08:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12789.0,
-        "datetime": "2024-10-27T00:30:00+00:00",
+        "datetime": "2024-10-27T08:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12790.0,
-        "datetime": "2024-10-27T00:40:00+00:00",
+        "datetime": "2024-10-27T08:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 12901.0,
-        "datetime": "2024-10-27T00:50:00+00:00",
+        "datetime": "2024-10-27T08:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13002.0,
-        "datetime": "2024-10-27T01:00:00+00:00",
+        "datetime": "2024-10-27T09:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13077.0,
-        "datetime": "2024-10-27T01:10:00+00:00",
+        "datetime": "2024-10-27T09:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13161.0,
-        "datetime": "2024-10-27T01:20:00+00:00",
+        "datetime": "2024-10-27T09:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13190.0,
-        "datetime": "2024-10-27T01:30:00+00:00",
+        "datetime": "2024-10-27T09:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13154.0,
-        "datetime": "2024-10-27T01:40:00+00:00",
+        "datetime": "2024-10-27T09:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13282.0,
-        "datetime": "2024-10-27T01:50:00+00:00",
+        "datetime": "2024-10-27T09:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13421.0,
-        "datetime": "2024-10-27T02:00:00+00:00",
+        "datetime": "2024-10-27T10:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13529.0,
-        "datetime": "2024-10-27T02:10:00+00:00",
+        "datetime": "2024-10-27T10:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13701.0,
-        "datetime": "2024-10-27T02:20:00+00:00",
+        "datetime": "2024-10-27T10:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13660.0,
-        "datetime": "2024-10-27T02:30:00+00:00",
+        "datetime": "2024-10-27T10:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13676.0,
-        "datetime": "2024-10-27T02:40:00+00:00",
+        "datetime": "2024-10-27T10:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13693.0,
-        "datetime": "2024-10-27T02:50:00+00:00",
+        "datetime": "2024-10-27T10:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13838.0,
-        "datetime": "2024-10-27T03:00:00+00:00",
+        "datetime": "2024-10-27T11:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13855.0,
-        "datetime": "2024-10-27T03:10:00+00:00",
+        "datetime": "2024-10-27T11:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13900.0,
-        "datetime": "2024-10-27T03:20:00+00:00",
+        "datetime": "2024-10-27T11:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13967.0,
-        "datetime": "2024-10-27T03:30:00+00:00",
+        "datetime": "2024-10-27T11:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13847.0,
-        "datetime": "2024-10-27T03:40:00+00:00",
+        "datetime": "2024-10-27T11:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13875.0,
-        "datetime": "2024-10-27T03:50:00+00:00",
+        "datetime": "2024-10-27T11:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13862.0,
-        "datetime": "2024-10-27T04:00:00+00:00",
+        "datetime": "2024-10-27T12:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13861.0,
-        "datetime": "2024-10-27T04:10:00+00:00",
+        "datetime": "2024-10-27T12:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13957.0,
-        "datetime": "2024-10-27T04:20:00+00:00",
+        "datetime": "2024-10-27T12:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 13975.0,
-        "datetime": "2024-10-27T04:30:00+00:00",
+        "datetime": "2024-10-27T12:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14119.0,
-        "datetime": "2024-10-27T04:40:00+00:00",
+        "datetime": "2024-10-27T12:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14182.0,
-        "datetime": "2024-10-27T04:50:00+00:00",
+        "datetime": "2024-10-27T12:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14239.0,
-        "datetime": "2024-10-27T05:00:00+00:00",
+        "datetime": "2024-10-27T13:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14306.0,
-        "datetime": "2024-10-27T05:10:00+00:00",
+        "datetime": "2024-10-27T13:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14410.0,
-        "datetime": "2024-10-27T05:20:00+00:00",
+        "datetime": "2024-10-27T13:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14471.0,
-        "datetime": "2024-10-27T05:30:00+00:00",
+        "datetime": "2024-10-27T13:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14471.0,
-        "datetime": "2024-10-27T05:40:00+00:00",
+        "datetime": "2024-10-27T13:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14549.0,
-        "datetime": "2024-10-27T05:50:00+00:00",
+        "datetime": "2024-10-27T13:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14612.0,
-        "datetime": "2024-10-27T06:00:00+00:00",
+        "datetime": "2024-10-27T14:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14684.0,
-        "datetime": "2024-10-27T06:10:00+00:00",
+        "datetime": "2024-10-27T14:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14799.0,
-        "datetime": "2024-10-27T06:20:00+00:00",
+        "datetime": "2024-10-27T14:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14808.0,
-        "datetime": "2024-10-27T06:30:00+00:00",
+        "datetime": "2024-10-27T14:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14828.0,
-        "datetime": "2024-10-27T06:40:00+00:00",
+        "datetime": "2024-10-27T14:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14875.0,
-        "datetime": "2024-10-27T06:50:00+00:00",
+        "datetime": "2024-10-27T14:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 14968.0,
-        "datetime": "2024-10-27T07:00:00+00:00",
+        "datetime": "2024-10-27T15:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15014.0,
-        "datetime": "2024-10-27T07:10:00+00:00",
+        "datetime": "2024-10-27T15:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15081.0,
-        "datetime": "2024-10-27T07:20:00+00:00",
+        "datetime": "2024-10-27T15:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15212.0,
-        "datetime": "2024-10-27T07:30:00+00:00",
+        "datetime": "2024-10-27T15:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15218.0,
-        "datetime": "2024-10-27T07:40:00+00:00",
+        "datetime": "2024-10-27T15:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15212.0,
-        "datetime": "2024-10-27T07:50:00+00:00",
+        "datetime": "2024-10-27T15:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15260.0,
-        "datetime": "2024-10-27T08:00:00+00:00",
+        "datetime": "2024-10-27T16:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15329.0,
-        "datetime": "2024-10-27T08:10:00+00:00",
+        "datetime": "2024-10-27T16:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15392.0,
-        "datetime": "2024-10-27T08:20:00+00:00",
+        "datetime": "2024-10-27T16:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15496.0,
-        "datetime": "2024-10-27T08:30:00+00:00",
+        "datetime": "2024-10-27T16:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15566.0,
-        "datetime": "2024-10-27T08:40:00+00:00",
+        "datetime": "2024-10-27T16:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15467.0,
-        "datetime": "2024-10-27T08:50:00+00:00",
+        "datetime": "2024-10-27T16:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15399.0,
-        "datetime": "2024-10-27T09:00:00+00:00",
+        "datetime": "2024-10-27T17:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15278.0,
-        "datetime": "2024-10-27T09:10:00+00:00",
+        "datetime": "2024-10-27T17:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15328.0,
-        "datetime": "2024-10-27T09:20:00+00:00",
+        "datetime": "2024-10-27T17:20:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15268.0,
-        "datetime": "2024-10-27T09:30:00+00:00",
+        "datetime": "2024-10-27T17:30:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15279.0,
-        "datetime": "2024-10-27T09:40:00+00:00",
+        "datetime": "2024-10-27T17:40:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15326.0,
-        "datetime": "2024-10-27T09:50:00+00:00",
+        "datetime": "2024-10-27T17:50:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15333.0,
-        "datetime": "2024-10-27T10:00:00+00:00",
+        "datetime": "2024-10-27T18:00:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15322.0,
-        "datetime": "2024-10-27T10:10:00+00:00",
+        "datetime": "2024-10-27T18:10:00+08:00",
         "zoneKey": "MY-WM",
     },
     {
         "consumption": 15468.0,
-        "datetime": "2024-10-27T10:20:00+00:00",
+        "datetime": "2024-10-27T18:20:00+08:00",
         "zoneKey": "MY-WM",
     },
 ]
@@ -565,7 +565,7 @@ snapshots["TestFetchConsumption::test_consumption_with_snapshot 1"] = [
 snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T16:00:00+00:00",
+        "datetime": "2024-10-27T00:00:00+08:00",
         "production": {
             "coal": 9075,
             "gas": 5784,
@@ -581,7 +581,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T16:10:00+00:00",
+        "datetime": "2024-10-27T00:10:00+08:00",
         "production": {
             "coal": 9073,
             "gas": 5724,
@@ -597,7 +597,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T16:20:00+00:00",
+        "datetime": "2024-10-27T00:20:00+08:00",
         "production": {
             "coal": 9066,
             "gas": 5585,
@@ -613,7 +613,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T16:30:00+00:00",
+        "datetime": "2024-10-27T00:30:00+08:00",
         "production": {
             "coal": 9049,
             "gas": 5502,
@@ -629,7 +629,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T16:40:00+00:00",
+        "datetime": "2024-10-27T00:40:00+08:00",
         "production": {
             "coal": 9064,
             "gas": 5376,
@@ -645,7 +645,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T16:50:00+00:00",
+        "datetime": "2024-10-27T00:50:00+08:00",
         "production": {
             "coal": 9044,
             "gas": 5268,
@@ -661,7 +661,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T17:00:00+00:00",
+        "datetime": "2024-10-27T01:00:00+08:00",
         "production": {
             "coal": 9117,
             "gas": 5054,
@@ -677,7 +677,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T17:10:00+00:00",
+        "datetime": "2024-10-27T01:10:00+08:00",
         "production": {
             "coal": 9108,
             "gas": 5025,
@@ -693,7 +693,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T17:20:00+00:00",
+        "datetime": "2024-10-27T01:20:00+08:00",
         "production": {
             "coal": 9143,
             "gas": 5009,
@@ -709,7 +709,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T17:30:00+00:00",
+        "datetime": "2024-10-27T01:30:00+08:00",
         "production": {
             "coal": 9130,
             "gas": 4971,
@@ -725,7 +725,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T17:40:00+00:00",
+        "datetime": "2024-10-27T01:40:00+08:00",
         "production": {
             "coal": 9187,
             "gas": 4855,
@@ -741,7 +741,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T17:50:00+00:00",
+        "datetime": "2024-10-27T01:50:00+08:00",
         "production": {
             "coal": 9171,
             "gas": 4769,
@@ -757,7 +757,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T18:00:00+00:00",
+        "datetime": "2024-10-27T02:00:00+08:00",
         "production": {
             "coal": 9255,
             "gas": 4565,
@@ -773,7 +773,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T18:10:00+00:00",
+        "datetime": "2024-10-27T02:10:00+08:00",
         "production": {
             "coal": 9350,
             "gas": 4407,
@@ -789,7 +789,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T18:20:00+00:00",
+        "datetime": "2024-10-27T02:20:00+08:00",
         "production": {
             "coal": 9241,
             "gas": 4354,
@@ -805,7 +805,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T18:30:00+00:00",
+        "datetime": "2024-10-27T02:30:00+08:00",
         "production": {
             "coal": 9132,
             "gas": 4393,
@@ -821,7 +821,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T18:40:00+00:00",
+        "datetime": "2024-10-27T02:40:00+08:00",
         "production": {
             "coal": 9094,
             "gas": 4379,
@@ -837,7 +837,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T18:50:00+00:00",
+        "datetime": "2024-10-27T02:50:00+08:00",
         "production": {
             "coal": 9045,
             "gas": 4389,
@@ -853,7 +853,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T19:00:00+00:00",
+        "datetime": "2024-10-27T03:00:00+08:00",
         "production": {
             "coal": 9130,
             "gas": 4228,
@@ -869,7 +869,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T19:10:00+00:00",
+        "datetime": "2024-10-27T03:10:00+08:00",
         "production": {
             "coal": 9061,
             "gas": 4243,
@@ -885,7 +885,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T19:20:00+00:00",
+        "datetime": "2024-10-27T03:20:00+08:00",
         "production": {
             "coal": 9105,
             "gas": 4172,
@@ -901,7 +901,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T19:30:00+00:00",
+        "datetime": "2024-10-27T03:30:00+08:00",
         "production": {
             "coal": 9128,
             "gas": 4247,
@@ -917,7 +917,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T19:40:00+00:00",
+        "datetime": "2024-10-27T03:40:00+08:00",
         "production": {
             "coal": 8981,
             "gas": 4318,
@@ -933,7 +933,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T19:50:00+00:00",
+        "datetime": "2024-10-27T03:50:00+08:00",
         "production": {
             "coal": 8891,
             "gas": 4421,
@@ -949,7 +949,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T20:00:00+00:00",
+        "datetime": "2024-10-27T04:00:00+08:00",
         "production": {
             "coal": 8911,
             "gas": 4266,
@@ -965,7 +965,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T20:10:00+00:00",
+        "datetime": "2024-10-27T04:10:00+08:00",
         "production": {
             "coal": 8912,
             "gas": 4241,
@@ -981,7 +981,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T20:20:00+00:00",
+        "datetime": "2024-10-27T04:20:00+08:00",
         "production": {
             "coal": 8910,
             "gas": 4235,
@@ -997,7 +997,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T20:30:00+00:00",
+        "datetime": "2024-10-27T04:30:00+08:00",
         "production": {
             "coal": 8915,
             "gas": 4241,
@@ -1013,7 +1013,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T20:40:00+00:00",
+        "datetime": "2024-10-27T04:40:00+08:00",
         "production": {
             "coal": 8825,
             "gas": 4168,
@@ -1029,7 +1029,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T20:50:00+00:00",
+        "datetime": "2024-10-27T04:50:00+08:00",
         "production": {
             "coal": 8775,
             "gas": 4247,
@@ -1045,7 +1045,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T21:00:00+00:00",
+        "datetime": "2024-10-27T05:00:00+08:00",
         "production": {
             "coal": 8809,
             "gas": 4227,
@@ -1061,7 +1061,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T21:10:00+00:00",
+        "datetime": "2024-10-27T05:10:00+08:00",
         "production": {
             "coal": 8847,
             "gas": 4229,
@@ -1077,7 +1077,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T21:20:00+00:00",
+        "datetime": "2024-10-27T05:20:00+08:00",
         "production": {
             "coal": 8801,
             "gas": 4198,
@@ -1093,7 +1093,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T21:30:00+00:00",
+        "datetime": "2024-10-27T05:30:00+08:00",
         "production": {
             "coal": 8712,
             "gas": 4248,
@@ -1109,7 +1109,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T21:40:00+00:00",
+        "datetime": "2024-10-27T05:40:00+08:00",
         "production": {
             "coal": 8691,
             "gas": 4260,
@@ -1125,7 +1125,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T21:50:00+00:00",
+        "datetime": "2024-10-27T05:50:00+08:00",
         "production": {
             "coal": 8739,
             "gas": 4251,
@@ -1141,7 +1141,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T22:00:00+00:00",
+        "datetime": "2024-10-27T06:00:00+08:00",
         "production": {
             "coal": 8759,
             "gas": 4255,
@@ -1157,7 +1157,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T22:10:00+00:00",
+        "datetime": "2024-10-27T06:10:00+08:00",
         "production": {
             "coal": 8781,
             "gas": 4247,
@@ -1173,7 +1173,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T22:20:00+00:00",
+        "datetime": "2024-10-27T06:20:00+08:00",
         "production": {
             "coal": 8759,
             "gas": 4266,
@@ -1189,7 +1189,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": ["solar"],
-        "datetime": "2024-10-26T22:30:00+00:00",
+        "datetime": "2024-10-27T06:30:00+08:00",
         "production": {
             "coal": 8774,
             "gas": 4299,
@@ -1205,7 +1205,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T22:40:00+00:00",
+        "datetime": "2024-10-27T06:40:00+08:00",
         "production": {
             "coal": 8812,
             "gas": 4240,
@@ -1221,7 +1221,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T22:50:00+00:00",
+        "datetime": "2024-10-27T06:50:00+08:00",
         "production": {
             "coal": 8809,
             "gas": 4159,
@@ -1237,7 +1237,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T23:00:00+00:00",
+        "datetime": "2024-10-27T07:00:00+08:00",
         "production": {
             "coal": 8616,
             "gas": 4091,
@@ -1253,7 +1253,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T23:10:00+00:00",
+        "datetime": "2024-10-27T07:10:00+08:00",
         "production": {
             "coal": 8286,
             "gas": 4208,
@@ -1269,7 +1269,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T23:20:00+00:00",
+        "datetime": "2024-10-27T07:20:00+08:00",
         "production": {
             "coal": 8214,
             "gas": 4092,
@@ -1285,7 +1285,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T23:30:00+00:00",
+        "datetime": "2024-10-27T07:30:00+08:00",
         "production": {
             "coal": 8079,
             "gas": 4063,
@@ -1301,7 +1301,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T23:40:00+00:00",
+        "datetime": "2024-10-27T07:40:00+08:00",
         "production": {
             "coal": 7940,
             "gas": 4139,
@@ -1317,7 +1317,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-26T23:50:00+00:00",
+        "datetime": "2024-10-27T07:50:00+08:00",
         "production": {
             "coal": 7827,
             "gas": 4115,
@@ -1333,7 +1333,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T00:00:00+00:00",
+        "datetime": "2024-10-27T08:00:00+08:00",
         "production": {
             "coal": 7813,
             "gas": 4150,
@@ -1349,7 +1349,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T00:10:00+00:00",
+        "datetime": "2024-10-27T08:10:00+08:00",
         "production": {
             "coal": 7807,
             "gas": 4191,
@@ -1365,7 +1365,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T00:20:00+00:00",
+        "datetime": "2024-10-27T08:20:00+08:00",
         "production": {
             "coal": 7800,
             "gas": 4165,
@@ -1381,7 +1381,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T00:30:00+00:00",
+        "datetime": "2024-10-27T08:30:00+08:00",
         "production": {
             "coal": 7848,
             "gas": 4081,
@@ -1397,7 +1397,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T00:40:00+00:00",
+        "datetime": "2024-10-27T08:40:00+08:00",
         "production": {
             "coal": 7787,
             "gas": 4111,
@@ -1413,7 +1413,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T00:50:00+00:00",
+        "datetime": "2024-10-27T08:50:00+08:00",
         "production": {
             "coal": 7655,
             "gas": 4223,
@@ -1429,7 +1429,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T01:00:00+00:00",
+        "datetime": "2024-10-27T09:00:00+08:00",
         "production": {
             "coal": 7641,
             "gas": 4205,
@@ -1445,7 +1445,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T01:10:00+00:00",
+        "datetime": "2024-10-27T09:10:00+08:00",
         "production": {
             "coal": 7648,
             "gas": 4201,
@@ -1461,7 +1461,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T01:20:00+00:00",
+        "datetime": "2024-10-27T09:20:00+08:00",
         "production": {
             "coal": 7645,
             "gas": 4177,
@@ -1477,7 +1477,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T01:30:00+00:00",
+        "datetime": "2024-10-27T09:30:00+08:00",
         "production": {
             "coal": 7644,
             "gas": 4233,
@@ -1493,7 +1493,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T01:40:00+00:00",
+        "datetime": "2024-10-27T09:40:00+08:00",
         "production": {
             "coal": 7666,
             "gas": 4210,
@@ -1509,7 +1509,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T01:50:00+00:00",
+        "datetime": "2024-10-27T09:50:00+08:00",
         "production": {
             "coal": 7665,
             "gas": 4210,
@@ -1525,7 +1525,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T02:00:00+00:00",
+        "datetime": "2024-10-27T10:00:00+08:00",
         "production": {
             "coal": 7699,
             "gas": 4283,
@@ -1541,7 +1541,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T02:10:00+00:00",
+        "datetime": "2024-10-27T10:10:00+08:00",
         "production": {
             "coal": 7780,
             "gas": 4230,
@@ -1557,7 +1557,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T02:20:00+00:00",
+        "datetime": "2024-10-27T10:20:00+08:00",
         "production": {
             "coal": 7915,
             "gas": 4205,
@@ -1573,7 +1573,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T02:30:00+00:00",
+        "datetime": "2024-10-27T10:30:00+08:00",
         "production": {
             "coal": 7969,
             "gas": 4071,
@@ -1589,7 +1589,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T02:40:00+00:00",
+        "datetime": "2024-10-27T10:40:00+08:00",
         "production": {
             "coal": 7988,
             "gas": 4014,
@@ -1605,7 +1605,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T02:50:00+00:00",
+        "datetime": "2024-10-27T10:50:00+08:00",
         "production": {
             "coal": 7959,
             "gas": 4090,
@@ -1621,7 +1621,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T03:00:00+00:00",
+        "datetime": "2024-10-27T11:00:00+08:00",
         "production": {
             "coal": 7949,
             "gas": 4158,
@@ -1637,7 +1637,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T03:10:00+00:00",
+        "datetime": "2024-10-27T11:10:00+08:00",
         "production": {
             "coal": 7955,
             "gas": 4215,
@@ -1653,7 +1653,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T03:20:00+00:00",
+        "datetime": "2024-10-27T11:20:00+08:00",
         "production": {
             "coal": 7974,
             "gas": 4251,
@@ -1669,7 +1669,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T03:30:00+00:00",
+        "datetime": "2024-10-27T11:30:00+08:00",
         "production": {
             "coal": 7973,
             "gas": 4207,
@@ -1685,7 +1685,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T03:40:00+00:00",
+        "datetime": "2024-10-27T11:40:00+08:00",
         "production": {
             "coal": 8006,
             "gas": 4173,
@@ -1701,7 +1701,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T03:50:00+00:00",
+        "datetime": "2024-10-27T11:50:00+08:00",
         "production": {
             "coal": 7978,
             "gas": 4140,
@@ -1717,7 +1717,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T04:00:00+00:00",
+        "datetime": "2024-10-27T12:00:00+08:00",
         "production": {
             "coal": 7943,
             "gas": 4214,
@@ -1733,7 +1733,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T04:10:00+00:00",
+        "datetime": "2024-10-27T12:10:00+08:00",
         "production": {
             "coal": 7936,
             "gas": 4330,
@@ -1749,7 +1749,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T04:20:00+00:00",
+        "datetime": "2024-10-27T12:20:00+08:00",
         "production": {
             "coal": 7899,
             "gas": 4350,
@@ -1765,7 +1765,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T04:30:00+00:00",
+        "datetime": "2024-10-27T12:30:00+08:00",
         "production": {
             "coal": 7875,
             "gas": 4368,
@@ -1781,7 +1781,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T04:40:00+00:00",
+        "datetime": "2024-10-27T12:40:00+08:00",
         "production": {
             "coal": 7883,
             "gas": 4361,
@@ -1797,7 +1797,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T04:50:00+00:00",
+        "datetime": "2024-10-27T12:50:00+08:00",
         "production": {
             "coal": 7918,
             "gas": 4407,
@@ -1813,7 +1813,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T05:00:00+00:00",
+        "datetime": "2024-10-27T13:00:00+08:00",
         "production": {
             "coal": 8021,
             "gas": 4364,
@@ -1829,7 +1829,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T05:10:00+00:00",
+        "datetime": "2024-10-27T13:10:00+08:00",
         "production": {
             "coal": 8114,
             "gas": 4394,
@@ -1845,7 +1845,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T05:20:00+00:00",
+        "datetime": "2024-10-27T13:20:00+08:00",
         "production": {
             "coal": 8182,
             "gas": 4391,
@@ -1861,7 +1861,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T05:30:00+00:00",
+        "datetime": "2024-10-27T13:30:00+08:00",
         "production": {
             "coal": 8232,
             "gas": 4428,
@@ -1877,7 +1877,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T05:40:00+00:00",
+        "datetime": "2024-10-27T13:40:00+08:00",
         "production": {
             "coal": 8381,
             "gas": 4309,
@@ -1893,7 +1893,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T05:50:00+00:00",
+        "datetime": "2024-10-27T13:50:00+08:00",
         "production": {
             "coal": 8475,
             "gas": 4286,
@@ -1909,7 +1909,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T06:00:00+00:00",
+        "datetime": "2024-10-27T14:00:00+08:00",
         "production": {
             "coal": 8485,
             "gas": 4390,
@@ -1925,7 +1925,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T06:10:00+00:00",
+        "datetime": "2024-10-27T14:10:00+08:00",
         "production": {
             "coal": 8575,
             "gas": 4262,
@@ -1941,7 +1941,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T06:20:00+00:00",
+        "datetime": "2024-10-27T14:20:00+08:00",
         "production": {
             "coal": 8760,
             "gas": 4277,
@@ -1957,7 +1957,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T06:30:00+00:00",
+        "datetime": "2024-10-27T14:30:00+08:00",
         "production": {
             "coal": 8838,
             "gas": 4323,
@@ -1973,7 +1973,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T06:40:00+00:00",
+        "datetime": "2024-10-27T14:40:00+08:00",
         "production": {
             "coal": 8850,
             "gas": 4351,
@@ -1989,7 +1989,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T06:50:00+00:00",
+        "datetime": "2024-10-27T14:50:00+08:00",
         "production": {
             "coal": 8841,
             "gas": 4359,
@@ -2005,7 +2005,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T07:00:00+00:00",
+        "datetime": "2024-10-27T15:00:00+08:00",
         "production": {
             "coal": 8894,
             "gas": 4368,
@@ -2021,7 +2021,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T07:10:00+00:00",
+        "datetime": "2024-10-27T15:10:00+08:00",
         "production": {
             "coal": 8999,
             "gas": 4274,
@@ -2037,7 +2037,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T07:20:00+00:00",
+        "datetime": "2024-10-27T15:20:00+08:00",
         "production": {
             "coal": 9169,
             "gas": 4235,
@@ -2053,7 +2053,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T07:30:00+00:00",
+        "datetime": "2024-10-27T15:30:00+08:00",
         "production": {
             "coal": 9356,
             "gas": 4159,
@@ -2069,7 +2069,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T07:40:00+00:00",
+        "datetime": "2024-10-27T15:40:00+08:00",
         "production": {
             "coal": 9491,
             "gas": 4122,
@@ -2085,7 +2085,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T07:50:00+00:00",
+        "datetime": "2024-10-27T15:50:00+08:00",
         "production": {
             "coal": 9522,
             "gas": 4136,
@@ -2101,7 +2101,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T08:00:00+00:00",
+        "datetime": "2024-10-27T16:00:00+08:00",
         "production": {
             "coal": 9528,
             "gas": 4155,
@@ -2117,7 +2117,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T08:10:00+00:00",
+        "datetime": "2024-10-27T16:10:00+08:00",
         "production": {
             "coal": 9577,
             "gas": 4151,
@@ -2133,7 +2133,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T08:20:00+00:00",
+        "datetime": "2024-10-27T16:20:00+08:00",
         "production": {
             "coal": 9657,
             "gas": 4142,
@@ -2149,7 +2149,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T08:30:00+00:00",
+        "datetime": "2024-10-27T16:30:00+08:00",
         "production": {
             "coal": 9734,
             "gas": 4208,
@@ -2165,7 +2165,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T08:40:00+00:00",
+        "datetime": "2024-10-27T16:40:00+08:00",
         "production": {
             "coal": 9867,
             "gas": 4118,
@@ -2181,7 +2181,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T08:50:00+00:00",
+        "datetime": "2024-10-27T16:50:00+08:00",
         "production": {
             "coal": 9940,
             "gas": 4083,
@@ -2197,7 +2197,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T09:00:00+00:00",
+        "datetime": "2024-10-27T17:00:00+08:00",
         "production": {
             "coal": 10005,
             "gas": 4037,
@@ -2213,7 +2213,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T09:10:00+00:00",
+        "datetime": "2024-10-27T17:10:00+08:00",
         "production": {
             "coal": 10050,
             "gas": 3919,
@@ -2229,7 +2229,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T09:20:00+00:00",
+        "datetime": "2024-10-27T17:20:00+08:00",
         "production": {
             "coal": 10086,
             "gas": 4085,
@@ -2245,7 +2245,7 @@ snapshots["TestFetchProduction::test_production_with_snapshot 1"] = [
     },
     {
         "correctedModes": [],
-        "datetime": "2024-10-27T09:30:00+00:00",
+        "datetime": "2024-10-27T17:30:00+08:00",
         "production": {
             "coal": 10103,
             "gas": 4048,
