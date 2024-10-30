@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 

@@ -10,7 +10,6 @@ import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { useLocation, useParams } from 'react-router-dom';
-import { TimeAverages } from 'utils/constants';
 import {
   getCarbonIntensity,
   useNavigateWithParameters,
