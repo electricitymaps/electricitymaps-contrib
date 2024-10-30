@@ -266,8 +266,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
         navigate({ to: '/zone', zoneId });
       } else {
-        console.log('navigate to /map');
-        navigate({ to: '/map', zoneId: '' });
+        navigate({ to: '/map' });
       }
     },
     [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]

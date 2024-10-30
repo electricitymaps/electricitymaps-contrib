@@ -180,21 +180,6 @@ describe('getDestinationPath', () => {
     global.location = originalLocation; // Restore original location
   });
 
-  // it('should return the correct URL when location.search and location.hash have values', () => {
-  //   const originalLocation = global.location;
-  //   global.location = {
-  //     ...global.location,
-  //     search: '?query=1',
-  //     hash: '#section',
-  //   } as Location;
-
-  //   const to = '/path';
-  //   const result = getDestinationPath({ to });
-  //   expect(result).toBe('/path?query=1#section');
-
-  //   global.location = originalLocation; // Restore original location
-  // });
-
   it('should include zoneId when provided', () => {
     const result = getDestinationPath({ to: '/path', zoneId: 'FR' });
     expect(result).toBe('/path/FR');

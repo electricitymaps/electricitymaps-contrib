@@ -45,7 +45,6 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
     setIsMapMoving(false);
     navigate({
       to: '/map',
-      zoneId: '',
     });
   };
   const shareUrl = getCurrentUrl({ zoneId });

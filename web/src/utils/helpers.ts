@@ -87,7 +87,6 @@ export function useNavigateWithParameters() {
     // Always preserve existing search params
     const isDestinationZoneRoute = to.startsWith('/zone');
     const currentSearch = new URLSearchParams(location.search);
-    console.log('zoneId', to, isZoneRoute, zoneId);
     const path = getDestinationPath({
       to,
       zoneId: isDestinationZoneRoute ? zoneId : undefined,
@@ -117,7 +116,6 @@ export function getDestinationPath({
   timeAverage?: string;
   datetime?: string;
 }) {
-  console.log('zoneId', zoneId);
   return `${to}${zoneId ? `/${zoneId}` : ''}${timeAverage ? `/${timeAverage}` : ''}${
     datetime ? `/${datetime}` : ''
   }`;
