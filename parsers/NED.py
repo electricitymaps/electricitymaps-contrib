@@ -79,13 +79,13 @@ class NedPoint(Enum):
     NETHERLANDS = 0
 
 
-# kWh to MWh with 3 decimal places 
+# kWh to MWh with 3 decimal places
 def _kwh_to_mw(kwh):
     return round((kwh / 1000) * 4, 3)
 
 
 # It seems the API can take max itemPerPage 200. We fetch 192 items per page as this is: (12 types * 4 quaters * 4 hours) = 192
-# If the itemsPerPage is not a multiple of the types the API sometime skips a type, sometimes duplicates a type! 
+# If the itemsPerPage is not a multiple of the types the API sometime skips a type, sometimes duplicates a type!
 # The API does not include the last page number in the response, so we need to keep querying until we get an empty response
 def call_api(target_datetime: datetime, forecast: bool = False):
     is_last_page = False
@@ -166,7 +166,6 @@ def format_data(
 
     df = df.groupby(by="validfrom")
 
-  
     formatted_production_data = ProductionBreakdownList(logger)
     for _group_key, group_df in df:
         data_dict = group_df.to_dict(orient="records")
@@ -189,7 +188,6 @@ def format_data(
             else EventSourceType.measured,
         )
 
-
     return formatted_production_data
 
 
@@ -209,7 +207,11 @@ def fetch_production(
     NED_data_list = NED_data.to_list()
 
     # Add lag to avoid using data that is not yet complete and remove "future" data
-    NED_data_list = [x for x in NED_data_list if x.get('datetime') < (datetime.now(timezone.utc) - timedelta(hours=0.5))]
+    NED_data_list = [
+        x
+        for x in NED_data_list
+        if x.get("datetime") < (datetime.now(timezone.utc) - timedelta(hours=0.5))
+    ]
 
     return NED_data_list
 
