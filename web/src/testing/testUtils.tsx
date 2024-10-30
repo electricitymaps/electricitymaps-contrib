@@ -54,7 +54,8 @@ export default function renderWithProviders(
 }
 
 export interface HydrateProps {
-  initialValues: (readonly [WritableAtom<unknown, unknown[], unknown>, unknown])[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  initialValues: (readonly [WritableAtom<any, any[], any>, any])[];
   children: React.ReactNode;
 }
 
