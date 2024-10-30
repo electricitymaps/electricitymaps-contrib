@@ -55,13 +55,13 @@ export default function ZoneDetails(): JSX.Element {
   }, [hasSubZones, isSubZone, setViewMode]);
 
   if (!zoneId) {
-    return <Navigate to="/map" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
-    return <Navigate to="/map" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);

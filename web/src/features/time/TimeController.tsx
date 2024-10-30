@@ -7,11 +7,11 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
+import { getZoneTimezone } from 'utils/helpers';
 import {
   isHourlyAtom,
   selectedDatetimeIndexAtom,
-  timeAverageAtom,
+  useTimeAverageSync,
 } from 'utils/state/atoms';
 import { useIsBiggerThanMobile } from 'utils/styling';
 
@@ -19,16 +19,15 @@ import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
-  // const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
   const isBiggerThanMobile = useIsBiggerThanMobile();
-  const { zoneId, timeAverage } = useParams<{
+  const { zoneId } = useParams<{
     zoneId: string;
-    timeAverage: TimeAverages;
   }>();
+  const [selectedTimeAverage, setTimeAverage] = useTimeAverageSync();
 
   const zoneTimezone = getZoneTimezone(zoneId);
 
@@ -79,17 +78,16 @@ export default function TimeController({ className }: { className?: string }) {
         index: numberOfEntries,
       });
       setTimeAverage(timeAverage);
-
       trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeAverage });
     },
-    [selectedDatetime.datetime, numberOfEntries, setSelectedDatetime, setTimeAverage]
+    [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeAverage]
   );
 
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       {isBiggerThanMobile && <TimeHeader />}
       <TimeAverageToggle
-        timeAverage={timeAverage}
+        timeAverage={selectedTimeAverage || TimeAverages.HOURLY}
         onToggleGroupClick={onToggleGroupClick}
       />
       <div>
@@ -101,7 +99,7 @@ export default function TimeController({ className }: { className?: string }) {
         />
         <TimeAxis
           datetimes={datetimes}
-          selectedTimeAggregate={timeAverage}
+          selectedTimeAggregate={selectedTimeAverage || TimeAverages.HOURLY}
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}

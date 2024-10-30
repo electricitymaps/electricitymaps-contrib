@@ -52,6 +52,5 @@ export default function LoadingOverlay() {
   const isLoadingMap = useAtomValue(loadingMapAtom);
   const hasResult = isSuccess || isError;
   const showLoadingOverlay = !hasResult || isLoadingMap;
-  console.log('iseerorr', isError, showLoadingOverlay);
   return <FadingOverlay isVisible={showLoadingOverlay} />;
 }

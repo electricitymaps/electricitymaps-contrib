@@ -1,5 +1,5 @@
 import { callerLocation, useMeta } from 'api/getMeta';
-import { useMatch, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useMatch, useNavigate, useParams } from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
@@ -60,6 +60,52 @@ export function getProductionCo2Intensity(
   return dischargeCo2Intensity;
 }
 
+export function useNavigateWithParameters() {
+  const navigator = useNavigate();
+  const location = useLocation();
+  const {
+    zoneId: previousZoneId,
+    urlTimeAverage: previousTimeAverage,
+    urlDatetime: previousDatetime,
+  } = useParams();
+  const isMapRoute = useMatch('/map/*') !== null;
+  const isZoneRoute = useMatch('/zone/*') !== null;
+  // eslint-disable-next-line unicorn/no-nested-ternary
+  const basePath = isMapRoute ? '/map' : isZoneRoute ? '/zone' : '';
+
+  return ({
+    to = basePath,
+    zoneId = isZoneRoute ? previousZoneId : undefined,
+    timeAverage = previousTimeAverage,
+    datetime = previousDatetime,
+  }: {
+    to?: string;
+    zoneId?: string;
+    timeAverage?: string;
+    datetime?: string;
+  }) => {
+    // Always preserve existing search params
+    const isDestinationZoneRoute = to.startsWith('/zone');
+    const currentSearch = new URLSearchParams(location.search);
+    console.log('zoneId', to, isZoneRoute, zoneId);
+    const path = getDestinationPath({
+      to,
+      zoneId: isDestinationZoneRoute ? zoneId : undefined,
+      timeAverage,
+      datetime,
+    });
+
+    // Use the full URL including search params and hash
+    const fullPath = {
+      pathname: path,
+      search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
+      hash: location.hash,
+    };
+    navigator(fullPath);
+  };
+}
+
+// And modify getDestinationPath to not include search and hash
 export function getDestinationPath({
   to,
   zoneId,
@@ -71,28 +117,10 @@ export function getDestinationPath({
   timeAverage?: string;
   datetime?: string;
 }) {
+  console.log('zoneId', zoneId);
   return `${to}${zoneId ? `/${zoneId}` : ''}${timeAverage ? `/${timeAverage}` : ''}${
     datetime ? `/${datetime}` : ''
-  }${location.search}${location.hash}`;
-}
-
-export function useNavigateWithParameters() {
-  const navigate = useNavigate();
-
-  return ({
-    to,
-    zoneId,
-    timeAverage,
-    datetime,
-  }: {
-    to: string;
-    zoneId?: string;
-    timeAverage?: string;
-    datetime?: string;
-  }) => {
-    const path = getDestinationPath({ to, zoneId, timeAverage, datetime });
-    navigate(path);
-  };
+  }`;
 }
 
 /**

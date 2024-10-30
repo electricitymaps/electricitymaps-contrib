@@ -260,16 +260,17 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         );
       }
       setHoveredZone(null);
-
+      console.log('feature', feature);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
 
-        navigate({ to: '/zone', zoneId, timeAverage: urlTimeAverage });
+        navigate({ to: '/zone', zoneId });
       } else {
-        navigate({ to: '/map', timeAverage: urlTimeAverage });
+        console.log('navigate to /map');
+        navigate({ to: '/map', zoneId: '' });
       }
     },
-    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate, urlTimeAverage]
+    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
   );
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging

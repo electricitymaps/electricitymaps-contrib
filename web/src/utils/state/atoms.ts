@@ -1,6 +1,8 @@
-import { atom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { dateToDatetimeString } from 'utils/helpers';
+import { useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
   Mode,
@@ -13,7 +15,27 @@ import {
 // TODO: Move these atoms to relevant features
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
-export const timeAverageAtom = atom(TimeAverages.HOURLY);
+export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
+
+export function useTimeAverageSync() {
+  const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
+  const { urlTimeAverage } = useParams<{ urlTimeAverage: string }>();
+  const navigateWithParameters = useNavigateWithParameters();
+
+  // Update atom when URL changes
+  useEffect(() => {
+    if (urlTimeAverage && urlTimeAverage !== timeAverage) {
+      setTimeAverage(urlTimeAverage as TimeAverages);
+    }
+  }, [setTimeAverage, timeAverage, urlTimeAverage]); // Only depend on URL changes
+
+  // Combined setter that updates both atom and URL
+  const setTimeAverageAndNavigate = (newTimeAverage: TimeAverages) => {
+    setTimeAverage(newTimeAverage);
+    navigateWithParameters({ timeAverage: newTimeAverage });
+  };
+  return [timeAverage, setTimeAverageAndNavigate] as const;
+}
 export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
 
 // TODO: consider another initial value

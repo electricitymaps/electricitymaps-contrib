@@ -43,7 +43,10 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
 
   const onNavigateBack = () => {
     setIsMapMoving(false);
-    navigate({ to: '/map' });
+    navigate({
+      to: '/map',
+      zoneId: '',
+    });
   };
   const shareUrl = getCurrentUrl({ zoneId });
 
