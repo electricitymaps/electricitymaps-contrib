@@ -71,6 +71,7 @@ export default function App(): ReactElement {
     [urlTimeAverage, urlDatetime, zoneId]
   );
 
+  // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
   const setConsumptionAtom = useSetAtom(productionConsumptionAtom);
   useGetState();

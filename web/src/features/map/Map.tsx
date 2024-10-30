@@ -79,9 +79,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
-  const { urlTimeAverage = TimeAverages.HOURLY, zoneId: pathZoneId } =
-    useParams<RouteParameters>();
-
+  const { zoneId: pathZoneId } = useParams<RouteParameters>();
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);

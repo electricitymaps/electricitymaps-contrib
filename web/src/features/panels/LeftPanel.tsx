@@ -50,9 +50,9 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <div
       data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-[21] h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
-        location.pathname === '/map' ? 'hidden' : ''
-      } ${isOpen ? '' : '-translate-x-full'}`}
+      className={`absolute left-0 top-0 z-[21] h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] ${
+        location.pathname.startsWith('/map') ? 'hidden' : 'block sm:flex'
+      } sm:w-[calc(14vw_+_16rem)] ${isOpen ? '' : '-translate-x-full'}`}
     >
       {isMobile && <MobileHeader />}
       <section className="h-full w-full">{children}</section>
