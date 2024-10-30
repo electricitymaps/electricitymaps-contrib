@@ -175,6 +175,7 @@ describe('getDestinationPath', () => {
 
     const to = '/path';
     const result = getDestinationPath({ to });
+
     expect(result).toBe('/path');
 
     global.location = originalLocation; // Restore original location
@@ -189,6 +190,7 @@ describe('getDestinationPath', () => {
     const result = getDestinationPath({ to: '/path', timeAverage: 'hourly' });
     expect(result).toBe('/path/hourly');
   });
+
 
   it('should include datetime when provided', () => {
     const result = getDestinationPath({ to: '/path', datetime: '2024-03-20' });

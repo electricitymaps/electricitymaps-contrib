@@ -222,3 +222,11 @@ export const getZoneTimezone = (zoneId?: string) => {
   const { zones } = zonesConfigJSON as unknown as CombinedZonesConfig;
   return zones[zoneId]?.timezone;
 };
+
+/**
+ * @returns {Boolean} true if agent is probably a mobile device.
+ */
+export const hasMobileUserAgent = () =>
+  /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
+    navigator.userAgent
+  );

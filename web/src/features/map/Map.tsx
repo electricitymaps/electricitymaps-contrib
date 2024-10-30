@@ -262,7 +262,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       console.log('feature', feature);
       if (feature?.properties) {
-        const zoneId = feature.properties.zoneId;
+        const zoneId = feature.properties.zoneId
 
         navigate({ to: '/zone', zoneId });
       } else {
@@ -386,7 +386,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
         [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
       ]}
-      style={{ minWidth: '100vw', height: '100vh', position: 'absolute' }}
+      style={{
+        minWidth: '100vw',
+        height: '100vh',
+        position: 'absolute',
+      }}
       mapStyle={MAP_STYLE as StyleSpecification}
     >
       <BackgroundLayer />

@@ -38,11 +38,21 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+export enum Charts {
+  PRICE_CHART = 'price_chart',
+  ORIGIN_CHART = 'origin_chart',
+  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
+  CARBON_CHART = 'carbon_chart',
+  EMISSION_CHART = 'emission_chart',
+  NET_EXCHANGE_CHART = 'net_exchange_chart',
+}
+
 export enum TrackEvent {
   DATA_SOURCES_CLICKED = 'Data Sources Clicked',
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
   APP_BANNER_DISMISSED = 'App Banner Dismissed',
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
+  SHARE_CHART = 'Share Chart',
   FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
   APP_LOADED = 'App Loaded',
   PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
@@ -238,6 +248,7 @@ export const sourceLinkMapping: { [key: string]: string } = {
 };
 
 export const DEFAULT_ICON_SIZE = 16;
+export const DEFAULT_TOAST_DURATION = 3 * 1000; // 3s
 
 export enum EstimationMethods {
   TSA = 'ESTIMATED_TIME_SLICER_AVERAGE',
