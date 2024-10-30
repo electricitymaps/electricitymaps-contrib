@@ -78,11 +78,13 @@ export function useNavigateWithParameters() {
     zoneId = isZoneRoute ? previousZoneId : undefined,
     timeAverage = previousTimeAverage,
     datetime = previousDatetime,
+    keepHashParameters = true,
   }: {
     to?: string;
     zoneId?: string;
     timeAverage?: string;
     datetime?: string;
+    keepHashParameters?: boolean;
   }) => {
     // Always preserve existing search params
     const isDestinationZoneRoute = to.startsWith('/zone');
@@ -98,7 +100,7 @@ export function useNavigateWithParameters() {
     const fullPath = {
       pathname: path,
       search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
-      hash: location.hash,
+      hash: keepHashParameters ? location.hash : undefined,
     };
     navigator(fullPath);
   };
