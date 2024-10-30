@@ -191,7 +191,6 @@ describe('getDestinationPath', () => {
     expect(result).toBe('/path/hourly');
   });
 
-
   it('should include datetime when provided', () => {
     const result = getDestinationPath({ to: '/path', datetime: '2024-03-20' });
     expect(result).toBe('/path/2024-03-20');
