@@ -91,6 +91,7 @@ const getLayers = (
 
 interface AreagraphProps {
   data: AreaGraphElement[];
+  focusedData: Set<string>;
   testId: string;
   layerKeys: string[];
   layerStroke?: (key: string) => string;
@@ -135,6 +136,7 @@ function AreaGraph({
   tooltipSize,
   formatTick = String,
   showHoverHighlight,
+  focusedData,
 }: AreagraphProps) {
   const reference = useRef(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
@@ -269,6 +271,7 @@ function AreaGraph({
         )}
         <AreaGraphLayers
           showHoverHighlight={showHoverHighlight}
+          focusedData={focusedData}
           layers={layers}
           datetimes={datetimesWithNext}
           timeScale={timeScale}
