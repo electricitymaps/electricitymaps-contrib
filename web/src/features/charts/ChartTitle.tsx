@@ -6,7 +6,7 @@ import { useGetZoneFromPath } from 'utils/helpers';
 type Props = {
   titleText?: string;
   unit?: string;
-  estimationBadge?: React.ReactElement;
+  estimationBadge?: React.ReactElement | null;
   className?: string;
   id: Charts;
 };

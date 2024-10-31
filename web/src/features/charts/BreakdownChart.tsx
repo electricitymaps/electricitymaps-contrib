@@ -70,6 +70,7 @@ function BreakdownChart({
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
   const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  const hasEstimation = text && icon;
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -84,7 +85,9 @@ function BreakdownChart({
     <RoundedCard>
       <ChartTitle
         titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeAverage}`)}
-        estimationBadge={<EstimationBadge text={text} Icon={icon} />}
+        estimationBadge={
+          hasEstimation ? <EstimationBadge text={text} Icon={icon} /> : null
+        }
         unit={valueAxisLabel}
         id={Charts.ORIGIN_CHART}
       />
