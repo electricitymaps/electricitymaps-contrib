@@ -1,4 +1,3 @@
-import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +5,7 @@ import { Charts, TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, noop } from './graphUtils';
+import { analyzeChartData, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import { RoundedCard } from './RoundedCard';
@@ -30,8 +29,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-  const badge = <EstimationBadge text={text} Icon={icon} />;
+  const { hasEstimation } = analyzeChartData(chartData);
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -45,9 +43,8 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     <RoundedCard className="pb-2">
       <ChartTitle
         titleText={t(`country-history.carbonintensity.${timeAverage}`)}
-        badge={badge}
         unit={'gCO₂eq / kWh'}
-        isEstimated={Boolean(text)}
+        isEstimated={hasEstimation}
         id={Charts.CARBON_CHART}
       />
       <AreaGraph

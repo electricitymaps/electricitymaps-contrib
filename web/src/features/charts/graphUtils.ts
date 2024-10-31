@@ -211,7 +211,7 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
-function analyzeChartData(chartData: AreaGraphElement[]) {
+export function analyzeChartData(chartData: AreaGraphElement[]) {
   let estimatedCount = 0;
   let tsaCount = 0;
   for (const chartElement of chartData) {

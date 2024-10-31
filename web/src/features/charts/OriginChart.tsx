@@ -1,4 +1,3 @@
-import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +8,7 @@ import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
+import { analyzeChartData, getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import ProductionSourceLegendList from './ProductionSourceLegendList';
@@ -47,9 +46,7 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-
-  const badge = <EstimationBadge text={text} Icon={icon} />;
+  const { hasEstimation } = analyzeChartData(chartData);
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -64,8 +61,7 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
     <RoundedCard>
       <ChartTitle
         titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeAverage}`)}
-        badge={badge}
-        isEstimated={Boolean(text)}
+        isEstimated={hasEstimation}
         unit={valueAxisLabel}
         id={Charts.ORIGIN_CHART}
       />
