@@ -4,6 +4,7 @@ import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtom, useAtomValue } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
@@ -51,6 +52,21 @@ function BreakdownChart({
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
 
+  // TODO(cady): Move this focus data state into an atom or context?
+  const [focused, setFocus] = useState(new Set<string>());
+
+  const onToggleFocus = (key: string) => {
+    setFocus((previous) => {
+      const next = new Set(previous);
+      if (previous.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  };
+
   if (!data) {
     return null;
   }
@@ -95,6 +111,7 @@ function BreakdownChart({
         <AreaGraph
           testId="history-mix-graph"
           showHoverHighlight={true}
+          focusedData={focused}
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
@@ -120,6 +137,8 @@ function BreakdownChart({
         <ProductionSourceLegendList
           sources={getProductionSourcesInChart(chartData)}
           className="py-1.5"
+          onToggleFocus={onToggleFocus}
+          focusedData={focused}
         />
         <HorizontalDivider />
         <Accordion

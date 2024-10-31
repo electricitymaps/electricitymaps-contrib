@@ -20,6 +20,7 @@ interface AreaGraphLayersProps {
   svgNode: any;
   selectedLayerIndex?: number | null;
   showHoverHighlight?: boolean;
+  focusedData: Set<string>;
 }
 
 function AreaGraphLayers({
@@ -33,6 +34,7 @@ function AreaGraphLayers({
   svgNode,
   selectedLayerIndex,
   showHoverHighlight,
+  focusedData,
 }: AreaGraphLayersProps) {
   const isDarkModeEnabled = useDarkMode();
   const [x1, x2] = timeScale.range();
@@ -110,12 +112,37 @@ function AreaGraphLayers({
           ]
         );
 
+        // TODO(cady): clean up all this logic -> maybe move into functions?
+        // TODO(cady): rename:
+        // hasSelectedLayer -> hasHoveredLayer
+        // isCurrentLayerSelected -> isCurrentLayerHovered
+        // showHoverHighlight -> canFocusData
         const isCurrentLayerSelected =
           showHoverHighlight && hasSelectedLayer && selectedLayerIndex === ind;
-        const shouldLayerBeSaturated =
-          isSingleLayer || !hasSelectedLayer || isCurrentLayerSelected;
 
-        const emphasizeStroke = !isSingleLayer && isCurrentLayerSelected;
+        const hasFocusedData = focusedData?.size > 0;
+
+        let shouldLayerBeSaturated =
+          isSingleLayer || !showHoverHighlight || !hasFocusedData || !hasSelectedLayer;
+
+        if (showHoverHighlight) {
+          if (hasFocusedData && focusedData.has(layer.key)) {
+            shouldLayerBeSaturated = true;
+          } else if (!hasFocusedData && hasSelectedLayer && isCurrentLayerSelected) {
+            shouldLayerBeSaturated = true;
+          } else if (!hasSelectedLayer && !hasFocusedData) {
+            shouldLayerBeSaturated = true;
+          } else {
+            shouldLayerBeSaturated = false;
+          }
+        }
+
+        const emphasizeStroke =
+          !isSingleLayer &&
+          showHoverHighlight &&
+          ((!hasFocusedData && isCurrentLayerSelected) ||
+            (hasFocusedData && shouldLayerBeSaturated));
+
         let stroke = layer.stroke;
         if (showHoverHighlight && emphasizeStroke) {
           stroke = isDarkModeEnabled ? 'white' : 'black';
