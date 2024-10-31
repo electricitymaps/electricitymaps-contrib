@@ -50,21 +50,16 @@ interface TrackChartSharesByShareType {
   };
 }
 
-const makeTrackChartShareFunctions = () => {
-  const trackChartShareByType: TrackChartSharesByShareType = {};
-
-  for (const chartId of Object.values(Charts)) {
-    for (const shareType of Object.values(ShareType)) {
-      if (!(chartId in trackChartShareByType)) {
-        trackChartShareByType[chartId] = {};
-      }
-      trackChartShareByType[chartId][shareType] = trackShareChart(shareType, chartId);
-    }
-  }
-
-  return trackChartShareByType;
-};
-
-const trackChartShareByType: TrackChartSharesByShareType = makeTrackChartShareFunctions();
+const trackChartShareByType: TrackChartSharesByShareType = Object.fromEntries(
+  Object.values(Charts).map((chartId) => [
+    chartId,
+    Object.fromEntries(
+      Object.values(ShareType).map((shareType) => [
+        shareType,
+        trackShareChart(shareType, chartId),
+      ])
+    ),
+  ])
+);
 
 export const getTrackChartShares = (chartId: Charts) => trackChartShareByType[chartId];
