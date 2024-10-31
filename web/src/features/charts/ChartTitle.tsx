@@ -5,20 +5,12 @@ import { Charts } from 'utils/constants';
 type Props = {
   titleText?: string;
   unit?: string;
-  badge?: React.ReactElement;
+  estimationBadge?: React.ReactElement;
   className?: string;
-  isEstimated?: boolean;
   id?: Charts;
 };
 
-export function ChartTitle({
-  titleText,
-  unit,
-  badge,
-  className,
-  isEstimated,
-  id,
-}: Props) {
+export function ChartTitle({ titleText, unit, estimationBadge, className, id }: Props) {
   const showMoreOptions = useShowMoreOptions();
   return (
     <div className="flex flex-col pb-0.5">
@@ -26,9 +18,9 @@ export function ChartTitle({
         <h2 id={id} className="grow">
           {titleText}
         </h2>
-        {badge}
+        {estimationBadge}
         {showMoreOptions && (
-          <MoreOptionsDropdown isEstimated={isEstimated}>
+          <MoreOptionsDropdown isEstimated={Boolean(estimationBadge)}>
             <Ellipsis />
           </MoreOptionsDropdown>
         )}

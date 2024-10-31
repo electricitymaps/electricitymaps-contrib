@@ -44,13 +44,12 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
   const { text, icon } = getBadgeTextAndIcon(chartData, t);
-  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
         titleText={t(`country-history.emissions.${timeAverage}`)}
-        badge={badge}
+        estimationBadge={<EstimationBadge text={text} Icon={icon} />}
         unit={'CO₂eq'}
         id={Charts.EMISSION_CHART}
       />

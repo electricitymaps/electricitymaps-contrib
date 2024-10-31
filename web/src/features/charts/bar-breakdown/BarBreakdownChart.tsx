@@ -148,7 +148,7 @@ function BarBreakdownChart({
       <ChartTitle
         titleText={titleText}
         unit={graphUnit}
-        badge={
+        estimationBadge={
           hasEstimationPill ? (
             <EstimationBadge
               text={pillText}

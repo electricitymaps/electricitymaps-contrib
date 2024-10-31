@@ -47,7 +47,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
   const { text, icon } = getBadgeTextAndIcon(chartData, t);
-  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -61,9 +60,8 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
     <RoundedCard className="pb-2">
       <ChartTitle
         titleText={t(`country-history.carbonintensity.${timeAverage}`)}
-        badge={badge}
+        estimationBadge={<EstimationBadge text={text} Icon={icon} />}
         unit={'gCO₂eq / kWh'}
-        isEstimated={Boolean(text)}
         id={Charts.CARBON_CHART}
       />
       <AreaGraph
