@@ -158,11 +158,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/map/:urlTimeAverage',
+        path: '/map/:urlTimeAverage?/:urlDatetime?',
         element: <RankingPanel />,
       },
       {
-        path: '/zone/:zoneId/:urlTimeAverage?',
+        path: '/zone/:zoneId/:urlTimeAverage?/:urlDatetime?',
         element: (
           <ValidZoneIdGuardWrapper>
             <Suspense fallback={<LoadingSpinner />}>

@@ -1,5 +1,11 @@
 import { callerLocation, useMeta } from 'api/getMeta';
-import { useLocation, useMatch, useNavigate, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useMatch,
+  useMatches,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
@@ -68,10 +74,11 @@ export function useNavigateWithParameters() {
     urlTimeAverage: previousTimeAverage,
     urlDatetime: previousDatetime,
   } = useParams();
-  const isMapRoute = useMatch('/map/*') !== null;
-  const isZoneRoute = useMatch('/zone/*') !== null;
-  // eslint-disable-next-line unicorn/no-nested-ternary
-  const basePath = isMapRoute ? '/map' : isZoneRoute ? '/zone' : '';
+  console.log('previousDatetime', previousDatetime);
+  const parameters = useMatches();
+  const isZoneRoute = parameters.some((match) => match.pathname.startsWith('/zone'));
+
+  const basePath = isZoneRoute ? '/zone' : '/map';
 
   return ({
     to = basePath,
@@ -95,7 +102,7 @@ export function useNavigateWithParameters() {
       timeAverage,
       datetime,
     });
-
+    console.log('datetime');
     // Use the full URL including search params and hash
     const fullPath = {
       pathname: path,

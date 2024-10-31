@@ -1,5 +1,11 @@
 import { renderHook } from '@testing-library/react';
-import { useLocation, useMatch, useNavigate, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useMatch,
+  useMatches,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { zoneDetailMock } from 'stories/mockData';
 import { ZoneDetail } from 'types';
 import { describe, expect, it, vi } from 'vitest';
@@ -217,10 +223,12 @@ describe('getDestinationPath', () => {
 });
 
 // Mock the router hooks
+// Mock the router hooks
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
   useLocation: vi.fn(),
   useMatch: vi.fn(),
+  useMatches: vi.fn(),
   useParams: vi.fn(),
 }));
 
@@ -241,6 +249,8 @@ describe('useNavigateWithParameters', () => {
       search: '',
       hash: '',
     });
+    // Add useMatches mock with default return value
+    (useMatches as any).mockReturnValue([{ pathname: '/map/hourly' }]);
   });
 
   it('should preserve existing query parameters', () => {
@@ -282,7 +292,7 @@ describe('useNavigateWithParameters', () => {
     });
 
     const { result } = renderHook(() => useNavigateWithParameters());
-    result.current({ to: '/zone', zoneId: 'DK-DK2' });
+    result.current({ to: '/zone', zoneId: 'DK-DK2', datetime: '2024-03-20T08:00:00z' });
 
     expect(navigateMock).toHaveBeenCalledWith({
       pathname: '/zone/DK-DK2/hourly/2024-03-20T08:00:00z',
@@ -302,29 +312,47 @@ describe('useNavigateWithParameters', () => {
     });
   });
 
-  it('should override previous parameters when new ones are provided', () => {
+  it('Should navigate to the correct path with all parameters', () => {
     const { result } = renderHook(() => useNavigateWithParameters());
     result.current({
+      to: '/zone',
       zoneId: 'DE',
       timeAverage: 'daily',
       datetime: '2024-03-21',
     });
 
     expect(navigateMock).toHaveBeenCalledWith({
-      pathname: '/map/daily/2024-03-21',
+      pathname: '/zone/DE/daily/2024-03-21',
+      search: '',
+      hash: '',
+    });
+  });
+  it('Should navigate to the correct path with blank datetime', () => {
+    const { result } = renderHook(() => useNavigateWithParameters());
+    result.current({
+      to: '/zone',
+      zoneId: 'DE',
+      timeAverage: 'daily',
+      datetime: '',
+    });
+
+    expect(navigateMock).toHaveBeenCalledWith({
+      pathname: '/zone/DE/daily',
       search: '',
       hash: '',
     });
   });
 
-  it('should use correct base path for zone route', () => {
-    (useMatch as any).mockImplementation((path: any) => (path === '/zone/*' ? {} : null));
+  it('should redirect to map when nothing is provided', () => {
+    (useMatch as any).mockImplementation((path: any) =>
+      path === '/zone/FR/hourly/2024-03-20T08:00:00z' ? {} : null
+    );
 
     const { result } = renderHook(() => useNavigateWithParameters());
     result.current({});
 
     expect(navigateMock).toHaveBeenCalledWith({
-      pathname: '/zone/FR/hourly/2024-03-20T08:00:00z',
+      pathname: '/map/hourly/2024-03-20T08:00:00z',
       search: '',
       hash: '',
     });
