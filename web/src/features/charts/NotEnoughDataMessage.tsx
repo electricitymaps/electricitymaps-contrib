@@ -3,7 +3,7 @@ import { Charts } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 
-export function NotEnoughDataMessage({ title, id }: { title: string; id?: Charts }) {
+export function NotEnoughDataMessage({ title, id }: { title: string; id: Charts }) {
   const { t } = useTranslation();
   return (
     <div className="w-full">
