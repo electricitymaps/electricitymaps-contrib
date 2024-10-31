@@ -110,6 +110,7 @@ interface AreagraphProps {
   tooltipSize?: 'small' | 'large';
   formatTick?: (t: number) => string | number;
   showHoverHighlight?: boolean;
+  focusedData: Set<string>;
 }
 
 interface TooltipData {
@@ -135,6 +136,7 @@ function AreaGraph({
   tooltipSize,
   formatTick = String,
   showHoverHighlight,
+  focusedData,
 }: AreagraphProps) {
   const reference = useRef(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
@@ -270,6 +272,7 @@ function AreaGraph({
         <AreaGraphLayers
           showHoverHighlight={showHoverHighlight}
           layers={layers}
+          focusedData={focusedData}
           datetimes={datetimesWithNext}
           timeScale={timeScale}
           valueScale={valueScale}
