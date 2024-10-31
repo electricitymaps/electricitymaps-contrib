@@ -47,8 +47,12 @@
   },
   "more-options-dropdown": {
     "title": "Share",
+    "chart-title": "Share Chart",
+    "zone-title": "Share Zone",
     "mobile-share-via": "Share via",
+    "copy-link": "Copy link",
     "copy-chart-link": "Copy link to chart",
+    "copy-zone-link": "Copy link to zone",
     "preliminary-data": "Preliminary data may change over time.",
     "summary": "Discover real-time electricity insights with the Electricity Maps app!"
   },

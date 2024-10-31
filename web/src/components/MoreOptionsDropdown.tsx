@@ -7,7 +7,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
-import { getTrackChartShares, ShareType } from 'utils/analytics';
+import { getTrackByShareType, ShareType } from 'utils/analytics';
 import {
   baseUrl,
   Charts,
@@ -27,7 +27,7 @@ export interface MoreOptionsDropdownProps {
   shareUrl?: string;
   hasMobileUserAgent?: boolean;
   isEstimated?: boolean;
-  id: Charts;
+  id: Charts | 'zone';
 }
 
 const dropdownItemStyle = 'flex items-center gap-2 py-2';
@@ -48,7 +48,7 @@ export function MoreOptionsDropdown({
 
   const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
 
-  const handleTrackShares = getTrackChartShares(id);
+  const handleTrackShares = getTrackByShareType(id);
 
   const { onShare, copyShareUrl } = useMemo(() => {
     const toastMessageCallback = (message: string) => {
@@ -75,6 +75,16 @@ export function MoreOptionsDropdown({
     };
   }, [reference, shareUrl, summary, share, copyToClipboard, handleTrackShares]);
 
+  const title =
+    id === 'zone'
+      ? t(`more-options-dropdown.zone-title`)
+      : t(`more-options-dropdown.chart-title`);
+
+  const copyLinkText =
+    id === 'zone'
+      ? t(`more-options-dropdown.copy-zone-link`)
+      : t(`more-options-dropdown.copy-chart-link`);
+
   return (
     <>
       <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen} modal={false}>
@@ -93,7 +103,7 @@ export function MoreOptionsDropdown({
           <div className="px-3 pb-2 pt-3">
             <DropdownMenu.Label className="flex flex-col">
               <div className="align-items flex justify-between">
-                <h2 className="self-start text-sm">{t('more-options-dropdown.title')}</h2>
+                <h2 className="self-start text-sm">{title}</h2>
                 <DefaultCloseButton onClose={onDismiss} />
               </div>
               <TimeDisplay className="whitespace-nowrap text-xs font-normal text-neutral-600 dark:text-gray-300" />
@@ -102,9 +112,7 @@ export function MoreOptionsDropdown({
             <DropdownMenu.Group className="flex cursor-pointer flex-col">
               <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
                 <Link size={DEFAULT_ICON_SIZE} />
-                <p className={dropdownContentStyle}>
-                  {t('more-options-dropdown.copy-chart-link')}
-                </p>
+                <p className={dropdownContentStyle}>{copyLinkText}</p>
               </DropdownMenu.Item>
               {hasMobileUserAgent && (
                 <DropdownMenu.Item className={dropdownItemStyle} onSelect={onShare}>
@@ -199,10 +207,10 @@ const useDropdownCtl = () => {
 };
 
 export function useShowMoreOptions() {
-  const isMoreOptionsFFOn = useFeatureFlag('more-options-dropdown');
+  const isMoreOptionsEnabled = useFeatureFlag('more-options-dropdown');
   const isHourly = useAtomValue(isHourlyAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const showMoreOptions = isMoreOptionsFFOn && isHourly && !displayByEmissions;
+  const showMoreOptions = isMoreOptionsEnabled && isHourly && !displayByEmissions;
 
   return showMoreOptions;
 }
