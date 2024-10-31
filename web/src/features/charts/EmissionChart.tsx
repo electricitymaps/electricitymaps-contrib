@@ -1,11 +1,10 @@
-import EstimationBadge from 'components/EstimationBadge';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, noop } from './graphUtils';
+import { analyzeChartData, noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
 import { RoundedCard } from './RoundedCard';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
@@ -28,14 +27,13 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
   const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-  const badge = <EstimationBadge text={text} Icon={icon} />;
+  const { hasEstimation } = analyzeChartData(chartData);
 
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
         titleText={t(`country-history.emissions.${timeAverage}`)}
-        badge={badge}
+        isEstimated={hasEstimation}
         unit={'CO₂eq'}
         id={Charts.EMISSION_CHART}
       />
