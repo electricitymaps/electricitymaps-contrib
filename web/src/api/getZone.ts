@@ -40,7 +40,7 @@ const getZone = async (
 // should we add a check for this?
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const { zoneId } = useParams<RouteParameters>();
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
   return useQuery<ZoneDetails>({
     queryKey: [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
     queryFn: async () => getZone(timeAverage, zoneId),
