@@ -15,7 +15,8 @@ export function TimeDisplay({
   const { i18n } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
   const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
-
+  const selectedDatetimeString = useAtomValue(selectedDatetimeIndexAtom);
+  // console.log('selectedDatetime', selectedDatetime, selectedDatetimeString);
   return (
     <FormattedTime
       datetime={selectedDatetime.datetime}

@@ -74,7 +74,6 @@ export function useNavigateWithParameters() {
     urlTimeAverage: previousTimeAverage,
     urlDatetime: previousDatetime,
   } = useParams();
-  console.log('previousDatetime', previousDatetime);
   const parameters = useMatches();
   const isZoneRoute = parameters.some((match) => match.pathname.startsWith('/zone'));
 
@@ -102,7 +101,6 @@ export function useNavigateWithParameters() {
       timeAverage,
       datetime,
     });
-    console.log('datetime');
     // Use the full URL including search params and hash
     const fullPath = {
       pathname: path,

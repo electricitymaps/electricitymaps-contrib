@@ -1,22 +1,28 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { RouteParameters } from 'App';
-import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { timeAverageAtom } from 'utils/state/atoms';
 
-import { cacheBuster, getBasePath, getHeaders, QUERY_KEYS } from './helpers';
+import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
 
 const getZone = async (
   timeAverage: TimeAverages,
-  zoneId?: string
+  zoneId: string,
+  targetDatetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
-  const path: URL = new URL(`v8/details/${timeAverage}/${zoneId}`, getBasePath());
-  path.searchParams.append('cacheKey', cacheBuster());
+
+  const isValidDatetime = targetDatetime && isValidDate(targetDatetime);
+
+  const path: URL = new URL(
+    `v8/details/${timeAverage}/${zoneId}${
+      isValidDatetime ? `?targetDate=${targetDatetime}` : ''
+    }`,
+    getBasePath()
+  );
+  !targetDatetime && path.searchParams.append('cacheKey', cacheBuster());
 
   const requestOptions: RequestInit = {
     method: 'GET',
@@ -36,14 +42,32 @@ const getZone = async (
   throw new Error(await response.text());
 };
 
-// TODO: The frontend (graphs) expects that the datetimes in state are the same as in zone
-// should we add a check for this?
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const { zoneId } = useParams<RouteParameters>();
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const {
+    zoneId,
+    urlTimeAverage = TimeAverages.HOURLY,
+    urlDatetime,
+  } = useParams<{
+    zoneId: string;
+    urlTimeAverage: TimeAverages;
+    urlDatetime?: string;
+  }>();
+
   return useQuery<ZoneDetails>({
-    queryKey: [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
-    queryFn: async () => getZone(timeAverage, zoneId),
+    queryKey: [
+      QUERY_KEYS.ZONE,
+      {
+        zone: zoneId,
+        aggregate: urlTimeAverage,
+        targetDatetime: urlDatetime,
+      },
+    ],
+    queryFn: async () => {
+      if (!zoneId) {
+        throw new Error('Zone ID is required');
+      }
+      return getZone(urlTimeAverage, zoneId, urlDatetime);
+    },
   });
 };
 
