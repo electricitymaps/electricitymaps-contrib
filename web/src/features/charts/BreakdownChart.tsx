@@ -4,7 +4,7 @@ import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtom, useAtomValue } from 'jotai';
 import { Factory, Zap } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
@@ -52,10 +52,13 @@ function BreakdownChart({
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
 
-  const [focused, setFocus] = useState<Record<string, boolean>>({});
+  const [selectedData, setSelectedData] = useState<Record<string, boolean>>({});
 
-  const onToggleFocus = (key: string) => {
-    setFocus((previous) => ({
+  // TODO(cady): is there a better way to reset if we switch between emissions & electricity panels
+  useEffect(() => setSelectedData({}), [displayByEmissions]);
+
+  const onToggleSelectedData = (key: string) => {
+    setSelectedData((previous) => ({
       ...previous,
       [key]: !previous[key],
     }));
@@ -104,8 +107,8 @@ function BreakdownChart({
       <div className="relative ">
         <AreaGraph
           testId="history-mix-graph"
-          showHoverHighlight={true}
-          focusedData={focused}
+          isDataInteractive={true}
+          selectedData={selectedData}
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
@@ -131,8 +134,9 @@ function BreakdownChart({
         <ProductionSourceLegendList
           sources={getProductionSourcesInChart(chartData)}
           className="py-1.5"
-          onToggleFocus={onToggleFocus}
-          focusedData={focused}
+          onToggleSelectedData={onToggleSelectedData}
+          selectedData={selectedData}
+          isDataInteractive={true}
         />
         <HorizontalDivider />
         <Accordion
