@@ -168,6 +168,13 @@ def format_data(
 
     formatted_production_data = ProductionBreakdownList(logger)
     for _group_key, group_df in df:
+        # Add lag to avoid using data that is not yet complete and remove "future" data
+        if (
+            datetime.fromisoformat(group_df["validfrom"].iloc[0])
+            > (datetime.now(timezone.utc) - timedelta(hours=0.5))
+            and not forecast
+        ):
+            continue
         data_dict = group_df.to_dict(orient="records")
         mix = ProductionMix()
         for data in data_dict:
@@ -204,16 +211,7 @@ def fetch_production(
     json_data = call_api(target_datetime)
     NED_data = format_data(json_data, logger)
 
-    NED_data_list = NED_data.to_list()
-
-    # Add lag to avoid using data that is not yet complete and remove "future" data
-    NED_data_list = [
-        x
-        for x in NED_data_list
-        if x.get("datetime") < (datetime.now(timezone.utc) - timedelta(hours=0.5))
-    ]
-
-    return NED_data_list
+    return NED_data.to_list()
 
 
 def fetch_production_forecast(
@@ -227,6 +225,4 @@ def fetch_production_forecast(
     json_data = call_api(target_datetime, forecast=True)
     NED_data = format_data(json_data, logger, forecast=True)
 
-    NED_data_list = NED_data.to_list()
-
-    return NED_data_list
+    return NED_data.to_list()
