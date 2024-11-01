@@ -198,7 +198,7 @@
     "vite-plugin-pwa": "0.20.2",
     "vite-tsconfig-paths": "5.0.1",
     "vitest": "2.1.1",
-    "workbox-build": "7.1.1",
+    "workbox-build": "7.3.0",
     "workbox-window": "7.1.0"
   },
   "engines": {
