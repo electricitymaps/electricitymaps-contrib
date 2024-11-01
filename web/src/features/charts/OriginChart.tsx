@@ -10,25 +10,21 @@ import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
-import useBreakdownChartData from './hooks/useBreakdownChartData';
+import useOriginChartData from './hooks/useOriginChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import ProductionSourceLegendList from './ProductionSourceLegendList';
 import { RoundedCard } from './RoundedCard';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 import { AreaGraphElement } from './types';
 
-interface BreakdownChartProps {
+interface OriginChartProps {
   displayByEmissions: boolean;
   datetimes: Date[];
   timeAverage: TimeAverages;
 }
 
-function BreakdownChart({
-  displayByEmissions,
-  datetimes,
-  timeAverage,
-}: BreakdownChartProps) {
-  const { data } = useBreakdownChartData();
+function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChartProps) {
+  const { data } = useOriginChartData();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
@@ -105,7 +101,7 @@ function BreakdownChart({
   );
 }
 
-export default BreakdownChart;
+export default OriginChart;
 
 function getProductionSourcesInChart(chartData: AreaGraphElement[]) {
   const productionSources = new Set<ElectricityModeType>();
