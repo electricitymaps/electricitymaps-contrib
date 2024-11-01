@@ -1,4 +1,5 @@
 import { useAtom } from 'jotai';
+import { useTranslation } from 'react-i18next';
 import { Charts, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
@@ -19,6 +20,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
   const [productionConsumption] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const { t } = useTranslation();
   if (productionConsumption === 'production') {
     return null;
   }
@@ -43,7 +45,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        translationKey="country-history.netExchange"
+        titleText={t(`country-history.netExchange.${timeAverage}`)}
         unit={valueAxisLabel}
         id={Charts.NET_EXCHANGE_CHART}
       />
