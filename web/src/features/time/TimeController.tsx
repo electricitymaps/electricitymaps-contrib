@@ -1,4 +1,5 @@
 import useGetState from 'api/getState';
+import { Button } from 'components/Button';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useAtom, useAtomValue } from 'jotai';
@@ -7,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import { getZoneTimezone } from 'utils/helpers';
+import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   isHourlyAtom,
   selectedDatetimeIndexAtom,
@@ -28,9 +29,9 @@ export default function TimeController({ className }: { className?: string }) {
     zoneId: string;
   }>();
   const [selectedTimeAverage, setTimeAverage] = useTimeAverageSync();
-
+  const { urlDatetime } = useParams();
   const zoneTimezone = getZoneTimezone(zoneId);
-
+  const navigate = useNavigateWithParameters();
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
   const isLoading = dataLoading || Object.keys(data?.data?.datetimes ?? {}).length === 1;
@@ -86,10 +87,22 @@ export default function TimeController({ className }: { className?: string }) {
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       {isBiggerThanMobile && <TimeHeader />}
-      <TimeAverageToggle
-        timeAverage={selectedTimeAverage || TimeAverages.HOURLY}
-        onToggleGroupClick={onToggleGroupClick}
-      />
+      <div className="flex items-center gap-2">
+        <TimeAverageToggle
+          timeAverage={selectedTimeAverage || TimeAverages.HOURLY}
+          onToggleGroupClick={onToggleGroupClick}
+        />
+        {urlDatetime && (
+          <Button
+            size="md"
+            onClick={() => {
+              navigate({ datetime: '' });
+            }}
+          >
+            Latest
+          </Button>
+        )}
+      </div>
       <div>
         {/* The above div is needed to treat the TimeSlider and TimeAxis as one DOM element */}
         <TimeSlider
@@ -103,7 +116,7 @@ export default function TimeController({ className }: { className?: string }) {
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}
-          isLiveDisplay={isHourly}
+          isLiveDisplay={isHourly && !urlDatetime}
           timezone={zoneTimezone}
         />
       </div>
