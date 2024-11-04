@@ -6,12 +6,20 @@ import { useGetZoneFromPath } from 'utils/helpers';
 type Props = {
   titleText?: string;
   unit?: string;
+  badge?: React.ReactElement;
   className?: string;
   isEstimated?: boolean;
   id: Charts;
 };
 
-export function ChartTitle({ titleText, unit, className, isEstimated, id }: Props) {
+export function ChartTitle({
+  titleText,
+  unit,
+  className,
+  isEstimated,
+  id,
+  badge,
+}: Props) {
   const showMoreOptions = useShowMoreOptions();
   const zoneId = useGetZoneFromPath();
   const url = `${baseUrl}/zone/${zoneId}`;
@@ -23,8 +31,13 @@ export function ChartTitle({ titleText, unit, className, isEstimated, id }: Prop
         <h2 id={id} className="grow">
           {titleText}
         </h2>
+        {badge}
         {showMoreOptions && (
-          <MoreOptionsDropdown isEstimated={isEstimated} id={id} shareUrl={shareUrl}>
+          <MoreOptionsDropdown
+            isEstimated={isEstimated || Boolean(badge)}
+            id={id}
+            shareUrl={shareUrl}
+          >
             <Ellipsis />
           </MoreOptionsDropdown>
         )}
