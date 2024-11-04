@@ -84,16 +84,18 @@ def _kwh_to_mw(kwh):
     return round((kwh / 1000) * 4, 3)
 
 
-# There is a limit of items we can get per page, so we fetch all possible per page.
+# It seems the API can take max itemPerPage 200. We fetch 192 items per page as this is: (12 types * 4 quaters * 4 hours) = 192
+# If the itemsPerPage is not a multiple of the types the API sometime skips a type, sometimes duplicates a type!
 # The API does not include the last page number in the response, so we need to keep querying until we get an empty response
 def call_api(target_datetime: datetime, forecast: bool = False):
     is_last_page = False
     pageNum = 1
     results = []
     while not is_last_page:
+        # API fetches full day of data, so we add 1 day to validfrom[before] to get todays data
         params = {
             "page": pageNum,
-            "itemsPerPage": 3500,
+            "itemsPerPage": 192,
             "point": NedPoint.NETHERLANDS.value,
             "type[]": [
                 NedType.WIND.value,
@@ -135,7 +137,7 @@ def call_api(target_datetime: datetime, forecast: bool = False):
         results += response.json()
         pageNum += 1
 
-        if response.json() == [] or pageNum > 20:
+        if response.json() == [] or pageNum > 26:
             is_last_page = True
 
     return results
@@ -166,6 +168,13 @@ def format_data(
 
     formatted_production_data = ProductionBreakdownList(logger)
     for _group_key, group_df in df:
+        # Add lag to avoid using data that is not yet complete and remove "future" data
+        if (
+            datetime.fromisoformat(group_df["validfrom"].iloc[0])
+            > (datetime.now(timezone.utc) - timedelta(hours=0.5))
+            and not forecast
+        ):
+            continue
         data_dict = group_df.to_dict(orient="records")
         mix = ProductionMix()
         for data in data_dict:
@@ -185,6 +194,7 @@ def format_data(
             if forecast
             else EventSourceType.measured,
         )
+
     return formatted_production_data
 
 
@@ -199,7 +209,6 @@ def fetch_production(
     target_datetime = target_datetime or datetime.now(timezone.utc)
 
     json_data = call_api(target_datetime)
-
     NED_data = format_data(json_data, logger)
 
     return NED_data.to_list()
