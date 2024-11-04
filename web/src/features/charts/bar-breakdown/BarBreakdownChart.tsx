@@ -1,14 +1,16 @@
 import * as Portal from '@radix-ui/react-portal';
+import EstimationBadge from 'components/EstimationBadge';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { TFunction } from 'i18next';
 import { useAtom, useAtomValue } from 'jotai';
-import { X } from 'lucide-react';
+import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { Charts, TimeAverages } from 'utils/constants';
+import { Charts, EstimationMethods, TimeAverages } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
@@ -68,6 +70,12 @@ function BarBreakdownChart({
   const headerHeight = useHeaderHeight();
 
   const titleText = useBarBreakdownChartTitle();
+  const estimationMethod = currentZoneDetail?.estimationMethod;
+  const pillText = useGetEstimationTranslation(
+    'pill',
+    estimationMethod,
+    currentZoneDetail?.estimatedPercentage
+  );
 
   if (isLoading) {
     return null;
@@ -115,7 +123,16 @@ function BarBreakdownChart({
       <ChartTitle
         titleText={titleText}
         unit={graphUnit}
-        isEstimated={hasEstimationPill}
+        badge={
+          hasEstimationPill ? (
+            <EstimationBadge
+              text={pillText}
+              Icon={
+                estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
+              }
+            />
+          ) : undefined
+        }
         id={Charts.BAR_BREAKDOWN_CHART}
       />
       {!displayByEmissions && (
