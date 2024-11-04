@@ -2,7 +2,7 @@
 
 import gzip
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -81,16 +81,37 @@ def fetch_live_production(
     for date_key in data_json:
         date_dict = data_json[date_key]
         for date_key in data_json:
+            print(f"date_key: {date_key}")
             date_dict = data_json[date_key]
+
+            hourly_data = {}
             for item in date_dict:
-                production = {}
-                dt = arrow.get(item).datetime.replace(tzinfo=TX_TZ)
+                dt = datetime.strptime(item, "%Y-%m-%d %H:%M:%S%z").replace(
+                    tzinfo=TX_TZ
+                )
+                hour_dt = dt.replace(minute=0, second=0, microsecond=0)
+
+                if hour_dt not in hourly_data:
+                    hourly_data[hour_dt] = {}
+                    for mode in GENERATION_MAPPING.values():
+                        hourly_data[hour_dt][mode] = []
+
                 for mode in date_dict[item]:
+                    mapped_mode = GENERATION_MAPPING[mode]
                     value = date_dict[item][mode]["gen"]
-                    production[GENERATION_MAPPING[mode]] = value
+                    hourly_data[hour_dt][mapped_mode].append(value)
+
+            for hour_dt, modes in hourly_data.items():
+                production = {}
+                for mode, values in modes.items():
+                    if values:
+                        production[mode] = sum(values) / len(values)
+                    else:
+                        production[mode] = 0
+
                 data_point = {
                     "zoneKey": zone_key,
-                    "datetime": dt,
+                    "datetime": hour_dt,
                     "production": production,
                     "source": "ercot.com",
                 }
@@ -138,11 +159,9 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    now = datetime.now(tz=timezone.utc)
-    if (
-        target_datetime is None
-        or target_datetime > arrow.get(now).floor("day").shift(days=-1).datetime
-    ):
+    if target_datetime is None or target_datetime > (
+        datetime.now(tz=timezone.utc) - timedelta(days=1)
+    ).replace(tzinfo=target_datetime.tzinfo if target_datetime else timezone.utc):
         production = fetch_live_production(
             zone_key=zone_key, session=session, logger=logger
         )
@@ -196,5 +215,7 @@ def fetch_exchange(
         exchanges = fetch_live_exchange(zone_key1, zone_key2, session, logger)
 
     else:
-        exchanges = EIA.fetch_exchange(zone_key1, zone_key2, session, target_datetime, logger)
+        exchanges = EIA.fetch_exchange(
+            zone_key1, zone_key2, session, target_datetime, logger
+        )
     return exchanges
