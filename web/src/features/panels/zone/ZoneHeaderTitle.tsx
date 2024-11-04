@@ -8,6 +8,7 @@ import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useSetAtom } from 'jotai';
 import { ArrowLeft, Ellipsis, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import {
   getCountryName,
   getFullZoneName,
@@ -57,6 +58,7 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
   };
   const shareUrl = getCurrentUrl({ zoneId });
   const showMoreOptions = useShowMoreOptions();
+  const { t } = useTranslation();
 
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">
@@ -109,7 +111,12 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
       </div>
       {isShareButtonEnabled &&
         (showMoreOptions ? (
-          <MoreOptionsDropdown id="zone" shareUrl={shareUrl} isEstimated={isEstimated}>
+          <MoreOptionsDropdown
+            id="zone"
+            shareUrl={shareUrl}
+            title={t(`more-options-dropdown.title`) + ` ${zoneNameFull}`}
+            isEstimated={isEstimated}
+          >
             <Ellipsis />
           </MoreOptionsDropdown>
         ) : (

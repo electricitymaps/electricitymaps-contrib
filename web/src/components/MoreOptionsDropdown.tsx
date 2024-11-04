@@ -27,6 +27,7 @@ export interface MoreOptionsDropdownProps {
   shareUrl?: string;
   hasMobileUserAgent?: boolean;
   isEstimated?: boolean;
+  title?: string;
   id: Charts | 'zone';
 }
 
@@ -38,6 +39,7 @@ export function MoreOptionsDropdown({
   shareUrl = baseUrl,
   hasMobileUserAgent = hasMobileUA(),
   isEstimated = false,
+  title,
   id,
 }: MoreOptionsDropdownProps) {
   const { t } = useTranslation();
@@ -75,10 +77,7 @@ export function MoreOptionsDropdown({
     };
   }, [reference, shareUrl, summary, share, copyToClipboard, handleTrackShares]);
 
-  const title =
-    id === 'zone'
-      ? t(`more-options-dropdown.zone-title`)
-      : t(`more-options-dropdown.chart-title`);
+  const dropdownTitle = title || t('more-options-dropdown.title');
 
   const copyLinkText =
     id === 'zone'
@@ -103,7 +102,7 @@ export function MoreOptionsDropdown({
           <div className="px-3 pb-2 pt-3">
             <DropdownMenu.Label className="flex flex-col">
               <div className="align-items flex justify-between">
-                <h2 className="self-start text-sm">{title}</h2>
+                <h2 className="self-start text-sm">{dropdownTitle}</h2>
                 <DefaultCloseButton onClose={onDismiss} />
               </div>
               <TimeDisplay className="whitespace-nowrap text-xs font-normal text-neutral-600 dark:text-gray-300" />
