@@ -1,9 +1,10 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtomValue } from 'jotai';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
-import { Charts, TimeAverages } from 'utils/constants';
+import { Charts, LeftPanelToggleOptions, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
@@ -32,6 +33,22 @@ function BreakdownChart({
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
+  const scope = displayByEmissions
+    ? LeftPanelToggleOptions.EMISSIONS
+    : LeftPanelToggleOptions.ELECTRICITY;
+  const [selectedData, setSelectedData] = useState<
+    Record<string, Record<string, boolean>>
+  >({ [LeftPanelToggleOptions.EMISSIONS]: {}, [LeftPanelToggleOptions.ELECTRICITY]: {} });
+
+  const onToggleSelectedData = (key: string) => {
+    setSelectedData((previous) => ({
+      ...previous,
+      [scope]: {
+        ...previous[scope],
+        [key]: !previous[scope][key],
+      },
+    }));
+  };
 
   if (!data) {
     return null;
@@ -76,7 +93,8 @@ function BreakdownChart({
       <div className="relative ">
         <AreaGraph
           testId="history-mix-graph"
-          showHoverHighlight={true}
+          isDataInteractive={true}
+          selectedData={selectedData[scope]}
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
@@ -100,6 +118,9 @@ function BreakdownChart({
       <ProductionSourceLegendList
         sources={getProductionSourcesInChart(chartData)}
         className="py-1.5"
+        onToggleSelectedData={onToggleSelectedData}
+        selectedData={selectedData[scope]}
+        isDataInteractive={true}
       />
     </RoundedCard>
   );

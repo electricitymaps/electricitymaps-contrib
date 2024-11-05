@@ -18,8 +18,9 @@ interface AreaGraphLayersProps {
   mouseOutHandler: any;
   isMobile: boolean;
   svgNode: any;
-  selectedLayerIndex?: number | null;
-  showHoverHighlight?: boolean;
+  hoverLayerIndex?: number | null;
+  isDataInteractive?: boolean;
+  selectedData?: Record<string, boolean>;
 }
 
 function AreaGraphLayers({
@@ -31,8 +32,9 @@ function AreaGraphLayers({
   mouseOutHandler,
   isMobile,
   svgNode,
-  selectedLayerIndex,
-  showHoverHighlight,
+  hoverLayerIndex,
+  isDataInteractive,
+  selectedData,
 }: AreaGraphLayersProps) {
   const isDarkModeEnabled = useDarkMode();
   const [x1, x2] = timeScale.range();
@@ -40,9 +42,9 @@ function AreaGraphLayers({
   if (x1 >= x2 || y1 >= y2) {
     return null;
   }
-  const hasSelectedLayer = selectedLayerIndex !== null;
-  const isSingleLayer = layers.length === 1;
-  const shouldHideEmptyData = showHoverHighlight && !isSingleLayer;
+  const hasHoverLayer = hoverLayerIndex !== null;
+  const hasSelectedData = selectedData && Object.values(selectedData).some(Boolean);
+  const shouldHideEmptyData = isDataInteractive && layers.length > 1;
 
   // Generate layer paths
   const layerArea = area()
@@ -110,15 +112,26 @@ function AreaGraphLayers({
           ]
         );
 
-        const isCurrentLayerSelected =
-          showHoverHighlight && hasSelectedLayer && selectedLayerIndex === ind;
-        const shouldLayerBeSaturated =
-          isSingleLayer || !hasSelectedLayer || isCurrentLayerSelected;
-
-        const emphasizeStroke = !isSingleLayer && isCurrentLayerSelected;
+        // TODO(cady): clean up
+        let shouldLayerBeSaturated = isDataInteractive ? false : true;
         let stroke = layer.stroke;
-        if (showHoverHighlight && emphasizeStroke) {
-          stroke = isDarkModeEnabled ? 'white' : 'black';
+
+        if (isDataInteractive) {
+          const isHoverLayer = hasHoverLayer && hoverLayerIndex === ind;
+          const isSelected = hasSelectedData && selectedData[layer.key];
+          const isInteracted = isHoverLayer || isSelected;
+
+          if (!hasSelectedData && !hasHoverLayer) {
+            shouldLayerBeSaturated = true;
+          } else if (isSelected) {
+            shouldLayerBeSaturated = true;
+          } else if (isHoverLayer) {
+            shouldLayerBeSaturated = true;
+          }
+
+          if (isInteracted && shouldLayerBeSaturated) {
+            stroke = isDarkModeEnabled ? 'white' : 'black';
+          }
         }
 
         return (
