@@ -1,21 +1,17 @@
 import * as Portal from '@radix-ui/react-portal';
-import Accordion from 'components/Accordion';
-import { HorizontalDivider } from 'components/Divider';
 import EstimationBadge from 'components/EstimationBadge';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { TFunction } from 'i18next';
 import { useAtom, useAtomValue } from 'jotai';
-import { CircleDashed, Factory, TrendingUpDown, UtilityPole, X, Zap } from 'lucide-react';
+import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import trackEvent from 'utils/analytics';
-import { Charts, EstimationMethods, TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, EstimationMethods, TimeAverages } from 'utils/constants';
 import {
-  dataSourcesCollapsedBarBreakdownAtom,
   displayByEmissionsAtom,
   isConsumptionAtom,
   isHourlyAtom,
@@ -25,10 +21,8 @@ import {
 import { useBreakpoint } from 'utils/styling';
 
 import { ChartTitle } from '../ChartTitle';
-import { DataSources } from '../DataSources';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
-import useZoneDataSources from '../hooks/useZoneDataSources';
 import { RoundedCard } from '../RoundedCard';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
@@ -52,13 +46,6 @@ function BarBreakdownChart({
     height,
   } = useBarBreakdownChartData();
 
-  const {
-    capacitySources,
-    powerGenerationSources,
-    emissionFactorSources,
-    emissionFactorSourcesToProductionSources,
-  } = useZoneDataSources();
-
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
@@ -79,10 +66,6 @@ function BarBreakdownChart({
     x: number;
     y: number;
   } | null>(null);
-
-  const [dataSourcesCollapsedBarBreakdown, setDataSourcesCollapsedBarBreakdown] = useAtom(
-    dataSourcesCollapsedBarBreakdownAtom
-  );
 
   const headerHeight = useHeaderHeight();
 
@@ -134,14 +117,6 @@ function BarBreakdownChart({
   const onMouseOut = () => {
     setTooltipData(null);
   };
-
-  const showPowerSources = Boolean(powerGenerationSources?.length > 0);
-  const showEmissionSources = Boolean(emissionFactorSources?.length > 0);
-  const showCapacitySources = Boolean(capacitySources?.length > 0);
-
-  const showDataSourceAccordion = Boolean(
-    showCapacitySources || showPowerSources || showEmissionSources
-  );
 
   return (
     <RoundedCard ref={ref}>
@@ -211,41 +186,6 @@ function BarBreakdownChart({
           isMobile={false}
           graphUnit={graphUnit}
         />
-      )}
-      {showDataSourceAccordion && (
-        <>
-          <HorizontalDivider />
-          <Accordion
-            onOpen={() => {
-              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-                chart: 'bar-breakdown-chart',
-              });
-            }}
-            title={t('data-sources.title')}
-            className="text-md"
-            isCollapsed={dataSourcesCollapsedBarBreakdown}
-            setState={setDataSourcesCollapsedBarBreakdown}
-          >
-            <DataSources
-              title={t('data-sources.capacity')}
-              icon={<UtilityPole size={16} />}
-              sources={capacitySources}
-            />
-            <DataSources
-              title={t('data-sources.power')}
-              icon={<Zap size={16} />}
-              sources={powerGenerationSources}
-            />
-            <DataSources
-              title={t('data-sources.emission')}
-              icon={<Factory size={16} />}
-              sources={emissionFactorSources}
-              emissionFactorSourcesToProductionSources={
-                emissionFactorSourcesToProductionSources
-              }
-            />
-          </Accordion>
-        </>
       )}
     </RoundedCard>
   );
