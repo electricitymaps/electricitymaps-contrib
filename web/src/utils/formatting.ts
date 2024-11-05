@@ -247,6 +247,33 @@ const formatDateTick = (
   }
 };
 
+export function formatDateRange(
+  startDate: Date,
+  endDate: Date,
+  locale = 'en-US',
+  timeZone?: string
+) {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone,
+  });
+
+  // If dates are in the same month and year
+  if (
+    startDate.getMonth() === endDate.getMonth() &&
+    startDate.getFullYear() === endDate.getFullYear()
+  ) {
+    return `${new Intl.DateTimeFormat(locale, { month: 'short' }).format(
+      startDate
+    )} ${startDate.getDate()} - ${endDate.getDate()}, ${startDate.getFullYear()}`;
+  }
+
+  // If dates are in different months or years
+  return `${formatter.format(startDate)} - ${formatter.format(endDate)}`;
+}
+
 function isValidDate(date: Date) {
   if (!date || !(date instanceof Date)) {
     return false;
