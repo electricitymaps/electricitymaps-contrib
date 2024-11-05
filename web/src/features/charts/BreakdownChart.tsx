@@ -7,7 +7,7 @@ import { Factory, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, TimeAverages, TrackEvent } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import {
   dataSourcesCollapsedBreakdownAtom,
@@ -76,6 +76,7 @@ function BreakdownChart({
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
+        id={Charts.ORIGIN_CHART}
         title={`country-history.${titleDisplayMode}${titleMixMode}`}
       />
     );
@@ -84,13 +85,16 @@ function BreakdownChart({
   return (
     <RoundedCard>
       <ChartTitle
-        translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
+        titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeAverage}`)}
         badge={badge}
+        isEstimated={Boolean(text)}
         unit={valueAxisLabel}
+        id={Charts.ORIGIN_CHART}
       />
       <div className="relative ">
         <AreaGraph
           testId="history-mix-graph"
+          showHoverHighlight={true}
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}

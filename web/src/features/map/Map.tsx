@@ -253,9 +253,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(createToWithState(`/zone/${zoneId}`));
+        // Do not keep hash on navigate so that users are not scrolled to id element in new view
+        navigate(createToWithState(`/zone/${zoneId}`, false));
       } else {
-        navigate(createToWithState('/map'));
+        navigate(createToWithState('/map', false));
       }
     },
     [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
@@ -375,7 +376,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
         [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
       ]}
-      style={{ minWidth: '100vw', height: '100vh', position: 'absolute' }}
+      style={{
+        minWidth: '100vw',
+        height: '100vh',
+        position: 'absolute',
+      }}
       mapStyle={MAP_STYLE as StyleSpecification}
     >
       <BackgroundLayer />
