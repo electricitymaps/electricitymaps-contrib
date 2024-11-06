@@ -124,6 +124,54 @@ If these jobs fail and you need to format the code you can run `yarn lint --fix`
 
 Check the [wiki page][wiki js code formatting] on formatting for more details and tips.
 
+# Contribution lifecycle
+
+In order for your PR to be accepted and deployed it will need to pass a series of checks, these checks will be defined and explained in the following section of this document.
+
+## Overview
+
+```mermaid
+flowchart LR
+    subgraph idContrib["Electricity Maps contrib"]
+    direction LR
+        id1(Open a PR)
+        id2{First time contributor?}
+        id3(Await EMaps team CI approval)
+        id4{Is the CI tests passing?}
+        id5(Make changes)
+        id6{Passing review from EMaps team member}
+        id7(PR is merged)
+        id8(Deployed to Staging)
+        id1-->id2
+        id2-->|Yes|id3
+        id2-->|No|id4
+        id3-->id4
+        id4-->|No|id5
+        id5-->id4
+        id4-->|Yes|id6
+        id6-->|No|id5
+        id6-->|Yes|id7
+        id7-->id8
+    end
+    subgraph idInternal["Electricity Maps internal"]
+    direction LR
+        id9(Automatic PR created)
+        id10{Are internal CI tests passing}
+        id11(Make changes)
+        id12{Passing review from Emaps member?}
+        id13(Deployed to production)
+        id9-->id10
+        id10-->|No|id11
+        id11-->id10
+        id10-->|Yes|id12
+        id12-->|No|id11
+        id12-->|Yes|id13
+    end
+    idContrib-->idInternal
+```
+
+## Individual steps
+
 <!-- Link definitions to keep the text clean -->
 
 [poetry homepage]: https://python-poetry.org/
