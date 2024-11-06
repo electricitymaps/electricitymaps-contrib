@@ -131,6 +131,7 @@ In order for your PR to be accepted and deployed it will need to pass a series o
 ## Overview
 
 ```mermaid
+%%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
 flowchart LR
     subgraph idContrib["Electricity Maps contrib"]
     direction LR
