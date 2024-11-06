@@ -2,6 +2,7 @@ import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
@@ -19,7 +20,7 @@ export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
 
 export function useTimeAverageSync() {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
-  const { urlTimeAverage } = useParams<{ urlTimeAverage: string }>();
+  const { urlTimeAverage } = useParams<RouteParameters>();
   const navigateWithParameters = useNavigateWithParameters();
 
   // Update atom when URL changes

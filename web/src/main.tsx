@@ -21,6 +21,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import i18n from 'translation/i18n';
+import { RouteParameters } from 'types';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
@@ -75,7 +76,7 @@ refetchDataOnHourChange(queryClient);
 
 export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
-  const { zoneId, timeAverage } = useParams();
+  const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
   if (!zoneId) {
     return <Navigate to="/map/hourly" replace />;
   }
@@ -83,7 +84,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   if (zoneId !== upperCaseZoneId) {
     return (
       <Navigate
-        to={`/zone/${upperCaseZoneId}/${timeAverage}?${searchParameters}`}
+        to={`/zone/${upperCaseZoneId}/${urlTimeAverage}?${searchParameters}`}
         replace
       />
     );
@@ -93,7 +94,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   if (upperCaseZoneId.startsWith('AUS')) {
     return (
       <Navigate
-        to={`/zone/${zoneId.replace('AUS', 'AU')}/${timeAverage}?${searchParameters}`}
+        to={`/zone/${zoneId.replace('AUS', 'AU')}/${urlTimeAverage}?${searchParameters}`}
         replace
       />
     );

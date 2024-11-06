@@ -38,15 +38,6 @@ const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
 const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
 
 const isProduction = import.meta.env.PROD;
-// Type for the URL parameters that determine app state
-export type RouteParameters = {
-  zoneId?: string;
-  urlTimeAverage?: TimeAverages;
-  urlDatetime?: string;
-};
-
-// Context for sharing route parameters with child components
-export const RouteContext = React.createContext<RouteParameters>({});
 
 if (isProduction) {
   trackEvent(TrackEvent.APP_LOADED, {
@@ -56,21 +47,6 @@ if (isProduction) {
 }
 
 export default function App(): ReactElement {
-  const {
-    zoneId,
-    urlDatetime,
-    urlTimeAverage = TimeAverages.HOURLY,
-  } = useParams<RouteParameters>();
-
-  const routeParameters = useMemo(
-    () => ({
-      zoneId,
-      urlDatetime,
-      urlTimeAverage,
-    }),
-    [urlTimeAverage, urlDatetime, zoneId]
-  );
-
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
   const setConsumptionAtom = useSetAtom(productionConsumptionAtom);
@@ -102,59 +78,59 @@ export default function App(): ReactElement {
   }, []);
 
   return (
-    <RouteContext.Provider value={routeParameters}>
-      <Suspense fallback={<div />}>
-        <Helmet
-          htmlAttributes={{
-            lang: i18n.languages[0],
-            xmlns: 'http://www.w3.org/1999/xhtml',
-            'xmlns:fb': 'http://ogp.me/ns/fb#',
-          }}
-          prioritizeSeoTags
-        >
-          <title>{t('misc.maintitle') + metaTitleSuffix}</title>
-          <meta property="og:locale" content={i18n.languages[0]} />
-          <link rel="canonical" href={canonicalUrl} />
-        </Helmet>
-        <main className="fixed flex h-full w-full flex-col">
-          <AppStoreBanner />
-          <ToastProvider duration={20_000}>
-            <Suspense>
-              <Header />
-            </Suspense>
-            <div className="relative flex flex-auto items-stretch">
-              <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
-                <Suspense>
-                  <UpdatePrompt />
-                </Suspense>
-                <Suspense>
-                  <LoadingOverlay />
-                </Suspense>
-                <Suspense>
-                  <OnboardingModal />
-                </Suspense>
-                <Suspense>
-                  <FAQModal />
-                  <InfoModal />
-                  <SettingsModal />
-                </Suspense>
-                <Suspense>
-                  <LeftPanel />
-                </Suspense>
-                <Suspense>
-                  <MapWrapper />
-                </Suspense>
-                <Suspense>
-                  <TimeControllerWrapper />
-                </Suspense>
-                <Suspense>
-                  <MapOverlays />
-                </Suspense>
-              </Sentry.ErrorBoundary>
-            </div>
-          </ToastProvider>
-        </main>
-      </Suspense>
-    </RouteContext.Provider>
+    // <RouteContext.Provider>
+    <Suspense fallback={<div />}>
+      <Helmet
+        htmlAttributes={{
+          lang: i18n.languages[0],
+          xmlns: 'http://www.w3.org/1999/xhtml',
+          'xmlns:fb': 'http://ogp.me/ns/fb#',
+        }}
+        prioritizeSeoTags
+      >
+        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
+        <meta property="og:locale" content={i18n.languages[0]} />
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
+      <main className="fixed flex h-full w-full flex-col">
+        <AppStoreBanner />
+        <ToastProvider duration={20_000}>
+          <Suspense>
+            <Header />
+          </Suspense>
+          <div className="relative flex flex-auto items-stretch">
+            <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
+              <Suspense>
+                <UpdatePrompt />
+              </Suspense>
+              <Suspense>
+                <LoadingOverlay />
+              </Suspense>
+              <Suspense>
+                <OnboardingModal />
+              </Suspense>
+              <Suspense>
+                <FAQModal />
+                <InfoModal />
+                <SettingsModal />
+              </Suspense>
+              <Suspense>
+                <LeftPanel />
+              </Suspense>
+              <Suspense>
+                <MapWrapper />
+              </Suspense>
+              <Suspense>
+                <TimeControllerWrapper />
+              </Suspense>
+              <Suspense>
+                <MapOverlays />
+              </Suspense>
+            </Sentry.ErrorBoundary>
+          </div>
+        </ToastProvider>
+      </main>
+    </Suspense>
+    // </RouteContext.Provider>
   );
 }

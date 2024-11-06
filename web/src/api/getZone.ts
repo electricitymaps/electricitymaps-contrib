@@ -1,10 +1,10 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { RouteParameters } from 'App';
 import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
+import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { timeAverageAtom } from 'utils/state/atoms';
 

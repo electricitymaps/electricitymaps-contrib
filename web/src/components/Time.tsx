@@ -1,5 +1,5 @@
-import { RouteParameters } from 'App';
 import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
 import { getZoneTimezone } from 'utils/helpers';

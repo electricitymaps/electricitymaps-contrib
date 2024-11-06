@@ -1,5 +1,4 @@
 import useGetZone from 'api/getZone';
-import { RouteParameters } from 'App';
 import {
   addDays,
   closestIndexTo,
@@ -14,6 +13,7 @@ import { useGetGeometries } from 'features/map/map-utils/getMapGrid';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
+import { RouteParameters } from 'types';
 
 export function useNightTimes() {
   const { data } = useGetZone();

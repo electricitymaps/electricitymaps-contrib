@@ -10,6 +10,7 @@ import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
+  RouteParameters,
   StateZoneData,
   ZoneDetail,
 } from 'types';
@@ -18,7 +19,7 @@ import zonesConfigJSON from '../../config/zones.json';
 import { CombinedZonesConfig } from '../../geo/types';
 
 export function useGetZoneFromPath() {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<RouteParameters>();
   const match = useMatch('/zone/:id');
   if (zoneId) {
     return zoneId;

@@ -5,6 +5,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
 import { getZoneTimezone } from 'utils/helpers';
@@ -24,9 +25,7 @@ export default function TimeController({ className }: { className?: string }) {
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
   const isBiggerThanMobile = useIsBiggerThanMobile();
-  const { zoneId } = useParams<{
-    zoneId: string;
-  }>();
+  const { zoneId } = useParams<RouteParameters>();
   const [selectedTimeAverage, setTimeAverage] = useTimeAverageSync();
 
   const zoneTimezone = getZoneTimezone(zoneId);
