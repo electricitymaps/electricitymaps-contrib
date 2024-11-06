@@ -134,7 +134,7 @@ In order for your PR to be accepted and deployed it will need to pass a series o
 flowchart LR
     subgraph idContrib["Electricity Maps contrib"]
     direction LR
-        id1(Open a PR)
+        id1((Open a PR))
         id2{First time contributor?}
         id3(Await EMaps team CI approval)
         id4{Is the CI tests passing?}
@@ -155,7 +155,7 @@ flowchart LR
     end
     subgraph idInternal["Electricity Maps internal"]
     direction LR
-        id9(Automatic PR created)
+        id9((Automatic PR created))
         id10{Are internal CI tests passing}
         id11(Make changes)
         id12{Passing review from Emaps member?}
@@ -167,7 +167,7 @@ flowchart LR
         id12-->|No|id11
         id12-->|Yes|id13
     end
-    idContrib-->idInternal
+    id7-->id9
 ```
 
 ## Individual steps
