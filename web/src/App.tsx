@@ -42,6 +42,9 @@ export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
   const setConsumptionAtom = useSetAtom(productionConsumptionAtom);
+  // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
+  // instead of waiting for the map to be lazy loaded.
+  // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
   useGetState();
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
@@ -53,10 +56,11 @@ export default function App(): ReactElement {
     }
   }, [isConsumptionOnlyMode, setConsumptionAtom]);
 
+  // Update classes on theme change
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
   }, [shouldUseDarkMode]);
-
+  // Handle back button on Android
   useEffect(() => {
     if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
       Cap.addListener('backButton', () => {
@@ -70,7 +74,6 @@ export default function App(): ReactElement {
   }, []);
 
   return (
-    // <RouteContext.Provider>
     <Suspense fallback={<div />}>
       <Helmet
         htmlAttributes={{
@@ -123,6 +126,5 @@ export default function App(): ReactElement {
         </ToastProvider>
       </main>
     </Suspense>
-    // </RouteContext.Provider>
   );
 }

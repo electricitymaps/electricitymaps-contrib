@@ -223,7 +223,6 @@ describe('getDestinationPath', () => {
 });
 
 // Mock the router hooks
-// Mock the router hooks
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
   useLocation: vi.fn(),

@@ -111,7 +111,6 @@ export function useNavigateWithParameters() {
   };
 }
 
-// And modify getDestinationPath to not include search and hash
 export function getDestinationPath({
   to,
   zoneId,
