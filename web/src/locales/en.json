@@ -233,8 +233,8 @@
       "monthly": "Monthly data for:",
       "yearly": "Yearly data for:"
     },
-    "daily": "daily",
     "hourly": "hourly",
+    "daily": "daily",
     "monthly": "monthly",
     "yearly": "yearly"
   },

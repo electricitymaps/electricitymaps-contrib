@@ -14,19 +14,11 @@ import UpdatePrompt from 'features/service-worker/UpdatePrompt';
 import { useDarkMode } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useSetAtom } from 'jotai';
-import React, {
-  lazy,
-  ReactElement,
-  Suspense,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-} from 'react';
+import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import trackEvent from 'utils/analytics';
-import { metaTitleSuffix, Mode, TimeAverages, TrackEvent } from 'utils/constants';
+import { metaTitleSuffix, Mode, TrackEvent } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));

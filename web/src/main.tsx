@@ -103,7 +103,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   // Only allow valid zone ids
   // TODO: This should redirect to a 404 page specifically for zones
   if (!zoneExists(upperCaseZoneId)) {
-    return <Navigate to="/map/hourly" replace />;
+    return <Navigate to="/map/1d" replace />;
   }
 
   return children;
@@ -142,7 +142,7 @@ const router = createBrowserRouter([
         path: '/map',
         element: (
           <Navigate
-            to="/map/hourly"
+            to="/map/1d"
             replace
             state={{ preserveSearch: true, preserveHash: true }}
           />
@@ -152,7 +152,7 @@ const router = createBrowserRouter([
         path: '/zone',
         element: (
           <Navigate
-            to="/map/hourly"
+            to="/map/1d"
             replace
             state={{ preserveSearch: true, preserveHash: true }}
           />
