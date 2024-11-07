@@ -41,7 +41,6 @@ if (isProduction) {
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
   useReducedMotion();
-  const setConsumptionAtom = useSetAtom(productionConsumptionAtom);
   // Triggering the useGetState hook here ensures that the app starts loading data as soon as possible
   // instead of waiting for the map to be lazy loaded.
   // TODO: Replace this with prefetching once we have latest endpoints available for all state aggregates
@@ -49,7 +48,9 @@ export default function App(): ReactElement {
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
   const canonicalUrl = useGetCanonicalUrl();
+  const setConsumptionAtom = useSetAtom(productionConsumptionAtom);
   const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+
   useEffect(() => {
     if (isConsumptionOnlyMode) {
       setConsumptionAtom(Mode.CONSUMPTION);
@@ -60,6 +61,7 @@ export default function App(): ReactElement {
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
   }, [shouldUseDarkMode]);
+
   // Handle back button on Android
   useEffect(() => {
     if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
