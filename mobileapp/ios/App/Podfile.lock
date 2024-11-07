@@ -24,10 +24,10 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/.pnpm/@capacitor+share@6.0.2_@capacitor+core@6.0.0/node_modules/@capacitor/share"
 
 SPEC CHECKSUMS:
-  Capacitor: 559d073c4ca6c27f8e7002c807eea94c3ba435a9
-  CapacitorApp: 9d53aec7101f7b030a950c5bdc4df8612576b279
+  Capacitor: c527d208447590a004f0a4a2c42a5f361848fa8a
+  CapacitorApp: 30145f2ea2311e4f3744472119ec87d2ddf4c0a7
   CapacitorCordova: 8c4bfdf69368512e85b1d8b724dd7546abeb30af
-  CapacitorShare: 591ae4693d85686ceb590db8e8b44aa014ec6490
+  CapacitorShare: 5d49f1b220e991372b4d5d34be9a6080a042bae4
 
 PODFILE CHECKSUM: cd7e700e1f9b8f8340ff68b8a3e7366f7aa27ae9
 
