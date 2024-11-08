@@ -38,7 +38,7 @@ export const getLayerFill =
       co2ColorScale(d.data.meta.exchangeCo2Intensities?.[key]);
   };
 
-export default function useBreakdownChartData() {
+export default function useOriginChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
   const { zoneId } = useParams();
