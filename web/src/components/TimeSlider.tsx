@@ -1,5 +1,4 @@
 import * as SliderPrimitive from '@radix-ui/react-slider';
-import { RouteParameters } from 'App';
 import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
@@ -7,6 +6,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
 import { ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
 import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';

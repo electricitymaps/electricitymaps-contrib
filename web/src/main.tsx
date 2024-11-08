@@ -21,6 +21,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import i18n from 'translation/i18n';
+import { RouteParameters } from 'types';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
@@ -75,15 +76,15 @@ refetchDataOnHourChange(queryClient);
 
 export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
-  const { zoneId, timeAverage } = useParams();
+  const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
   if (!zoneId) {
-    return <Navigate to="/map/hourly" replace />;
+    return <Navigate to="/map/1d" replace />;
   }
   const upperCaseZoneId = zoneId.toUpperCase();
   if (zoneId !== upperCaseZoneId) {
     return (
       <Navigate
-        to={`/zone/${upperCaseZoneId}/${timeAverage}?${searchParameters}`}
+        to={`/zone/${upperCaseZoneId}/${urlTimeAverage}?${searchParameters}`}
         replace
       />
     );
@@ -93,7 +94,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   if (upperCaseZoneId.startsWith('AUS')) {
     return (
       <Navigate
-        to={`/zone/${zoneId.replace('AUS', 'AU')}/${timeAverage}?${searchParameters}`}
+        to={`/zone/${zoneId.replace('AUS', 'AU')}/${urlTimeAverage}?${searchParameters}`}
         replace
       />
     );
@@ -102,7 +103,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   // Only allow valid zone ids
   // TODO: This should redirect to a 404 page specifically for zones
   if (!zoneExists(upperCaseZoneId)) {
-    return <Navigate to="/map/hourly" replace />;
+    return <Navigate to="/map/1d" replace />;
   }
 
   return children;
@@ -141,7 +142,7 @@ const router = createBrowserRouter([
         path: '/map',
         element: (
           <Navigate
-            to="/map/hourly"
+            to="/map/1d"
             replace
             state={{ preserveSearch: true, preserveHash: true }}
           />
@@ -151,7 +152,7 @@ const router = createBrowserRouter([
         path: '/zone',
         element: (
           <Navigate
-            to="/map/hourly"
+            to="/map/1d"
             replace
             state={{ preserveSearch: true, preserveHash: true }}
           />

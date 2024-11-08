@@ -1,5 +1,4 @@
 import useGetState from 'api/getState';
-import { RouteParameters } from 'App';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
@@ -10,6 +9,7 @@ import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { useLocation, useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import {
   getCarbonIntensity,
   useNavigateWithParameters,

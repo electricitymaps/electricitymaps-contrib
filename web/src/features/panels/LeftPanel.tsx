@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
@@ -50,9 +51,11 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <div
       data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-[21] h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] ${
-        location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex'
-      } sm:w-[calc(14vw_+_16rem)] ${isOpen ? '' : '-translate-x-full'}`}
+      className={twMerge(
+        'absolute left-0 top-0 z-[21] h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:w-[calc(14vw_+_16rem)]',
+        location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex',
+        !isOpen && '-translate-x-full'
+      )}
     >
       {isMobile && <MobileHeader />}
       <section className="h-full w-full">{children}</section>

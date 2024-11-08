@@ -2,6 +2,7 @@ import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
@@ -17,23 +18,36 @@ import {
 
 export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
 
+const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
+  '1d': TimeAverages.HOURLY,
+  '1m': TimeAverages.DAILY,
+  '1y': TimeAverages.MONTHLY,
+  all: TimeAverages.YEARLY,
+} as const;
+
+const TIME_AVERAGE_TO_URL: Record<TimeAverages, string> = {
+  [TimeAverages.HOURLY]: '1d',
+  [TimeAverages.DAILY]: '1m',
+  [TimeAverages.MONTHLY]: '1y',
+  [TimeAverages.YEARLY]: 'all',
+} as const;
+
 export function useTimeAverageSync() {
   const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
-  const { urlTimeAverage } = useParams<{ urlTimeAverage: string }>();
+  const { urlTimeAverage } = useParams<RouteParameters>();
   const navigateWithParameters = useNavigateWithParameters();
 
-  // Update atom when URL changes
   useEffect(() => {
-    if (urlTimeAverage && urlTimeAverage !== timeAverage) {
-      setTimeAverage(urlTimeAverage as TimeAverages);
+    if (urlTimeAverage && URL_TO_TIME_AVERAGE[urlTimeAverage] !== timeAverage) {
+      setTimeAverage(URL_TO_TIME_AVERAGE[urlTimeAverage]);
     }
-  }, [setTimeAverage, timeAverage, urlTimeAverage]); // Only depend on URL changes
+  }, [setTimeAverage, timeAverage, urlTimeAverage]);
 
-  // Combined setter that updates both atom and URL
   const setTimeAverageAndNavigate = (newTimeAverage: TimeAverages) => {
     setTimeAverage(newTimeAverage);
-    navigateWithParameters({ timeAverage: newTimeAverage });
+    navigateWithParameters({ timeAverage: TIME_AVERAGE_TO_URL[newTimeAverage] });
   };
+
   return [timeAverage, setTimeAverageAndNavigate] as const;
 }
 export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
