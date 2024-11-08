@@ -78,7 +78,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   const [searchParameters] = useSearchParams();
   const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
   if (!zoneId) {
-    return <Navigate to="/map/hourly" replace />;
+    return <Navigate to="/map/1d" replace />;
   }
   const upperCaseZoneId = zoneId.toUpperCase();
   if (zoneId !== upperCaseZoneId) {
