@@ -35,6 +35,11 @@ export default function AreaGraphToolTipHeader({
     estimationMethod,
     estimatedPercentage
   );
+
+  const hasEstimation =
+    estimationMethod === EstimationMethods.TSA ||
+    estimationMethod === EstimationMethods.FORECASTS_HIERARCHY;
+
   return (
     <>
       <div className="flex items-center gap-1 font-bold">
@@ -50,9 +55,7 @@ export default function AreaGraphToolTipHeader({
         {hasEstimationPill && (
           <EstimationBadge
             text={pillText}
-            Icon={
-              estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
-            }
+            Icon={hasEstimation ? CircleDashed : TrendingUpDown}
           />
         )}
       </div>

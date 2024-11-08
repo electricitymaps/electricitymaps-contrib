@@ -118,6 +118,10 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
+  const hasEstimation =
+    estimationMethod === EstimationMethods.TSA ||
+    estimationMethod === EstimationMethods.FORECASTS_HIERARCHY;
+
   return (
     <RoundedCard ref={ref}>
       <ChartTitle
@@ -127,9 +131,7 @@ function BarBreakdownChart({
           hasEstimationPill ? (
             <EstimationBadge
               text={pillText}
-              Icon={
-                estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
-              }
+              Icon={hasEstimation ? CircleDashed : TrendingUpDown}
             />
           ) : undefined
         }
