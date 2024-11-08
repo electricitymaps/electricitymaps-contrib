@@ -18,7 +18,7 @@ import {
 
 export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
 
-const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
+export const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
   '1d': TimeAverages.HOURLY,
   '1m': TimeAverages.DAILY,
   '1y': TimeAverages.MONTHLY,

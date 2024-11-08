@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import type { GridState } from 'types';
 import { TimeAverages } from 'utils/constants';
+import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, isValidDate, QUERY_KEYS } from './helpers';
 
@@ -14,7 +15,7 @@ const getState = async (
   const shouldQueryHistorical =
     targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
   const path: URL = new URL(
-    `v8/state/${timeAverage}${
+    `v8/state/${URL_TO_TIME_AVERAGE[timeAverage]}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
