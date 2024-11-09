@@ -1,0 +1,101 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getRankedState > sorts the zones by carbon intensity in ascending order 1`] = `
+[
+  {
+    "co2intensity": 5,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 1,
+    "zoneId": "zone2",
+    "zoneName": "",
+  },
+  {
+    "co2intensity": 10,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 2,
+    "zoneId": "zone1",
+    "zoneName": "",
+  },
+  {
+    "co2intensity": 15,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 3,
+    "zoneId": "zone4",
+    "zoneName": "",
+  },
+  {
+    "co2intensity": 25,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 4,
+    "zoneId": "zone6",
+    "zoneName": "",
+  },
+  {
+    "co2intensity": 25,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 5,
+    "zoneId": "zone8",
+    "zoneName": "",
+  },
+]
+`;
+
+exports[`getRankedState > sorts the zones by carbon intensity in descending order 1`] = `
+[
+  {
+    "co2intensity": 25,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 1,
+    "zoneId": "zone6",
+    "zoneName": "",
+  },
+  {
+    "co2intensity": 25,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 2,
+    "zoneId": "zone8",
+    "zoneName": "",
+  },
+  {
+    "co2intensity": 15,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 3,
+    "zoneId": "zone4",
+    "zoneName": "",
+  },
+  {
+    "co2intensity": 10,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 4,
+    "zoneId": "zone1",
+    "zoneName": "",
+  },
+  {
+    "co2intensity": 5,
+    "color": "color",
+    "countryName": "",
+    "fullZoneName": "",
+    "ranking": 5,
+    "zoneId": "zone2",
+    "zoneName": "",
+  },
+]
+`;

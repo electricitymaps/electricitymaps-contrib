@@ -1,9 +1,10 @@
 import { Button } from 'components/Button';
+import { Languages } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiLanguage } from 'react-icons/hi2';
 import { languageNames } from 'translation/locales';
 import trackEvent from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 
 import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
@@ -21,7 +22,7 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
   const handleLanguageSelect = (languageKey: LanguageNamesKey) => {
     i18n.changeLanguage(languageKey);
     setSelectedLanguage(languageNames[languageKey]);
-    trackEvent('Language Selected', { language: languageNames[languageKey] });
+    trackEvent(TrackEvent.LANGUAGE_SELECTED, { language: languageNames[languageKey] });
   };
   return (
     <MapOptionSelector
@@ -30,14 +31,14 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
           <Button
             size="lg"
             type="secondary"
-            icon={<HiLanguage size={20} />}
+            icon={<Languages size={20} />}
             backgroundClasses="w-[330px] h-[45px]"
           >
             {t('tooltips.selectLanguage')}
           </Button>
         ) : (
           <MapButton
-            icon={<HiLanguage size={20} style={{ strokeWidth: '0.5' }} />}
+            icon={<Languages size={20} />}
             tooltipText={t('tooltips.selectLanguage')}
             ariaLabel={t('aria.label.selectLanguage')}
           />

@@ -7,7 +7,6 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -22,7 +21,7 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.exceptions import ParserException
 
 IN_TZ = ZoneInfo("Asia/Kolkata")
-START_DATE_RENEWABLE_DATA = arrow.get("2020-12-17", tzinfo=IN_TZ).datetime
+START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
 CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
@@ -347,21 +346,37 @@ def fetch_consumption(
     ).to_list()
 
 
-def format_ren_production_data(url: str, zone_key: str) -> dict[str, Any]:
+def format_ren_production_data(
+    url: str, zone_key: str, target_datetime: datetime
+) -> dict[str, Any]:
     """Formats daily renewable production data for each zone"""
     df_ren = pd.read_excel(url, engine="openpyxl", header=5, skipfooter=2)
     df_ren = df_ren.dropna(axis=0, how="all")
-    df_ren = df_ren.rename(
-        columns={
-            df_ren.columns[1]: "region",
-            df_ren.columns[2]: "wind",
-            df_ren.columns[3]: "solar",
-            df_ren.columns[4]: "unknown",
-        }
-    )
+
+    # They changed format of the data from 2024/07/01
+    if target_datetime < datetime(2024, 7, 1, 0, 0, tzinfo=IN_TZ):
+        df_ren = df_ren.rename(
+            columns={
+                df_ren.columns[1]: "region",
+                df_ren.columns[2]: "wind",
+                df_ren.columns[3]: "solar",
+                df_ren.columns[4]: "unknown",
+            }
+        )
+    else:
+        df_ren = df_ren.rename(
+            columns={
+                df_ren.columns[0]: "region",
+                df_ren.columns[1]: "wind",
+                df_ren.columns[2]: "solar",
+                df_ren.columns[3]: "unknown",
+            }
+        )
+
     df_ren.loc[:, "zone_key"] = (
         df_ren["region"].apply(lambda x: x if "Region" in x else np.nan).backfill()
     )
+
     df_ren["zone_key"] = df_ren["zone_key"].str.strip()
     df_ren["zone_key"] = df_ren["zone_key"].map(CEA_REGION_MAPPING)
 
@@ -372,6 +387,7 @@ def format_ren_production_data(url: str, zone_key: str) -> dict[str, Any]:
     renewable_production = {
         key: round(zone_data.get(key) / CONVERSION_GWH_MW, 3) for key in zone_data.index
     }
+
     return renewable_production
 
 
@@ -380,7 +396,7 @@ def fetch_cea_production(
     target_datetime: datetime,
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
-) -> dict[str, Any]:
+) -> dict[str, Any] | None:
     """Gets production data for wind, solar and other renewables
     Other renewables includes a share of hydro, biomass and others and will categorized as unknown
     DISCLAIMER: this data is only available since 2020/12/17"""
@@ -395,6 +411,7 @@ def fetch_cea_production(
             for elem in all_data
             if target_datetime.strftime("%Y-%m-%d") in elem["date"]
         ]
+
         if len(target_elem) > 0:
             if target_elem[0]["link"] == "file_not_found":
                 raise ParserException(
@@ -406,7 +423,7 @@ def fetch_cea_production(
                 formatted_url = target_url.split("^")[0]
                 r: Response = session.get(formatted_url)
                 renewable_production = format_ren_production_data(
-                    url=r.url, zone_key=zone_key
+                    url=r.url, zone_key=zone_key, target_datetime=target_datetime
                 )
                 return renewable_production
     else:
@@ -480,7 +497,7 @@ def daily_to_hourly_production_data(
 
 
 def get_start_of_day(dt: datetime) -> datetime:
-    dt_localised = arrow.get(dt).to(IN_TZ).datetime
+    dt_localised = dt.astimezone(IN_TZ)
     dt_start = dt_localised.replace(hour=0, minute=0, second=0, microsecond=0)
     return dt_start
 

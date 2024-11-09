@@ -16,15 +16,14 @@ import {
 import { round } from '../geo/utilities.js';
 
 const BASE_CONFIG_PATH = '../../config';
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 const verifyConfig = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
 const getConfig = (): CombinedZonesConfig => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/zones'), import.meta.url))
-  );
+  const basePath = path.resolve(currentDirectory, BASE_CONFIG_PATH.concat('/zones'));
 
   const zoneFiles = fs.readdirSync(basePath);
   const filesWithDirectory = zoneFiles
@@ -38,6 +37,8 @@ const getConfig = (): CombinedZonesConfig => {
     'parsers',
     'subZoneNames',
     'aggregates_displayed',
+    'generation_only',
+    'timezone',
   ]);
 
   const contributors = new Set<string>();
@@ -65,8 +66,12 @@ const getConfig = (): CombinedZonesConfig => {
       const index = contributorArray.indexOf(contributor);
       zoneContributorsArray.push(index);
     }
-
-    (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
+    if (!config.timezone) {
+      console.log('no timezone for', filepath);
+    }
+    if (zoneContributorsArray && zoneContributorsArray.length > 0) {
+      (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
+    }
 
     for (const point of config.bounding_box ?? []) {
       point[0] = round(point[0], 4);
@@ -93,8 +98,8 @@ const getConfig = (): CombinedZonesConfig => {
   // Upsert subzone contributors to parent zone
   for (const parentZone of hasSubZones) {
     const zoneContributors = new Set<number>(zones[parentZone].contributors);
-    for (const subZone of zones[parentZone].subZoneNames) {
-      for (const contributor of zones[subZone].contributors) {
+    for (const subZone of zones[parentZone].subZoneNames ?? []) {
+      for (const contributor of zones[subZone].contributors ?? []) {
         zoneContributors.add(contributor);
       }
     }
@@ -110,16 +115,19 @@ const getConfig = (): CombinedZonesConfig => {
 };
 
 const mergeExchanges = (): ExchangesConfig => {
-  const basePath = path.resolve(
-    fileURLToPath(new URL(BASE_CONFIG_PATH.concat('/exchanges'), import.meta.url))
-  );
+  const basePath = path.resolve(currentDirectory, BASE_CONFIG_PATH.concat('/exchanges'));
 
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDirectory = exchangeFiles
     .filter((file) => file.endsWith('.yaml'))
     .map((file) => `${basePath}/${file}`);
 
-  const UNNECESSARY_EXCHANGE_FIELDS = new Set(['comment', '_comment', 'parsers']);
+  const UNNECESSARY_EXCHANGE_FIELDS = new Set([
+    'comment',
+    '_comment',
+    'parsers',
+    'capacity',
+  ]);
 
   const exchanges = filesWithDirectory.reduce((exchanges, filepath) => {
     const exchangeConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ExchangeConfig;
@@ -141,7 +149,7 @@ const mergeExchanges = (): ExchangesConfig => {
 
 const mergeRatioParameters = () => {
   // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
-  const basePath = path.resolve(fileURLToPath(new URL('../config', import.meta.url)));
+  const basePath = path.resolve(currentDirectory, '../config');
 
   const defaultParameters: any = yaml.load(
     fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8')
@@ -193,9 +201,7 @@ const writeJSON = (fileName: string, object: CombinedZonesConfig | ExchangesConf
 const zonesConfig = getConfig();
 const exchangesConfig = mergeExchanges();
 
-const autogenConfigPath = path.resolve(
-  fileURLToPath(new URL('../config', import.meta.url))
-);
+const autogenConfigPath = path.resolve(currentDirectory, '../config');
 
 if (verifyConfig.verifyNoUpdates) {
   const zonesConfigPrevious = JSON.parse(

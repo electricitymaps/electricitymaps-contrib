@@ -441,7 +441,7 @@
       "countryName": "Great Britain",
       "zoneName": "Orkney Islands"
     },
-    "GB-SHI": {
+    "GB-ZET": {
       "countryName": "Great Britain",
       "zoneName": "Shetland Islands"
     },
@@ -480,10 +480,6 @@
     },
     "GR": {
       "zoneName": "Greece"
-    },
-    "GR-IS": {
-      "countryName": "Greece",
-      "zoneName": "Aegean Islands"
     },
     "GS": {
       "zoneName": "South Georgia and the South Sandwich Islands"
@@ -942,6 +938,9 @@
       "countryName": "Mexico",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Malaysia"
+    },
     "MY-EM": {
       "countryName": "Malaysia",
       "zoneName": "Borneo"
@@ -1322,8 +1321,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CAL-IID": {
       "countryName": "USA",

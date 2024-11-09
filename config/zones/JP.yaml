@@ -23,6 +23,161 @@ contributors:
   - wobniarin
   - pierresegonne
   - nessie2013
+country: JP
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 526.42
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 502.48
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 507.99
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 513.28
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 475.79
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 487.48
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 459.72
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 526.42
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 502.48
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 507.99
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 513.28
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 475.79
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 487.48
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 459.72
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.012890166232193651
+        coal: 0.32973730946820967
+        gas: 0.3851315399690575
+        geothermal: 0.002576233354692131
+        hydro: 0.08609909225748727
+        hydro discharge: 0.010891998842662986
+        nuclear: 0.032256842282226306
+        oil: 0.03984713514832749
+        solar: 0.05275969115753722
+        unknown: 0.039029123270996786
+        wind: 0.008780861800848644
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.012579364809466115
+        coal: 0.31793724484884617
+        gas: 0.37152116719232936
+        geothermal: 0.002439087649596447
+        hydro: 0.08485792381692668
+        hydro discharge: 0.01244828020699009
+        nuclear: 0.05416925935858074
+        oil: 0.03541397928972647
+        solar: 0.06343265844952277
+        unknown: 0.036573423137463264
+        wind: 0.008627601442528398
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.01298854378622133
+        coal: 0.31164978302258123
+        gas: 0.36118943939472853
+        geothermal: 0.0022575933122101505
+        hydro: 0.07956173990662796
+        hydro discharge: 0.011299073665174795
+        nuclear: 0.07436249543446552
+        oil: 0.03257193015505567
+        solar: 0.07077874811310378
+        unknown: 0.03466447608843717
+        wind: 0.008676171745248875
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.014658422286851451
+        coal: 0.31592128849413953
+        gas: 0.38590758355645643
+        geothermal: 0.0029528553584617424
+        hydro: 0.08137878044695712
+        hydro discharge: 0.001532528551336536
+        nuclear: 0.041228805698738956
+        oil: 0.031741947096612315
+        solar: 0.07591503951418471
+        unknown: 0.04094724051155137
+        wind: 0.007815505633526511
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.01444646594333491
+        coal: 0.3106868372712235
+        gas: 0.3514879056415166
+        geothermal: 0.0026939809892370823
+        hydro: 0.08061260813486995
+        hydro discharge: 0.0007911698806230534
+        nuclear: 0.07241870971836072
+        oil: 0.03115927868796279
+        solar: 0.08993459977097022
+        unknown: 0.03747669273417097
+        wind: 0.008291757230533027
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.018195584400991886
+        coal: 0.31733839693100485
+        gas: 0.35483100183015487
+        geothermal: 0.002630333919992436
+        hydro: 0.0751024998933533
+        hydro discharge: 0.00024122283224721074
+        nuclear: 0.051973369652482476
+        oil: 0.03490455778824196
+        solar: 0.09588636203247354
+        unknown: 0.04093009613569257
+        wind: 0.007966574538368805
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.02069630571779981
+        coal: 0.297437710892991
+        gas: 0.3327891892238359
+        geothermal: 0.0028436533516433002
+        hydro: 0.0755450885399291
+        hydro discharge: 0.0005487835750634909
+        nuclear: 0.08325149477272226
+        oil: 0.0328370728883738
+        solar: 0.1070616614352784
+        unknown: 0.0390422732419014
+        wind: 0.007946764256631617
+region: Asia
 subZoneNames:
   - JP-CB
   - JP-CG
@@ -34,6 +189,4 @@ subZoneNames:
   - JP-SK
   - JP-TH
   - JP-TK
-timezone: Japan/Tokyo
-region: Asia
-country: JP
+timezone: Asia/Tokyo

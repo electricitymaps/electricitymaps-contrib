@@ -2,7 +2,7 @@ import { ToastProvider } from '@radix-ui/react-toast';
 import { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
-import Toast from './Toast';
+import { Toast } from './Toast';
 
 function ToastWrapperComponent() {
   const [showToast, setShowToast] = useState(true);
@@ -46,15 +46,13 @@ export default meta;
 type Story = StoryObj<typeof Toast>;
 
 export const All: Story = {
-  render: () => {
-    return (
-      <>
-        <p>
-          The toast will pop back up when clicked on in the story but not in production.
-        </p>
-        <br />
-        <ToastWrapperComponent />
-      </>
-    );
-  },
+  render: () => (
+    <>
+      <p>
+        The toast will pop back up when clicked on in the story but not in production.
+      </p>
+      <br />
+      <ToastWrapperComponent />
+    </>
+  ),
 };

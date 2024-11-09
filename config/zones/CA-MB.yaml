@@ -13,6 +13,7 @@ capacity:
   wind: 258
 contributors:
   - felixvanoost
+country: CA
 fallbackZoneMixes:
   _source: Statistics Canada - average production in 2020
   _url: https://docs.google.com/spreadsheets/d/1gobOiDRBsxKEKQPG2x5o2Qx17bQLXTSJLtF1JeasKWI/edit?usp=sharing
@@ -21,6 +22,5 @@ fallbackZoneMixes:
       gas: 0.003
       hydro: 0.9715
       wind: 0.0254
-timezone: America/Winnipeg
 region: Americas
-country: CA
+timezone: America/Winnipeg

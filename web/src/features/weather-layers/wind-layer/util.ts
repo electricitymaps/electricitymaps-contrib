@@ -32,3 +32,18 @@ export function isIphone() {
     Capacitor.getPlatform() === 'ios' || /iPad|iPhone|iPod/.test(navigator.userAgent)
   );
 }
+
+/**
+ * @returns {Boolean} true if agent is probably an Android.
+ */
+export function isAndroid() {
+  return Capacitor.getPlatform() === 'android' || /Android/.test(navigator.userAgent);
+}
+
+export function isMobileWeb() {
+  return Capacitor.getPlatform() === 'web' && (isIphone() || isAndroid() || isMobile());
+}
+
+export function isIos() {
+  return /Mac/.test(navigator.userAgent) || isIphone();
+}

@@ -1,36 +1,34 @@
 import * as Portal from '@radix-ui/react-portal';
-import Accordion from 'components/Accordion';
+import EstimationBadge from 'components/EstimationBadge';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
-import Divider from 'features/panels/zone/Divider';
-import { IndustryIcon } from 'icons/industryIcon';
-import { UtilityPoleIcon } from 'icons/utilityPoleIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
-import { useAtom } from 'jotai';
-import React, { useState } from 'react';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
+import { useHeaderHeight } from 'hooks/headerHeight';
+import { TFunction } from 'i18next';
+import { useAtom, useAtomValue } from 'jotai';
+import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiXMark } from 'react-icons/hi2';
-import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import trackEvent from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
+import { Charts, EstimationMethods, TimeAverages } from 'utils/constants';
 import {
-  dataSourcesCollapsedBarBreakdown,
   displayByEmissionsAtom,
+  isConsumptionAtom,
+  isHourlyAtom,
   productionConsumptionAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
-import { DataSources } from '../DataSources';
+import { ChartTitle } from '../ChartTitle';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
-import useZoneDataSources from '../hooks/useZoneDataSources';
+import { RoundedCard } from '../RoundedCard';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
-import BySource from './elements/BySource';
+import CapacityLegend from './elements/CapacityLegend';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
-import { useHeaderHeight } from './utils';
 
 const X_PADDING = 20;
 
@@ -48,20 +46,20 @@ function BarBreakdownChart({
     height,
   } = useBarBreakdownChartData();
 
-  const {
-    capacitySources,
-    powerGenerationSources,
-    emissionFactorSources,
-    emissionFactorSourcesToProductionSources,
-  } = useZoneDataSources();
-
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const width = observerWidth + X_PADDING;
+
+  const graphUnit = useMemo(
+    () =>
+      currentZoneDetail &&
+      determineUnit(displayByEmissions, currentZoneDetail, isConsumption, isHourly, t),
+    [currentZoneDetail, displayByEmissions, isConsumption, isHourly, t]
+  );
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
@@ -71,14 +69,22 @@ function BarBreakdownChart({
 
   const headerHeight = useHeaderHeight();
 
+  const titleText = useBarBreakdownChartTitle();
+  const estimationMethod = currentZoneDetail?.estimationMethod;
+  const pillText = useGetEstimationTranslation(
+    'pill',
+    estimationMethod,
+    currentZoneDetail?.estimatedPercentage
+  );
+
   if (isLoading) {
     return null;
   }
 
   if (!currentZoneDetail) {
     return (
-      <div className="relative w-full text-md" ref={ref}>
-        <BySource className="opacity-40" />
+      <div className="text-md relative w-full" ref={ref}>
+        <ChartTitle className="opacity-40" id={Charts.BAR_BREAKDOWN_CHART} />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
@@ -90,7 +96,6 @@ function BarBreakdownChart({
 
   const onMouseOver = (
     layerKey: ElectricityModeType | ZoneKey,
-    _: ZoneDetail,
     event: React.MouseEvent
   ) => {
     const { clientX, clientY } = event;
@@ -113,35 +118,28 @@ function BarBreakdownChart({
     setTooltipData(null);
   };
 
-  const showPowerSources = Boolean(
-    powerGenerationSources && powerGenerationSources.length > 0
-  );
-  const showEmissionSources = Boolean(
-    emissionFactorSources && emissionFactorSources.length > 0
-  );
-  const showCapacitySources = Boolean(capacitySources && capacitySources.length > 0);
-
-  const showDataSourceAccordion = Boolean(
-    showCapacitySources || showPowerSources || showEmissionSources
-  );
-
   return (
-    <div
-      className="mt-4 rounded-2xl border border-neutral-200 px-4 pb-2 text-sm dark:border-gray-700"
-      ref={ref}
-    >
-      <BySource
-        hasEstimationPill={hasEstimationPill}
-        estimatedPercentage={currentZoneDetail.estimatedPercentage}
-        unit={determineUnit(
-          displayByEmissions,
-          currentZoneDetail,
-          mixMode,
-          timeAverage,
-          t
-        )}
-        estimationMethod={currentZoneDetail.estimationMethod}
+    <RoundedCard ref={ref}>
+      <ChartTitle
+        titleText={titleText}
+        unit={graphUnit}
+        badge={
+          hasEstimationPill ? (
+            <EstimationBadge
+              text={pillText}
+              Icon={
+                estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
+              }
+            />
+          ) : undefined
+        }
+        id={Charts.BAR_BREAKDOWN_CHART}
       />
+      {!displayByEmissions && (
+        <CapacityLegend>
+          {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
+        </CapacityLegend>
+      )}
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
           <div
@@ -156,15 +154,14 @@ function BarBreakdownChart({
               zoneDetail={currentZoneDetail}
               hasEstimationPill={hasEstimationPill}
             />
-            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow sm:hidden dark:bg-gray-800">
-              <HiXMark size="24" />
+            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden">
+              <X />
             </button>
           </div>
         </Portal.Root>
       )}
       {displayByEmissions ? (
         <BarBreakdownEmissionsChart
-          data={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
           onProductionRowMouseOver={onMouseOver}
@@ -178,58 +175,51 @@ function BarBreakdownChart({
       ) : (
         <BarElectricityBreakdownChart
           data={zoneDetails}
-          currentData={currentZoneDetail}
           productionData={productionData}
           exchangeData={exchangeData}
-          onProductionRowMouseOver={onMouseOver}
+          onProductionRowMouseOver={onMouseOver} // TODO(Viktor): change this to onMouseEnter to avoid repeated calls to the same function with the same data
           onProductionRowMouseOut={onMouseOut}
           onExchangeRowMouseOver={onMouseOver}
           onExchangeRowMouseOut={onMouseOut}
           width={width}
           height={height}
           isMobile={false}
+          graphUnit={graphUnit}
         />
       )}
-      {showDataSourceAccordion && (
-        <>
-          <Divider />
-          <div className="py-1">
-            <Accordion
-              onOpen={() => {
-                trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-                  chart: 'bar-breakdown-chart',
-                });
-              }}
-              title={t('data-sources.title')}
-              className="text-md"
-              isCollapsedAtom={dataSourcesCollapsedBarBreakdown}
-            >
-              <div>
-                <DataSources
-                  title={t('data-sources.capacity')}
-                  icon={<UtilityPoleIcon />}
-                  sources={capacitySources}
-                />
-                <DataSources
-                  title={t('data-sources.power')}
-                  icon={<WindTurbineIcon />}
-                  sources={powerGenerationSources}
-                />
-                <DataSources
-                  title={t('data-sources.emission')}
-                  icon={<IndustryIcon />}
-                  sources={emissionFactorSources}
-                  emissionFactorSourcesToProductionSources={
-                    emissionFactorSourcesToProductionSources
-                  }
-                />
-              </div>
-            </Accordion>
-          </div>{' '}
-        </>
-      )}
-    </div>
+    </RoundedCard>
   );
 }
+
+export const useBarBreakdownChartTitle = () => {
+  const { t } = useTranslation();
+  const [timeAverage] = useAtom(timeAverageAtom);
+  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const [mixMode] = useAtom(productionConsumptionAtom);
+  const dataType = displayByEmissions ? 'emissions' : mixMode;
+
+  return getText(timeAverage, dataType, t);
+};
+
+export const getText = (
+  timePeriod: TimeAverages,
+  dataType: 'emissions' | 'production' | 'consumption',
+  t: TFunction
+) => {
+  const translations = {
+    hourly: {
+      emissions: t('country-panel.by-source.emissions'),
+      production: t('country-panel.by-source.electricity-production'),
+      consumption: t('country-panel.by-source.electricity-consumption'),
+    },
+    default: {
+      emissions: t('country-panel.by-source.total-emissions'),
+      production: t('country-panel.by-source.total-electricity-production'),
+      consumption: t('country-panel.by-source.total-electricity-consumption'),
+    },
+  };
+  const period = timePeriod === TimeAverages.HOURLY ? 'hourly' : 'default';
+  return translations[period][dataType];
+};
 
 export default BarBreakdownChart;
