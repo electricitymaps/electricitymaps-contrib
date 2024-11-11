@@ -244,7 +244,11 @@
       "title": "Applied methodologies",
       "estimations": "Electricity Maps - Estimations",
       "flowtracing": "Electricity Maps - Flow-tracing",
-      "carbonintensity": "Electricity Maps - Carbon intensity"
+      "carbonintensity": "Electricity Maps - Carbon intensity",
+      "historicalAggregations": "Electricity Maps - Historical aggregations"
+    },
+    "methodologies-and-data-sources": {
+      "title": "Methodologies and data sources"
     }
   },
   "header": {
@@ -1452,9 +1456,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Netherlands"
