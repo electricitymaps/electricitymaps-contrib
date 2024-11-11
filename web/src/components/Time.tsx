@@ -1,6 +1,8 @@
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { formatDate } from 'utils/formatting';
-import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
+import { getZoneTimezone } from 'utils/helpers';
 
 export function FormattedTime({
   datetime,
@@ -15,7 +17,7 @@ export function FormattedTime({
   className?: string;
   zoneId?: string;
 }) {
-  const pathZoneId = useGetZoneFromPath();
+  const { zoneId: pathZoneId } = useParams<RouteParameters>();
   const timeZoneZoneId = zoneId || pathZoneId;
   const timezone = getZoneTimezone(timeZoneZoneId);
   return (
