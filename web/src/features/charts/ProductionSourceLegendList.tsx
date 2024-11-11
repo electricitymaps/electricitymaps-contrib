@@ -2,27 +2,27 @@ import { Button } from 'components/Button';
 import { twMerge } from 'tailwind-merge';
 import { ElectricityModeType } from 'types';
 
+import { SelectedData } from './BreakdownChart';
 import ProductionSourceLegend from './ProductionSourceLegend';
 
 export default function ProductionSourceLegendList({
   sources,
   className,
-  onToggleSelectedData,
   selectedData,
   isDataInteractive = false,
 }: {
   sources: ElectricityModeType[];
   className?: string;
-  onToggleSelectedData?: (source: ElectricityModeType) => void;
-  selectedData?: Record<string, boolean>;
+  selectedData?: SelectedData;
   isDataInteractive?: boolean;
 }) {
+  // TODO(cady): memoize
   return (
     <div className={twMerge('flex w-fit flex-row flex-wrap gap-1 py-1', className)}>
       {sources.map((source, index) => {
-        const onClick = () => onToggleSelectedData?.(source);
+        const onClick = () => selectedData?.toggle(source);
         const capitalizedLabel = `${source.charAt(0).toUpperCase()}${source.slice(1)}`;
-        const isSourceSelected = selectedData && selectedData[source];
+        const isSourceSelected = selectedData?.isSelected(source);
 
         return (
           <Button

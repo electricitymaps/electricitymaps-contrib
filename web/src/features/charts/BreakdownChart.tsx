@@ -1,10 +1,10 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
-import { Charts, LeftPanelToggleOptions, TimeAverages } from 'utils/constants';
+import { Charts, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
@@ -24,6 +24,46 @@ interface BreakdownChartProps {
   timeAverage: TimeAverages;
 }
 
+// TODO(cady): fix types to use ElectricityModeType
+export interface SelectedData {
+  select(key: string): void;
+  deselect(key: string): void;
+  isSelected(key: string): boolean;
+  toggle(key: string): void;
+  hasSelection(): boolean;
+}
+
+const useSelectedData = (displayByEmissions: boolean): SelectedData => {
+  const [selectedData, setSelectedData] = useState<Partial<Record<string, boolean>>>({});
+
+  useEffect(() => setSelectedData({}), [displayByEmissions]);
+
+  return useMemo(
+    () => ({
+      select(key: string) {
+        setSelectedData((data) => ({ ...data, [key]: true }));
+      },
+      deselect(key: string) {
+        setSelectedData((data) => ({ ...data, [key]: false }));
+      },
+      isSelected(key: string): boolean {
+        return selectedData[key] ?? false;
+      },
+      toggle(key: string) {
+        if (this.isSelected(key)) {
+          this.deselect(key);
+        } else {
+          this.select(key);
+        }
+      },
+      hasSelection(): boolean {
+        return Object.values(selectedData).some(Boolean);
+      },
+    }),
+    [selectedData]
+  );
+};
+
 function BreakdownChart({
   displayByEmissions,
   datetimes,
@@ -33,22 +73,7 @@ function BreakdownChart({
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
-  const scope = displayByEmissions
-    ? LeftPanelToggleOptions.EMISSIONS
-    : LeftPanelToggleOptions.ELECTRICITY;
-  const [selectedData, setSelectedData] = useState<
-    Record<string, Record<string, boolean>>
-  >({ [LeftPanelToggleOptions.EMISSIONS]: {}, [LeftPanelToggleOptions.ELECTRICITY]: {} });
-
-  const onToggleSelectedData = (key: string) => {
-    setSelectedData((previous) => ({
-      ...previous,
-      [scope]: {
-        ...previous[scope],
-        [key]: !previous[scope][key],
-      },
-    }));
-  };
+  const selectedData = useSelectedData(displayByEmissions);
 
   if (!data) {
     return null;
@@ -94,7 +119,7 @@ function BreakdownChart({
         <AreaGraph
           testId="history-mix-graph"
           isDataInteractive={true}
-          selectedData={selectedData[scope]}
+          selectedData={selectedData}
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
@@ -118,8 +143,7 @@ function BreakdownChart({
       <ProductionSourceLegendList
         sources={getProductionSourcesInChart(chartData)}
         className="py-1.5"
-        onToggleSelectedData={onToggleSelectedData}
-        selectedData={selectedData[scope]}
+        selectedData={selectedData}
         isDataInteractive={true}
       />
     </RoundedCard>

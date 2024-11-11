@@ -12,6 +12,7 @@ import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import { SelectedData } from '../BreakdownChart';
 import { getTimeScale } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
@@ -110,7 +111,7 @@ interface AreagraphProps {
   tooltipSize?: 'small' | 'large';
   formatTick?: (t: number) => string | number;
   isDataInteractive?: boolean;
-  selectedData?: Record<string, boolean>;
+  selectedData?: SelectedData;
 }
 
 interface TooltipData {
