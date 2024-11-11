@@ -19,16 +19,16 @@ import {
 export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
 
 export const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
-  '1d': TimeAverages.HOURLY,
-  '1m': TimeAverages.DAILY,
-  '1y': TimeAverages.MONTHLY,
+  '24h': TimeAverages.HOURLY,
+  '30d': TimeAverages.DAILY,
+  '12mo': TimeAverages.MONTHLY,
   all: TimeAverages.YEARLY,
 } as const;
 
 const TIME_AVERAGE_TO_URL: Record<TimeAverages, string> = {
-  [TimeAverages.HOURLY]: '1d',
-  [TimeAverages.DAILY]: '1m',
-  [TimeAverages.MONTHLY]: '1y',
+  [TimeAverages.HOURLY]: '24h',
+  [TimeAverages.DAILY]: '30d',
+  [TimeAverages.MONTHLY]: '12mo',
   [TimeAverages.YEARLY]: 'all',
 } as const;
 

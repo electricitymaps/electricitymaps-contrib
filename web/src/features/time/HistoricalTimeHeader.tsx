@@ -18,10 +18,10 @@ export default function TimeHeader() {
   const { urlDatetime } = useParams();
   const navigate = useNavigateWithParameters();
   function handleLeftClick() {
-    if (!endDatetime) {
+    if (!urlDatetime) {
       return;
     }
-    const date = new Date(endDatetime);
+    const date = new Date(urlDatetime);
     date.setUTCHours(date.getUTCHours() - 24);
     const newDateString = date.toISOString().slice(0, -5) + 'Z';
     navigate({ datetime: newDateString });

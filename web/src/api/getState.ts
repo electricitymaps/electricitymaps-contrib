@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import type { GridState } from 'types';
-import { TimeAverages } from 'utils/constants';
+import { TimeAverages, UrlTimeAverages } from 'utils/constants';
 import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, isValidDate, QUERY_KEYS } from './helpers';
@@ -15,7 +15,7 @@ const getState = async (
   const shouldQueryHistorical =
     targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
   const path: URL = new URL(
-    `v8/state/${URL_TO_TIME_AVERAGE[timeAverage]}${
+    `v8/state/${timeAverage}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
@@ -34,13 +34,15 @@ const getState = async (
 const useGetState = (): UseQueryResult<GridState> => {
   const queryClient = useQueryClient();
   const { urlTimeAverage, urlDatetime } = useParams<{
-    urlTimeAverage: TimeAverages;
+    urlTimeAverage: UrlTimeAverages;
     urlDatetime?: string;
   }>();
-
-  const isHourly = urlTimeAverage === TimeAverages.HOURLY;
+  console.log('urlDatetime', urlDatetime);
+  const isHourly = urlTimeAverage === UrlTimeAverages['24h'];
   const shouldUseLastHour = isHourly && !urlDatetime;
-
+  const timeAverage = urlTimeAverage
+    ? URL_TO_TIME_AVERAGE[urlTimeAverage]
+    : TimeAverages.HOURLY;
   const lastHourQuery = useQuery<GridState>({
     queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
     queryFn: () => getState('last_hour'),
@@ -51,11 +53,11 @@ const useGetState = (): UseQueryResult<GridState> => {
     queryKey: [
       QUERY_KEYS.STATE,
       {
-        aggregate: urlTimeAverage,
+        aggregate: timeAverage,
         targetDatetime: urlDatetime,
       },
     ],
-    queryFn: () => getState(urlTimeAverage ?? TimeAverages.HOURLY, urlDatetime),
+    queryFn: () => getState(timeAverage, urlDatetime),
     enabled: !shouldUseLastHour || (shouldUseLastHour && lastHourQuery.isSuccess),
   });
 
