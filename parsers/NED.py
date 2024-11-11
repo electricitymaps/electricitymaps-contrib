@@ -24,7 +24,6 @@ TYPE_MAPPING = {
     1: "wind",
     51: "wind",
     2: "solar",
-    9: "geothermal",
     10: "unknown",
     26: "unknown",
     18: "gas",
@@ -39,7 +38,6 @@ TYPE_MAPPING = {
 class NedType(Enum):
     WIND = 1
     SOLAR = 2
-    GEOTHERMAL = 9
     OTHER = 10
     FOSSILGASPOWER = 18
     FOSSILHARDCOAL = 19
@@ -100,7 +98,6 @@ def call_api(target_datetime: datetime, forecast: bool = False):
             "type[]": [
                 NedType.WIND.value,
                 NedType.SOLAR.value,
-                NedType.GEOTHERMAL.value,
                 NedType.OTHER.value,
                 NedType.FOSSILGASPOWER.value,
                 NedType.FOSSILHARDCOAL.value,
