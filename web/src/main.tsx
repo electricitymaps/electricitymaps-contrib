@@ -7,19 +7,30 @@ import { Capacitor } from '@capacitor/core';
 import * as Sentry from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
-import { StrictMode } from 'react';
+import LoadingSpinner from 'components/LoadingSpinner';
+import { zoneExists } from 'features/panels/zone/util';
+import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { I18nextProvider } from 'react-i18next';
-import { BrowserRouter } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import i18n from 'translation/i18n';
+import { RouteParameters } from 'types';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
-const isProduction = import.meta.env.PROD;
+const RankingPanel = lazy(() => import('features/panels/ranking-panel/RankingPanel'));
+const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
 
+const isProduction = import.meta.env.PROD;
 if (isProduction) {
   Sentry.init({
     dsn: Capacitor.isNativePlatform()
@@ -63,6 +74,116 @@ const queryClient = new QueryClient({
 
 refetchDataOnHourChange(queryClient);
 
+export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
+  const [searchParameters] = useSearchParams();
+  const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
+  if (!zoneId) {
+    return <Navigate to="/map/24h" replace />;
+  }
+  const upperCaseZoneId = zoneId.toUpperCase();
+  if (zoneId !== upperCaseZoneId) {
+    return (
+      <Navigate
+        to={`/zone/${upperCaseZoneId}/${urlTimeAverage}?${searchParameters}`}
+        replace
+      />
+    );
+  }
+
+  // Handle legacy Australia zone names
+  if (upperCaseZoneId.startsWith('AUS')) {
+    return (
+      <Navigate
+        to={`/zone/${zoneId.replace('AUS', 'AU')}/${urlTimeAverage}?${searchParameters}`}
+        replace
+      />
+    );
+  }
+
+  // Only allow valid zone ids
+  // TODO: This should redirect to a 404 page specifically for zones
+  if (!zoneExists(upperCaseZoneId)) {
+    return <Navigate to="/map/24h" replace />;
+  }
+
+  return children;
+}
+
+function HandleLegacyRoutes() {
+  const [searchParameters] = useSearchParams();
+
+  const page = (searchParameters.get('page') || 'map')
+    .replace('country', 'zone')
+    .replace('highscore', 'ranking');
+  searchParameters.delete('page');
+
+  const zoneId = searchParameters.get('countryCode');
+  searchParameters.delete('countryCode');
+
+  return (
+    <Navigate
+      to={{
+        pathname: zoneId ? `/zone/${zoneId}` : `/${page}`,
+        search: searchParameters.toString(),
+      }}
+    />
+  );
+}
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <HandleLegacyRoutes />,
+      },
+      {
+        path: '/map',
+        element: (
+          <Navigate
+            to="/map/24h"
+            replace
+            state={{ preserveSearch: true, preserveHash: true }}
+          />
+        ),
+      },
+      {
+        path: '/zone',
+        element: (
+          <Navigate
+            to="/map/24h"
+            replace
+            state={{ preserveSearch: true, preserveHash: true }}
+          />
+        ),
+      },
+      {
+        path: '/map/:urlTimeAverage?/:urlDatetime?',
+        element: <RankingPanel />,
+      },
+      {
+        path: '/zone/:zoneId/:urlTimeAverage?/:urlDatetime?',
+        element: (
+          <ValidZoneIdGuardWrapper>
+            <Suspense fallback={<LoadingSpinner />}>
+              <ZoneDetails />
+            </Suspense>
+          </ValidZoneIdGuardWrapper>
+        ),
+      },
+      {
+        path: '*',
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <ZoneDetails />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+]);
+
 const container = document.querySelector('#root');
 if (container) {
   const root = createRoot(container);
@@ -71,9 +192,7 @@ if (container) {
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
           <QueryClientProvider client={queryClient}>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
+            <RouterProvider router={router} />
           </QueryClientProvider>
         </HelmetProvider>
       </I18nextProvider>
