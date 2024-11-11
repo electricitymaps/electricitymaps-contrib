@@ -82,18 +82,23 @@ def _kwh_to_mw(kwh):
     return round((kwh / 1000) * 4, 3)
 
 
-# It seems the API can take max itemPerPage 200. We fetch 192 items per page as this is: (12 types * 4 quaters * 4 hours) = 192
+# It seems the API can take max itemPerPage 200. We fetch x items per page as this is: x = (# types * 4 quaters * n hours) < 200
 # If the itemsPerPage is not a multiple of the types the API sometime skips a type, sometimes duplicates a type!
 # The API does not include the last page number in the response, so we need to keep querying until we get an empty response
 def call_api(target_datetime: datetime, forecast: bool = False):
     is_last_page = False
     pageNum = 1
     results = []
+
+    itemsPerPage = max(
+        [(len(NedType) * 4 * n) for n in range(1, 6) if (len(NedType) * 4 * n) < 200]
+    )
+
     while not is_last_page:
         # API fetches full day of data, so we add 1 day to validfrom[before] to get todays data
         params = {
             "page": pageNum,
-            "itemsPerPage": 192,
+            "itemsPerPage": itemsPerPage,
             "point": NedPoint.NETHERLANDS.value,
             "type[]": [
                 NedType.WIND.value,
@@ -134,7 +139,7 @@ def call_api(target_datetime: datetime, forecast: bool = False):
         results += response.json()
         pageNum += 1
 
-        if response.json() == [] or pageNum > 26:
+        if response.json() == [] or pageNum > 30:
             is_last_page = True
 
     return results
