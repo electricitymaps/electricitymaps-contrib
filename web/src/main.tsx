@@ -17,6 +17,7 @@ import {
   createBrowserRouter,
   Navigate,
   RouterProvider,
+  useLocation,
   useParams,
   useSearchParams,
 } from 'react-router-dom';
@@ -77,9 +78,20 @@ refetchDataOnHourChange(queryClient);
 export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
   const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
+  const location = useLocation();
   if (!zoneId) {
     return <Navigate to="/map/24h" replace />;
   }
+  if (!urlTimeAverage) {
+    return (
+      <Navigate
+        to={`/zone/${zoneId}/24h?${searchParameters}${location.hash}`}
+        replace
+        state={{ preserveSearch: true, preserveHash: true }}
+      />
+    );
+  }
+
   const upperCaseZoneId = zoneId.toUpperCase();
   if (zoneId !== upperCaseZoneId) {
     return (
