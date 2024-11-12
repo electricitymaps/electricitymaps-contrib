@@ -1,6 +1,7 @@
 import useGetState from 'api/getState';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -20,6 +21,7 @@ import { useIsBiggerThanMobile } from 'utils/styling';
 
 import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeAxis from './TimeAxis';
+import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
   const isHourly = useAtomValue(isHourlyAtom);
@@ -32,7 +34,7 @@ export default function TimeController({ className }: { className?: string }) {
   const setEndDatetime = useSetAtom(endDatetimeAtom);
   const setStartDatetime = useSetAtom(startDatetimeAtom);
   const { urlDatetime } = useParams();
-
+  const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const zoneTimezone = getZoneTimezone(zoneId);
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
@@ -89,8 +91,8 @@ export default function TimeController({ className }: { className?: string }) {
   );
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
-      {/* {isBiggerThanMobile && !urlDatetime && <TimeHeader />} */}
-      {isBiggerThanMobile && <HistoricalTimeHeader />}
+      {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
+      {isBiggerThanMobile && historicalLinkingEnabled && <HistoricalTimeHeader />}
       <div className="flex items-center gap-2">
         <TimeAverageToggle
           timeAverage={selectedTimeAverage || TimeAverages.HOURLY}

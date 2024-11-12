@@ -20,7 +20,7 @@ function formatDateToISO(date: Date): string {
   return date.toISOString().slice(0, -5) + 'Z';
 }
 
-export default function TimeHeader() {
+export default function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
