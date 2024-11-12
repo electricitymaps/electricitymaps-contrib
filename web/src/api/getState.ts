@@ -23,13 +23,11 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const [timeAverage] = useAtom(timeAverageAtom);
   const { urlTimeAverage } = useParams<RouteParameters>();
-  const isHourly = urlTimeAverage
-    ? URL_TO_TIME_AVERAGE[urlTimeAverage] === TimeAverages.HOURLY
-    : false;
-
-  console.log('isHourly', isHourly, urlTimeAverage);
+  const timeAverage = urlTimeAverage
+    ? URL_TO_TIME_AVERAGE[urlTimeAverage]
+    : TimeAverages.HOURLY;
+  const isHourly = urlTimeAverage ? timeAverage === TimeAverages.HOURLY : false;
 
   // First fetch last hour only
   const last_hour = useQuery<GridState>({
@@ -41,10 +39,7 @@ const useGetState = (): UseQueryResult<GridState> => {
   const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
 
   const shouldFetchFullState =
-    isHourly ||
-    hourZeroWasSuccessful ||
-    last_hour.isError === true ||
-    timeAverage !== 'hourly';
+    !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
 
   // Then fetch the rest of the data
   const all_data = useQuery<GridState>({
