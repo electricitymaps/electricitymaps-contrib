@@ -1,12 +1,11 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { timeAverageAtom, URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
+import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
 
@@ -21,7 +20,7 @@ const getZone = async (
     targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
 
   const path: URL = new URL(
-    `v8/details/${URL_TO_TIME_AVERAGE[timeAverage]}/${zoneId}${
+    `v8/details/${timeAverage}/${zoneId}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
@@ -47,12 +46,10 @@ const getZone = async (
 };
 
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const {
-    zoneId,
-    urlTimeAverage = TimeAverages.HOURLY,
-    urlDatetime,
-  } = useParams<RouteParameters>();
-
+  const { zoneId, urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
+  const timeAverage = urlTimeAverage
+    ? URL_TO_TIME_AVERAGE[urlTimeAverage]
+    : TimeAverages.HOURLY;
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,
@@ -66,7 +63,7 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
       if (!zoneId) {
         throw new Error('Zone ID is required');
       }
-      return getZone(urlTimeAverage, zoneId, urlDatetime);
+      return getZone(timeAverage, zoneId, urlDatetime);
     },
   });
 };
