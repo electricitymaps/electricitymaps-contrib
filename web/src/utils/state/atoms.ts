@@ -18,7 +18,7 @@ import {
 
 export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
 
-const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
+export const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
   '24h': TimeAverages.HOURLY,
   '30d': TimeAverages.DAILY,
   '12mo': TimeAverages.MONTHLY,
@@ -54,7 +54,8 @@ export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
-
+export const endDatetimeAtom = atom<Date | undefined>(undefined);
+export const startDatetimeAtom = atom<Date | undefined>(undefined);
 export const selectedDatetimeStringAtom = atom<string>((get) => {
   const { datetime } = get(selectedDatetimeIndexAtom);
   return dateToDatetimeString(datetime);
