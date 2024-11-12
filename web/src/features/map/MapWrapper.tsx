@@ -16,7 +16,6 @@ export default function MapWrapper() {
       setIsLoadingMap(false);
     }
   }, [setIsLoadingMap, shouldShowFallback]);
-
   return (
     <>
       <MapTooltip />

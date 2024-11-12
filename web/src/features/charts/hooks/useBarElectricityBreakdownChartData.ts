@@ -1,6 +1,7 @@
 import useGetZone from 'api/getZone';
 import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import { SpatialAggregate } from 'utils/constants';
 import {
   isConsumptionAtom,
@@ -20,7 +21,7 @@ const DEFAULT_BAR_PX_HEIGHT = 265;
 export default function useBarBreakdownChartData() {
   // TODO: Create hook for using "current" selectedTimeIndex of data instead
   const { data: zoneData, isLoading } = useGetZone();
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<RouteParameters>();
   const viewMode = useAtomValue(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
