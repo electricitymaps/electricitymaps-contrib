@@ -12,6 +12,13 @@ export enum TimeAverages {
   YEARLY = 'yearly',
 }
 
+export enum UrlTimeAverages {
+  '24h' = TimeAverages.HOURLY,
+  '30d' = TimeAverages.DAILY,
+  '12mo' = TimeAverages.MONTHLY,
+  'all' = TimeAverages.YEARLY,
+}
+
 export enum ToggleOptions {
   ON = 'on',
   OFF = 'off',
@@ -38,11 +45,20 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+export enum Charts {
+  PRICE_CHART = 'price_chart',
+  ORIGIN_CHART = 'origin_chart',
+  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
+  CARBON_CHART = 'carbon_chart',
+  EMISSION_CHART = 'emission_chart',
+  NET_EXCHANGE_CHART = 'net_exchange_chart',
+}
+
 export enum TrackEvent {
-  DATA_SOURCES_CLICKED = 'Data Sources Clicked',
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
   APP_BANNER_DISMISSED = 'App Banner Dismissed',
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
+  SHARE_CHART = 'Share Chart',
   FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
   APP_LOADED = 'App Loaded',
   PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
@@ -57,7 +73,7 @@ export enum TrackEvent {
   PANEL_PRODUCTION_BUTTON_CLICKED = 'PanelProductionButton Clicked',
   PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
   ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
-  APPLIED_METHODOLOGIES_EXPANDED = 'AppliedMethodologies Expanded',
+  METHODOLOGIES_AND_DATA_SOURCES_EXPANDED = 'Methodologies and Data Sources Expanded',
   TIME_AGGREGATE_BUTTON_CLICKED = 'Time Aggregate Button Clicked',
   SOLAR_ENABLED = 'Solar Enabled',
   SOLAR_DISABLED = 'Solar Disabled',
@@ -238,6 +254,7 @@ export const sourceLinkMapping: { [key: string]: string } = {
 };
 
 export const DEFAULT_ICON_SIZE = 16;
+export const DEFAULT_TOAST_DURATION = 3 * 1000; // 3s
 
 export enum EstimationMethods {
   TSA = 'ESTIMATED_TIME_SLICER_AVERAGE',

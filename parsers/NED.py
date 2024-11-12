@@ -24,7 +24,6 @@ TYPE_MAPPING = {
     1: "wind",
     51: "wind",
     2: "solar",
-    9: "geothermal",
     10: "unknown",
     26: "unknown",
     18: "gas",
@@ -39,7 +38,6 @@ TYPE_MAPPING = {
 class NedType(Enum):
     WIND = 1
     SOLAR = 2
-    GEOTHERMAL = 9
     OTHER = 10
     FOSSILGASPOWER = 18
     FOSSILHARDCOAL = 19
@@ -84,21 +82,27 @@ def _kwh_to_mw(kwh):
     return round((kwh / 1000) * 4, 3)
 
 
-# There is a limit of items we can get per page, so we fetch all possible per page.
+# It seems the API can take max itemPerPage 200. We fetch x items per page as this is: x = (# types * 4 quaters * n hours) < 200
+# If the itemsPerPage is not a multiple of the types the API sometime skips a type, sometimes duplicates a type!
 # The API does not include the last page number in the response, so we need to keep querying until we get an empty response
 def call_api(target_datetime: datetime, forecast: bool = False):
     is_last_page = False
     pageNum = 1
     results = []
+
+    itemsPerPage = max(
+        [(len(NedType) * 4 * n) for n in range(1, 6) if (len(NedType) * 4 * n) < 200]
+    )
+
     while not is_last_page:
+        # API fetches full day of data, so we add 1 day to validfrom[before] to get todays data
         params = {
             "page": pageNum,
-            "itemsPerPage": 3500,
+            "itemsPerPage": itemsPerPage,
             "point": NedPoint.NETHERLANDS.value,
             "type[]": [
                 NedType.WIND.value,
                 NedType.SOLAR.value,
-                NedType.GEOTHERMAL.value,
                 NedType.OTHER.value,
                 NedType.FOSSILGASPOWER.value,
                 NedType.FOSSILHARDCOAL.value,
@@ -135,7 +139,7 @@ def call_api(target_datetime: datetime, forecast: bool = False):
         results += response.json()
         pageNum += 1
 
-        if response.json() == [] or pageNum > 20:
+        if response.json() == [] or pageNum > 30:
             is_last_page = True
 
     return results
@@ -166,6 +170,13 @@ def format_data(
 
     formatted_production_data = ProductionBreakdownList(logger)
     for _group_key, group_df in df:
+        # Add lag to avoid using data that is not yet complete and remove "future" data
+        if (
+            datetime.fromisoformat(group_df["validfrom"].iloc[0])
+            > (datetime.now(timezone.utc) - timedelta(hours=0.5))
+            and not forecast
+        ):
+            continue
         data_dict = group_df.to_dict(orient="records")
         mix = ProductionMix()
         for data in data_dict:
@@ -185,6 +196,7 @@ def format_data(
             if forecast
             else EventSourceType.measured,
         )
+
     return formatted_production_data
 
 
@@ -199,7 +211,6 @@ def fetch_production(
     target_datetime = target_datetime or datetime.now(timezone.utc)
 
     json_data = call_api(target_datetime)
-
     NED_data = format_data(json_data, logger)
 
     return NED_data.to_list()

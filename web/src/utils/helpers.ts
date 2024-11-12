@@ -1,9 +1,16 @@
 import { callerLocation, useMeta } from 'api/getMeta';
-import { useMatch, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useMatch,
+  useMatches,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
+  RouteParameters,
   StateZoneData,
   ZoneDetail,
 } from 'types';
@@ -12,7 +19,7 @@ import zonesConfigJSON from '../../config/zones.json';
 import { CombinedZonesConfig } from '../../geo/types';
 
 export function useGetZoneFromPath() {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<RouteParameters>();
   const match = useMatch('/zone/:id');
   if (zoneId) {
     return zoneId;
@@ -60,12 +67,64 @@ export function getProductionCo2Intensity(
   return dischargeCo2Intensity;
 }
 
-/**
- * Returns a link which maintains search and hash parameters
- * @param to
- */
-export function createToWithState(to: string) {
-  return `${to}${location.search}${location.hash}`;
+export function useNavigateWithParameters() {
+  const navigator = useNavigate();
+  const location = useLocation();
+  const {
+    zoneId: previousZoneId,
+    urlTimeAverage: previousTimeAverage,
+    urlDatetime: previousDatetime,
+  } = useParams();
+  const parameters = useMatches();
+  const isZoneRoute = parameters.some((match) => match.pathname.startsWith('/zone'));
+
+  const basePath = isZoneRoute ? '/zone' : '/map';
+
+  return ({
+    to = basePath,
+    zoneId = isZoneRoute ? previousZoneId : undefined,
+    timeAverage = previousTimeAverage,
+    datetime = previousDatetime,
+    keepHashParameters = true,
+  }: {
+    to?: string;
+    zoneId?: string;
+    timeAverage?: string;
+    datetime?: string;
+    keepHashParameters?: boolean;
+  }) => {
+    // Always preserve existing search params
+    const isDestinationZoneRoute = to.startsWith('/zone');
+    const currentSearch = new URLSearchParams(location.search);
+    const path = getDestinationPath({
+      to,
+      zoneId: isDestinationZoneRoute ? zoneId : undefined,
+      timeAverage,
+      datetime,
+    });
+    const fullPath = {
+      pathname: path,
+      search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
+      hash: keepHashParameters ? location.hash : undefined,
+    };
+    navigator(fullPath);
+  };
+}
+
+export function getDestinationPath({
+  to,
+  zoneId,
+  timeAverage,
+  datetime,
+}: {
+  to: string;
+  zoneId?: string;
+  timeAverage?: string;
+  datetime?: string;
+}) {
+  return `${to}${zoneId ? `/${zoneId}` : ''}${timeAverage ? `/${timeAverage}` : ''}${
+    datetime ? `/${datetime}` : ''
+  }`;
 }
 
 /**
@@ -169,3 +228,11 @@ export const getZoneTimezone = (zoneId?: string) => {
   const { zones } = zonesConfigJSON as unknown as CombinedZonesConfig;
   return zones[zoneId]?.timezone;
 };
+
+/**
+ * @returns {Boolean} true if agent is probably a mobile device.
+ */
+export const hasMobileUserAgent = () =>
+  /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
+    navigator.userAgent
+  );
