@@ -37,11 +37,15 @@ const useGetState = (): UseQueryResult<GridState> => {
     urlTimeAverage: UrlTimeAverages;
     urlDatetime?: string;
   }>();
-  const isHourly = urlTimeAverage === UrlTimeAverages['24h'];
+  const isHourly = urlTimeAverage
+    ? URL_TO_TIME_AVERAGE[urlTimeAverage] === TimeAverages.HOURLY
+    : false;
+
   const shouldUseLastHour = isHourly && !urlDatetime;
   const timeAverage = urlTimeAverage
     ? URL_TO_TIME_AVERAGE[urlTimeAverage]
     : TimeAverages.HOURLY;
+  console.log('shouldUseLastHour', shouldUseLastHour, isHourly, urlTimeAverage);
   const lastHourQuery = useQuery<GridState>({
     queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
     queryFn: () => getState('last_hour'),
