@@ -15,10 +15,28 @@ from electricitymap.contrib.lib.models.events import (
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
+from .ENTSOE import ENTSOE_DOMAIN_MAPPINGS
+from .ENTSOE import parse_production as ENTSOE_parse_production
+from .ENTSOE import query_production as ENTSOE_query_production
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
 
 URL = "https://api.ned.nl/v1/utilizations"
+
+UNAVAILABLE_TYPES_BEFORE2021 = [
+    "biomass",
+    "geothermal",
+    "hydro",
+    "nuclear",
+    "gas",
+    "coal",
+    "oil",
+    "unknown",
+]
+
+ADDITIONAL_UNAVAILABLE_TYPES_BEFORE2017 = [
+    "solar",
+]
 
 TYPE_MAPPING = {
     1: "wind",
@@ -82,7 +100,7 @@ def _kwh_to_mw(kwh):
     return round((kwh / 1000) * 4, 3)
 
 
-# It seems the API can take max itemPerPage 200. We fetch 192 items per page as this is: (12 types * 4 quaters * 4 hours) = 192
+# It seems the API can take max itemPerPage 200. We fetch max items per page as this is: (# types * 4 quaters * n hours) < 200
 # If the itemsPerPage is not a multiple of the types the API sometime skips a type, sometimes duplicates a type!
 # The API does not include the last page number in the response, so we need to keep querying until we get an empty response
 def call_api(target_datetime: datetime, forecast: bool = False):
@@ -91,9 +109,17 @@ def call_api(target_datetime: datetime, forecast: bool = False):
     results = []
     while not is_last_page:
         # API fetches full day of data, so we add 1 day to validfrom[before] to get todays data
+        itemsPerPage = max(
+            [
+                (len(NedType) * 4 * n)
+                for n in range(1, 6)
+                if (len(NedType) * 4 * n) < 200
+            ]
+        )
+
         params = {
             "page": pageNum,
-            "itemsPerPage": 192,
+            "itemsPerPage": itemsPerPage,
             "point": NedPoint.NETHERLANDS.value,
             "type[]": [
                 NedType.WIND.value,
@@ -134,10 +160,82 @@ def call_api(target_datetime: datetime, forecast: bool = False):
         results += response.json()
         pageNum += 1
 
-        if response.json() == [] or pageNum > 26:
+        if response.json() == [] or pageNum > 30:
             is_last_page = True
 
     return results
+
+
+def _get_entsoe_production_data(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger,
+) -> ProductionBreakdownList:
+    # Add 2 days as ENTSOE fetches data from three days before target_datetime, where NED fetches for target_datetime and day before
+    ENTSOE_raw_data = ENTSOE_query_production(
+        ENTSOE_DOMAIN_MAPPINGS[zone_key],
+        session,
+        target_datetime=(target_datetime + timedelta(days=2)),
+    )
+    if ENTSOE_raw_data is None:
+        raise ParserException(
+            parser="NED.py",
+            message="Failed to fetch ENTSOE data",
+            zone_key=zone_key,
+        )
+    ENTSOE_parsed_data = ENTSOE_parse_production(
+        ENTSOE_raw_data, zoneKey=zone_key, logger=logger
+    )
+
+    return ENTSOE_parsed_data
+
+
+def combine_production_data(entsoe_data, ned_data, logger):
+    non_matching_indices = set()
+
+    # Allocate the productions from ENTSOE as NED.nl is missing all types except wind and solar 2017-2021
+    # Before 2017, NED.nl is missing all types except wind
+    for idx, ned_event in enumerate(ned_data.events):
+        if ned_event.datetime >= datetime(2021, 1, 1, tzinfo=timezone.utc):
+            continue  # Skip events after 2021, as NED has all types
+
+        entsoe_events = [
+            e for e in entsoe_data.events if e.datetime == ned_event.datetime
+        ]
+
+        if len(entsoe_events) == 0:
+            non_matching_indices.add(idx)
+            continue
+
+        entsoe_event = entsoe_events[0]
+
+        # NED solar and wind data available for 2017-2021 span
+        for key in UNAVAILABLE_TYPES_BEFORE2021:
+            attr = getattr(entsoe_event.production, key, None)
+            if attr is not None:
+                setattr(ned_event.production, key, attr)
+
+        # Only NED wind data available before 2017
+        if ned_event.datetime < datetime(2017, 1, 1, tzinfo=timezone.utc):
+            for key in ADDITIONAL_UNAVAILABLE_TYPES_BEFORE2017:
+                attr = getattr(entsoe_event.production, key, None)
+                if attr is not None:
+                    setattr(ned_event.production, key, attr)
+
+        ned_event.source += "," + entsoe_event.source
+
+    if len(non_matching_indices) > 0:
+        logger.info(
+            f"Failed to match {len(non_matching_indices)}  NED events with ENTSOE events"
+        )
+        ned_data.events = [
+            event
+            for idx, event in enumerate(ned_data.events)
+            if idx not in non_matching_indices
+        ]
+
+    return ned_data
 
 
 def format_data(
@@ -208,7 +306,18 @@ def fetch_production(
     json_data = call_api(target_datetime)
     NED_data = format_data(json_data, logger)
 
-    return NED_data.to_list()
+    all_dates = [item.get("datetime") for item in NED_data.to_list()]
+
+    if all(date > datetime(2021, 1, 1, tzinfo=timezone.utc) for date in all_dates):
+        return NED_data.to_list()
+
+    else:
+        ENTSOE_data = _get_entsoe_production_data(
+            zone_key, session, target_datetime, logger
+        )
+
+        combined_data = combine_production_data(ENTSOE_data, NED_data, logger)
+        return combined_data.to_list()
 
 
 def fetch_production_forecast(
