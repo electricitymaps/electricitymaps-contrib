@@ -1,10 +1,9 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom } from 'jotai';
 import { useParams } from 'react-router-dom';
 import type { GridState, RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { timeAverageAtom, URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
+import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, QUERY_KEYS } from './helpers';
 
