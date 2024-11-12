@@ -5,9 +5,10 @@ import { useDarkMode } from 'hooks/theme';
 import { useAtom, useAtomValue } from 'jotai';
 import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
 import { ReactElement } from 'react';
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages } from 'utils/constants';
-import { useGetZoneFromPath } from 'utils/helpers';
+import { TimeAverages, TrackEvent } from 'utils/constants';
 import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
@@ -74,7 +75,7 @@ export const getThumbIcon = (
 };
 
 function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
-  trackEvent('Time Slider Button Interaction', {
+  trackEvent(TrackEvent.TIME_SLIDER_BUTTON, {
     selectedIndex: `${timeAverage}: ${selectedIndex}`,
   });
 }
@@ -147,7 +148,7 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 }
 
 function TimeSlider(props: TimeSliderProps) {
-  const zoneId = useGetZoneFromPath();
+  const { zoneId } = useParams<RouteParameters>();
   const isHourly = useAtomValue(isHourlyAtom);
   const showNightTime = zoneId && isHourly;
 

@@ -353,7 +353,11 @@ class AggregatableEvent(Event):
     @staticmethod
     def _sources(df_view: pd.DataFrame) -> str:
         sources = df_view["source"].unique()
-        return ", ".join(sources)
+        flattened_sources = [
+            source.strip() for sublist in sources for source in sublist.split(",")
+        ]
+        unique_sources = sorted(set(flattened_sources))
+        return ", ".join(unique_sources)
 
     @staticmethod
     def _unique_source_type(df_view: pd.DataFrame) -> EventSourceType:

@@ -15,6 +15,7 @@ capacity:
 contributors:
   - willbeaufoy
   - gopikrishna1793
+country: IN
 emissionFactors:
   direct:
     battery discharge:
@@ -29,11 +30,23 @@ emissionFactors:
     battery discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 92.67451046028728
+        value: 92.67
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 87.28
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 77.49
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 92.67451046028728
+        value: 92.67
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 87.28
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 77.49
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -44,15 +57,44 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.898529923602576
+        hydro: 0.8958093644290379
         hydro discharge: 0.0
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
-        unknown: 0.10160972395107282
+        unknown: 0.10419063607196172
+        wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.9052572345868161
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.09474280565301471
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.9195610380661258
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.08043894206875551
         wind: 0.0
 parsers:
   production: IN_HP.fetch_production
-timezone: Asia/Kolkata
 region: Asia
-country: IN
+timezone: Asia/Kolkata

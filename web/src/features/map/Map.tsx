@@ -8,11 +8,15 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
-import { matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { Mode } from 'utils/constants';
-import { createToWithState, getCarbonIntensity, useUserLocation } from 'utils/helpers';
+import { useLocation, useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import {
-  productionConsumptionAtom,
+  getCarbonIntensity,
+  useNavigateWithParameters,
+  useUserLocation,
+} from 'utils/helpers';
+import {
+  isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   userLocationAtom,
@@ -62,10 +66,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
-  const navigate = useNavigate();
+  const navigate = useNavigateWithParameters();
   const theme = useTheme();
-  const mixMode = useAtomValue(productionConsumptionAtom);
-  const isConsumption = mixMode === Mode.CONSUMPTION;
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const spatialAggregate = useAtomValue(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
@@ -75,7 +78,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
-
+  const { zoneId: pathZoneId } = useParams<RouteParameters>();
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
@@ -203,7 +206,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+
     setSelectedZoneId(pathZoneId);
     if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
@@ -228,6 +231,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     setHoveredZone,
     worldGeometries.features,
     setLeftPanelOpen,
+    pathZoneId,
   ]);
 
   const onClick = useCallback(
@@ -255,9 +259,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(createToWithState(`/zone/${zoneId}`));
+        // Do not keep hash on navigate so that users are not scrolled to id element in new view
+        navigate({ to: '/zone', zoneId, keepHashParameters: false });
       } else {
-        navigate(createToWithState('/map'));
+        navigate({ to: '/map', keepHashParameters: false });
       }
     },
     [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
@@ -377,7 +382,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
         [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
       ]}
-      style={{ minWidth: '100vw', height: '100vh', position: 'absolute' }}
+      style={{
+        minWidth: '100vw',
+        height: '100vh',
+        position: 'absolute',
+      }}
       mapStyle={MAP_STYLE as StyleSpecification}
     >
       <BackgroundLayer />

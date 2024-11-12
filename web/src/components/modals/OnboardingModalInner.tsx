@@ -56,7 +56,7 @@ function Modal({
   return (
     <>
       <div
-        className="absolute inset-0 z-40 bg-gray-800/20"
+        className="absolute inset-0 z-50 bg-gray-800/20"
         onClick={onDismiss}
         onKeyDown={onDismiss}
         role="presentation"

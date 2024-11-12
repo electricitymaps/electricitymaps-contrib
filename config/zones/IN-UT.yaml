@@ -16,8 +16,8 @@ contributors:
   - alixunderplatz
   - lorrieq
   - gopikrishna1793
+country: IN
 parsers:
   production: IN_UT.fetch_production
-timezone: Asia/Kolkata
 region: Asia
-country: IN
+timezone: Asia/Kolkata

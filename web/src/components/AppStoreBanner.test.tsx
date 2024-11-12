@@ -34,6 +34,7 @@ describe('AppStoreBanner', () => {
 
   test('does not render when isAppBannerDismissed is true', () => {
     render(
+      // @ts-expect-error initialValues is not typed correctly
       <TestProvider initialValues={[[appStoreDismissedAtom, true]]}>
         <AppStoreBanner />
       </TestProvider>

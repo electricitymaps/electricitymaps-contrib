@@ -4,7 +4,6 @@ import {
   GenerationType,
   ZoneDetail,
 } from 'types';
-import { Mode } from 'utils/constants';
 import { getProductionCo2Intensity } from 'utils/helpers';
 
 import {
@@ -17,7 +16,7 @@ export function getProductionTooltipData(
   selectedLayerKey: ElectricityModeType,
   zoneDetail: ZoneDetail,
   displayByEmissions: boolean,
-  mixMode: Mode
+  isConsumption: boolean
 ) {
   const co2Intensity = getProductionCo2Intensity(selectedLayerKey, zoneDetail);
   const isStorage = selectedLayerKey.includes('storage');
@@ -28,8 +27,8 @@ export function getProductionTooltipData(
 
   const storageKey = generationType as ElectricityStorageKeyType;
 
-  const totalElectricity = getTotalElectricityAvailable(zoneDetail, mixMode);
-  const totalEmissions = getTotalEmissionsAvailable(zoneDetail, mixMode);
+  const totalElectricity = getTotalElectricityAvailable(zoneDetail, isConsumption);
+  const totalEmissions = getTotalEmissionsAvailable(zoneDetail, isConsumption);
 
   const {
     capacity,
@@ -102,16 +101,12 @@ export function getExchangeTooltipData(
   const isExport = exchange < 0;
 
   const usage = Math.abs(displayByEmissions ? exchange * co2Intensity * 1000 : exchange);
-  const totalElectricity = getTotalElectricityAvailable(zoneDetail, Mode.CONSUMPTION);
+  const totalElectricity = getTotalElectricityAvailable(zoneDetail, true);
   const totalCapacity = exchangeCapacityRange
     ? Math.abs(exchangeCapacityRange[isExport ? 0 : 1])
     : undefined;
   const emissions = Math.abs(exchange * co2Intensity * 1000);
-  const totalEmissions = getTotalEmissionsAvailable(
-    zoneDetail,
-
-    Mode.CONSUMPTION
-  );
+  const totalEmissions = getTotalEmissionsAvailable(zoneDetail, true);
 
   return {
     co2Intensity,
