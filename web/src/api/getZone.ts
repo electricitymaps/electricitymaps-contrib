@@ -1,10 +1,12 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
+import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
+import { timeAverageAtom, URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
 
@@ -49,11 +51,7 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
     zoneId,
     urlTimeAverage = TimeAverages.HOURLY,
     urlDatetime,
-  } = useParams<{
-    zoneId: string;
-    urlTimeAverage: TimeAverages;
-    urlDatetime?: string;
-  }>();
+  } = useParams<RouteParameters>();
 
   return useQuery<ZoneDetails>({
     queryKey: [

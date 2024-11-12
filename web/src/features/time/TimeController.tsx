@@ -20,7 +20,6 @@ import { useIsBiggerThanMobile } from 'utils/styling';
 
 import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeAxis from './TimeAxis';
-import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
   const isHourly = useAtomValue(isHourlyAtom);
@@ -33,6 +32,7 @@ export default function TimeController({ className }: { className?: string }) {
   const setEndDatetime = useSetAtom(endDatetimeAtom);
   const setStartDatetime = useSetAtom(startDatetimeAtom);
   const { urlDatetime } = useParams();
+
   const zoneTimezone = getZoneTimezone(zoneId);
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
@@ -97,6 +97,7 @@ export default function TimeController({ className }: { className?: string }) {
           onToggleGroupClick={onToggleGroupClick}
         />
       </div>
+
       <div>
         {/* The above div is needed to treat the TimeSlider and TimeAxis as one DOM element */}
         <TimeSlider
