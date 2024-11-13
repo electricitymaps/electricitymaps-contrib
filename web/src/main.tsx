@@ -23,6 +23,7 @@ import {
 } from 'react-router-dom';
 import i18n from 'translation/i18n';
 import { RouteParameters } from 'types';
+import { UrlTimeAverages } from 'utils/constants';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
@@ -79,24 +80,35 @@ function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
   const { urlTimeAverage } = useParams<RouteParameters>();
   const location = useLocation();
+
   if (!urlTimeAverage) {
     return (
       <Navigate
         to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
         replace
-        state={{ preserveSearch: true, preserveHash: true }}
       />
     );
   }
 
   const lowerCaseTimeAverage = urlTimeAverage.toLowerCase();
-  if (urlTimeAverage !== lowerCaseTimeAverage) {
-    const newPath = location.pathname.replace(urlTimeAverage, lowerCaseTimeAverage);
+
+  if (!(lowerCaseTimeAverage in UrlTimeAverages)) {
     return (
       <Navigate
-        to={`${newPath}?${searchParameters}${location.hash}`}
+        to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
         replace
-        state={{ preserveSearch: true, preserveHash: true }}
+      />
+    );
+  }
+
+  if (urlTimeAverage !== lowerCaseTimeAverage) {
+    return (
+      <Navigate
+        to={`${location.pathname.replace(
+          urlTimeAverage,
+          lowerCaseTimeAverage
+        )}?${searchParameters}${location.hash}`}
+        replace
       />
     );
   }
@@ -108,7 +120,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   const [searchParameters] = useSearchParams();
   const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
   if (!zoneId) {
-    return <Navigate to="/map/24h" replace />;
+    return <Navigate to={`/map/24h?${searchParameters}`} replace />;
   }
 
   const upperCaseZoneId = zoneId.toUpperCase();
@@ -134,7 +146,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   // Only allow valid zone ids
   // TODO: This should redirect to a 404 page specifically for zones
   if (!zoneExists(upperCaseZoneId)) {
-    return <Navigate to="/map/24h" replace />;
+    return <Navigate to={`/map/24h?${searchParameters}`} replace />;
   }
 
   return children;
@@ -171,23 +183,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/map',
-        element: (
-          <Navigate
-            to="/map/24h"
-            replace
-            state={{ preserveSearch: true, preserveHash: true }}
-          />
-        ),
+        element: <Navigate to="/map/24h" replace />,
       },
       {
         path: '/zone',
-        element: (
-          <Navigate
-            to="/map/24h"
-            replace
-            state={{ preserveSearch: true, preserveHash: true }}
-          />
-        ),
+        element: <Navigate to="/map/24h" replace />,
       },
       {
         path: '/map/:urlTimeAverage?/:urlDatetime?',
