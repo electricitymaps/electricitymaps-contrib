@@ -28,7 +28,7 @@ export function useShare() {
           console.error(error);
           callback?.(t('share-button.share-error'));
         }
-        return null;
+        return;
       }
     },
     [t]
