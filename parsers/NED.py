@@ -241,13 +241,13 @@ def fetch_production(
     json_data = call_api(target_datetime)
     NED_data = format_data(json_data, logger)
 
-    all_dates = [
-        item.get("datetime")
-        for item in NED_data.to_list()
-        if item.get("datetime") is not None
-    ]
+    all_dates = [item.get("datetime") for item in NED_data.to_list()]
 
-    if all(date >= datetime(2021, 1, 1, tzinfo=timezone.utc) for date in all_dates):
+    if all(
+        date >= datetime(2021, 1, 1, tzinfo=timezone.utc)
+        for date in all_dates
+        if date is not None
+    ):
         return NED_data.to_list()
 
     else:
