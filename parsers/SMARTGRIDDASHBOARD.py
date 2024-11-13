@@ -156,7 +156,7 @@ def fetch_production(
 
         productionMix = ProductionMix()
         if all([item["Value"], wind_prod]):
-            productionMix.add_value("wind", wind_prod)
+            productionMix.add_value("wind", wind_prod, correct_negative_with_zero=True)
             productionMix.add_value("unknown", float(item["Value"]) - wind_prod)
 
         production.append(
