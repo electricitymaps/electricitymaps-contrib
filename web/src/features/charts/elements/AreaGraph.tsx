@@ -5,10 +5,11 @@ import TimeAxis from 'features/time/TimeAxis';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
-import { ZoneDetail } from 'types';
+import { useParams } from 'react-router-dom';
+import { RouteParameters, ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import { TimeAverages, timeAxisMapping } from 'utils/constants';
-import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
+import { getZoneTimezone } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
@@ -146,7 +147,7 @@ function AreaGraph({
   const selectedDate = useAtomValue(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
   const isBiggerThanMobile = useBreakpoint('sm');
-  const zoneId = useGetZoneFromPath();
+  const { zoneId } = useParams<RouteParameters>();
   const zoneTimezone = getZoneTimezone(zoneId);
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);

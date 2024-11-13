@@ -8,6 +8,7 @@ import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   ElectricityStorageType,
+  RouteParameters,
   ZoneDetail,
 } from 'types';
 import { modeColor, modeOrder, SpatialAggregate, TimeAverages } from 'utils/constants';
@@ -38,10 +39,10 @@ export const getLayerFill =
       co2ColorScale(d.data.meta.exchangeCo2Intensities?.[key]);
   };
 
-export default function useBreakdownChartData() {
+export default function useOriginChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const co2ColorScale = useCo2ColorScale();
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<RouteParameters>();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const viewMode = useAtomValue(spatialAggregateAtom);

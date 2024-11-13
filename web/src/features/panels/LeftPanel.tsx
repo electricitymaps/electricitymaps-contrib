@@ -1,74 +1,13 @@
-import LoadingSpinner from 'components/LoadingSpinner';
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import { useAtom } from 'jotai';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 import { useIsMobile } from 'utils/styling';
 
 import { leftPanelOpenAtom } from './panelAtoms';
-import { zoneExists } from './zone/util';
-
-const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
-const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
-
-function HandleLegacyRoutes() {
-  const [searchParameters] = useSearchParams();
-
-  const page = (searchParameters.get('page') || 'map')
-    .replace('country', 'zone')
-    .replace('highscore', 'ranking');
-  searchParameters.delete('page');
-
-  const zoneId = searchParameters.get('countryCode');
-  searchParameters.delete('countryCode');
-
-  return (
-    <Navigate
-      to={{
-        pathname: zoneId ? `/zone/${zoneId}` : `/${page}`,
-        search: searchParameters.toString(),
-      }}
-    />
-  );
-}
-
-function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
-  const [searchParameters] = useSearchParams();
-  const { zoneId } = useParams();
-
-  if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
-  }
-
-  // Handle legacy Australia zone names
-  if (upperCaseZoneId.startsWith('AUS')) {
-    return (
-      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
-    );
-  }
-
-  // Only allow valid zone ids
-  // TODO: This should redirect to a 404 page specifically for zones
-  if (!zoneExists(upperCaseZoneId)) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-}
 
 type CollapseButtonProps = {
   isCollapsed: boolean;
@@ -112,9 +51,11 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
   return (
     <div
       data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-[21] h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
-        location.pathname === '/map' ? 'hidden' : ''
-      } ${isOpen ? '' : '-translate-x-full'}`}
+      className={twMerge(
+        'absolute left-0 top-0 z-[21] h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:w-[calc(14vw_+_16rem)]',
+        location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex',
+        !isOpen && '-translate-x-full'
+      )}
     >
       {isMobile && <MobileHeader />}
       <section className="h-full w-full">{children}</section>
@@ -122,32 +63,11 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
 export default function LeftPanel() {
   return (
     <OuterPanel>
-      <Routes>
-        <Route path="/" element={<HandleLegacyRoutes />} />
-        <Route path="/zone" element={<Navigate to="/" replace />} />
-        <Route
-          path="/zone/:zoneId"
-          element={
-            <ValidZoneIdGuardWrapper>
-              <Suspense fallback={<LoadingSpinner />}>
-                <ZoneDetails />
-              </Suspense>
-            </ValidZoneIdGuardWrapper>
-          }
-        />
-        {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<LoadingSpinner />}>
-              <RankingPanel />
-            </Suspense>
-          }
-        />
-      </Routes>
+      <Outlet />
     </OuterPanel>
   );
 }

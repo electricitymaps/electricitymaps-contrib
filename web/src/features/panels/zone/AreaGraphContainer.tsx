@@ -1,8 +1,8 @@
 import { HorizontalDivider } from 'components/Divider';
-import BreakdownChart from 'features/charts/BreakdownChart';
 import CarbonChart from 'features/charts/CarbonChart';
 import EmissionChart from 'features/charts/EmissionChart';
 import NetExchangeChart from 'features/charts/NetExchangeChart';
+import OriginChart from 'features/charts/OriginChart';
 import PriceChart from 'features/charts/PriceChart';
 import { TimeAverages } from 'utils/constants';
 
@@ -22,7 +22,7 @@ export default function AreaGraphContainer({
       ) : (
         <CarbonChart datetimes={datetimes} timeAverage={timeAverage} />
       )}
-      <BreakdownChart
+      <OriginChart
         displayByEmissions={displayByEmissions}
         datetimes={datetimes}
         timeAverage={timeAverage}

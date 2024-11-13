@@ -7,7 +7,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { ZoneMessage } from 'types';
+import { RouteParameters, ZoneMessage } from 'types';
 import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -29,7 +29,7 @@ import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<RouteParameters>();
   const timeAverage = useAtomValue(timeAverageAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
@@ -57,13 +57,13 @@ export default function ZoneDetails(): JSX.Element {
   useScrollHashIntoView(isLoading);
 
   if (!zoneId) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
