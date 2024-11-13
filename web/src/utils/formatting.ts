@@ -260,18 +260,7 @@ export function formatDateRange(
     timeZone,
   });
 
-  // If dates are in the same month and year
-  if (
-    startDate.getMonth() === endDate.getMonth() &&
-    startDate.getFullYear() === endDate.getFullYear()
-  ) {
-    return `${new Intl.DateTimeFormat(locale, { month: 'short' }).format(
-      startDate
-    )} ${startDate.getDate()} - ${endDate.getDate()}, ${startDate.getFullYear()}`;
-  }
-
-  // If dates are in different months or years
-  return `${formatter.format(startDate)} - ${formatter.format(endDate)}`;
+  return formatter.formatRange(startDate, endDate);
 }
 
 function isValidDate(date: Date) {
