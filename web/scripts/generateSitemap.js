@@ -2,8 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+
 import { fileURLToPath } from 'url';
+
 import zonesConfig from '../config/zones.json' assert { type: 'json' };
+
+// Import this from the constant file when this script is in typescript
+const UrlTimeAverages = ['24h', '30d', '12mo', 'all'];
 
 // Fix the paths for Windows/Linux consistency
 let dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -25,7 +30,12 @@ function generateSitemap() {
   }
 
   const zoneUrls = Object.keys(zonesConfig.zones)
-    .map((zone) => `<url><loc>https://app.electricitymaps.com/zone/${zone}</loc></url>`)
+    .flatMap((zone) =>
+      UrlTimeAverages.map(
+        (timeAverage) =>
+          `<url><loc>https://app.electricitymaps.com/zone/${zone}/${timeAverage}</loc></url>`
+      )
+    )
     .join('');
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
