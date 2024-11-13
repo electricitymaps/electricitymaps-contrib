@@ -75,21 +75,40 @@ const queryClient = new QueryClient({
 
 refetchDataOnHourChange(queryClient);
 
-export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
+function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
-  const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
+  const { urlTimeAverage } = useParams<RouteParameters>();
   const location = useLocation();
-  if (!zoneId) {
-    return <Navigate to="/map/24h" replace />;
-  }
   if (!urlTimeAverage) {
     return (
       <Navigate
-        to={`/zone/${zoneId}/24h?${searchParameters}${location.hash}`}
+        to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
         replace
         state={{ preserveSearch: true, preserveHash: true }}
       />
     );
+  }
+
+  const lowerCaseTimeAverage = urlTimeAverage.toLowerCase();
+  if (urlTimeAverage !== lowerCaseTimeAverage) {
+    const newPath = location.pathname.replace(urlTimeAverage, lowerCaseTimeAverage);
+    return (
+      <Navigate
+        to={`${newPath}?${searchParameters}${location.hash}`}
+        replace
+        state={{ preserveSearch: true, preserveHash: true }}
+      />
+    );
+  }
+
+  return children;
+}
+
+export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
+  const [searchParameters] = useSearchParams();
+  const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
+  if (!zoneId) {
+    return <Navigate to="/map/24h" replace />;
   }
 
   const upperCaseZoneId = zoneId.toUpperCase();
@@ -172,15 +191,21 @@ const router = createBrowserRouter([
       },
       {
         path: '/map/:urlTimeAverage?/:urlDatetime?',
-        element: <RankingPanel />,
+        element: (
+          <TimeAverageGuardWrapper>
+            <RankingPanel />
+          </TimeAverageGuardWrapper>
+        ),
       },
       {
         path: '/zone/:zoneId/:urlTimeAverage?/:urlDatetime?',
         element: (
           <ValidZoneIdGuardWrapper>
-            <Suspense fallback={<LoadingSpinner />}>
-              <ZoneDetails />
-            </Suspense>
+            <TimeAverageGuardWrapper>
+              <Suspense fallback={<LoadingSpinner />}>
+                <ZoneDetails />
+              </Suspense>
+            </TimeAverageGuardWrapper>
           </ValidZoneIdGuardWrapper>
         ),
       },

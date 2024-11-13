@@ -32,7 +32,7 @@ const useGetState = (): UseQueryResult<GridState> => {
   const last_hour = useQuery<GridState>({
     queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
     queryFn: async () => getState('last_hour'),
-    enabled: isHourly && timeAverage === 'hourly',
+    enabled: isHourly,
   });
 
   const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
