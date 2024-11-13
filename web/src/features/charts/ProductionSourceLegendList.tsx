@@ -2,7 +2,7 @@ import { Button } from 'components/Button';
 import { twMerge } from 'tailwind-merge';
 import { ElectricityModeType } from 'types';
 
-import { SelectedData } from './BreakdownChart';
+import { SelectedData } from './OriginChart';
 import ProductionSourceLegend from './ProductionSourceLegend';
 
 export default function ProductionSourceLegendList({

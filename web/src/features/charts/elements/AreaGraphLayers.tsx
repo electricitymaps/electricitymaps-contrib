@@ -6,8 +6,8 @@ import React from 'react';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
-import { SelectedData } from '../BreakdownChart';
 import { detectHoveredDatapointIndex, getNextDatetime, noop } from '../graphUtils';
+import { SelectedData } from '../OriginChart';
 import { AreaGraphElement } from '../types';
 
 interface AreaGraphLayersProps {
