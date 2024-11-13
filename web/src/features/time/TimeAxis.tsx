@@ -9,6 +9,7 @@ import { formatDateTick } from '../../utils/formatting';
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
   hourly: 6,
+  hourly_72: 12,
   daily: 6,
   monthly: 1,
   yearly: 1,

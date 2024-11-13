@@ -20,6 +20,7 @@ export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
 
 const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
   '24h': TimeAverages.HOURLY,
+  '72h': TimeAverages.HOURLY_72,
   '30d': TimeAverages.DAILY,
   '12mo': TimeAverages.MONTHLY,
   all: TimeAverages.YEARLY,
@@ -27,6 +28,7 @@ const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
 
 const TIME_AVERAGE_TO_URL: Record<TimeAverages, string> = {
   [TimeAverages.HOURLY]: '24h',
+  [TimeAverages.HOURLY_72]: '72h',
   [TimeAverages.DAILY]: '30d',
   [TimeAverages.MONTHLY]: '12mo',
   [TimeAverages.YEARLY]: 'all',

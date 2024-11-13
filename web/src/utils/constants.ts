@@ -7,6 +7,7 @@ export const baseUrl = 'https://app.electricitymaps.com';
 // The order here determines the order displayed
 export enum TimeAverages {
   HOURLY = 'hourly',
+  HOURLY_72 = 'hourly_72',
   DAILY = 'daily',
   MONTHLY = 'monthly',
   YEARLY = 'yearly',
@@ -14,6 +15,7 @@ export enum TimeAverages {
 
 export enum UrlTimeAverages {
   '24h' = TimeAverages.HOURLY,
+  '72h' = TimeAverages.HOURLY_72, // ugh
   '30d' = TimeAverages.DAILY,
   '12mo' = TimeAverages.MONTHLY,
   'all' = TimeAverages.YEARLY,
@@ -137,6 +139,7 @@ export const modeOrderBarBreakdown = [
 //A mapping between the TimeAverages enum and the corresponding Duration for the date-fns add/substract method
 export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
   daily: 'days',
+  hourly_72: 'hours',
   hourly: 'hours',
   monthly: 'months',
   yearly: 'years',
