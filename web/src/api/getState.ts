@@ -2,8 +2,8 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import type { GridState } from 'types';
-import { TimeAverages, UrlTimeAverages } from 'utils/constants';
+import type { GridState, RouteParameters } from 'types';
+import { TimeAverages } from 'utils/constants';
 import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, isValidDate, QUERY_KEYS } from './helpers';
@@ -33,10 +33,7 @@ const getState = async (
 
 const useGetState = (): UseQueryResult<GridState> => {
   const queryClient = useQueryClient();
-  const { urlTimeAverage, urlDatetime } = useParams<{
-    urlTimeAverage: UrlTimeAverages;
-    urlDatetime?: string;
-  }>();
+  const { urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
   const isHourly = urlTimeAverage
     ? URL_TO_TIME_AVERAGE[urlTimeAverage] === TimeAverages.HOURLY
     : false;

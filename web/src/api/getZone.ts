@@ -47,6 +47,7 @@ const getZone = async (
 
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const { zoneId, urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
+
   const timeAverage = urlTimeAverage
     ? URL_TO_TIME_AVERAGE[urlTimeAverage]
     : TimeAverages.HOURLY;
