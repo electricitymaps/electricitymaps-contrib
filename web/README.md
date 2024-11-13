@@ -8,7 +8,7 @@ _If you're looking for more info on the parsers, check out [how to setup Python 
 
 Prerequisites:
 
-- Ensure you have `NodeJS` and `pnpm` installed locally (`brew install pnpm`)
+- Ensure you have `NodeJS` (`v20.9.0` or above) and `pnpm` installed locally (`brew install pnpm`)
 - Run `pnpm install` in both the web and mockserver directories
 
 1. Start the mockserver: `pnpm run mockserver`

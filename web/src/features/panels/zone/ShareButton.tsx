@@ -24,6 +24,7 @@ interface ShareButtonProps
 }
 
 const trackShareClick = trackShare(ShareType.SHARE);
+const trackShareCompletion = trackShare(ShareType.COMPLETED_SHARE);
 
 export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
@@ -51,7 +52,11 @@ export function ShareButton({
           url: shareUrl,
         },
         toastMessageCallback
-      );
+      ).then((shareCompleted) => {
+        if (shareCompleted) {
+          trackShareCompletion();
+        }
+      });
     } else {
       copyToClipboard(shareUrl, toastMessageCallback);
     }
