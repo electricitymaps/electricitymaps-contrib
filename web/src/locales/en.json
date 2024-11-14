@@ -1756,7 +1756,8 @@
       "zoneName": "United States Minor Outlying Islands"
     },
     "US": {
-      "zoneName": "Contiguous United States"
+      "zoneName": "Contiguous United States",
+      "seoZoneName": "United States of America - USA"
     },
     "US-AK": {
       "countryName": "USA",
