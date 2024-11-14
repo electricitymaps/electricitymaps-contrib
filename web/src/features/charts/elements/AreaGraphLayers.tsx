@@ -7,6 +7,7 @@ import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
 import { detectHoveredDatapointIndex, getNextDatetime, noop } from '../graphUtils';
+import { SelectedData } from '../OriginChart';
 import { AreaGraphElement } from '../types';
 
 interface AreaGraphLayersProps {
@@ -18,8 +19,9 @@ interface AreaGraphLayersProps {
   mouseOutHandler: any;
   isMobile: boolean;
   svgNode: any;
-  selectedLayerIndex?: number | null;
-  showHoverHighlight?: boolean;
+  hoverLayerIndex?: number | null;
+  isDataInteractive?: boolean;
+  selectedData?: SelectedData;
 }
 
 function AreaGraphLayers({
@@ -31,8 +33,9 @@ function AreaGraphLayers({
   mouseOutHandler,
   isMobile,
   svgNode,
-  selectedLayerIndex,
-  showHoverHighlight,
+  hoverLayerIndex,
+  isDataInteractive,
+  selectedData,
 }: AreaGraphLayersProps) {
   const isDarkModeEnabled = useDarkMode();
   const [x1, x2] = timeScale.range();
@@ -40,9 +43,8 @@ function AreaGraphLayers({
   if (x1 >= x2 || y1 >= y2) {
     return null;
   }
-  const hasSelectedLayer = selectedLayerIndex !== null;
-  const isSingleLayer = layers.length === 1;
-  const shouldHideEmptyData = showHoverHighlight && !isSingleLayer;
+  const hasHoverLayer = hoverLayerIndex !== null;
+  const shouldHideEmptyData = isDataInteractive && layers.length > 1;
 
   // Generate layer paths
   const layerArea = area()
@@ -110,16 +112,24 @@ function AreaGraphLayers({
           ]
         );
 
-        const isCurrentLayerSelected =
-          showHoverHighlight && hasSelectedLayer && selectedLayerIndex === ind;
-        const shouldLayerBeSaturated =
-          isSingleLayer || !hasSelectedLayer || isCurrentLayerSelected;
+        const shouldLayerBeSaturated = getShouldLayerBeSaturated({
+          dataIsNotInteractive: !isDataInteractive,
+          hoveredIndex: hoverLayerIndex,
+          index: ind,
+          layerKey: layer.key,
+          selectedData: selectedData,
+        });
 
-        const emphasizeStroke = !isSingleLayer && isCurrentLayerSelected;
-        let stroke = layer.stroke;
-        if (showHoverHighlight && emphasizeStroke) {
-          stroke = isDarkModeEnabled ? 'white' : 'black';
-        }
+        const isInteracted =
+          (isDataInteractive && hasHoverLayer && hoverLayerIndex === ind) ||
+          selectedData?.isSelected(layer.key);
+
+        const stroke = getLayerStrokeStyle({
+          isInteracted,
+          shouldLayerBeSaturated,
+          isDarkModeEnabled,
+          layerStroke: layer.stroke,
+        });
 
         return (
           <React.Fragment key={layer.key}>
@@ -165,5 +175,50 @@ function AreaGraphLayers({
     </g>
   );
 }
+
+const getShouldLayerBeSaturated = ({
+  dataIsNotInteractive,
+  hoveredIndex,
+  index,
+  selectedData,
+  layerKey,
+}: {
+  dataIsNotInteractive: boolean;
+  hoveredIndex: number | null | undefined;
+  index: number;
+  selectedData?: SelectedData;
+  layerKey: string;
+}) => {
+  if (dataIsNotInteractive) {
+    return true;
+  }
+
+  if (hoveredIndex != null) {
+    return hoveredIndex === index;
+  }
+
+  if (selectedData?.hasSelection()) {
+    return selectedData?.isSelected(layerKey);
+  }
+
+  return true;
+};
+
+const getLayerStrokeStyle = ({
+  layerStroke,
+  isInteracted,
+  shouldLayerBeSaturated,
+  isDarkModeEnabled,
+}: {
+  layerStroke: string;
+  isInteracted?: boolean;
+  shouldLayerBeSaturated: boolean;
+  isDarkModeEnabled: boolean;
+}) => {
+  if (isInteracted && shouldLayerBeSaturated) {
+    return isDarkModeEnabled ? 'white' : 'black';
+  }
+  return layerStroke;
+};
 
 export default React.memo(AreaGraphLayers);
