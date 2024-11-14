@@ -96,52 +96,70 @@ def fetch_live_production(
     data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
     all_data_points = []
 
-    for date_key in data_json:
-        date_dict = data_json[date_key]
+    for day in data_json:
+        date_dict = data_json[day]
+        hourly_data = {}
 
-        for date_key in data_json:
-            date_dict = data_json[date_key]
-            hourly_data = {}
+        for date in date_dict:
+            dt = datetime.strptime(date, "%Y-%m-%d %H:%M:%S%z").replace(tzinfo=TX_TZ)
+            hour_dt = dt.replace(minute=0, second=0, microsecond=0)
 
-            for item in date_dict:
-                dt = datetime.strptime(item, "%Y-%m-%d %H:%M:%S%z").replace(
-                    tzinfo=TX_TZ
-                )
-                hour_dt = dt.replace(minute=0, second=0, microsecond=0)
+            if hour_dt not in hourly_data:
+                hourly_data[hour_dt] = {
+                    mode: [] for mode in GENERATION_MAPPING.values()
+                }
 
-                if hour_dt not in hourly_data:
-                    hourly_data[hour_dt] = {}
-                    for mode in GENERATION_MAPPING.values():
-                        hourly_data[hour_dt][mode] = []
+            for mode, data in date_dict[date].items():
+                hourly_data[hour_dt][GENERATION_MAPPING[mode]].append(data["gen"])
 
-                for mode in date_dict[item]:
-                    mapped_mode = GENERATION_MAPPING[mode]
-                    value = date_dict[item][mode]["gen"]
-                    hourly_data[hour_dt][mapped_mode].append(value)
+        for hour_dt, modes in hourly_data.items():
+            production = {}
+            storage = {}
+            for mode, values in modes.items():
+                if mode == "battery" and values:
+                    storage[mode] = sum(values) / len(values)
+                elif values:
+                    production[mode] = sum(values) / len(values)
 
-            for hour_dt, modes in hourly_data.items():
-                production = {}
-                storage = {}
-                for mode, values in modes.items():
-                    if mode == "battery":
-                        if values:
-                            storage[mode] = sum(values) / len(values)
-
-                    elif values:
-                        production[mode] = sum(values) / len(values)
-                    else:
-                        production[mode] = 0
-
-                data_point = {
+            all_data_points.append(
+                {
                     "zoneKey": zone_key,
                     "datetime": hour_dt,
                     "production": production,
                     "storage": storage,
                     "source": "ercot.com",
                 }
-                all_data_points.append(data_point)
+            )
 
     return all_data_points
+
+
+def get_sheet_from_date(year: int, month: str, session: Session):
+    if year > 2020:
+        url = HISTORICAL_GENERATION_URL[str(year)]
+        return pd.read_excel(url, engine="openpyxl", sheet_name=month)
+    else:
+        url = HISTORICAL_GENERATION_URL["all_previous"]
+        response = session.get(url)
+
+        if response.content.startswith(b"PK"):
+            zip_data = BytesIO(response.content)
+        else:
+            try:
+                decompressed = gzip.decompress(response.content)
+                zip_data = BytesIO(decompressed)
+            except gzip.BadGzipFile as err:
+                raise ValueError("File is neither a ZIP nor a gzipped file") from err
+
+        year_file = f"IntGenbyFuel{year}.xlsx"
+
+        with zipfile.ZipFile(zip_data) as zf:
+            if year_file not in zf.namelist():
+                raise NotImplementedError(
+                    f"Data for year {year} not found in historical data"
+                )
+            with zf.open(year_file) as excel_file:
+                return pd.read_excel(excel_file, engine="openpyxl", sheet_name=month)
 
 
 def fetch_historical_production(
@@ -152,52 +170,24 @@ def fetch_historical_production(
 ) -> list:
     if target_datetime.tzinfo is None:
         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+
     end = target_datetime + timedelta(hours=1)
     start = end - timedelta(days=1)
     year = target_datetime.year
-    all_data_points = []
     month = target_datetime.strftime("%b")
 
-    if year > 2020:
-        url = HISTORICAL_GENERATION_URL[str(year)]
-        df = pd.read_excel(url, engine="openpyxl", sheet_name=month)
-    else:
-        # TODO: Add support for previous years
-        url = HISTORICAL_GENERATION_URL["all_previous"]
-        response = session.get(url)
+    all_data_points = []
 
-        if response.content.startswith(b"PK"):
-            zip_data = BytesIO(response.content)
-        else:
-            try:
-                decompressed = gzip.decompress(response.content)
-                zip_data = BytesIO(decompressed)
-            except:
-                raise ValueError("File is neither a ZIP nor a gzipped file")
-
-        print(zip_data)
-        # Find the file for the target year
-        year_file = f"IntGenbyFuel{year}.xlsx"
-
-        with zipfile.ZipFile(zip_data) as zf:
-            if year_file not in zf.namelist():
-                raise NotImplementedError(
-                    f"Data for year {year} not found in historical data"
-                )
-            with zf.open(year_file) as excel_file:
-                df = pd.read_excel(excel_file, engine="openpyxl", sheet_name=month)
+    df = get_sheet_from_date(year, month, session)
 
     df["Date"] = pd.to_datetime(df["Date"])
-
     time_columns = df.columns[4:]
-
     datapoints_by_date = {}
 
     for _, row in df.iterrows():
         date = datetime.strptime(str(row["Date"]), "%Y-%m-%d %H:%M:%S").replace(
             tzinfo=TX_TZ
         )
-
         if date < (start + timedelta(days=-1)) or date > (end + timedelta(days=1)):
             continue
 
@@ -209,24 +199,17 @@ def fetch_historical_production(
             if hour_dt < start or hour_dt > end:
                 continue
 
+            # We get the data in 15 minute intervals, so we need to sum the 4 columns that represent an hour
             start_idx = hour * 4
             end_idx = start_idx + 4
-
             hour_cols = time_columns[start_idx:end_idx]
-
             hour_value = row[hour_cols].sum()
 
             if hour_dt not in datapoints_by_date:
                 datapoints_by_date[hour_dt] = {"storage": {}, "production": {}}
 
-            if production_source == "battery":
-                datapoints_by_date[hour_dt]["storage"].update(
-                    {production_source: hour_value}
-                )
-            else:
-                datapoints_by_date[hour_dt]["production"].update(
-                    {production_source: hour_value}
-                )
+            target = "storage" if production_source == "battery" else "production"
+            datapoints_by_date[hour_dt][target].update({production_source: hour_value})
 
     for hour_dt, production_and_storage in datapoints_by_date.items():
         production = production_and_storage.get("production", {})
