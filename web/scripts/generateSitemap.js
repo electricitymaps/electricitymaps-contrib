@@ -29,21 +29,22 @@ function generateSitemap() {
     }
   }
 
-  const zoneUrls = Object.keys(zonesConfig.zones)
-    .flatMap((zone) =>
-      UrlTimeAverages.map(
-        (timeAverage) =>
-          `<url><loc>https://app.electricitymaps.com/zone/${zone}/${timeAverage}</loc></url>`
-      )
+  const mapUrls = UrlTimeAverages.map(
+    (timeAverage) =>
+      `<url><loc>https://app.electricitymaps.com/map/${timeAverage}</loc></url>`
+  );
+
+  const zoneUrls = Object.keys(zonesConfig.zones).flatMap((zone) =>
+    UrlTimeAverages.map(
+      (timeAverage) =>
+        `<url><loc>https://app.electricitymaps.com/zone/${zone}/${timeAverage}</loc></url>`
     )
-    .join('');
+  );
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://app.electricitymaps.com/</loc></url>
-  <url><loc>https://app.electricitymaps.com/map/</loc></url>
-  ${zoneUrls}
-</urlset>`.replaceAll(/\n\s*/g, '');
+    ${[...mapUrls, ...zoneUrls].join('')}
+  </urlset>`.replaceAll(/\n\s*/g, '');
 
   fs.writeFileSync(SITEMAP_PATH, sitemap);
 }
