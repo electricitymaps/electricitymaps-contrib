@@ -33,6 +33,7 @@ export enum ShareType {
   REDDIT = 'reddit',
   COPY = 'copy',
   SHARE = 'share',
+  COMPLETED_SHARE = 'completed_share',
 }
 
 export const trackShare = (shareType: ShareType) => () =>
