@@ -31,7 +31,11 @@ export default function ProductionSourceLegendList({
             type="tertiary"
             size="sm"
             foregroundClasses={'text-xs font-normal text-neutral-600 dark:text-gray-300'}
-            backgroundClasses={isSourceSelected ? 'bg-neutral-400/10' : ''}
+            backgroundClasses={
+              isSourceSelected
+                ? 'outline outline-1 outline-neutral-200 bg-neutral-400/10 dark:bg-gray-600/80 dark:outline-gray-400/80'
+                : ''
+            }
             onClick={onClick}
             icon={<ProductionSourceLegend key={index} electricityType={source} />}
           >
