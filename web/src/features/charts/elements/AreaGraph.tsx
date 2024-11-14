@@ -11,7 +11,7 @@ import useResizeObserver from 'use-resize-observer';
 import { TimeAverages, timeAxisMapping } from 'utils/constants';
 import { getZoneTimezone } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
-import { useBreakpoint } from 'utils/styling';
+import { useBreakpoint, useIsMobile } from 'utils/styling';
 
 import { getTimeScale } from '../graphUtils';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
@@ -102,7 +102,6 @@ interface AreagraphProps {
     dataPoint: AreaGraphElement
   ) => void;
   markerHideHandler: () => void;
-  isMobile: boolean;
   isDisabled?: boolean;
   height: string;
   datetimes: Date[];
@@ -127,7 +126,6 @@ function AreaGraph({
   layerStroke,
   layerFill,
   markerFill,
-  isMobile,
   height = '10em',
   isDisabled = false,
   selectedTimeAggregate,
@@ -140,7 +138,7 @@ function AreaGraph({
   const reference = useRef(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<HTMLDivElement>({ ref: reference });
-
+  const isMobile = useIsMobile();
   const selectedDate = useAtomValue(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
   const isBiggerThanMobile = useBreakpoint('sm');
@@ -191,7 +189,6 @@ function AreaGraph({
 
   const [graphIndex, setGraphIndex] = useAtom(AreaGraphIndexSelectedAtom);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(null);
-
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
 
   // Graph update handlers. Used for tooltip data.
@@ -227,11 +224,18 @@ function AreaGraph({
   );
   const mouseOutHandler = useMemo(
     () => () => {
-      setGraphIndex(null);
-      setSelectedLayerIndex(null);
+      if (!isMobile) {
+        setGraphIndex(null);
+        setSelectedLayerIndex(null);
+      }
     },
-    [setGraphIndex, setSelectedLayerIndex]
+    [setGraphIndex, setSelectedLayerIndex, isMobile]
   );
+
+  const onCloseTooltip = () => {
+    setTooltipData(null);
+    setSelectedLayerIndex(null);
+  };
 
   const headerHeight = useHeaderHeight();
 
@@ -311,6 +315,7 @@ function AreaGraph({
             tooltipSize={tooltipSize}
             isBiggerThanMobile={isBiggerThanMobile}
             headerHeight={headerHeight}
+            closeTooltip={onCloseTooltip}
           >
             {(props) => tooltip(props)}
           </AreaGraphTooltip>

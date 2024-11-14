@@ -78,7 +78,6 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
           layerFill={layerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
           height="10em"
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}

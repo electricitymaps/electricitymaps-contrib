@@ -59,7 +59,6 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           markerFill={markerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          isMobile={false}
           height="10em"
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}

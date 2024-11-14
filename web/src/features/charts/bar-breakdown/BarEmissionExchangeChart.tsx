@@ -1,6 +1,7 @@
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
+import { useIsMobile } from 'utils/styling';
 
 import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
@@ -29,7 +30,7 @@ export default function BarEmissionExchangeChart({
   ) => void;
 }) {
   const { t } = useTranslation();
-
+  const isMobile = useIsMobile();
   if (!exchangeData || exchangeData.length === 0) {
     return null;
   }
@@ -56,7 +57,7 @@ export default function BarEmissionExchangeChart({
               value={d.exchange}
               onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}
-              isMobile={false}
+              isMobile={isMobile}
             >
               <HorizontalBar
                 className="exchange"
