@@ -15,6 +15,14 @@ export const getZoneName = (zoneCode: string) => {
   return fullName;
 };
 
+export const getSEOZoneName = (zoneCode: string) => {
+  const seoZoneName = translateIfExists(`zoneShortName.${zoneCode}.seoZoneName`);
+  if (seoZoneName) {
+    return seoZoneName;
+  }
+  return getZoneName(zoneCode);
+};
+
 export const getCountryName = (zoneCode: string) =>
   translateIfExists(`zoneShortName.${zoneCode}.countryName`);
 
