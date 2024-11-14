@@ -17,11 +17,13 @@ import {
   createBrowserRouter,
   Navigate,
   RouterProvider,
+  useLocation,
   useParams,
   useSearchParams,
 } from 'react-router-dom';
 import i18n from 'translation/i18n';
 import { RouteParameters } from 'types';
+import { UrlTimeAverages } from 'utils/constants';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
@@ -74,27 +76,70 @@ const queryClient = new QueryClient({
 
 refetchDataOnHourChange(queryClient);
 
-export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
+function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
-  const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
-  if (!zoneId) {
-    return <Navigate to="/map/24h" replace />;
-  }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
+  const { urlTimeAverage } = useParams<RouteParameters>();
+  const location = useLocation();
+
+  if (!urlTimeAverage) {
     return (
       <Navigate
-        to={`/zone/${upperCaseZoneId}/${urlTimeAverage}?${searchParameters}`}
+        to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
         replace
       />
     );
   }
 
-  // Handle legacy Australia zone names
-  if (upperCaseZoneId.startsWith('AUS')) {
+  const lowerCaseTimeAverage = urlTimeAverage.toLowerCase();
+
+  if (!(lowerCaseTimeAverage in UrlTimeAverages)) {
     return (
       <Navigate
-        to={`/zone/${zoneId.replace('AUS', 'AU')}/${urlTimeAverage}?${searchParameters}`}
+        to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
+        replace
+      />
+    );
+  }
+
+  if (urlTimeAverage !== lowerCaseTimeAverage) {
+    return (
+      <Navigate
+        to={`${location.pathname.replace(
+          urlTimeAverage,
+          lowerCaseTimeAverage
+        )}?${searchParameters}${location.hash}`}
+        replace
+      />
+    );
+  }
+
+  return children;
+}
+
+export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
+  const [searchParameters] = useSearchParams();
+  const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
+  if (!zoneId) {
+    return <Navigate to={`/map/24h?${searchParameters}`} replace />;
+  }
+
+  // Sanitize the zone ID by removing any special characters except for hyphens and making it uppercase
+  let sanitizedZoneId = zoneId.replaceAll(/[^\dA-Za-z-]/g, '').toUpperCase();
+
+  // Remove trailing hyphens
+  if (sanitizedZoneId.endsWith('-')) {
+    sanitizedZoneId = sanitizedZoneId.slice(0, -1);
+  }
+
+  // Handle legacy Australian zone IDs
+  if (sanitizedZoneId.startsWith('AUS')) {
+    sanitizedZoneId = sanitizedZoneId.replace('AUS', 'AU');
+  }
+
+  if (zoneId !== sanitizedZoneId) {
+    return (
+      <Navigate
+        to={`/zone/${sanitizedZoneId}/${urlTimeAverage}?${searchParameters}`}
         replace
       />
     );
@@ -102,8 +147,8 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
 
   // Only allow valid zone ids
   // TODO: This should redirect to a 404 page specifically for zones
-  if (!zoneExists(upperCaseZoneId)) {
-    return <Navigate to="/map/24h" replace />;
+  if (!zoneExists(sanitizedZoneId)) {
+    return <Navigate to={`/map/24h?${searchParameters}`} replace />;
   }
 
   return children;
@@ -140,35 +185,29 @@ const router = createBrowserRouter([
       },
       {
         path: '/map',
-        element: (
-          <Navigate
-            to="/map/24h"
-            replace
-            state={{ preserveSearch: true, preserveHash: true }}
-          />
-        ),
+        element: <Navigate to="/map/24h" replace />,
       },
       {
         path: '/zone',
-        element: (
-          <Navigate
-            to="/map/24h"
-            replace
-            state={{ preserveSearch: true, preserveHash: true }}
-          />
-        ),
+        element: <Navigate to="/map/24h" replace />,
       },
       {
         path: '/map/:urlTimeAverage?/:urlDatetime?',
-        element: <RankingPanel />,
+        element: (
+          <TimeAverageGuardWrapper>
+            <RankingPanel />
+          </TimeAverageGuardWrapper>
+        ),
       },
       {
         path: '/zone/:zoneId/:urlTimeAverage?/:urlDatetime?',
         element: (
           <ValidZoneIdGuardWrapper>
-            <Suspense fallback={<LoadingSpinner />}>
-              <ZoneDetails />
-            </Suspense>
+            <TimeAverageGuardWrapper>
+              <Suspense fallback={<LoadingSpinner />}>
+                <ZoneDetails />
+              </Suspense>
+            </TimeAverageGuardWrapper>
           </ValidZoneIdGuardWrapper>
         ),
       },

@@ -15,6 +15,9 @@ from electricitymap.contrib.lib.models.events import (
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
+from .ENTSOE import ENTSOE_DOMAIN_MAPPINGS
+from .ENTSOE import parse_production as ENTSOE_parse_production
+from .ENTSOE import query_production as ENTSOE_query_production
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
 
@@ -145,6 +148,31 @@ def call_api(target_datetime: datetime, forecast: bool = False):
     return results
 
 
+def _get_entsoe_production_data(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger,
+) -> ProductionBreakdownList:
+    # Add 2 days as ENTSOE fetches data from three days before target_datetime, where NED.nl fetches for target_datetime and day before
+    ENTSOE_raw_data = ENTSOE_query_production(
+        ENTSOE_DOMAIN_MAPPINGS[zone_key],
+        session,
+        target_datetime=(target_datetime + timedelta(days=2)),
+    )
+    if ENTSOE_raw_data is None:
+        raise ParserException(
+            parser="NED.py",
+            message="Failed to fetch ENTSOE data",
+            zone_key=zone_key,
+        )
+    ENTSOE_parsed_data = ENTSOE_parse_production(
+        ENTSOE_raw_data, zoneKey=zone_key, logger=logger
+    )
+
+    return ENTSOE_parsed_data
+
+
 def format_data(
     json: Any, logger: Logger, forecast: bool = False
 ) -> ProductionBreakdownList:
@@ -213,7 +241,23 @@ def fetch_production(
     json_data = call_api(target_datetime)
     NED_data = format_data(json_data, logger)
 
-    return NED_data.to_list()
+    all_dates = [item.get("datetime") for item in NED_data.to_list()]
+
+    if all(
+        date >= datetime(2021, 1, 1, tzinfo=timezone.utc)
+        for date in all_dates
+        if date is not None
+    ):
+        return NED_data.to_list()
+
+    else:
+        ENTSOE_data = _get_entsoe_production_data(
+            zone_key, session, target_datetime, logger
+        )
+        combined_data = ProductionBreakdownList.update_production_breakdowns(
+            ENTSOE_data, NED_data, logger, matching_timestamps_only=True
+        )
+        return combined_data.to_list()
 
 
 def fetch_production_forecast(
