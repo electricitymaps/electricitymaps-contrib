@@ -1,7 +1,7 @@
 import type { Duration } from 'date-fns';
 import { ElectricityModeType } from 'types';
 
-export const metaTitleSuffix = ' | App | Electricity Maps';
+export const metaTitleSuffix = ' | Electricity Emissions | Electricity Maps';
 export const baseUrl = 'https://app.electricitymaps.com';
 
 // The order here determines the order displayed
