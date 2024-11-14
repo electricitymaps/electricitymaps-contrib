@@ -3,7 +3,7 @@
 """Parser for the PJM area of the United States."""
 
 import re
-from datetime import datetime, time, timedelta, timezone
+from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -109,9 +109,14 @@ def fetch_production(
 ) -> list:
     """uses PJM API to get generation by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc).replace(
+        target_datetime = datetime.now(TIMEZONE).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
+    else:
+        target_datetime = target_datetime.astimezone(TIMEZONE)
+
+    if not session:
+        session = Session()
 
     params = {
         "startRow": 1,
