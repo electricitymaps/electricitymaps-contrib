@@ -21,13 +21,24 @@ export interface ZoneConfig {
     productionPerModeForecast?: string;
     productionPerUnit?: string;
   };
-  [key: string]: any;
+  [key: string]:
+    | undefined
+    | string[]
+    | number[][]
+    | string
+    | boolean
+    | { [key: string]: string };
 }
 
-export interface OptimizedZoneConfig
-  extends Omit<ZoneConfig, 'contributors' | 'parsers'> {
-  contributors: number[];
+export interface OptimizedZoneConfig {
+  contributors?: number[];
+  disclaimer?: string;
+  estimation_method?: string;
   parsers: boolean;
+  subZoneNames?: string[];
+  aggregates_displayed?: string[];
+  generation_only?: boolean;
+  timezone?: string;
 }
 
 export interface ZonesConfig {
@@ -44,11 +55,12 @@ export interface CombinedZonesConfig {
 }
 
 export interface ExchangeConfig {
-  capacity?: [number, number];
   lonlat: [number, number];
   rotation: number;
-  [key: string]: any;
+  [key: string]: [number, number] | number;
   // The following properties are removed from the generated exchange config
+  // and are either not used in the app or are provided by the backend instead.
+  // capacity?: [number, number];
   // comment?: string;
   // _comment?: string;
   // parsers?: {

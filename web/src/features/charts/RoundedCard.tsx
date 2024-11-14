@@ -1,20 +1,19 @@
+import { forwardRef, ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-export function RoundedCard({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+export const RoundedCard = forwardRef<
+  HTMLDivElement,
+  { children: ReactNode; className?: string }
+>(function RoundedCard({ children, className }, reference) {
   return (
-    <div
+    <section
       className={twMerge(
-        'my-2 overflow-hidden rounded-2xl border-[1px] border-neutral-200 px-4 pb-2 dark:border-gray-700',
+        'my-2 overflow-hidden rounded-2xl border border-neutral-200 px-4 pb-2 dark:border-gray-700',
         className
       )}
+      ref={reference}
     >
       {children}
-    </div>
+    </section>
   );
-}
+});

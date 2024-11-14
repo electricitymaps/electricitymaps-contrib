@@ -8,6 +8,6 @@ capacity:
   solar: 0.128
 contributors:
   - autipial
-timezone: Pacific/Easter
-region: Americas
 country: CL
+region: Americas
+timezone: Pacific/Easter

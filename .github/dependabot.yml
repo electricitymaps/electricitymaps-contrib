@@ -78,6 +78,9 @@ updates:
       sentry:
         patterns:
           - '@sentry/*'
+      visx:
+        patterns:
+          - '@visx/*'
 
   # Ensure ruff is updated.
   - package-ecosystem: 'pip'

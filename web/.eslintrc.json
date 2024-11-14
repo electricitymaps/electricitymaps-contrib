@@ -25,6 +25,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
 
+    "arrow-body-style": "error",
     "curly": "error",
     "no-promise-executor-return": "error",
     "no-unreachable-loop": "error",

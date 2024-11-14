@@ -12,17 +12,17 @@ exports[`formatDate > handles daily data for it 1`] = `"1 gennaio 2021"`;
 
 exports[`formatDate > handles daily data for sv 1`] = `"1 januari 2021"`;
 
-exports[`formatDate > handles hourly data for de 1`] = `"1. Januar 2021 um 01:00 MEZ"`;
+exports[`formatDate > handles hourly data for de 1`] = `"1. Jan. 2021, 01:00 MEZ"`;
 
-exports[`formatDate > handles hourly data for en 1`] = `"January 1, 2021 at 1:00 AM GMT+1"`;
+exports[`formatDate > handles hourly data for en 1`] = `"Jan 1, 2021, 1:00 AM GMT+1"`;
 
-exports[`formatDate > handles hourly data for es 1`] = `"1 de enero de 2021, 1:00 CET"`;
+exports[`formatDate > handles hourly data for es 1`] = `"1 ene 2021, 1:00 CET"`;
 
-exports[`formatDate > handles hourly data for fr 1`] = `"1 janvier 2021 à 01:00 UTC+1"`;
+exports[`formatDate > handles hourly data for fr 1`] = `"1 janv. 2021, 01:00 UTC+1"`;
 
-exports[`formatDate > handles hourly data for it 1`] = `"1 gennaio 2021 alle ore 01:00 CET"`;
+exports[`formatDate > handles hourly data for it 1`] = `"1 gen 2021, 01:00 CET"`;
 
-exports[`formatDate > handles hourly data for sv 1`] = `"1 januari 2021 kl. 01:00 CET"`;
+exports[`formatDate > handles hourly data for sv 1`] = `"1 jan. 2021 01:00 CET"`;
 
 exports[`formatDate > handles monthly data for de 1`] = `"Januar 2021"`;
 

@@ -1,5 +1,7 @@
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
+import { useCallback } from 'react';
 import { resolvePath, useSearchParams } from 'react-router-dom';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 
@@ -10,16 +12,13 @@ interface ViewContentProps {
   translationKey: string;
   isDangerouslySet?: boolean;
 }
-
-const HEADER_STYLE = 'mb-2 px-2 text-base font-semibold sm:text-lg sm:mb-4';
+const TOGGLE_MODE_IDX = 3;
 const BODY_STYLE = 'text-sm px-4 sm:text-base pb-4';
 
 function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewContentProps) {
   return (
     <>
-      <div>
-        <h2 className={HEADER_STYLE}>{t(`${translationKey}.header`)}</h2>
-      </div>
+      <h1 className="mb-4">{t(`${translationKey}.header`)}</h1>
       {isDangerouslySet ? (
         <p
           dangerouslySetInnerHTML={{
@@ -28,7 +27,7 @@ function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewConten
           className={BODY_STYLE}
         ></p>
       ) : (
-        <div className={BODY_STYLE}>{t(`${translationKey}.text`)}</div>
+        <p className={BODY_STYLE}>{t(`${translationKey}.text`)}</p>
       )}
     </>
   );
@@ -80,16 +79,21 @@ export function OnboardingModal() {
   const [searchParameters] = useSearchParams();
   const skipOnboarding = searchParameters.get('skip-onboarding') === 'true';
   const visible = !hasOnboardingBeenSeen && !skipOnboarding;
-  const handleDismiss = () => {
+  const handleDismiss = useCallback(() => {
     setHasOnboardingBeenSeen(true);
-  };
+  }, [setHasOnboardingBeenSeen]);
+  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+  const onboardingViews = isConsumptionOnlyMode
+    ? [...views.slice(0, TOGGLE_MODE_IDX), ...views.slice(TOGGLE_MODE_IDX + 1)]
+    : views;
+
   return (
     <Modal
       modalName="onboarding"
       data-test-id="onboarding"
       visible={visible}
       onDismiss={handleDismiss}
-      views={views}
+      views={onboardingViews}
     />
   );
 }

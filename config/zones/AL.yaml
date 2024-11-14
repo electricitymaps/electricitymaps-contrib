@@ -51,6 +51,11 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 0.0
+contributors:
+  - corradio
+  - nessie2013
+  - autipial
+country: AL
 emissionFactors:
   lifecycle:
     hydro:
@@ -61,10 +66,6 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 5.13
-contributors:
-  - corradio
-  - nessie2013
-  - autipial
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -73,9 +74,8 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-timezone: Europe/Tirane
 region: Europe
 sources:
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
-country: AL
+timezone: Europe/Tirane

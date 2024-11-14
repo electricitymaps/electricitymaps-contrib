@@ -1,6 +1,9 @@
-import { atom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { dateToDatetimeString } from 'utils/helpers';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
+import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
   Mode,
@@ -13,13 +16,46 @@ import {
 // TODO: Move these atoms to relevant features
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
-export const timeAverageAtom = atom(TimeAverages.HOURLY);
+export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
+
+export const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
+  '24h': TimeAverages.HOURLY,
+  '30d': TimeAverages.DAILY,
+  '12mo': TimeAverages.MONTHLY,
+  all: TimeAverages.YEARLY,
+} as const;
+
+const TIME_AVERAGE_TO_URL: Record<TimeAverages, string> = {
+  [TimeAverages.HOURLY]: '24h',
+  [TimeAverages.DAILY]: '30d',
+  [TimeAverages.MONTHLY]: '12mo',
+  [TimeAverages.YEARLY]: 'all',
+} as const;
+
+export function useTimeAverageSync() {
+  const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
+  const { urlTimeAverage } = useParams<RouteParameters>();
+  const navigateWithParameters = useNavigateWithParameters();
+
+  useEffect(() => {
+    if (urlTimeAverage && URL_TO_TIME_AVERAGE[urlTimeAverage] !== timeAverage) {
+      setTimeAverage(URL_TO_TIME_AVERAGE[urlTimeAverage]);
+    }
+  }, [setTimeAverage, timeAverage, urlTimeAverage]);
+
+  const setTimeAverageAndNavigate = (newTimeAverage: TimeAverages) => {
+    setTimeAverage(newTimeAverage);
+    navigateWithParameters({ timeAverage: TIME_AVERAGE_TO_URL[newTimeAverage] });
+  };
+
+  return [timeAverage, setTimeAverageAndNavigate] as const;
+}
 export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
 
-export const selectedDatetimeStringAtom = atom((get) => {
+export const selectedDatetimeStringAtom = atom<string>((get) => {
   const { datetime } = get(selectedDatetimeIndexAtom);
   return dateToDatetimeString(datetime);
 });
@@ -29,27 +65,28 @@ export const spatialAggregateAtom = atomWithStorage(
   SpatialAggregate.ZONE
 );
 export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTION);
+export const isConsumptionAtom = atom<boolean>(
+  (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
+);
+
+export const areWeatherLayersAllowedAtom = atom<boolean>(
+  (get) => get(isHourlyAtom) && get(selectedDatetimeIndexAtom).index === 24
+);
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);
-export const isSolarLayerEnabledAtom = atom(
-  (get) =>
-    get(isHourlyAtom) &&
-    get(solarLayerAtom) === ToggleOptions.ON &&
-    get(selectedDatetimeIndexAtom).index === 24
+export const isSolarLayerEnabledAtom = atom<boolean>(
+  (get) => get(solarLayerAtom) === ToggleOptions.ON && get(areWeatherLayersAllowedAtom)
 );
 
 export const windLayerAtom = atomWithStorage('wind', ToggleOptions.OFF);
-export const isWindLayerEnabledAtom = atom(
-  (get) =>
-    get(isHourlyAtom) &&
-    get(windLayerAtom) === ToggleOptions.ON &&
-    get(selectedDatetimeIndexAtom).index === 24
+export const isWindLayerEnabledAtom = atom<boolean>(
+  (get) => get(windLayerAtom) === ToggleOptions.ON && get(areWeatherLayersAllowedAtom)
 );
 
-export const solarLayerLoadingAtom = atom(false);
-export const windLayerLoadingAtom = atom(false);
+export const solarLayerLoadingAtom = atom<boolean>(false);
+export const windLayerLoadingAtom = atom<boolean>(false);
 
-export const displayByEmissionsAtom = atom(false);
+export const displayByEmissionsAtom = atom<boolean>(false);
 
 export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 
@@ -67,17 +104,21 @@ export const feedbackCardCollapsedNumberAtom = atom(0);
 
 export const colorblindModeAtom = atomWithStorage('colorblindModeEnabled', false);
 
-export const dataSourcesCollapsedBarBreakdown = atom(true);
+export const dataSourcesCollapsedBarBreakdownAtom = atom<boolean>(true);
 
-export const dataSourcesCollapsedBreakdown = atom(true);
+export const dataSourcesCollapsedBreakdownAtom = atom<boolean>(true);
 
-export const dataSourcesCollapsedEmission = atom(true);
+export const dataSourcesCollapsedEmissionAtom = atom<boolean>(true);
 
-export const userLocationAtom = atom(undefined);
+export const userLocationAtom = atom<string | undefined>(undefined);
 
 export const hasSeenSurveyCardAtom = atomWithStorage('hasSeenSurveyCard', false);
+
+export const hasSeenUsSurveyCardAtom = atomWithStorage('hasSeenUsSurveyCard', false);
 
 export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
   'rankingPanelAccordionCollapsed',
   false
 );
+
+export const futurePriceCollapsedAtom = atom<boolean>(true);

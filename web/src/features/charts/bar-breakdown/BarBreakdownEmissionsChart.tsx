@@ -1,7 +1,7 @@
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
-import { ElectricityModeType, ZoneDetail, ZoneKey } from 'types';
+import { ElectricityModeType, ZoneKey } from 'types';
 import { formatCo2 } from 'utils/formatting';
 
 import BarEmissionExchangeChart from './BarEmissionExchangeChart';
@@ -12,26 +12,22 @@ import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './u
 interface BarBreakdownEmissionsChartProps {
   height: number;
   width: number;
-  data: ZoneDetail;
   exchangeData: ExchangeDataType[];
   productionData: ProductionDataType[];
   isMobile: boolean;
   onProductionRowMouseOver: (
     rowKey: ElectricityModeType,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onExchangeRowMouseOut: () => void;
 }
 
 function BarBreakdownEmissionsChart({
-  data,
   exchangeData,
   height,
   isMobile,
@@ -67,7 +63,7 @@ function BarBreakdownEmissionsChart({
   const formatTick = (t: number) => {
     const maxValue = maxCO2eqProduction || 1;
 
-    return formatCo2(t, maxValue);
+    return formatCo2({ value: t, total: maxValue });
   };
 
   return (
@@ -78,7 +74,6 @@ function BarBreakdownEmissionsChart({
         co2Scale={co2Scale}
         productionY={productionY}
         productionData={productionData}
-        data={data}
         width={width}
         onProductionRowMouseOut={onProductionRowMouseOut}
         onProductionRowMouseOver={onProductionRowMouseOver}
@@ -89,7 +84,6 @@ function BarBreakdownEmissionsChart({
         onExchangeRowMouseOut={onExchangeRowMouseOut}
         onExchangeRowMouseOver={onExchangeRowMouseOver}
         exchangeData={exchangeData}
-        data={data}
         width={width}
         co2Scale={co2Scale}
         formatTick={formatTick}

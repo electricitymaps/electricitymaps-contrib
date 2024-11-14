@@ -21,7 +21,8 @@ const renderTick = (
   displayLive: boolean,
   lang: string,
   selectedTimeAggregate: TimeAverages,
-  isLoading: boolean
+  isLoading: boolean,
+  timezone?: string
 ) => {
   const shouldShowValue =
     index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
@@ -34,7 +35,7 @@ const renderTick = (
     >
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
       {shouldShowValue &&
-        renderTickValue(value, index, displayLive, lang, selectedTimeAggregate)}
+        renderTickValue(value, index, displayLive, lang, selectedTimeAggregate, timezone)}
     </g>
   );
 };
@@ -44,7 +45,8 @@ const renderTickValue = (
   index: number,
   displayLive: boolean,
   lang: string,
-  selectedTimeAggregate: TimeAverages
+  selectedTimeAggregate: TimeAverages,
+  timezone?: string
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
   const textOffset = selectedTimeAggregate === TimeAverages.HOURLY ? 5 : 0;
@@ -57,14 +59,13 @@ const renderTickValue = (
     </g>
   ) : (
     <text fill="currentColor" y="9" x={textOffset} dy="0.71em" fontSize={'0.65rem'}>
-      {formatDateTick(v, lang, selectedTimeAggregate)}
+      {formatDateTick(v, lang, selectedTimeAggregate, timezone)}
     </text>
   );
 };
 
 const getTimeScale = (rangeEnd: number, startDate: Date, endDate: Date) =>
   scaleTime().domain([startDate, endDate]).range([0, rangeEnd]);
-
 interface TimeAxisProps {
   selectedTimeAggregate: TimeAverages;
   datetimes: Date[] | undefined;
@@ -74,6 +75,7 @@ interface TimeAxisProps {
   transform?: string;
   scaleWidth?: number;
   className?: string;
+  timezone?: string;
 }
 
 function TimeAxis({
@@ -84,6 +86,7 @@ function TimeAxis({
   scaleWidth,
   isLiveDisplay,
   className,
+  timezone,
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
@@ -118,7 +121,8 @@ function TimeAxis({
             isLiveDisplay ?? false,
             i18n.language,
             selectedTimeAggregate,
-            isLoading
+            isLoading,
+            timezone
           )
         )}
       </g>

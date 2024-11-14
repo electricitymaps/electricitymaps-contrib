@@ -1,12 +1,22 @@
 import type { Duration } from 'date-fns';
 import { ElectricityModeType } from 'types';
 
+export const metaTitleSuffix = ' | App | Electricity Maps';
+export const baseUrl = 'https://app.electricitymaps.com';
+
 // The order here determines the order displayed
 export enum TimeAverages {
   HOURLY = 'hourly',
   DAILY = 'daily',
   MONTHLY = 'monthly',
   YEARLY = 'yearly',
+}
+
+export enum UrlTimeAverages {
+  '24h' = TimeAverages.HOURLY,
+  '30d' = TimeAverages.DAILY,
+  '12mo' = TimeAverages.MONTHLY,
+  'all' = TimeAverages.YEARLY,
 }
 
 export enum ToggleOptions {
@@ -35,8 +45,40 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+export enum Charts {
+  PRICE_CHART = 'price_chart',
+  ORIGIN_CHART = 'origin_chart',
+  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
+  CARBON_CHART = 'carbon_chart',
+  EMISSION_CHART = 'emission_chart',
+  NET_EXCHANGE_CHART = 'net_exchange_chart',
+}
+
 export enum TrackEvent {
-  DATA_SOURCES_CLICKED = 'Data Sources Clicked',
+  APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
+  APP_BANNER_DISMISSED = 'App Banner Dismissed',
+  SHARE_BUTTON_CLICKED = 'Share Button Clicked',
+  SHARE_CHART = 'Share Chart',
+  FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
+  APP_LOADED = 'App Loaded',
+  PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
+  HEADER_LINK_CLICKED = 'HeaderLink Clicked',
+  TIME_SLIDER_BUTTON = 'Time Slider Button Interaction',
+  LANGUAGE_SELECTED = 'Language Selected',
+  ESTIMATION_CARD_EXPANDED = 'EstimationCard Expanded',
+  CONTRIBUTE_ON_GITHUB_BUTTON_CLICKED = 'Contribute On GitHub Button Clicked',
+  COLORBLIND_MODE_TOGGLED = 'Colorblind Mode Toggled',
+  SPATIAL_AGGREGATE_CLICKED = 'Spatial Aggregate Clicked',
+  THEME_SELECTED = 'Theme Selected',
+  PANEL_PRODUCTION_BUTTON_CLICKED = 'PanelProductionButton Clicked',
+  PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
+  ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
+  METHODOLOGIES_AND_DATA_SOURCES_EXPANDED = 'Methodologies and Data Sources Expanded',
+  TIME_AGGREGATE_BUTTON_CLICKED = 'Time Aggregate Button Clicked',
+  SOLAR_ENABLED = 'Solar Enabled',
+  SOLAR_DISABLED = 'Solar Disabled',
+  WIND_ENABLED = 'Wind Enabled',
+  WIND_DISABLED = 'Wind Disabled',
 }
 
 // color of different production modes are based on various industry standards
@@ -108,6 +150,8 @@ export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
  */
 export const sourceLinkMapping: { [key: string]: string } = {
   'EU-ETS, ENTSO-E 2022':
+    'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
+  'EU-ETS, ENTSO-E 2023':
     'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
   Climatescope: 'https://www.global-climatescope.org/',
   'ree.es': 'https://www.ree.es/en',
@@ -210,6 +254,7 @@ export const sourceLinkMapping: { [key: string]: string } = {
 };
 
 export const DEFAULT_ICON_SIZE = 16;
+export const DEFAULT_TOAST_DURATION = 3 * 1000; // 3s
 
 export enum EstimationMethods {
   TSA = 'ESTIMATED_TIME_SLICER_AVERAGE',

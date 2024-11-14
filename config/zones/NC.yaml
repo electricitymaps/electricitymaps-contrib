@@ -1,3 +1,6 @@
-timezone: Pacific/Noumea
-region: Oceania
 country: NC
+disclaimer: 'The production reported for this zone does not include self-production and consumption by metallurgy plants in New Caledonia.'
+region: Oceania
+timezone: Pacific/Noumea
+parsers:
+  production: ENERCAL.fetch_production

@@ -1,7 +1,9 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type SizeOptions = 'sm' | 'md' | 'lg' | 'xl';
+type SizeOptions = 'sm' | 'md' | 'lg';
+
+type ButtonTypes = 'primary' | 'secondary' | 'tertiary' | 'link';
 
 export interface ButtonProps {
   icon?: React.ReactNode;
@@ -9,12 +11,13 @@ export interface ButtonProps {
   isDisabled?: boolean;
   size?: SizeOptions;
   shouldShrink?: boolean;
-  type?: 'primary' | 'secondary' | 'tertiary' | 'link';
+  type?: ButtonTypes;
   href?: string;
   backgroundClasses?: string;
   foregroundClasses?: string;
   asDiv?: boolean;
   onClick?: () => void;
+  dataTestId?: string;
 }
 
 export function Button({
@@ -29,6 +32,7 @@ export function Button({
   type = 'primary',
   asDiv, // If true, renders a div instead of a button to avoid nested buttons in components like ToastPrimitive.Action
   onClick,
+  dataTestId,
 }: ButtonProps) {
   const renderAsLink = Boolean(href);
   const As = getComponentType(renderAsLink, asDiv);
@@ -62,6 +66,7 @@ export function Button({
         target="_blank"
         // Used to prevent browser translation crashes on edge, see #6809
         translate="no"
+        data-test-id={dataTestId}
       >
         {icon}
         {children}
@@ -81,7 +86,7 @@ function getComponentType(renderAsLink: boolean, asDiv?: boolean) {
   return 'button';
 }
 
-function getHover(type: string) {
+function getHover(type: ButtonTypes) {
   switch (type) {
     case 'primary': {
       return 'hover:bg-black/20';
@@ -92,16 +97,16 @@ function getHover(type: string) {
   }
 }
 
-function getBackground(type: string, disabled: boolean | undefined) {
+function getBackground(type: ButtonTypes, disabled: boolean | undefined) {
   switch (type) {
     case 'primary': {
       if (disabled) {
-        return 'bg-zinc-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700';
+        return 'bg-zinc-50 dark:bg-gray-800 outline outline-1 outline-neutral-200 dark:outline-gray-700';
       }
       return 'bg-brand-green';
     }
     case 'secondary': {
-      return 'border dark:border-gray-700 border-neutral-200 bg-white dark:bg-gray-900';
+      return 'outline outline-1 dark:outline-gray-700 outline-neutral-200 bg-white dark:bg-gray-900';
     }
     default: {
       return 'bg-inherit';
@@ -109,7 +114,7 @@ function getBackground(type: string, disabled: boolean | undefined) {
   }
 }
 
-function getForeground(type: string) {
+function getForeground(type: ButtonTypes) {
   switch (type) {
     case 'primary': {
       return 'text-white';
@@ -123,7 +128,7 @@ function getForeground(type: string) {
   }
 }
 
-function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
+function getSize(size: SizeOptions, type: ButtonTypes, isIconOnly: boolean) {
   if (isIconOnly) {
     switch (size) {
       case 'sm': {
@@ -134,9 +139,6 @@ function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
       }
       case 'lg': {
         return 'min-w-11 min-h-11';
-      }
-      case 'xl': {
-        return 'min-w-14 min-h-14';
       }
     }
   }

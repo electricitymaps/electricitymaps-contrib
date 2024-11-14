@@ -3,7 +3,7 @@ import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
-import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
+import { ElectricityModeType, ZoneDetails, ZoneKey } from 'types';
 import { formatEnergy, formatPower } from 'utils/formatting';
 import { isHourlyAtom } from 'utils/state/atoms';
 
@@ -16,19 +16,16 @@ interface BarElectricityBreakdownChartProps {
   height: number;
   width: number;
   data: ZoneDetails;
-  currentData: ZoneDetail;
   exchangeData: ExchangeDataType[];
   productionData: ProductionDataType[];
   isMobile: boolean;
   onProductionRowMouseOver: (
     rowKey: ElectricityModeType,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onExchangeRowMouseOut: () => void;
@@ -37,7 +34,6 @@ interface BarElectricityBreakdownChartProps {
 
 function BarElectricityBreakdownChart({
   data,
-  currentData,
   exchangeData,
   height,
   isMobile,
@@ -58,8 +54,8 @@ function BarElectricityBreakdownChart({
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
-  const [minPower, maxPower] = useMemo(() => {
-    return [
+  const [minPower, maxPower] = useMemo(
+    () => [
       d3Min(
         Object.values(data.zoneStates).map((zoneData) =>
           Math.min(
@@ -82,8 +78,9 @@ function BarElectricityBreakdownChart({
           )
         )
       ) || 0,
-    ];
-  }, [data]);
+    ],
+    [data]
+  );
 
   // Power in MW
   const powerScale = scaleLinear()
@@ -93,10 +90,14 @@ function BarElectricityBreakdownChart({
   const formatTick = (t: number) => {
     // Use same unit as max value for tick with value 0
     if (t === 0) {
-      const tickValue = isHourly ? formatPower(maxPower, 1) : formatEnergy(maxPower, 1);
+      const tickValue = isHourly
+        ? formatPower({ value: maxPower, numberDigits: 1 })
+        : formatEnergy({ value: maxPower, numberDigits: 1 });
       return tickValue.toString().replace(/[\d.]+/, '0');
     }
-    return isHourly ? formatPower(t, 2) : formatEnergy(t, 2);
+    return isHourly
+      ? formatPower({ value: t, numberDigits: 2 })
+      : formatEnergy({ value: t, numberDigits: 2 });
   };
 
   return (
@@ -107,7 +108,6 @@ function BarElectricityBreakdownChart({
         formatTick={formatTick}
         productionY={productionY}
         productionData={productionData}
-        currentData={currentData}
         width={width}
         onProductionRowMouseOver={onProductionRowMouseOver}
         onProductionRowMouseOut={onProductionRowMouseOut}
@@ -118,7 +118,6 @@ function BarElectricityBreakdownChart({
         onExchangeRowMouseOut={onExchangeRowMouseOut}
         onExchangeRowMouseOver={onExchangeRowMouseOver}
         exchangeData={exchangeData}
-        data={currentData}
         width={width}
         powerScale={powerScale}
         formatTick={formatTick}

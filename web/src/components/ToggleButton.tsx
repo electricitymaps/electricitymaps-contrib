@@ -9,12 +9,18 @@ import {
   Root as TooltipRoot,
   Trigger as TooltipTrigger,
 } from '@radix-ui/react-tooltip';
+import { Info } from 'lucide-react';
 import { ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
+export type ToggleButtonOptions = Array<{
+  value: string;
+  translationKey: string;
+  dataTestId?: string;
+}>;
 interface ToggleButtonProperties {
-  options: Array<{ value: string; translationKey: string }>;
+  options: ToggleButtonOptions;
   selectedOption: string;
   onToggle: (option: string) => void;
   tooltipKey?: string;
@@ -41,7 +47,7 @@ export default function ToggleButton({
   return (
     <div
       className={twMerge(
-        'z-10 flex h-9 min-w-fit rounded-full bg-gray-200/80 px-1 shadow dark:bg-gray-800/80',
+        'z-10 flex min-w-fit items-center gap-1 rounded-full bg-gray-200/80 p-1 shadow dark:bg-gray-800/80',
         transparentBackground ? 'backdrop-blur-sm' : 'bg-gray-200'
       )}
     >
@@ -51,20 +57,21 @@ export default function ToggleButton({
         aria-label="Toggle between modes"
         value={selectedOption}
       >
-        {options.map((option, key) => (
+        {options.map(({ value, translationKey, dataTestId }, key) => (
           <ToggleGroupItem
             key={`group-item-${key}`}
-            value={option.value}
-            onClick={() => onToggle(option.value)}
+            value={value}
+            onClick={() => onToggle(value)}
+            data-test-id={`toggle-button-${dataTestId ?? value}`}
             className={twMerge(
-              'inline-flex h-[29px] w-full items-center whitespace-nowrap rounded-full  bg-gray-100/0 px-4 text-xs dark:border dark:border-gray-400/0 dark:bg-transparent',
-              option.value === selectedOption
+              'inline-flex h-7 w-full items-center whitespace-nowrap rounded-full bg-gray-100/0 px-3 text-xs dark:border dark:border-gray-400/0 dark:bg-transparent',
+              value === selectedOption
                 ? ' bg-white font-bold text-brand-green shadow transition duration-500 ease-in-out dark:border dark:border-gray-400/10 dark:bg-gray-600'
                 : ''
             )}
           >
-            <p className="sans grow select-none text-sm capitalize dark:text-white">
-              {t(option.translationKey)}
+            <p className="grow select-none text-sm capitalize dark:text-white">
+              {t(translationKey)}
             </p>
           </ToggleGroupItem>
         ))}
@@ -79,16 +86,16 @@ export default function ToggleButton({
                 role="button"
                 tabIndex={0}
                 className={twMerge(
-                  'ml-2 inline-flex h-[29px] w-[29px] select-none justify-center self-center rounded-full bg-white shadow dark:border dark:border-gray-500/80 dark:bg-gray-600/50',
+                  'inline-flex h-7 w-7 select-none items-center justify-center rounded-full bg-white dark:bg-gray-600',
                   isToolTipOpen && 'pointer-events-none'
                 )}
               >
-                <div className="self-center text-xs font-bold">i</div>
+                <Info className="text-neutral-500 dark:text-gray-300" />
               </div>
             </TooltipTrigger>
             <TooltipPortal>
               <TooltipContent
-                className="relative right-[48px] z-50 max-w-[164px] rounded border bg-zinc-50 p-2 text-center text-xs dark:border-0 dark:bg-gray-900"
+                className="relative right-12 z-50 max-w-40 rounded border bg-zinc-50 p-2 text-center text-xs dark:border-0 dark:bg-gray-900"
                 sideOffset={10}
                 side="bottom"
                 onPointerDownOutside={onToolTipClick}

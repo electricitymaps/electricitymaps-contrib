@@ -1,10 +1,10 @@
 import * as Portal from '@radix-ui/react-portal';
+import { Button } from 'components/Button';
 import { Link } from 'components/Link';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { TFunction } from 'i18next';
-import { X } from 'lucide-react';
+import { Info, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { IoInformationCircleOutline } from 'react-icons/io5';
 import { ElectricityModeType } from 'types';
 import { sourceLinkMapping } from 'utils/constants';
 import { useBreakpoint } from 'utils/styling';
@@ -26,7 +26,8 @@ export function DataSources({
   const { t } = useTranslation();
   const isMobile = !useBreakpoint('md');
   const showDataSources = Boolean(
-    sources?.length > 0 || emissionFactorSourcesToProductionSources
+    sources?.length > 0 ||
+      Object.keys(emissionFactorSourcesToProductionSources || {}).length > 0
   );
 
   if (showDataSources == false) {
@@ -35,9 +36,9 @@ export function DataSources({
 
   return (
     <div className="flex flex-col py-2">
-      <div className="flex flex-row pb-2">
-        <div className="mr-1">{icon}</div>
-        <p className="pr-1 font-semibold">{title}</p>
+      <div className="flex items-center gap-1 pb-2">
+        {icon}
+        <p className="font-semibold">{title}</p>
         {emissionFactorSourcesToProductionSources && (
           <TooltipWrapper
             tooltipContent={
@@ -55,12 +56,7 @@ export function DataSources({
             side="bottom"
             isMobile={isMobile}
           >
-            <div>
-              <IoInformationCircleOutline
-                className="text-emerald-800 dark:text-emerald-500"
-                size={20}
-              />
-            </div>
+            <Info className="text-emerald-800 dark:text-emerald-500" size={16} />
           </TooltipWrapper>
         )}
       </div>
@@ -90,13 +86,11 @@ export function DataSources({
 
 function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }) {
   return (
-    <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col content-center items-center justify-center bg-black/20 pb-40">
+    <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col content-center items-center justify-center gap-2 bg-black/20 pb-40">
       <div className="dark:border-1 relative mx-6 h-auto min-w-64 rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-gray-700 dark:bg-gray-900">
         {t('country-panel.emissionFactorDataSourcesTooltip')}
       </div>
-      <button className="p-auto pointer-events-auto mt-2 flex h-10 w-10 items-center justify-center self-center rounded-full border bg-zinc-50 text-black shadow-md">
-        <X />
-      </button>
+      <Button icon={<X />} type="secondary" backgroundClasses="pointer-events-auto" />
     </Portal.Root>
   );
 }

@@ -12,7 +12,7 @@ export default function Co2Legend(): ReactElement {
   return (
     <LegendItem
       label={t('legends.carbonintensity')}
-      unit={CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}
+      unit={CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR}
     >
       <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
     </LegendItem>

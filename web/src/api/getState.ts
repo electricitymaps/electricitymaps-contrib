@@ -1,8 +1,9 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom, useAtomValue } from 'jotai';
-import type { GridState } from 'types';
-import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
+import { useParams } from 'react-router-dom';
+import type { GridState, RouteParameters } from 'types';
+import { TimeAverages } from 'utils/constants';
+import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, QUERY_KEYS } from './helpers';
 
@@ -21,8 +22,11 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const isHourly = useAtomValue(isHourlyAtom);
+  const { urlTimeAverage } = useParams<RouteParameters>();
+  const timeAverage = urlTimeAverage
+    ? URL_TO_TIME_AVERAGE[urlTimeAverage]
+    : TimeAverages.HOURLY;
+  const isHourly = urlTimeAverage ? timeAverage === TimeAverages.HOURLY : false;
 
   // First fetch last hour only
   const last_hour = useQuery<GridState>({
@@ -40,10 +44,9 @@ const useGetState = (): UseQueryResult<GridState> => {
   const all_data = useQuery<GridState>({
     queryKey: [QUERY_KEYS.STATE, { aggregate: timeAverage }],
     queryFn: async () => getState(timeAverage),
-
-    // The query should not execute until the last_hour query is done
     enabled: shouldFetchFullState,
   });
+
   return (all_data.data || !isHourly ? all_data : last_hour) ?? {};
 };
 

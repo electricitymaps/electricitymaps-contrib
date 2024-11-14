@@ -11,13 +11,14 @@ import {
 } from 'date-fns';
 import { useGetGeometries } from 'features/map/map-utils/getMapGrid';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
-import { useGetZoneFromPath } from 'utils/helpers';
+import { RouteParameters } from 'types';
 
 export function useNightTimes() {
   const { data } = useGetZone();
   const { worldGeometries } = useGetGeometries();
-  const zoneId = useGetZoneFromPath();
+  const { zoneId } = useParams<RouteParameters>();
   const [nightTimes, setNightTimes] = useState<number[][] | undefined>(undefined);
 
   useEffect(() => {

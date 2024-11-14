@@ -40,6 +40,11 @@
     @apply font-poppins;
     @apply font-medium;
   }
+  h4 {
+    @apply text-xs;
+    @apply font-poppins;
+    @apply font-medium;
+  }
   p {
     @apply text-sm;
     @apply font-inter;

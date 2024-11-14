@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Tento app je",
-    "opensource": "Open Source",
-    "see": "viz",
-    "datasources": "zdroje dat",
-    "contribute": "Zapojte se <a href=\"{{link}}\" target=\"_blank\">přidáním své oblasti</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Oblasti",
@@ -36,12 +29,12 @@
     "helpfrom": "s pomocí od",
     "noDataAtTimestamp": "Data pro vybraný čas jsou dočasně nedostupná",
     "noLiveData": "Živá data pro tuto oblast jsou dočasně nedostupná",
-    "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href=\"{{link}}\" target=\"_blank\">přidáním dat</a>.",
+    "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href='{{link}}' target='_blank'>přidáním dat</a>.",
     "now": "Teď"
   },
-  "left-panel": {
-    "zone-list-header-title": "Dopad na klima podle oblasti",
-    "zone-list-header-subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Dopad na klima podle oblasti",
+    "subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO₂eq/kWh)",
     "search": "Hledej oblasti"
   },
   "footer": {
@@ -58,8 +51,6 @@
   },
   "tooltips": {
     "carbonintensity": "Uhlíková intenzita",
-    "lowcarbon": "Nízko-emisní",
-    "renewable": "Obnovitelné",
     "crossborderexport": "Zahraniční export",
     "carbonintensityexport": "Uhlíková intenzita exportu",
     "ofinstalled": "instalované kapacity",
@@ -78,7 +69,6 @@
     "selectLanguage": "Vyberte jazyk"
   },
   "updatePrompt": {
-    "title": "Dostupná aktualizace",
     "description": "Je dostupná nová verze aplikace, aktualizovat nyní?",
     "update": "Aktualizovat",
     "dismiss": "Zavřít"
@@ -104,41 +94,41 @@
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Co znamenají barvy na mapě?",
-    "mapColors-answer": "Barevně vyznačujeme oblasti podle množství skleníkových plynů vyprodukovaných na jednotku spotřebované elektřiny v dané oblasti (její <a href=\"#carbonIntensity\" class=\"entry-link\">uhlíkovou intenzitu</a>)",
+    "mapColors-answer": "Barevně vyznačujeme oblasti podle množství skleníkových plynů vyprodukovaných na jednotku spotřebované elektřiny v dané oblasti (její <a href='#carbonIntensity' class='entry-link'>uhlíkovou intenzitu</a>)",
     "mapArrows-question": "Co znamenají šipky mezi oblastmi na mapě?",
     "mapArrows-answer": "Šipky mezi oblastmi znázorňují fyzický tok (import a export) elektřiny mezi oblastmi: čím rychlejší je blikání, tím rychlejší tok je. Tok elektřiny je důležitý, protože když importujete něco z Vaší elektřiny od sousední oblasti, tak importujete i uhlíkové emise související s její produkcí.",
     "mapSolarWindButtons-question": "Co dělají tlačítka „slunce“ a „vítr“ na mapě?",
     "mapSolarWindButtons-answer": "Tato tlačítka přepínají zobrazení aktuální rychlosti větru a intenzity slunečního záření, což naznačuje potenciál přechodu na solární a větrné energetické alternativy v různých oblastech. Berte v úvahu, že jde jen o přibližnou indikaci, protože skutečný potenciál v instalaci větrných turbín a solárních jednotek je závislý na množství dalších faktorů.",
     "mapNuclearColors-question": "Proč jsou oblasti s velkým zastoupením jaderné energie na mapě zobrazené jako zelené?",
-    "mapNuclearColors-answer": "Produkce jaderné energie má hodně nízkou uhlíkovou intenzitu (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >zdroj</a>), a tyto oblasti jsou proto zobrazené na mapě zelenou barvou. To ale neznamená, že s jadernou energií nejsou spojené jiné enviromentální výzvy (obdobně jako v případe jiných forem energetické produkce), ale tyto výzvy nejsou spojené s emisemi skleníkových plynů a jsou tedy mimo zaměření této mapy.",
+    "mapNuclearColors-answer": "Produkce jaderné energie má hodně nízkou uhlíkovou intenzitu (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >zdroj</a>), a tyto oblasti jsou proto zobrazené na mapě zelenou barvou. To ale neznamená, že s jadernou energií nejsou spojené jiné enviromentální výzvy (obdobně jako v případe jiných forem energetické produkce), ale tyto výzvy nejsou spojené s emisemi skleníkových plynů a jsou tedy mimo zaměření této mapy.",
     "mapColorBlind-question": "Jsem barvoslepý. Jak můžu číst vaši mapu?",
     "mapColorBlind-answer": "Můžete změnit barvy na mapě tím, že zapnete režim pro barvoslepé. Toto nastavení se nachází ve spodní části levého panelu v módu prohlížeče a na záložce INFO v mobilní aplikaci."
   },
   "mapAreas": {
     "groupName": "Oblasti na mapě",
     "noData-question": "Proč nejsou data z mé oblasti dostupná?",
-    "noData-answer": "Buď je zdroj dat dočasně nedostupný, nebo protože zatím nemáme žádné zdroje dat pro tuto oblast. Můžete <a href=\"#contribute\" class=\"entry-link\">nám pomoci přidáním nových zdrojů dat</a>.",
+    "noData-answer": "Buď je zdroj dat dočasně nedostupný, nebo protože zatím nemáme žádné zdroje dat pro tuto oblast. Můžete <a href='#contribute' class='entry-link'>nám pomoci přidáním nových zdrojů dat</a>.",
     "whySmallAreas-question": "Proč dělíte svět do malých oblastí a raději nezobrazíte průměry států?",
     "whySmallAreas-answer": "Tyto oblasti jsou nejmenší geografické oblasti, pro která máme data. Díky přístupu k informacím na nejjemnější úrovni, může mít spotřebitel energie v různých oblastech přesnější přehled o původu elektřiny, kterou spotřebovává a s tím spojeným dopadem na klima.",
     "divideExistingArea-question": "Můžete rozdělit mou oblast na menší?",
-    "divideExistingArea-answer": "Určitě, když existují separátní zdroje dat pro každou část dané oblasti. Můžete <a href=\"#contribute\" class=\"entry-link\">nám pomoci přidáním nových datových zdrojů</a>.",
+    "divideExistingArea-answer": "Určitě, když existují separátní zdroje dat pro každou část dané oblasti. Můžete <a href='#contribute' class='entry-link'>nám pomoci přidáním nových datových zdrojů</a>.",
     "seeHistoricalData-question": "Můžu zobrazit historii oblasti starší než 24 hodin?",
-    "seeHistoricalData-answer": "Můžete si zakoupíte přístup do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databáze historických dat</a>."
+    "seeHistoricalData-answer": "Můžete si zakoupíte přístup do <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>databáze historických dat</a>."
   },
   "methodology": {
     "groupName": "Metogologie",
-    "carbonIntensity-question": "Co je \"uhlíková intenzita\"?",
+    "carbonIntensity-question": "Co je 'uhlíková intenzita'?",
     "carbonIntensity-answer": "Uhlíková intenzita je míra emisí skleníkových plynů ve vztahu k produkci elektrické energie, kterou spotřebováváte (uvádí se v gCO₂eq/kWh - gram ekvivalentního oxidu uhličitého vyprodukovaného na kilowatthodinu spotřebované elektřiny). <br><br>Měříme emise spotřebované elektřiny - ne produkce. To znamená, že počítáme všechny skleníkové plyny (jak CO₂, tak i jiné skleníkové plyny, například metan), které vzešly z produkce a importu elektřiny spotřebované v dané oblasti. Používáme přístup posuzovaní životního cyklu (LCA - life cycle analysis approach). To znamená, že bereme v úvahu emise vznikající v celém životním cyklu elektrárny(stavba, produkce paliva, operativní emise, vyřazení).",
     "renewableLowCarbonDifference-question": "Jaký je rozdíl mezi „obnovitelnou“ a „nízko-emisní“ energií?",
     "renewableLowCarbonDifference-answer": "Obnovitelná produkce energie je založená na obnovitelných zdrojích energie jako například na větru, vodním proudu, slunečním záření nebo geotermální energii. Nízko-emisní produkce energie znamená, že tato produkce produkuje nízkou úroveň emisí skleníkových plynů, jako například jaderná energie.",
     "importsAndExports-question": "Berete v úvahu import a export elektřiny?",
-    "importsAndExports-answer": "Ano, bereme. Import a export je na mapě znázorněný malou <a href=\"#mapArrows\" class=\"entry-link\"> šipkou mezi různými oblastmi. Bližší informace jsou uvedeny v grafu, který se zobrazí po kliknutí na oblast.",
+    "importsAndExports-answer": "Ano, bereme. Import a export je na mapě znázorněný malou <a href='#mapArrows' class='entry-link'> šipkou mezi různými oblastmi. Bližší informace jsou uvedeny v grafu, který se zobrazí po kliknutí na oblast.",
     "emissionsOfStored-question": "A co emise z generování elektrické energie, která je pak uschována v bateriích nebo použita na plnění nádrží?",
     "emissionsOfStored-answer": "Protože je zatím uschovávané jen malé množství elektřiny, nepřesnosti modelování těchto emisí by neměly mít na výsledek velký dopad. Ale věříme, že zvyšující se nároky kladené na uschovávání energie povede k tomu, že v blízké budoucnosti zapracujeme tento faktor do našeho modelu.",
     "guaranteesOfOrigin-question": "Co jsou zelené certifikáty a kolik jich berete v úvahu?",
-    "guaranteesOfOrigin-answer": "Když výrobci obnovitelné energie produkují elektřinu, mohou vytvořit Záruku původu (Guarantee of Origin nebo Renewable Energy Cerificates) - důkaz toho, že obnovitelná elektřina byla vyprodukována a distribuována do rozvodné sítě. Tyto záruky mohou být prodány nebo dány výrobci s neobnovitelnou energií jako způsob \"kompenzace\" za jeho emise a právo tvrdit, že elektřina kterou produkuje je z obnovitelných zdrojů. <br><br> Toto znamená, že spotřebitelům elektrické energie může být řečeno, že jejich elektrická energie je zelená, i když to není pravda ve fyzickém smyslu. To může představovat problém, protože certifikace odstraňuje stimuly spotřebitelů spotřebovávat elektřinu v nejlepším čase (například když množství obnovitelné elektřiny v síti je nejvyšší). Tato mapa tedy vylučuje Záruky původu, místo toho nabízí fyzický obraz rozvodní sítě na základe lokace, aby si mohli spotřebitelé plně uvědomit svou zodpovědnost.",
+    "guaranteesOfOrigin-answer": "Když výrobci obnovitelné energie produkují elektřinu, mohou vytvořit Záruku původu (Guarantee of Origin nebo Renewable Energy Cerificates) - důkaz toho, že obnovitelná elektřina byla vyprodukována a distribuována do rozvodné sítě. Tyto záruky mohou být prodány nebo dány výrobci s neobnovitelnou energií jako způsob 'kompenzace' za jeho emise a právo tvrdit, že elektřina kterou produkuje je z obnovitelných zdrojů. <br><br> Toto znamená, že spotřebitelům elektrické energie může být řečeno, že jejich elektrická energie je zelená, i když to není pravda ve fyzickém smyslu. To může představovat problém, protože certifikace odstraňuje stimuly spotřebitelů spotřebovávat elektřinu v nejlepším čase (například když množství obnovitelné elektřiny v síti je nejvyšší). Tato mapa tedy vylučuje Záruky původu, místo toho nabízí fyzický obraz rozvodní sítě na základe lokace, aby si mohli spotřebitelé plně uvědomit svou zodpovědnost.",
     "otherSources-question": "Proč nezobrazujete jiné zdroje emisí kromě produkce elektřiny?",
-    "otherSources-answer": "Bylo by to mimo záměr tohoto projektu. Každopádně v electricityMap aktivně pracujeme na vývoji <a href=\"#whoAreYou\" class=\"entry-link\">nového řešení pro kvantifikaci dopadu na klima našich každodenních rozhodnutí</a>",
+    "otherSources-answer": "Bylo by to mimo záměr tohoto projektu. Každopádně v electricityMap aktivně pracujeme na vývoji <a href='#whoAreYou' class='entry-link'>nového řešení pro kvantifikaci dopadu na klima našich každodenních rozhodnutí</a>",
     "homeSolarPanel-question": "Co když mám doma nainstalovaný solární panel?",
     "homeSolarPanel-answer": "Měříme uhlíkovou intenzitu lokální rozvodní sítě, takže jakákoliv elektřina, kterou spotřebováváte z vašeho solárního panelu (mimo sítě) není součástí našich měření. Ale když váš solární panel dodává energii do vaší lokální rozvodné sítě, jeho produkce je zahrnuta v našich statistikách v oblastech, kde jsou odhady produkce lokální solární energie veřejně dostupné (jako například ve Francii nebo Velké Británii).",
     "emissionsPerCapita-question": "Proč nezobrazujete emise přepočtené na jednoho obyvatele?",
@@ -149,22 +139,22 @@
     "dataOrigins-question": "Jak získáváte vaše data?",
     "dataOrigins-answer": "Všechna naše data zpracováváme z veřejně přístupných zdrojů publikovaných operátory elektrických rozvodných sítí, oficiálních agentur atd. Kliknutím na konkrétní oblast se zobrazí detailnější informace o původu dat.",
     "dataDownload-question": "Můžu si stáhnout vaše data?",
-    "dataDownload-answer": "Můžete si zakoupit přístup ke všem našim datům v naší <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databázi</a>.",
+    "dataDownload-answer": "Můžete si zakoupit přístup ke všem našim datům v naší <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>databázi</a>.",
     "dataIntegration-question": "Můžu integrovat vaše data do mé aplikace nebo zařízení?",
-    "dataIntegration-answer": "Ano! Prodáváme přístup do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, které zahrnuje budoucí předpovědi."
+    "dataIntegration-answer": "Ano! Prodáváme přístup do <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>real-time API</a>, které zahrnuje budoucí předpovědi."
   },
   "aboutUs": {
     "groupName": "O nás",
     "whoAreYou-question": "Kdo jste?",
-    "whoAreYou-answer": "Electricity Maps je vyvíjená a udržována společností <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
+    "whoAreYou-answer": "Electricity Maps je vyvíjená a udržována společností <a href='https://electricitymaps.com/' target='_blank'>electricityMap</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
     "feedback-question": "Můžu vám nechat zpětnou vazbu?",
-    "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:app@electricitymaps.com\">nám poslat email!</a>",
+    "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>náš formulář</a> nebo <a href='mailto:app@electricitymaps.com'>nám poslat email!</a>",
     "contribute-question": "Můžu se zapojit do vašeho projektu?",
-    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href='https://github.com/electricitymaps/electricitymaps-contrib' target='_blank'>github</a>.",
     "workTogether-question": "Můžeme pracovat společně?",
-    "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:app@electricitymaps.com\">Pošlete nám email!</a>",
+    "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href='mailto:app@electricitymaps.com'>Pošlete nám email!</a>",
     "disclaimer-question": "Oznámení",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publikuje data a obrázky na <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> pouze pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit jeho části bez toho, aby o tom musel informovat. Electricity Maps nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti Electricity Maps nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez předchozího písemného souhlasu.<br><br> Všechna práva duševního vlastnictví patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribuce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písemného souhlasu Electricity Maps, s výjimkou případů, které jsou stanovené jinými předpisy (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení odpovědnosti může být aktualizováno."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publikuje data a obrázky na <a href='https://www.electricitymaps.com/' target='_blank'>Electricity Maps</a> pouze pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit jeho části bez toho, aby o tom musel informovat. Electricity Maps nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti Electricity Maps nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez předchozího písemného souhlasu.<br><br> Všechna práva duševního vlastnictví patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribuce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písemného souhlasu Electricity Maps, s výjimkou případů, které jsou stanovené jinými předpisy (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení odpovědnosti může být aktualizováno."
   },
   "zoneShortName": {
     "AD": {
@@ -1028,6 +1018,9 @@
       "countryName": "Mexiko",
       "zoneName": "Poloostrov"
     },
+    "MY": {
+      "zoneName": "Malajsie"
+    },
     "MY-EM": {
       "countryName": "Malajsie",
       "zoneName": "Borneo"
@@ -1056,9 +1049,6 @@
     },
     "NI": {
       "zoneName": "Nikaragua"
-    },
-    "NKR": {
-      "zoneName": "Náhorní Karabach"
     },
     "NL": {
       "zoneName": "Nizozemsko"

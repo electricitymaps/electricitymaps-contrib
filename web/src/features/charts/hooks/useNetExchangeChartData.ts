@@ -34,7 +34,7 @@ export function useNetExchangeChartData() {
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [timeAggregate] = useAtom(timeAverageAtom);
 
-  if (isLoading || isError) {
+  if (isLoading || isError || !zoneData) {
     return { isLoading, isError };
   }
 

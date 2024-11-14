@@ -3,6 +3,6 @@ bounding_box:
     - 26.19990122658588
   - - 92.58352083520836
     - 28.85852622998459
-timezone: Asia/Thimphu
-region: Asia
 country: BT
+region: Asia
+timezone: Asia/Thimphu

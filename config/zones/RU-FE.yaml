@@ -3,6 +3,6 @@ bounding_box:
     - 43.3
   - - 179.9
     - 71.6
-timezone: null
-region: Europe
 country: RU
+region: Europe
+timezone: Asia/Kamchatka

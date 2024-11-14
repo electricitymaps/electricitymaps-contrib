@@ -36,7 +36,9 @@ export default function ExchangeTooltip({
           <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
           <b className="font-bold">
             {isMobile ? '' : ':'}{' '}
-            {isHourly ? formatPower(roundedNetFlow) : formatEnergy(roundedNetFlow)}
+            {isHourly
+              ? formatPower({ value: roundedNetFlow })
+              : formatEnergy({ value: roundedNetFlow })}
           </b>
         </div>
       </div>

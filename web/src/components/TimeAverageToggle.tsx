@@ -1,7 +1,10 @@
-import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
+import {
+  Item as ToggleGroupItem,
+  Root as ToggleGroupRoot,
+} from '@radix-ui/react-toggle-group';
 import { TFunction } from 'i18next';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineClock } from 'react-icons/hi2';
 import { TimeAverages } from 'utils/constants';
 
 const createOption = (time: TimeAverages, t: TFunction) => ({
@@ -17,42 +20,39 @@ export interface TimeAverageToggleProps {
 
 function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggleProps) {
   const { t } = useTranslation();
-  const options = Object.keys(TimeAverages).map((time) =>
-    createOption(time.toLowerCase() as TimeAverages, t)
+  const options = useMemo(
+    () => Object.values(TimeAverages).map((value) => createOption(value, t)),
+    [t]
   );
 
   return (
-    <ToggleGroupPrimitive.Root
+    <ToggleGroupRoot
       className={
-        'flex-start mb-2 flex flex-row items-center gap-x-2 md:gap-x-1.5 lg:gap-x-2'
+        'mt-1 flex h-11 min-w-fit grow items-center justify-between gap-1 rounded-full bg-gray-300/50 p-1 dark:bg-gray-700/50'
       }
       type="multiple"
-      aria-label="Font settings"
+      aria-label="Toggle between time averages"
     >
       {options.map(({ value, label, dataTestId }) => (
-        <ToggleGroupPrimitive.Item
+        <ToggleGroupItem
           key={`group-item-${value}-${label}`}
           data-test-id={dataTestId}
           value={value}
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}
           className={`
-          inline-flex select-none rounded-full px-2.5 py-2 text-sm capitalize sm:px-2 lg:px-3
+          h-full grow basis-0 select-none rounded-full text-xs font-semibold capitalize
             ${
               timeAverage === value
-                ? 'items-center bg-white font-bold text-green-900 shadow-2xl dark:border dark:border-gray-400/10 dark:bg-gray-600 dark:text-white'
-                : 'bg-gray-100 dark:bg-gray-700'
-            }`}
+                ? 'bg-white/80 text-brand-green outline outline-1 outline-neutral-200 dark:bg-gray-600/80 dark:text-white dark:outline-gray-400/10'
+                : ''
+            }
+            focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-brand-green dark:focus-visible:outline-brand-green-dark`}
         >
-          {timeAverage === value && (
-            <HiOutlineClock className="mr-1 hidden text-[0.87rem] min-[370px]:block sm:hidden xl:block" />
-          )}
-          <p className={`w-15 ${timeAverage === value ? '' : 'dark:opacity-80 '}`}>
-            {label}
-          </p>
-        </ToggleGroupPrimitive.Item>
+          {label}
+        </ToggleGroupItem>
       ))}
-    </ToggleGroupPrimitive.Root>
+    </ToggleGroupRoot>
   );
 }
 

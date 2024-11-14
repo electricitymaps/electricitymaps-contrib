@@ -1,20 +1,13 @@
-import Accordion from 'components/Accordion';
-import { HorizontalDivider } from 'components/Divider';
+import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { useCo2ColorScale } from 'hooks/theme';
-import { IndustryIcon } from 'icons/industryIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
 import { useTranslation } from 'react-i18next';
-import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
-import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
+import { Charts, TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
-import { DataSources } from './DataSources';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, noop } from './graphUtils';
+import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
-import useZoneDataSources from './hooks/useZoneDataSources';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import { RoundedCard } from './RoundedCard';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
@@ -26,11 +19,6 @@ interface CarbonChartProps {
 
 function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
-  const {
-    emissionFactorSources,
-    powerGenerationSources,
-    emissionFactorSourcesToProductionSources,
-  } = useZoneDataSources();
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
 
@@ -42,17 +30,25 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const badgeText = getBadgeText(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   if (!hasEnoughDataToDisplay) {
-    return <NotEnoughDataMessage title="country-history.carbonintensity" />;
+    return (
+      <NotEnoughDataMessage
+        title="country-history.carbonintensity"
+        id={Charts.CARBON_CHART}
+      />
+    );
   }
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        translationKey="country-history.carbonintensity"
-        badgeText={badgeText}
+        titleText={t(`country-history.carbonintensity.${timeAverage}`)}
+        badge={badge}
         unit={'gCO₂eq / kWh'}
+        isEstimated={Boolean(text)}
+        id={Charts.CARBON_CHART}
       />
       <AreaGraph
         testId="details-carbon-graph"
@@ -70,28 +66,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
       <div className="pb-1 pt-2">
         <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
       </div>
-      <HorizontalDivider />
-      <Accordion
-        onOpen={() => {
-          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'carbon-chart' });
-        }}
-        title={t('data-sources.title')}
-        isCollapsedAtom={dataSourcesCollapsedEmission}
-      >
-        <DataSources
-          title={t('data-sources.power')}
-          icon={<WindTurbineIcon />}
-          sources={powerGenerationSources}
-        />
-        <DataSources
-          title={t('data-sources.emission')}
-          icon={<IndustryIcon />}
-          sources={emissionFactorSources}
-          emissionFactorSourcesToProductionSources={
-            emissionFactorSourcesToProductionSources
-          }
-        />
-      </Accordion>
     </RoundedCard>
   );
 }

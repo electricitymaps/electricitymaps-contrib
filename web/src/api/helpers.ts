@@ -51,7 +51,6 @@ export async function getHeaders(route: URL): Promise<Headers> {
   const signature = await sha256(`${token}${route.pathname}${timestamp}`);
 
   return new Headers({
-    'electricitymap-token': token,
     'x-request-timestamp': timestamp,
     'x-signature': signature,
     'Cache-Control': 'public,maxage=60',

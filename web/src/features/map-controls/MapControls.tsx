@@ -1,71 +1,47 @@
-import { Button } from 'components/Button';
-import { isInfoModalOpenAtom, isSettingsModalOpenAtom } from 'features/modals/modalAtoms';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useFeatureFlag } from 'features/feature-flags/api';
+import { useAtom, useAtomValue } from 'jotai';
+import { EyeOff, Sun, Wind } from 'lucide-react';
 import { useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FiWind } from 'react-icons/fi';
-import { HiOutlineEyeOff, HiOutlineSun } from 'react-icons/hi';
-import { HiCog6Tooth, HiOutlineInformationCircle } from 'react-icons/hi2';
 import { MoonLoader } from 'react-spinners';
 import trackEvent from 'utils/analytics';
-import { ThemeOptions, ToggleOptions } from 'utils/constants';
+import { ThemeOptions, ToggleOptions, TrackEvent } from 'utils/constants';
 import {
+  areWeatherLayersAllowedAtom,
   colorblindModeAtom,
-  isHourlyAtom,
-  selectedDatetimeIndexAtom,
   solarLayerAtom,
   solarLayerLoadingAtom,
   themeAtom,
   windLayerAtom,
   windLayerLoadingAtom,
 } from 'utils/state/atoms';
+import { useIsMobile } from 'utils/styling';
 
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
+import MobileButtons from './MobileButtons';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 import ThemeSelector from './ThemeSelector';
 
 function MobileMapControls() {
-  const setIsInfoModalOpen = useSetAtom(isInfoModalOpenAtom);
-  const setIsSettingsModalOpen = useSetAtom(isSettingsModalOpenAtom);
-
-  const handleOpenInfoModal = () => setIsInfoModalOpen(true);
-  const handleOpenSettingsModal = () => setIsSettingsModalOpen(true);
-
   return (
-    <div className="absolute right-2 top-2 flex space-x-3 pt-[env(safe-area-inset-top)] sm:hidden">
-      <Button
-        size="lg"
-        type="secondary"
-        aria-label="open info modal"
-        backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
-        onClick={handleOpenInfoModal}
-        icon={<HiOutlineInformationCircle size={21} />}
-      />
-      <Button
-        size="lg"
-        type="secondary"
-        aria-label="open settings modal"
-        onClick={handleOpenSettingsModal}
-        backgroundClasses="bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
-        icon={<HiCog6Tooth size={20} />}
-        data-test-id="settings-button-mobile"
-      />
+    <div className="pointer-events-none absolute right-0 mt-[env(safe-area-inset-top)]">
+      <MobileButtons />
     </div>
   );
 }
 
 export const weatherButtonMap = {
   wind: {
-    icon: FiWind,
-    iconSize: 18,
+    icon: Wind,
+    iconSize: 20,
     enabledAtom: windLayerAtom,
     loadingAtom: windLayerLoadingAtom,
   },
   solar: {
-    icon: HiOutlineSun,
-    iconSize: 21,
+    icon: Sun,
+    iconSize: 20,
     enabledAtom: solarLayerAtom,
     loadingAtom: solarLayerLoadingAtom,
   },
@@ -89,10 +65,14 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
 
   const onToggle = () => {
     if (isEnabled) {
-      trackEvent(`${weatherId} Disabled`);
+      trackEvent(
+        weatherId == 'Wind' ? TrackEvent.WIND_DISABLED : TrackEvent.SOLAR_DISABLED
+      );
     } else {
       setIsLoadingLayer(true);
-      trackEvent(`${weatherId} Enabled`);
+      trackEvent(
+        weatherId == 'Wind' ? TrackEvent.WIND_ENABLED : TrackEvent.SOLAR_ENABLED
+      );
     }
 
     startTransition(() => {
@@ -106,7 +86,10 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
         isLoadingLayer ? (
           <MoonLoader size={14} color={spinnerColor} />
         ) : (
-          <Icon size={weatherButtonMap[type].iconSize} color={isEnabled ? '' : 'gray'} />
+          <Icon
+            size={weatherButtonMap[type].iconSize}
+            className={isEnabled ? '' : 'opacity-50'}
+          />
         )
       }
       tooltipText={tooltipTexts[type]}
@@ -121,30 +104,28 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
 
 function DesktopMapControls() {
   const { t } = useTranslation();
-  const isHourly = useAtomValue(isHourlyAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
 
-  // We are currently only supporting and fetching weather data for the latest hourly value
-  const areWeatherLayersAllowed = selectedDatetime.index === 24 && isHourly;
-
   const handleColorblindModeToggle = () => {
     setIsColorblindModeEnabled(!isColorblindModeEnabled);
-    trackEvent('Colorblind Mode Toggled');
+    trackEvent(TrackEvent.COLORBLIND_MODE_TOGGLED);
   };
 
+  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+
   return (
-    <div className="pointer-events-none absolute right-3 top-2 z-30 hidden flex-col items-end md:flex">
+    <div className="pointer-events-none absolute right-3 top-2 z-20 mt-[env(safe-area-inset-top)] hidden flex-col items-end md:flex">
       <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-2">
-        <ConsumptionProductionToggle />
+        {!isConsumptionOnlyMode && <ConsumptionProductionToggle />}
         <SpatialAggregatesToggle />
       </div>
       <div className="mt-5 space-y-2">
         <LanguageSelector />
         <MapButton
           icon={
-            <HiOutlineEyeOff
+            <EyeOff
               size={20}
               className={`${isColorblindModeEnabled ? '' : 'opacity-50'}`}
             />
@@ -168,10 +149,6 @@ function DesktopMapControls() {
 }
 
 export default function MapControls() {
-  return (
-    <>
-      <MobileMapControls />
-      <DesktopMapControls />
-    </>
-  );
+  const isMobile = useIsMobile();
+  return isMobile ? <MobileMapControls /> : <DesktopMapControls />;
 }

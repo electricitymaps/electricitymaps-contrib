@@ -1,5 +1,5 @@
 aggregates_displayed:
-  - none # We are not showing this zone due to lack of data
+  - none
 bounding_box:
   - - -117.12776
     - 14.5388286402
@@ -55,6 +55,7 @@ capacity:
       value: 7320.0
 contributors:
   - scriptator
+country: MX
 emissionFactors:
   direct:
     unknown:
@@ -77,6 +78,7 @@ emissionFactors:
 parsers:
   production: CENACE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Americas
 sources:
   IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
@@ -91,5 +93,3 @@ subZoneNames:
   - MX-OR
   - MX-PN
 timezone: America/Mexico_City
-region: Americas
-country: MX

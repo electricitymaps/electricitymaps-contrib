@@ -669,6 +669,7 @@ def _fetch(
     # get EIA API key
     API_KEY = get_token("EIA_KEY")
 
+    start, end = None, None
     if target_datetime:
         try:
             target_datetime = arrow.get(target_datetime).datetime
@@ -677,12 +678,16 @@ def _fetch(
                 f"target_datetime must be a valid datetime - received {target_datetime}"
             ) from e
         utc = tz.gettz("UTC")
-        eia_ts_format = "%Y-%m-%dT%H"
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
-        url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
     else:
-        url = f"{url_prefix}&api_key={API_KEY}&sort[0][column]=period&sort[0][direction]=desc&length=24"
+        end = datetime.now(tz=tz.gettz("UTC")).replace(
+            minute=0, second=0, microsecond=0
+        ) + timedelta(hours=1)
+        start = end - timedelta(hours=72)
+
+    eia_ts_format = "%Y-%m-%dT%H"
+    url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
 
     s = session or Session()
     req = s.get(url)

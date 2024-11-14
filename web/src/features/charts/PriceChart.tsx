@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { Charts, TimeAverages } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
+import { FuturePrice } from './FuturePrice';
 import { noop } from './graphUtils';
 import { usePriceChartData } from './hooks/usePriceChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -30,6 +31,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     valueAxisLabel,
     markerFill,
     priceDisabledReason,
+    futurePrice,
   } = data;
 
   const isPriceDisabled = Boolean(priceDisabledReason);
@@ -42,21 +44,27 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
     }));
   }
 
-  if (!chartData[0]?.layerData?.price) {
+  if (!Number.isFinite(chartData[0]?.layerData?.price)) {
     return null;
   }
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
   if (!hasEnoughDataToDisplay) {
-    return <NotEnoughDataMessage title="country-history.electricityprices" />;
+    return (
+      <NotEnoughDataMessage
+        id={Charts.PRICE_CHART}
+        title="country-history.electricityprices"
+      />
+    );
   }
 
   return (
     <RoundedCard>
       <ChartTitle
-        translationKey="country-history.electricityprices"
+        titleText={t(`country-history.electricityprices.${timeAverage}`)}
         unit={valueAxisLabel}
+        id={Charts.PRICE_CHART}
       />
       <div className="relative">
         {isPriceDisabled && (
@@ -81,6 +89,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           isDisabled={isPriceDisabled}
         />
       </div>
+      <FuturePrice futurePrice={futurePrice} />
     </RoundedCard>
   );
 }

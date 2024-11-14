@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Deze app is",
-    "opensource": "Open Source",
-    "see": "zie",
-    "datasources": "databronnen",
-    "contribute": "Draag bij door <a href=\"{{link}}\" target=\"_blank\">jouw land toe te voegen</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Gebieden",
@@ -15,16 +8,17 @@
     "source": "bron",
     "lowcarbon": "Lage-uitstoot",
     "renewable": "Hernieuwbaar",
+    "electricityconsumption": "Elektriciteit",
     "carbonintensity": "Koolstofintensiteit",
     "helpfrom": "met de hulp van",
     "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
     "noLiveData": "Live data is tijdelijk niet beschikbaar voor dit gebied",
-    "noParserInfo": "We hebben op dit moment geen informatie over dit gebied.<br/> Wil je dit helpen oplossen? Help mee door <a href=\"{{link}}\" target=\"_blank\">gebiedsinformatie toe te voegen</a>.",
+    "noParserInfo": "We hebben op dit moment geen informatie over dit gebied.<br/> Wil je dit helpen oplossen? Help mee door <a href='{{link}}' target='_blank'>gebiedsinformatie toe te voegen</a>.",
     "now": "Nu"
   },
-  "left-panel": {
-    "zone-list-header-title": "Invloed op klimaat per Gebied",
-    "zone-list-header-subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Invloed op klimaat per Gebied",
+    "subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO₂eq/kWh)",
     "search": "Zoek gebieden"
   },
   "footer": {
@@ -55,10 +49,25 @@
     "consumption": "consumptie",
     "cpinfo": "<b>consumptie</b> houdt rekening met in- en uitvoer, <b>productie</b> doet dat niet",
     "selectLanguage": "Selecteer taal",
-    "lowCarbDescription": "Inclusief hernieuwbaar en nucleair"
+    "zoneHeader": {
+      "lowcarbon": "Inclusief alle hernieuwbare energiebronnen en kernenergie",
+      "renewable": "Inclusief zonne-, wind-, water-, biomassa- en geothermische energie",
+      "carbonIntensity": "Gram CO2-equivalent per kilowattuur (gCO2eq/kWh) die de broeikasgasemissies meet bij het opwekken van elektriciteit"
+    },
+    "representing": "vertegenwoordigt",
+    "ofemissions": "van emissies",
+    "zoomIn": "Inzoomen",
+    "zoomOut": "Uitzoomen",
+    "weatherDisabled": "Weergegevens zijn op dit moment niet beschikbaar",
+    "temporarilyUnavailable": "Tijdelijk niet beschikbaar",
+    "aggregateInfo": "Schakel tussen een gedetailleerde zoneweergave en een geaggregeerde landweergave",
+    "dataIsDelayed": "Gegevens zijn vertraagd",
+    "price": "Prijs",
+    "netExchange": "Netto-uitwisseling",
+    "importing": "Importeren",
+    "exporting": "Exporteren"
   },
   "updatePrompt": {
-    "title": "Update beschikbaar",
     "description": "Er is een nieuwe versie van de app beschikbaar, nu updaten?",
     "update": "Bijwerken",
     "dismiss": "Negeren"
@@ -75,12 +84,194 @@
   "hydro storage": "pompcentrale",
   "battery storage": "batterij",
   "biomass": "biomassa",
-  "nuclear": "nucleair",
+  "nuclear": "kernenergie",
   "geothermal": "geothermie",
   "gas": "gas",
-  "coal": "steen-/bruinkool",
+  "coal": "kool",
   "oil": "olie",
   "unknown": "onbekend",
+  "info": {
+    "title": "Over de app",
+    "text": "De Electricity Maps app biedt realtime inzichten op web en mobiel voor burgers, energie-experts, NGO's en beleidsmakers, ter bevordering van een dieper begrip van de uitdagingen van de energietransitie.",
+    "open-source-text": "Deze app is <a href='{{link}}' target='_blank'>Open Source</a> en wordt aangedreven door de gemeenschap.",
+    "version": "App versie: {{version}}",
+    "share-app": "Deel de app:"
+  },
+  "settings-modal": {
+    "title": "Instellingen"
+  },
+  "button": {
+    "reddit": "Word lid van r/electricitymaps",
+    "github": "Draag bij op GitHub",
+    "twitter": "Volg ons op Twitter",
+    "twitter-share": "Deel op Twitter",
+    "slack": "Word lid van onze Slack-gemeenschap",
+    "linkedin": "Volg ons op LinkedIn",
+    "linkedin-share": "Deel op LinkedIn",
+    "facebook": "Volg ons op Facebook",
+    "facebook-share": "Deel op Facebook",
+    "feedback": "Deel feedback",
+    "faq": "FAQ",
+    "privacy-policy": "Privacybeleid",
+    "legal-notice": "Juridische kennisgeving"
+  },
+  "app-banner": {
+    "cta": "Download de app",
+    "description": "Live elektriciteitsgegevens"
+  },
+  "share-button": {
+    "clipboard": "URL gekopieerd naar klembord!",
+    "clipboard-error": "Fout bij het kopiëren van URL naar klembord",
+    "share-error": "Fout bij het delen van URL"
+  },
+  "onboarding-modal": {
+    "view1": {
+      "header": "Welkom bij Electricity Maps",
+      "text": "Hier kunt u de klimaatimpact van elektriciteit voor landen wereldwijd verkennen. <br/><br/>Via een paar eenvoudige stappen leiden wij u door onze kaart."
+    },
+    "view2": {
+      "header": "Check hoeveel CO2 er wordt uitgestoten bij de productie van uw elektriciteit, en dat in realtime",
+      "text": "We kleuren gebieden over de hele wereld op basis van de koolstofintensiteit van de verbruikte elektriciteit (inclusief alle broeikasgassen). Hoe groener de kleur, hoe klimaatvriendelijker de elektriciteit."
+    },
+    "view3": {
+      "header": "Weet waar uw elektriciteit vandaan komt",
+      "text": "De pijlen op de kaart geven de verplaatsing van elektriciteit tussen verschillende gebieden aan. Klik op een gebied om meer informatie te krijgen over de herkomst van de elektriciteit."
+    },
+    "view4": {
+      "header": "Schakel tussen verschillende overzichten",
+      "text": "Schakel tussen elektriciteitsproductie en verbruik,tussen land- of zoneweergaven en ontdek realtime inzichten in mondiale energiedynamiek en maak geïnformeerde keuzes voor een duurzame toekomst."
+    },
+    "view5": {
+      "header": "Schakel tussen elektriciteits- en emissieweergaven",
+      "text": "Wissel tussen grafieken die de elektriciteitsinformatie of koolstofemissies van een zone weergeven. De getoonde waarden vertegenwoordigen het totaal voor de geselecteerde periode, en de informatie komt overeen met de gekozen productie- of verbruiksmodus."
+    },
+    "view6": {
+      "header": "Verken het verleden",
+      "text": "In de hoek links onder kunt u zowel realtime als historische emissie- en elektriciteitsgegevens over de hele wereld bekijken. Verander de geaggregeerde gegevens met de schakelaars of blader door de tijdslijn om de historische veranderingen te zien."
+    },
+    "view7": {
+      "header": "Realtime wind- en zonne-omstandigheden",
+      "text": "Wind- en zonne-energieproductie zijn afhankelijk van het weer. Gebruik de zon- en windknoppen om de realtime sterkte van wind en zonneschijn over de hele wereld weer te geven."
+    }
+  },
+  "data-sources": {
+    "title": "Gegevensbronnen",
+    "capacity": "Geïnstalleerde capaciteitsgegevens",
+    "power": "Stroomopwekkingsgegevens",
+    "exchange": "Uitwisselingsgegevens",
+    "emission": "Emissiefactorgegevens"
+  },
+  "time-controller": {
+    "title": {
+      "daily": "Dagelijkse gegevens voor:",
+      "monthly": "Maandelijkse gegevens voor:",
+      "yearly": "Jaarlijkse gegevens voor:"
+    },
+    "daily": "dagelijks",
+    "hourly": "per uur",
+    "monthly": "maandelijks",
+    "yearly": "jaarlijks"
+  },
+  "left-panel": {
+    "get-data": "Bekijk onze commerciële API-aanbiedingen",
+    "applied-methodologies": {
+      "title": "Toegepaste methodologieën",
+      "estimations": "Electricity Maps - Schattingen",
+      "flowtracing": "Electricity Maps - Stroomtracering",
+      "carbonintensity": "Electricity Maps - Koolstofintensiteit"
+    }
+  },
+  "header": {
+    "get-data": "Krijg onze gegevens",
+    "blog": "Blog",
+    "open-source": "Open Source",
+    "hiring": "We werven aan!",
+    "methodology": "Methodologie",
+    "faq": "FAQ"
+  },
+  "country-history": {
+    "carbonintensity": {
+      "hourly": "Uurlijkse koolstofintensiteit",
+      "daily": "Dagelijkse koolstofintensiteit",
+      "monthly": "Maandelijkse koolstofintensiteit",
+      "yearly": "Jaarlijkse koolstofintensiteit"
+    },
+    "emissions": {
+      "hourly": "Uurlijkse koolstofemissies",
+      "daily": "Dagelijkse koolstofemissies",
+      "monthly": "Maandelijkse koolstofemissies",
+      "yearly": "Jaarlijkse koolstofemissies"
+    },
+    "emissionsorigin": {
+      "hourly": "Uurlijkse oorsprong van koolstofemissies",
+      "daily": "Dagelijkse oorsprong van koolstofemissies",
+      "monthly": "Maandelijkse oorsprong van koolstofemissies",
+      "yearly": "Jaarlijkse oorsprong van koolstofemissies"
+    },
+    "emissionsproduction": {
+      "hourly": "Uurlijkse productie-emissies",
+      "daily": "Dagelijkse productie-emissies",
+      "monthly": "Maandelijkse productie-emissies",
+      "yearly": "Jaarlijkse productie-emissies"
+    },
+    "electricityorigin": {
+      "hourly": "Uurlijkse oorsprong van elektriciteit",
+      "daily": "Dagelijkse oorsprong van elektriciteit",
+      "monthly": "Maandelijkse oorsprong van elektriciteit",
+      "yearly": "Jaarlijkse oorsprong van elektriciteit"
+    },
+    "electricityproduction": {
+      "hourly": "Uurlijkse elektriciteitsproductie",
+      "daily": "Dagelijkse elektriciteitsproductie",
+      "monthly": "Maandelijkse elektriciteitsproductie",
+      "yearly": "Jaarlijkse elektriciteitsproductie"
+    },
+    "electricityprices": {
+      "hourly": "Uurlijkse elektriciteitsprijzen",
+      "daily": "Dagelijkse elektriciteitsprijzen",
+      "monthly": "Maandelijkse elektriciteitsprijzen",
+      "yearly": "Jaarlijkse elektriciteitsprijzen"
+    },
+    "netExchange": {
+      "hourly": "Uurlijkse netto-uitwisseling",
+      "daily": "Dagelijkse netto-uitwisseling",
+      "monthly": "Maandelijkse netto-uitwisseling",
+      "yearly": "Jaarlijkse netto-uitwisseling"
+    },
+    "not-enough-data": "Niet genoeg gegevens beschikbaar om grafiek weer te geven"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "Selecteer taal",
+      "colorBlindMode": "Kleurenblindmodus",
+      "windLayer": "Windlaag",
+      "solarLayer": "Zonnelaag",
+      "changeTheme": "Verander thema",
+      "hideSidePanel": "Verberg zijpaneel",
+      "showSidePanel": "Toon zijpaneel"
+    }
+  },
+  "aggregateButtons": {
+    "country": "land",
+    "zone": "zone"
+  },
+  "themeOptions": {
+    "dark": "Donker",
+    "light": "Licht",
+    "system": "Systeem"
+  },
+  "windDataError": "Windgegevens zijn momenteel niet beschikbaar",
+  "solarDataError": "Zonnegegevens zijn momenteel niet beschikbaar",
+  "electricityStoredUsing": "wordt opgeslagen met behulp van",
+  "emissionsStoredUsing": "worden opgeslagen met behulp van",
+  "electricityExportedTo": "wordt geëxporteerd naar",
+  "emissionsExportedTo": "worden geëxporteerd naar",
+  "electricityImportedFrom": "wordt geïmporteerd uit",
+  "emissionsImportedFrom": "worden geïmporteerd uit",
+  "electricityAvailableIn": "aan elektriciteit beschikbaar in",
+  "emissionsAvailableIn": "aan emissies van elektriciteit beschikbaar in",
+  "comesFrom": "komt van",
+  "ofCO2eq": "CO₂-equivalent",
   "zoneShortName": {
     "AL": {
       "zoneName": "Albanië"
@@ -180,9 +371,6 @@
     "MT": {
       "zoneName": "Malta"
     },
-    "NKR": {
-      "zoneName": "Nagorno-Karabach"
-    },
     "NL": {
       "zoneName": "Nederland"
     },
@@ -242,6 +430,169 @@
     },
     "GE": {
       "zoneName": "Georgië"
+    },
+    "AU": {
+      "zoneName": "Australië"
+    },
+    "AU-NSW": {
+      "countryName": "Australië",
+      "zoneName": "Nieuw-Zuid-Wales"
+    },
+    "AU-NT": {
+      "countryName": "Australië",
+      "zoneName": "Noordelijk Territorium"
+    },
+    "AU-QLD": {
+      "countryName": "Australië",
+      "zoneName": "Queensland"
+    },
+    "AU-SA": {
+      "countryName": "Australië",
+      "zoneName": "Zuid-Australië"
+    },
+    "AU-TAS": {
+      "countryName": "Australië",
+      "zoneName": "Tasmanië"
+    },
+    "AU-VIC": {
+      "countryName": "Australië",
+      "zoneName": "Victoria"
+    },
+    "AU-WA": {
+      "countryName": "Australië",
+      "zoneName": "West-Australië"
+    },
+    "BR": {
+      "zoneName": "Brazilië"
+    },
+    "BR-CS": {
+      "countryName": "Brazilië",
+      "zoneName": "Centraal-Brazilië"
+    },
+    "BR-N": {
+      "countryName": "Brazilië",
+      "zoneName": "Noord-Brazilië"
+    },
+    "BR-NE": {
+      "countryName": "Brazilië",
+      "zoneName": "Noordoost-Brazilië"
+    },
+    "BR-S": {
+      "countryName": "Brazilië",
+      "zoneName": "Zuid-Brazilië"
+    },
+    "CA-AB": {
+      "countryName": "Canada",
+      "zoneName": "Alberta"
+    },
+    "CA-BC": {
+      "countryName": "Canada",
+      "zoneName": "Brits-Columbia"
+    },
+    "CA-MB": {
+      "countryName": "Canada",
+      "zoneName": "Manitoba"
+    },
+    "CA-NB": {
+      "countryName": "Canada",
+      "zoneName": "New Brunswick"
+    },
+    "CA-NL": {
+      "countryName": "Canada",
+      "zoneName": "Newfoundland en Labrador"
+    },
+    "CA-NS": {
+      "countryName": "Canada",
+      "zoneName": "Nova Scotia"
+    },
+    "CA-NT": {
+      "countryName": "Canada",
+      "zoneName": "Northwest Territories"
+    },
+    "CA-NU": {
+      "countryName": "Canada",
+      "zoneName": "Nunavut"
+    },
+    "CA-ON": {
+      "countryName": "Canada",
+      "zoneName": "Ontario"
+    },
+    "CA-PE": {
+      "countryName": "Canada",
+      "zoneName": "Prins Edwardeiland"
+    },
+    "CA-QC": {
+      "countryName": "Canada",
+      "zoneName": "Quebec"
+    },
+    "CA-SK": {
+      "countryName": "Canada",
+      "zoneName": "Saskatchewan"
+    },
+    "CA-YT": {
+      "countryName": "Canada",
+      "zoneName": "Yukon"
+    },
+    "US": {
+      "zoneName": "Aaneengesloten Verenigde Staten"
+    },
+    "US-CAL-CISO": {
+      "countryName": "VS",
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
+    },
+    "US-CENT-SWPP": {
+      "countryName": "VS",
+      "displayName": "SPP",
+      "zoneName": "Southwest Power Pool"
+    },
+    "US-MIDA-PJM": {
+      "countryName": "VS",
+      "displayName": "PJM",
+      "zoneName": "PJM Interconnection"
+    },
+    "US-MIDW-MISO": {
+      "countryName": "VS",
+      "displayName": "MISO",
+      "zoneName": "Midcontinent ISO"
+    },
+    "US-NE-ISNE": {
+      "countryName": "VS",
+      "zoneName": "New England ISO"
+    },
+    "US-NW-BPAT": {
+      "countryName": "VS",
+      "zoneName": "Bonneville Power Administration"
+    },
+    "US-NW-NEVP": {
+      "countryName": "VS",
+      "zoneName": "Nevada Power Company"
+    },
+    "US-NW-PACW": {
+      "countryName": "VS",
+      "zoneName": "Pacificorp West"
+    },
+    "US-NY-NYIS": {
+      "countryName": "VS",
+      "zoneName": "New York ISO"
+    },
+    "US-SE-SOCO": {
+      "countryName": "VS",
+      "zoneName": "Southern Company Services"
+    },
+    "US-SW-SRP": {
+      "countryName": "VS",
+      "zoneName": "Salt River Project"
+    },
+    "US-TEN-TVA": {
+      "countryName": "VS",
+      "displayName": "TVA",
+      "zoneName": "Tennessee Valley Authority"
+    },
+    "US-TEX-ERCO": {
+      "countryName": "VS",
+      "displayName": "ERCOT",
+      "zoneName": "Electric Reliability Council of Texas"
     }
   }
 }

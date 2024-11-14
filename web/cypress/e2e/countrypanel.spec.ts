@@ -26,10 +26,16 @@ describe('Country Panel', () => {
     // cy.contains('Includes renewables and nuclear');
     cy.get('[data-test-id=zone-header-lowcarbon-gauge]').trigger('mouseout');
 
-    cy.contains('Emissions').should('have.attr', 'aria-checked', 'false');
-    cy.contains('Emissions').click().should('have.attr', 'aria-checked', 'true');
+    cy.get('[data-test-id=toggle-button-emissions]').should(
+      'have.attr',
+      'aria-checked',
+      'false'
+    );
+    cy.get('[data-test-id=toggle-button-emissions]')
+      .click()
+      .should('have.attr', 'aria-checked', 'true');
     cy.contains('0 t');
-    cy.contains('Consumption').click();
+    cy.get('[data-test-id=toggle-button-electricity]').click();
 
     // // test graph tooltip
     // cy.get('[data-test-id=details-carbon-graph]').trigger('mousemove', 'left');
@@ -89,5 +95,51 @@ describe('Country Panel', () => {
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/CN');
     cy.get('[data-test-id=no-parser-message]').should('exist');
+  });
+
+  it('scrolls to anchor element if provided a hash in url', () => {
+    cy.interceptAPI('v8/details/hourly/DK-DK2');
+
+    cy.visit('/zone/DK-DK2?lang=en-GB#origin_chart', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
+    cy.get('[data-test-id=close-modal]').click();
+    cy.waitForAPISuccess('v8/state/hourly');
+    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
+    // eslint-disable-next-line cypress/require-data-selectors
+    cy.get('#origin_chart').should('be.visible');
+  });
+
+  it('scrolls to anchor element if provided a hash with caps in url', () => {
+    cy.interceptAPI('v8/details/hourly/DK-DK2');
+
+    cy.visit('/zone/DK-DK2?lang=en-GB#oRiGiN_ChArT', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
+    cy.get('[data-test-id=close-modal]').click();
+    cy.waitForAPISuccess('v8/state/hourly');
+    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
+    // eslint-disable-next-line cypress/require-data-selectors
+    cy.get('#origin_chart').should('be.visible');
+  });
+
+  it('does not scroll or error if provided a non-sensical hash in url', () => {
+    cy.interceptAPI('v8/details/hourly/DK-DK2');
+
+    cy.visit('/zone/DK-DK2?lang=en-GB##not-a-thing', {
+      onBeforeLoad(win) {
+        delete win.navigator.__proto__.serviceWorker;
+      },
+    });
+    cy.get('[data-test-id=close-modal]').click();
+    cy.waitForAPISuccess('v8/state/hourly');
+    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
+    cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').should(
+      'be.visible'
+    );
   });
 });

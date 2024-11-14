@@ -2,9 +2,10 @@ import { bisectLeft } from 'd3-array';
 import { ScaleTime, scaleTime } from 'd3-scale';
 import { pointer } from 'd3-selection';
 import { TFunction } from 'i18next';
+import { CircleDashed, LucideIcon, TrendingUpDown } from 'lucide-react';
 import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { EstimationMethods, Mode, modeOrder } from 'utils/constants';
+import { EstimationMethods, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
@@ -86,8 +87,10 @@ export const getGenerationTypeKey = (name: string): GenerationType | undefined =
 };
 
 /** Returns the total electricity that is available in the zone (e.g. production + discharge + imports) */
-export function getTotalElectricityAvailable(zoneData: ZoneDetail, mixMode: Mode) {
-  const includeImports = mixMode === Mode.CONSUMPTION;
+export function getTotalElectricityAvailable(
+  zoneData: ZoneDetail,
+  isConsumption: boolean
+) {
   const totalDischarge = zoneData.totalDischarge ?? 0;
   const totalImport = zoneData.totalImport ?? 0;
 
@@ -95,12 +98,11 @@ export function getTotalElectricityAvailable(zoneData: ZoneDetail, mixMode: Mode
     return Number.NaN;
   }
 
-  return zoneData.totalProduction + totalDischarge + (includeImports ? totalImport : 0);
+  return zoneData.totalProduction + totalDischarge + (isConsumption ? totalImport : 0);
 }
 
 /** Returns the total emissions that is available in the zone (e.g. production + discharge + imports) */
-export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) {
-  const includeImports = mixMode === Mode.CONSUMPTION;
+export function getTotalEmissionsAvailable(zoneData: ZoneDetail, isConsumption: boolean) {
   const totalCo2Discharge = zoneData.totalCo2Discharge ?? 0;
   const totalCo2Import = zoneData.totalCo2Import ?? 0;
 
@@ -109,35 +111,44 @@ export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) 
   }
 
   return (
-    zoneData.totalCo2Production +
-    totalCo2Discharge +
-    (includeImports ? totalCo2Import : 0)
+    zoneData.totalCo2Production + totalCo2Discharge + (isConsumption ? totalCo2Import : 0)
   );
 }
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   const index = datetimes.findIndex((d) => d?.getTime() === currentDate?.getTime());
+  if (index === -1 || index === datetimes.length - 1) {
+    return undefined;
+  }
   return datetimes[index + 1];
 };
 
 export function determineUnit(
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
-  mixMode: Mode,
+  isConsumption: boolean,
   isHourly: boolean,
   t: TFunction
 ) {
   if (displayByEmissions) {
     return getUnit(
-      formatCo2(getTotalEmissionsAvailable(currentZoneDetail, mixMode)) +
+      formatCo2({ value: getTotalEmissionsAvailable(currentZoneDetail, isConsumption) }) +
         ' ' +
         t('ofCO2eq')
     );
   }
 
   return isHourly
-    ? getUnit(formatPower(getTotalElectricityAvailable(currentZoneDetail, mixMode)))
-    : getUnit(formatEnergy(getTotalElectricityAvailable(currentZoneDetail, mixMode)));
+    ? getUnit(
+        formatPower({
+          value: getTotalElectricityAvailable(currentZoneDetail, isConsumption),
+        })
+      )
+    : getUnit(
+        formatEnergy({
+          value: getTotalElectricityAvailable(currentZoneDetail, isConsumption),
+        })
+      );
 }
 
 function getUnit(valueAndUnit: string | number) {
@@ -155,10 +166,13 @@ export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
   if (value === 0 && total === 0) {
     return 0;
   }
+  // TODO: The typeof check is only necessary for TypeScript to properly narrow the types.
+  // Remove it once TypeScript can narrow the type using the Number.isFinite check.
   if (
-    Number.isNaN(value) ||
     typeof value !== 'number' ||
     typeof total !== 'number' ||
+    !Number.isFinite(value) ||
+    !Number.isFinite(total) ||
     total === 0
   ) {
     return '?';
@@ -215,20 +229,27 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
   };
 }
 
-export function getBadgeText(chartData: AreaGraphElement[], t: TFunction) {
+export function getBadgeTextAndIcon(
+  chartData: AreaGraphElement[],
+  t: TFunction
+): { text?: string; icon?: LucideIcon } {
   const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
     analyzeChartData(chartData);
   if (allTimeSlicerAverageMethod) {
-    return t(`estimation-card.${EstimationMethods.TSA}.pill`);
+    return {
+      text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
+      icon: CircleDashed,
+    };
   }
 
   if (allEstimated) {
-    return t('estimation-badge.fully-estimated');
+    return { text: t('estimation-badge.fully-estimated'), icon: TrendingUpDown };
   }
 
   if (hasEstimation) {
-    return t('estimation-badge.partially-estimated');
+    return { text: t('estimation-badge.partially-estimated'), icon: TrendingUpDown };
   }
+  return {};
 }
 
 export function extractLinkFromSource(
