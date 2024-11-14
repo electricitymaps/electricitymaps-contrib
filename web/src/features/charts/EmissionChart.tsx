@@ -28,8 +28,8 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
   const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-  const badge = <EstimationBadge text={text} Icon={icon} />;
+  const { text, icon, allEstimated } = getBadgeTextAndIcon(chartData, t);
+  const badge = allEstimated ? <EstimationBadge text={text} Icon={icon} /> : undefined;
 
   return (
     <RoundedCard className="pb-2">

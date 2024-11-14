@@ -214,40 +214,62 @@ export function getElectricityProductionValue({
 function analyzeChartData(chartData: AreaGraphElement[]) {
   let estimatedCount = 0;
   let tsaCount = 0;
+  let aggregatePercentageEstimated = 0;
   for (const chartElement of chartData) {
     if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
       tsaCount++;
     }
     if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
       estimatedCount++;
+      aggregatePercentageEstimated += chartElement.meta.estimatedPercentage || 0;
     }
   }
   return {
     allTimeSlicerAverageMethod: tsaCount === chartData.length,
     allEstimated: estimatedCount === chartData.length,
     hasEstimation: estimatedCount > 0,
+    aggregatePercentageEstimated,
   };
 }
 
 export function getBadgeTextAndIcon(
   chartData: AreaGraphElement[],
   t: TFunction
-): { text?: string; icon?: LucideIcon } {
-  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
-    analyzeChartData(chartData);
+): {
+  text?: string;
+  icon?: LucideIcon;
+  allEstimated?: boolean;
+  aggregatePercentageEstimated?: number;
+} {
+  const {
+    allTimeSlicerAverageMethod,
+    allEstimated,
+    hasEstimation,
+    aggregatePercentageEstimated,
+  } = analyzeChartData(chartData);
   if (allTimeSlicerAverageMethod) {
     return {
       text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
       icon: CircleDashed,
+      allEstimated,
+      aggregatePercentageEstimated,
     };
   }
 
   if (allEstimated) {
-    return { text: t('estimation-badge.fully-estimated'), icon: TrendingUpDown };
+    return {
+      text: t('estimation-badge.fully-estimated'),
+      icon: TrendingUpDown,
+      allEstimated,
+    };
   }
 
   if (hasEstimation) {
-    return { text: t('estimation-badge.partially-estimated'), icon: TrendingUpDown };
+    return {
+      text: t('estimation-badge.partially-estimated'),
+      icon: TrendingUpDown,
+      allEstimated,
+    };
   }
   return {};
 }

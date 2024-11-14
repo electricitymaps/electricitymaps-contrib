@@ -47,9 +47,8 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-
-  const badge = <EstimationBadge text={text} Icon={icon} />;
+  const { text, icon, allEstimated } = getBadgeTextAndIcon(chartData, t);
+  const badge = allEstimated ? <EstimationBadge text={text} Icon={icon} /> : undefined;
 
   if (!hasEnoughDataToDisplay) {
     return (
