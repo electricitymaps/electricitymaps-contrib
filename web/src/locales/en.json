@@ -1756,7 +1756,8 @@
       "zoneName": "United States Minor Outlying Islands"
     },
     "US": {
-      "zoneName": "Contiguous United States"
+      "zoneName": "Contiguous United States",
+      "seoZoneName": "United States of America - U.S."
     },
     "US-AK": {
       "countryName": "USA",
@@ -1801,16 +1802,19 @@
     "US-CAL-BANC": {
       "countryName": "USA",
       "displayName": "BANC",
-      "zoneName": "Balancing Authority of Northern California"
+      "zoneName": "Balancing Authority of Northern California",
+      "seoZoneName": "Balancing Authority of Northern California - BANC"
     },
     "US-CAL-CISO": {
       "countryName": "USA",
       "displayName": "California ISO",
-      "zoneName": "CAISO"
+      "zoneName": "CAISO",
+      "seoZoneName": "California ISO - CAISO "
     },
     "US-CAL-IID": {
       "countryName": "USA",
-      "zoneName": "Imperial Irrigation District"
+      "zoneName": "Imperial Irrigation District",
+      "seoZoneName": "Imperial Irrigation District - California"
     },
     "US-CAL-LDWP": {
       "countryName": "USA",
@@ -1822,15 +1826,18 @@
     },
     "US-CAR-CPLE": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Progress East"
+      "zoneName": "Duke Energy Progress East",
+      "seoZoneName": "Duke Energy Progress East - North Carolina"
     },
     "US-CAR-CPLW": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Progress West"
+      "zoneName": "Duke Energy Progress West",
+      "seoZoneName": "Duke Energy Progress West - North Carolina"
     },
     "US-CAR-DUK": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Carolinas"
+      "zoneName": "Duke Energy Carolinas",
+      "seoZoneName": "Duke Energy Carolinas - North and South Carolina"
     },
     "US-CAR-SC": {
       "countryName": "USA",
@@ -1852,7 +1859,8 @@
     "US-CENT-SWPP": {
       "countryName": "USA",
       "displayName": "SPP",
-      "zoneName": "Southwest Power Pool"
+      "zoneName": "Southwest Power Pool",
+      "seoZoneName": "Southwest Power Pool - SPP"
     },
     "US-FLA-FMPP": {
       "countryName": "USA",
@@ -1893,7 +1901,8 @@
     "US-MIDA-PJM": {
       "countryName": "USA",
       "displayName": "PJM",
-      "zoneName": "PJM Interconnection"
+      "zoneName": "PJM Interconnection",
+      "seoZoneName": "PJM Interconnection - Mid-Atlantic US"
     },
     "US-MIDW-AECI": {
       "countryName": "USA",
@@ -1907,11 +1916,13 @@
     "US-MIDW-MISO": {
       "countryName": "USA",
       "displayName": "MISO",
-      "zoneName": "Midcontinent ISO"
+      "zoneName": "Midcontinent ISO",
+      "seoZoneName": "Midcontinent ISO - MISO"
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England",
+      "seoZoneName": "ISO New England - ISO-NE"
     },
     "US-NW-AVA": {
       "countryName": "USA",
@@ -1968,7 +1979,8 @@
     "US-NW-PSCO": {
       "countryName": "USA",
       "displayName": "PSCo",
-      "zoneName": "Public Service Company of Colorado"
+      "zoneName": "Public Service Company of Colorado",
+      "seoZoneName": "Public Service Company of Colorado - PSCo"
     },
     "US-NW-PSEI": {
       "countryName": "USA",
@@ -1998,7 +2010,8 @@
     },
     "US-NY-NYIS": {
       "countryName": "USA",
-      "zoneName": "New York ISO"
+      "zoneName": "New York ISO",
+      "seoZoneName": "New York ISO - NYISO"
     },
     "US-SE-SEPA": {
       "countryName": "USA",
@@ -2040,12 +2053,14 @@
     "US-TEN-TVA": {
       "countryName": "USA",
       "displayName": "TVA",
-      "zoneName": "Tennessee Valley Authority"
+      "zoneName": "Tennessee Valley Authority",
+      "seoZoneName": "Tennessee Valley Authority - TVA"
     },
     "US-TEX-ERCO": {
       "countryName": "USA",
       "displayName": "ERCOT",
-      "zoneName": "Electric Reliability Council of Texas"
+      "zoneName": "Electric Reliability Council of Texas",
+      "seoZoneName": "Electric Reliability Council of Texas - ERCOT"
     },
     "UY": {
       "zoneName": "Uruguay"
