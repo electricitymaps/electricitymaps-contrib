@@ -377,7 +377,7 @@ class TestProductionBreakdown(unittest.TestCase):
             hydro=-20,
         )
         logger = logging.Logger("test")
-        with patch.object(logger, "warning") as mock_warning:
+        with patch.object(logger, "debug") as mock_logger:
             breakdown = ProductionBreakdown.create(
                 logger=logger,
                 zoneKey=ZoneKey("DE"),
@@ -385,7 +385,7 @@ class TestProductionBreakdown(unittest.TestCase):
                 production=mix,
                 source="trust.me",
             )
-            mock_warning.assert_called_once()
+            mock_logger.assert_called_once()
             assert breakdown is not None
             assert breakdown.production is not None
             assert breakdown.production.hydro is None
@@ -402,7 +402,7 @@ class TestProductionBreakdown(unittest.TestCase):
         # This one has been set through the attributes and should be reported as None.
         mix.biomass = -10
         logger = logging.Logger("test")
-        with patch.object(logger, "warning") as mock_warning:
+        with patch.object(logger, "debug") as mock_logger:
             breakdown = ProductionBreakdown.create(
                 logger=logger,
                 zoneKey=ZoneKey("DE"),
@@ -410,7 +410,7 @@ class TestProductionBreakdown(unittest.TestCase):
                 production=mix,
                 source="trust.me",
             )
-            mock_warning.assert_called_once()
+            mock_logger.assert_called_once()
             assert breakdown is not None
             assert breakdown.production is not None
             assert breakdown.production.wind == 0
