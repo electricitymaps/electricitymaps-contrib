@@ -228,7 +228,10 @@
       "flowtracing": "Electricity Maps - Traçage des flux",
       "title": "Méthologies utilisées"
     },
-    "get-data": "Voir nos offres commerciales d'API"
+    "get-data": "Voir nos offres commerciales d'API",
+    "methodologies-and-data-sources": {
+      "title": "Méthodologies et sources des données"
+    }
   },
   "header": {
     "get-data": "Obtenez nos données",

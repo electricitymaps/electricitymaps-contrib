@@ -123,21 +123,23 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
     return <Navigate to={`/map/24h?${searchParameters}`} replace />;
   }
 
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return (
-      <Navigate
-        to={`/zone/${upperCaseZoneId}/${urlTimeAverage}?${searchParameters}`}
-        replace
-      />
-    );
+  // Sanitize the zone ID by removing any special characters except for hyphens and making it uppercase
+  let sanitizedZoneId = zoneId.replaceAll(/[^\dA-Za-z-]/g, '').toUpperCase();
+
+  // Remove trailing hyphens
+  if (sanitizedZoneId.endsWith('-')) {
+    sanitizedZoneId = sanitizedZoneId.slice(0, -1);
   }
 
-  // Handle legacy Australia zone names
-  if (upperCaseZoneId.startsWith('AUS')) {
+  // Handle legacy Australian zone IDs
+  if (sanitizedZoneId.startsWith('AUS')) {
+    sanitizedZoneId = sanitizedZoneId.replace('AUS', 'AU');
+  }
+
+  if (zoneId !== sanitizedZoneId) {
     return (
       <Navigate
-        to={`/zone/${zoneId.replace('AUS', 'AU')}/${urlTimeAverage}?${searchParameters}`}
+        to={`/zone/${sanitizedZoneId}/${urlTimeAverage}?${searchParameters}`}
         replace
       />
     );
@@ -145,7 +147,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
 
   // Only allow valid zone ids
   // TODO: This should redirect to a 404 page specifically for zones
-  if (!zoneExists(upperCaseZoneId)) {
+  if (!zoneExists(sanitizedZoneId)) {
     return <Navigate to={`/map/24h?${searchParameters}`} replace />;
   }
 
