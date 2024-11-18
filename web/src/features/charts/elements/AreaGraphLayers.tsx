@@ -1,11 +1,13 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable react/jsx-handler-names */
 import { area, curveStepAfter } from 'd3-shape';
+import { useDarkMode } from 'hooks/theme';
 import React from 'react';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
 import { detectHoveredDatapointIndex, getNextDatetime, noop } from '../graphUtils';
+import { SelectedData } from '../OriginChart';
 import { AreaGraphElement } from '../types';
 
 interface AreaGraphLayersProps {
@@ -17,6 +19,9 @@ interface AreaGraphLayersProps {
   mouseOutHandler: any;
   isMobile: boolean;
   svgNode: any;
+  hoverLayerIndex?: number | null;
+  isDataInteractive?: boolean;
+  selectedData?: SelectedData;
 }
 
 function AreaGraphLayers({
@@ -28,12 +33,18 @@ function AreaGraphLayers({
   mouseOutHandler,
   isMobile,
   svgNode,
+  hoverLayerIndex,
+  isDataInteractive,
+  selectedData,
 }: AreaGraphLayersProps) {
+  const isDarkModeEnabled = useDarkMode();
   const [x1, x2] = timeScale.range();
   const [y2, y1] = valueScale.range();
   if (x1 >= x2 || y1 >= y2) {
     return null;
   }
+  const hasHoverLayer = hoverLayerIndex !== null;
+  const shouldHideEmptyData = isDataInteractive && layers.length > 1;
 
   // Generate layer paths
   const layerArea = area()
@@ -42,7 +53,8 @@ function AreaGraphLayers({
     .x((d: any) => timeScale(d.data.datetime))
     .y0((d) => valueScale(d[0]))
     .y1((d) => valueScale(d[1]))
-    .defined((d) => Number.isFinite(d[1]));
+    .defined((d) => (shouldHideEmptyData ? d[1] > 0 : Number.isFinite(d[1])));
+
   // Mouse hover events
   let mouseOutTimeout: string | number | NodeJS.Timeout | undefined;
   const handleLayerMouseMove = (
@@ -100,12 +112,32 @@ function AreaGraphLayers({
           ]
         );
 
+        const shouldLayerBeSaturated = getShouldLayerBeSaturated({
+          dataIsNotInteractive: !isDataInteractive,
+          hoveredIndex: hoverLayerIndex,
+          index: ind,
+          layerKey: layer.key,
+          selectedData,
+        });
+
+        const isInteracted =
+          (isDataInteractive && hasHoverLayer && hoverLayerIndex === ind) ||
+          selectedData?.isSelected(layer.key);
+
+        const stroke = getLayerStrokeStyle({
+          isInteracted,
+          shouldLayerBeSaturated,
+          isDarkModeEnabled,
+          layerStroke: layer.stroke,
+        });
+
         return (
           <React.Fragment key={layer.key}>
             <path
-              className={layers.length > 1 ? 'sm:hover:opacity-75' : ''}
+              className={shouldLayerBeSaturated ? 'opacity-100' : 'opacity-30'}
               style={{ cursor: 'pointer' }}
-              stroke={layer.stroke}
+              stroke={stroke}
+              strokeWidth={0.5}
               fill={isGradient ? `url(#${gradientId})` : layer.fill(layer.key)}
               d={layerArea(datapoints) || undefined}
               /* Support only click events in mobile mode, otherwise react to mouse hovers */
@@ -141,5 +173,50 @@ function AreaGraphLayers({
     </g>
   );
 }
+
+const getShouldLayerBeSaturated = ({
+  dataIsNotInteractive,
+  hoveredIndex,
+  index,
+  selectedData,
+  layerKey,
+}: {
+  dataIsNotInteractive: boolean;
+  hoveredIndex: number | null | undefined;
+  index: number;
+  selectedData?: SelectedData;
+  layerKey: string;
+}) => {
+  if (dataIsNotInteractive) {
+    return true;
+  }
+
+  if (hoveredIndex != null) {
+    return hoveredIndex === index;
+  }
+
+  if (selectedData?.hasSelection()) {
+    return selectedData?.isSelected(layerKey);
+  }
+
+  return true;
+};
+
+const getLayerStrokeStyle = ({
+  layerStroke,
+  isInteracted,
+  shouldLayerBeSaturated,
+  isDarkModeEnabled,
+}: {
+  layerStroke: string;
+  isInteracted?: boolean;
+  shouldLayerBeSaturated: boolean;
+  isDarkModeEnabled: boolean;
+}) => {
+  if (isInteracted && shouldLayerBeSaturated) {
+    return isDarkModeEnabled ? 'white' : 'black';
+  }
+  return layerStroke;
+};
 
 export default React.memo(AreaGraphLayers);

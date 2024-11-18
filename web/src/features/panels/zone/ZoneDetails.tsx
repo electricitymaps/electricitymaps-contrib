@@ -5,10 +5,10 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { ZoneMessage } from 'types';
-import { EstimationMethods, SpatialAggregate } from 'utils/constants';
+import { RouteParameters, ZoneMessage } from 'types';
+import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isHourlyAtom,
@@ -29,7 +29,7 @@ import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<RouteParameters>();
   const timeAverage = useAtomValue(timeAverageAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
@@ -54,20 +54,21 @@ export default function ZoneDetails(): JSX.Element {
     }
   }, [hasSubZones, isSubZone, setViewMode]);
 
+  useScrollHashIntoView(isLoading);
+
   if (!zoneId) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
-
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
@@ -79,8 +80,9 @@ export default function ZoneDetails(): JSX.Element {
     <>
       <ZoneHeaderTitle zoneId={zoneId} />
       <div
+        id="panel-scroller"
         className={twMerge(
-          'mb-3 h-full overflow-y-scroll px-3  pt-2 sm:h-full sm:pb-60',
+          'mb-3 h-full scroll-pt-5 overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-60',
           isIosCapacitor ? 'pb-72' : 'pb-48'
         )}
       >
@@ -190,3 +192,34 @@ function ZoneDetailsContent({
 
   return children as JSX.Element;
 }
+
+const useScrollHashIntoView = (isLoading: boolean) => {
+  const { hash, pathname, search } = useLocation();
+  const navigate = useNavigate();
+  const anchor = hash.toLowerCase();
+
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    const chartIds = Object.values<string>(Charts);
+    const anchorId = anchor.slice(1).toLowerCase(); // remove leading #
+
+    if (anchor && chartIds.includes(anchorId)) {
+      const anchorElement = anchor ? document.querySelector(anchor) : null;
+      if (anchorElement) {
+        anchorElement.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'nearest',
+        });
+      }
+    } else {
+      // If already scrolled to element, then reset scroll on re-navigation (i.e. clicking on new zone on map)
+      const element = document.querySelector('#panel-scroller');
+      if (element) {
+        element.scrollTop = 0;
+      }
+    }
+  }, [anchor, isLoading, navigate, pathname, search]);
+};

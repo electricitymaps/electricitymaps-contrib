@@ -600,7 +600,7 @@ class ProductionBreakdown(AggregatableEvent):
         try:
             # Log warning if production has been corrected.
             if production is not None and production.has_corrected_negative_values:
-                logger.warning(
+                logger.debug(
                     f"Negative production values were detected: {production._corrected_negative_values}.\
                     They have been set to None."
                 )

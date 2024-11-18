@@ -116,7 +116,7 @@ function DesktopMapControls() {
   const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
 
   return (
-    <div className="pointer-events-none absolute right-3 top-2 z-20 hidden flex-col items-end md:flex">
+    <div className="pointer-events-none absolute right-3 top-2 z-20 mt-[env(safe-area-inset-top)] hidden flex-col items-end md:flex">
       <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-2">
         {!isConsumptionOnlyMode && <ConsumptionProductionToggle />}
         <SpatialAggregatesToggle />

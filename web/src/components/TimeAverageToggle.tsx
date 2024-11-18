@@ -21,10 +21,7 @@ export interface TimeAverageToggleProps {
 function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggleProps) {
   const { t } = useTranslation();
   const options = useMemo(
-    () =>
-      Object.keys(TimeAverages).map((time) =>
-        createOption(time.toLowerCase() as TimeAverages, t)
-      ),
+    () => Object.values(TimeAverages).map((value) => createOption(value, t)),
     [t]
   );
 
