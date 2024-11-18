@@ -1,6 +1,5 @@
 import type { UseQueryResult } from '@tanstack/react-query';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import type { GridState, RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
@@ -21,7 +20,9 @@ const getState = async (
     getBasePath()
   );
 
-  !targetDatetime && path.searchParams.append('cacheKey', cacheBuster());
+  if (!targetDatetime) {
+    path.searchParams.append('cacheKey', cacheBuster());
+  }
   const response = await fetch(path);
   if (response.ok) {
     const result = (await response.json()) as GridState;
@@ -32,24 +33,11 @@ const getState = async (
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const queryClient = useQueryClient();
   const { urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
-  const isHourly = urlTimeAverage
-    ? URL_TO_TIME_AVERAGE[urlTimeAverage] === TimeAverages.HOURLY
-    : false;
-
-  const shouldUseLastHour = isHourly && !urlDatetime;
   const timeAverage = urlTimeAverage
     ? URL_TO_TIME_AVERAGE[urlTimeAverage]
     : TimeAverages.HOURLY;
-  console.log('shouldUseLastHour', shouldUseLastHour, isHourly, urlTimeAverage);
-  const lastHourQuery = useQuery<GridState>({
-    queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
-    queryFn: () => getState('last_hour'),
-    enabled: shouldUseLastHour,
-  });
-
-  const fullDataQuery = useQuery<GridState>({
+  return useQuery<GridState>({
     queryKey: [
       QUERY_KEYS.STATE,
       {
@@ -58,26 +46,7 @@ const useGetState = (): UseQueryResult<GridState> => {
       },
     ],
     queryFn: () => getState(timeAverage, urlDatetime),
-    enabled: !shouldUseLastHour || (shouldUseLastHour && lastHourQuery.isSuccess),
   });
-
-  useEffect(() => {
-    if (shouldUseLastHour && fullDataQuery.data) {
-      queryClient.setQueryData(
-        [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
-        fullDataQuery.data
-      );
-    }
-  }, [shouldUseLastHour, fullDataQuery.data, queryClient]);
-
-  if (shouldUseLastHour) {
-    if (!fullDataQuery.data && lastHourQuery.data) {
-      return lastHourQuery;
-    }
-    return fullDataQuery;
-  }
-
-  return fullDataQuery;
 };
 
 export default useGetState;
