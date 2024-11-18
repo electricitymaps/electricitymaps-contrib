@@ -25,8 +25,9 @@ const getZone = async (
     }`,
     getBasePath()
   );
-  !targetDatetime && path.searchParams.append('cacheKey', cacheBuster());
-
+  if (!targetDatetime) {
+    path.searchParams.append('cacheKey', cacheBuster());
+  }
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
