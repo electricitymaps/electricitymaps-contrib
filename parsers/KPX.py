@@ -15,7 +15,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency, use_proxy
 from parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("Asia/Seoul")
@@ -45,7 +45,7 @@ STORAGE_MAPPING = {"raisingWater": "hydro"}
 # New energy: Hydrogen, Fuel Cell, Coal liquefied or gasified energy, and vacuum residue gasified energy, etc.
 # Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
 
-
+@use_proxy(country_code="KR")
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session | None = None,
@@ -88,6 +88,7 @@ def fetch_consumption(
 
 
 @refetch_frequency(timedelta(hours=167))
+@use_proxy(country_code="KR")
 def fetch_price(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session | None = None,
@@ -240,6 +241,7 @@ def get_historical_prod_data(
 
 
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="KR")
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session | None = None,
