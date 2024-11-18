@@ -45,6 +45,7 @@ STORAGE_MAPPING = {"raisingWater": "hydro"}
 # New energy: Hydrogen, Fuel Cell, Coal liquefied or gasified energy, and vacuum residue gasified energy, etc.
 # Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
 
+
 @use_proxy(country_code="KR")
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
