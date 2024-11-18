@@ -26,14 +26,13 @@
     "carbonintensity": "Concentrația de dioxid de carbon",
     "lowcarbon": "Carbon redus",
     "renewable": "Energie regenerabilă",
-    "electricityproduction": "Producție",
-    "electricityconsumption": "Consum",
+    "electricityconsumption": "Electricitate",
     "emissions": "Emisii",
     "helpfrom": "cu ajutor de la",
     "noDataAtTimestamp": "Datele sunt indisponibile pentru perioada aleasă",
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",
     "dataIsDelayed": "Datele pentru această zonă sunt pot fi cu {{hours}} ore întârziere. Date în timp real sunt indisponibile.",
-    "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href=\"{{link}}\" target=\"_blank\">date pentru zonă</a>.",
+    "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href='{{link}}' target='_blank'>date pentru zonă</a>.",
     "now": "Acum"
   },
   "time-controller": {
@@ -116,41 +115,41 @@
   "theMap": {
     "groupName": "Harta",
     "mapColors-question": "Ce semnificație au culorile de pe hartă",
-    "mapColors-answer": "Colorăm zone pe hartă în funcție de nivelul de gaze cu efect de seră emise pentru fiecare unitate de electricitate consumată în zona respectivă (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). Cu cât e mai verde zona, cu atât e mai curat pentru mediu consumul de electricitate.",
+    "mapColors-answer": "Colorăm zone pe hartă în funcție de nivelul de gaze cu efect de seră emise pentru fiecare unitate de electricitate consumată în zona respectivă (its <a href='#carbonIntensity' class='entry-link'>carbon intensity</a>). Cu cât e mai verde zona, cu atât e mai curat pentru mediu consumul de electricitate.",
     "mapArrows-question": "Ce indică săgețile dintre diferite zone pe hartă?",
     "mapArrows-answer": "Săgețile indică fluxul de curent (import și export) între zone: cu cât sclipesc mai repede, cu atât e mai mare cantitatea de curent transferată. Când se importă curent din zone vecine de asemenea se importă și emisiile de gaze cu efect de seră asociate cu producția curentului.",
     "mapSolarWindButtons-question": "Ce fac butoanele de “soare”, și “vânt”, de pe hartă?",
     "mapSolarWindButtons-answer": "Aceste butoane afișează viteza vântului și puterea soarelui. Oferă o indicație a potențialului de transfer la surse regenerabile.",
     "mapNuclearColors-question": "De ce sunt centralele nucleare afișate cu verde pe hartă?",
-    "mapNuclearColors-answer": "Producția de energie nucleară are emisii de carbon foarte scăzute (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), de aceea țările care funcționează pe energie nucleară sunt arătate cu verde pe hartă. Asta nu înseamnă că centralele nucleare nu pot dăuna mediului, aceste probleme sunt în afara scopului hărții.",
+    "mapNuclearColors-answer": "Producția de energie nucleară are emisii de carbon foarte scăzute (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >source</a>), de aceea țările care funcționează pe energie nucleară sunt arătate cu verde pe hartă. Asta nu înseamnă că centralele nucleare nu pot dăuna mediului, aceste probleme sunt în afara scopului hărții.",
     "mapColorBlind-question": "Cum pot cei cu daltonism să vizualizeze harta?",
     "mapColorBlind-answer": "Puteți schimba culorile afișate folosind opțiunea “mod daltonism”. Este localizată în stânga jos pentru desktop și în panoul de informații pentru varianta mobil a aplicației."
   },
   "mapAreas": {
     "groupName": "Zone pe hartă",
     "noData-question": "De ce nu am date disponibile pentru zona mea?",
-    "noData-answer": "Sursele de date pentru acea zonă sunt momentan indisponibile sau pentru că încă nu am instalat surse de date pentru acea zonă. Puteți <a href=\"#contribute\" class=\"entry-link\">să ne ajutați cu surse noi de date</a>.",
+    "noData-answer": "Sursele de date pentru acea zonă sunt momentan indisponibile sau pentru că încă nu am instalat surse de date pentru acea zonă. Puteți <a href='#contribute' class='entry-link'>să ne ajutați cu surse noi de date</a>.",
     "whySmallAreas-question": "De ce Împărțiți harta în zone mici și nu folosiți medii la nivel de țară?",
     "whySmallAreas-answer": "Zonele afișate sunt cele mai mici zone geografice pentru care avem date. Zonele mici oferă mai multe detalii pentru consumatori despre originea electricității și impactul asupra climei.",
     "divideExistingArea-question": "Puteți diviza o zonă în părți mai mici?",
-    "divideExistingArea-answer": "Desigur, dacă există surse de date pentru fiecare parte. Ne puteți ajuta cu <a href=\"#contribute\" class=\"entry-link\">noi surse de date</a>",
+    "divideExistingArea-answer": "Desigur, dacă există surse de date pentru fiecare parte. Ne puteți ajuta cu <a href='#contribute' class='entry-link'>noi surse de date</a>",
     "seeHistoricalData-question": "Pot să văd istoricul unei zone mai mult de 24 de ore în trecut?",
-    "seeHistoricalData-answer": "Puteți cumpăra access la întreaga <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">colecție de date</a>."
+    "seeHistoricalData-answer": "Puteți cumpăra access la întreaga <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>colecție de date</a>."
   },
   "methodology": {
     "groupName": "Metodele noastre",
-    "carbonIntensity-question": "Ce e \"concentrația de dioxid de carbon\"?",
+    "carbonIntensity-question": "Ce e 'concentrația de dioxid de carbon'?",
     "carbonIntensity-answer": "Concentrația de dioxid de carbon este o măsură a emisiilor de gaze cu efect de seră asociate cu producția de electricitate pe care o consumi (în gCO₂echivalent/kWh - grame de dioxid de carbon echivalente emise pe kilowatt oră de electricitate consumată). <br><br>Măsurăm emisiile electricității consumate (nu a producției), incluzând gazele cu efect de seră din producția curentului consumat și a curentului importat din alte zone. Luăm în calcul toate emisiile din viața centralelor electrice (construcție, producție de combustibil, emisii din timpul operării și a desființării).",
     "renewableLowCarbonDifference-question": "Care este diferența dintre “energia regenerabilă” și “carbon redus”?",
     "renewableLowCarbonDifference-answer": "Energia regenerabilă se bazează pe surse de energie precum vânt, apă, soare și energie geotermală. Energia generată cu nivel de dioxid de carbon redus înseamnă că din procesul de producție a electricității rezultă o cantitate mică de emisii de gaze cu efect de seră.",
     "importsAndExports-question": "Luați în calcul importuri și exporturi de electricitate?",
-    "importsAndExports-answer": "Da, importurile și exporturile sunt reprezentate prin <a href=\"#mapArrows\" class=\"entry-link\">săgeți între diferite zone</a>. Detalii pot fi văzute când faceți click pe o zonă.",
+    "importsAndExports-answer": "Da, importurile și exporturile sunt reprezentate prin <a href='#mapArrows' class='entry-link'>săgeți între diferite zone</a>. Detalii pot fi văzute când faceți click pe o zonă.",
     "emissionsOfStored-question": "Cum măsurați emisiile din generarea electricității care este stocată în baterii sau folosită pentru umplerea rezervoarelor?",
     "emissionsOfStored-answer": "Deoarece momentan doar o mică proporție din electricitate este stocată, inexactități în aceste emisii nu produc o diferență considerabilă totalului. Având în vedere creșterea importanței stocării, în viitorul apropiat vom lua în calcul aceste emisii.",
     "guaranteesOfOrigin-question": "Ce sunt certificatele verzi și cum sunt luate în calcul?",
     "guaranteesOfOrigin-answer": "Certificatul Verde este un titlu care atestă producerea de energie electrică din surse regenerabile de energie. Certificatul se poate tranzacționa, distinct de cantitatea de energie electrică pe care acesta o reprezintă, pe o piață organizată, în condițiile legii și reprezintă schema suport de promovare a producerii energiei din surse regenerabile. Acest certificat este o dovadă că vânzătorul de electricitate a cumpărat electricitatea de la o sursă regenerabilă.<br><br> Partea problematică e că acest certificat descurajează consumatorii să folosească electricitate la momentul în care sursele regenerabile produc majoritatea curentului din rețea. Această hartă exclude certificatele verzi, oferind în schimb o reprezentare în timp real a rețelei electrice, pentru a împuternici consumatorii.",
     "otherSources-question": "De ce nu arătați și alte surse de emisii în afară de producția electricității?",
-    "otherSources-answer": "Ar fi în afara scopului proiectului. În schimb, la electricityMap dezvoltăm <a href=\"#whoAreYou\" class=\"entry-link\">noi soluții pentru a cuantifica emisiile din deciziile de zi cu zi</a>.",
+    "otherSources-answer": "Ar fi în afara scopului proiectului. În schimb, la electricityMap dezvoltăm <a href='#whoAreYou' class='entry-link'>noi soluții pentru a cuantifica emisiile din deciziile de zi cu zi</a>.",
     "homeSolarPanel-question": "Dacă am panouri solare instalate pe proprietatea mea?",
     "homeSolarPanel-answer": "Măsurăm concentrația de dioxid de carbon din rețeaua electrică, deci orice electricitate consumată din afara rețelei nu este inclusă în măsurătorile noastre. Dacă aveți o instalație care introduce electricitate în rețea și datele din acea zonă sunt publice, acea producție va fi inclusă în statisticile din zona respectivă.",
     "emissionsPerCapita-question": "De ce nu afișați emisii pe cap de locuitor?",
@@ -161,22 +160,22 @@
     "dataOrigins-question": "De unde obțineți datele?",
     "dataOrigins-answer": "Folosim date făcute publice, publicate de operatori de rețele electrice, agenții oficiale și altele. Dați click pe o zonă pentru a afla mai multe detalii despre originea datelor.",
     "dataDownload-question": "Pot să downloadez datele?",
-    "dataDownload-answer": "Puteți cumpăra acces la toată <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">colecția noastră de date</a>.",
+    "dataDownload-answer": "Puteți cumpăra acces la toată <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>colecția noastră de date</a>.",
     "dataIntegration-question": "Pot integra datele voastre în timp real în aplicația / dispozitivul meu?",
-    "dataIntegration-answer": "Da! Vindem acces la <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">API-ul în timp real</a>, care include predicții pe viitor."
+    "dataIntegration-answer": "Da! Vindem acces la <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>API-ul în timp real</a>, care include predicții pe viitor."
   },
   "aboutUs": {
     "groupName": "Despre noi",
     "whoAreYou-question": "Cine sunteți?",
-    "whoAreYou-answer": "Electricity Map e dezvoltat și menținut de <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>, o companie startup daneză. Scopul nostru este să ajutăm umanitatea să atingă o existență sustenabilă prin cuantificarea și accesibilitatea impactului asupra climei a alegerilor noastre de zi cu zi.",
+    "whoAreYou-answer": "Electricity Map e dezvoltat și menținut de <a href='https://electricitymaps.com/' target='_blank'>electricityMap</a>, o companie startup daneză. Scopul nostru este să ajutăm umanitatea să atingă o existență sustenabilă prin cuantificarea și accesibilitatea impactului asupra climei a alegerilor noastre de zi cu zi.",
     "feedback-question": "Pot oferi feedback?",
-    "feedback-answer": "Te rugăm! Te rugăm să completezi <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">formularul nostru de feedback </a> sau <a href=\"mailto:app@electricitymaps.com\">trimite-ne un email!</a>",
+    "feedback-answer": "Te rugăm! Te rugăm să completezi <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>formularul nostru de feedback </a> sau <a href='mailto:app@electricitymaps.com'>trimite-ne un email!</a>",
     "contribute-question": "Pot să contribui la proiect?",
-    "contribute-answer": "Da! Electricity Map e un proiect open-source, făcut posibil de voluntarii noștri. Dacă vrei să ajuți să dezvolți harta, fie prin surse noi de date, zone noi, componente noi sau bugfixes, nu ezitați să explorați pagina noastră de <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Da! Electricity Map e un proiect open-source, făcut posibil de voluntarii noștri. Dacă vrei să ajuți să dezvolți harta, fie prin surse noi de date, zone noi, componente noi sau bugfixes, nu ezitați să explorați pagina noastră de <a href='https://github.com/electricitymaps/electricitymaps-contrib' target='_blank'>github</a>.",
     "workTogether-question": "Putem lucra împreună?",
-    "workTogether-answer": "Căutăm în mod activ noi oportunități de colaborare. <a href=\"mailto:app@electricitymaps.com\">Trimite-ne un email!</a>",
+    "workTogether-answer": "Căutăm în mod activ noi oportunități de colaborare. <a href='mailto:app@electricitymaps.com'>Trimite-ne un email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publishes data and images on the <a href='https://www.electricitymaps.com/' target='_blank'>Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": {
@@ -1103,9 +1102,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Netherlands"

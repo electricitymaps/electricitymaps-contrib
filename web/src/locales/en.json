@@ -17,9 +17,10 @@
   },
   "button": {
     "reddit": "Join r/electricitymaps",
+    "reddit-share": "Share on Reddit",
     "github": "Contribute on GitHub",
-    "twitter": "Follow us on Twitter",
-    "twitter-share": "Share on Twitter",
+    "twitter": "Follow us on X (Twitter)",
+    "twitter-share": "Share on X (Twitter)",
     "slack": "Join our Slack community",
     "linkedin": "Follow us on LinkedIn",
     "linkedin-share": "Share on LinkedIn",
@@ -43,6 +44,13 @@
     "clipboard": "URL copied to clipboard!",
     "clipboard-error": "Error copying URL to clipboard",
     "share-error": "Error sharing URL"
+  },
+  "more-options-dropdown": {
+    "title": "Share",
+    "mobile-share-via": "Share via",
+    "copy-chart-link": "Copy link to chart",
+    "preliminary-data": "Preliminary data may change over time.",
+    "summary": "Discover real-time electricity insights with the Electricity Maps app!"
   },
   "onboarding-modal": {
     "view1": {
@@ -86,8 +94,7 @@
     "carbonintensity": "Carbon Intensity",
     "lowcarbon": "Low-carbon",
     "renewable": "Renewable",
-    "electricityproduction": "Production",
-    "electricityconsumption": "Consumption",
+    "electricityconsumption": "Electricity",
     "emissions": "Emissions",
     "helpfrom": "With help from:",
     "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
@@ -100,14 +107,14 @@
     "dataIsDelayed": "Data for this region can be up to {{hours}} hours delayed. Live data cannot be displayed.",
     "estimated": "estimated",
     "aggregated": "aggregated",
-    "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">here</a>.",
-    "exchangesAreMissing": "This chart does not include exchange data. Exchanges are visible in hourly views. Read more about our historical aggregations <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
+    "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>here</a>.",
+    "exchangesAreMissing": "This chart does not include exchange data. Exchanges are visible in hourly views. Read more about our historical aggregations <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>here</a>.",
     "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
-    "helpUs": "Help us identify the problem by taking a look at the <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> or contact the data provider.",
-    "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"{{link}}\" target=\"_blank\">adding area data</a>.",
+    "helpUs": "Help us identify the problem by taking a look at the <a href='{{link}}' target='_blank'>runtime logs</a> or contact the data provider.",
+    "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href='{{link}}' target='_blank'>adding area data</a>.",
     "aggregationDisabled": "Data is not available for the selected time period due to missing granular breakdown. Try a broader time period.",
-    "fullyDisabled": "The data we have available for this zone is insufficient and therefore not shown. If you are aware of data sources for this area, please <a href=\"{{link}}\" target=\"_blank\">let us know</a>.",
+    "fullyDisabled": "The data we have available for this zone is insufficient and therefore not shown. If you are aware of data sources for this area, please <a href='{{link}}' target='_blank'>let us know</a>.",
     "now": "Now",
     "by-source": {
       "emissions": "Carbon emissions",
@@ -226,8 +233,8 @@
       "monthly": "Monthly data for:",
       "yearly": "Yearly data for:"
     },
-    "daily": "daily",
     "hourly": "hourly",
+    "daily": "daily",
     "monthly": "monthly",
     "yearly": "yearly"
   },
@@ -237,7 +244,11 @@
       "title": "Applied methodologies",
       "estimations": "Electricity Maps - Estimations",
       "flowtracing": "Electricity Maps - Flow-tracing",
-      "carbonintensity": "Electricity Maps - Carbon intensity"
+      "carbonintensity": "Electricity Maps - Carbon intensity",
+      "historicalAggregations": "Electricity Maps - Historical aggregations"
+    },
+    "methodologies-and-data-sources": {
+      "title": "Methodologies and data sources"
     }
   },
   "header": {
@@ -412,29 +423,29 @@
     "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
     "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunshine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells is also dependent on many other factors.",
     "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
-    "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated with nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
+    "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated with nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
     "mapColorBlind-question": "I am color blind. How can I read your map?",
     "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on right side of the app on desktop and in the settings panel on the mobile app."
   },
   "mapAreas": {
     "groupName": "Areas in the map",
     "noData-question": "Why is data for my area not available?",
-    "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources\">help us find new data sources</a>.",
+    "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources'>help us find new data sources</a>.",
     "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?",
     "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.",
     "divideExistingArea-question": "Can you divide my area into smaller parts?",
-    "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
+    "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href='#contribute' class='entry-link'>help us with adding new data sources</a>",
     "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
+    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>database</a>."
   },
   "methodology": {
     "groupName": "Our methods",
-    "carbonIntensity-question": "What is \"carbon intensity\"?",
+    "carbonIntensity-question": "What is 'carbon intensity'?",
     "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
     "methodology-question": "How did you calculate the numbers?",
-    "methodology-answer": "We have detailed our full methodology on <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a>, with additional documentation in <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">our GitHub Wiki</a>.",
+    "methodology-answer": "We have detailed our full methodology on <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a>, with additional documentation in <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>our GitHub Wiki</a>.",
     "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
-    "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">details on the Wiki</a>.",
+    "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>details on the Wiki</a>.",
     "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
     "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
     "importsAndExports-question": "Do you take into account imports and exports of electricity?",
@@ -444,7 +455,7 @@
     "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
     "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
     "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
-    "otherSources-answer": "We only focus on electricity production for now, as this is <a href=\"https://ourworldindata.org/emissions-by-sector#energy-electricity-heat-and-transport-73-2\" target=\"_blank\">the largest source of emissions</a> and the one that can be most easily decarbonized.",
+    "otherSources-answer": "We only focus on electricity production for now, as this is <a href='https://ourworldindata.org/emissions-by-sector#energy-electricity-heat-and-transport-73-2' target='_blank'>the largest source of emissions</a> and the one that can be most easily decarbonized.",
     "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
     "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
     "emissionsPerCapita-question": "Why don't you show emissions per capita?",
@@ -455,22 +466,22 @@
     "dataOrigins-question": "How do you get your data?",
     "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
     "dataDownload-question": "Can I download your data?",
-    "dataDownload-answer": "We publish data for the past years for free at our <a href=\"https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Data Portal</a>. For more recent and real-time data you can use <a href=\"https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral\">our API</a>, which is free for non-commercial use and available for purchase for commercial use.",
+    "dataDownload-answer": "We publish data for the past years for free at our <a href='https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>Data Portal</a>. For more recent and real-time data you can use <a href='https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral'>our API</a>, which is free for non-commercial use and available for purchase for commercial use.",
     "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-    "dataIntegration-answer": "Yes! We provide a free API for non-commercial uses, and sell access to a <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a> for commercial use, which includes forecasts and more."
+    "dataIntegration-answer": "Yes! We provide a free API for non-commercial uses, and sell access to a <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>real-time API</a> for commercial use, which includes forecasts and more."
   },
   "aboutUs": {
     "groupName": "About us",
     "whoAreYou-question": "Who are you?",
-    "whoAreYou-answer": "The app is developed and maintained by <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, a Danish startup company. Our mission is to organise the world's electricity data to drive the transition towards a truly decarbonised electricity system.",
+    "whoAreYou-answer": "The app is developed and maintained by <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a>, a Danish startup company. Our mission is to organise the world's electricity data to drive the transition towards a truly decarbonised electricity system.",
     "feedback-question": "Can I give you some feedback?",
-    "feedback-answer": "We would love that! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a>.",
+    "feedback-answer": "We would love that! Please fill out <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>our feedback form</a>.",
     "contribute-question": "Can I contribute to your project?",
-    "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">GitHub</a>.",
+    "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href='https://github.com/electricityMaps/electricitymaps-contrib/' target='_blank'>GitHub</a>.",
     "workTogether-question": "Can we work together?",
-    "workTogether-answer": "We are always looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymaps.com\">Send us an email!</a>",
+    "workTogether-answer": "We are always looking for new opportunities to collaborate. <a href='mailto:app@electricitymaps.com'>Send us an email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://app.electricitymaps.com/\" target=\"_blank\">Electricity Maps App</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps App, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publishes data and images on the <a href='https://app.electricitymaps.com/' target='_blank'>Electricity Maps App</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps App, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": {
@@ -1446,9 +1457,6 @@
     "NI": {
       "zoneName": "Nicaragua"
     },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
-    },
     "NL": {
       "zoneName": "Netherlands"
     },
@@ -1748,7 +1756,8 @@
       "zoneName": "United States Minor Outlying Islands"
     },
     "US": {
-      "zoneName": "Contiguous United States"
+      "zoneName": "Contiguous United States",
+      "seoZoneName": "United States of America - U.S."
     },
     "US-AK": {
       "countryName": "USA",
@@ -1793,16 +1802,19 @@
     "US-CAL-BANC": {
       "countryName": "USA",
       "displayName": "BANC",
-      "zoneName": "Balancing Authority of Northern California"
+      "zoneName": "Balancing Authority of Northern California",
+      "seoZoneName": "Balancing Authority of Northern California - BANC"
     },
     "US-CAL-CISO": {
       "countryName": "USA",
       "displayName": "California ISO",
-      "zoneName": "CAISO"
+      "zoneName": "CAISO",
+      "seoZoneName": "California ISO - CAISO "
     },
     "US-CAL-IID": {
       "countryName": "USA",
-      "zoneName": "Imperial Irrigation District"
+      "zoneName": "Imperial Irrigation District",
+      "seoZoneName": "Imperial Irrigation District - California"
     },
     "US-CAL-LDWP": {
       "countryName": "USA",
@@ -1814,15 +1826,18 @@
     },
     "US-CAR-CPLE": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Progress East"
+      "zoneName": "Duke Energy Progress East",
+      "seoZoneName": "Duke Energy Progress East - North Carolina"
     },
     "US-CAR-CPLW": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Progress West"
+      "zoneName": "Duke Energy Progress West",
+      "seoZoneName": "Duke Energy Progress West - North Carolina"
     },
     "US-CAR-DUK": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Carolinas"
+      "zoneName": "Duke Energy Carolinas",
+      "seoZoneName": "Duke Energy Carolinas - North and South Carolina"
     },
     "US-CAR-SC": {
       "countryName": "USA",
@@ -1844,7 +1859,8 @@
     "US-CENT-SWPP": {
       "countryName": "USA",
       "displayName": "SPP",
-      "zoneName": "Southwest Power Pool"
+      "zoneName": "Southwest Power Pool",
+      "seoZoneName": "Southwest Power Pool - SPP"
     },
     "US-FLA-FMPP": {
       "countryName": "USA",
@@ -1885,7 +1901,8 @@
     "US-MIDA-PJM": {
       "countryName": "USA",
       "displayName": "PJM",
-      "zoneName": "PJM Interconnection"
+      "zoneName": "PJM Interconnection",
+      "seoZoneName": "PJM Interconnection - Mid-Atlantic US"
     },
     "US-MIDW-AECI": {
       "countryName": "USA",
@@ -1899,11 +1916,13 @@
     "US-MIDW-MISO": {
       "countryName": "USA",
       "displayName": "MISO",
-      "zoneName": "Midcontinent ISO"
+      "zoneName": "Midcontinent ISO",
+      "seoZoneName": "Midcontinent ISO - MISO"
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England",
+      "seoZoneName": "ISO New England - ISO-NE"
     },
     "US-NW-AVA": {
       "countryName": "USA",
@@ -1960,7 +1979,8 @@
     "US-NW-PSCO": {
       "countryName": "USA",
       "displayName": "PSCo",
-      "zoneName": "Public Service Company of Colorado"
+      "zoneName": "Public Service Company of Colorado",
+      "seoZoneName": "Public Service Company of Colorado - PSCo"
     },
     "US-NW-PSEI": {
       "countryName": "USA",
@@ -1990,7 +2010,8 @@
     },
     "US-NY-NYIS": {
       "countryName": "USA",
-      "zoneName": "New York ISO"
+      "zoneName": "New York ISO",
+      "seoZoneName": "New York ISO - NYISO"
     },
     "US-SE-SEPA": {
       "countryName": "USA",
@@ -2032,12 +2053,14 @@
     "US-TEN-TVA": {
       "countryName": "USA",
       "displayName": "TVA",
-      "zoneName": "Tennessee Valley Authority"
+      "zoneName": "Tennessee Valley Authority",
+      "seoZoneName": "Tennessee Valley Authority - TVA"
     },
     "US-TEX-ERCO": {
       "countryName": "USA",
       "displayName": "ERCOT",
-      "zoneName": "Electric Reliability Council of Texas"
+      "zoneName": "Electric Reliability Council of Texas",
+      "seoZoneName": "Electric Reliability Council of Texas - ERCOT"
     },
     "UY": {
       "zoneName": "Uruguay"

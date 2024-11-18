@@ -55,7 +55,7 @@ export default function RankingPanel(): ReactElement {
   );
 
   return (
-    <div className="flex h-[calc(100vh-236px)] w-full flex-col py-3 pl-4 pr-1">
+    <div className="flex h-[calc(100vh-236px)] w-full flex-col py-3 pl-4 pr-1 ">
       <Helmet prioritizeSeoTags>
         <title>{t('misc.maintitle') + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />

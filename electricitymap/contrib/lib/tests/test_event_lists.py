@@ -285,14 +285,14 @@ class TestProductionBreakdownList(unittest.TestCase):
                 source="trust.me",
             )
             mock_error.assert_called_once()
-        with patch.object(production_list.logger, "warning") as mock_warning:
+        with patch.object(production_list.logger, "debug") as mock_logger:
             production_list.append(
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 production=ProductionMix(wind=-10),
                 source="trust.me",
             )
-            mock_warning.assert_called_once()
+            mock_logger.assert_called_once()
 
     def test_merge_production_list_production_mix_only(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))

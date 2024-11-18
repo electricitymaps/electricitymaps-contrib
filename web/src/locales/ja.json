@@ -30,7 +30,7 @@
     "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
     "noLiveData": "このエリアのライブデータは一時的に利用できません",
     "dataIsDelayed": "この地域のデータは最大 {{hours}} 時間遅延します。ライブデータは表示できません。",
-    "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"{{link}}\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
+    "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href='{{link}}' target='_blank'> エリアのデータを追加することで </a> 貢献することができます。",
     "now": "今"
   },
   "ranking-panel": {
@@ -93,41 +93,41 @@
   "theMap": {
     "groupName": "地図",
     "mapColors-question": "地図中の色は何を意味しますか?",
-    "mapColors-answer": "その地域で消費された電力に伴い排出された温室効果ガスに応じて色がついています (<a href=\"#carbonIntensity\" class=\"entry-link\">炭素強度</a>). 緑色に近づくにしたがって、より環境に優しい電力消費になります.",
+    "mapColors-answer": "その地域で消費された電力に伴い排出された温室効果ガスに応じて色がついています (<a href='#carbonIntensity' class='entry-link'>炭素強度</a>). 緑色に近づくにしたがって、より環境に優しい電力消費になります.",
     "mapArrows-question": "エリア間に示された矢印は何を意味しますか?",
     "mapArrows-answer": "エリア間の矢印は電気の物理的な流れ(輸入と輸出)を意味します: 点滅の速さは流れの速さを意味します。あなたの使う電気が近隣地域から輸入される際は、その発電に伴い二酸化炭素排出を伴っているため、これらの電気の流れは重要です。",
     "mapSolarWindButtons-question": "地図の“太陽”と“風”のボタンは何をするものですか?",
     "mapSolarWindButtons-answer": "これらのボタンはリアルタイムでの風力と太陽光強度の表示を切り替えるものです。これはその地域で風力や太陽光発電に転換できるか潜在的な可能性を示すものです。注意すべきはこれは表面的なもので、実際に風力タービンや太陽光発電パネルの導入の可能性は他の多くの要素に左右されます。",
     "mapNuclearColors-question": "なぜ原子力を用いる国は地図上で緑色なのですか?",
-    "mapNuclearColors-answer": "原子力発電に伴う炭素強度は非常に少ないため(<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>)、原子力発電の多い国は地図上は緑色となります。(他の形態のエネルギー生成にも当てはまりますことですが)これは原子力発電が他の問題を伴わないことを意味するものではありません。しかしこれらの問題は温室効果ガスの排出とは関連するものではなくこの地図の対象範囲外です。",
+    "mapNuclearColors-answer": "原子力発電に伴う炭素強度は非常に少ないため(<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >source</a>)、原子力発電の多い国は地図上は緑色となります。(他の形態のエネルギー生成にも当てはまりますことですが)これは原子力発電が他の問題を伴わないことを意味するものではありません。しかしこれらの問題は温室効果ガスの排出とは関連するものではなくこの地図の対象範囲外です。",
     "mapColorBlind-question": "色覚特性があります。地図を見る方法はありますか?",
     "mapColorBlind-answer": "“代替配色モード”設定を有効にすることで地図に表示される配色を切り替えることができます。切り替え機能はデスクトップ版では左パネルの下部に、モバイルアプリでは情報タブにあります。"
   },
   "mapAreas": {
     "groupName": "地図中の地域",
     "noData-question": "なぜ私の地域のデータが無いのですか?",
-    "noData-answer": "一時的にその地域の情報が利用できないか、その地域の情報取得に関する設定がまだおこなわれていないためです。<a href=\"#contribute\" class=\"entry-link\">あなたが新しい情報源を付け加える</a>ことができます。",
+    "noData-answer": "一時的にその地域の情報が利用できないか、その地域の情報取得に関する設定がまだおこなわれていないためです。<a href='#contribute' class='entry-link'>あなたが新しい情報源を付け加える</a>ことができます。",
     "whySmallAreas-question": "なぜ全世界を小さな地域に分割して国ごとの単純な平均値を表示しないのですか?",
     "whySmallAreas-answer": "私たちがデータを取得できる最小単位の地域を対象にしています。最小単位のレベルの情報へのアクセスによって、それぞれの地域に住む電力消費者が発電される場所と気候変動への関連について精細な知識と得ることができます。",
     "divideExistingArea-question": "私が住む地域をより小さい単位に分割できますか?",
-    "divideExistingArea-answer": "それぞれの地域を分割できるような情報源がある場合はもちろんできます。<a href=\"#contribute\" class=\"entry-link\">新しい情報源を追加</a>することができます。",
+    "divideExistingArea-answer": "それぞれの地域を分割できるような情報源がある場合はもちろんできます。<a href='#contribute' class='entry-link'>新しい情報源を追加</a>することができます。",
     "seeHistoricalData-question": "24時間を超える過去のデータ履歴を見ることができますか?",
-    "seeHistoricalData-answer": "<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">データベース</a>を通して全ての過去データへのアクセス権を購入できます。"
+    "seeHistoricalData-answer": "<a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>データベース</a>を通して全ての過去データへのアクセス権を購入できます。"
   },
   "methodology": {
     "groupName": "手法",
-    "carbonIntensity-question": "\"炭素強度(carbon intensity)\"とは何ですか?",
+    "carbonIntensity-question": "'炭素強度(carbon intensity)'とは何ですか?",
     "carbonIntensity-answer": "炭素強度は発電に伴い排出される温室効果ガスの計測値です(gCO₂eq/kWh : 1時間に1キロワット電力消費する際に排出される、グラム単位の二酸化炭素排出量)。私たちは(発電ではなく)電力消費に伴う排出を測定しており、発電された地域で消費される電力の排出値も、他地域から輸入された電力による値も考慮した全ての排出ガス(CO₂もメタンのような他の温室効果ガスも)を意味します。私たちは発電所のライフサイクル全体(建設、燃料製造、運用による排出、運用終了後の解体)から生じる排出値を考慮したライフサイクル分析(LCA: life cycle analysis)によるアプローチをとります。",
     "renewableLowCarbonDifference-question": "“再生可能”と“低炭素”の違いは何ですか??",
     "renewableLowCarbonDifference-answer": "再生可能な発電は風力、水力、太陽光、地熱などの再生可能なエネルギー源による発電です。低炭素な発電は原子力発電などの非常に少ない温室効果ガスの排出を伴う発電を意味します。",
     "importsAndExports-question": "電力の輸入と輸出も考慮していますか?",
-    "importsAndExports-answer": "はい、考慮しています。輸入と輸出は<a href=\"#mapArrows\" class=\"entry-link\">地域間の小さい矢印</a>として見ることができます。詳細な情報は地域をクリックした際に表示される図表の中で見ることができます。",
+    "importsAndExports-answer": "はい、考慮しています。輸入と輸出は<a href='#mapArrows' class='entry-link'>地域間の小さい矢印</a>として見ることができます。詳細な情報は地域をクリックした際に表示される図表の中で見ることができます。",
     "emissionsOfStored-question": "バッテリーに貯蔵されたり貯水池に貯水するための発電からの排出はどうなりますか?",
     "emissionsOfStored-answer": "現在のところ小さな割合の電力しか貯蔵されておらず、これらの排出値を完全に集計に取り入れていないことから現在のところ排出値合計には影響を及ぼしていません。しかし電力貯蔵の重要性が増していけば私たちも早めに考慮に入れたいと考えます。",
     "guaranteesOfOrigin-question": "グリーン証書とは何ですか、そしてどのように考慮していますか?",
     "guaranteesOfOrigin-answer": "再生可能エネルギーの発電所が発電した際に、その発電源について証明書を発行することができます(再生可能エネルギー証書とも呼ばれます) - それは再生可能エネルギーとして発電され送電網に送り込まれたことを証明するものです。これらの保証書は電力と切り離して販売することができます。これによって電力小売業者は証書を組み合わせることで販売する電力の由来がどのようなものでも再生可能エネルギー由来の電力と主張することができ、電力消費者に対して太陽光でも風力でも、風が無い夜でも再生可能エネルギーを利用できると言うことができます。これは消費者から最適な時間帯(例えば再生可能エネルギーが最も多く送電されている際など)に電力を消費してもらう動機を奪うものという点で問題があります。そのためこの地図では電力源の証明に関する情報を除外し、代わりに消費者に判断できるようにすることを目的に位置情報に基づく実際の送電状況を描いています。",
     "otherSources-question": "なぜ発電以外の排出源について表示しないのですか?",
-    "otherSources-answer": "それはこのプロジェクトの対象外となっています。しかしelectricityMapで私たちは<a href=\"#whoAreYou\" class=\"entry-link\">人々の日々の行動がもたらす環境負荷を定量化する手法</a>を開発するために活発に働いています。",
+    "otherSources-answer": "それはこのプロジェクトの対象外となっています。しかしelectricityMapで私たちは<a href='#whoAreYou' class='entry-link'>人々の日々の行動がもたらす環境負荷を定量化する手法</a>を開発するために活発に働いています。",
     "homeSolarPanel-question": "仮に私が家にソーラーパネルを設置したら?",
     "homeSolarPanel-answer": "私たちは地域の電力網の炭素強度を測定しており、あなたがソーラーパネルで発電した電気を家で直接消費(オフグリッド)しても私たちの測定対象にはなりません。しかしながらあなたの家のソーラーパネルが電力網に電気を提供している場合は、その発電量は地域太陽光発電が利用可能になっている地域(フランスやイギリスなど)で私たちの集計値に含まれています。",
     "emissionsPerCapita-question": "なぜ1人当たりの排出量を示さないのですか?",
@@ -138,22 +138,22 @@
     "dataOrigins-question": "データはどのように取得しているのですか?",
     "dataOrigins-answer": "私たちは全てのデータを送電事業者、官公庁、その他の機関から公開されているデータを処理して利用しています。地域をクリックすることで情報源についてより詳細な情報が得られます。",
     "dataDownload-question": "データをダウンロードできますか?",
-    "dataDownload-answer": "<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">データベース</a>から全てのデータのアクセス権を購入できます。",
+    "dataDownload-answer": "<a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>データベース</a>から全てのデータのアクセス権を購入できます。",
     "dataIntegration-question": "データをリアルタイムに私のアプリケーションやデバイスに統合できますか?",
-    "dataIntegration-answer": "できます! <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">リアルタイムAPI</a>へのアクセス権を販売しており、これには未来予測も含まれています。"
+    "dataIntegration-answer": "できます! <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>リアルタイムAPI</a>へのアクセス権を販売しており、これには未来予測も含まれています。"
   },
   "aboutUs": {
     "groupName": "私たちについて",
     "whoAreYou-question": "あなたたちは誰ですか?",
-    "whoAreYou-answer": "Electricity Map はデンマークのスタートアップ企業<a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>によって開発、維持されています。私たちのゴールは、私たちが日々行う選択の環境負荷を定量化し広くアクセス可能とすることで人類が持続可能な状態へ至ることの助けとなることです。",
+    "whoAreYou-answer": "Electricity Map はデンマークのスタートアップ企業<a href='https://electricitymaps.com/' target='_blank'>electricityMap</a>によって開発、維持されています。私たちのゴールは、私たちが日々行う選択の環境負荷を定量化し広くアクセス可能とすることで人類が持続可能な状態へ至ることの助けとなることです。",
     "feedback-question": "フィードバックしてもいいですか?",
-    "feedback-answer": "ぜひどうぞ! <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">フィードバックフォーム</a>もしくは<a href=\"mailto:app@electricitymaps.com\">メール</a>でお願いします!",
+    "feedback-answer": "ぜひどうぞ! <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>フィードバックフォーム</a>もしくは<a href='mailto:app@electricitymaps.com'>メール</a>でお願いします!",
     "contribute-question": "プロジェクトに貢献できますか?",
-    "contribute-answer": "できます! Electricity Map はオープンソースプロジェクトで、ボランティアの貢献者によって成り立っています。新しい地域への新規データソースの追加、新機能追加、バグ修正などで地図の開発をお手伝いいただける際は気軽に私たちの<a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>へアクセスしてください。",
+    "contribute-answer": "できます! Electricity Map はオープンソースプロジェクトで、ボランティアの貢献者によって成り立っています。新しい地域への新規データソースの追加、新機能追加、バグ修正などで地図の開発をお手伝いいただける際は気軽に私たちの<a href='https://github.com/electricitymaps/electricitymaps-contrib' target='_blank'>github</a>へアクセスしてください。",
     "workTogether-question": "私たちと一緒に仕事できますか?",
-    "workTogether-answer": "私たちはコラボレーションできる機会を積極的に探しています。<a href=\"mailto:app@electricitymaps.com\">email</a>を送ってください!",
+    "workTogether-answer": "私たちはコラボレーションできる機会を積極的に探しています。<a href='mailto:app@electricitymaps.com'>email</a>を送ってください!",
     "disclaimer-question": "免責事項",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publishes data and images on the <a href='https://www.electricitymaps.com/' target='_blank'>Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": {
@@ -1044,9 +1044,6 @@
     },
     "NI": {
       "zoneName": "ニカラグア"
-    },
-    "NKR": {
-      "zoneName": "ナゴルノ・カラバフ"
     },
     "NL": {
       "zoneName": "オランダ"

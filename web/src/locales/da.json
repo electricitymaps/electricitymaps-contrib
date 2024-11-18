@@ -85,8 +85,7 @@
     "carbonintensity": "CO₂-intensitet",
     "lowcarbon": "Lav CO₂",
     "renewable": "Vedvarende",
-    "electricityproduction": "Produktion",
-    "electricityconsumption": "Forbrug",
+    "electricityconsumption": "Elektricitet",
     "emissions": "Udledning",
     "helpfrom": "Med hjælp fra:",
     "noDataAtTimestamp": "Data er midlertidigt utilgængeligt for det valgte tidspunkt",
@@ -99,14 +98,14 @@
     "dataIsDelayed": "Data for dette område kan være op til {{hours}} timer forsinket. Reeltidsdata kan ikke vises.",
     "estimated": "estimeret",
     "aggregated": "aggregeret",
-    "dataIsEstimated": "Noget af data fra dette område er estimeret. Læs mere om hvordan vi estimerer data <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">her</a>.",
-    "exchangesAreMissing": "Der er taget højde for electricitetsudveksling i udregningerne, men de er midlertidigt ikke vist. Læs mere om vores historiske aggregationer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
+    "dataIsEstimated": "Noget af data fra dette område er estimeret. Læs mere om hvordan vi estimerer data <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>her</a>.",
+    "exchangesAreMissing": "Der er taget højde for electricitetsudveksling i udregningerne, men de er midlertidigt ikke vist. Læs mere om vores historiske aggregationer <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>her</a>.",
     "estimatedTooltip": "Nyeste data for dette område er estimeret baseret på tilgængeligt data.",
     "aggregatedTooltip": "Data fra dette område er sammenlagt baseret på historiske timevise værdier.",
-    "helpUs": "Hjælp os med at identificere problemet ved at kigge på <a href=\"{{link}}\" target=\"_blank\">runtime logs</a> eller kontakte data udbyderen.",
-    "noParserInfo": "Vi har endnu ingen information om dette område.<br/> Vil du hjælpe med at finde det? Du kan bidrage ved at <a href=\"{{link}}\" target=\"_blank\">tilføje områdedata</a>.",
+    "helpUs": "Hjælp os med at identificere problemet ved at kigge på <a href='{{link}}' target='_blank'>runtime logs</a> eller kontakte data udbyderen.",
+    "noParserInfo": "Vi har endnu ingen information om dette område.<br/> Vil du hjælpe med at finde det? Du kan bidrage ved at <a href='{{link}}' target='_blank'>tilføje områdedata</a>.",
     "aggregationDisabled": "Data er ikke tilgængelig for den valgte tidsperiode på grund af manglende detaljeret opdeling. Prøv en bredere tidsperiode.",
-    "fullyDisabled": "Data, vi har tilgængelige for dette område, er utilstrækkelige og vises derfor ikke. Hvis du kender til datakilder for dette område, bedes du venligst <a href=\"{{link}}\" target=\"_blank\">informere os</a>.",
+    "fullyDisabled": "Data, vi har tilgængelige for dette område, er utilstrækkelige og vises derfor ikke. Hvis du kender til datakilder for dette område, bedes du venligst <a href='{{link}}' target='_blank'>informere os</a>.",
     "now": "Nu",
     "by-source": {
       "emissions": "CO₂-udledning",
@@ -411,29 +410,29 @@
     "mapSolarWindButtons-question": "Hvad gør “sol” og “vind” kanpperne på kortet?",
     "mapSolarWindButtons-answer": "Disse knapper viser realtids vind hastighed og solstyrke, hvilket giver en indikation på potentialet af at kunne omstille til sol og vind baserede energi alternativer i forskellige områder. Bemærk dog at dette kun er en overfladisk indikation, da det faktiske potentiale af at kunne installere vindmøller og solceller også baseres på mange andre faktorer.",
     "mapNuclearColors-question": "Hvorfor er lande primært baseret på atomkraft som energikilde vist som grønne på kortet?",
-    "mapNuclearColors-answer": "Atomkrafts produktion har en meget lav CO₂-intensitet (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >kilde</a>), og lande primært baseret på atomkraft som energikilde er derfor vist som grønne på kortet. Dette betyder ikke at der ikke er andre klima udfordringer associeret med atomkraft (ligesom dette også er tilfældet med andre energi produktions former), men disse udfordringer er ikke relaterede til udledningen af drivhusgasser og er derfor udenfor hvad dette kort har at tilbyde.",
+    "mapNuclearColors-answer": "Atomkrafts produktion har en meget lav CO₂-intensitet (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >kilde</a>), og lande primært baseret på atomkraft som energikilde er derfor vist som grønne på kortet. Dette betyder ikke at der ikke er andre klima udfordringer associeret med atomkraft (ligesom dette også er tilfældet med andre energi produktions former), men disse udfordringer er ikke relaterede til udledningen af drivhusgasser og er derfor udenfor hvad dette kort har at tilbyde.",
     "mapColorBlind-question": "Jeg er farveblind. Hvordan kan jeg læse jeres kort?",
     "mapColorBlind-answer": "Du kan ændre farverne på kortet ved at aktivere “farveblindhedstilstand“. Du kan finde den i højre side af kortet på computer og i indstillinger på mobil."
   },
   "mapAreas": {
     "groupName": "Områder på kortet",
     "noData-question": "Hvorfor er der ikke data tilgængeligt for alle områder?",
-    "noData-answer": "Enten fordi at at områdets dataudbyder er midlertidigt utilgængelig, ellers fordi at vi ikke har en dataudbyder for dette område. Du kan <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources\">hjælpe os med at finde dataudbydere</a>.",
+    "noData-answer": "Enten fordi at at områdets dataudbyder er midlertidigt utilgængelig, ellers fordi at vi ikke har en dataudbyder for dette område. Du kan <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources'>hjælpe os med at finde dataudbydere</a>.",
     "whySmallAreas-question": "Hvorfor deler i verden ind i mindre dele og ikke bare lande?",
     "whySmallAreas-answer": "Områderne er de mindste geografiske områder vi har data for. Ved at have adgang til information på den mindste skala kan electricitetsforbrugere i forskellige områder have mere præcis information om oprindelsen af den electricitet de bruger, og det associerede klima aftryk.",
     "divideExistingArea-question": "Kan du dele mit område ind i mindre dele?",
-    "divideExistingArea-answer": "Ja, hvis der eksisterer en seperat data kilde for hver del af området.. Du kan <a href=\"#contribute\" class=\"entry-link\">hjælpe os med at tilføje nye data kilder</a>",
+    "divideExistingArea-answer": "Ja, hvis der eksisterer en seperat data kilde for hver del af området.. Du kan <a href='#contribute' class='entry-link'>hjælpe os med at tilføje nye data kilder</a>",
     "seeHistoricalData-question": "Kan jeg for et område se længere tilbage i tiden end 24 timer?",
-    "seeHistoricalData-answer": "Du kan købe adgang til alt vores historiske data gennem vores <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
+    "seeHistoricalData-answer": "Du kan købe adgang til alt vores historiske data gennem vores <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>database</a>."
   },
   "methodology": {
     "groupName": "Vores metoder",
-    "carbonIntensity-question": "Hvad er \"CO₂-intensitet\"?",
+    "carbonIntensity-question": "Hvad er 'CO₂-intensitet'?",
     "carbonIntensity-answer": "CO₂-intensitet er en måling af drivhusgasudledninger associeret med at producere electriciteten som du bruger (i gCO₂eq/kWh - gram CO₂ lignende stoffer udledt pr. kilowatt time af brugt electricitet). <br><br>Vi måler udledningerne af electricitetsforbrug (ikke produktion), hvilket betyder alle drivhusgasudledninger (både CO₂ og andre drivhusgasser så som metan) der er blevet udledt i processen af at producere den electricitet som bliver brugt i et område, hvor der også bliver taget højde for electriciteten der er blevet importeret fra andre områder. Vi burger livscyklusanalyse (LCA), hvilket betyder at vi tager højde for udledninger der forekommer i hele livscyklussen af af energikilden (konstruktion, brændstofs produktion, operationelle udledninger, og dekomposition).",
     "methodology-question": "Hvordan udregnede i værdierne?",
-    "methodology-answer": "Vi har en detaljeret side om vores metoder på <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a>, med yderligere dokumentation på <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">vores GitHub Wiki</a>.",
+    "methodology-answer": "Vi har en detaljeret side om vores metoder på <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a>, med yderligere dokumentation på <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>vores GitHub Wiki</a>.",
     "regionalEmissionFactors-question": "Hvorfor er udledningsfaktorerne forskellige i forskellige områder?",
-    "regionalEmissionFactors-answer": "For nogen zoner har vi kunnet finde en mere præcis udledningsfaktor end det globale gennemsnit som vi bruger som reserve. Fx er udledningsfaktorene direkte fra den enkelte energikilde åben for alle i USA og i EU. Vi matcher så disse udledningsfaktorer med energikildens produktions data og udregner udledningen pr. energikilde, hvilket bliver sammenlagt til den totale udledning for zonen. Se <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">detaljer på vores Wiki</a>.",
+    "regionalEmissionFactors-answer": "For nogen zoner har vi kunnet finde en mere præcis udledningsfaktor end det globale gennemsnit som vi bruger som reserve. Fx er udledningsfaktorene direkte fra den enkelte energikilde åben for alle i USA og i EU. Vi matcher så disse udledningsfaktorer med energikildens produktions data og udregner udledningen pr. energikilde, hvilket bliver sammenlagt til den totale udledning for zonen. Se <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>detaljer på vores Wiki</a>.",
     "renewableLowCarbonDifference-question": "Hvad er forskellen på “vedvarende” og “lav CO₂?",
     "renewableLowCarbonDifference-answer": "Vedvarende energi produktion er baseret på vedvarende energikilder så som vind, vandstrømning, sol, og geotermisk energi. Lav CO₂ energi produktion betyder at produktionen involvere meget lave værdier for drivhusgasudledninger, så som atomkraft produktion.",
     "importsAndExports-question": "Tager i højde for import og eksport af elektricitet?",
@@ -443,7 +442,7 @@
     "guaranteesOfOrigin-question": "Hvad er grønne certifikater, og hvordan tages de i betragtning?",
     "guaranteesOfOrigin-answer": "Når producenter af vedvarende energi producerer elektricitet, kan de oprette oprindelsesgarantier (eller certifikater for vedvarende energi) - et bevis på, at vedvarende elektricitet er blevet produceret og distribueret til elnettet. Disse garantier kan derefter sælges, hvilket giver elforhandlere en måde at hævde, at den elektricitet, de videresælger, kommer fra vedvarende kilder, uanset dens faktiske, fysiske kilde.<br><br> Dette betyder, at elforbrugere kan få at vide, at deres elektricitet kommer fra sol og vind, selv på en vindstille nat. Dette er problematisk, da det fjerner forbrugernes incitamenter til at forbruge elektricitet på det bedste tidspunkt (for eksempel når mængden af vedvarende elektricitet i elnettet faktisk er på sit højeste). Dette kort udelukker derfor oprindelsesgarantier og tilbyder i stedet et lokationsbaseret fysisk billede af elnettet for at give magten tilbage til forbrugerne.",
     "otherSources-question": "Hvorfor viser I ikke andre kilder til udledninger end elproduktion?",
-    "otherSources-answer": "Vi fokuserer kun på elproduktion for nu, da dette er <a href=\"https://ourworldindata.org/emissions-by-sector#energy-electricity-heat-and-transport-73-2\" target=\"_blank\">den største kilde til udledninger</a> og den, der lettest kan dekarboniseres.",
+    "otherSources-answer": "Vi fokuserer kun på elproduktion for nu, da dette er <a href='https://ourworldindata.org/emissions-by-sector#energy-electricity-heat-and-transport-73-2' target='_blank'>den største kilde til udledninger</a> og den, der lettest kan dekarboniseres.",
     "homeSolarPanel-question": "Hvad hvis jeg har et solpanel installeret i mit hjem?",
     "homeSolarPanel-answer": "Vi måler CO₂-intensiteten i det lokale elnet, så al elektricitet, du forbruger direkte fra dit solpanel, er ikke en del af vores målinger. Men hvis dit solpanel leverer strøm til dit lokale elnet, er dets produktion inkluderet i vores statistikker i områder, hvor estimater af lokal solenergiproduktion er gjort offentligt tilgængelige (såsom i Frankrig og Storbritannien).",
     "emissionsPerCapita-question": "Hvorfor viser I ikke udledninger pr. indbygger?",
@@ -454,22 +453,22 @@
     "dataOrigins-question": "Hvordan får i fat i data?",
     "dataOrigins-answer": "Vi udregner alt vores data ud fra åben data, publiceret af electricitets operatorer, officielle agenturer, m.m.. Du kan klikke på et område og se flere detaljer om oprindelsen af denne data.",
     "dataDownload-question": "Kan jeg downloade jeres data?",
-    "dataDownload-answer": "Vi publicerer data for tidligere år gratis på vores <a href=\"https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Data Portal</a>. For mere nutidig og realtidsdata kan du bruge <a href=\"https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral\">vores API</a>, som er gratis for ikke kommercielt brug og tilgængeligt mod betaling for kommercielt forbrug.",
+    "dataDownload-answer": "Vi publicerer data for tidligere år gratis på vores <a href='https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>Data Portal</a>. For mere nutidig og realtidsdata kan du bruge <a href='https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral'>vores API</a>, som er gratis for ikke kommercielt brug og tilgængeligt mod betaling for kommercielt forbrug.",
     "dataIntegration-question": "Kan jeg intergrere jeres realtidsdata i min app eller device?",
-    "dataIntegration-answer": "Ja ! Vi udbyder et gratis API for ikke kommercielt brug og sælger adgang til et <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">realtids API</a> for kommercielt brug, hvilket inkluderer fremtidige udsigter for elproduktion m.m."
+    "dataIntegration-answer": "Ja ! Vi udbyder et gratis API for ikke kommercielt brug og sælger adgang til et <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>realtids API</a> for kommercielt brug, hvilket inkluderer fremtidige udsigter for elproduktion m.m."
   },
   "aboutUs": {
     "groupName": "Om os",
     "whoAreYou-question": "Hvem er i?",
-    "whoAreYou-answer": "Appen er udviklet og vedligeholdt af <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, en dansk startup. Vores mission er at organisere verdens electricitetsdata for at skubbe verden mod et electricitets system der er drevet af energiformer der har lav CO₂-intensitet.",
+    "whoAreYou-answer": "Appen er udviklet og vedligeholdt af <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a>, en dansk startup. Vores mission er at organisere verdens electricitetsdata for at skubbe verden mod et electricitets system der er drevet af energiformer der har lav CO₂-intensitet.",
     "feedback-question": "Kan jeg give jer feedback?",
-    "feedback-answer": "Det ville vi elske! Du kan udfylde denne <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\"> feedback form</a>.",
+    "feedback-answer": "Det ville vi elske! Du kan udfylde denne <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'> feedback form</a>.",
     "contribute-question": "Kan jeg hjælpe med jeres projekt?",
-    "contribute-answer": "Ja! Appen er et open-source projekt, så det muligt for frivillige at hjælpe til. Hvis du gerne vil hjælpe med at udvikle kortet, enten ved at tilføje data kilder for nye områder, tilføje nye features eller fikse fejl, så kan du bidrage på <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">GitHub</a>.",
+    "contribute-answer": "Ja! Appen er et open-source projekt, så det muligt for frivillige at hjælpe til. Hvis du gerne vil hjælpe med at udvikle kortet, enten ved at tilføje data kilder for nye områder, tilføje nye features eller fikse fejl, så kan du bidrage på <a href='https://github.com/electricityMaps/electricitymaps-contrib/' target='_blank'>GitHub</a>.",
     "workTogether-question": "Kan vi arbejde sammen?",
-    "workTogether-answer": "Vi leder altid efter nye muligheder for at samarbejde. <a href=\"mailto:app@electricitymaps.com\">Send os en email!</a>",
+    "workTogether-answer": "Vi leder altid efter nye muligheder for at samarbejde. <a href='mailto:app@electricitymaps.com'>Send os en email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> offentliggør data og billeder på <a href=\"https://app.electricitymaps.com/\" target=\"_blank\">Electricity Maps App</a> til informationsformål. Der gives ingen garantier for korrekthed eller nogen form for garantier, og vi forbeholder os retten til at ændre indholdet når som helst eller fjerne dele uden at skulle informere dig om dette. Electricity Maps påtager sig intet ansvar for og kan ikke holdes ansvarlig for eventuelle skader eller udgifter, du måtte pådrage dig som følge af unøjagtighed, ufuldstændighed, manglende aktualitet eller forældelse af Electricity Maps App eller de oplysninger, der er afledt heraf. Det er ikke tilladt at inkludere denne webside eller nogen af dens enkelte elementer på en anden webside uden forudgående skriftligt samtykke.<br><br> Alle intellektuelle ejendomsrettigheder tilhører de retmæssige ejere og deres licensgivere. Kopiering, distribution og enhver anden brug af disse materialer, især energidataene, er ikke tilladt uden skriftlig tilladelse fra Electricity Maps, undtagen og kun i det omfang, det er fastsat i ufravigelige lovbestemmelser (såsom retten til at citere), medmindre andet er angivet for specifikke materialer. <br><br>Denne disclaimer kan opdateres fra tid til anden."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> offentliggør data og billeder på <a href='https://app.electricitymaps.com/' target='_blank'>Electricity Maps App</a> til informationsformål. Der gives ingen garantier for korrekthed eller nogen form for garantier, og vi forbeholder os retten til at ændre indholdet når som helst eller fjerne dele uden at skulle informere dig om dette. Electricity Maps påtager sig intet ansvar for og kan ikke holdes ansvarlig for eventuelle skader eller udgifter, du måtte pådrage dig som følge af unøjagtighed, ufuldstændighed, manglende aktualitet eller forældelse af Electricity Maps App eller de oplysninger, der er afledt heraf. Det er ikke tilladt at inkludere denne webside eller nogen af dens enkelte elementer på en anden webside uden forudgående skriftligt samtykke.<br><br> Alle intellektuelle ejendomsrettigheder tilhører de retmæssige ejere og deres licensgivere. Kopiering, distribution og enhver anden brug af disse materialer, især energidataene, er ikke tilladt uden skriftlig tilladelse fra Electricity Maps, undtagen og kun i det omfang, det er fastsat i ufravigelige lovbestemmelser (såsom retten til at citere), medmindre andet er angivet for specifikke materialer. <br><br>Denne disclaimer kan opdateres fra tid til anden."
   },
   "zoneShortName": {
     "AD": {
@@ -1441,9 +1440,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Holland"

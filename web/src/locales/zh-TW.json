@@ -63,12 +63,12 @@
     "dataIsDelayed": "該地區的資料可能落後 {{hours}} 小時，無即時資料。",
     "estimated": "預估",
     "aggregated": "總計",
-    "dataIsEstimated": "該地區的部分資料爲估計值。請參考我們的<a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">估計方法</a>。",
-    "exchangesAreMissing": "電力交換已被納入計算，但尚未顯示。請參考我們的先前的<a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">合計資料</a>。",
+    "dataIsEstimated": "該地區的部分資料爲估計值。請參考我們的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>估計方法</a>。",
+    "exchangesAreMissing": "電力交換已被納入計算，但尚未顯示。請參考我們的先前的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>合計資料</a>。",
     "estimatedTooltip": "該區域的即時資料是基於其過往資料與模型預測的估計值。",
     "aggregatedTooltip": "該區域的的資料是由過去的每小時資料聚合而成。",
-    "helpUs": "請檢視<a href=\"{{link}}\" target=\"_blank\">執行環境日誌</a>並幫助我們找出問題。",
-    "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href=\"{{link}}\" target=\"_blank\">新增這個地區的資料</a>！",
+    "helpUs": "請檢視<a href='{{link}}' target='_blank'>執行環境日誌</a>並幫助我們找出問題。",
+    "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href='{{link}}' target='_blank'>新增這個地區的資料</a>！",
     "aggregationDisabled": "由於缺少詳細細分，無法取得所選時間段的資料。請嘗試選擇一個更廣泛的時間段。",
     "now": "現在"
   },
@@ -299,31 +299,31 @@
     "mapSolarWindButtons-question": "地圖上的「太陽」和「風」按鈕是做什麼的？",
     "mapSolarWindButtons-answer": "這些按鈕可以顯示/隱藏即時的風速和日照強度資訊，是各地區風力與太陽能的發電潛能指標。需要注意的是，這只是個簡單的指標；計算風力與太陽能的發電潛能仍需考慮其他因素。",
     "mapNuclearColors-question": "為什麼使用核能的國家在地圖上被標示成綠色？",
-    "mapNuclearColors-answer": "核能的碳強度很低（詳見<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >資料來源</a>），所以使用核能的國家被標示爲綠色。這並不代表核能對環境沒有影響，只是這些影響與溫室氣體的排放無關，因此不在這張地圖的考慮範疇。",
+    "mapNuclearColors-answer": "核能的碳強度很低（詳見<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >資料來源</a>），所以使用核能的國家被標示爲綠色。這並不代表核能對環境沒有影響，只是這些影響與溫室氣體的排放無關，因此不在這張地圖的考慮範疇。",
     "mapColorBlind-question": "色盲人士該如何閱讀這張地圖？",
     "mapColorBlind-answer": "你可以將地圖的顏色改為「色盲模式」。色盲模式的按鈕位於左選單底部（電腦）或資訊列（手機）。"
   },
   "mapAreas": {
     "groupName": "地圖上的區域",
     "noData-question": "為什麼沒有我所在區域的資料？",
-    "noData-answer": " 這有可能是因為該地區的資料暫時無法取得，或我們沒有該地區的資料來源。你可以幫助我們<a href=\"#contribute\" class=\"entry-link\">新增資料來源</a>。",
+    "noData-answer": " 這有可能是因為該地區的資料暫時無法取得，或我們沒有該地區的資料來源。你可以幫助我們<a href='#contribute' class='entry-link'>新增資料來源</a>。",
     "whySmallAreas-question": "為什要將國家分成更小的區域，而不是呈現整個國家的平均值？",
     "whySmallAreas-answer": "這些區域是我們有電力資料的最小地理單位。將國家盡可能分成一個個小區域，有助於使用者瞭解他們的電力來源，以及這些電力對氣候變遷的影響。",
     "divideExistingArea-question": "可以將我所在的區域分割成更小的單位嗎？",
-    "divideExistingArea-answer": "可以，如果分割後的單位都有各自的資料來源的話。你可以幫助我們<a href=\"#contribute\" class=\"entry-link\">新增資料來源</a>。",
+    "divideExistingArea-answer": "可以，如果分割後的單位都有各自的資料來源的話。你可以幫助我們<a href='#contribute' class='entry-link'>新增資料來源</a>。",
     "seeHistoricalData-question": "我可以檢視一個區域超過 24 小時以前的資料嗎？",
-    "seeHistoricalData-answer": "你可以從我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>購買所有歷史資料的取得權。"
+    "seeHistoricalData-answer": "你可以從我們的<a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>資料庫</a>購買所有歷史資料的取得權。"
   },
   "methodology": {
     "groupName": "我們的方法",
     "carbonIntensity-question": "「碳強度」是什麼?",
     "carbonIntensity-answer": "碳強度是衡量一個地區電力消耗的溫室氣體排放量的一種指標（單位為gCO₂eq/kWh，即每消耗一度電所排放的二氧化碳當量克數）。<br><br>我們測量電力消耗的溫室氣體排放量，亦即生產被一個地區消耗的電力會排放的所有溫室氣體（包含二氧化碳、甲烷等），包含從其他地區進口的電力。我們採用生命週期分析（Life Cycle Analysis），也就是，將發電廠整個生命週期（建造、燃料生產、運作、退役）的碳排量都納入計算。",
     "methodology-question": "你們如何計算這些數值的?",
-    "methodology-answer": "我們在 <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a> 上詳細介紹了我們的完整方法論，並在我們的 <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">GitHub Wiki</a> 上提供了額外的文件.",
+    "methodology-answer": "我們在 <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a> 上詳細介紹了我們的完整方法論，並在我們的 <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>GitHub Wiki</a> 上提供了額外的文件.",
     "renewableLowCarbonDifference-question": "「可再生」和「低碳排」的差異是什麼？",
     "renewableLowCarbonDifference-answer": "「可再生」能源是利用可再生能源發電的發電方式，例如：風力、水力、太陽能、地熱能。「低碳」能源指的是電力生產過少碳排很少的發電方式，例如：核能。",
     "importsAndExports-question": "你們有將電力輸入輸出納入計算嗎？",
-    "importsAndExports-answer": "有的。我們在地圖上將電力進出口標記爲<a href=\"#mapArrows\" class=\"entry-link\">區域間的小箭頭</a>。點選該區域以顯示更多相關資訊。",
+    "importsAndExports-answer": "有的。我們在地圖上將電力進出口標記爲<a href='#mapArrows' class='entry-link'>區域間的小箭頭</a>。點選該區域以顯示更多相關資訊。",
     "emissionsOfStored-question": "生產完直接被存入電池或用來把水抽入水庫的電力，他們的碳排如何計算呢？",
     "emissionsOfStored-answer": "目前，只有小部分的電力被儲存起來，對於碳排計算不會造成太大誤差。但是隨著電力儲存增加，我們也希望將儲存的部分納入計算，以完善我們的模型。",
     "guaranteesOfOrigin-question": "綠色執照是什麼？他們如何影響計算？",
@@ -340,22 +340,22 @@
     "dataOrigins-question": "你們如何取得資料？",
     "dataOrigins-answer": "我們使用供電網路管理者、公部門提供的公開資料進行計算。點選區域以檢視資料來源資訊。",
     "dataDownload-question": "可不可以下載你們的資料？",
-    "dataDownload-answer": "你可以在我們的<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">資料庫</a>購買資料的取得權。",
+    "dataDownload-answer": "你可以在我們的<a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>資料庫</a>購買資料的取得權。",
     "dataIntegration-question": "可以將你們的即時資料整合到我的應用程式或裝置上嗎？",
-    "dataIntegration-answer": "可以！我們也有販賣<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">即時資料的 API</a>，裡面也包含未來預測。"
+    "dataIntegration-answer": "可以！我們也有販賣<a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>即時資料的 API</a>，裡面也包含未來預測。"
   },
   "aboutUs": {
     "groupName": "關於我們",
     "whoAreYou-question": "你們是誰？",
-    "whoAreYou-answer": "這個網站由丹麥新創公司 <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> 開發並維護。我們的目標是要透過量化日常行為對氣候變遷的影響，並廣泛的提供給大眾，以幫助人類達成永續的生存。",
+    "whoAreYou-answer": "這個網站由丹麥新創公司 <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> 開發並維護。我們的目標是要透過量化日常行為對氣候變遷的影響，並廣泛的提供給大眾，以幫助人類達成永續的生存。",
     "feedback-question": "可以給你們回饋嗎？",
-    "feedback-answer": "歡迎你提供回饋！請填寫我們的<a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">回饋表單</a>或<a href=\"mailto:app@electricitymaps.com\">寄信給我們</a>。",
+    "feedback-answer": "歡迎你提供回饋！請填寫我們的<a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>回饋表單</a>或<a href='mailto:app@electricitymaps.com'>寄信給我們</a>。",
     "contribute-question": "可以為這個專案貢獻嗎？",
-    "contribute-answer": "可以！這是個由志願貢獻者支持的開源專案。如果你想對這個專案貢獻，無論是提供資料來源、新增功能、修 bug，我們歡迎你在 <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">Github</a> 上加入我們。",
+    "contribute-answer": "可以！這是個由志願貢獻者支持的開源專案。如果你想對這個專案貢獻，無論是提供資料來源、新增功能、修 bug，我們歡迎你在 <a href='https://github.com/electricityMaps/electricitymaps-contrib/' target='_blank'>Github</a> 上加入我們。",
     "workTogether-question": "我們可以合作嗎？",
-    "workTogether-answer": "我們正積極的尋找新的合作機會。<a href=\"mailto:app@electricitymaps.com\">寄封電子郵件給我們！</a>",
+    "workTogether-answer": "我們正積極的尋找新的合作機會。<a href='mailto:app@electricitymaps.com'>寄封電子郵件給我們！</a>",
     "disclaimer-question": "聲明",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publishes data and images on the <a href='https://www.electricitymaps.com/' target='_blank'>Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": {
@@ -1319,9 +1319,6 @@
     },
     "NI": {
       "zoneName": "尼加拉瓜"
-    },
-    "NKR": {
-      "zoneName": "納戈爾諾-卡拉巴赫"
     },
     "NL": {
       "zoneName": "荷蘭"
