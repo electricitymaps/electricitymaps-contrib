@@ -117,7 +117,7 @@ function AreaGraphLayers({
           hoveredIndex: hoverLayerIndex,
           index: ind,
           layerKey: layer.key,
-          selectedData: selectedData,
+          selectedData,
         });
 
         const isInteracted =
@@ -134,9 +134,7 @@ function AreaGraphLayers({
         return (
           <React.Fragment key={layer.key}>
             <path
-              className={
-                shouldLayerBeSaturated ? 'sm:hover:opacity-100' : 'sm:opacity-30'
-              }
+              className={shouldLayerBeSaturated ? 'opacity-100' : 'opacity-30'}
               style={{ cursor: 'pointer' }}
               stroke={stroke}
               strokeWidth={0.5}
