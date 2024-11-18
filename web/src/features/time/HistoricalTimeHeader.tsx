@@ -101,7 +101,6 @@ export default function HistoricalTimeHeader() {
           isDisabled={!isHourly || !urlDatetime}
           icon={
             <ChevronRight
-              onClick={handleRightClick}
               className={twMerge(
                 'text-brand-green',
                 (!urlDatetime || !isHourly) && 'opacity-50'
