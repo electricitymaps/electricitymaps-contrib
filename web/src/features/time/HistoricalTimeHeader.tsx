@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import { useNavigateWithParameters } from 'utils/helpers';
-import { endDatetimeAtom, startDatetimeAtom } from 'utils/state/atoms';
+import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
 
 function setToMidnightUTC(date: Date): Date {
   const newDate = new Date(date);
@@ -27,6 +27,7 @@ export default function HistoricalTimeHeader() {
   const { isLoading } = useGetState();
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
+  const isHourly = useAtomValue(isHourlyAtom);
   function handleLeftClick() {
     if (!urlDatetime && !endDatetime) {
       return;
@@ -58,7 +59,6 @@ export default function HistoricalTimeHeader() {
     const now = new Date();
     const twentyFourHoursAgo = setToMidnightUTC(now);
     twentyFourHoursAgo.setUTCDate(twentyFourHoursAgo.getUTCDate() - 1);
-
     if (newDate >= twentyFourHoursAgo) {
       navigate({ datetime: '' });
       return;
@@ -81,11 +81,34 @@ export default function HistoricalTimeHeader() {
         />
       )}
       <div className="flex flex-row items-center gap-2">
-        <ChevronLeft onClick={handleLeftClick} className="text-brand-green" />
-        <ChevronRight
-          onClick={handleRightClick}
-          className={twMerge('text-brand-green', !urlDatetime && 'opacity-50')}
+        <Button
+          backgroundClasses="bg-transparent"
+          onClick={handleLeftClick}
+          size="sm"
+          type="tertiary"
+          isDisabled={!isHourly}
+          icon={
+            <ChevronLeft
+              className={twMerge('text-brand-green', !isHourly && 'opacity-50')}
+            />
+          }
         />
+        <Button
+          backgroundClasses="bg-transparent"
+          size="sm"
+          onClick={handleRightClick}
+          type="tertiary"
+          isDisabled={!isHourly || !urlDatetime}
+          icon={
+            <ChevronRight
+              onClick={handleRightClick}
+              className={twMerge(
+                'text-brand-green',
+                (!urlDatetime || !isHourly) && 'opacity-50'
+              )}
+            />
+          }
+        ></Button>
         <Button
           size="sm"
           type="secondary"

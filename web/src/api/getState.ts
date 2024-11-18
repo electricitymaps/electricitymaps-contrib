@@ -8,7 +8,7 @@ import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 import { cacheBuster, getBasePath, isValidDate, QUERY_KEYS } from './helpers';
 
 const getState = async (
-  timeAverage: TimeAverages | 'last_hour',
+  timeAverage: TimeAverages,
   targetDatetime?: string
 ): Promise<GridState> => {
   const shouldQueryHistorical =

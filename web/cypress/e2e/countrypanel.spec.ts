@@ -3,7 +3,6 @@
 describe('Country Panel', () => {
   beforeEach(() => {
     cy.interceptAPI('v8/state/hourly');
-    cy.interceptAPI('v8/state/last_hour');
     cy.interceptAPI('v8/meta');
   });
 
@@ -86,7 +85,6 @@ describe('Country Panel', () => {
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
     // Add all required API intercepts
-    cy.interceptAPI('v8/state/last_hour');
     cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/details/hourly/CN');
     cy.interceptAPI('v8/meta'); // Add this if needed
@@ -97,7 +95,6 @@ describe('Country Panel', () => {
       },
     });
 
-    cy.waitForAPISuccess('v8/state/last_hour');
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/CN');
 
