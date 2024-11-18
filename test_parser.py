@@ -63,8 +63,11 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     ][zone]
 
     args = zone.split("->") if data_type in ["exchange", "exchangeForecast"] else [zone]
+
+    logger = getLogger(__name__)
+    logger.setLevel(DEBUG)
     res = parser(
-        *args, target_datetime=parsed_target_datetime, logger=getLogger(__name__)
+        *args, target_datetime=parsed_target_datetime, logger=logger
     )
 
     if not res:
