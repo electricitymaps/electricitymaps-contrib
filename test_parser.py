@@ -66,9 +66,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
 
     logger = getLogger(__name__)
     logger.setLevel(DEBUG)
-    res = parser(
-        *args, target_datetime=parsed_target_datetime, logger=logger
-    )
+    res = parser(*args, target_datetime=parsed_target_datetime, logger=logger)
 
     if not res:
         raise ValueError(f"Error: parser returned nothing ({res})")
