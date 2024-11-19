@@ -382,7 +382,7 @@ FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-NW-PACE": ["biomass", "geothermal", "oil"],
     "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
     "US-TEN-TVA": ["biomass", "geothermal", "oil"],
-    "US-SE-SOCO": ["biomass", "geothermal", "oil"],
+    "US-SE-SOCO": ["biomass", "geothermal", "oil", "hydro"],
     "US-FLA-FPL": ["biomass", "geothermal", "oil"],
 }
 
@@ -507,7 +507,6 @@ def fetch_production_mix(
             for datapoint in production_values
             if datapoint["value"] is not None
         ]
-
         # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
         # US-CAR-SCEG and US-CAR-SC,
