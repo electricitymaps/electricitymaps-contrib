@@ -11,61 +11,39 @@ import { RouteParameters } from 'types';
 import { useNavigateWithParameters } from 'utils/helpers';
 import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
 
-function setToMidnightUTC(date: Date): Date {
-  const newDate = new Date(date);
-  newDate.setUTCHours(0, 0, 0, 0);
-  return newDate;
-}
-function formatDateToISO(date: Date): string {
-  return date.toISOString().slice(0, -5) + 'Z';
-}
+const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
 export default function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const { isLoading } = useGetState();
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
-  const isHourly = useAtomValue(isHourlyAtom);
-  function handleLeftClick() {
-    if (!urlDatetime && !endDatetime) {
+
+  const handleTimeNavigation = (direction: 'left' | 'right') => {
+    if (!endDatetime || (!urlDatetime && direction === 'right')) {
       return;
     }
 
-    const targetDate = urlDatetime ? new Date(urlDatetime) : endDatetime;
-    if (!targetDate) {
-      return;
+    const currentDate = urlDatetime ? new Date(urlDatetime) : new Date(endDatetime);
+    const newDate = new Date(
+      currentDate.getTime() +
+        (direction === 'left' ? -TWENTY_FOUR_HOURS : TWENTY_FOUR_HOURS)
+    );
+
+    if (direction === 'right') {
+      const twentyFourHoursAgo = new Date(Date.now() - TWENTY_FOUR_HOURS);
+      if (newDate >= twentyFourHoursAgo) {
+        navigate({ datetime: '' });
+        return;
+      }
     }
 
-    const midnightDate = setToMidnightUTC(targetDate);
-    const newDate = new Date(midnightDate);
-    urlDatetime
-      ? newDate.setUTCDate(midnightDate.getUTCDate() - 1)
-      : newDate.setUTCDate(midnightDate.getUTCDate());
+    navigate({ datetime: newDate.toISOString() });
+  };
 
-    navigate({ datetime: formatDateToISO(newDate) });
-  }
-
-  function handleRightClick() {
-    if (!endDatetime) {
-      return;
-    }
-
-    const midnightDate = setToMidnightUTC(new Date(endDatetime));
-    const newDate = new Date(midnightDate);
-    newDate.setUTCDate(midnightDate.getUTCDate() + 1);
-
-    const now = new Date();
-    const twentyFourHoursAgo = setToMidnightUTC(now);
-    twentyFourHoursAgo.setUTCDate(twentyFourHoursAgo.getUTCDate() - 1);
-    if (newDate >= twentyFourHoursAgo) {
-      navigate({ datetime: '' });
-      return;
-    }
-
-    navigate({ datetime: formatDateToISO(newDate) });
-  }
   return (
     <div className="flex min-h-6 flex-row items-center justify-between">
       {!isLoading && startDatetime && endDatetime && (
@@ -83,7 +61,7 @@ export default function HistoricalTimeHeader() {
       <div className="flex flex-row items-center gap-2">
         <Button
           backgroundClasses="bg-transparent"
-          onClick={handleLeftClick}
+          onClick={() => handleTimeNavigation('left')}
           size="sm"
           type="tertiary"
           isDisabled={!isHourly}
@@ -96,7 +74,7 @@ export default function HistoricalTimeHeader() {
         <Button
           backgroundClasses="bg-transparent"
           size="sm"
-          onClick={handleRightClick}
+          onClick={() => handleTimeNavigation('right')}
           type="tertiary"
           isDisabled={!isHourly || !urlDatetime}
           icon={
@@ -107,13 +85,11 @@ export default function HistoricalTimeHeader() {
               )}
             />
           }
-        ></Button>
+        />
         <Button
           size="sm"
           type="secondary"
-          onClick={() => {
-            navigate({ datetime: '' });
-          }}
+          onClick={() => navigate({ datetime: '' })}
           isDisabled={!urlDatetime}
         >
           Latest
