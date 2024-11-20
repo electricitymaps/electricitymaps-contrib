@@ -54,7 +54,6 @@ export function DataSources({
                 : 'rounded-xl min-w-64 text-left dark:bg-gray-900 dark:border-1 dark:border-gray-700'
             }
             side="bottom"
-            isMobile={isMobile}
           >
             <Info className="text-emerald-800 dark:text-emerald-500" size={16} />
           </TooltipWrapper>

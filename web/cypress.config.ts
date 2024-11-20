@@ -15,6 +15,7 @@ export default defineConfig({
       framework: 'react',
       bundler: 'vite',
     },
+    viewportWidth: 1000,
     setupNodeEvents(on, _config) {
       on('before:browser:launch', (browser, launchOptions) => {
         if (browser.family === 'chromium' && browser.name !== 'electron') {
