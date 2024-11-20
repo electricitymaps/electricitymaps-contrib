@@ -1,7 +1,7 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type SizeOptions = 'sm' | 'md' | 'lg';
+type SizeOptions = 'xs' | 'sm' | 'md' | 'lg';
 
 type ButtonTypes = 'primary' | 'secondary' | 'tertiary' | 'link';
 
@@ -130,6 +130,9 @@ function getForeground(type: ButtonTypes) {
 function getSize(size: SizeOptions, type: ButtonTypes, isIconOnly: boolean) {
   if (isIconOnly) {
     switch (size) {
+      case 'xs': {
+        return 'min-w-5 min-h-5';
+      }
       case 'sm': {
         return 'min-w-7 min-h-7';
       }
