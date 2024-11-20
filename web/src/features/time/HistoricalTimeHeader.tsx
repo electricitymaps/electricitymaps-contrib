@@ -3,7 +3,7 @@ import Badge from 'components/Badge';
 import { Button } from 'components/Button';
 import { FormattedTime } from 'components/Time';
 import { useAtomValue } from 'jotai';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -90,12 +90,18 @@ export default function HistoricalTimeHeader() {
         />
         <Button
           size="sm"
-          type="secondary"
+          type="tertiary"
           onClick={() => navigate({ datetime: '' })}
           isDisabled={!urlDatetime}
-        >
-          Latest
-        </Button>
+          icon={
+            <ArrowRightToLine
+              className={twMerge(
+                'text-brand-green',
+                (!urlDatetime || !isHourly) && 'opacity-50'
+              )}
+            />
+          }
+        />
       </div>
     </div>
   );

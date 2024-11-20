@@ -1,9 +1,11 @@
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeController from './TimeController';
 import TimeHeader from './TimeHeader';
 
@@ -13,11 +15,12 @@ function BottomSheetWrappedTimeController() {
   const safeAreaBottomString = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--sab');
+  const historicalLinkingEnabled = useFeatureFlag('historical-linking');
 
   const safeAreaBottom = safeAreaBottomString
     ? Number.parseInt(safeAreaBottomString.replace('px', ''))
     : 0;
-  const SNAP_POINTS = [60 + safeAreaBottom, 160 + safeAreaBottom];
+  const SNAP_POINTS = [60 + safeAreaBottom, 165 + safeAreaBottom];
 
   // Don't show the time controller until the onboarding has been seen
   // But it still has to be rendered to avoid re-querying data and showing loading
@@ -30,7 +33,7 @@ function BottomSheetWrappedTimeController() {
       open={!isLoadingMap}
       snapPoints={() => snapPoints}
       blocking={false}
-      header={<TimeHeader />}
+      header={historicalLinkingEnabled ? <HistoricalTimeHeader /> : <TimeHeader />}
     >
       <TimeController className="p-2 min-[370px]:px-4" />
     </BottomSheet>
