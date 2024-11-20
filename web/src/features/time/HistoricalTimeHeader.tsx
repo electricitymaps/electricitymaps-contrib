@@ -22,27 +22,29 @@ export default function HistoricalTimeHeader() {
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
 
-  const handleTimeNavigation = (direction: 'left' | 'right') => {
-    if (!endDatetime || (!urlDatetime && direction === 'right')) {
+  function handleRightClick() {
+    if (!endDatetime || !urlDatetime) {
       return;
     }
+    const currentEndDatetime = new Date(endDatetime);
+    const newDate = new Date(currentEndDatetime.getTime() + TWENTY_FOUR_HOURS);
 
-    const currentDate = urlDatetime ? new Date(urlDatetime) : new Date(endDatetime);
-    const newDate = new Date(
-      currentDate.getTime() +
-        (direction === 'left' ? -TWENTY_FOUR_HOURS : TWENTY_FOUR_HOURS)
-    );
-
-    if (direction === 'right') {
-      const twentyFourHoursAgo = new Date(Date.now() - TWENTY_FOUR_HOURS);
-      if (newDate >= twentyFourHoursAgo) {
-        navigate({ datetime: '' });
-        return;
-      }
+    const twentyFourHoursAgo = new Date(Date.now() - TWENTY_FOUR_HOURS);
+    if (newDate >= twentyFourHoursAgo) {
+      navigate({ datetime: '' });
+      return;
     }
-
     navigate({ datetime: newDate.toISOString() });
-  };
+  }
+
+  function handleLeftClick() {
+    if (!endDatetime) {
+      return;
+    }
+    const currentEndDatetime = new Date(endDatetime);
+    const newDate = new Date(currentEndDatetime.getTime() - TWENTY_FOUR_HOURS);
+    navigate({ datetime: newDate.toISOString() });
+  }
 
   return (
     <div className="flex min-h-6 flex-row items-center justify-between">
@@ -61,7 +63,7 @@ export default function HistoricalTimeHeader() {
       <div className="flex flex-row items-center gap-2">
         <Button
           backgroundClasses="bg-transparent"
-          onClick={() => handleTimeNavigation('left')}
+          onClick={handleLeftClick}
           size="sm"
           type="tertiary"
           isDisabled={!isHourly}
@@ -74,7 +76,7 @@ export default function HistoricalTimeHeader() {
         <Button
           backgroundClasses="bg-transparent"
           size="sm"
-          onClick={() => handleTimeNavigation('right')}
+          onClick={handleRightClick}
           type="tertiary"
           isDisabled={!isHourly || !urlDatetime}
           icon={

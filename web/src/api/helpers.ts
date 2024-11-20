@@ -84,8 +84,7 @@ export const QUERY_KEYS = {
 };
 export function isValidDate(dateString: string) {
   if (Number.isNaN(Date.parse(dateString))) {
-    console.error('Invalid date string', dateString);
-    return false;
+    throw new TypeError('Invalid date string: ' + dateString);
   }
   const oldestDatetimeToSupport = new Date('2017-01-01T00:00:00Z');
   const parsedDate = new Date(dateString);
