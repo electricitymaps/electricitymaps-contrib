@@ -3,7 +3,6 @@
 describe('Country Panel', () => {
   beforeEach(() => {
     cy.interceptAPI('v8/state/hourly');
-    cy.interceptAPI('v8/state/last_hour');
     cy.interceptAPI('v8/meta');
   });
 
@@ -85,15 +84,20 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
+    // Add all required API intercepts
+    cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/details/hourly/CN');
-    cy.visit('/zone/CN?lang=en-GB', {
+    cy.interceptAPI('v8/meta'); // Add this if needed
+
+    cy.visit('/zone/CN/24h?lang=en-GB', {
       onBeforeLoad(win) {
         delete win.navigator.__proto__.serviceWorker;
       },
     });
-    cy.waitForAPISuccess('v8/state/last_hour');
+
     cy.waitForAPISuccess('v8/state/hourly');
     cy.waitForAPISuccess('v8/details/hourly/CN');
+
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 

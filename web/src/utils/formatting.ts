@@ -247,6 +247,22 @@ const formatDateTick = (
   }
 };
 
+export function formatDateRange(
+  startDate: Date,
+  endDate: Date,
+  locale = 'en-US',
+  timeZone?: string
+) {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone,
+  });
+
+  return formatter.formatRange(startDate, endDate);
+}
+
 function isValidDate(date: Date) {
   if (!date || !(date instanceof Date)) {
     return false;
