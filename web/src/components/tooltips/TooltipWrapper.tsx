@@ -1,6 +1,7 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { useIsMobile } from 'utils/styling';
 
 interface TooltipWrapperProperties {
   tooltipContent?: string | ReactElement;
@@ -8,7 +9,6 @@ interface TooltipWrapperProperties {
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
   tooltipClassName?: string;
-  isMobile?: boolean;
 }
 
 const noop = () => undefined;
@@ -19,10 +19,9 @@ export default function TooltipWrapper({
   side,
   sideOffset,
   tooltipClassName,
-  isMobile,
 }: TooltipWrapperProperties): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
-
+  const isMobile = useIsMobile();
   if (!tooltipContent) {
     return children;
   }

@@ -57,7 +57,6 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         layerFill={layerFill}
         markerUpdateHandler={noop}
         markerHideHandler={noop}
-        isMobile={false}
         height="8em"
         datetimes={datetimes}
         selectedTimeAggregate={timeAverage}
