@@ -3,6 +3,7 @@ bounding_box:
     - 18.40611714300016
   - - -154.31406356599993
     - 20.763429107000178
+country: US
 emissionFactors:
   direct:
     geothermal:
@@ -42,6 +43,7 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
         value: 1020.65
+region: Americas
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

@@ -377,7 +377,7 @@ class TestProductionBreakdown(unittest.TestCase):
             hydro=-20,
         )
         logger = logging.Logger("test")
-        with patch.object(logger, "warning") as mock_warning:
+        with patch.object(logger, "debug") as mock_logger:
             breakdown = ProductionBreakdown.create(
                 logger=logger,
                 zoneKey=ZoneKey("DE"),
@@ -385,7 +385,7 @@ class TestProductionBreakdown(unittest.TestCase):
                 production=mix,
                 source="trust.me",
             )
-            mock_warning.assert_called_once()
+            mock_logger.assert_called_once()
             assert breakdown is not None
             assert breakdown.production is not None
             assert breakdown.production.hydro is None
@@ -402,7 +402,7 @@ class TestProductionBreakdown(unittest.TestCase):
         # This one has been set through the attributes and should be reported as None.
         mix.biomass = -10
         logger = logging.Logger("test")
-        with patch.object(logger, "warning") as mock_warning:
+        with patch.object(logger, "debug") as mock_logger:
             breakdown = ProductionBreakdown.create(
                 logger=logger,
                 zoneKey=ZoneKey("DE"),
@@ -410,7 +410,7 @@ class TestProductionBreakdown(unittest.TestCase):
                 production=mix,
                 source="trust.me",
             )
-            mock_warning.assert_called_once()
+            mock_logger.assert_called_once()
             assert breakdown is not None
             assert breakdown.production is not None
             assert breakdown.production.wind == 0
@@ -763,6 +763,14 @@ class TestMixAddValue(unittest.TestCase):
         assert mix.wind == 10
         assert mix.corrected_negative_modes == set()
 
+    def test_production_with_nan_init(self):
+        mix = ProductionMix(wind=math.nan)
+        assert mix.wind is None
+
+    def test_production_with_nan_using_numpy_init(self):
+        mix = ProductionMix(wind=np.nan)
+        assert mix.wind is None
+
     def test_storage(self):
         mix = StorageMix()
         mix.add_value("hydro", 10)
@@ -803,6 +811,14 @@ class TestMixAddValue(unittest.TestCase):
         assert mix.hydro == -5
         mix.add_value("hydro", np.nan)
         assert mix.hydro == -5
+
+    def test_storage_with_nan_init(self):
+        mix = StorageMix(hydro=math.nan)
+        assert mix.hydro is None
+
+    def test_storage_with_nan_using_numpy_init(self):
+        mix = StorageMix(hydro=np.nan)
+        assert mix.hydro is None
 
 
 class TestMixUpdate:

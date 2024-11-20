@@ -3,6 +3,7 @@ bounding_box:
     - 20.232387730000227
   - - -156.30353909899995
     - 21.427508787000193
+country: US
 emissionFactors:
   lifecycle:
     coal:
@@ -17,6 +18,7 @@ emissionFactors:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
+region: Americas
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

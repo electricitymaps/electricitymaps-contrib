@@ -9,6 +9,14 @@ const data = {
 };
 
 it('mounts', () => {
-  cy.mount(<ExchangeTooltip exchangeData={data} />);
+  cy.mount(<ExchangeTooltip exchangeData={data} isMobile={false} />);
   cy.contains('Denmark');
+  cy.contains('→');
+});
+
+it('mounts on mobile', () => {
+  cy.viewport('iphone-6');
+  cy.mount(<ExchangeTooltip exchangeData={data} isMobile />);
+  cy.contains('Denmark');
+  cy.contains('↓');
 });

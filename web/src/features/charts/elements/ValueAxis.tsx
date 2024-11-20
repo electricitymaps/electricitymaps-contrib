@@ -4,13 +4,11 @@ import React from 'react';
 
 interface ValueAxisProps {
   scale: ScaleLinear<number, number, never>;
-  label?: string;
   width: number;
-  height: number;
   formatTick: (value: number) => string | number;
 }
 
-function ValueAxis({ scale, label, width, height, formatTick }: ValueAxisProps) {
+function ValueAxis({ scale, width, formatTick }: ValueAxisProps) {
   const [y1, y2] = scale.range();
   return (
     <g
@@ -23,18 +21,6 @@ function ValueAxis({ scale, label, width, height, formatTick }: ValueAxisProps) 
       strokeWidth={0.5}
       style={{ pointerEvents: 'none' }}
     >
-      {label && (
-        <text
-          textAnchor="middle"
-          stroke="gray"
-          strokeWidth={0.5}
-          fontSize="0.6rem"
-          fill="gray"
-          transform={`translate(52, ${height / 2}) rotate(-90)`}
-        >
-          {label}
-        </text>
-      )}
       <path
         className="domain"
         stroke="currentColor"

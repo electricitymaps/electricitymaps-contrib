@@ -78,6 +78,36 @@ class TestES(TestCase):
             datetime(2023, 9, 3, 23, 55, tzinfo=timezone.utc),
         )
 
+    # Test for DST change days
+    @patch("requests.Response")
+    @patch("parsers.ES.Session.get")
+    def test_production_DST_CN(self, mocked_session_get, mocked_response):
+        mocked_response.ok = True
+        mocked_response.text = r'null({"valoresHorariosGeneracion":[{"ts":"2021-10-31 1A:55","dem":4.8,"die":2.8,"gas":0.0,"eol":3.3,"cc":0.0,"vap":0.0,"fot":0.0,"hid":-1.2},{"ts":"2021-10-31 1B:00","dem":4.5,"die":2.5,"gas":0.0,"eol":3.2,"cc":0.0,"vap":0.0,"fot":0.0,"hid":-1.2}]}'
+        mocked_session_get.return_value = mocked_response
+        data_list = ES.fetch_production(
+            ZoneKey("ES-CN-HI"), self.session, datetime.fromisoformat("2021-10-31")
+        )
+
+        # Test "get" function has been called correctly
+        self.assertEqual(
+            mocked_session_get.call_args[0][0],
+            "https://demanda.ree.es/WSvisionaMovilesCanariasRest/resources/demandaGeneracionCanarias?curva=EL_HIERRO5M&fecha=2021-10-31",
+        )
+
+        # Test that the data is parsed correctly afterwards
+        self.assertEqual(len(data_list), 2)
+        self.assertTrue(isinstance(data_list[0]["datetime"], datetime))
+        self.assertEqual(
+            data_list[0]["datetime"].astimezone(timezone.utc),
+            datetime(2021, 10, 31, 0, 55, tzinfo=timezone.utc),
+        )
+        self.assertTrue(isinstance(data_list[1]["datetime"], datetime))
+        self.assertEqual(
+            data_list[1]["datetime"].astimezone(timezone.utc),
+            datetime(2021, 10, 31, 1, 0, tzinfo=timezone.utc),
+        )
+
     ### Menorca
     # Production
     @patch("requests.Response")
@@ -149,6 +179,36 @@ class TestES(TestCase):
         self.assertEqual(
             data_list[0]["datetime"],
             datetime(2023, 9, 3, 17, 5, tzinfo=timezone.utc),
+        )
+
+    # Test for DST change days
+    @patch("requests.Response")
+    @patch("parsers.ES.Session.get")
+    def test_production_DST_IB(self, mocked_session_get, mocked_response):
+        mocked_response.ok = True
+        mocked_response.text = r'null({"valoresHorariosGeneracion":[{"ts":"2020-10-25 2A:55","dem":261.3,"car":73.3,"die":0.0,"gas":0.0,"cc":127.1,"cb":100.4,"fot":0.0,"tnr":0.0,"trn":0.0,"eol":0.0,"emm":-3.5,"emi":-58.1,"otrRen":0.0,"resid":19.2,"genAux":0.0,"cogen":2.9,"eif":-0.0},{"ts":"2020-10-25 2B:00","dem":261.7,"car":73.3,"die":0.0,"gas":0.0,"cc":128.0,"cb":100.4,"fot":0.0,"tnr":0.0,"trn":0.0,"eol":0.0,"emm":-3.3,"emi":-58.1,"otrRen":0.0,"resid":18.5,"genAux":0.0,"cogen":2.9,"eif":-0.0}]}'
+        mocked_session_get.return_value = mocked_response
+        data_list = ES.fetch_production(
+            ZoneKey("ES-IB-MA"), self.session, datetime.fromisoformat("2020-10-25")
+        )
+
+        # Test "get" function has been called correctly
+        self.assertEqual(
+            mocked_session_get.call_args[0][0],
+            "https://demanda.ree.es/WSvisionaMovilesBalearesRest/resources/demandaGeneracionBaleares?curva=MALLORCA5M&fecha=2020-10-25",
+        )
+
+        # Test that the data is parsed correctly afterwards
+        self.assertEqual(len(data_list), 2)
+        self.assertTrue(isinstance(data_list[0]["datetime"], datetime))
+        self.assertEqual(
+            data_list[0]["datetime"].astimezone(timezone.utc),
+            datetime(2020, 10, 25, 0, 55, tzinfo=timezone.utc),
+        )
+        self.assertTrue(isinstance(data_list[1]["datetime"], datetime))
+        self.assertEqual(
+            data_list[1]["datetime"].astimezone(timezone.utc),
+            datetime(2020, 10, 25, 1, 0, tzinfo=timezone.utc),
         )
 
 

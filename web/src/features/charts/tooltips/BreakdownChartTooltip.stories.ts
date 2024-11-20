@@ -27,7 +27,6 @@ export const Example: Story = {
     totalEmissions: 1_200_000_000,
     selectedLayerKey: 'nuclear',
     zoneKey: 'DK-DK1',
-    originTranslateKey: 'electricityComesFrom',
   },
 };
 
@@ -46,7 +45,6 @@ export const WithoutCapacity: Story = {
     totalEmissions: 1_200_000_000,
     selectedLayerKey: 'nuclear',
     zoneKey: 'DK-DK1',
-    originTranslateKey: 'electricityComesFrom',
   },
 };
 
@@ -67,7 +65,8 @@ export const isStoring: Story = {
     zoneKey: 'PL',
     storage: 60,
     production: 0,
-    originTranslateKey: 'electricityStoredUsing',
+    isExchange: false,
+    isExport: true,
   },
 };
 
@@ -87,7 +86,6 @@ export const IsDischarging: Story = {
     selectedLayerKey: 'battery storage',
     zoneKey: 'PL',
     storage: 0,
-    originTranslateKey: 'electricityComesFrom',
     production: 80,
   },
 };
@@ -109,7 +107,6 @@ export const LongSource: Story = {
     selectedLayerKey: 'battery storage',
     zoneKey: 'PL',
     storage: 0,
-    originTranslateKey: 'electricityComesFrom',
     production: 80,
   },
 };
@@ -127,7 +124,7 @@ export const Exporting: Story = {
     emissions: 100_000_000,
     totalElectricity: 1100,
     totalEmissions: 1_200_000_000,
-    originTranslateKey: 'electricityExportedTo',
+    isExport: true,
     selectedLayerKey: 'DE',
     zoneKey: 'DK-DK1',
     storage: 0,

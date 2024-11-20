@@ -18,7 +18,7 @@ export default class Field {
    */
   getWind(x: number, y: number): WindVector {
     const column = this.columns[Math.round(x)];
-    return (column && column[Math.round(y)]) || NULL_WIND_VECTOR;
+    return column?.[Math.round(y)] || NULL_WIND_VECTOR;
   }
 
   // Frees the massive "columns" array for GC. Without this, the array is leaked (in Chrome)

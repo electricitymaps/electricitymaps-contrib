@@ -17,5 +17,5 @@
     },
     "transpileOnly": true
   },
-  "include": ["vite.config.cts", "cypress.config.ts", "scripts", "geo"]
+  "include": ["vite.config.ts", "cypress.config.ts", "scripts", "geo", ".storybook"]
 }

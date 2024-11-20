@@ -1,0 +1,108 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`handleMultiPolygon > should correctly handle a valid MultiPolygon feature 1`] = `
+[
+  {
+    "geometry": {
+      "coordinates": [
+        [
+          [
+            0,
+            0,
+          ],
+          [
+            0,
+            1,
+          ],
+          [
+            1,
+            1,
+          ],
+          [
+            1,
+            0,
+          ],
+          [
+            0,
+            0,
+          ],
+        ],
+      ],
+      "type": "Polygon",
+    },
+    "properties": {
+      "name": "Test MultiPolygon",
+    },
+    "type": "Feature",
+  },
+  {
+    "geometry": {
+      "coordinates": [
+        [
+          [
+            2,
+            2,
+          ],
+          [
+            2,
+            3,
+          ],
+          [
+            3,
+            3,
+          ],
+          [
+            3,
+            2,
+          ],
+          [
+            2,
+            2,
+          ],
+        ],
+      ],
+      "type": "Polygon",
+    },
+    "properties": {
+      "name": "Test MultiPolygon",
+    },
+    "type": "Feature",
+  },
+]
+`;
+
+exports[`handlePolygon > should correctly handle a valid polygon feature 1`] = `
+{
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          0,
+          0,
+        ],
+        [
+          0,
+          1,
+        ],
+        [
+          1,
+          1,
+        ],
+        [
+          1,
+          0,
+        ],
+        [
+          0,
+          0,
+        ],
+      ],
+    ],
+    "type": "Polygon",
+  },
+  "properties": {
+    "name": "Test Polygon",
+  },
+  "type": "Feature",
+}
+`;

@@ -1,45 +1,44 @@
-/* eslint-disable react/jsx-no-target-blank */
-import EstimationBadge from 'components/EstimationBadge';
-import { useAtom } from 'jotai';
-import { useTranslation } from 'react-i18next';
-import { HiOutlineArrowDownTray } from 'react-icons/hi2';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
+import { Ellipsis } from 'lucide-react';
+import { baseUrl, Charts } from 'utils/constants';
+import { useGetZoneFromPath } from 'utils/helpers';
 
 type Props = {
-  translationKey: string;
-  hasLink?: boolean;
-  badgeText?: string;
+  titleText?: string;
+  unit?: string;
+  badge?: React.ReactElement;
+  className?: string;
+  isEstimated?: boolean;
+  id: Charts;
 };
 
 export function ChartTitle({
-  translationKey,
-  hasLink = true,
-  badgeText = undefined,
+  titleText,
+  unit,
+  badge,
+  className,
+  isEstimated,
+  id,
 }: Props) {
-  const { t } = useTranslation();
-  const [timeAverage] = useAtom(timeAverageAtom);
-  /*
-  Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
-  */
+  const showMoreOptions = useShowMoreOptions();
+  const zoneId = useGetZoneFromPath();
+  const url = `${baseUrl}/zone/${zoneId}`;
+  const shareUrl = id ? `${url}#${id}` : url;
+
   return (
-    <>
-      <div className="flex flex-row justify-between pb-0.5 pt-4">
-        <h3 className="text-md font-bold">{t(`${translationKey}.${timeAverage}`)}</h3>
-        {badgeText != undefined && <EstimationBadge text={badgeText} />}
+    <div className="flex flex-col pb-0.5">
+      <div className={`flex items-center gap-1.5 pt-4 ${className}`}>
+        <h2 id={id} className="grow">
+          {titleText}
+        </h2>
+        {badge}
+        {showMoreOptions && (
+          <MoreOptionsDropdown isEstimated={isEstimated} id={id} shareUrl={shareUrl}>
+            <Ellipsis />
+          </MoreOptionsDropdown>
+        )}
       </div>
-      {hasLink && (
-        <div className="flex flex-row items-center pb-2 text-center text-[0.7rem]">
-          <HiOutlineArrowDownTray className="min-w-[12px]" size={12} />
-          <a
-            href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
-            target="_blank"
-            rel="noreferrer"
-            className="pl-0.5 text-left text-[#4178ac] no-underline hover:underline dark:invert"
-          >
-            {t('country-history.Getdata')}
-          </a>
-        </div>
-      )}
-    </>
+      {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
+    </div>
   );
 }

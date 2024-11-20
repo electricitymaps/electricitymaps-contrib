@@ -3,4 +3,6 @@ bounding_box:
     - 34.01280325000005
   - - 46.827073608000035
     - 37.87549753800006
-timezone: null
+country: IQ
+region: Asia
+timezone: Asia/Baghdad

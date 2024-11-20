@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai';
-import { TimeAverages } from 'utils/constants';
+import { useTranslation } from 'react-i18next';
+import { Charts, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
@@ -7,6 +8,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
+import { RoundedCard } from './RoundedCard';
 import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
 
 interface NetExchangeChartProps {
@@ -18,6 +20,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
   const [productionConsumption] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const { t } = useTranslation();
   if (productionConsumption === 'production') {
     return null;
   }
@@ -28,17 +31,24 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   const { chartData } = data;
   const { layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } = data;
 
-  const maxEmissions = Math.max(...chartData.map((o) => o.layerData.netExchange));
+  // find the absolute max value to format the axis
+  const maxEmissions = Math.max(
+    ...chartData.map((o) => Math.abs(o.layerData.netExchange))
+  );
   const formatAxisTick = (t: number) =>
-    displayByEmissions ? formatCo2(t, maxEmissions) : t.toString();
+    displayByEmissions ? formatCo2({ value: t, total: maxEmissions }) : t.toString();
 
   if (!chartData[0]?.layerData?.netExchange) {
     return null;
   }
 
   return (
-    <>
-      <ChartTitle translationKey="country-history.netExchange" />
+    <RoundedCard className="pb-2">
+      <ChartTitle
+        titleText={t(`country-history.netExchange.${timeAverage}`)}
+        unit={valueAxisLabel}
+        id={Charts.NET_EXCHANGE_CHART}
+      />
       <div className="relative">
         <AreaGraph
           testId="history-exchange-graph"
@@ -47,10 +57,8 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           layerStroke={layerStroke}
           layerFill={layerFill}
           markerFill={markerFill}
-          valueAxisLabel={valueAxisLabel}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          isMobile={false}
           height="10em"
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
@@ -58,7 +66,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           formatTick={formatAxisTick}
         />
       </div>
-    </>
+    </RoundedCard>
   );
 }
 

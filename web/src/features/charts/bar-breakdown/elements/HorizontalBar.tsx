@@ -33,6 +33,7 @@ export default function HorizontalBar({ className, fill, range, scale }: Props) 
       opacity={RECT_OPACITY}
       shapeRendering="crispEdges"
       x={LABEL_MAX_WIDTH + scale(x1)}
+      y={1}
       width={width}
     />
   );

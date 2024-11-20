@@ -1,23 +1,15 @@
+import { Button } from 'components/Button';
 import { useAtom } from 'jotai';
+import { LaptopMinimal, Moon, Palette, Smartphone, Sun } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { BsMoonStars } from 'react-icons/bs';
-import { HiOutlineComputerDesktop, HiOutlineSun } from 'react-icons/hi2';
-import { ThemeOptions } from 'utils/constants';
+import trackEvent from 'utils/analytics';
+import { ThemeOptions, TrackEvent } from 'utils/constants';
 import { themeAtom } from 'utils/state/atoms';
 
 import MapButton from './MapButton';
 import MapOptionSelector from './MapOptionSelector';
 
-const ICONS = {
-  light: <HiOutlineSun size={20} />,
-  dark: (
-    <BsMoonStars
-      size={14}
-      style={{ strokeWidth: '0.2', marginLeft: 3, marginRight: 2 }}
-    />
-  ),
-  system: <HiOutlineComputerDesktop size={18} />,
-};
+const ICON_SIZE = 20;
 
 export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
   const { t } = useTranslation();
@@ -25,19 +17,34 @@ export default function ThemeSelector({ isMobile }: { isMobile?: boolean }) {
 
   const handleThemeChange = (mode: ThemeOptions) => {
     setSelectedTheme(mode);
+    trackEvent(TrackEvent.THEME_SELECTED, { theme: mode });
+  };
+
+  const ICONS = {
+    light: <Sun size={ICON_SIZE} />,
+    dark: <Moon size={ICON_SIZE} />,
+    system: isMobile ? (
+      <Smartphone size={ICON_SIZE} />
+    ) : (
+      <LaptopMinimal size={ICON_SIZE} />
+    ),
   };
 
   return (
     <MapOptionSelector
       trigger={
         isMobile ? (
-          <div className="flex w-fit min-w-[232px] items-center justify-center gap-x-2 ">
-            <BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />
+          <Button
+            size="lg"
+            type="secondary"
+            backgroundClasses="w-[330px] h-[45px]"
+            icon={<Palette size={ICON_SIZE} />}
+          >
             {t('tooltips.changeTheme')}
-          </div>
+          </Button>
         ) : (
           <MapButton
-            icon={<BsMoonStars size={14} style={{ strokeWidth: '0.2' }} />}
+            icon={<Palette size={ICON_SIZE} />}
             tooltipText={t('tooltips.changeTheme')}
             ariaLabel={t('aria.label.changeTheme')}
           />

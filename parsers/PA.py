@@ -1,21 +1,34 @@
-#!/usr/bin/env python3
-
 import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.exceptions import ParserException
+
+PARSER = "PA.py"
 TIMEZONE = ZoneInfo("America/Panama")
+ZONE_KEY = ZoneKey("PA")
+
+CONSUMPTION_URL = "https://sitr.cnd.com.pa/m/pub/sin.html"
+CONSUMPTION_SOURCE = "sitr.cnd.com.pa"
 
 EXCHANGE_URL = "https://sitr.cnd.com.pa/m/pub/int.html"
-CONSUMPTION_URL = "https://sitr.cnd.com.pa/m/pub/sin.html"
+EXCHANGE_SOURCE = "sitr.cnd.com.pa"
+
 PRODUCTION_URL = "https://sitr.cnd.com.pa/m/pub/gen.html"
+PRODUCTION_SOURCE = "sitr.cnd.com.pa"
 
 # Sources:
 # 1. https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
@@ -28,6 +41,7 @@ PRODUCTION_URL = "https://sitr.cnd.com.pa/m/pub/gen.html"
 # 8. https://www.asep.gob.pa/wp-content/uploads/electricidad/resoluciones/anno_12528_elec.pdf
 # 9. https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/May/IRENA_RRA_Panama_2018_En.pdf
 # 10. https://www.asep.gob.pa/wp-content/uploads/electricidad/concesiones_licencias/concesiones_licencias/2021/listado_licencias_abr27.pdf
+# 11. https://generadoragatun.com/
 MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE = {
     "ACP Miraflores 2": "oil",  # [7] Sheet "C-GE-1A-1 CapInstXEmp"
     "ACP Miraflores 5": "oil",  # [7] Sheet "C-GE-1A-1 CapInstXEmp"
@@ -81,6 +95,9 @@ MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE = {
     "PanAm 7": "oil",  # [6][7]
     "PanAm 8": "oil",  # [6][7]
     "PanAm 9": "oil",  # [6][7]
+    "Proyecto Gatún 1": "gas",  # [11]
+    "Proyecto Gatún 2": "gas",  # [11]
+    "Proyecto Gatún 3": "gas",  # [11]
     "Sparkle Power 1": "oil",  # [10]
     "Sparkle Power 2": "oil",  # [10]
     "Sparkle Power 3": "oil",  # [10]
@@ -97,33 +114,67 @@ MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE = {
     "Tropitérmica 3": "oil",  # [6]:162[7] spelled "Tropitermica" in both
 }
 
+PRODUCTION_TYPE_TO_PRODUCTION_MODE = {
+    "Hídrica": "hydro",
+    "Eólica": "wind",
+    "Solar": "solar",
+    "Biogás": "biomass",
+    "Térmica": "unknown",
+}
+
+_SPANISH_CALENDAR = {
+    "enero": "01",
+    "febrero": "02",
+    "marzo": "03",
+    "abril": "04",
+    "mayo": "05",
+    "junio": "06",
+    "julio": "07",
+    "agosto": "08",
+    "septiembre": "09",
+    "octubre": "10",
+    "noviembre": "11",
+    "diciembre": "12",
+}
+
+
+def _localise_spanish_date(date: str) -> str:
+    """Localises a date containing full name (lowercase) spanish months, replacing them with zero-padded decimal numbers.
+
+    This avoids having to mess up the global locale to be able to parse the date.
+    """
+    return re.sub(
+        "|".join(_SPANISH_CALENDAR.keys()),
+        lambda m: _SPANISH_CALENDAR[m.group(0)],
+        date,
+    )
+
 
 def extract_pie_chart_data(html):
     """Extracts generation breakdown pie chart data from the source code of the page"""
-    data_source = re.search(r"var localPie = (\[\{.+\}\]);", html).group(
-        1
-    )  # Extract object with data
-    data_source = re.sub(
-        r"(name|value|color)", r'"\1"', data_source
-    )  # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
+    # Extract object with data
+    data_source = re.search(r"var localPie = (\[\{.+\}\]);", html).group(1)
+    # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}).
+    # Will break if other keys than these three are introduced.
+    # Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
+    data_source = re.sub(r"(name|value|color)", r'"\1"', data_source)
     return json.loads(data_source)
 
 
 def sum_thermal_units(soup) -> float:
-    """
-    Sums thermal units of the generation mix to prevent using slightly outdated chart data.
+    """Sums thermal units of the generation mix to prevent using slightly outdated chart data.
 
     Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
     presumably because they aren't updated at the exact same moment.
     """
 
+    # Sum thermal units from table Térmicas (MW)
     thermal_h3 = soup.find("h3", string=re.compile(r"\s*Térmicas\s*"))
     thermal_tables = thermal_h3.find_next_sibling().find_all(
         "table", {"class": "table table-hover table-striped table-sm sitr-gen-group"}
     )
 
     thermal_units = 0
-
     for thermal_table in thermal_tables:
         thermal_units += sum(
             [
@@ -142,65 +193,50 @@ def sum_thermal_units(soup) -> float:
 
 
 def fetch_production(
-    zone_key: str = "PA",
+    zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given country."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    if target_datetime is not None:
+        raise ParserException(
+            PARSER, "This parser is not yet able to parse historical data", zone_key
+        )
 
     # Fetch page and load into BeautifulSoup
     r = session or Session()
-    url = PRODUCTION_URL
-    response = r.get(url)
+    response = r.get(PRODUCTION_URL)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching production error code: {response.status_code}: {response.text}",
+            zone_key,
+        )
+
     response.encoding = "utf-8"
     html_doc = response.text
     soup = BeautifulSoup(html_doc, "html.parser")
 
-    # Parse production from pie chart
-    productions = extract_pie_chart_data(
-        html_doc
-    )  # [{name:"Hídrica 1342.54 (80.14%)",value:1342.54,color:"#99ccee"}, ...]
+    # Parse the datetime and return a python datetime object
+    spanish_date = soup.find("h3", {"class": "sitr-update"}).string
+    english_date = _localise_spanish_date(spanish_date)
+    date = datetime.strptime(english_date, "%d-%m-%Y %H:%M:%S").replace(tzinfo=TIMEZONE)
 
-    # Sum thermal units from table Térmicas (MW)
-    thermal_sum = sum_thermal_units(soup)
-
-    map_generation = {
-        "Hídrica": "hydro",
-        "Eólica": "wind",
-        "Solar": "solar",
-        "Biogás": "biomass",
-        "Térmica": "unknown",
-    }
-    data = {
-        "zoneKey": "PA",
-        "production": {
-            # Setting default values here so we can do += when parsing the thermal generation breakdown
-            "biomass": 0.0,
-            "coal": 0.0,
-            "gas": 0.0,
-            "hydro": 0.0,
-            "nuclear": 0.0,
-            "oil": 0.0,
-            "solar": 0.0,
-            "wind": 0.0,
-            "geothermal": 0.0,
-            "unknown": 0.0,
-        },
-        "storage": {},
-        "source": "https://www.cnd.com.pa/",
-    }
+    production_mix = ProductionMix()
+    productions = extract_pie_chart_data(html_doc)
+    # [{name:"Hídrica 1342.54 (80.14%)",value:1342.54,color:"#99ccee"}, ...]
     for prod in productions:  # {name:"Hídrica 1342.54 (80.14%)", ...}
-        prod_data = prod["name"].split(" ")  # "Hídrica 1342.54 (80.14%)"
-        production_type = map_generation[prod_data[0]]  # Hídrica
-        production_value = float(prod_data[1])  # 1342.54
-        data["production"][production_type] = production_value
+        production_type, production_value, _percentage = prod["name"].split(" ", 2)
+        # ignore termica data to avoid using outdated chart data
+        if production_type == "Térmica":
+            continue
+        production_mode = PRODUCTION_TYPE_TO_PRODUCTION_MODE[production_type]  # hydro
+        production_mix.add_value(production_mode, float(production_value))
 
-    # Replacing chart termica data with manually calculated thermal generation to avoid using outdated chart data
-    data["production"]["unknown"] = thermal_sum
-
+    # Calculate manually thermal generation to avoid using outdated chart data
+    thermal_generation = sum_thermal_units(soup)
     # Known fossil plants: parse, subtract from "unknown", add to "coal"/"oil"/"gas"
     thermal_production_breakdown = soup.find_all("table", {"class": "sitr-table-gen"})[
         1
@@ -228,58 +264,58 @@ def fetch_production(
                 unit_fuel_type = MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE[
                     unit_name
                 ]
-                data["production"][unit_fuel_type] += unit_generation
-                data["production"]["unknown"] -= unit_generation
+                production_mix.add_value(unit_fuel_type, unit_generation)
+                thermal_generation -= unit_generation
         else:
             logger.warning(
                 f"{unit_name} is not mapped to generation type",
                 extra={"key": zone_key},
             )
 
-    if 0 > data["production"]["unknown"] > -10:
-        logger.info(
-            f"Ignoring small amount of negative thermal generation ({data['production']['unknown']}MW)",
-            extra={"key": zone_key},
-        )
-        data["production"]["unknown"] = 0.0
-
     # Round remaining "unknown" output to 13 decimal places to get rid of floating point errors
-    data["production"]["unknown"] = round(data["production"]["unknown"], 13)
+    thermal_generation = round(thermal_generation, 13)
+    if 0 < thermal_generation < 1e-3:
+        thermal_generation = 0.0
+    # assign anything remaining to 'unknown'
+    production_mix.add_value("unknown", max(thermal_generation, 0.0))
 
-    if 0 < data["production"]["unknown"] < 1e-3:
-        data["production"]["unknown"] = 0.0
-
-    # Parse the datetime and return a python datetime object
-    spanish_date = soup.find("h3", {"class": "sitr-update"}).string
-    date = arrow.get(
-        spanish_date, "DD-MMMM-YYYY H:mm:ss", locale="es", tzinfo="America/Panama"
+    production_breakdown_list = ProductionBreakdownList(logger)
+    production_breakdown_list.append(
+        zoneKey=zone_key,
+        datetime=date,
+        source=PRODUCTION_SOURCE,
+        production=production_mix,
     )
-    data["datetime"] = date.datetime
-
-    return data
+    return production_breakdown_list.to_list()
 
 
 def fetch_exchange(
-    zone_key1: str = "CR",
-    zone_key2: str = "PA",
+    zone_key1: ZoneKey = ZONE_KEY,
+    zone_key2: ZoneKey = ZoneKey("CR"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
-    """
-    Requests the last known power exchange (in MW) between two countries.
-    """
+) -> list[dict]:
+    """Requests the last known power exchange (in MW) between two countries."""
 
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    if target_datetime is not None:
+        raise ParserException(
+            PARSER,
+            "This parser is not yet able to parse historical data",
+            sorted_zone_keys,
+        )
 
-    r = session or Session()
-    url = EXCHANGE_URL
-
-    response = r.get(url)
-    assert response.status_code == 200
+    session = session or Session()
+    timestamp = datetime.now(tz=TIMEZONE)
+    response = session.get(EXCHANGE_URL)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching production error code: {response.status_code}: {response.text}",
+            sorted_zone_keys,
+        )
 
     df = pd.read_html(response.text)[0]
 
@@ -320,52 +356,51 @@ def fetch_exchange(
         "PA->SV": net_flow_sv,  # Panama to El Salvador
     }
 
-    if sorted_zone_keys not in net_flows:
-        raise NotImplementedError(
-            f"This exchange pair is not implemented: {sorted_zone_keys}"
-        )
-
-    data = {
-        "datetime": datetime.now(tz=TIMEZONE),
-        "netFlow": net_flows[sorted_zone_keys],
-        "sortedZoneKeys": sorted_zone_keys,
-        "source": url,
-    }
-
-    return data
+    exchange_list = ExchangeList(logger)
+    exchange_list.append(
+        zoneKey=sorted_zone_keys,
+        datetime=timestamp,
+        netFlow=net_flows[sorted_zone_keys],
+        source=EXCHANGE_SOURCE,
+    )
+    return exchange_list.to_list()
 
 
 def fetch_consumption(
-    zone_key: str = "PA",
+    zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
-    """
-    Fetches consumption of Panama.
-    """
+) -> list[dict]:
+    """Fetches consumption of Panama."""
 
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+    if target_datetime is not None:
+        raise ParserException(
+            PARSER, "This parser is not yet able to parse historical data", zone_key
+        )
 
     r = session or Session()
-    url = CONSUMPTION_URL
-
-    response = r.get(url)
-    assert response.status_code == 200
+    timestamp = datetime.now(tz=TIMEZONE)
+    response = r.get(CONSUMPTION_URL)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching production error code: {response.status_code}: {response.text}",
+            zone_key,
+        )
 
     soup = BeautifulSoup(response.text, "html.parser")
     consumption_title = soup.find("h5", string=re.compile(r"\s*Demanda Total\s*"))
     consumption_val = float(consumption_title.find_next_sibling().text.split()[0])
 
-    data = {
-        "consumption": consumption_val,
-        "datetime": datetime.now(tz=TIMEZONE),
-        "source": url,
-        "zoneKey": zone_key,
-    }
-
-    return data
+    consumption_list = TotalConsumptionList(logger)
+    consumption_list.append(
+        zoneKey=zone_key,
+        datetime=timestamp,
+        consumption=consumption_val,
+        source=PRODUCTION_SOURCE,
+    )
+    return consumption_list.to_list()
 
 
 if __name__ == "__main__":

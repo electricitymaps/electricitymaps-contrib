@@ -1,31 +1,30 @@
 import i18next from './i18n';
 
-export const translateIfExists = (key: string) => {
-  return i18next.exists(key) ? i18next.t(key) : '';
+export const translateIfExists = (key: string) =>
+  i18next.exists(key) ? i18next.t(key) : '';
+
+export const getFullZoneName = (zoneCode: string) =>
+  translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
+export const getZoneName = (zoneCode: string) => {
+  const displayName = translateIfExists(`zoneShortName.${zoneCode}.displayName`);
+  if (displayName) {
+    return displayName;
+  }
+
+  const fullName = getFullZoneName(zoneCode);
+  return fullName;
 };
 
-export const getZoneName = (zoneCode: string) =>
-  translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
+export const getSEOZoneName = (zoneCode: string) => {
+  const seoZoneName = translateIfExists(`zoneShortName.${zoneCode}.seoZoneName`);
+  if (seoZoneName) {
+    return seoZoneName;
+  }
+  return getZoneName(zoneCode);
+};
+
 export const getCountryName = (zoneCode: string) =>
   translateIfExists(`zoneShortName.${zoneCode}.countryName`);
-
-/**
- * Gets the full name of a zone with the country name in parentheses.
- * @param {string} zoneCode
- * @returns string
- */
-export function getZoneNameWithCountry(zoneCode: string) {
-  const zoneName = getZoneName(zoneCode);
-  if (!zoneName) {
-    return zoneCode;
-  }
-  const countryName = getCountryName(zoneCode);
-  if (!countryName) {
-    return zoneName;
-  }
-
-  return `${zoneName} (${countryName})`;
-}
 
 const DEFAULT_ZONE_NAME_LIMIT = 40;
 /**

@@ -1,3 +1,4 @@
+country: LA
 fallbackZoneMixes:
   _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables'
     generation not broken down by type). Biomass includes waste.
@@ -8,4 +9,5 @@ fallbackZoneMixes:
       coal: 0.28410228182546
       hydro: 0.713395716573259
       solar: 0.0010758606885508
+region: Asia
 timezone: Asia/Vientiane

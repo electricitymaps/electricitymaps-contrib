@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from requests import Response, Session
 
@@ -94,9 +92,9 @@ def fetch_exchange(
     response = r.get(EXCHANGES_URL)
     obj = response.text.split("\r\n")[1].replace("\r", "").split(",")
 
-    datetime = arrow.get(
-        arrow.get(obj[0], "DD-MMM-YY HH:mm:ss").datetime, TIMEZONE
-    ).datetime
+    parsed_datetime = datetime.strptime(obj[0], "%d-%b-%y %H:%M:%S").replace(
+        tzinfo=TIMEZONE
+    )
 
     sortedZoneKeys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if sortedZoneKeys not in EXCHANGE_POSITION_MULTIPLIER:
@@ -106,7 +104,7 @@ def fetch_exchange(
     exchanges = ExchangeList(logger)
     exchanges.append(
         sortedZoneKeys,
-        datetime,
+        parsed_datetime,
         SOURCE,
         float(obj[position]) * multiplier,
     )

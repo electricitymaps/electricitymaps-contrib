@@ -28,6 +28,7 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         '@typescript-eslint/no-unused-expressions': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
         'unicorn/no-abusive-eslint-disable': 'off',
         '@typescript-eslint/no-unsafe-argument': 'off',
         'no-void': 'off',

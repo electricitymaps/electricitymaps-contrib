@@ -1,28 +1,32 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from math import isnan
-from operator import itemgetter
 from zoneinfo import ZoneInfo
 
-import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Session
+
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
 
 # This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 # The data is in MWh but since it is updated hourly we can view it as MW.
 # Solar generation now has some data available but multiple projects are planned/under construction.
 
-url = "https://apps.oc.org.do/reportesgraficos/reportepostdespacho.aspx"
+DO_SOURCE = "oc.org.do"
+URL = "https://apps.oc.org.do/reportesgraficos/reportepostdespacho.aspx"
 
-total_mapping = {
+TOTAL_RENEWABLES_MAPPING = {
+    "Total E\xf3lico": "wind",
+    "Total Hidroel\xe9ctrica": "hydro",
+    "Total Solar": "solar",
+}
+
+TOTAL_MAPPING = {
     "Total T\xe9rmico": "Thermal",
-    "Total E\xf3lico": "Wind",
-    "Total Hidroel\xe9ctrica": "Hydro",
-    "Total Solar": "Solar",
     "Total Generado": "Generated",
 }
 
@@ -30,7 +34,7 @@ total_mapping = {
 # http://www.sie.gob.do/images/Estadisticas/MEM/GeneracionDiariaEnero2017/
 # Reporte_diario_de_generacion_31_enero_2017_merged2.pdf
 
-thermal_plants = {
+THERMAL_PLANTS = {
     "AES ANDRES": "gas",
     "BARAHONA CARBON": "coal",
     "BERSAL": "oil",
@@ -87,23 +91,30 @@ thermal_plants = {
 }
 
 
-def get_data(session: Session | None = None) -> list:
+def get_datetime_from_hour(now: datetime, hour: int) -> datetime:
+    return now + timedelta(hours=int(hour) - 1)
+
+
+def get_data(session: Session | None = None) -> list[list[str]]:
     """
     Makes a request to source url.
     Finds main table and creates a list of all table elements in string format.
     """
 
-    data = []
     s = session or Session()
-    data_req = s.get(url)
+    data_req = s.get(URL)
     soup = BeautifulSoup(data_req.content, "lxml")
 
     tbs = soup.find("table", id="PostdespachoUnidadesTermicasGrid_DXMainTable")
-    rows = tbs.find_all("td")
+    rows = tbs.find_all("tr")
 
+    data = []
     for row in rows:
-        num = row.getText().strip()
-        data.append(str(num))
+        row_data = []
+        cols = row.find_all("td")
+        for col in cols:
+            row_data.append(str(col.getText().strip()))
+        data.append(row_data)
 
     return data
 
@@ -141,151 +152,101 @@ def chunker(big_lst) -> dict:
     return chunked_list
 
 
-def data_formatter(data) -> dict:
+def data_formatter(data: list[list[str]]) -> list[list[str]]:
     """
-    Takes data and finds relevant sections.
-    Formats and breaks data into usable parts.
-    """
-
-    find_thermal_index = data.index("GRUPO: T\xe9rmica")
-    find_totals_index = data.index("Total T\xe9rmico")
-    find_totals_end = data.index("Total Programado")
-
-    ufthermal = data[find_thermal_index + 3 : find_totals_index - 59]
-    total_data = data[find_totals_index:find_totals_end]
-
-    # Remove all company names.
-    for val in ufthermal:
-        if ":" in val:
-            i = ufthermal.index(val)
-            del ufthermal[i : i + 3]
-
-    formatted_thermal = chunker([floater(item) for item in ufthermal])
-    mapped_totals = [total_mapping.get(x, x) for x in total_data]
-    formatted_totals = chunker([floater(item) for item in mapped_totals])
-
-    return {"totals": formatted_totals, "thermal": formatted_thermal}
-
-
-def data_parser(formatted_data):
-    """
-    Converts formatted data into a pandas dataframe.
-    Removes any empty rows.
-    Returns a DataFrame.
+    Aligns the tabular data to a standard format: (ID, hour_0, hour_1, ... , hour_23, hour_24)
     """
 
-    hours = list(range(1, 24)) + [0] + [25, 26]
-    dft = pd.DataFrame(formatted_data, index=hours)
+    INIT_ROWS_TO_DROP = 26
+    data = data[INIT_ROWS_TO_DROP:]
 
-    dft = dft.drop(dft.index[[-1, -2]])
-    dft = dft.replace("", np.nan)
-    dft = dft.dropna(how="all")
-
-    return dft
-
-
-def thermal_production(df, logger: Logger) -> list[dict]:
-    """
-    Takes DataFrame and finds thermal generation for each hour.
-    Removes any non generating plants then maps plants to type.
-    """
-
-    therms = []
-    unmapped = set()
-    for hour in df.index.values:
-        dt = hour
-        currentt = df.loc[[hour]]
-
-        # Create current plant output.
-        tp = {}
-        for item in list(df):
-            v = currentt.iloc[0][item]
-            tp[item] = v
-
-        current_plants = {k: tp[k] for k in tp if not isnan(tp[k])}
-
-        for plant in current_plants:
-            if plant not in thermal_plants:
-                unmapped.add(plant)
-
-        mapped_plants = [
-            (thermal_plants.get(plant, "unknown"), val)
-            for plant, val in current_plants.items()
-        ]
-
-        thermalDict = defaultdict(lambda: 0.0)
-
-        # Sum values for duplicate keys.
-        for key, val in mapped_plants:
-            thermalDict[key] += val
-
-        thermalDict["datetime"] = dt
-        thermalDict = dict(thermalDict)
-        therms.append(thermalDict)
-
-    for plant in unmapped:
-        logger.warning(
-            f"{plant} is missing from the DO plant mapping!",
-            extra={"key": "DO"},
+    def format_row(row: list[str]) -> list[str]:
+        # Case Grupo: X
+        match_grupo = len(row) == 2 and row[0] == "" and "grupo" in row[1].lower()
+        # Case Empresa: X
+        match_empresa = (
+            len(row) == 3
+            and all(c == "" for c in row[:2])
+            and "empresa" in row[2].lower()
         )
+        # Case Unit: X
+        match_unit = len(row) == 27 and all(c == "" for c in row[:2])
 
-    return therms
+        if match_grupo:
+            return [row[1]] + [""] * 24
+        elif match_empresa:
+            return [row[2]] + [""] * 24
+        elif match_unit:
+            return row[2:]
+        else:
+            raise ValueError(f"Unexpected row format: {row}")
 
-
-def total_production(df) -> list[dict]:
-    """Takes DataFrame and finds generation totals for each hour."""
-
-    vals = []
-    # The Dominican Republic does not observe daylight savings time.
-    for hour in df.index.values:
-        dt = hour
-        current = df.loc[[hour]]
-        hydro = current.iloc[0]["Hydro"]
-        wind = current.iloc[0]["Wind"]
-        solar = current.iloc[0]["Solar"]
-        if wind > -10:
-            wind = max(wind, 0)
-
-        # Wind and hydro totals do not always update exactly on the new hour.
-        # In this case we set them to None because they are unknown rather than zero.
-        if isnan(wind):
-            wind = None
-        if isnan(hydro):
-            hydro = None
-
-        prod = {"wind": wind, "hydro": hydro, "solar": solar, "datetime": dt}
-        vals.append(prod)
-
-    return vals
+    data = [format_row(row) for row in data]
+    return data
 
 
-def merge_production(thermal, total) -> list[dict]:
+def correct_solar_production(production: pd.DataFrame) -> pd.DataFrame:
     """
-    Takes thermal generation and total generation and merges them using 'datetime' key.
+    Solar production is not reported when it's zero.
     """
+    if production.solar.isnull().all() or production.solar.notnull().all():
+        return production
+    production = production.copy()
+    null_production_index = production[production.solar.isnull()].index
+    max_non_null_solar_idx = production.solar.last_valid_index()
+    indices_to_set_to_zero = [
+        idx for idx in null_production_index if idx < max_non_null_solar_idx
+    ]
+    # Replace all NaN values with 0 up to the first non-null value
+    production.loc[indices_to_set_to_zero] = 0
+    return production
 
-    d = defaultdict(dict)
-    for each in (thermal, total):
-        for elem in each:
-            d[elem["datetime"]].update(elem)
 
-    final = sorted(d.values(), key=itemgetter("datetime"))
+def extract_renewable_production(data: list[list[str]], dt: datetime) -> pd.DataFrame:
+    """
+    Extract renewable production data from the total rows.
+    """
+    renewable_indices = [
+        i for i, row in enumerate(data) if row[0] in TOTAL_RENEWABLES_MAPPING
+    ]
+    renewable_data = []
+    for i in renewable_indices:
+        row = data[i]
+        renewable_data.append([TOTAL_RENEWABLES_MAPPING[row[0]]] + row[1:])
+    df = pd.DataFrame(renewable_data, columns=["mode"] + list(range(1, 25)))
+    # pivot to have hours as index and mode as columns
+    df = df.set_index("mode").T
+    df.index = [get_datetime_from_hour(dt, hour) for hour in df.index]
+    df.index.name = "datetime"
+    # Convert to numeric
+    df = df.apply(pd.to_numeric)
+    df = correct_solar_production(df)
+    return df
 
-    def get_datetime(hour):
-        return datetime.now(tz=ZoneInfo("America/Dominica")).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        ) + timedelta(hours=int(hour) - 1)
 
-    for item in final:
-        i = item["datetime"]
-        j = get_datetime(i)
-        item["datetime"] = j
-
-    return final
+def extract_thermal_production(data: list[list[str]], dt: datetime) -> pd.DataFrame:
+    """
+    Extract thermal production from individual power plants.
+    """
+    thermal_indices = [i for i, row in enumerate(data) if row[0] in THERMAL_PLANTS]
+    thermal_data = []
+    for i in thermal_indices:
+        row = data[i]
+        thermal_data.append([THERMAL_PLANTS.get(row[0], "unknown")] + row[1:])
+    df = pd.DataFrame(thermal_data, columns=["mode"] + list(range(1, 25)))
+    # Convert numeric
+    df = df.apply(pd.to_numeric, errors="ignore")
+    # Group by sum per mode
+    df = df.groupby("mode").sum(min_count=1)
+    # pivot to have hours as index and mode as columns
+    df = df.T
+    df.index = [get_datetime_from_hour(dt, hour) for hour in df.index]
+    df.index.name = "datetime"
+    return df
 
 
 def fetch_production(
-    zone_key: str = "DO",
+    zone_key: ZoneKey = ZoneKey("DO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -294,38 +255,28 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    dat = data_formatter(get_data(session=session))
-    tot = data_parser(dat["totals"])
-    th = data_parser(dat["thermal"])
-    thermal = thermal_production(th, logger)
-    total = total_production(tot)
-    merge = merge_production(thermal, total)
+    now = datetime.now(tz=ZoneInfo("America/Dominica")).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    )
 
-    production_mix_by_hour = []
-    for hour in merge:
-        production_mix = {
-            "zoneKey": zone_key,
-            "datetime": hour["datetime"],
-            "production": {
-                "biomass": hour.get("biomass", 0.0),
-                "coal": hour.get("coal", 0.0),
-                "gas": hour.get("gas", 0.0),
-                "hydro": hour.get("hydro", 0.0),
-                "nuclear": 0.0,
-                "oil": hour.get("oil", 0.0),
-                "solar": hour.get("solar", 0.0),
-                "wind": hour.get("wind", 0.0),
-                "geothermal": 0.0,
-                "unknown": hour.get("unknown", 0.0),
-            },
-            "storage": {
-                "hydro": None,
-            },
-            "source": "oc.org.do",
-        }
-        production_mix_by_hour.append(production_mix)
+    data = data_formatter(get_data(session=session))
+    renewable_production = extract_renewable_production(data, now)
+    thermal_production = extract_thermal_production(data, now)
+    production = pd.concat([renewable_production, thermal_production], axis=1)
+    # only keep rows with at least one non-null value
+    production = production.dropna(how="all")
 
-    return production_mix_by_hour
+    production_list = ProductionBreakdownList(logger)
+    for ts, mix in production.iterrows():
+        production_mix = ProductionMix(**mix.to_dict())
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=ts.to_pydatetime(),
+            source=DO_SOURCE,
+            production=production_mix,
+        )
+
+    return production_list.to_list()
 
 
 if __name__ == "__main__":

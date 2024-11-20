@@ -80,9 +80,12 @@ class TestERP_PGCB(TestCase):
             [
                 {
                     "datetime": element["datetime"].isoformat(),
-                    "production": element["production"],
-                    "source": element["source"],
                     "zoneKey": element["zoneKey"],
+                    "production": element["production"],
+                    "storage": element["storage"],
+                    "source": element["source"],
+                    "sourceType": element["sourceType"].value,
+                    "correctedModes": element["correctedModes"],
                 }
                 for element in production
             ]

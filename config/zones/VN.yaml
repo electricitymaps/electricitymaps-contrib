@@ -1,18 +1,8 @@
-contributors:
-  - alixunderplatz
-  - MuffinCompiler
-  - VIKTORVAV99
-
-parsers:
-  consumption: VN.fetch_consumption
-  price: VN.fetch_price
-
 bounding_box:
   - - 135.84
     - 33.82
   - - 138.72
     - 37.17
-
 capacity:
   biomass: 356
   coal: 25820
@@ -22,47 +12,56 @@ capacity:
   solar: 16567
   unknown: 619
   wind: 4667
-
+contributors:
+  - alixunderplatz
+  - MuffinCompiler
+  - VIKTORVAV99
+country: VN
 emissionFactors:
-  lifecycle:
-    unknown:
-      - datetime: '2022-01-01'
-        source: 'EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar, 3.09% wind, 0.14% biomass and 0.27% from other thermal'
-        value: 386
   direct:
     unknown:
       - datetime: '2022-01-01'
-        source: 'EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar, 3.09% wind, 0.14% biomass and 0.27% from other thermal'
+        source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
+          3.09% wind, 0.14% biomass and 0.27% from other thermal
         value: 336
-isLowCarbon:
-  unknown:
-    - datetime: '2022-01-01'
-      source: 'EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar, 3.09% wind, 0.14% biomass and 0.27% from other thermal'
-      value: 0.5028
-isRenewable:
-  unknown:
-    - datetime: '2022-01-01'
-      source: 'EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar, 3.09% wind, 0.14% biomass and 0.27% from other thermal'
-      value: 0.5028
+  lifecycle:
+    unknown:
+      - datetime: '2022-01-01'
+        source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
+          3.09% wind, 0.14% biomass and 0.27% from other thermal
+        value: 386
 fallbackZoneMixes:
   _source: EMBER 2022
   powerOriginRatios:
     value:
+      biomass: 0.0014
       coal: 0.3876
       gas: 0.1068
       hydro: 0.3691
       solar: 0.1014
-      wind: 0.0309
-      biomass: 0.0014
       unknown: 0.0027
-
+      wind: 0.0309
+isLowCarbon:
+  unknown:
+    - datetime: '2022-01-01'
+      source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
+        3.09% wind, 0.14% biomass and 0.27% from other thermal
+      value: 0.5028
+isRenewable:
+  unknown:
+    - datetime: '2022-01-01'
+      source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
+        3.09% wind, 0.14% biomass and 0.27% from other thermal
+      value: 0.5028
+parsers:
+  consumption: VN.fetch_consumption
+  price: VN.fetch_price
+region: Asia
+sources:
+  EMBER 2022:
+    link: https://ember-climate.org/countries-and-regions/countries/viet-nam/
 subZoneNames:
   - VN-N
   - VN-C
   - VN-S
-
-sources:
-  EMBER 2022:
-    link: https://ember-climate.org/countries-and-regions/countries/viet-nam/
-
 timezone: Asia/Ho_Chi_Minh

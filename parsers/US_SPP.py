@@ -5,14 +5,26 @@
 from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
+from typing import Any
 
 import pandas as pd
 from dateutil import parser
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.validation import validate_exchange
 
+SOURCE = "spp.org"
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "host=https://marketplace.spp.org"
 
@@ -34,6 +46,8 @@ MAPPING = {
     "Diesel Fuel Oil": "oil",
     "Waste Disposal Services": "biomass",
     "Coal": "coal",
+    "Other": "unknown",
+    "Waste Heat": "unknown",
 }
 
 TIE_MAPPING = {"US-MISO->US-SPP": ["AMRN", "DPC", "GRE", "MDU", "MEC", "NSP", "OTP"]}
@@ -79,7 +93,7 @@ def get_data(url, session: Session | None = None):
     return df
 
 
-def data_processor(df, logger: Logger) -> list:
+def data_processor(df, logger: Logger) -> list[tuple[datetime, ProductionMix]]:
     """
     Takes a dataframe and logging instance as input.
     Checks for new generation types and logs a warning if any are found.
@@ -120,37 +134,32 @@ def data_processor(df, logger: Logger) -> list:
     unknown_keys = column_headers - known_keys
 
     for heading in unknown_keys:
-        if heading not in ["Other", "Waste Heat"]:
-            logger.warning(
-                f"New column '{heading}' present in US-SPP data source.",
-                extra={"key": "US-SPP"},
-            )
-
-    keys_to_remove = keys_to_remove | unknown_keys
+        logger.warning(
+            f"New column '{heading}' present in US-SPP data source.",
+            extra={"key": "US-SPP"},
+        )
 
     processed_data = []
     for index in range(len(df)):
+        mix = ProductionMix()
         production = df.loc[index].to_dict()
-        production["unknown"] = sum([production[k] for k in unknown_keys])
-
         dt_aware = production["GMT MKT Interval"].to_pydatetime()
-        for k in keys_to_remove:
+        for k in keys_to_remove | unknown_keys:
             production.pop(k, None)
 
-        production = {k: float(v) for k, v in production.items()}
-        mapped_production = {MAPPING.get(k, k): v for k, v in production.items()}
-
-        processed_data.append((dt_aware, mapped_production))
+        for k, v in production.items():
+            mix.add_value(MAPPING[k], float(v))
+        processed_data.append((dt_aware, mix))
     return processed_data
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "US-SPP",
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
@@ -188,19 +197,16 @@ def fetch_production(
 
     processed_data = data_processor(raw_data, logger)
 
-    data = []
-    for item in processed_data:
-        dt = item[0].replace(tzinfo=timezone.utc)
-        datapoint = {
-            "zoneKey": zone_key,
-            "datetime": dt,
-            "production": item[1],
-            "storage": {},
-            "source": "spp.org",
-        }
-        data.append(datapoint)
+    production_list = ProductionBreakdownList(logger)
+    for dt, mix in processed_data:
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=dt.replace(tzinfo=timezone.utc),
+            production=mix,
+            source=SOURCE,
+        )
 
-    return data
+    return production_list.to_list()
 
 
 def _NaN_safe_get(forecast: dict, key: str) -> float | None:
@@ -211,11 +217,11 @@ def _NaN_safe_get(forecast: dict, key: str) -> float | None:
 
 
 def fetch_load_forecast(
-    zone_key: str = "US-SPP",
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the load forecast (in MW) of a given zone."""
 
     if not target_datetime:
@@ -229,7 +235,7 @@ def fetch_load_forecast(
 
     raw_data = get_data(LOAD_URL)
 
-    data = []
+    consumption_list = TotalConsumptionList(logger)
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
@@ -240,25 +246,24 @@ def fetch_load_forecast(
         if load is None:
             logger.info(f"fetch_load_forecast: {dt} has no forecasted load")
 
-        datapoint = {
-            "datetime": dt,
-            "value": load,
-            "zoneKey": zone_key,
-            "source": "spp.org",
-        }
+        consumption_list.append(
+            datetime=dt,
+            consumption=load,
+            zoneKey=zone_key,
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
 
-        data.append(datapoint)
-
-    return data
+    return consumption_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
-    zone_key: str = "US-SPP",
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     """Requests the load forecast (in MW) of a given zone."""
 
     if not target_datetime:
@@ -286,7 +291,7 @@ def fetch_wind_solar_forecasts(
     # sometimes there is a leading whitespace in column names
     raw_data.columns = raw_data.columns.str.lstrip()
 
-    data = []
+    production_list = ProductionBreakdownList(logger)
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
@@ -296,37 +301,32 @@ def fetch_wind_solar_forecasts(
         solar = _NaN_safe_get(forecast, "Solar Forecast MW")
         wind = _NaN_safe_get(forecast, "Wind Forecast MW")
 
-        production = {}
-        if solar is not None:
-            production["solar"] = solar
-        if wind is not None:
-            production["wind"] = wind
-
-        if production == {}:
+        if solar is None and wind is None:
             logger.info(
                 f"fetch_wind_solar_forecasts: {dt} has no solar nor wind forecasted production"
             )
             continue
 
-        datapoint = {
-            "datetime": dt,
-            "production": production,
-            "zoneKey": zone_key,
-            "source": "spp.org",
-        }
+        mix = ProductionMix(solar=solar, wind=wind)
 
-        data.append(datapoint)
+        production_list.append(
+            datetime=dt,
+            production=mix,
+            zoneKey=zone_key,
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
 
-    return data
+    return production_list.to_list()
 
 
 def fetch_live_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     data = get_data(EXCHANGE_URL, session)
 
     data = data.dropna(axis=0)
@@ -341,12 +341,14 @@ def fetch_live_exchange(
 
 
 def fetch_historical_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
+    if target_datetime is None:
+        return []
     filename = target_datetime.strftime("TieFlows_%b%Y.csv")
     file_url = f"{US_PROXY}/file-browser-api/download/historical-tie-flow?{HOST_PARAMETER}&path={filename}"
 
@@ -367,12 +369,12 @@ def fetch_historical_exchange(
 
 def format_exchange_data(
     data: pd.DataFrame,
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """format exchanges data into list of data points"""
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     data = data[list(EXCHANGE_MAPPING)]
     data = data.melt(var_name="zone_key2", value_name="exchange", ignore_index=False)
     data.zone_key2 = data.zone_key2.map(EXCHANGE_MAPPING)
@@ -380,50 +382,56 @@ def format_exchange_data(
     data_filtered = data.loc[data["zone_key2"] == zone_key2]
     data_filtered = data_filtered.groupby([data_filtered.index])["exchange"].sum()
 
-    all_data_points = []
+    exchange_list = ExchangeList(logger)
     for dt in data_filtered.index:
         data_dt = data_filtered.loc[data_filtered.index == dt]
-        data_point = {
-            "sortedZoneKeys": sorted_zone_keys,
-            "netFlow": round(data_dt.values[0], 4),
-            "datetime": dt.to_pydatetime(),
-            "source": "spp.org",
-        }
-        all_data_points.append(data_point)
-    validated_data_points = [x for x in all_data_points if validate_exchange(x, logger)]
+        exchange_list.append(
+            zoneKey=sorted_zone_keys,
+            netFlow=round(data_dt.values[0], 4),
+            datetime=dt.to_pydatetime(),
+            source=SOURCE,
+        )
 
-    return validated_data_points
+    return [x for x in exchange_list.to_list() if validate_exchange(x, logger)]
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> list[dict[str, Any]]:
     now = datetime.now(tz=timezone.utc)
     if target_datetime is None or target_datetime > now.date():
         target_datetime = now
-        exchanges = fetch_live_exchange(zone_key1, zone_key2, session, target_datetime)
+        exchanges = fetch_live_exchange(
+            zone_key1, zone_key2, session, target_datetime, logger
+        )
     elif target_datetime < datetime(2014, 3, 1, tzinfo=timezone.utc):
         raise NotImplementedError(
-            "Exchange data is not available from this sourc before 03/2014"
+            "Exchange data is not available from this source before 03/2014"
         )
     else:
         exchanges = fetch_historical_exchange(
-            zone_key1, zone_key2, session, target_datetime
+            zone_key1, zone_key2, session, target_datetime, logger
         )
     return exchanges
 
 
 if __name__ == "__main__":
     print("fetch_production() -> ")
-    print(fetch_production())
+    print(fetch_production(zone_key=ZoneKey("US-SW-AZPS")))
     print("fetch_exchange() -> ")
     print(fetch_exchange("US-CENT-SWPP", "US-MIDW-MISO"))
     print("fetch_load_forecast() -> ")
-    print(fetch_load_forecast(target_datetime="20190125"))
+    print(
+        fetch_load_forecast(zone_key=ZoneKey("US-SW-AZPS"), target_datetime="20190125")
+    )
     print("fetch_wind_solar_forecasts() -> ")
-    print(fetch_wind_solar_forecasts(target_datetime="20221118"))
+    print(
+        fetch_wind_solar_forecasts(
+            zone_key=ZoneKey("US-SW-AZPS"), target_datetime="20221118"
+        )
+    )

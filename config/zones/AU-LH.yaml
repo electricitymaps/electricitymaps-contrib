@@ -7,4 +7,6 @@ capacity:
   battery storage: 1
   gas: 0.84
   solar: 1
-timezone: Lord_Howe
+country: AU
+region: Oceania
+timezone: Australia/Lord_Howe

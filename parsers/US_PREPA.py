@@ -12,12 +12,12 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import arrow
 from requests import Session
 
-timezone_name = "America/Puerto_Rico"
+TIMEZONE = ZoneInfo("America/Puerto_Rico")
+
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "?host=https://aeepr.com"
 GENERATION_BREAKDOWN_URL = (
@@ -49,8 +49,8 @@ def extract_data(html):
 def convert_timestamp(
     zone_key: str, timestamp_string: str, logger: Logger = getLogger(__name__)
 ):
-    """
-    Converts timestamp fetched from website into timezone-aware datetime object
+    """Converts timestamp fetched from website into timezone-aware datetime object.
+
     Arguments:
     ----------
     timestamp_string: timestamp in the format 06/01/2020 08:40:00 AM
@@ -58,14 +58,11 @@ def convert_timestamp(
     timestamp_string = re.sub(
         r"\s+", " ", timestamp_string
     )  # Replace double spaces with one
-
-    logger.debug(
-        f"PARSED TIMESTAMP {arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss A', tzinfo=timezone_name)}",
-        extra={"key": zone_key},
+    timestamp = datetime.strptime(timestamp_string, "%m/%d/%Y %I:%M:%S %p").replace(
+        tzinfo=TIMEZONE
     )
-    return arrow.get(
-        timestamp_string, "MM/DD/YYYY HH:mm:ss A", tzinfo=timezone_name
-    ).datetime
+    logger.debug(f"PARSED TIMESTAMP {timestamp}", extra={"key": zone_key})
+    return timestamp
 
 
 def fetch_production(

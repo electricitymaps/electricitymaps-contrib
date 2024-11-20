@@ -19,13 +19,18 @@ from electricitymap.contrib.lib.types import ZoneKey
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
+def _is_naive(t: dt.datetime) -> bool:
+    """Determines if a datetime object is naive."""
+    return t.tzinfo is None or t.tzinfo.utcoffset(t) is None
+
+
 def _none_safe_round(value: float | None, precision: int = 6) -> float | None:
     """
     Rounds a value to the provided precision.
     If the value is None, it is returned as is.
     The default precision is 6 decimal places, which gives us a precision of 1 W.
     """
-    return None if value is None else round(value, precision)
+    return None if value is None or math.isnan(value) else round(value, precision)
 
 
 class Mix(BaseModel, ABC):
@@ -102,7 +107,9 @@ class ProductionMix(Mix):
         for attr, value in data.items():
             if value is not None and value < 0:
                 self._corrected_negative_values.add(attr)
-                self.__setattr__(attr, None)
+                value = None
+            # Ensure that the value is rounded to 6 decimal places and set to None if it is NaN.
+            self.__setattr__(attr, value)
 
     def dict(  # noqa: A003
         self,
@@ -227,6 +234,14 @@ class StorageMix(Mix):
     battery: float | None = None
     hydro: float | None = None
 
+    def __init__(self, **data: Any):
+        """
+        Overriding the constructor to check for NaN values and set them to None.
+        """
+        super().__init__(**data)
+        for attr, value in data.items():
+            self.__setattr__(attr, value)
+
     def __setattr__(self, name: str, value: float | None) -> None:
         """
         Overriding the setattr method to raise an error if the mode is unknown.
@@ -296,8 +311,8 @@ class Event(BaseModel, ABC):
         return v
 
     @validator("datetime")
-    def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]):
-        if v.tzinfo is None:
+    def _validate_datetime(cls, v: dt.datetime, values: dict[str, Any]) -> dt.datetime:
+        if _is_naive(v):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
@@ -338,7 +353,11 @@ class AggregatableEvent(Event):
     @staticmethod
     def _sources(df_view: pd.DataFrame) -> str:
         sources = df_view["source"].unique()
-        return ", ".join(sources)
+        flattened_sources = [
+            source.strip() for sublist in sources for source in sublist.split(",")
+        ]
+        unique_sources = sorted(set(flattened_sources))
+        return ", ".join(unique_sources)
 
     @staticmethod
     def _unique_source_type(df_view: pd.DataFrame) -> EventSourceType:
@@ -581,7 +600,7 @@ class ProductionBreakdown(AggregatableEvent):
         try:
             # Log warning if production has been corrected.
             if production is not None and production.has_corrected_negative_values:
-                logger.warning(
+                logger.debug(
                     f"Negative production values were detected: {production._corrected_negative_values}.\
                     They have been set to None."
                 )
@@ -655,20 +674,19 @@ class ProductionBreakdown(AggregatableEvent):
             raise ValueError(
                 f"Cannot update events from different datetimes: {event.datetime} and {new_event.datetime}"
             )
-        if event.source != new_event.source:
-            raise ValueError(
-                f"Cannot update events from different sources: {event.source} and {new_event.source}"
-            )
         if event.sourceType != new_event.sourceType:
             raise ValueError(
                 f"Cannot update events from different source types: {event.sourceType} and {new_event.sourceType}"
             )
         production_mix = ProductionMix._update(event.production, new_event.production)
         storage_mix = StorageMix._update(event.storage, new_event.storage)
+        source = ", ".join(
+            set(event.source.split(", ")) | set(new_event.source.split(", "))
+        )
         return ProductionBreakdown(
             zoneKey=event.zoneKey,
             datetime=event.datetime,
-            source=event.source,
+            source=source,
             production=production_mix,
             storage=storage_mix,
             sourceType=event.sourceType,
@@ -762,7 +780,7 @@ class Price(Event):
     @validator("datetime")
     def _validate_datetime(cls, v: dt.datetime) -> datetime:
         """Prices are given for the day ahead, so we should allow them to be in the future."""
-        if v.tzinfo is None:
+        if _is_naive(v):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")

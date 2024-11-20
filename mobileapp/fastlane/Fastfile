@@ -14,6 +14,11 @@ private_lane :build_web_app do
 )
   # Build the web app if we have both environment variables set
   sh("pnpm", "run", "build-web")
+
+  # prompt for input
+  prompt(
+    text: "Please run 'pnpm exec cap sync' in a new terminal window. Once it's done, return here and press y and Enter to continue."
+  )
 end
 
 private_lane :increment_package_version do

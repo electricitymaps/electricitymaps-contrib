@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -9,8 +9,11 @@ from bs4 import BeautifulSoup, Tag
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
     TotalConsumptionList,
 )
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -39,8 +42,10 @@ TABLE_HEADERS = [
     "Wind",
     "Bheramara HVDC",
     "Tripura",
+    "Adani",
     "Remarks",
 ]
+PARSER = "ERP_PGCB.py"
 
 
 def table_entry_to_float(entry: str):
@@ -53,7 +58,7 @@ def table_entry_to_float(entry: str):
         return float(entry)
     except ValueError as e:
         raise ParserException(
-            parser="BD.py",
+            parser=PARSER,
             message=(f'Failed to parse entry: "{entry}" to float in table.'),
         ) from e
 
@@ -73,17 +78,13 @@ def parse_table_body(table_body: Tag) -> list[dict]:
 
         # date and time in [0]; [1] are DD-MM-YYYY; HH:mm[:ss]
         parsed_day = datetime.strptime(row_items[0], "%d-%m-%Y").date()
-        try:
-            assert isinstance(row_items[1], str)
-            if row_items[1][0:2] == "24":
-                # The endpoint is reporting 24:00:00 as 00:00:00 of the next day, so we need to fix that.
-                row_items[1] = row_items[1].replace("24", "00", 1)
-                parsed_day += timedelta(days=1)
-            # newer data points are in HH:mm:ss format
-            parsed_time = datetime.strptime(row_items[1], "%H:%M:%S").time()
-        except ValueError:
-            # very old data points are sometimes in HH:mm format
-            parsed_time = datetime.strptime(row_items[1], "%H:%M").time()
+        assert isinstance(row_items[1], str)
+        hour = int(row_items[1][0:2])
+        # The hour is backwards looking so if it's 01:00, it's actually 00:00
+        hour = hour - 1
+        minute = int(row_items[1][3:5])
+        second = int(row_items[1][6:8])
+        parsed_time = time(hour, minute, second)
 
         row_data.append(
             {
@@ -99,7 +100,8 @@ def parse_table_body(table_body: Tag) -> list[dict]:
                 "wind": table_entry_to_float(row_items[10]),
                 "bd_import_bheramara": table_entry_to_float(row_items[11]),
                 "bd_import_tripura": table_entry_to_float(row_items[12]),
-                "remarks": row_items[13],
+                "bd_import_adani": table_entry_to_float(row_items[13]),
+                "remarks": row_items[14],
             }
         )
 
@@ -116,7 +118,7 @@ def verify_table_header(table_header: Tag):
 
     if header_items != TABLE_HEADERS:
         raise ParserException(
-            parser="BD.py",
+            parser=PARSER,
             message=(
                 f"Table headers mismatch with expected ones."
                 f"Expected: {TABLE_HEADERS}"
@@ -131,6 +133,14 @@ def query(
     """
     Query the table and read it into list.
     """
+
+    if target_datetime is not None and target_datetime < datetime(2015, 5, 1):
+        raise ParserException(
+            parser=PARSER,
+            message="Data before 2015-05-01 is not reliable and will not be parsed.",
+            zone_key="BD",
+        )
+
     # build URL to call
     if target_datetime is None:
         target_url = LATEST_URL
@@ -145,24 +155,24 @@ def query(
 
     if not target_response.ok:
         raise ParserException(
-            parser="BD.py",
+            parser=PARSER,
             message=f"Data request did not succeed: {target_response.status_code}",
         )
 
-    response_soup = BeautifulSoup(target_response.text)
+    response_soup = BeautifulSoup(target_response.text, "html.parser")
 
     # Find the table, there is only one, and verify its headers.
     table = response_soup.find("table")
     if table is None:
         raise ParserException(
-            parser="BD.py",
+            parser=PARSER,
             message="Could not find table in returned HTML.",
         )
 
     table_head = table.find("thead")
     if table_head is None:
         raise ParserException(
-            parser="BD.py",
+            parser=PARSER,
             message=("Could not find table header in returned HTML."),
         )
     verify_table_header(table_head)
@@ -171,7 +181,7 @@ def query(
     table_body = table.find("tbody")
     if table_body is None:
         raise ParserException(
-            parser="BD.py",
+            parser=PARSER,
             message=("Could not find table body in returned HTML."),
         )
     row_data = parse_table_body(table_body)
@@ -181,59 +191,65 @@ def query(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "BD",
-    session: Session = Session(),
+    zone_key: ZoneKey = ZoneKey("BD"),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict[str, Any] | list[dict[str, Any]]:
-    row_data = query(session, target_datetime, logger)
+) -> list[dict[str, Any]]:
+    session = session or Session()
 
-    production_data_list = []
+    row_data = query(session, target_datetime, logger)
+    production_data_list = ProductionBreakdownList(logger)
     for row in row_data:
         # Create data with empty production
-        data = {
-            "zoneKey": zone_key,
-            "datetime": row["time"],
-            "production": {},
-            "source": "erp.pgcb.gov.bd",
-        }
+        production = ProductionMix()
 
-        # And add sources if they are present in the table
+        # And add sources if they are present in the table z
         known_sources_sum_mw = 0.0
         for source_type in ["coal", "gas", "hydro", "oil", "solar", "wind"]:
             if row[source_type] is not None:
                 # also accumulate the sources to infer 'unknown'
                 known_sources_sum_mw += row[source_type]
-                data["production"][source_type] = row[source_type]
+                production.add_value(source_type, row[source_type])
 
         # infer 'unknown'
         if row["total_generation"] is not None:
-            unknown_source_mw = row["total_generation"] - known_sources_sum_mw
-            if unknown_source_mw >= 0:
-                data["production"]["unknown"] = unknown_source_mw
-            else:
-                logger.warn(
-                    f"Sum of production sources exceeds total generation by {-unknown_source_mw}MW."
-                    f"There is probably something wrong..."
-                )
+            # Total generation includes all sources, including imports so we need to subtract them to get the unknown source
+            # Before this date Adani import in NoneType
 
-        production_data_list.append(data)
+            unknown_source_mw = (
+                row["total_generation"]
+                - known_sources_sum_mw
+                - row["bd_import_bheramara"]
+                - row["bd_import_tripura"]
+            )
+            # Adani import was added after this date
+            if target_datetime is None or target_datetime > datetime(2024, 8, 27):
+                unknown_source_mw -= row["bd_import_adani"]
 
-    if not len(production_data_list):
-        raise ParserException(
-            parser="BD.py",
-            message="No valid consumption data for requested day found.",
+            production.add_value(
+                "unknown", unknown_source_mw, correct_negative_with_zero=True
+            )
+
+        production_data_list.append(
+            zoneKey=zone_key,
+            datetime=row["time"],
+            production=production,
+            source=SOURCE,
         )
-    return production_data_list
+
+    return production_data_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("BD"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    session = session or Session()
+
     row_data = query(session, target_datetime, logger)
 
     result_list = TotalConsumptionList(logger)
@@ -253,7 +269,7 @@ def fetch_consumption(
 
     if not len(result_list):
         raise ParserException(
-            parser="BD.py",
+            parser=PARSER,
             message="No valid consumption data for requested day found.",
         )
 
@@ -262,17 +278,19 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
-    session: Session = Session(),
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    session = session or Session()
+
     # Query table, contains import from india.
     row_data = query(session, target_datetime, logger)
 
-    result_list = []
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
+    exchange_list = ExchangeList(logger)
+    sortedZoneKeys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     for row in row_data:
         # BD -> IN_xx
@@ -280,11 +298,15 @@ def fetch_exchange(
             # Export to India NorthEast via Tripura
             bd_import = row["bd_import_tripura"]
         elif zone_key2 == "IN-EA":
-            # Export to India East via Bheramara
+            # Export to India East via Bheramara and Adani (Jharkhand plant)
             bd_import = row["bd_import_bheramara"]
+
+            if target_datetime is None or target_datetime > datetime(2024, 8, 27):
+                bd_import += row["bd_import_adani"]
+
         else:
             raise ParserException(
-                parser="BD.py",
+                parser=PARSER,
                 message=f"Exchange pair {sortedZoneKeys} is not implemented.",
             )
 
@@ -292,16 +314,14 @@ def fetch_exchange(
             continue  # no data in table
         bd_export = -1.0 * bd_import
 
-        result_list.append(
-            {
-                "sortedZoneKeys": sortedZoneKeys,
-                "datetime": row["time"],
-                "netFlow": bd_export,
-                "source": "erp.pgcb.gov.bd",
-            }
+        exchange_list.append(
+            zoneKey=sortedZoneKeys,
+            datetime=row["time"],
+            netFlow=bd_export,
+            source=SOURCE,
         )
 
-    return result_list
+    return exchange_list.to_list()
 
 
 if __name__ == "__main__":
@@ -310,6 +330,6 @@ if __name__ == "__main__":
     print("fetch_consumption() ->")
     print(fetch_consumption())
     print("fetch_exchange('BD', 'IN-NE') ->")
-    print(fetch_exchange("BD", "IN-NE"))
+    print(fetch_exchange(ZoneKey("BD"), ZoneKey("IN-NE")))
     print("fetch_exchange('BD', 'IN-EA') ->")
-    print(fetch_exchange("BD", "IN-EA"))
+    print(fetch_exchange(ZoneKey("BD"), ZoneKey("IN-EA")))

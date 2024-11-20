@@ -1,24 +1,59 @@
+aggregates_displayed:
+  - none
 bounding_box:
   - - -92.98614402599992
     - 17.301963603000004
   - - -86.20059160099993
     - 22.123439846000053
-timezone: America/Mexico_City
+country: MX
 emissionFactors:
   direct:
     unknown:
-      - datetime: '2020-01-01'
-        source: 'IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris'
-        comment: 'Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2% coal, 4.3%solar, 5.9% wind, 1.5% other renewables with default IPCC2014 values.'
+      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
+          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
+          values.
+        datetime: '2020-01-01'
+        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
+          2020, IEA, Paris
         value: 305
   lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 411.0
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 411.0
     unknown:
-      - datetime: '2020-01-01'
-        source: 'IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris'
-        comment: 'Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2% coal, 4.3%solar, 5.9% wind, 1.5% other renewables with default IPCC2014 values.'
+      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
+          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
+          values.
+        datetime: '2020-01-01'
+        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
+          2020, IEA, Paris
         value: 411
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 1.3386396541103494e-06
+        coal: 2.7168893585104462e-05
+        gas: 3.215615900795001e-05
+        geothermal: 3.0607766132987135e-07
+        hydro: 1.202975231867962e-05
+        hydro discharge: 0.0
+        nuclear: 9.428992425791391e-06
+        oil: 1.6942298783024054e-06
+        solar: 1.581701326342894e-06
+        unknown: 0.9998991744174442
+        wind: 1.4996004948332344e-05
 parsers:
   consumption: CENACE.fetch_consumption
+region: Americas
 sources:
-  'IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris':
+  IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
+timezone: America/Mexico_City

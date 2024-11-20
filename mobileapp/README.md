@@ -51,7 +51,6 @@ pnpm dev-ios
 ```bash
 
 SENTRY_AUTH_TOKEN="" VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN="" pnpm run build-web
-pnpm prepare-mobile
 ```
 
 2. Then run one of these commands to open the build in XCode or Android Studio:

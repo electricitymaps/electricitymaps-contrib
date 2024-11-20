@@ -1,8 +1,8 @@
 import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
+import useResizeObserver from 'use-resize-observer/polyfilled';
 import { TimeAverages } from 'utils/constants';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
 
 import { formatDateTick } from '../../utils/formatting';
 
@@ -15,13 +15,14 @@ const TIME_TO_TICK_FREQUENCY = {
 };
 
 const renderTick = (
-  scale: any,
+  scale: ScaleTime<number, number, never>,
   value: Date,
   index: number,
   displayLive: boolean,
   lang: string,
   selectedTimeAggregate: TimeAverages,
-  isLoading: boolean
+  isLoading: boolean,
+  timezone?: string
 ) => {
   const shouldShowValue =
     index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
@@ -34,7 +35,7 @@ const renderTick = (
     >
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
       {shouldShowValue &&
-        renderTickValue(value, index, displayLive, lang, selectedTimeAggregate)}
+        renderTickValue(value, index, displayLive, lang, selectedTimeAggregate, timezone)}
     </g>
   );
 };
@@ -44,7 +45,8 @@ const renderTickValue = (
   index: number,
   displayLive: boolean,
   lang: string,
-  selectedTimeAggregate: TimeAverages
+  selectedTimeAggregate: TimeAverages,
+  timezone?: string
 ) => {
   const shouldDisplayLive = index === 24 && displayLive;
   const textOffset = selectedTimeAggregate === TimeAverages.HOURLY ? 5 : 0;
@@ -56,15 +58,14 @@ const renderTickValue = (
       </text>
     </g>
   ) : (
-    <text fill="currentColor" y="9" x={textOffset} dy="0.71em">
-      {formatDateTick(v, lang, selectedTimeAggregate)}
+    <text fill="currentColor" y="9" x={textOffset} dy="0.71em" fontSize={'0.65rem'}>
+      {formatDateTick(v, lang, selectedTimeAggregate, timezone)}
     </text>
   );
 };
 
 const getTimeScale = (rangeEnd: number, startDate: Date, endDate: Date) =>
   scaleTime().domain([startDate, endDate]).range([0, rangeEnd]);
-
 interface TimeAxisProps {
   selectedTimeAggregate: TimeAverages;
   datetimes: Date[] | undefined;
@@ -74,6 +75,7 @@ interface TimeAxisProps {
   transform?: string;
   scaleWidth?: number;
   className?: string;
+  timezone?: string;
 }
 
 function TimeAxis({
@@ -84,9 +86,12 @@ function TimeAxis({
   scaleWidth,
   isLiveDisplay,
   className,
+  timezone,
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
-  const { ref, width } = useReferenceWidthHeightObserver(24);
+  const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
+
+  const width = observerWidth - 24;
 
   if (datetimes === undefined || isLoading) {
     return (
@@ -116,7 +121,8 @@ function TimeAxis({
             isLiveDisplay ?? false,
             i18n.language,
             selectedTimeAggregate,
-            isLoading
+            isLoading,
+            timezone
           )
         )}
       </g>

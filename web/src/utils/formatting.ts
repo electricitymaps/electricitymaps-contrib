@@ -5,32 +5,65 @@ import { EnergyUnits, PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 3;
 
-function addSpaceBetweenNumberAndUnit(inputString: string) {
-  // Use a regular expression to add a space between the number and unit
-  return inputString.replace(/([A-Za-z])/, ' $1');
+export interface FormatParameters {
+  value: number;
+  total?: number | null;
+  numberDigits?: number;
 }
 
-export const formatPower = function (
-  d: number,
-  numberDigits: number = DEFAULT_NUM_DIGITS
-) {
+export const formatPower = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
   // Assume MW input
-  if (d == undefined || Number.isNaN(d)) {
-    return d;
+  if (Number.isNaN(value)) {
+    return value;
   }
-  const significantFigures = d.toString().length > 1 ? numberDigits : 1;
-  const power =
-    d < 1e9
-      ? d3.format(`.${significantFigures}s`)(d * 1e6) + 'W'
-      : d3.format(`.${significantFigures}r`)(d / 1e6) + 'TW';
-  return addSpaceBetweenNumberAndUnit(power);
+  if (value == 0) {
+    return '0 W';
+  }
+  if (value < 1e-6) {
+    return '~0 W';
+  }
+
+  const valueInWatt = value * 1e6;
+  const totalInWatt = total ? total * 1e6 : undefined;
+
+  return format({ value: valueInWatt, total: totalInWatt, numberDigits }) + 'W';
 };
 
-export const formatEnergy = function (
-  d: number,
-  numberDigits: number = DEFAULT_NUM_DIGITS
-) {
-  const power = formatPower(d, numberDigits);
+const format = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
+  if (value == undefined || Number.isNaN(value)) {
+    return value;
+  }
+  const checkAgainst = Math.abs(Math.round(total ?? value));
+
+  if (checkAgainst < 1e3) {
+    return d3.format(`.${numberDigits}~r`)(value) + ' ';
+  }
+  if (checkAgainst < 1e6) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e3) + ' k';
+  }
+  if (checkAgainst < 1e9) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e6) + ' M';
+  }
+  if (checkAgainst < 1e12) {
+    return d3.format(`.${numberDigits}~r`)(value / 1e9) + ' G';
+  }
+  return d3.format(`.${numberDigits}~r`)(value / 1e12) + ' T';
+};
+
+export const formatEnergy = ({
+  value,
+  total,
+  numberDigits = DEFAULT_NUM_DIGITS,
+}: FormatParameters) => {
+  const power = formatPower({ value, total, numberDigits });
   // Assume MW input
   if (power == undefined || Number.isNaN(power)) {
     return power;
@@ -38,33 +71,29 @@ export const formatEnergy = function (
   return power + 'h';
 };
 
-export const formatCo2 = function (grams: number, valueToMatch?: number): string {
+export const formatCo2 = ({ value, total, numberDigits }: FormatParameters) => {
   // Validate input
-  if (grams == null || Number.isNaN(grams)) {
+
+  if (value == null || Number.isNaN(value)) {
     return '?';
   }
 
-  // Ensure both numbers are at the same scale
-  const checkAgainst = valueToMatch ?? grams;
+  const checkAgainst = total ?? value;
 
-  //Values less than 1Mt
-  if (Math.round(checkAgainst) < 1e9) {
-    let decimals = grams < 1 ? 2 : 1;
-    // Remove decimals for large values
-    if (grams > 1_000_000) {
-      decimals = 2;
-    }
-    if (checkAgainst < 1e6) {
-      return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~s`)(grams)}g`);
-    }
-
-    return addSpaceBetweenNumberAndUnit(`${d3.format(`,.${decimals}~r`)(grams / 1e6)}t`);
+  if (Math.abs(Math.round(checkAgainst)) < 1e6) {
+    return format({ value: value, total: total, numberDigits: numberDigits }) + 'g';
   }
-  // tonnes or above with significant figures as a default
-  return addSpaceBetweenNumberAndUnit(`${d3.format(',.3~s')(grams / 1e6)}t`);
+
+  return (
+    format({
+      value: value / 1e6,
+      total: total ? total / 1e6 : undefined,
+      numberDigits: numberDigits,
+    }) + 't'
+  );
 };
 
-const scalePower = function (maxPower: number | undefined, isPower = false) {
+const scalePower = (maxPower: number | undefined, isPower = false) => {
   // Assume MW input
   if (maxPower == undefined) {
     return {
@@ -108,47 +137,69 @@ const scalePower = function (maxPower: number | undefined, isPower = false) {
   };
 };
 
-const formatDate = function (date: Date, lang: string, time: string) {
-  if (!isValidDate(date) || !time) {
-    return '';
-  }
-
-  switch (time) {
+export const getDateTimeFormatOptions = (
+  timeAverage: TimeAverages,
+  timezone?: string
+): Intl.DateTimeFormatOptions => {
+  switch (timeAverage) {
     case TimeAverages.HOURLY: {
-      return new Intl.DateTimeFormat(lang, {
-        dateStyle: 'medium',
-        timeStyle: 'short',
-      }).format(date);
+      return {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZoneName: 'short',
+        timeZone: timezone,
+      };
     }
-    // Instantiate below DateTimeFormat objects using UTC to avoid displaying
-    // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
-      return new Intl.DateTimeFormat(lang, {
+      return {
         dateStyle: 'long',
         timeZone: 'UTC',
-      }).format(date);
+      };
     }
     case TimeAverages.MONTHLY: {
-      return new Intl.DateTimeFormat(lang, {
+      return {
         month: 'long',
         year: 'numeric',
         timeZone: 'UTC',
-      }).format(date);
+      };
     }
     case TimeAverages.YEARLY: {
-      return new Intl.DateTimeFormat(lang, {
+      return {
         year: 'numeric',
         timeZone: 'UTC',
-      }).format(date);
+      };
     }
     default: {
-      console.error(`${time} is not implemented`);
-      return '';
+      console.error(`${timeAverage} is not implemented`);
+      return {};
     }
   }
 };
 
-const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAverages) {
+const formatDate = (
+  date: Date,
+  lang: string,
+  timeAverage: TimeAverages,
+  timezone?: string
+) => {
+  if (!isValidDate(date) || !timeAverage) {
+    return '';
+  }
+  return new Intl.DateTimeFormat(
+    lang,
+    getDateTimeFormatOptions(timeAverage, timezone)
+  ).format(date);
+};
+
+const formatDateTick = (
+  date: Date,
+  lang: string,
+  timeAggregate: TimeAverages,
+  timezone?: string
+) => {
   if (!isValidDate(date) || !timeAggregate) {
     return '';
   }
@@ -157,6 +208,7 @@ const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAv
     case TimeAverages.HOURLY: {
       return new Intl.DateTimeFormat(lang, {
         timeStyle: 'short',
+        timeZone: timezone,
       }).format(date);
     }
     // Instantiate below DateTimeFormat objects using UTC to avoid displaying
@@ -194,6 +246,22 @@ const formatDateTick = function (date: Date, lang: string, timeAggregate: TimeAv
     }
   }
 };
+
+export function formatDateRange(
+  startDate: Date,
+  endDate: Date,
+  locale = 'en-US',
+  timeZone?: string
+) {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone,
+  });
+
+  return formatter.formatRange(startDate, endDate);
+}
 
 function isValidDate(date: Date) {
   if (!date || !(date instanceof Date)) {

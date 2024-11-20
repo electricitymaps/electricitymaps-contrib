@@ -11,8 +11,10 @@ import { getJSON } from './utilities.js';
 
 const inputArguments = process.argv.slice(2);
 
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+
 const zonesGeo: WorldFeatureCollection = getJSON(
-  path.resolve(fileURLToPath(new URL('world.geojson', import.meta.url)))
+  path.resolve(currentDirectory, 'world.geojson')
 );
 
 if (inputArguments.length <= 0) {
@@ -24,9 +26,7 @@ if (inputArguments.length <= 0) {
 
 const zoneKey = inputArguments[0];
 
-const zonePath = path.resolve(
-  fileURLToPath(new URL(`../../config/zones/${zoneKey}.yaml`, import.meta.url))
-);
+const zonePath = path.resolve(currentDirectory, `../../config/zones/${zoneKey}.yaml`);
 const zoneConfig = yaml.load(fs.readFileSync(zonePath, 'utf8')) as ZoneConfig;
 
 if (!zoneConfig) {
@@ -39,9 +39,7 @@ let isAggregate = false;
 if (zoneFeatures.length <= 0) {
   console.info(`Zone ${zoneKey} does not exist in geojson, using subzones instead`);
   isAggregate = true;
-  zoneFeatures = zonesGeo.features.filter((d) => {
-    return d.properties.countryKey === zoneKey;
-  });
+  zoneFeatures = zonesGeo.features.filter((d) => d.properties.countryKey === zoneKey);
 }
 zonesGeo.features = zoneFeatures;
 

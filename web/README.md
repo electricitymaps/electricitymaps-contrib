@@ -8,7 +8,7 @@ _If you're looking for more info on the parsers, check out [how to setup Python 
 
 Prerequisites:
 
-- Ensure you have `NodeJS` and `pnpm` installed locally (`brew install pnpm`)
+- Ensure you have `NodeJS` (`v20.9.0` or above) and `pnpm` installed locally (`brew install pnpm`)
 - Run `pnpm install` in both the web and mockserver directories
 
 1. Start the mockserver: `pnpm run mockserver`
@@ -56,11 +56,15 @@ See [how to edit world geometries](https://github.com/electricityMaps/electricit
 
 ## Icon usage
 
-We use [react-icons](https://github.com/react-icons/react-icons) and by default the app uses the "Heroicons 2" library with "Outline" variants.
+We use [Lucide](https://lucide.dev) for icons and [react-icons](https://github.com/react-icons/react-icons) for brand icons, brand icons should be imported from the FontAwesome 6 library.
 
-If an icon should be missing, then feel free to look into other libraries to find an icon that matches the style. An important rule here is that we ideally want to use only outlined icons (and no filled/solid icons).
+If an icon is missing reach out the to Electricity Maps team either on Slack or by creating an issue. There is also the possibility to file a icon request upstream in [Lucides GitHub repository](https://github.com/lucide-icons/lucide) or creating and submitting one yourself as long as it matches the Lucide visual style and guidelines.
 
-Search for icons here: [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/)
+Search for icons here: [Lucide](https://lucide.dev/icons/)
+Search for brand icons here: [Font Awesome Brands](https://fontawesome.com/search?o=r&f=brands)
+
+> [!NOTE]
+> There might be some left over icon usage that don't use Lucide, feel free to replace them with Lucide icons when they are matching visually.
 
 ## State Management
 

@@ -14,11 +14,12 @@ api-files:
 
 prepare:
   FROM +src-files
-  RUN npm install -g pnpm
+  RUN npm install -g pnpm@9
   RUN pnpm install --frozen-lockfile
-  COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.cts .
+  COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.ts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
   COPY scripts/register-tsNodeESM.js ./scripts/register-tsNodeESM.js
+  COPY scripts/generateSitemap.js ./scripts/generateSitemap.js
   COPY --dir geo public src ./
 
 test:
@@ -49,4 +50,4 @@ deploy:
   COPY +build/dist ./dist
   RUN npm install -g wrangler
   # TODO: Point to master after build and deploy has been tested to staging
-  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID wrangler pages publish ./dist --project-name electricitymaps-app --branch master
+  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID wrangler pages deploy ./dist --project-name electricitymaps-app --branch master

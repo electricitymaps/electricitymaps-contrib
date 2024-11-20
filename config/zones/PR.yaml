@@ -20,6 +20,7 @@ contributors:
   - q--
   - systemcatch
   - veqtrus
+country: PR
 emissionFactors:
   direct:
     battery discharge:
@@ -101,10 +102,10 @@ emissionFactors:
         value: 609.5049770315596
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 621.6104257036576
+        value: 622.06
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 604.8374514356746
+        value: 606.54
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -123,13 +124,14 @@ emissionFactors:
         value: 609.5049770315596
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 621.6104257036576
+        value: 622.06
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 604.8374514356746
+        value: 606.54
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
-      source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation October 2019-September 2020
+      source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
+        October 2019-September 2020
       value: 31.94
 fallbackZoneMixes:
   powerOriginRatios:
@@ -212,32 +214,32 @@ fallbackZoneMixes:
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0006379169879835717
-        coal: 0.2124950039033078
-        gas: 0.31813944350982
-        geothermal: 0.0002735992944884686
-        hydro: 0.00347189673798742
+        biomass: 0.003056801711021606
+        coal: 0.20995060374384983
+        gas: 0.3142132207951985
+        geothermal: 0.0
+        hydro: 0.0033693584812000276
         hydro discharge: 0.0
-        nuclear: 0.0002735992944884686
-        oil: 0.44770883887283686
-        solar: 0.01188191907521845
-        unknown: 0.0009760792011967666
-        wind: 0.004771029037593347
+        nuclear: 0.0
+        oil: 0.4421993502836153
+        solar: 0.01723713584912138
+        unknown: 0.0008220597962560202
+        wind: 0.009151475705779812
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0007066304908926925
-        coal: 0.18341052141931616
-        gas: 0.36254281549275963
-        geothermal: 0.00013555981409766826
-        hydro: 0.004039114053495066
+        biomass: 0.000588897955689813
+        coal: 0.1762597940083661
+        gas: 0.3587532208923845
+        geothermal: 0.0
+        hydro: 0.0030917180825297858
         hydro discharge: 0.0
-        nuclear: 0.00013555981409766826
-        oil: 0.4242839401782749
-        solar: 0.012345607699868429
-        unknown: 0.002485333110272757
-        wind: 0.009913517715532442
+        nuclear: 0.0
+        oil: 0.43894189064846695
+        solar: 0.012790315399735448
+        unknown: 0.0009000191751649909
+        wind: 0.008674031627125225
 isLowCarbon:
   unknown:
     value: 1
@@ -246,6 +248,7 @@ isRenewable:
     value: 1
 parsers:
   production: US_PREPA.fetch_production
+region: Americas
 sources:
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing

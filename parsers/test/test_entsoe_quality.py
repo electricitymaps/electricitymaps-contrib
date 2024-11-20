@@ -15,20 +15,12 @@ class ProductionTestCase(unittest.TestCase):
     test_logger = logging.getLogger()
     test_logger.setLevel(logging.ERROR)
 
-    def test_missing_required_biomass_in_DE(self):
-        validated = validate_production(p10, self.test_logger)  # noqa: F405
-        self.assertEqual(validated, None)
-
     def test_production_too_low_in_PL(self):
         validated = validate_production(p11, self.test_logger)  # noqa: F405
         self.assertEqual(validated, None)
 
     def test_production_too_high_in_SI(self):
         validated = validate_production(p12, self.test_logger)  # noqa: F405
-        self.assertEqual(validated, None)
-
-    def test_missing_solar_in_DK1(self):
-        validated = validate_production(p13, self.test_logger)  # noqa: F405
         self.assertEqual(validated, None)
 
     def test_valid_production_in_FI(self):

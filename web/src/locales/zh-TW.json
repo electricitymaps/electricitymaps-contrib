@@ -1,0 +1,1977 @@
+{
+  "info": {
+    "text": "這份電力地圖為推動能源轉型的公民、能源專家、NGO 和政策制定者提供即時的用電資料。",
+    "open-source-text": "這個網站是個由社群支持的<a href='{{link}}' target='_blank'>開源</a>軟體。"
+  },
+  "button": {
+    "feedback": "提供回饋",
+    "github": "GitHub",
+    "twitter": "Twitter 上分享",
+    "slack": "加入 Slack",
+    "privacy-policy": "隱私權政策",
+    "legal-notice": "法律聲明"
+  },
+  "settings-modal": {
+    "title": "設定"
+  },
+  "mobile-main-menu": {
+    "map": "電力地圖",
+    "areas": "地區",
+    "about": "關於"
+  },
+  "onboarding-modal": {
+    "view1": {
+      "header": "將電力對氣候變遷的影響製成地圖",
+      "text": "在這裡你可以探索電力對全球許多國家的氣候影響。 <br/><br/>讓我們透過幾個簡單的步驟引導你瀏覽我們的地圖！"
+    },
+    "view2": {
+      "header": "檢視即時的發電碳排量",
+      "text": "我們依據每個地區發電的碳強度上色，顏色越綠代表該地區的電力對氣候變遷影響更小。"
+    },
+    "view3": {
+      "header": "瞭解你使用的電力從何而來",
+      "text": "地圖上的箭頭標示地區之間的電力流動。點選地區以檢視更多關於該地區的用電資訊。"
+    },
+    "view4": {
+      "header": "在不同視圖之間切換",
+      "text": "在電力生產和消費，以及國家或地區視圖之間切換，以便即時洞察全球能源動態，並為永續的未來做出明智的選擇。"
+    },
+    "view5": {
+      "header": "在電力和碳排放量視圖之間切換",
+      "text": "切換至不同的圖表以顯示某一區域的電力資訊或碳排放量。 所顯示的數值代表所選時期的總量，且該資訊與所選的生產或消費模式相符。"
+    },
+    "view6": {
+      "header": "探索過去",
+      "text": "在左下角，你可以查看全球即時和過去的碳排放量及電力數據。 使用切換按鈕變更聚合數據，或透過瀏覽時間軸來查看隨時間的變化。"
+    },
+    "view7": {
+      "header": "風力、太陽能即時資訊",
+      "text": "風力、太陽能的發電效率取決於天氣。點選「風」和「太陽」按鈕以顯示風力和太陽能的發電強度。"
+    }
+  },
+  "country-panel": {
+    "source": "來源",
+    "carbonintensity": "碳強度",
+    "lowcarbon": "低碳能源",
+    "renewable": "可再生能源",
+    "helpfrom": "with help from",
+    "noDataAtTimestamp": "尚無該時段的資料",
+    "noLiveData": "尚無該地區的即時資料",
+    "disabledPriceReasons": {
+      "licensing": "因授權因素，尚無該地區的電價"
+    },
+    "dataIsDelayed": "該地區的資料可能落後 {{hours}} 小時，無即時資料。",
+    "estimated": "預估",
+    "aggregated": "總計",
+    "dataIsEstimated": "該地區的部分資料爲估計值。請參考我們的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>估計方法</a>。",
+    "exchangesAreMissing": "電力交換已被納入計算，但尚未顯示。請參考我們的先前的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>合計資料</a>。",
+    "estimatedTooltip": "該區域的即時資料是基於其過往資料與模型預測的估計值。",
+    "aggregatedTooltip": "該區域的的資料是由過去的每小時資料聚合而成。",
+    "helpUs": "請檢視<a href='{{link}}' target='_blank'>執行環境日誌</a>並幫助我們找出問題。",
+    "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href='{{link}}' target='_blank'>新增這個地區的資料</a>！",
+    "aggregationDisabled": "由於缺少詳細細分，無法取得所選時間段的資料。請嘗試選擇一個更廣泛的時間段。",
+    "now": "現在"
+  },
+  "feedback-card": {
+    "title": "幫助我們改進!",
+    "success-message": "您的回饋將幫助我們理解並提高溝通和方法論的品質。",
+    "estimations": {
+      "subtitle": "請評價以下陳述。",
+      "secondary-question": "有什麼是我們可以改進的？",
+      "primary-question": "資料估計的描述易於理解："
+    },
+    "optional": "可選：",
+    "agree": "非常同意",
+    "disagree": "非常不同意",
+    "placeholder": "用幾句話告訴我們...",
+    "submit": "提交"
+  },
+  "estimation-badge": {
+    "partially-estimated": "部分估計",
+    "fully-estimated": "已估計",
+    "outage": "不可用"
+  },
+  "estimation-card": {
+    "link": "了解我們的估計模型",
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
+      "title": "數據為初步的值",
+      "body": "資料提供者未提供此小時的數據。目前顯示的數值是基於歷史測量值估計的，一旦實際數據可用將立即更新。\n\n請注意，估計值可能未考慮到即時的天氣事件。"
+    },
+    "ESTIMATED_MODE_BREAKDOWN": {
+      "title": "數據部分為估計值",
+      "pill": "不完整",
+      "body": "該區域發電數據不完整； 缺失值是使用估計模型計算的。"
+    },
+    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
+      "title": "數據始終為估計值",
+      "pill": "不精確",
+      "body": "該區域發布的數據僅提供總產量。可再生能源是使用即時天氣數據估算的，而化石能源是根據每個生產來源的歷史數據扣除的。"
+    },
+    "estimated_generic_method": {
+      "title": "數據為估計值",
+      "pill": "不精確",
+      "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
+    },
+    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
+      "title": "數據始終為估計值",
+      "pill": "非即時",
+      "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
+    },
+    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
+      "title": "數據始終為估計值",
+      "pill": "非即時",
+      "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
+    },
+    "threshold_filtered": {
+      "title": "缺失數據",
+      "pill": "數據中斷",
+      "body": "該區域的數據提供者已長時間缺失數據。我們正在監視問題，一旦數據再次可用，區域將立即更新。"
+    },
+    "outage": {
+      "title": "持續存在的問題",
+      "pill": "不可用"
+    },
+    "aggregated": {
+      "title": "數據已匯總",
+      "body": "數據由每小時值聚合組成。"
+    },
+    "aggregated_estimated": {
+      "title": "數據已匯總",
+      "pill": " 估計為 {{percentage}}% ",
+      "body": "數據由每小時值聚合組成。 {{percentage}}% 的生產值為估計值。"
+    }
+  },
+  "time-controller": {
+    "daily": "每日",
+    "hourly": "每小時",
+    "monthly": "每月",
+    "yearly": "每年"
+  },
+  "ranking-panel": {
+    "title": "各地區對氣候的影響",
+    "subtitle": "依據耗電量的碳強度（單位：gCO₂eq/kWh）排名",
+    "search": "搜尋地區"
+  },
+  "country-history": {
+    "carbonintensity": {
+      "hourly": "每小時碳強度",
+      "daily": "每日碳強度",
+      "monthly": "每月碳強度",
+      "yearly": "每年碳強度"
+    },
+    "emissions": {
+      "hourly": "每小時碳排放",
+      "daily": "每日碳排放",
+      "monthly": "每月碳排放",
+      "yearly": "每年碳排放"
+    },
+    "emissionsorigin": {
+      "hourly": "每小時碳排放來源",
+      "daily": "每日碳排放來源",
+      "monthly": "每月碳排放來源",
+      "yearly": "每年碳排放來源"
+    },
+    "emissionsproduction": {
+      "hourly": "每小時生產排放",
+      "daily": "每日生產排放",
+      "monthly": "每月生產排放",
+      "yearly": "每年生產排放"
+    },
+    "electricityorigin": {
+      "hourly": "每小時電力來源",
+      "daily": "每日電力來源",
+      "monthly": "每月電力來源",
+      "yearly": "每年電力來源"
+    },
+    "electricityproduction": {
+      "hourly": "每小時電力生產",
+      "daily": "每日電力生產",
+      "monthly": "每月電力生產",
+      "yearly": "每年電力生產"
+    },
+    "electricityprices": {
+      "hourly": "每小時電價",
+      "daily": "每日電價",
+      "monthly": "每月電價",
+      "yearly": "每年電價"
+    },
+    "netExchange": {
+      "hourly": "每小時淨交換",
+      "daily": "每日淨交換",
+      "monthly": "每月淨交換",
+      "yearly": "每年淨交換"
+    },
+    "not-enough-data": "沒有足夠的數據來顯示圖表"
+  },
+  "footer": {
+    "foundbugs": "發現錯誤或有其他想法？請",
+    "faq-text": "有任何不清楚的地方？ 請參考",
+    "faq": "常見問題",
+    "here": "回報"
+  },
+  "legends": {
+    "windpotential": "風力發電潛力",
+    "solarpotential": "太陽能發電潛力",
+    "colorblindmode": "色盲模式",
+    "carbonintensity": "碳強度"
+  },
+  "tooltips": {
+    "carbonintensity": "碳強度",
+    "zoneHeader": {
+      "lowcarbon": "包含再生能源和核能"
+    },
+    "crossborderexport": "跨境出口",
+    "carbonintensityexport": "出口碳強度",
+    "ofinstalled": "的裝載容量",
+    "utilizing": "利用",
+    "representing": "代表",
+    "ofemissions": "的碳排放量",
+    "withcarbonintensity": "具有碳強度",
+    "zoomIn": "放大",
+    "zoomOut": "縮小",
+    "showWindLayer": "顯示風力",
+    "hideWindLayer": "隱藏風力",
+    "showSolarLayer": "顯示太陽能",
+    "hideSolarLayer": "隱藏太陽能",
+    "weatherDisabled": "目前尚無天氣資料",
+    "changeTheme": "變更主題",
+    "noParserInfo": "尚無資料",
+    "temporaryDataOutage": "目前尚無即時資料",
+    "production": "產出",
+    "consumption": "消耗",
+    "cpinfo": "<b>消耗量</b>會將電力進出口納入計算, <b>產出量</b>則否",
+    "aggregateInfo": "以小區域爲單位 / 以整體國家爲單位",
+    "selectLanguage": "選擇語言",
+    "dataIsDelayed": "資料非即時",
+    "price": "價格",
+    "netExchange": "淨交換",
+    "importing": "進口",
+    "exporting": "出口"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "選擇語言",
+      "colorBlindMode": "色盲模式",
+      "windLayer": "風力圖層",
+      "solarLayer": "太陽能圖層",
+      "changeTheme": "變更主題",
+      "hideSidePanel": "隱藏側板",
+      "showSidePanel": "顯示側板"
+    }
+  },
+  "aggregateButtons": {
+    "country": "國家",
+    "zone": "區域"
+  },
+  "themeOptions": {
+    "dark": "深色模式",
+    "light": "淺色模式",
+    "system": "系統"
+  },
+  "misc": {
+    "maintitle": "生活用電二氧化碳排放量",
+    "faq": "常見問題",
+    "dismiss": "關閉",
+    "reload": "重新載入",
+    "slow-loading-text": "仍在加載中，如果持續如此，請嘗試重新載入..."
+  },
+  "wind": "風力",
+  "windDataError": "目前尚無風力資料",
+  "solar": "太陽能",
+  "solarDataError": "目前尚無太陽能資料",
+  "hydro": "水力",
+  "hydro storage": "水庫",
+  "battery storage": "電池存量",
+  "biomass": "生物質",
+  "nuclear": "核能",
+  "geothermal": "地熱",
+  "gas": "天然氣",
+  "coal": "煤炭",
+  "oil": "石油",
+  "unknown": "未知",
+  "ofCO2eq": "of CO₂eq",
+  "theMap": {
+    "groupName": "地圖",
+    "mapColors-question": "地圖上的顏色代表什麼呢？",
+    "mapColors-answer": "我們依據每單位電力所排放的溫室氣體爲地圖上色，顏色越綠，電力對氣候變遷的影響越小喔！",
+    "mapArrows-question": "地圖上的箭頭代表什麼呢？",
+    "mapArrows-answer": "地區之間的箭頭表示電力的流動：箭頭閃爍越快，電力流動越快。電力流動是重要的資訊；如果從別的地區輸入電力，就會同時輸入電力產生的碳排。",
+    "mapSolarWindButtons-question": "地圖上的「太陽」和「風」按鈕是做什麼的？",
+    "mapSolarWindButtons-answer": "這些按鈕可以顯示/隱藏即時的風速和日照強度資訊，是各地區風力與太陽能的發電潛能指標。需要注意的是，這只是個簡單的指標；計算風力與太陽能的發電潛能仍需考慮其他因素。",
+    "mapNuclearColors-question": "為什麼使用核能的國家在地圖上被標示成綠色？",
+    "mapNuclearColors-answer": "核能的碳強度很低（詳見<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >資料來源</a>），所以使用核能的國家被標示爲綠色。這並不代表核能對環境沒有影響，只是這些影響與溫室氣體的排放無關，因此不在這張地圖的考慮範疇。",
+    "mapColorBlind-question": "色盲人士該如何閱讀這張地圖？",
+    "mapColorBlind-answer": "你可以將地圖的顏色改為「色盲模式」。色盲模式的按鈕位於左選單底部（電腦）或資訊列（手機）。"
+  },
+  "mapAreas": {
+    "groupName": "地圖上的區域",
+    "noData-question": "為什麼沒有我所在區域的資料？",
+    "noData-answer": " 這有可能是因為該地區的資料暫時無法取得，或我們沒有該地區的資料來源。你可以幫助我們<a href='#contribute' class='entry-link'>新增資料來源</a>。",
+    "whySmallAreas-question": "為什要將國家分成更小的區域，而不是呈現整個國家的平均值？",
+    "whySmallAreas-answer": "這些區域是我們有電力資料的最小地理單位。將國家盡可能分成一個個小區域，有助於使用者瞭解他們的電力來源，以及這些電力對氣候變遷的影響。",
+    "divideExistingArea-question": "可以將我所在的區域分割成更小的單位嗎？",
+    "divideExistingArea-answer": "可以，如果分割後的單位都有各自的資料來源的話。你可以幫助我們<a href='#contribute' class='entry-link'>新增資料來源</a>。",
+    "seeHistoricalData-question": "我可以檢視一個區域超過 24 小時以前的資料嗎？",
+    "seeHistoricalData-answer": "你可以從我們的<a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>資料庫</a>購買所有歷史資料的取得權。"
+  },
+  "methodology": {
+    "groupName": "我們的方法",
+    "carbonIntensity-question": "「碳強度」是什麼?",
+    "carbonIntensity-answer": "碳強度是衡量一個地區電力消耗的溫室氣體排放量的一種指標（單位為gCO₂eq/kWh，即每消耗一度電所排放的二氧化碳當量克數）。<br><br>我們測量電力消耗的溫室氣體排放量，亦即生產被一個地區消耗的電力會排放的所有溫室氣體（包含二氧化碳、甲烷等），包含從其他地區進口的電力。我們採用生命週期分析（Life Cycle Analysis），也就是，將發電廠整個生命週期（建造、燃料生產、運作、退役）的碳排量都納入計算。",
+    "methodology-question": "你們如何計算這些數值的?",
+    "methodology-answer": "我們在 <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a> 上詳細介紹了我們的完整方法論，並在我們的 <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>GitHub Wiki</a> 上提供了額外的文件.",
+    "renewableLowCarbonDifference-question": "「可再生」和「低碳排」的差異是什麼？",
+    "renewableLowCarbonDifference-answer": "「可再生」能源是利用可再生能源發電的發電方式，例如：風力、水力、太陽能、地熱能。「低碳」能源指的是電力生產過少碳排很少的發電方式，例如：核能。",
+    "importsAndExports-question": "你們有將電力輸入輸出納入計算嗎？",
+    "importsAndExports-answer": "有的。我們在地圖上將電力進出口標記爲<a href='#mapArrows' class='entry-link'>區域間的小箭頭</a>。點選該區域以顯示更多相關資訊。",
+    "emissionsOfStored-question": "生產完直接被存入電池或用來把水抽入水庫的電力，他們的碳排如何計算呢？",
+    "emissionsOfStored-answer": "目前，只有小部分的電力被儲存起來，對於碳排計算不會造成太大誤差。但是隨著電力儲存增加，我們也希望將儲存的部分納入計算，以完善我們的模型。",
+    "guaranteesOfOrigin-question": "綠色執照是什麼？他們如何影響計算？",
+    "guaranteesOfOrigin-answer": "電力生產者生產可再生能源時，可以製作來源保證書，用以證明他們生產了可再生電力，並已輸入供電網絡。他們可以販賣這些保證書，讓電力零售商宣稱他們提供的電力來自可再生能源，儘管實際來源並不一定是。即便在無風的夜晚，消費者也會以爲他們的電力來源是風能和太陽能。這是有問題的：當可再生電力在供電網絡中佔高比例，是消費者使用電力的最佳時機；但是來源保證書會扼殺消費者在最佳時機用電的動機。因此這張地圖不考慮來源保證書，而是提供供電網絡實際上的電力分佈狀況，以期消費者能更認識他們的電力來源。",
+    "otherSources-question": "為什麼只提供電力的溫室氣體排放，而不提供其他項目的呢？",
+    "otherSources-answer": "這不在這個專案的範疇內。不過，我們正在開發一個「氣候變遷生活指南」，可以量化你生活中每一個決定對氣候變遷的影響。",
+    "homeSolarPanel-question": "如果我家有安裝太陽能板呢？",
+    "homeSolarPanel-answer": "碳強度的計算只包含當地的供電網路，所以你使用自家太陽能板的供電不會納入計算（因為你家的太陽能板不在供電網路內）。但是，如果你家的太陽能板會輸入電力到供電網路內，而且當地有公開太陽能電力資料，則會納入計算。",
+    "emissionsPerCapita-question": "為什麼不顯示人均碳排量？",
+    "emissionsPerCapita-answer": "某些地區的電力是用於生產外銷商品。這些電力會算在<em>商品進口地</em>內，而不是生產地內。我們認為人們該為自己的消費負責，但不該為所在區域生產的外銷商品負責。顯示人均碳排會誤導使用者。"
+  },
+  "data": {
+    "groupName": "我們的資料",
+    "dataOrigins-question": "你們如何取得資料？",
+    "dataOrigins-answer": "我們使用供電網路管理者、公部門提供的公開資料進行計算。點選區域以檢視資料來源資訊。",
+    "dataDownload-question": "可不可以下載你們的資料？",
+    "dataDownload-answer": "你可以在我們的<a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>資料庫</a>購買資料的取得權。",
+    "dataIntegration-question": "可以將你們的即時資料整合到我的應用程式或裝置上嗎？",
+    "dataIntegration-answer": "可以！我們也有販賣<a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>即時資料的 API</a>，裡面也包含未來預測。"
+  },
+  "aboutUs": {
+    "groupName": "關於我們",
+    "whoAreYou-question": "你們是誰？",
+    "whoAreYou-answer": "這個網站由丹麥新創公司 <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> 開發並維護。我們的目標是要透過量化日常行為對氣候變遷的影響，並廣泛的提供給大眾，以幫助人類達成永續的生存。",
+    "feedback-question": "可以給你們回饋嗎？",
+    "feedback-answer": "歡迎你提供回饋！請填寫我們的<a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>回饋表單</a>或<a href='mailto:app@electricitymaps.com'>寄信給我們</a>。",
+    "contribute-question": "可以為這個專案貢獻嗎？",
+    "contribute-answer": "可以！這是個由志願貢獻者支持的開源專案。如果你想對這個專案貢獻，無論是提供資料來源、新增功能、修 bug，我們歡迎你在 <a href='https://github.com/electricityMaps/electricitymaps-contrib/' target='_blank'>Github</a> 上加入我們。",
+    "workTogether-question": "我們可以合作嗎？",
+    "workTogether-answer": "我們正積極的尋找新的合作機會。<a href='mailto:app@electricitymaps.com'>寄封電子郵件給我們！</a>",
+    "disclaimer-question": "聲明",
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publishes data and images on the <a href='https://www.electricitymaps.com/' target='_blank'>Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+  },
+  "zoneShortName": {
+    "AD": {
+      "zoneName": "安多拉"
+    },
+    "AE": {
+      "zoneName": "阿拉伯聯合大公國"
+    },
+    "AF": {
+      "zoneName": "阿富汗"
+    },
+    "AG": {
+      "zoneName": "安地卡及巴布達"
+    },
+    "AI": {
+      "zoneName": "安吉拉"
+    },
+    "AL": {
+      "zoneName": "阿爾巴尼亞"
+    },
+    "AM": {
+      "zoneName": "亞美尼亞"
+    },
+    "AO": {
+      "zoneName": "安哥拉"
+    },
+    "AQ": {
+      "zoneName": "南極洲"
+    },
+    "AR": {
+      "zoneName": "阿根廷"
+    },
+    "AS": {
+      "zoneName": "美屬薩摩亞"
+    },
+    "AT": {
+      "zoneName": "奧地利"
+    },
+    "AU": {
+      "zoneName": "澳大利亞"
+    },
+    "AU-NSW": {
+      "countryName": "澳大利亞",
+      "zoneName": "新南威爾士州"
+    },
+    "AU-NT": {
+      "countryName": "澳大利亞",
+      "zoneName": "北領地"
+    },
+    "AU-QLD": {
+      "countryName": "澳大利亞",
+      "zoneName": "昆士蘭州"
+    },
+    "AU-SA": {
+      "countryName": "澳大利亞",
+      "zoneName": "南澳大利亞"
+    },
+    "AU-TAS": {
+      "countryName": "澳大利亞",
+      "zoneName": "塔斯馬尼亞"
+    },
+    "AU-VIC": {
+      "countryName": "澳大利亞",
+      "zoneName": "維多利亞"
+    },
+    "AU-WA": {
+      "countryName": "澳大利亞",
+      "zoneName": "西澳大利亞"
+    },
+    "AU-TAS-CBI": {
+      "countryName": "澳大利亞",
+      "zoneName": "Cape Barren 島"
+    },
+    "AU-TAS-KI": {
+      "countryName": "澳大利亞",
+      "zoneName": "國王島"
+    },
+    "AU-TAS-FI": {
+      "countryName": "澳大利亞",
+      "zoneName": "費蓮達島"
+    },
+    "AU-WA-RI": {
+      "countryName": "澳大利亞",
+      "zoneName": "羅特尼斯島"
+    },
+    "AW": {
+      "zoneName": "阿魯巴"
+    },
+    "AX": {
+      "zoneName": "奧蘭"
+    },
+    "AZ": {
+      "zoneName": "阿塞拜疆"
+    },
+    "BA": {
+      "zoneName": "波斯尼亞和黑塞哥維那"
+    },
+    "BB": {
+      "zoneName": "巴貝多"
+    },
+    "BD": {
+      "zoneName": "孟加拉"
+    },
+    "BE": {
+      "zoneName": "比利時"
+    },
+    "BF": {
+      "zoneName": "布吉納法索"
+    },
+    "BG": {
+      "zoneName": "保加利亞"
+    },
+    "BH": {
+      "zoneName": "巴林"
+    },
+    "BI": {
+      "zoneName": "蒲隆地"
+    },
+    "BJ": {
+      "zoneName": "貝南"
+    },
+    "BM": {
+      "zoneName": "百慕達"
+    },
+    "BN": {
+      "zoneName": "汶萊"
+    },
+    "BO": {
+      "zoneName": "玻利維亞"
+    },
+    "BQ": {
+      "zoneName": "波奈、聖佑達修斯和荷屬沙巴"
+    },
+    "BR": {
+      "zoneName": "巴西"
+    },
+    "BR-CS": {
+      "countryName": "巴西",
+      "zoneName": "巴西中部"
+    },
+    "BR-N": {
+      "countryName": "巴西",
+      "zoneName": "巴西北部"
+    },
+    "BR-NE": {
+      "countryName": "巴西",
+      "zoneName": "巴西東北部"
+    },
+    "BR-S": {
+      "countryName": "巴西",
+      "zoneName": "巴西南部"
+    },
+    "BS": {
+      "zoneName": "巴哈馬"
+    },
+    "BT": {
+      "zoneName": "不丹"
+    },
+    "BV": {
+      "zoneName": "布威島"
+    },
+    "BW": {
+      "zoneName": "波札那"
+    },
+    "BY": {
+      "zoneName": "白俄羅斯"
+    },
+    "BZ": {
+      "zoneName": "貝里斯"
+    },
+    "CA-AB": {
+      "countryName": "加拿大",
+      "zoneName": "亞伯達省"
+    },
+    "CA-BC": {
+      "countryName": "加拿大",
+      "zoneName": "英屬哥倫比亞省"
+    },
+    "CA-MB": {
+      "countryName": "加拿大",
+      "zoneName": "曼尼托巴省"
+    },
+    "CA-NB": {
+      "countryName": "加拿大",
+      "zoneName": "新布藍茲維省"
+    },
+    "CA-NL": {
+      "countryName": "加拿大",
+      "zoneName": "紐芬蘭-拉布拉多省"
+    },
+    "CA-NL-LB": {
+      "countryName": "加拿大",
+      "zoneName": "拉布拉多"
+    },
+    "CA-NL-NF": {
+      "countryName": "加拿大",
+      "zoneName": "紐芬蘭"
+    },
+    "CA-NT": {
+      "countryName": "加拿大",
+      "zoneName": "西北地方"
+    },
+    "CA-NU": {
+      "countryName": "加拿大",
+      "zoneName": "努納福特"
+    },
+    "CA-ON": {
+      "countryName": "加拿大",
+      "zoneName": "安大略省"
+    },
+    "CA-PE": {
+      "countryName": "加拿大",
+      "zoneName": "太子港"
+    },
+    "CA-QC": {
+      "countryName": "加拿大",
+      "zoneName": "魁北克"
+    },
+    "CA-SK": {
+      "countryName": "加拿大",
+      "zoneName": "薩斯喀徹溫省"
+    },
+    "CA-YT": {
+      "countryName": "加拿大",
+      "zoneName": "育空地區"
+    },
+    "CA-NS": {
+      "countryName": "加拿大",
+      "zoneName": "新斯科舍省"
+    },
+    "CC": {
+      "zoneName": "科寇斯（基林）群島"
+    },
+    "CD": {
+      "zoneName": "剛果民主共和國"
+    },
+    "CF": {
+      "zoneName": "中非"
+    },
+    "CG": {
+      "zoneName": "剛果共和國"
+    },
+    "CH": {
+      "zoneName": "瑞士"
+    },
+    "CI": {
+      "zoneName": "象牙海岸"
+    },
+    "CK": {
+      "zoneName": "庫克群島"
+    },
+    "CL-CHP": {
+      "countryName": "智利",
+      "zoneName": "復活節島"
+    },
+    "CL-SEA": {
+      "countryName": "智利",
+      "zoneName": "艾森電網"
+    },
+    "CL-SEM": {
+      "countryName": "智利",
+      "zoneName": "麥哲倫電網"
+    },
+    "CL-SEN": {
+      "countryName": "智利",
+      "zoneName": "國家電網"
+    },
+    "CM": {
+      "zoneName": "喀麥隆"
+    },
+    "CN": {
+      "zoneName": "中國"
+    },
+    "CO": {
+      "zoneName": "哥倫比亞"
+    },
+    "CR": {
+      "zoneName": "哥斯大黎加"
+    },
+    "CU": {
+      "zoneName": "古巴"
+    },
+    "CV": {
+      "zoneName": "維德角"
+    },
+    "CW": {
+      "zoneName": "古拉索"
+    },
+    "CX": {
+      "zoneName": "聖誕島"
+    },
+    "CY": {
+      "zoneName": "塞浦路斯"
+    },
+    "CZ": {
+      "zoneName": "捷克"
+    },
+    "DE": {
+      "zoneName": "德國"
+    },
+    "DJ": {
+      "zoneName": "吉布地"
+    },
+    "DK": {
+      "zoneName": "丹麥"
+    },
+    "DK-DK1": {
+      "countryName": "丹麥",
+      "zoneName": "丹麥西部"
+    },
+    "DK-DK2": {
+      "countryName": "丹麥",
+      "zoneName": "丹麥東部"
+    },
+    "DK-BHM": {
+      "countryName": "丹麥",
+      "zoneName": "波恩霍姆島"
+    },
+    "DM": {
+      "zoneName": "多米尼克"
+    },
+    "DO": {
+      "zoneName": "多明尼加"
+    },
+    "DZ": {
+      "zoneName": "阿爾及利亞"
+    },
+    "EC": {
+      "zoneName": "厄瓜多"
+    },
+    "EE": {
+      "zoneName": "愛沙尼亞"
+    },
+    "EG": {
+      "zoneName": "埃及"
+    },
+    "EH": {
+      "zoneName": "西撒哈拉"
+    },
+    "ER": {
+      "zoneName": "厄利垂亞"
+    },
+    "ES": {
+      "zoneName": "西班牙"
+    },
+    "ES-CE": {
+      "countryName": "西班牙",
+      "zoneName": "休達"
+    },
+    "ES-IB-FO": {
+      "countryName": "西班牙",
+      "zoneName": "福門特拉島"
+    },
+    "ES-IB-IZ": {
+      "countryName": "西班牙",
+      "zoneName": "伊比薩島"
+    },
+    "ES-IB-MA": {
+      "countryName": "西班牙",
+      "zoneName": "馬約卡島"
+    },
+    "ES-IB-ME": {
+      "countryName": "西班牙",
+      "zoneName": "梅諾卡島"
+    },
+    "ES-CN-FVLZ": {
+      "countryName": "西班牙",
+      "zoneName": "富埃特文圖拉島/蘭薩羅特島"
+    },
+    "ES-CN-GC": {
+      "countryName": "西班牙",
+      "zoneName": "大加那利島"
+    },
+    "ES-CN-HI": {
+      "countryName": "西班牙",
+      "zoneName": "耶羅島"
+    },
+    "ES-CN-IG": {
+      "countryName": "西班牙",
+      "zoneName": "戈梅拉島"
+    },
+    "ES-CN-LP": {
+      "countryName": "西班牙",
+      "zoneName": "拉帕爾馬島"
+    },
+    "ES-CN-TE": {
+      "countryName": "西班牙",
+      "zoneName": "特內里費島"
+    },
+    "ES-ML": {
+      "countryName": "西班牙",
+      "zoneName": "梅利利亞"
+    },
+    "ET": {
+      "zoneName": "衣索比亞"
+    },
+    "FI": {
+      "zoneName": "芬蘭"
+    },
+    "FJ": {
+      "zoneName": "斐濟"
+    },
+    "FK": {
+      "zoneName": "福克蘭群島"
+    },
+    "FM": {
+      "zoneName": "密克羅尼西亞"
+    },
+    "FO": {
+      "zoneName": "法羅群島"
+    },
+    "FO-MI": {
+      "countryName": "法羅群島",
+      "zoneName": "主島"
+    },
+    "FO-SI": {
+      "countryName": "法羅群島",
+      "zoneName": "南島"
+    },
+    "FR": {
+      "zoneName": "法國"
+    },
+    "FR-COR": {
+      "countryName": "法國",
+      "zoneName": "科西嘉"
+    },
+    "GA": {
+      "zoneName": "加彭"
+    },
+    "GB": {
+      "zoneName": "英國"
+    },
+    "GB-NIR": {
+      "zoneName": "北愛爾蘭"
+    },
+    "GB-ORK": {
+      "countryName": "英國",
+      "zoneName": "奥克尼"
+    },
+    "GB-ZET": {
+      "countryName": "英國",
+      "zoneName": "昔得蘭"
+    },
+    "GD": {
+      "zoneName": "格林納達"
+    },
+    "GE": {
+      "zoneName": "格魯吉亞"
+    },
+    "GF": {
+      "zoneName": "法屬圭亞納"
+    },
+    "GG": {
+      "zoneName": "根西"
+    },
+    "GH": {
+      "zoneName": "加納"
+    },
+    "GI": {
+      "zoneName": "直布羅陀"
+    },
+    "GL": {
+      "zoneName": "格陵蘭"
+    },
+    "GM": {
+      "zoneName": "甘比亞"
+    },
+    "GN": {
+      "zoneName": "幾內亞"
+    },
+    "GP": {
+      "zoneName": "瓜地洛普"
+    },
+    "GQ": {
+      "zoneName": "赤道幾內亞"
+    },
+    "GR": {
+      "zoneName": "希臘"
+    },
+    "GS": {
+      "zoneName": "南喬治亞與南桑威奇群島"
+    },
+    "GT": {
+      "zoneName": "瓜地馬拉"
+    },
+    "GU": {
+      "zoneName": "關島"
+    },
+    "GW": {
+      "zoneName": "幾內亞比索"
+    },
+    "GY": {
+      "zoneName": "蓋亞那"
+    },
+    "HK": {
+      "zoneName": "香港"
+    },
+    "HM": {
+      "zoneName": "赫德島和麥克唐納群島"
+    },
+    "HN": {
+      "zoneName": "宏都拉斯"
+    },
+    "HR": {
+      "zoneName": "克羅地亞"
+    },
+    "HT": {
+      "zoneName": "海地"
+    },
+    "HU": {
+      "zoneName": "匈牙利"
+    },
+    "ID": {
+      "zoneName": "印尼"
+    },
+    "IE": {
+      "zoneName": "愛爾蘭"
+    },
+    "IL": {
+      "zoneName": "以色列"
+    },
+    "IM": {
+      "zoneName": "曼島"
+    },
+    "IN": {
+      "zoneName": "印度"
+    },
+    "IN-EA": {
+      "countryName": "印度",
+      "zoneName": "印度東部"
+    },
+    "IN-NE": {
+      "countryName": "印度",
+      "zoneName": "印度東北部"
+    },
+    "IN-NO": {
+      "countryName": "印度",
+      "zoneName": "印度北部"
+    },
+    "IN-SO": {
+      "countryName": "印度",
+      "zoneName": "印度南部"
+    },
+    "IN-WE": {
+      "countryName": "印度",
+      "zoneName": "印度西部"
+    },
+    "IN-AN": {
+      "countryName": "印度",
+      "zoneName": "安達曼-尼科巴群島"
+    },
+    "IN-AP": {
+      "countryName": "印度",
+      "zoneName": "安得拉邦"
+    },
+    "IN-AR": {
+      "countryName": "印度",
+      "zoneName": "阿魯納恰爾邦"
+    },
+    "IN-AS": {
+      "countryName": "印度",
+      "zoneName": "阿薩姆邦"
+    },
+    "IN-BR": {
+      "countryName": "印度",
+      "zoneName": "比哈爾邦"
+    },
+    "IN-CT": {
+      "countryName": "印度",
+      "zoneName": "恰蒂斯加爾邦"
+    },
+    "IN-DL": {
+      "countryName": "印度",
+      "zoneName": "德里"
+    },
+    "IN-DN": {
+      "countryName": "印度",
+      "zoneName": "達德拉-納加爾哈維利"
+    },
+    "IN-GA": {
+      "countryName": "印度",
+      "zoneName": "果阿邦"
+    },
+    "IN-GJ": {
+      "countryName": "印度",
+      "zoneName": "古加拉特邦"
+    },
+    "IN-HP": {
+      "countryName": "印度",
+      "zoneName": "喜馬偕爾邦"
+    },
+    "IN-HR": {
+      "countryName": "印度",
+      "zoneName": "哈里亞納邦"
+    },
+    "IN-JH": {
+      "countryName": "印度",
+      "zoneName": "賈坎德邦"
+    },
+    "IN-JK": {
+      "countryName": "印度",
+      "zoneName": "查謨和喀什米爾邦"
+    },
+    "IN-KA": {
+      "countryName": "印度",
+      "zoneName": "卡納塔克邦"
+    },
+    "IN-KL": {
+      "countryName": "印度",
+      "zoneName": "喀拉拉邦"
+    },
+    "IN-MH": {
+      "countryName": "印度",
+      "zoneName": "馬哈拉施特拉邦"
+    },
+    "IN-ML": {
+      "countryName": "印度",
+      "zoneName": "梅加拉亞邦"
+    },
+    "IN-MN": {
+      "countryName": "印度",
+      "zoneName": "曼尼普爾邦"
+    },
+    "IN-MP": {
+      "countryName": "印度",
+      "zoneName": "中央邦"
+    },
+    "IN-MZ": {
+      "countryName": "印度",
+      "zoneName": "米佐拉姆邦"
+    },
+    "IN-NL": {
+      "countryName": "印度",
+      "zoneName": "那加蘭邦"
+    },
+    "IN-OR": {
+      "countryName": "印度",
+      "zoneName": "奥迪沙邦"
+    },
+    "IN-PB": {
+      "countryName": "印度",
+      "zoneName": "旁遮普邦"
+    },
+    "IN-PY": {
+      "countryName": "印度",
+      "zoneName": "本地治里"
+    },
+    "IN-RJ": {
+      "countryName": "印度",
+      "zoneName": "拉賈斯坦邦"
+    },
+    "IN-SK": {
+      "countryName": "印度",
+      "zoneName": "錫金邦"
+    },
+    "IN-TN": {
+      "countryName": "印度",
+      "zoneName": "坦米爾那都邦"
+    },
+    "IN-TR": {
+      "countryName": "印度",
+      "zoneName": "特里普拉邦"
+    },
+    "IN-UP": {
+      "countryName": "印度",
+      "zoneName": "北方邦"
+    },
+    "IN-UT": {
+      "countryName": "印度",
+      "zoneName": "北阿坎德邦"
+    },
+    "IN-WB": {
+      "countryName": "印度",
+      "zoneName": "西孟加拉邦"
+    },
+    "IO": {
+      "zoneName": "英屬印度洋領地"
+    },
+    "IQ": {
+      "zoneName": "伊拉克"
+    },
+    "IQ-KUR": {
+      "countryName": "伊拉克",
+      "zoneName": "庫德斯坦"
+    },
+    "IR": {
+      "zoneName": "伊朗"
+    },
+    "IS": {
+      "zoneName": "冰島"
+    },
+    "IT": {
+      "zoneName": "義大利"
+    },
+    "IT-CNO": {
+      "countryName": "意大利",
+      "zoneName": "意大利中北部"
+    },
+    "IT-CSO": {
+      "countryName": "意大利",
+      "zoneName": "意大利中南部"
+    },
+    "IT-NO": {
+      "countryName": "意大利",
+      "zoneName": "意大利北部"
+    },
+    "IT-SAR": {
+      "countryName": "意大利",
+      "zoneName": "薩丁尼亞島"
+    },
+    "IT-SIC": {
+      "countryName": "意大利",
+      "zoneName": "西西里島"
+    },
+    "IT-SO": {
+      "countryName": "意大利",
+      "zoneName": "意大利南部"
+    },
+    "JE": {
+      "zoneName": "澤西島"
+    },
+    "JM": {
+      "zoneName": "牙買加"
+    },
+    "JO": {
+      "zoneName": "約旦"
+    },
+    "JP": {
+      "zoneName": "日本"
+    },
+    "JP-CB": {
+      "countryName": "日本",
+      "zoneName": "中部"
+    },
+    "JP-CG": {
+      "countryName": "日本",
+      "zoneName": "中國地方"
+    },
+    "JP-HKD": {
+      "countryName": "日本",
+      "zoneName": "北海道"
+    },
+    "JP-HR": {
+      "countryName": "日本",
+      "zoneName": "北陸地方"
+    },
+    "JP-KN": {
+      "countryName": "日本",
+      "zoneName": "關西"
+    },
+    "JP-KY": {
+      "countryName": "日本",
+      "zoneName": "九州"
+    },
+    "JP-ON": {
+      "countryName": "日本",
+      "zoneName": "沖繩"
+    },
+    "JP-SK": {
+      "countryName": "日本",
+      "zoneName": "四國"
+    },
+    "JP-TH": {
+      "countryName": "日本",
+      "zoneName": "東海道"
+    },
+    "JP-TK": {
+      "countryName": "日本",
+      "zoneName": "東京"
+    },
+    "KE": {
+      "zoneName": "肯亞"
+    },
+    "KG": {
+      "zoneName": "吉爾吉斯"
+    },
+    "KH": {
+      "zoneName": "柬埔寨"
+    },
+    "KI": {
+      "zoneName": "吉里巴斯"
+    },
+    "KM": {
+      "zoneName": "葛摩聯盟"
+    },
+    "KN": {
+      "zoneName": "聖克里斯多福及尼維斯"
+    },
+    "KP": {
+      "zoneName": "北韓"
+    },
+    "KR": {
+      "zoneName": "南韓"
+    },
+    "KW": {
+      "zoneName": "科威特"
+    },
+    "KY": {
+      "zoneName": "開曼群島"
+    },
+    "KZ": {
+      "zoneName": "哈薩克斯坦"
+    },
+    "LA": {
+      "zoneName": "寮國"
+    },
+    "LB": {
+      "zoneName": "黎巴嫩"
+    },
+    "LC": {
+      "zoneName": "聖露西亞"
+    },
+    "LI": {
+      "zoneName": "列支敦斯登"
+    },
+    "LK": {
+      "zoneName": "斯里蘭卡"
+    },
+    "LR": {
+      "zoneName": "賴比瑞亞"
+    },
+    "LS": {
+      "zoneName": "賴索托"
+    },
+    "LT": {
+      "zoneName": "立陶宛"
+    },
+    "LU": {
+      "zoneName": "盧森堡"
+    },
+    "LV": {
+      "zoneName": "拉脫維亞"
+    },
+    "LY": {
+      "zoneName": "利比亞"
+    },
+    "MA": {
+      "zoneName": "摩洛哥"
+    },
+    "MC": {
+      "zoneName": "摩納哥"
+    },
+    "MD": {
+      "zoneName": "摩爾多瓦"
+    },
+    "ME": {
+      "zoneName": "黑山共和國"
+    },
+    "MF": {
+      "countryName": "法屬聖馬丁",
+      "zoneName": "法國"
+    },
+    "MG": {
+      "zoneName": "馬達加斯加"
+    },
+    "MH": {
+      "zoneName": "馬紹爾群島"
+    },
+    "MK": {
+      "zoneName": "北馬其頓"
+    },
+    "ML": {
+      "zoneName": "馬利"
+    },
+    "MM": {
+      "zoneName": "緬甸"
+    },
+    "MN": {
+      "zoneName": "蒙古"
+    },
+    "MO": {
+      "zoneName": "澳門"
+    },
+    "MP": {
+      "zoneName": "北馬里亞納群島"
+    },
+    "MQ": {
+      "zoneName": "馬提尼克"
+    },
+    "MR": {
+      "zoneName": "茅利塔尼亞"
+    },
+    "MS": {
+      "zoneName": "蒙特塞拉特"
+    },
+    "MT": {
+      "zoneName": "馬耳他"
+    },
+    "MU": {
+      "zoneName": "模里西斯"
+    },
+    "MV": {
+      "zoneName": "馬爾地夫"
+    },
+    "MW": {
+      "zoneName": "馬拉威"
+    },
+    "MX": {
+      "zoneName": "墨西哥"
+    },
+    "MX-BC": {
+      "countryName": "墨西哥",
+      "zoneName": "下加利福尼亞州"
+    },
+    "MX-CE": {
+      "countryName": "墨西哥",
+      "zoneName": "中部"
+    },
+    "MX-NE": {
+      "countryName": "墨西哥",
+      "zoneName": "東北部"
+    },
+    "MX-NO": {
+      "countryName": "墨西哥",
+      "zoneName": "北部"
+    },
+    "MX-NW": {
+      "countryName": "墨西哥",
+      "zoneName": "西北部"
+    },
+    "MX-OC": {
+      "countryName": "墨西哥",
+      "zoneName": "西部"
+    },
+    "MX-OR": {
+      "countryName": "墨西哥",
+      "zoneName": "東部"
+    },
+    "MX-PN": {
+      "countryName": "墨西哥",
+      "zoneName": "半島"
+    },
+    "MY": {
+      "zoneName": "馬來西亞"
+    },
+    "MY-EM": {
+      "countryName": "馬來西亞",
+      "zoneName": "婆羅洲"
+    },
+    "MY-WM": {
+      "countryName": "馬來西亞",
+      "zoneName": "半島"
+    },
+    "MZ": {
+      "zoneName": "莫三比克"
+    },
+    "NA": {
+      "zoneName": "納米比亞"
+    },
+    "NC": {
+      "zoneName": "新喀里多尼亞"
+    },
+    "NE": {
+      "zoneName": "尼日"
+    },
+    "NF": {
+      "zoneName": "諾福克島"
+    },
+    "NG": {
+      "zoneName": "奈及利亞"
+    },
+    "NI": {
+      "zoneName": "尼加拉瓜"
+    },
+    "NL": {
+      "zoneName": "荷蘭"
+    },
+    "NO": {
+      "zoneName": "挪威"
+    },
+    "NO-NO1": {
+      "countryName": "挪威",
+      "zoneName": "挪威東南部"
+    },
+    "NO-NO2": {
+      "countryName": "挪威",
+      "zoneName": "挪威西南部"
+    },
+    "NO-NO3": {
+      "countryName": "挪威",
+      "zoneName": "挪威中部"
+    },
+    "NO-NO4": {
+      "countryName": "挪威",
+      "zoneName": "挪威北部"
+    },
+    "NO-NO5": {
+      "countryName": "挪威",
+      "zoneName": "西部挪威"
+    },
+    "NP": {
+      "zoneName": "尼泊爾"
+    },
+    "NR": {
+      "zoneName": "諾魯"
+    },
+    "NU": {
+      "zoneName": "紐埃"
+    },
+    "NZ": {
+      "zoneName": "紐西蘭"
+    },
+    "NZ-NZA": {
+      "countryName": "紐西蘭",
+      "zoneName": "奧克蘭群島"
+    },
+    "NZ-NZC": {
+      "countryName": "紐西蘭",
+      "zoneName": "查塔姆群島"
+    },
+    "NZ-NZST": {
+      "countryName": "紐西蘭",
+      "zoneName": "斯圖爾特島"
+    },
+    "PA": {
+      "zoneName": "巴拿馬"
+    },
+    "PE": {
+      "zoneName": "祕魯"
+    },
+    "PF": {
+      "zoneName": "法屬玻里尼西亞"
+    },
+    "PG": {
+      "zoneName": "巴布亞紐幾內亞"
+    },
+    "PH": {
+      "zoneName": "菲律賓"
+    },
+    "PK": {
+      "zoneName": "巴基斯坦"
+    },
+    "PL": {
+      "zoneName": "波蘭"
+    },
+    "PM": {
+      "zoneName": "聖皮耶與密克隆"
+    },
+    "PN": {
+      "zoneName": "皮特肯群島"
+    },
+    "PR": {
+      "zoneName": "波多黎各"
+    },
+    "PS": {
+      "zoneName": "巴勒斯坦"
+    },
+    "PT": {
+      "zoneName": "葡萄牙"
+    },
+    "PT-AC": {
+      "countryName": "葡萄牙",
+      "zoneName": "亞速群島"
+    },
+    "PT-MA": {
+      "countryName": "葡萄牙",
+      "zoneName": "馬德拉群島"
+    },
+    "PW": {
+      "zoneName": "帛琉"
+    },
+    "PY": {
+      "zoneName": "巴拉圭"
+    },
+    "QA": {
+      "zoneName": "卡達"
+    },
+    "RE": {
+      "zoneName": "留尼旺"
+    },
+    "RO": {
+      "zoneName": "羅馬尼亞"
+    },
+    "RS": {
+      "zoneName": "塞爾維亞"
+    },
+    "RU": {
+      "zoneName": "俄羅斯"
+    },
+    "RU-1": {
+      "countryName": "俄羅斯",
+      "zoneName": "歐洲-烏拉爾"
+    },
+    "RU-2": {
+      "countryName": "俄羅斯",
+      "zoneName": "西伯利亞"
+    },
+    "RU-AS": {
+      "countryName": "俄羅斯",
+      "zoneName": "東部"
+    },
+    "RU-EU": {
+      "countryName": "俄羅斯",
+      "zoneName": "北極"
+    },
+    "RU-FE": {
+      "countryName": "俄羅斯",
+      "zoneName": "遠東"
+    },
+    "RU-KGD": {
+      "countryName": "俄羅斯",
+      "zoneName": "加里寧格勒"
+    },
+    "RW": {
+      "zoneName": "盧安達"
+    },
+    "SA": {
+      "zoneName": "沙烏地阿拉伯"
+    },
+    "SB": {
+      "zoneName": "索羅門群島"
+    },
+    "SC": {
+      "zoneName": "塞席爾"
+    },
+    "SD": {
+      "zoneName": "蘇丹"
+    },
+    "SE": {
+      "zoneName": "瑞典"
+    },
+    "SE-SE1": {
+      "countryName": "瑞典",
+      "zoneName": "瑞典北部"
+    },
+    "SE-SE2": {
+      "countryName": "瑞典",
+      "zoneName": "瑞典中北部"
+    },
+    "SE-SE3": {
+      "countryName": "瑞典",
+      "zoneName": "瑞典中南部"
+    },
+    "SE-SE4": {
+      "countryName": "瑞典",
+      "zoneName": "瑞典南部"
+    },
+    "SG": {
+      "zoneName": "新加坡"
+    },
+    "SH": {
+      "zoneName": "聖海倫娜、阿森松和崔斯坦達庫尼亞"
+    },
+    "SI": {
+      "zoneName": "斯洛維尼亞"
+    },
+    "SJ": {
+      "zoneName": "斯瓦爾巴和揚馬延"
+    },
+    "SK": {
+      "zoneName": "斯洛伐克"
+    },
+    "SL": {
+      "zoneName": "獅子山"
+    },
+    "SM": {
+      "zoneName": "聖瑪利諾"
+    },
+    "SN": {
+      "zoneName": "塞內加爾"
+    },
+    "SO": {
+      "zoneName": "索馬利亞"
+    },
+    "SR": {
+      "zoneName": "蘇利南"
+    },
+    "SS": {
+      "zoneName": "南蘇丹"
+    },
+    "ST": {
+      "zoneName": "聖多美普林西比"
+    },
+    "SV": {
+      "zoneName": "薩爾瓦多"
+    },
+    "SX": {
+      "countryName": "荷屬聖馬丁",
+      "zoneName": "荷蘭"
+    },
+    "SY": {
+      "zoneName": "敘利亞"
+    },
+    "SZ": {
+      "zoneName": "史瓦帝尼"
+    },
+    "TC": {
+      "zoneName": "英屬土克凱可群島"
+    },
+    "TD": {
+      "zoneName": "查德"
+    },
+    "TF": {
+      "zoneName": "法屬南部和南極領地"
+    },
+    "TG": {
+      "zoneName": "多哥"
+    },
+    "TH": {
+      "zoneName": "泰國"
+    },
+    "TJ": {
+      "zoneName": "塔吉克"
+    },
+    "TK": {
+      "zoneName": "托克勞"
+    },
+    "TL": {
+      "zoneName": "東帝汶"
+    },
+    "TM": {
+      "zoneName": "土庫曼斯坦"
+    },
+    "TN": {
+      "zoneName": "突尼西亞"
+    },
+    "TO": {
+      "zoneName": "東加"
+    },
+    "TR": {
+      "zoneName": "土耳其"
+    },
+    "TT": {
+      "zoneName": "千里達及托巴哥"
+    },
+    "TV": {
+      "zoneName": "吐瓦魯"
+    },
+    "TW": {
+      "zoneName": "台灣"
+    },
+    "TZ": {
+      "zoneName": "坦尚尼亞"
+    },
+    "UA": {
+      "zoneName": "烏克蘭"
+    },
+    "UA-CR": {
+      "countryName": "烏克蘭",
+      "zoneName": "克里米亞"
+    },
+    "UG": {
+      "zoneName": "烏干達"
+    },
+    "UM": {
+      "zoneName": "美國本土外小島嶼"
+    },
+    "US": {
+      "zoneName": "美國"
+    },
+    "US-AK": {
+      "countryName": "美國",
+      "zoneName": "阿拉斯加"
+    },
+    "US-AK-SEAPA": {
+      "countryName": "美國",
+      "zoneName": "Southeast Alaska Power Agency"
+    },
+    "US-HI-HA": {
+      "countryName": "美國",
+      "zoneName": "夏威夷"
+    },
+    "US-HI-KA": {
+      "countryName": "美國",
+      "zoneName": "考艾島"
+    },
+    "US-HI-KH": {
+      "countryName": "美國",
+      "zoneName": "卡胡拉威島"
+    },
+    "US-HI-LA": {
+      "countryName": "美國",
+      "zoneName": "拉奈島"
+    },
+    "US-HI-MA": {
+      "countryName": "美國",
+      "zoneName": "茂宜島"
+    },
+    "US-HI-MO": {
+      "countryName": "美國",
+      "zoneName": "摩洛凱島"
+    },
+    "US-HI-NI": {
+      "countryName": "美國",
+      "zoneName": "尼豪島"
+    },
+    "US-HI-OA": {
+      "countryName": "美國",
+      "zoneName": "歐胡島"
+    },
+    "US-CAL-BANC": {
+      "countryName": "美國",
+      "zoneName": "北加州平衡管制機構"
+    },
+    "US-CAL-CISO": {
+      "countryName": "美國",
+      "zoneName": "加州電力調度中心"
+    },
+    "US-CAL-IID": {
+      "countryName": "美國",
+      "zoneName": "帝國灌溉區"
+    },
+    "US-CAL-LDWP": {
+      "countryName": "美國",
+      "zoneName": "洛杉磯水電局"
+    },
+    "US-CAL-TIDC": {
+      "countryName": "美國",
+      "zoneName": "特洛克灌溉區"
+    },
+    "US-CAR-CPLE": {
+      "countryName": "美國",
+      "zoneName": "杜克能源-東"
+    },
+    "US-CAR-CPLW": {
+      "countryName": "美國",
+      "zoneName": "杜克能源-西"
+    },
+    "US-CAR-DUK": {
+      "countryName": "美國",
+      "zoneName": "杜克能源-卡羅萊納"
+    },
+    "US-CAR-SC": {
+      "countryName": "美國",
+      "zoneName": "南卡羅萊納公共機構"
+    },
+    "US-CAR-SCEG": {
+      "countryName": "美國",
+      "zoneName": "南卡羅萊納電汽公司"
+    },
+    "US-CAR-YAD": {
+      "countryName": "美國",
+      "zoneName": "美鋁能源公司 亞德金分部"
+    },
+    "US-CENT-SPA": {
+      "countryName": "美國",
+      "zoneName": "西南電力局"
+    },
+    "US-CENT-SWPP": {
+      "countryName": "美國",
+      "zoneName": "西南電力庫"
+    },
+    "US-FLA-FMPP": {
+      "countryName": "美國",
+      "zoneName": "佛羅里達市立電力庫"
+    },
+    "US-FLA-FPC": {
+      "countryName": "美國",
+      "zoneName": "佛羅里達杜克能源"
+    },
+    "US-FLA-FPL": {
+      "countryName": "美國",
+      "zoneName": "佛羅里達電力照明公司"
+    },
+    "US-FLA-GVL": {
+      "countryName": "美國",
+      "zoneName": "蓋恩斯維爾區域公用事業"
+    },
+    "US-FLA-HST": {
+      "countryName": "美國",
+      "zoneName": "荷母斯特市"
+    },
+    "US-FLA-JEA": {
+      "countryName": "美國",
+      "zoneName": "傑克孫維電力局"
+    },
+    "US-FLA-SEC": {
+      "countryName": "美國",
+      "zoneName": "塞米諾爾電力合作社"
+    },
+    "US-FLA-TAL": {
+      "countryName": "美國",
+      "zoneName": "塔拉赫西市"
+    },
+    "US-FLA-TEC": {
+      "countryName": "美國",
+      "zoneName": "坦帕電力公司"
+    },
+    "US-MIDA-PJM": {
+      "countryName": "美國",
+      "zoneName": "PJM 互聯電網"
+    },
+    "US-MIDW-AECI": {
+      "countryName": "美國",
+      "zoneName": "聯合電力合作社"
+    },
+    "US-MIDW-LGEE": {
+      "countryName": "美國",
+      "zoneName": "路易維爾汽電公司和肯德基公用事業"
+    },
+    "US-MIDW-MISO": {
+      "countryName": "美國",
+      "zoneName": "中部獨立電力調度中心"
+    },
+    "US-NE-ISNE": {
+      "countryName": "美國",
+      "zoneName": "新英格蘭ISO公司"
+    },
+    "US-NW-AVA": {
+      "countryName": "美國",
+      "zoneName": "阿維斯塔公司"
+    },
+    "US-NW-BPAT": {
+      "countryName": "美國",
+      "zoneName": "邦納維爾電力管理局"
+    },
+    "US-NW-CHPD": {
+      "countryName": "美國",
+      "zoneName": "奇蘭縣第一 PUD"
+    },
+    "US-NW-DOPD": {
+      "countryName": "美國",
+      "zoneName": "道格拉斯縣第一 PUD"
+    },
+    "US-NW-GCPD": {
+      "countryName": "美國",
+      "zoneName": "格蘭特縣第二 PUD"
+    },
+    "US-NW-GRID": {
+      "countryName": "美國",
+      "zoneName": "Gridforce 能源管理有限公司"
+    },
+    "US-NW-GWA": {
+      "countryName": "美國",
+      "zoneName": "Naturener Power Watch, Llc (Gwa)"
+    },
+    "US-NW-IPCO": {
+      "countryName": "美國",
+      "zoneName": "愛達荷電力公司"
+    },
+    "US-NW-NEVP": {
+      "countryName": "美國",
+      "zoneName": "內華達電力公司"
+    },
+    "US-NW-NWMT": {
+      "countryName": "美國",
+      "zoneName": "西北能源"
+    },
+    "US-NW-PACE": {
+      "countryName": "美國",
+      "zoneName": "太平洋電力公司-東"
+    },
+    "US-NW-PACW": {
+      "countryName": "美國",
+      "zoneName": "太平洋電力公司-西"
+    },
+    "US-NW-PGE": {
+      "countryName": "美國",
+      "zoneName": "波特蘭大眾電力公司"
+    },
+    "US-NW-PSCO": {
+      "countryName": "美國",
+      "zoneName": "科羅拉多公用事業公司"
+    },
+    "US-NW-PSEI": {
+      "countryName": "美國",
+      "zoneName": "普吉特灣能源公司"
+    },
+    "US-NW-SCL": {
+      "countryName": "美國",
+      "zoneName": "西雅圖城市之光"
+    },
+    "US-NW-TPWR": {
+      "countryName": "美國",
+      "zoneName": "塔科馬市公用事業部門 照明分部門"
+    },
+    "US-NW-WACM": {
+      "countryName": "美國",
+      "zoneName": "西部電力管理局-洛磯山區"
+    },
+    "US-NW-WAUW": {
+      "countryName": "美國",
+      "zoneName": "西部電力管理局-西UGP"
+    },
+    "US-NW-WWA": {
+      "countryName": "美國",
+      "zoneName": "Naturener Wind Watch, Llc"
+    },
+    "US-NY-NYIS": {
+      "countryName": "美國",
+      "zoneName": "美國紐約電力調度中心"
+    },
+    "US-SE-SEPA": {
+      "countryName": "美國",
+      "zoneName": "東南電力局"
+    },
+    "US-SE-SOCO": {
+      "countryName": "美國",
+      "zoneName": "Southern Company Services, Inc. - Trans"
+    },
+    "US-SW-AZPS": {
+      "countryName": "美國",
+      "zoneName": "亞利桑那公用事業公司"
+    },
+    "US-SW-EPE": {
+      "countryName": "美國",
+      "zoneName": "阿爾帕索電力"
+    },
+    "US-SW-GRIF": {
+      "countryName": "美國",
+      "zoneName": "Griffith Energy, LLC"
+    },
+    "US-SW-PNM": {
+      "countryName": "美國",
+      "zoneName": "新墨西哥公用事業公司"
+    },
+    "US-SW-SRP": {
+      "countryName": "美國",
+      "zoneName": "Salt River Project"
+    },
+    "US-SW-TEPC": {
+      "countryName": "美國",
+      "zoneName": "吐桑電力公司"
+    },
+    "US-SW-WALC": {
+      "countryName": "美國",
+      "zoneName": "西部電力管理局-西南沙漠地區"
+    },
+    "US-TEN-TVA": {
+      "countryName": "美國",
+      "zoneName": "田納西河谷管理局"
+    },
+    "US-TEX-ERCO": {
+      "countryName": "美國",
+      "zoneName": "德克薩斯州電力可靠性委員會"
+    },
+    "UY": {
+      "zoneName": "烏拉圭"
+    },
+    "UZ": {
+      "zoneName": "烏茲別克"
+    },
+    "VA": {
+      "zoneName": "梵蒂岡"
+    },
+    "VC": {
+      "zoneName": "聖文森及格瑞那丁"
+    },
+    "VE": {
+      "zoneName": "委內瑞拉"
+    },
+    "VG": {
+      "countryName": "英屬維京群島",
+      "zoneName": "英屬維京群島"
+    },
+    "VI": {
+      "countryName": "美國",
+      "zoneName": "美屬維京群島"
+    },
+    "VN": {
+      "zoneName": "越南"
+    },
+    "VU": {
+      "zoneName": "萬那杜"
+    },
+    "WF": {
+      "zoneName": "瓦利斯和富圖納群島"
+    },
+    "WS": {
+      "zoneName": "薩摩亞"
+    },
+    "XK": {
+      "zoneName": "科索沃"
+    },
+    "XX": {
+      "zoneName": "北賽普勒斯"
+    },
+    "YE": {
+      "zoneName": "葉門"
+    },
+    "YT": {
+      "zoneName": "馬約特"
+    },
+    "ZA": {
+      "zoneName": "南非"
+    },
+    "ZM": {
+      "zoneName": "尚比亞"
+    },
+    "ZW": {
+      "zoneName": "辛巴威"
+    },
+    "AU-LH": {
+      "countryName": "澳洲",
+      "zoneName": "豪勳爵島"
+    },
+    "MX-BCS": {
+      "countryName": "墨西哥",
+      "zoneName": "南下加利福尼亞州"
+    },
+    "OM": {
+      "zoneName": "阿曼"
+    },
+    "PH-LU": {
+      "countryName": "菲律賓",
+      "zoneName": "呂宋"
+    },
+    "PH-MI": {
+      "countryName": "菲律賓",
+      "zoneName": "民答那峨島"
+    },
+    "PH-VI": {
+      "countryName": "菲律賓",
+      "zoneName": "維薩亞斯群島"
+    },
+    "VN-C": {
+      "countryName": "越南",
+      "zoneName": "越南中部"
+    },
+    "VN-N": {
+      "countryName": "越南",
+      "zoneName": "越南北部"
+    },
+    "VN-S": {
+      "countryName": "越南",
+      "zoneName": "越南南部"
+    }
+  }
+}

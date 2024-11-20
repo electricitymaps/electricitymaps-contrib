@@ -285,14 +285,14 @@ class TestProductionBreakdownList(unittest.TestCase):
                 source="trust.me",
             )
             mock_error.assert_called_once()
-        with patch.object(production_list.logger, "warning") as mock_warning:
+        with patch.object(production_list.logger, "debug") as mock_logger:
             production_list.append(
                 zoneKey=ZoneKey("AT"),
                 datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
                 production=ProductionMix(wind=-10),
                 source="trust.me",
             )
-            mock_warning.assert_called_once()
+            mock_logger.assert_called_once()
 
     def test_merge_production_list_production_mix_only(self):
         production_list_1 = ProductionBreakdownList(logging.Logger("test"))
@@ -839,14 +839,20 @@ class TestProductionBreakdownList(unittest.TestCase):
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             production=ProductionMix(wind=20, coal=20),
-            source="dont.trust.me",
+            source="trust.me.too",
         )
-        self.assertRaises(
-            ValueError,
-            ProductionBreakdownList.update_production_breakdowns,
-            production_list1,
-            production_list2,
-            logging.Logger("test"),
+        updated_list = ProductionBreakdownList.update_production_breakdowns(
+            production_list1, production_list2, logging.Logger("test")
+        )
+        assert len(updated_list.events) == 1
+        assert updated_list.events[0].datetime == datetime(
+            2023, 1, 1, tzinfo=timezone.utc
+        )
+        assert updated_list.events[0].production is not None
+        assert updated_list.events[0].production.wind == 20
+        assert updated_list.events[0].production.coal == 20
+        assert updated_list.events[0].source == ", ".join(
+            set("trust.me, trust.me.too".split(", "))
         )
 
     def test_update_production_with_different_sourceType(self):
@@ -1077,39 +1083,6 @@ class TestProductionBreakdownList(unittest.TestCase):
         output = ProductionBreakdownList.filter_expected_modes(
             production_list, by_passed_modes=["biomass"]
         )
-        assert len(output) == 1
-
-    def test_filter_only_zero_production(self):
-        production_list = ProductionBreakdownList(logging.Logger("test"))
-        production_list.append(
-            ZoneKey("US-NW-PGE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            production=ProductionMix(
-                wind=0,
-                coal=0,
-                solar=0,
-                gas=0,
-                unknown=0,
-                hydro=0,
-                oil=0,
-            ),
-            source="trust.me",
-        )
-        production_list.append(
-            ZoneKey("US-NW-PGE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            production=ProductionMix(
-                wind=0,
-                coal=0,
-                solar=10,
-                gas=0,
-                unknown=0,
-                hydro=0,
-                oil=0,
-            ),
-            source="trust.me",
-        )
-        output = ProductionBreakdownList.filter_only_zero_production(production_list)
         assert len(output) == 1
 
 

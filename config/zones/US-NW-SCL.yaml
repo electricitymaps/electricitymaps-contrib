@@ -20,6 +20,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2023-12-01'
+      source: EIA.gov
+      value: 3.0
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -28,6 +31,9 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 2005.1
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 1816.7
   hydro storage:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -57,10 +63,11 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 30
+  production: 32
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:
@@ -122,7 +129,7 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 24.000000000000004
+        value: 24.0
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 24.0
@@ -131,6 +138,12 @@ emissionFactors:
         value: 24.0
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
+        value: 24.0
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 24.0
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
         value: 24.0
     coal:
       datetime: '2014-01-01'
@@ -152,7 +165,7 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 24.000000000000004
+        value: 24.0
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 24.0
@@ -161,6 +174,12 @@ emissionFactors:
         value: 24.0
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
+        value: 24.0
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 24.0
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
         value: 24.0
     oil:
       datetime: '2014-01-01'
@@ -206,7 +225,7 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 1.0
+        hydro: 0.9999993425866456
         hydro discharge: 0.0
         nuclear: 0.0
         oil: 0.0
@@ -221,7 +240,7 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.9999999960526211
+        hydro: 0.9999999960447142
         hydro discharge: 0.0
         nuclear: 0.0
         oil: 0.0
@@ -273,11 +292,42 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 1.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 1.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
+region: Americas
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

@@ -7,14 +7,23 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 38580.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 38280.0
   gas:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 110300.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 112240.0
   hydro:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 51400.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 50570.0
   nuclear:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -23,20 +32,30 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1820.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 2170.0
   unknown:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 180.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
   wind:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 2220.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 2520.0
 contributors:
   - denplis
   - systemcatch
   - alixunderplatz
   - JeanBaptisteScellier
   - aekrylov
+country: RU
 emissionFactors:
   direct:
     battery discharge:
@@ -69,35 +88,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 364.3432458070902
+        value: 364.34
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 369.3563058085057
+        value: 369.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 376.7854688512663
+        value: 376.79
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 374.35549348808894
+        value: 374.36
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 364.84
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 361.6
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 364.3432458070902
+        value: 364.34
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 369.3563058085057
+        value: 369.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 376.7854688512663
+        value: 376.79
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 374.35549348808894
+        value: 374.36
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 364.84
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 361.6
     unknown:
       _comment: 'Assumes weighted average emission factor based on 2015-TWh production:
         22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  =
         567 g/kWh; 2015 production'
       _url: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
-      source: assumes 76% gas, 23% coal, 1% oil
+      source: IEA 2015; assumes 76% gas, 23% coal, 1% oil
       value: 567
 fallbackZoneMixes:
   powerOriginRatios:
@@ -109,12 +140,12 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.16747177688355386
+        hydro: 0.16747177244844316
         hydro discharge: 0.0
-        nuclear: 0.2012767438516939
+        nuclear: 0.20127674294052017
         oil: 0.0
-        solar: 2.1080366515653552e-05
-        unknown: 0.6312303974381629
+        solar: 2.1080366515653556e-05
+        unknown: 0.6312303936946662
         wind: 0.0
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
@@ -124,12 +155,12 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.1595386386538516
+        hydro: 0.15953863405821522
         hydro discharge: 0.0
-        nuclear: 0.19914772103087358
+        nuclear: 0.19914772033089612
         oil: 0.0
-        solar: 0.0009334126254530765
-        unknown: 0.6403802227767194
+        solar: 0.0009334124862336848
+        unknown: 0.640380218633763
         wind: 0.0
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
@@ -139,12 +170,12 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.15611752403367898
+        hydro: 0.1561175202216843
         hydro discharge: 0.0
-        nuclear: 0.1886921739325508
+        nuclear: 0.18869217320727238
         oil: 0.0
-        solar: 0.0013765122817441249
-        unknown: 0.6538137874174231
+        solar: 0.0013765121198867185
+        unknown: 0.6538137847236439
         wind: 0.0
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
@@ -154,12 +185,42 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.16503887378333804
+        hydro: 0.16503883619817564
         hydro discharge: 0.0
-        nuclear: 0.1839291557936424
+        nuclear: 0.1839291662814617
         oil: 0.0
-        solar: 0.0018155651566337712
-        unknown: 0.6492164047964696
+        solar: 0.001815565056483761
+        unknown: 0.6492164264563226
+        wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.16780032075341333
+        hydro discharge: 0.0
+        nuclear: 0.19816748668236175
+        oil: 0.0
+        solar: 0.0020428248510963045
+        unknown: 0.6319893573224264
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.17617510676147885
+        hydro discharge: 0.0
+        nuclear: 0.19522456692239287
+        oil: 0.0
+        solar: 0.0026566151248421047
+        unknown: 0.6259436997628433
         wind: 0.0
 parsers:
   consumption: ENTSOE.fetch_consumption
@@ -169,4 +230,8 @@ parsers:
   production: RU.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+region: Europe
+sources:
+  IEA 2015:
+    link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
 timezone: Europe/Moscow

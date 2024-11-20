@@ -1,3 +1,5 @@
+aggregates_displayed:
+  - none
 bounding_box:
   - - -117.12776
     - 14.5388286402
@@ -8,6 +10,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 880.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 890.0
   coal:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -16,6 +21,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 44590.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 44950.0
   hydro:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
@@ -28,21 +36,32 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 9360.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 10910.0
   unknown:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 6860.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 25940.0
   wind:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 7310.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 7320.0
 contributors:
   - scriptator
+country: MX
 emissionFactors:
   direct:
     unknown:
       - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
-          coal, 4.3%solar, 5.9% wind, 1.5% other renewables with default IPCC2014 values.
+          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
+          values.
         datetime: '2020-01-01'
         source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
           2020, IEA, Paris
@@ -50,7 +69,8 @@ emissionFactors:
   lifecycle:
     unknown:
       - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
-          coal, 4.3%solar, 5.9% wind, 1.5% other renewables with default IPCC2014 values.
+          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
+          values.
         datetime: '2020-01-01'
         source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
           2020, IEA, Paris
@@ -58,6 +78,7 @@ emissionFactors:
 parsers:
   production: CENACE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Americas
 sources:
   IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020

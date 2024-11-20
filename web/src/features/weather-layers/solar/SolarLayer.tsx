@@ -1,12 +1,7 @@
 import { useGetSolar } from 'api/getWeatherData';
-import { useAtom, useSetAtom } from 'jotai';
-import { useEffect, useMemo, useRef } from 'react';
-import { ToggleOptions } from 'utils/constants';
-import {
-  selectedDatetimeIndexAtom,
-  solarLayerEnabledAtom,
-  solarLayerLoadingAtom,
-} from 'utils/state/atoms';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { isSolarLayerEnabledAtom, solarLayerLoadingAtom } from 'utils/state/atoms';
 
 import { stackBlurImageOpacity } from './stackBlurImageOpacity';
 import {
@@ -33,12 +28,9 @@ function convertYToLat(yMax: number, y: number): number {
 }
 
 export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [solarLayerToggle] = useAtom(solarLayerEnabledAtom);
   const setIsLoadingSolarLayer = useSetAtom(solarLayerLoadingAtom);
+  const isSolarLayerEnabled = useAtomValue(isSolarLayerEnabledAtom);
 
-  const isSolarLayerEnabled =
-    solarLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
   const { data: solarDataArray, isSuccess } = useGetSolar({
     enabled: isSolarLayerEnabled,
   });
@@ -47,14 +39,27 @@ export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
   const isVisibleReference = useRef(false);
   isVisibleReference.current = isSuccess && isSolarLayerEnabled;
 
-  const canvasScale = 4;
+  const [canvasScale, setCanvasScale] = useState(4);
+
+  // Shrink canvasScale so that canvas dimensions don't exceed WebGL MAX_TEXTURE_SIZE of the user's device
+  useEffect(() => {
+    const gl = document.createElement('canvas').getContext('webgl');
+    if (gl) {
+      const targetCanvasScale =
+        gl.getParameter(gl.MAX_TEXTURE_SIZE) /
+        Math.max(3 * (solarData?.header.nx ?? 360), solarData?.header.ny ?? 180);
+      const newCanvasScale = Math.max(1, Math.min(4, Math.floor(targetCanvasScale)));
+      setCanvasScale(newCanvasScale);
+    }
+  }, [solarData?.header.nx, solarData?.header.ny]);
+
   const node: HTMLCanvasElement = useMemo(() => {
     const canvas = document.createElement('canvas');
     // wrap around Earth three times to avoid a seam where 180 and -180 meet
     canvas.width = 3 * canvasScale * (solarData?.header.nx ?? 360);
     canvas.height = canvasScale * (solarData?.header.ny ?? 180);
     return canvas;
-  }, [solarData?.header.nx, solarData?.header.ny]);
+  }, [canvasScale, solarData?.header.nx, solarData?.header.ny]);
 
   useEffect(() => {
     if (!node || !map?.isStyleLoaded()) {
@@ -93,7 +98,7 @@ export default function SolarLayer({ map }: { map?: maplibregl.Map }) {
         map.removeSource('solar');
       }
     };
-  }, [map, node, isVisibleReference.current]);
+  }, [map, node, setIsLoadingSolarLayer, isVisibleReference.current]);
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {

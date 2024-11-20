@@ -7,8 +7,9 @@ import {
   ZoneDetail,
   ZoneKey,
 } from 'types';
-import { Mode, modeOrder } from 'utils/constants';
+import { modeOrderBarBreakdown } from 'utils/constants';
 import { getProductionCo2Intensity } from 'utils/helpers';
+import { EnergyUnits } from 'utils/units';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
 
@@ -22,7 +23,7 @@ const DEFAULT_FLAG_SIZE = 16;
 export function getExchangeCo2Intensity(
   zoneKey: ZoneKey,
   zoneData: ZoneDetail,
-  electricityMixMode: Mode
+  isConsumption: boolean
 ) {
   const exchange = zoneData.exchange?.[zoneKey];
   const exchangeCo2Intensity = zoneData.exchangeCo2Intensities?.[zoneKey];
@@ -32,7 +33,7 @@ export function getExchangeCo2Intensity(
   }
 
   // We don't use getCO2IntensityByMode in order to more easily return 0 for invalid numbers
-  if (electricityMixMode === Mode.CONSUMPTION) {
+  if (isConsumption) {
     return zoneData.co2intensity || 0;
   }
 
@@ -49,7 +50,7 @@ export interface ProductionDataType {
 }
 
 export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
-  modeOrder.map((mode) => {
+  modeOrderBarBreakdown.map((mode) => {
     const isStorage = mode.includes('storage');
     const generationMode = mode.replace(' storage', '') as GenerationType;
     // Power in MW
@@ -117,7 +118,7 @@ export const getDataBlockPositions = (
   const exchangeFlagX =
     LABEL_MAX_WIDTH - 4 * PADDING_X - DEFAULT_FLAG_SIZE - exchangeMax * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
-  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+  const exchangeY = productionY + productionHeight;
 
   return {
     productionHeight,
@@ -138,7 +139,7 @@ export interface ExchangeDataType {
 export const getExchangeData = (
   data: ZoneDetail,
   exchangeKeys: ZoneKey[],
-  electricityMixMode: Mode
+  isConsumption: boolean
 ): ExchangeDataType[] =>
   exchangeKeys.map((zoneKey: ZoneKey) => {
     // Power in MW
@@ -146,7 +147,7 @@ export const getExchangeData = (
     const exchangeCapacityRange = data.exchangeCapacities?.[zoneKey] ?? [0, 0];
 
     // Exchange CO₂ intensity
-    const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, electricityMixMode);
+    const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, isConsumption);
     const gCo2eq = gCo2eqPerkWh * 1000 * exchange;
 
     return {
@@ -192,3 +193,18 @@ export const getExchangesToDisplay = (
     (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
   );
 };
+
+/**
+ * Convents the price value and unit to the correct value and unit for the matching currency.
+ *
+ * If no currency is provided, the parameters are returned as is.
+ */
+export const convertPrice = (
+  value?: number,
+  currency?: string,
+  unit: EnergyUnits = EnergyUnits.MEGAWATT_HOURS
+): { value?: number; currency?: string; unit: EnergyUnits } => ({
+  value,
+  currency,
+  unit,
+});

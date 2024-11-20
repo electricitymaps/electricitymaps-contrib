@@ -2,6 +2,7 @@ import importlib
 from copy import deepcopy
 from datetime import datetime
 from logging import INFO, basicConfig, getLogger
+from operator import itemgetter
 from typing import Any
 
 from requests import Session
@@ -124,7 +125,7 @@ def generate_zone_capacity_config(
 
 
 def update_capacity_list_if_value_already_exists(
-    mode: str, capacity_config: list[dict[str, Any]], new_capacity: dict[str, Any]
+    mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
 ) -> list[dict[str, Any]]:
     """Updates the capacity config for a zone if the capacity config is a list and the value already exists.
     This function ensures that we don't add the same value to the config over and over and that we can backfill and get the oldest value for which the capacity is valid.
@@ -139,26 +140,34 @@ def update_capacity_list_if_value_already_exists(
         return capacity_config[mode]
     else:
         # if the associated datetime is older than the existing one, we replace the datetime of the item
-        return [
-            new_capacity[mode] if item["value"] == new_capacity[mode]["value"] else item
-            for item in capacity_config[mode]
-        ]
+        return sorted(
+            [
+                new_capacity[mode]
+                if item["value"] == new_capacity[mode]["value"]
+                else item
+                for item in capacity_config[mode]
+            ],
+            key=itemgetter("datetime"),
+        )
 
 
 def update_capacity_list_if_datetime_already_exists(
-    mode: str, capacity_config: list[dict[str, Any]], new_capacity: dict[str, Any]
+    mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
 ) -> list[dict[str, Any]]:
     """Updates the capacity config for a zone if the capacity config is a list and the datetime already exists and the value is different."""
-    return [
-        new_capacity[mode]
-        if item["datetime"] == new_capacity[mode]["datetime"]
-        else item
-        for item in capacity_config[mode]
-    ]
+    return sorted(
+        [
+            new_capacity[mode]
+            if item["datetime"] == new_capacity[mode]["datetime"]
+            else item
+            for item in capacity_config[mode]
+        ],
+        key=itemgetter("datetime"),
+    )
 
 
 def generate_zone_capacity_list(
-    mode: str, capacity_config: list[dict[str, Any]], new_capacity: dict[str, Any]
+    mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
 ) -> list[dict[str, Any]]:
     """Generate the updated capacity config for a zone if the capacity config is a list"""
     if new_capacity[mode]["value"] in [d["value"] for d in capacity_config[mode]]:
@@ -172,12 +181,14 @@ def generate_zone_capacity_list(
             mode, capacity_config, new_capacity
         )
     else:
-        return capacity_config[mode] + [new_capacity[mode]]
+        return sorted(
+            capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
+        )
 
 
-def check_capacity_config_type(capacity_config: list, config_type: type) -> None:
+def check_capacity_config_type(capacity_config: list, config_type: type) -> bool:
     """Check that the capacity config is of the specified type"""
-    return bool(all(isinstance(item, config_type) for item in capacity_config))
+    return all(isinstance(item, config_type) for item in capacity_config)
 
 
 def generate_aggregated_capacity_config(

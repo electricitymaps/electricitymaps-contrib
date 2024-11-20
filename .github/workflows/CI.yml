@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 2
       - name: Check which files have changed
         id: check-changed-files
-        uses: tj-actions/changed-files@v43.0.0
+        uses: tj-actions/changed-files@v45.0.1
         with:
           files_yaml_from_source_file: .github/filter-groups.yml
       - name: Log outputs
@@ -54,9 +54,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -110,7 +110,41 @@ jobs:
           npm install -g jsonlint-mod
       - name: Lint json
         run: |
-          jsonlint -q web/public/locales/*.json
+          jsonlint -q web/src/locales/*.json
+
+  validate_translation_files:
+    name: Frontend / Validate Translation Files
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.json != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Run translation out of sync script
+        run: node web/scripts/detectTranslationsOutOfSync.js
+
+  validate_escaped_quotes_in_translation_files:
+    name: Frontend / Validate Escaped Quotes in Translation Files
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.json != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: '.python-version'
+      - name: Run escaped quotes script
+        run: python scripts/remove_escaped_quotes_in_locales.py --detect
 
   #                 #
   # Frontend checks #
@@ -130,9 +164,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -170,9 +204,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -227,9 +261,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -266,9 +300,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -286,6 +320,46 @@ jobs:
         run: pnpm run generate-zones-config
       - name: Generate world file
         run: pnpm run generate-world
+
+  build_storybook:
+    name: Frontend / Build / Storybook
+    needs: [eslint, typecheck, validate_generate_files, unit_test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v4
+        with:
+          path: ./web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache-web.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+      - name: Generate config files
+        run: pnpm create-generated-files
+      - name: Build Storybook
+        run: pnpm run storybook:build
+      - name: Upload Storybook artifacts
+        uses: actions/upload-artifact@v4
+        if: github.ref_name == 'master' || github.event_name == 'pull_request'
+        with:
+          name: storybook-${{ github.ref_name == 'master' && 'latest' || '' }}${{ github.event_name == 'pull_request' && 'PR-' || '' }}${{ github.event_name == 'pull_request' && github.event.number || '' }}
+          path: web/storybook-static
+          overwrite: true
 
   deploy_preview_branch:
     name: Deploy preview
@@ -307,9 +381,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -365,9 +439,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:

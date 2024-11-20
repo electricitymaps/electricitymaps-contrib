@@ -23,8 +23,7 @@ export default function MapOptionSelector({
       <Trigger
         className={twMerge(
           isOpen ? 'pointer-events-none' : 'pointer-events-auto',
-          isMobile &&
-            'rounded-full bg-white py-3  text-md font-bold shadow-[0px_0px_13px_rgb(0_0_0/12%)] transition duration-200 hover:shadow-[0px_0px_23px_rgb(0_0_0/20%)] dark:border dark:border-gray-700 dark:bg-gray-800 '
+          isMobile && 'rounded-full transition duration-200 focus-visible:outline-none '
         )}
         data-test-id={testId}
         onClick={toggleTooltip}
