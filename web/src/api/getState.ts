@@ -5,7 +5,7 @@ import type { GridState, RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
-import { cacheBuster, getBasePath, isValidDate, QUERY_KEYS } from './helpers';
+import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
 
 const getState = async (
   timeAverage: TimeAverages,
@@ -20,10 +20,15 @@ const getState = async (
     getBasePath()
   );
 
+  const requestOptions: RequestInit = {
+    method: 'GET',
+    headers: await getHeaders(path),
+  };
+
   if (!targetDatetime) {
     path.searchParams.append('cacheKey', cacheBuster());
   }
-  const response = await fetch(path);
+  const response = await fetch(path, requestOptions);
   if (response.ok) {
     const result = (await response.json()) as GridState;
     return result;
