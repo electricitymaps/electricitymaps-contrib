@@ -7,7 +7,12 @@ import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useSetAtom } from 'jotai';
 import { ArrowLeft, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
+import {
+  getCountryName,
+  getFullZoneName,
+  getSEOZoneName,
+  getZoneName,
+} from 'translation/translation';
 import { ZoneKey } from 'types';
 import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
@@ -30,6 +35,7 @@ function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
 
 export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);
+  const seoZoneName = getSEOZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
   const showTooltip = zoneName !== zoneNameFull || zoneName.length >= MAX_TITLE_LENGTH;
   const navigate = useNavigateWithParameters();
@@ -53,7 +59,7 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">
       <Helmet prioritizeSeoTags>
-        <title>{zoneName + metaTitleSuffix}</title>
+        <title>{seoZoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
       <div

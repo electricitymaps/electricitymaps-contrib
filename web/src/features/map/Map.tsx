@@ -198,7 +198,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   useEffect(() => {
     // Run when the selected zone changes
     // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
-    if (map && location.pathname === '/map' && selectedZoneId) {
+    if (map && location.pathname.startsWith('/map') && selectedZoneId) {
       map.setFeatureState(
         { source: ZONE_SOURCE, id: selectedZoneId },
         { selected: false, hover: false }
