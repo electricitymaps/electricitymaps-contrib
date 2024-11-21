@@ -33,6 +33,10 @@ export interface MoreOptionsDropdownProps {
 
 const dropdownItemStyle = 'flex items-center gap-2 py-2';
 const dropdownContentStyle = 'font-semibold text-xs';
+const dropdownLabelStyle =
+  'whitespace-nowrap text-xs font-normal text-gray-700 dark:text-gray-300';
+const dropdownRadioStyle =
+  'w-4 checked:text-brand-green focus:outline-1 focus:outline-brand-green active:outline-brand-green';
 
 export function MoreOptionsDropdown({
   children,
@@ -47,6 +51,8 @@ export function MoreOptionsDropdown({
   const { isOpen, onDismiss, onToggleDropdown } = useDropdownCtl();
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
+
+  const [selectedShare, setSelectedShare] = useState<'live' | 'datetime' | null>(null);
 
   const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
 
@@ -104,7 +110,39 @@ export function MoreOptionsDropdown({
                 <h2 className="self-start text-sm">{dropdownTitle}</h2>
                 <DefaultCloseButton onClose={onDismiss} />
               </div>
-              <TimeDisplay className="whitespace-nowrap text-xs font-normal text-neutral-600 dark:text-gray-300" />
+              <fieldset className="flex flex-col">
+                <label
+                  htmlFor="datetime"
+                  className="mb-2 flex gap-2"
+                  onChange={() => setSelectedShare('datetime')}
+                >
+                  <input
+                    type="radio"
+                    id="datetime"
+                    name="datetime"
+                    value="datetime"
+                    className={dropdownRadioStyle}
+                    checked={selectedShare === 'datetime'}
+                  />
+                  <TimeDisplay className={dropdownLabelStyle} />
+                </label>
+
+                <label
+                  htmlFor="live"
+                  className={twMerge(dropdownLabelStyle, 'flex gap-2')}
+                  onChange={() => setSelectedShare('live')}
+                >
+                  <input
+                    type="radio"
+                    id="live"
+                    name="live"
+                    value="live"
+                    className={dropdownRadioStyle}
+                    checked={selectedShare === 'live'}
+                  />
+                  Live
+                </label>
+              </fieldset>
             </DropdownMenu.Label>
             <DropdownMenu.Separator className="mb-1 mt-3 h-px bg-neutral-200 dark:bg-gray-700" />
             <DropdownMenu.Group className="flex cursor-pointer flex-col">

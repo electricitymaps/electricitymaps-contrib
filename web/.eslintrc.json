@@ -158,7 +158,14 @@
     "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/newline-after-import": "error",
-    "import/no-duplicates": "error"
+    "import/no-duplicates": "error",
+    "jsx-a11y/label-has-associated-control": [
+      "warn",
+      {
+        "assert": "either", // either check for `htmlFor` or `nesting`
+        "depth": 3
+      }
+    ]
   },
   "settings": {
     "react": {
