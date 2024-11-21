@@ -240,7 +240,13 @@
     "hourly": "hourly",
     "daily": "daily",
     "monthly": "monthly",
-    "yearly": "yearly"
+    "yearly": "yearly",
+    "historical-linking": {
+      "hourly": "24h",
+      "daily": "30d",
+      "monthly": "12mo",
+      "yearly": "all"
+    }
   },
   "left-panel": {
     "get-data": "See our commercial API offerings",
