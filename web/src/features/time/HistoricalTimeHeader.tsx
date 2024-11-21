@@ -1,9 +1,8 @@
-import useGetState from 'api/getState';
 import Badge from 'components/Badge';
 import { Button } from 'components/Button';
 import { FormattedTime } from 'components/Time';
 import { useAtomValue } from 'jotai';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -18,7 +17,6 @@ export default function HistoricalTimeHeader() {
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
   const isHourly = useAtomValue(isHourlyAtom);
-  const { isLoading } = useGetState();
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
 
@@ -48,7 +46,7 @@ export default function HistoricalTimeHeader() {
 
   return (
     <div className="flex min-h-6 flex-row items-center justify-between">
-      {!isLoading && startDatetime && endDatetime && (
+      {startDatetime && endDatetime && (
         <Badge
           pillText={
             <FormattedTime
@@ -60,43 +58,53 @@ export default function HistoricalTimeHeader() {
           type="success"
         />
       )}
-      <div className="flex flex-row items-center gap-2">
-        <Button
-          backgroundClasses="bg-transparent"
-          onClick={handleLeftClick}
-          size="sm"
-          type="tertiary"
-          isDisabled={!isHourly}
-          icon={
-            <ChevronLeft
-              className={twMerge('text-brand-green', !isHourly && 'opacity-50')}
-            />
-          }
-        />
-        <Button
-          backgroundClasses="bg-transparent"
-          size="sm"
-          onClick={handleRightClick}
-          type="tertiary"
-          isDisabled={!isHourly || !urlDatetime}
-          icon={
-            <ChevronRight
-              className={twMerge(
-                'text-brand-green',
-                (!urlDatetime || !isHourly) && 'opacity-50'
-              )}
-            />
-          }
-        />
-        <Button
-          size="sm"
-          type="secondary"
-          onClick={() => navigate({ datetime: '' })}
-          isDisabled={!urlDatetime}
-        >
-          Latest
-        </Button>
-      </div>
+      {isHourly && (
+        <div className="flex h-6 flex-row items-center gap-x-3">
+          <Button
+            backgroundClasses="bg-transparent"
+            onClick={handleLeftClick}
+            size="sm"
+            type="tertiary"
+            icon={
+              <ChevronLeft
+                size={22}
+                className={twMerge('text-brand-green', !isHourly && 'opacity-50')}
+              />
+            }
+          />
+          <Button
+            backgroundClasses="bg-transparent"
+            size="sm"
+            onClick={handleRightClick}
+            type="tertiary"
+            isDisabled={!urlDatetime}
+            icon={
+              <ChevronRight
+                className={twMerge(
+                  'text-brand-green',
+                  (!urlDatetime || !isHourly) && 'opacity-50'
+                )}
+                size={22}
+              />
+            }
+          />
+          <Button
+            size="sm"
+            type="tertiary"
+            onClick={() => navigate({ datetime: '' })}
+            isDisabled={!urlDatetime}
+            icon={
+              <ArrowRightToLine
+                className={twMerge(
+                  'text-brand-green',
+                  (!urlDatetime || !isHourly) && 'opacity-50'
+                )}
+                size={22}
+              />
+            }
+          />
+        </div>
+      )}
     </div>
   );
 }

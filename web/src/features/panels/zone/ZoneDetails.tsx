@@ -78,7 +78,7 @@ export default function ZoneDetails(): JSX.Element {
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
     <>
-      <ZoneHeaderTitle zoneId={zoneId} />
+      <ZoneHeaderTitle zoneId={zoneId} isEstimated={cardType === 'estimated'} />
       <div
         id="panel-scroller"
         className={twMerge(

@@ -1,5 +1,6 @@
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { Ellipsis } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { baseUrl, Charts } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
 
@@ -24,6 +25,7 @@ export function ChartTitle({
   const zoneId = useGetZoneFromPath();
   const url = `${baseUrl}/zone/${zoneId}`;
   const shareUrl = id ? `${url}#${id}` : url;
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col pb-0.5">
@@ -33,7 +35,12 @@ export function ChartTitle({
         </h2>
         {badge}
         {showMoreOptions && (
-          <MoreOptionsDropdown isEstimated={isEstimated} id={id} shareUrl={shareUrl}>
+          <MoreOptionsDropdown
+            title={t(`more-options-dropdown.chart-title`)}
+            isEstimated={isEstimated}
+            id={id}
+            shareUrl={shareUrl}
+          >
             <Ellipsis />
           </MoreOptionsDropdown>
         )}
