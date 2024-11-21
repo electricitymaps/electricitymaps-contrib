@@ -79,10 +79,9 @@ export function MoreOptionsDropdown({
 
   const dropdownTitle = title || t('more-options-dropdown.title');
 
-  const copyLinkText =
-    id === 'zone'
-      ? t(`more-options-dropdown.copy-zone-link`)
-      : t(`more-options-dropdown.copy-chart-link`);
+  const copyLinkText = t(
+    `more-options-dropdown.${id === 'zone' ? 'copy-zone-link' : 'copy-chart-link'}`
+  );
 
   return (
     <>
