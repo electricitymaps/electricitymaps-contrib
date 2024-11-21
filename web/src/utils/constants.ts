@@ -15,7 +15,7 @@ export enum TimeAverages {
 
 export enum UrlTimeAverages {
   '24h' = TimeAverages.HOURLY,
-  '72h' = TimeAverages.HOURLY_72, // ugh
+  '72h' = TimeAverages.HOURLY_72,
   '30d' = TimeAverages.DAILY,
   '12mo' = TimeAverages.MONTHLY,
   'all' = TimeAverages.YEARLY,

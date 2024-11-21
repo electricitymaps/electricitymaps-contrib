@@ -235,12 +235,12 @@
       "yearly": "Yearly data for:"
     },
     "hourly": "hourly",
-    "hourly_72": "72h",
     "daily": "daily",
     "monthly": "monthly",
     "yearly": "yearly",
     "historical-linking": {
       "hourly": "24h",
+      "hourly_72": "72h",
       "daily": "30d",
       "monthly": "12mo",
       "yearly": "all"

@@ -12,7 +12,10 @@ const getState = async (
   targetDatetime?: string
 ): Promise<GridState> => {
   const shouldQueryHistorical =
-    targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
+    targetDatetime &&
+    isValidDate(targetDatetime) &&
+    (timeAverage === TimeAverages.HOURLY || TimeAverages.HOURLY_72);
+
   const path: URL = new URL(
     `v8/state/${timeAverage}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''

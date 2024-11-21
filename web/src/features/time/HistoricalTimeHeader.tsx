@@ -8,27 +8,39 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import { useNavigateWithParameters } from 'utils/helpers';
-import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
+import {
+  endDatetimeAtom,
+  isHourly72Atom,
+  isHourlyAtom,
+  startDatetimeAtom,
+} from 'utils/state/atoms';
 
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+const SEVENTY_TWO_HOURS = 72 * 60 * 60 * 1000;
+
+// TODO(Cady): clean up file; add isHistoricalAtom?
 
 export default function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
   const isHourly = useAtomValue(isHourlyAtom);
+  const isHourly72 = useAtomValue(isHourly72Atom);
+  const isHistorical = isHourly || isHourly72;
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
+
+  const timespan = isHourly ? TWENTY_FOUR_HOURS : SEVENTY_TWO_HOURS;
 
   function handleRightClick() {
     if (!endDatetime || !urlDatetime) {
       return;
     }
     const currentEndDatetime = new Date(endDatetime);
-    const newDate = new Date(currentEndDatetime.getTime() + TWENTY_FOUR_HOURS);
+    const newDate = new Date(currentEndDatetime.getTime() + timespan);
 
-    const twentyFourHoursAgo = new Date(Date.now() - TWENTY_FOUR_HOURS);
-    if (newDate >= twentyFourHoursAgo) {
+    const clampedDatetime = new Date(Date.now() - timespan);
+    if (newDate >= clampedDatetime) {
       navigate({ datetime: '' });
       return;
     }
@@ -40,7 +52,7 @@ export default function HistoricalTimeHeader() {
       return;
     }
     const currentEndDatetime = new Date(endDatetime);
-    const newDate = new Date(currentEndDatetime.getTime() - TWENTY_FOUR_HOURS);
+    const newDate = new Date(currentEndDatetime.getTime() - timespan);
     navigate({ datetime: newDate.toISOString() });
   }
 
@@ -58,7 +70,7 @@ export default function HistoricalTimeHeader() {
           type="success"
         />
       )}
-      {isHourly && (
+      {isHistorical && (
         <div className="flex h-6 flex-row items-center gap-x-3">
           <Button
             backgroundClasses="bg-transparent"
@@ -68,7 +80,7 @@ export default function HistoricalTimeHeader() {
             icon={
               <ChevronLeft
                 size={22}
-                className={twMerge('text-brand-green', !isHourly && 'opacity-50')}
+                className={twMerge('text-brand-green', !isHistorical && 'opacity-50')}
               />
             }
           />
@@ -82,7 +94,7 @@ export default function HistoricalTimeHeader() {
               <ChevronRight
                 className={twMerge(
                   'text-brand-green',
-                  (!urlDatetime || !isHourly) && 'opacity-50'
+                  (!urlDatetime || !isHistorical) && 'opacity-50'
                 )}
                 size={22}
               />
@@ -97,7 +109,7 @@ export default function HistoricalTimeHeader() {
               <ArrowRightToLine
                 className={twMerge(
                   'text-brand-green',
-                  (!urlDatetime || !isHourly) && 'opacity-50'
+                  (!urlDatetime || !isHistorical) && 'opacity-50'
                 )}
                 size={22}
               />

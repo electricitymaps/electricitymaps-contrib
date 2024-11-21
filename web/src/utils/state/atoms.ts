@@ -53,6 +53,9 @@ export function useTimeAverageSync() {
   return [timeAverage, setTimeAverageAndNavigate] as const;
 }
 export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
+export const isHourly72Atom = atom(
+  (get) => get(timeAverageAtom) === TimeAverages.HOURLY_72
+);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });

@@ -4,6 +4,7 @@ import { TimeAverages } from 'utils/constants';
 import { formatDate, formatDateRange } from 'utils/formatting';
 import { getZoneTimezone } from 'utils/helpers';
 
+// TODO(Cady): figure out how to handle timeAverage vs timespans (datetime + endDatetime)
 export function FormattedTime({
   datetime,
   language,
@@ -22,6 +23,7 @@ export function FormattedTime({
   const { zoneId: pathZoneId } = useParams<RouteParameters>();
   const timeZoneZoneId = zoneId || pathZoneId;
   const timezone = getZoneTimezone(timeZoneZoneId);
+
   if (timeAverage) {
     return (
       <time dateTime={datetime.toISOString()} className={className}>
