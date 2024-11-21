@@ -5,19 +5,18 @@ import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
 import { useSetAtom } from 'jotai';
 import { ArrowLeft, Ellipsis, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import {
   getCountryName,
   getFullZoneName,
   getSEOZoneName,
   getZoneName,
 } from 'translation/translation';
-import { RouteParameters, ZoneKey } from 'types';
-import { baseUrl, metaTitleSuffix } from 'utils/constants';
+import { metaTitleSuffix } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 
 import { ShareButton } from './ShareButton';
@@ -30,23 +29,6 @@ interface ZoneHeaderTitleProps {
 }
 
 const MAX_TITLE_LENGTH = 25;
-
-// TODO: put into own file
-export function useGetCurrentUrl({ zoneId }: { zoneId?: ZoneKey }) {
-  const {
-    urlTimeAverage,
-    urlDatetime,
-    zoneId: zoneIdParameter,
-  } = useParams<RouteParameters>();
-  const zId = zoneId || zoneIdParameter;
-  const url =
-    baseUrl +
-    (zId
-      ? `/zone/${zId}/${urlTimeAverage}/${urlDatetime || new Date().toISOString()}`
-      : '/map/24h');
-
-  return url;
-}
 
 export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);

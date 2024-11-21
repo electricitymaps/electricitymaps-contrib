@@ -1,11 +1,8 @@
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
-import { useGetCurrentUrl } from 'features/panels/zone/ZoneHeaderTitle';
+import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
 import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { RouteParameters } from 'types';
-import { baseUrl, Charts } from 'utils/constants';
-import { useGetZoneFromPath } from 'utils/helpers';
+import { Charts } from 'utils/constants';
 
 type Props = {
   titleText?: string;
