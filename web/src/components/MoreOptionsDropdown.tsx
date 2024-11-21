@@ -206,9 +206,8 @@ const useDropdownCtl = () => {
 
 export function useShowMoreOptions() {
   const isMoreOptionsEnabled = useFeatureFlag('more-options-dropdown');
-  const isHourly = useAtomValue(isHourlyAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const showMoreOptions = isMoreOptionsEnabled && isHourly && !displayByEmissions;
+  const showMoreOptions = isMoreOptionsEnabled && !displayByEmissions;
 
   return showMoreOptions;
 }

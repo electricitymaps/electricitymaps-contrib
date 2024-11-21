@@ -1,6 +1,8 @@
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import { baseUrl, Charts } from 'utils/constants';
 import { useGetZoneFromPath } from 'utils/helpers';
 
@@ -23,7 +25,8 @@ export function ChartTitle({
 }: Props) {
   const showMoreOptions = useShowMoreOptions();
   const zoneId = useGetZoneFromPath();
-  const url = `${baseUrl}/zone/${zoneId}`;
+  const { urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
+  const url = `${baseUrl}/zone/${zoneId}/${urlTimeAverage}/${urlDatetime || ''}`;
   const shareUrl = id ? `${url}#${id}` : url;
   const { t } = useTranslation();
 

@@ -9,13 +9,14 @@ import { useSetAtom } from 'jotai';
 import { ArrowLeft, Ellipsis, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import {
   getCountryName,
   getFullZoneName,
   getSEOZoneName,
   getZoneName,
 } from 'translation/translation';
-import { ZoneKey } from 'types';
+import { RouteParameters, ZoneKey } from 'types';
 import { baseUrl, metaTitleSuffix } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 
@@ -30,8 +31,12 @@ interface ZoneHeaderTitleProps {
 
 const MAX_TITLE_LENGTH = 25;
 
-function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
-  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
+function useGetCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
+  const { urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
+  const url =
+    baseUrl +
+    (zoneId ? `/zone/${zoneId}/${urlTimeAverage}/${urlDatetime || ''}` : '/map/24h');
+
   return url;
 }
 
@@ -56,7 +61,7 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
       to: '/map',
     });
   };
-  const shareUrl = getCurrentUrl({ zoneId });
+  const shareUrl = useGetCurrentUrl({ zoneId });
   const showMoreOptions = useShowMoreOptions();
   const { t } = useTranslation();
 
