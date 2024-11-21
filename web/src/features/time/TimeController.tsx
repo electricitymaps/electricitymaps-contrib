@@ -2,18 +2,16 @@ import useGetState from 'api/getState';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import { getZoneTimezone } from 'utils/helpers';
+import { getZoneTimezone, isValidHistoricalTime } from 'utils/helpers';
 import {
   endDatetimeAtom,
-  isHourly72Atom,
-  isHourlyAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
   useTimeAverageSync,
@@ -25,8 +23,6 @@ import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
-  const isHourly = useAtomValue(isHourlyAtom);
-  const isHourly72 = useAtomValue(isHourly72Atom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
@@ -92,7 +88,7 @@ export default function TimeController({ className }: { className?: string }) {
     [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeAverage]
   );
 
-  const isLiveDisplay = !urlDatetime && (isHourly || isHourly72);
+  const isLiveDisplay = !urlDatetime && isValidHistoricalTime(selectedTimeAverage);
 
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>

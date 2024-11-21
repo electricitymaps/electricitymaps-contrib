@@ -3,73 +3,73 @@ import { Button } from 'components/Button';
 import { FormattedTime } from 'components/Time';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
-import { useNavigateWithParameters } from 'utils/helpers';
+import { isValidHistoricalTime, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
-  isHourlyAtom,
   startDatetimeAtom,
+  timeAverageAtom,
   useTimeAverageSync,
 } from 'utils/state/atoms';
 
-const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-const SEVENTY_TWO_HOURS = 72 * 60 * 60 * 1000;
-
-const useHistoricalNavigation = () => {
-  const isHourly = useAtomValue(isHourlyAtom);
-  const endDatetime = useAtomValue(endDatetimeAtom);
-  const { urlDatetime } = useParams<RouteParameters>();
-  const navigate = useNavigateWithParameters();
-
-  const offset = isHourly ? TWENTY_FOUR_HOURS : SEVENTY_TWO_HOURS;
-
-  return {
-    handleRightClick: () => {
-      if (!endDatetime || !urlDatetime) {
-        return;
-      }
-      const currentEndDatetime = new Date(endDatetime);
-      const newDate = new Date(currentEndDatetime.getTime() + offset);
-
-      const clampedDatetime = new Date(Date.now() - offset);
-      if (newDate >= clampedDatetime) {
-        navigate({ datetime: '' });
-        return;
-      }
-      navigate({ datetime: newDate.toISOString() });
-    },
-
-    handleLeftClick: () => {
-      if (!endDatetime) {
-        return;
-      }
-      const currentEndDatetime = new Date(endDatetime);
-      const newDate = new Date(currentEndDatetime.getTime() - offset);
-      navigate({ datetime: newDate.toISOString() });
-    },
-
-    handleLatestClick: () => navigate({ datetime: '' }),
-  };
+const TIME_OFFSETS: Partial<Record<TimeAverages, number>> = {
+  [TimeAverages.HOURLY]: 24 * 60 * 60 * 1000,
+  [TimeAverages.HOURLY_72]: 72 * 60 * 60 * 1000,
 };
 
-const useIsHistorical = () => {
-  const [selectedTimeAverage] = useTimeAverageSync();
-  const isHistoricalTimeAverage = [TimeAverages.HOURLY, TimeAverages.HOURLY_72].includes(
-    selectedTimeAverage
-  );
+const clamp = (date: number, offset: number) => {
+  const clampAt = Date.now() - Math.abs(offset);
+  const newDate = date + offset;
+  if (newDate > clampAt) {
+    return '';
+  }
 
-  return isHistoricalTimeAverage;
+  return new Date(newDate).toISOString();
+};
+
+const EMPTY_IMPLEMENTATION = {
+  handleRightClick() {},
+  handleLeftClick() {},
+  handleLatestClick() {},
+};
+
+const useHistoricalNavigation = () => {
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const endDatetime = useAtomValue(endDatetimeAtom);
+  const navigate = useNavigateWithParameters();
+
+  const offset = TIME_OFFSETS[timeAverage];
+
+  return useMemo(() => {
+    if (!endDatetime || !offset) {
+      return EMPTY_IMPLEMENTATION;
+    }
+
+    return {
+      handleRightClick() {
+        navigate({ datetime: clamp(endDatetime.getTime(), offset) });
+      },
+      handleLeftClick() {
+        navigate({ datetime: clamp(endDatetime.getTime(), -offset) });
+      },
+      handleLatestClick() {
+        navigate({ datetime: '' });
+      },
+    };
+  }, [offset, endDatetime, navigate]);
 };
 
 export default function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
-  const isHistoricalTimeAverage = useIsHistorical();
+  const [selectedTimeAverage] = useTimeAverageSync();
+  const isHistoricalTimeAverage = isValidHistoricalTime(selectedTimeAverage);
   const { urlDatetime } = useParams<RouteParameters>();
 
   const { handleRightClick, handleLeftClick, handleLatestClick } =

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
 import { TimeAverages } from 'utils/constants';
+import { isValidHistoricalTime } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
 
@@ -58,11 +59,7 @@ const renderTickValue = (
     displayLive &&
     ((selectedTimeAggregate === TimeAverages.HOURLY && index === 24) ||
       (selectedTimeAggregate === TimeAverages.HOURLY_72 && index === 71));
-  const textOffset =
-    selectedTimeAggregate === TimeAverages.HOURLY ||
-    selectedTimeAggregate === TimeAverages.HOURLY_72
-      ? 5
-      : 0;
+  const textOffset = isValidHistoricalTime(selectedTimeAggregate) ? 5 : 0;
 
   return shouldDisplayLive ? (
     <g>

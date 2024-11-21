@@ -21,6 +21,8 @@ export enum UrlTimeAverages {
   'all' = TimeAverages.YEARLY,
 }
 
+export const historicalTimeAverages = [TimeAverages.HOURLY, TimeAverages.HOURLY_72];
+
 export enum ToggleOptions {
   ON = 'on',
   OFF = 'off',

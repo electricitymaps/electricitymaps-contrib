@@ -5,6 +5,7 @@ import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
+import { isValidHistoricalTime } from 'utils/helpers';
 import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
@@ -17,9 +18,7 @@ const getZone = async (
   invariant(zoneId, 'Zone ID is required');
 
   const shouldQueryHistorical =
-    targetDatetime &&
-    isValidDate(targetDatetime) &&
-    (timeAverage === TimeAverages.HOURLY || timeAverage === TimeAverages.HOURLY_72);
+    targetDatetime && isValidDate(targetDatetime) && isValidHistoricalTime(timeAverage);
 
   const path: URL = new URL(
     `v8/details/${timeAverage}/${zoneId}${
