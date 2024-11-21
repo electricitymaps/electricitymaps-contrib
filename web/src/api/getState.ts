@@ -14,7 +14,7 @@ const getState = async (
   const shouldQueryHistorical =
     targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
   const path: URL = new URL(
-    `v8/state/${timeAverage}${
+    `v9/state/${timeAverage}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
