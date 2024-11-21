@@ -135,7 +135,7 @@ function BarBreakdownChart({
         }
         id={Charts.BAR_BREAKDOWN_CHART}
       />
-      {!displayByEmissions && (
+      {!displayByEmissions && isHourly && (
         <CapacityLegend>
           {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
         </CapacityLegend>
