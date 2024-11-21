@@ -31,11 +31,19 @@ interface ZoneHeaderTitleProps {
 
 const MAX_TITLE_LENGTH = 25;
 
-function useGetCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
-  const { urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
+// TODO: put into own file
+export function useGetCurrentUrl({ zoneId }: { zoneId?: ZoneKey }) {
+  const {
+    urlTimeAverage,
+    urlDatetime,
+    zoneId: zoneIdParameter,
+  } = useParams<RouteParameters>();
+  const zId = zoneId || zoneIdParameter;
   const url =
     baseUrl +
-    (zoneId ? `/zone/${zoneId}/${urlTimeAverage}/${urlDatetime || ''}` : '/map/24h');
+    (zId
+      ? `/zone/${zId}/${urlTimeAverage}/${urlDatetime || new Date().toISOString()}`
+      : '/map/24h');
 
   return url;
 }
