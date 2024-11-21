@@ -63,7 +63,7 @@ export default function HistoricalTimeHeader() {
           <Button
             backgroundClasses="bg-transparent"
             onClick={handleLeftClick}
-            size="xs"
+            size="sm"
             type="tertiary"
             icon={
               <ChevronLeft
@@ -74,7 +74,7 @@ export default function HistoricalTimeHeader() {
           />
           <Button
             backgroundClasses="bg-transparent"
-            size="xs"
+            size="sm"
             onClick={handleRightClick}
             type="tertiary"
             isDisabled={!urlDatetime}
