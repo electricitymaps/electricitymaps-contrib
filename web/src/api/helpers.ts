@@ -33,10 +33,10 @@ function isUsingLocalEndpoint(): boolean {
 
 function getToken(): string {
   invariant(
-    import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN,
+    import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9,
     'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN is not defined in environment'
   );
-  return String(import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN);
+  return String(import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9);
 }
 
 /**
