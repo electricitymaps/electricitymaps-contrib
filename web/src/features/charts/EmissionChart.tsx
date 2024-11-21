@@ -47,7 +47,6 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         datetimes={datetimes}
-        isMobile={false}
         selectedTimeAggregate={timeAverage}
         height="8em"
         tooltip={EmissionChartTooltip}
