@@ -6,6 +6,8 @@ import { TimeAverages } from 'utils/constants';
 
 import { formatDateTick } from '../../utils/formatting';
 
+// TODO(Cady): fix tick logic so we don't hardcode; doesn't work for 72 - off-by-one
+
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
   hourly: 6,
@@ -23,12 +25,15 @@ const renderTick = (
   lang: string,
   selectedTimeAggregate: TimeAverages,
   isLoading: boolean,
-  timezone?: string
+  timezone?: string,
+  isLast?: boolean
 ) => {
   const shouldShowValue =
-    index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
+    isLast || (index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading);
+
   return (
     <g
+      id={index.toString()}
       key={`timeaxis-tick-${index}`}
       className="text-xs"
       opacity={1}
@@ -49,8 +54,16 @@ const renderTickValue = (
   selectedTimeAggregate: TimeAverages,
   timezone?: string
 ) => {
-  const shouldDisplayLive = index === 24 && displayLive;
-  const textOffset = selectedTimeAggregate === TimeAverages.HOURLY ? 5 : 0;
+  const shouldDisplayLive =
+    displayLive &&
+    ((selectedTimeAggregate === TimeAverages.HOURLY && index === 24) ||
+      (selectedTimeAggregate === TimeAverages.HOURLY_72 && index === 71));
+  const textOffset =
+    selectedTimeAggregate === TimeAverages.HOURLY ||
+    selectedTimeAggregate === TimeAverages.HOURLY_72
+      ? 5
+      : 0;
+
   return shouldDisplayLive ? (
     <g>
       <circle cx="-1em" cy="1.15em" r="2" fill="red" />
@@ -91,9 +104,7 @@ function TimeAxis({
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
-
   const width = observerWidth - 24;
-
   if (datetimes === undefined || isLoading) {
     return (
       <div className="flex h-[22px]  w-full justify-center">
@@ -104,7 +115,7 @@ function TimeAxis({
 
   const scale = getTimeScale(scaleWidth ?? width, datetimes[0], datetimes.at(-1) as Date);
   const [x1, x2] = scale.range();
-
+  const dtLength = datetimes.length;
   return (
     <svg className={className} ref={ref}>
       <g
@@ -123,7 +134,8 @@ function TimeAxis({
             i18n.language,
             selectedTimeAggregate,
             isLoading,
-            timezone
+            timezone,
+            index === dtLength - 1
           )
         )}
       </g>

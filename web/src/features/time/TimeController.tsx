@@ -12,6 +12,7 @@ import { TimeAverages, TrackEvent } from 'utils/constants';
 import { getZoneTimezone } from 'utils/helpers';
 import {
   endDatetimeAtom,
+  isHourly72Atom,
   isHourlyAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
@@ -25,6 +26,7 @@ import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
   const isHourly = useAtomValue(isHourlyAtom);
+  const isHourly72 = useAtomValue(isHourly72Atom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
@@ -89,6 +91,9 @@ export default function TimeController({ className }: { className?: string }) {
     },
     [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeAverage]
   );
+
+  const isLiveDisplay = !urlDatetime && (isHourly || isHourly72);
+
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
@@ -113,7 +118,7 @@ export default function TimeController({ className }: { className?: string }) {
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}
-          isLiveDisplay={isHourly && !urlDatetime}
+          isLiveDisplay={isLiveDisplay}
           timezone={zoneTimezone}
         />
       </div>

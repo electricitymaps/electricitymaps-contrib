@@ -142,6 +142,7 @@ export const getDateTimeFormatOptions = (
   timezone?: string
 ): Intl.DateTimeFormatOptions => {
   switch (timeAverage) {
+    case TimeAverages.HOURLY_72:
     case TimeAverages.HOURLY: {
       return {
         year: 'numeric',
@@ -153,7 +154,7 @@ export const getDateTimeFormatOptions = (
         timeZone: timezone,
       };
     }
-    case TimeAverages.HOURLY_72:
+    // case TimeAverages.HOURLY_72:
     case TimeAverages.DAILY: {
       return {
         dateStyle: 'long',
@@ -213,6 +214,7 @@ const formatDateTick = (
         timeZone: timezone,
       }).format(date);
     }
+
     // Instantiate below DateTimeFormat objects using UTC to avoid displaying
     // misleading time slider labels for users in UTC-negative offset timezones
     case TimeAverages.DAILY: {
