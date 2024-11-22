@@ -7,7 +7,7 @@ import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 export function useGetCurrentUrl() {
   const { urlTimeAverage, zoneId } = useParams<RouteParameters>();
   const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
-  const datetime = selectedDatetime ? new Date(selectedDatetime.datetime) : new Date();
+  const datetime = selectedDatetime.datetime ?? new Date(selectedDatetime.datetime);
 
   const url =
     baseUrl +
