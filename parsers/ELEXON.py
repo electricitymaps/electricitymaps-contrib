@@ -94,7 +94,7 @@ ZONEKEY_TO_INTERCONNECTOR = {
     "DK-DK1->GB": ["Denmark (Viking link)"],
     "FR->GB": ["Eleclink (INTELEC)", "France(IFA)", "IFA2 (INTIFA2)"],
     "GB->GB-NIR": ["Northern Ireland(Moyle)"],
-    "GB->IE": ["Ireland(East-West)"],
+    "GB->IE": ["Ireland(East-West)", "Ireland (Greenlink)"],
     "GB->NL": ["Netherlands(BritNed)"],
     "GB->NO-NO2": ["North Sea Link (INTNSL)"],
 }

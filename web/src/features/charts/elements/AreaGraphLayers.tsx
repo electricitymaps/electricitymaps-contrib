@@ -19,7 +19,7 @@ interface AreaGraphLayersProps {
   mouseOutHandler: any;
   isMobile: boolean;
   svgNode: any;
-  hoverLayerIndex?: number | null;
+  hoveredLayerIndex?: number | null;
   isDataInteractive?: boolean;
   selectedData?: SelectedData;
 }
@@ -33,7 +33,7 @@ function AreaGraphLayers({
   mouseOutHandler,
   isMobile,
   svgNode,
-  hoverLayerIndex,
+  hoveredLayerIndex,
   isDataInteractive,
   selectedData,
 }: AreaGraphLayersProps) {
@@ -43,7 +43,7 @@ function AreaGraphLayers({
   if (x1 >= x2 || y1 >= y2) {
     return null;
   }
-  const hasHoverLayer = hoverLayerIndex !== null;
+  const hasHoveredLayer = hoveredLayerIndex !== null;
   const shouldHideEmptyData = isDataInteractive && layers.length > 1;
 
   // Generate layer paths
@@ -114,14 +114,14 @@ function AreaGraphLayers({
 
         const shouldLayerBeSaturated = getShouldLayerBeSaturated({
           dataIsNotInteractive: !isDataInteractive,
-          hoveredIndex: hoverLayerIndex,
+          hoveredIndex: hoveredLayerIndex,
           index: ind,
           layerKey: layer.key,
-          selectedData: selectedData,
+          selectedData,
         });
 
         const isInteracted =
-          (isDataInteractive && hasHoverLayer && hoverLayerIndex === ind) ||
+          (isDataInteractive && hasHoveredLayer && hoveredLayerIndex === ind) ||
           selectedData?.isSelected(layer.key);
 
         const stroke = getLayerStrokeStyle({
@@ -134,9 +134,7 @@ function AreaGraphLayers({
         return (
           <React.Fragment key={layer.key}>
             <path
-              className={
-                shouldLayerBeSaturated ? 'sm:hover:opacity-100' : 'sm:opacity-30'
-              }
+              className={shouldLayerBeSaturated ? 'opacity-100' : 'opacity-30'}
               style={{ cursor: 'pointer' }}
               stroke={stroke}
               strokeWidth={0.5}

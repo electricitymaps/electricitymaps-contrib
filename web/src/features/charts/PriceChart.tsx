@@ -81,7 +81,6 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           markerFill={markerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          isMobile={false}
           height="6em"
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
