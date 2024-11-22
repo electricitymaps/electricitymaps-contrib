@@ -58,7 +58,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
                 ? 'bg-white/80 text-brand-green outline outline-1 outline-neutral-200 dark:bg-gray-600/80 dark:text-white dark:outline-gray-400/10'
                 : ''
             }
-            focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-brand-green`}
+            focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-brand-green dark:focus-visible:outline-brand-green-dark`}
         >
           {label}
         </ToggleGroupItem>
