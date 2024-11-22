@@ -6,7 +6,9 @@ import { Link } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
+import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import { RouteParameters } from 'types';
 import { getTrackByShareType, ShareType } from 'utils/analytics';
 import {
   baseUrl,
@@ -14,8 +16,12 @@ import {
   DEFAULT_ICON_SIZE,
   DEFAULT_TOAST_DURATION,
 } from 'utils/constants';
-import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
-import { displayByEmissionsAtom, isHourlyAtom } from 'utils/state/atoms';
+import { hasMobileUserAgent as hasMobileUA, useGetZoneFromPath } from 'utils/helpers';
+import {
+  displayByEmissionsAtom,
+  isHourlyAtom,
+  selectedDatetimeIndexAtom,
+} from 'utils/state/atoms';
 
 import { DefaultCloseButton } from './DefaultCloseButton';
 import { MemoizedShareIcon } from './ShareIcon';
@@ -51,14 +57,23 @@ export function MoreOptionsDropdown({
   const { isOpen, onDismiss, onToggleDropdown } = useDropdownCtl();
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
+  const { urlDatetime, urlTimeAverage } = useParams<RouteParameters>();
+  const zoneId = useGetZoneFromPath();
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const isHistorical = (urlTimeAverage as string) === '24h';
+  console.log(selectedDatetime);
 
-  const [selectedShare, setSelectedShare] = useState<'live' | 'datetime' | null>(null);
+  // only allow if this is isHistorical && !urlDatetime
+  const [selectedTime, setSelectedTime] = useState<'live' | 'datetime' | null>(
+    'datetime'
+  );
 
   const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
 
   const handleTrackShares = getTrackByShareType(id);
 
   const { onShare, copyShareUrl } = useMemo(() => {
+    const url = selectedTime === 'live' ? `${baseUrl}/zone/${zoneId}` : shareUrl;
     const toastMessageCallback = (message: string) => {
       setToastMessage(message);
       reference.current?.publish();
@@ -66,7 +81,7 @@ export function MoreOptionsDropdown({
 
     return {
       copyShareUrl: () => {
-        copyToClipboard(shareUrl, toastMessageCallback);
+        copyToClipboard(url, toastMessageCallback);
         handleTrackShares[ShareType.COPY]();
       },
       onShare: () => {
@@ -74,14 +89,23 @@ export function MoreOptionsDropdown({
           {
             title: 'Electricity Maps',
             text: summary,
-            url: shareUrl,
+            url,
           },
           toastMessageCallback
         );
         handleTrackShares[ShareType.SHARE]();
       },
     };
-  }, [reference, shareUrl, summary, share, copyToClipboard, handleTrackShares]);
+  }, [
+    reference,
+    selectedTime,
+    zoneId,
+    shareUrl,
+    summary,
+    share,
+    copyToClipboard,
+    handleTrackShares,
+  ]);
 
   const dropdownTitle = title || t('more-options-dropdown.title');
 
@@ -110,39 +134,40 @@ export function MoreOptionsDropdown({
                 <h2 className="self-start text-sm">{dropdownTitle}</h2>
                 <DefaultCloseButton onClose={onDismiss} />
               </div>
-              <fieldset className="flex flex-col">
-                <label
-                  htmlFor="datetime"
-                  className="mb-2 flex gap-2"
-                  onChange={() => setSelectedShare('datetime')}
-                >
-                  <input
-                    type="radio"
-                    id="datetime"
-                    name="datetime"
-                    value="datetime"
-                    className={dropdownRadioStyle}
-                    checked={selectedShare === 'datetime'}
-                  />
-                  <TimeDisplay className={dropdownLabelStyle} />
-                </label>
+              {isHistorical && !urlDatetime ? (
+                <fieldset className="flex flex-col">
+                  <label htmlFor="datetime" className="mb-2 flex gap-2">
+                    <input
+                      type="radio"
+                      id="datetime"
+                      name="datetime"
+                      value="datetime"
+                      className={dropdownRadioStyle}
+                      checked={selectedTime === 'datetime'}
+                      onChange={() => setSelectedTime('datetime')}
+                    />
+                    <TimeDisplay className={dropdownLabelStyle} />
+                  </label>
 
-                <label
-                  htmlFor="live"
-                  className={twMerge(dropdownLabelStyle, 'flex gap-2')}
-                  onChange={() => setSelectedShare('live')}
-                >
-                  <input
-                    type="radio"
-                    id="live"
-                    name="live"
-                    value="live"
-                    className={dropdownRadioStyle}
-                    checked={selectedShare === 'live'}
-                  />
-                  Live
-                </label>
-              </fieldset>
+                  <label
+                    htmlFor="live"
+                    className={twMerge(dropdownLabelStyle, 'flex gap-2')}
+                  >
+                    <input
+                      type="radio"
+                      id="live"
+                      name="live"
+                      value="live"
+                      className={dropdownRadioStyle}
+                      checked={selectedTime === 'live'}
+                      onChange={() => setSelectedTime('live')}
+                    />
+                    Live
+                  </label>
+                </fieldset>
+              ) : (
+                <TimeDisplay className={dropdownLabelStyle} />
+              )}
             </DropdownMenu.Label>
             <DropdownMenu.Separator className="mb-1 mt-3 h-px bg-neutral-200 dark:bg-gray-700" />
             <DropdownMenu.Group className="flex cursor-pointer flex-col">
