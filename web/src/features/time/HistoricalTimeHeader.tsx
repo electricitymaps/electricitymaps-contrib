@@ -26,15 +26,15 @@ export default function HistoricalTimeHeader() {
       return true;
     }
 
-    const date = new Date(urlDatetime);
-    date.setUTCHours(date.getUTCHours() - 24);
+    const targetDate = new Date(urlDatetime);
+    targetDate.setUTCHours(targetDate.getUTCHours() - 24);
 
     const maxHistoricalDate = new Date();
     maxHistoricalDate.setUTCDate(
       maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
     );
 
-    return date >= maxHistoricalDate;
+    return targetDate >= maxHistoricalDate;
   }, [urlDatetime]);
 
   function handleRightClick() {
