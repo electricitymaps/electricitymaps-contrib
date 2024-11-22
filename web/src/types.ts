@@ -6,7 +6,7 @@ import type {
   Polygon,
 } from '@turf/turf';
 import { LineString, MultiLineString, Point } from 'geojson';
-import { EstimationMethods, TimeAverages } from 'utils/constants';
+import { EstimationMethods, TimeAverages, UrlTimeAverages } from 'utils/constants';
 
 export type Maybe<T> = T | null | undefined;
 
