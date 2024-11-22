@@ -51,7 +51,7 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
       to: '/map',
     });
   };
-  const shareUrl = useGetCurrentUrl({ zoneId });
+  const shareUrl = useGetCurrentUrl();
   const showMoreOptions = useShowMoreOptions();
   const { t } = useTranslation();
 

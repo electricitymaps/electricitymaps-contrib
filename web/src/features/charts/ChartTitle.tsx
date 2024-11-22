@@ -22,7 +22,7 @@ export function ChartTitle({
   id,
 }: Props) {
   const showMoreOptions = useShowMoreOptions();
-  const url = useGetCurrentUrl({});
+  const url = useGetCurrentUrl();
   const shareUrl = id ? `${url}#${id}` : url;
   const { t } = useTranslation();
 

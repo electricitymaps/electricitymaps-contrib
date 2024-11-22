@@ -1,19 +1,17 @@
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
-import { RouteParameters, ZoneKey } from 'types';
+import { RouteParameters } from 'types';
 import { baseUrl } from 'utils/constants';
+import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 
-export function useGetCurrentUrl({ zoneId }: { zoneId?: ZoneKey }) {
-  const {
-    urlTimeAverage,
-    urlDatetime,
-    zoneId: zoneIdParameter,
-  } = useParams<RouteParameters>();
-  const zId = zoneId || zoneIdParameter;
+export function useGetCurrentUrl() {
+  const { urlTimeAverage, zoneId } = useParams<RouteParameters>();
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const datetime = selectedDatetime ? new Date(selectedDatetime.datetime) : new Date();
+
   const url =
     baseUrl +
-    (zId
-      ? `/zone/${zId}/${urlTimeAverage}/${urlDatetime || new Date().toISOString()}`
-      : '/map/24h');
+    (zoneId ? `/zone/${zoneId}/${urlTimeAverage}/${datetime.toISOString()}` : '/map/24h');
 
   return url;
 }
