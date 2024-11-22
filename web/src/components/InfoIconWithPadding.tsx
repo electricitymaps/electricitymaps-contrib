@@ -6,7 +6,7 @@ import { Info } from 'lucide-react';
 export default function InfoIconWithPadding() {
   return (
     <div className="absolute top-15 rounded-full bg-zinc-50 dark:bg-gray-900">
-      <Info size={28} className="p-1 text-brand-green dark:text-brand-green-dark" />
+      <Info size={28} className="p-1 text-brand-green" />
     </div>
   );
 }

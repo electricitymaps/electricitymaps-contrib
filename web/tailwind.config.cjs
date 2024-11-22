@@ -47,8 +47,10 @@ const config = {
         '3xl': '0.1px 0.1px 6px rgba(0, 0, 0, 0.15);',
       },
       colors: {
-        'brand-green': '#135836',
-        'brand-green-dark': '#41866B',
+        'brand-green': {
+          DEFAULT: '#135836',
+          dark: '#41866B',
+        },
         'brand-yellow': '#E9B73B',
         'brand-brown': '#702214',
         'price-light': '#18214F',

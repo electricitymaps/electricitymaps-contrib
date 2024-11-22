@@ -66,7 +66,7 @@ const SpringAnimatedArc = memo(function SpringAnimatedArc({
       startAngle={PIE_START_ANGLE}
       endAngle={spring.ratio.to((ratio) => calculateEndAngle(ratio))}
       cornerRadius={radius}
-      className="fill-brand-green dark:fill-brand-green-dark"
+      className="fill-brand-green"
     />
   );
 });
