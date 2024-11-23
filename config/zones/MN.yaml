@@ -32,6 +32,9 @@ emissionFactors:
         datetime: '2020-01-01'
         source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
         value: 729.1
+      - datetime: '2024-11-25'
+        source: IEA 2020; assumes 94.14% coal, 5.86% oil in unknown
+        value: 739
   lifecycle:
     battery discharge:
       - datetime: '2023-01-01'
@@ -46,6 +49,9 @@ emissionFactors:
         datetime: '2020-01-01'
         source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
         value: 799.2
+      - datetime: '2024-11-25'
+        source: IEA 2020; assumes 94.14% coal, 5.86% oil in unknown
+        value: 810
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average
@@ -68,11 +74,15 @@ isLowCarbon:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
       datetime: '2020-01-01'
       value: 0.0137
+    - datetime: '2024-11-25'
+      value: 0
 isRenewable:
   unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
       datetime: '2020-01-01'
       value: 0.0137
+    - datetime: '2024-11-25'
+      value: 0
 parsers:
   consumption: MN.fetch_consumption
   production: MN.fetch_production
