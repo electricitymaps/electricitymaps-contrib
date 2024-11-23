@@ -82,3 +82,14 @@ export const QUERY_KEYS = {
   ZONE: 'zone',
   META: 'meta',
 };
+export function isValidDate(dateString: string) {
+  if (Number.isNaN(Date.parse(dateString))) {
+    throw new TypeError('Invalid date string: ' + dateString);
+  }
+  const oldestDatetimeToSupport = new Date('2017-01-01T00:00:00Z');
+  const parsedDate = new Date(dateString);
+  if (parsedDate > oldestDatetimeToSupport) {
+    return true;
+  }
+  return false;
+}
