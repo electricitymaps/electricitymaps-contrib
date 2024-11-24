@@ -30,6 +30,7 @@ RT_EXCHANGE_URL = (
 RT_PRICES_URL = (
     f"{US_PROXY}/api/1/services/read/dashboards/systemWidePrices.json?{HOST_PARAMETER}"
 )
+RT_STORAGE_URL = f"{US_PROXY}/api/1/services/read/dashboards/energy-storage-resources.json?{HOST_PARAMETER}"
 
 # These links are found at https://www.ercot.com/gridinfo/generation, and should be updated as new data is released
 HISTORICAL_GENERATION_URL = {
@@ -66,6 +67,28 @@ def get_data(url: str, session: Session):
     return data_json
 
 
+def parse_storage_data(session: Session):
+    storage_data_json = get_data(url=RT_STORAGE_URL, session=session)
+
+    storage_by_hour = {}
+    for day_key in ["previousDay", "currentDay"]:
+        if day_key not in storage_data_json:
+            continue
+
+        for entry in storage_data_json[day_key]["data"]:
+            dt = datetime.strptime(entry["timestamp"], "%Y-%m-%d %H:%M:%S%z").replace(
+                tzinfo=TX_TZ
+            )
+            hour_dt = dt.replace(minute=0, second=0, microsecond=0)
+
+            if hour_dt not in storage_by_hour:
+                storage_by_hour[hour_dt] = []
+
+            storage_by_hour[hour_dt].append(entry["netOutput"])
+
+    return storage_by_hour
+
+
 def fetch_live_consumption(
     zone_key: str,
     session: Session,
@@ -93,11 +116,15 @@ def fetch_live_production(
     session: Session,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
+    gen_data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
     all_data_points = []
 
-    for day in data_json:
-        date_dict = data_json[day]
+    # Process storage data first
+    storage_by_hour = parse_storage_data(session)
+
+    # Process generation data
+    for day in gen_data_json:
+        date_dict = gen_data_json[day]
         hourly_data = {}
 
         for date in date_dict:
@@ -110,26 +137,37 @@ def fetch_live_production(
                 }
 
             for mode, data in date_dict[date].items():
-                hourly_data[hour_dt][GENERATION_MAPPING[mode]].append(data["gen"])
+                production_source = GENERATION_MAPPING[mode]
+                if production_source != "battery":  # Skip battery from generation data
+                    hourly_data[hour_dt][production_source].append(data["gen"])
 
         for hour_dt, modes in hourly_data.items():
             production = {}
             storage = {}
+
+            # Add generation data
             for mode, values in modes.items():
-                if mode == "battery" and values:
-                    storage[mode] = sum(values) / len(values)
-                elif values:
+                if values:
                     production[mode] = sum(values) / len(values)
 
-            all_data_points.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": hour_dt,
-                    "production": production,
-                    "storage": storage,
-                    "source": "ercot.com",
-                }
-            )
+            # Add storage data if available for this hour
+            if hour_dt in storage_by_hour:
+                storage_values = storage_by_hour[hour_dt]
+                if storage_values:
+                    storage["battery"] = sum(storage_values) / len(storage_values)
+
+            if hour_dt < datetime.now(tz=TX_TZ).replace(
+                minute=0, second=0, microsecond=0
+            ):  # We only want to add the datapoint if the hour has passed
+                all_data_points.append(
+                    {
+                        "zoneKey": zone_key,
+                        "datetime": hour_dt,
+                        "production": production,
+                        "storage": storage,
+                        "source": "ercot.com",
+                    }
+                )
 
     return all_data_points
 
