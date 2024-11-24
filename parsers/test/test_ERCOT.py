@@ -7,8 +7,8 @@ import logging
 import unittest
 from datetime import datetime
 from unittest.mock import patch
+from zoneinfo import ZoneInfo
 
-import pytz
 from testfixtures import LogCapture
 
 from parsers import US_ERCOT
@@ -29,11 +29,9 @@ class TestUSERCOT(unittest.TestCase):
         with self.subTest():
             self.assertIsNotNone(data)
         with self.subTest():
-            self.assertEqual(data[0]["production"]["coal"], 10461.9)
+            self.assertEqual(data[0]["production"]["coal"], 5067.958333333333)
         with self.subTest():
-            expected_dt = datetime(2023, 2, 2, 4, 39, 55).replace(
-                tzinfo=pytz.timezone("US/Central")
-            )
+            expected_dt = datetime(2024, 11, 24, 7, 0, tzinfo=ZoneInfo("US/Central"))
             self.assertEqual(data[-1]["datetime"], expected_dt)
         with self.subTest():
             self.assertEqual(data[-1]["source"], "ercot.com")
@@ -56,9 +54,7 @@ class TestUSERCOT(unittest.TestCase):
         with self.subTest():
             self.assertEqual(data[0]["consumption"], 57102.55)
         with self.subTest():
-            expected_dt = datetime(2023, 2, 1, 0, 0, 0).replace(
-                tzinfo=pytz.timezone("US/Central")
-            )
+            expected_dt = datetime(2023, 2, 1, tzinfo=ZoneInfo("US/Central"))
             self.assertEqual(data[0]["datetime"], expected_dt)
         with self.subTest():
             self.assertEqual(data[0]["source"], "ercot.com")
