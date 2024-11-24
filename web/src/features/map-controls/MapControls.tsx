@@ -1,3 +1,4 @@
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom, useAtomValue } from 'jotai';
 import { EyeOff, Sun, Wind } from 'lucide-react';
 import { useTransition } from 'react';
@@ -112,10 +113,12 @@ function DesktopMapControls() {
     trackEvent(TrackEvent.COLORBLIND_MODE_TOGGLED);
   };
 
+  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+
   return (
-    <div className="pointer-events-none absolute right-3 top-2 z-20 hidden flex-col items-end md:flex">
+    <div className="pointer-events-none absolute right-3 top-2 z-20 mt-[env(safe-area-inset-top)] hidden flex-col items-end md:flex">
       <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-2">
-        <ConsumptionProductionToggle />
+        {!isConsumptionOnlyMode && <ConsumptionProductionToggle />}
         <SpatialAggregatesToggle />
       </div>
       <div className="mt-5 space-y-2">

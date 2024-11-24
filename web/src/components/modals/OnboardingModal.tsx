@@ -1,3 +1,4 @@
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { useCallback } from 'react';
@@ -11,7 +12,7 @@ interface ViewContentProps {
   translationKey: string;
   isDangerouslySet?: boolean;
 }
-
+const TOGGLE_MODE_IDX = 3;
 const BODY_STYLE = 'text-sm px-4 sm:text-base pb-4';
 
 function ViewContent({ t, translationKey, isDangerouslySet = false }: ViewContentProps) {
@@ -81,13 +82,18 @@ export function OnboardingModal() {
   const handleDismiss = useCallback(() => {
     setHasOnboardingBeenSeen(true);
   }, [setHasOnboardingBeenSeen]);
+  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+  const onboardingViews = isConsumptionOnlyMode
+    ? [...views.slice(0, TOGGLE_MODE_IDX), ...views.slice(TOGGLE_MODE_IDX + 1)]
+    : views;
+
   return (
     <Modal
       modalName="onboarding"
       data-test-id="onboarding"
       visible={visible}
       onDismiss={handleDismiss}
-      views={views}
+      views={onboardingViews}
     />
   );
 }

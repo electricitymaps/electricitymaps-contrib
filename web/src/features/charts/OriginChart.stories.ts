@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { zoneDetailMock } from 'stories/mockData';
-import { EnergyUnits } from 'utils/units';
 
 import { colors } from '../../hooks/colors';
 import { getCo2ColorScale } from '../../hooks/theme';
 import { TimeAverages } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
-import { getLayerFill } from './hooks/useBreakdownChartData';
+import { getLayerFill } from './hooks/useOriginChartData';
 
 const meta: Meta<typeof AreaGraph> = {
-  title: 'charts/BreakdownChart',
+  title: 'charts/OriginChart',
   component: AreaGraph,
 };
 
@@ -505,7 +504,6 @@ export const IncludesStorage: Story = {
     layerKeys: Object.keys(includesStorageData[0].layerData),
     layerFill,
     selectedTimeAggregate: TimeAverages.HOURLY,
-    isMobile: false,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),
   },

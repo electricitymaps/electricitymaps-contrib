@@ -72,3 +72,18 @@ export const negativeToPostivePercentage = (
 
   return Math.round(Math.abs((minPrice / (maxPrice + Math.abs(minPrice))) * 100));
 };
+
+export const priceIn5Percentile = (
+  price: number,
+  maxPrice: number,
+  minPrice: number,
+  inTop: boolean
+): boolean => {
+  const fivePercent = 0.05;
+  const priceRange = maxPrice - minPrice;
+
+  if (inTop) {
+    return price >= maxPrice - priceRange * fivePercent;
+  }
+  return price <= minPrice + priceRange * fivePercent;
+};

@@ -38,6 +38,7 @@ export interface OptimizedZoneConfig {
   subZoneNames?: string[];
   aggregates_displayed?: string[];
   generation_only?: boolean;
+  timezone?: string;
 }
 
 export interface ZonesConfig {

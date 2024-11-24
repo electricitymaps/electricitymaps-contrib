@@ -1,5 +1,6 @@
 import { Button } from 'components/Button';
 import Modal from 'components/Modal';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import ConsumptionProductionToggle from 'features/map-controls/ConsumptionProductionToggle';
 import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
@@ -67,12 +68,12 @@ export function SettingsModalContent() {
   const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
   const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
     useAtom(colorblindModeAtom);
-
+  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
   const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center space-y-2">
       <div className="rounded-full bg-gray-500">
-        <ConsumptionProductionToggle />
+        {!isConsumptionOnlyMode && <ConsumptionProductionToggle />}
       </div>
       <div className="rounded-full bg-gray-500">
         <SpatialAggregatesToggle />

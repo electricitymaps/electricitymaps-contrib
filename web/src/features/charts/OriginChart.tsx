@@ -1,62 +1,81 @@
-import Accordion from 'components/Accordion';
-import { HorizontalDivider } from 'components/Divider';
 import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
-import { useAtom, useAtomValue } from 'jotai';
-import { Factory, Zap } from 'lucide-react';
+import { useAtomValue } from 'jotai';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
-import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, TimeAverages } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import {
-  dataSourcesCollapsedBreakdownAtom,
-  isConsumptionAtom,
-  isHourlyAtom,
-} from 'utils/state/atoms';
+import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
-import { DataSources } from './DataSources';
-import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
-import useBreakdownChartData from './hooks/useBreakdownChartData';
-import useZoneDataSources from './hooks/useZoneDataSources';
+import useOriginChartData from './hooks/useOriginChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import ProductionSourceLegendList from './ProductionSourceLegendList';
 import { RoundedCard } from './RoundedCard';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 import { AreaGraphElement } from './types';
 
-interface BreakdownChartProps {
+interface OriginChartProps {
   displayByEmissions: boolean;
   datetimes: Date[];
   timeAverage: TimeAverages;
 }
 
-function BreakdownChart({
-  displayByEmissions,
-  datetimes,
-  timeAverage,
-}: BreakdownChartProps) {
-  const { data } = useBreakdownChartData();
-  const isConsumption = useAtomValue(isConsumptionAtom);
-  const [dataSourcesCollapsedBreakdown, setDataSourcesCollapsedBreakdown] = useAtom(
-    dataSourcesCollapsedBreakdownAtom
+// TODO(cady): fix types to use ElectricityModeType
+export interface SelectedData {
+  select(key: string): void;
+  deselect(key: string): void;
+  isSelected(key: string): boolean;
+  toggle(key: string): void;
+  hasSelection(): boolean;
+}
+
+const useSelectedData = (displayByEmissions: boolean): SelectedData => {
+  const [selectedData, setSelectedData] = useState<Partial<Record<string, boolean>>>({});
+
+  useEffect(() => setSelectedData({}), [displayByEmissions]);
+
+  return useMemo(
+    () => ({
+      select(key: string) {
+        setSelectedData((data) => ({ ...data, [key]: true }));
+      },
+      deselect(key: string) {
+        setSelectedData((data) => ({ ...data, [key]: false }));
+      },
+      isSelected(key: string): boolean {
+        return selectedData[key] ?? false;
+      },
+      toggle(key: string) {
+        if (this.isSelected(key)) {
+          this.deselect(key);
+        } else {
+          this.select(key);
+        }
+      },
+      hasSelection(): boolean {
+        return Object.values(selectedData).some(Boolean);
+      },
+    }),
+    [selectedData]
   );
-  const {
-    emissionFactorSources,
-    powerGenerationSources,
-    emissionFactorSourcesToProductionSources,
-  } = useZoneDataSources();
+};
+
+function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChartProps) {
+  const { data } = useOriginChartData();
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
+  const selectedData = useSelectedData(displayByEmissions);
 
   if (!data) {
     return null;
   }
 
-  const isBreakdownGraphOverlayEnabled = isConsumption && !isHourly;
+  const isConsumptionAndAggregatedResolution = isConsumption && !isHourly;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 
@@ -77,6 +96,7 @@ function BreakdownChart({
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
+        id={Charts.ORIGIN_CHART}
         title={`country-history.${titleDisplayMode}${titleMixMode}`}
       />
     );
@@ -85,25 +105,23 @@ function BreakdownChart({
   return (
     <RoundedCard>
       <ChartTitle
-        translationKey={`country-history.${titleDisplayMode}${titleMixMode}`}
-        badge={isBreakdownGraphOverlayEnabled ? undefined : badge}
+        titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeAverage}`)}
+        badge={badge}
+        isEstimated={Boolean(text)}
         unit={valueAxisLabel}
+        id={Charts.ORIGIN_CHART}
       />
       <div className="relative ">
-        {isBreakdownGraphOverlayEnabled && (
-          <DisabledMessage message={t(`country-panel.disabledBreakdownChartReason`)} />
-        )}
-
         <AreaGraph
           testId="history-mix-graph"
+          isDataInteractive={true}
+          selectedData={selectedData}
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
           height="10em"
-          isDisabled={isBreakdownGraphOverlayEnabled}
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
           tooltip={BreakdownChartTooltip}
@@ -111,53 +129,23 @@ function BreakdownChart({
           {...(displayByEmissions && { formatTick: formatAxisTick })}
         />
       </div>
-      {isBreakdownGraphOverlayEnabled && (
+      {isConsumptionAndAggregatedResolution && (
         <div
           className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
-      {!isBreakdownGraphOverlayEnabled && (
-        <>
-          <ProductionSourceLegendList
-            sources={getProductionSourcesInChart(chartData)}
-            className="py-1.5"
-          />
-          <HorizontalDivider />
-          <Accordion
-            onOpen={() => {
-              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-                chart: displayByEmissions
-                  ? 'emission-origin-chart'
-                  : 'electricity-origin-chart',
-              });
-            }}
-            title={t('data-sources.title')}
-            className="text-md"
-            isCollapsed={dataSourcesCollapsedBreakdown}
-            setState={setDataSourcesCollapsedBreakdown}
-          >
-            <DataSources
-              title={t('data-sources.power')}
-              icon={<Zap size={16} />}
-              sources={powerGenerationSources}
-            />
-            <DataSources
-              title={t('data-sources.emission')}
-              icon={<Factory size={16} />}
-              sources={emissionFactorSources}
-              emissionFactorSourcesToProductionSources={
-                emissionFactorSourcesToProductionSources
-              }
-            />
-          </Accordion>
-        </>
-      )}
+      <ProductionSourceLegendList
+        sources={getProductionSourcesInChart(chartData)}
+        className="py-1.5"
+        selectedData={selectedData}
+        isDataInteractive={true}
+      />
     </RoundedCard>
   );
 }
 
-export default BreakdownChart;
+export default OriginChart;
 
 function getProductionSourcesInChart(chartData: AreaGraphElement[]) {
   const productionSources = new Set<ElectricityModeType>();

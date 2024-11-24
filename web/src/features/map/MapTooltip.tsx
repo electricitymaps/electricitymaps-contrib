@@ -44,7 +44,10 @@ export function TooltipInner({
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
         </div>
-        <TimeDisplay className="self-start text-neutral-600 dark:text-neutral-400" />
+        <TimeDisplay
+          zoneId={zoneId}
+          className="self-start text-neutral-600 dark:text-neutral-400"
+        />
       </div>
       <ZoneGaugesWithCO2Square zoneData={zoneData} />
     </div>

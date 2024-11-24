@@ -970,9 +970,6 @@
     "NI": {
       "zoneName": "Nicaragua"
     },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
-    },
     "NL": {
       "zoneName": "Netherlands"
     },
@@ -1321,8 +1318,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CAL-IID": {
       "countryName": "USA",
@@ -1427,7 +1424,7 @@
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England"
     },
     "US-NW-AVA": {
       "countryName": "USA",

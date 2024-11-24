@@ -3,15 +3,18 @@ import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis';
 import { useHeaderHeight } from 'hooks/headerHeight';
-import { useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
-import { ZoneDetail } from 'types';
+import { useParams } from 'react-router-dom';
+import { RouteParameters, ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import { TimeAverages, timeAxisMapping } from 'utils/constants';
+import { getZoneTimezone } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
-import { useBreakpoint } from 'utils/styling';
+import { useBreakpoint, useIsMobile } from 'utils/styling';
 
 import { getTimeScale } from '../graphUtils';
+import { SelectedData } from '../OriginChart';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphLayers from './AreaGraphLayers';
@@ -100,7 +103,6 @@ interface AreagraphProps {
     dataPoint: AreaGraphElement
   ) => void;
   markerHideHandler: () => void;
-  isMobile: boolean;
   isDisabled?: boolean;
   height: string;
   datetimes: Date[];
@@ -108,12 +110,16 @@ interface AreagraphProps {
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
   formatTick?: (t: number) => string | number;
+  isDataInteractive?: boolean;
+  selectedData?: SelectedData;
 }
 
 interface TooltipData {
   position: { x: number; y: number };
   zoneDetail: ZoneDetail;
 }
+
+const AreaGraphIndexSelectedAtom = atom<number | null>(null);
 
 function AreaGraph({
   data,
@@ -122,7 +128,6 @@ function AreaGraph({
   layerStroke,
   layerFill,
   markerFill,
-  isMobile,
   height = '10em',
   isDisabled = false,
   selectedTimeAggregate,
@@ -130,14 +135,18 @@ function AreaGraph({
   tooltip,
   tooltipSize,
   formatTick = String,
+  isDataInteractive = false,
+  selectedData,
 }: AreagraphProps) {
   const reference = useRef(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<HTMLDivElement>({ ref: reference });
-
-  const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
+  const isMobile = useIsMobile();
+  const selectedDate = useAtomValue(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
   const isBiggerThanMobile = useBreakpoint('sm');
+  const { zoneId } = useParams<RouteParameters>();
+  const zoneTimezone = getZoneTimezone(zoneId);
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);
   const containerHeight = Math.max(observerHeight - X_AXIS_HEIGHT, 0);
@@ -181,8 +190,8 @@ function AreaGraph({
     [containerWidth, startTime, endTime]
   );
 
-  const [graphIndex, setGraphIndex] = useState<number | null>(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(null);
+  const [graphIndex, setGraphIndex] = useAtom(AreaGraphIndexSelectedAtom);
+  const [hoveredLayerIndex, setHoveredLayerIndex] = useState<number | null>(null);
 
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
 
@@ -209,21 +218,28 @@ function AreaGraph({
       setGraphIndex(timeIndex);
       if (layers.length <= 1) {
         // Select the first (and only) layer even when hovering over background
-        setSelectedLayerIndex(0);
+        setHoveredLayerIndex(0);
       } else {
         // use the selected layer (or undefined to hide the tooltips)
-        setSelectedLayerIndex(layerIndex);
+        setHoveredLayerIndex(layerIndex);
       }
     },
-    [layers, setGraphIndex, setSelectedLayerIndex]
+    [layers, setGraphIndex, setHoveredLayerIndex]
   );
   const mouseOutHandler = useMemo(
     () => () => {
-      setGraphIndex(null);
-      setSelectedLayerIndex(null);
+      if (!isMobile) {
+        setGraphIndex(null);
+        setHoveredLayerIndex(null);
+      }
     },
-    [setGraphIndex, setSelectedLayerIndex]
+    [setGraphIndex, setHoveredLayerIndex, isMobile]
   );
+
+  const onCloseTooltip = () => {
+    setTooltipData(null);
+    setHoveredLayerIndex(null);
+  };
 
   const headerHeight = useHeaderHeight();
 
@@ -261,6 +277,9 @@ function AreaGraph({
           />
         )}
         <AreaGraphLayers
+          isDataInteractive={isDataInteractive}
+          hoveredLayerIndex={hoveredLayerIndex}
+          selectedData={selectedData}
           layers={layers}
           datetimes={datetimesWithNext}
           timeScale={timeScale}
@@ -277,6 +296,7 @@ function AreaGraph({
           scaleWidth={containerWidth}
           transform={`translate(5 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
+          timezone={zoneTimezone}
         />
         <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
         <GraphHoverLine
@@ -287,7 +307,7 @@ function AreaGraph({
           endTime={endTime}
           markerUpdateHandler={markerUpdateHandler}
           markerHideHandler={markerHideHandler}
-          selectedLayerIndex={selectedLayerIndex}
+          hoveredLayerIndex={hoveredLayerIndex}
           selectedTimeIndex={hoverLineTimeIndex}
           svgNode={reference.current}
         />
@@ -295,11 +315,12 @@ function AreaGraph({
           <AreaGraphTooltip
             {...tooltipData}
             selectedLayerKey={
-              selectedLayerIndex === null ? undefined : layerKeys[selectedLayerIndex]
+              hoveredLayerIndex === null ? undefined : layerKeys[hoveredLayerIndex]
             }
             tooltipSize={tooltipSize}
             isBiggerThanMobile={isBiggerThanMobile}
             headerHeight={headerHeight}
+            closeTooltip={onCloseTooltip}
           >
             {(props) => tooltip(props)}
           </AreaGraphTooltip>

@@ -356,6 +356,20 @@ describe('formatCo2', () => {
 
 describe('getDateTimeFormatOptions', () => {
   it('handles hourly data', () => {
+    const actual = getDateTimeFormatOptions(TimeAverages.HOURLY, 'UTC');
+    const expected = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZone: 'UTC',
+      timeZoneName: 'short',
+    };
+    expect(actual).to.deep.eq(expected);
+  });
+
+  it('handles hourly data without timezone', () => {
     const actual = getDateTimeFormatOptions(TimeAverages.HOURLY);
     const expected = {
       year: 'numeric',
@@ -363,10 +377,12 @@ describe('getDateTimeFormatOptions', () => {
       day: 'numeric',
       hour: 'numeric',
       minute: 'numeric',
+      timeZone: undefined,
       timeZoneName: 'short',
     };
     expect(actual).to.deep.eq(expected);
   });
+
   it('handles daily data', () => {
     const actual = getDateTimeFormatOptions(TimeAverages.DAILY);
     const expected = {

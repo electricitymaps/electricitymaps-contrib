@@ -6,7 +6,7 @@ import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { metaTitleSuffix, Mode } from 'utils/constants';
+import { metaTitleSuffix } from 'utils/constants';
 import {
   isConsumptionAtom,
   selectedDatetimeStringAtom,
@@ -50,28 +50,37 @@ export default function RankingPanel(): ReactElement {
     (zone) =>
       zone.countryName?.toLowerCase().includes(searchTerm) ||
       zone.zoneName?.toLowerCase().includes(searchTerm) ||
-      zone.zoneId.toLowerCase().includes(searchTerm)
+      zone.zoneId.toLowerCase().includes(searchTerm) ||
+      zone.fullZoneName?.toLowerCase().includes(searchTerm)
   );
 
   return (
-    <div className="flex max-h-[calc(100vh-236px)] flex-col py-3 pl-4 pr-1 ">
+    <div className="flex h-[calc(100vh-236px)] w-full flex-col py-3 pl-4 pr-1 ">
       <Helmet prioritizeSeoTags>
         <title>{t('misc.maintitle') + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <div className="pb-5">
-        <h1>{t('ranking-panel.title')}</h1>
-        <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
+
+      <div className="flex flex-grow flex-col overflow-hidden ">
+        <div className="pb-5">
+          <h1>{t('ranking-panel.title')}</h1>
+          <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
+        </div>
+
+        <SearchBar
+          placeholder={t('ranking-panel.search')}
+          searchHandler={inputHandler}
+          value={searchTerm}
+        />
+
+        <div className="flex-grow overflow-y-auto">
+          {filteredList.length === 0 && <div>{t('ranking-panel.no-results')}</div>}
+          <VirtualizedZoneList data={filteredList} />
+          {/* TODO: Revise the margin here once the scrollbars are fixed */}
+        </div>
       </div>
 
-      <SearchBar
-        placeholder={t('ranking-panel.search')}
-        searchHandler={inputHandler}
-        value={searchTerm}
-      />
-      <VirtualizedZoneList data={filteredList} />
-      {/* TODO: Revise the margin here once the scrollbars are fixed */}
-      <div className="my-2 pr-3">
+      <div className="mt-auto py-2 pr-3">
         <RankingPanelAccordion />
         <HorizontalDivider />
         <SocialIconRow />
