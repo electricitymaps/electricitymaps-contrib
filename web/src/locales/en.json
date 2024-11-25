@@ -141,7 +141,7 @@
       "hide": "Hide upcoming prices",
       "today": "Today",
       "tomorrow": "Tomorrow",
-      "price-disclaimer": "Prices exclude taxes and any grid fees.",
+      "price-disclaimer": "All prices are per MWh, excl. taxes & grid fees.",
       "time-disclaimer": "All times shown are in",
       "at": "At",
       "now": "Now"
