@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Tests for US_MISO.py"""
+"""Tests for US_ERCOT.py"""
 
 import json
 import logging
