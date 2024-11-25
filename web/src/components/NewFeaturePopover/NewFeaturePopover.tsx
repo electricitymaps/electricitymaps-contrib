@@ -1,4 +1,5 @@
 import * as Popover from '@radix-ui/react-popover';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { X } from 'lucide-react';
@@ -26,7 +27,9 @@ export function NewFeaturePopover({
   portal = false,
 }: NewFeaturePopoverProps) {
   const [isDismissed, setIsDismissed] = useAtom(newFeatureDismissedAtom);
+  const isNewFeaturePopoverEnabled = useFeatureFlag('new-feature-popover');
   const onDismiss = () => setIsDismissed(true);
+  const shouldDisplayPopover = isNewFeaturePopoverEnabled && !isDismissed;
 
   if (!content) {
     return children;
@@ -51,7 +54,7 @@ export function NewFeaturePopover({
   );
 
   return (
-    <Popover.Root open={!isDismissed}>
+    <Popover.Root open={shouldDisplayPopover}>
       <Popover.Anchor>{children}</Popover.Anchor>
       {portal ? <Popover.Portal>{inner}</Popover.Portal> : inner}
     </Popover.Root>
