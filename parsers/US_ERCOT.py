@@ -261,14 +261,14 @@ def fetch_historical_production(
 
     for hour_dt, production_and_storage in datapoints_by_date.items():
         production = production_and_storage.get("production", ProductionMix())
-        storage = production_and_storage.get("storage", StorageMix())
+        # storage = production_and_storage.get("storage", StorageMix())
 
         production_breakdowns.append(
             zoneKey=ZoneKey(zone_key),
             datetime=hour_dt,
             source=SOURCE,
             production=production,
-            storage=storage,
+            # storage=storage,
         )
 
     return production_breakdowns
