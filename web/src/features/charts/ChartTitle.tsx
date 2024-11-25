@@ -1,8 +1,8 @@
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
+import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
 import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { baseUrl, Charts } from 'utils/constants';
-import { useGetZoneFromPath } from 'utils/helpers';
+import { Charts } from 'utils/constants';
 
 type Props = {
   titleText?: string;
@@ -22,8 +22,7 @@ export function ChartTitle({
   id,
 }: Props) {
   const showMoreOptions = useShowMoreOptions();
-  const zoneId = useGetZoneFromPath();
-  const url = `${baseUrl}/zone/${zoneId}`;
+  const url = useGetCurrentUrl();
   const shareUrl = id ? `${url}#${id}` : url;
   const { t } = useTranslation();
 
