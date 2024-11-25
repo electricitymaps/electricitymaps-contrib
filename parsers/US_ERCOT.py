@@ -223,8 +223,6 @@ def fetch_historical_production(
     if target_datetime.tzinfo is None:
         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
-    end = target_datetime + timedelta(hours=1)
-    start = end - timedelta(days=1)
     year = target_datetime.year
     month = target_datetime.strftime("%b")
 
@@ -240,16 +238,11 @@ def fetch_historical_production(
         date = datetime.strptime(str(row["Date"]), "%Y-%m-%d %H:%M:%S").replace(
             tzinfo=TX_TZ
         )
-        if date < (start + timedelta(days=-1)) or date > (end + timedelta(days=1)):
-            continue
 
         production_source = GENERATION_MAPPING[row["Fuel"]]
 
         for hour in range(0, 24):
             hour_dt = date + timedelta(hours=hour)
-
-            if hour_dt < start or hour_dt > end:
-                continue
 
             # We get the data in 15 minute intervals, so we need to sum the 4 columns that represent an hour
             start_idx = hour * 4
@@ -315,7 +308,7 @@ def fetch_live_exchange(
     return validated_data_points
 
 
-@refetch_frequency(timedelta(days=1))
+@refetch_frequency(timedelta(days=30))  # A month
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
     session: Session | None = None,
