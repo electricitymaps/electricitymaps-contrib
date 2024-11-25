@@ -9,7 +9,11 @@ import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import { getZoneTimezone, isValidHistoricalTime } from 'utils/helpers';
+import {
+  getZoneTimezone,
+  isValidHistoricalTime,
+  useNavigateWithParameters,
+} from 'utils/helpers';
 import {
   endDatetimeAtom,
   selectedDatetimeIndexAtom,
@@ -34,6 +38,7 @@ export default function TimeController({ className }: { className?: string }) {
   const { urlDatetime } = useParams();
   const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const zoneTimezone = getZoneTimezone(zoneId);
+  const navigate = useNavigateWithParameters();
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
   const isLoading = dataLoading || Object.keys(data?.data?.datetimes ?? {}).length === 1;
@@ -60,6 +65,25 @@ export default function TimeController({ className }: { className?: string }) {
       setStartDatetime(datetimes.at(0));
     }
   }, [data, datetimes, setEndDatetime, setSelectedDatetime, setStartDatetime]);
+
+  // Sync the url to the datetime returned by the backend
+  useEffect(() => {
+    if (!datetimes || !urlDatetime) {
+      return;
+    }
+
+    const endDatetime = datetimes.at(-1);
+    if (!endDatetime) {
+      return;
+    }
+
+    const urlDate = new Date(urlDatetime).getTime();
+    const endDate = endDatetime.getTime();
+
+    if (urlDate !== endDate) {
+      navigate({ datetime: endDatetime.toISOString() });
+    }
+  }, [datetimes, urlDatetime, navigate]);
 
   const onTimeSliderChange = useCallback(
     (index: number) => {

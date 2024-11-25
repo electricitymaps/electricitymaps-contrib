@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import { TimeAverages } from 'utils/constants';
+import { MAX_HISTORICAL_LOOKBACK_DAYS, TimeAverages } from 'utils/constants';
 import { isValidHistoricalTime, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
@@ -75,6 +75,23 @@ export default function HistoricalTimeHeader() {
   const { handleRightClick, handleLeftClick, handleLatestClick } =
     useHistoricalNavigation();
 
+  // TODO: move into useHistoricalNavigation?
+  const isWithinHistoricalLimit = useMemo(() => {
+    if (!urlDatetime) {
+      return true;
+    }
+
+    const targetDate = new Date(urlDatetime);
+    targetDate.setUTCHours(targetDate.getUTCHours() - 24);
+
+    const maxHistoricalDate = new Date();
+    maxHistoricalDate.setUTCDate(
+      maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
+    );
+
+    return targetDate >= maxHistoricalDate;
+  }, [urlDatetime]);
+
   return (
     <div className="flex min-h-6 flex-row items-center justify-between">
       {startDatetime && endDatetime && (
@@ -96,12 +113,13 @@ export default function HistoricalTimeHeader() {
             onClick={handleLeftClick}
             size="sm"
             type="tertiary"
+            isDisabled={!isWithinHistoricalLimit}
             icon={
               <ChevronLeft
                 size={22}
                 className={twMerge(
                   'text-brand-green',
-                  !isHistoricalTimeAverage && 'opacity-50'
+                  !isHistoricalTimeAverage && !isWithinHistoricalLimit && 'opacity-50'
                 )}
               />
             }

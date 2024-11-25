@@ -1,20 +1,22 @@
 import { CountryFlag } from 'components/Flag';
+import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
 import { useSetAtom } from 'jotai';
-import { ArrowLeft, Info } from 'lucide-react';
+import { ArrowLeft, Ellipsis, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import {
   getCountryName,
   getFullZoneName,
   getSEOZoneName,
   getZoneName,
 } from 'translation/translation';
-import { ZoneKey } from 'types';
-import { baseUrl, metaTitleSuffix } from 'utils/constants';
+import { metaTitleSuffix } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 
 import { ShareButton } from './ShareButton';
@@ -28,12 +30,7 @@ interface ZoneHeaderTitleProps {
 
 const MAX_TITLE_LENGTH = 25;
 
-function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
-  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
-  return url;
-}
-
-export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
+export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);
   const seoZoneName = getSEOZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
@@ -54,7 +51,9 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
       to: '/map',
     });
   };
-  const shareUrl = getCurrentUrl({ zoneId });
+  const shareUrl = useGetCurrentUrl();
+  const showMoreOptions = useShowMoreOptions();
+  const { t } = useTranslation();
 
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">
@@ -105,7 +104,19 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
-      {isShareButtonEnabled && <ShareButton shareUrl={shareUrl} />}
+      {isShareButtonEnabled &&
+        (showMoreOptions ? (
+          <MoreOptionsDropdown
+            id="zone"
+            shareUrl={shareUrl}
+            title={t(`more-options-dropdown.title`) + ` ${zoneNameFull}`}
+            isEstimated={isEstimated}
+          >
+            <Ellipsis />
+          </MoreOptionsDropdown>
+        ) : (
+          <ShareButton shareUrl={shareUrl} />
+        ))}
     </div>
   );
 }

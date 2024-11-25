@@ -125,7 +125,7 @@ function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
 
 export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
-  const { zoneId, urlTimeAverage } = useParams<RouteParameters>();
+  const { zoneId } = useParams<RouteParameters>();
   if (!zoneId) {
     return <Navigate to={`/map/24h?${searchParameters}`} replace />;
   }
@@ -144,12 +144,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   }
 
   if (zoneId !== sanitizedZoneId) {
-    return (
-      <Navigate
-        to={`/zone/${sanitizedZoneId}/${urlTimeAverage}?${searchParameters}`}
-        replace
-      />
-    );
+    return <Navigate to={`/zone/${sanitizedZoneId}?${searchParameters}`} replace />;
   }
 
   // Only allow valid zone ids

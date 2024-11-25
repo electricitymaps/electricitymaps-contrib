@@ -13,6 +13,8 @@ export enum TimeAverages {
   YEARLY = 'yearly',
 }
 
+export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
+
 export enum UrlTimeAverages {
   '24h' = TimeAverages.HOURLY,
   '72h' = TimeAverages.HOURLY_72,
