@@ -1,5 +1,7 @@
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
+import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
 import { Ellipsis } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Charts } from 'utils/constants';
 
 type Props = {
@@ -8,7 +10,7 @@ type Props = {
   badge?: React.ReactElement;
   className?: string;
   isEstimated?: boolean;
-  id?: Charts;
+  id: Charts;
 };
 
 export function ChartTitle({
@@ -20,6 +22,10 @@ export function ChartTitle({
   id,
 }: Props) {
   const showMoreOptions = useShowMoreOptions();
+  const url = useGetCurrentUrl();
+  const shareUrl = id ? `${url}#${id}` : url;
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col pb-0.5">
       <div className={`flex items-center gap-1.5 pt-4 ${className}`}>
@@ -28,7 +34,12 @@ export function ChartTitle({
         </h2>
         {badge}
         {showMoreOptions && (
-          <MoreOptionsDropdown isEstimated={isEstimated}>
+          <MoreOptionsDropdown
+            title={t(`more-options-dropdown.chart-title`)}
+            isEstimated={isEstimated}
+            id={id}
+            shareUrl={shareUrl}
+          >
             <Ellipsis />
           </MoreOptionsDropdown>
         )}

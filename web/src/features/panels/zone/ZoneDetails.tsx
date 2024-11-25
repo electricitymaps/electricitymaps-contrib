@@ -5,9 +5,9 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { ZoneMessage } from 'types';
+import { RouteParameters, ZoneMessage } from 'types';
 import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
 import {
   displayByEmissionsAtom,
@@ -29,7 +29,7 @@ import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<RouteParameters>();
   const timeAverage = useAtomValue(timeAverageAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
@@ -57,13 +57,13 @@ export default function ZoneDetails(): JSX.Element {
   useScrollHashIntoView(isLoading);
 
   if (!zoneId) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
@@ -78,7 +78,7 @@ export default function ZoneDetails(): JSX.Element {
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
     <>
-      <ZoneHeaderTitle zoneId={zoneId} />
+      <ZoneHeaderTitle zoneId={zoneId} isEstimated={cardType === 'estimated'} />
       <div
         id="panel-scroller"
         className={twMerge(
@@ -195,7 +195,6 @@ function ZoneDetailsContent({
 
 const useScrollHashIntoView = (isLoading: boolean) => {
   const { hash, pathname, search } = useLocation();
-  const navigate = useNavigate();
   const anchor = hash.toLowerCase();
 
   useEffect(() => {
@@ -221,5 +220,5 @@ const useScrollHashIntoView = (isLoading: boolean) => {
         element.scrollTop = 0;
       }
     }
-  }, [anchor, isLoading, navigate, pathname, search]);
+  }, [anchor, isLoading, pathname, search]);
 };

@@ -3,7 +3,7 @@
 """Parser for the PJM area of the United States."""
 
 import re
-from datetime import datetime, time, timedelta, timezone
+from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -103,15 +103,20 @@ def fetch_api_data(kind: str, params: dict, session: Session) -> dict:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-PJM",
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """uses PJM API to get generation  by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
+    """uses PJM API to get generation by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc).replace(
+        target_datetime = datetime.now(TIMEZONE).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
+    else:
+        target_datetime = target_datetime.astimezone(TIMEZONE)
+
+    if not session:
+        session = Session()
 
     params = {
         "startRow": 1,
@@ -271,13 +276,16 @@ def combine_NY_exchanges(session: Session) -> list:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
     """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    if not session:
+        session = Session()
 
     # PJM reports exports as negative.
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
@@ -323,13 +331,16 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = "US-PJM",
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power price of a given country."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    if not session:
+        session = Session()
 
     res: Response = session.get(url)
     soup = BeautifulSoup(res.text, "html.parser")

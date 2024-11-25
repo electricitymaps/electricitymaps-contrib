@@ -12,6 +12,15 @@ export enum TimeAverages {
   YEARLY = 'yearly',
 }
 
+export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
+
+export enum UrlTimeAverages {
+  '24h' = TimeAverages.HOURLY,
+  '30d' = TimeAverages.DAILY,
+  '12mo' = TimeAverages.MONTHLY,
+  'all' = TimeAverages.YEARLY,
+}
+
 export enum ToggleOptions {
   ON = 'on',
   OFF = 'off',
@@ -48,7 +57,6 @@ export enum Charts {
 }
 
 export enum TrackEvent {
-  DATA_SOURCES_CLICKED = 'Data Sources Clicked',
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
   APP_BANNER_DISMISSED = 'App Banner Dismissed',
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
@@ -67,7 +75,7 @@ export enum TrackEvent {
   PANEL_PRODUCTION_BUTTON_CLICKED = 'PanelProductionButton Clicked',
   PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
   ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
-  APPLIED_METHODOLOGIES_EXPANDED = 'AppliedMethodologies Expanded',
+  METHODOLOGIES_AND_DATA_SOURCES_EXPANDED = 'Methodologies and Data Sources Expanded',
   TIME_AGGREGATE_BUTTON_CLICKED = 'Time Aggregate Button Clicked',
   SOLAR_ENABLED = 'Solar Enabled',
   SOLAR_DISABLED = 'Solar Disabled',

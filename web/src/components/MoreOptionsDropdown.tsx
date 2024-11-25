@@ -7,8 +7,13 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { twMerge } from 'tailwind-merge';
-import { ShareType, trackShareChart } from 'utils/analytics';
-import { baseUrl, DEFAULT_ICON_SIZE, DEFAULT_TOAST_DURATION } from 'utils/constants';
+import { getTrackByShareType, ShareType } from 'utils/analytics';
+import {
+  baseUrl,
+  Charts,
+  DEFAULT_ICON_SIZE,
+  DEFAULT_TOAST_DURATION,
+} from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
 import { displayByEmissionsAtom, isHourlyAtom } from 'utils/state/atoms';
 
@@ -17,18 +22,13 @@ import { MemoizedShareIcon } from './ShareIcon';
 import { TimeDisplay } from './TimeDisplay';
 import { Toast, useToastReference } from './Toast';
 
-// TODO: add chartId to tracking
-const onTrackShareChartReddit = trackShareChart(ShareType.REDDIT);
-const onTrackShareChartTwitter = trackShareChart(ShareType.TWITTER);
-const onTrackShareChartLinkedin = trackShareChart(ShareType.LINKEDIN);
-const onTrackShareChartFacebook = trackShareChart(ShareType.FACEBOOK);
-const onTrackShareChart = trackShareChart(ShareType.SHARE);
-
 export interface MoreOptionsDropdownProps {
   children: React.ReactElement;
   shareUrl?: string;
   hasMobileUserAgent?: boolean;
   isEstimated?: boolean;
+  title?: string;
+  id: Charts | 'zone';
 }
 
 const dropdownItemStyle = 'flex items-center gap-2 py-2';
@@ -39,6 +39,8 @@ export function MoreOptionsDropdown({
   shareUrl = baseUrl,
   hasMobileUserAgent = hasMobileUA(),
   isEstimated = false,
+  title,
+  id,
 }: MoreOptionsDropdownProps) {
   const { t } = useTranslation();
   const [toastMessage, setToastMessage] = useState('');
@@ -47,6 +49,8 @@ export function MoreOptionsDropdown({
   const { copyToClipboard, share } = useShare();
 
   const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
+
+  const handleTrackShares = getTrackByShareType(id);
 
   const { onShare, copyShareUrl } = useMemo(() => {
     const toastMessageCallback = (message: string) => {
@@ -57,7 +61,7 @@ export function MoreOptionsDropdown({
     return {
       copyShareUrl: () => {
         copyToClipboard(shareUrl, toastMessageCallback);
-        trackShareChart(ShareType.COPY);
+        handleTrackShares[ShareType.COPY]();
       },
       onShare: () => {
         share(
@@ -68,10 +72,16 @@ export function MoreOptionsDropdown({
           },
           toastMessageCallback
         );
-        onTrackShareChart();
+        handleTrackShares[ShareType.SHARE]();
       },
     };
-  }, [reference, shareUrl, summary, share, copyToClipboard]);
+  }, [reference, shareUrl, summary, share, copyToClipboard, handleTrackShares]);
+
+  const dropdownTitle = title || t('more-options-dropdown.title');
+
+  const copyLinkText = t(
+    `more-options-dropdown.${id === 'zone' ? 'copy-zone-link' : 'copy-chart-link'}`
+  );
 
   return (
     <>
@@ -91,7 +101,7 @@ export function MoreOptionsDropdown({
           <div className="px-3 pb-2 pt-3">
             <DropdownMenu.Label className="flex flex-col">
               <div className="align-items flex justify-between">
-                <h2 className="self-start text-sm">{t('more-options-dropdown.title')}</h2>
+                <h2 className="self-start text-sm">{dropdownTitle}</h2>
                 <DefaultCloseButton onClose={onDismiss} />
               </div>
               <TimeDisplay className="whitespace-nowrap text-xs font-normal text-neutral-600 dark:text-gray-300" />
@@ -100,9 +110,7 @@ export function MoreOptionsDropdown({
             <DropdownMenu.Group className="flex cursor-pointer flex-col">
               <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
                 <Link size={DEFAULT_ICON_SIZE} />
-                <p className={dropdownContentStyle}>
-                  {t('more-options-dropdown.copy-chart-link')}
-                </p>
+                <p className={dropdownContentStyle}>{copyLinkText}</p>
               </DropdownMenu.Item>
               {hasMobileUserAgent && (
                 <DropdownMenu.Item className={dropdownItemStyle} onSelect={onShare}>
@@ -118,7 +126,7 @@ export function MoreOptionsDropdown({
                     data-test-id="twitter-chart-share"
                     target="_blank"
                     rel="noopener"
-                    onClick={onTrackShareChartTwitter}
+                    onClick={handleTrackShares[ShareType.TWITTER]}
                     href={`https://twitter.com/intent/tweet?&url=${shareUrl}&text=${encodeURI(
                       summary
                     )}&hashtags=electricitymaps`}
@@ -132,7 +140,7 @@ export function MoreOptionsDropdown({
                     data-test-id="facebook-chart-share"
                     target="_blank"
                     rel="noopener"
-                    onClick={onTrackShareChartFacebook}
+                    onClick={handleTrackShares[ShareType.FACEBOOK]}
                     href={`https://facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodeURI(
                       summary
                     )}`}
@@ -147,7 +155,7 @@ export function MoreOptionsDropdown({
                     href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`}
                     target="_blank"
                     rel="noopener"
-                    onClick={onTrackShareChartLinkedin}
+                    onClick={handleTrackShares[ShareType.LINKEDIN]}
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaLinkedin size={DEFAULT_ICON_SIZE} />
@@ -159,7 +167,7 @@ export function MoreOptionsDropdown({
                     href={`https://www.reddit.com/web/submit?url=${shareUrl}`}
                     target="_blank"
                     rel="noopener"
-                    onClick={onTrackShareChartReddit}
+                    onClick={handleTrackShares[ShareType.REDDIT]}
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaReddit size={DEFAULT_ICON_SIZE} />
@@ -197,10 +205,9 @@ const useDropdownCtl = () => {
 };
 
 export function useShowMoreOptions() {
-  const isMoreOptionsFFOn = useFeatureFlag('more-options-dropdown');
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isMoreOptionsEnabled = useFeatureFlag('more-options-dropdown');
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const showMoreOptions = isMoreOptionsFFOn && isHourly && !displayByEmissions;
+  const showMoreOptions = isMoreOptionsEnabled && !displayByEmissions;
 
   return showMoreOptions;
 }

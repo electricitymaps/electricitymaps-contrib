@@ -4,6 +4,7 @@ import { Ellipsis } from 'lucide-react';
 import { I18nextProvider } from 'react-i18next';
 import { BrowserRouter } from 'react-router-dom';
 import i18n from 'translation/i18n';
+import { Charts } from 'utils/constants';
 
 import { MoreOptionsDropdown } from './MoreOptionsDropdown';
 
@@ -37,6 +38,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="hello"
           isEstimated={false}
+          id={Charts.ORIGIN_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -55,6 +57,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="hello"
           isEstimated={false}
+          id={Charts.ORIGIN_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -73,6 +76,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="hello"
           isEstimated={false}
+          id={Charts.ORIGIN_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -92,6 +96,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="hello"
           isEstimated={false}
+          id={Charts.ORIGIN_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -135,6 +140,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="hello"
           isEstimated={true}
+          id={Charts.ORIGIN_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -151,6 +157,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="hello"
           isEstimated={true}
+          id={Charts.ORIGIN_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -170,6 +177,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="hello"
           isEstimated={true}
+          id={Charts.ORIGIN_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>

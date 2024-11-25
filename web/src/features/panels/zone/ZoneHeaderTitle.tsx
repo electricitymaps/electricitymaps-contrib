@@ -1,17 +1,23 @@
 import { CountryFlag } from 'components/Flag';
+import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { TimeDisplay } from 'components/TimeDisplay';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
 import { useSetAtom } from 'jotai';
-import { ArrowLeft, Info } from 'lucide-react';
+import { ArrowLeft, Ellipsis, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { getCountryName, getFullZoneName, getZoneName } from 'translation/translation';
-import { ZoneKey } from 'types';
-import { baseUrl, metaTitleSuffix } from 'utils/constants';
-import { createToWithState } from 'utils/helpers';
+import { useTranslation } from 'react-i18next';
+import {
+  getCountryName,
+  getFullZoneName,
+  getSEOZoneName,
+  getZoneName,
+} from 'translation/translation';
+import { metaTitleSuffix } from 'utils/constants';
+import { useNavigateWithParameters } from 'utils/helpers';
 
 import { ShareButton } from './ShareButton';
 import { getDisclaimer } from './util';
@@ -24,16 +30,13 @@ interface ZoneHeaderTitleProps {
 
 const MAX_TITLE_LENGTH = 25;
 
-function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
-  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
-  return url;
-}
-
-export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
+export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);
+  const seoZoneName = getSEOZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
   const showTooltip = zoneName !== zoneNameFull || zoneName.length >= MAX_TITLE_LENGTH;
-  const returnToMapLink = createToWithState('/map', true);
+  const navigate = useNavigateWithParameters();
+
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
   const showCountryPill =
@@ -42,23 +45,36 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
   const canonicalUrl = useGetCanonicalUrl();
   const isShareButtonEnabled = useFeatureFlag('share-button');
 
-  const onNavigateBack = () => setIsMapMoving(false);
-  const shareUrl = getCurrentUrl({ zoneId });
+  const onNavigateBack = () => {
+    setIsMapMoving(false);
+    navigate({
+      to: '/map',
+    });
+  };
+  const shareUrl = useGetCurrentUrl();
+  const showMoreOptions = useShowMoreOptions();
+  const { t } = useTranslation();
 
   return (
     <div className="flex w-full items-center pl-2 pr-3 pt-2">
       <Helmet prioritizeSeoTags>
-        <title>{zoneName + metaTitleSuffix}</title>
+        <title>{seoZoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <Link
+      <div
         className="self-center py-4 pr-4 text-xl"
-        to={returnToMapLink}
         data-test-id="left-panel-back-button"
         onClick={onNavigateBack}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            onNavigateBack();
+          }
+        }}
       >
         <ArrowLeft />
-      </Link>
+      </div>
 
       <div className="w-full overflow-hidden">
         <div className="flex w-full items-center gap-2 pr-2 md:pr-4">
@@ -88,7 +104,19 @@ export default function ZoneHeaderTitle({ zoneId }: ZoneHeaderTitleProps) {
         </div>
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
-      {isShareButtonEnabled && <ShareButton shareUrl={shareUrl} />}
+      {isShareButtonEnabled &&
+        (showMoreOptions ? (
+          <MoreOptionsDropdown
+            id="zone"
+            shareUrl={shareUrl}
+            title={t(`more-options-dropdown.title`) + ` ${zoneNameFull}`}
+            isEstimated={isEstimated}
+          >
+            <Ellipsis />
+          </MoreOptionsDropdown>
+        ) : (
+          <ShareButton shareUrl={shareUrl} />
+        ))}
     </div>
   );
 }

@@ -11,14 +11,13 @@ export default function TimeHeader() {
   const { t, i18n } = useTranslation();
   const timeAverage = useAtomValue(timeAverageAtom);
   const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
-  const { isLoading: isLoadingData } = useGetState();
-
+  const { isLoading } = useGetState();
   return (
     <div className="flex min-h-6 flex-row items-center">
       <h3 className="grow select-none text-left">
         {t(`time-controller.title.${timeAverage}`)}
       </h3>
-      {!isLoadingData && (
+      {!isLoading && (
         <NewFeaturePopover
           side="top"
           content={<NewFeaturePopoverContent />}

@@ -9,7 +9,7 @@ export default function ZoomControls(): ReactElement {
     <NavigationControl
       style={{
         marginRight: 12,
-        marginTop: marginTop,
+        marginTop: `calc(${marginTop}px + env(safe-area-inset-top, 0px))`,
         width: '33px',
         boxShadow: '0px 1px 1px  rgb(0 0 0 / 0.1)',
         border: 0,
