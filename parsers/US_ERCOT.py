@@ -126,6 +126,7 @@ def fetch_live_production(
     session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
+    session = session or Session()
     gen_data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
     production_breakdowns = ProductionBreakdownList(logger)
 
@@ -315,6 +316,7 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    session = session or Session()
     if target_datetime is None or target_datetime > (
         datetime.now(tz=timezone.utc) - timedelta(days=1)
     ).replace(tzinfo=target_datetime.tzinfo if target_datetime else timezone.utc):
