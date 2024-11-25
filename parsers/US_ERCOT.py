@@ -58,8 +58,11 @@ GENERATION_MAPPING = {
 EXCHANGE_MAPPING = {"US-CENT-SWPP": ["dcE", "dcN"], "MX-NE": ["dcL"], "MX-NO": ["dcR"]}
 
 
-def get_data(url: str, session: Session):
+def get_data(url: str, session: Session | None = None):
     """requests ERCOT url and return json"""
+    if not session:
+        session = Session()
+
     resp: Response = session.get(url, verify=False)
     response_text = gzip.decompress(resp.content).decode("utf-8")
     data_json = json.loads(response_text)
@@ -90,7 +93,7 @@ def parse_storage_data(session: Session):
 
 def fetch_live_consumption(
     zone_key: str,
-    session: Session,
+    session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     data_json = get_data(url=RT_CONSUMPTION_URL, session=session)
@@ -114,7 +117,7 @@ def fetch_live_consumption(
 
 def fetch_live_production(
     zone_key: str,
-    session: Session,
+    session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     gen_data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
@@ -170,7 +173,10 @@ def fetch_live_production(
     return all_data_points
 
 
-def get_sheet_from_date(year: int, month: str, session: Session):
+def get_sheet_from_date(year: int, month: str, session: Session | None = None):
+    if not session:
+        session = Session()
+
     if year > 2020:
         url = HISTORICAL_GENERATION_URL[str(year)]
         return pd.read_excel(url, engine="openpyxl", sheet_name=month)
@@ -265,7 +271,7 @@ def fetch_historical_production(
 def fetch_live_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Session = Session(),
+    session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     data_json = get_data(url=RT_EXCHANGE_URL, session=session)
@@ -298,7 +304,7 @@ def fetch_live_exchange(
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
@@ -320,7 +326,7 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
@@ -343,7 +349,7 @@ def fetch_consumption(
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
