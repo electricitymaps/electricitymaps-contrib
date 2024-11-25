@@ -8,7 +8,6 @@ from io import BytesIO
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from requests import Response, Session
 
@@ -98,7 +97,9 @@ def fetch_live_consumption(
     all_data_points = []
     for key in ["previousDay", "currentDay"]:
         data_dict = data_json[key]
-        dt = arrow.get(data_dict["dayDate"]).datetime.replace(tzinfo=TX_TZ)
+        dt = datetime.strptime(data_dict["dayDate"], "%Y-%m-%d %H:%M:%S%z").replace(
+            tzinfo=TX_TZ
+        )
         for item in data_dict["data"]:
             if "systemLoad" in item:
                 data_point = {
@@ -323,11 +324,9 @@ def fetch_consumption(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    now = datetime.now(tz=timezone.utc)
-    if (
-        target_datetime is None
-        or target_datetime > arrow.get(now).floor("day").shift(days=-1).datetime
-    ):
+    if target_datetime is None or target_datetime >= datetime.now(tz=TX_TZ).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    ) - timedelta(days=1):
         consumption = fetch_live_consumption(
             zone_key=zone_key, session=session, logger=logger
         )
@@ -349,9 +348,8 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list:
     now = datetime.now(tz=TX_TZ)
-    if (
-        target_datetime is None
-        or target_datetime > arrow.get(now).floor("day").datetime
+    if target_datetime is None or target_datetime >= datetime.now(tz=TX_TZ).replace(
+        hour=0, minute=0, second=0, microsecond=0
     ):
         target_datetime = now
         exchanges = fetch_live_exchange(zone_key1, zone_key2, session, logger)
