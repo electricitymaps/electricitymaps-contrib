@@ -34,7 +34,7 @@ ruamel-yaml = "^0.17.24"
 odfpy = { version = "^1.4.1", optional = true }
 pycountry = { version = "^22.3.5", optional = true }
 ruff = "0.4.3"
-tzdata = "^2024.1"
+tzdata = "^2024.2"
 numpy = "^1.24.4"
 
 [tool.poetry.scripts]
