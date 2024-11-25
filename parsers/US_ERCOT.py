@@ -156,18 +156,15 @@ def fetch_live_production(
                 if storage_values:
                     storage["battery"] = sum(storage_values) / len(storage_values)
 
-            if hour_dt < datetime.now(tz=TX_TZ).replace(
-                minute=0, second=0, microsecond=0
-            ):  # We only want to add the datapoint if the hour has passed
-                all_data_points.append(
-                    {
-                        "zoneKey": zone_key,
-                        "datetime": hour_dt,
-                        "production": production,
-                        "storage": storage,
-                        "source": "ercot.com",
-                    }
-                )
+            all_data_points.append(
+                {
+                    "zoneKey": zone_key,
+                    "datetime": hour_dt,
+                    "production": production,
+                    "storage": storage,
+                    "source": "ercot.com",
+                }
+            )
 
     return all_data_points
 
