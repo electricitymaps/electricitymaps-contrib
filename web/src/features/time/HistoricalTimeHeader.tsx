@@ -3,10 +3,12 @@ import { Button } from 'components/Button';
 import { FormattedTime } from 'components/Time';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
+import { MAX_HISTORICAL_LOOKBACK_DAYS } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
 
@@ -19,6 +21,21 @@ export default function HistoricalTimeHeader() {
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
+  const isWithinHistoricalLimit = useMemo(() => {
+    if (!urlDatetime) {
+      return true;
+    }
+
+    const targetDate = new Date(urlDatetime);
+    targetDate.setUTCHours(targetDate.getUTCHours() - 24);
+
+    const maxHistoricalDate = new Date();
+    maxHistoricalDate.setUTCDate(
+      maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
+    );
+
+    return targetDate >= maxHistoricalDate;
+  }, [urlDatetime]);
 
   function handleRightClick() {
     if (!endDatetime || !urlDatetime) {
@@ -36,7 +53,7 @@ export default function HistoricalTimeHeader() {
   }
 
   function handleLeftClick() {
-    if (!endDatetime) {
+    if (!endDatetime || !isWithinHistoricalLimit) {
       return;
     }
     const currentEndDatetime = new Date(endDatetime);
@@ -65,10 +82,14 @@ export default function HistoricalTimeHeader() {
             onClick={handleLeftClick}
             size="sm"
             type="tertiary"
+            isDisabled={!isWithinHistoricalLimit}
             icon={
               <ChevronLeft
                 size={22}
-                className={twMerge('text-brand-green', !isHourly && 'opacity-50')}
+                className={twMerge(
+                  'text-brand-green',
+                  !isWithinHistoricalLimit && 'opacity-50'
+                )}
               />
             }
           />
@@ -80,10 +101,7 @@ export default function HistoricalTimeHeader() {
             isDisabled={!urlDatetime}
             icon={
               <ChevronRight
-                className={twMerge(
-                  'text-brand-green',
-                  (!urlDatetime || !isHourly) && 'opacity-50'
-                )}
+                className={twMerge('text-brand-green', !urlDatetime && 'opacity-50')}
                 size={22}
               />
             }
@@ -95,10 +113,7 @@ export default function HistoricalTimeHeader() {
             isDisabled={!urlDatetime}
             icon={
               <ArrowRightToLine
-                className={twMerge(
-                  'text-brand-green',
-                  (!urlDatetime || !isHourly) && 'opacity-50'
-                )}
+                className={twMerge('text-brand-green', !urlDatetime && 'opacity-50')}
                 size={22}
               />
             }
