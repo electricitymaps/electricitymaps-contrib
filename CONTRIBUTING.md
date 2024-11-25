@@ -172,6 +172,7 @@ flowchart LR
 ```
 
 ## Description
+
 In order to do code changes to the Electricity Maps repository you need to fork the repo and make changes in your own fork and then open a pull request (PR) against the Electricity Maps repository.
 
 Once this has been done the automatic and manual review process starts, this consists of manual approval of the CI pipeline if you are a first time contributor, if the CI pipeline passes a team member will review your specific code changes. If they pass all automated tests and manual review from a Electricity Maps Employee it will be merged in our contrib PR. This does not mean it will be automatically de deployed or that the changes will be instantly visible.
