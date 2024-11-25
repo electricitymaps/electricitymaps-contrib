@@ -29,7 +29,7 @@ class TestUSERCOT(unittest.TestCase):
         with self.subTest():
             self.assertIsNotNone(data)
         with self.subTest():
-            self.assertEqual(data[0]["production"]["coal"], 5067.958333333333)
+            self.assertEqual(data[0]["production"]["coal"], 5067.958333)
         with self.subTest():
             expected_dt = datetime(2024, 11, 24, 8, 0, tzinfo=ZoneInfo("US/Central"))
             self.assertEqual(data[-1]["datetime"], expected_dt)
