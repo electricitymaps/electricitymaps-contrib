@@ -316,6 +316,7 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    session = session or Session()
     if target_datetime is None or target_datetime > (
         datetime.now(tz=timezone.utc) - timedelta(days=1)
     ).replace(tzinfo=target_datetime.tzinfo if target_datetime else timezone.utc):
