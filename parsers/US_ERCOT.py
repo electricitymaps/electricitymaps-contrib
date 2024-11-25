@@ -12,6 +12,11 @@ import pandas as pd
 from requests import Response, Session
 
 import parsers.EIA as EIA
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.validation import validate_exchange
 
@@ -96,9 +101,9 @@ def fetch_live_consumption(
     zone_key: str,
     session: Session | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> TotalConsumptionList:
     data_json = get_data(url=RT_CONSUMPTION_URL, session=session)
-    all_data_points = []
+    consumption_list = TotalConsumptionList(logger)
     for key in ["previousDay", "currentDay"]:
         data_dict = data_json[key]
         dt = datetime.strptime(data_dict["dayDate"], "%Y-%m-%d %H:%M:%S%z").replace(
@@ -106,23 +111,22 @@ def fetch_live_consumption(
         )
         for item in data_dict["data"]:
             if "systemLoad" in item:
-                data_point = {
-                    "datetime": dt.replace(hour=item["hourEnding"] - 1),
-                    "consumption": item["systemLoad"],
-                    "zoneKey": zone_key,
-                    "source": SOURCE,
-                }
-                all_data_points.append(data_point)
-    return all_data_points
+                consumption_list.append(
+                    zoneKey=zone_key,
+                    datetime=dt.replace(hour=item["hourEnding"] - 1),
+                    consumption=item["systemLoad"],
+                    source=SOURCE,
+                )
+    return consumption_list
 
 
 def fetch_live_production(
     zone_key: str,
     session: Session | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> ProductionBreakdownList:
     gen_data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
-    all_data_points = []
+    production_breakdowns = ProductionBreakdownList(logger)
 
     # Process storage data first
     storage_by_hour = parse_storage_data(session)
@@ -147,31 +151,35 @@ def fetch_live_production(
                     hourly_data[hour_dt][production_source].append(data["gen"])
 
         for hour_dt, modes in hourly_data.items():
-            production = {}
-            storage = {}
+            production = ProductionMix()
+            storage = StorageMix()
 
             # Add generation data
             for mode, values in modes.items():
                 if values:
-                    production[mode] = sum(values) / len(values)
+                    production.add_value(
+                        mode,
+                        (sum(values) / len(values)),
+                        correct_negative_with_zero=True,
+                    )
 
             # Add storage data if available for this hour
             if hour_dt in storage_by_hour:
                 storage_values = storage_by_hour[hour_dt]
                 if storage_values:
-                    storage["battery"] = sum(storage_values) / len(storage_values)
+                    storage.add_value(
+                        "battery", sum(storage_values) / len(storage_values)
+                    )
 
-            all_data_points.append(
-                {
-                    "zoneKey": zone_key,
-                    "datetime": hour_dt,
-                    "production": production,
-                    "storage": storage,
-                    "source": SOURCE,
-                }
+            production_breakdowns.append(
+                zoneKey=zone_key,
+                datetime=hour_dt,
+                source=SOURCE,
+                production=production,
+                storage=storage,
             )
 
-    return all_data_points
+    return production_breakdowns
 
 
 def get_sheet_from_date(year: int, month: str, session: Session | None = None):
@@ -210,7 +218,7 @@ def fetch_historical_production(
     session: Session,
     target_datetime: datetime,
     logger: Logger = getLogger(__name__),
-) -> list:
+) -> ProductionBreakdownList:
     if target_datetime.tzinfo is None:
         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
@@ -219,7 +227,7 @@ def fetch_historical_production(
     year = target_datetime.year
     month = target_datetime.strftime("%b")
 
-    all_data_points = []
+    production_breakdowns = ProductionBreakdownList(logger)
 
     df = get_sheet_from_date(year, month, session)
 
@@ -249,24 +257,27 @@ def fetch_historical_production(
             hour_value = row[hour_cols].sum()
 
             if hour_dt not in datapoints_by_date:
-                datapoints_by_date[hour_dt] = {"storage": {}, "production": {}}
+                datapoints_by_date[hour_dt] = {
+                    "storage": StorageMix(),
+                    "production": ProductionMix(),
+                }
 
             target = "storage" if production_source == "battery" else "production"
-            datapoints_by_date[hour_dt][target].update({production_source: hour_value})
+            datapoints_by_date[hour_dt][target].add_value(production_source, hour_value)
 
     for hour_dt, production_and_storage in datapoints_by_date.items():
-        production = production_and_storage.get("production", {})
-        storage = production_and_storage.get("storage", {})
-        data_point = {
-            "zoneKey": zone_key,
-            "datetime": hour_dt,
-            "production": production,
-            "storage": storage,
-            "source": SOURCE,
-        }
-        all_data_points.append(data_point)
+        production = production_and_storage.get("production", ProductionMix())
+        storage = production_and_storage.get("storage", StorageMix())
 
-    return all_data_points
+        production_breakdowns.append(
+            zoneKey=zone_key,
+            datetime=hour_dt,
+            source=SOURCE,
+            production=production,
+            storage=storage,
+        )
+
+    return production_breakdowns
 
 
 def fetch_live_exchange(
@@ -322,7 +333,7 @@ def fetch_production(
             target_datetime=target_datetime,
             logger=logger,
         )
-    return production
+    return production.to_list()
 
 
 def fetch_consumption(
@@ -336,7 +347,7 @@ def fetch_consumption(
     ) - timedelta(days=1):
         consumption = fetch_live_consumption(
             zone_key=zone_key, session=session, logger=logger
-        )
+        ).to_list()
     else:
         consumption = EIA.fetch_consumption(
             zone_key=zone_key,
