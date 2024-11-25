@@ -18,6 +18,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
 from parsers.lib.validation import validate_exchange
 
 SOURCE = "ercot.com"
@@ -314,6 +315,7 @@ def fetch_live_exchange(
     return validated_data_points
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
     session: Session | None = None,
