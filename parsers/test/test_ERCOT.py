@@ -52,9 +52,9 @@ class TestUSERCOT(unittest.TestCase):
         with self.subTest():
             self.assertIsNotNone(data)
         with self.subTest():
-            self.assertEqual(data[0]["consumption"], 57102.55)
+            self.assertEqual(data[0]["consumption"], 42015.44)
         with self.subTest():
-            expected_dt = datetime(2023, 2, 1, tzinfo=ZoneInfo("US/Central"))
+            expected_dt = datetime(2024, 11, 24, 0, 0, tzinfo=ZoneInfo("US/Central"))
             self.assertEqual(data[0]["datetime"], expected_dt)
         with self.subTest():
             self.assertEqual(data[0]["source"], "ercot.com")

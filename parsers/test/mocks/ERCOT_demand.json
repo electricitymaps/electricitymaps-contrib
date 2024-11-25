@@ -1,1 +1,670 @@
-{"lastUpdate":"2023-02-02 04:15:06","previousDay":{"dayDate":"2023-02-01 00:00:00","forecastPeak":63752.9794,"systemLoad":63401.14,"dayAheadForecastPeak":65977.0695,"data":[{"hourEnding":1,"dstFlag":"N","currentLoadForecast":57423.27,"dayAheadForecast":56572.8599,"currentDayHsl":68097,"dayAheadHsl":66302,"systemLoad":57102.55,"epoch":1675234800000},{"hourEnding":2,"dstFlag":"N","currentLoadForecast":56526.3409,"dayAheadForecast":56027.4705,"currentDayHsl":68026.5,"dayAheadHsl":66198.2,"systemLoad":56574.02,"epoch":1675238400000},{"hourEnding":3,"dstFlag":"N","currentLoadForecast":56543.3802,"dayAheadForecast":56015.8588,"currentDayHsl":68709.8,"dayAheadHsl":66353.8,"systemLoad":56369.04,"epoch":1675242000000},{"hourEnding":4,"dstFlag":"N","currentLoadForecast":56744.8407,"dayAheadForecast":56241.5399,"currentDayHsl":68729.3,"dayAheadHsl":66634,"systemLoad":56052.45,"epoch":1675245600000},{"hourEnding":5,"dstFlag":"N","currentLoadForecast":57140.2893,"dayAheadForecast":57353.2808,"currentDayHsl":69081,"dayAheadHsl":66741.7,"systemLoad":56870.77,"epoch":1675249200000},{"hourEnding":6,"dstFlag":"N","currentLoadForecast":59194.6206,"dayAheadForecast":60036.1102,"currentDayHsl":69721.9,"dayAheadHsl":67145.1,"systemLoad":58176.01,"epoch":1675252800000},{"hourEnding":7,"dstFlag":"N","currentLoadForecast":61684.8708,"dayAheadForecast":63991.9597,"currentDayHsl":71054.3,"dayAheadHsl":68345.8,"systemLoad":59916.81,"epoch":1675256400000},{"hourEnding":8,"dstFlag":"N","currentLoadForecast":61839.4807,"dayAheadForecast":65872.0292,"currentDayHsl":70191.7,"dayAheadHsl":68229.8,"systemLoad":61255.44,"epoch":1675260000000},{"hourEnding":9,"dstFlag":"N","currentLoadForecast":61209.3611,"dayAheadForecast":65977.0695,"currentDayHsl":70037.5,"dayAheadHsl":68315.2,"systemLoad":61975.83,"epoch":1675263600000},{"hourEnding":10,"dstFlag":"N","currentLoadForecast":61932.9293,"dayAheadForecast":65972.9905,"currentDayHsl":70237,"dayAheadHsl":68483.9,"systemLoad":62663.73,"epoch":1675267200000},{"hourEnding":11,"dstFlag":"N","currentLoadForecast":62523.5594,"dayAheadForecast":65498.5986,"currentDayHsl":69793.9,"dayAheadHsl":68284.6,"systemLoad":62776.17,"epoch":1675270800000},{"hourEnding":12,"dstFlag":"N","currentLoadForecast":62358.8197,"dayAheadForecast":64127.8191,"currentDayHsl":69656.4,"dayAheadHsl":68098,"systemLoad":62781.91,"epoch":1675274400000},{"hourEnding":13,"dstFlag":"N","currentLoadForecast":62122.0507,"dayAheadForecast":62367.9194,"currentDayHsl":69238.5,"dayAheadHsl":68125.7,"systemLoad":62432.73,"epoch":1675278000000},{"hourEnding":14,"dstFlag":"N","currentLoadForecast":61824.3204,"dayAheadForecast":60757.0504,"currentDayHsl":69833,"dayAheadHsl":68037.5,"systemLoad":62111.05,"epoch":1675281600000},{"hourEnding":15,"dstFlag":"N","currentLoadForecast":61832.99,"dayAheadForecast":59319.89,"currentDayHsl":69545.5,"dayAheadHsl":67979.4,"systemLoad":61446.99,"epoch":1675285200000},{"hourEnding":16,"dstFlag":"N","currentLoadForecast":61441.6599,"dayAheadForecast":58680.5508,"currentDayHsl":69065.3,"dayAheadHsl":68093.2,"systemLoad":61258.26,"epoch":1675288800000},{"hourEnding":17,"dstFlag":"N","currentLoadForecast":61837.7692,"dayAheadForecast":59311.141,"currentDayHsl":69154.4,"dayAheadHsl":68000.2,"systemLoad":61978.69,"epoch":1675292400000},{"hourEnding":18,"dstFlag":"N","currentLoadForecast":63022.7008,"dayAheadForecast":60809.3295,"currentDayHsl":69520.1,"dayAheadHsl":67596.1,"systemLoad":62624.21,"epoch":1675296000000},{"hourEnding":19,"dstFlag":"N","currentLoadForecast":63752.9794,"dayAheadForecast":62946.2615,"currentDayHsl":68933.2,"dayAheadHsl":67091.5,"systemLoad":63401.14,"epoch":1675299600000},{"hourEnding":20,"dstFlag":"N","currentLoadForecast":63305.4105,"dayAheadForecast":63465.7303,"currentDayHsl":68987.4,"dayAheadHsl":67036.5,"systemLoad":63006.22,"epoch":1675303200000},{"hourEnding":21,"dstFlag":"N","currentLoadForecast":61825.1194,"dayAheadForecast":62825.7997,"currentDayHsl":68765.1,"dayAheadHsl":66830.5,"systemLoad":61575.78,"epoch":1675306800000},{"hourEnding":22,"dstFlag":"N","currentLoadForecast":59704.8496,"dayAheadForecast":61262.6699,"currentDayHsl":67863.6,"dayAheadHsl":66604.3,"systemLoad":59878.27,"epoch":1675310400000},{"hourEnding":23,"dstFlag":"N","currentLoadForecast":57421.2001,"dayAheadForecast":58793.5107,"currentDayHsl":66510.8,"dayAheadHsl":65944.3,"systemLoad":57423.91,"epoch":1675314000000},{"hourEnding":24,"dstFlag":"N","currentLoadForecast":55716.2208,"dayAheadForecast":56380.3804,"currentDayHsl":64745.5,"dayAheadHsl":65769.6,"systemLoad":55427.96,"epoch":1675317600000}]},"currentDay":{"dayDate":"2023-02-02 00:00:00","forecastPeak":62674.6603,"systemLoad":53571.68,"dayAheadForecastPeak":63493.4913,"data":[{"hourEnding":1,"dstFlag":"N","currentLoadForecast":54230.6384,"dayAheadForecast":56221.0896,"currentDayHsl":64888.3,"dayAheadHsl":62967.8,"systemLoad":53571.68,"epoch":1675321200000},{"hourEnding":2,"dstFlag":"N","currentLoadForecast":52588.5889,"dayAheadForecast":55426.9198,"currentDayHsl":65151.2,"dayAheadHsl":62990.4,"systemLoad":52841.07,"epoch":1675324800000},{"hourEnding":3,"dstFlag":"N","currentLoadForecast":52501.2107,"dayAheadForecast":55127.8695,"currentDayHsl":64461.1,"dayAheadHsl":62828.9,"systemLoad":52712.7,"epoch":1675328400000},{"hourEnding":4,"dstFlag":"N","currentLoadForecast":52855.7102,"dayAheadForecast":55311.9495,"currentDayHsl":64760,"dayAheadHsl":62794.2,"systemLoad":52866.85,"epoch":1675332000000},{"hourEnding":5,"dstFlag":"N","currentLoadForecast":53819.1998,"dayAheadForecast":56250.1006,"dayAheadHsl":63302.3,"epoch":1675335600000},{"hourEnding":6,"dstFlag":"N","currentLoadForecast":56268.3705,"dayAheadForecast":58524.4188,"dayAheadHsl":63924.9,"epoch":1675339200000},{"hourEnding":7,"dstFlag":"N","currentLoadForecast":60188.3888,"dayAheadForecast":61897.5803,"dayAheadHsl":64705.9,"epoch":1675342800000},{"hourEnding":8,"dstFlag":"N","currentLoadForecast":62371.8999,"dayAheadForecast":63493.4913,"dayAheadHsl":65190,"epoch":1675346400000},{"hourEnding":9,"dstFlag":"N","currentLoadForecast":62674.6603,"dayAheadForecast":63395.21,"dayAheadHsl":65684.3,"epoch":1675350000000},{"hourEnding":10,"dstFlag":"N","currentLoadForecast":62453.74,"dayAheadForecast":62961.8406,"dayAheadHsl":66152.2,"epoch":1675353600000},{"hourEnding":11,"dstFlag":"N","currentLoadForecast":61867.2906,"dayAheadForecast":62262.7097,"dayAheadHsl":66813.1,"epoch":1675357200000},{"hourEnding":12,"dstFlag":"N","currentLoadForecast":60595.5199,"dayAheadForecast":61025.0812,"dayAheadHsl":66853.9,"epoch":1675360800000},{"hourEnding":13,"dstFlag":"N","currentLoadForecast":59050.42,"dayAheadForecast":59545.5303,"dayAheadHsl":66402.1,"epoch":1675364400000},{"hourEnding":14,"dstFlag":"N","currentLoadForecast":57639.0796,"dayAheadForecast":58264.7009,"dayAheadHsl":66756.2,"epoch":1675368000000},{"hourEnding":15,"dstFlag":"N","currentLoadForecast":56366.4996,"dayAheadForecast":57089.1705,"dayAheadHsl":66877.6,"epoch":1675371600000},{"hourEnding":16,"dstFlag":"N","currentLoadForecast":55692.2708,"dayAheadForecast":56495.0803,"dayAheadHsl":67187.1,"epoch":1675375200000},{"hourEnding":17,"dstFlag":"N","currentLoadForecast":55928.4293,"dayAheadForecast":56784.2306,"dayAheadHsl":67538.2,"epoch":1675378800000},{"hourEnding":18,"dstFlag":"N","currentLoadForecast":57002.0806,"dayAheadForecast":57769.4003,"dayAheadHsl":65767.5,"epoch":1675382400000},{"hourEnding":19,"dstFlag":"N","currentLoadForecast":58801.67,"dayAheadForecast":59484.76,"dayAheadHsl":64307.7,"epoch":1675386000000},{"hourEnding":20,"dstFlag":"N","currentLoadForecast":59433.7894,"dayAheadForecast":60047.7607,"dayAheadHsl":64439.6,"epoch":1675389600000},{"hourEnding":21,"dstFlag":"N","currentLoadForecast":59176.5414,"dayAheadForecast":59758.8804,"dayAheadHsl":64498.9,"epoch":1675393200000},{"hourEnding":22,"dstFlag":"N","currentLoadForecast":58120.3394,"dayAheadForecast":58721.51,"dayAheadHsl":64037.5,"epoch":1675396800000},{"hourEnding":23,"dstFlag":"N","currentLoadForecast":56266.5801,"dayAheadForecast":56699.0298,"dayAheadHsl":61876.5,"epoch":1675400400000},{"hourEnding":24,"dstFlag":"N","currentLoadForecast":54566.6409,"dayAheadForecast":54815.481,"dayAheadHsl":60967.4,"epoch":1675404000000}]},"nextDay":{"dayDate":"2023-02-03 00:00:00","dayAheadForecastPeak":0,"data":[{"hourEnding":1,"dstFlag":"N","currentLoadForecast":53546.3708,"epoch":1675407600000},{"hourEnding":2,"dstFlag":"N","currentLoadForecast":53114.7495,"epoch":1675411200000},{"hourEnding":3,"dstFlag":"N","currentLoadForecast":53159.8507,"epoch":1675414800000},{"hourEnding":4,"dstFlag":"N","currentLoadForecast":53627.1713,"epoch":1675418400000},{"hourEnding":5,"dstFlag":"N","currentLoadForecast":54905.0796,"epoch":1675422000000},{"hourEnding":6,"dstFlag":"N","currentLoadForecast":57526.0199,"epoch":1675425600000},{"hourEnding":7,"dstFlag":"N","currentLoadForecast":61369.7289,"epoch":1675429200000},{"hourEnding":8,"dstFlag":"N","currentLoadForecast":63145.1003,"epoch":1675432800000},{"hourEnding":9,"dstFlag":"N","currentLoadForecast":62108.3492,"epoch":1675436400000},{"hourEnding":10,"dstFlag":"N","currentLoadForecast":60121.0907,"epoch":1675440000000},{"hourEnding":11,"dstFlag":"N","currentLoadForecast":58033.2711,"epoch":1675443600000},{"hourEnding":12,"dstFlag":"N","currentLoadForecast":55790.2201,"epoch":1675447200000},{"hourEnding":13,"dstFlag":"N","currentLoadForecast":53666.4608,"epoch":1675450800000},{"hourEnding":14,"dstFlag":"N","currentLoadForecast":52061.0397,"epoch":1675454400000},{"hourEnding":15,"dstFlag":"N","currentLoadForecast":50778.6504,"epoch":1675458000000},{"hourEnding":16,"dstFlag":"N","currentLoadForecast":50151.1799,"epoch":1675461600000},{"hourEnding":17,"dstFlag":"N","currentLoadForecast":50310.17,"epoch":1675465200000},{"hourEnding":18,"dstFlag":"N","currentLoadForecast":51419.4204,"epoch":1675468800000},{"hourEnding":19,"dstFlag":"N","currentLoadForecast":53738.0703,"epoch":1675472400000},{"hourEnding":20,"dstFlag":"N","currentLoadForecast":54888.8086,"epoch":1675476000000},{"hourEnding":21,"dstFlag":"N","currentLoadForecast":55081.3608,"epoch":1675479600000},{"hourEnding":22,"dstFlag":"N","currentLoadForecast":54785.6403,"epoch":1675483200000},{"hourEnding":23,"dstFlag":"N","currentLoadForecast":53565.4001,"epoch":1675486800000},{"hourEnding":24,"dstFlag":"N","currentLoadForecast":52285.8387,"epoch":1675490400000}]}}
+{
+    "lastUpdated": "2024-11-25 02:15:02-0600",
+    "previousDay": {
+      "dayDate": "2024-11-24 00:00:00-0600",
+      "data": [
+        {
+          "hourEnding": 1,
+          "dstFlag": "N",
+          "currentLoadForecast": 41916.4303,
+          "dayAheadForecast": 41533.0104,
+          "currentDayHsl": 61135.7,
+          "dayAheadHsl": 63639.5,
+          "systemLoad": 42015.44,
+          "timestamp": "2024-11-24 01:00:00-0600",
+          "epoch": 1732431600000
+        },
+        {
+          "hourEnding": 2,
+          "dstFlag": "N",
+          "currentLoadForecast": 40553.2096,
+          "dayAheadForecast": 40377.3505,
+          "currentDayHsl": 61614.6,
+          "dayAheadHsl": 63974.4,
+          "systemLoad": 40887.56,
+          "timestamp": "2024-11-24 02:00:00-0600",
+          "epoch": 1732435200000
+        },
+        {
+          "hourEnding": 3,
+          "dstFlag": "N",
+          "currentLoadForecast": 39830.0494,
+          "dayAheadForecast": 39549.1002,
+          "currentDayHsl": 61891.3,
+          "dayAheadHsl": 63910.8,
+          "systemLoad": 40223.49,
+          "timestamp": "2024-11-24 03:00:00-0600",
+          "epoch": 1732438800000
+        },
+        {
+          "hourEnding": 4,
+          "dstFlag": "N",
+          "currentLoadForecast": 39639.2297,
+          "dayAheadForecast": 38913.7897,
+          "currentDayHsl": 61515.6,
+          "dayAheadHsl": 63490.1,
+          "systemLoad": 39687.63,
+          "timestamp": "2024-11-24 04:00:00-0600",
+          "epoch": 1732442400000
+        },
+        {
+          "hourEnding": 5,
+          "dstFlag": "N",
+          "currentLoadForecast": 39513.4101,
+          "dayAheadForecast": 38641.28,
+          "currentDayHsl": 61001.8,
+          "dayAheadHsl": 62977.6,
+          "systemLoad": 39355.6,
+          "timestamp": "2024-11-24 05:00:00-0600",
+          "epoch": 1732446000000
+        },
+        {
+          "hourEnding": 6,
+          "dstFlag": "N",
+          "currentLoadForecast": 39348.6805,
+          "dayAheadForecast": 38598.2406,
+          "currentDayHsl": 60873.1,
+          "dayAheadHsl": 62582.8,
+          "systemLoad": 39780.68,
+          "timestamp": "2024-11-24 06:00:00-0600",
+          "epoch": 1732449600000
+        },
+        {
+          "hourEnding": 7,
+          "dstFlag": "N",
+          "currentLoadForecast": 39716.8804,
+          "dayAheadForecast": 38950.4201,
+          "currentDayHsl": 60910.3,
+          "dayAheadHsl": 62432.8,
+          "systemLoad": 40642.16,
+          "timestamp": "2024-11-24 07:00:00-0600",
+          "epoch": 1732453200000
+        },
+        {
+          "hourEnding": 8,
+          "dstFlag": "N",
+          "currentLoadForecast": 41733.3999,
+          "dayAheadForecast": 39746.4497,
+          "currentDayHsl": 62388.9,
+          "dayAheadHsl": 63425.7,
+          "systemLoad": 41256.77,
+          "timestamp": "2024-11-24 08:00:00-0600",
+          "epoch": 1732456800000
+        },
+        {
+          "hourEnding": 9,
+          "dstFlag": "N",
+          "currentLoadForecast": 43666.3198,
+          "dayAheadForecast": 42473.4603,
+          "currentDayHsl": 68921,
+          "dayAheadHsl": 68368.9,
+          "systemLoad": 43747.21,
+          "timestamp": "2024-11-24 09:00:00-0600",
+          "epoch": 1732460400000
+        },
+        {
+          "hourEnding": 10,
+          "dstFlag": "N",
+          "currentLoadForecast": 45356.9707,
+          "dayAheadForecast": 44098.3502,
+          "currentDayHsl": 71629,
+          "dayAheadHsl": 71756.2,
+          "systemLoad": 45709.65,
+          "timestamp": "2024-11-24 10:00:00-0600",
+          "epoch": 1732464000000
+        },
+        {
+          "hourEnding": 11,
+          "dstFlag": "N",
+          "currentLoadForecast": 46201.64,
+          "dayAheadForecast": 45432.1198,
+          "currentDayHsl": 71908.7,
+          "dayAheadHsl": 72750.7,
+          "systemLoad": 46417.62,
+          "timestamp": "2024-11-24 11:00:00-0600",
+          "epoch": 1732467600000
+        },
+        {
+          "hourEnding": 12,
+          "dstFlag": "N",
+          "currentLoadForecast": 46398.0797,
+          "dayAheadForecast": 46197.4902,
+          "currentDayHsl": 72050.7,
+          "dayAheadHsl": 73154.4,
+          "systemLoad": 47164.36,
+          "timestamp": "2024-11-24 12:00:00-0600",
+          "epoch": 1732471200000
+        },
+        {
+          "hourEnding": 13,
+          "dstFlag": "N",
+          "currentLoadForecast": 47392.3094,
+          "dayAheadForecast": 47183.2501,
+          "currentDayHsl": 71862.3,
+          "dayAheadHsl": 72957,
+          "systemLoad": 48009.38,
+          "timestamp": "2024-11-24 13:00:00-0600",
+          "epoch": 1732474800000
+        },
+        {
+          "hourEnding": 14,
+          "dstFlag": "N",
+          "currentLoadForecast": 48852.2389,
+          "dayAheadForecast": 48049.7692,
+          "currentDayHsl": 71484.7,
+          "dayAheadHsl": 73364.6,
+          "systemLoad": 48766.6,
+          "timestamp": "2024-11-24 14:00:00-0600",
+          "epoch": 1732478400000
+        },
+        {
+          "hourEnding": 15,
+          "dstFlag": "N",
+          "currentLoadForecast": 50036.4608,
+          "dayAheadForecast": 49296.8998,
+          "currentDayHsl": 71928.2,
+          "dayAheadHsl": 74747.1,
+          "systemLoad": 49779.09,
+          "timestamp": "2024-11-24 15:00:00-0600",
+          "epoch": 1732482000000
+        },
+        {
+          "hourEnding": 16,
+          "dstFlag": "N",
+          "currentLoadForecast": 51127.2399,
+          "dayAheadForecast": 50100.9098,
+          "currentDayHsl": 74212.5,
+          "dayAheadHsl": 75426.3,
+          "systemLoad": 50680.68,
+          "timestamp": "2024-11-24 16:00:00-0600",
+          "epoch": 1732485600000
+        },
+        {
+          "hourEnding": 17,
+          "dstFlag": "N",
+          "currentLoadForecast": 51612.1501,
+          "dayAheadForecast": 49912.6511,
+          "currentDayHsl": 69183.4,
+          "dayAheadHsl": 71673.6,
+          "systemLoad": 51044.77,
+          "timestamp": "2024-11-24 17:00:00-0600",
+          "epoch": 1732489200000
+        },
+        {
+          "hourEnding": 18,
+          "dstFlag": "N",
+          "currentLoadForecast": 51851.9406,
+          "dayAheadForecast": 50215.1398,
+          "currentDayHsl": 63026.6,
+          "dayAheadHsl": 65897.5,
+          "systemLoad": 51088.05,
+          "timestamp": "2024-11-24 18:00:00-0600",
+          "epoch": 1732492800000
+        },
+        {
+          "hourEnding": 19,
+          "dstFlag": "N",
+          "currentLoadForecast": 51299.1298,
+          "dayAheadForecast": 50571.64,
+          "currentDayHsl": 64029.4,
+          "dayAheadHsl": 67884.9,
+          "systemLoad": 51415.57,
+          "timestamp": "2024-11-24 19:00:00-0600",
+          "epoch": 1732496400000
+        },
+        {
+          "hourEnding": 20,
+          "dstFlag": "N",
+          "currentLoadForecast": 50865.6194,
+          "dayAheadForecast": 50013.9897,
+          "currentDayHsl": 66579.2,
+          "dayAheadHsl": 69216.7,
+          "systemLoad": 50605.84,
+          "timestamp": "2024-11-24 20:00:00-0600",
+          "epoch": 1732500000000
+        },
+        {
+          "hourEnding": 21,
+          "dstFlag": "N",
+          "currentLoadForecast": 50008.1603,
+          "dayAheadForecast": 49266.0697,
+          "currentDayHsl": 67740.3,
+          "dayAheadHsl": 70644.6,
+          "systemLoad": 49269.01,
+          "timestamp": "2024-11-24 21:00:00-0600",
+          "epoch": 1732503600000
+        },
+        {
+          "hourEnding": 22,
+          "dstFlag": "N",
+          "currentLoadForecast": 48211.2795,
+          "dayAheadForecast": 48037.5905,
+          "currentDayHsl": 68472.4,
+          "dayAheadHsl": 70857.5,
+          "systemLoad": 47959.51,
+          "timestamp": "2024-11-24 22:00:00-0600",
+          "epoch": 1732507200000
+        },
+        {
+          "hourEnding": 23,
+          "dstFlag": "N",
+          "currentLoadForecast": 46397.1101,
+          "dayAheadForecast": 46046.3593,
+          "currentDayHsl": 67140.4,
+          "dayAheadHsl": 67767.1,
+          "systemLoad": 46058.5,
+          "timestamp": "2024-11-24 23:00:00-0600",
+          "epoch": 1732510800000
+        },
+        {
+          "hourEnding": 24,
+          "dstFlag": "N",
+          "currentLoadForecast": 43950.9495,
+          "dayAheadForecast": 43710.6399,
+          "currentDayHsl": 63866.1,
+          "dayAheadHsl": 65074.5,
+          "systemLoad": 43938.58,
+          "timestamp": "2024-11-25 00:00:00-0600",
+          "epoch": 1732514400000
+        }
+      ]
+    },
+    "currentDay": {
+      "dayDate": "2024-11-25 00:00:00-0600",
+      "data": [
+        {
+          "hourEnding": 1,
+          "dstFlag": "N",
+          "currentLoadForecast": 42264.1382,
+          "dayAheadForecast": 41815.7044,
+          "currentDayHsl": 63886.2,
+          "dayAheadHsl": 63084.1,
+          "systemLoad": 42131.97,
+          "timestamp": "2024-11-25 01:00:00-0600",
+          "epoch": 1732518000000
+        },
+        {
+          "hourEnding": 2,
+          "dstFlag": "N",
+          "currentLoadForecast": 41348.3845,
+          "dayAheadForecast": 40542.0514,
+          "currentDayHsl": 62336.8,
+          "dayAheadHsl": 62316.4,
+          "systemLoad": 40804.76,
+          "timestamp": "2024-11-25 02:00:00-0600",
+          "epoch": 1732521600000
+        },
+        {
+          "hourEnding": 3,
+          "dstFlag": "N",
+          "currentLoadForecast": 40382.8672,
+          "dayAheadForecast": 39771.9885,
+          "dayAheadHsl": 61146.3,
+          "timestamp": "2024-11-25 03:00:00-0600",
+          "epoch": 1732525200000
+        },
+        {
+          "hourEnding": 4,
+          "dstFlag": "N",
+          "currentLoadForecast": 40099.9042,
+          "dayAheadForecast": 39474.0137,
+          "dayAheadHsl": 59741.8,
+          "timestamp": "2024-11-25 04:00:00-0600",
+          "epoch": 1732528800000
+        },
+        {
+          "hourEnding": 5,
+          "dstFlag": "N",
+          "currentLoadForecast": 40365.7452,
+          "dayAheadForecast": 39946.4888,
+          "dayAheadHsl": 58713.6,
+          "timestamp": "2024-11-25 05:00:00-0600",
+          "epoch": 1732532400000
+        },
+        {
+          "hourEnding": 6,
+          "dstFlag": "N",
+          "currentLoadForecast": 41731.2175,
+          "dayAheadForecast": 41605.8147,
+          "dayAheadHsl": 58652.9,
+          "timestamp": "2024-11-25 06:00:00-0600",
+          "epoch": 1732536000000
+        },
+        {
+          "hourEnding": 7,
+          "dstFlag": "N",
+          "currentLoadForecast": 44311.1902,
+          "dayAheadForecast": 44449.4099,
+          "dayAheadHsl": 59691,
+          "timestamp": "2024-11-25 07:00:00-0600",
+          "epoch": 1732539600000
+        },
+        {
+          "hourEnding": 8,
+          "dstFlag": "N",
+          "currentLoadForecast": 45745.0594,
+          "dayAheadForecast": 45954.7095,
+          "dayAheadHsl": 60895.8,
+          "timestamp": "2024-11-25 08:00:00-0600",
+          "epoch": 1732543200000
+        },
+        {
+          "hourEnding": 9,
+          "dstFlag": "N",
+          "currentLoadForecast": 47113.0099,
+          "dayAheadForecast": 47032.5798,
+          "dayAheadHsl": 66478.4,
+          "timestamp": "2024-11-25 09:00:00-0600",
+          "epoch": 1732546800000
+        },
+        {
+          "hourEnding": 10,
+          "dstFlag": "N",
+          "currentLoadForecast": 48845.2301,
+          "dayAheadForecast": 48648.3,
+          "dayAheadHsl": 70357.6,
+          "timestamp": "2024-11-25 10:00:00-0600",
+          "epoch": 1732550400000
+        },
+        {
+          "hourEnding": 11,
+          "dstFlag": "N",
+          "currentLoadForecast": 50074.67,
+          "dayAheadForecast": 49874.9701,
+          "dayAheadHsl": 72249.5,
+          "timestamp": "2024-11-25 11:00:00-0600",
+          "epoch": 1732554000000
+        },
+        {
+          "hourEnding": 12,
+          "dstFlag": "N",
+          "currentLoadForecast": 51171.099,
+          "dayAheadForecast": 50991.4803,
+          "dayAheadHsl": 72523.5,
+          "timestamp": "2024-11-25 12:00:00-0600",
+          "epoch": 1732557600000
+        },
+        {
+          "hourEnding": 13,
+          "dstFlag": "N",
+          "currentLoadForecast": 52278.4302,
+          "dayAheadForecast": 52147.9899,
+          "dayAheadHsl": 71564.6,
+          "timestamp": "2024-11-25 13:00:00-0600",
+          "epoch": 1732561200000
+        },
+        {
+          "hourEnding": 14,
+          "dstFlag": "N",
+          "currentLoadForecast": 53324.92,
+          "dayAheadForecast": 53244.1511,
+          "dayAheadHsl": 72725.3,
+          "timestamp": "2024-11-25 14:00:00-0600",
+          "epoch": 1732564800000
+        },
+        {
+          "hourEnding": 15,
+          "dstFlag": "N",
+          "currentLoadForecast": 53893.4796,
+          "dayAheadForecast": 53897.5195,
+          "dayAheadHsl": 73007.4,
+          "timestamp": "2024-11-25 15:00:00-0600",
+          "epoch": 1732568400000
+        },
+        {
+          "hourEnding": 16,
+          "dstFlag": "N",
+          "currentLoadForecast": 53899.5693,
+          "dayAheadForecast": 54024.4897,
+          "dayAheadHsl": 72634.5,
+          "timestamp": "2024-11-25 16:00:00-0600",
+          "epoch": 1732572000000
+        },
+        {
+          "hourEnding": 17,
+          "dstFlag": "N",
+          "currentLoadForecast": 53564.05,
+          "dayAheadForecast": 53787.59,
+          "dayAheadHsl": 69070.6,
+          "timestamp": "2024-11-25 17:00:00-0600",
+          "epoch": 1732575600000
+        },
+        {
+          "hourEnding": 18,
+          "dstFlag": "N",
+          "currentLoadForecast": 53220.9103,
+          "dayAheadForecast": 53609.5494,
+          "dayAheadHsl": 62734.9,
+          "timestamp": "2024-11-25 18:00:00-0600",
+          "epoch": 1732579200000
+        },
+        {
+          "hourEnding": 19,
+          "dstFlag": "N",
+          "currentLoadForecast": 53332.8402,
+          "dayAheadForecast": 53824.2697,
+          "dayAheadHsl": 62418.3,
+          "timestamp": "2024-11-25 19:00:00-0600",
+          "epoch": 1732582800000
+        },
+        {
+          "hourEnding": 20,
+          "dstFlag": "N",
+          "currentLoadForecast": 52225.489,
+          "dayAheadForecast": 52705.099,
+          "dayAheadHsl": 62668.4,
+          "timestamp": "2024-11-25 20:00:00-0600",
+          "epoch": 1732586400000
+        },
+        {
+          "hourEnding": 21,
+          "dstFlag": "N",
+          "currentLoadForecast": 51060.2504,
+          "dayAheadForecast": 51514.8698,
+          "dayAheadHsl": 62007.9,
+          "timestamp": "2024-11-25 21:00:00-0600",
+          "epoch": 1732590000000
+        },
+        {
+          "hourEnding": 22,
+          "dstFlag": "N",
+          "currentLoadForecast": 49547.0594,
+          "dayAheadForecast": 49968.4004,
+          "dayAheadHsl": 60787.5,
+          "timestamp": "2024-11-25 22:00:00-0600",
+          "epoch": 1732593600000
+        },
+        {
+          "hourEnding": 23,
+          "dstFlag": "N",
+          "currentLoadForecast": 47167.0099,
+          "dayAheadForecast": 47438.21,
+          "dayAheadHsl": 59052.7,
+          "timestamp": "2024-11-25 23:00:00-0600",
+          "epoch": 1732597200000
+        },
+        {
+          "hourEnding": 24,
+          "dstFlag": "N",
+          "currentLoadForecast": 44818.0304,
+          "dayAheadForecast": 44917.5203,
+          "dayAheadHsl": 57008.3,
+          "timestamp": "2024-11-26 00:00:00-0600",
+          "epoch": 1732600800000
+        }
+      ]
+    },
+    "nextDay": {
+      "dayDate": "2024-11-26 00:00:00-0600",
+      "data": [
+        {
+          "hourEnding": 1,
+          "dstFlag": "N",
+          "currentLoadForecast": 43214.7805,
+          "timestamp": "2024-11-26 01:00:00-0600",
+          "epoch": 1732604400000
+        },
+        {
+          "hourEnding": 2,
+          "dstFlag": "N",
+          "currentLoadForecast": 41825.33,
+          "timestamp": "2024-11-26 02:00:00-0600",
+          "epoch": 1732608000000
+        },
+        {
+          "hourEnding": 3,
+          "dstFlag": "N",
+          "currentLoadForecast": 40773.4,
+          "timestamp": "2024-11-26 03:00:00-0600",
+          "epoch": 1732611600000
+        },
+        {
+          "hourEnding": 4,
+          "dstFlag": "N",
+          "currentLoadForecast": 40823.8502,
+          "timestamp": "2024-11-26 04:00:00-0600",
+          "epoch": 1732615200000
+        },
+        {
+          "hourEnding": 5,
+          "dstFlag": "N",
+          "currentLoadForecast": 41824.6007,
+          "timestamp": "2024-11-26 05:00:00-0600",
+          "epoch": 1732618800000
+        },
+        {
+          "hourEnding": 6,
+          "dstFlag": "N",
+          "currentLoadForecast": 44180.0297,
+          "timestamp": "2024-11-26 06:00:00-0600",
+          "epoch": 1732622400000
+        },
+        {
+          "hourEnding": 7,
+          "dstFlag": "N",
+          "currentLoadForecast": 47974.8806,
+          "timestamp": "2024-11-26 07:00:00-0600",
+          "epoch": 1732626000000
+        },
+        {
+          "hourEnding": 8,
+          "dstFlag": "N",
+          "currentLoadForecast": 49885.7399,
+          "timestamp": "2024-11-26 08:00:00-0600",
+          "epoch": 1732629600000
+        },
+        {
+          "hourEnding": 9,
+          "dstFlag": "N",
+          "currentLoadForecast": 50534.79,
+          "timestamp": "2024-11-26 09:00:00-0600",
+          "epoch": 1732633200000
+        },
+        {
+          "hourEnding": 10,
+          "dstFlag": "N",
+          "currentLoadForecast": 50679.3209,
+          "timestamp": "2024-11-26 10:00:00-0600",
+          "epoch": 1732636800000
+        },
+        {
+          "hourEnding": 11,
+          "dstFlag": "N",
+          "currentLoadForecast": 49723.6794,
+          "timestamp": "2024-11-26 11:00:00-0600",
+          "epoch": 1732640400000
+        },
+        {
+          "hourEnding": 12,
+          "dstFlag": "N",
+          "currentLoadForecast": 48567.8008,
+          "timestamp": "2024-11-26 12:00:00-0600",
+          "epoch": 1732644000000
+        },
+        {
+          "hourEnding": 13,
+          "dstFlag": "N",
+          "currentLoadForecast": 47590.1006,
+          "timestamp": "2024-11-26 13:00:00-0600",
+          "epoch": 1732647600000
+        },
+        {
+          "hourEnding": 14,
+          "dstFlag": "N",
+          "currentLoadForecast": 47210.3503,
+          "timestamp": "2024-11-26 14:00:00-0600",
+          "epoch": 1732651200000
+        },
+        {
+          "hourEnding": 15,
+          "dstFlag": "N",
+          "currentLoadForecast": 47064.8394,
+          "timestamp": "2024-11-26 15:00:00-0600",
+          "epoch": 1732654800000
+        },
+        {
+          "hourEnding": 16,
+          "dstFlag": "N",
+          "currentLoadForecast": 47114.7796,
+          "timestamp": "2024-11-26 16:00:00-0600",
+          "epoch": 1732658400000
+        },
+        {
+          "hourEnding": 17,
+          "dstFlag": "N",
+          "currentLoadForecast": 47437.0231,
+          "timestamp": "2024-11-26 17:00:00-0600",
+          "epoch": 1732662000000
+        },
+        {
+          "hourEnding": 18,
+          "dstFlag": "N",
+          "currentLoadForecast": 48516.72,
+          "timestamp": "2024-11-26 18:00:00-0600",
+          "epoch": 1732665600000
+        },
+        {
+          "hourEnding": 19,
+          "dstFlag": "N",
+          "currentLoadForecast": 50034.8408,
+          "timestamp": "2024-11-26 19:00:00-0600",
+          "epoch": 1732669200000
+        },
+        {
+          "hourEnding": 20,
+          "dstFlag": "N",
+          "currentLoadForecast": 49822.8405,
+          "timestamp": "2024-11-26 20:00:00-0600",
+          "epoch": 1732672800000
+        },
+        {
+          "hourEnding": 21,
+          "dstFlag": "N",
+          "currentLoadForecast": 49448.2898,
+          "timestamp": "2024-11-26 21:00:00-0600",
+          "epoch": 1732676400000
+        },
+        {
+          "hourEnding": 22,
+          "dstFlag": "N",
+          "currentLoadForecast": 48255.6304,
+          "timestamp": "2024-11-26 22:00:00-0600",
+          "epoch": 1732680000000
+        },
+        {
+          "hourEnding": 23,
+          "dstFlag": "N",
+          "currentLoadForecast": 46048.2502,
+          "timestamp": "2024-11-26 23:00:00-0600",
+          "epoch": 1732683600000
+        },
+        {
+          "hourEnding": 24,
+          "dstFlag": "N",
+          "currentLoadForecast": 43721.5094,
+          "timestamp": "2024-11-27 00:00:00-0600",
+          "epoch": 1732687200000
+        }
+      ]
+    }
+  }
