@@ -126,6 +126,7 @@ def fetch_live_production(
     session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
+    session = session or Session()
     gen_data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
     production_breakdowns = ProductionBreakdownList(logger)
 
