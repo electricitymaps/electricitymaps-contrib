@@ -1,6 +1,7 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtomValue } from 'jotai';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { Charts, TimeAverages } from 'utils/constants';
@@ -10,28 +11,65 @@ import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
-import useBreakdownChartData from './hooks/useBreakdownChartData';
+import useOriginChartData from './hooks/useOriginChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import ProductionSourceLegendList from './ProductionSourceLegendList';
 import { RoundedCard } from './RoundedCard';
 import BreakdownChartTooltip from './tooltips/BreakdownChartTooltip';
 import { AreaGraphElement } from './types';
 
-interface BreakdownChartProps {
+interface OriginChartProps {
   displayByEmissions: boolean;
   datetimes: Date[];
   timeAverage: TimeAverages;
 }
 
-function BreakdownChart({
-  displayByEmissions,
-  datetimes,
-  timeAverage,
-}: BreakdownChartProps) {
-  const { data } = useBreakdownChartData();
+// TODO(cady): fix types to use ElectricityModeType
+export interface SelectedData {
+  select(key: string): void;
+  deselect(key: string): void;
+  isSelected(key: string): boolean;
+  toggle(key: string): void;
+  hasSelection(): boolean;
+}
+
+const useSelectedData = (displayByEmissions: boolean): SelectedData => {
+  const [selectedData, setSelectedData] = useState<Partial<Record<string, boolean>>>({});
+
+  useEffect(() => setSelectedData({}), [displayByEmissions]);
+
+  return useMemo(
+    () => ({
+      select(key: string) {
+        setSelectedData((data) => ({ ...data, [key]: true }));
+      },
+      deselect(key: string) {
+        setSelectedData((data) => ({ ...data, [key]: false }));
+      },
+      isSelected(key: string): boolean {
+        return selectedData[key] ?? false;
+      },
+      toggle(key: string) {
+        if (this.isSelected(key)) {
+          this.deselect(key);
+        } else {
+          this.select(key);
+        }
+      },
+      hasSelection(): boolean {
+        return Object.values(selectedData).some(Boolean);
+      },
+    }),
+    [selectedData]
+  );
+};
+
+function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChartProps) {
+  const { data } = useOriginChartData();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
+  const selectedData = useSelectedData(displayByEmissions);
 
   if (!data) {
     return null;
@@ -76,13 +114,13 @@ function BreakdownChart({
       <div className="relative ">
         <AreaGraph
           testId="history-mix-graph"
-          showHoverHighlight={true}
+          isDataInteractive={true}
+          selectedData={selectedData}
           data={chartData}
           layerKeys={layerKeys}
           layerFill={layerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          isMobile={false} // Todo: test on mobile https://linear.app/electricitymaps/issue/ELE-1498/test-and-improve-charts-on-mobile
           height="10em"
           datetimes={datetimes}
           selectedTimeAggregate={timeAverage}
@@ -100,12 +138,14 @@ function BreakdownChart({
       <ProductionSourceLegendList
         sources={getProductionSourcesInChart(chartData)}
         className="py-1.5"
+        selectedData={selectedData}
+        isDataInteractive={true}
       />
     </RoundedCard>
   );
 }
 
-export default BreakdownChart;
+export default OriginChart;
 
 function getProductionSourcesInChart(chartData: AreaGraphElement[]) {
   const productionSources = new Set<ElectricityModeType>();

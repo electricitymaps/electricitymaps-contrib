@@ -1,6 +1,9 @@
-import { atom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { dateToDatetimeString } from 'utils/helpers';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
+import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
   Mode,
@@ -13,12 +16,46 @@ import {
 // TODO: Move these atoms to relevant features
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
-export const timeAverageAtom = atom(TimeAverages.HOURLY);
+export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
+
+export const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
+  '24h': TimeAverages.HOURLY,
+  '30d': TimeAverages.DAILY,
+  '12mo': TimeAverages.MONTHLY,
+  all: TimeAverages.YEARLY,
+} as const;
+
+const TIME_AVERAGE_TO_URL: Record<TimeAverages, string> = {
+  [TimeAverages.HOURLY]: '24h',
+  [TimeAverages.DAILY]: '30d',
+  [TimeAverages.MONTHLY]: '12mo',
+  [TimeAverages.YEARLY]: 'all',
+} as const;
+
+export function useTimeAverageSync() {
+  const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
+  const { urlTimeAverage } = useParams<RouteParameters>();
+  const navigateWithParameters = useNavigateWithParameters();
+
+  useEffect(() => {
+    if (urlTimeAverage && URL_TO_TIME_AVERAGE[urlTimeAverage] !== timeAverage) {
+      setTimeAverage(URL_TO_TIME_AVERAGE[urlTimeAverage]);
+    }
+  }, [setTimeAverage, timeAverage, urlTimeAverage]);
+
+  const setTimeAverageAndNavigate = (newTimeAverage: TimeAverages) => {
+    setTimeAverage(newTimeAverage);
+    navigateWithParameters({ timeAverage: TIME_AVERAGE_TO_URL[newTimeAverage] });
+  };
+
+  return [timeAverage, setTimeAverageAndNavigate] as const;
+}
 export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
-
+export const endDatetimeAtom = atom<Date | undefined>(undefined);
+export const startDatetimeAtom = atom<Date | undefined>(undefined);
 export const selectedDatetimeStringAtom = atom<string>((get) => {
   const { datetime } = get(selectedDatetimeIndexAtom);
   return dateToDatetimeString(datetime);

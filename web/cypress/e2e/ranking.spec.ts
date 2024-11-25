@@ -2,13 +2,11 @@
 describe('Ranking Panel', () => {
   it('interacts with details', () => {
     cy.interceptAPI('v8/meta');
-    cy.interceptAPI('v8/state/last_hour');
     cy.interceptAPI('v8/state/hourly');
     cy.interceptAPI('v8/details/hourly/DK-DK2');
     cy.visit('/?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
     cy.waitForAPISuccess(`v8/meta`);
-    cy.waitForAPISuccess(`v8/state/last_hour`);
     cy.waitForAPISuccess(`v8/state/hourly`);
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
 

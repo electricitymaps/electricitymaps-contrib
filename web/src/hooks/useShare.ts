@@ -21,12 +21,14 @@ export function useShare() {
   const share = useCallback(
     async (shareData: ShareOptions, callback?: (argument: string) => void) => {
       try {
-        await CapShare.share(shareData);
+        const result = await CapShare.share(shareData);
+        return result;
       } catch (error) {
         if (error instanceof Error && !/AbortError|canceled/.test(error.toString())) {
           console.error(error);
           callback?.(t('share-button.share-error'));
         }
+        return;
       }
     },
     [t]
