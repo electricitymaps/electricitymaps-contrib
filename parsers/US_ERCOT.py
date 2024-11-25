@@ -15,6 +15,7 @@ import parsers.EIA as EIA
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.validation import validate_exchange
 
+SOURCE = "ercot.com"
 TX_TZ = ZoneInfo("US/Central")
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "host=https://www.ercot.com"
@@ -109,7 +110,7 @@ def fetch_live_consumption(
                     "datetime": dt.replace(hour=item["hourEnding"] - 1),
                     "consumption": item["systemLoad"],
                     "zoneKey": zone_key,
-                    "source": "ercot.com",
+                    "source": SOURCE,
                 }
                 all_data_points.append(data_point)
     return all_data_points
@@ -166,7 +167,7 @@ def fetch_live_production(
                     "datetime": hour_dt,
                     "production": production,
                     "storage": storage,
-                    "source": "ercot.com",
+                    "source": SOURCE,
                 }
             )
 
@@ -261,7 +262,7 @@ def fetch_historical_production(
             "datetime": hour_dt,
             "production": production,
             "storage": storage,
-            "source": "ercot.com",
+            "source": SOURCE,
         }
         all_data_points.append(data_point)
 
@@ -296,7 +297,7 @@ def fetch_live_exchange(
         ]
         agg_data_point["netFlow"] = sum(values_dt) / len(values_dt)
         agg_data_point["sortedZoneKeys"] = sortedZoneKeys
-        agg_data_point["source"] = "ercot.com"
+        agg_data_point["source"] = SOURCE
         aggregated_data_points.append(agg_data_point)
     validated_data_points = [x for x in all_data_points if validate_exchange(x, logger)]
     return validated_data_points
