@@ -112,7 +112,7 @@ def fetch_live_consumption(
         for item in data_dict["data"]:
             if "systemLoad" in item:
                 consumption_list.append(
-                    zoneKey=zone_key,
+                    zoneKey=ZoneKey(zone_key),
                     datetime=dt.replace(hour=item["hourEnding"] - 1),
                     consumption=item["systemLoad"],
                     source=SOURCE,
@@ -172,7 +172,7 @@ def fetch_live_production(
                     )
 
             production_breakdowns.append(
-                zoneKey=zone_key,
+                zoneKey=ZoneKey(zone_key),
                 datetime=hour_dt,
                 source=SOURCE,
                 production=production,
@@ -270,7 +270,7 @@ def fetch_historical_production(
         storage = production_and_storage.get("storage", StorageMix())
 
         production_breakdowns.append(
-            zoneKey=zone_key,
+            zoneKey=ZoneKey(zone_key),
             datetime=hour_dt,
             source=SOURCE,
             production=production,
