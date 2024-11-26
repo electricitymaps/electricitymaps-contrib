@@ -172,4 +172,4 @@ parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
 region: Americas
-timezone: Europe/Paris
+timezone: America/Puerto_Rico
