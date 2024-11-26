@@ -37,7 +37,9 @@ export function NewFeaturePopover({
 
   const inner = (
     <Popover.Content
-      className="z-[51] flex h-auto max-w-sm rounded-2xl bg-brand-green p-4 text-center text-sm text-white shadow-md dark:bg-brand-green-dark"
+      collisionPadding={10}
+      avoidCollisions
+      className="z-[51] flex h-auto max-w-[350px] rounded-2xl bg-brand-green p-4 text-center text-sm text-white shadow-md dark:bg-brand-green-dark sm:max-w-sm"
       sideOffset={sideOffset}
       side={side}
     >
