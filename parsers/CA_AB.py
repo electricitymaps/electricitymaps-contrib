@@ -136,7 +136,6 @@ def fetch_production(
                 "solar": generation["SOLAR"]["TNG"],
                 "hydro": generation["HYDRO"]["TNG"],
                 "biomass": generation["OTHER"]["TNG"],
-                "battery storage": generation["ENERGY STORAGE"]["TNG"],
             },
             "source": URL.netloc,
             "storage": {
