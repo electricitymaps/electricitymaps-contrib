@@ -39,7 +39,7 @@ export function NewFeaturePopover({
     <Popover.Content
       collisionPadding={10}
       avoidCollisions
-      className="z-[51] flex h-auto max-w-[350px] rounded-2xl bg-brand-green p-4 text-center text-sm text-white shadow-md dark:bg-brand-green-dark sm:max-w-sm"
+      className="z-[51] flex h-auto max-w-[min(calc(100vw-20px),_400px)] rounded-2xl bg-brand-green p-4 text-center text-sm text-white shadow-md dark:bg-brand-green-dark"
       sideOffset={sideOffset}
       side={side}
     >

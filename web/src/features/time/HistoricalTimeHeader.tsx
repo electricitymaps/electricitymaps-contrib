@@ -78,11 +78,7 @@ export default function HistoricalTimeHeader() {
         />
       )}
       {isHourly && (
-        <NewFeaturePopover
-          side="top"
-          content={<NewFeaturePopoverContent />}
-          portal={false}
-        >
+        <NewFeaturePopover side="top" content={<NewFeaturePopoverContent />}>
           <div className="flex h-6 flex-row items-center gap-x-3">
             <Button
               backgroundClasses="bg-transparent"
