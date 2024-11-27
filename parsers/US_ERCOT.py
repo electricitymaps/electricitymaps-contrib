@@ -309,7 +309,7 @@ def fetch_live_exchange(
     return validated_data_points
 
 
-@refetch_frequency(timedelta(days=30))  # A month
+@refetch_frequency(timedelta(days=28))  # A month
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
     session: Session | None = None,
