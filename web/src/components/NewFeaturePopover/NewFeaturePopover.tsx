@@ -4,9 +4,12 @@ import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { X } from 'lucide-react';
 
+const POPOVER_ID = 'historical-storytelling-popover';
+const popoverDismissed = `${POPOVER_ID}-dismissed`;
+
 export const newFeatureDismissedAtom = atomWithStorage(
-  'newFeatureDismissed',
-  Boolean(localStorage.getItem('newFeatureDismissed') ?? false)
+  popoverDismissed,
+  Boolean(localStorage.getItem(popoverDismissed) ?? false)
 );
 
 interface NewFeaturePopoverProps {
@@ -27,7 +30,7 @@ export function NewFeaturePopover({
   portal = false,
 }: NewFeaturePopoverProps) {
   const [isDismissed, setIsDismissed] = useAtom(newFeatureDismissedAtom);
-  const isNewFeaturePopoverEnabled = useFeatureFlag('new-feature-popover');
+  const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
   const onDismiss = () => setIsDismissed(true);
   const shouldDisplayPopover = isNewFeaturePopoverEnabled && !isDismissed;
 
@@ -37,8 +40,7 @@ export function NewFeaturePopover({
 
   const inner = (
     <Popover.Content
-      collisionPadding={10}
-      avoidCollisions
+      hideWhenDetached
       className="z-[51] flex h-auto max-w-[min(calc(100vw-20px),_400px)] rounded-2xl bg-brand-green p-4 text-center text-sm text-white shadow-md dark:bg-brand-green-dark"
       sideOffset={sideOffset}
       side={side}

@@ -23,6 +23,7 @@ export default function HistoricalTimeHeader() {
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
+
   const isWithinHistoricalLimit = useMemo(() => {
     if (!urlDatetime) {
       return true;
