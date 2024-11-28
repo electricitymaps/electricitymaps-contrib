@@ -39,7 +39,7 @@ export function NewFeaturePopover({
   const inner = (
     <Popover.Content
       hideWhenDetached
-      className="z-[51] flex h-auto max-w-[min(calc(100vw-20px),_400px)] rounded-2xl bg-brand-green p-4 text-center text-sm text-white shadow-md dark:bg-brand-green-dark"
+      className="z-[51] mx-2.5 flex h-auto max-w-[min(calc(100vw-20px),_400px)] rounded-2xl bg-brand-green p-4 text-center text-sm text-white shadow-md dark:bg-brand-green-dark"
       sideOffset={sideOffset}
       side={side}
     >
