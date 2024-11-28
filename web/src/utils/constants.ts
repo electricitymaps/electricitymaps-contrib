@@ -81,6 +81,9 @@ export enum TrackEvent {
   SOLAR_DISABLED = 'Solar Disabled',
   WIND_ENABLED = 'Wind Enabled',
   WIND_DISABLED = 'Wind Disabled',
+  HISTORICAL_TIME_LEFT_CLICKED = 'Historical Time Left Clicked',
+  HISTORICAL_TIME_RIGHT_CLICKED = 'Historical Time Right Clicked',
+  HISTORICAL_TIME_LATEST_CLICKED = 'Historical Time Latest Clicked',
 }
 
 // color of different production modes are based on various industry standards

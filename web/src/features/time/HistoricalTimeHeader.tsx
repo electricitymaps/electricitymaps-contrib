@@ -8,7 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import { MAX_HISTORICAL_LOOKBACK_DAYS } from 'utils/constants';
+import trackEvent from 'utils/analytics';
+import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
 
@@ -41,6 +42,7 @@ export default function HistoricalTimeHeader() {
     if (!endDatetime || !urlDatetime) {
       return;
     }
+    trackEvent(TrackEvent.HISTORICAL_TIME_RIGHT_CLICKED);
     const currentEndDatetime = new Date(endDatetime);
     const newDate = new Date(currentEndDatetime.getTime() + TWENTY_FOUR_HOURS);
 
@@ -56,6 +58,7 @@ export default function HistoricalTimeHeader() {
     if (!endDatetime || !isWithinHistoricalLimit) {
       return;
     }
+    trackEvent(TrackEvent.HISTORICAL_TIME_LEFT_CLICKED);
     const currentEndDatetime = new Date(endDatetime);
     const newDate = new Date(currentEndDatetime.getTime() - TWENTY_FOUR_HOURS);
     navigate({ datetime: newDate.toISOString() });
@@ -109,7 +112,10 @@ export default function HistoricalTimeHeader() {
           <Button
             size="sm"
             type="tertiary"
-            onClick={() => navigate({ datetime: '' })}
+            onClick={() => {
+              trackEvent(TrackEvent.HISTORICAL_TIME_LATEST_CLICKED);
+              navigate({ datetime: '' });
+            }}
             isDisabled={!urlDatetime}
             icon={
               <ArrowRightToLine
