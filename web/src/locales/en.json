@@ -58,8 +58,8 @@
     "summary": "Discover real-time electricity insights with the Electricity Maps app!"
   },
   "new-feature-popover": {
-    "title": "Explore Historical Data",
-    "content": "Use the arrow buttons to view historical data on electricity sources, CO2 emissions, and prices."
+    "title": "Share granular historical insights",
+    "content": "Explore historical hourly carbon intensity and energy mix. Use the buttons to navigate through time by 24 hours and share specific dates via the zone dropdown menu."
   },
   "onboarding-modal": {
     "view1": {
