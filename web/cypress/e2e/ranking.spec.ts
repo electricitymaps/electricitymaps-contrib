@@ -1,15 +1,13 @@
 // TODO: Convert to component test and uncomment test
 describe('Ranking Panel', () => {
   it('interacts with details', () => {
-    cy.interceptAPI('v8/meta');
-    cy.interceptAPI('v8/state/last_hour');
-    cy.interceptAPI('v8/state/hourly');
-    cy.interceptAPI('v8/details/hourly/DK-DK2');
+    cy.interceptAPI('v9/meta');
+    cy.interceptAPI('v9/state/hourly');
+    cy.interceptAPI('v9/details/hourly/DK-DK2');
     cy.visit('/?lang=en-GB');
     cy.get('[data-test-id=close-modal]').click();
-    cy.waitForAPISuccess(`v8/meta`);
-    cy.waitForAPISuccess(`v8/state/last_hour`);
-    cy.waitForAPISuccess(`v8/state/hourly`);
+    cy.waitForAPISuccess(`v9/meta`);
+    cy.waitForAPISuccess(`v9/state/hourly`);
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
 
     // Close the ranking panel accordion

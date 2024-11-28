@@ -30,6 +30,7 @@ export enum ShareType {
   FACEBOOK = 'facebook',
   LINKEDIN = 'linkedin',
   TWITTER = 'twitter',
+  BLUESKY = 'bluesky',
   REDDIT = 'reddit',
   COPY = 'copy',
   SHARE = 'share',
@@ -63,4 +64,15 @@ const trackChartShareByType: TrackChartSharesByShareType = Object.fromEntries(
   ])
 );
 
-export const getTrackChartShares = (chartId: Charts) => trackChartShareByType[chartId];
+const trackByShareType: {
+  [id: string]: {
+    [shareType: string]: () => void;
+  };
+} = {
+  ...trackChartShareByType,
+  zone: Object.fromEntries(
+    Object.values(ShareType).map((shareType) => [shareType, trackShare(shareType)])
+  ),
+};
+
+export const getTrackByShareType = (id: Charts | 'zone') => trackByShareType[id];

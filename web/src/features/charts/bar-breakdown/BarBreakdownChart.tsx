@@ -18,7 +18,7 @@ import {
   productionConsumptionAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
-import { useBreakpoint } from 'utils/styling';
+import { useBreakpoint, useIsMobile } from 'utils/styling';
 
 import { ChartTitle } from '../ChartTitle';
 import { determineUnit } from '../graphUtils';
@@ -53,7 +53,7 @@ function BarBreakdownChart({
   const isHourly = useAtomValue(isHourlyAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
   const width = observerWidth + X_PADDING;
-
+  const isMobile = useIsMobile();
   const graphUnit = useMemo(
     () =>
       currentZoneDetail &&
@@ -66,7 +66,6 @@ function BarBreakdownChart({
     x: number;
     y: number;
   } | null>(null);
-
   const headerHeight = useHeaderHeight();
 
   const titleText = useBarBreakdownChartTitle();
@@ -115,7 +114,9 @@ function BarBreakdownChart({
   };
 
   const onMouseOut = () => {
-    setTooltipData(null);
+    if (!isMobile) {
+      setTooltipData(null);
+    }
   };
 
   return (
@@ -135,13 +136,13 @@ function BarBreakdownChart({
         }
         id={Charts.BAR_BREAKDOWN_CHART}
       />
-      {!displayByEmissions && (
+      {!displayByEmissions && isHourly && (
         <CapacityLegend>
           {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
         </CapacityLegend>
       )}
       {tooltipData && (
-        <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
+        <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full sm:h-0 sm:w-0">
           <div
             className="absolute mt-14 flex h-full w-full flex-col items-center gap-y-1 bg-black/20 sm:mt-auto sm:items-start"
             style={{
@@ -154,7 +155,10 @@ function BarBreakdownChart({
               zoneDetail={currentZoneDetail}
               hasEstimationPill={hasEstimationPill}
             />
-            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden">
+            <button
+              onClick={() => setTooltipData(null)}
+              className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden"
+            >
               <X />
             </button>
           </div>
@@ -170,7 +174,7 @@ function BarBreakdownChart({
           onExchangeRowMouseOut={onMouseOut}
           width={width}
           height={height}
-          isMobile={false}
+          isMobile={isMobile}
         />
       ) : (
         <BarElectricityBreakdownChart
@@ -183,7 +187,7 @@ function BarBreakdownChart({
           onExchangeRowMouseOut={onMouseOut}
           width={width}
           height={height}
-          isMobile={false}
+          isMobile={isMobile}
           graphUnit={graphUnit}
         />
       )}

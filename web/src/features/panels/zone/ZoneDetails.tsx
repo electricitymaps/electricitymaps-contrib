@@ -5,7 +5,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters, ZoneMessage } from 'types';
 import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
@@ -78,7 +78,7 @@ export default function ZoneDetails(): JSX.Element {
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
     <>
-      <ZoneHeaderTitle zoneId={zoneId} />
+      <ZoneHeaderTitle zoneId={zoneId} isEstimated={cardType === 'estimated'} />
       <div
         id="panel-scroller"
         className={twMerge(
@@ -195,7 +195,6 @@ function ZoneDetailsContent({
 
 const useScrollHashIntoView = (isLoading: boolean) => {
   const { hash, pathname, search } = useLocation();
-  const navigate = useNavigate();
   const anchor = hash.toLowerCase();
 
   useEffect(() => {
@@ -221,5 +220,5 @@ const useScrollHashIntoView = (isLoading: boolean) => {
         element.scrollTop = 0;
       }
     }
-  }, [anchor, isLoading, navigate, pathname, search]);
+  }, [anchor, isLoading, pathname, search]);
 };

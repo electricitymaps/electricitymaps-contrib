@@ -33,10 +33,10 @@ function isUsingLocalEndpoint(): boolean {
 
 function getToken(): string {
   invariant(
-    import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN,
-    'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN is not defined in environment'
+    import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9,
+    'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9 is not defined in environment'
   );
-  return String(import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN);
+  return String(import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9);
 }
 
 /**
@@ -82,3 +82,14 @@ export const QUERY_KEYS = {
   ZONE: 'zone',
   META: 'meta',
 };
+export function isValidDate(dateString: string) {
+  if (Number.isNaN(Date.parse(dateString))) {
+    throw new TypeError('Invalid date string: ' + dateString);
+  }
+  const oldestDatetimeToSupport = new Date('2017-01-01T00:00:00Z');
+  const parsedDate = new Date(dateString);
+  if (parsedDate > oldestDatetimeToSupport) {
+    return true;
+  }
+  return false;
+}
