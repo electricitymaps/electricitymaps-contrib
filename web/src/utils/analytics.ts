@@ -30,6 +30,7 @@ export enum ShareType {
   FACEBOOK = 'facebook',
   LINKEDIN = 'linkedin',
   TWITTER = 'twitter',
+  BLUESKY = 'bluesky',
   REDDIT = 'reddit',
   COPY = 'copy',
   SHARE = 'share',
