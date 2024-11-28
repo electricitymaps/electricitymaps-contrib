@@ -1,10 +1,9 @@
 import * as Popover from '@radix-ui/react-popover';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { X } from 'lucide-react';
 
-const POPOVER_ID = 'historical-storytelling-popover';
+export const POPOVER_ID = 'historical-storytelling-popover';
 const popoverDismissed = `${POPOVER_ID}-dismissed`;
 
 export const newFeatureDismissedAtom = atomWithStorage(
@@ -17,7 +16,7 @@ interface NewFeaturePopoverProps {
   content: string | React.ReactNode;
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
-  isOpen?: boolean;
+  isOpenByDefault?: boolean;
   portal?: boolean;
   onDismiss?: () => void;
 }
@@ -28,11 +27,10 @@ export function NewFeaturePopover({
   side = 'left',
   sideOffset = 6,
   portal = false,
+  isOpenByDefault,
 }: NewFeaturePopoverProps) {
   const [isDismissed, setIsDismissed] = useAtom(newFeatureDismissedAtom);
-  const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
   const onDismiss = () => setIsDismissed(true);
-  const shouldDisplayPopover = isNewFeaturePopoverEnabled && !isDismissed;
 
   if (!content) {
     return children;
@@ -58,7 +56,7 @@ export function NewFeaturePopover({
   );
 
   return (
-    <Popover.Root open={shouldDisplayPopover}>
+    <Popover.Root open={isOpenByDefault && !isDismissed}>
       <Popover.Anchor>{children}</Popover.Anchor>
       {portal ? <Popover.Portal>{inner}</Popover.Portal> : inner}
     </Popover.Root>
