@@ -53,6 +53,9 @@ export function useTimeAverageSync() {
   return [timeAverage, setTimeAverageAndNavigate] as const;
 }
 export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
+export const isHourly72Atom = atom(
+  (get) => get(timeAverageAtom) === TimeAverages.HOURLY_72
+);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
@@ -72,8 +75,11 @@ export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
 );
 
+// TODO: consider renaming and using in TimeAxis (renderTickValue)
 export const areWeatherLayersAllowedAtom = atom<boolean>(
-  (get) => get(isHourlyAtom) && get(selectedDatetimeIndexAtom).index === 24
+  (get) =>
+    (get(isHourlyAtom) && get(selectedDatetimeIndexAtom).index === 24) ||
+    (get(isHourly72Atom) && get(selectedDatetimeIndexAtom).index === 71)
 );
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);
