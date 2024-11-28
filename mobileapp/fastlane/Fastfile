@@ -10,7 +10,7 @@ android_dir = File.expand_path("../android")
 
 private_lane :build_web_app do
   ensure_env_vars(
-  env_vars: ['SENTRY_AUTH_TOKEN', 'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN']
+  env_vars: ['SENTRY_AUTH_TOKEN', 'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9']
 )
   # Build the web app if we have both environment variables set
   sh("pnpm", "run", "build-web")

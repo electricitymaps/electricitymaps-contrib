@@ -35,7 +35,7 @@ jobs:
         working-directory: ./web
         run: pnpm run build
         env:
-          VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}'
+          VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9: '${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9 }}'
       - name: Publish
         uses: cloudflare/pages-action@1
         with:
