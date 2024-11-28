@@ -101,10 +101,9 @@ describe('Country Panel', () => {
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 
-
   // TODO(AVO-659): fix flaky tests
   it.skip('scrolls to anchor element if provided a hash in url', () => {
-    cy.interceptAPI('v8/details/hourly/DK-DK2');
+    cy.interceptAPI('v9/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB#origin_chart', {
       onBeforeLoad(win) {
@@ -118,10 +117,8 @@ describe('Country Panel', () => {
     cy.get('#origin_chart').should('be.visible');
   });
 
-
   it.skip('scrolls to anchor element if provided a hash with caps in url', () => {
-    cy.interceptAPI('v8/details/hourly/DK-DK2');
-
+    cy.interceptAPI('v9/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB#oRiGiN_ChArT', {
       onBeforeLoad(win) {
