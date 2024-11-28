@@ -11,6 +11,7 @@ import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import Header from 'features/header/Header';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
+import DateRedirectToast from 'features/time/DateRedirectToast';
 import { useDarkMode } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useSetAtom } from 'jotai';
@@ -100,6 +101,9 @@ export default function App(): ReactElement {
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               <Suspense>
                 <UpdatePrompt />
+              </Suspense>
+              <Suspense>
+                <DateRedirectToast />
               </Suspense>
               <Suspense>
                 <LoadingOverlay />
