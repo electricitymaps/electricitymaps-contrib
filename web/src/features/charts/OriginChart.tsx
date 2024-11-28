@@ -1,15 +1,22 @@
 import EstimationBadge from 'components/EstimationBadge';
+import { MetricRatio } from 'components/MetricRatio';
+import { FormattedTime } from 'components/Time';
 import { max, sum } from 'd3-array';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import i18n from 'translation/i18n';
 import { ElectricityModeType } from 'types';
 import { Charts, TimeAverages } from 'utils/constants';
-import { formatCo2 } from 'utils/formatting';
-import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
+import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
+import {
+  isConsumptionAtom,
+  isHourlyAtom,
+  selectedDatetimeIndexAtom,
+} from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
-import AreaGraph from './elements/AreaGraph';
+import AreaGraph, { AreaGraphIndexSelectedAtom } from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -71,6 +78,16 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
   const isHourly = useAtomValue(isHourlyAtom);
   const selectedData = useSelectedData(displayByEmissions);
 
+  // TODO(cady): Clean up; consider controller?
+  const [graphIndex] = useAtom(AreaGraphIndexSelectedAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const index = graphIndex ?? selectedDatetime.index;
+  const currentDataPointMeta = data?.chartData[index].meta;
+  const totalElectricity =
+    currentDataPointMeta.totalProduction +
+    currentDataPointMeta.totalDischarge +
+    (isConsumption ? currentDataPointMeta.totalImport : 0);
+
   if (!data) {
     return null;
   }
@@ -111,6 +128,19 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
         unit={valueAxisLabel}
         id={Charts.ORIGIN_CHART}
       />
+      <div className="flex flex-col">
+        <FormattedTime
+          datetime={selectedDatetime.datetime}
+          language={i18n.languages[0]}
+          timeAverage={timeAverage}
+          className="text-xs"
+        />
+        <MetricRatio
+          value={totalElectricity}
+          useTotalUnit
+          format={isHourly ? formatPower : formatEnergy}
+        />
+      </div>
       <div className="relative ">
         <AreaGraph
           testId="history-mix-graph"

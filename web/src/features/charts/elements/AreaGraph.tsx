@@ -119,7 +119,7 @@ interface TooltipData {
   zoneDetail: ZoneDetail;
 }
 
-const AreaGraphIndexSelectedAtom = atom<number | null>(null);
+export const AreaGraphIndexSelectedAtom = atom<number | null>(null);
 
 function AreaGraph({
   data,
@@ -190,9 +190,9 @@ function AreaGraph({
     [containerWidth, startTime, endTime]
   );
 
+  // raise this up into state?
   const [graphIndex, setGraphIndex] = useAtom(AreaGraphIndexSelectedAtom);
   const [hoveredLayerIndex, setHoveredLayerIndex] = useState<number | null>(null);
-
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
 
   // Graph update handlers. Used for tooltip data.
