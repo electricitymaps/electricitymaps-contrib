@@ -42,7 +42,9 @@ export default function HistoricalTimeHeader() {
     if (!endDatetime || !urlDatetime) {
       return;
     }
-    trackEvent(TrackEvent.HISTORICAL_TIME_RIGHT_CLICKED);
+    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+      direction: 'forward',
+    });
     const currentEndDatetime = new Date(endDatetime);
     const newDate = new Date(currentEndDatetime.getTime() + TWENTY_FOUR_HOURS);
 
@@ -58,7 +60,9 @@ export default function HistoricalTimeHeader() {
     if (!endDatetime || !isWithinHistoricalLimit) {
       return;
     }
-    trackEvent(TrackEvent.HISTORICAL_TIME_LEFT_CLICKED);
+    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+      direction: 'backward',
+    });
     const currentEndDatetime = new Date(endDatetime);
     const newDate = new Date(currentEndDatetime.getTime() - TWENTY_FOUR_HOURS);
     navigate({ datetime: newDate.toISOString() });
@@ -113,7 +117,9 @@ export default function HistoricalTimeHeader() {
             size="sm"
             type="tertiary"
             onClick={() => {
-              trackEvent(TrackEvent.HISTORICAL_TIME_LATEST_CLICKED);
+              trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+                direction: 'latest',
+              });
               navigate({ datetime: '' });
             }}
             isDisabled={!urlDatetime}
