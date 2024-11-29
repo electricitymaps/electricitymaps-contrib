@@ -5,7 +5,8 @@ import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
-import { useSetAtom } from 'jotai';
+import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { ArrowLeft, Ellipsis, Info } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
@@ -15,9 +16,9 @@ import {
   getSEOZoneName,
   getZoneName,
 } from 'translation/translation';
-import { ZoneKey } from 'types';
-import { baseUrl, metaTitleSuffix } from 'utils/constants';
+import { metaTitleSuffix } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
+import { isConsumptionAtom } from 'utils/state/atoms';
 
 import { ShareButton } from './ShareButton';
 import { getDisclaimer } from './util';
@@ -29,11 +30,6 @@ interface ZoneHeaderTitleProps {
 }
 
 const MAX_TITLE_LENGTH = 25;
-
-function getCurrentUrl({ zoneId }: { zoneId: ZoneKey }) {
-  const url = baseUrl + (zoneId ? `/zone/${zoneId}` : '/map');
-  return url;
-}
 
 export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitleProps) {
   const zoneName = getZoneName(zoneId);
@@ -49,6 +45,7 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
   const setIsMapMoving = useSetAtom(mapMovingAtom);
   const canonicalUrl = useGetCanonicalUrl();
   const isShareButtonEnabled = useFeatureFlag('share-button');
+  const isConsumption = useAtomValue(isConsumptionAtom);
 
   const onNavigateBack = () => {
     setIsMapMoving(false);
@@ -56,7 +53,7 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
       to: '/map',
     });
   };
-  const shareUrl = getCurrentUrl({ zoneId });
+  const shareUrl = useGetCurrentUrl();
   const showMoreOptions = useShowMoreOptions();
   const { t } = useTranslation();
 
@@ -110,6 +107,7 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
       {isShareButtonEnabled &&
+        isConsumption &&
         (showMoreOptions ? (
           <MoreOptionsDropdown
             id="zone"

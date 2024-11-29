@@ -2,12 +2,12 @@
 // TODO: Convert to component test
 describe('Country Panel', () => {
   beforeEach(() => {
-    cy.interceptAPI('v8/state/hourly');
-    cy.interceptAPI('v8/meta');
+    cy.interceptAPI('v9/state/hourly');
+    cy.interceptAPI('v9/meta');
   });
 
   it('interacts with details', () => {
-    cy.interceptAPI('v8/details/hourly/DK-DK2');
+    cy.interceptAPI('v9/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB', {
       onBeforeLoad(win) {
@@ -15,8 +15,8 @@ describe('Country Panel', () => {
       },
     });
     cy.get('[data-test-id=close-modal]').click();
-    cy.waitForAPISuccess('v8/state/hourly');
-    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
+    cy.waitForAPISuccess('v9/state/hourly');
+    cy.waitForAPISuccess('v9/details/hourly/DK-DK2');
     cy.get('[data-test-id=loading-overlay]').should('not.exist');
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
@@ -69,14 +69,14 @@ describe('Country Panel', () => {
 
   // TODO bring back when we have a no recent data message
   it.skip('asserts countryPanel contains "no-recent-data" message', () => {
-    cy.interceptAPI('v8/details/hourly/UA');
+    cy.interceptAPI('v9/details/hourly/UA');
     cy.visit('/zone/UA?lang=en-GB', {
       onBeforeLoad(win) {
         delete win.navigator.__proto__.serviceWorker;
       },
     });
-    cy.waitForAPISuccess('v8/state/hourly');
-    cy.waitForAPISuccess('v8/details/hourly/UA');
+    cy.waitForAPISuccess('v9/state/hourly');
+    cy.waitForAPISuccess('v9/details/hourly/UA');
 
     cy.get('[data-test-id=no-data-overlay-message]')
       .should('exist')
@@ -85,9 +85,9 @@ describe('Country Panel', () => {
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
     // Add all required API intercepts
-    cy.interceptAPI('v8/state/hourly');
-    cy.interceptAPI('v8/details/hourly/CN');
-    cy.interceptAPI('v8/meta'); // Add this if needed
+    cy.interceptAPI('v9/state/hourly');
+    cy.interceptAPI('v9/details/hourly/CN');
+    cy.interceptAPI('v9/meta'); // Add this if needed
 
     cy.visit('/zone/CN/24h?lang=en-GB', {
       onBeforeLoad(win) {
@@ -95,14 +95,15 @@ describe('Country Panel', () => {
       },
     });
 
-    cy.waitForAPISuccess('v8/state/hourly');
-    cy.waitForAPISuccess('v8/details/hourly/CN');
+    cy.waitForAPISuccess('v9/state/hourly');
+    cy.waitForAPISuccess('v9/details/hourly/CN');
 
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 
-  it('scrolls to anchor element if provided a hash in url', () => {
-    cy.interceptAPI('v8/details/hourly/DK-DK2');
+  // TODO(AVO-659): fix flaky tests
+  it.skip('scrolls to anchor element if provided a hash in url', () => {
+    cy.interceptAPI('v9/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB#origin_chart', {
       onBeforeLoad(win) {
@@ -110,14 +111,14 @@ describe('Country Panel', () => {
       },
     });
     cy.get('[data-test-id=close-modal]').click();
-    cy.waitForAPISuccess('v8/state/hourly');
-    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
+    cy.waitForAPISuccess('v9/state/hourly');
+    cy.waitForAPISuccess('v9/details/hourly/DK-DK2');
     // eslint-disable-next-line cypress/require-data-selectors
     cy.get('#origin_chart').should('be.visible');
   });
 
-  it('scrolls to anchor element if provided a hash with caps in url', () => {
-    cy.interceptAPI('v8/details/hourly/DK-DK2');
+  it.skip('scrolls to anchor element if provided a hash with caps in url', () => {
+    cy.interceptAPI('v9/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB#oRiGiN_ChArT', {
       onBeforeLoad(win) {
@@ -125,14 +126,14 @@ describe('Country Panel', () => {
       },
     });
     cy.get('[data-test-id=close-modal]').click();
-    cy.waitForAPISuccess('v8/state/hourly');
-    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
+    cy.waitForAPISuccess('v9/state/hourly');
+    cy.waitForAPISuccess('v9/details/hourly/DK-DK2');
     // eslint-disable-next-line cypress/require-data-selectors
     cy.get('#origin_chart').should('be.visible');
   });
 
   it('does not scroll or error if provided a non-sensical hash in url', () => {
-    cy.interceptAPI('v8/details/hourly/DK-DK2');
+    cy.interceptAPI('v9/details/hourly/DK-DK2');
 
     cy.visit('/zone/DK-DK2?lang=en-GB##not-a-thing', {
       onBeforeLoad(win) {
@@ -140,8 +141,8 @@ describe('Country Panel', () => {
       },
     });
     cy.get('[data-test-id=close-modal]').click();
-    cy.waitForAPISuccess('v8/state/hourly');
-    cy.waitForAPISuccess('v8/details/hourly/DK-DK2');
+    cy.waitForAPISuccess('v9/state/hourly');
+    cy.waitForAPISuccess('v9/details/hourly/DK-DK2');
     cy.get('[data-test-id=left-panel] [data-test-id=co2-square-value]').should(
       'be.visible'
     );

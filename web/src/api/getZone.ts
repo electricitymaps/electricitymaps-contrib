@@ -20,7 +20,7 @@ const getZone = async (
     targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
 
   const path: URL = new URL(
-    `v8/details/${timeAverage}/${zoneId}${
+    `v9/details/${timeAverage}/${zoneId}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
