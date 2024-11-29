@@ -54,6 +54,10 @@ type MapPageProps = {
   onMapLoad?: (map: maplibregl.Map) => void;
 };
 
+interface ExtendedWindow extends Window {
+  killMap?: () => void;
+}
+
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
@@ -90,8 +94,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     let subscription: PluginListenerHandle | null = null;
     // Dev testing function to break the map state and test recovery
     if (import.meta.env.DEV) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (window as any).killMap = () => {
+      (window as ExtendedWindow).killMap = () => {
         console.log('Attempting to break map state');
         if (map && map.loaded()) {
           try {
