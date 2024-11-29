@@ -8,7 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import { MAX_HISTORICAL_LOOKBACK_DAYS } from 'utils/constants';
+import trackEvent from 'utils/analytics';
+import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
 
@@ -41,6 +42,9 @@ export default function HistoricalTimeHeader() {
     if (!endDatetime || !urlDatetime) {
       return;
     }
+    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+      direction: 'forward',
+    });
     const currentEndDatetime = new Date(endDatetime);
     const newDate = new Date(currentEndDatetime.getTime() + TWENTY_FOUR_HOURS);
 
@@ -56,6 +60,9 @@ export default function HistoricalTimeHeader() {
     if (!endDatetime || !isWithinHistoricalLimit) {
       return;
     }
+    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+      direction: 'backward',
+    });
     const currentEndDatetime = new Date(endDatetime);
     const newDate = new Date(currentEndDatetime.getTime() - TWENTY_FOUR_HOURS);
     navigate({ datetime: newDate.toISOString() });
@@ -87,7 +94,7 @@ export default function HistoricalTimeHeader() {
               <ChevronLeft
                 size={22}
                 className={twMerge(
-                  'text-brand-green',
+                  'text-brand-green dark:text-success-dark',
                   !isWithinHistoricalLimit && 'opacity-50'
                 )}
               />
@@ -101,7 +108,10 @@ export default function HistoricalTimeHeader() {
             isDisabled={!urlDatetime}
             icon={
               <ChevronRight
-                className={twMerge('text-brand-green', !urlDatetime && 'opacity-50')}
+                className={twMerge(
+                  'text-brand-green dark:text-success-dark',
+                  !urlDatetime && 'opacity-50'
+                )}
                 size={22}
               />
             }
@@ -109,11 +119,19 @@ export default function HistoricalTimeHeader() {
           <Button
             size="sm"
             type="tertiary"
-            onClick={() => navigate({ datetime: '' })}
+            onClick={() => {
+              trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+                direction: 'latest',
+              });
+              navigate({ datetime: '' });
+            }}
             isDisabled={!urlDatetime}
             icon={
               <ArrowRightToLine
-                className={twMerge('text-brand-green', !urlDatetime && 'opacity-50')}
+                className={twMerge(
+                  'text-brand-green dark:text-success-dark',
+                  !urlDatetime && 'opacity-50'
+                )}
                 size={22}
               />
             }
