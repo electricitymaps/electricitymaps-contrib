@@ -88,15 +88,41 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   useEffect(() => {
     let subscription: PluginListenerHandle | null = null;
+    (window as any).killMap = () => {
+      console.log('Attempting to break map state');
+      if (map && map.loaded()) {
+        try {
+          if (map.getSource(ZONE_SOURCE)) {
+            console.log('Removing zone source');
+            map.removeSource(ZONE_SOURCE);
+          }
 
+          const canvas = map.getCanvas();
+          canvas.width = 0;
+          canvas.height = 0;
+
+          const container = map.getContainer();
+          container.innerHTML = '';
+
+          console.log('Map should now be broken - use app focus to trigger recovery');
+        } catch (error) {
+          console.error('Error while killing map:', error);
+        }
+      } else {
+        console.log('Map not ready or already broken');
+      }
+    };
     const setupListener = async () => {
       subscription = await App.addListener('appStateChange', ({ isActive }) => {
         if (!isActive) {
           setWasInBackground(true);
         } else if (wasInBackground && map) {
-          const isSourceMissing = !map.getSource(ZONE_SOURCE);
-          if (isSourceMissing) {
-            setMapReference(null);
+          const isMapBroken =
+            !map.loaded() ||
+            map.getCanvas().width === 0 ||
+            map.getContainer().offsetWidth === 0 ||
+            map.getContainer().style.display === 'none';
+          if (isMapBroken) {
             window.location.reload();
           } else {
             map.resize();
@@ -114,7 +140,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     };
   }, [map, wasInBackground, setMapReference]);
 
-  console.log('rendering');
   useEffect(() => {
     const setSourceLoadedForMap = () => {
       setSourceLoaded(
