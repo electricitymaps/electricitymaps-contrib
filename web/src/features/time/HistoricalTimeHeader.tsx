@@ -94,7 +94,7 @@ export default function HistoricalTimeHeader() {
               <ChevronLeft
                 size={22}
                 className={twMerge(
-                  'text-brand-green',
+                  'text-brand-green dark:text-success-dark',
                   !isWithinHistoricalLimit && 'opacity-50'
                 )}
               />
@@ -108,7 +108,10 @@ export default function HistoricalTimeHeader() {
             isDisabled={!urlDatetime}
             icon={
               <ChevronRight
-                className={twMerge('text-brand-green', !urlDatetime && 'opacity-50')}
+                className={twMerge(
+                  'text-brand-green dark:text-success-dark',
+                  !urlDatetime && 'opacity-50'
+                )}
                 size={22}
               />
             }
@@ -125,7 +128,10 @@ export default function HistoricalTimeHeader() {
             isDisabled={!urlDatetime}
             icon={
               <ArrowRightToLine
-                className={twMerge('text-brand-green', !urlDatetime && 'opacity-50')}
+                className={twMerge(
+                  'text-brand-green dark:text-success-dark',
+                  !urlDatetime && 'opacity-50'
+                )}
                 size={22}
               />
             }
