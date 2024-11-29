@@ -211,10 +211,12 @@
       "monthly": "Données mensuelles pour :",
       "yearly": "Données annuelles pour :"
     },
-    "daily": "quotidien",
-    "hourly": "horaire",
-    "monthly": "mensuel",
-    "yearly": "annuel"
+    "historical-linking": {
+      "daily": "30j",
+      "hourly": "24h",
+      "monthly": "12mo",
+      "yearly": "tout"
+    }
   },
   "ranking-panel": {
     "title": "Impact sur le climat par zone",

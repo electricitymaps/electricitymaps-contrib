@@ -15,7 +15,7 @@ import {
   DEFAULT_TOAST_DURATION,
 } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
-import { displayByEmissionsAtom, isHourlyAtom } from 'utils/state/atoms';
+import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 
 import { DefaultCloseButton } from './DefaultCloseButton';
 import { MemoizedShareIcon } from './ShareIcon';
@@ -206,9 +206,8 @@ const useDropdownCtl = () => {
 
 export function useShowMoreOptions() {
   const isMoreOptionsEnabled = useFeatureFlag('more-options-dropdown');
-  const isHourly = useAtomValue(isHourlyAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const showMoreOptions = isMoreOptionsEnabled && isHourly && !displayByEmissions;
+  const isConsumption = useAtomValue(isConsumptionAtom);
 
-  return showMoreOptions;
+  return isMoreOptionsEnabled && !displayByEmissions && isConsumption;
 }

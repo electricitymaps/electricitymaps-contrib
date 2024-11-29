@@ -59,7 +59,7 @@ export async function fetchGfsForecast(
 ): Promise<GfsForecastResponse> {
   const targetTime = targetTimeFunction[period](endTime);
 
-  const path: URL = new URL(`v8/gfs/${resource}`, getBasePath());
+  const path: URL = new URL(`v9/gfs/${resource}`, getBasePath());
   path.searchParams.append('refTime', startTime.toISOString());
   path.searchParams.append('targetTime', targetTime);
 

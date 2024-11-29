@@ -16,6 +16,7 @@
     "no-results": "No results found for this search 🌍"
   },
   "button": {
+    "bluesky-share": "Check real-time global electricity emissions data: {{baseUrl}}",
     "reddit": "Join r/electricitymaps",
     "reddit-share": "Share on Reddit",
     "github": "Contribute on GitHub",
@@ -141,7 +142,7 @@
       "hide": "Hide upcoming prices",
       "today": "Today",
       "tomorrow": "Tomorrow",
-      "price-disclaimer": "Prices exclude taxes and any grid fees.",
+      "price-disclaimer": "All prices are per MWh, excl. taxes & grid fees.",
       "time-disclaimer": "All times shown are in",
       "at": "At",
       "now": "Now"
