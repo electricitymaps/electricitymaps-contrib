@@ -1,3 +1,5 @@
+import { App } from '@capacitor/app';
+import { PluginListenerHandle } from '@capacitor/core/types/definitions';
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
@@ -79,10 +81,40 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
   const { zoneId: pathZoneId } = useParams<RouteParameters>();
+  const [wasInBackground, setWasInBackground] = useState(false);
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
 
+  useEffect(() => {
+    let subscription: PluginListenerHandle | null = null;
+
+    const setupListener = async () => {
+      subscription = await App.addListener('appStateChange', ({ isActive }) => {
+        if (!isActive) {
+          setWasInBackground(true);
+        } else if (wasInBackground && map) {
+          const isSourceMissing = !map.getSource(ZONE_SOURCE);
+          if (isSourceMissing) {
+            setMapReference(null);
+            window.location.reload();
+          } else {
+            map.resize();
+          }
+        }
+      });
+    };
+
+    setupListener();
+
+    return () => {
+      if (subscription) {
+        subscription.remove();
+      }
+    };
+  }, [map, wasInBackground, setMapReference]);
+
+  console.log('rendering');
   useEffect(() => {
     const setSourceLoadedForMap = () => {
       setSourceLoaded(
