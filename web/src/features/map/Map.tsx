@@ -88,30 +88,34 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   useEffect(() => {
     let subscription: PluginListenerHandle | null = null;
-    (window as any).killMap = () => {
-      console.log('Attempting to break map state');
-      if (map && map.loaded()) {
-        try {
-          if (map.getSource(ZONE_SOURCE)) {
-            console.log('Removing zone source');
-            map.removeSource(ZONE_SOURCE);
+    // Dev testing function to break the map state and test recovery
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).killMap = () => {
+        console.log('Attempting to break map state');
+        if (map && map.loaded()) {
+          try {
+            if (map.getSource(ZONE_SOURCE)) {
+              console.log('Removing zone source');
+              map.removeSource(ZONE_SOURCE);
+            }
+
+            const canvas = map.getCanvas();
+            canvas.width = 0;
+            canvas.height = 0;
+
+            const container = map.getContainer();
+            container.innerHTML = '';
+
+            console.log('Map should now be broken');
+          } catch (error) {
+            console.error('Error while killing map:', error);
           }
-
-          const canvas = map.getCanvas();
-          canvas.width = 0;
-          canvas.height = 0;
-
-          const container = map.getContainer();
-          container.innerHTML = '';
-
-          console.log('Map should now be broken - use app focus to trigger recovery');
-        } catch (error) {
-          console.error('Error while killing map:', error);
+        } else {
+          console.log('Map not ready or already broken');
         }
-      } else {
-        console.log('Map not ready or already broken');
-      }
-    };
+      };
+    }
     const setupListener = async () => {
       subscription = await App.addListener('appStateChange', ({ isActive }) => {
         if (!isActive) {
