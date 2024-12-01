@@ -162,7 +162,7 @@
     "browserslist-to-esbuild": "^2.1.1",
     "colors": "^1.4.0",
     "css-mediaquery": "0.1.2",
-    "cypress": "13.14.2",
+    "cypress": "13.16.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
