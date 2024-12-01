@@ -129,7 +129,7 @@ def fetch_csv_for_date(dt, session: Session | None = None):
 
     # API returns normally status 200 but content type text/html when data is missing
     if "Content-Type" not in response.headers or "text/html" in response.headers.get(
-        "Content-Type"
+        "Content-Type", ""
     ):
         return None
 
