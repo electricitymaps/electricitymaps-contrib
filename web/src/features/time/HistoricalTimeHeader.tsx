@@ -77,8 +77,8 @@ export default function HistoricalTimeHeader() {
   }
 
   return (
-    <div className="flex min-h-6 flex-row items-center justify-between">
-      {startDatetime && endDatetime && (
+    <div className="flex min-h-6 flex-row items-center">
+      {!isHourly && startDatetime && endDatetime && (
         <Badge
           pillText={
             <FormattedTime
@@ -91,46 +91,57 @@ export default function HistoricalTimeHeader() {
         />
       )}
       {isHourly && (
-        <div className="flex h-6 flex-row items-center gap-x-3">
-          <NewFeaturePopover
-            side="top"
-            content={<NewFeaturePopoverContent />}
-            isOpenByDefault={isNewFeaturePopoverEnabled}
-          >
+        <div className="relative flex h-6 w-full items-center">
+          <div className="absolute flex w-full items-center justify-between px-10">
+            <NewFeaturePopover
+              side="top"
+              content={<NewFeaturePopoverContent />}
+              isOpenByDefault={isNewFeaturePopoverEnabled}
+            >
+              <Button
+                backgroundClasses="bg-transparent"
+                onClick={handleLeftClick}
+                size="sm"
+                type="tertiary"
+                isDisabled={!isWithinHistoricalLimit}
+                icon={
+                  <ChevronLeft
+                    size={22}
+                    className={twMerge(
+                      'text-brand-green dark:text-success-dark',
+                      !isWithinHistoricalLimit && 'opacity-50'
+                    )}
+                  />
+                }
+              />
+            </NewFeaturePopover>
+            {startDatetime && endDatetime && (
+              <FormattedTime
+                datetime={startDatetime}
+                language={i18n.languages[0]}
+                endDatetime={endDatetime}
+                className="text-sm font-semibold"
+              />
+            )}
             <Button
               backgroundClasses="bg-transparent"
-              onClick={handleLeftClick}
               size="sm"
+              onClick={handleRightClick}
               type="tertiary"
-              isDisabled={!isWithinHistoricalLimit}
+              isDisabled={!urlDatetime}
               icon={
-                <ChevronLeft
-                  size={22}
+                <ChevronRight
                   className={twMerge(
                     'text-brand-green dark:text-success-dark',
-                    !isWithinHistoricalLimit && 'opacity-50'
+                    !urlDatetime && 'opacity-50'
                   )}
+                  size={22}
                 />
               }
             />
-          </NewFeaturePopover>
+          </div>
           <Button
-            backgroundClasses="bg-transparent"
-            size="sm"
-            onClick={handleRightClick}
-            type="tertiary"
-            isDisabled={!urlDatetime}
-            icon={
-              <ChevronRight
-                className={twMerge(
-                  'text-brand-green dark:text-success-dark',
-                  !urlDatetime && 'opacity-50'
-                )}
-                size={22}
-              />
-            }
-          />
-          <Button
+            backgroundClasses="absolute z-1 right-2"
             size="sm"
             type="tertiary"
             onClick={() => {
