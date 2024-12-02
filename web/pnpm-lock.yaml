@@ -235,8 +235,8 @@ importers:
         specifier: ^8.4.6
         version: 8.4.6(storybook@8.4.6(prettier@2.8.8))
       '@swc-jotai/debug-label':
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^0.2.0
+        version: 0.2.0
       '@swc-jotai/react-refresh':
         specifier: ^0.2.0
         version: 0.2.0
@@ -2840,8 +2840,8 @@ packages:
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
 
-  '@swc-jotai/debug-label@0.1.1':
-    resolution: {integrity: sha512-QXn/fNksCLObDqc/g5v0KALpG/paFiWeeVmXG3Dzan2HPFzhGHU1JEq9ryzeLm5mDDJ2lcK9o68nLWA/5vVS7Q==}
+  '@swc-jotai/debug-label@0.2.0':
+    resolution: {integrity: sha512-vlHfGuN+w3TMb8UUGFEoWWuC3a8xTz/cJWI/58gTwF7R0p8Z75fwiZpi62Sq8JhCYRGHnXCzJxaA1Oszdev3Xg==}
 
   '@swc-jotai/react-refresh@0.2.0':
     resolution: {integrity: sha512-LDkIeVcaL8sop/MHLP3RsUHj73fQ0kU7eYhJj7SuU4eAbx7xE3eeEgCjhTyPB3aYimSHwOk8/c71buLMV9SvPA==}
@@ -11337,7 +11337,7 @@ snapshots:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.10
 
-  '@swc-jotai/debug-label@0.1.1': {}
+  '@swc-jotai/debug-label@0.2.0': {}
 
   '@swc-jotai/react-refresh@0.2.0': {}
 

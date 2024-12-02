@@ -130,7 +130,7 @@
     "@storybook/react": "^8.4.6",
     "@storybook/react-vite": "^8.4.6",
     "@storybook/test": "^8.4.6",
-    "@swc-jotai/debug-label": "^0.1.1",
+    "@swc-jotai/debug-label": "^0.2.0",
     "@swc-jotai/react-refresh": "^0.2.0",
     "@tanstack/react-query-devtools": "^5.62.0",
     "@testing-library/cypress": "10.0.2",
