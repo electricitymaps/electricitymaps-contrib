@@ -248,7 +248,7 @@
       "monthly": "12mo",
       "yearly": "all"
     },
-    "disclaimer": "This link is beyond the available dates. We've redirected you to the latest available date."
+    "date-unavailable": "Date unavailable; redirecting to live data"
   },
   "left-panel": {
     "get-data": "See our commercial API offerings",
