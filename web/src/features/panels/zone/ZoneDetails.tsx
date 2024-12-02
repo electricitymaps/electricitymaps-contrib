@@ -3,6 +3,7 @@ import useGetZone from 'api/getZone';
 import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import { hasSignificantEstimation } from 'features/charts/graphUtils';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
@@ -73,7 +74,11 @@ export default function ZoneDetails(): JSX.Element {
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+  const hasEstimationPill = hasSignificantEstimation(
+    estimationMethod,
+    estimatedPercentage
+  );
+
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (

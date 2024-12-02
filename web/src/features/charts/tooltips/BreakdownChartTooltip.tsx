@@ -16,7 +16,11 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 
-import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
+import {
+  getGenerationTypeKey,
+  getRatioPercent,
+  hasSignificantEstimation,
+} from '../graphUtils';
 import { getExchangeTooltipData, getProductionTooltipData } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps, LayerKey } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
@@ -124,7 +128,10 @@ export default function BreakdownChartTooltip({
   );
 
   const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
-  const hasEstimationPill = estimationMethod != undefined || Boolean(estimatedPercentage);
+  const hasEstimationPill = hasSignificantEstimation(
+    estimationMethod,
+    estimatedPercentage
+  );
 
   return (
     <BreakdownChartTooltipContent

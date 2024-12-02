@@ -274,3 +274,13 @@ export function extractLinkFromSource(
   // We on purpose don't use https due to some sources not supporting it (and the majority that does will automatically redirect anyway)
   return `http://${source}`;
 }
+
+export function hasSignificantEstimation(
+  estimationMethod: EstimationMethods | undefined,
+  estimatedPercentage: number | undefined
+) {
+  return (
+    Boolean(estimationMethod) ||
+    (estimatedPercentage != undefined && estimatedPercentage > 1)
+  );
+}

@@ -79,7 +79,7 @@ function DataValidityBadge({
       />
     );
   }
-  if (estimated && estimated > 0) {
+  if (estimated && estimated > 1) {
     return (
       <EstimationBadge
         text={t(`estimation-card.aggregated_estimated.pill`, {

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getCarbonIntensity } from 'utils/helpers';
 import { isConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
 
+import { hasSignificantEstimation } from '../graphUtils';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
@@ -29,7 +30,10 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
     isConsumption
   );
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+  const hasEstimationPill = hasSignificantEstimation(
+    estimationMethod,
+    estimatedPercentage
+  );
   return (
     <div
       data-test-id="carbon-chart-tooltip"
