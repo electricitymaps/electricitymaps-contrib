@@ -5,7 +5,7 @@ import { TFunction } from 'i18next';
 import { CircleDashed, LucideIcon, TrendingUpDown } from 'lucide-react';
 import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { EstimationMethods, modeOrder } from 'utils/constants';
+import { EstimationMethods, modeOrder, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 
 import { AreaGraphElement } from './types';
@@ -211,9 +211,11 @@ export function getElectricityProductionValue({
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
 }
 
-function analyzeChartData(chartData: AreaGraphElement[]) {
+function analyzeChartData(chartData: AreaGraphElement[], timeAverage: TimeAverages) {
   let estimatedCount = 0;
   let tsaCount = 0;
+  let allEstimated = true;
+  const isHourly = timeAverage === TimeAverages.HOURLY;
   for (const chartElement of chartData) {
     if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
       tsaCount++;
@@ -221,20 +223,29 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
     if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
       estimatedCount++;
     }
+    if (
+      (!isHourly && chartElement.meta.estimatedPercentage !== 100) ||
+      (isHourly && !chartElement.meta.estimationMethod)
+    ) {
+      allEstimated = false;
+    }
   }
   return {
     allTimeSlicerAverageMethod: tsaCount === chartData.length,
-    allEstimated: estimatedCount === chartData.length,
-    hasEstimation: estimatedCount > 0,
+    allEstimated,
+    hasEstimation: isHourly ? allEstimated : estimatedCount > 0,
   };
 }
 
 export function getBadgeTextAndIcon(
   chartData: AreaGraphElement[],
-  t: TFunction
+  t: TFunction,
+  timeAverage: TimeAverages
 ): { text?: string; icon?: LucideIcon } {
-  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
-    analyzeChartData(chartData);
+  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } = analyzeChartData(
+    chartData,
+    timeAverage
+  );
   if (allTimeSlicerAverageMethod) {
     return {
       text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
