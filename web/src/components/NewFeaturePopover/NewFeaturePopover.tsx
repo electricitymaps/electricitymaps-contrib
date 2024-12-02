@@ -51,7 +51,7 @@ export function NewFeaturePopover({
       >
         <X size={16} />
       </Popover.Close>
-      <Popover.Arrow className="fill-brand-green" />
+      <Popover.Arrow className="fill-brand-green dark:fill-brand-green-dark" />
     </Popover.Content>
   );
 
