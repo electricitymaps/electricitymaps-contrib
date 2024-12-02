@@ -1,3 +1,5 @@
+import { App } from '@capacitor/app';
+import { PluginListenerHandle } from '@capacitor/core/types/definitions';
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
@@ -52,6 +54,10 @@ type MapPageProps = {
   onMapLoad?: (map: maplibregl.Map) => void;
 };
 
+interface ExtendedWindow extends Window {
+  killMap?: () => void;
+}
+
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
@@ -79,9 +85,67 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
   const { zoneId: pathZoneId } = useParams<RouteParameters>();
+  const [wasInBackground, setWasInBackground] = useState(false);
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
+
+  useEffect(() => {
+    let subscription: PluginListenerHandle | null = null;
+    // Dev testing function to break the map state and test recovery
+    if (import.meta.env.DEV) {
+      (window as ExtendedWindow).killMap = () => {
+        console.log('Attempting to break map state');
+        if (map && map.loaded()) {
+          try {
+            if (map.getSource(ZONE_SOURCE)) {
+              console.log('Removing zone source');
+              map.removeSource(ZONE_SOURCE);
+            }
+
+            const canvas = map.getCanvas();
+            canvas.width = 0;
+            canvas.height = 0;
+
+            const container = map.getContainer();
+            container.innerHTML = '';
+
+            console.log('Map should now be broken');
+          } catch (error) {
+            console.error('Error while killing map:', error);
+          }
+        } else {
+          console.log('Map not ready or already broken');
+        }
+      };
+    }
+    const setupListener = async () => {
+      subscription = await App.addListener('appStateChange', ({ isActive }) => {
+        if (!isActive) {
+          setWasInBackground(true);
+        } else if (wasInBackground && map) {
+          const isMapBroken =
+            !map.loaded() ||
+            map.getCanvas().width === 0 ||
+            map.getContainer().offsetWidth === 0 ||
+            map.getContainer().style.display === 'none';
+          if (isMapBroken) {
+            window.location.reload();
+          } else {
+            map.resize();
+          }
+        }
+      });
+    };
+
+    setupListener();
+
+    return () => {
+      if (subscription) {
+        subscription.remove();
+      }
+    };
+  }, [map, wasInBackground, setMapReference]);
 
   useEffect(() => {
     const setSourceLoadedForMap = () => {
