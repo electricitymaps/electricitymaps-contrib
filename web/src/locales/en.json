@@ -251,6 +251,10 @@
       "daily": "30d",
       "monthly": "12mo",
       "yearly": "all"
+    },
+    "date-unavailable": {
+      "title": "Date unavailable",
+      "description": "Redirecting to live data"
     }
   },
   "left-panel": {
