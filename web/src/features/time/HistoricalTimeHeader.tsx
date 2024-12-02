@@ -1,6 +1,12 @@
 import Badge from 'components/Badge';
 import { Button } from 'components/Button';
+import {
+  NewFeaturePopover,
+  POPOVER_ID,
+} from 'components/NewFeaturePopover/NewFeaturePopover';
+import { NewFeaturePopoverContent } from 'components/NewFeaturePopover/NewFeaturePopoverContent';
 import { FormattedTime } from 'components/Time';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo } from 'react';
@@ -22,6 +28,8 @@ export default function HistoricalTimeHeader() {
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
+  const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
+
   const isWithinHistoricalLimit = useMemo(() => {
     if (!urlDatetime) {
       return true;
@@ -84,22 +92,28 @@ export default function HistoricalTimeHeader() {
       )}
       {isHourly && (
         <div className="flex h-6 flex-row items-center gap-x-3">
-          <Button
-            backgroundClasses="bg-transparent"
-            onClick={handleLeftClick}
-            size="sm"
-            type="tertiary"
-            isDisabled={!isWithinHistoricalLimit}
-            icon={
-              <ChevronLeft
-                size={22}
-                className={twMerge(
-                  'text-brand-green dark:text-success-dark',
-                  !isWithinHistoricalLimit && 'opacity-50'
-                )}
-              />
-            }
-          />
+          <NewFeaturePopover
+            side="top"
+            content={<NewFeaturePopoverContent />}
+            isOpenByDefault={isNewFeaturePopoverEnabled}
+          >
+            <Button
+              backgroundClasses="bg-transparent"
+              onClick={handleLeftClick}
+              size="sm"
+              type="tertiary"
+              isDisabled={!isWithinHistoricalLimit}
+              icon={
+                <ChevronLeft
+                  size={22}
+                  className={twMerge(
+                    'text-brand-green dark:text-success-dark',
+                    !isWithinHistoricalLimit && 'opacity-50'
+                  )}
+                />
+              }
+            />
+          </NewFeaturePopover>
           <Button
             backgroundClasses="bg-transparent"
             size="sm"
