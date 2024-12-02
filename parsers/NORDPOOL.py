@@ -7,8 +7,8 @@ from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList, PriceList
 from electricitymap.contrib.lib.types import ZoneKey
-from .lib.config import refetch_frequency
 
+from .lib.config import refetch_frequency
 from .lib.utils import get_token
 
 """
@@ -51,6 +51,7 @@ class CURRENCY(Enum):
     NOK = "NOK"
     GBP = "GBP"
     PLN = "PLN"
+    RON = "RON"
 
 
 ZONE_MAPPING = {
@@ -206,9 +207,7 @@ def fetch_price(
     return (price_data_target + price_data_target_day_ahead).to_list()
 
 
-def _parse_exchange(
-    response: Response, logger: Logger, requesting_zone, target_zone
-) -> ExchangeList:
+def _parse_exchange(response: Response, logger: Logger, target_zone) -> ExchangeList:
     exchange_list = ExchangeList(logger)
     json = response.json()[0]
     exchanges = json["exchanges"]
@@ -216,7 +215,9 @@ def _parse_exchange(
         for connection in exchange["byConnections"]:
             if connection["area"] == ZONE_MAPPING[target_zone]:
                 exchange_list.append(
-                    zoneKey=ZoneKey(f"{requesting_zone}->{target_zone}"),
+                    zoneKey=ZoneKey(
+                        f"{INVERTED_ZONE_MAPPING[json['deliveryArea']]}->{INVERTED_ZONE_MAPPING[connection['area']]}"
+                    ),
                     netFlow=-connection[
                         "netPosition"
                     ],  # Import is positive, export is negative
@@ -252,7 +253,6 @@ def fetch_exchange(
     exchange_data = _parse_exchange(
         response=response_target,
         logger=logger,
-        requesting_zone=zone_key1,
         target_zone=zone_key2,
     )
     # Request the day before as well so we get overlapping data
@@ -263,7 +263,6 @@ def fetch_exchange(
     exchange_data_day_before = _parse_exchange(
         response=response_target_day_before,
         logger=logger,
-        requesting_zone=zone_key1,
         target_zone=zone_key2,
     )
     # Combines both ExchangeLists and return them as a native list.
