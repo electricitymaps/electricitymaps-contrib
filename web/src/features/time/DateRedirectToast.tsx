@@ -1,26 +1,28 @@
 import { Toast, ToastType, useToastReference } from 'components/Toast';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { isRedirectedToLastDatetimeAtom } from 'utils/state/atoms';
+import { useTranslation } from 'react-i18next';
+import { isRedirectedToLatestDatetimeAtom } from 'utils/state/atoms';
 
 function DateRedirectToast() {
   const reference = useToastReference();
-  const [isRedirectedToLastDatetime, setIsRedirectedToLastDatetime] = useAtom(
-    isRedirectedToLastDatetimeAtom
+  const { t } = useTranslation();
+  const [isRedirectedToLatestDatetime, setIsRedirectedToLatestDatetime] = useAtom(
+    isRedirectedToLatestDatetimeAtom
   );
-  const TOAST_DURATION = 100 * 1000; // 10s
+  const TOAST_DURATION = 10 * 1000; // 10s
 
   useEffect(() => {
-    if (isRedirectedToLastDatetime) {
+    if (isRedirectedToLatestDatetime) {
       reference.current?.publish();
     }
-    setIsRedirectedToLastDatetime(false);
-  }, [isRedirectedToLastDatetime, reference, setIsRedirectedToLastDatetime]);
+    setIsRedirectedToLatestDatetime(false);
+  }, [isRedirectedToLatestDatetime, reference, setIsRedirectedToLatestDatetime]);
 
   return (
     <Toast
       ref={reference}
-      description="This link is beyond the available dates. We've redirected you to the last available date."
+      description={t('time-controller.disclaimer')}
       duration={TOAST_DURATION}
       type={ToastType.INFO}
       className="h-fit"

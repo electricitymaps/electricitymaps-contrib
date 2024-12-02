@@ -247,7 +247,8 @@
       "daily": "30d",
       "monthly": "12mo",
       "yearly": "all"
-    }
+    },
+    "disclaimer": "This link is beyond the available dates. We've redirected you to the latest available date."
   },
   "left-panel": {
     "get-data": "See our commercial API offerings",

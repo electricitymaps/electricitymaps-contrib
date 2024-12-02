@@ -13,7 +13,7 @@ import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
   isHourlyAtom,
-  isRedirectedToLastDatetimeAtom,
+  isRedirectedToLatestDatetimeAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
   useTimeAverageSync,
@@ -38,7 +38,7 @@ export default function TimeController({ className }: { className?: string }) {
   const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const zoneTimezone = getZoneTimezone(zoneId);
   const navigate = useNavigateWithParameters();
-  const setIsRedirectedToLastDatetime = useSetAtom(isRedirectedToLastDatetimeAtom);
+  const setIsRedirectedToLatestDatetime = useSetAtom(isRedirectedToLatestDatetimeAtom);
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
   const isLoading = dataLoading || Object.keys(data?.data?.datetimes ?? {}).length === 1;
@@ -81,10 +81,10 @@ export default function TimeController({ className }: { className?: string }) {
     const endDate = endDatetime.getTime();
 
     if (urlDate !== endDate) {
-      setIsRedirectedToLastDatetime(true);
-      navigate({ datetime: endDatetime.toISOString() });
+      setIsRedirectedToLatestDatetime(true);
+      navigate({ datetime: '' });
     }
-  }, [datetimes, urlDatetime, navigate, setIsRedirectedToLastDatetime]);
+  }, [datetimes, urlDatetime, navigate, setIsRedirectedToLatestDatetime]);
 
   const onTimeSliderChange = useCallback(
     (index: number) => {

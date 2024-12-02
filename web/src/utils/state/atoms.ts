@@ -124,4 +124,4 @@ export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
 
 export const futurePriceCollapsedAtom = atom<boolean>(true);
 
-export const isRedirectedToLastDatetimeAtom = atom<boolean>(false);
+export const isRedirectedToLatestDatetimeAtom = atom<boolean>(false);
