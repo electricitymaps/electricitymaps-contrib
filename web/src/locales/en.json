@@ -248,7 +248,10 @@
       "monthly": "12mo",
       "yearly": "all"
     },
-    "date-unavailable": "Date unavailable; redirecting to live data"
+    "date-unavailable": {
+      "title": "Date unavailable",
+      "description": "Redirecting to live data"
+    }
   },
   "left-panel": {
     "get-data": "See our commercial API offerings",
