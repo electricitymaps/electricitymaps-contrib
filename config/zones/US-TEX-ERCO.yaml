@@ -158,10 +158,6 @@ contributors:
   - KabelWlan
   - silkeholmebonnen
 country: US
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 34
 emissionFactors:
   direct:
     battery discharge:
