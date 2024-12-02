@@ -22,7 +22,7 @@ function DateRedirectToast() {
   return (
     <Toast
       ref={reference}
-      description={t('time-controller.disclaimer')}
+      description={t('time-controller.date-unavailable')}
       duration={TOAST_DURATION}
       type={ToastType.INFO}
       className="h-fit"
