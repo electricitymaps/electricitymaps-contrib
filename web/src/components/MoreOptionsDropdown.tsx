@@ -48,7 +48,7 @@ export function MoreOptionsDropdown({
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
 
-  const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
+  const summary = `${t('more-options-dropdown.summary')}`;
 
   const handleTrackShares = getTrackByShareType(id);
 
