@@ -6,6 +6,7 @@ import type { ZoneDetails } from 'types';
 import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
 import { isValidHistoricalTime } from 'utils/helpers';
+import { getStaleTime } from 'utils/refetching';
 import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
@@ -21,7 +22,7 @@ const getZone = async (
     targetDatetime && isValidDate(targetDatetime) && isValidHistoricalTime(timeAverage);
 
   const path: URL = new URL(
-    `v8/details/${timeAverage}/${zoneId}${
+    `v9/details/${timeAverage}/${zoneId}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
@@ -68,6 +69,8 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
       }
       return getZone(timeAverage, zoneId, urlDatetime);
     },
+    staleTime: getStaleTime(timeAverage, urlDatetime),
+    refetchOnWindowFocus: true,
   });
 };
 

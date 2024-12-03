@@ -1,6 +1,11 @@
-import Badge from 'components/Badge';
 import { Button } from 'components/Button';
+import {
+  NewFeaturePopover,
+  POPOVER_ID,
+} from 'components/NewFeaturePopover/NewFeaturePopover';
+import { NewFeaturePopoverContent } from 'components/NewFeaturePopover/NewFeaturePopoverContent';
 import { FormattedTime } from 'components/Time';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo } from 'react';
@@ -8,7 +13,8 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import { MAX_HISTORICAL_LOOKBACK_DAYS, TimeAverages } from 'utils/constants';
+import trackEvent from 'utils/analytics';
+import { MAX_HISTORICAL_LOOKBACK_DAYS, TimeAverages, TrackEvent } from 'utils/constants';
 import { isValidHistoricalTime, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
@@ -52,12 +58,21 @@ const useHistoricalNavigation = () => {
 
     return {
       handleRightClick() {
+        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+          direction: 'forward',
+        });
         navigate({ datetime: clamp(endDatetime.getTime(), offset) });
       },
       handleLeftClick() {
+        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+          direction: 'backward',
+        });
         navigate({ datetime: clamp(endDatetime.getTime(), -offset) });
       },
       handleLatestClick() {
+        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+          direction: 'latest',
+        });
         navigate({ datetime: '' });
       },
     };
@@ -71,6 +86,7 @@ export default function HistoricalTimeHeader() {
   const [selectedTimeAverage] = useTimeAverageSync();
   const isHistoricalTimeAverage = isValidHistoricalTime(selectedTimeAverage);
   const { urlDatetime } = useParams<RouteParameters>();
+  const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
 
   const { handleRightClick, handleLeftClick, handleLatestClick } =
     useHistoricalNavigation();
@@ -92,22 +108,27 @@ export default function HistoricalTimeHeader() {
     return targetDate >= maxHistoricalDate;
   }, [urlDatetime]);
 
-  return (
-    <div className="flex min-h-6 flex-row items-center justify-between">
-      {startDatetime && endDatetime && (
-        <Badge
-          pillText={
-            <FormattedTime
-              datetime={startDatetime}
-              language={i18n.languages[0]}
-              endDatetime={endDatetime}
-            />
-          }
-          type="success"
+  if (!isHistoricalTimeAverage && startDatetime && endDatetime) {
+    return (
+      <div className="flex min-h-6 flex-row items-center justify-center">
+        <FormattedTime
+          datetime={startDatetime}
+          language={i18n.languages[0]}
+          endDatetime={endDatetime}
+          className="text-sm font-semibold"
         />
-      )}
-      {isHistoricalTimeAverage && (
-        <div className="flex h-6 flex-row items-center gap-x-3">
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative flex h-6 w-full items-center">
+      <div className="absolute flex w-full items-center justify-between px-10">
+        <NewFeaturePopover
+          side="top"
+          content={<NewFeaturePopoverContent />}
+          isOpenByDefault={isNewFeaturePopoverEnabled}
+        >
           <Button
             backgroundClasses="bg-transparent"
             onClick={handleLeftClick}
@@ -118,45 +139,54 @@ export default function HistoricalTimeHeader() {
               <ChevronLeft
                 size={22}
                 className={twMerge(
-                  'text-brand-green',
+                  'text-brand-green dark:text-success-dark',
                   !isHistoricalTimeAverage && !isWithinHistoricalLimit && 'opacity-50'
                 )}
               />
             }
           />
-          <Button
-            backgroundClasses="bg-transparent"
-            size="sm"
-            onClick={handleRightClick}
-            type="tertiary"
-            isDisabled={!urlDatetime}
-            icon={
-              <ChevronRight
-                className={twMerge(
-                  'text-brand-green',
-                  (!urlDatetime || !isHistoricalTimeAverage) && 'opacity-50'
-                )}
-                size={22}
-              />
-            }
+        </NewFeaturePopover>
+        {startDatetime && endDatetime && (
+          <FormattedTime
+            datetime={startDatetime}
+            language={i18n.languages[0]}
+            endDatetime={endDatetime}
+            className="text-sm font-semibold"
           />
-          <Button
-            size="sm"
-            type="tertiary"
-            onClick={handleLatestClick}
-            isDisabled={!urlDatetime}
-            icon={
-              <ArrowRightToLine
-                className={twMerge(
-                  'text-brand-green',
-                  (!urlDatetime || !isHistoricalTimeAverage) && 'opacity-50'
-                )}
-                size={22}
-              />
-            }
+        )}
+        <Button
+          backgroundClasses="bg-transparent"
+          size="sm"
+          onClick={handleRightClick}
+          type="tertiary"
+          isDisabled={!urlDatetime}
+          icon={
+            <ChevronRight
+              className={twMerge(
+                'text-brand-green dark:text-success-dark',
+                (!urlDatetime || !isHistoricalTimeAverage) && 'opacity-50'
+              )}
+              size={22}
+            />
+          }
+        />
+      </div>
+      <Button
+        backgroundClasses="absolute z-1 right-2"
+        size="sm"
+        type="tertiary"
+        onClick={handleLatestClick}
+        isDisabled={!urlDatetime}
+        icon={
+          <ArrowRightToLine
+            className={twMerge(
+              'text-brand-green dark:text-success-dark',
+              (!urlDatetime || !isHistoricalTimeAverage) && 'opacity-50'
+            )}
+            size={22}
           />
-        </div>
-      )}
+        }
+      />
     </div>
   );
 }

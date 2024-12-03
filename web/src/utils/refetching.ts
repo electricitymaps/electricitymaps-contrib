@@ -42,3 +42,13 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
     }
   }, ONE_MINUTE);
 }
+
+export function getStaleTime(timeAverage: TimeAverages, urlDatetime?: string) {
+  if (timeAverage !== TimeAverages.HOURLY || urlDatetime) {
+    return 0;
+  }
+  const now = new Date();
+  const nextHour = new Date(now);
+  nextHour.setHours(nextHour.getHours() + 1, 0, 0, 0);
+  return nextHour.getTime() - now.getTime();
+}
