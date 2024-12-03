@@ -27,7 +27,6 @@ function UpdatePrompt() {
     },
     onRegisterError(error) {
       console.warn('SW registration failed:', error);
-      setNeedRefresh(false);
     },
   });
 
