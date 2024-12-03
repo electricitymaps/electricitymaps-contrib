@@ -128,13 +128,10 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     response.raise_for_status()
 
     # API returns normally status 200 but content type text/html when data is missing
-    if (
-        "Content-Type" not in response.headers
-        or response.headers["Content-Type"] == "text/html"
+    if "Content-Type" not in response.headers or "text/html" in response.headers.get(
+        "Content-Type", ""
     ):
-        raise Exception(
-            f"Error while fetching csv for date {datestr}: No CSV was returned by the API. Probably the data for this date has not yet been published."
-        )
+        return None
 
     # skip non-csv data, the header starts with "Sistema"
     csv_str = response.text
@@ -175,17 +172,31 @@ def fetch_production(
         raise ValueError(f"MX parser cannot fetch production for zone {zone_key}")
 
     if target_datetime is None:
-        raise ValueError(
-            "Parser only supports fetching historical production data, please specify a terget_datetime in the past"
-        )
+        target_datetime = datetime.now(tz=TIMEZONE)
 
-    # retrieve data for the month either from the cache or fetch it
-    cache_key = target_datetime.strftime("%Y-%m")
-    if cache_key in DATA_CACHE:
-        df = DATA_CACHE[cache_key]
-    else:
-        df = fetch_csv_for_date(target_datetime, session=session)
-        DATA_CACHE[cache_key] = df
+    original_target_datetime = target_datetime
+    df = None
+    up_to_months = 6  # Try up to 6 previous months
+    for _ in range(up_to_months):
+        cache_key = target_datetime.strftime("%Y-%m")
+        if cache_key in DATA_CACHE:
+            df = DATA_CACHE[cache_key]
+            break
+        else:
+            df = fetch_csv_for_date(target_datetime, session=session)
+            if df is not None and not df.empty:
+                DATA_CACHE[cache_key] = df
+                break
+            else:
+                logger.warning(f"No data found for {cache_key}. Trying previous month.")
+                target_datetime = (
+                    target_datetime.replace(day=1) - timedelta(days=1)
+                ).replace(day=1)
+
+    if df is None or df.empty:
+        raise Exception(
+            f"No data found for {original_target_datetime}, or any previous {up_to_months} months."
+        )
 
     production = ProductionBreakdownList(logger)
     for _idx, series in df.iterrows():
