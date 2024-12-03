@@ -107,7 +107,7 @@ describe('MoreOptionsDropdown', () => {
     cy.get('Share via').should('not.exist');
 
     cy.contains('Share on X (Twitter)').should('be.visible');
-    cy.get('[data-test-id=twitter-chart-share]')
+    cy.get('[data-testid=twitter-chart-share]')
       .should('have.attr', 'href')
       .and(
         'equal',
@@ -115,12 +115,12 @@ describe('MoreOptionsDropdown', () => {
       );
 
     cy.contains('Share on LinkedIn').should('be.visible');
-    cy.get('[data-test-id=linkedin-chart-share]')
+    cy.get('[data-testid=linkedin-chart-share]')
       .should('have.attr', 'href')
       .and('equal', 'https://www.linkedin.com/shareArticle?mini=true&url=hello');
 
     cy.contains('Share on Facebook').should('be.visible');
-    cy.get('[data-test-id=facebook-chart-share]')
+    cy.get('[data-testid=facebook-chart-share]')
       .should('have.attr', 'href')
       .and(
         'equal',
@@ -128,7 +128,7 @@ describe('MoreOptionsDropdown', () => {
       );
 
     cy.contains('Share on Reddit').should('be.visible');
-    cy.get('[data-test-id=reddit-chart-share]')
+    cy.get('[data-testid=reddit-chart-share]')
       .should('have.attr', 'href')
       .and('equal', 'https://www.reddit.com/web/submit?url=hello');
   });
@@ -165,7 +165,7 @@ describe('MoreOptionsDropdown', () => {
     );
     cy.get('button').click();
     cy.contains('Copy link to chart').should('exist');
-    cy.get('[data-test-id="toast"]').should('not.exist');
+    cy.get('[data-testid="toast"]').should('not.exist');
     cy.contains('Copy link to chart').click();
     cy.get('[data-testid="toast"]').should('exist');
   });

@@ -172,7 +172,7 @@ function ZoneDetailsContent({
   if (isError) {
     return (
       <div
-        data-test-id="no-parser-message"
+        data-testid="no-parser-message"
         className={`flex h-full w-full items-center justify-center text-sm`}
       >
         🤖 Unknown server error 🤖

@@ -65,7 +65,7 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
       </Helmet>
       <div
         className="self-center py-4 pr-4 text-xl"
-        data-test-id="left-panel-back-button"
+        data-testid="left-panel-back-button"
         onClick={onNavigateBack}
         role="button"
         tabIndex={0}
@@ -89,7 +89,7 @@ export default function ZoneHeaderTitle({ zoneId, isEstimated }: ZoneHeaderTitle
             tooltipContent={showTooltip ? zoneNameFull : undefined}
             side="bottom"
           >
-            <h1 className="truncate" data-test-id="zone-name">
+            <h1 className="truncate" data-testid="zone-name">
               {zoneName}
             </h1>
           </TooltipWrapper>

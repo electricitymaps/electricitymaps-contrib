@@ -63,7 +63,7 @@ export function ShareButton({
     trackShareClick();
   }, [reference, hasMobileUserAgent, copyToClipboard, share, shareUrl]);
 
-  let shareIcon = <Link data-test-id="linkIcon" size={iconSize} />;
+  let shareIcon = <Link data-testid="linkIcon" size={iconSize} />;
   if (hasMobileUserAgent || Capacitor.isNativePlatform()) {
     shareIcon = <MemoizedShareIcon showIosIcon={showIosIcon} />;
   }

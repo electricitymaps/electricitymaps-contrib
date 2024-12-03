@@ -26,7 +26,7 @@ export default function MobileButtons() {
         onClick={handleOpenSettingsModal}
         backgroundClasses="bg-white/80 backdrop-blur dark:bg-gray-800/80 pointer-events-auto"
         icon={<Settings size={20} />}
-        data-test-id="settings-button-mobile"
+        data-testid="settings-button-mobile"
       />
     </div>
   );

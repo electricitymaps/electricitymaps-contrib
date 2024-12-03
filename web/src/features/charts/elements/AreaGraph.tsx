@@ -259,7 +259,7 @@ function AreaGraph({
   return (
     <div ref={reference}>
       <svg
-        data-test-id={testId}
+        data-testid={testId}
         height={height}
         className={`w-full overflow-visible ${
           isDisabled ? 'pointer-events-none blur' : ''

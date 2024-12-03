@@ -24,7 +24,7 @@ export default function ZoneGaugesWithCO2Square({
   return (
     <div className="flex w-full flex-row justify-evenly">
       <CarbonIntensitySquare
-        data-test-id="co2-square-value"
+        data-testid="co2-square-value"
         intensity={intensity}
         tooltipContent={
           withTooltips ? <p>{t('tooltips.zoneHeader.carbonIntensity')}</p> : undefined

@@ -32,7 +32,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
   const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
   return (
     <div
-      data-test-id="carbon-chart-tooltip"
+      data-testid="carbon-chart-tooltip"
       className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]"
     >
       <AreaGraphToolTipHeader
