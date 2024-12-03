@@ -10,6 +10,7 @@ export default function TimeHeader() {
   const timeAverage = useAtomValue(timeAverageAtom);
   const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
   const { isLoading } = useGetState();
+
   return (
     <div className="flex min-h-6 flex-row items-center">
       <h3 className="grow select-none text-left">

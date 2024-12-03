@@ -109,7 +109,7 @@ export default function FeedbackCard({
 
   return (
     <div
-      data-test-id="feedback-card"
+      data-testid="feedback-card"
       className="flex w-full flex-col gap-2 rounded-lg border border-neutral-200 bg-zinc-50 px-3 py-4 transition-all dark:border-gray-700 dark:bg-gray-900"
       ref={feedbackCardReference}
     >
@@ -120,12 +120,12 @@ export default function FeedbackCard({
           />
           <h2
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
-            data-test-id="title"
+            data-testid="title"
           >
             {isFeedbackSubmitted ? successSubtitle : title}
           </h2>
         </div>
-        <button data-test-id="close-button" onClick={handleClose}>
+        <button data-testid="close-button" onClick={handleClose}>
           <X />
         </button>
       </div>
@@ -134,7 +134,7 @@ export default function FeedbackCard({
           className={`pb-1 ${
             isFeedbackSubmitted ? 'text-sm' : 'text-xs'
           } font-medium text-neutral-400`}
-          data-test-id="subtitle"
+          data-testid="subtitle"
         >
           {isFeedbackSubmitted ? successMessage : subtitle}
         </div>
@@ -178,11 +178,11 @@ function InputField({
       <div className="flex flex-wrap justify-start">
         <span className="text-sm font-normal text-black dark:text-white">
           {!isRequired && <span className="pr-1 font-semibold">{optional}</span>}
-          <span data-test-id="input-title">{inputQuestion}</span>
+          <span data-testid="input-title">{inputQuestion}</span>
         </span>
       </div>
       <textarea
-        data-test-id="feedback-input"
+        data-testid="feedback-input"
         value={inputText}
         onChange={(event) => {
           handleInputChange(event);
@@ -269,7 +269,7 @@ function FeedbackFields({
           </div>
         </div>
       )}
-      <div data-test-id="feedback-question" className="text-sm">
+      <div data-testid="feedback-question" className="text-sm">
         {primaryQuestion}
       </div>
       <ActionPills
@@ -328,10 +328,10 @@ function ActionPills({
         currentPillNumber={currentPillNumber}
       />
       <div className="flex flex-row items-center justify-between pt-1">
-        <div data-test-id="disagree-text" className="text-xs font-bold">
+        <div data-testid="disagree-text" className="text-xs font-bold">
           {disagreeText}
         </div>
-        <div data-test-id="agree-text" className="text-xs font-bold">
+        <div data-testid="agree-text" className="text-xs font-bold">
           {agreeText}
         </div>
       </div>
@@ -355,7 +355,7 @@ function PillContent({
     >
       {pillContent.map((content) => (
         <ToggleGroupPrimitive.Item
-          data-test-id={`feedback-pill-${content}`}
+          data-testid={`feedback-pill-${content}`}
           key={content}
           value={content}
           aria-label={content}

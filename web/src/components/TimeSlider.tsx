@@ -112,7 +112,7 @@ export function TimeSliderBasic({
         <SliderPrimitive.Range />
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
-        data-test-id="time-slider-input"
+        data-testid="time-slider-input"
         className="flex h-7 w-7 items-center justify-center rounded-full bg-white outline
            outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 dark:bg-gray-900 dark:outline-gray-700"
       >

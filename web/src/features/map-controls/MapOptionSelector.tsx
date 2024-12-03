@@ -25,7 +25,7 @@ export default function MapOptionSelector({
           isOpen ? 'pointer-events-none' : 'pointer-events-auto',
           isMobile && 'rounded-full transition duration-200 focus-visible:outline-none '
         )}
-        data-test-id={testId}
+        data-testid={testId}
         onClick={toggleTooltip}
         type={undefined}
       >
