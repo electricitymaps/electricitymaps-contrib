@@ -111,7 +111,7 @@ describe('MoreOptionsDropdown', () => {
       .should('have.attr', 'href')
       .and(
         'equal',
-        'https://twitter.com/intent/tweet?&url=hello&text=Discover%20real-time%20electricity%20insights%20with%20the%20Electricity%20Maps%20app!%20https://app.electricitymaps.com&hashtags=electricitymaps'
+        'https://twitter.com/intent/tweet?&url=hello&text=Discover%20real-time%20electricity%20insights%20with%20the%20Electricity%20Maps%20app!&hashtags=electricitymaps'
       );
 
     cy.contains('Share on LinkedIn').should('be.visible');
