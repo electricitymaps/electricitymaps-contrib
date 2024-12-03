@@ -27,7 +27,7 @@ describe('New Feature Popover', () => {
       </NewFeaturePopover>
     );
     cy.contains('anchor');
-    cy.get('[data-test-id=dismiss]').click();
+    cy.get('[data-testid=dismiss]').click();
     cy.contains('content').should('not.exist');
   });
 });

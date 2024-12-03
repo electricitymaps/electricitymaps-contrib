@@ -27,7 +27,7 @@ export default function ExchangeTooltip({
 
   const divClass = `${isMobile ? 'flex-col' : 'flex'} items-center pb-2`;
   return (
-    <div className="text-start text-base font-medium" data-test-id="exchange-tooltip">
+    <div className="text-start text-base font-medium" data-testid="exchange-tooltip">
       {t('tooltips.crossborderexport')}:
       <div>
         <div className={divClass}>

@@ -65,7 +65,7 @@ export function Button({
         target="_blank"
         // Used to prevent browser translation crashes on edge, see #6809
         translate="no"
-        data-test-id={dataTestId}
+        data-testid={dataTestId}
       >
         {icon}
         {children}

@@ -62,7 +62,7 @@ export default function ToggleButton({
             key={`group-item-${key}`}
             value={value}
             onClick={() => onToggle(value)}
-            data-test-id={`toggle-button-${dataTestId ?? value}`}
+            data-testid={`toggle-button-${dataTestId ?? value}`}
             className={twMerge(
               'inline-flex h-7 w-full items-center whitespace-nowrap rounded-full bg-gray-100/0 px-3 text-xs dark:border dark:border-gray-400/0 dark:bg-transparent',
               value === selectedOption

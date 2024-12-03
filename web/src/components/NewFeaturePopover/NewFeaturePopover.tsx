@@ -45,7 +45,7 @@ export function NewFeaturePopover({
     >
       {content}
       <Popover.Close
-        data-test-id="dismiss"
+        data-testid="dismiss"
         onClick={onDismiss}
         className="self-start text-white"
       >
