@@ -28,7 +28,7 @@ export const HISTORICAL_TIME_OFFSETS: Partial<Record<TimeAverages, number>> = {
   [TimeAverages.HOURLY_72]: 72,
 };
 
-export const historicalTimeAverages = [TimeAverages.HOURLY, TimeAverages.HOURLY_72];
+export const historicalTimeAverages = Object.keys(HISTORICAL_TIME_OFFSETS);
 
 export enum ToggleOptions {
   ON = 'on',

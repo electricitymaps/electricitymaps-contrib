@@ -19,12 +19,12 @@ import {
   MAX_HISTORICAL_LOOKBACK_DAYS,
   TrackEvent,
 } from 'utils/constants';
-import { isValidHistoricalTime, useNavigateWithParameters } from 'utils/helpers';
+import { useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
+  isHourlyAtom,
   startDatetimeAtom,
   timeAverageAtom,
-  useTimeAverageSync,
 } from 'utils/state/atoms';
 
 const clamp = (date: number, offset: number) => {
@@ -94,15 +94,14 @@ const useHistoricalNavigation = () => {
       },
       isWithinHistoricalLimit,
     };
-  }, [offset, endDatetime, navigate, urlDatetime]);
+  }, [offset, endDatetime, navigate, urlDatetime, timeAverage]);
 };
 
 export default function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
-  const [selectedTimeAverage] = useTimeAverageSync();
-  const isHistoricalTimeAverage = isValidHistoricalTime(selectedTimeAverage);
+  const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
 
@@ -113,7 +112,7 @@ export default function HistoricalTimeHeader() {
     handleLatestClick,
   } = useHistoricalNavigation();
 
-  if (!isHistoricalTimeAverage && startDatetime && endDatetime) {
+  if (!isHourly && startDatetime && endDatetime) {
     return (
       <div className="flex min-h-6 flex-row items-center justify-center">
         <FormattedTime

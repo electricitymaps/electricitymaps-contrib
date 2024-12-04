@@ -2,20 +2,17 @@ import useGetState from 'api/getState';
 import TimeAverageToggle from 'components/TimeAverageToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
 import { TimeAverages, TrackEvent } from 'utils/constants';
-import {
-  getZoneTimezone,
-  isValidHistoricalTime,
-  useNavigateWithParameters,
-} from 'utils/helpers';
+import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
+  isHourlyAtom,
   isRedirectedToLatestDatetimeAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
@@ -28,6 +25,7 @@ import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
+  const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
@@ -115,8 +113,6 @@ export default function TimeController({ className }: { className?: string }) {
     [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeAverage]
   );
 
-  const isLiveDisplay = !urlDatetime && isValidHistoricalTime(selectedTimeAverage);
-
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
@@ -141,7 +137,7 @@ export default function TimeController({ className }: { className?: string }) {
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}
-          isLiveDisplay={isLiveDisplay}
+          isLiveDisplay={isHourly && !urlDatetime}
           timezone={zoneTimezone}
         />
       </div>

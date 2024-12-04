@@ -96,7 +96,9 @@ function TimeAxis({
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
+
   const width = observerWidth - 24;
+
   if (datetimes === undefined || isLoading) {
     return (
       <div className="flex h-[22px]  w-full justify-center">
@@ -107,6 +109,7 @@ function TimeAxis({
 
   const scale = getTimeScale(scaleWidth ?? width, datetimes[0], datetimes.at(-1) as Date);
   const [x1, x2] = scale.range();
+
   return (
     <svg className={className} ref={ref}>
       <g

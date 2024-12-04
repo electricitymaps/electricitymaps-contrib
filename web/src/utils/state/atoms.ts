@@ -6,6 +6,7 @@ import { RouteParameters } from 'types';
 import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
+  HISTORICAL_TIME_OFFSETS,
   Mode,
   SpatialAggregate,
   ThemeOptions,
@@ -76,13 +77,14 @@ export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
 );
 
-// TODO(cady): consider renaming and using in TimeAxis (renderTickValue)
 export const areWeatherLayersAllowedAtom = atom<boolean>(
   (get) =>
     (get(timeAverageAtom) === TimeAverages.HOURLY &&
-      get(selectedDatetimeIndexAtom).index === 24) ||
+      get(selectedDatetimeIndexAtom).index ===
+        HISTORICAL_TIME_OFFSETS[TimeAverages.HOURLY]) ||
     (get(timeAverageAtom) === TimeAverages.HOURLY_72 &&
-      get(selectedDatetimeIndexAtom).index === 71)
+      get(selectedDatetimeIndexAtom).index ===
+        HISTORICAL_TIME_OFFSETS[TimeAverages.HOURLY_72])
 );
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);
