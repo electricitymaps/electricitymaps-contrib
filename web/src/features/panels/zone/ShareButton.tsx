@@ -44,23 +44,16 @@ export function ShareButton({
       reference.current?.publish();
     };
 
-    if (hasMobileUserAgent && (await CapShare.canShare())) {
-      share(
-        {
-          title: 'Electricity Maps',
-          text: 'Check this out!',
-          url: shareUrl,
-        },
-        toastMessageCallback
-      ).then((shareCompleted) => {
-        if (shareCompleted) {
-          trackShareCompletion();
-        }
-      });
-    } else {
-      copyToClipboard(shareUrl, toastMessageCallback);
-    }
-    trackShareClick();
+    await (hasMobileUserAgent && (await CapShare.canShare())
+      ? share(
+          {
+            title: 'Electricity Maps',
+            text: 'Check this out!',
+            url: shareUrl,
+          },
+          toastMessageCallback
+        )
+      : copyToClipboard(shareUrl, toastMessageCallback));
   }, [reference, hasMobileUserAgent, copyToClipboard, share, shareUrl]);
 
   let shareIcon = <Link data-testid="linkIcon" size={iconSize} />;

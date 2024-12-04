@@ -37,8 +37,10 @@ export enum ShareType {
   COMPLETED_SHARE = 'completed_share',
 }
 
-export const trackShare = (shareType: ShareType) => () =>
+export const trackShare = (shareType: ShareType) => () => {
+  console.log('share', shareType);
   trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType });
+};
 
 export const trackShareChart = (shareType: ShareType, chartId: Charts) => () =>
   trackEvent(TrackEvent.SHARE_CHART, {
