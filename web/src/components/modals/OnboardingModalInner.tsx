@@ -64,7 +64,7 @@ function Modal({
       <div
         className="px-auto absolute top-auto z-50 mx-auto flex w-full items-center justify-center
        self-center sm:top-20 sm:min-w-[500px]"
-        data-test-id={modalName}
+        data-testid={modalName}
       >
         <div className="z-10 -mr-4 flex w-full max-w-[35px] flex-col items-start pl-1 sm:mr-0 sm:max-w-[60px] sm:items-end sm:px-2">
           {!isOnFirstView() && (

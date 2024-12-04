@@ -1,4 +1,3 @@
-import Badge from 'components/Badge';
 import { Button } from 'components/Button';
 import {
   NewFeaturePopover,
@@ -76,82 +75,90 @@ export default function HistoricalTimeHeader() {
     navigate({ datetime: newDate.toISOString() });
   }
 
-  return (
-    <div className="flex min-h-6 flex-row items-center justify-between">
-      {startDatetime && endDatetime && (
-        <Badge
-          pillText={
-            <FormattedTime
-              datetime={startDatetime}
-              language={i18n.languages[0]}
-              endDatetime={endDatetime}
-            />
-          }
-          type="success"
+  if (!isHourly && startDatetime && endDatetime) {
+    return (
+      <div className="flex min-h-6 flex-row items-center justify-center">
+        <FormattedTime
+          datetime={startDatetime}
+          language={i18n.languages[0]}
+          endDatetime={endDatetime}
+          className="text-sm font-semibold"
         />
-      )}
-      {isHourly && (
-        <div className="flex h-6 flex-row items-center gap-x-3">
-          <NewFeaturePopover
-            side="top"
-            content={<NewFeaturePopoverContent />}
-            isOpenByDefault={isNewFeaturePopoverEnabled}
-          >
-            <Button
-              backgroundClasses="bg-transparent"
-              onClick={handleLeftClick}
-              size="sm"
-              type="tertiary"
-              isDisabled={!isWithinHistoricalLimit}
-              icon={
-                <ChevronLeft
-                  size={22}
-                  className={twMerge(
-                    'text-brand-green dark:text-success-dark',
-                    !isWithinHistoricalLimit && 'opacity-50'
-                  )}
-                />
-              }
-            />
-          </NewFeaturePopover>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative flex h-6 w-full items-center">
+      <div className="absolute flex w-full items-center justify-between px-10">
+        <NewFeaturePopover
+          side="top"
+          content={<NewFeaturePopoverContent />}
+          isOpenByDefault={isNewFeaturePopoverEnabled}
+        >
           <Button
             backgroundClasses="bg-transparent"
+            onClick={handleLeftClick}
             size="sm"
-            onClick={handleRightClick}
             type="tertiary"
-            isDisabled={!urlDatetime}
+            isDisabled={!isWithinHistoricalLimit}
             icon={
-              <ChevronRight
+              <ChevronLeft
+                size={22}
                 className={twMerge(
                   'text-brand-green dark:text-success-dark',
-                  !urlDatetime && 'opacity-50'
+                  !isWithinHistoricalLimit && 'opacity-50'
                 )}
-                size={22}
               />
             }
           />
-          <Button
-            size="sm"
-            type="tertiary"
-            onClick={() => {
-              trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-                direction: 'latest',
-              });
-              navigate({ datetime: '' });
-            }}
-            isDisabled={!urlDatetime}
-            icon={
-              <ArrowRightToLine
-                className={twMerge(
-                  'text-brand-green dark:text-success-dark',
-                  !urlDatetime && 'opacity-50'
-                )}
-                size={22}
-              />
-            }
+        </NewFeaturePopover>
+        {startDatetime && endDatetime && (
+          <FormattedTime
+            datetime={startDatetime}
+            language={i18n.languages[0]}
+            endDatetime={endDatetime}
+            className="text-sm font-semibold"
           />
-        </div>
-      )}
+        )}
+        <Button
+          backgroundClasses="bg-transparent"
+          size="sm"
+          onClick={handleRightClick}
+          type="tertiary"
+          isDisabled={!urlDatetime}
+          icon={
+            <ChevronRight
+              className={twMerge(
+                'text-brand-green dark:text-success-dark',
+                !urlDatetime && 'opacity-50'
+              )}
+              size={22}
+            />
+          }
+        />
+      </div>
+      <Button
+        backgroundClasses="absolute z-1 right-2"
+        size="sm"
+        type="tertiary"
+        onClick={() => {
+          trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+            direction: 'latest',
+          });
+          navigate({ datetime: '' });
+        }}
+        isDisabled={!urlDatetime}
+        icon={
+          <ArrowRightToLine
+            className={twMerge(
+              'text-brand-green dark:text-success-dark',
+              !urlDatetime && 'opacity-50'
+            )}
+            size={22}
+          />
+        }
+      />
     </div>
   );
 }

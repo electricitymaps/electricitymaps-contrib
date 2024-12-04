@@ -90,7 +90,7 @@ export function OnboardingModal() {
   return (
     <Modal
       modalName="onboarding"
-      data-test-id="onboarding"
+      data-testid="onboarding"
       visible={visible}
       onDismiss={handleDismiss}
       views={onboardingViews}

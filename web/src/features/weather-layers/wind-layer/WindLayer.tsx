@@ -93,7 +93,7 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       id="wind"
-      data-test-id="wind-layer"
+      data-testid="wind-layer"
       width={width}
       height={height}
       ref={reference}

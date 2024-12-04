@@ -36,7 +36,7 @@ describe('MoreOptionsDropdown', () => {
       <Providers>
         <MoreOptionsDropdown
           hasMobileUserAgent={true}
-          shareUrl="hello"
+          shareUrl="https://app.electricitymaps.com"
           isEstimated={false}
           id={Charts.ORIGIN_CHART}
         >
@@ -55,7 +55,7 @@ describe('MoreOptionsDropdown', () => {
       <Providers>
         <MoreOptionsDropdown
           hasMobileUserAgent={true}
-          shareUrl="hello"
+          shareUrl="https://app.electricitymaps.com"
           isEstimated={false}
           id={Charts.ORIGIN_CHART}
         >
@@ -66,7 +66,7 @@ describe('MoreOptionsDropdown', () => {
     cy.get('button').click();
     cy.contains('Share').should('be.visible');
     cy.get('[data-testid=dismiss-btn]').click();
-    cy.get('Share').should('not.exist');
+    cy.contains('Share').should('not.exist');
   });
 
   it('displays mobile share options on mobile', () => {
@@ -74,7 +74,7 @@ describe('MoreOptionsDropdown', () => {
       <Providers>
         <MoreOptionsDropdown
           hasMobileUserAgent={true}
-          shareUrl="hello"
+          shareUrl="https://app.electricitymaps.com"
           isEstimated={false}
           id={Charts.ORIGIN_CHART}
         >
@@ -85,8 +85,8 @@ describe('MoreOptionsDropdown', () => {
     cy.get('button').click();
     cy.contains('Share via').should('be.visible');
     cy.contains('Share on X (Twitter)').should('not.exist');
-    cy.get('Share on LinkedIn').should('not.exist');
-    cy.get('Share on Facebook').should('not.exist');
+    cy.contains('Share on LinkedIn').should('not.exist');
+    cy.contains('Share on Facebook').should('not.exist');
   });
 
   it('displays social media share options on desktop', () => {
@@ -94,7 +94,7 @@ describe('MoreOptionsDropdown', () => {
       <Providers>
         <MoreOptionsDropdown
           hasMobileUserAgent={false}
-          shareUrl="hello"
+          shareUrl="https://app.electricitymaps.com"
           isEstimated={false}
           id={Charts.ORIGIN_CHART}
         >
@@ -104,33 +104,39 @@ describe('MoreOptionsDropdown', () => {
     );
 
     cy.get('button').click();
-    cy.get('Share via').should('not.exist');
+    cy.contains('Share via').should('not.exist');
 
     cy.contains('Share on X (Twitter)').should('be.visible');
-    cy.get('[data-test-id=twitter-chart-share]')
+    cy.get('[data-testid=twitter-chart-share]')
       .should('have.attr', 'href')
       .and(
         'equal',
-        'https://twitter.com/intent/tweet?&url=hello&text=Discover%20real-time%20electricity%20insights%20with%20the%20Electricity%20Maps%20app!%20https://app.electricitymaps.com&hashtags=electricitymaps'
+        'https://twitter.com/intent/tweet?&url=https://app.electricitymaps.com&text=Discover%20real-time%20electricity%20insights%20with%20the%20Electricity%20Maps%20app!&hashtags=electricitymaps'
       );
 
     cy.contains('Share on LinkedIn').should('be.visible');
-    cy.get('[data-test-id=linkedin-chart-share]')
-      .should('have.attr', 'href')
-      .and('equal', 'https://www.linkedin.com/shareArticle?mini=true&url=hello');
-
-    cy.contains('Share on Facebook').should('be.visible');
-    cy.get('[data-test-id=facebook-chart-share]')
+    cy.get('[data-testid=linkedin-chart-share]')
       .should('have.attr', 'href')
       .and(
         'equal',
-        'https://facebook.com/sharer/sharer.php?u=hello&quote=Discover%20real-time%20electricity%20insights%20with%20the%20Electricity%20Maps%20app!%20https://app.electricitymaps.com'
+        'https://www.linkedin.com/shareArticle?mini=true&url=https://app.electricitymaps.com'
+      );
+
+    cy.contains('Share on Facebook').should('be.visible');
+    cy.get('[data-testid=facebook-chart-share]')
+      .should('have.attr', 'href')
+      .and(
+        'equal',
+        'https://facebook.com/sharer/sharer.php?u=https://app.electricitymaps.com&quote=Discover%20real-time%20electricity%20insights%20with%20the%20Electricity%20Maps%20app!'
       );
 
     cy.contains('Share on Reddit').should('be.visible');
-    cy.get('[data-test-id=reddit-chart-share]')
+    cy.get('[data-testid=reddit-chart-share]')
       .should('have.attr', 'href')
-      .and('equal', 'https://www.reddit.com/web/submit?url=hello');
+      .and(
+        'equal',
+        'https://www.reddit.com/web/submit?url=https://app.electricitymaps.com'
+      );
   });
 
   it('displays preliminary data warning', () => {
@@ -138,7 +144,7 @@ describe('MoreOptionsDropdown', () => {
       <Providers>
         <MoreOptionsDropdown
           hasMobileUserAgent={false}
-          shareUrl="hello"
+          shareUrl="https://app.electricitymaps.com"
           isEstimated={true}
           id={Charts.ORIGIN_CHART}
         >
@@ -155,7 +161,7 @@ describe('MoreOptionsDropdown', () => {
       <Providers>
         <MoreOptionsDropdown
           hasMobileUserAgent={false}
-          shareUrl="hello"
+          shareUrl="https://app.electricitymaps.com"
           isEstimated={true}
           id={Charts.ORIGIN_CHART}
         >
@@ -165,7 +171,7 @@ describe('MoreOptionsDropdown', () => {
     );
     cy.get('button').click();
     cy.contains('Copy link to chart').should('exist');
-    cy.get('[data-test-id="toast"]').should('not.exist');
+    cy.get('[data-testid="toast"]').should('not.exist');
     cy.contains('Copy link to chart').click();
     cy.get('[data-testid="toast"]').should('exist');
   });
@@ -175,7 +181,7 @@ describe('MoreOptionsDropdown', () => {
       <Providers>
         <MoreOptionsDropdown
           hasMobileUserAgent={false}
-          shareUrl="hello"
+          shareUrl="https://app.electricitymaps.com"
           isEstimated={true}
           id={Charts.ORIGIN_CHART}
         >

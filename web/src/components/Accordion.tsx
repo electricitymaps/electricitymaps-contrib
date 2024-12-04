@@ -89,26 +89,26 @@ export default function Accordion({
   return (
     <section className="flex flex-col overflow-hidden py-1">
       <button
-        data-test-id="collapse-button"
+        data-testid="collapse-button"
         onClick={handleToggleCollapse}
         className={twMerge('flex flex-row items-center gap-1.5', className)}
       >
         {icon}
-        <h3 className="grow text-left" data-test-id="title">
+        <h3 className="grow text-left" data-testid="title">
           {(expandedTitle && !isCollapsed ? expandedTitle : title) || title}
         </h3>
         {badge}
         {collapsedIcon && expandedIcon ? (
           <Icon
             className={twMerge('text-black dark:text-white', iconClassName)}
-            data-test-id={isCollapsed ? 'collapse-down' : 'collapse-up'}
+            data-testid={isCollapsed ? 'collapse-down' : 'collapse-up'}
             size={iconSize}
           />
         ) : (
           <AnimatedIcon
             className={twMerge('text-black dark:text-white', iconClassName)}
             style={{ rotate: spring.rotate.to((r) => `${r}deg`) }}
-            data-test-id={isCollapsed ? 'collapse-down' : 'collapse-up'}
+            data-testid={isCollapsed ? 'collapse-down' : 'collapse-up'}
             size={iconSize}
           />
         )}
