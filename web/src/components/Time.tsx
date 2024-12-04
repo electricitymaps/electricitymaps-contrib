@@ -22,7 +22,6 @@ export function FormattedTime({
   const { zoneId: pathZoneId } = useParams<RouteParameters>();
   const timeZoneZoneId = zoneId || pathZoneId;
   const timezone = getZoneTimezone(timeZoneZoneId);
-
   if (timeAverage) {
     return (
       <time dateTime={datetime.toISOString()} className={className}>

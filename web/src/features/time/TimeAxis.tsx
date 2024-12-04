@@ -2,12 +2,10 @@ import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
-import { TimeAverages } from 'utils/constants';
+import { HISTORICAL_TIME_OFFSETS, TimeAverages } from 'utils/constants';
 import { isValidHistoricalTime } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
-
-// TODO(Cady): fix tick logic so we don't hardcode; doesn't work for 72 - off-by-one
 
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
@@ -26,11 +24,10 @@ const renderTick = (
   lang: string,
   selectedTimeAggregate: TimeAverages,
   isLoading: boolean,
-  timezone?: string,
-  isLast?: boolean
+  timezone?: string
 ) => {
   const shouldShowValue =
-    isLast || (index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading);
+    !isLoading && index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0;
 
   return (
     <g
@@ -56,9 +53,7 @@ const renderTickValue = (
   timezone?: string
 ) => {
   const shouldDisplayLive =
-    displayLive &&
-    ((selectedTimeAggregate === TimeAverages.HOURLY && index === 24) ||
-      (selectedTimeAggregate === TimeAverages.HOURLY_72 && index === 71));
+    displayLive && index === HISTORICAL_TIME_OFFSETS[selectedTimeAggregate];
   const textOffset = isValidHistoricalTime(selectedTimeAggregate) ? 5 : 0;
 
   return shouldDisplayLive ? (
@@ -112,7 +107,6 @@ function TimeAxis({
 
   const scale = getTimeScale(scaleWidth ?? width, datetimes[0], datetimes.at(-1) as Date);
   const [x1, x2] = scale.range();
-  const dtLength = datetimes.length;
   return (
     <svg className={className} ref={ref}>
       <g
@@ -131,8 +125,7 @@ function TimeAxis({
             i18n.language,
             selectedTimeAggregate,
             isLoading,
-            timezone,
-            index === dtLength - 1
+            timezone
           )
         )}
       </g>

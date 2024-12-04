@@ -8,7 +8,6 @@ import * as Sentry from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
 import LoadingSpinner from 'components/LoadingSpinner';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { zoneExists } from 'features/panels/zone/util';
 import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -81,7 +80,6 @@ function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
   const { urlTimeAverage } = useParams<RouteParameters>();
   const location = useLocation();
-  const is72HourEnabled = useFeatureFlag('72-hours');
 
   if (!urlTimeAverage) {
     return (
@@ -90,11 +88,6 @@ function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
         replace
       />
     );
-  }
-
-  // TODO(cady): fix urlTimeAverage types & ensure that we're replacing
-  if ((urlTimeAverage as string) === '72h' && !is72HourEnabled) {
-    return <Navigate to={`map/24h?${searchParameters}${location.hash}`} replace />;
   }
 
   const lowerCaseTimeAverage = urlTimeAverage.toLowerCase();

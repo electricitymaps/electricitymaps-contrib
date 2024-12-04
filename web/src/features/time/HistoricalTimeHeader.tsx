@@ -14,7 +14,11 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
-import { MAX_HISTORICAL_LOOKBACK_DAYS, TimeAverages, TrackEvent } from 'utils/constants';
+import {
+  HISTORICAL_TIME_OFFSETS,
+  MAX_HISTORICAL_LOOKBACK_DAYS,
+  TrackEvent,
+} from 'utils/constants';
 import { isValidHistoricalTime, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
@@ -22,11 +26,6 @@ import {
   timeAverageAtom,
   useTimeAverageSync,
 } from 'utils/state/atoms';
-
-const TIME_OFFSETS: Partial<Record<TimeAverages, number>> = {
-  [TimeAverages.HOURLY]: 24 * 60 * 60 * 1000,
-  [TimeAverages.HOURLY_72]: 72 * 60 * 60 * 1000,
-};
 
 const clamp = (date: number, offset: number) => {
   const clampAt = Date.now() - Math.abs(offset);
@@ -42,18 +41,36 @@ const EMPTY_IMPLEMENTATION = {
   handleRightClick() {},
   handleLeftClick() {},
   handleLatestClick() {},
+  isWithinHistoricalLimit: true,
 };
 
 const useHistoricalNavigation = () => {
   const timeAverage = useAtomValue(timeAverageAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
+  const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
 
-  const offset = TIME_OFFSETS[timeAverage];
+  const offset = (HISTORICAL_TIME_OFFSETS[timeAverage] || 0) * 60 * 60 * 1000;
 
   return useMemo(() => {
     if (!endDatetime || !offset) {
       return EMPTY_IMPLEMENTATION;
+    }
+
+    let isWithinHistoricalLimit = true;
+
+    if (urlDatetime) {
+      const targetDate = new Date(urlDatetime);
+      targetDate.setUTCHours(
+        targetDate.getUTCHours() - (HISTORICAL_TIME_OFFSETS[timeAverage] || 0)
+      );
+
+      const maxHistoricalDate = new Date();
+      maxHistoricalDate.setUTCDate(
+        maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
+      );
+
+      isWithinHistoricalLimit = targetDate >= maxHistoricalDate;
     }
 
     return {
@@ -75,8 +92,9 @@ const useHistoricalNavigation = () => {
         });
         navigate({ datetime: '' });
       },
+      isWithinHistoricalLimit,
     };
-  }, [offset, endDatetime, navigate]);
+  }, [offset, endDatetime, navigate, urlDatetime]);
 };
 
 export default function HistoricalTimeHeader() {
@@ -88,25 +106,12 @@ export default function HistoricalTimeHeader() {
   const { urlDatetime } = useParams<RouteParameters>();
   const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
 
-  const { handleRightClick, handleLeftClick, handleLatestClick } =
-    useHistoricalNavigation();
-
-  // TODO: move into useHistoricalNavigation?
-  const isWithinHistoricalLimit = useMemo(() => {
-    if (!urlDatetime) {
-      return true;
-    }
-
-    const targetDate = new Date(urlDatetime);
-    targetDate.setUTCHours(targetDate.getUTCHours() - 24);
-
-    const maxHistoricalDate = new Date();
-    maxHistoricalDate.setUTCDate(
-      maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
-    );
-
-    return targetDate >= maxHistoricalDate;
-  }, [urlDatetime]);
+  const {
+    isWithinHistoricalLimit,
+    handleRightClick,
+    handleLeftClick,
+    handleLatestClick,
+  } = useHistoricalNavigation();
 
   if (!isHistoricalTimeAverage && startDatetime && endDatetime) {
     return (
@@ -140,7 +145,7 @@ export default function HistoricalTimeHeader() {
                 size={22}
                 className={twMerge(
                   'text-brand-green dark:text-success-dark',
-                  !isHistoricalTimeAverage && !isWithinHistoricalLimit && 'opacity-50'
+                  !isWithinHistoricalLimit && 'opacity-50'
                 )}
               />
             }
@@ -164,7 +169,7 @@ export default function HistoricalTimeHeader() {
             <ChevronRight
               className={twMerge(
                 'text-brand-green dark:text-success-dark',
-                (!urlDatetime || !isHistoricalTimeAverage) && 'opacity-50'
+                !urlDatetime && 'opacity-50'
               )}
               size={22}
             />
@@ -181,7 +186,7 @@ export default function HistoricalTimeHeader() {
           <ArrowRightToLine
             className={twMerge(
               'text-brand-green dark:text-success-dark',
-              (!urlDatetime || !isHistoricalTimeAverage) && 'opacity-50'
+              !urlDatetime && 'opacity-50'
             )}
             size={22}
           />

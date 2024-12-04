@@ -23,6 +23,11 @@ export enum UrlTimeAverages {
   'all' = TimeAverages.YEARLY,
 }
 
+export const HISTORICAL_TIME_OFFSETS: Partial<Record<TimeAverages, number>> = {
+  [TimeAverages.HOURLY]: 24,
+  [TimeAverages.HOURLY_72]: 72,
+};
+
 export const historicalTimeAverages = [TimeAverages.HOURLY, TimeAverages.HOURLY_72];
 
 export enum ToggleOptions {
