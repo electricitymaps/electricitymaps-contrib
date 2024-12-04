@@ -30,7 +30,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t, timeAverage);
   const badge = <EstimationBadge text={text} Icon={icon} />;
 
   if (!hasEnoughDataToDisplay) {

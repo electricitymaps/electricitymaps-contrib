@@ -153,9 +153,7 @@ function BaseCard({
     estimationMethod,
     estimatedPercentage
   );
-  const showBadge = Boolean(
-    estimationMethod == 'aggregated' ? estimatedPercentage : pillType
-  );
+  const showBadge = shouldShowBadge(pillType, estimationMethod, estimatedPercentage);
 
   return (
     <div
@@ -311,4 +309,15 @@ function ZoneMessageBlock({ zoneMessage }: { zoneMessage?: ZoneMessage }) {
       )}
     </span>
   );
+}
+
+function shouldShowBadge(
+  pillType: PillType | undefined,
+  estimationMethod: EstimationMethods | undefined,
+  estimatedPercentage: number | undefined
+) {
+  if (estimationMethod == EstimationMethods.AGGREGATED) {
+    return estimatedPercentage != undefined && estimatedPercentage > 1;
+  }
+  return Boolean(pillType);
 }
