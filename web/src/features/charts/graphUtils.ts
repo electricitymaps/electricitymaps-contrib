@@ -230,7 +230,7 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
     estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
   }
   const calculatedTotal = round(
-    (estimatedTotal / total || (estimatedCount || tsaCount) / chartData.length) * 100,
+    estimatedTotal / total || ((estimatedCount || tsaCount) / total) * 100,
     2
   );
   return {
