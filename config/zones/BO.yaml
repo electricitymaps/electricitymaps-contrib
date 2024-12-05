@@ -81,47 +81,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 385.72843254185267
+        value: 385.73
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 346.3121890140969
+        value: 346.31
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 314.947960669568
+        value: 314.95
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 324.4623883482573
+        value: 324.46
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 318.5106507265494
+        value: 318.51
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 320.16608377735594
+        value: 320.17
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 349.29204054340426
+        value: 349.29
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 385.72843254185267
+        value: 385.73
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 346.3121890140969
+        value: 346.31
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 314.947960669568
+        value: 314.95
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 324.4623883482573
+        value: 324.46
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 318.5106507265494
+        value: 318.51
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 320.16608377735594
+        value: 320.17
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 349.29204054340426
+        value: 349.29
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass

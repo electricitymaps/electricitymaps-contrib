@@ -87,47 +87,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 14.75293563004043
+        value: 14.75
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 15.75041742126386
+        value: 15.75
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 16.93125713773701
+        value: 16.93
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 22.225083366014076
+        value: 22.23
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 23.18452952950505
+        value: 23.18
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 378.7598234832692
+        value: 378.76
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 405.38414726061814
+        value: 405.38
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 14.75293563004043
+        value: 14.75
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 15.75041742126386
+        value: 15.75
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 16.93125713773701
+        value: 16.93
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 22.225083366014076
+        value: 22.23
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 23.18452952950505
+        value: 23.18
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 378.7598234832692
+        value: 378.76
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 405.38414726061814
+        value: 405.38
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

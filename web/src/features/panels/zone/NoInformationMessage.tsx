@@ -33,7 +33,7 @@ export default function NoInformationMessage({ status }: { status: ZoneDataStatu
     translations[ZoneDataStatus.NO_INFORMATION];
 
   return (
-    <div data-test-id="no-parser-message" className="pt-4 text-center text-base">
+    <div data-testid="no-parser-message" className="pt-4 text-center text-base">
       <span
         className="prose text-sm dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline"
         dangerouslySetInnerHTML={{

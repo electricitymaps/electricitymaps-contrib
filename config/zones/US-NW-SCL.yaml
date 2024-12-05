@@ -129,7 +129,7 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 24.000000000000004
+        value: 24.0
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 24.0
@@ -165,7 +165,7 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 24.000000000000004
+        value: 24.0
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 24.0

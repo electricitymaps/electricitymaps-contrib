@@ -29,47 +29,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 504.13152647328883
+        value: 504.13
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 510.48489945175163
+        value: 510.48
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 506.4689658873527
+        value: 506.47
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 531.4417304938096
+        value: 531.44
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 475.2508805263289
+        value: 475.25
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 459.8553007836858
+        value: 459.86
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 466.52763480788957
+        value: 466.53
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 504.13152647328883
+        value: 504.13
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 510.48489945175163
+        value: 510.48
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 506.4689658873527
+        value: 506.47
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 531.4417304938096
+        value: 531.44
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 475.2508805263289
+        value: 475.25
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 459.8553007836858
+        value: 459.86
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 466.52763480788957
+        value: 466.53
     unknown:
       source: Enerdata 2022 Japanese National Average
       value: 462

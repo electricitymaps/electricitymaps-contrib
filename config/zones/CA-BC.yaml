@@ -22,11 +22,11 @@ emissionFactors:
     battery discharge:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 71.88523615564627
+        value: 71.89
     hydro discharge:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 71.88523615564627
+        value: 71.89
     unknown:
       - datetime: '2019-01-01'
         source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources

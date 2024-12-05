@@ -106,16 +106,16 @@ emissionFactors:
         value: 968.2804597073409
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 971.0539097941493
+        value: 971.05
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 948.89598336777
+        value: 948.9
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 884.5554408810431
+        value: 884.56
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 879.0436137426954
+        value: 879.04
     biomass:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -149,16 +149,16 @@ emissionFactors:
         value: 968.2804597073409
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 971.0539097941493
+        value: 971.05
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 948.89598336777
+        value: 948.9
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 884.5554408810431
+        value: 884.56
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 879.0436137426954
+        value: 879.04
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014

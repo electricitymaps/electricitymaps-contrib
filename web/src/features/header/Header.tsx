@@ -8,6 +8,7 @@ import { ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 
 import Logo from './Logo';
 
@@ -27,7 +28,7 @@ function MenuLink({
   onClick,
 }: MenuLinkProps): JSX.Element {
   const handleClick = () => {
-    trackEvent('HeaderLink Clicked', { linkId: id });
+    trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: id });
     onClick?.();
   };
   return (
@@ -63,7 +64,7 @@ export default function Header(): JSX.Element {
   return (
     <header
       className={twMerge(
-        'z-30 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
+        'z-40 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
         !isMobileApp && 'sm:block md:flex'
       )}
     >
@@ -105,7 +106,7 @@ export default function Header(): JSX.Element {
           </MenuLink>
           <Button
             onClick={() => {
-              trackEvent('HeaderLink Clicked', { linkId: 'get-data' });
+              trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: 'get-data' });
             }}
             backgroundClasses="my-2.5"
             foregroundClasses="text-base font-normal lg:text-[1rem] py-1 px-6"

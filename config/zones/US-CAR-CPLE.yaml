@@ -162,22 +162,22 @@ emissionFactors:
         value: 325.45596089160216
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 319.8292554918968
+        value: 319.83
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 363.54941370865276
+        value: 363.55
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 357.16719464568473
+        value: 357.17
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 315.32829304603325
+        value: 315.33
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 326.2433716770591
+        value: 326.24
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 297.28681446907814
+        value: 297.29
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 284.92
@@ -213,22 +213,22 @@ emissionFactors:
         value: 325.45596089160216
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 319.8292554918968
+        value: 319.83
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 363.54941370865276
+        value: 363.55
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 357.16719464568473
+        value: 357.17
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 315.32829304603325
+        value: 315.33
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 326.2433716770591
+        value: 326.24
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 297.28681446907814
+        value: 297.29
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 284.92

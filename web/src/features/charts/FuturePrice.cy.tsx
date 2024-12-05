@@ -17,28 +17,28 @@ describe('FuturePrice only positive values', () => {
   });
 
   it('Opens when accordion clicked', () => {
-    cy.get('[data-test-id="future-price"]').should('not.exist');
-    cy.get('[data-test-id="collapse-button"]').click();
-    cy.get('[data-test-id="future-price"]').should('be.visible');
+    cy.get('[data-testid="future-price"]').should('not.exist');
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="future-price"]').should('be.visible');
   });
 
   it('Tomorrow label is visible', () => {
-    cy.get('[data-test-id="tomorrow-label"]').should('be.visible');
+    cy.get('[data-testid="tomorrow-label"]').should('be.visible');
   });
 
   it('Price data is visible', () => {
-    cy.get('[data-test-id="negative-price"]').should('not.exist');
-    cy.get('[data-test-id="price-bar"]').should('be.visible');
-    cy.get('[data-test-id="positive-price"]').should('be.visible');
+    cy.get('[data-testid="negative-price"]').should('not.exist');
+    cy.get('[data-testid="price-bar"]').should('be.visible');
+    cy.get('[data-testid="positive-price"]').should('be.visible');
   });
 
   it('Disclaimers are visible', () => {
-    cy.get('[data-test-id="time-disclaimer"]').should('be.visible');
-    cy.get('[data-test-id="price-disclaimer"]').should('be.visible');
+    cy.get('[data-testid="time-disclaimer"]').should('be.visible');
+    cy.get('[data-testid="price-disclaimer"]').should('be.visible');
   });
 
   it('now label is visible', () => {
-    cy.get('[data-test-id="now-label"]').should('be.visible');
+    cy.get('[data-testid="now-label"]').should('be.visible');
   });
 });
 
@@ -60,8 +60,10 @@ describe('FuturePrice negative values', () => {
   });
 
   it('Price data is visible', () => {
-    cy.get('[data-test-id="negative-price"]').should('be.visible');
-    cy.get('[data-test-id="price-bar"]').should('be.visible');
-    cy.get('[data-test-id="positive-price"]').should('be.visible');
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="negative-price"]').should('be.visible');
+    cy.get('[data-testid="price-bar"]').should('be.visible');
+    cy.get('[data-testid="positive-price"]').should('be.visible');
   });
 });

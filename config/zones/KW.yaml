@@ -74,26 +74,26 @@ emissionFactors:
     battery discharge:
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 549.9999999999999
+        value: 550.0
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 550.0
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 549.9999999999999
+        value: 550.0
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 550.0
     hydro discharge:
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 549.9999999999999
+        value: 550.0
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 550.0
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 549.9999999999999
+        value: 550.0
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 550.0

@@ -88,41 +88,41 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 364.3432458805215
+        value: 364.34
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 369.3563057578955
+        value: 369.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 376.7854735544027
+        value: 376.79
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 374.35549344091123
+        value: 374.36
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 364.8351539235969
+        value: 364.84
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 361.60051593042255
+        value: 361.6
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 364.3432458805215
+        value: 364.34
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 369.3563057578955
+        value: 369.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 376.7854735544027
+        value: 376.79
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 374.35549344091123
+        value: 374.36
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 364.8351539235969
+        value: 364.84
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 361.60051593042255
+        value: 361.6
     unknown:
       _comment: 'Assumes weighted average emission factor based on 2015-TWh production:
         22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  =

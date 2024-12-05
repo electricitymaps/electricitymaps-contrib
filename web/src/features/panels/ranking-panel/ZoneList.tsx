@@ -16,6 +16,7 @@ export interface ZoneRowType {
   co2intensity?: number | null;
   countryName?: string;
   zoneName?: string;
+  fullZoneName?: string;
 }
 
 function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType) {
@@ -24,7 +25,7 @@ function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType)
       className="group my-1 flex h-11 w-full items-center gap-2 rounded bg-gray-100 px-3 hover:bg-gray-200 focus:border focus:border-gray-400/60 focus-visible:outline-none dark:border dark:border-gray-400/10 dark:bg-gray-800 dark:hover:bg-gray-700/70 dark:focus:border-gray-500/80"
       key={ranking}
       to={`/zone/${zoneId}`}
-      data-test-id="zone-list-link"
+      data-testid="zone-list-link"
     >
       <span className="flex w-4 justify-end text-xs">{ranking}</span>
       <div className="h-4 w-4 min-w-4 rounded-sm" style={{ backgroundColor: color }} />

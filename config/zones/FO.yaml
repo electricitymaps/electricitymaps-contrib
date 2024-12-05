@@ -106,10 +106,10 @@ emissionFactors:
         value: 408.8110193788959
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 197.7964444252265
+        value: 197.8
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 590.0821568739233
+        value: 590.08
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -158,10 +158,10 @@ emissionFactors:
         value: 408.8110193788959
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 197.7964444252265
+        value: 197.8
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 590.0821568739233
+        value: 590.08
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

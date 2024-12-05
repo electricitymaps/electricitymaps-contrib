@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
-import { EstimationMethods } from 'utils/constants';
+import { EstimationMethods, TrackEvent } from 'utils/constants';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -136,7 +136,7 @@ function BaseCard({
 
   const trackToggle = () => {
     if (isCollapsed) {
-      trackEvent('EstimationCard Expanded', { cardType: cardType });
+      trackEvent(TrackEvent.ESTIMATION_CARD_EXPANDED, { cardType: cardType });
     }
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
   };
@@ -178,7 +178,7 @@ function BaseCard({
       >
         <div className="flex flex-col gap-2">
           <div
-            data-test-id="body-text"
+            data-testid="body-text"
             className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
           >
             {estimationMethod != 'outage' && bodyText}
@@ -191,10 +191,10 @@ function BaseCard({
               href="https://www.electricitymaps.com/methodology#missing-data"
               target="_blank"
               rel="noreferrer"
-              data-test-id="methodology-link"
+              data-testid="methodology-link"
               className={`text-sm font-semibold text-black underline dark:text-white`}
               onClick={() => {
-                trackEvent('EstimationCard Methodology Link Clicked', {
+                trackEvent(TrackEvent.ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED, {
                   cardType: cardType,
                 });
               }}

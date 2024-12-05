@@ -29,47 +29,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 171.68036145728934
+        value: 171.68
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 152.62689904044262
+        value: 152.63
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 153.657687279815
+        value: 153.66
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 145.25514504162197
+        value: 145.26
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 145.5431283624887
+        value: 145.54
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 144.36508504138442
+        value: 144.37
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 158.27703086675336
+        value: 158.28
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 171.68036145728934
+        value: 171.68
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 152.62689904044262
+        value: 152.63
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 153.657687279815
+        value: 153.66
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 145.25514504162197
+        value: 145.26
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 145.5431283624887
+        value: 145.54
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 144.36508504138442
+        value: 144.37
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 158.27703086675336
+        value: 158.28
     unknown:
       - datetime: '2019-01-01'
         source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53%
@@ -77,6 +77,21 @@ emissionFactors:
         value: 211.9
 fallbackZoneMixes:
   powerOriginRatios:
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.005308708858735968
+        coal: 0.0017369039827391606
+        gas: 0.0006865019615367694
+        geothermal: 3.2320241195255577e-09
+        hydro: 0.20794482038652326
+        hydro discharge: 0.0
+        nuclear: 0.000607898488545084
+        oil: 2.9734621899635132e-08
+        solar: 1.3597771875667927e-05
+        unknown: 0.7719997802378735
+        wind: 0.011700468999924952
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
@@ -107,21 +122,6 @@ fallbackZoneMixes:
         solar: 2.8647917168144602e-05
         unknown: 0.6776669776700435
         wind: 0.016262356364234988
-    - _source: Electricity Maps, 2017 average
-      datetime: '2017-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.005308708858735968
-        coal: 0.0017369039827391606
-        gas: 0.0006865019615367694
-        geothermal: 3.2320241195255577e-09
-        hydro: 0.20794482038652326
-        hydro discharge: 0.0
-        nuclear: 0.000607898488545084
-        oil: 2.9734621899635132e-08
-        solar: 1.3597771875667927e-05
-        unknown: 0.7719997802378735
-        wind: 0.011700468999924952
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:

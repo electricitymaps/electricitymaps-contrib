@@ -1,9 +1,11 @@
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtom } from 'jotai';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeController from './TimeController';
 import TimeHeader from './TimeHeader';
 
@@ -13,6 +15,7 @@ function BottomSheetWrappedTimeController() {
   const safeAreaBottomString = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--sab');
+  const historicalLinkingEnabled = useFeatureFlag('historical-linking');
 
   const safeAreaBottom = safeAreaBottomString
     ? Number.parseInt(safeAreaBottomString.replace('px', ''))
@@ -30,7 +33,7 @@ function BottomSheetWrappedTimeController() {
       open={!isLoadingMap}
       snapPoints={() => snapPoints}
       blocking={false}
-      header={<TimeHeader />}
+      header={historicalLinkingEnabled ? <HistoricalTimeHeader /> : <TimeHeader />}
     >
       <TimeController className="p-2 min-[370px]:px-4" />
     </BottomSheet>
@@ -39,7 +42,7 @@ function BottomSheetWrappedTimeController() {
 
 function FloatingTimeController() {
   return (
-    <div className="fixed bottom-3 left-3 z-20 w-[calc(14vw_+_16rem)] rounded-xl bg-white px-4 py-3 shadow-xl drop-shadow-2xl dark:bg-gray-800 min-[780px]:w-[calc((14vw_+_16rem)_-_30px)] xl:px-5">
+    <div className="fixed bottom-3 left-3 z-30 w-[calc(14vw_+_16rem)] rounded-xl bg-white px-4 py-3 shadow-xl drop-shadow-2xl dark:bg-gray-800 min-[780px]:w-[calc((14vw_+_16rem)_-_30px)] xl:px-5">
       <TimeController />
     </div>
   );

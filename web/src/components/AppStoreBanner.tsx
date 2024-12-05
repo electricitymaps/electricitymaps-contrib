@@ -1,7 +1,6 @@
 import { EmapsIcon } from 'icons/emapsIcon';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
@@ -13,6 +12,7 @@ import {
   isMobileWeb,
 } from '../features/weather-layers/wind-layer/util';
 import { Button } from './Button';
+import { DefaultCloseButton, DefaultCloseButtonProps } from './DefaultCloseButton';
 
 export const appStoreDismissedAtom = atomWithStorage(
   'isAppBannerDismissed',
@@ -45,7 +45,7 @@ export function AppStoreBanner({
       <div
         role="banner"
         aria-live="polite"
-        className="sticky z-50 flex h-14 min-h-14 w-full items-center border-b border-solid border-neutral-300 bg-neutral-100 px-3 dark:border-b dark:border-gray-700 dark:bg-gray-800"
+        className="sticky z-50 flex h-14 min-h-14 w-full items-center gap-2 border-b border-solid border-neutral-300 bg-neutral-100 px-3 dark:border-b dark:border-gray-700 dark:bg-gray-800"
       >
         <CloseButton onClose={onDismissClick} />
         <div className="flex flex-grow gap-2">
@@ -67,24 +67,6 @@ export function AppStoreBanner({
         </Button>
       </div>
     )
-  );
-}
-
-interface DefaultCloseButtonProps {
-  onClose(): void;
-}
-
-function DefaultCloseButton({ onClose }: DefaultCloseButtonProps) {
-  const { t } = useTranslation();
-  return (
-    <button
-      aria-label={t('misc.dismiss')}
-      data-testid="dismiss-btn"
-      onClick={onClose}
-      className="pointer-events-auto flex h-6 w-6 items-center justify-center self-center pr-2 text-neutral-400 dark:text-gray-300"
-    >
-      <X />
-    </button>
   );
 }
 

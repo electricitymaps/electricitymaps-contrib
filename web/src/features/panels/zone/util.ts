@@ -6,17 +6,27 @@ import { CombinedZonesConfig } from '../../../../geo/types';
 
 const { zones, contributors } = zonesConfigJSON as unknown as CombinedZonesConfig;
 
-export const getHasSubZones = (zoneId?: string) => {
-  if (!zoneId) {
-    return null;
-  }
+export const zoneExists = (zoneId: string) => Boolean(zones[zoneId]);
 
-  const zoneConfig = zones[zoneId];
-  if (!zoneConfig || !zoneConfig.subZoneNames) {
-    return false;
-  }
-  return zoneConfig.subZoneNames.length > 0;
-};
+/**
+ * A helper function to check if a zone has any subZones
+ * Previously this used the following code,
+ * but it has since been optimized for size and speed:
+ * ```
+ * export const getHasSubZones = (zoneId?: string) => {
+ *  if (!zoneId) {
+ *    return null;
+ *  }
+ *  const zoneConfig = zones[zoneId];
+ *  if (!zoneConfig || !zoneConfig.subZoneNames) {
+ *    return false;
+ *  }
+ *  return zoneConfig.subZoneNames.length > 0;
+ *};
+ *```
+ */
+export const getHasSubZones = (zoneId?: string): boolean | null =>
+  zoneId ? Boolean(zones[zoneId]?.subZoneNames?.length) : null;
 
 export enum ZoneDataStatus {
   AGGREGATE_DISABLED = 'aggregate_disabled',

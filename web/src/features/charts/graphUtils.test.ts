@@ -1,5 +1,4 @@
 import { ElectricityStorageType, ZoneDetail } from 'types';
-import { Mode } from 'utils/constants';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -237,37 +236,37 @@ describe('getTotalEmissionsAvailable and ElectricityAvailable', () => {
   } as ZoneDetail;
 
   it('handles emissions for consumption', () => {
-    const actual = getTotalEmissionsAvailable(zoneData, Mode.CONSUMPTION);
+    const actual = getTotalEmissionsAvailable(zoneData, true);
     expect(actual).to.deep.eq(175);
   });
 
   it('handles power for consumption', () => {
-    const actual = getTotalElectricityAvailable(zoneData, Mode.CONSUMPTION);
+    const actual = getTotalElectricityAvailable(zoneData, true);
     expect(actual).to.deep.eq(350);
   });
 
   it('handles emissions for production', () => {
-    const actual = getTotalEmissionsAvailable(zoneData, Mode.PRODUCTION);
+    const actual = getTotalEmissionsAvailable(zoneData, false);
     expect(actual).to.deep.eq(150);
   });
 
   it('returns NaN when missing productionValue', () => {
     const actual = getTotalEmissionsAvailable(
       { ...zoneData, totalCo2Production: null } as unknown as ZoneDetail,
-      Mode.PRODUCTION
+      false
     );
     expect(actual).to.deep.eq(Number.NaN);
   });
 
   it('handles power for production', () => {
-    const actual = getTotalElectricityAvailable(zoneData, Mode.PRODUCTION);
+    const actual = getTotalElectricityAvailable(zoneData, false);
     expect(actual).to.deep.eq(250);
   });
 
   it('returns 0 when productionValue is 0', () => {
     const actual = getTotalElectricityAvailable(
       { ...zoneData, totalProduction: 0, totalDischarge: 0 },
-      Mode.PRODUCTION
+      false
     );
     expect(actual).to.deep.eq(0);
   });
@@ -275,7 +274,7 @@ describe('getTotalEmissionsAvailable and ElectricityAvailable', () => {
   it('returns NaN when missing productionValue', () => {
     const actual = getTotalElectricityAvailable(
       { ...zoneData, totalProduction: null },
-      Mode.PRODUCTION
+      false
     );
     expect(actual).to.deep.eq(Number.NaN);
   });

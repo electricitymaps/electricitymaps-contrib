@@ -89,25 +89,25 @@ emissionFactors:
         value: 495.18349403296713
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 417.4403643893454
+        value: 417.44
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 373.85468710549986
+        value: 373.85
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 337.1255140627922
+        value: 337.13
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 328.6298163821583
+        value: 328.63
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 363.7454633202924
+        value: 363.75
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 346.88755077007534
+        value: 346.89
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 285.65635291079457
+        value: 285.66
     gas:
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
@@ -125,25 +125,25 @@ emissionFactors:
         value: 495.18349403296713
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 417.4403643893454
+        value: 417.44
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 373.85468710549986
+        value: 373.85
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 337.1255140627922
+        value: 337.13
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 328.6298163821583
+        value: 328.63
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 363.7454633202924
+        value: 363.75
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 346.88755077007534
+        value: 346.89
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 285.65635291079457
+        value: 285.66
     oil:
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014

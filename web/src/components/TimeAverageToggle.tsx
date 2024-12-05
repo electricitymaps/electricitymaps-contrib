@@ -2,14 +2,21 @@ import {
   Item as ToggleGroupItem,
   Root as ToggleGroupRoot,
 } from '@radix-ui/react-toggle-group';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { TFunction } from 'i18next';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TimeAverages } from 'utils/constants';
 
-const createOption = (time: TimeAverages, t: TFunction) => ({
+const createOption = (
+  time: TimeAverages,
+  t: TFunction,
+  historicalLinkingEnabled: boolean
+) => ({
   value: time,
-  label: t(`time-controller.${time}`),
+  label: t(
+    `time-controller.${historicalLinkingEnabled ? 'historical-linking.' : ''}${time}`
+  ),
   dataTestId: `time-controller-${time}`,
 });
 
@@ -20,12 +27,13 @@ export interface TimeAverageToggleProps {
 
 function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggleProps) {
   const { t } = useTranslation();
+  const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const options = useMemo(
     () =>
-      Object.keys(TimeAverages).map((time) =>
-        createOption(time.toLowerCase() as TimeAverages, t)
+      Object.values(TimeAverages).map((value) =>
+        createOption(value, t, historicalLinkingEnabled)
       ),
-    [t]
+    [t, historicalLinkingEnabled]
   );
 
   return (
@@ -39,7 +47,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
       {options.map(({ value, label, dataTestId }) => (
         <ToggleGroupItem
           key={`group-item-${value}-${label}`}
-          data-test-id={dataTestId}
+          data-testid={dataTestId}
           value={value}
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}

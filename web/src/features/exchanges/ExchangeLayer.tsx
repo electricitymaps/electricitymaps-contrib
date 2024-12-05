@@ -1,10 +1,9 @@
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useExchangeArrowsData } from 'hooks/arrows';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import React from 'react';
 import useResizeObserver from 'use-resize-observer';
-import { Mode } from 'utils/constants';
-import { colorblindModeAtom, productionConsumptionAtom } from 'utils/state/atoms';
+import { colorblindModeAtom, isConsumptionAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
 import ExchangeArrow from './ExchangeArrow';
@@ -15,12 +14,11 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
   const { ref, width = 0, height = 0 } = useResizeObserver<HTMLDivElement>();
   const arrows = useExchangeArrowsData();
   const isMobile = !useBreakpoint('md');
-  const [currentMode] = useAtom(productionConsumptionAtom);
-  const isConsumption = currentMode === Mode.CONSUMPTION;
+  const isConsumption = useAtomValue(isConsumptionAtom);
 
   return (
     <div
-      data-test-id="exchange-layer"
+      data-testid="exchange-layer"
       id="exchange-layer"
       className="h-full w-full"
       ref={ref}

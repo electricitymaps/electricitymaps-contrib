@@ -57,17 +57,17 @@ emissionFactors:
     battery discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 409.0798286308625
+        value: 409.08
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 409.08054040481835
+        value: 409.08
     hydro discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 409.0798286308625
+        value: 409.08
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 409.08054040481835
+        value: 409.08
     unknown:
       - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
           SPP, and VSPP

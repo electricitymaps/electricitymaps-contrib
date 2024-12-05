@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { halfHourPriceData, priceData } from 'stories/mockData';
+import { halfHourPriceData, priceData, priceData2 } from 'stories/mockData';
 import { mockDateDecorator } from 'storybook-mock-date-decorator';
 
 import { FuturePrice } from './FuturePrice';
@@ -25,8 +25,10 @@ export const PositivePrices: Story = {
 const negativePriceData = JSON.parse(JSON.stringify(priceData));
 
 negativePriceData.priceData['2024-09-02 03:00:00+00:00'] = -0.2;
-negativePriceData.priceData['2024-09-02 13:00:00+00:00'] = -0.9;
+negativePriceData.priceData['2024-09-02 13:00:00+00:00'] = -1;
 negativePriceData.priceData['2024-09-02 08:00:00+00:00'] = -0.3;
+negativePriceData.priceData['2024-09-02 09:00:00+00:00'] = 0;
+negativePriceData.priceData['2024-09-02 10:00:00+00:00'] = -0.0001;
 
 export const NegativePrices: Story = {
   args: {
@@ -58,5 +60,14 @@ export const HalfHourPrices: Story = {
   },
   parameters: {
     date: new Date('2024-09-02 01:00:00+00:00'),
+  },
+};
+
+export const PricesGoingUp: Story = {
+  args: {
+    futurePrice: priceData2,
+  },
+  parameters: {
+    date: new Date('2024-09-01 12:00:00+00:00'),
   },
 };

@@ -38,7 +38,6 @@ export function Button({
   const As = getComponentType(renderAsLink, asDiv);
   const componentType = renderAsLink ? undefined : 'button';
   const isIconOnly = !children && Boolean(icon);
-
   return (
     <div
       className={twMerge(
@@ -49,7 +48,7 @@ export function Button({
     >
       <As
         className={twMerge(
-          `flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold
+          `flex h-full w-full select-none flex-row items-center justify-center rounded-full text-sm font-semibold
         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:text-neutral-400
         disabled:hover:bg-inherit disabled:dark:text-gray-500 ${getSize(
           size,
@@ -66,7 +65,7 @@ export function Button({
         target="_blank"
         // Used to prevent browser translation crashes on edge, see #6809
         translate="no"
-        data-test-id={dataTestId}
+        data-testid={dataTestId}
       >
         {icon}
         {children}

@@ -60,25 +60,25 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 17.83454402073228
+        value: 17.83
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 18.427472541944535
+        value: 18.43
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 17.36073998756103
+        value: 17.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 15.362770977612175
+        value: 15.36
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 14.270549026423087
+        value: 14.27
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 15.919525455407419
+        value: 15.92
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 16.327450764075646
+        value: 16.33
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -109,25 +109,25 @@ emissionFactors:
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 17.83454402073228
+        value: 17.83
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 18.427472541944535
+        value: 18.43
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 17.36073998756103
+        value: 17.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 15.362770977612175
+        value: 15.36
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 14.270549026423087
+        value: 14.27
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 15.919525455407419
+        value: 15.92
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 16.327450764075646
+        value: 16.33
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

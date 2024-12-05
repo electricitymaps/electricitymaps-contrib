@@ -138,7 +138,8 @@ const scalePower = (maxPower: number | undefined, isPower = false) => {
 };
 
 export const getDateTimeFormatOptions = (
-  timeAverage: TimeAverages
+  timeAverage: TimeAverages,
+  timezone?: string
 ): Intl.DateTimeFormatOptions => {
   switch (timeAverage) {
     case TimeAverages.HOURLY: {
@@ -149,6 +150,7 @@ export const getDateTimeFormatOptions = (
         hour: 'numeric',
         minute: 'numeric',
         timeZoneName: 'short',
+        timeZone: timezone,
       };
     }
     case TimeAverages.DAILY: {
@@ -177,16 +179,27 @@ export const getDateTimeFormatOptions = (
   }
 };
 
-const formatDate = (date: Date, lang: string, timeAverage: TimeAverages) => {
+const formatDate = (
+  date: Date,
+  lang: string,
+  timeAverage: TimeAverages,
+  timezone?: string
+) => {
   if (!isValidDate(date) || !timeAverage) {
     return '';
   }
-  return new Intl.DateTimeFormat(lang, getDateTimeFormatOptions(timeAverage)).format(
-    date
-  );
+  return new Intl.DateTimeFormat(
+    lang,
+    getDateTimeFormatOptions(timeAverage, timezone)
+  ).format(date);
 };
 
-const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) => {
+const formatDateTick = (
+  date: Date,
+  lang: string,
+  timeAggregate: TimeAverages,
+  timezone?: string
+) => {
   if (!isValidDate(date) || !timeAggregate) {
     return '';
   }
@@ -195,6 +208,7 @@ const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) =
     case TimeAverages.HOURLY: {
       return new Intl.DateTimeFormat(lang, {
         timeStyle: 'short',
+        timeZone: timezone,
       }).format(date);
     }
     // Instantiate below DateTimeFormat objects using UTC to avoid displaying
@@ -232,6 +246,22 @@ const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) =
     }
   }
 };
+
+export function formatDateRange(
+  startDate: Date,
+  endDate: Date,
+  locale = 'en-US',
+  timeZone?: string
+) {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone,
+  });
+
+  return formatter.formatRange(startDate, endDate);
+}
 
 function isValidDate(date: Date) {
   if (!date || !(date instanceof Date)) {

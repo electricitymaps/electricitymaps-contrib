@@ -17,6 +17,9 @@ capacity:
     - datetime: '2024-02-01'
       source: EIA.gov
       value: 362.1
+    - datetime: '2024-07-01'
+      source: EIA.gov
+      value: 402.1
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -33,6 +36,9 @@ capacity:
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 2085.3
+    - datetime: '2024-07-01'
+      source: EIA.gov
+      value: 2025.3
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -71,6 +77,9 @@ capacity:
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 104186.2
+    - datetime: '2024-07-01'
+      source: EIA.gov
+      value: 104180.7
   geothermal:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -134,6 +143,9 @@ capacity:
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 12414.2
+    - datetime: '2024-07-01'
+      source: EIA.gov
+      value: 12437.1
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -243,25 +255,25 @@ emissionFactors:
         value: 438.08497262864455
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 443.9133695145501
+        value: 443.91
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 458.5483099654672
+        value: 458.55
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 454.19245799783613
+        value: 454.19
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 420.98265197431374
+        value: 420.98
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 441.45156932656795
+        value: 441.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 429.8444251949399
+        value: 429.84
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 394.89699236599625
+        value: 394.9
     biomass:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -294,25 +306,25 @@ emissionFactors:
         value: 438.08497262864455
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 443.9133695145501
+        value: 443.91
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 458.5483099654672
+        value: 458.55
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 454.19245799783613
+        value: 454.19
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 420.98265197431374
+        value: 420.98
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 441.45156932656795
+        value: 441.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 429.8444251949399
+        value: 429.84
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 394.89699236599625
+        value: 394.9
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014

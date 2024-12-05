@@ -3,16 +3,16 @@ import { CountryFlag } from 'components/Flag';
 import { MetricRatio } from 'components/MetricRatio';
 import { useCo2ColorScale } from 'hooks/theme';
 import { TFunction } from 'i18next';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { EstimationMethods, Mode, modeColor, TimeAverages } from 'utils/constants';
+import { EstimationMethods, modeColor, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
+  isConsumptionAtom,
   isHourlyAtom,
-  productionConsumptionAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
 
@@ -25,7 +25,7 @@ function calculateTooltipContentData(
   selectedLayerKey: LayerKey,
   zoneDetail: ZoneDetail,
   displayByEmissions: boolean,
-  mixMode: Mode
+  isConsumption: boolean
 ) {
   // If layer key is not a generation type, it is an exchange
   const isExchange = !getGenerationTypeKey(selectedLayerKey);
@@ -36,7 +36,7 @@ function calculateTooltipContentData(
         selectedLayerKey as ElectricityModeType,
         zoneDetail,
         displayByEmissions,
-        mixMode
+        isConsumption
       );
 }
 
@@ -105,9 +105,9 @@ export default function BreakdownChartTooltip({
   zoneDetail,
   selectedLayerKey,
 }: InnerAreaGraphTooltipProps) {
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
 
   if (!zoneDetail || !selectedLayerKey) {
     return null;
@@ -120,7 +120,7 @@ export default function BreakdownChartTooltip({
     selectedLayerKey,
     zoneDetail,
     displayByEmissions,
-    mixMode
+    isConsumption
   );
 
   const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;

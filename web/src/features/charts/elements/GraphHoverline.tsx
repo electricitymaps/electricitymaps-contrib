@@ -12,11 +12,11 @@ const GraphHoverLine = React.memo(
     valueScale,
     markerUpdateHandler,
     markerHideHandler,
-    selectedLayerIndex,
+    hoveredLayerIndex,
     selectedTimeIndex,
     svgNode,
   }: any) => {
-    const layer = layers?.[selectedLayerIndex];
+    const layer = layers?.[hoveredLayerIndex];
     const fill = layer?.markerFill;
     const datapoint = layer?.datapoints?.[selectedTimeIndex];
     const nextDateTime = datetimes

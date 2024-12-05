@@ -60,7 +60,7 @@ function CarbonIntensitySquare({
             >
               <p
                 className="select-none text-base leading-none"
-                data-test-id="co2-square-value"
+                data-testid="co2-square-value"
               >
                 <span className="font-semibold">{Math.round(intensity) || '?'}</span>
                 <span className="text-xs font-semibold">g</span>

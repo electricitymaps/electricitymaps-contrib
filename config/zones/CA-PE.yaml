@@ -48,47 +48,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 58.70083417886525
+        value: 58.7
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 92.5356737820939
+        value: 92.54
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 95.70019308999947
+        value: 95.7
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 88.42069746818031
+        value: 88.42
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 95.47925100377687
+        value: 95.48
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 99.97283507720316
+        value: 99.97
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 118.15829851395863
+        value: 118.16
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 58.70083417886525
+        value: 58.7
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 92.5356737820939
+        value: 92.54
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 95.70019308999947
+        value: 95.7
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 88.42069746818031
+        value: 88.42
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 95.47925100377687
+        value: 95.48
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 99.97283507720316
+        value: 99.97
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 118.15829851395863
+        value: 118.16
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

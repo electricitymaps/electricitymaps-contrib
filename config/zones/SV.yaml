@@ -108,47 +108,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 166.9416560484721
+        value: 166.94
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 185.8403843444717
+        value: 185.84
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 254.09976545310286
+        value: 254.1
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 183.09821399427364
+        value: 183.1
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 185.8774458393478
+        value: 185.88
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 206.46846657417873
+        value: 206.47
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 307.4592289563242
+        value: 307.46
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 166.9416560484721
+        value: 166.94
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 185.8403843444717
+        value: 185.84
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 254.09976545310286
+        value: 254.1
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 183.09821399427364
+        value: 183.1
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 185.8774458393478
+        value: 185.88
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 206.46846657417873
+        value: 206.47
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 307.4592289563242
+        value: 307.46
     unknown:
       _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
         factors

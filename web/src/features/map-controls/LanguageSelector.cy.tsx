@@ -9,7 +9,7 @@ it('mounts', () => {
       <LanguageSelector />
     </I18nextProvider>
   );
-  cy.get('[data-test-id=language-selector-open-button]').click();
+  cy.get('[data-testid=language-selector-open-button]').click();
   cy.contains('English');
   cy.contains('Français');
   cy.contains('Deutsch');
@@ -25,7 +25,7 @@ it('mounts', () => {
 
   cy.get('button').contains('Italiano').click();
 
-  cy.get('[data-test-id=language-selector-open-button]').trigger('mouseover');
+  cy.get('[data-testid=language-selector-open-button]').trigger('mouseover');
 
   cy.get('.relative').contains('Seleziona la lingua');
 });

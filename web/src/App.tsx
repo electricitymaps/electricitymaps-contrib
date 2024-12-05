@@ -8,15 +8,19 @@ import { AppStoreBanner } from 'components/AppStoreBanner';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import Header from 'features/header/Header';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
+import DateRedirectToast from 'features/time/DateRedirectToast';
 import { useDarkMode } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { useSetAtom } from 'jotai';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import trackEvent from 'utils/analytics';
-import { metaTitleSuffix } from 'utils/constants';
+import { metaTitleSuffix, Mode, TrackEvent } from 'utils/constants';
+import { productionConsumptionAtom } from 'utils/state/atoms';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -29,7 +33,7 @@ const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWra
 const isProduction = import.meta.env.PROD;
 
 if (isProduction) {
-  trackEvent('App Loaded', {
+  trackEvent(TrackEvent.APP_LOADED, {
     isNative: Capacitor.isNativePlatform(),
     platform: Capacitor.getPlatform(),
   });
@@ -46,6 +50,14 @@ export default function App(): ReactElement {
   const shouldUseDarkMode = useDarkMode();
   const { t, i18n } = useTranslation();
   const canonicalUrl = useGetCanonicalUrl();
+  const setConsumptionAtom = useSetAtom(productionConsumptionAtom);
+  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+
+  useEffect(() => {
+    if (isConsumptionOnlyMode) {
+      setConsumptionAtom(Mode.CONSUMPTION);
+    }
+  }, [isConsumptionOnlyMode, setConsumptionAtom]);
 
   // Update classes on theme change
   useLayoutEffect(() => {
@@ -56,7 +68,7 @@ export default function App(): ReactElement {
   useEffect(() => {
     if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
       Cap.addListener('backButton', () => {
-        if (window.location.pathname === '/map') {
+        if (window.location.pathname === '/map/24h') {
           Cap.exitApp();
         } else {
           window.history.back();
@@ -89,6 +101,9 @@ export default function App(): ReactElement {
             <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
               <Suspense>
                 <UpdatePrompt />
+              </Suspense>
+              <Suspense>
+                <DateRedirectToast />
               </Suspense>
               <Suspense>
                 <LoadingOverlay />

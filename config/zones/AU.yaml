@@ -36,47 +36,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 628.1594797832028
+        value: 628.16
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 645.7664605872054
+        value: 645.77
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 616.6702630792016
+        value: 616.67
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 577.049368690909
+        value: 577.05
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 525.9937517147005
+        value: 525.99
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 467.0447170052315
+        value: 467.04
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 376.8228331384161
+        value: 376.82
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 628.1594797832028
+        value: 628.16
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 645.7664605872054
+        value: 645.77
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 616.6702630792016
+        value: 616.67
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 577.049368690909
+        value: 577.05
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 525.9937517147005
+        value: 525.99
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 467.0447170052315
+        value: 467.04
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 376.8228331384161
+        value: 376.82
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:

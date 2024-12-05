@@ -5,7 +5,7 @@ import { TFunction } from 'i18next';
 import { CircleDashed, LucideIcon, TrendingUpDown } from 'lucide-react';
 import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
-import { EstimationMethods, Mode, modeOrder } from 'utils/constants';
+import { EstimationMethods, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import { round } from 'utils/helpers';
 
@@ -88,8 +88,10 @@ export const getGenerationTypeKey = (name: string): GenerationType | undefined =
 };
 
 /** Returns the total electricity that is available in the zone (e.g. production + discharge + imports) */
-export function getTotalElectricityAvailable(zoneData: ZoneDetail, mixMode: Mode) {
-  const includeImports = mixMode === Mode.CONSUMPTION;
+export function getTotalElectricityAvailable(
+  zoneData: ZoneDetail,
+  isConsumption: boolean
+) {
   const totalDischarge = zoneData.totalDischarge ?? 0;
   const totalImport = zoneData.totalImport ?? 0;
 
@@ -97,12 +99,11 @@ export function getTotalElectricityAvailable(zoneData: ZoneDetail, mixMode: Mode
     return Number.NaN;
   }
 
-  return zoneData.totalProduction + totalDischarge + (includeImports ? totalImport : 0);
+  return zoneData.totalProduction + totalDischarge + (isConsumption ? totalImport : 0);
 }
 
 /** Returns the total emissions that is available in the zone (e.g. production + discharge + imports) */
-export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) {
-  const includeImports = mixMode === Mode.CONSUMPTION;
+export function getTotalEmissionsAvailable(zoneData: ZoneDetail, isConsumption: boolean) {
   const totalCo2Discharge = zoneData.totalCo2Discharge ?? 0;
   const totalCo2Import = zoneData.totalCo2Import ?? 0;
 
@@ -111,9 +112,7 @@ export function getTotalEmissionsAvailable(zoneData: ZoneDetail, mixMode: Mode) 
   }
 
   return (
-    zoneData.totalCo2Production +
-    totalCo2Discharge +
-    (includeImports ? totalCo2Import : 0)
+    zoneData.totalCo2Production + totalCo2Discharge + (isConsumption ? totalCo2Import : 0)
   );
 }
 
@@ -128,13 +127,13 @@ export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
 export function determineUnit(
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
-  mixMode: Mode,
+  isConsumption: boolean,
   isHourly: boolean,
   t: TFunction
 ) {
   if (displayByEmissions) {
     return getUnit(
-      formatCo2({ value: getTotalEmissionsAvailable(currentZoneDetail, mixMode) }) +
+      formatCo2({ value: getTotalEmissionsAvailable(currentZoneDetail, isConsumption) }) +
         ' ' +
         t('ofCO2eq')
     );
@@ -143,11 +142,13 @@ export function determineUnit(
   return isHourly
     ? getUnit(
         formatPower({
-          value: getTotalElectricityAvailable(currentZoneDetail, mixMode),
+          value: getTotalElectricityAvailable(currentZoneDetail, isConsumption),
         })
       )
     : getUnit(
-        formatEnergy({ value: getTotalElectricityAvailable(currentZoneDetail, mixMode) })
+        formatEnergy({
+          value: getTotalElectricityAvailable(currentZoneDetail, isConsumption),
+        })
       );
 }
 

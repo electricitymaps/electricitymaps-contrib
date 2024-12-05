@@ -76,25 +76,25 @@ emissionFactors:
         value: 456.0686288827389
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 497.1396518056959
+        value: 497.14
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 424.3590143202138
+        value: 424.36
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 414.45580074333856
+        value: 414.46
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 456.5762777759375
+        value: 456.58
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 403.1330199653851
+        value: 403.13
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 420.7006552290664
+        value: 420.7
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 370.38423060828137
+        value: 370.38
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -104,25 +104,25 @@ emissionFactors:
         value: 456.0686288827389
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 497.1396518056959
+        value: 497.14
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 424.3590143202138
+        value: 424.36
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 414.45580074333856
+        value: 414.46
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 456.5762777759375
+        value: 456.58
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 403.1330199653851
+        value: 403.13
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 420.7006552290664
+        value: 420.7
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 370.38423060828137
+        value: 370.38
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:

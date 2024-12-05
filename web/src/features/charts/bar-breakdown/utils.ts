@@ -7,8 +7,8 @@ import {
   ZoneDetail,
   ZoneKey,
 } from 'types';
-import { Mode, modeOrderBarBreakdown } from 'utils/constants';
-import { getProductionCo2Intensity, round } from 'utils/helpers';
+import { modeOrderBarBreakdown } from 'utils/constants';
+import { getProductionCo2Intensity } from 'utils/helpers';
 import { EnergyUnits } from 'utils/units';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
@@ -23,7 +23,7 @@ const DEFAULT_FLAG_SIZE = 16;
 export function getExchangeCo2Intensity(
   zoneKey: ZoneKey,
   zoneData: ZoneDetail,
-  electricityMixMode: Mode
+  isConsumption: boolean
 ) {
   const exchange = zoneData.exchange?.[zoneKey];
   const exchangeCo2Intensity = zoneData.exchangeCo2Intensities?.[zoneKey];
@@ -33,7 +33,7 @@ export function getExchangeCo2Intensity(
   }
 
   // We don't use getCO2IntensityByMode in order to more easily return 0 for invalid numbers
-  if (electricityMixMode === Mode.CONSUMPTION) {
+  if (isConsumption) {
     return zoneData.co2intensity || 0;
   }
 
@@ -139,7 +139,7 @@ export interface ExchangeDataType {
 export const getExchangeData = (
   data: ZoneDetail,
   exchangeKeys: ZoneKey[],
-  electricityMixMode: Mode
+  isConsumption: boolean
 ): ExchangeDataType[] =>
   exchangeKeys.map((zoneKey: ZoneKey) => {
     // Power in MW
@@ -147,7 +147,7 @@ export const getExchangeData = (
     const exchangeCapacityRange = data.exchangeCapacities?.[zoneKey] ?? [0, 0];
 
     // Exchange CO₂ intensity
-    const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, electricityMixMode);
+    const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, isConsumption);
     const gCo2eq = gCo2eqPerkWh * 1000 * exchange;
 
     return {
