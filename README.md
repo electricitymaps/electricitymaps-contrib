@@ -19,8 +19,6 @@ A real time and historical visualisation of the Greenhouse Gas Intensity (in ter
   <a href="https://github.com/electricitymaps/electricitymaps-contrib/CONTRIBUTING.md">
     <a href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE.md">
     <img src="https://img.shields.io/github/license/electricitymaps/electricitymaps-contrib" alt="Electricity Maps is released under the GNU-AGPLv3 license." /></a>
-  <a href="https://slack.electricitymaps.com">
-    <img src="https://img.shields.io/badge/slack-3700%2B-%23126945" alt="Join our Slack" /></a>
   <a href="https://twitter.com/intent/follow?screen_name=ElectricityMaps">
     <img src="https://img.shields.io/twitter/follow/ElectricityMaps" alt="Twitter Follow" /></a>
 </p>
@@ -48,7 +46,6 @@ Read our [contribution guidelines](/CONTRIBUTING.md) to get started.
 
 Use these channels to be part of the community, ask for help while using Electricity Maps, or just learn more about what's going on:
 
-- [Slack](https://slack.electricitymaps.com): This is the main channel to join the community. You can ask for help, showcase your work, and stay up to date with everything happening.
 - [GitHub Issues](https://github.com/electricitymaps/electricitymaps-contrib/issues): Raise any issues you encounter with the data or bugs you find while using the app.
 - [GitHub Discussions](https://github.com/electricitymaps/electricitymaps-contrib/discussions): Join discussions and share new ideas for features.
 - [GitHub Wiki](https://github.com/electricitymaps/electricitymaps-contrib/wiki): Learn more about methodology, guides for how to set up development environment, etc.

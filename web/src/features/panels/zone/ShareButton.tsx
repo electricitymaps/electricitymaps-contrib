@@ -9,7 +9,6 @@ import { Link } from 'lucide-react';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
-import { ShareType, trackShare } from 'utils/analytics';
 import { baseUrl, DEFAULT_ICON_SIZE, DEFAULT_TOAST_DURATION } from 'utils/constants';
 
 interface ShareButtonProps
@@ -22,9 +21,6 @@ interface ShareButtonProps
   showIosIcon?: boolean;
   hasMobileUserAgent?: boolean;
 }
-
-const trackShareClick = trackShare(ShareType.SHARE);
-const trackShareCompletion = trackShare(ShareType.COMPLETED_SHARE);
 
 export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
@@ -44,23 +40,16 @@ export function ShareButton({
       reference.current?.publish();
     };
 
-    if (hasMobileUserAgent && (await CapShare.canShare())) {
-      share(
-        {
-          title: 'Electricity Maps',
-          text: 'Check this out!',
-          url: shareUrl,
-        },
-        toastMessageCallback
-      ).then((shareCompleted) => {
-        if (shareCompleted) {
-          trackShareCompletion();
-        }
-      });
-    } else {
-      copyToClipboard(shareUrl, toastMessageCallback);
-    }
-    trackShareClick();
+    await (hasMobileUserAgent && (await CapShare.canShare())
+      ? share(
+          {
+            title: 'Electricity Maps',
+            text: 'Check this out!',
+            url: shareUrl,
+          },
+          toastMessageCallback
+        )
+      : copyToClipboard(shareUrl, toastMessageCallback));
   }, [reference, hasMobileUserAgent, copyToClipboard, share, shareUrl]);
 
   let shareIcon = <Link data-testid="linkIcon" size={iconSize} />;
