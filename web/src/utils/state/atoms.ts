@@ -6,7 +6,7 @@ import { RouteParameters } from 'types';
 import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
-  HISTORICAL_TIME_OFFSETS,
+  HOURLY_TIME_INDEX,
   Mode,
   SpatialAggregate,
   ThemeOptions,
@@ -80,11 +80,9 @@ export const isConsumptionAtom = atom<boolean>(
 export const areWeatherLayersAllowedAtom = atom<boolean>(
   (get) =>
     (get(timeAverageAtom) === TimeAverages.HOURLY &&
-      get(selectedDatetimeIndexAtom).index ===
-        HISTORICAL_TIME_OFFSETS[TimeAverages.HOURLY]) ||
+      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeAverages.HOURLY]) ||
     (get(timeAverageAtom) === TimeAverages.HOURLY_72 &&
-      get(selectedDatetimeIndexAtom).index ===
-        HISTORICAL_TIME_OFFSETS[TimeAverages.HOURLY_72])
+      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeAverages.HOURLY_72])
 );
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);

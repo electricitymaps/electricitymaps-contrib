@@ -2,7 +2,7 @@ import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
-import { HISTORICAL_TIME_OFFSETS, TimeAverages } from 'utils/constants';
+import { HOURLY_TIME_INDEX, TimeAverages } from 'utils/constants';
 import { isValidHistoricalTime } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
@@ -27,7 +27,9 @@ const renderTick = (
   timezone?: string
 ) => {
   const shouldShowValue =
-    !isLoading && index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0;
+    !isLoading &&
+    (index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 ||
+      index === HOURLY_TIME_INDEX[selectedTimeAggregate]);
 
   return (
     <g
@@ -53,7 +55,7 @@ const renderTickValue = (
   timezone?: string
 ) => {
   const shouldDisplayLive =
-    displayLive && index === HISTORICAL_TIME_OFFSETS[selectedTimeAggregate];
+    displayLive && index === HOURLY_TIME_INDEX[selectedTimeAggregate];
   const textOffset = isValidHistoricalTime(selectedTimeAggregate) ? 5 : 0;
 
   return shouldDisplayLive ? (

@@ -23,12 +23,14 @@ export enum UrlTimeAverages {
   'all' = TimeAverages.YEARLY,
 }
 
-export const HISTORICAL_TIME_OFFSETS: Partial<Record<TimeAverages, number>> = {
+// used in TimeAxis & areWeatherLayersAllowedAtom
+// accommodates 0-based index for 72 hours
+export const HOURLY_TIME_INDEX: Partial<Record<TimeAverages, number>> = {
   [TimeAverages.HOURLY]: 24,
-  [TimeAverages.HOURLY_72]: 72,
+  [TimeAverages.HOURLY_72]: 71,
 };
 
-export const historicalTimeAverages = Object.keys(HISTORICAL_TIME_OFFSETS);
+export const historicalTimeAverages = Object.keys(HOURLY_TIME_INDEX);
 
 export enum ToggleOptions {
   ON = 'on',

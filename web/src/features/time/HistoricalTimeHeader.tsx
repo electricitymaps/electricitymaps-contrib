@@ -14,11 +14,7 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
-import {
-  HISTORICAL_TIME_OFFSETS,
-  MAX_HISTORICAL_LOOKBACK_DAYS,
-  TrackEvent,
-} from 'utils/constants';
+import { MAX_HISTORICAL_LOOKBACK_DAYS, TimeAverages, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
@@ -26,6 +22,11 @@ import {
   startDatetimeAtom,
   timeAverageAtom,
 } from 'utils/state/atoms';
+
+const TIME_OFFSETS: Partial<Record<TimeAverages, number>> = {
+  [TimeAverages.HOURLY]: 24,
+  [TimeAverages.HOURLY_72]: 72,
+};
 
 const clamp = (date: number, offset: number) => {
   const clampAt = Date.now() - Math.abs(offset);
@@ -50,7 +51,7 @@ const useHistoricalNavigation = () => {
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
 
-  const offset = (HISTORICAL_TIME_OFFSETS[timeAverage] || 0) * 60 * 60 * 1000;
+  const offset = (TIME_OFFSETS[timeAverage] || 0) * 60 * 60 * 1000;
 
   return useMemo(() => {
     if (!endDatetime || !offset) {
@@ -61,9 +62,7 @@ const useHistoricalNavigation = () => {
 
     if (urlDatetime) {
       const targetDate = new Date(urlDatetime);
-      targetDate.setUTCHours(
-        targetDate.getUTCHours() - (HISTORICAL_TIME_OFFSETS[timeAverage] || 0)
-      );
+      targetDate.setUTCHours(targetDate.getUTCHours() - (TIME_OFFSETS[timeAverage] || 0));
 
       const maxHistoricalDate = new Date();
       maxHistoricalDate.setUTCDate(
