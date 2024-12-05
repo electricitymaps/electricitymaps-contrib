@@ -218,7 +218,10 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
   let estimatedTotal = 0;
   const total = chartData.length;
   for (const chartElement of chartData) {
-    if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
+    if (
+      chartElement.meta.estimationMethod === EstimationMethods.TSA ||
+      chartElement.meta.estimationMethod === EstimationMethods.FORECASTS_HIERARCHY
+    ) {
       tsaCount++;
     }
     if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
@@ -226,7 +229,10 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
     }
     estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
   }
-  const calculatedTotal = round(estimatedTotal / total, 2);
+  const calculatedTotal = round(
+    (estimatedTotal / total || (estimatedCount || tsaCount) / chartData.length) * 100,
+    2
+  );
   return {
     estimatedTotal: calculatedTotal > 1 ? calculatedTotal : Number.NaN,
     allTimeSlicerAverageMethod: tsaCount === total,
