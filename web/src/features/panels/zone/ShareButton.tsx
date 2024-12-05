@@ -9,7 +9,6 @@ import { Link } from 'lucide-react';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
-import { ShareType, trackShare } from 'utils/analytics';
 import { baseUrl, DEFAULT_ICON_SIZE, DEFAULT_TOAST_DURATION } from 'utils/constants';
 
 interface ShareButtonProps
@@ -22,9 +21,6 @@ interface ShareButtonProps
   showIosIcon?: boolean;
   hasMobileUserAgent?: boolean;
 }
-
-const trackShareClick = trackShare(ShareType.SHARE);
-const trackShareCompletion = trackShare(ShareType.COMPLETED_SHARE);
 
 export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
