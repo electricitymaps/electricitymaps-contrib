@@ -59,7 +59,7 @@
   },
   "new-feature-popover": {
     "title": "Share granular historical insights",
-    "content": "Explore historical hourly carbon intensity and energy mix. Use the buttons to navigate through time by 24 hours and share specific dates via the zone dropdown menu."
+    "content": "Explore historical hourly carbon intensity and energy mix. Use the buttons to navigate through time by 24 hours and share specific dates via the three dots in the zone panel."
   },
   "onboarding-modal": {
     "view1": {
