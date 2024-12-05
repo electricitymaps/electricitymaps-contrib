@@ -4,7 +4,6 @@ import { GithubButton } from 'components/buttons/GithubButton';
 import { LegalNoticeButton } from 'components/buttons/LegalNoticeButton';
 import { LinkedinButton } from 'components/buttons/LinkedinButton';
 import { PrivacyPolicyButton } from 'components/buttons/PrivacyPolicyButton';
-import { SlackButton } from 'components/buttons/SlackButton';
 import { VerticalDivider } from 'components/Divider';
 import Modal from 'components/Modal';
 import { useAtom } from 'jotai';
@@ -23,7 +22,6 @@ export function InfoModalContent() {
         <FAQButton />
         <FeedbackButton />
         <LinkedinButton />
-        <SlackButton />
         <GithubButton />
       </div>
       <div className="flex gap-x-4">

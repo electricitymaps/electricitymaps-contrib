@@ -58,7 +58,7 @@ See [how to edit world geometries](https://github.com/electricityMaps/electricit
 
 We use [Lucide](https://lucide.dev) for icons and [react-icons](https://github.com/react-icons/react-icons) for brand icons, brand icons should be imported from the FontAwesome 6 library.
 
-If an icon is missing reach out the to Electricity Maps team either on Slack or by creating an issue. There is also the possibility to file a icon request upstream in [Lucides GitHub repository](https://github.com/lucide-icons/lucide) or creating and submitting one yourself as long as it matches the Lucide visual style and guidelines.
+If an icon is missing reach out the to Electricity Maps team by creating an issue. There is also the possibility to file a icon request upstream in [Lucides GitHub repository](https://github.com/lucide-icons/lucide) or creating and submitting one yourself as long as it matches the Lucide visual style and guidelines.
 
 Search for icons here: [Lucide](https://lucide.dev/icons/)
 Search for brand icons here: [Font Awesome Brands](https://fontawesome.com/search?o=r&f=brands)
