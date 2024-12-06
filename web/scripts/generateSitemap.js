@@ -5,7 +5,7 @@ import path from 'node:path';
 
 import { fileURLToPath } from 'url';
 
-import zonesConfig from '../config/zones.json' assert { type: 'json' };
+import zonesConfig from '../config/zones.json' with { type: 'json' };
 
 // Import this from the constant file when this script is in typescript
 const UrlTimeAverages = ['24h', '30d', '12mo', 'all'];
