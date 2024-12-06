@@ -50,7 +50,7 @@
   },
   "new-feature-popover": {
     "title": "Partagez des informations historiques détaillées",
-    "content": "Explorez l'historique horaire de l'intensité carbone et du mix énergétique. Utilisez les boutons pour naviguer dans le temps par période de 24 heures et partagez des dates spécifiques via le menu contextuel d'une zone."
+    "content": "Explorez l'historique horaire de l'intensité carbone et du mix énergétique. Utilisez les boutons pour naviguer dans le temps par période de 24 heures et partagez des dates spécifiques en cliquant sur les trois points dans le panneau latéral."
   },
   "onboarding-modal": {
     "view1": {
