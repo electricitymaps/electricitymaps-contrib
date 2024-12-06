@@ -72,8 +72,5 @@ fallbackZoneMixes:
         solar: 0.0013480262596849257
         unknown: 0.0004742634865740443
         wind: 0.002928268234124621
-parsers:
-  consumption: IQ.fetch_consumption
-  production: IQ.fetch_production
 region: Asia
 timezone: Asia/Baghdad
