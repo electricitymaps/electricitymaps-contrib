@@ -109,7 +109,7 @@ export default function Header(): JSX.Element {
               trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: 'get-data' });
             }}
             backgroundClasses="my-2.5"
-            foregroundClasses="text-base font-normal lg:text-[1rem] py-1 px-6"
+            foregroundClasses="text-base lg:text-[1rem] py-1 px-6"
             href="https://electricitymaps.com/get-our-data?utm_source=app.electricitymaps.com&utm_medium=referral"
           >
             {t('header.get-data')}
