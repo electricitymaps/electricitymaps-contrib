@@ -2,11 +2,16 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 
 from bs4 import BeautifulSoup
+
 # The request library is used to fetch content through HTTP
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeList, ProductionBreakdownList, ProductionMix, StorageMix)
+    ExchangeList,
+    ProductionBreakdownList,
+    ProductionMix,
+    StorageMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -284,7 +289,7 @@ if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     # print("fetch_production() ->")
-    fetch_production()
+    print(fetch_production())
     # print(fetch_production())
     # print(get_pumping_load())
     # print("fetch_price() ->")
