@@ -238,7 +238,7 @@ def fetch_production(
                     pumping_storage = float(values[v]) * -1
                     if values["date"] in pumping_load_at_time:
                         pumping_storage += pumping_load_at_time[values["date"]]
-                    storage.add_value(mode=generator, value=float(values[v]))
+                    storage.add_value(mode=generator, value=float(pumping_storage))
 
             # # sum production to get
 
@@ -290,6 +290,9 @@ if __name__ == "__main__":
 
     # print("fetch_production() ->")
     print(fetch_production())
+    # temp = fetch_production()
+    # for i in temp:
+    #     print(i['storage'], i['datetime'])
     # print(fetch_production())
     # print(get_pumping_load())
     # print("fetch_price() ->")
