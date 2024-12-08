@@ -148,15 +148,15 @@ export const modeOrderBarBreakdown = [
   'unknown',
 ] as const;
 
-//A mapping between the TimeAverages enum and the corresponding Duration for the date-fns add/substract method
+// A mapping between the TimeAverages enum and the corresponding Duration for the date-fns add/substract method
 export const timeAxisMapping: Record<
   Exclude<TimeAverages, 'hourly_72'>,
   keyof Duration
 > = {
-  daily: 'days',
-  hourly: 'hours',
-  monthly: 'months',
-  yearly: 'years',
+  [TimeAverages.DAILY]: 'days',
+  [TimeAverages.HOURLY]: 'hours',
+  [TimeAverages.MONTHLY]: 'months',
+  [TimeAverages.YEARLY]: 'years',
 };
 /**
  * A mapping between the source name and a link to the source.

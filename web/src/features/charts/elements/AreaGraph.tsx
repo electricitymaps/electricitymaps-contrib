@@ -172,10 +172,14 @@ function AreaGraph({
       return null;
     }
 
+    if (selectedTimeAggregate === TimeAverages.HOURLY_72) {
+      return lastTime;
+    }
+
     const duration = timeAxisMapping[selectedTimeAggregate];
 
     //add exactly 1 interval to the last time, e.g. 1 hour or 1 day or 1 month, etc.
-    return duration ? add(lastTime, { [duration]: 1 }) : lastTime;
+    return add(lastTime, { [duration]: 1 });
   }, [lastTime, selectedTimeAggregate]);
 
   const datetimesWithNext = useMemo(
