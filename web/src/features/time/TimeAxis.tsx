@@ -2,13 +2,15 @@ import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
-import { TimeAverages } from 'utils/constants';
+import { HOURLY_TIME_INDEX, TimeAverages } from 'utils/constants';
+import { isValidHistoricalTime } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
 
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
   hourly: 6,
+  hourly_72: 12,
   daily: 6,
   monthly: 1,
   yearly: 1,
@@ -25,9 +27,13 @@ const renderTick = (
   timezone?: string
 ) => {
   const shouldShowValue =
-    index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
+    !isLoading &&
+    (index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 ||
+      index === HOURLY_TIME_INDEX[selectedTimeAggregate]);
+
   return (
     <g
+      id={index.toString()}
       key={`timeaxis-tick-${index}`}
       className="text-xs"
       opacity={1}
@@ -48,8 +54,10 @@ const renderTickValue = (
   selectedTimeAggregate: TimeAverages,
   timezone?: string
 ) => {
-  const shouldDisplayLive = index === 24 && displayLive;
-  const textOffset = selectedTimeAggregate === TimeAverages.HOURLY ? 5 : 0;
+  const shouldDisplayLive =
+    displayLive && index === HOURLY_TIME_INDEX[selectedTimeAggregate];
+  const textOffset = isValidHistoricalTime(selectedTimeAggregate) ? 5 : 0;
+
   return shouldDisplayLive ? (
     <g>
       <circle cx="-1em" cy="1.15em" r="2" fill="red" />

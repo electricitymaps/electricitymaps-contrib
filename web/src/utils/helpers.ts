@@ -17,6 +17,7 @@ import {
 
 import zonesConfigJSON from '../../config/zones.json';
 import { CombinedZonesConfig } from '../../geo/types';
+import { historicalTimeAverages, TimeAverages } from './constants';
 
 export function useGetZoneFromPath() {
   const { zoneId } = useParams<RouteParameters>();
@@ -236,3 +237,6 @@ export const hasMobileUserAgent = () =>
   /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
     navigator.userAgent
   );
+
+export const isValidHistoricalTime = (timeAggregate: TimeAverages) =>
+  historicalTimeAverages.includes(timeAggregate);

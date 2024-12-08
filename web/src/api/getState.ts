@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import type { GridState, RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
+import { isValidHistoricalTime } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
 import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
@@ -13,7 +14,8 @@ const getState = async (
   targetDatetime?: string
 ): Promise<GridState> => {
   const shouldQueryHistorical =
-    targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
+    targetDatetime && isValidDate(targetDatetime) && isValidHistoricalTime(timeAverage);
+
   const path: URL = new URL(
     `v9/state/${timeAverage}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
