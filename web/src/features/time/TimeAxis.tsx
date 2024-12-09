@@ -26,9 +26,11 @@ const renderTick = (
   isLoading: boolean,
   timezone?: string
 ) => {
+  // Special-casing index 72 for 72 hour resolution: Typically we retrieve resolution + 1 records
+  // from app-backend, but we're retrieving only 72 records for 72 hour resolution
   const shouldShowValue =
     !isLoading &&
-    (index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 ||
+    ((index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && index !== 72) ||
       index === HOURLY_TIME_INDEX[selectedTimeAggregate]);
 
   return (

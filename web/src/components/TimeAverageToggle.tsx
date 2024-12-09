@@ -30,9 +30,9 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
   const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const is72HourEnabled = useFeatureFlag('72-hours');
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { HOURLY_72, ...standardTimeAverages } = TimeAverages;
-  const timeOptions = is72HourEnabled ? TimeAverages : standardTimeAverages;
+  const timeOptions = is72HourEnabled
+    ? Object.values(TimeAverages)
+    : Object.values(TimeAverages).filter((option) => option !== TimeAverages.HOURLY_72);
 
   const options = useMemo(
     () =>
