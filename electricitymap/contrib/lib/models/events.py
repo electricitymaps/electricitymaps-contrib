@@ -74,6 +74,12 @@ class Mix(BaseModel, ABC):
         """
         self.__setattr__(key, value)
 
+    def __getitem__(self, key: str) -> float | None:
+        """
+        Allows to retrieve the value of a mode using the bracket notation.
+        """
+        return getattr(self, key)
+
 
 class ProductionMix(Mix):
     """
@@ -303,6 +309,12 @@ class Event(BaseModel, ABC):
     zoneKey: ZoneKey
     datetime: datetime
     source: str
+
+    def __getitem__(self, key: str) -> Any:
+        """
+        Allows to retrieve the value of an attribute using the bracket notation.
+        """
+        return getattr(self, key)
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v):
