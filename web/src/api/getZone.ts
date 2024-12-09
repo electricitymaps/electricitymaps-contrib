@@ -5,6 +5,7 @@ import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
+import { isValidHistoricalTime } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
 import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
@@ -18,7 +19,7 @@ const getZone = async (
   invariant(zoneId, 'Zone ID is required');
 
   const shouldQueryHistorical =
-    targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
+    targetDatetime && isValidDate(targetDatetime) && isValidHistoricalTime(timeAverage);
 
   const path: URL = new URL(
     `v9/details/${timeAverage}/${zoneId}${

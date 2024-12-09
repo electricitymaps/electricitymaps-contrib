@@ -6,7 +6,7 @@ import type {
   Polygon,
 } from '@turf/turf';
 import { LineString, MultiLineString, Point } from 'geojson';
-import { EstimationMethods, TimeAverages } from 'utils/constants';
+import { EstimationMethods, UrlTimeAverages } from 'utils/constants';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -236,6 +236,6 @@ export interface FuturePriceData {
 // Type for the URL parameters that determine app state
 export type RouteParameters = {
   zoneId?: string;
-  urlTimeAverage?: TimeAverages;
+  urlTimeAverage?: UrlTimeAverages;
   urlDatetime?: string;
 };

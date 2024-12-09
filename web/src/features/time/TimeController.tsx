@@ -112,6 +112,7 @@ export default function TimeController({ className }: { className?: string }) {
     },
     [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeAverage]
   );
+
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}

@@ -28,12 +28,18 @@ export interface TimeAverageToggleProps {
 function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggleProps) {
   const { t } = useTranslation();
   const historicalLinkingEnabled = useFeatureFlag('historical-linking');
+  const is72HourEnabled = useFeatureFlag('72-hours');
+
+  const timeOptions = is72HourEnabled
+    ? Object.values(TimeAverages)
+    : Object.values(TimeAverages).filter((option) => option !== TimeAverages.HOURLY_72);
+
   const options = useMemo(
     () =>
-      Object.values(TimeAverages).map((value) =>
+      Object.values(timeOptions).map((value) =>
         createOption(value, t, historicalLinkingEnabled)
       ),
-    [t, historicalLinkingEnabled]
+    [t, timeOptions, historicalLinkingEnabled]
   );
 
   return (
