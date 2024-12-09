@@ -13,7 +13,6 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 
-import arrow
 from dateutil import parser, tz
 from requests import Session
 
@@ -670,12 +669,6 @@ def _fetch(
 
     start, end = None, None
     if target_datetime:
-        try:
-            target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError as e:
-            raise ValueError(
-                f"target_datetime must be a valid datetime - received {target_datetime}"
-            ) from e
         utc = tz.gettz("UTC")
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
@@ -716,9 +709,7 @@ def _conform_timestamp_convention(dt: datetime):
 
 def _get_utc_datetime_from_datapoint(dt: datetime):
     """update to beginning hour convention and timezone to utc"""
-    dt_beginning_hour = _conform_timestamp_convention(dt)
-    dt_utc = arrow.get(dt_beginning_hour).to("utc")
-    return dt_utc.datetime
+    return _conform_timestamp_convention(dt.replace(tzinfo=tz.gettz("UTC")))
 
 
 if __name__ == "__main__":
