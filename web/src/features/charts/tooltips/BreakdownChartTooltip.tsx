@@ -9,6 +9,7 @@ import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
 import { EstimationMethods, modeColor, TimeAverages } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
+import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
@@ -124,7 +125,9 @@ export default function BreakdownChartTooltip({
   );
 
   const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
-  const hasEstimationPill = estimationMethod != undefined || Boolean(estimatedPercentage);
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationPill =
+    estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
 
   return (
     <BreakdownChartTooltipContent
@@ -134,7 +137,7 @@ export default function BreakdownChartTooltip({
       selectedLayerKey={selectedLayerKey}
       timeAverage={timeAverage}
       hasEstimationPill={hasEstimationPill}
-      estimatedPercentage={estimatedPercentage}
+      estimatedPercentage={roundedEstimatedPercentage}
       estimationMethod={estimationMethod}
     ></BreakdownChartTooltipContent>
   );

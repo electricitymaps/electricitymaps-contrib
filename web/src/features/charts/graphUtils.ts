@@ -231,10 +231,10 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
   }
   const calculatedTotal = round(
     estimatedTotal / total || ((estimatedCount || tsaCount) / total) * 100,
-    2
+    0
   );
   return {
-    estimatedTotal: calculatedTotal > 1 ? calculatedTotal : Number.NaN,
+    estimatedTotal: calculatedTotal,
     allTimeSlicerAverageMethod: tsaCount === total,
     allEstimated: estimatedCount === total,
     hasEstimation: estimatedCount > 0,
@@ -248,8 +248,7 @@ export function getBadgeTextAndIcon(
   const { allTimeSlicerAverageMethod, allEstimated, hasEstimation, estimatedTotal } =
     analyzeChartData(chartData);
 
-  // If the total is NaN, it means that the estimation percentage is too low to be displayed
-  if (Number.isNaN(estimatedTotal)) {
+  if (estimatedTotal === 0) {
     return {};
   }
 
