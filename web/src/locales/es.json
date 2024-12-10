@@ -2,7 +2,7 @@
   "info": {
     "text": "La app Electricity Maps provee información en tiempo real web y móvil para ciudadanos, expertos en energía, ONG y legisladores que promueven un mejor entendimiento de los desafíos de la transición energética.",
     "open-source-text": "Esta app es de <a href='{{link}}' target='_blank'>código abierto</a> e impulsada por la comunidad.",
-    "share-app": "Compartir la aplicación"
+    "share-app": "Compartir la aplicación:"
   },
   "button": {
     "feedback": "Comparte tus comentarios",
