@@ -218,7 +218,10 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
   let estimatedTotal = 0;
   const total = chartData.length;
   for (const chartElement of chartData) {
-    if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
+    if (
+      chartElement.meta.estimationMethod === EstimationMethods.TSA ||
+      chartElement.meta.estimationMethod === EstimationMethods.FORECASTS_HIERARCHY
+    ) {
       tsaCount++;
     }
     if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
@@ -226,9 +229,12 @@ function analyzeChartData(chartData: AreaGraphElement[]) {
     }
     estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
   }
-  const calculatedTotal = round(estimatedTotal / total, 2);
+  const calculatedTotal = round(
+    estimatedTotal / total || ((estimatedCount || tsaCount) / total) * 100,
+    0
+  );
   return {
-    estimatedTotal: calculatedTotal > 1 ? calculatedTotal : Number.NaN,
+    estimatedTotal: calculatedTotal,
     allTimeSlicerAverageMethod: tsaCount === total,
     allEstimated: estimatedCount === total,
     hasEstimation: estimatedCount > 0,
@@ -242,8 +248,7 @@ export function getBadgeTextAndIcon(
   const { allTimeSlicerAverageMethod, allEstimated, hasEstimation, estimatedTotal } =
     analyzeChartData(chartData);
 
-  // If the total is NaN, it means that the estimation percentage is too low to be displayed
-  if (Number.isNaN(estimatedTotal)) {
+  if (estimatedTotal === 0) {
     return {};
   }
 
