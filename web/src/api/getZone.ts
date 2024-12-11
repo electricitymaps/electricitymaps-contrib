@@ -59,7 +59,7 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
       QUERY_KEYS.ZONE,
       {
         zone: zoneId,
-        aggregate: urlTimeAverage,
+        aggregate: timeAverage,
         targetDatetime: urlDatetime,
       },
     ],

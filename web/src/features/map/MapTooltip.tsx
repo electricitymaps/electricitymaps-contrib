@@ -11,6 +11,7 @@ import { useAtomValue } from 'jotai';
 import { TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
+import { round } from 'utils/helpers';
 import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
@@ -37,12 +38,18 @@ export function TooltipInner({
   };
   const { e, o } = zoneData;
 
+  const estimated = typeof e === 'number' ? round(e ?? 0, 0) : e;
+
   return (
     <div className="flex w-full flex-col gap-2 py-3 text-center">
       <div className="flex flex-col px-3">
         <div className="flex w-full flex-row justify-between">
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
-          <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
+          <DataValidityBadge
+            hasOutage={o}
+            estimated={estimated}
+            hasZoneData={hasZoneData}
+          />
         </div>
         <TimeDisplay
           zoneId={zoneId}
@@ -79,7 +86,7 @@ function DataValidityBadge({
       />
     );
   }
-  if (estimated && estimated > 0) {
+  if (estimated && estimated > 0.5) {
     return (
       <EstimationBadge
         text={t(`estimation-card.aggregated_estimated.pill`, {

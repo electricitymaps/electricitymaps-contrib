@@ -53,7 +53,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
       {options.map(({ value, label, dataTestId }) => (
         <ToggleGroupItem
           key={`group-item-${value}-${label}`}
-          data-test-id={dataTestId}
+          data-testid={dataTestId}
           value={value}
           aria-label={label}
           onClick={() => onToggleGroupClick(value)}

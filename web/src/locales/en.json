@@ -22,7 +22,6 @@
     "github": "Contribute on GitHub",
     "twitter": "Follow us on X (Twitter)",
     "twitter-share": "Share on X (Twitter)",
-    "slack": "Join our Slack community",
     "linkedin": "Follow us on LinkedIn",
     "linkedin-share": "Share on LinkedIn",
     "facebook": "Follow us on Facebook",
@@ -59,7 +58,7 @@
   },
   "new-feature-popover": {
     "title": "Share granular historical insights",
-    "content": "Explore historical hourly carbon intensity and energy mix. Use the buttons to navigate through time by 24 hours and share specific dates via the zone dropdown menu."
+    "content": "Explore historical hourly carbon intensity and energy mix. Use the buttons to navigate through time by 24 hours and share specific dates via the three dots in the zone panel."
   },
   "onboarding-modal": {
     "view1": {

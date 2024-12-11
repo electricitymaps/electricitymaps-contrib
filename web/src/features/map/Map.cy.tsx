@@ -194,8 +194,8 @@ describe('Map Component', () => {
     );
 
     cy.mount(<RouterProvider router={router} />);
-    cy.get('[data-test-id=exchange-layer]').should('be.visible');
-    cy.get('[data-test-id=wind-layer]').should('exist');
+    cy.get('[data-testid=exchange-layer]').should('be.visible');
+    cy.get('[data-testid=wind-layer]').should('exist');
     cy.get('.maplibregl-map').should('be.visible');
   });
 });
