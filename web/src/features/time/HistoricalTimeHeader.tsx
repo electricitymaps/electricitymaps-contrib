@@ -14,11 +14,87 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
-import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
+import { MAX_HISTORICAL_LOOKBACK_DAYS, TimeAverages, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
-import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
+import {
+  endDatetimeAtom,
+  isHourlyAtom,
+  startDatetimeAtom,
+  timeAverageAtom,
+} from 'utils/state/atoms';
 
-const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+const TIME_OFFSETS: Partial<Record<TimeAverages, number>> = {
+  [TimeAverages.HOURLY]: 24,
+  [TimeAverages.HOURLY_72]: 72,
+};
+
+const clamp = (date: number, offset: number) => {
+  const clampAt = Date.now() - Math.abs(offset);
+  const newDate = date + offset;
+  if (newDate > clampAt) {
+    return '';
+  }
+
+  return new Date(newDate).toISOString();
+};
+
+const EMPTY_IMPLEMENTATION = {
+  handleRightClick() {},
+  handleLeftClick() {},
+  handleLatestClick() {},
+  isWithinHistoricalLimit: true,
+};
+
+const useHistoricalNavigation = () => {
+  const timeAverage = useAtomValue(timeAverageAtom);
+  const endDatetime = useAtomValue(endDatetimeAtom);
+  const { urlDatetime } = useParams<RouteParameters>();
+  const navigate = useNavigateWithParameters();
+
+  const offset = (TIME_OFFSETS[timeAverage] || 0) * 60 * 60 * 1000;
+
+  return useMemo(() => {
+    if (!endDatetime || !offset) {
+      return EMPTY_IMPLEMENTATION;
+    }
+
+    let isWithinHistoricalLimit = true;
+
+    if (urlDatetime) {
+      const targetDate = new Date(urlDatetime);
+      targetDate.setUTCHours(targetDate.getUTCHours() - (TIME_OFFSETS[timeAverage] || 0));
+
+      const maxHistoricalDate = new Date();
+      maxHistoricalDate.setUTCDate(
+        maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
+      );
+
+      isWithinHistoricalLimit = targetDate >= maxHistoricalDate;
+    }
+
+    return {
+      handleRightClick() {
+        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+          direction: 'forward',
+        });
+        navigate({ datetime: clamp(endDatetime.getTime(), offset) });
+      },
+      handleLeftClick() {
+        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+          direction: 'backward',
+        });
+        navigate({ datetime: clamp(endDatetime.getTime(), -offset) });
+      },
+      handleLatestClick() {
+        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+          direction: 'latest',
+        });
+        navigate({ datetime: '' });
+      },
+      isWithinHistoricalLimit,
+    };
+  }, [offset, endDatetime, navigate, urlDatetime, timeAverage]);
+};
 
 export default function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
@@ -26,54 +102,14 @@ export default function HistoricalTimeHeader() {
   const endDatetime = useAtomValue(endDatetimeAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
-  const navigate = useNavigateWithParameters();
   const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
 
-  const isWithinHistoricalLimit = useMemo(() => {
-    if (!urlDatetime) {
-      return true;
-    }
-
-    const targetDate = new Date(urlDatetime);
-    targetDate.setUTCHours(targetDate.getUTCHours() - 24);
-
-    const maxHistoricalDate = new Date();
-    maxHistoricalDate.setUTCDate(
-      maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
-    );
-
-    return targetDate >= maxHistoricalDate;
-  }, [urlDatetime]);
-
-  function handleRightClick() {
-    if (!endDatetime || !urlDatetime) {
-      return;
-    }
-    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-      direction: 'forward',
-    });
-    const currentEndDatetime = new Date(endDatetime);
-    const newDate = new Date(currentEndDatetime.getTime() + TWENTY_FOUR_HOURS);
-
-    const twentyFourHoursAgo = new Date(Date.now() - TWENTY_FOUR_HOURS);
-    if (newDate >= twentyFourHoursAgo) {
-      navigate({ datetime: '' });
-      return;
-    }
-    navigate({ datetime: newDate.toISOString() });
-  }
-
-  function handleLeftClick() {
-    if (!endDatetime || !isWithinHistoricalLimit) {
-      return;
-    }
-    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-      direction: 'backward',
-    });
-    const currentEndDatetime = new Date(endDatetime);
-    const newDate = new Date(currentEndDatetime.getTime() - TWENTY_FOUR_HOURS);
-    navigate({ datetime: newDate.toISOString() });
-  }
+  const {
+    isWithinHistoricalLimit,
+    handleRightClick,
+    handleLeftClick,
+    handleLatestClick,
+  } = useHistoricalNavigation();
 
   if (!isHourly && startDatetime && endDatetime) {
     return (
@@ -142,12 +178,7 @@ export default function HistoricalTimeHeader() {
         backgroundClasses="absolute z-1 right-2"
         size="sm"
         type="tertiary"
-        onClick={() => {
-          trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-            direction: 'latest',
-          });
-          navigate({ datetime: '' });
-        }}
+        onClick={handleLatestClick}
         isDisabled={!urlDatetime}
         icon={
           <ArrowRightToLine

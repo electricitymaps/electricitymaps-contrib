@@ -142,6 +142,7 @@ export const getDateTimeFormatOptions = (
   timezone?: string
 ): Intl.DateTimeFormatOptions => {
   switch (timeAverage) {
+    case TimeAverages.HOURLY_72:
     case TimeAverages.HOURLY: {
       return {
         year: 'numeric',
@@ -205,6 +206,7 @@ const formatDateTick = (
   }
 
   switch (timeAggregate) {
+    case TimeAverages.HOURLY_72:
     case TimeAverages.HOURLY: {
       return new Intl.DateTimeFormat(lang, {
         timeStyle: 'short',
