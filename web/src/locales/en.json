@@ -22,7 +22,6 @@
     "github": "Contribute on GitHub",
     "twitter": "Follow us on X (Twitter)",
     "twitter-share": "Share on X (Twitter)",
-    "slack": "Join our Slack community",
     "linkedin": "Follow us on LinkedIn",
     "linkedin-share": "Share on LinkedIn",
     "facebook": "Follow us on Facebook",
@@ -56,6 +55,10 @@
     "copy-zone-link": "Copy link to zone",
     "preliminary-data": "Preliminary data may change over time.",
     "summary": "Discover real-time electricity insights with the Electricity Maps app!"
+  },
+  "new-feature-popover": {
+    "title": "Share granular historical insights",
+    "content": "Explore historical hourly carbon intensity and energy mix. Use the buttons to navigate through time by 24 hours and share specific dates via the three dots in the zone panel."
   },
   "onboarding-modal": {
     "view1": {
@@ -234,6 +237,7 @@
   "time-controller": {
     "title": {
       "hourly": "Hourly data for:",
+      "hourly_72": "72 hour data for:",
       "daily": "Daily data for:",
       "monthly": "Monthly data for:",
       "yearly": "Yearly data for:"
@@ -244,9 +248,14 @@
     "yearly": "yearly",
     "historical-linking": {
       "hourly": "24h",
+      "hourly_72": "72h",
       "daily": "30d",
       "monthly": "12mo",
       "yearly": "all"
+    },
+    "date-unavailable": {
+      "title": "Date unavailable",
+      "description": "Redirecting to live data"
     }
   },
   "left-panel": {
@@ -273,48 +282,56 @@
   "country-history": {
     "carbonintensity": {
       "hourly": "Hourly carbon intensity",
+      "hourly_72": "Hourly carbon intensity",
       "daily": "Daily carbon intensity",
       "monthly": "Monthly carbon intensity",
       "yearly": "Yearly carbon intensity"
     },
     "emissions": {
       "hourly": "Hourly carbon emissions",
+      "hourly_72": "Hourly carbon emissions",
       "daily": "Daily carbon emissions",
       "monthly": "Monthly carbon emissions",
       "yearly": "Yearly carbon emissions"
     },
     "emissionsorigin": {
       "hourly": "Hourly carbon emission origin",
+      "hourly_72": "Hourly carbon emission origin",
       "daily": "Daily carbon emission origin",
       "monthly": "Monthly carbon emission origin",
       "yearly": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
       "hourly": "Hourly production emissions",
+      "hourly_72": "Hourly production emissions",
       "daily": "Daily production emissions",
       "monthly": "Monthly production emissions",
       "yearly": "Yearly production emissions"
     },
     "electricityorigin": {
       "hourly": "Hourly electricity origin",
+      "hourly_72": "Hourly electricity origin",
       "daily": "Daily electricity origin",
       "monthly": "Monthly electricity origin",
       "yearly": "Yearly electricity origin"
     },
     "electricityproduction": {
       "hourly": "Hourly electricity production",
+      "hourly_72": "Hourly electricity production",
       "daily": "Daily electricity production",
       "monthly": "Monthly electricity production",
       "yearly": "Yearly electricity production"
     },
     "electricityprices": {
       "hourly": "Hourly electricity prices",
+      "hourly_72": "Hourly electricity prices",
       "daily": "Daily electricity prices",
       "monthly": "Monthly electricity prices",
       "yearly": "Yearly electricity prices"
     },
     "netExchange": {
       "hourly": "Hourly net exchange",
+      "hourly_72": "Hourly net exchange",
       "daily": "Daily net exchange",
       "monthly": "Monthly net exchange",
       "yearly": "Yearly net exchange"

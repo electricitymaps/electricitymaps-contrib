@@ -11,7 +11,6 @@
     "github": "Contribuez sur GitHub",
     "twitter": "Suivez nous sur Twitter",
     "twitter-share": "Partagez sur Twitter",
-    "slack": "Rejoindre la communauté Slack",
     "linkedin": "Suivez nous sur LinkedIn",
     "linkedin-share": "Partagez sur LinkedIn",
     "facebook": "Suivez nous sur Facebook",
@@ -32,6 +31,26 @@
   "app-banner": {
     "cta": "Installer",
     "description": "Données sur l'électricité en direct"
+  },
+  "share-button": {
+    "clipboard": "Lien copié dans le presse-papier !",
+    "clipboard-error": "Impossible de copier le lien dans le presse-papier",
+    "share-error": "Impossible de partager le lien"
+  },
+  "more-options-dropdown": {
+    "title": "Partager",
+    "chart-title": "Partager le graphique",
+    "zone-title": "Partager la zone",
+    "mobile-share-via": "Partager via",
+    "copy-link": "Copier le lien",
+    "copy-chart-link": "Copier le lien vers le graphique",
+    "copy-zone-link": "Copier le lien vers la zone",
+    "preliminary-data": "Les données préliminaires peuvent changer avec le temps.",
+    "summary": "Découvrez des informations sur l'électricité en temps réel avec l'application Electricity Maps !"
+  },
+  "new-feature-popover": {
+    "title": "Partagez des informations historiques détaillées",
+    "content": "Explorez l'historique horaire de l'intensité carbone et du mix énergétique. Utilisez les boutons pour naviguer dans le temps par période de 24 heures et partagez des dates spécifiques en cliquant sur les trois points dans le panneau latéral."
   },
   "onboarding-modal": {
     "view1": {
@@ -124,8 +143,10 @@
     }
   },
   "feedback-card": {
-    "agree": "D'accord",
-    "disagree": "Pas d'accord",
+    "agree": "Tout à fait d'accord",
+    "disagree": "Absolument pas d'accord",
+    "satisfied": "Très satisfait",
+    "unsatisfied": "Pa du tout satisfait",
     "estimations": {
       "primary-question": "Les descriptions des données estimées sont faciles à comprendre:",
       "secondary-question": "Comment pouvons-nous l'améliorer ?",
@@ -335,7 +356,7 @@
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
-    "aggregateInfo": "Visualiser les données par zone ou aggrégées par pays",
+    "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
     "netExchange": "Echange net",
     "price": "Prix",
     "importing": "Important",

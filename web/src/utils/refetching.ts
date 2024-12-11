@@ -27,8 +27,28 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
         queryKey: [QUERY_KEYS.ZONE, { aggregate: TimeAverages.HOURLY }],
       });
 
+      // Invalidate 72 hourly state query
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.STATE, { aggregate: TimeAverages.HOURLY_72 }],
+      });
+
+      // Invalidate 72 hourly zone queries - this matches all zone queries
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.ZONE, { aggregate: TimeAverages.HOURLY_72 }],
+      });
+
       // Reset the start hour
       startHour = currentHour;
     }
   }, ONE_MINUTE);
+}
+
+export function getStaleTime(timeAverage: TimeAverages, urlDatetime?: string) {
+  if (timeAverage !== TimeAverages.HOURLY || urlDatetime) {
+    return 0;
+  }
+  const now = new Date();
+  const nextHour = new Date(now);
+  nextHour.setHours(nextHour.getHours() + 1, 0, 0, 0);
+  return nextHour.getTime() - now.getTime();
 }

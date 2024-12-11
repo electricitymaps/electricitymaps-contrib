@@ -86,7 +86,7 @@ export function CircularGauge({
   return (
     <div className="flex flex-col items-center gap-2">
       <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
-        <div data-test-id={testId} className="relative flex flex-col items-center">
+        <div data-testid={testId} className="relative flex flex-col items-center">
           <svg height={height} width={width}>
             <Group top={centerY} left={centerX} height={height} width={width}>
               <BackgroundArc radius={radius} />

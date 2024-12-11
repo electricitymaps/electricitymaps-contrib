@@ -175,7 +175,7 @@ function AreaGraph({
     const duration = timeAxisMapping[selectedTimeAggregate];
 
     //add exactly 1 interval to the last time, e.g. 1 hour or 1 day or 1 month, etc.
-    return duration ? add(lastTime, { [duration]: 1 }) : null;
+    return add(lastTime, { [duration]: 1 });
   }, [lastTime, selectedTimeAggregate]);
 
   const datetimesWithNext = useMemo(
@@ -259,7 +259,7 @@ function AreaGraph({
   return (
     <div ref={reference}>
       <svg
-        data-test-id={testId}
+        data-testid={testId}
         height={height}
         className={`w-full overflow-visible ${
           isDisabled ? 'pointer-events-none blur' : ''

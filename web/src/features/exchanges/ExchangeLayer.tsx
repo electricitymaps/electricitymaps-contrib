@@ -18,7 +18,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
 
   return (
     <div
-      data-test-id="exchange-layer"
+      data-testid="exchange-layer"
       id="exchange-layer"
       className="h-full w-full"
       ref={ref}

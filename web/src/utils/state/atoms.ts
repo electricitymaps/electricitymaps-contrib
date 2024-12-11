@@ -6,6 +6,7 @@ import { RouteParameters } from 'types';
 import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
+  HOURLY_TIME_INDEX,
   Mode,
   SpatialAggregate,
   ThemeOptions,
@@ -20,6 +21,7 @@ export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
 
 export const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
   '24h': TimeAverages.HOURLY,
+  '72h': TimeAverages.HOURLY_72,
   '30d': TimeAverages.DAILY,
   '12mo': TimeAverages.MONTHLY,
   all: TimeAverages.YEARLY,
@@ -27,6 +29,7 @@ export const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
 
 const TIME_AVERAGE_TO_URL: Record<TimeAverages, string> = {
   [TimeAverages.HOURLY]: '24h',
+  [TimeAverages.HOURLY_72]: '72h',
   [TimeAverages.DAILY]: '30d',
   [TimeAverages.MONTHLY]: '12mo',
   [TimeAverages.YEARLY]: 'all',
@@ -50,7 +53,11 @@ export function useTimeAverageSync() {
 
   return [timeAverage, setTimeAverageAndNavigate] as const;
 }
-export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
+export const isHourlyAtom = atom(
+  (get) =>
+    get(timeAverageAtom) === TimeAverages.HOURLY ||
+    get(timeAverageAtom) === TimeAverages.HOURLY_72
+);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
@@ -71,7 +78,11 @@ export const isConsumptionAtom = atom<boolean>(
 );
 
 export const areWeatherLayersAllowedAtom = atom<boolean>(
-  (get) => get(isHourlyAtom) && get(selectedDatetimeIndexAtom).index === 24
+  (get) =>
+    (get(timeAverageAtom) === TimeAverages.HOURLY &&
+      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeAverages.HOURLY]) ||
+    (get(timeAverageAtom) === TimeAverages.HOURLY_72 &&
+      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeAverages.HOURLY_72])
 );
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);
@@ -123,3 +134,5 @@ export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
 );
 
 export const futurePriceCollapsedAtom = atom<boolean>(true);
+
+export const isRedirectedToLatestDatetimeAtom = atom<boolean>(false);

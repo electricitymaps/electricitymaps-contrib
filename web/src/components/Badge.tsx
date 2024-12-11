@@ -30,7 +30,7 @@ export default function Badge({ pillText, type, icon }: BadgeProps) {
   return (
     <span
       className={`flex h-6 flex-row items-center gap-1 whitespace-nowrap rounded-full px-2 py-1 text-xs font-semibold ${classes}`}
-      data-test-id="badge"
+      data-testid="badge"
     >
       {icon}
       {pillText}

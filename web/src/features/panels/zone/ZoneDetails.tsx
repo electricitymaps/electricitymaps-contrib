@@ -9,6 +9,7 @@ import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters, ZoneMessage } from 'types';
 import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
+import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isHourlyAtom,
@@ -73,7 +74,9 @@ export default function ZoneDetails(): JSX.Element {
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationPill =
+    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
@@ -93,7 +96,7 @@ export default function ZoneDetails(): JSX.Element {
               cardType={cardType}
               estimationMethod={estimationMethod}
               zoneMessage={zoneMessage}
-              estimatedPercentage={selectedData?.estimatedPercentage}
+              estimatedPercentage={roundedEstimatedPercentage}
             />
           )}
         <ZoneHeaderGauges zoneKey={zoneId} />
@@ -172,7 +175,7 @@ function ZoneDetailsContent({
   if (isError) {
     return (
       <div
-        data-test-id="no-parser-message"
+        data-testid="no-parser-message"
         className={`flex h-full w-full items-center justify-center text-sm`}
       >
         🤖 Unknown server error 🤖

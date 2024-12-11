@@ -2,13 +2,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 
 import zonesConfig from '../config/zones.json' assert { type: 'json' };
 
 // Import this from the constant file when this script is in typescript
-const UrlTimeAverages = ['24h', '30d', '12mo', 'all'];
+const UrlTimeAverages = ['24h', '72h', '30d', '12mo', 'all'];
 
 // Fix the paths for Windows/Linux consistency
 let dirname = path.dirname(fileURLToPath(import.meta.url));

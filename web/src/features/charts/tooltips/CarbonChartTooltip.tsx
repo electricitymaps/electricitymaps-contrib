@@ -3,7 +3,7 @@ import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom, useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { getCarbonIntensity } from 'utils/helpers';
+import { getCarbonIntensity, round } from 'utils/helpers';
 import { isConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
@@ -29,10 +29,12 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
     isConsumption
   );
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationPill =
+    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
   return (
     <div
-      data-test-id="carbon-chart-tooltip"
+      data-testid="carbon-chart-tooltip"
       className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]"
     >
       <AreaGraphToolTipHeader
@@ -41,7 +43,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
         squareColor={co2ColorScale(intensity)}
         title={t('tooltips.carbonintensity')}
         hasEstimationPill={hasEstimationPill}
-        estimatedPercentage={estimatedPercentage}
+        estimatedPercentage={roundedEstimatedPercentage}
         estimationMethod={estimationMethod}
       />
       <CarbonIntensityDisplay

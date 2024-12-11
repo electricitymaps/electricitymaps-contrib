@@ -11,9 +11,9 @@ export function ShareIcon({
   iconSize?: number;
 }) {
   return showIosIcon ? (
-    <Share data-test-id="iosShareIcon" size={iconSize} />
+    <Share data-testid="iosShareIcon" size={iconSize} />
   ) : (
-    <Share2 data-test-id="defaultShareIcon" size={iconSize} />
+    <Share2 data-testid="defaultShareIcon" size={iconSize} />
   );
 }
 
