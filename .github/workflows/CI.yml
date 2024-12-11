@@ -511,8 +511,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .venv
-          key: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
-          restore-keys: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
+          key: ${{ runner.os }}-${{env.ImageOS}}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-${{env.ImageOS}}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
@@ -552,8 +552,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .venv
-          key: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
-          restore-keys: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
+          key: ${{ runner.os }}-${{env.ImageOS}}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-${{env.ImageOS}}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
       - name: Install libxml2-dev and tesseract-ocr
         run: |
           sudo apt-get update
