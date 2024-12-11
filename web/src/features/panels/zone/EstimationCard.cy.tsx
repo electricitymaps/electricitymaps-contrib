@@ -27,20 +27,20 @@ describe('EstimationCard with FeedbackCard', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': true },
     });
-    cy.get('[data-test-id=feedback-card]').should('not.exist');
-    cy.get('[data-test-id=collapse-button]').click();
-    cy.get('[data-test-id=feedback-card]').should('exist');
-    cy.get('[data-test-id=collapse-button]').click();
-    cy.get('[data-test-id=feedback-card]').should('exist');
+    cy.get('[data-testid=feedback-card]').should('not.exist');
+    cy.get('[data-testid=collapse-button]').click();
+    cy.get('[data-testid=feedback-card]').should('exist');
+    cy.get('[data-testid=collapse-button]').click();
+    cy.get('[data-testid=feedback-card]').should('exist');
   });
 
   it.skip('feedback card should only be visible if feature-flag is enabled', () => {
     cy.intercept('/feature-flags', {
       body: { 'feedback-estimation-labels': false },
     });
-    cy.get('[data-test-id=feedback-card]').should('not.exist');
-    cy.get('[data-test-id=collapse-button]').click();
-    cy.get('[data-test-id=feedback-card]').should('exist');
+    cy.get('[data-testid=feedback-card]').should('not.exist');
+    cy.get('[data-testid=collapse-button]').click();
+    cy.get('[data-testid=feedback-card]').should('exist');
   });
 });
 
@@ -60,24 +60,24 @@ describe('EstimationCard with known estimation method', () => {
   });
 
   it('Estimation card contains expected information', () => {
-    cy.get('[data-test-id=title]').contains('Data is always estimated');
-    cy.get('[data-test-id=badge]').contains('Not realtime');
-    cy.get('[data-test-id="collapse-button"]').click();
-    cy.get('[data-test-id="body-text"]').contains(
+    cy.get('[data-testid=title]').contains('Data is always estimated');
+    cy.get('[data-testid=badge]').contains('Not realtime');
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="body-text"]').contains(
       'The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source.'
     );
   });
 
   it('Toggles when collapse button is clicked', () => {
-    cy.get('[data-test-id="collapse-up"]').should('not.exist');
-    cy.get('[data-test-id="collapse-down"]').should('exist');
-    cy.get('[data-test-id="body-text"]').should('not.exist');
-    cy.get('[data-test-id="methodology-link"]').should('not.exist');
-    cy.get('[data-test-id="collapse-button"]').click();
-    cy.get('[data-test-id="collapse-up"]').should('exist');
-    cy.get('[data-test-id="collapse-down"]').should('not.exist');
-    cy.get('[data-test-id="body-text"]').should('exist');
-    cy.get('[data-test-id="methodology-link"]').should('exist');
+    cy.get('[data-testid="collapse-up"]').should('not.exist');
+    cy.get('[data-testid="collapse-down"]').should('exist');
+    cy.get('[data-testid="body-text"]').should('not.exist');
+    cy.get('[data-testid="methodology-link"]').should('not.exist');
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="collapse-up"]').should('exist');
+    cy.get('[data-testid="collapse-down"]').should('not.exist');
+    cy.get('[data-testid="body-text"]').should('exist');
+    cy.get('[data-testid="methodology-link"]').should('exist');
   });
 });
 
@@ -90,10 +90,10 @@ describe('EstimationCard', () => {
         </QueryClientProvider>
       </I18nextProvider>
     );
-    cy.get('[data-test-id=title]').contains('Data is estimated');
-    cy.get('[data-test-id=badge]').contains('Imprecise');
-    cy.get('[data-test-id="collapse-button"]').click();
-    cy.get('[data-test-id="body-text"]').contains(
+    cy.get('[data-testid=title]').contains('Data is estimated');
+    cy.get('[data-testid=badge]').contains('Imprecise');
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="body-text"]').contains(
       'The published data for this zone is unavailable or incomplete. The data shown on the map is estimated using our best effort, but might differ from the actual values.'
     );
   });
@@ -106,7 +106,7 @@ describe('EstimationCard', () => {
         </QueryClientProvider>
       </I18nextProvider>
     );
-    cy.get('[data-test-id=title]').should('not.exist');
+    cy.get('[data-testid=title]').should('not.exist');
   });
 });
 
@@ -126,16 +126,16 @@ describe('OutageCard', () => {
   });
 
   it('Outage message contains expected information', () => {
-    cy.get('[data-test-id=title]').contains('Ongoing issues');
-    cy.get('[data-test-id=badge]').contains('Unavailable');
+    cy.get('[data-testid=title]').contains('Ongoing issues');
+    cy.get('[data-testid=badge]').contains('Unavailable');
   });
 
   it('For outage start as expanded and toggles collapse when collapse button is clicked', () => {
-    cy.get('[data-test-id="collapse-up"]').should('exist');
-    cy.get('[data-test-id="collapse-down"]').should('not.exist');
-    cy.get('[data-test-id="collapse-button"]').click();
-    cy.get('[data-test-id="collapse-up"]').should('not.exist');
-    cy.get('[data-test-id="collapse-down"]').should('exist');
+    cy.get('[data-testid="collapse-up"]').should('exist');
+    cy.get('[data-testid="collapse-down"]').should('not.exist');
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="collapse-up"]').should('not.exist');
+    cy.get('[data-testid="collapse-down"]').should('exist');
   });
 });
 
@@ -152,10 +152,10 @@ describe('AggregatedCard', () => {
         </QueryClientProvider>
       </I18nextProvider>
     );
-    cy.get('[data-test-id=title]').contains('Data is aggregated');
-    cy.get('[data-test-id=badge]').contains('50% estimated');
-    cy.get('[data-test-id="collapse-button"]').click();
-    cy.get('[data-test-id="body-text"]').contains(
+    cy.get('[data-testid=title]').contains('Data is aggregated');
+    cy.get('[data-testid=badge]').contains('50% estimated');
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="body-text"]').contains(
       'The data consists of an aggregation of hourly values. 50% of the production values are estimated.'
     );
   });
@@ -172,10 +172,10 @@ describe('AggregatedCard', () => {
         </QueryClientProvider>
       </I18nextProvider>
     );
-    cy.get('[data-test-id=title]').contains('Data is aggregated');
-    cy.get('[data-test-id=badge]').should('not.exist');
-    cy.get('[data-test-id="collapse-button"]').click();
-    cy.get('[data-test-id="body-text"]').contains(
+    cy.get('[data-testid=title]').contains('Data is aggregated');
+    cy.get('[data-testid=badge]').should('not.exist');
+    cy.get('[data-testid="collapse-button"]').click();
+    cy.get('[data-testid="body-text"]').contains(
       'The data consists of an aggregation of hourly values.'
     );
   });

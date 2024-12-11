@@ -22,7 +22,6 @@
     "github": "Contribute on GitHub",
     "twitter": "Follow us on X (Twitter)",
     "twitter-share": "Share on X (Twitter)",
-    "slack": "Join our Slack community",
     "linkedin": "Follow us on LinkedIn",
     "linkedin-share": "Share on LinkedIn",
     "facebook": "Follow us on Facebook",
@@ -56,6 +55,10 @@
     "copy-zone-link": "Copy link to zone",
     "preliminary-data": "Preliminary data may change over time.",
     "summary": "Discover real-time electricity insights with the Electricity Maps app!"
+  },
+  "new-feature-popover": {
+    "title": "Share granular historical insights",
+    "content": "Explore historical hourly carbon intensity and energy mix. Use the buttons to navigate through time by 24 hours and share specific dates via the three dots in the zone panel."
   },
   "onboarding-modal": {
     "view1": {
@@ -247,6 +250,10 @@
       "daily": "30d",
       "monthly": "12mo",
       "yearly": "all"
+    },
+    "date-unavailable": {
+      "title": "Date unavailable",
+      "description": "Redirecting to live data"
     }
   },
   "left-panel": {

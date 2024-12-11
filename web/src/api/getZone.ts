@@ -5,6 +5,7 @@ import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { RouteParameters } from 'types';
 import { TimeAverages } from 'utils/constants';
+import { getStaleTime } from 'utils/refetching';
 import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
 import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
@@ -57,7 +58,7 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
       QUERY_KEYS.ZONE,
       {
         zone: zoneId,
-        aggregate: urlTimeAverage,
+        aggregate: timeAverage,
         targetDatetime: urlDatetime,
       },
     ],
@@ -67,6 +68,8 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
       }
       return getZone(timeAverage, zoneId, urlDatetime);
     },
+    staleTime: getStaleTime(timeAverage, urlDatetime),
+    refetchOnWindowFocus: true,
   });
 };
 

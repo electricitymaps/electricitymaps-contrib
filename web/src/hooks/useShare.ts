@@ -1,6 +1,10 @@
 import { Share as CapShare, ShareOptions } from '@capacitor/share';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ShareType, trackShare } from 'utils/analytics';
+
+const trackShareClick = trackShare(ShareType.SHARE);
+const trackShareCompletion = trackShare(ShareType.COMPLETED_SHARE);
 
 export function useShare() {
   const { t } = useTranslation();
@@ -9,6 +13,7 @@ export function useShare() {
     async (url: string, callback?: (argument: string) => void) => {
       try {
         await navigator.clipboard.writeText(url);
+        trackShareClick();
         callback?.(t('share-button.clipboard'));
       } catch (error) {
         console.error(error);
@@ -21,7 +26,11 @@ export function useShare() {
   const share = useCallback(
     async (shareData: ShareOptions, callback?: (argument: string) => void) => {
       try {
+        trackShareClick();
         const result = await CapShare.share(shareData);
+        if (result) {
+          trackShareCompletion();
+        }
         return result;
       } catch (error) {
         if (error instanceof Error && !/AbortError|canceled/.test(error.toString())) {
