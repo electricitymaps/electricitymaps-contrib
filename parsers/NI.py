@@ -1,10 +1,9 @@
-from datetime import datetime, time, timedelta
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
-import requests
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -14,6 +13,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib import config
 from parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("America/Managua")
@@ -58,6 +58,7 @@ def extract_text(full_text: str, start_text: str, end_text: str | None = None):
         return full_text[start:end]
 
 
+@config.refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "NI",
     session: Session | None = None,
@@ -70,7 +71,8 @@ def fetch_production(
 
     url = "https://www.cndc.org.ni/graficos/consultarGeneracionPorTipo"
 
-    response = requests.get(url)
+    requests_obj = session or Session()
+    response = requests_obj.get(url)
     if not response.ok:
         raise ParserException(
             f"Exception when fetching production error code for {zone_key}: {response.status_code}: {response.text}",
@@ -105,6 +107,7 @@ def fetch_production(
     return production_breakdown_list.to_list()
 
 
+@config.refetch_frequency(timedelta(minutes=45))
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
@@ -119,7 +122,9 @@ def fetch_exchange(
 
     url = "https://www.cndc.org.ni/Inicio/ConsultarTipoGeneracion"
 
-    response = requests.get(url)
+    requests_obj = session or Session()
+    response = requests_obj.get(url)
+
     if not response.ok:
         raise ParserException(
             f"Exception when fetching production error code: {response.status_code}: {response.text}",
@@ -158,6 +163,7 @@ def fetch_exchange(
     return exchange_list.to_list()
 
 
+@config.refetch_frequency(timedelta(minutes=45))
 def fetch_price(
     zone_key: str = "NI",
     session: Session | None = None,
@@ -168,31 +174,23 @@ def fetch_price(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
+    url = "https://www.cndc.org.ni/Inicio/consultarInfoTecnicaRelevante"
     requests_obj = session or Session()
-    response = requests_obj.get(PRICE_URL)
-    response.encoding = "utf-8"
-    prices_html = response.text
+    response = requests_obj.get(url)
+    if not response.ok:
+        raise ParserException(
+            f"Exception when fetching production error code: {response.status_code}: {response.text}",
+        )
 
-    now_local_time = datetime.now(TIMEZONE)
-    midnight_local_time = datetime.combine(
-        now_local_time, time(), tzinfo=TIMEZONE
-    )  # truncate to day
+    respose_payload = response.json()
 
-    hours_text = prices_html.split("<br />")
+    date = respose_payload.get("fecha")
+    hours = respose_payload.get("hora")
 
-    for hour_data in hours_text:
-        if not hour_data:
-            # there is usually an empty item at the end of the list, ignore it
-            continue
-
-        # hour_data is like "Hora 13:&nbsp;&nbsp;   84.72"
-        hour = int(extract_text(hour_data, "Hora ", ":"))
-        price = float(extract_text(hour_data, "&nbsp;   ").replace(",", "."))
-
-        price_date = midnight_local_time + timedelta(hours=hour)
-        if price_date > now_local_time:
-            # data for previous day is also included
-            price_date = price_date - timedelta(days=1)
+    price_date = datetime.strptime(f"{date} {hours}", "%d/%m/%Y %H").replace(
+        tzinfo=TIMEZONE
+    )
+    price = respose_payload.get("costoMarginal")[0].get("valor")
 
     price_list = PriceList(logger)
     price_list.append(
