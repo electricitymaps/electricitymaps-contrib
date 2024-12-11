@@ -12,6 +12,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
+import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import ProductionSourceLegendList from './ProductionSourceLegendList';
 import { RoundedCard } from './RoundedCard';
@@ -131,10 +132,11 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
       </div>
       {isConsumptionAndAggregatedResolution && (
         <div
-          className="prose my-1 rounded bg-gray-200 p-2 text-sm leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
+          className="prose my-1 rounded bg-gray-200 p-2 text-xs leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}
+      <MissingExchangeDataDisclaimer />
       <ProductionSourceLegendList
         sources={getProductionSourcesInChart(chartData)}
         className="py-1.5"
