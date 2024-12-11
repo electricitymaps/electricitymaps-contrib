@@ -1,6 +1,23 @@
 import { useTranslation } from 'react-i18next';
 
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
+import { AreaGraphElement } from './types';
+
+const SIGNIFICANT_THRESHOLD = 0.2;
+
+const getTotal = (object: object) => Object.keys(object).length;
+const getNulls = (object: object) =>
+  Object.values(object).filter((v) => v === null).length;
+
+function getIsMissingSignificantExchangeData(chartData: AreaGraphElement[]) {
+  let nullCount = 0;
+  let total = 0;
+  for (const exchange of chartData.map(({ meta: { exchange } }) => exchange)) {
+    nullCount += getNulls(exchange);
+    total += getTotal(exchange);
+  }
+  return nullCount / total >= SIGNIFICANT_THRESHOLD;
+}
 
 export function MissingExchangeDataDisclaimer() {
   const { data, isLoading, isError } = useNetExchangeChartData();
@@ -19,13 +36,9 @@ export function MissingExchangeDataDisclaimer() {
   const isWithinPrevious48Hours =
     date < new Date(chartData[0].datetime) || date < new Date(chartData.at(-1)!.datetime);
 
-  // TODO(cady): consider using a heuristic - if >20% of exchanges are missing?
-  const isMissingExchangeData = chartData.some(({ meta: { exchange } }) =>
-    Object.values<number | null>(exchange).includes(null)
-  );
+  const isMissingSignificantExchangeData = getIsMissingSignificantExchangeData(chartData);
 
-  // Show disclaimer if exchanges cover previous 48 hours and exchange data has null (unreported) values
-  if (isWithinPrevious48Hours && isMissingExchangeData) {
+  if (isWithinPrevious48Hours && isMissingSignificantExchangeData) {
     return (
       <p className="prose my-1 rounded bg-gray-200 p-2 text-xs leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white">
         {t('country-history.exchange-delay')}
