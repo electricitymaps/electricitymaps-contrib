@@ -33,9 +33,7 @@ export function MissingExchangeDataDisclaimer() {
   date.setDate(date.getDate() - 1);
   date.setHours(0, 0, 0, 0);
 
-  const isWithinPrevious48Hours =
-    date < new Date(chartData[0].datetime) || date < new Date(chartData.at(-1)!.datetime);
-
+  const isWithinPrevious48Hours = date < new Date(chartData.at(-1)!.datetime);
   const isMissingSignificantExchangeData = getIsMissingSignificantExchangeData(chartData);
 
   if (isWithinPrevious48Hours && isMissingSignificantExchangeData) {
