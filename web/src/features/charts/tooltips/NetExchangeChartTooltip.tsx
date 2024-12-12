@@ -2,7 +2,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
-import { displayByEmissionsAtom, isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
+import { displayByEmissionsAtom, isHourlyAtom, timeRangeAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
@@ -10,7 +10,7 @@ import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 export default function NetExchangeChartTooltip({
   zoneDetail,
 }: InnerAreaGraphTooltipProps) {
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const [timeRange] = useAtom(timeRangeAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ export default function NetExchangeChartTooltip({
     <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[350px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
-        timeAverage={timeAverage}
+        timeRange={timeRange}
         squareColor="#7f7f7f"
         title={t('tooltips.netExchange')}
       />
