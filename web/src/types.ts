@@ -164,6 +164,7 @@ export interface ZoneDetail extends ZoneOverview {
 export interface ZoneDetails {
   hasData: boolean;
   futurePrice: FuturePriceData;
+  //TODO Remove from backend, most likely unused
   stateAggregation: 'daily' | 'hourly' | 'monthly' | 'yearly';
   zoneStates: {
     [key: string]: ZoneDetail;

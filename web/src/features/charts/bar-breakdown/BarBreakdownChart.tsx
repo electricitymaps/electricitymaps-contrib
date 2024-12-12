@@ -222,7 +222,8 @@ export const getText = (
       consumption: t('country-panel.by-source.total-electricity-consumption'),
     },
   };
-  const period = timePeriod === TimeRange.H24 ? 'hourly' : 'default';
+  const period =
+    timePeriod === TimeRange.H24 || timePeriod === TimeRange.H72 ? 'hourly' : 'default';
   return translations[period][dataType];
 };
 
