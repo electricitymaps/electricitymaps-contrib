@@ -51,88 +51,88 @@ describe('TimeController', () => {
 
     // Note that we force language here as CI and local machines might display dates differently otherwise
     cy.visit('/zone/DK-DK2?lang=en-GB');
-    cy.get('[data-test-id=loading-overlay]').should('not.exist');
-    cy.get('[data-test-id=close-modal]').click();
+    cy.get('[data-testid=loading-overlay]').should('not.exist');
+    cy.get('[data-testid=close-modal]').click();
     // Hourly
     cy.waitForAPISuccess(`v9/state/hourly`);
     cy.waitForAPISuccess(`v9/details/hourly/DK-DK2`);
     cy.contains('LIVE');
-    cy.get('[data-test-id=co2-square-value').should(
+    cy.get('[data-testid=co2-square-value').should(
       'contain.text',
       getco2intensity(24, hourlyData)
     );
-    // cy.get('[data-test-id=date-display').should(
+    // cy.get('[data-testid=date-display').should(
     //   'have.text',
     //   getFormattedDate(24, hourlyData, 'hourly')
     // );
     // cy.get('input.time-slider-input').setSliderValue(getTime(5, hourlyData));
-    // cy.get('[data-test-id=co2-square-value').should(
+    // cy.get('[data-testid=co2-square-value').should(
     //   'have.text',
     //   getco2intensity(5, hourlyData)
     // );
 
     // Monthly
-    cy.get('[data-test-id="time-controller-daily"]').click();
+    cy.get('[data-testid="time-controller-30d"]').click();
     cy.waitForAPISuccess(`v9/state/daily`);
     cy.waitForAPISuccess(`v9/details/daily/DK-DK2`);
-    // cy.get('[data-test-id=co2-square-value').should(
+    // cy.get('[data-testid=co2-square-value').should(
     //   'contain.text',
     //   getco2intensity(30, dailyData)
     // );
-    // cy.get('[data-test-id=date-display').should(
+    // cy.get('[data-testid=date-display').should(
     //   'have.text',
     //   getFormattedDate(30, dailyData, 'daily')
     // );
     //cy.get('input.time-slider-input').setSliderValue(getTime(16, dailyData));
-    // cy.get('[data-test-id=date-display').should(
+    // cy.get('[data-testid=date-display').should(
     //   'have.text',
     //   getFormattedDate(16, dailyData, 'daily')
     // );
-    // cy.get('[data-test-id=co2-square-value').should(
+    // cy.get('[data-testid=co2-square-value').should(
     //   'have.text',
     //   getco2intensity(16, dailyData)
     // );
 
     // Yearly
-    cy.get('[data-test-id="time-controller-monthly"]').click();
+    cy.get('[data-testid="time-controller-12mo"]').click();
     cy.waitForAPISuccess(`v9/state/monthly`);
     cy.waitForAPISuccess(`v9/details/monthly/DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should(
+    cy.get('[data-testid=co2-square-value').should(
       'contain.text',
       getco2intensity(12, monthlyData)
     );
-    // cy.get('[data-test-id=date-display').should(
+    // cy.get('[data-testid=date-display').should(
     //   'have.text',
     //   getFormattedDate(11, monthlyData, 'monthly')
     // );
     // //cy.get('input.time-slider-input').setSliderValue(getTime(5, monthlyData));
-    // cy.get('[data-test-id=date-display').should(
+    // cy.get('[data-testid=date-display').should(
     //   'have.text',
     //   getFormattedDate(5, monthlyData, 'monthly')
     // );
-    // cy.get('[data-test-id=co2-square-value').should(
+    // cy.get('[data-testid=co2-square-value').should(
     //   'have.text',
     //   getco2intensity(5, monthlyData)
     // );
 
     // 5 Years
-    cy.get('[data-test-id="time-controller-yearly"]').click();
+    cy.get('[data-testid="time-controller-all"]').click();
     cy.waitForAPISuccess(`v9/state/yearly`);
     cy.waitForAPISuccess(`v9/details/yearly/DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should(
+    cy.get('[data-testid=co2-square-value').should(
       'contain.text',
       getco2intensity(-1, yearlyData)
     );
-    // cy.get('[data-test-id=date-display').should(
+    // cy.get('[data-testid=date-display').should(
     //   'have.text',
     //   getFormattedDate(4, yearlyData, 'yearly')
     // );
     // //cy.get('input.time-slider-input').setSliderValue(getTime(2, yearlyData));
-    // cy.get('[data-test-id=date-display').should(
+    // cy.get('[data-testid=date-display').should(
     //   'have.text',
     //   getFormattedDate(2, yearlyData, 'yearly')
     // );
-    // cy.get('[data-test-id=co2-square-value').should(
+    // cy.get('[data-testid=co2-square-value').should(
     //   'have.text',
     //   getco2intensity(2, yearlyData)
     // );

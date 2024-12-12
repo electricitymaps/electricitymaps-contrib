@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { TimeAverages } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 
-import TimeAverageToggle from './TimeAverageToggle';
+import TimeRangeToggle from './TimeRangeToggle';
 
 const meta = {
-  component: TimeAverageToggle,
-  title: 'Toggles/TimeAverageToggle',
+  component: TimeRangeToggle,
+  title: 'Toggles/TimeRangeToggle',
   args: {
     onToggleGroupClick: () => {},
   },
-} satisfies Meta<typeof TimeAverageToggle>;
+} satisfies Meta<typeof TimeRangeToggle>;
 
 export default meta;
 
@@ -17,24 +17,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Hourly: Story = {
   args: {
-    timeAverage: TimeAverages.HOURLY,
+    timeRange: TimeRange.H24,
   },
 };
 
 export const Daily: Story = {
   args: {
-    timeAverage: TimeAverages.DAILY,
+    timeRange: TimeRange.D30,
   },
 };
 
 export const Monthly: Story = {
   args: {
-    timeAverage: TimeAverages.MONTHLY,
+    timeRange: TimeRange.M12,
   },
 };
 
 export const Yearly: Story = {
   args: {
-    timeAverage: TimeAverages.YEARLY,
+    timeRange: TimeRange.ALL,
   },
 };

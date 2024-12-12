@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { TimeRange, TrackEvent } from 'utils/constants';
 import { getDateTimeFormatOptions } from 'utils/formatting';
 import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
@@ -66,7 +66,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
         setState={setIsCollapsed}
         onOpen={() => trackEvent(TrackEvent.FUTURE_PRICE_EXPANDED)}
       >
-        <div data-test-id="future-price">
+        <div data-testid="future-price">
           <PriceDisclaimer />
           <TimeDisclaimer />
           {futurePrice?.priceData && (
@@ -83,7 +83,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                   >
                     <div>
                       {dateIsFirstHourOfTomorrow(new Date(date)) && (
-                        <div className="flex flex-col py-1" data-test-id="tomorrow-label">
+                        <div className="flex flex-col py-1" data-testid="tomorrow-label">
                           <HorizontalDivider />
                           <TommorowLabel date={date} t={t} i18n={i18n} />
                         </div>
@@ -104,7 +104,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                                   negativePercentage / 100
                                 } + 12px - 12px * ${negativePercentage / 100})`,
                               }}
-                              data-test-id="negative-price"
+                              data-testid="negative-price"
                             >
                               <PriceBar
                                 price={price}
@@ -121,7 +121,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
                           )}
                           {price >= 0 && (
                             <div
-                              data-test-id="positive-price"
+                              data-testid="positive-price"
                               style={{
                                 width: `calc(100% * ${
                                   (100 - negativePercentage) / 100
@@ -186,7 +186,7 @@ export function PriceBar({
       style={{
         width: `calc(calc(${nonNegativePrice / maxPrice} * (100% - 12px)) + 12px)`,
       }}
-      data-test-id="price-bar"
+      data-testid="price-bar"
     />
   );
 }
@@ -224,7 +224,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
 
   if (isNow(date, granularity)) {
     return (
-      <p className={`min-w-18 pl-1 text-sm font-semibold`} data-test-id="now-label">
+      <p className={`min-w-18 pl-1 text-sm font-semibold`} data-testid="now-label">
         {t(`country-panel.price-chart.now`)}
       </p>
     );
@@ -255,7 +255,7 @@ function TimeDisclaimer() {
   const { i18n } = useTranslation();
   const date = Intl.DateTimeFormat(
     i18n.language,
-    getDateTimeFormatOptions(TimeAverages.HOURLY)
+    getDateTimeFormatOptions(TimeRange.H24)
   ).formatToParts(new Date());
   return (
     <Disclaimer
@@ -279,7 +279,7 @@ function Disclaimer({
   text: string;
 }) {
   return (
-    <div className={className} data-test-id={testId}>
+    <div className={className} data-testid={testId}>
       {Icon}
       <p className="pl-1 text-xs font-semibold">{text}</p>
     </div>

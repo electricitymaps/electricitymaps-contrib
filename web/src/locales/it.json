@@ -7,7 +7,6 @@
     "feedback": "Condividi un feedback",
     "github": "Visualizza il nostro GitHub",
     "twitter": "Condividi su Twitter",
-    "slack": "Unisciti alla community Slack",
     "privacy-policy": "Politica Privacy",
     "legal-notice": "Nota Legale"
   },
@@ -67,15 +66,15 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "Dati orari per:",
-      "daily": "Dati giornalieri per:",
-      "monthly": "Dati mensili per:",
-      "yearly": "Dati annuali per:"
+      "24h": "Dati orari per:",
+      "30d": "Dati giornalieri per:",
+      "12mo": "Dati mensili per:",
+      "all": "Dati annuali per:"
     },
-    "daily": "giornaliero",
-    "hourly": "orario",
-    "monthly": "mensile",
-    "yearly": "annuale"
+    "30d": "giornaliero",
+    "24h": "orario",
+    "12mo": "mensile",
+    "all": "annuale"
   },
   "ranking-panel": {
     "title": "Impatto climatico per area",

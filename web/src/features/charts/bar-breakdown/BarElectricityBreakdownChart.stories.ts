@@ -17,6 +17,7 @@ type Story = StoryObj<typeof BarElectricityBreakdownChart>;
 
 const data: ZoneDetails = {
   hasData: true,
+  //TODO Remove from backend, most likely unused
   stateAggregation: 'daily',
   zoneStates: {
     SOME_DATE: { ...zoneDetailMock },

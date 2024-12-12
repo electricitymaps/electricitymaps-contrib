@@ -39,7 +39,7 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
         <animated.div
           className="fixed z-50 h-full w-full bg-gray-100 dark:bg-gray-900"
           style={styles}
-          data-test-id="loading-overlay"
+          data-testid="loading-overlay"
         >
           <LoadingSpinner showReloadButton={showButton} />
         </animated.div>

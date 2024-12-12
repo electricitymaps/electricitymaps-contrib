@@ -4,23 +4,33 @@ import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { RouteParameters } from 'types';
-import { TimeAverages } from 'utils/constants';
-import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
+import { TimeRange } from 'utils/constants';
+import { isValidHistoricalTimeRange } from 'utils/helpers';
+import { getStaleTime } from 'utils/refetching';
 
-import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
+import {
+  cacheBuster,
+  getBasePath,
+  getHeaders,
+  isValidDate,
+  QUERY_KEYS,
+  TIME_RANGE_TO_TIME_AVERAGE,
+} from './helpers';
 
 const getZone = async (
-  timeAverage: TimeAverages,
+  timeRange: TimeRange,
   zoneId: string,
   targetDatetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
 
   const shouldQueryHistorical =
-    targetDatetime && isValidDate(targetDatetime) && timeAverage === TimeAverages.HOURLY;
+    targetDatetime &&
+    isValidDate(targetDatetime) &&
+    isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v9/details/${timeAverage}/${zoneId}${
+    `v9/details/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}/${zoneId}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
@@ -47,17 +57,15 @@ const getZone = async (
 };
 
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const { zoneId, urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
+  const { zoneId, urlTimeRange, urlDatetime } = useParams<RouteParameters>();
 
-  const timeAverage = urlTimeAverage
-    ? URL_TO_TIME_AVERAGE[urlTimeAverage]
-    : TimeAverages.HOURLY;
+  const timeRange = urlTimeRange || TimeRange.H24;
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,
       {
         zone: zoneId,
-        aggregate: urlTimeAverage,
+        aggregate: timeRange,
         targetDatetime: urlDatetime,
       },
     ],
@@ -65,8 +73,10 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
       if (!zoneId) {
         throw new Error('Zone ID is required');
       }
-      return getZone(timeAverage, zoneId, urlDatetime);
+      return getZone(timeRange, zoneId, urlDatetime);
     },
+    staleTime: getStaleTime(timeRange, urlDatetime),
+    refetchOnWindowFocus: true,
   });
 };
 

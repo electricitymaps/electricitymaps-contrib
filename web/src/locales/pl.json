@@ -19,7 +19,6 @@
     "github": "Współtwórz na GitHub",
     "twitter": "Śledź nas na Twitter",
     "twitter-share": "Podziel się na Twitter",
-    "slack": "Dołącz do naszego Slack'a",
     "linkedin": "Śledź nas na LinkedIn",
     "linkedin-share": "Udostępnij na LinkedIn",
     "facebook": "Śledź nas na Facebook",
@@ -219,15 +218,15 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "Dane godzinowe dla:",
-      "daily": "Dane dzienne dla:",
-      "monthly": "Dane miesięczne dla:",
-      "yearly": "Dane roczne dla:"
+      "24h": "Dane godzinowe dla:",
+      "30d": "Dane dzienne dla:",
+      "12mo": "Dane miesięczne dla:",
+      "all": "Dane roczne dla:"
     },
-    "daily": "dzienne",
-    "hourly": "godzinowe",
-    "monthly": "miesięczne",
-    "yearly": "roczne"
+    "30d": "dzienne",
+    "24h": "godzinowe",
+    "12mo": "miesięczne",
+    "all": "roczne"
   },
   "left-panel": {
     "get-data": "Zobacz nasze płatne oferty API",
@@ -248,52 +247,52 @@
   },
   "country-history": {
     "carbonintensity": {
-      "hourly": "Godzinowa intensywność węglowa",
-      "daily": "Dzienne intensywność węglowa",
-      "monthly": "Miesięczna intensywność węglowa",
-      "yearly": "Roczna intensywność węglowa"
+      "24h": "Godzinowa intensywność węglowa",
+      "30d": "Dzienne intensywność węglowa",
+      "12mo": "Miesięczna intensywność węglowa",
+      "all": "Roczna intensywność węglowa"
     },
     "emissions": {
-      "hourly": "Godzinowe emisje dwutlenku węgla",
-      "daily": "Dzienne emisje dwutlenku węgla",
-      "monthly": "Miesięczne emisje dwutlenku węgla",
-      "yearly": "Roczne emisje dwutlenku węgla"
+      "24h": "Godzinowe emisje dwutlenku węgla",
+      "30d": "Dzienne emisje dwutlenku węgla",
+      "12mo": "Miesięczne emisje dwutlenku węgla",
+      "all": "Roczne emisje dwutlenku węgla"
     },
     "emissionsorigin": {
-      "hourly": "Godzinowe pochodzenie emisji dwutlenku węgla",
-      "daily": "Dzienne pochodzenie emisji dwutlenku węgla",
-      "monthly": "Miesięczne pochodzenie emisji dwutlenku węgla",
-      "yearly": "Roczne pochodzenie emisji dwutlenku węgla"
+      "24h": "Godzinowe pochodzenie emisji dwutlenku węgla",
+      "30d": "Dzienne pochodzenie emisji dwutlenku węgla",
+      "12mo": "Miesięczne pochodzenie emisji dwutlenku węgla",
+      "all": "Roczne pochodzenie emisji dwutlenku węgla"
     },
     "emissionsproduction": {
-      "hourly": "Godzinowe emisje z produkcji",
-      "daily": "Dzienne emisje z produkcji",
-      "monthly": "Miesięczne emisje z produkcji",
-      "yearly": "Roczne emisje z produkcji"
+      "24h": "Godzinowe emisje z produkcji",
+      "30d": "Dzienne emisje z produkcji",
+      "12mo": "Miesięczne emisje z produkcji",
+      "all": "Roczne emisje z produkcji"
     },
     "electricityorigin": {
-      "hourly": "Godzinowe pochodzenie energii elektrycznej",
-      "daily": "Dzienne pochodzenie energii elektrycznej",
-      "monthly": "Miesięczne pochodzenie energii elektrycznej",
-      "yearly": "Roczne pochodzenie energii elektrycznej"
+      "24h": "Godzinowe pochodzenie energii elektrycznej",
+      "30d": "Dzienne pochodzenie energii elektrycznej",
+      "12mo": "Miesięczne pochodzenie energii elektrycznej",
+      "all": "Roczne pochodzenie energii elektrycznej"
     },
     "electricityproduction": {
-      "hourly": "Godzinowa produkcja energii elektrycznej",
-      "daily": "Dzienne produkcja energii elektrycznej",
-      "monthly": "Miesięczna produkcja energii elektrycznej",
-      "yearly": "Roczna produkcja energii elektrycznej"
+      "24h": "Godzinowa produkcja energii elektrycznej",
+      "30d": "Dzienne produkcja energii elektrycznej",
+      "12mo": "Miesięczna produkcja energii elektrycznej",
+      "all": "Roczna produkcja energii elektrycznej"
     },
     "electricityprices": {
-      "hourly": "Godzinowe ceny energii elektrycznej",
-      "daily": "Dzienne ceny energii elektrycznej",
-      "monthly": "Miesięczne ceny energii elektrycznej",
-      "yearly": "Roczne ceny energii elektrycznej"
+      "24h": "Godzinowe ceny energii elektrycznej",
+      "30d": "Dzienne ceny energii elektrycznej",
+      "12mo": "Miesięczne ceny energii elektrycznej",
+      "all": "Roczne ceny energii elektrycznej"
     },
     "netExchange": {
-      "hourly": "Godzinowa wymiana netto",
-      "daily": "Dzienne wymiana netto",
-      "monthly": "Miesięczna wymiana netto",
-      "yearly": "Roczna wymiana netto"
+      "24h": "Godzinowa wymiana netto",
+      "30d": "Dzienne wymiana netto",
+      "12mo": "Miesięczna wymiana netto",
+      "all": "Roczna wymiana netto"
     },
     "not-enough-data": "Niewystarczająca ilość danych do wyświetlenia wykresu"
   },

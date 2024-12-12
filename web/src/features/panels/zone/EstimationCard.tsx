@@ -178,7 +178,7 @@ function BaseCard({
       >
         <div className="flex flex-col gap-2">
           <div
-            data-test-id="body-text"
+            data-testid="body-text"
             className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
           >
             {estimationMethod != 'outage' && bodyText}
@@ -191,7 +191,7 @@ function BaseCard({
               href="https://www.electricitymaps.com/methodology#missing-data"
               target="_blank"
               rel="noreferrer"
-              data-test-id="methodology-link"
+              data-testid="methodology-link"
               className={`text-sm font-semibold text-black underline dark:text-white`}
               onClick={() => {
                 trackEvent(TrackEvent.ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED, {

@@ -48,7 +48,7 @@ export function MoreOptionsDropdown({
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
 
-  const summary = `${t('more-options-dropdown.summary')} ${baseUrl}`;
+  const summary = `${t('more-options-dropdown.summary')}`;
 
   const handleTrackShares = getTrackByShareType(id);
 
@@ -123,7 +123,7 @@ export function MoreOptionsDropdown({
               {!hasMobileUserAgent && (
                 <>
                   <a
-                    data-test-id="twitter-chart-share"
+                    data-testid="twitter-chart-share"
                     target="_blank"
                     rel="noopener"
                     onClick={handleTrackShares[ShareType.TWITTER]}
@@ -137,7 +137,7 @@ export function MoreOptionsDropdown({
                     </DropdownMenu.Item>
                   </a>
                   <a
-                    data-test-id="facebook-chart-share"
+                    data-testid="facebook-chart-share"
                     target="_blank"
                     rel="noopener"
                     onClick={handleTrackShares[ShareType.FACEBOOK]}
@@ -151,7 +151,7 @@ export function MoreOptionsDropdown({
                     </DropdownMenu.Item>
                   </a>
                   <a
-                    data-test-id="linkedin-chart-share"
+                    data-testid="linkedin-chart-share"
                     href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`}
                     target="_blank"
                     rel="noopener"
@@ -163,7 +163,7 @@ export function MoreOptionsDropdown({
                     </DropdownMenu.Item>
                   </a>
                   <a
-                    data-test-id="reddit-chart-share"
+                    data-testid="reddit-chart-share"
                     href={`https://www.reddit.com/web/submit?url=${shareUrl}`}
                     target="_blank"
                     rel="noopener"
