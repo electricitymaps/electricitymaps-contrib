@@ -123,7 +123,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
           markerHideHandler={noop}
           height="10em"
           datetimes={datetimes}
-          selectedTimeAggregate={timeRange}
+          selectedTimeRange={timeRange}
           tooltip={BreakdownChartTooltip}
           tooltipSize={displayByEmissions ? 'small' : 'large'}
           {...(displayByEmissions && { formatTick: formatAxisTick })}

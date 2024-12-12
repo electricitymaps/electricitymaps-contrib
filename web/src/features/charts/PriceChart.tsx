@@ -83,7 +83,7 @@ function PriceChart({ datetimes, timeRange }: PriceChartProps) {
           markerHideHandler={noop}
           height="6em"
           datetimes={datetimes}
-          selectedTimeAggregate={timeRange}
+          selectedTimeRange={timeRange}
           tooltip={PriceChartTooltip}
           isDisabled={isPriceDisabled}
         />

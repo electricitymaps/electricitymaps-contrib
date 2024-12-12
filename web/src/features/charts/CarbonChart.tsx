@@ -59,7 +59,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
         markerHideHandler={noop}
         height="8em"
         datetimes={datetimes}
-        selectedTimeAggregate={timeRange}
+        selectedTimeRange={timeRange}
         tooltip={CarbonChartTooltip}
       />
       <div className="pb-1 pt-2">

@@ -238,5 +238,5 @@ export const hasMobileUserAgent = () =>
     navigator.userAgent
   );
 
-export const isValidHistoricalTime = (timeAggregate: TimeRange) =>
-  historicalTimeRange.includes(timeAggregate);
+export const isValidHistoricalTimeRange = (timeRange: TimeRange) =>
+  historicalTimeRange.includes(timeRange);

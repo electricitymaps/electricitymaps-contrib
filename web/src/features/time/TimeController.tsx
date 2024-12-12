@@ -133,7 +133,7 @@ export default function TimeController({ className }: { className?: string }) {
         />
         <TimeAxis
           datetimes={datetimes}
-          selectedTimeAggregate={selectedTimeRange || TimeRange.H24}
+          selectedTimeRange={selectedTimeRange || TimeRange.H24}
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}

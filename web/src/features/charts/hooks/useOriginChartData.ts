@@ -46,7 +46,7 @@ export default function useOriginChartData() {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const viewMode = useAtomValue(spatialAggregateAtom);
-  const timeAggregate = useAtomValue(timeRangeAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
@@ -61,7 +61,7 @@ export default function useOriginChartData() {
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
     displayByEmissions,
-    timeAggregate
+    timeRange
   );
 
   const chartData: AreaGraphElement[] = [];
@@ -180,14 +180,14 @@ interface ValuesInfo {
 function getValuesInfo(
   historyData: ZoneDetail[],
   displayByEmissions: boolean,
-  timeAggregate: string
+  timeRange: string
 ): ValuesInfo {
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     displayByEmissions
       ? getTotalEmissionsAvailable(d, true)
       : getTotalElectricityAvailable(d, true)
   );
-  const isHourly = timeAggregate === TimeRange.H24;
+  const isHourly = timeRange === TimeRange.H24;
   const format = displayByEmissions
     ? // Value factor of 1000 to convert from MW to KW
       { formattingFactor: 1000, unit: 'CO₂eq' }

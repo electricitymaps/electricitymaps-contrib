@@ -8,7 +8,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters, ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { TimeRange, timeAxisMapping } from 'utils/constants';
+import { timeAxisMapping, TimeRange } from 'utils/constants';
 import { getZoneTimezone } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint, useIsMobile } from 'utils/styling';
@@ -106,7 +106,7 @@ interface AreagraphProps {
   isDisabled?: boolean;
   height: string;
   datetimes: Date[];
-  selectedTimeAggregate: TimeRange; // TODO: Graph does not need to know about this
+  selectedTimeRange: TimeRange; // TODO: Graph does not need to know about this
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
   formatTick?: (t: number) => string | number;
@@ -130,7 +130,7 @@ function AreaGraph({
   markerFill,
   height = '10em',
   isDisabled = false,
-  selectedTimeAggregate,
+  selectedTimeRange,
   datetimes,
   tooltip,
   tooltipSize,
@@ -172,11 +172,11 @@ function AreaGraph({
       return null;
     }
 
-    const duration = timeAxisMapping[selectedTimeAggregate];
+    const duration = timeAxisMapping[selectedTimeRange];
 
     //add exactly 1 interval to the last time, e.g. 1 hour or 1 day or 1 month, etc.
     return add(lastTime, { [duration]: 1 });
-  }, [lastTime, selectedTimeAggregate]);
+  }, [lastTime, selectedTimeRange]);
 
   const datetimesWithNext = useMemo(
     // The as Date[] assertion is needed because the filter removes the null values but typescript can't infer that
@@ -291,7 +291,7 @@ function AreaGraph({
         />
         <TimeAxis
           isLoading={false}
-          selectedTimeAggregate={selectedTimeAggregate}
+          selectedTimeRange={selectedTimeRange}
           datetimes={datetimesWithNext}
           scaleWidth={containerWidth}
           transform={`translate(5 ${containerHeight})`}

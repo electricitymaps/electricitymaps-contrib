@@ -198,14 +198,14 @@ const formatDate = (
 const formatDateTick = (
   date: Date,
   lang: string,
-  timeAggregate: TimeRange,
+  timeRange: TimeRange,
   timezone?: string
 ) => {
-  if (!isValidDate(date) || !timeAggregate) {
+  if (!isValidDate(date) || !timeRange) {
     return '';
   }
 
-  switch (timeAggregate) {
+  switch (timeRange) {
     case TimeRange.H72:
     case TimeRange.H24: {
       return new Intl.DateTimeFormat(lang, {
@@ -243,7 +243,7 @@ const formatDateTick = (
       }).format(date);
     }
     default: {
-      console.error(`${timeAggregate} is not implemented`);
+      console.error(`${timeRange} is not implemented`);
       return '';
     }
   }

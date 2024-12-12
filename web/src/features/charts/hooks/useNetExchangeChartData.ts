@@ -32,7 +32,7 @@ export function getFills(data: AreaGraphElement[]) {
 export function useNetExchangeChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [timeAggregate] = useAtom(timeRangeAtom);
+  const [timeRange] = useAtom(timeRangeAtom);
 
   if (isLoading || isError || !zoneData) {
     return { isLoading, isError };
@@ -41,7 +41,7 @@ export function useNetExchangeChartData() {
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
     displayByEmissions,
-    timeAggregate
+    timeRange
   );
 
   const chartData: AreaGraphElement[] = [];
@@ -81,9 +81,9 @@ interface ValuesInfo {
 function getValuesInfo(
   historyData: ZoneDetail[],
   displayByEmissions: boolean,
-  timeAggregate: string
+  timeRange: string
 ): ValuesInfo {
-  const isHourly = timeAggregate === TimeRange.H24;
+  const isHourly = timeRange === TimeRange.H24;
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     Math.abs(getNetExchange(d, displayByEmissions))
   );

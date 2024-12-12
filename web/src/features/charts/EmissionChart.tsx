@@ -47,7 +47,7 @@ function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         datetimes={datetimes}
-        selectedTimeAggregate={timeRange}
+        selectedTimeRange={timeRange}
         height="8em"
         tooltip={EmissionChartTooltip}
         formatTick={formatAxisTick}

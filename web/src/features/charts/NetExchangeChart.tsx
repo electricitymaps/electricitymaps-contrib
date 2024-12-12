@@ -61,7 +61,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
           markerHideHandler={noop}
           height="10em"
           datetimes={datetimes}
-          selectedTimeAggregate={timeRange}
+          selectedTimeRange={timeRange}
           tooltip={NetExchangeChartTooltip}
           formatTick={formatAxisTick}
         />
