@@ -10,53 +10,35 @@ import {
   Mode,
   SpatialAggregate,
   ThemeOptions,
-  TimeAverages,
+  TimeRange,
   ToggleOptions,
 } from '../constants';
 
 // TODO: Move these atoms to relevant features
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
-export const timeAverageAtom = atom<TimeAverages>(TimeAverages.HOURLY);
+export const timeRangeAtom = atom<TimeRange>(TimeRange.H24);
 
-export const URL_TO_TIME_AVERAGE: Record<string, TimeAverages> = {
-  '24h': TimeAverages.HOURLY,
-  '72h': TimeAverages.HOURLY_72,
-  '30d': TimeAverages.DAILY,
-  '12mo': TimeAverages.MONTHLY,
-  all: TimeAverages.YEARLY,
-} as const;
-
-const TIME_AVERAGE_TO_URL: Record<TimeAverages, string> = {
-  [TimeAverages.HOURLY]: '24h',
-  [TimeAverages.HOURLY_72]: '72h',
-  [TimeAverages.DAILY]: '30d',
-  [TimeAverages.MONTHLY]: '12mo',
-  [TimeAverages.YEARLY]: 'all',
-} as const;
-
-export function useTimeAverageSync() {
-  const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
-  const { urlTimeAverage } = useParams<RouteParameters>();
+export function useTimeRangeSync() {
+  const [timeRange, setTimeRange] = useAtom(timeRangeAtom);
+  const { urlTimeRange } = useParams<RouteParameters>();
   const navigateWithParameters = useNavigateWithParameters();
 
   useEffect(() => {
-    if (urlTimeAverage && URL_TO_TIME_AVERAGE[urlTimeAverage] !== timeAverage) {
-      setTimeAverage(URL_TO_TIME_AVERAGE[urlTimeAverage]);
+    if (urlTimeRange && urlTimeRange !== timeRange) {
+      setTimeRange(urlTimeRange);
     }
-  }, [setTimeAverage, timeAverage, urlTimeAverage]);
+  }, [setTimeRange, timeRange, urlTimeRange]);
 
-  const setTimeAverageAndNavigate = (newTimeAverage: TimeAverages) => {
-    setTimeAverage(newTimeAverage);
-    navigateWithParameters({ timeAverage: TIME_AVERAGE_TO_URL[newTimeAverage] });
+  const setTimeRangeAndNavigate = (newTimeRange: TimeRange) => {
+    setTimeRange(newTimeRange);
+    navigateWithParameters({ timeRange: newTimeRange });
   };
 
-  return [timeAverage, setTimeAverageAndNavigate] as const;
+  return [timeRange, setTimeRangeAndNavigate] as const;
 }
 export const isHourlyAtom = atom(
-  (get) =>
-    get(timeAverageAtom) === TimeAverages.HOURLY ||
-    get(timeAverageAtom) === TimeAverages.HOURLY_72
+  (get) => get(timeRangeAtom) === TimeRange.H24 || get(timeRangeAtom) === TimeRange.H72
 );
 
 // TODO: consider another initial value
@@ -79,10 +61,10 @@ export const isConsumptionAtom = atom<boolean>(
 
 export const areWeatherLayersAllowedAtom = atom<boolean>(
   (get) =>
-    (get(timeAverageAtom) === TimeAverages.HOURLY &&
-      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeAverages.HOURLY]) ||
-    (get(timeAverageAtom) === TimeAverages.HOURLY_72 &&
-      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeAverages.HOURLY_72])
+    (get(timeRangeAtom) === TimeRange.H24 &&
+      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H24]) ||
+    (get(timeRangeAtom) === TimeRange.H72 &&
+      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H72])
 );
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);

@@ -11,13 +11,13 @@ import {
   RouteParameters,
   ZoneDetail,
 } from 'types';
-import { modeColor, modeOrder, SpatialAggregate, TimeAverages } from 'utils/constants';
+import { modeColor, modeOrder, SpatialAggregate, TimeRange } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
   spatialAggregateAtom,
-  timeAverageAtom,
+  timeRangeAtom,
 } from 'utils/state/atoms';
 
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
@@ -46,7 +46,7 @@ export default function useOriginChartData() {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const viewMode = useAtomValue(spatialAggregateAtom);
-  const timeAggregate = useAtomValue(timeAverageAtom);
+  const timeAggregate = useAtomValue(timeRangeAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
@@ -187,7 +187,7 @@ function getValuesInfo(
       ? getTotalEmissionsAvailable(d, true)
       : getTotalElectricityAvailable(d, true)
   );
-  const isHourly = timeAggregate === TimeAverages.HOURLY;
+  const isHourly = timeAggregate === TimeRange.H24;
   const format = displayByEmissions
     ? // Value factor of 1000 to convert from MW to KW
       { formattingFactor: 1000, unit: 'CO₂eq' }

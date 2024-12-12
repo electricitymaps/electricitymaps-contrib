@@ -2,7 +2,7 @@ import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
-import { HOURLY_TIME_INDEX, TimeAverages } from 'utils/constants';
+import { HOURLY_TIME_INDEX, TimeRange } from 'utils/constants';
 import { isValidHistoricalTime } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
@@ -22,7 +22,7 @@ const renderTick = (
   index: number,
   displayLive: boolean,
   lang: string,
-  selectedTimeAggregate: TimeAverages,
+  selectedTimeAggregate: TimeRange,
   isLoading: boolean,
   timezone?: string
 ) => {
@@ -53,7 +53,7 @@ const renderTickValue = (
   index: number,
   displayLive: boolean,
   lang: string,
-  selectedTimeAggregate: TimeAverages,
+  selectedTimeAggregate: TimeRange,
   timezone?: string
 ) => {
   const shouldDisplayLive =
@@ -77,7 +77,7 @@ const renderTickValue = (
 const getTimeScale = (rangeEnd: number, startDate: Date, endDate: Date) =>
   scaleTime().domain([startDate, endDate]).range([0, rangeEnd]);
 interface TimeAxisProps {
-  selectedTimeAggregate: TimeAverages;
+  selectedTimeAggregate: TimeRange;
   datetimes: Date[] | undefined;
   isLoading: boolean;
   scale?: ScaleTime<number, number>;

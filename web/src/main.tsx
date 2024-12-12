@@ -23,7 +23,7 @@ import {
 } from 'react-router-dom';
 import i18n from 'translation/i18n';
 import { RouteParameters } from 'types';
-import { UrlTimeAverages } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
@@ -76,12 +76,12 @@ const queryClient = new QueryClient({
 
 refetchDataOnHourChange(queryClient);
 
-function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
+function TimeRangeGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
-  const { urlTimeAverage } = useParams<RouteParameters>();
+  const { urlTimeRange } = useParams<RouteParameters>();
   const location = useLocation();
 
-  if (!urlTimeAverage) {
+  if (!urlTimeRange) {
     return (
       <Navigate
         to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
@@ -90,9 +90,9 @@ function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
     );
   }
 
-  const lowerCaseTimeAverage = urlTimeAverage.toLowerCase();
+  const lowerCaseTimeRange = urlTimeRange.toLowerCase();
 
-  if (!(lowerCaseTimeAverage in UrlTimeAverages)) {
+  if (!Object.values(TimeRange).includes(lowerCaseTimeRange as TimeRange)) {
     return (
       <Navigate
         to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
@@ -101,12 +101,12 @@ function TimeAverageGuardWrapper({ children }: { children: JSX.Element }) {
     );
   }
 
-  if (urlTimeAverage !== lowerCaseTimeAverage) {
+  if (urlTimeRange !== lowerCaseTimeRange) {
     return (
       <Navigate
         to={`${location.pathname.replace(
-          urlTimeAverage,
-          lowerCaseTimeAverage
+          urlTimeRange,
+          lowerCaseTimeRange
         )}?${searchParameters}${location.hash}`}
         replace
       />
@@ -187,22 +187,22 @@ const router = createBrowserRouter([
         element: <Navigate to="/map/24h" replace />,
       },
       {
-        path: '/map/:urlTimeAverage?/:urlDatetime?',
+        path: '/map/:urlTimeRange?/:urlDatetime?',
         element: (
-          <TimeAverageGuardWrapper>
+          <TimeRangeGuardWrapper>
             <RankingPanel />
-          </TimeAverageGuardWrapper>
+          </TimeRangeGuardWrapper>
         ),
       },
       {
-        path: '/zone/:zoneId/:urlTimeAverage?/:urlDatetime?',
+        path: '/zone/:zoneId/:urlTimeRange?/:urlDatetime?',
         element: (
           <ValidZoneIdGuardWrapper>
-            <TimeAverageGuardWrapper>
+            <TimeRangeGuardWrapper>
               <Suspense fallback={<LoadingSpinner />}>
                 <ZoneDetails />
               </Suspense>
-            </TimeAverageGuardWrapper>
+            </TimeRangeGuardWrapper>
           </ValidZoneIdGuardWrapper>
         ),
       },

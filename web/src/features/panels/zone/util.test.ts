@@ -1,5 +1,5 @@
 import { ZoneDetails } from 'types';
-import { TimeAverages } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -48,7 +48,7 @@ describe('getZoneDataStatus', () => {
     const result = getZoneDataStatus(
       'FI',
       undefined as unknown as ZoneDetails,
-      TimeAverages.HOURLY
+      TimeRange.H24
     );
     expect(result).toEqual(ZoneDataStatus.UNKNOWN);
   });
@@ -64,7 +64,7 @@ describe('getZoneDataStatus', () => {
   );
 
   it.todo(
-    'should return ZoneDataStatus.AGGREGATE_DISABLED when timeAverage is not included in aggregates_displayed'
+    'should return ZoneDataStatus.AGGREGATE_DISABLED when timeRange is not included in aggregates_displayed'
   );
 
   it.todo(

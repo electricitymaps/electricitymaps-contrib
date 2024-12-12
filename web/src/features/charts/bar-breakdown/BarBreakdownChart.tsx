@@ -10,13 +10,13 @@ import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { Charts, EstimationMethods, TimeAverages } from 'utils/constants';
+import { Charts, EstimationMethods, TimeRange } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
   isHourlyAtom,
   productionConsumptionAtom,
-  timeAverageAtom,
+  timeRangeAtom,
 } from 'utils/state/atoms';
 import { useBreakpoint, useIsMobile } from 'utils/styling';
 
@@ -197,16 +197,16 @@ function BarBreakdownChart({
 
 export const useBarBreakdownChartTitle = () => {
   const { t } = useTranslation();
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const [timeRange] = useAtom(timeRangeAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
   const [mixMode] = useAtom(productionConsumptionAtom);
   const dataType = displayByEmissions ? 'emissions' : mixMode;
 
-  return getText(timeAverage, dataType, t);
+  return getText(timeRange, dataType, t);
 };
 
 export const getText = (
-  timePeriod: TimeAverages,
+  timePeriod: TimeRange,
   dataType: 'emissions' | 'production' | 'consumption',
   t: TFunction
 ) => {
@@ -222,7 +222,7 @@ export const getText = (
       consumption: t('country-panel.by-source.total-electricity-consumption'),
     },
   };
-  const period = timePeriod === TimeAverages.HOURLY ? 'hourly' : 'default';
+  const period = timePeriod === TimeRange.H24 ? 'hourly' : 'default';
   return translations[period][dataType];
 };
 

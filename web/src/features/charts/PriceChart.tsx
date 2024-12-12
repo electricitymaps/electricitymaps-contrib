@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Charts, TimeAverages } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
@@ -13,10 +13,10 @@ import PriceChartTooltip from './tooltips/PriceChartTooltip';
 
 interface PriceChartProps {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
-function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
+function PriceChart({ datetimes, timeRange }: PriceChartProps) {
   const { data, isLoading, isError } = usePriceChartData();
   const { t } = useTranslation();
 
@@ -62,7 +62,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   return (
     <RoundedCard>
       <ChartTitle
-        titleText={t(`country-history.electricityprices.${timeAverage}`)}
+        titleText={t(`country-history.electricityprices.${timeRange}`)}
         unit={valueAxisLabel}
         id={Charts.PRICE_CHART}
       />
@@ -83,7 +83,7 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           markerHideHandler={noop}
           height="6em"
           datetimes={datetimes}
-          selectedTimeAggregate={timeAverage}
+          selectedTimeAggregate={timeRange}
           tooltip={PriceChartTooltip}
           isDisabled={isPriceDisabled}
         />

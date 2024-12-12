@@ -8,7 +8,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters, ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { TimeAverages, timeAxisMapping } from 'utils/constants';
+import { TimeRange, timeAxisMapping } from 'utils/constants';
 import { getZoneTimezone } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint, useIsMobile } from 'utils/styling';
@@ -106,7 +106,7 @@ interface AreagraphProps {
   isDisabled?: boolean;
   height: string;
   datetimes: Date[];
-  selectedTimeAggregate: TimeAverages; // TODO: Graph does not need to know about this
+  selectedTimeAggregate: TimeRange; // TODO: Graph does not need to know about this
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
   formatTick?: (t: number) => string | number;

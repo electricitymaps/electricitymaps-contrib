@@ -2,22 +2,28 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import type { GridState, RouteParameters } from 'types';
-import { TimeAverages } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 import { isValidHistoricalTime } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
-import { URL_TO_TIME_AVERAGE } from 'utils/state/atoms';
 
-import { cacheBuster, getBasePath, getHeaders, isValidDate, QUERY_KEYS } from './helpers';
+import {
+  cacheBuster,
+  getBasePath,
+  getHeaders,
+  isValidDate,
+  QUERY_KEYS,
+  TIME_RANGE_TO_TIME_AVERAGE,
+} from './helpers';
 
 const getState = async (
-  timeAverage: TimeAverages,
+  timeRange: TimeRange,
   targetDatetime?: string
 ): Promise<GridState> => {
   const shouldQueryHistorical =
-    targetDatetime && isValidDate(targetDatetime) && isValidHistoricalTime(timeAverage);
+    targetDatetime && isValidDate(targetDatetime) && isValidHistoricalTime(timeRange);
 
   const path: URL = new URL(
-    `v9/state/${timeAverage}${
+    `v9/state/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
@@ -41,20 +47,18 @@ const getState = async (
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const { urlTimeAverage, urlDatetime } = useParams<RouteParameters>();
-  const timeAverage = urlTimeAverage
-    ? URL_TO_TIME_AVERAGE[urlTimeAverage]
-    : TimeAverages.HOURLY;
+  const { urlTimeRange, urlDatetime } = useParams<RouteParameters>();
+  const timeRange = urlTimeRange || TimeRange.H24;
   return useQuery<GridState>({
     queryKey: [
       QUERY_KEYS.STATE,
       {
-        aggregate: timeAverage,
+        aggregate: timeRange,
         targetDatetime: urlDatetime,
       },
     ],
-    queryFn: () => getState(timeAverage, urlDatetime),
-    staleTime: getStaleTime(timeAverage, urlDatetime),
+    queryFn: () => getState(timeRange, urlDatetime),
+    staleTime: getStaleTime(timeRange, urlDatetime),
     refetchOnWindowFocus: true,
   });
 };

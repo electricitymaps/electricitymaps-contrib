@@ -192,8 +192,8 @@ describe('getDestinationPath', () => {
     expect(result).toBe('/path/FR');
   });
 
-  it('should include timeAverage when provided', () => {
-    const result = getDestinationPath({ to: '/path', timeAverage: 'hourly' });
+  it('should include timeRange when provided', () => {
+    const result = getDestinationPath({ to: '/path', timeRange: 'hourly' });
     expect(result).toBe('/path/hourly');
   });
 
@@ -206,7 +206,7 @@ describe('getDestinationPath', () => {
     const result = getDestinationPath({
       to: '/path',
       zoneId: 'FR',
-      timeAverage: 'hourly',
+      timeRange: 'hourly',
       datetime: '2024-03-20',
     });
     expect(result).toBe('/path/FR/hourly/2024-03-20');
@@ -240,7 +240,7 @@ describe('useNavigateWithParameters', () => {
     (useNavigate as any).mockReturnValue(navigateMock);
     (useParams as any).mockReturnValue({
       zoneId: 'FR',
-      urlTimeAverage: 'hourly',
+      urlTimeRange: 'hourly',
       urlDatetime: '2024-03-20T08:00:00z',
     });
     (useMatch as any).mockImplementation((path: any) => (path === '/map/*' ? {} : null));
@@ -316,7 +316,7 @@ describe('useNavigateWithParameters', () => {
     result.current({
       to: '/zone',
       zoneId: 'DE',
-      timeAverage: 'daily',
+      timeRange: 'daily',
       datetime: '2024-03-21',
     });
 
@@ -331,7 +331,7 @@ describe('useNavigateWithParameters', () => {
     result.current({
       to: '/zone',
       zoneId: 'DE',
-      timeAverage: 'daily',
+      timeRange: 'daily',
       datetime: '',
     });
 

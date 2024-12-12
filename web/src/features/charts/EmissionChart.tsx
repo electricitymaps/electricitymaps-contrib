@@ -1,6 +1,6 @@
 import EstimationBadge from 'components/EstimationBadge';
 import { useTranslation } from 'react-i18next';
-import { Charts, TimeAverages } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
 import { ChartTitle } from './ChartTitle';
@@ -12,10 +12,10 @@ import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 
 interface EmissionChartProps {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
-function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
+function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
 
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        titleText={t(`country-history.emissions.${timeAverage}`)}
+        titleText={t(`country-history.emissions.${timeRange}`)}
         badge={badge}
         unit={'CO₂eq'}
         id={Charts.EMISSION_CHART}
@@ -47,7 +47,7 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         datetimes={datetimes}
-        selectedTimeAggregate={timeAverage}
+        selectedTimeAggregate={timeRange}
         height="8em"
         tooltip={EmissionChartTooltip}
         formatTick={formatAxisTick}

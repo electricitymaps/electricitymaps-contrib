@@ -2,7 +2,7 @@ import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useTranslation } from 'react-i18next';
-import { Charts, TimeAverages } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -14,10 +14,10 @@ import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 
 interface CarbonChartProps {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
-function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
+function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
@@ -44,7 +44,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        titleText={t(`country-history.carbonintensity.${timeAverage}`)}
+        titleText={t(`country-history.carbonintensity.${timeRange}`)}
         badge={badge}
         unit={'gCO₂eq / kWh'}
         isEstimated={Boolean(text)}
@@ -59,7 +59,7 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
         markerHideHandler={noop}
         height="8em"
         datetimes={datetimes}
-        selectedTimeAggregate={timeAverage}
+        selectedTimeAggregate={timeRange}
         tooltip={CarbonChartTooltip}
       />
       <div className="pb-1 pt-2">
