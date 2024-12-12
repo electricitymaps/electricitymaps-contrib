@@ -23,7 +23,7 @@ import {
   timeAverageAtom,
 } from 'utils/state/atoms';
 
-const TIME_OFFSETS: Partial<Record<TimeAverages, number>> = {
+const WINDOW_OFFSETS: Partial<Record<TimeAverages, number>> = {
   [TimeAverages.HOURLY]: 24,
   [TimeAverages.HOURLY_72]: 72,
 };
@@ -51,7 +51,7 @@ const useHistoricalNavigation = () => {
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
 
-  const offset = (TIME_OFFSETS[timeAverage] || 0) * 60 * 60 * 1000;
+  const offset = 24 * 60 * 60 * 1000;
 
   return useMemo(() => {
     if (!endDatetime || !offset) {
@@ -62,7 +62,9 @@ const useHistoricalNavigation = () => {
 
     if (urlDatetime) {
       const targetDate = new Date(urlDatetime);
-      targetDate.setUTCHours(targetDate.getUTCHours() - (TIME_OFFSETS[timeAverage] || 0));
+      targetDate.setUTCHours(
+        targetDate.getUTCHours() - (WINDOW_OFFSETS[timeAverage] || 0)
+      );
 
       const maxHistoricalDate = new Date();
       maxHistoricalDate.setUTCDate(
