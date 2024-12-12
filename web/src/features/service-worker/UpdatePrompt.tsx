@@ -12,17 +12,23 @@ function UpdatePrompt() {
     updateServiceWorker,
   } = useRegisterSW({
     onRegisteredSW: (_swURL, registration) => {
-      registration &&
-        setInterval(
-          () => {
-            console.info(`Checking for app update...`);
-            registration.update();
-          },
-          import.meta.env.PROD ? ONE_HOUR : 10 * 1000
-        );
+      if (!registration) {
+        console.warn('Service Worker registration is null');
+        return;
+      }
+
+      setInterval(
+        () => {
+          console.info(`Checking for app update...`);
+          registration.update().catch((error) => {
+            console.error('Failed to update Service Worker:', error);
+          });
+        },
+        import.meta.env.PROD ? ONE_HOUR : 10 * 1000
+      );
     },
     onRegisterError(error) {
-      console.error(`SW registration failed: ${error}`);
+      console.error('SW registration failed:', error);
     },
   });
 
