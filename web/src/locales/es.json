@@ -1,7 +1,8 @@
 {
   "info": {
     "text": "La app Electricity Maps provee información en tiempo real web y móvil para ciudadanos, expertos en energía, ONG y legisladores que promueven un mejor entendimiento de los desafíos de la transición energética.",
-    "open-source-text": "Esta app es de <a href='{{link}}' target='_blank'>código abierto</a> e impulsada por la comunidad."
+    "open-source-text": "Esta app es de <a href='{{link}}' target='_blank'>código abierto</a> e impulsada por la comunidad.",
+    "share-app": "Compartir la aplicación:"
   },
   "button": {
     "feedback": "Comparte tus comentarios",
@@ -116,15 +117,15 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "Datos horarios para:",
-      "daily": "Datos diarios para:",
-      "monthly": "Datos mensuales para:",
-      "yearly": "Datos anuales para:"
+      "24h": "Datos horarios para:",
+      "30d": "Datos diarios para:",
+      "12mo": "Datos mensuales para:",
+      "all": "Datos anuales para:"
     },
-    "daily": "diario",
-    "hourly": "horario",
-    "monthly": "mensual",
-    "yearly": "anual"
+    "30d": "diario",
+    "24h": "horario",
+    "12mo": "mensual",
+    "all": "anual"
   },
   "ranking-panel": {
     "title": "Impacto climático por zona",

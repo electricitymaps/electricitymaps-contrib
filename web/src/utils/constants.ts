@@ -5,21 +5,24 @@ export const metaTitleSuffix = ' | App | Electricity Maps';
 export const baseUrl = 'https://app.electricitymaps.com';
 
 // The order here determines the order displayed
-export enum TimeAverages {
-  HOURLY = 'hourly',
-  DAILY = 'daily',
-  MONTHLY = 'monthly',
-  YEARLY = 'yearly',
+export enum TimeRange {
+  H24 = '24h',
+  H72 = '72h',
+  D30 = '30d',
+  M12 = '12mo',
+  ALL = 'all',
 }
 
 export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
 
-export enum UrlTimeAverages {
-  '24h' = TimeAverages.HOURLY,
-  '30d' = TimeAverages.DAILY,
-  '12mo' = TimeAverages.MONTHLY,
-  'all' = TimeAverages.YEARLY,
-}
+// used in TimeAxis & areWeatherLayersAllowedAtom
+// accommodates 0-based index for 72 hours
+export const HOURLY_TIME_INDEX: Partial<Record<TimeRange, number>> = {
+  [TimeRange.H24]: 24,
+  [TimeRange.H72]: 71,
+};
+
+export const historicalTimeRange = [TimeRange.H24, TimeRange.H72];
 
 export enum ToggleOptions {
   ON = 'on',
@@ -137,12 +140,13 @@ export const modeOrderBarBreakdown = [
   'unknown',
 ] as const;
 
-//A mapping between the TimeAverages enum and the corresponding Duration for the date-fns add/substract method
-export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
-  daily: 'days',
-  hourly: 'hours',
-  monthly: 'months',
-  yearly: 'years',
+// A mapping between the TimeRange enum and the corresponding Duration for the date-fns add/substract method
+export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
+  [TimeRange.D30]: 'days',
+  [TimeRange.H24]: 'hours',
+  [TimeRange.H72]: 'hours',
+  [TimeRange.M12]: 'months',
+  [TimeRange.ALL]: 'years',
 };
 /**
  * A mapping between the source name and a link to the source.

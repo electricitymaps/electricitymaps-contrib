@@ -72,7 +72,7 @@ describe('TimeController', () => {
     // );
 
     // Monthly
-    cy.get('[data-testid="time-controller-daily"]').click();
+    cy.get('[data-testid="time-controller-30d"]').click();
     cy.waitForAPISuccess(`v9/state/daily`);
     cy.waitForAPISuccess(`v9/details/daily/DK-DK2`);
     // cy.get('[data-testid=co2-square-value').should(
@@ -94,7 +94,7 @@ describe('TimeController', () => {
     // );
 
     // Yearly
-    cy.get('[data-testid="time-controller-monthly"]').click();
+    cy.get('[data-testid="time-controller-12mo"]').click();
     cy.waitForAPISuccess(`v9/state/monthly`);
     cy.waitForAPISuccess(`v9/details/monthly/DK-DK2`);
     cy.get('[data-testid=co2-square-value').should(
@@ -116,7 +116,7 @@ describe('TimeController', () => {
     // );
 
     // 5 Years
-    cy.get('[data-testid="time-controller-yearly"]').click();
+    cy.get('[data-testid="time-controller-all"]').click();
     cy.waitForAPISuccess(`v9/state/yearly`);
     cy.waitForAPISuccess(`v9/details/yearly/DK-DK2`);
     cy.get('[data-testid=co2-square-value').should(
