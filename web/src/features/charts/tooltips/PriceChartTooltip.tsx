@@ -1,5 +1,5 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { timeRangeAtom } from 'utils/state/atoms';
 
@@ -8,7 +8,7 @@ import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
-  const [timeRange] = useAtom(timeRangeAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const { t } = useTranslation();
 
   if (!zoneDetail) {

@@ -3,7 +3,7 @@ import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/Feedbac
 import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import {
   ChartNoAxesColumn,
   CircleDashed,
@@ -51,7 +51,7 @@ export default function EstimationCard({
 }) {
   const { t } = useTranslation();
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
-  const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
+  const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
   const isTSAModel = estimationMethod === EstimationMethods.TSA;
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(

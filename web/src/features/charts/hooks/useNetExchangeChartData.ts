@@ -1,7 +1,7 @@
 import useGetZone from 'api/getZone';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { ZoneDetail } from 'types';
 import { TimeRange } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
@@ -31,8 +31,8 @@ export function getFills(data: AreaGraphElement[]) {
 
 export function useNetExchangeChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [timeRange] = useAtom(timeRangeAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
 
   if (isLoading || isError || !zoneData) {
     return { isLoading, isError };
