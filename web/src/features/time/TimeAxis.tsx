@@ -85,12 +85,7 @@ const renderTickValue = (
 ) => {
   const shouldDisplayLive = displayLive && index === HOURLY_TIME_INDEX[selectedTimeRange];
   const textOffset = isValidHistoricalTimeRange(selectedTimeRange) ? 5 : 0;
-  console.log(
-    'shouldDisplayLive',
-    displayLive,
-    index,
-    HOURLY_TIME_INDEX[selectedTimeRange]
-  );
+
   return shouldDisplayLive ? (
     <g>
       <circle cx="-1em" cy="1.15em" r="2" fill="red" />
