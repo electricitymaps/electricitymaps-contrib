@@ -10,7 +10,7 @@ export const useGetCanonicalUrl = () => {
 
   const matches = useMatches();
 
-  const pathname = matches?.at(-1)?.pathname;
+  const pathname = matches?.at(-1)?.pathname ?? '/';
 
   const currentLanguageKey = i18n.languages[0];
   return `${baseUrl}${pathname}${
