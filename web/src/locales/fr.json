@@ -227,16 +227,16 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "Données horaires pour :",
-      "daily": "Données quotidiennes pour :",
-      "monthly": "Données mensuelles pour :",
-      "yearly": "Données annuelles pour :"
+      "24h": "Données horaires pour :",
+      "30d": "Données quotidiennes pour :",
+      "12mo": "Données mensuelles pour :",
+      "all": "Données annuelles pour :"
     },
     "historical-linking": {
-      "daily": "30j",
-      "hourly": "24h",
-      "monthly": "12mo",
-      "yearly": "tout"
+      "30d": "30j",
+      "24h": "24h",
+      "12mo": "12mo",
+      "all": "tout"
     }
   },
   "ranking-panel": {
@@ -266,52 +266,52 @@
   },
   "country-history": {
     "carbonintensity": {
-      "hourly": "Intensité carbone horaire",
-      "daily": "Intensité carbone quotidienne",
-      "monthly": "Intensité carbone mensuelle",
-      "yearly": "Intensité carbone annuelle"
+      "24h": "Intensité carbone horaire",
+      "30d": "Intensité carbone quotidienne",
+      "12mo": "Intensité carbone mensuelle",
+      "all": "Intensité carbone annuelle"
     },
     "emissions": {
-      "hourly": "Emissions de CO2 horaires",
-      "daily": "Emissions de CO2 quotidiennes",
-      "monthly": "Emissions de CO2 mensuelles",
-      "yearly": "Emissions de CO2 annuelles"
+      "24h": "Emissions de CO2 horaires",
+      "30d": "Emissions de CO2 quotidiennes",
+      "12mo": "Emissions de CO2 mensuelles",
+      "all": "Emissions de CO2 annuelles"
     },
     "emissionsorigin": {
-      "hourly": "Origine des émissions de CO2 horaires",
-      "daily": "Origine des émissions de CO2 quotidiennes",
-      "monthly": "Origine des émissions de CO2 mensuelles",
-      "yearly": "Origine des émissions de CO2 annuelles"
+      "24h": "Origine des émissions de CO2 horaires",
+      "30d": "Origine des émissions de CO2 quotidiennes",
+      "12mo": "Origine des émissions de CO2 mensuelles",
+      "all": "Origine des émissions de CO2 annuelles"
     },
     "emissionsproduction": {
-      "hourly": "Emissions horaires pour la production",
-      "daily": "Emissions quotidiennes pour la production",
-      "monthly": "Emissions mensuelles pour la production",
-      "yearly": "Emissions annuelles pour la production"
+      "24h": "Emissions horaires pour la production",
+      "30d": "Emissions quotidiennes pour la production",
+      "12mo": "Emissions mensuelles pour la production",
+      "all": "Emissions annuelles pour la production"
     },
     "electricityorigin": {
-      "hourly": "Origine de l'électricité horaire",
-      "daily": "Origine de l'électricité quotidienne",
-      "monthly": "Origine de l'électricité mensuelle",
-      "yearly": "Origine de l'électricité annuelle"
+      "24h": "Origine de l'électricité horaire",
+      "30d": "Origine de l'électricité quotidienne",
+      "12mo": "Origine de l'électricité mensuelle",
+      "all": "Origine de l'électricité annuelle"
     },
     "electricityproduction": {
-      "hourly": "Production d'électricité horaire",
-      "daily": "Production d'électricité quotidienne",
-      "monthly": "Production d'électricité mensuelle",
-      "yearly": "Production d'électricité annuelle"
+      "24h": "Production d'électricité horaire",
+      "30d": "Production d'électricité quotidienne",
+      "12mo": "Production d'électricité mensuelle",
+      "all": "Production d'électricité annuelle"
     },
     "electricityprices": {
-      "hourly": "Prix de l'électricité horaires",
-      "daily": "Prix de l'électricité quotidiens",
-      "monthly": "Prix de l'électricité mensuels",
-      "yearly": "Prix de l'électricité annuels"
+      "24h": "Prix de l'électricité horaires",
+      "30d": "Prix de l'électricité quotidiens",
+      "12mo": "Prix de l'électricité mensuels",
+      "all": "Prix de l'électricité annuels"
     },
     "netExchange": {
-      "hourly": "Echange net horaire",
-      "daily": "Echange net quotidien",
-      "monthly": "Echange net mensuel",
-      "yearly": "Echange net annuel"
+      "24h": "Echange net horaire",
+      "30d": "Echange net quotidien",
+      "12mo": "Echange net mensuel",
+      "all": "Echange net annuel"
     },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique"
   },

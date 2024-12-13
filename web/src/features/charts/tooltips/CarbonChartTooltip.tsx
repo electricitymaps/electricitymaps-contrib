@@ -4,13 +4,13 @@ import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom, useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { getCarbonIntensity, round } from 'utils/helpers';
-import { isConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
+import { isConsumptionAtom, timeRangeAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const [timeRange] = useAtom(timeRangeAtom);
   const { t } = useTranslation();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const co2ColorScale = useCo2ColorScale();
@@ -39,7 +39,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     >
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
-        timeAverage={timeAverage}
+        timeRange={timeRange}
         squareColor={co2ColorScale(intensity)}
         title={t('tooltips.carbonintensity')}
         hasEstimationPill={hasEstimationPill}

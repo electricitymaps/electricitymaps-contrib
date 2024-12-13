@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { TimeRange, TrackEvent } from 'utils/constants';
 import { getDateTimeFormatOptions } from 'utils/formatting';
 import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
@@ -255,7 +255,7 @@ function TimeDisclaimer() {
   const { i18n } = useTranslation();
   const date = Intl.DateTimeFormat(
     i18n.language,
-    getDateTimeFormatOptions(TimeAverages.HOURLY)
+    getDateTimeFormatOptions(TimeRange.H24)
   ).formatToParts(new Date());
   return (
     <Disclaimer

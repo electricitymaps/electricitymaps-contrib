@@ -6,10 +6,10 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { TFunction } from 'i18next';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 
 const createOption = (
-  time: TimeAverages,
+  time: TimeRange,
   t: TFunction,
   historicalLinkingEnabled: boolean
 ) => ({
@@ -20,19 +20,19 @@ const createOption = (
   dataTestId: `time-controller-${time}`,
 });
 
-export interface TimeAverageToggleProps {
-  timeAverage: TimeAverages;
-  onToggleGroupClick: (newTimeAverage: TimeAverages) => void;
+export interface TimeRangeToggleProps {
+  timeRange: TimeRange;
+  onToggleGroupClick: (newTimeRange: TimeRange) => void;
 }
 
-function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggleProps) {
+function TimeRangeToggle({ timeRange, onToggleGroupClick }: TimeRangeToggleProps) {
   const { t } = useTranslation();
   const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const is72HourEnabled = useFeatureFlag('72-hours');
 
   const timeOptions = is72HourEnabled
-    ? Object.values(TimeAverages)
-    : Object.values(TimeAverages).filter((option) => option !== TimeAverages.HOURLY_72);
+    ? Object.values(TimeRange)
+    : Object.values(TimeRange).filter((option) => option !== TimeRange.H72);
 
   const options = useMemo(
     () =>
@@ -60,7 +60,7 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
           className={`
           h-full grow basis-0 select-none rounded-full text-xs font-semibold capitalize
             ${
-              timeAverage === value
+              timeRange === value
                 ? 'bg-white/80 text-brand-green outline outline-1 outline-neutral-200 dark:bg-gray-600/80 dark:text-white dark:outline-gray-400/10'
                 : ''
             }
@@ -73,4 +73,4 @@ function TimeAverageToggle({ timeAverage, onToggleGroupClick }: TimeAverageToggl
   );
 }
 
-export default TimeAverageToggle;
+export default TimeRangeToggle;
