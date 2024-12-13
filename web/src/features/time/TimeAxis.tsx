@@ -24,10 +24,16 @@ const renderTick = (
   lang: string,
   selectedTimeRange: TimeRange,
   isLoading: boolean,
-  timezone?: string
+  timezone?: string,
+  chartHeight?: number,
+  isTimeController?: boolean
 ) => {
   // Special-casing index 72 for 72 hour resolution: Typically we retrieve resolution + 1 records
   // from app-backend, but we're retrieving only 72 records for 72 hour resolution
+
+  const isMidnightTime = isMidnight(value, timezone);
+
+  // Show if it's midnight or if hours since midnight is divisible by the frequency
   const shouldShowValue =
     !isLoading &&
     ((index % TIME_TO_TICK_FREQUENCY[selectedTimeRange] === 0 && index !== 72) ||
@@ -41,10 +47,31 @@ const renderTick = (
       opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
+      {isMidnightTime && !isTimeController && (
+        <line
+          stroke="currentColor"
+          strokeDasharray="2,2"
+          y1={chartHeight ? -chartHeight : '-100%'}
+          y2="0"
+          opacity={0.6}
+          className="midnight-marker"
+        />
+      )}
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
     </g>
+  );
+};
+
+const isMidnight = (date: Date, timezone?: string) => {
+  if (!timezone) {
+    return date.getHours() === 0 && date.getMinutes() === 0;
+  }
+
+  return (
+    new Date(date.toLocaleString('en-US', { timeZone: timezone })).getHours() === 0 &&
+    new Date(date.toLocaleString('en-US', { timeZone: timezone })).getMinutes() === 0
   );
 };
 
@@ -58,7 +85,12 @@ const renderTickValue = (
 ) => {
   const shouldDisplayLive = displayLive && index === HOURLY_TIME_INDEX[selectedTimeRange];
   const textOffset = isValidHistoricalTimeRange(selectedTimeRange) ? 5 : 0;
-
+  console.log(
+    'shouldDisplayLive',
+    displayLive,
+    index,
+    HOURLY_TIME_INDEX[selectedTimeRange]
+  );
   return shouldDisplayLive ? (
     <g>
       <circle cx="-1em" cy="1.15em" r="2" fill="red" />
@@ -85,6 +117,8 @@ interface TimeAxisProps {
   scaleWidth?: number;
   className?: string;
   timezone?: string;
+  chartHeight?: number;
+  isTimeController?: boolean;
 }
 
 function TimeAxis({
@@ -96,6 +130,8 @@ function TimeAxis({
   isLiveDisplay,
   className,
   timezone,
+  chartHeight,
+  isTimeController,
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
@@ -123,16 +159,20 @@ function TimeAxis({
       >
         <path stroke="none" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
         {datetimes.map((v, index) =>
-          renderTick(
-            scale,
-            v,
-            index,
-            isLiveDisplay ?? false,
-            i18n.language,
-            selectedTimeRange,
-            isLoading,
-            timezone
-          )
+          index < datetimes.length - 1 || isTimeController
+            ? renderTick(
+                scale,
+                v,
+                index,
+                isLiveDisplay ?? false,
+                i18n.language,
+                selectedTimeRange,
+                isLoading,
+                timezone,
+                chartHeight,
+                isTimeController
+              )
+            : null
         )}
       </g>
     </svg>
