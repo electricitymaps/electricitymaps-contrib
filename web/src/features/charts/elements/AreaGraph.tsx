@@ -22,9 +22,9 @@ import GraphBackground from './GraphBackground';
 import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
 
-const X_AXIS_HEIGHT = 20;
-const Y_AXIS_WIDTH = 26;
-const Y_AXIS_PADDING = 2;
+export const X_AXIS_HEIGHT = 20;
+export const Y_AXIS_WIDTH = 26;
+export const Y_AXIS_PADDING = 2;
 
 interface Layer {
   key: string;
