@@ -9,12 +9,13 @@ import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters, ZoneMessage } from 'types';
 import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
+import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isHourlyAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
-  timeAverageAtom,
+  timeRangeAtom,
 } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
@@ -30,7 +31,7 @@ import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
@@ -66,14 +67,16 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
+  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeRange);
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationPill =
+    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
@@ -93,7 +96,7 @@ export default function ZoneDetails(): JSX.Element {
               cardType={cardType}
               estimationMethod={estimationMethod}
               zoneMessage={zoneMessage}
-              estimatedPercentage={selectedData?.estimatedPercentage}
+              estimatedPercentage={roundedEstimatedPercentage}
             />
           )}
         <ZoneHeaderGauges zoneKey={zoneId} />
@@ -111,7 +114,7 @@ export default function ZoneDetails(): JSX.Element {
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
-              timeAverage={timeAverage}
+              timeRange={timeRange}
               displayByEmissions={displayByEmissions}
             />
           )}

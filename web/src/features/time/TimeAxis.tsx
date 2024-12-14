@@ -2,16 +2,18 @@ import { ScaleTime, scaleTime } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
-import { TimeAverages } from 'utils/constants';
+import { HOURLY_TIME_INDEX, TimeRange } from 'utils/constants';
+import { isValidHistoricalTimeRange } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
 
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
-  hourly: 6,
-  daily: 6,
-  monthly: 1,
-  yearly: 1,
+  '24h': 6,
+  '72h': 12,
+  '30d': 6,
+  '12mo': 1,
+  all: 1,
 };
 
 const renderTick = (
@@ -20,14 +22,20 @@ const renderTick = (
   index: number,
   displayLive: boolean,
   lang: string,
-  selectedTimeAggregate: TimeAverages,
+  selectedTimeRange: TimeRange,
   isLoading: boolean,
   timezone?: string
 ) => {
+  // Special-casing index 72 for 72 hour resolution: Typically we retrieve resolution + 1 records
+  // from app-backend, but we're retrieving only 72 records for 72 hour resolution
   const shouldShowValue =
-    index % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
+    !isLoading &&
+    ((index % TIME_TO_TICK_FREQUENCY[selectedTimeRange] === 0 && index !== 72) ||
+      index === HOURLY_TIME_INDEX[selectedTimeRange]);
+
   return (
     <g
+      id={index.toString()}
       key={`timeaxis-tick-${index}`}
       className="text-xs"
       opacity={1}
@@ -35,7 +43,7 @@ const renderTick = (
     >
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
       {shouldShowValue &&
-        renderTickValue(value, index, displayLive, lang, selectedTimeAggregate, timezone)}
+        renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
     </g>
   );
 };
@@ -45,11 +53,12 @@ const renderTickValue = (
   index: number,
   displayLive: boolean,
   lang: string,
-  selectedTimeAggregate: TimeAverages,
+  selectedTimeRange: TimeRange,
   timezone?: string
 ) => {
-  const shouldDisplayLive = index === 24 && displayLive;
-  const textOffset = selectedTimeAggregate === TimeAverages.HOURLY ? 5 : 0;
+  const shouldDisplayLive = displayLive && index === HOURLY_TIME_INDEX[selectedTimeRange];
+  const textOffset = isValidHistoricalTimeRange(selectedTimeRange) ? 5 : 0;
+
   return shouldDisplayLive ? (
     <g>
       <circle cx="-1em" cy="1.15em" r="2" fill="red" />
@@ -59,7 +68,7 @@ const renderTickValue = (
     </g>
   ) : (
     <text fill="currentColor" y="9" x={textOffset} dy="0.71em" fontSize={'0.65rem'}>
-      {formatDateTick(v, lang, selectedTimeAggregate, timezone)}
+      {formatDateTick(v, lang, selectedTimeRange, timezone)}
     </text>
   );
 };
@@ -67,7 +76,7 @@ const renderTickValue = (
 const getTimeScale = (rangeEnd: number, startDate: Date, endDate: Date) =>
   scaleTime().domain([startDate, endDate]).range([0, rangeEnd]);
 interface TimeAxisProps {
-  selectedTimeAggregate: TimeAverages;
+  selectedTimeRange: TimeRange;
   datetimes: Date[] | undefined;
   isLoading: boolean;
   scale?: ScaleTime<number, number>;
@@ -79,7 +88,7 @@ interface TimeAxisProps {
 }
 
 function TimeAxis({
-  selectedTimeAggregate,
+  selectedTimeRange,
   datetimes,
   isLoading,
   transform,
@@ -120,7 +129,7 @@ function TimeAxis({
             index,
             isLiveDisplay ?? false,
             i18n.language,
-            selectedTimeAggregate,
+            selectedTimeRange,
             isLoading,
             timezone
           )
