@@ -35,7 +35,12 @@ const clamp = (date: number, offset: number) => {
     return '';
   }
 
-  return new Date(newDate).toISOString();
+  // Offset to 3 hours ago (taking into consideration that we're over the end datetime so actually -2).This mimics the logic on the backend in get_latest_complete_flowtraced_dt
+  const d = new Date(newDate);
+  d.setUTCHours(new Date().getUTCHours() - 2);
+  d.setUTCMinutes(0, 0, 0);
+
+  return d.toISOString();
 };
 
 const EMPTY_IMPLEMENTATION = {
