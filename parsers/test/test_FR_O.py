@@ -110,7 +110,7 @@ class TestFR_O(unittest.TestCase):
             json=json.loads(
                 resources.files("parsers.test.mocks.FR_O")
                 .joinpath("FR_COR.json")
-                .read_text()
+                .read_text(encoding="utf-8")
             ),
         )
         data_list = FR_O.fetch_production(ZoneKey("FR-COR"), self.session)
@@ -118,33 +118,35 @@ class TestFR_O(unittest.TestCase):
         expected_production_data = [
             {
                 "correctedModes": [],
-                "datetime": datetime.fromisoformat("2023-07-02T15:26:00+00:00"),
-                "zoneKey": "FR-COR",
+                "datetime": datetime.fromisoformat("2024-12-15T10:45:00+00:00"),
                 "production": {
-                    "biomass": 0.38,
-                    "hydro": 5.472,
-                    "oil": 108.956,
-                    "solar": 73.23,
-                    "wind": 2.386,
-                },
-                "storage": {"battery": 0.32},
-                "source": "opendata-corse.edf.fr",
-                "sourceType": "estimated",
-            },
-            {
-                "correctedModes": [],
-                "datetime": datetime.fromisoformat("2023-07-02T15:31:00+00:00"),
-                "production": {
-                    "biomass": 0.38,
-                    "hydro": 5.426,
-                    "oil": 110.232,
-                    "solar": 74.562,
-                    "wind": 2.348,
+                    "biomass": 2.0,
+                    "gas": 0.0,
+                    "hydro": 26.7,
+                    "oil": 105.2,
+                    "solar": 103.8,
+                    "wind": 0.0,
                 },
                 "source": "opendata-corse.edf.fr",
                 "sourceType": "estimated",
                 "storage": {"battery": -0.0},
                 "zoneKey": "FR-COR",
+            },
+            {
+                "correctedModes": [],
+                "datetime": datetime.fromisoformat("2024-12-15T11:00:00+00:00"),
+                "zoneKey": "FR-COR",
+                "production": {
+                    "biomass": 2.0,
+                    "gas": 0.0,
+                    "hydro": 25.8,
+                    "oil": 105.3,
+                    "solar": 104.1,
+                    "wind": 0.0,
+                },
+                "storage": {"battery": -0.0},
+                "source": "opendata-corse.edf.fr",
+                "sourceType": "estimated",
             },
         ]
         self.assertEqual(len(data_list), len(expected_production_data))

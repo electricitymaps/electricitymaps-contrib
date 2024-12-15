@@ -141,10 +141,10 @@
     }
   },
   "time-controller": {
-    "daily": "每日",
-    "hourly": "每小時",
-    "monthly": "每月",
-    "yearly": "每年"
+    "30d": "每日",
+    "24h": "每小時",
+    "12mo": "每月",
+    "all": "每年"
   },
   "ranking-panel": {
     "title": "各地區對氣候的影響",
@@ -153,52 +153,52 @@
   },
   "country-history": {
     "carbonintensity": {
-      "hourly": "每小時碳強度",
-      "daily": "每日碳強度",
-      "monthly": "每月碳強度",
-      "yearly": "每年碳強度"
+      "24h": "每小時碳強度",
+      "30d": "每日碳強度",
+      "12mo": "每月碳強度",
+      "all": "每年碳強度"
     },
     "emissions": {
-      "hourly": "每小時碳排放",
-      "daily": "每日碳排放",
-      "monthly": "每月碳排放",
-      "yearly": "每年碳排放"
+      "24h": "每小時碳排放",
+      "30d": "每日碳排放",
+      "12mo": "每月碳排放",
+      "all": "每年碳排放"
     },
     "emissionsorigin": {
-      "hourly": "每小時碳排放來源",
-      "daily": "每日碳排放來源",
-      "monthly": "每月碳排放來源",
-      "yearly": "每年碳排放來源"
+      "24h": "每小時碳排放來源",
+      "30d": "每日碳排放來源",
+      "12mo": "每月碳排放來源",
+      "all": "每年碳排放來源"
     },
     "emissionsproduction": {
-      "hourly": "每小時生產排放",
-      "daily": "每日生產排放",
-      "monthly": "每月生產排放",
-      "yearly": "每年生產排放"
+      "24h": "每小時生產排放",
+      "30d": "每日生產排放",
+      "12mo": "每月生產排放",
+      "all": "每年生產排放"
     },
     "electricityorigin": {
-      "hourly": "每小時電力來源",
-      "daily": "每日電力來源",
-      "monthly": "每月電力來源",
-      "yearly": "每年電力來源"
+      "24h": "每小時電力來源",
+      "30d": "每日電力來源",
+      "12mo": "每月電力來源",
+      "all": "每年電力來源"
     },
     "electricityproduction": {
-      "hourly": "每小時電力生產",
-      "daily": "每日電力生產",
-      "monthly": "每月電力生產",
-      "yearly": "每年電力生產"
+      "24h": "每小時電力生產",
+      "30d": "每日電力生產",
+      "12mo": "每月電力生產",
+      "all": "每年電力生產"
     },
     "electricityprices": {
-      "hourly": "每小時電價",
-      "daily": "每日電價",
-      "monthly": "每月電價",
-      "yearly": "每年電價"
+      "24h": "每小時電價",
+      "30d": "每日電價",
+      "12mo": "每月電價",
+      "all": "每年電價"
     },
     "netExchange": {
-      "hourly": "每小時淨交換",
-      "daily": "每日淨交換",
-      "monthly": "每月淨交換",
-      "yearly": "每年淨交換"
+      "24h": "每小時淨交換",
+      "30d": "每日淨交換",
+      "12mo": "每月淨交換",
+      "all": "每年淨交換"
     },
     "not-enough-data": "沒有足夠的數據來顯示圖表"
   },

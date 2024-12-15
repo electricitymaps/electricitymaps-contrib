@@ -5,7 +5,7 @@ import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { EstimationMethods, TimeAverages } from 'utils/constants';
+import { EstimationMethods, TimeRange } from 'utils/constants';
 import { endDatetimeAtom } from 'utils/state/atoms';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
@@ -13,7 +13,7 @@ import ProductionSourceIcon from '../ProductionsSourceIcons';
 interface AreaGraphToolTipHeaderProps {
   squareColor: string;
   datetime: Date;
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
   title: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
@@ -24,7 +24,7 @@ interface AreaGraphToolTipHeaderProps {
 export default function AreaGraphToolTipHeader({
   squareColor,
   datetime,
-  timeAverage,
+  timeRange,
   title,
   hasEstimationPill = false,
   estimatedPercentage,
@@ -63,7 +63,7 @@ export default function AreaGraphToolTipHeader({
         endDatetime={endDatetime}
         datetime={datetime}
         language={i18n.languages[0]}
-        timeAverage={timeAverage}
+        timeRange={timeRange}
         className="text-sm"
       />
       <HorizontalDivider />
