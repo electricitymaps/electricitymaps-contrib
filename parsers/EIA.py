@@ -9,7 +9,7 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 
@@ -689,9 +689,7 @@ def _fetch(
     return [
         {
             "zoneKey": zone_key,
-            "datetime": _get_utc_datetime_from_datapoint(
-                parser.parse(datapoint["period"])
-            ),
+            "datetime": _parse_hourly_interval(datapoint["period"]),
             "value": float(datapoint["value"]) if datapoint["value"] else None,
             "source": "eia.gov",
         }
@@ -699,17 +697,18 @@ def _fetch(
     ]
 
 
-def _conform_timestamp_convention(dt: datetime):
+def _parse_hourly_interval(period: str):
+    interval_end_naive = parser.parse(period)
+
+    # NB: the query parameter 'frequency=hourly' requests data in UTC; to
+    # retrieve zone-local time intervals, use 'frequency=local-hourly' instead.
+    interval_end = interval_end_naive.replace(tzinfo=timezone.utc)
+
     # The timestamp given by EIA represents the end of the time interval.
     # ElectricityMap using another convention,
     # where the timestamp represents the beginning of the interval.
     # So we need shift the datetime 1 hour back.
-    return dt - timedelta(hours=1)
-
-
-def _get_utc_datetime_from_datapoint(dt: datetime):
-    """update to beginning hour convention and timezone to utc"""
-    return _conform_timestamp_convention(dt.replace(tzinfo=tz.gettz("UTC")))
+    return interval_end - timedelta(hours=1)
 
 
 if __name__ == "__main__":
