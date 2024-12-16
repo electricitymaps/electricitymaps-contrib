@@ -33,7 +33,6 @@ const renderTick = (
 
   const isMidnightTime = isMidnight(value, timezone);
 
-  // Show if it's midnight or if hours since midnight is divisible by the frequency
   const shouldShowValue =
     !isLoading &&
     ((index % TIME_TO_TICK_FREQUENCY[selectedTimeRange] === 0 && index !== 72) ||
