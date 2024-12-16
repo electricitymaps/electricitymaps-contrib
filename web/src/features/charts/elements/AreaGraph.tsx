@@ -22,9 +22,9 @@ import GraphBackground from './GraphBackground';
 import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
 
-const X_AXIS_HEIGHT = 20;
-const Y_AXIS_WIDTH = 26;
-const Y_AXIS_PADDING = 2;
+export const X_AXIS_HEIGHT = 20;
+export const Y_AXIS_WIDTH = 26;
+export const Y_AXIS_PADDING = 2;
 
 interface Layer {
   key: string;
@@ -150,6 +150,7 @@ function AreaGraph({
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);
   const containerHeight = Math.max(observerHeight - X_AXIS_HEIGHT, 0);
+  const barWidth = containerWidth / datetimes.length;
 
   // Build layers
   const layers = useMemo(
@@ -294,9 +295,10 @@ function AreaGraph({
           selectedTimeRange={selectedTimeRange}
           datetimes={datetimesWithNext}
           scaleWidth={containerWidth}
-          transform={`translate(5 ${containerHeight})`}
+          transform={`translate(${barWidth / 2} ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
           timezone={zoneTimezone}
+          chartHeight={containerHeight}
         />
         <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
         <GraphHoverLine

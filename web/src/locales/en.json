@@ -337,7 +337,8 @@
       "12mo": "Monthly net exchange",
       "all": "Yearly net exchange"
     },
-    "not-enough-data": "Not enough data available to display chart"
+    "not-enough-data": "Not enough data available to display chart",
+    "exchange-delay": "Exchange data may be delayed by up to 48h."
   },
   "footer": {
     "foundbugs": "Found bugs or have ideas? Report them",
