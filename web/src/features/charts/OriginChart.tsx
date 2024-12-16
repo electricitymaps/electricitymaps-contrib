@@ -4,7 +4,7 @@ import { useAtomValue } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
-import { Charts, TimeAverages } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
@@ -22,7 +22,7 @@ import { AreaGraphElement } from './types';
 interface OriginChartProps {
   displayByEmissions: boolean;
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
 // TODO(cady): fix types to use ElectricityModeType
@@ -65,7 +65,7 @@ const useSelectedData = (displayByEmissions: boolean): SelectedData => {
   );
 };
 
-function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChartProps) {
+function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartProps) {
   const { data } = useOriginChartData();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
@@ -106,7 +106,7 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
   return (
     <RoundedCard>
       <ChartTitle
-        titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeAverage}`)}
+        titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeRange}`)}
         badge={badge}
         isEstimated={Boolean(text)}
         unit={valueAxisLabel}
@@ -124,7 +124,7 @@ function OriginChart({ displayByEmissions, datetimes, timeAverage }: OriginChart
           markerHideHandler={noop}
           height="10em"
           datetimes={datetimes}
-          selectedTimeAggregate={timeAverage}
+          selectedTimeRange={timeRange}
           tooltip={BreakdownChartTooltip}
           tooltipSize={displayByEmissions ? 'small' : 'large'}
           {...(displayByEmissions && { formatTick: formatAxisTick })}

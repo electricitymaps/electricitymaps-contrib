@@ -1,5 +1,5 @@
 import useGetState from 'api/getState';
-import TimeAverageToggle from 'components/TimeAverageToggle';
+import TimeRangeToggle from 'components/TimeRangeToggle';
 import TimeSlider from 'components/TimeSlider';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { TimeRange, TrackEvent } from 'utils/constants';
 import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
@@ -16,7 +16,7 @@ import {
   isRedirectedToLatestDatetimeAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
-  useTimeAverageSync,
+  useTimeRangeSync,
 } from 'utils/state/atoms';
 import { useIsBiggerThanMobile } from 'utils/styling';
 
@@ -31,7 +31,7 @@ export default function TimeController({ className }: { className?: string }) {
   const { data, isLoading: dataLoading } = useGetState();
   const isBiggerThanMobile = useIsBiggerThanMobile();
   const { zoneId } = useParams<RouteParameters>();
-  const [selectedTimeAverage, setTimeAverage] = useTimeAverageSync();
+  const [selectedTimeRange, setTimeRange] = useTimeRangeSync();
   const setEndDatetime = useSetAtom(endDatetimeAtom);
   const setStartDatetime = useSetAtom(startDatetimeAtom);
   const { urlDatetime } = useParams();
@@ -101,16 +101,16 @@ export default function TimeController({ className }: { className?: string }) {
   );
 
   const onToggleGroupClick = useCallback(
-    (timeAverage: TimeAverages) => {
+    (timeRange: TimeRange) => {
       // Set time slider to latest value before switching aggregate to avoid flickering
       setSelectedDatetime({
         datetime: selectedDatetime.datetime,
         index: numberOfEntries,
       });
-      setTimeAverage(timeAverage);
-      trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeAverage });
+      setTimeRange(timeRange);
+      trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeRange });
     },
-    [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeAverage]
+    [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeRange]
   );
 
   return (
@@ -118,8 +118,8 @@ export default function TimeController({ className }: { className?: string }) {
       {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
       {isBiggerThanMobile && historicalLinkingEnabled && <HistoricalTimeHeader />}
       <div className="flex items-center gap-2">
-        <TimeAverageToggle
-          timeAverage={selectedTimeAverage || TimeAverages.HOURLY}
+        <TimeRangeToggle
+          timeRange={selectedTimeRange || TimeRange.H24}
           onToggleGroupClick={onToggleGroupClick}
         />
       </div>
@@ -133,7 +133,7 @@ export default function TimeController({ className }: { className?: string }) {
         />
         <TimeAxis
           datetimes={datetimes}
-          selectedTimeAggregate={selectedTimeAverage || TimeAverages.HOURLY}
+          selectedTimeRange={selectedTimeRange || TimeRange.H24}
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}

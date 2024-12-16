@@ -8,8 +8,8 @@ import { ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
-import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
+import { TimeRange, TrackEvent } from 'utils/constants';
+import { isHourlyAtom, timeRangeAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
 
@@ -74,9 +74,9 @@ export const getThumbIcon = (
   );
 };
 
-function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
+function trackTimeSliderEvent(selectedIndex: number, timeRange: TimeRange) {
   trackEvent(TrackEvent.TIME_SLIDER_BUTTON, {
-    selectedIndex: `${timeAverage}: ${selectedIndex}`,
+    selectedIndex: `${timeRange}: ${selectedIndex}`,
   });
 }
 
@@ -91,7 +91,7 @@ export function TimeSliderBasic({
   trackBackground,
   thumbIcon,
 }: TimeSliderBasicProps) {
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const [timeRange] = useAtom(timeRangeAtom);
   return (
     <SliderPrimitive.Root
       defaultValue={[0]}
@@ -100,7 +100,7 @@ export function TimeSliderBasic({
       value={selectedIndex && selectedIndex > 0 ? [selectedIndex] : [0]}
       onValueChange={(value) => {
         onChange(value[0]);
-        trackTimeSliderEvent(value[0], timeAverage);
+        trackTimeSliderEvent(value[0], timeRange);
       }}
       aria-label="choose time"
       className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"

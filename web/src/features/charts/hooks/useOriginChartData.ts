@@ -11,13 +11,13 @@ import {
   RouteParameters,
   ZoneDetail,
 } from 'types';
-import { modeColor, modeOrder, SpatialAggregate, TimeAverages } from 'utils/constants';
+import { modeColor, modeOrder, SpatialAggregate } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
+  isHourlyAtom,
   spatialAggregateAtom,
-  timeAverageAtom,
 } from 'utils/state/atoms';
 
 import { getExchangesToDisplay } from '../bar-breakdown/utils';
@@ -46,7 +46,7 @@ export default function useOriginChartData() {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const viewMode = useAtomValue(spatialAggregateAtom);
-  const timeAggregate = useAtomValue(timeAverageAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
@@ -61,7 +61,7 @@ export default function useOriginChartData() {
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
     displayByEmissions,
-    timeAggregate
+    isHourly
   );
 
   const chartData: AreaGraphElement[] = [];
@@ -180,14 +180,13 @@ interface ValuesInfo {
 function getValuesInfo(
   historyData: ZoneDetail[],
   displayByEmissions: boolean,
-  timeAggregate: string
+  isHourly: boolean
 ): ValuesInfo {
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     displayByEmissions
       ? getTotalEmissionsAvailable(d, true)
       : getTotalElectricityAvailable(d, true)
   );
-  const isHourly = timeAggregate === TimeAverages.HOURLY;
   const format = displayByEmissions
     ? // Value factor of 1000 to convert from MW to KW
       { formattingFactor: 1000, unit: 'CO₂eq' }

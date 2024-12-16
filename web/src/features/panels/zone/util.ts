@@ -1,5 +1,5 @@
 import { ZoneDetails } from 'types';
-import { TimeAverages } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 
 import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
 import { CombinedZonesConfig } from '../../../../geo/types';
@@ -40,7 +40,7 @@ export enum ZoneDataStatus {
 export const getZoneDataStatus = (
   zoneId: string,
   zoneDetails: ZoneDetails | undefined,
-  timeAverage: TimeAverages
+  timeRange: TimeRange
 ) => {
   // If there is no zoneDetails, we do not make any assumptions and return unknown
   if (!zoneDetails) {
@@ -60,7 +60,7 @@ export const getZoneDataStatus = (
 
   if (
     zones[zoneId].aggregates_displayed &&
-    !zones[zoneId].aggregates_displayed.includes(timeAverage)
+    !zones[zoneId].aggregates_displayed.includes(timeRange)
   ) {
     if (zones[zoneId].aggregates_displayed[0] === 'none') {
       return ZoneDataStatus.FULLY_DISABLED;

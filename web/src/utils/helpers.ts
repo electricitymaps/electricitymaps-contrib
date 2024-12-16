@@ -17,7 +17,7 @@ import {
 
 import zonesConfigJSON from '../../config/zones.json';
 import { CombinedZonesConfig } from '../../geo/types';
-import { historicalTimeAverages, TimeAverages } from './constants';
+import { historicalTimeRange, TimeRange } from './constants';
 
 export function useGetZoneFromPath() {
   const { zoneId } = useParams<RouteParameters>();
@@ -73,7 +73,7 @@ export function useNavigateWithParameters() {
   const location = useLocation();
   const {
     zoneId: previousZoneId,
-    urlTimeAverage: previousTimeAverage,
+    urlTimeRange: previousTimeRange,
     urlDatetime: previousDatetime,
   } = useParams();
   const parameters = useMatches();
@@ -84,13 +84,13 @@ export function useNavigateWithParameters() {
   return ({
     to = basePath,
     zoneId = isZoneRoute ? previousZoneId : undefined,
-    timeAverage = previousTimeAverage,
+    timeRange = previousTimeRange,
     datetime = previousDatetime,
     keepHashParameters = true,
   }: {
     to?: string;
     zoneId?: string;
-    timeAverage?: string;
+    timeRange?: string;
     datetime?: string;
     keepHashParameters?: boolean;
   }) => {
@@ -100,7 +100,7 @@ export function useNavigateWithParameters() {
     const path = getDestinationPath({
       to,
       zoneId: isDestinationZoneRoute ? zoneId : undefined,
-      timeAverage,
+      timeRange,
       datetime,
     });
     const fullPath = {
@@ -115,15 +115,15 @@ export function useNavigateWithParameters() {
 export function getDestinationPath({
   to,
   zoneId,
-  timeAverage,
+  timeRange,
   datetime,
 }: {
   to: string;
   zoneId?: string;
-  timeAverage?: string;
+  timeRange?: string;
   datetime?: string;
 }) {
-  return `${to}${zoneId ? `/${zoneId}` : ''}${timeAverage ? `/${timeAverage}` : ''}${
+  return `${to}${zoneId ? `/${zoneId}` : ''}${timeRange ? `/${timeRange}` : ''}${
     datetime ? `/${datetime}` : ''
   }`;
 }
@@ -238,5 +238,5 @@ export const hasMobileUserAgent = () =>
     navigator.userAgent
   );
 
-export const isValidHistoricalTime = (timeAggregate: TimeAverages) =>
-  historicalTimeAverages.includes(timeAggregate);
+export const isValidHistoricalTimeRange = (timeRange: TimeRange) =>
+  historicalTimeRange.includes(timeRange);

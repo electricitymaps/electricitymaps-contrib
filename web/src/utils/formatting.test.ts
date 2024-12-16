@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { TimeAverages } from './constants';
+import { TimeRange } from './constants';
 import {
   formatCo2,
   formatDataSources,
@@ -356,7 +356,7 @@ describe('formatCo2', () => {
 
 describe('getDateTimeFormatOptions', () => {
   it('handles hourly data', () => {
-    const actual = getDateTimeFormatOptions(TimeAverages.HOURLY, 'UTC');
+    const actual = getDateTimeFormatOptions(TimeRange.H24, 'UTC');
     const expected = {
       year: 'numeric',
       month: 'short',
@@ -370,7 +370,7 @@ describe('getDateTimeFormatOptions', () => {
   });
 
   it('handles hourly data without timezone', () => {
-    const actual = getDateTimeFormatOptions(TimeAverages.HOURLY);
+    const actual = getDateTimeFormatOptions(TimeRange.H24);
     const expected = {
       year: 'numeric',
       month: 'short',
@@ -384,7 +384,7 @@ describe('getDateTimeFormatOptions', () => {
   });
 
   it('handles daily data', () => {
-    const actual = getDateTimeFormatOptions(TimeAverages.DAILY);
+    const actual = getDateTimeFormatOptions(TimeRange.D30);
     const expected = {
       dateStyle: 'long',
       timeZone: 'UTC',
@@ -392,7 +392,7 @@ describe('getDateTimeFormatOptions', () => {
     expect(actual).to.deep.eq(expected);
   });
   it('handles monthly data', () => {
-    const actual = getDateTimeFormatOptions(TimeAverages.MONTHLY);
+    const actual = getDateTimeFormatOptions(TimeRange.M12);
     const expected = {
       month: 'long',
       year: 'numeric',
@@ -401,7 +401,7 @@ describe('getDateTimeFormatOptions', () => {
     expect(actual).to.deep.eq(expected);
   });
   it('handles yearly data', () => {
-    const actual = getDateTimeFormatOptions(TimeAverages.YEARLY);
+    const actual = getDateTimeFormatOptions(TimeRange.ALL);
     const expected = {
       year: 'numeric',
       timeZone: 'UTC',
@@ -412,7 +412,7 @@ describe('getDateTimeFormatOptions', () => {
     // Spy on console.error to check if it is called
     const consoleErrorSpy = vi.spyOn(console, 'error');
 
-    const actual = getDateTimeFormatOptions('ThisAggregateDoesNotExist' as TimeAverages);
+    const actual = getDateTimeFormatOptions('ThisAggregateDoesNotExist' as TimeRange);
     const expected = {};
     expect(actual).to.deep.eq(expected);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
@@ -428,13 +428,13 @@ describe('getDateTimeFormatOptions', () => {
 // and may fail if the Node version changes. Simply update the snapshot if that is the case.
 describe('formatDate', () => {
   it('handles invalid date', () => {
-    const actual = formatDate(new Date('invalid-date'), 'en', TimeAverages.HOURLY);
+    const actual = formatDate(new Date('invalid-date'), 'en', TimeRange.H24);
     const expected = '';
     expect(actual).to.deep.eq(expected);
   });
 
   it('handles a date that is not a Date object', () => {
-    const actual = formatDate('not-a-date' as unknown as Date, 'en', TimeAverages.HOURLY);
+    const actual = formatDate('not-a-date' as unknown as Date, 'en', TimeRange.H24);
     const expected = '';
     expect(actual).to.deep.eq(expected);
   });
@@ -445,7 +445,7 @@ describe('formatDate', () => {
       const actual = formatDate(
         new Date('2021-01-01T00:00:00Z'),
         language,
-        TimeAverages.HOURLY
+        TimeRange.H24
       );
       expect(actual).toMatchSnapshot();
     }
@@ -457,7 +457,7 @@ describe('formatDate', () => {
       const actual = formatDate(
         new Date('2021-01-01T00:00:00Z'),
         language,
-        TimeAverages.DAILY
+        TimeRange.D30
       );
       expect(actual).toMatchSnapshot();
     }
@@ -469,7 +469,7 @@ describe('formatDate', () => {
       const actual = formatDate(
         new Date('2021-01-01T00:00:00Z'),
         language,
-        TimeAverages.MONTHLY
+        TimeRange.M12
       );
       expect(actual).toMatchSnapshot();
     }
@@ -481,7 +481,7 @@ describe('formatDate', () => {
       const actual = formatDate(
         new Date('2021-01-01T00:00:00Z'),
         language,
-        TimeAverages.YEARLY
+        TimeRange.ALL
       );
       expect(actual).toMatchSnapshot();
     }
@@ -494,7 +494,7 @@ describe('formatDate', () => {
     const actual = formatDate(
       new Date('2021-01-01T00:00:00Z'),
       'en',
-      'ThisAggregateDoesNotExist' as TimeAverages
+      'ThisAggregateDoesNotExist' as TimeRange
     );
     const expected = '1/1/2021';
     expect(actual).to.deep.eq(expected);
@@ -551,13 +551,13 @@ describe('scalePower', () => {
 
 describe('formatDateTick', () => {
   it('should return an empty string for invalid date', () => {
-    const result = formatDateTick(new Date('invalid-date'), 'en', TimeAverages.HOURLY);
+    const result = formatDateTick(new Date('invalid-date'), 'en', TimeRange.H24);
     expect(result).toBe('');
   });
 
   it('should format date correctly for HOURLY time aggregate', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeAverages.HOURLY);
+    const result = formatDateTick(date, 'en', TimeRange.H24);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', { timeStyle: 'short' }).format(date)
     );
@@ -565,7 +565,7 @@ describe('formatDateTick', () => {
 
   it('should format date correctly for DAILY time aggregate', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeAverages.DAILY);
+    const result = formatDateTick(date, 'en', TimeRange.D30);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', {
         month: 'short',
@@ -577,7 +577,7 @@ describe('formatDateTick', () => {
 
   it('should format date correctly for MONTHLY time aggregate with language "et"', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'et', TimeAverages.MONTHLY);
+    const result = formatDateTick(date, 'et', TimeRange.M12);
     const expected = new Intl.DateTimeFormat('et', {
       month: 'short',
       day: 'numeric',
@@ -590,7 +590,7 @@ describe('formatDateTick', () => {
 
   it('should format date correctly for MONTHLY time aggregate with language not "et"', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeAverages.MONTHLY);
+    const result = formatDateTick(date, 'en', TimeRange.M12);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' }).format(date)
     );
@@ -598,7 +598,7 @@ describe('formatDateTick', () => {
 
   it('should format date correctly for YEARLY time aggregate', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeAverages.YEARLY);
+    const result = formatDateTick(date, 'en', TimeRange.ALL);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: 'UTC' }).format(date)
     );
@@ -609,7 +609,7 @@ describe('formatDateTick', () => {
     const result = formatDateTick(
       new Date('2023-01-01T12:00:00Z'),
       'en',
-      'UNIMPLEMENTED' as TimeAverages
+      'UNIMPLEMENTED' as TimeRange
     );
     expect(result).toBe('');
     expect(consoleSpy).toHaveBeenCalledWith('UNIMPLEMENTED is not implemented');

@@ -3,7 +3,7 @@ import { zoneDetailMock } from 'stories/mockData';
 
 import { colors } from '../../hooks/colors';
 import { getCo2ColorScale } from '../../hooks/theme';
-import { TimeAverages } from '../../utils/constants';
+import { TimeRange } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
 import { getLayerFill } from './hooks/useOriginChartData';
 
@@ -503,7 +503,7 @@ export const IncludesStorage: Story = {
     data: includesStorageData,
     layerKeys: Object.keys(includesStorageData[0].layerData),
     layerFill,
-    selectedTimeAggregate: TimeAverages.HOURLY,
+    selectedTimeRange: TimeRange.H24,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),
   },

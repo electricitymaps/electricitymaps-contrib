@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { Charts, TimeAverages } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
@@ -14,10 +14,10 @@ import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
 
 interface NetExchangeChartProps {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
-function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
+function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
   const [productionConsumption] = useAtom(productionConsumptionAtom);
   const [displayByEmissions] = useAtom(displayByEmissionsAtom);
@@ -46,7 +46,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        titleText={t(`country-history.netExchange.${timeAverage}`)}
+        titleText={t(`country-history.netExchange.${timeRange}`)}
         unit={valueAxisLabel}
         id={Charts.NET_EXCHANGE_CHART}
       />
@@ -62,7 +62,7 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           markerHideHandler={noop}
           height="10em"
           datetimes={datetimes}
-          selectedTimeAggregate={timeAverage}
+          selectedTimeRange={timeRange}
           tooltip={NetExchangeChartTooltip}
           formatTick={formatAxisTick}
         />

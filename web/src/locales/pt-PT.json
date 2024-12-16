@@ -168,10 +168,10 @@
     }
   },
   "time-controller": {
-    "daily": "diários",
-    "hourly": "horários",
-    "monthly": "mensais",
-    "yearly": "anuais"
+    "30d": "diários",
+    "24h": "horários",
+    "12mo": "mensais",
+    "all": "anuais"
   },
   "ranking-panel": {
     "title": "Impacto climático",
@@ -197,52 +197,52 @@
   },
   "country-history": {
     "carbonintensity": {
-      "hourly": "Intensidade de carbono horária",
-      "daily": "Intensidade de carbono diária",
-      "monthly": "Intensidade de carbono mensal",
-      "yearly": "Intensidade de carbono anual"
+      "24h": "Intensidade de carbono horária",
+      "30d": "Intensidade de carbono diária",
+      "12mo": "Intensidade de carbono mensal",
+      "all": "Intensidade de carbono anual"
     },
     "emissions": {
-      "hourly": "Emissões de carbono horárias",
-      "daily": "Emissões de carbono diárias",
-      "monthly": "Emissões de carbono mensais",
-      "yearly": "Emissões de carbono anuais"
+      "24h": "Emissões de carbono horárias",
+      "30d": "Emissões de carbono diárias",
+      "12mo": "Emissões de carbono mensais",
+      "all": "Emissões de carbono anuais"
     },
     "emissionsorigin": {
-      "hourly": "Origem horária das emissões de carbono",
-      "daily": "Origem diária das emissões de carbono",
-      "monthly": "Origem mensal das emissões de carbono",
-      "yearly": "Origem anual das emissões de carbono"
+      "24h": "Origem horária das emissões de carbono",
+      "30d": "Origem diária das emissões de carbono",
+      "12mo": "Origem mensal das emissões de carbono",
+      "all": "Origem anual das emissões de carbono"
     },
     "emissionsproduction": {
-      "hourly": "Emissões horárias de produção",
-      "daily": "Emissões diárias de produção",
-      "monthly": "Emissões mensais de produção",
-      "yearly": "Emissões anuais de produção"
+      "24h": "Emissões horárias de produção",
+      "30d": "Emissões diárias de produção",
+      "12mo": "Emissões mensais de produção",
+      "all": "Emissões anuais de produção"
     },
     "electricityorigin": {
-      "hourly": "Origem horária da eletricidade",
-      "daily": "Origem diária da eletricidade",
-      "monthly": "Origem mensal da eletricidade",
-      "yearly": "Origem anual da eletricidade"
+      "24h": "Origem horária da eletricidade",
+      "30d": "Origem diária da eletricidade",
+      "12mo": "Origem mensal da eletricidade",
+      "all": "Origem anual da eletricidade"
     },
     "electricityproduction": {
-      "hourly": "Produção horária de eletricidade",
-      "daily": "Produção diária de eletricidade",
-      "monthly": "Produção mensal de eletricidade",
-      "yearly": "Produção anual de eletricidade"
+      "24h": "Produção horária de eletricidade",
+      "30d": "Produção diária de eletricidade",
+      "12mo": "Produção mensal de eletricidade",
+      "all": "Produção anual de eletricidade"
     },
     "electricityprices": {
-      "hourly": "Preços horários da eletricidade",
-      "daily": "Preços diários da eletricidade",
-      "monthly": "Preços mensais da eletricidade",
-      "yearly": "Preços anuais da eletricidade"
+      "24h": "Preços horários da eletricidade",
+      "30d": "Preços diários da eletricidade",
+      "12mo": "Preços mensais da eletricidade",
+      "all": "Preços anuais da eletricidade"
     },
     "netExchange": {
-      "hourly": "Troca líquida horária",
-      "daily": "Troca líquida diária",
-      "monthly": "Troca líquida mensal",
-      "yearly": "Troca líquida anual"
+      "24h": "Troca líquida horária",
+      "30d": "Troca líquida diária",
+      "12mo": "Troca líquida mensal",
+      "all": "Troca líquida anual"
     },
     "not-enough-data": "Dados insuficientes disponíveis para exibir o gráfico"
   },

@@ -1,4 +1,5 @@
 import invariant from 'tiny-invariant';
+import { TimeRange } from 'utils/constants';
 
 export const ONE_MINUTE = 60 * 1000;
 export const FIVE_MINUTES = 5 * ONE_MINUTE;
@@ -93,3 +94,11 @@ export function isValidDate(dateString: string) {
   }
   return false;
 }
+
+export const TIME_RANGE_TO_TIME_AVERAGE: Record<TimeRange, string> = {
+  [TimeRange.H24]: 'hourly',
+  [TimeRange.H72]: 'hourly_72',
+  [TimeRange.D30]: 'daily',
+  [TimeRange.M12]: 'monthly',
+  [TimeRange.ALL]: 'yearly',
+} as const;

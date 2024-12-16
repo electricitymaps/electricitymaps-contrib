@@ -15,7 +15,7 @@ import {
   isHourlyAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
-  timeAverageAtom,
+  timeRangeAtom,
 } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
@@ -31,7 +31,7 @@ import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
@@ -67,7 +67,7 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
+  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeRange);
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
   const selectedData = data?.zoneStates[selectedDatetimeString];
@@ -114,7 +114,7 @@ export default function ZoneDetails(): JSX.Element {
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
-              timeAverage={timeAverage}
+              timeRange={timeRange}
               displayByEmissions={displayByEmissions}
             />
           )}
