@@ -37,7 +37,7 @@ const renderTick = (
     !isLoading &&
     ((index % TIME_TO_TICK_FREQUENCY[selectedTimeRange] === 0 && index !== 72) ||
       index === HOURLY_TIME_INDEX[selectedTimeRange]);
-  console.log('should show ling', isMidnightTime && !isTimeController);
+
   return (
     <g
       id={index.toString()}
@@ -50,7 +50,7 @@ const renderTick = (
         <line
           stroke="currentColor"
           strokeDasharray="2,2"
-          y1={chartHeight ? -chartHeight : '-100vh'} // or use a large fixed value like "-1000"
+          y1={chartHeight ? -chartHeight : '-100%'}
           y2="0"
           opacity={0.6}
           className="midnight-marker"
