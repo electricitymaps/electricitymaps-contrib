@@ -127,28 +127,22 @@ export default function HistoricalTimeHeader() {
   return (
     <div className="relative flex h-6 w-full items-center">
       <div className="absolute flex w-full items-center justify-between px-10">
-        <NewFeaturePopover
-          side="top"
-          content={<NewFeaturePopoverContent />}
-          isOpenByDefault={isNewFeaturePopoverEnabled}
-        >
-          <Button
-            backgroundClasses="bg-transparent"
-            onClick={handleLeftClick}
-            size="sm"
-            type="tertiary"
-            isDisabled={!isWithinHistoricalLimit}
-            icon={
-              <ChevronLeft
-                size={22}
-                className={twMerge(
-                  'text-brand-green dark:text-success-dark',
-                  !isWithinHistoricalLimit && 'opacity-50'
-                )}
-              />
-            }
-          />
-        </NewFeaturePopover>
+        <Button
+          backgroundClasses="bg-transparent"
+          onClick={handleLeftClick}
+          size="sm"
+          type="tertiary"
+          isDisabled={!isWithinHistoricalLimit}
+          icon={
+            <ChevronLeft
+              size={22}
+              className={twMerge(
+                'text-brand-green dark:text-success-dark',
+                !isWithinHistoricalLimit && 'opacity-50'
+              )}
+            />
+          }
+        />
         {startDatetime && endDatetime && (
           <FormattedTime
             datetime={startDatetime}

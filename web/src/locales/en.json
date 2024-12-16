@@ -57,8 +57,8 @@
     "summary": "Discover real-time electricity insights with the Electricity Maps app!"
   },
   "new-feature-popover": {
-    "title": "Share granular historical insights",
-    "content": "Explore historical hourly carbon intensity and energy mix. Use the buttons to navigate through time by 24 hours and share specific dates via the three dots in the zone panel."
+    "title": "New feature: 72-hour view",
+    "content": "Explore trends in live and historical data with the new 72-hour window."
   },
   "onboarding-modal": {
     "view1": {
