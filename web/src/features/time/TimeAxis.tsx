@@ -65,11 +65,9 @@ const renderTick = (
 
 const isMidnight = (date: Date, timezone?: string) => {
   if (!timezone) {
-    // Use UTC to avoid timezone issues
     return date.getUTCHours() === 0 && date.getUTCMinutes() === 0;
   }
 
-  // Use Intl.DateTimeFormat for more reliable timezone conversion
   const formatter = new Intl.DateTimeFormat('en-US', {
     timeZone: timezone,
     hour: 'numeric',
