@@ -68,7 +68,7 @@ const isMidnight = (date: Date, timezone?: string) => {
     return date.getHours() === 0 && date.getMinutes() === 0;
   }
 
-  const localDate = new Date(date.toLocaleString(undefined, { timeZone: timezone }));
+  const localDate = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
   return localDate.getHours() === 0 && localDate.getMinutes() === 0;
 };
 
