@@ -139,6 +139,7 @@ export default function TimeController({ className }: { className?: string }) {
           transform={`translate(12, 0)`}
           isLiveDisplay={isHourly && !urlDatetime}
           timezone={zoneTimezone}
+          isTimeController={true}
         />
       </div>
     </div>

@@ -25,7 +25,7 @@ interface OriginChartProps {
   timeRange: TimeRange;
 }
 
-// TODO(cady): fix types to use ElectricityModeType
+// TODO: fix types to use ElectricityModeType
 export interface SelectedData {
   select(key: string): void;
   deselect(key: string): void;
