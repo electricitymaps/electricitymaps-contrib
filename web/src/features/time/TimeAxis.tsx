@@ -65,11 +65,24 @@ const renderTick = (
 
 const isMidnight = (date: Date, timezone?: string) => {
   if (!timezone) {
-    return date.getHours() === 0 && date.getMinutes() === 0;
+    // Use UTC to avoid timezone issues
+    return date.getUTCHours() === 0 && date.getUTCMinutes() === 0;
   }
 
-  const localDate = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
-  return localDate.getHours() === 0 && localDate.getMinutes() === 0;
+  // Use Intl.DateTimeFormat for more reliable timezone conversion
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  });
+
+  const [hours, minutes] = formatter
+    .format(date)
+    .split(':')
+    .map((n) => Number.parseInt(n, 10));
+
+  return hours === 0 && minutes === 0;
 };
 
 const renderTickValue = (
