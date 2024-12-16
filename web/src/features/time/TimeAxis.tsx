@@ -69,10 +69,8 @@ const isMidnight = (date: Date, timezone?: string) => {
     return date.getHours() === 0 && date.getMinutes() === 0;
   }
 
-  return (
-    new Date(date.toLocaleString('en-US', { timeZone: timezone })).getHours() === 0 &&
-    new Date(date.toLocaleString('en-US', { timeZone: timezone })).getMinutes() === 0
-  );
+  const localDate = new Date(date.toLocaleString(undefined, { timeZone: timezone }));
+  return localDate.getHours() === 0 && localDate.getMinutes() === 0;
 };
 
 const renderTickValue = (
@@ -84,18 +82,22 @@ const renderTickValue = (
   timezone?: string
 ) => {
   const shouldDisplayLive = displayLive && index === HOURLY_TIME_INDEX[selectedTimeRange];
-  const textOffset = isValidHistoricalTimeRange(selectedTimeRange) ? 5 : 0;
+  const dateText = formatDateTick(v, lang, selectedTimeRange, timezone);
+  const textOffset =
+    isValidHistoricalTimeRange(selectedTimeRange) && dateText && dateText.length > 5
+      ? 5
+      : 0;
 
   return shouldDisplayLive ? (
     <g>
       <circle cx="-1em" cy="1.15em" r="2" fill="red" />
-      <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold">
+      <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold" textAnchor="middle">
         LIVE
       </text>
     </g>
   ) : (
     <text fill="currentColor" y="9" x={textOffset} dy="0.71em" fontSize={'0.65rem'}>
-      {formatDateTick(v, lang, selectedTimeRange, timezone)}
+      {dateText}
     </text>
   );
 };
