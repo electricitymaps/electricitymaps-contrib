@@ -1,8 +1,4 @@
 {
-  "info": {
-    "text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no telemóvel para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios da transição energética.",
-    "open-source-text": "Esta app é <a href='{{link}}' target='_blank'>de código aberto</a> e desenvolvida pela comunidade."
-  },
   "button": {
     "feedback": "Partilhar Feedback",
     "github": "Ver o nosso GitHub",

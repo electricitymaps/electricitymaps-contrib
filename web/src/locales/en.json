@@ -1,8 +1,7 @@
 {
   "info": {
-    "title": "About the app",
-    "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href='{{link}}' target='_blank'>Open Source</a> and powered by the community.",
+    "title": "Build with Electricity Maps",
+    "text": "The Electricity Maps API provides global grid intelligence. Integrate power mix and carbon intensity data into your product. Our API delivers industry-leading forecast, real-time, and historical data.",
     "version": "App version: {{version}}",
     "share-app": "Share the app:"
   },
@@ -10,8 +9,8 @@
     "title": "Settings"
   },
   "ranking-panel": {
-    "title": "Climate Impact by Area",
-    "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
+    "title": "The leading electricity grid API",
+    "subtitle": "Preview the data, ranked by carbon intensity",
     "search": "Search areas",
     "no-results": "No results found for this search 🌍"
   },
@@ -29,7 +28,9 @@
     "feedback": "Share feedback",
     "faq": "FAQ",
     "privacy-policy": "Privacy Policy",
-    "legal-notice": "Legal Notice"
+    "legal-notice": "Legal Notice",
+    "api": "Access the API",
+    "docs": "API documentation"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",

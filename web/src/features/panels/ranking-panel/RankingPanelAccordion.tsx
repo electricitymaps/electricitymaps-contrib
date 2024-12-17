@@ -1,7 +1,6 @@
 import Accordion from 'components/Accordion';
-import { GithubButton } from 'components/buttons/GithubButton';
-import { LinkedinButton } from 'components/buttons/LinkedinButton';
-import { RedditButton } from 'components/buttons/RedditButton';
+import { ApiButton } from 'components/buttons/ApiButton';
+import { DocumentationButton } from 'components/buttons/DocumentationButton';
 import InfoText from 'features/modals/InfoText';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
@@ -21,10 +20,9 @@ export default function RankingPanelAccordion() {
       setState={setRankingPanelAccordionCollapsed}
     >
       <InfoText />
-      <div className="mt-4 flex flex-wrap gap-2 ">
-        <GithubButton size="sm" shouldShrink />
-        <LinkedinButton size="sm" shouldShrink />
-        <RedditButton size="sm" shouldShrink />
+      <div className="mt-4 flex flex-wrap gap-2 pb-1 ">
+        <ApiButton size="md" shouldShrink />
+        <DocumentationButton size="md" shouldShrink type="secondary" />
       </div>
     </Accordion>
   );
