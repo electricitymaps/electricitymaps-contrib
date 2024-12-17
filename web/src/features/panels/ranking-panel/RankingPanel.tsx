@@ -64,7 +64,6 @@ export default function RankingPanel(): ReactElement {
       <div className="flex flex-grow flex-col overflow-hidden ">
         <div className="pb-5">
           <h1>{t('ranking-panel.title')}</h1>
-          <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
         </div>
 
         <SearchBar

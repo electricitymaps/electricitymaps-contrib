@@ -1,7 +1,7 @@
 {
   "info": {
-    "title": "Build with Electricity Maps",
-    "text": "The Electricity Maps API provides global grid intelligence. Integrate power mix and carbon intensity data into your product. Our API delivers industry-leading forecast, real-time, and historical data.",
+    "title": "About Electricity Maps",
+    "text": "Electricity Maps is an API platform providing real-time and predictive electricity signals allowing any device to reduce their cost and emissions by informing them about the best time to consume electricity.",
     "version": "App version: {{version}}",
     "share-app": "Share the app:"
   },
@@ -9,9 +9,8 @@
     "title": "Settings"
   },
   "ranking-panel": {
-    "title": "The leading electricity grid API",
-    "subtitle": "Preview global power mix and flow-traced carbon intensity data in real-time",
-    "search": "Search areas, ranked by carbon intensity",
+    "title": "See where your electricity comes from and how much CO2 was emitted to produce it",
+    "search": "Search areas (ranked by carbon intensity)",
     "no-results": "No results found for this search 🌍"
   },
   "button": {
