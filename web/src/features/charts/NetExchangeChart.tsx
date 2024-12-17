@@ -1,4 +1,4 @@
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
@@ -19,8 +19,8 @@ interface NetExchangeChartProps {
 
 function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
-  const [productionConsumption] = useAtom(productionConsumptionAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const productionConsumption = useAtomValue(productionConsumptionAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const { t } = useTranslation();
   if (productionConsumption === 'production') {
     return null;
