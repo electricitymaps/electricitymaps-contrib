@@ -53,7 +53,7 @@ function AreaGraphLayers({
     .x((d: any) => timeScale(d.data.datetime))
     .y0((d) => valueScale(d[0]))
     .y1((d) => valueScale(d[1]))
-    .defined((d) => (shouldHideEmptyData ? d[1] > 0 : Number.isFinite(d[1])));
+    .defined((d) => Number.isFinite(d[1]));
 
   // Mouse hover events
   let mouseOutTimeout: string | number | NodeJS.Timeout | undefined;
