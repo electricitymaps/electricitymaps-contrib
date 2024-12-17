@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { X } from 'lucide-react';
 
-export const POPOVER_ID = 'historical-storytelling-popover';
+export const POPOVER_ID = '72-hour-popover';
 const popoverDismissed = `${POPOVER_ID}-dismissed`;
 
 export const newFeatureDismissedAtom = atomWithStorage(
@@ -57,7 +57,9 @@ export function NewFeaturePopover({
 
   return (
     <Popover.Root open={isOpenByDefault && !isDismissed}>
-      <Popover.Anchor>{children}</Popover.Anchor>
+      <Popover.Anchor asChild>
+        <div className="flex h-full w-full grow basis-0">{children}</div>
+      </Popover.Anchor>
       {portal ? <Popover.Portal>{inner}</Popover.Portal> : inner}
     </Popover.Root>
   );
