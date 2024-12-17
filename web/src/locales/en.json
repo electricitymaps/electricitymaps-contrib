@@ -10,8 +10,8 @@
   },
   "ranking-panel": {
     "title": "The leading electricity grid API",
-    "subtitle": "Preview the data, ranked by carbon intensity",
-    "search": "Search areas",
+    "subtitle": "Preview global power mix and flow-traced carbon intensity data in real-time",
+    "search": "Search areas, ranked by carbon intensity",
     "no-results": "No results found for this search 🌍"
   },
   "button": {
