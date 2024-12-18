@@ -16,7 +16,6 @@ import {
 import { getRankedState } from './getRankingPanelData';
 import RankingPanelAccordion from './RankingPanelAccordion';
 import SearchBar from './SearchBar';
-import SocialIconRow from './SocialIcons';
 import { VirtualizedZoneList } from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
@@ -55,7 +54,7 @@ export default function RankingPanel(): ReactElement {
   );
 
   return (
-    <div className="flex h-[calc(100vh-236px)] w-full flex-col py-3 pl-4 pr-1 ">
+    <div className="flex h-[calc(100vh-220px)] w-full flex-col py-3 pl-4 pr-1 ">
       <Helmet prioritizeSeoTags>
         <title>{t('misc.maintitle') + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
@@ -64,6 +63,7 @@ export default function RankingPanel(): ReactElement {
       <div className="flex flex-grow flex-col overflow-hidden ">
         <div className="pb-5">
           <h1>{t('ranking-panel.title')}</h1>
+          <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
         </div>
 
         <SearchBar
@@ -82,7 +82,6 @@ export default function RankingPanel(): ReactElement {
       <div className="mt-auto py-2 pr-3">
         <RankingPanelAccordion />
         <HorizontalDivider />
-        <SocialIconRow />
       </div>
     </div>
   );

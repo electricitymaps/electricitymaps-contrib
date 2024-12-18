@@ -9,7 +9,8 @@
     "title": "Settings"
   },
   "ranking-panel": {
-    "title": "See where your electricity comes from and how much CO2 was emitted to produce it",
+    "title": "Electricity Grid Carbon Emissions",
+    "subtitle": "See where your electricity comes from and how much CO2 was emitted to produce it",
     "search": "Search areas (ranked by carbon intensity)",
     "no-results": "No results found for this search 🌍"
   },
