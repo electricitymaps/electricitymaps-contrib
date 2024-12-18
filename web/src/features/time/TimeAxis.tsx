@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
 import { HOURLY_TIME_INDEX, TimeRange } from 'utils/constants';
-import { getLocalTime,isValidHistoricalTimeRange } from 'utils/helpers';
+import { getLocalTime, isValidHistoricalTimeRange } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
 
