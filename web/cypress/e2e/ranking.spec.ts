@@ -2,12 +2,12 @@
 describe('Ranking Panel', () => {
   it('interacts with details', () => {
     cy.interceptAPI('v9/meta');
-    cy.interceptAPI('v9/state/hourly');
-    cy.interceptAPI('v9/details/hourly/DK-DK2');
+    cy.interceptAPI('v9/state/hourly_72');
+    cy.interceptAPI('v9/details/hourly_72/DK-DK2');
     cy.visit('/?lang=en-GB');
     cy.get('[data-testid=close-modal]').click();
     cy.waitForAPISuccess(`v9/meta`);
-    cy.waitForAPISuccess(`v9/state/hourly`);
+    cy.waitForAPISuccess(`v9/state/hourly_72`);
     cy.get('[data-testid=loading-overlay]').should('not.exist');
 
     // Close the ranking panel accordion

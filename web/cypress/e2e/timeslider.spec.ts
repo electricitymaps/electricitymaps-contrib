@@ -38,10 +38,13 @@ const getco2intensity = (index: number, data: Data) => {
 // };
 
 describe('TimeController', () => {
+  beforeEach(() => {
+    cy.interceptAPI('v9/meta');
+  });
   it('interacts with the timecontroller on map', () => {
     // Intercepts all API network requests and serves fixtures directly
-    cy.interceptAPI('v9/state/hourly');
-    cy.interceptAPI('v9/details/hourly/DK-DK2');
+    cy.interceptAPI('v9/state/hourly_72');
+    cy.interceptAPI('v9/details/hourly_72/DK-DK2');
     cy.interceptAPI('v9/state/daily');
     cy.interceptAPI('v9/state/monthly');
     cy.interceptAPI('v9/state/yearly');
@@ -54,8 +57,8 @@ describe('TimeController', () => {
     cy.get('[data-testid=loading-overlay]').should('not.exist');
     cy.get('[data-testid=close-modal]').click();
     // Hourly
-    cy.waitForAPISuccess(`v9/state/hourly`);
-    cy.waitForAPISuccess(`v9/details/hourly/DK-DK2`);
+    cy.waitForAPISuccess(`v9/state/hourly_72`);
+    cy.waitForAPISuccess(`v9/details/hourly_72/DK-DK2`);
     cy.contains('LIVE');
     cy.get('[data-testid=co2-square-value').should(
       'contain.text',

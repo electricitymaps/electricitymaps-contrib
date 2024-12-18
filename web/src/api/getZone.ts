@@ -59,7 +59,7 @@ const getZone = async (
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const { zoneId, urlTimeRange, urlDatetime } = useParams<RouteParameters>();
 
-  const timeRange = urlTimeRange || TimeRange.H24;
+  const timeRange = urlTimeRange || TimeRange.H72;
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,

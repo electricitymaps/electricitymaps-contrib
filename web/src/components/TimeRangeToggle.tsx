@@ -31,18 +31,14 @@ export interface TimeRangeToggleProps {
 function TimeRangeToggle({ timeRange, onToggleGroupClick }: TimeRangeToggleProps) {
   const { t } = useTranslation();
   const historicalLinkingEnabled = useFeatureFlag('historical-linking');
-  const is72HourEnabled = useFeatureFlag('72-hours');
   const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
-  const timeOptions = is72HourEnabled
-    ? Object.values(TimeRange)
-    : Object.values(TimeRange).filter((option) => option !== TimeRange.H72);
 
   const options = useMemo(
     () =>
-      Object.values(timeOptions).map((value) =>
+      Object.values(TimeRange).map((value) =>
         createOption(value, t, historicalLinkingEnabled)
       ),
-    [t, timeOptions, historicalLinkingEnabled]
+    [historicalLinkingEnabled, t]
   );
 
   return (
