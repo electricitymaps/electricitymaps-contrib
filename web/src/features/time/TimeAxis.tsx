@@ -44,7 +44,7 @@ const renderTick = (
     IS_MAJOR_TICK_CALLABLE[selectedTimeRange](localHours, localMinutes, index);
   const isLastTick = index === HOURLY_TIME_INDEX[selectedTimeRange];
   const overlapsWithLive = scale(value) + 40 >= scale.range()[1]; // the "LIVE" labels takes ~30px
-  const shouldShowTick = displayLive
+  const shouldShowValue = displayLive
     ? (isMajorTick && !overlapsWithLive) || isLastTick
     : isMajorTick;
 
@@ -68,7 +68,7 @@ const renderTick = (
           />
         )}
       <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
-      {shouldShowTick &&
+      {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
     </g>
   );
