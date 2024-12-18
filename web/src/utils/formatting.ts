@@ -208,7 +208,7 @@ const formatDateTick = (
 
   switch (timeRange) {
     case TimeRange.H72: {
-      const [localHours, localMinutes] = getLocalTime(date, timezone);
+      const { localHours, localMinutes } = getLocalTime(date, timezone);
       if (localHours === 0 && localMinutes === 0) {
         // Display date name when midnight
         return new Intl.DateTimeFormat(lang, {

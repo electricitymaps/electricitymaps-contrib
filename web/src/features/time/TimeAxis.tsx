@@ -9,19 +9,29 @@ import { formatDateTick } from '../../utils/formatting';
 
 // The following represents a list of methods, indexed by time range, that depict
 // if a datetime should be a major tick, where we will display the date value.
-type MajorTickCallable = (
-  _localHours: number,
-  _localMinutes: number,
-  _index: number
-) => boolean;
-type IsMajorTickCallableType = { [key: string]: MajorTickCallable };
-const IS_MAJOR_TICK_CALLABLE: IsMajorTickCallableType = {
-  '24h': (_localHours, _localMinutes, _index) => _index % 6 === 0,
-  '72h': (_localHours, _localMinutes, _index) =>
-    (_localHours === 12 || _localHours === 0) && _localMinutes === 0,
-  '30d': (_localHours, _localMinutes, _index) => _index % 6 === 0,
-  '12mo': (_localHours, _localMinutes, _index) => true,
-  all: (_localHours, _localMinutes, _index) => true,
+
+const getMajorTick = (
+  timeRange: TimeRange,
+  localHours: number,
+  localMinutes: number,
+  index: number
+) => {
+  switch (timeRange) {
+    case TimeRange.H24:
+    case TimeRange.D30: {
+      return index % 6 === 0;
+    }
+    case TimeRange.H72: {
+      return (localHours === 12 || localHours === 0) && localMinutes === 0;
+    }
+    case TimeRange.M12:
+    case TimeRange.ALL: {
+      return true;
+    }
+    default: {
+      return false;
+    }
+  }
 };
 
 const renderTick = (
@@ -36,12 +46,11 @@ const renderTick = (
   chartHeight?: number,
   isTimeController?: boolean
 ) => {
-  const [localHours, localMinutes] = getLocalTime(value, timezone);
+  const { localHours, localMinutes } = getLocalTime(value, timezone);
   const isMidnightTime = localHours === 0 && localMinutes === 0;
 
   const isMajorTick =
-    !isLoading &&
-    IS_MAJOR_TICK_CALLABLE[selectedTimeRange](localHours, localMinutes, index);
+    !isLoading && getMajorTick(selectedTimeRange, localHours, localMinutes, index);
   const isLastTick = index === HOURLY_TIME_INDEX[selectedTimeRange];
   const overlapsWithLive = scale(value) + 40 >= scale.range()[1]; // the "LIVE" labels takes ~30px
   const shouldShowValue = displayLive

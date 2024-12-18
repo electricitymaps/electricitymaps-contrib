@@ -150,7 +150,6 @@ function AreaGraph({
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);
   const containerHeight = Math.max(observerHeight - X_AXIS_HEIGHT, 0);
-  const barWidth = containerWidth / datetimes.length;
 
   // Build layers
   const layers = useMemo(

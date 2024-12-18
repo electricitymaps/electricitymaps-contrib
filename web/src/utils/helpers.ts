@@ -243,7 +243,7 @@ export const isValidHistoricalTimeRange = (timeRange: TimeRange) =>
 
 export const getLocalTime = (date: Date, timezone?: string) => {
   if (!timezone) {
-    return [date.getUTCHours(), date.getUTCMinutes()];
+    return { localHours: date.getUTCHours(), localMinutes: date.getUTCMinutes() };
   }
 
   const formatter = new Intl.DateTimeFormat('en-US', {
@@ -258,5 +258,5 @@ export const getLocalTime = (date: Date, timezone?: string) => {
     .split(':')
     .map((n) => Number.parseInt(n, 10));
 
-  return [hours, minutes];
+  return { localHours: hours, localMinutes: minutes };
 };
