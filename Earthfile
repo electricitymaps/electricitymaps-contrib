@@ -6,9 +6,12 @@ linting-files:
   COPY .prettierignore .
   SAVE ARTIFACT .
 
+parser-files:
+  COPY parsers ./parsers
+  SAVE ARTIFACT .
+
 src-files:
   COPY electricitymap ./electricitymap
-  COPY parsers ./parsers
   COPY ./config+src-files/* ./config
   COPY scripts ./scripts
   COPY web/public/locales/en.json ./web/public/locales/en.json
@@ -16,12 +19,14 @@ src-files:
   COPY pyproject.toml .
   SAVE ARTIFACT .
 
+
 poetry-lock:
   COPY poetry.lock .
   SAVE ARTIFACT .
 
 prepare:
   FROM +src-files
+  COPY ./+parser-files/* ./parsers
   RUN pip install poetry==1.6.1
   RUN apt-get update && apt-get install -y python3-opencv tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng libgl1
   RUN poetry config virtualenvs.create false
