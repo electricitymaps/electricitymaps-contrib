@@ -9,7 +9,13 @@ import { formatDateTick } from '../../utils/formatting';
 
 // The following represents a list of methods, indexed by time range, that depict
 // if a datetime should be a major tick, where we will display the date value.
-const IS_MAJOR_TICK_CALLABLE = {
+type MajorTickCallable = (
+  localHours: number,
+  localMinutes: number,
+  index: number
+) => boolean;
+type IsMajorTickCallableType = { [key: string]: MajorTickCallable };
+const IS_MAJOR_TICK_CALLABLE: IsMajorTickCallableType = {
   '24h': (localHours, localMinutes, index) => index % 6 === 0,
   '72h': (localHours, localMinutes, index) =>
     (localHours === 12 || localHours === 0) && localMinutes === 0,
