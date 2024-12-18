@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 // API Version
-const API_VERSION = 'v8';
+const API_VERSION = 'v9';
 
 const writeJSON = (fileName, obj, encoding = 'utf8') =>
   fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
@@ -16,7 +16,7 @@ const fetchAndStoreData = async (url, savePath) => {
 };
 
 const CORE_URL = `http://localhost:8001/${API_VERSION}`;
-const timeAggregates = ['last_hour', 'hourly', 'daily', 'monthly', 'yearly'];
+const timeAggregates = ['last_hour', 'hourly', 'hourly_72', 'daily', 'monthly', 'yearly'];
 const detailsZones = ['DE', 'DK-DK2'];
 
 const generateMockData = async () => {

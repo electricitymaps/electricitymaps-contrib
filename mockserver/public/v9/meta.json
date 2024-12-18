@@ -1,7 +1,14 @@
 {
     "features": {
-      "feature-flag-1": true,
-      "flag-2": false
-    },
-    "callerLocation": [138, 36]
-  }
+    "72-hours": true,
+    "consumption-only": false,
+    "feedback-micro-survey": false,
+    "feedback-us-micro-survey": true,
+    "historical-linking": true,
+    "historical-storytelling-popover": true,
+    "more-options-dropdown": true,
+    "query-materialized-view": true,
+    "share-button": true
+  },
+  "callerLocation": [138, 36]
+}
