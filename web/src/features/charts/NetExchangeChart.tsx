@@ -1,4 +1,4 @@
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
@@ -8,6 +8,7 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
+import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { RoundedCard } from './RoundedCard';
 import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
 
@@ -18,8 +19,8 @@ interface NetExchangeChartProps {
 
 function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
-  const [productionConsumption] = useAtom(productionConsumptionAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const productionConsumption = useAtomValue(productionConsumptionAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const { t } = useTranslation();
   if (productionConsumption === 'production') {
     return null;
@@ -65,6 +66,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
           tooltip={NetExchangeChartTooltip}
           formatTick={formatAxisTick}
         />
+        <MissingExchangeDataDisclaimer />
       </div>
     </RoundedCard>
   );

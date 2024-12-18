@@ -4,7 +4,7 @@ import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { TFunction } from 'i18next';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +46,7 @@ function BarBreakdownChart({
     height,
   } = useBarBreakdownChartData();
 
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
@@ -197,9 +197,9 @@ function BarBreakdownChart({
 
 export const useBarBreakdownChartTitle = () => {
   const { t } = useTranslation();
-  const [timeRange] = useAtom(timeRangeAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const mixMode = useAtomValue(productionConsumptionAtom);
   const dataType = displayByEmissions ? 'emissions' : mixMode;
 
   return getText(timeRange, dataType, t);

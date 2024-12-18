@@ -48,7 +48,7 @@ export const weatherButtonMap = {
 };
 
 function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
-  const [theme] = useAtom(themeAtom);
+  const theme = useAtomValue(themeAtom);
   const [, startTransition] = useTransition();
   const { t } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
