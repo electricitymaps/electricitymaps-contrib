@@ -83,7 +83,7 @@ function getValuesInfo(
   displayByEmissions: boolean,
   timeRange: string
 ): ValuesInfo {
-  const isHourly = timeRange === TimeRange.H24;
+  const isHourly = timeRange === TimeRange.H24 || timeRange === TimeRange.H72;
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     Math.abs(getNetExchange(d, displayByEmissions))
   );
