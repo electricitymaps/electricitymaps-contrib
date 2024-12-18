@@ -3,17 +3,19 @@ import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
 import { HOURLY_TIME_INDEX, TimeRange } from 'utils/constants';
-import { isValidHistoricalTimeRange } from 'utils/helpers';
+import { getLocalTime,isValidHistoricalTimeRange } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
 
-// Frequency at which values are displayed for a tick
-const TIME_TO_TICK_FREQUENCY = {
-  '24h': 6,
-  '72h': 12,
-  '30d': 6,
-  '12mo': 1,
-  all: 1,
+// The following represents a list of methods, indexed by time range, that depict
+// if a datetime should be a major tick, where we will display the date value.
+const IS_MAJOR_TICK_CALLABLE = {
+  '24h': (localHours, localMinutes, index) => index % 6 === 0,
+  '72h': (localHours, localMinutes, index) =>
+    (localHours === 12 || localHours === 0) && localMinutes === 0,
+  '30d': (localHours, localMinutes, index) => index % 6 === 0,
+  '12mo': (localHours, localMinutes, index) => true,
+  all: (localHours, localMinutes, index) => true,
 };
 
 const renderTick = (
@@ -28,22 +30,18 @@ const renderTick = (
   chartHeight?: number,
   isTimeController?: boolean
 ) => {
-  // Special-casing index 72 for 72 hour resolution: Typically we retrieve resolution + 1 records
-  // from app-backend, but we're retrieving only 72 records for 72 hour resolution
+  const [localHours, localMinutes] = getLocalTime(value, timezone);
+  const isMidnightTime = localHours === 0 && localMinutes === 0;
 
-  const isMidnightTime = isMidnight(value, timezone);
-
-  const shouldShowValue =
+  const isMajorTick =
     !isLoading &&
-    ((index % TIME_TO_TICK_FREQUENCY[selectedTimeRange] === 0 && index !== 72) ||
-      index === HOURLY_TIME_INDEX[selectedTimeRange]);
+    IS_MAJOR_TICK_CALLABLE[selectedTimeRange](localHours, localMinutes, index);
 
   return (
     <g
       id={index.toString()}
       key={`timeaxis-tick-${index}`}
       className="text-xs"
-      opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
       {isMidnightTime &&
@@ -58,31 +56,11 @@ const renderTick = (
             className="midnight-marker"
           />
         )}
-      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
-      {shouldShowValue &&
+      <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
+      {isMajorTick &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
     </g>
   );
-};
-
-const isMidnight = (date: Date, timezone?: string) => {
-  if (!timezone) {
-    return date.getUTCHours() === 0 && date.getUTCMinutes() === 0;
-  }
-
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    timeZone: timezone,
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: false,
-  });
-
-  const [hours, minutes] = formatter
-    .format(date)
-    .split(':')
-    .map((n) => Number.parseInt(n, 10));
-
-  return hours === 0 && minutes === 0;
 };
 
 const renderTickValue = (
@@ -166,7 +144,11 @@ function TimeAxis({
         transform={transform}
         style={{ pointerEvents: 'none' }}
       >
-        <path stroke="none" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
+        <path
+          stroke={isTimeController ? 'none' : 'currentColor'}
+          d={`M${x1},0H${x2}V0`}
+          strokeWidth={0.5}
+        />
         {datetimes.map((v, index) =>
           index < datetimes.length - 1 || isTimeController
             ? renderTick(

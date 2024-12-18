@@ -295,7 +295,7 @@ function AreaGraph({
           selectedTimeRange={selectedTimeRange}
           datetimes={datetimesWithNext}
           scaleWidth={containerWidth}
-          transform={`translate(${barWidth / 2} ${containerHeight})`}
+          transform={`translate(0 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
           timezone={zoneTimezone}
           chartHeight={containerHeight}

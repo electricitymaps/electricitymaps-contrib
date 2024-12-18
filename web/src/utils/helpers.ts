@@ -240,3 +240,23 @@ export const hasMobileUserAgent = () =>
 
 export const isValidHistoricalTimeRange = (timeRange: TimeRange) =>
   historicalTimeRange.includes(timeRange);
+
+export const getLocalTime = (date: Date, timezone?: string) => {
+  if (!timezone) {
+    return [date.getUTCHours(), date.getUTCMinutes()];
+  }
+
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  });
+
+  const [hours, minutes] = formatter
+    .format(date)
+    .split(':')
+    .map((n) => Number.parseInt(n, 10));
+
+  return [hours, minutes];
+};
