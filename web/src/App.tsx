@@ -68,7 +68,7 @@ export default function App(): ReactElement {
   useEffect(() => {
     if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
       Cap.addListener('backButton', () => {
-        if (window.location.pathname === '/map/24h') {
+        if (window.location.pathname === '/map/72h') {
           Cap.exitApp();
         } else {
           window.history.back();
