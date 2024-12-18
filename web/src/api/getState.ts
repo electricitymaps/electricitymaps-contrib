@@ -50,7 +50,7 @@ const getState = async (
 
 const useGetState = (): UseQueryResult<GridState> => {
   const { urlTimeRange, urlDatetime } = useParams<RouteParameters>();
-  const timeRange = urlTimeRange || TimeRange.H24;
+  const timeRange = urlTimeRange || TimeRange.H72;
   return useQuery<GridState>({
     queryKey: [
       QUERY_KEYS.STATE,

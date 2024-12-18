@@ -21,6 +21,12 @@ export const Hourly: Story = {
   },
 };
 
+export const Hourly72: Story = {
+  args: {
+    timeRange: TimeRange.H72,
+  },
+};
+
 export const Daily: Story = {
   args: {
     timeRange: TimeRange.D30,
