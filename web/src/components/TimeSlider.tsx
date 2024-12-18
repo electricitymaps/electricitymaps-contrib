@@ -2,7 +2,7 @@ import * as SliderPrimitive from '@radix-ui/react-slider';
 import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
 import { ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
@@ -91,7 +91,7 @@ export function TimeSliderBasic({
   trackBackground,
   thumbIcon,
 }: TimeSliderBasicProps) {
-  const [timeRange] = useAtom(timeRangeAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   return (
     <SliderPrimitive.Root
       defaultValue={[0]}

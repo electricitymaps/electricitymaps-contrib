@@ -49,6 +49,10 @@
     "preliminary-data": "Les données préliminaires peuvent changer avec le temps.",
     "summary": "Découvrez des informations sur l'électricité en temps réel avec l'application Electricity Maps !"
   },
+  "new-feature-popover": {
+    "title": "Nouvelle fonctionnalité: vue sur 72 heures",
+    "content": "Explorez les tendances à travers les données en temps réel et historiques durant les 72 dernières heures."
+  },
   "onboarding-modal": {
     "view1": {
       "header": "Bienvenue sur Electricity Maps",
