@@ -46,16 +46,18 @@ const renderTick = (
       opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
-      {isMidnightTime && !isTimeController && (
-        <line
-          stroke="currentColor"
-          strokeDasharray="2,2"
-          y1={chartHeight ? -chartHeight : '-100%'}
-          y2="0"
-          opacity={0.6}
-          className="midnight-marker"
-        />
-      )}
+      {isMidnightTime &&
+        isValidHistoricalTimeRange(selectedTimeRange) &&
+        !isTimeController && (
+          <line
+            stroke="currentColor"
+            strokeDasharray="2,2"
+            y1={chartHeight ? -chartHeight : '-100%'}
+            y2="0"
+            opacity={0.6}
+            className="midnight-marker"
+          />
+        )}
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
