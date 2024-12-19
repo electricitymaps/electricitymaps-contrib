@@ -1,23 +1,64 @@
 {
   "info": {
+    "title": "Sobre esta aplicación",
     "text": "La app Electricity Maps provee información en tiempo real web y móvil para ciudadanos, expertos en energía, ONG y legisladores que promueven un mejor entendimiento de los desafíos de la transición energética.",
     "open-source-text": "Esta app es de <a href='{{link}}' target='_blank'>código abierto</a> e impulsada por la comunidad.",
+    "version": "Versión de la aplicación: {{version}}",
     "share-app": "Compartir la aplicación:"
-  },
-  "button": {
-    "feedback": "Comparte tus comentarios",
-    "github": "Visítanos en GitHub",
-    "twitter": "Compártelo en Twitter",
-    "privacy-policy": "Política de privacidad",
-    "legal-notice": "Aviso legal"
   },
   "settings-modal": {
     "title": "Configuración"
+  },
+  "ranking-panel": {
+    "title": "Impacto climático por zona",
+    "subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
+    "search": "Buscar zonas",
+    "no-results": "No se encontraron resultados para esta búsqueda 🌍"
+  },
+  "button": {
+    "bluesky-share": "Consulta las emisiones producidas de la generación eléctrica en tiempo real: {{baseUrl}}",
+    "reddit": "Únete a r/electricitymaps",
+    "reddit-share": "Compartir en Reddit",
+    "github": "Visítanos en GitHub",
+    "twitter": "Síguenos en X (Twitter)",
+    "twitter-share": "Compartir en X (Twitter)",
+    "linkedin": "Síguenos en LinkedIn",
+    "linkedin-share": "Compartir en LinkedIn",
+    "facebook": "Síguenos en Facebook",
+    "facebook-share": "Compartir en Facebook",
+    "feedback": "Comparte tus comentarios",
+    "faq": "Preguntas frecuentes",
+    "privacy-policy": "Política de privacidad",
+    "legal-notice": "Aviso legal"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Zonas",
     "about": "Info"
+  },
+  "app-banner": {
+    "cta": "Obtén la aplicación",
+    "description": "Datos de electricidad en tiempo real"
+  },
+  "share-button": {
+    "clipboard": "¡URL copiada al portapapeles!",
+    "clipboard-error": "Error al copiar la URL al portapapeles",
+    "share-error": "Error al compartir la URL"
+  },
+  "more-options-dropdown": {
+    "title": "Compartir",
+    "chart-title": "Compartir gráfico",
+    "zone-title": "Compartir zona",
+    "mobile-share-via": "Compartir vía",
+    "copy-link": "Copiar enlace",
+    "copy-chart-link": "Copiar enlace al gráfico",
+    "copy-zone-link": "Copiar enlace a la zona",
+    "preliminary-data": "Los datos preliminares podrían cambiar más adelante.",
+    "summary": "¡Descubra información sobre la generación de electricidad en tiempo real con la aplicación Electricity Maps!"
+  },
+  "new-feature-popover": {
+    "title": "Nueva función: histórico de 72 horas",
+    "content": "Explora las tendencias en directo y los datos históricos con el nuevo rango temporal de 72 horas."
   },
   "onboarding-modal": {
     "view1": {
@@ -25,7 +66,7 @@
     },
     "view2": {
       "header": "Visualiza cuánto CO₂ se emite para producir tu electricidad, en tiempo real.",
-      "text": "El color de cada país refleja la intensidad de carbono (que incluye todos los gases de efecto invernadero) de la electricidad que se consume. Cuanto más verde sea, más respectuosa con el clima será la electricidad."
+      "text": "El color de cada país refleja la intensidad de carbono (que incluye todos los gases de efecto invernadero) de la electricidad que se consume. Cuanto más verde sea, más respetuosa con el clima será la electricidad."
     },
     "view3": {
       "header": "Descubre de dónde viene tu electricidad",
@@ -127,11 +168,6 @@
     "12mo": "mensual",
     "all": "anual"
   },
-  "ranking-panel": {
-    "title": "Impacto climático por zona",
-    "subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
-    "search": "Buscar zonas"
-  },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
     "faq-text": "¿Alguna duda? Consulta nuestras",
@@ -147,7 +183,9 @@
   "tooltips": {
     "carbonintensity": "Intensidad de carbono",
     "zoneHeader": {
-      "lowcarbon": "Incluye renovables y nuclear"
+      "lowcarbon": "Incluye renovables y nuclear",
+      "renewable": "Incluye solar, eólica, hidroeléctrica, biomasa y geotermia",
+      "carbonIntensity": "Gramos de CO2 por kilovatio-hora (gCO2eq/kWh), que mide la emisión de gases de efecto invernadero derivados de la producción de electricidad."
     },
     "crossborderexport": "Exportación transfronteriza",
     "carbonintensityexport": "Intensidad de carbono de la energía exportada",
@@ -165,13 +203,38 @@
     "weatherDisabled": "La información del clima no está disponible en este momento",
     "changeTheme": "Modo oscuro",
     "noParserInfo": "No hay datos disponibles",
-    "temporaryDataOutage": "Datos temporalmente no disponibles",
+    "temporaryDataOutage": "Los datos en tiempo real no están disponibles actualmente.",
+    "temporarilyUnavailable": "No disponible temporalmente",
     "production": "producción",
     "consumption": "consumo",
     "cpinfo": "El <b>consumo</b> tiene en cuenta las importaciones y exportaciones de energía, la <b>producción</b> no",
     "aggregateInfo": "Alternar entre visualización a nivel de zona o vista agregada de país",
     "selectLanguage": "Cambiar de idioma",
-    "dataIsDelayed": "Datos con retraso"
+    "dataIsDelayed": "Datos con retraso",
+    "price": "Precio",
+    "netExchange": "Intercambio neto",
+    "importing": "Importando",
+    "exporting": "Exportando"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "Cambiar de idioma",
+      "colorBlindMode": "Modo daltónico",
+      "windLayer": "Capa de viento",
+      "solarLayer": "Capa solar",
+      "changeTheme": "Cambiar tema",
+      "hideSidePanel": "Ocultar panel lateral",
+      "showSidePanel": "Mostrar panel lateral"
+    }
+  },
+  "aggregateButtons": {
+    "country": "país",
+    "zone": "zona"
+  },
+  "themeOptions": {
+    "dark": "Oscuro",
+    "light": "Claro",
+    "system": "Sistema"
   },
   "updatePrompt": {
     "description": "Una nueva versión de la aplicación está disponible, ¿actualizar ahora?",
@@ -182,14 +245,15 @@
     "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
     "faq": "Preguntas frecuentes",
     "dismiss": "Descartar",
-    "reload": "Recargar"
+    "reload": "Recargar",
+    "slow-loading-text": "Sigue cargando, si esta situación continúa trata de recargar..."
   },
   "wind": "energía eólica",
   "windDataError": "Los datos para la energía eólica actualmente no están disponibles",
   "solar": "energía solar",
   "solarDataError": "Los datos para la energía solar actualmente no están disponibles",
-  "hydro": "energía hidráulica",
-  "hydro storage": "almac. hidrául.",
+  "hydro": "energía hidroeléctrica",
+  "hydro storage": "almac. hidro.",
   "battery storage": "almac. en baterías",
   "biomass": "biomasa",
   "nuclear": "nuclear",
@@ -198,6 +262,15 @@
   "coal": "carbón",
   "oil": "petróleo",
   "unknown": "desconocido",
+  "electricityStoredUsing": "es almacenada usando",
+  "emissionsStoredUsing": "son almacenadas usando",
+  "electricityExportedTo": "es exportada a",
+  "emissionsExportedTo": "son exportadas a",
+  "electricityImportedFrom": "es exportada de",
+  "emissionsImportedFrom": "son exportadas a",
+  "electricityAvailableIn": "de electricidad disponible en",
+  "emissionsAvailableIn": "de emisiones procedentes de la electricidad disponible en",
+  "comesFrom": "procedente de",
   "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "El mapa",
@@ -208,14 +281,14 @@
     "mapSolarWindButtons-question": "¿Para qué sirven los botones de “sol” y “viento” de la derecha del mapa?",
     "mapSolarWindButtons-answer": "Estos botones activan una visualización en tiempo real de la fuerza del viento y del sol, ilustrando las oportunidades para una transición a energía solar y eólica en distintas zonas. Sin embargo, esto hay que tomarlo como un dato indicativo, porque la conveniencia de instalar paneles solares y aerogeneradores depende de muchos otros factores.",
     "mapNuclearColors-question": "¿Por qué son tan verdes los países que dependen mayoritariamente de energía nuclear?",
-    "mapNuclearColors-answer": "La producción de energía nuclear tiene una intensidad de carbono muy baja (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >source</a>), y por eso los países que usan mucha energía nuclear aparecen verdes en el mapa. Esto no significa que la energía nuclear no presente otras dificultades medioambientales (como también lo hacen el resto de fuentes de electricidad), pero estos posibles invonvenientes no afectan a emisión de gases de efecto invernadero, por lo que no se incluyen en el mapa.",
+    "mapNuclearColors-answer": "La producción de energía nuclear tiene una intensidad de carbono muy baja (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >fuente</a>), y por eso los países que usan mucha energía nuclear aparecen verdes en el mapa. Esto no significa que la energía nuclear no presente otras dificultades medioambientales (como también lo hacen el resto de fuentes de electricidad), pero estos posibles inconvenientes no afectan a la emisión de gases de efecto invernadero, por lo que no se incluyen en el mapa.",
     "mapColorBlind-question": "Soy daltónico. ¿Cómo puedo leer el mapa?",
     "mapColorBlind-answer": "Puedes cambiar la escala de colores del mapa activando el “modo para daltónicos”, que se encuentra en la parte inferior del panel izquierdo en ordenador y en la pestaña de información en la app."
   },
   "mapAreas": {
     "groupName": "Zonas del mapa",
     "noData-question": "¿Por qué no hay datos para mi zona?",
-    "noData-answer": "O bien porque los proveedores de datos para esa zona no están disponibles temporalmente o porque aún no tenemos proveedores de datos para esa zona. Puedes <a href='#contribute' class='entry-link'>colaborar añadiento nuevas fuentes de datos</a>.",
+    "noData-answer": "O bien porque los proveedores de datos para esa zona no están disponibles temporalmente o porque aún no tenemos proveedores de datos para esa zona. Puedes <a href='#contribute' class='entry-link'>colaborar añadiendo nuevas fuentes de datos</a>.",
     "whySmallAreas-question": "¿Por qué está dividido el mapa en regiones y no mostráis simplemente la media de un país?",
     "whySmallAreas-answer": "Las regiones que aparecen en el mapa son las divisiones geográficas más pequeñas de las que tenemos datos. Al poder acceder a información lo más específica posible, los consumidores de diferentes zonas pueden hacerse una idea más concreta del origen de la electricidad que usan y de su impacto climático.",
     "divideExistingArea-question": "¿Se puede dividir mi zona en partes más pequeñas?",
@@ -227,6 +300,10 @@
     "groupName": "Nuestros métodos",
     "carbonIntensity-question": "¿Qué es la 'intensidad de carbono'?",
     "carbonIntensity-answer": "La intensidad de carbono mide las emisiones de dióxido de carbono asociadas a la producción de la electricidad que consumimos (en gCO₂eq/kWh - gramos de equivalente de dióxido de carbono emitidos por kilovatio-hora de electricidad consumida). <br><br>Medimos las emisiones del consumo eléctrico (no de la producción), es decir, las emisiones de gases de efecto invernadero (tanto CO₂ como otros gases de efecto invernadero como el metano) resultantes de producir la electricidad que se está consumiendo en una zona, más la intensidad de carbono de la electricidad importada de otras zonas. Además nos servimos de un análisis de ciclo de vida (ACV), que quiere decir que tenemos en cuenta las emisiones de las centrales eléctricas durante todas las etapas de su vida (construcción, obtención de combustibles, emisiones durante su vida útil, y por último el desmantelamiento y la eliminación de residuos).",
+    "methodology-question": "¿Cómo hacéis los cálculos?",
+    "methodology-answer": "Tenemos nuestra metodología detallada en <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a>, con documentación adicional en <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>nuestra Wiki de GitHub</a>.",
+    "regionalEmissionFactors-question": "¿Por qué los factores de emisión son diferentes en función del área?",
+    "regionalEmissionFactors-answer": "En algunas zonas, somos capaces de obtener factores de emisión más precisos que la media global usada como referencia. Por ejemplo, para EEUU y UE las emisiones de las centrales eléctricas están disponibles públicamente. Después, comparamos esas emisiones con los datos de generación eléctrica dados por las centrales eléctricas, y calculamos los factores de emisión para cada central eléctrica, que se agregan a nivel de zona. Puedes consultar los <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>detalles en la Wiki</a>.",
     "renewableLowCarbonDifference-question": "¿Qué diferencia hay entre “renovable” y “baja en emisiones”?",
     "renewableLowCarbonDifference-answer": "La energía renovable procede de fuentes de energía casi inagotables como el viento, las mareas, la luz del sol y la energía geotérmica. Baja en emisiones se denomina a la energía que se produce emitiendo muy pocos gases de efecto invernadero, como la energía nuclear.",
     "importsAndExports-question": "¿Tenéis en cuenta tanto las importaciones como las exportaciones de electricidad?",
