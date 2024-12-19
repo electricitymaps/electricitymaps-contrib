@@ -1,11 +1,6 @@
 import { Button } from 'components/Button';
-import {
-  NewFeaturePopover,
-  POPOVER_ID,
-} from 'components/NewFeaturePopover/NewFeaturePopover';
-import { NewFeaturePopoverContent } from 'components/NewFeaturePopover/NewFeaturePopoverContent';
 import { FormattedTime } from 'components/Time';
-import { useFeatureFlag } from 'features/feature-flags/api';
+import { addDays, subDays, subHours } from 'date-fns';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo } from 'react';
@@ -25,20 +20,17 @@ export default function HistoricalTimeHeader() {
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
-  const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
 
   const isWithinHistoricalLimit = useMemo(() => {
     if (!urlDatetime) {
       return true;
     }
 
-    const targetDate = new Date(urlDatetime);
-    targetDate.setUTCHours(targetDate.getUTCDate() - 1);
+    let targetDate = new Date(urlDatetime);
+    let maxHistoricalDate = new Date();
 
-    const maxHistoricalDate = new Date();
-    maxHistoricalDate.setUTCDate(
-      maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
-    );
+    targetDate = subDays(targetDate, 1);
+    maxHistoricalDate = subDays(maxHistoricalDate, MAX_HISTORICAL_LOOKBACK_DAYS);
 
     return targetDate >= maxHistoricalDate;
   }, [urlDatetime]);
@@ -52,11 +44,12 @@ export default function HistoricalTimeHeader() {
     });
 
     const currentEndDatetime = new Date(endDatetime);
-    const nextDay = new Date(currentEndDatetime);
-    nextDay.setUTCDate(nextDay.getUTCDate() + 1);
 
-    const fourHoursAgo = new Date();
-    fourHoursAgo.setUTCHours(fourHoursAgo.getUTCHours() - 4);
+    let nextDay = new Date(currentEndDatetime);
+    nextDay = addDays(nextDay, 1);
+
+    let fourHoursAgo = new Date();
+    fourHoursAgo = subHours(fourHoursAgo, 4);
 
     if (nextDay >= fourHoursAgo) {
       navigate({ datetime: '' });
@@ -74,8 +67,8 @@ export default function HistoricalTimeHeader() {
     });
 
     const currentEndDatetime = new Date(endDatetime);
-    const previousDay = new Date(currentEndDatetime);
-    previousDay.setUTCDate(previousDay.getUTCDate() - 1);
+    let previousDay = new Date(currentEndDatetime);
+    previousDay = subDays(previousDay, 1);
 
     navigate({ datetime: previousDay.toISOString() });
   }
@@ -94,6 +87,7 @@ export default function HistoricalTimeHeader() {
           datetime={startDatetime}
           language={i18n.languages[0]}
           endDatetime={endDatetime}
+          isTimeHeader
           className="text-sm font-semibold"
         />
       </div>
@@ -123,6 +117,7 @@ export default function HistoricalTimeHeader() {
           <FormattedTime
             datetime={startDatetime}
             language={i18n.languages[0]}
+            isTimeHeader
             endDatetime={endDatetime}
             className="text-sm font-semibold"
           />

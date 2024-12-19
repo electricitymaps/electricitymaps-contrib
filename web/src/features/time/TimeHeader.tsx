@@ -22,7 +22,6 @@ export default function TimeHeader() {
             <FormattedTime
               datetime={selectedDatetime.datetime}
               language={i18n.languages[0]}
-              timeRange={timeRange}
             />
           }
           type="success"
