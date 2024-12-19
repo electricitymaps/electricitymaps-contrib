@@ -15,6 +15,7 @@ import {
   getCarbonIntensity,
   getDestinationPath,
   getFossilFuelRatio,
+  getLocalTime,
   getNetExchange,
   getProductionCo2Intensity,
   getRenewableRatio,
@@ -417,5 +418,17 @@ describe('getNetExchange', () => {
     } as unknown as ZoneDetail;
     const result = getNetExchange(zoneData, true);
     expect(result).toBe(100);
+  });
+});
+
+describe('getLocalTime', () => {
+  it('should return the correct local time', () => {
+    const result = getLocalTime(new Date('2024-03-20T08:00:00Z'), 'Europe/Paris');
+    expect(result).toEqual({ localHours: 9, localMinutes: 0 });
+  });
+
+  it('should return the correct local time when timezone is not provided', () => {
+    const result = getLocalTime(new Date('2024-03-20T08:00:00Z'));
+    expect(result).toEqual({ localHours: 8, localMinutes: 0 });
   });
 });
