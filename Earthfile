@@ -8,10 +8,13 @@ linting-files:
 
 parser-files:
   COPY parsers ./parsers
+  COPY electricitymap ./electricitymap
   SAVE ARTIFACT .
 
 src-files:
-  COPY electricitymap ./electricitymap
+  COPY electricitymap/contrib/config ./electricitymap/contrib/config
+  COPY electricitymap/contrib/lib ./electricitymap/contrib/lib
+  COPY electricitymap/contrib/py.typed ./electricitymap/contrib/py.typed
   COPY ./config+src-files/* ./config
   COPY scripts ./scripts
   COPY web/public/locales/en.json ./web/public/locales/en.json
@@ -19,14 +22,17 @@ src-files:
   COPY pyproject.toml .
   SAVE ARTIFACT .
 
+src-files-with-parsers:
+  COPY +src-files/* .
+  COPY +parser-files/* .
+  SAVE ARTIFACT .
 
 poetry-lock:
   COPY poetry.lock .
   SAVE ARTIFACT .
 
 prepare:
-  FROM +src-files
-  COPY ./+parser-files/* ./parsers
+  FROM +src-files-with-parsers
   RUN pip install poetry==1.6.1
   RUN apt-get update && apt-get install -y python3-opencv tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng libgl1
   RUN poetry config virtualenvs.create false
