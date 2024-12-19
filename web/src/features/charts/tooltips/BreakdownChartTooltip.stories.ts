@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { TimeRange } from 'utils/constants';
 
 import { BreakdownChartTooltipContent } from './BreakdownChartTooltip';
 
@@ -17,7 +16,6 @@ export const Example: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 599,
-    timeRange: TimeRange.H24,
     capacity: 500,
     co2Intensity: 130,
     co2IntensitySource: 'IPCC 2014; EU-ETS, ENTSO-E 2021',
@@ -35,7 +33,6 @@ export const WithoutCapacity: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 599,
-    timeRange: TimeRange.H24,
     capacity: undefined,
     co2Intensity: 130,
     co2IntensitySource: 'IPCC 2014; EU-ETS, ENTSO-E 2021',
@@ -53,7 +50,6 @@ export const isStoring: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 80,
-    timeRange: TimeRange.H24,
     capacity: 700,
     co2Intensity: 130,
     co2IntensitySource: 'IPCC 2014; EU-ETS, ENTSO-E 2021',
@@ -75,7 +71,6 @@ export const IsDischarging: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 80,
-    timeRange: TimeRange.H24,
     capacity: 700,
     co2Intensity: 130,
     co2IntensitySource: 'IPCC 2014; EU-ETS, ENTSO-E 2021',
@@ -95,7 +90,6 @@ export const LongSource: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 80,
-    timeRange: TimeRange.H24,
     capacity: 700,
     co2Intensity: 130,
     co2IntensitySource:
@@ -115,7 +109,6 @@ export const Exporting: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 80,
-    timeRange: TimeRange.H24,
     capacity: 700,
     co2Intensity: 450,
     co2IntensitySource:

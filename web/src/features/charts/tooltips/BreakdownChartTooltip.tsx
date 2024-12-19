@@ -7,14 +7,13 @@ import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { EstimationMethods, modeColor, TimeRange } from 'utils/constants';
+import { EstimationMethods, modeColor } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
   isHourlyAtom,
-  timeRangeAtom,
 } from 'utils/state/atoms';
 
 import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
@@ -107,7 +106,6 @@ export default function BreakdownChartTooltip({
   selectedLayerKey,
 }: InnerAreaGraphTooltipProps) {
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const timeRange = useAtomValue(timeRangeAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
 
   if (!zoneDetail || !selectedLayerKey) {
@@ -135,7 +133,6 @@ export default function BreakdownChartTooltip({
       datetime={new Date(stateDatetime)}
       isExchange={isExchange}
       selectedLayerKey={selectedLayerKey}
-      timeRange={timeRange}
       hasEstimationPill={hasEstimationPill}
       estimatedPercentage={roundedEstimatedPercentage}
       estimationMethod={estimationMethod}
@@ -150,7 +147,6 @@ interface BreakdownChartTooltipContentProperties {
   totalElectricity: number;
   totalEmissions: number;
   co2Intensity: number;
-  timeRange: TimeRange;
   displayByEmissions: boolean;
   emissions: number;
   zoneKey: string;
@@ -171,7 +167,6 @@ export function BreakdownChartTooltipContent({
   usage,
   totalElectricity,
   displayByEmissions,
-  timeRange,
   capacity,
   emissions,
   isExport,
@@ -206,7 +201,6 @@ export function BreakdownChartTooltipContent({
             : modeColor[selectedLayerKey as ElectricityModeType]
         }
         datetime={datetime}
-        timeRange={timeRange}
         title={title}
         hasEstimationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
