@@ -217,8 +217,8 @@
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Data is always estimated",
-      "pill": "Not realtime",
-      "body": "The data for this zone is not published in realtime. The realtime data is estimated using live weather data and historical data for each production source."
+      "pill": "Estimated",
+      "body": "Real-time source data for this zone is not available. Current values are modelled using a combination of live weather data and historical production data."
     },
     "threshold_filtered": {
       "title": "Missing data",
