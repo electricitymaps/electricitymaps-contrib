@@ -1,18 +1,35 @@
 {
   "info": {
+    "title": "Sobre esta aplicación",
     "text": "La app Electricity Maps provee información en tiempo real web y móvil para ciudadanos, expertos en energía, ONG y legisladores que promueven un mejor entendimiento de los desafíos de la transición energética.",
     "open-source-text": "Esta app es de <a href='{{link}}' target='_blank'>código abierto</a> e impulsada por la comunidad.",
+    "version": "Versión de la aplicación: {{version}}",
     "share-app": "Compartir la aplicación:"
-  },
-  "button": {
-    "feedback": "Comparte tus comentarios",
-    "github": "Visítanos en GitHub",
-    "twitter": "Compártelo en Twitter",
-    "privacy-policy": "Política de privacidad",
-    "legal-notice": "Aviso legal"
   },
   "settings-modal": {
     "title": "Configuración"
+  },
+  "ranking-panel": {
+    "title": "Impacto climático por zona",
+    "subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
+    "search": "Buscar zonas",
+    "no-results": "Sin resultados para esta búsqueda 🌍"
+  },
+  "button": {
+    "bluesky-share": "Ojea las emisiones producidas de la generación eléctrica en tiempo real: {{baseUrl}}",
+    "reddit": "Únete a r/electricitymaps",
+    "reddit-share": "Compartir en Reddit",
+    "github": "Visítanos en GitHub",
+    "twitter": "Síguenos en X (Twitter)",
+    "twitter-share": "Compartir en X (Twitter)",
+    "linkedin": "Síguenos en LinkedIn",
+    "linkedin-share": "Compartir en LinkedIn",
+    "facebook": "Síguenos en Facebook",
+    "facebook-share": "Compartir en Facebook",
+    "feedback": "Comparte tus comentarios",
+    "faq": "Preguntas frecuentes",
+    "privacy-policy": "Política de privacidad",
+    "legal-notice": "Aviso legal"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -126,11 +143,6 @@
     "24h": "horario",
     "12mo": "mensual",
     "all": "anual"
-  },
-  "ranking-panel": {
-    "title": "Impacto climático por zona",
-    "subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
-    "search": "Buscar zonas"
   },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
