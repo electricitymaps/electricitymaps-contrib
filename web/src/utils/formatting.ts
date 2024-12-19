@@ -1,6 +1,7 @@
 import * as d3 from 'd3-format';
 
 import { TimeRange } from './constants';
+import { getLocalTime } from './helpers';
 import { EnergyUnits, PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 3;
@@ -206,7 +207,21 @@ const formatDateTick = (
   }
 
   switch (timeRange) {
-    case TimeRange.H72:
+    case TimeRange.H72: {
+      const { localHours, localMinutes } = getLocalTime(date, timezone);
+      if (localHours === 0 && localMinutes === 0) {
+        // Display date name when midnight
+        return new Intl.DateTimeFormat(lang, {
+          month: 'short',
+          day: 'numeric',
+          timeZone: 'UTC',
+        }).format(date);
+      }
+      return new Intl.DateTimeFormat(lang, {
+        timeStyle: 'short',
+        timeZone: timezone,
+      }).format(date);
+    }
     case TimeRange.H24: {
       return new Intl.DateTimeFormat(lang, {
         timeStyle: 'short',
