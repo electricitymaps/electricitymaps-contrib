@@ -36,6 +36,30 @@
     "areas": "Zonas",
     "about": "Info"
   },
+  "app-banner": {
+    "cta": "Obtén la aplicación",
+    "description": "Datos de electricidad en tiempo real"
+  },
+  "share-button": {
+    "clipboard": "¡URL copiada al portapapeles!",
+    "clipboard-error": "Error copiando la URL al portapapeles",
+    "share-error": "Error compartiendo la URL"
+  },
+  "more-options-dropdown": {
+    "title": "Compartir",
+    "chart-title": "Compartir gráfico",
+    "zone-title": "Compartir zona",
+    "mobile-share-via": "Compartir vía",
+    "copy-link": "Copiar enlace",
+    "copy-chart-link": "Copiar enlace al gráfico",
+    "copy-zone-link": "Copiar enlace a la zona",
+    "preliminary-data": "Los datos preliminares podrían cambiar más adelante.",
+    "summary": "¡Descubra información sobre la generación de electricidad en tiempo real con la aplicación Electricity Maps!"
+  },
+  "new-feature-popover": {
+    "title": "Nueva función: histórico de 72 horas",
+    "content": "Explora las tendencias en directo y los datos históricos con la nueva ventana temporal de 72 horas."
+  },
   "onboarding-modal": {
     "view1": {
       "header": "Visualización del impacto climático de la electricidad"
