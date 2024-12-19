@@ -496,7 +496,7 @@ describe('formatDate', () => {
       'en',
       'ThisAggregateDoesNotExist' as TimeRange
     );
-    const expected = '1/1/2021';
+    const expected = '';
     expect(actual).to.deep.eq(expected);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       'ThisAggregateDoesNotExist is not implemented'

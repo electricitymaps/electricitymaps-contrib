@@ -1,6 +1,7 @@
 import * as d3 from 'd3-format';
+import { addDays, addHours, addMonths, addYears } from 'date-fns';
 
-import { TimeRange } from './constants';
+import { TimeRange, UTC } from './constants';
 import { getLocalTime } from './helpers';
 import { EnergyUnits, PowerUnits } from './units';
 
@@ -158,20 +159,20 @@ export const getDateTimeFormatOptions = (
     case TimeRange.D30: {
       return {
         dateStyle: 'long',
-        timeZone: 'UTC',
+        timeZone: UTC,
       };
     }
     case TimeRange.M12: {
       return {
         month: 'long',
         year: 'numeric',
-        timeZone: 'UTC',
+        timeZone: UTC,
       };
     }
     case TimeRange.ALL: {
       return {
         year: 'numeric',
-        timeZone: 'UTC',
+        timeZone: UTC,
       };
     }
     default: {
@@ -185,15 +186,49 @@ const formatDate = (
   date: Date,
   lang: string,
   timeRange: TimeRange,
-  timezone?: string
+  timezone: string = UTC,
+  isTimeHeader: boolean = false,
+  endDatetime?: Date
 ) => {
-  if (!isValidDate(date) || !timeRange) {
+  if (!isValidDate(date)) {
     return '';
+  }
+  if (!endDatetime) {
+    switch (timeRange) {
+      case TimeRange.H24:
+      case TimeRange.H72: {
+        endDatetime = addHours(date, 1);
+        break;
+      }
+      case TimeRange.D30: {
+        endDatetime = addDays(date, 1);
+        break;
+      }
+      case TimeRange.M12: {
+        endDatetime = addMonths(date, 1);
+        break;
+      }
+      case TimeRange.ALL: {
+        endDatetime = addYears(date, 1);
+        break;
+      }
+      default: {
+        console.error(`${timeRange} is not implemented`);
+        return '';
+      }
+    }
   }
   return new Intl.DateTimeFormat(
     lang,
-    getDateTimeFormatOptions(timeRange, timezone)
-  ).format(date);
+    isTimeHeader
+      ? {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          timeZone: timezone,
+        }
+      : getDateTimeFormatOptions(timeRange, timezone)
+  ).formatRange(date, endDatetime);
 };
 
 const formatDateTick = (
@@ -214,7 +249,7 @@ const formatDateTick = (
         return new Intl.DateTimeFormat(lang, {
           month: 'short',
           day: 'numeric',
-          timeZone: 'UTC',
+          timeZone: UTC,
         }).format(date);
       }
       return new Intl.DateTimeFormat(lang, {
@@ -234,7 +269,7 @@ const formatDateTick = (
       return new Intl.DateTimeFormat(lang, {
         month: 'short',
         day: 'numeric',
-        timeZone: 'UTC',
+        timeZone: UTC,
       }).format(date);
     }
     case TimeRange.M12: {
@@ -242,19 +277,19 @@ const formatDateTick = (
         ? new Intl.DateTimeFormat(lang, {
             month: 'short',
             day: 'numeric',
-            timeZone: 'UTC',
+            timeZone: UTC,
           })
             .formatToParts(date)
             .find((part) => part.type === 'month')?.value
         : new Intl.DateTimeFormat(lang, {
             month: 'short',
-            timeZone: 'UTC',
+            timeZone: UTC,
           }).format(date);
     }
     case TimeRange.ALL: {
       return new Intl.DateTimeFormat(lang, {
         year: 'numeric',
-        timeZone: 'UTC',
+        timeZone: UTC,
       }).format(date);
     }
     default: {
@@ -263,22 +298,6 @@ const formatDateTick = (
     }
   }
 };
-
-export function formatDateRange(
-  startDate: Date,
-  endDate: Date,
-  locale = 'en-US',
-  timeZone?: string
-) {
-  const formatter = new Intl.DateTimeFormat(locale, {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone,
-  });
-
-  return formatter.formatRange(startDate, endDate);
-}
 
 function isValidDate(date: Date) {
   if (!date || !(date instanceof Date)) {
@@ -296,12 +315,11 @@ function isValidDate(date: Date) {
  * @param {string} language - ISO 639-1 language code (`en`) or ISO 639-1 language code + ISO 3166-1 alpha-2 country code (`en-GB`).
  * @returns {string} formatted string of data sources.
  */
-function formatDataSources(dataSources: string[], language: string) {
-  return Intl.ListFormat === undefined
+const formatDataSources = (dataSources: string[], language: string) =>
+  Intl.ListFormat === undefined
     ? dataSources.join(', ')
     : new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(
         dataSources
       );
-}
 
 export { formatDataSources, formatDate, formatDateTick, scalePower };
