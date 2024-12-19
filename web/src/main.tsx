@@ -84,7 +84,7 @@ function TimeRangeGuardWrapper({ children }: { children: JSX.Element }) {
   if (!urlTimeRange) {
     return (
       <Navigate
-        to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
+        to={`${location.pathname}/72h?${searchParameters}${location.hash}`}
         replace
       />
     );
@@ -95,7 +95,7 @@ function TimeRangeGuardWrapper({ children }: { children: JSX.Element }) {
   if (!Object.values(TimeRange).includes(lowerCaseTimeRange as TimeRange)) {
     return (
       <Navigate
-        to={`${location.pathname}/24h?${searchParameters}${location.hash}`}
+        to={`${location.pathname}/72h?${searchParameters}${location.hash}`}
         replace
       />
     );
@@ -120,7 +120,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   const [searchParameters] = useSearchParams();
   const { zoneId } = useParams<RouteParameters>();
   if (!zoneId) {
-    return <Navigate to={`/map/24h?${searchParameters}`} replace />;
+    return <Navigate to={`/map/72h?${searchParameters}`} replace />;
   }
 
   // Sanitize the zone ID by removing any special characters except for hyphens and making it uppercase
@@ -143,7 +143,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   // Only allow valid zone ids
   // TODO: This should redirect to a 404 page specifically for zones
   if (!zoneExists(sanitizedZoneId)) {
-    return <Navigate to={`/map/24h?${searchParameters}`} replace />;
+    return <Navigate to={`/map/72h?${searchParameters}`} replace />;
   }
 
   return children;
@@ -180,11 +180,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/map',
-        element: <Navigate to="/map/24h" replace />,
+        element: <Navigate to="/map/72h" replace />,
       },
       {
         path: '/zone',
-        element: <Navigate to="/map/24h" replace />,
+        element: <Navigate to="/map/72h" replace />,
       },
       {
         path: '/map/:urlTimeRange?/:urlDatetime?',
