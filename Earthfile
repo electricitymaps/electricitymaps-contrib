@@ -25,6 +25,7 @@ src-files:
 src-files-with-parsers:
   COPY +src-files/* .
   COPY +parser-files/* .
+  SAVE ARTIFACT .
 
 poetry-lock:
   COPY poetry.lock .
