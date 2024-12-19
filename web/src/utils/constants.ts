@@ -4,6 +4,8 @@ import { ElectricityModeType } from 'types';
 export const metaTitleSuffix = ' | App | Electricity Maps';
 export const baseUrl = 'https://app.electricitymaps.com';
 
+export const UTC = 'UTC';
+
 // The order here determines the order displayed
 export enum TimeRange {
   H24 = '24h',
