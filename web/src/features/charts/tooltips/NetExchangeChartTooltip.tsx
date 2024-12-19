@@ -1,4 +1,4 @@
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
@@ -10,8 +10,8 @@ import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 export default function NetExchangeChartTooltip({
   zoneDetail,
 }: InnerAreaGraphTooltipProps) {
-  const [timeRange] = useAtom(timeRangeAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { t } = useTranslation();
 

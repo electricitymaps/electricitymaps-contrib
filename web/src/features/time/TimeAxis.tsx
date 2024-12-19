@@ -46,16 +46,18 @@ const renderTick = (
       opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
-      {isMidnightTime && !isTimeController && (
-        <line
-          stroke="currentColor"
-          strokeDasharray="2,2"
-          y1={chartHeight ? -chartHeight : '-100%'}
-          y2="0"
-          opacity={0.6}
-          className="midnight-marker"
-        />
-      )}
+      {isMidnightTime &&
+        isValidHistoricalTimeRange(selectedTimeRange) &&
+        !isTimeController && (
+          <line
+            stroke="currentColor"
+            strokeDasharray="2,2"
+            y1={chartHeight ? -chartHeight : '-100%'}
+            y2="0"
+            opacity={0.6}
+            className="midnight-marker"
+          />
+        )}
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
@@ -65,11 +67,22 @@ const renderTick = (
 
 const isMidnight = (date: Date, timezone?: string) => {
   if (!timezone) {
-    return date.getHours() === 0 && date.getMinutes() === 0;
+    return date.getUTCHours() === 0 && date.getUTCMinutes() === 0;
   }
 
-  const localDate = new Date(date.toLocaleString(undefined, { timeZone: timezone }));
-  return localDate.getHours() === 0 && localDate.getMinutes() === 0;
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  });
+
+  const [hours, minutes] = formatter
+    .format(date)
+    .split(':')
+    .map((n) => Number.parseInt(n, 10));
+
+  return hours === 0 && minutes === 0;
 };
 
 const renderTickValue = (
