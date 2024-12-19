@@ -1,8 +1,4 @@
 {
-  "info": {
-    "text": "這份電力地圖為推動能源轉型的公民、能源專家、NGO 和政策制定者提供即時的用電資料。",
-    "open-source-text": "這個網站是個由社群支持的<a href='{{link}}' target='_blank'>開源</a>軟體。"
-  },
   "button": {
     "feedback": "提供回饋",
     "github": "GitHub",

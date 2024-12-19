@@ -92,8 +92,6 @@
   "unknown": "onbekend",
   "info": {
     "title": "Over de app",
-    "text": "De Electricity Maps app biedt realtime inzichten op web en mobiel voor burgers, energie-experts, NGO's en beleidsmakers, ter bevordering van een dieper begrip van de uitdagingen van de energietransitie.",
-    "open-source-text": "Deze app is <a href='{{link}}' target='_blank'>Open Source</a> en wordt aangedreven door de gemeenschap.",
     "version": "App versie: {{version}}",
     "share-app": "Deel de app:"
   },

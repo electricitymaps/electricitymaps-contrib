@@ -1,8 +1,5 @@
 {
   "info": {
-    "title": "O aplikacji",
-    "text": "Aplikacja Electrcity Maps oferuje dostęp do danych w rzeczywistym czasie dla obywateli, ekspertów ds. energetyki i organizacji pozarządowych w celu zwiększenia świadomości na temat wyzwań transformacji energetycznej.",
-    "open-source-text": "Ta aplikacja jest <a href='{{link}}' target='_blank'>Open Source'owa</a> i wspierana przez społeczność.",
     "version": "Wersja aplikacji: {{version}}",
     "share-app": "Podziel się aplikacją:"
   },
