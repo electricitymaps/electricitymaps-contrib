@@ -22,7 +22,10 @@ const getMajorTick = (
       return index % 6 === 0;
     }
     case TimeRange.H72: {
-      return (localHours === 12 || localHours === 0) && localMinutes === 0;
+      return (
+        ((localHours === 12 || localHours === 0) && localMinutes === 0) ||
+        ((localHours === 12 || localHours === 0) && localMinutes === 30)
+      );
     }
     case TimeRange.M12:
     case TimeRange.ALL: {
