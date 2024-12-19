@@ -25,7 +25,7 @@
     },
     "view2": {
       "header": "Visualiza cuánto CO₂ se emite para producir tu electricidad, en tiempo real.",
-      "text": "El color de cada país refleja la intensidad de carbono (que incluye todos los gases de efecto invernadero) de la electricidad que se consume. Cuanto más verde sea, más respectuosa con el clima será la electricidad."
+      "text": "El color de cada país refleja la intensidad de carbono (que incluye todos los gases de efecto invernadero) de la electricidad que se consume. Cuanto más verde sea, más respetuosa con el clima será la electricidad."
     },
     "view3": {
       "header": "Descubre de dónde viene tu electricidad",
@@ -215,7 +215,7 @@
   "mapAreas": {
     "groupName": "Zonas del mapa",
     "noData-question": "¿Por qué no hay datos para mi zona?",
-    "noData-answer": "O bien porque los proveedores de datos para esa zona no están disponibles temporalmente o porque aún no tenemos proveedores de datos para esa zona. Puedes <a href='#contribute' class='entry-link'>colaborar añadiento nuevas fuentes de datos</a>.",
+    "noData-answer": "O bien porque los proveedores de datos para esa zona no están disponibles temporalmente o porque aún no tenemos proveedores de datos para esa zona. Puedes <a href='#contribute' class='entry-link'>colaborar añadiendo nuevas fuentes de datos</a>.",
     "whySmallAreas-question": "¿Por qué está dividido el mapa en regiones y no mostráis simplemente la media de un país?",
     "whySmallAreas-answer": "Las regiones que aparecen en el mapa son las divisiones geográficas más pequeñas de las que tenemos datos. Al poder acceder a información lo más específica posible, los consumidores de diferentes zonas pueden hacerse una idea más concreta del origen de la electricidad que usan y de su impacto climático.",
     "divideExistingArea-question": "¿Se puede dividir mi zona en partes más pequeñas?",
