@@ -13,10 +13,10 @@
     "title": "Impacto climático por zona",
     "subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
     "search": "Buscar zonas",
-    "no-results": "Sin resultados para esta búsqueda 🌍"
+    "no-results": "No se encontraron resultados para esta búsqueda 🌍"
   },
   "button": {
-    "bluesky-share": "Ojea las emisiones producidas de la generación eléctrica en tiempo real: {{baseUrl}}",
+    "bluesky-share": "Consulta las emisiones producidas de la generación eléctrica en tiempo real: {{baseUrl}}",
     "reddit": "Únete a r/electricitymaps",
     "reddit-share": "Compartir en Reddit",
     "github": "Visítanos en GitHub",
@@ -42,8 +42,8 @@
   },
   "share-button": {
     "clipboard": "¡URL copiada al portapapeles!",
-    "clipboard-error": "Error copiando la URL al portapapeles",
-    "share-error": "Error compartiendo la URL"
+    "clipboard-error": "Error al copiar la URL al portapapeles",
+    "share-error": "Error al compartir la URL"
   },
   "more-options-dropdown": {
     "title": "Compartir",
@@ -58,7 +58,7 @@
   },
   "new-feature-popover": {
     "title": "Nueva función: histórico de 72 horas",
-    "content": "Explora las tendencias en directo y los datos históricos con la nueva ventana temporal de 72 horas."
+    "content": "Explora las tendencias en directo y los datos históricos con el nuevo rango temporal de 72 horas."
   },
   "onboarding-modal": {
     "view1": {
@@ -185,7 +185,7 @@
     "zoneHeader": {
       "lowcarbon": "Incluye renovables y nuclear",
       "renewable": "Incluye solar, eólica, hidroeléctrica, biomasa y geotermia",
-      "carbonIntensity": "Gramos de CO2 por kilovatio-hora (gCO2eq/kWh) lo que mide la emisión de gases de efecto invernadero derivados de la producción de electricidad."
+      "carbonIntensity": "Gramos de CO2 por kilovatio-hora (gCO2eq/kWh), que mide la emisión de gases de efecto invernadero derivados de la producción de electricidad."
     },
     "crossborderexport": "Exportación transfronteriza",
     "carbonintensityexport": "Intensidad de carbono de la energía exportada",
@@ -203,7 +203,7 @@
     "weatherDisabled": "La información del clima no está disponible en este momento",
     "changeTheme": "Modo oscuro",
     "noParserInfo": "No hay datos disponibles",
-    "temporaryDataOutage": "No es posible acceder a los datos en tiempo real por ahora",
+    "temporaryDataOutage": "Los datos en tiempo real no están disponibles actualmente.",
     "temporarilyUnavailable": "No disponible temporalmente",
     "production": "producción",
     "consumption": "consumo",
@@ -246,7 +246,7 @@
     "faq": "Preguntas frecuentes",
     "dismiss": "Descartar",
     "reload": "Recargar",
-    "slow-loading-text": "Sigue cargando, si esta situación continua trata de recargar..."
+    "slow-loading-text": "Sigue cargando, si esta situación continúa trata de recargar..."
   },
   "wind": "energía eólica",
   "windDataError": "Los datos para la energía eólica actualmente no están disponibles",
