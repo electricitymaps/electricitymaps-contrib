@@ -147,7 +147,9 @@
   "tooltips": {
     "carbonintensity": "Intensidad de carbono",
     "zoneHeader": {
-      "lowcarbon": "Incluye renovables y nuclear"
+      "lowcarbon": "Incluye renovables y nuclear",
+      "renewable": "Incluye solar, eólica, hidroeléctrica, biomasa y geotermia",
+      "carbonIntensity": "Gramos de CO2 por kilovatio-hora (gCO2eq/kWh) lo que mide la emisión de gases de efecto invernadero derivados de la producción de electricidad."
     },
     "crossborderexport": "Exportación transfronteriza",
     "carbonintensityexport": "Intensidad de carbono de la energía exportada",
@@ -165,13 +167,38 @@
     "weatherDisabled": "La información del clima no está disponible en este momento",
     "changeTheme": "Modo oscuro",
     "noParserInfo": "No hay datos disponibles",
-    "temporaryDataOutage": "Datos temporalmente no disponibles",
+    "temporaryDataOutage": "No es posible acceder a los datos en tiempo real por ahora",
+    "temporarilyUnavailable": "No disponible temporalmente",
     "production": "producción",
     "consumption": "consumo",
     "cpinfo": "El <b>consumo</b> tiene en cuenta las importaciones y exportaciones de energía, la <b>producción</b> no",
     "aggregateInfo": "Alternar entre visualización a nivel de zona o vista agregada de país",
     "selectLanguage": "Cambiar de idioma",
-    "dataIsDelayed": "Datos con retraso"
+    "dataIsDelayed": "Datos con retraso",
+    "price": "Precio",
+    "netExchange": "Intercambio neto",
+    "importing": "Importando",
+    "exporting": "Exportando"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "Cambiar de idioma",
+      "colorBlindMode": "Modo daltónico",
+      "windLayer": "Capa de viento",
+      "solarLayer": "Capa solar",
+      "changeTheme": "Cambiar tema",
+      "hideSidePanel": "Ocultar panel lateral",
+      "showSidePanel": "Mostrar panel lateral"
+    }
+  },
+  "aggregateButtons": {
+    "country": "país",
+    "zone": "zona"
+  },
+  "themeOptions": {
+    "dark": "Oscuro",
+    "light": "Claro",
+    "system": "Sistema"
   },
   "updatePrompt": {
     "description": "Una nueva versión de la aplicación está disponible, ¿actualizar ahora?",
@@ -182,7 +209,8 @@
     "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
     "faq": "Preguntas frecuentes",
     "dismiss": "Descartar",
-    "reload": "Recargar"
+    "reload": "Recargar",
+    "slow-loading-text": "Sigue cargando, si esta situación continua trata de recargar..."
   },
   "wind": "energía eólica",
   "windDataError": "Los datos para la energía eólica actualmente no están disponibles",
@@ -198,6 +226,15 @@
   "coal": "carbón",
   "oil": "petróleo",
   "unknown": "desconocido",
+  "electricityStoredUsing": "es almacenada usando",
+  "emissionsStoredUsing": "son almacenadas usando",
+  "electricityExportedTo": "es exportada a",
+  "emissionsExportedTo": "son exportadas a",
+  "electricityImportedFrom": "es exportada de",
+  "emissionsImportedFrom": "son exportadas a",
+  "electricityAvailableIn": "de electricidad disponible en",
+  "emissionsAvailableIn": "de emisiones procedentes de la electricidad disponible en",
+  "comesFrom": "procedente de",
   "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "El mapa",
