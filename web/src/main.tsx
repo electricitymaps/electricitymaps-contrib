@@ -29,6 +29,10 @@ import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
+window.addEventListener('vite:preloadError', () => {
+  window.location.reload();
+});
+
 const RankingPanel = lazy(() => import('features/panels/ranking-panel/RankingPanel'));
 const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
 
