@@ -1,8 +1,5 @@
 {
   "info": {
-    "title": "Om appen",
-    "text": "Electricity Maps-appen giver realtidsindsigt, på web og mobil, for borgere, energieksperter, NGO'er og beslutningstagere, der fremmer en dybere forståelse af energiomstillingens udfordringer.",
-    "open-source-text": "Denne app er <a href='{{link}}' target='_blank'>Open Source</a> og drevet af fællesskabet.",
     "version": "App-version: {{version}}",
     "share-app": "Del appen:"
   },

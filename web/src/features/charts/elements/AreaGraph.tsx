@@ -239,6 +239,7 @@ function AreaGraph({
   const onCloseTooltip = () => {
     setTooltipData(null);
     setHoveredLayerIndex(null);
+    setGraphIndex(null);
   };
 
   const headerHeight = useHeaderHeight();
