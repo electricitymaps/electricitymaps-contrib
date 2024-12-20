@@ -196,10 +196,6 @@ export function getNetExchange(
   zoneData: ZoneDetail,
   displayByEmissions: boolean
 ): number {
-  if (Object.keys(zoneData.exchange).length === 0) {
-    return Number.NaN;
-  }
-
   if (
     !displayByEmissions &&
     zoneData.totalImport === null &&
