@@ -29,7 +29,8 @@ import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
-window.addEventListener('vite:preloadError', () => {
+window.addEventListener('vite:preloadError', (event) => {
+  event.preventDefault();
   window.location.reload();
 });
 
