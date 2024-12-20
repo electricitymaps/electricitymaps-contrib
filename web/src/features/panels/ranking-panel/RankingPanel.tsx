@@ -5,7 +5,7 @@ import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { metaTitleSuffix } from 'utils/constants';
 import {
   isConsumptionAtom,
@@ -60,10 +60,10 @@ export default function RankingPanel(): ReactElement {
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
 
-      <div className="flex flex-grow flex-col overflow-hidden ">
+      <div className="flex flex-grow flex-col overflow-hidden pr-2">
         <div className="pb-5">
           <h1>{t('ranking-panel.title')}</h1>
-          <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
+          <p className="text-sm">{<Trans i18nKey="ranking-panel.subtitle" />}</p>
         </div>
 
         <SearchBar
