@@ -122,8 +122,10 @@ export default function ZoneDetails(): JSX.Element {
 
           <MethodologyCard />
           <HorizontalDivider />
-          <div className="mb-1 text-sm font-semibold">Looking for forecast data?</div>
-          <CommercialApiButton />
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-sm font-semibold">Looking for forecast data?</div>
+            <CommercialApiButton size="sm" />
+          </div>
           <Attribution zoneId={zoneId} />
         </ZoneDetailsContent>
       </div>
