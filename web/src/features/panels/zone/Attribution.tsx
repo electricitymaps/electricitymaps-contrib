@@ -1,4 +1,3 @@
-import { GithubButton } from 'components/buttons/GithubButton';
 import { useTranslation } from 'react-i18next';
 
 import { getContributors } from './util';
@@ -15,7 +14,6 @@ export default function Attribution({ zoneId }: { zoneId: string }) {
           <ContributorList contributors={contributors} />
         </div>
       )}
-      <GithubButton />
     </div>
   );
 }
