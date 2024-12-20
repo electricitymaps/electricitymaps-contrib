@@ -150,7 +150,6 @@ function AreaGraph({
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);
   const containerHeight = Math.max(observerHeight - X_AXIS_HEIGHT, 0);
-  const barWidth = containerWidth / datetimes.length;
 
   // Build layers
   const layers = useMemo(
@@ -295,7 +294,7 @@ function AreaGraph({
           selectedTimeRange={selectedTimeRange}
           datetimes={datetimesWithNext}
           scaleWidth={containerWidth}
-          transform={`translate(${barWidth / 2} ${containerHeight})`}
+          transform={`translate(0 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
           timezone={zoneTimezone}
           chartHeight={containerHeight}

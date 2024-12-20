@@ -216,6 +216,11 @@
       "pill": "Not realtime",
       "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
     },
+    "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
+      "title": "Data is always estimated",
+      "pill": "Estimated",
+      "body": "Real-time source data for this zone is not available. Current values are modelled using a combination of live weather data and historical production data."
+    },
     "threshold_filtered": {
       "title": "Missing data",
       "pill": "Data outage",
