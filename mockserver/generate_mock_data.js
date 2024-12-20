@@ -16,7 +16,7 @@ const fetchAndStoreData = async (url, savePath) => {
 };
 
 const CORE_URL = `http://localhost:8001/${API_VERSION}`;
-const timeAggregates = ['last_hour', 'hourly', 'hourly_72', 'daily', 'monthly', 'yearly'];
+const timeAggregates = ['hourly', 'hourly_72', 'daily', 'monthly', 'yearly'];
 const detailsZones = ['DE', 'DK-DK2'];
 
 const generateMockData = async () => {
@@ -26,14 +26,12 @@ const generateMockData = async () => {
         `${CORE_URL}/state/${agg}`,
         `./public/${API_VERSION}/state/${agg}.json`
       );
-      if (agg !== 'last_hour') {
-        detailsZones.forEach(async (zoneId) => {
-          await fetchAndStoreData(
-            `${CORE_URL}/details/${agg}/${zoneId}`,
-            `./public/${API_VERSION}/details/${agg}/${zoneId}.json`
-          );
-        });
-      }
+      detailsZones.forEach(async (zoneId) => {
+        await fetchAndStoreData(
+          `${CORE_URL}/details/${agg}/${zoneId}`,
+          `./public/${API_VERSION}/details/${agg}/${zoneId}.json`
+        );
+      });
     } catch (error) {
       console.error(error);
     }
