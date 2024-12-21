@@ -29,7 +29,7 @@ fallbackZoneMixes:
         hydro: 0.007
         oil: 0.005
     - _source: https://www.manxutilities.im/media/3096/manx-utilities-annual-report-and-accounts-31-march-2024.pdf
-      datetime: '2024-12-20'
+      datetime: '2024-01-01'
       value:
         gas: 0.950
         hydro: 0.006
