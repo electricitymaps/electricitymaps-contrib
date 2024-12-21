@@ -193,12 +193,14 @@
   "time-controller": {
     "title": {
       "24h": "Timvis data för:",
+      "72h": "Timvis data för:",
       "30d": "Dagsvis data för:",
       "12mo": "Månadsvis data för:",
       "all": "Årsvis data för:"
     },
     "30d": "dagvis",
     "24h": "timvis",
+    "72h": "timvis",
     "12mo": "månadsvis",
     "all": "årsvis"
   },
@@ -227,48 +229,56 @@
   "country-history": {
     "carbonintensity": {
       "24h": "Timvis koldioxidintensitet",
+      "72h": "Timvis koldioxidintensitet",
       "30d": "Daglig koldioxidintensitet",
       "12mo": "Månadsvis koldioxidintensitet",
       "all": "Årlig koldioxidintensitet"
     },
     "emissions": {
       "24h": "Timvisa koldioxidutsläpp",
+      "72h": "Timvisa koldioxidutsläpp",
       "30d": "Dagliga koldioxidutsläpp",
       "12mo": "Månadsvisa koldioxidutsläpp",
       "all": "Årliga koldioxidutsläpp"
     },
     "emissionsorigin": {
       "24h": "Timvis ursprung av koldioxidutsläpp",
+      "72h": "Timvis ursprung av koldioxidutsläpp",
       "30d": "Dagligt ursprung av koldioxidutsläpp",
       "12mo": "Månadsvis ursprung av koldioxidutsläpp",
       "all": "Årligt ursprung av koldioxidutsläpp"
     },
     "emissionsproduction": {
       "24h": "Timvisa produktionsutsläpp",
+      "72h": "Timvisa produktionsutsläpp",
       "30d": "Dagliga produktionsutsläpp",
       "12mo": "Månadsvisa produktionsutsläpp",
       "all": "Årliga produktionsutsläpp"
     },
     "electricityorigin": {
       "24h": "Timvis ursprung av elektricitet",
+      "72h": "Timvis ursprung av elektricitet",
       "30d": "Dagligt ursprung av elektricitet",
       "12mo": "Månadsvis ursprung av elektricitet",
       "all": "Årligt ursprung av elektricitet"
     },
     "electricityproduction": {
       "24h": "Timvis elproduktion",
+      "72h": "Timvis elproduktion",
       "30d": "Daglig elproduktion",
       "12mo": "Månadsvis elproduktion",
       "all": "Årlig elproduktion"
     },
     "electricityprices": {
       "24h": "Timvisa elpriser",
+      "72h": "Timvisa elpriser",
       "30d": "Dagliga elpriser",
       "12mo": "Månadsvisa elpriser",
       "all": "Årliga elpriser"
     },
     "netExchange": {
       "24h": "Timvis nettohandel",
+      "72h": "Timvis nettohandel",
       "30d": "Daglig nettohandel",
       "12mo": "Månadsvis nettohandel",
       "all": "Årlig nettohandel"
