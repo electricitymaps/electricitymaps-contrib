@@ -1,11 +1,5 @@
 import { Button } from 'components/Button';
-import {
-  NewFeaturePopover,
-  POPOVER_ID,
-} from 'components/NewFeaturePopover/NewFeaturePopover';
-import { NewFeaturePopoverContent } from 'components/NewFeaturePopover/NewFeaturePopoverContent';
 import { FormattedTime } from 'components/Time';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo } from 'react';
@@ -25,7 +19,6 @@ export default function HistoricalTimeHeader() {
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
-  const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
 
   const isWithinHistoricalLimit = useMemo(() => {
     if (!urlDatetime) {
