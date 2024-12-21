@@ -360,21 +360,8 @@ describe('useNavigateWithParameters', () => {
 });
 
 describe('getNetExchange', () => {
-  it('should return NaN when zoneData.exchange is empty', () => {
-    const zoneData = {
-      exchange: {},
-      totalImport: null,
-      totalExport: null,
-      totalCo2Import: null,
-      totalCo2Export: null,
-    } as ZoneDetail;
-    const result = getNetExchange(zoneData, false);
-    expect(result).toBeNaN();
-  });
-
   it('should return NaN when displayByEmissions is false and both totalImport and totalExport are null', () => {
     const zoneData = {
-      exchange: { someKey: 1 },
       totalImport: null,
       totalExport: null,
       totalCo2Import: null,
@@ -386,7 +373,6 @@ describe('getNetExchange', () => {
 
   it('should return NaN when displayByEmissions is true and both totalCo2Import and totalCo2Export are null', () => {
     const zoneData = {
-      exchange: { someKey: 1 },
       totalImport: null,
       totalExport: null,
       totalCo2Import: null,
@@ -398,7 +384,6 @@ describe('getNetExchange', () => {
 
   it('should return the correct net exchange value when displayByEmissions is false and totalImport and totalExport have values', () => {
     const zoneData = {
-      exchange: { someKey: 1 },
       totalImport: 100,
       totalExport: 50,
       totalCo2Import: null,
@@ -410,7 +395,6 @@ describe('getNetExchange', () => {
 
   it('should return the correct net exchange value when displayByEmissions is true and totalCo2Import and totalCo2Export have values', () => {
     const zoneData = {
-      exchange: { someKey: 1 },
       totalImport: null,
       totalExport: null,
       totalCo2Import: 200,
