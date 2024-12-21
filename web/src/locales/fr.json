@@ -1,5 +1,7 @@
 {
   "info": {
+    "title": "A propos d'Electricity Maps",
+    "text": "est une plateforme API fournissant des signaux prédictifs et en temps réel sur l'électricité permettant à tout appareil de réduire ses coûts et ses émissions en l'informant du meilleur moment pour consommer de l'électricité.",
     "version": "Version de l'application: {{version}}",
     "share-app": "Partagez l'application:"
   },
@@ -112,6 +114,7 @@
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href='{{link}}' target='_blank'>journaux d'exécution</a> ou contactez le fournisseur de données.",
     "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href='{{link}}' target='_blank'>ajoutant des données de zone</a>.",
     "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
+    "fullyDisabled": "Les données dont nous disposons pour cette zone sont insuffisantes et ne sont donc pas affichées. Si vous connaissez des sources de données pour cette zone, veuillez <a href='{{link}}' target='_blank'>nous le faire savoir</a>.",
     "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
@@ -323,7 +326,8 @@
       "12mo": "Echange net mensuel",
       "all": "Echange net annuel"
     },
-    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique"
+    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
+    "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
   },
   "footer": {
     "foundbugs": "Un bug ? Une idée ? Cliquez",
