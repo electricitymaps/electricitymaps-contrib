@@ -6,6 +6,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters, ZoneMessage } from 'types';
@@ -18,7 +19,6 @@ import {
   spatialAggregateAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
-import { useIsMobile } from 'utils/styling';
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
@@ -38,7 +38,7 @@ export default function ZoneDetails(): JSX.Element {
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
   const isHourly = useAtomValue(isHourlyAtom);
-  const isMobile = useIsMobile();
+  const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
 
@@ -123,7 +123,7 @@ export default function ZoneDetails(): JSX.Element {
           <MethodologyCard />
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
-            <div className="text-sm font-semibold">Looking for forecast data?</div>
+            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
             <CommercialApiButton size="sm" />
           </div>
           <Attribution zoneId={zoneId} />

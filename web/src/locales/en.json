@@ -99,6 +99,7 @@
     "emission": "Emission factor data"
   },
   "country-panel": {
+    "forecastCta": "Looking for forecast data?",
     "source": "Source",
     "carbonintensity": "Carbon Intensity",
     "lowcarbon": "Low-carbon",
