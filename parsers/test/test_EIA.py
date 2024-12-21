@@ -12,6 +12,23 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers import EIA
 
 
+def test_parse_hourly_interval():
+    """
+    We request frequency=hourly data from the EIA API; this means data with
+    hourly (UTC) intervals, and the time provided indicates the _end_ of an
+    interval window. ElectricityMaps stores intervals using start hour instead.
+    """
+    fixtures = [
+        ("2022-02-28T23", datetime(2022, 2, 28, 22, 0, 0, tzinfo=timezone.utc)),
+        ("2022-03-01T00", datetime(2022, 2, 28, 23, 0, 0, tzinfo=timezone.utc)),
+        ("2022-03-01T01", datetime(2022, 3, 1, 0, 0, 0, tzinfo=timezone.utc)),
+    ]
+
+    for period, expected in fixtures:
+        result = EIA._parse_hourly_interval(period)
+        assert result == expected
+
+
 class TestEIA(unittest.TestCase):
     def setUp(self) -> None:
         os.environ["EIA_KEY"] = "token"
