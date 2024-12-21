@@ -1,3 +1,8 @@
+bounding_box:
+  - - 33.41022073768978
+    - -5.178020968858455
+  - - 42.38461884618849
+    - 5.530444969930855
 country: KE
 region: Africa
 timezone: Africa/Nairobi

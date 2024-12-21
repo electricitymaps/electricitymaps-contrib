@@ -1,8 +1,7 @@
 {
   "info": {
-    "title": "About the app",
-    "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href='{{link}}' target='_blank'>Open Source</a> and powered by the community.",
+    "title": "About Electricity Maps",
+    "text": "is an API platform providing real-time and predictive electricity signals allowing any device to reduce their cost and emissions by informing them about the best time to consume electricity.",
     "version": "App version: {{version}}",
     "share-app": "Share the app:"
   },
@@ -10,9 +9,9 @@
     "title": "Settings"
   },
   "ranking-panel": {
-    "title": "Climate Impact by Area",
-    "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas",
+    "title": "Electricity Grid Carbon Emissions",
+    "subtitle": "See where your electricity comes from<br/> and how much CO2 was emitted to produce it",
+    "search": "Search areas (ranked by carbon intensity)",
     "no-results": "No results found for this search 🌍"
   },
   "button": {
@@ -29,7 +28,9 @@
     "feedback": "Share feedback",
     "faq": "FAQ",
     "privacy-policy": "Privacy Policy",
-    "legal-notice": "Legal Notice"
+    "legal-notice": "Legal Notice",
+    "api": "Access the API",
+    "docs": "API documentation"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -215,6 +216,11 @@
       "pill": "Not realtime",
       "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
     },
+    "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
+      "title": "Data is always estimated",
+      "pill": "Estimated",
+      "body": "Real-time source data for this zone is not available. Current values are modelled using a combination of live weather data and historical production data."
+    },
     "threshold_filtered": {
       "title": "Missing data",
       "pill": "Data outage",
@@ -275,7 +281,7 @@
   "header": {
     "get-data": "Access the API",
     "blog": "Blog",
-    "open-source": "Open Source",
+    "open-source": "Community",
     "hiring": "We're hiring!",
     "methodology": "Methodology",
     "faq": "FAQ"

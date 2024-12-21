@@ -3,17 +3,35 @@ import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
 import { HOURLY_TIME_INDEX, TimeRange } from 'utils/constants';
-import { isValidHistoricalTimeRange } from 'utils/helpers';
+import { getLocalTime, isValidHistoricalTimeRange } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
 
-// Frequency at which values are displayed for a tick
-const TIME_TO_TICK_FREQUENCY = {
-  '24h': 6,
-  '72h': 12,
-  '30d': 6,
-  '12mo': 1,
-  all: 1,
+// The following represents a list of methods, indexed by time range, that depict
+// if a datetime should be a major tick, where we will display the date value.
+
+const getMajorTick = (
+  timeRange: TimeRange,
+  localHours: number,
+  localMinutes: number,
+  index: number
+) => {
+  switch (timeRange) {
+    case TimeRange.H24:
+    case TimeRange.D30: {
+      return index % 6 === 0;
+    }
+    case TimeRange.H72: {
+      return localHours === 12 || localHours === 0;
+    }
+    case TimeRange.M12:
+    case TimeRange.ALL: {
+      return true;
+    }
+    default: {
+      return false;
+    }
+  }
 };
 
 const renderTick = (
@@ -28,48 +46,41 @@ const renderTick = (
   chartHeight?: number,
   isTimeController?: boolean
 ) => {
-  // Special-casing index 72 for 72 hour resolution: Typically we retrieve resolution + 1 records
-  // from app-backend, but we're retrieving only 72 records for 72 hour resolution
+  const { localHours, localMinutes } = getLocalTime(value, timezone);
+  const isMidnightTime = localHours === 0;
 
-  const isMidnightTime = isMidnight(value, timezone);
-
-  const shouldShowValue =
-    !isLoading &&
-    ((index % TIME_TO_TICK_FREQUENCY[selectedTimeRange] === 0 && index !== 72) ||
-      index === HOURLY_TIME_INDEX[selectedTimeRange]);
+  const isMajorTick =
+    !isLoading && getMajorTick(selectedTimeRange, localHours, localMinutes, index);
+  const isLastTick = index === HOURLY_TIME_INDEX[selectedTimeRange];
+  const overlapsWithLive = scale(value) + 40 >= scale.range()[1]; // the "LIVE" labels takes ~30px
+  const shouldShowValue = displayLive
+    ? (isMajorTick && !overlapsWithLive) || isLastTick
+    : isMajorTick;
 
   return (
     <g
       id={index.toString()}
       key={`timeaxis-tick-${index}`}
       className="text-xs"
-      opacity={1}
       transform={`translate(${scale(value)},0)`}
     >
-      {isMidnightTime && !isTimeController && (
-        <line
-          stroke="currentColor"
-          strokeDasharray="2,2"
-          y1={chartHeight ? -chartHeight : '-100%'}
-          y2="0"
-          opacity={0.6}
-          className="midnight-marker"
-        />
-      )}
-      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
+      {isMidnightTime &&
+        isValidHistoricalTimeRange(selectedTimeRange) &&
+        !isTimeController && (
+          <line
+            stroke="currentColor"
+            strokeDasharray="2,2"
+            y1={chartHeight ? -chartHeight : '-100%'}
+            y2="0"
+            opacity={0.6}
+            className="midnight-marker"
+          />
+        )}
+      <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
     </g>
   );
-};
-
-const isMidnight = (date: Date, timezone?: string) => {
-  if (!timezone) {
-    return date.getHours() === 0 && date.getMinutes() === 0;
-  }
-
-  const localDate = new Date(date.toLocaleString(undefined, { timeZone: timezone }));
-  return localDate.getHours() === 0 && localDate.getMinutes() === 0;
 };
 
 const renderTickValue = (
@@ -153,7 +164,11 @@ function TimeAxis({
         transform={transform}
         style={{ pointerEvents: 'none' }}
       >
-        <path stroke="none" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
+        <path
+          stroke={isTimeController ? 'none' : 'currentColor'}
+          d={`M${x1},0H${x2}V0`}
+          strokeWidth={0.5}
+        />
         {datetimes.map((v, index) =>
           index < datetimes.length - 1 || isTimeController
             ? renderTick(

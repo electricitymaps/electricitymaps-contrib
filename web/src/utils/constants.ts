@@ -274,4 +274,5 @@ export enum EstimationMethods {
   AGGREGATED = 'aggregated',
   THRESHOLD_FILTERED = 'threshold_filtered',
   OUTAGE = 'outage',
+  GENERAL_PURPOSE_ZONE_MODEL = 'ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL',
 }

@@ -93,7 +93,7 @@ export default function useOriginChartData() {
       // Add exchanges
       for (const [key, exchangeValue] of Object.entries(value.exchange)) {
         // in GW or MW
-        entry.layerData[key] = Math.max(0, exchangeValue / valueFactor);
+        entry.layerData[key] = exchangeValue / valueFactor;
         if (displayByEmissions) {
           // in gCO₂eq/hour
           entry.layerData[key] =
@@ -143,7 +143,7 @@ function getStorageValue(
     return Number.NaN;
   }
 
-  const invertedValue = -1 * Math.min(0, storageValue);
+  const invertedValue = -1 * storageValue;
 
   return displayByEmissions
     ? invertedValue * value.dischargeCo2Intensities[storageKey] * valueFactor
