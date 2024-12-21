@@ -1,37 +1,32 @@
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
-import { TimeRange } from 'utils/constants';
-import { formatDate, formatDateRange } from 'utils/formatting';
+import { formatDate } from 'utils/formatting';
 import { getZoneTimezone } from 'utils/helpers';
+import { timeRangeAtom } from 'utils/state/atoms';
 
 export function FormattedTime({
   datetime,
   language,
-  timeRange,
   className,
   zoneId,
+  isTimeHeader = false,
   endDatetime,
 }: {
   datetime: Date;
   language: string;
-  timeRange?: TimeRange;
   className?: string;
   zoneId?: string;
+  isTimeHeader?: boolean;
   endDatetime?: Date;
 }) {
+  const timeRange = useAtomValue(timeRangeAtom);
   const { zoneId: pathZoneId } = useParams<RouteParameters>();
   const timeZoneZoneId = zoneId || pathZoneId;
   const timezone = getZoneTimezone(timeZoneZoneId);
-  if (timeRange) {
-    return (
-      <time dateTime={datetime.toISOString()} className={className}>
-        {formatDate(datetime, language, timeRange, timezone)}
-      </time>
-    );
-  }
   return (
     <time dateTime={datetime.toISOString()} className={className}>
-      {endDatetime && formatDateRange(datetime, endDatetime, language, timezone)}
+      {formatDate(datetime, language, timeRange, timezone, isTimeHeader, endDatetime)}
     </time>
   );
 }
