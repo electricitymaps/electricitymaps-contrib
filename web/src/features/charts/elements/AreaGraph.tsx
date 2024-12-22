@@ -6,7 +6,7 @@ import { useHeaderHeight } from 'hooks/headerHeight';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { RouteParameters, ZoneDetail } from 'types';
+import { RouteParameters } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import { Charts, timeAxisMapping, TimeRange } from 'utils/constants';
 import { getZoneTimezone } from 'utils/helpers';
@@ -113,11 +113,6 @@ interface AreagraphProps {
   formatTick?: (t: number) => string | number;
   isDataInteractive?: boolean;
   selectedData?: SelectedData;
-}
-
-interface TooltipData {
-  position: { x: number; y: number };
-  zoneDetail: ZoneDetail;
 }
 
 const AreaGraphIndexSelectedAtom = atom<number | null>(null);
@@ -247,9 +242,8 @@ function AreaGraph({
   const markerSafeFill = markerDatapoint
     ? markerLayerFill?.(markerDatapoint) ?? 'none'
     : 'none';
-  const markerShowVerticalLine = Number.isFinite(markerX);
   const markerShowMarker =
-    markerShowVerticalLine &&
+    Number.isFinite(markerX) &&
     Number.isFinite(markerY) &&
     id === hoveredChart &&
     Number.isFinite(hoveredLayerIndex);
@@ -317,7 +311,6 @@ function AreaGraph({
           y={markerY}
           fill={markerSafeFill}
           showMarker={markerShowMarker}
-          showVerticalLine={markerShowVerticalLine}
           setTooltipPosition={setTooltipPosition}
           elementReference={reference.current}
         />
