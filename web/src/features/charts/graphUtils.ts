@@ -209,17 +209,18 @@ const analyzeChartData = (chartData: AreaGraphElement[]) => {
   let tsaCount = 0;
   let estimatedTotal = 0;
   const total = chartData.length;
-  for (const chartElement of chartData) {
+  for (const { meta } of chartData) {
+    const { estimationMethod, estimatedPercentage } = meta;
     if (
-      chartElement.meta.estimationMethod === EstimationMethods.TSA ||
-      chartElement.meta.estimationMethod === EstimationMethods.FORECASTS_HIERARCHY
+      estimationMethod === EstimationMethods.TSA ||
+      estimationMethod === EstimationMethods.FORECASTS_HIERARCHY
     ) {
       tsaCount++;
     }
-    if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
+    if (estimatedPercentage || estimationMethod) {
       estimatedCount++;
     }
-    estimatedTotal += chartElement.meta.estimatedPercentage ?? 0;
+    estimatedTotal += estimatedPercentage ?? 0;
   }
   const calculatedTotal = round(
     estimatedTotal / total || ((estimatedCount || tsaCount) / total) * 100,
