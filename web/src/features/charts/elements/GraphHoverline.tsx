@@ -1,5 +1,5 @@
 import { ScaleLinear } from 'd3-scale';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 
 const CIRCLE_RADIUS = 6;
 
@@ -20,15 +20,20 @@ function GraphHoverLine({
   setTooltipPosition: ({ x, y }: { x: number; y: number }) => void;
   elementReference: HTMLDivElement | null;
 }) {
-  if (!elementReference) {
+  const [y1, y2] = useMemo(() => valueScale.range(), [valueScale]);
+
+  const rect = useMemo(
+    () => (elementReference ? elementReference.getBoundingClientRect() : null),
+    [elementReference]
+  );
+
+  if (!rect) {
     return null;
   }
-  const [y1, y2] = valueScale.range();
 
-  const { left, top } = elementReference.getBoundingClientRect();
   setTooltipPosition({
-    x: left + x,
-    y: top + y,
+    x: rect.left + x,
+    y: rect.top + y,
   });
 
   return (
