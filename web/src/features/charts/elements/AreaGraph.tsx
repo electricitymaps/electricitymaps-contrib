@@ -1,4 +1,3 @@
-import { HTMLSVGElement } from 'country-flag-icons/react/3x2';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
@@ -267,8 +266,6 @@ function AreaGraph({
     // Don't render the graph if all datapoints are 0
     return null;
   }
-
-  console.table(tooltipPosition);
 
   return (
     <div ref={reference}>
