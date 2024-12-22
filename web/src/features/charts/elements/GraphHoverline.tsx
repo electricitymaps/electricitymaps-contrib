@@ -22,18 +22,14 @@ function GraphHoverLine({
 }) {
   const [y1, y2] = useMemo(() => valueScale.range(), [valueScale]);
 
-  const rect = useMemo(
-    () => (elementReference ? elementReference.getBoundingClientRect() : null),
-    [elementReference]
-  );
-
-  if (!rect) {
+  if (!elementReference) {
     return null;
   }
+  const { left, top } = elementReference.getBoundingClientRect();
 
   setTooltipPosition({
-    x: rect.left + x,
-    y: rect.top + y,
+    x: left + x,
+    y: top + y,
   });
 
   return (
