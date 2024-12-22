@@ -11,7 +11,7 @@ interface AreaGraphTooltipProperties {
   selectedLayerKey?: string;
   zoneDetail?: ZoneDetail;
   dataPoint?: AreaGraphElement;
-  position?: { x: number; y: number } | undefined;
+  position?: { x: number; y: number } | null;
   tooltipSize?: 'small' | 'large';
   isBiggerThanMobile: boolean;
   headerHeight: number;

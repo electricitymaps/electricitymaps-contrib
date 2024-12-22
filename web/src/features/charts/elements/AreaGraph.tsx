@@ -1,3 +1,4 @@
+import { HTMLSVGElement } from 'country-flag-icons/react/3x2';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
@@ -141,12 +142,14 @@ function AreaGraph({
   isDataInteractive = false,
   selectedData,
 }: AreagraphProps) {
-  const reference = useRef(null);
+  const reference = useRef<HTMLDivElement | null>(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<HTMLDivElement>({ ref: reference });
   const isMobile = useIsMobile();
   const selectedDate = useAtomValue(selectedDatetimeIndexAtom);
-  const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState<
+    { x: number; y: number } | undefined | null
+  >(null);
   const isBiggerThanMobile = useBreakpoint('sm');
   const { zoneId } = useParams<RouteParameters>();
   const zoneTimezone = getZoneTimezone(zoneId);
@@ -226,7 +229,7 @@ function AreaGraph({
   );
 
   const onCloseTooltip = () => {
-    setTooltipData(null);
+    setTooltipPosition(null);
     setHoveredLayerIndex(null);
     setGraphIndex(null);
     setHoveredChart(null);
@@ -265,6 +268,8 @@ function AreaGraph({
     return null;
   }
 
+  console.table(tooltipPosition);
+
   return (
     <div ref={reference}>
       <svg
@@ -282,7 +287,7 @@ function AreaGraph({
             mouseMoveHandler={mouseMoveHandler}
             mouseOutHandler={mouseOutHandler}
             isMobile={isMobile}
-            svgNode={reference.current}
+            elementReference={reference.current}
           />
         )}
         <AreaGraphLayers
@@ -316,10 +321,13 @@ function AreaGraph({
           fill={markerSafeFill}
           showMarker={markerShowMarker}
           showVerticalLine={markerShowVerticalLine}
+          setTooltipPosition={setTooltipPosition}
+          elementReference={reference.current}
         />
         {tooltip && (
           <AreaGraphTooltip
-            {...tooltipData}
+            zoneDetail={markerDatapoint?.data.meta}
+            position={tooltipPosition}
             selectedLayerKey={
               hoveredLayerIndex === null ? undefined : layerKeys[hoveredLayerIndex]
             }

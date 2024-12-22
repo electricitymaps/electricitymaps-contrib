@@ -11,6 +11,8 @@ const GraphHoverLine = memo(
     valueScale,
     showVerticalLine,
     showMarker,
+    setTooltipPosition,
+    elementReference,
   }: {
     x: number;
     y: number;
@@ -18,8 +20,19 @@ const GraphHoverLine = memo(
     valueScale: ScaleLinear<number, number, never>;
     showVerticalLine: boolean;
     showMarker: boolean;
+    setTooltipPosition: ({ x, y }: { x: number; y: number }) => void;
+    elementReference: HTMLDivElement | null;
   }) => {
+    if (!elementReference) {
+      return null;
+    }
     const [y1, y2] = valueScale.range();
+
+    setTooltipPosition({
+      x: elementReference.getBoundingClientRect().left + x,
+      y: elementReference.getBoundingClientRect().top + y,
+    });
+
     return (
       <>
         {showVerticalLine && (
