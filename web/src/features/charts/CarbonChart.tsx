@@ -51,6 +51,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
         id={Charts.CARBON_CHART}
       />
       <AreaGraph
+        id={Charts.CARBON_CHART}
         testId="details-carbon-graph"
         data={chartData}
         layerKeys={layerKeys}

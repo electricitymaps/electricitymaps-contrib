@@ -40,6 +40,7 @@ function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
         id={Charts.EMISSION_CHART}
       />
       <AreaGraph
+        id={Charts.EMISSION_CHART}
         testId="history-emissions-graph"
         data={chartData}
         layerKeys={layerKeys}

@@ -114,6 +114,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
       />
       <div className="relative ">
         <AreaGraph
+          id={Charts.ORIGIN_CHART}
           testId="history-mix-graph"
           isDataInteractive={true}
           selectedData={selectedData}
