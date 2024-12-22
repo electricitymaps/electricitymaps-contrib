@@ -5,14 +5,16 @@ import resourcesToBackend from 'i18next-resources-to-backend';
 import { initReactI18next } from 'react-i18next';
 import { localeToFacebookLocale } from 'translation/locales';
 
+// Regular expression for valid language or locale strings
+const VALID_LOCALE_REGEX = /^[A-Za-z]{2}(-[A-Za-z]{2})?$/;
+
+const LOCALE_CLEANUP_PATTERN = /[^A-Za-z-]/g;
+
 export const sanitizeLocale = (locale: string): string => {
   // Get the first 5 characters and strip all non-alphabetic characters except hyphens from the locale string
-  locale = locale.slice(0, 5).replaceAll(/[^A-Za-z-]/g, '');
+  locale = locale.slice(0, 5).replaceAll(LOCALE_CLEANUP_PATTERN, '');
 
-  // Regular expression for valid language or locale strings
-  const validLocaleRegex = /^[A-Za-z]{2}(-[A-Za-z]{2})?$/;
-
-  if (validLocaleRegex.test(locale)) {
+  if (VALID_LOCALE_REGEX.test(locale)) {
     return Intl.getCanonicalLocales(locale)[0];
   }
 
