@@ -234,7 +234,11 @@ function AreaGraph({
   // Logic for hoverline and marker
   const markerLayer = layers.at(hoveredLayerIndex ?? 0);
   const markerDatapoint = markerLayer?.datapoints?.[hoverLineTimeIndex];
-  const markerX = timeScale?.(datetimes[hoverLineTimeIndex]) ?? Number.NaN;
+  const nextDateTime = datetimes[hoverLineTimeIndex + 1] ?? endTime;
+  const scaledNext = nextDateTime ? timeScale?.(nextDateTime) ?? 0 : 0;
+  const selected = timeScale?.(datetimes[hoverLineTimeIndex]) ?? Number.NaN;
+  const interval = scaledNext - selected;
+  const markerX = selected + interval / 2;
   const markerY = valueScale(
     markerDatapoint?.[markerDatapoint?.[0] < 0 ? 0 : 1] ?? Number.NaN
   );
