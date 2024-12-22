@@ -212,7 +212,7 @@ function AreaGraph({
         setHoveredLayerIndex(layerIndex);
       }
     },
-    [layers, setGraphIndex, setHoveredLayerIndex]
+    [layers, setGraphIndex, setHoveredLayerIndex, id, setHoveredChart]
   );
   const mouseOutHandler = useMemo(
     () => () => {
@@ -222,7 +222,7 @@ function AreaGraph({
         setHoveredChart(null);
       }
     },
-    [setGraphIndex, setHoveredLayerIndex, isMobile]
+    [setGraphIndex, setHoveredLayerIndex, isMobile, setHoveredChart]
   );
 
   const onCloseTooltip = () => {
@@ -234,25 +234,23 @@ function AreaGraph({
 
   const headerHeight = useHeaderHeight();
 
-  const markerData = useMemo(() => {
-    const layer = layers.at(hoveredLayerIndex ?? 0);
-    const datapoint = layer?.datapoints?.[hoverLineTimeIndex];
-    const x = timeScale?.(datetimes[hoverLineTimeIndex]) ?? Number.NaN;
-    const y = valueScale(datapoint?.[datapoint?.[0] < 0 ? 0 : 1] ?? Number.NaN);
-    const markerFill = layer?.markerFill;
-    const showVerticalLine = Number.isFinite(x);
-    return {
-      x,
-      y,
-      fill: datapoint ? markerFill?.(datapoint) ?? 'none' : 'none',
-      showVerticalLine: showVerticalLine,
-      showMarker:
-        showVerticalLine &&
-        Number.isFinite(y) &&
-        id === hoveredChart &&
-        Number.isFinite(hoveredLayerIndex),
-    };
-  }, [layers, hoveredLayerIndex, hoverLineTimeIndex]);
+  // Logic for hoverline and marker
+  const markerLayer = layers.at(hoveredLayerIndex ?? 0);
+  const markerDatapoint = markerLayer?.datapoints?.[hoverLineTimeIndex];
+  const markerX = timeScale?.(datetimes[hoverLineTimeIndex]) ?? Number.NaN;
+  const markerY = valueScale(
+    markerDatapoint?.[markerDatapoint?.[0] < 0 ? 0 : 1] ?? Number.NaN
+  );
+  const markerLayerFill = markerLayer?.markerFill;
+  const markerSafeFill = markerDatapoint
+    ? markerLayerFill?.(markerDatapoint) ?? 'none'
+    : 'none';
+  const markerShowVerticalLine = Number.isFinite(markerX);
+  const markerShowMarker =
+    markerShowVerticalLine &&
+    Number.isFinite(markerY) &&
+    id === hoveredChart &&
+    Number.isFinite(hoveredLayerIndex);
 
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {
@@ -313,11 +311,11 @@ function AreaGraph({
         <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
         <GraphHoverLine
           valueScale={valueScale}
-          x={markerData.x}
-          y={markerData.y}
-          fill={markerData.fill}
-          showMarker={markerData.showMarker}
-          showVerticalLine={markerData.showVerticalLine}
+          x={markerX}
+          y={markerY}
+          fill={markerSafeFill}
+          showMarker={markerShowMarker}
+          showVerticalLine={markerShowVerticalLine}
         />
         {tooltip && (
           <AreaGraphTooltip
