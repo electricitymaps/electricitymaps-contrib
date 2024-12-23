@@ -2,7 +2,7 @@ import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { useSetAtom } from 'jotai';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
 
@@ -29,6 +29,18 @@ function ExchangeArrow({
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
   const setIsMoving = useSetAtom(mapMovingAtom);
   const headerHeight = useHeaderHeight();
+
+  useEffect(() => {
+    const cancelWheel = (event: Event) => event.preventDefault();
+    const exchangeLayer = document.querySelector('#exchange-layer');
+    if (!exchangeLayer) {
+      return;
+    }
+    exchangeLayer.addEventListener('wheel', cancelWheel, {
+      passive: true,
+    });
+    return () => exchangeLayer.removeEventListener('wheel', cancelWheel);
+  }, []);
 
   const handlePointerDown = useCallback(
     (event: React.PointerEvent) => {
