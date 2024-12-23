@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CircularGauge } from './CircularGauge';
+import CircularGauge from './CircularGauge';
 
 const meta: Meta<typeof CircularGauge> = {
   title: 'Basics/CircularGauge',

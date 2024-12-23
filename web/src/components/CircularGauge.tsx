@@ -71,12 +71,7 @@ const SpringAnimatedArc = memo(function SpringAnimatedArc({
   );
 });
 
-export function CircularGauge({
-  ratio,
-  name,
-  testId,
-  tooltipContent,
-}: CircularGaugeProps) {
+function CircularGauge({ ratio, name, testId, tooltipContent }: CircularGaugeProps) {
   const height = 80;
   const width = 80;
   const radius = Math.min(width, height) / 2;
@@ -110,3 +105,5 @@ export function CircularGauge({
     </div>
   );
 }
+
+export default memo(CircularGauge);

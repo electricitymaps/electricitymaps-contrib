@@ -1,4 +1,5 @@
 import { animated, useSpring } from '@react-spring/web';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
@@ -80,4 +81,4 @@ function CarbonIntensitySquare({
   );
 }
 
-export default CarbonIntensitySquare;
+export default memo(CarbonIntensitySquare);
