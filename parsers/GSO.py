@@ -10,9 +10,9 @@
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 # Third-party library imports
-import arrow
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -29,7 +29,8 @@ from parsers.lib.config import refetch_frequency, use_proxy
 DEFAULT_ZONE_KEY = ZoneKey("MY-WM")
 DOMAIN = "www.gso.org.my"
 PRODUCTION_THRESHOLD = 10  # MW
-TIMEZONE = "Asia/Kuala_Lumpur"
+TIMEZONE = ZoneInfo("Asia/Kuala_Lumpur")
+
 CONSUMPTION_URL = f"https://{DOMAIN}/SystemData/SystemDemand.aspx/GetChartDataSource"
 EXCHANGE_URL = f"https://{DOMAIN}/SystemData/TieLine.aspx/GetChartDataSource"
 PRODUCTION_URL = f"https://{DOMAIN}/SystemData/CurrentGen.aspx/GetChartDataSource"
@@ -52,6 +53,12 @@ def get_api_data(session: Session, url, data):
     return json.loads(session.post(url, json=data).json()["d"])
 
 
+def parse_local_dt_str(ts: str):
+    # convert local datetime returned from API
+    # e.g. "2024-10-27T00:10:00" equals 1610hrs UTC the day before
+    return datetime.fromisoformat(ts).replace(tzinfo=TIMEZONE)
+
+
 @refetch_frequency(timedelta(days=1))
 @use_proxy(country_code="MY")
 def fetch_consumption(
@@ -61,7 +68,12 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the power consumption (in MW) of a given zone."""
-    date_string = arrow.get(target_datetime).to(TIMEZONE).format("DD/MM/YYYY")
+    if target_datetime:
+        target_datetime_tz = target_datetime.astimezone(TIMEZONE)
+    else:
+        target_datetime_tz = datetime.now(TIMEZONE)
+    date_string = target_datetime_tz.strftime("%d/%m/%Y")
+
     consumption_data = get_api_data(
         session or Session(),
         CONSUMPTION_URL,
@@ -75,7 +87,7 @@ def fetch_consumption(
     for item in consumption_data:
         all_consumption_data.append(
             zoneKey=zone_key,
-            datetime=arrow.get(item["DT"], tzinfo=TIMEZONE).to("utc").datetime,
+            datetime=parse_local_dt_str(item["DT"]),
             consumption=item["MW"],
             source=DOMAIN,
         )
@@ -92,7 +104,11 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the power exchange (in MW) between two zones."""
-    date_string = arrow.get(target_datetime).to(TIMEZONE).format("DD/MM/YYYY")
+    if target_datetime:
+        target_datetime_tz = target_datetime.astimezone(TIMEZONE)
+    else:
+        target_datetime_tz = datetime.now(TIMEZONE)
+    date_string = target_datetime_tz.strftime("%d/%m/%Y")
 
     sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
     all_exchange_data = ExchangeList(logger)
@@ -109,9 +125,7 @@ def fetch_exchange(
         )
         for item in exchange_data:
             all_exchange_data.append(
-                datetime=arrow.get(item["Tarikhmasa"], tzinfo=TIMEZONE)
-                .to("utc")
-                .datetime,
+                datetime=parse_local_dt_str(item["Tarikhmasa"]),
                 netFlow=item["MW"],
                 zoneKey=sorted_zone_keys,
                 source=DOMAIN,
@@ -139,9 +153,7 @@ def fetch_exchange(
         )
         for exchange in egat_exchanges + hvdc_exchanges:
             all_exchange_data.append(
-                datetime=arrow.get(exchange["Tarikhmasa"], tzinfo=TIMEZONE)
-                .to("utc")
-                .datetime,
+                datetime=parse_local_dt_str(exchange["Tarikhmasa"]),
                 netFlow=exchange["MW"],
                 zoneKey=sorted_zone_keys,
                 source=DOMAIN,
@@ -160,7 +172,12 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the production mix (in MW) of a given zone."""
-    date_string = arrow.get(target_datetime).to(TIMEZONE).format("DD/MM/YYYY")
+    if target_datetime:
+        target_datetime_tz = target_datetime.astimezone(TIMEZONE)
+    else:
+        target_datetime_tz = datetime.now(TIMEZONE)
+    date_string = target_datetime_tz.strftime("%d/%m/%Y")
+
     all_production_data = ProductionBreakdownList(logger)
 
     production_data = get_api_data(
@@ -173,7 +190,7 @@ def fetch_production(
     )
     for item in production_data:
         production_mix = ProductionMix()
-        item_datetime = arrow.get(item["DT"], tzinfo=TIMEZONE).to("utc").datetime
+        item_datetime = parse_local_dt_str(item["DT"])
         for mode in [key for key in item if key != "DT"]:
             production_mix.add_value(PRODUCTION_BREAKDOWN[mode], item[mode], True)
         all_production_data.append(
