@@ -1,4 +1,6 @@
+import { Group } from '@visx/group';
 import { ScaleTime, scaleTime } from 'd3-scale';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
@@ -10,12 +12,7 @@ import { formatDateTick } from '../../utils/formatting';
 // The following represents a list of methods, indexed by time range, that depict
 // if a datetime should be a major tick, where we will display the date value.
 
-const getMajorTick = (
-  timeRange: TimeRange,
-  localHours: number,
-  localMinutes: number,
-  index: number
-) => {
+const getMajorTick = (timeRange: TimeRange, localHours: number, index: number) => {
   switch (timeRange) {
     case TimeRange.H24:
     case TimeRange.D30: {
@@ -46,24 +43,19 @@ const renderTick = (
   chartHeight?: number,
   isTimeController?: boolean
 ) => {
-  const { localHours, localMinutes } = getLocalTime(value, timezone);
+  const { localHours } = getLocalTime(value, timezone);
   const isMidnightTime = localHours === 0;
 
-  const isMajorTick =
-    !isLoading && getMajorTick(selectedTimeRange, localHours, localMinutes, index);
+  const isMajorTick = !isLoading && getMajorTick(selectedTimeRange, localHours, index);
   const isLastTick = index === HOURLY_TIME_INDEX[selectedTimeRange];
-  const overlapsWithLive = scale(value) + 40 >= scale.range()[1]; // the "LIVE" labels takes ~30px
+  const scaledValue = scale(value);
+  const overlapsWithLive = scaledValue + 40 >= scale.range()[1]; // the "LIVE" labels takes ~30px
   const shouldShowValue = displayLive
     ? (isMajorTick && !overlapsWithLive) || isLastTick
     : isMajorTick;
 
   return (
-    <g
-      id={index.toString()}
-      key={`timeaxis-tick-${index}`}
-      className="text-xs"
-      transform={`translate(${scale(value)},0)`}
-    >
+    <Group key={index} className="text-xs" left={scaledValue}>
       {isMidnightTime &&
         isValidHistoricalTimeRange(selectedTimeRange) &&
         !isTimeController && (
@@ -79,7 +71,7 @@ const renderTick = (
       <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
-    </g>
+    </Group>
   );
 };
 
@@ -190,4 +182,4 @@ function TimeAxis({
   );
 }
 
-export default TimeAxis;
+export default memo(TimeAxis);
