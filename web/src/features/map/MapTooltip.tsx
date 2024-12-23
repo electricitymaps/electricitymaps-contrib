@@ -17,6 +17,11 @@ import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
+const emptyZoneData: StateZoneData = {
+  p: {},
+  c: {},
+};
+
 export const TooltipInner = memo(function TooltipInner({
   zoneData,
   zoneId,
@@ -25,18 +30,7 @@ export const TooltipInner = memo(function TooltipInner({
   zoneData?: StateZoneData;
 }) {
   const hasZoneData = Boolean(zoneData);
-  zoneData ??= {
-    p: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-    c: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-  };
+  zoneData ??= emptyZoneData;
   const { e, o } = zoneData;
 
   const estimated = typeof e === 'number' ? round(e ?? 0, 0) : e;
@@ -47,7 +41,7 @@ export const TooltipInner = memo(function TooltipInner({
         <div className="flex w-full flex-row justify-between">
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge
-            hasOutage={o}
+            hasOutage={Boolean(o)}
             estimated={estimated}
             hasZoneData={hasZoneData}
           />
@@ -69,7 +63,7 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   estimated,
   hasZoneData,
 }: {
-  hasOutage?: boolean | null;
+  hasOutage: boolean;
   estimated?: number | boolean | null;
   hasZoneData: boolean;
 }) {

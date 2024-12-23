@@ -51,9 +51,4 @@ function ZoneGaugesWithCO2Square({
   );
 }
 
-export default memo(
-  ZoneGaugesWithCO2Square,
-  (prevProps, nextProps) =>
-    JSON.stringify(prevProps.zoneData) === JSON.stringify(nextProps.zoneData) &&
-    prevProps.withTooltips === nextProps.withTooltips
-);
+export default memo(ZoneGaugesWithCO2Square);
