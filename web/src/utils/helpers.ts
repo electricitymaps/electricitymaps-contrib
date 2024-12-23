@@ -226,13 +226,13 @@ export const getZoneTimezone = (zoneId?: string) => {
   return zones[zoneId]?.timezone;
 };
 
+const MOBILE_USER_AGENT_PATTERN: RegExp =
+  /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i;
 /**
  * @returns {Boolean} true if agent is probably a mobile device.
  */
 export const hasMobileUserAgent = () =>
-  /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(
-    navigator.userAgent
-  );
+  MOBILE_USER_AGENT_PATTERN.test(navigator.userAgent);
 
 export const isValidHistoricalTimeRange = (timeRange: TimeRange) =>
   historicalTimeRange.includes(timeRange);
