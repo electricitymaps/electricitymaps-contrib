@@ -99,7 +99,7 @@ function ExchangeArrow({
           cursor: 'pointer',
           overflow: 'hidden',
           position: 'absolute',
-          pointerEvents: 'all',
+          pointerEvents: isMobile ? 'all' : 'none',
           imageRendering: 'crisp-edges',
           left: '-25px',
           top: '-41px',
