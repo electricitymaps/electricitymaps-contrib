@@ -6,9 +6,9 @@ import { useHeaderHeight } from 'hooks/headerHeight';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import React, { useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { RouteParameters, ZoneDetail } from 'types';
+import { RouteParameters } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { timeAxisMapping, TimeRange } from 'utils/constants';
+import { Charts, timeAxisMapping, TimeRange } from 'utils/constants';
 import { getZoneTimezone } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
 import { useBreakpoint, useIsMobile } from 'utils/styling';
@@ -29,8 +29,8 @@ export const Y_AXIS_PADDING = 2;
 interface Layer {
   key: string;
   stroke: string;
-  fill: string | ((d: { data: AreaGraphElement }) => string);
-  markerFill: string | ((d: { data: AreaGraphElement }) => string);
+  fill: (d: { data: AreaGraphElement }) => string;
+  markerFill: (d: { data: AreaGraphElement }) => string;
   datapoints: Series<AreaGraphElement, string>;
 }
 
@@ -84,14 +84,15 @@ const getLayers = (
 
   return layerKeys.map((key: string, index: number) => ({
     key,
-    stroke: layerStroke ? layerStroke(key) : 'none',
+    stroke: layerStroke?.(key) ?? 'none',
     fill: layerFill(key),
-    markerFill: markerFill ? markerFill(key) : layerFill(key),
+    markerFill: markerFill?.(key) ?? layerFill(key),
     datapoints: stackedData[index],
   }));
 };
 
 interface AreagraphProps {
+  id: Charts;
   data: AreaGraphElement[];
   testId: string;
   layerKeys: string[];
@@ -114,14 +115,11 @@ interface AreagraphProps {
   selectedData?: SelectedData;
 }
 
-interface TooltipData {
-  position: { x: number; y: number };
-  zoneDetail: ZoneDetail;
-}
-
 const AreaGraphIndexSelectedAtom = atom<number | null>(null);
+const AreaGraphHoveredChartAtom = atom<Charts | null>(null);
 
 function AreaGraph({
+  id,
   data,
   testId,
   layerKeys,
@@ -138,12 +136,14 @@ function AreaGraph({
   isDataInteractive = false,
   selectedData,
 }: AreagraphProps) {
-  const reference = useRef(null);
+  const reference = useRef<HTMLDivElement | null>(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<HTMLDivElement>({ ref: reference });
   const isMobile = useIsMobile();
   const selectedDate = useAtomValue(selectedDatetimeIndexAtom);
-  const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState<
+    { x: number; y: number } | undefined | null
+  >(null);
   const isBiggerThanMobile = useBreakpoint('sm');
   const { zoneId } = useParams<RouteParameters>();
   const zoneTimezone = getZoneTimezone(zoneId);
@@ -191,31 +191,16 @@ function AreaGraph({
   );
 
   const [graphIndex, setGraphIndex] = useAtom(AreaGraphIndexSelectedAtom);
+  const [hoveredChart, setHoveredChart] = useAtom(AreaGraphHoveredChartAtom);
   const [hoveredLayerIndex, setHoveredLayerIndex] = useState<number | null>(null);
 
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
-
-  // Graph update handlers. Used for tooltip data.
-  const markerUpdateHandler = useMemo(
-    () => (position: { x: number; y: number }, dataPoint: AreaGraphElement) => {
-      setTooltipData({
-        position,
-        zoneDetail: dataPoint.meta,
-      });
-    },
-    [setTooltipData]
-  );
-  const markerHideHandler = useMemo(
-    () => () => {
-      setTooltipData(null);
-    },
-    [setTooltipData]
-  );
 
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
     () => (timeIndex: number | null, layerIndex: number | null) => {
       setGraphIndex(timeIndex);
+      setHoveredChart(id);
       if (layers.length <= 1) {
         // Select the first (and only) layer even when hovering over background
         setHoveredLayerIndex(0);
@@ -224,25 +209,48 @@ function AreaGraph({
         setHoveredLayerIndex(layerIndex);
       }
     },
-    [layers, setGraphIndex, setHoveredLayerIndex]
+    [layers, setGraphIndex, setHoveredLayerIndex, id, setHoveredChart]
   );
   const mouseOutHandler = useMemo(
     () => () => {
       if (!isMobile) {
         setGraphIndex(null);
         setHoveredLayerIndex(null);
+        setHoveredChart(null);
       }
     },
-    [setGraphIndex, setHoveredLayerIndex, isMobile]
+    [setGraphIndex, setHoveredLayerIndex, isMobile, setHoveredChart]
   );
 
   const onCloseTooltip = () => {
-    setTooltipData(null);
+    setTooltipPosition(null);
     setHoveredLayerIndex(null);
     setGraphIndex(null);
+    setHoveredChart(null);
   };
 
   const headerHeight = useHeaderHeight();
+
+  // Logic for hoverline and marker
+  const markerLayer = layers.at(hoveredLayerIndex ?? 0);
+  const markerDatapoint = markerLayer?.datapoints?.[hoverLineTimeIndex];
+  const nextDateTime = datetimes[hoverLineTimeIndex + 1] ?? endTime;
+  const scaledNext = nextDateTime ? timeScale?.(nextDateTime) ?? 0 : 0;
+  const selected = timeScale?.(datetimes[hoverLineTimeIndex]) ?? Number.NaN;
+  const interval = scaledNext - selected;
+  const markerX = selected + interval / 2;
+  const markerY = valueScale(
+    markerDatapoint?.[markerDatapoint?.[0] < 0 ? 0 : 1] ?? Number.NaN
+  );
+  const markerLayerFill = markerLayer?.markerFill;
+  const markerSafeFill = markerDatapoint
+    ? markerLayerFill?.(markerDatapoint) ?? 'none'
+    : 'none';
+  const markerShowMarker =
+    Number.isFinite(markerX) &&
+    Number.isFinite(markerY) &&
+    id === hoveredChart &&
+    Number.isFinite(hoveredLayerIndex);
 
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {
@@ -274,7 +282,7 @@ function AreaGraph({
             mouseMoveHandler={mouseMoveHandler}
             mouseOutHandler={mouseOutHandler}
             isMobile={isMobile}
-            svgNode={reference.current}
+            elementReference={reference.current}
           />
         )}
         <AreaGraphLayers
@@ -302,20 +310,18 @@ function AreaGraph({
         />
         <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
         <GraphHoverLine
-          layers={layers}
-          timeScale={timeScale}
           valueScale={valueScale}
-          datetimes={datetimes}
-          endTime={endTime}
-          markerUpdateHandler={markerUpdateHandler}
-          markerHideHandler={markerHideHandler}
-          hoveredLayerIndex={hoveredLayerIndex}
-          selectedTimeIndex={hoverLineTimeIndex}
-          svgNode={reference.current}
+          x={markerX}
+          y={markerY}
+          fill={markerSafeFill}
+          showMarker={markerShowMarker}
+          setTooltipPosition={setTooltipPosition}
+          elementReference={reference.current}
         />
         {tooltip && (
           <AreaGraphTooltip
-            {...tooltipData}
+            zoneDetail={markerDatapoint?.data.meta}
+            position={tooltipPosition}
             selectedLayerKey={
               hoveredLayerIndex === null ? undefined : layerKeys[hoveredLayerIndex]
             }

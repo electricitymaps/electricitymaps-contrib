@@ -73,6 +73,7 @@ function PriceChart({ datetimes, timeRange }: PriceChartProps) {
           />
         )}
         <AreaGraph
+          id={Charts.PRICE_CHART}
           testId="history-prices-graph"
           data={chartData}
           layerKeys={layerKeys}

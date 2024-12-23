@@ -10,7 +10,7 @@ interface GraphBackgroundProps {
   mouseMoveHandler?: (timeIndex: number | null, layerIndex: number | null) => void;
   mouseOutHandler?: () => void;
   isMobile: boolean;
-  svgNode: SVGSVGElement;
+  elementReference: HTMLDivElement;
   displayName?: string;
 }
 
@@ -21,7 +21,7 @@ const GraphBackground = React.memo(function GraphBackground({
   mouseMoveHandler,
   mouseOutHandler,
   isMobile,
-  svgNode,
+  elementReference,
 }: GraphBackgroundProps) {
   const [x1, x2] = useMemo(() => timeScale.range(), [timeScale]);
   const [y2, y1] = useMemo(() => valueScale.range(), [valueScale]);
@@ -29,12 +29,17 @@ const GraphBackground = React.memo(function GraphBackground({
   const height = y2 - y1;
   const handleRectMouseMove = useCallback(
     (event: React.MouseEvent<SVGRectElement>) => {
-      const timeIndex = detectHoveredDatapointIndex(event, datetimes, timeScale, svgNode);
+      const timeIndex = detectHoveredDatapointIndex(
+        event,
+        datetimes,
+        timeScale,
+        elementReference
+      );
       if (mouseMoveHandler) {
         mouseMoveHandler(timeIndex, null);
       }
     },
-    [datetimes, timeScale, svgNode, mouseMoveHandler]
+    [datetimes, timeScale, elementReference, mouseMoveHandler]
   );
 
   const handleRectMouseOut = useCallback(() => {

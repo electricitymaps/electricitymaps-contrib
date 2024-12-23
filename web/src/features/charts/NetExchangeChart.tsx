@@ -52,6 +52,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
       />
       <div className="relative">
         <AreaGraph
+          id={Charts.NET_EXCHANGE_CHART}
           testId="history-exchange-graph"
           data={chartData}
           layerKeys={layerKeys}

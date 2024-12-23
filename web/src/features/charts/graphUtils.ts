@@ -15,7 +15,7 @@ export const detectHoveredDatapointIndex = (
   event_: MouseEvent<SVGRectElement> | MouseEvent<SVGPathElement>,
   datetimes: Date[],
   timeScale: ScaleTime<number, number>,
-  svgNode: SVGSVGElement
+  elementReference: HTMLDivElement
 ): number | null => {
   if (datetimes.length === 0) {
     return null;
@@ -23,7 +23,7 @@ export const detectHoveredDatapointIndex = (
   const timeIntervalWidth = timeScale(datetimes[1]) - timeScale(datetimes[0]);
 
   const dx = event_.pageX
-    ? event_.pageX - svgNode.getBoundingClientRect().left
+    ? event_.pageX - elementReference.getBoundingClientRect().left
     : pointer(event_)[0];
   const adjustedDx = dx - timeIntervalWidth / 2;
   const datetime = timeScale.invert(adjustedDx);
