@@ -110,6 +110,9 @@ importers:
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
+      es-toolkit:
+        specifier: ^1.30.1
+        version: 1.30.1
       geojson:
         specifier: ^0.5.0
         version: 0.5.0
@@ -5117,6 +5120,9 @@ packages:
     resolution: {integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==}
     engines: {node: '>= 0.4'}
 
+  es-toolkit@1.30.1:
+    resolution: {integrity: sha512-ZXflqanzH8BpHkDhFa10bBf6ONDCe84EPUm7SSICGzuuROSluT2ynTPtwn9PcRelMtorCRozSknI/U0MNYp0Uw==}
+
   esbuild-register@3.6.0:
     resolution: {integrity: sha512-H2/S7Pm8a9CL1uhp9OvjwrBh5Pvx0H8qVOxNu8Wed9Y7qv56MPtq+GGM8RJpq6glYJn9Wspr8uw7l55uyinNeg==}
     peerDependencies:
@@ -7975,6 +7981,7 @@ packages:
 
   sudo-prompt@9.2.1:
     resolution: {integrity: sha512-Mu7R0g4ig9TUuGSxJavny5Rv0egCEtpZRNMrZaYS1vxkiIxGiGUwoezU3LazIQ+KE04hTrTfNPgxU5gzi7F5Pw==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   sunrise-sunset-js@2.2.1:
     resolution: {integrity: sha512-ErsvmxoTCZRacVPtlchkrTAR8qxypBy0BDrrv9LMugLuF0AykcS5pQsP1EhQJHgumxrTTSI8N8KJkQMVJ6dEPw==}
@@ -14892,6 +14899,8 @@ snapshots:
       is-callable: 1.2.7
       is-date-object: 1.0.5
       is-symbol: 1.0.4
+
+  es-toolkit@1.30.1: {}
 
   esbuild-register@3.6.0(esbuild@0.23.1):
     dependencies:

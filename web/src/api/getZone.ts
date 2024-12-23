@@ -5,7 +5,7 @@ import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
 import { RouteParameters } from 'types';
 import { TimeRange } from 'utils/constants';
-import { isValidHistoricalTimeRange } from 'utils/helpers';
+import { memoizedIsValidHistoricalTimeRange } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
 
 import {
@@ -27,7 +27,7 @@ const getZone = async (
   const shouldQueryHistorical =
     targetDatetime &&
     isValidDate(targetDatetime) &&
-    isValidHistoricalTimeRange(timeRange);
+    memoizedIsValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
     `v9/details/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}/${zoneId}${

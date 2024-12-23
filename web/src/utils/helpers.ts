@@ -1,4 +1,5 @@
 import { callerLocation, useMeta } from 'api/getMeta';
+import { memoize } from 'es-toolkit';
 import {
   useLocation,
   useMatch,
@@ -43,9 +44,10 @@ export function useUserLocation(): callerLocation {
 /**
  * Converts date to format returned by API
  */
-export function dateToDatetimeString(date: Date) {
-  return date.toISOString().split('.')[0] + 'Z';
-}
+export const dateToDatetimeString = (date: Date) =>
+  date.toISOString().split('.')[0] + 'Z';
+export const memoizedDateToDatetimeString = memoize(dateToDatetimeString);
+
 export function getProductionCo2Intensity(
   mode: ElectricityModeType,
   zoneData: ZoneDetail
@@ -240,6 +242,7 @@ export const hasMobileUserAgent = () =>
 
 export const isValidHistoricalTimeRange = (timeRange: TimeRange) =>
   historicalTimeRange.includes(timeRange);
+export const memoizedIsValidHistoricalTimeRange = memoize(isValidHistoricalTimeRange);
 
 export const getLocalTime = (date: Date, timezone?: string) => {
   if (!timezone) {
@@ -260,3 +263,7 @@ export const getLocalTime = (date: Date, timezone?: string) => {
 
   return { localHours: hours, localMinutes: minutes };
 };
+
+export const memoizedGetLocalTime = memoize(getLocalTime, {
+  getCacheKey: (date: Date, timezone?: string) => `${date.toISOString()}+${timezone}`,
+});
