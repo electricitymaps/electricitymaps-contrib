@@ -4,7 +4,8 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
 
 import { Capacitor } from '@capacitor/core';
-import { captureException, init } from '@sentry/react';
+import * as Sentry from '@sentry/react';
+import { captureException } from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
 import LoadingSpinner from 'components/LoadingSpinner';
@@ -31,7 +32,7 @@ import { refetchDataOnHourChange } from 'utils/refetching';
 
 const isProduction = import.meta.env.PROD;
 if (isProduction) {
-  init({
+  Sentry.init({
     dsn: Capacitor.isNativePlatform()
       ? 'https://dfa9d3f487a738bcc1abc9329a5877c6@o192958.ingest.us.sentry.io/4507825555767296' // Capacitor DSN
       : 'https://bbe4fb6e5b3c4b96a1df95145a91e744@o192958.ingest.us.sentry.io/4504366922989568', // Web DSN
