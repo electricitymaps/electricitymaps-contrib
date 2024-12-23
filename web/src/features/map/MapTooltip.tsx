@@ -9,6 +9,7 @@ import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
 import { TrendingUpDown } from 'lucide-react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { round } from 'utils/helpers';
@@ -16,7 +17,7 @@ import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
-export function TooltipInner({
+export const TooltipInner = memo(function TooltipInner({
   zoneData,
   zoneId,
 }: {
@@ -59,9 +60,11 @@ export function TooltipInner({
       <ZoneGaugesWithCO2Square zoneData={zoneData} />
     </div>
   );
-}
+});
 
-function DataValidityBadge({
+TooltipInner.displayName = 'TooltipInner';
+
+export const DataValidityBadge = memo(function DataValidityBadge({
   hasOutage,
   estimated,
   hasZoneData,
@@ -97,7 +100,9 @@ function DataValidityBadge({
     );
   }
   return null;
-}
+});
+
+DataValidityBadge.displayName = 'DataValidityBadge';
 
 export default function MapTooltip() {
   const mousePosition = useAtomValue(mousePositionAtom);

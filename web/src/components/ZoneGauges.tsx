@@ -1,18 +1,19 @@
 import { useAtomValue } from 'jotai';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
 import { isConsumptionAtom } from 'utils/state/atoms';
 
 import CarbonIntensitySquare from './CarbonIntensitySquare';
-import { CircularGauge } from './CircularGauge';
+import CircularGauge from './CircularGauge';
 
 interface ZoneGaugesWithCO2SquareProps {
   zoneData: StateZoneData;
   withTooltips?: boolean;
 }
 
-export default function ZoneGaugesWithCO2Square({
+function ZoneGaugesWithCO2Square({
   zoneData,
   withTooltips = false,
 }: ZoneGaugesWithCO2SquareProps) {
@@ -49,3 +50,10 @@ export default function ZoneGaugesWithCO2Square({
     </div>
   );
 }
+
+export default memo(
+  ZoneGaugesWithCO2Square,
+  (prevProps, nextProps) =>
+    JSON.stringify(prevProps.zoneData) === JSON.stringify(nextProps.zoneData) &&
+    prevProps.withTooltips === nextProps.withTooltips
+);
