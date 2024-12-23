@@ -2,7 +2,7 @@ import type { QueryClient } from '@tanstack/react-query';
 import { ONE_MINUTE, QUERY_KEYS } from 'api/helpers';
 
 import { TimeRange } from './constants';
-import { isValidHistoricalTimeRange } from './helpers';
+import { memoizedIsValidHistoricalTimeRange } from './helpers';
 
 /**
  * Refetches data when the hour changes to show fresh data.
@@ -45,7 +45,7 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
 }
 
 export function getStaleTime(timeRange: TimeRange, urlDatetime?: string) {
-  if (!isValidHistoricalTimeRange(timeRange) || urlDatetime) {
+  if (!memoizedIsValidHistoricalTimeRange(timeRange) || urlDatetime) {
     return 0;
   }
   const now = new Date();

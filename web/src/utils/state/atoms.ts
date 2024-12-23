@@ -3,7 +3,7 @@ import { atomWithStorage } from 'jotai/utils';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
-import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
+import { memoizedDateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
   HOURLY_TIME_INDEX,
@@ -47,7 +47,7 @@ export const endDatetimeAtom = atom<Date | undefined>(undefined);
 export const startDatetimeAtom = atom<Date | undefined>(undefined);
 export const selectedDatetimeStringAtom = atom<string>((get) => {
   const { datetime } = get(selectedDatetimeIndexAtom);
-  return dateToDatetimeString(datetime);
+  return memoizedDateToDatetimeString(datetime);
 });
 
 export const spatialAggregateAtom = atomWithStorage(

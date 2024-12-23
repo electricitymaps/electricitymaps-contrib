@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
 import { HOURLY_TIME_INDEX, TimeRange } from 'utils/constants';
-import { getLocalTime, isValidHistoricalTimeRange } from 'utils/helpers';
+import { memoizedGetLocalTime, memoizedIsValidHistoricalTimeRange } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
 
@@ -46,7 +46,7 @@ const renderTick = (
   chartHeight?: number,
   isTimeController?: boolean
 ) => {
-  const { localHours, localMinutes } = getLocalTime(value, timezone);
+  const { localHours, localMinutes } = memoizedGetLocalTime(value, timezone);
   const isMidnightTime = localHours === 0;
 
   const isMajorTick =
@@ -65,7 +65,7 @@ const renderTick = (
       transform={`translate(${scale(value)},0)`}
     >
       {isMidnightTime &&
-        isValidHistoricalTimeRange(selectedTimeRange) &&
+        memoizedIsValidHistoricalTimeRange(selectedTimeRange) &&
         !isTimeController && (
           <line
             stroke="currentColor"
@@ -94,7 +94,9 @@ const renderTickValue = (
   const shouldDisplayLive = displayLive && index === HOURLY_TIME_INDEX[selectedTimeRange];
   const dateText = formatDateTick(v, lang, selectedTimeRange, timezone);
   const textOffset =
-    isValidHistoricalTimeRange(selectedTimeRange) && dateText && dateText.length > 5
+    memoizedIsValidHistoricalTimeRange(selectedTimeRange) &&
+    dateText &&
+    dateText.length > 5
       ? 5
       : 0;
 
