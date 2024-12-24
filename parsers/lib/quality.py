@@ -40,14 +40,14 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
 
 
 def validate_reasonable_time(item, k):
-    data_time = arrow.get(item["datetime"])
+    data_time = arrow.get(item["datetime"]).astimezone(timezone.utc)
     if data_time.year < 2000:
         raise ValidationError(
             f"Data from {k} can't be before year 2000, it was from: {data_time}"
         )
 
     arrow_now = arrow.utcnow()
-    if data_time.astimezone(timezone.utc) > arrow_now:
+    if data_time > arrow_now:
         raise ValidationError(
             f"Data from {k} can't be in the future, data was {data_time}, now is {arrow_now}"
         )
