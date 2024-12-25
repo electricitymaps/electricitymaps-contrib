@@ -3,6 +3,8 @@ import { Share, Share2 } from 'lucide-react';
 import { memo } from 'react';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
+const IOS_DEVICE_PATTERN: RegExp = /Mac|iPad|iPhone|iPod/;
+
 export function ShareIcon({
   showIosIcon = defaultShouldShowIosIcon(),
   iconSize = DEFAULT_ICON_SIZE,
@@ -18,6 +20,6 @@ export function ShareIcon({
 }
 
 export const defaultShouldShowIosIcon = () =>
-  /Mac|iPad|iPhone|iPod/.test(navigator.userAgent) || Capacitor.getPlatform() === 'ios';
+  IOS_DEVICE_PATTERN.test(navigator.userAgent) || Capacitor.getPlatform() === 'ios';
 
 export const MemoizedShareIcon = memo(ShareIcon);
