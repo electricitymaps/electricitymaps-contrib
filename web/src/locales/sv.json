@@ -277,11 +277,11 @@
       "all": "Årliga elpriser"
     },
     "netExchange": {
-      "24h": "Timvis nettohandel",
-      "72h": "Timvis nettohandel",
-      "30d": "Daglig nettohandel",
-      "12mo": "Månadsvis nettohandel",
-      "all": "Årlig nettohandel"
+      "24h": "Timvis nettoöverföring",
+      "72h": "Timvis nettoöverföring",
+      "30d": "Daglig nettoöverföring",
+      "12mo": "Månadsvis nettoöverföring",
+      "all": "Årlig nettoöverföring"
     },
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },
