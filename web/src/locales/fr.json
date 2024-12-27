@@ -90,13 +90,14 @@
     "emission": "Données des facteurs d'émissions"
   },
   "country-panel": {
-    "source": "source",
+    "forecastCta": "Vous recherchez les données prévisionnelles ?",
+    "source": "Source",
     "carbonintensity": "Intensité carbone",
     "lowcarbon": "Bas carbone",
     "renewable": "Renouvelable",
     "electricityconsumption": "Électricité",
     "emissions": "Émissions",
-    "helpfrom": "avec l’aide de",
+    "helpfrom": "Avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
     "disabledPriceReasons": {
