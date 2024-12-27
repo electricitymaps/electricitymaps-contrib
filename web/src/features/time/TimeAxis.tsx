@@ -1,19 +1,34 @@
+import { Group } from '@visx/group';
 import { ScaleTime, scaleTime } from 'd3-scale';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
 import { HOURLY_TIME_INDEX, TimeRange } from 'utils/constants';
-import { isValidHistoricalTimeRange } from 'utils/helpers';
+import { getLocalTime, isValidHistoricalTimeRange } from 'utils/helpers';
 
 import { formatDateTick } from '../../utils/formatting';
 
-// Frequency at which values are displayed for a tick
-const TIME_TO_TICK_FREQUENCY = {
-  '24h': 6,
-  '72h': 12,
-  '30d': 6,
-  '12mo': 1,
-  all: 1,
+// The following represents a list of methods, indexed by time range, that depict
+// if a datetime should be a major tick, where we will display the date value.
+
+const getMajorTick = (timeRange: TimeRange, localHours: number, index: number) => {
+  switch (timeRange) {
+    case TimeRange.H24:
+    case TimeRange.D30: {
+      return index % 6 === 0;
+    }
+    case TimeRange.H72: {
+      return localHours === 12 || localHours === 0;
+    }
+    case TimeRange.M12:
+    case TimeRange.ALL: {
+      return true;
+    }
+    default: {
+      return false;
+    }
+  }
 };
 
 const renderTick = (
@@ -24,27 +39,39 @@ const renderTick = (
   lang: string,
   selectedTimeRange: TimeRange,
   isLoading: boolean,
-  timezone?: string
+  timezone?: string,
+  chartHeight?: number,
+  isTimeController?: boolean
 ) => {
-  // Special-casing index 72 for 72 hour resolution: Typically we retrieve resolution + 1 records
-  // from app-backend, but we're retrieving only 72 records for 72 hour resolution
-  const shouldShowValue =
-    !isLoading &&
-    ((index % TIME_TO_TICK_FREQUENCY[selectedTimeRange] === 0 && index !== 72) ||
-      index === HOURLY_TIME_INDEX[selectedTimeRange]);
+  const { localHours } = getLocalTime(value, timezone);
+  const isMidnightTime = localHours === 0;
+
+  const isMajorTick = !isLoading && getMajorTick(selectedTimeRange, localHours, index);
+  const isLastTick = index === HOURLY_TIME_INDEX[selectedTimeRange];
+  const scaledValue = scale(value);
+  const overlapsWithLive = scaledValue + 40 >= scale.range()[1]; // the "LIVE" labels takes ~30px
+  const shouldShowValue = displayLive
+    ? (isMajorTick && !overlapsWithLive) || isLastTick
+    : isMajorTick;
 
   return (
-    <g
-      id={index.toString()}
-      key={`timeaxis-tick-${index}`}
-      className="text-xs"
-      opacity={1}
-      transform={`translate(${scale(value)},0)`}
-    >
-      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
+    <Group key={index} className="text-xs" left={scaledValue}>
+      {isMidnightTime &&
+        isValidHistoricalTimeRange(selectedTimeRange) &&
+        !isTimeController && (
+          <line
+            stroke="currentColor"
+            strokeDasharray="2,2"
+            y1={chartHeight ? -chartHeight : '-100%'}
+            y2="0"
+            opacity={0.6}
+            className="midnight-marker"
+          />
+        )}
+      <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
-    </g>
+    </Group>
   );
 };
 
@@ -57,18 +84,22 @@ const renderTickValue = (
   timezone?: string
 ) => {
   const shouldDisplayLive = displayLive && index === HOURLY_TIME_INDEX[selectedTimeRange];
-  const textOffset = isValidHistoricalTimeRange(selectedTimeRange) ? 5 : 0;
+  const dateText = formatDateTick(v, lang, selectedTimeRange, timezone);
+  const textOffset =
+    isValidHistoricalTimeRange(selectedTimeRange) && dateText && dateText.length > 5
+      ? 5
+      : 0;
 
   return shouldDisplayLive ? (
     <g>
       <circle cx="-1em" cy="1.15em" r="2" fill="red" />
-      <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold">
+      <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold" textAnchor="middle">
         LIVE
       </text>
     </g>
   ) : (
     <text fill="currentColor" y="9" x={textOffset} dy="0.71em" fontSize={'0.65rem'}>
-      {formatDateTick(v, lang, selectedTimeRange, timezone)}
+      {dateText}
     </text>
   );
 };
@@ -85,6 +116,8 @@ interface TimeAxisProps {
   scaleWidth?: number;
   className?: string;
   timezone?: string;
+  chartHeight?: number;
+  isTimeController?: boolean;
 }
 
 function TimeAxis({
@@ -96,6 +129,8 @@ function TimeAxis({
   isLiveDisplay,
   className,
   timezone,
+  chartHeight,
+  isTimeController,
 }: TimeAxisProps) {
   const { i18n } = useTranslation();
   const { ref, width: observerWidth = 0 } = useResizeObserver<SVGSVGElement>();
@@ -121,22 +156,30 @@ function TimeAxis({
         transform={transform}
         style={{ pointerEvents: 'none' }}
       >
-        <path stroke="none" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
+        <path
+          stroke={isTimeController ? 'none' : 'currentColor'}
+          d={`M${x1},0H${x2}V0`}
+          strokeWidth={0.5}
+        />
         {datetimes.map((v, index) =>
-          renderTick(
-            scale,
-            v,
-            index,
-            isLiveDisplay ?? false,
-            i18n.language,
-            selectedTimeRange,
-            isLoading,
-            timezone
-          )
+          index < datetimes.length - 1 || isTimeController
+            ? renderTick(
+                scale,
+                v,
+                index,
+                isLiveDisplay ?? false,
+                i18n.language,
+                selectedTimeRange,
+                isLoading,
+                timezone,
+                chartHeight,
+                isTimeController
+              )
+            : null
         )}
       </g>
     </svg>
   );
 }
 
-export default TimeAxis;
+export default memo(TimeAxis);

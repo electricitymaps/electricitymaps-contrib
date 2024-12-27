@@ -3,17 +3,71 @@ bounding_box:
     - 45.8179931641
   - - 10.4920501709
     - 47.808380127
+
 capacity:
-  biomass: 542.9
-  coal: 0
-  gas: 216.5
-  geothermal: 0
-  hydro: 12885.3
-  hydro storage: 4605
-  nuclear: 3014.6
-  oil: 0.4
-  solar: 4736.7
-  wind: 88.4
+  biomass:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 542.9
+    - datetime: '2024-01-01'
+      source: SFOE
+      value: 648.4
+  coal:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 0
+  gas:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 216.5
+    - datetime: '2024-01-01'
+      source: SFOE
+      value: 304.7
+  geothermal:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 0
+  hydro:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 12885.3
+    - datetime: '2024-01-01'
+      source: SFOE
+      value: 10438.1
+  hydro storage:
+    - datetime: '2024-01-01'
+      source: entsoe
+      value: 6697
+  nuclear:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 3014.6
+  oil:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 0.4
+    - datetime: '2024-01-01'
+      source: SFOE
+      value: 0
+  solar:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 4736.7
+    - datetime: '2024-01-01'
+      source: SFOE
+      value: 6357.9
+  wind:
+    - datetime: '2023-01-01'
+      source: SFOE
+      value: 88.4
+    - datetime: '2024-01-01'
+      source: SFOE
+      value: 102.2
+  unknown:
+    - datetime: '2024-01-01'
+      source: SFOE
+      value: 15860
+
 contributors:
   - corradio
   - postronium

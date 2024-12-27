@@ -1,3 +1,8 @@
+bounding_box:
+  - - 19.49864845733816
+    - -27.391288702037656
+  - - 29.849293492934947
+    - -17.288170801589715
 country: BW
 region: Africa
 timezone: Africa/Gaborone

@@ -8,7 +8,7 @@ interface CommercialApiButtonProps
     'icon' | 'children' | 'href' | 'type' | 'onClick' | 'foregroundClasses'
   > {
   iconSize?: number;
-  type?: 'primary' | 'link';
+  type?: 'primary' | 'link' | 'secondary';
 }
 
 export function CommercialApiButton({

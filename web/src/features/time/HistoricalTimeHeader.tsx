@@ -1,11 +1,5 @@
 import { Button } from 'components/Button';
-import {
-  NewFeaturePopover,
-  POPOVER_ID,
-} from 'components/NewFeaturePopover/NewFeaturePopover';
-import { NewFeaturePopoverContent } from 'components/NewFeaturePopover/NewFeaturePopoverContent';
 import { FormattedTime } from 'components/Time';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo } from 'react';
@@ -14,87 +8,9 @@ import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
-import { MAX_HISTORICAL_LOOKBACK_DAYS, TimeRange, TrackEvent } from 'utils/constants';
+import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
-import {
-  endDatetimeAtom,
-  isHourlyAtom,
-  startDatetimeAtom,
-  timeRangeAtom,
-} from 'utils/state/atoms';
-
-const TIME_OFFSETS: Partial<Record<TimeRange, number>> = {
-  [TimeRange.H24]: 24,
-  [TimeRange.H72]: 72,
-};
-
-const clamp = (date: number, offset: number) => {
-  const clampAt = Date.now() - Math.abs(offset);
-  const newDate = date + offset;
-  if (newDate > clampAt) {
-    return '';
-  }
-
-  return new Date(newDate).toISOString();
-};
-
-const EMPTY_IMPLEMENTATION = {
-  handleRightClick() {},
-  handleLeftClick() {},
-  handleLatestClick() {},
-  isWithinHistoricalLimit: true,
-};
-
-const useHistoricalNavigation = () => {
-  const timeRange = useAtomValue(timeRangeAtom);
-  const endDatetime = useAtomValue(endDatetimeAtom);
-  const { urlDatetime } = useParams<RouteParameters>();
-  const navigate = useNavigateWithParameters();
-
-  const offset = (TIME_OFFSETS[timeRange] || 0) * 60 * 60 * 1000;
-
-  return useMemo(() => {
-    if (!endDatetime || !offset) {
-      return EMPTY_IMPLEMENTATION;
-    }
-
-    let isWithinHistoricalLimit = true;
-
-    if (urlDatetime) {
-      const targetDate = new Date(urlDatetime);
-      targetDate.setUTCHours(targetDate.getUTCHours() - (TIME_OFFSETS[timeRange] || 0));
-
-      const maxHistoricalDate = new Date();
-      maxHistoricalDate.setUTCDate(
-        maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
-      );
-
-      isWithinHistoricalLimit = targetDate >= maxHistoricalDate;
-    }
-
-    return {
-      handleRightClick() {
-        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-          direction: 'forward',
-        });
-        navigate({ datetime: clamp(endDatetime.getTime(), offset) });
-      },
-      handleLeftClick() {
-        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-          direction: 'backward',
-        });
-        navigate({ datetime: clamp(endDatetime.getTime(), -offset) });
-      },
-      handleLatestClick() {
-        trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-          direction: 'latest',
-        });
-        navigate({ datetime: '' });
-      },
-      isWithinHistoricalLimit,
-    };
-  }, [offset, endDatetime, navigate, urlDatetime, timeRange]);
-};
+import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
 
 export default function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
@@ -102,14 +18,67 @@ export default function HistoricalTimeHeader() {
   const endDatetime = useAtomValue(endDatetimeAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
-  const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
+  const navigate = useNavigateWithParameters();
 
-  const {
-    isWithinHistoricalLimit,
-    handleRightClick,
-    handleLeftClick,
-    handleLatestClick,
-  } = useHistoricalNavigation();
+  const isWithinHistoricalLimit = useMemo(() => {
+    if (!urlDatetime) {
+      return true;
+    }
+
+    const targetDate = new Date(urlDatetime);
+    targetDate.setUTCHours(targetDate.getUTCDate() - 1);
+
+    const maxHistoricalDate = new Date();
+    maxHistoricalDate.setUTCDate(
+      maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
+    );
+
+    return targetDate >= maxHistoricalDate;
+  }, [urlDatetime]);
+
+  function handleRightClick() {
+    if (!endDatetime || !urlDatetime) {
+      return;
+    }
+    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+      direction: 'forward',
+    });
+
+    const currentEndDatetime = new Date(endDatetime);
+    const nextDay = new Date(currentEndDatetime);
+    nextDay.setUTCDate(nextDay.getUTCDate() + 1);
+
+    const fourHoursAgo = new Date();
+    fourHoursAgo.setUTCHours(fourHoursAgo.getUTCHours() - 4);
+
+    if (nextDay >= fourHoursAgo) {
+      navigate({ datetime: '' });
+      return;
+    }
+    navigate({ datetime: nextDay.toISOString() });
+  }
+
+  function handleLeftClick() {
+    if (!endDatetime || !isWithinHistoricalLimit) {
+      return;
+    }
+    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+      direction: 'backward',
+    });
+
+    const currentEndDatetime = new Date(endDatetime);
+    const previousDay = new Date(currentEndDatetime);
+    previousDay.setUTCDate(previousDay.getUTCDate() - 1);
+
+    navigate({ datetime: previousDay.toISOString() });
+  }
+
+  function handleLatestClick() {
+    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
+      direction: 'latest',
+    });
+    navigate({ datetime: '' });
+  }
 
   if (!isHourly && startDatetime && endDatetime) {
     return (
@@ -127,28 +96,22 @@ export default function HistoricalTimeHeader() {
   return (
     <div className="relative flex h-6 w-full items-center">
       <div className="absolute flex w-full items-center justify-between px-10">
-        <NewFeaturePopover
-          side="top"
-          content={<NewFeaturePopoverContent />}
-          isOpenByDefault={isNewFeaturePopoverEnabled}
-        >
-          <Button
-            backgroundClasses="bg-transparent"
-            onClick={handleLeftClick}
-            size="sm"
-            type="tertiary"
-            isDisabled={!isWithinHistoricalLimit}
-            icon={
-              <ChevronLeft
-                size={22}
-                className={twMerge(
-                  'text-brand-green dark:text-success-dark',
-                  !isWithinHistoricalLimit && 'opacity-50'
-                )}
-              />
-            }
-          />
-        </NewFeaturePopover>
+        <Button
+          backgroundClasses="bg-transparent"
+          onClick={handleLeftClick}
+          size="sm"
+          type="tertiary"
+          isDisabled={!isWithinHistoricalLimit}
+          icon={
+            <ChevronLeft
+              size={22}
+              className={twMerge(
+                'text-brand-green dark:text-success-dark',
+                !isWithinHistoricalLimit && 'opacity-50'
+              )}
+            />
+          }
+        />
         {startDatetime && endDatetime && (
           <FormattedTime
             datetime={startDatetime}

@@ -1,4 +1,3 @@
-import { HorizontalDivider } from 'components/Divider';
 import CarbonChart from 'features/charts/CarbonChart';
 import EmissionChart from 'features/charts/EmissionChart';
 import NetExchangeChart from 'features/charts/NetExchangeChart';
@@ -29,7 +28,6 @@ export default function AreaGraphContainer({
       />
       <NetExchangeChart datetimes={datetimes} timeRange={timeRange} />
       <PriceChart datetimes={datetimes} timeRange={timeRange} />
-      <HorizontalDivider />
     </div>
   );
 }

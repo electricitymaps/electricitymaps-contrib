@@ -1,7 +1,7 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
 import { useFeatureFlags } from 'features/feature-flags/api';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { X } from 'lucide-react';
 import {
   ChangeEvent,
@@ -225,7 +225,7 @@ function FeedbackFields({
   const [inputText, setInputText] = useState('');
   const [preceedingInputText, setPreceedingInputText] = useState('');
   const [feedbackScore, setFeedbackScore] = useState('');
-  const [userLocation] = useAtom(userLocationAtom);
+  const userLocation = useAtomValue(userLocationAtom);
   const featureFlags = useFeatureFlags();
 
   const handlePreceedingInputChange = (event: {

@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/no-null */
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { getCarbonIntensity, round } from 'utils/helpers';
 import { isConsumptionAtom, timeRangeAtom } from 'utils/state/atoms';
@@ -10,7 +10,7 @@ import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
-  const [timeRange] = useAtom(timeRangeAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const { t } = useTranslation();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const co2ColorScale = useCo2ColorScale();

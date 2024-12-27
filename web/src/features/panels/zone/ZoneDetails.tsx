@@ -1,10 +1,12 @@
 import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
 import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
+import { HorizontalDivider } from 'components/Divider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters, ZoneMessage } from 'types';
@@ -17,7 +19,6 @@ import {
   spatialAggregateAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
-import { useIsMobile } from 'utils/styling';
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
@@ -37,7 +38,7 @@ export default function ZoneDetails(): JSX.Element {
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
   const isHourly = useAtomValue(isHourlyAtom);
-  const isMobile = useIsMobile();
+  const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
 
@@ -85,7 +86,7 @@ export default function ZoneDetails(): JSX.Element {
       <div
         id="panel-scroller"
         className={twMerge(
-          'mb-3 h-full scroll-pt-5 overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-60',
+          'mb-3 h-full scroll-pt-5 overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-64',
           isIosCapacitor ? 'pb-72' : 'pb-48'
         )}
       >
@@ -110,7 +111,7 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="link" />
+          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="primary" />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -118,13 +119,14 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
+
           <MethodologyCard />
+          <HorizontalDivider />
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
+            <CommercialApiButton size="sm" />
+          </div>
           <Attribution zoneId={zoneId} />
-          {isMobile ? (
-            <CommercialApiButton backgroundClasses="mt-3" />
-          ) : (
-            <div className="p-2" />
-          )}
         </ZoneDetailsContent>
       </div>
     </>

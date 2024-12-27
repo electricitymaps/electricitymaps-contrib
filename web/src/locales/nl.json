@@ -92,8 +92,6 @@
   "unknown": "onbekend",
   "info": {
     "title": "Over de app",
-    "text": "De Electricity Maps app biedt realtime inzichten op web en mobiel voor burgers, energie-experts, NGO's en beleidsmakers, ter bevordering van een dieper begrip van de uitdagingen van de energietransitie.",
-    "open-source-text": "Deze app is <a href='{{link}}' target='_blank'>Open Source</a> en wordt aangedreven door de gemeenschap.",
     "version": "App versie: {{version}}",
     "share-app": "Deel de app:"
   },
@@ -168,6 +166,7 @@
     },
     "30d": "dagelijks",
     "24h": "per uur",
+    "72h": "per uur",
     "12mo": "maandelijks",
     "all": "jaarlijks"
   },
@@ -191,48 +190,56 @@
   "country-history": {
     "carbonintensity": {
       "24h": "Uurlijkse koolstofintensiteit",
+      "72h": "Uurlijkse koolstofintensiteit",
       "30d": "Dagelijkse koolstofintensiteit",
       "12mo": "Maandelijkse koolstofintensiteit",
       "all": "Jaarlijkse koolstofintensiteit"
     },
     "emissions": {
       "24h": "Uurlijkse koolstofemissies",
+      "72h": "Uurlijkse koolstofemissies",
       "30d": "Dagelijkse koolstofemissies",
       "12mo": "Maandelijkse koolstofemissies",
       "all": "Jaarlijkse koolstofemissies"
     },
     "emissionsorigin": {
       "24h": "Uurlijkse oorsprong van koolstofemissies",
+      "72h": "Uurlijkse oorsprong van koolstofemissies",
       "30d": "Dagelijkse oorsprong van koolstofemissies",
       "12mo": "Maandelijkse oorsprong van koolstofemissies",
       "all": "Jaarlijkse oorsprong van koolstofemissies"
     },
     "emissionsproduction": {
       "24h": "Uurlijkse productie-emissies",
+      "72h": "Uurlijkse productie-emissies",
       "30d": "Dagelijkse productie-emissies",
       "12mo": "Maandelijkse productie-emissies",
       "all": "Jaarlijkse productie-emissies"
     },
     "electricityorigin": {
       "24h": "Uurlijkse oorsprong van elektriciteit",
+      "72h": "Uurlijkse oorsprong van elektriciteit",
       "30d": "Dagelijkse oorsprong van elektriciteit",
       "12mo": "Maandelijkse oorsprong van elektriciteit",
       "all": "Jaarlijkse oorsprong van elektriciteit"
     },
     "electricityproduction": {
       "24h": "Uurlijkse elektriciteitsproductie",
+      "72h": "Uurlijkse elektriciteitsproductie",
       "30d": "Dagelijkse elektriciteitsproductie",
       "12mo": "Maandelijkse elektriciteitsproductie",
       "all": "Jaarlijkse elektriciteitsproductie"
     },
     "electricityprices": {
       "24h": "Uurlijkse elektriciteitsprijzen",
+      "72h": "Uurlijkse elektriciteitsprijzen",
       "30d": "Dagelijkse elektriciteitsprijzen",
       "12mo": "Maandelijkse elektriciteitsprijzen",
       "all": "Jaarlijkse elektriciteitsprijzen"
     },
     "netExchange": {
       "24h": "Uurlijkse netto-uitwisseling",
+      "72h": "Uurlijkse netto-uitwisseling",
       "30d": "Dagelijkse netto-uitwisseling",
       "12mo": "Maandelijkse netto-uitwisseling",
       "all": "Jaarlijkse netto-uitwisseling"

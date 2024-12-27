@@ -1,8 +1,7 @@
 {
   "info": {
-    "title": "À propos de l'application",
-    "text": "L'application Electricity Maps fournit des informations en temps réel sur le web et sur les mobiles pour les citoyens, les experts en énergie, les ONG et les décideurs politiques, favorisant ainsi une meilleure compréhension des défis de la transition énergétique.",
-    "open-source-text": "Cette application est <a href='{{link}}' target='_blank'>Open Source</a> et alimentée par la communauté.",
+    "title": "A propos d'Electricity Maps",
+    "text": "est une plateforme API fournissant des signaux prédictifs et en temps réel sur l'électricité permettant à tout appareil de réduire ses coûts et ses émissions en l'informant du meilleur moment pour consommer de l'électricité.",
     "version": "Version de l'application: {{version}}",
     "share-app": "Partagez l'application:"
   },
@@ -50,8 +49,8 @@
     "summary": "Découvrez des informations sur l'électricité en temps réel avec l'application Electricity Maps !"
   },
   "new-feature-popover": {
-    "title": "Partagez des informations historiques détaillées",
-    "content": "Explorez l'historique horaire de l'intensité carbone et du mix énergétique. Utilisez les boutons pour naviguer dans le temps par période de 24 heures et partagez des dates spécifiques en cliquant sur les trois points dans le panneau latéral."
+    "title": "Nouvelle fonctionnalité: vue sur 72 heures",
+    "content": "Explorez les tendances à travers les données en temps réel et historiques durant les 72 dernières heures."
   },
   "onboarding-modal": {
     "view1": {
@@ -91,13 +90,14 @@
     "emission": "Données des facteurs d'émissions"
   },
   "country-panel": {
-    "source": "source",
+    "forecastCta": "Vous recherchez les données prévisionnelles ?",
+    "source": "Source",
     "carbonintensity": "Intensité carbone",
     "lowcarbon": "Bas carbone",
     "renewable": "Renouvelable",
     "electricityconsumption": "Électricité",
     "emissions": "Émissions",
-    "helpfrom": "avec l’aide de",
+    "helpfrom": "Avec l’aide de",
     "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
     "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
     "disabledPriceReasons": {
@@ -115,6 +115,7 @@
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href='{{link}}' target='_blank'>journaux d'exécution</a> ou contactez le fournisseur de données.",
     "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href='{{link}}' target='_blank'>ajoutant des données de zone</a>.",
     "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
+    "fullyDisabled": "Les données dont nous disposons pour cette zone sont insuffisantes et ne sont donc pas affichées. Si vous connaissez des sources de données pour cette zone, veuillez <a href='{{link}}' target='_blank'>nous le faire savoir</a>.",
     "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
@@ -280,53 +281,62 @@
   "country-history": {
     "carbonintensity": {
       "24h": "Intensité carbone horaire",
+      "72h": "Intensité carbone horaire",
       "30d": "Intensité carbone quotidienne",
       "12mo": "Intensité carbone mensuelle",
       "all": "Intensité carbone annuelle"
     },
     "emissions": {
       "24h": "Emissions de CO2 horaires",
+      "72h": "Emissions de CO2 horaires",
       "30d": "Emissions de CO2 quotidiennes",
       "12mo": "Emissions de CO2 mensuelles",
       "all": "Emissions de CO2 annuelles"
     },
     "emissionsorigin": {
       "24h": "Origine des émissions de CO2 horaires",
+      "72h": "Origine des émissions de CO2 horaires",
       "30d": "Origine des émissions de CO2 quotidiennes",
       "12mo": "Origine des émissions de CO2 mensuelles",
       "all": "Origine des émissions de CO2 annuelles"
     },
     "emissionsproduction": {
       "24h": "Emissions horaires pour la production",
+      "72h": "Origine des émissions de CO2 horaires",
       "30d": "Emissions quotidiennes pour la production",
       "12mo": "Emissions mensuelles pour la production",
       "all": "Emissions annuelles pour la production"
     },
     "electricityorigin": {
       "24h": "Origine de l'électricité horaire",
+      "72h": "Origine de l'électricité horaire",
       "30d": "Origine de l'électricité quotidienne",
       "12mo": "Origine de l'électricité mensuelle",
       "all": "Origine de l'électricité annuelle"
     },
     "electricityproduction": {
       "24h": "Production d'électricité horaire",
+      "72h": "Production d'électricité horaire",
       "30d": "Production d'électricité quotidienne",
       "12mo": "Production d'électricité mensuelle",
       "all": "Production d'électricité annuelle"
     },
     "electricityprices": {
       "24h": "Prix de l'électricité horaires",
+      "72h": "Prix de l'électricité horaires",
       "30d": "Prix de l'électricité quotidiens",
       "12mo": "Prix de l'électricité mensuels",
       "all": "Prix de l'électricité annuels"
     },
     "netExchange": {
       "24h": "Echange net horaire",
+      "72h": "Echange net horaire",
       "30d": "Echange net quotidien",
       "12mo": "Echange net mensuel",
       "all": "Echange net annuel"
     },
-    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique"
+    "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
+    "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
   },
   "footer": {
     "foundbugs": "Un bug ? Une idée ? Cliquez",

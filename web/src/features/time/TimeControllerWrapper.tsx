@@ -1,6 +1,6 @@
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { loadingMapAtom } from 'features/map/mapAtoms';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
@@ -10,8 +10,8 @@ import TimeController from './TimeController';
 import TimeHeader from './TimeHeader';
 
 function BottomSheetWrappedTimeController() {
-  const [isLoadingMap] = useAtom(loadingMapAtom);
-  const [hasOnboardingBeenSeen] = useAtom(hasOnboardingBeenSeenAtom);
+  const isLoadingMap = useAtomValue(loadingMapAtom);
+  const hasOnboardingBeenSeen = useAtomValue(hasOnboardingBeenSeenAtom);
   const safeAreaBottomString = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--sab');

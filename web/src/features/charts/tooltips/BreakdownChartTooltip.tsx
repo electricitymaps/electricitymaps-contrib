@@ -280,7 +280,6 @@ export function BreakdownChartTooltipContent({
       {!displayByEmissions && (Number.isFinite(co2Intensity) || usage !== 0) && (
         <>
           <br />
-          <br />
           {t('tooltips.withcarbonintensity')}
           <br />
           <div className="flex-wrap">
