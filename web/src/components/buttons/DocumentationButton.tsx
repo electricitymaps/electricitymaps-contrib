@@ -9,11 +9,9 @@ interface DocsButtonProps
     'icon' | 'children' | 'href' | 'onClick' | 'backgroundClasses' | 'foregroundClasses'
   > {
   iconSize?: number;
-  isIconOnly?: boolean;
 }
 
 export function DocumentationButton({
-  isIconOnly,
   iconSize = DEFAULT_ICON_SIZE,
   ...restProps
 }: DocsButtonProps) {
@@ -25,7 +23,7 @@ export function DocumentationButton({
       {...restProps}
       icon={<FileText size={iconSize} />}
     >
-      {isIconOnly ? undefined : t('button.docs')}
+      {t('button.docs')}
     </Button>
   );
 }
