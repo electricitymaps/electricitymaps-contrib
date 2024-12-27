@@ -282,7 +282,7 @@ def fetch_price(
         fiscal_year = target_datetime.year - 1
     else:
         fiscal_year = target_datetime.year
-    url = f"http://www.jepx.org/market/excel/spot_{fiscal_year}.csv"
+    url = f"http://www.jepx.jp/market/excel/spot_{fiscal_year}.csv"
     df = pd.read_csv(url, encoding="shift-jis")
 
     df = df.iloc[:, [0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
@@ -324,7 +324,7 @@ def fetch_price(
                 "price": round(
                     int(1000 * row[1][zone_key]), -1
                 ),  # Convert from JPY/kWh to JPY/MWh
-                "source": "jepx.org",
+                "source": "jepx.jp",
             }
         )
 
