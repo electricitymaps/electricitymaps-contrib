@@ -112,7 +112,7 @@ export default function Header(): JSX.Element {
             foregroundClasses="text-base lg:text-[1rem] py-1 px-6"
             href="https://electricitymaps.com/get-our-data?utm_source=app.electricitymaps.com&utm_medium=referral"
           >
-            {t('header.get-data')}
+            {t('button.api')}
           </Button>
         </NavigationMenu.List>
       </NavigationMenu.Root>

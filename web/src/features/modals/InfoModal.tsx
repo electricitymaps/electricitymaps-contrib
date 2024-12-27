@@ -1,4 +1,4 @@
-import { ApiButton } from 'components/buttons/ApiButton';
+import ApiButton from 'components/buttons/ApiButton';
 import { DocumentationButton } from 'components/buttons/DocumentationButton';
 import { FAQButton } from 'components/buttons/FAQButton';
 import { FeedbackButton } from 'components/buttons/FeedbackButton';

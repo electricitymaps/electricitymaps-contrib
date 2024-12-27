@@ -1,6 +1,6 @@
 import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
-import CommercialApiButton from 'components/buttons/CommercialApiButton';
+import ApiButton from 'components/buttons/ApiButton';
 import { HorizontalDivider } from 'components/Divider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
@@ -111,7 +111,7 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="primary" />
+          <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -124,7 +124,7 @@ export default function ZoneDetails(): JSX.Element {
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
             <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
-            <CommercialApiButton size="sm" />
+            <ApiButton size="sm" />
           </div>
           <Attribution zoneId={zoneId} />
         </ZoneDetailsContent>
