@@ -700,8 +700,10 @@ def _fetch(
 def _parse_hourly_interval(period: str):
     interval_end_naive = parser.parse(period)
 
-    # NB: the query parameter 'frequency=hourly' requests data in UTC; to
-    # retrieve zone-local time intervals, use 'frequency=local-hourly' instead.
+    # NB: the EIA API can respond with time intervals relative to either UTC
+    # or local-time.  We request UTC times using the 'frequency=hourly'
+    # parameter, meaning that we can attach timezone.utc without performing
+    # any timezone conversion.
     interval_end = interval_end_naive.replace(tzinfo=timezone.utc)
 
     # The timestamp given by EIA represents the end of the time interval.

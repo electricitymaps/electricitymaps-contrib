@@ -14,9 +14,11 @@ from parsers import EIA
 
 def test_parse_hourly_interval():
     """
-    We request frequency=hourly data from the EIA API; this means data with
-    hourly (UTC) intervals, and the time provided indicates the _end_ of an
-    interval window. ElectricityMaps stores intervals using start hour instead.
+    We add a 'frequency=hourly' parameter to our EIA API requests; this
+    requests results grouped by hourly intervals in UTC time.
+
+    Each time window in the response indicates the _end_ of that hourly
+    interval; ElectricityMaps stores intervals using start hour instead.
     """
     fixtures = [
         ("2022-02-28T23", datetime(2022, 2, 28, 22, 0, 0, tzinfo=timezone.utc)),
