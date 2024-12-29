@@ -1,5 +1,6 @@
 import { extent } from 'd3-array';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
+import { memo } from 'react';
 
 export const spreadOverDomain = (
   scale: ScaleLinear<string | number, string | number, string | number>,
@@ -46,7 +47,7 @@ function HorizontalColorbar({
       <div className="flex flex-row justify-between pr-0.5">
         {spreadOverDomain(linearScale, ticksCount).map((t) => (
           <div
-            key={`colorbar-tick-${t}`}
+            key={t}
             className="text-xs font-medium text-neutral-600 dark:text-gray-300"
           >
             {Math.round(t)}
@@ -57,4 +58,4 @@ function HorizontalColorbar({
   );
 }
 
-export default HorizontalColorbar;
+export default memo(HorizontalColorbar);
