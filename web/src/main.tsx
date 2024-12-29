@@ -5,6 +5,7 @@ import './index.css';
 
 import { Capacitor } from '@capacitor/core';
 import * as Sentry from '@sentry/react';
+import { captureException } from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
 import LoadingSpinner from 'components/LoadingSpinner';
@@ -29,9 +30,6 @@ import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
-const RankingPanel = lazy(() => import('features/panels/ranking-panel/RankingPanel'));
-const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
-
 const isProduction = import.meta.env.PROD;
 if (isProduction) {
   Sentry.init({
@@ -46,6 +44,41 @@ if (isProduction) {
     },
   });
 }
+
+window.addEventListener('vite:preloadError', async (event: VitePreloadErrorEvent) => {
+  event.preventDefault();
+
+  try {
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(registrations.map((r) => r.unregister()));
+    }
+
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map((key) => caches.delete(key)));
+    }
+  } catch (cleanupError) {
+    captureException(cleanupError, {
+      tags: {
+        type: 'preload_error_cleanup',
+        hasCaches: 'caches' in window,
+        hasServiceWorker: 'serviceWorker' in navigator,
+      },
+      extra: {
+        url: window.location.href,
+        timestamp: new Date().toISOString(),
+        originalError: event.payload.message,
+      },
+    });
+  }
+
+  window.location.reload();
+});
+
+const RankingPanel = lazy(() => import('features/panels/ranking-panel/RankingPanel'));
+const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
+
 /**
  * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
  * Only enabled on import.meta.env.DEV

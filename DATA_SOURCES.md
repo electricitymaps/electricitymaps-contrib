@@ -536,7 +536,7 @@ A ⇉ B: unidirectional operation, only with power flow "from A to B"
 ### Electricity prices (day-ahead) data sources
 
 - France: [RTE](https://www.rte-france.com/en/eco2mix/market-data)
-- Japan: [JEPX](http://www.jepx.org)
+- Japan: [JEPX](http://www.jepx.jp)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Singapore: [EMC](https://www.emcsg.com)
 - Turkey: [EPIAS](https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml)
