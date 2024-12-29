@@ -25,8 +25,8 @@ function EmissionToggle(): ReactElement {
     (option: string) => {
       trackEvent(
         displayByEmissions
-          ? TrackEvent.PANEL_EMISSION_BUTTON_CLICKED
-          : TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED
+          ? TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED
+          : TrackEvent.PANEL_EMISSION_BUTTON_CLICKED
       );
       if (
         (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
