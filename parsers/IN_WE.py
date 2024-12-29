@@ -43,8 +43,10 @@ KIND_MAPPING = {
 }
 
 
-def get_date_range(dt: datetime):
-    """Returns 24 datetime objects for a given datetime's date, one for each hour."""
+def _get_hour_dts(dt: datetime):
+    """
+    Returns 24 datetime objects for a given datetime's date, one for each hour.
+    """
     date_dt = datetime.combine(dt.date(), datetime.min.time()).replace(tzinfo=ZONE_INFO)
     return pd.date_range(
         date_dt,
@@ -53,7 +55,7 @@ def get_date_range(dt: datetime):
     ).to_pydatetime()
 
 
-def fetch_data(
+def _fetch_data(
     kind: str,
     session: Session,
     target_datetime: datetime,
@@ -96,76 +98,57 @@ def fetch_data(
     return data
 
 
-def filter_raw_data(
-    kind: str,
-    data: dict,
-    target_datetime: datetime,
-) -> pd.DataFrame:
+def _get_df_for_hour(kind: str, data: dict, hour: int) -> pd.DataFrame:
     """
-    From 24 hours of data, filter out a specific hour of interest.
+    Returns a dataframe with a specific hour of interest.
     """
     datetime_col = KIND_MAPPING[kind]["datetime_col"]
-
-    return pd.DataFrame(
-        [item for item in data if item[datetime_col].hour == target_datetime.hour]
-    )
+    return pd.DataFrame([item for item in data if item[datetime_col].hour == hour])
 
 
-def format_exchanges_data(
+def _get_mean_hourly_net_flow(
     data: dict,
     zone_key1: str,
     zone_key2: str,
     target_datetime: datetime,
 ) -> float:
-    """format exchanges data:
-    - average all data points in the target_datetime hour"""
+    """
+    Average all data points in the target_datetime hour.
+    """
     region_col = KIND_MAPPING["exchange"]["region_col"]
+    exchange_string = "->".join(sorted([zone_key1, zone_key2]))
 
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    filtered_data = filter_raw_data(
-        kind="exchange",
-        data=data,
-        target_datetime=target_datetime,
-    )
-
-    filtered_data["zone_key"] = filtered_data[region_col].map(EXCHANGES_MAPPING)
-    df_exchanges = filtered_data.loc[filtered_data["zone_key"] == sortedZoneKeys]
-
-    df_exchanges.loc[:, "target_datetime"] = target_datetime
-    df_exchanges = (
-        df_exchanges.groupby([region_col, "target_datetime"])
+    df = _get_df_for_hour(kind="exchange", data=data, hour=target_datetime.hour)
+    df["zone_key"] = df[region_col].map(EXCHANGES_MAPPING)
+    df = df.loc[df["zone_key"] == exchange_string]
+    df.loc[:, "target_datetime"] = target_datetime
+    df = (
+        df.groupby([region_col, "target_datetime"])
         .mean(numeric_only=True)
         .reset_index()
     )
-    net_flow = -round(df_exchanges.iloc[0].get("Current_Loading", 0), 3)
 
-    return net_flow
+    return -round(df.iloc[0].get("Current_Loading", 0), 3)
 
 
-def format_consumption_data(
+def _get_mean_hourly_consumption(
     data: dict,
     target_datetime: datetime,
 ) -> float:
-    """format consumption data:
-    - average all data points in the target_datetime hour"""
+    """
+    Average all data points in the target_datetime hour.
+    """
     region_col = KIND_MAPPING["consumption"]["region_col"]
 
-    filtered_data = filter_raw_data(
-        kind="consumption",
-        data=data,
-        target_datetime=target_datetime,
-    )
-    filtered_data.loc[:, "target_datetime"] = target_datetime
-    filtered_data = (
-        filtered_data.groupby([region_col, "target_datetime"])
+    df = _get_df_for_hour(kind="consumption", data=data, hour=target_datetime.hour)
+    df.loc[:, "target_datetime"] = target_datetime
+    df = (
+        df.groupby([region_col, "target_datetime"])
         .mean(numeric_only=True)
         .reset_index()
     )
 
-    consumption_value = round(
-        filtered_data.groupby(["target_datetime"])["Demand"].sum().values[0], 3
-    )
-    return consumption_value
+    return round(df.groupby(["target_datetime"])["Demand"].sum().values[0], 3)
 
 
 @refetch_frequency(timedelta(days=1))
@@ -183,22 +166,22 @@ def fetch_exchange(
     else:
         target_datetime = target_datetime.astimezone(ZONE_INFO)
 
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    data = fetch_data(
+    exchange_string = "->".join(sorted([zone_key1, zone_key2]))
+    data = _fetch_data(
         kind="exchange",
         session=session,
         target_datetime=target_datetime,
     )
     exchange_list = ExchangeList(logger)
-    for dt in get_date_range(target_datetime):
-        net_flow = format_exchanges_data(
+    for dt in _get_hour_dts(target_datetime):
+        net_flow = _get_mean_hourly_net_flow(
             zone_key1=zone_key1,
             zone_key2=zone_key2,
             data=data,
             target_datetime=dt,
         )
         exchange_list.append(
-            zoneKey=ZoneKey(sortedZoneKeys),
+            zoneKey=ZoneKey(exchange_string),
             datetime=dt,
             netFlow=net_flow,
             source="wrldc.in",
@@ -221,19 +204,19 @@ def fetch_consumption(
     else:
         target_datetime = target_datetime.astimezone(ZONE_INFO)
 
-    data = fetch_data(
+    data = _fetch_data(
         kind="consumption",
         session=session,
         target_datetime=target_datetime,
     )
 
     consumption_list = TotalConsumptionList(logger)
-    for dt in get_date_range(target_datetime):
-        consumption_data_point = format_consumption_data(data=data, target_datetime=dt)
+    for dt in _get_hour_dts(target_datetime):
+        consumption = _get_mean_hourly_consumption(data=data, target_datetime=dt)
         consumption_list.append(
             zoneKey=zone_key,
             datetime=dt,
-            consumption=consumption_data_point,
+            consumption=consumption,
             source="wrldc.in",
         )
     return consumption_list.to_list()
