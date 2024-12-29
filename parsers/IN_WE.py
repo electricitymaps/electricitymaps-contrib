@@ -75,19 +75,24 @@ def fetch_data(
             message=f"{target_datetime}: {kind} data is not available",
         ) from e
 
+    # The source data is a 12 hour format without mentioning if its AM/PM, so
+    # 12:15 (AM or PM) could mean 00:15 or 12:15. This is addressed by relying
+    # on the full date worth of ordered data, where we assume the second time
+    # 12:xx shows up it must have transitioned to PM time.
+    am_time = True
+    checkpoint = False
+    dt_format = "%Y-%d-%m %I:%M:%S %p"
     for item in data:
-        # replace datetime string with datetime object
-        dt = datetime.strptime(item[datetime_col], "%Y-%d-%m %H:%M:%S").replace(
-            tzinfo=ZONE_INFO
-        )
+        dt_string = item[datetime_col] + (" AM" if am_time else " PM")
+        dt = datetime.strptime(dt_string, dt_format).replace(tzinfo=ZONE_INFO)
+        if am_time:
+            if not checkpoint and dt.hour != 0:
+                checkpoint = True
+            elif checkpoint and dt.hour == 0:
+                am_time = False
+                dt_string = item[datetime_col] + (" AM" if am_time else " PM")
+                dt = datetime.strptime(dt_string, dt_format).replace(tzinfo=ZONE_INFO)
         item[datetime_col] = dt
-
-        # round the seconds to 0 as a non-robust strategy to later distinguish
-        # AM from PM
-        if dt.second >= 30:
-            item[datetime_col] = dt + timedelta(seconds=60 - dt.second)
-        else:
-            item[datetime_col] = dt - timedelta(seconds=dt.second)
     return data
 
 
@@ -98,27 +103,12 @@ def filter_raw_data(
 ) -> pd.DataFrame:
     """
     From 24 hours of data, filter out a specific hour of interest.
-
-    The source data is a 12 hour format without mentioning if its AM/PM, so
-    11:15 could mean 11:15 or 23:15.
     """
     datetime_col = KIND_MAPPING[kind]["datetime_col"]
-    region_col = KIND_MAPPING[kind]["region_col"]
 
-    # 00:mm is never reported, only 12:mm, so we need to filter based on an hour
-    # value from one to twelve instead of zero to eleven
-    one_to_twelve = (target_datetime.hour % 12) or 12
-    two_hours_df = pd.DataFrame(
-        [item for item in data if item[datetime_col].hour == one_to_twelve]
+    return pd.DataFrame(
+        [item for item in data if item[datetime_col].hour == target_datetime.hour]
     )
-
-    # We rely on the data being ordered, and drop first/last duplicates
-    # depending on the hour of interest.
-    one_hour_df = two_hours_df.drop_duplicates(
-        subset=[region_col, datetime_col],
-        keep="first" if target_datetime.hour < 12 else "last",
-    )
-    return one_hour_df
 
 
 def format_exchanges_data(
