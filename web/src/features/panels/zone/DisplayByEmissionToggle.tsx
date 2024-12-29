@@ -1,38 +1,42 @@
 import ToggleButton, { ToggleButtonOptions } from 'components/ToggleButton';
 import { useAtom } from 'jotai';
-import type { ReactElement } from 'react';
+import { memo, type ReactElement, useCallback } from 'react';
 import trackEvent from 'utils/analytics';
 import { LeftPanelToggleOptions, TrackEvent } from 'utils/constants';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
 
-export default function EmissionToggle(): ReactElement {
+const options: ToggleButtonOptions = [
+  {
+    value: LeftPanelToggleOptions.ELECTRICITY,
+    translationKey: 'country-panel.electricityconsumption',
+  },
+  {
+    value: LeftPanelToggleOptions.EMISSIONS,
+    translationKey: 'country-panel.emissions',
+  },
+];
+
+function EmissionToggle(): ReactElement {
   const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
 
   // TODO: perhaps togglebutton should accept boolean values
-  const options: ToggleButtonOptions = [
-    {
-      value: LeftPanelToggleOptions.ELECTRICITY,
-      translationKey: 'country-panel.electricityconsumption',
-    },
-    {
-      value: LeftPanelToggleOptions.EMISSIONS,
-      translationKey: 'country-panel.emissions',
-    },
-  ];
 
-  const onSetCurrentMode = (option: string) => {
-    if (displayByEmissions) {
-      trackEvent(TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED);
-    } else {
-      trackEvent(TrackEvent.PANEL_EMISSION_BUTTON_CLICKED);
-    }
-    if (
-      (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
-      (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
-    ) {
-      setDisplayByEmissions(!displayByEmissions);
-    }
-  };
+  const onSetCurrentMode = useCallback(
+    (option: string) => {
+      trackEvent(
+        displayByEmissions
+          ? TrackEvent.PANEL_EMISSION_BUTTON_CLICKED
+          : TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED
+      );
+      if (
+        (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
+        (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
+      ) {
+        setDisplayByEmissions(!displayByEmissions);
+      }
+    },
+    [displayByEmissions, setDisplayByEmissions]
+  );
 
   return (
     <div className="my-4">
@@ -48,3 +52,5 @@ export default function EmissionToggle(): ReactElement {
     </div>
   );
 }
+
+export default memo(EmissionToggle);
