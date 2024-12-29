@@ -45,14 +45,18 @@ KIND_MAPPING = {
 
 def _get_hour_dts(dt: datetime):
     """
-    Returns 24 datetime objects for a given datetime's date, one for each hour.
+    Returns up to 24 datetime objects for a given datetime's date, one for each
+    hour, excluding future hours.
     """
     date_dt = datetime.combine(dt.date(), datetime.min.time()).replace(tzinfo=ZONE_INFO)
-    return pd.date_range(
+    dts = pd.date_range(
         date_dt,
         date_dt + timedelta(hours=23),
         freq="H",
     ).to_pydatetime()
+
+    now_dt = datetime.now(ZONE_INFO)
+    return [dt for dt in dts if dt < now_dt]
 
 
 def _fetch_data(
