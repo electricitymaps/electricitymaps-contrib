@@ -166,6 +166,7 @@
   "time-controller": {
     "30d": "diários",
     "24h": "horários",
+    "72h": "horários",
     "12mo": "mensais",
     "all": "anuais"
   },
@@ -194,48 +195,56 @@
   "country-history": {
     "carbonintensity": {
       "24h": "Intensidade de carbono horária",
+      "72h": "Intensidade de carbono horária",
       "30d": "Intensidade de carbono diária",
       "12mo": "Intensidade de carbono mensal",
       "all": "Intensidade de carbono anual"
     },
     "emissions": {
       "24h": "Emissões de carbono horárias",
+      "72h": "Emissões de carbono horárias",
       "30d": "Emissões de carbono diárias",
       "12mo": "Emissões de carbono mensais",
       "all": "Emissões de carbono anuais"
     },
     "emissionsorigin": {
       "24h": "Origem horária das emissões de carbono",
+      "72h": "Origem horária das emissões de carbono",
       "30d": "Origem diária das emissões de carbono",
       "12mo": "Origem mensal das emissões de carbono",
       "all": "Origem anual das emissões de carbono"
     },
     "emissionsproduction": {
       "24h": "Emissões horárias de produção",
+      "72h": "Emissões horárias de produção",
       "30d": "Emissões diárias de produção",
       "12mo": "Emissões mensais de produção",
       "all": "Emissões anuais de produção"
     },
     "electricityorigin": {
       "24h": "Origem horária da eletricidade",
+      "72h": "Origem horária da eletricidade",
       "30d": "Origem diária da eletricidade",
       "12mo": "Origem mensal da eletricidade",
       "all": "Origem anual da eletricidade"
     },
     "electricityproduction": {
       "24h": "Produção horária de eletricidade",
+      "72h": "Produção horária de eletricidade",
       "30d": "Produção diária de eletricidade",
       "12mo": "Produção mensal de eletricidade",
       "all": "Produção anual de eletricidade"
     },
     "electricityprices": {
       "24h": "Preços horários da eletricidade",
+      "72h": "Preços horários da eletricidade",
       "30d": "Preços diários da eletricidade",
       "12mo": "Preços mensais da eletricidade",
       "all": "Preços anuais da eletricidade"
     },
     "netExchange": {
       "24h": "Troca líquida horária",
+      "72h": "Troca líquida horária",
       "30d": "Troca líquida diária",
       "12mo": "Troca líquida mensal",
       "all": "Troca líquida anual"

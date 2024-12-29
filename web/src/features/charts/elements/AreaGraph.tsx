@@ -246,8 +246,8 @@ function AreaGraph({
     }
   }
 
-  if (layers.every((layer) => layer.datapoints.every((d) => d[0] === 0 && d[1] === 0))) {
-    // Don't render the graph if all datapoints are 0
+  // Don't render the graph if all datapoints are 0
+  if (totalValues.min === 0 && totalValues.max === 0) {
     return null;
   }
 

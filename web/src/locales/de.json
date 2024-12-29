@@ -77,12 +77,14 @@
   "time-controller": {
     "title": {
       "24h": "Stündliche Daten für:",
+      "72h": "Stündliche Daten für:",
       "30d": "Tägliche Daten für:",
       "12mo": "Monatliche Daten für:",
       "all": "Jährliche Daten für:"
     },
     "30d": "täglich",
     "24h": "stündlich",
+    "72h": "stündlich",
     "12mo": "monatlich",
     "all": "jährlich"
   },
