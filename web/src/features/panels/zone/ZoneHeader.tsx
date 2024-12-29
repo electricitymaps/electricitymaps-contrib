@@ -1,19 +1,18 @@
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { ArrowLeft, Ellipsis } from 'lucide-react';
+import { useAtomValue } from 'jotai';
+import { Ellipsis } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { getFullZoneName, getSEOZoneName } from 'translation/translation';
 import { metaTitleSuffix } from 'utils/constants';
-import { useNavigateWithParameters } from 'utils/helpers';
 import { isConsumptionAtom } from 'utils/state/atoms';
 
 import { ShareButton } from './ShareButton';
+import ZoneHeaderBackButton from './ZoneHeaderBackButton';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 interface ZoneHeaderTitleProps {
@@ -26,19 +25,10 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
   const seoZoneName = getSEOZoneName(zoneId);
   const zoneNameFull = getFullZoneName(zoneId);
 
-  const navigate = useNavigateWithParameters();
-
-  const setIsMapMoving = useSetAtom(mapMovingAtom);
   const canonicalUrl = useGetCanonicalUrl();
   const isShareButtonEnabled = useFeatureFlag('share-button');
   const isConsumption = useAtomValue(isConsumptionAtom);
 
-  const onNavigateBack = () => {
-    setIsMapMoving(false);
-    navigate({
-      to: '/map',
-    });
-  };
   const shareUrl = useGetCurrentUrl();
   const showMoreOptions = useShowMoreOptions();
   const { t } = useTranslation();
@@ -49,20 +39,7 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
         <title>{seoZoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <div
-        className="self-center py-4 pr-4 text-xl"
-        data-testid="left-panel-back-button"
-        onClick={onNavigateBack}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            onNavigateBack();
-          }
-        }}
-      >
-        <ArrowLeft />
-      </div>
+      <ZoneHeaderBackButton />
 
       <div className="w-full overflow-hidden">
         <ZoneHeaderTitle zoneId={zoneId} zoneNameFull={zoneNameFull} />
