@@ -45,12 +45,10 @@ KIND_MAPPING = {
 
 def get_date_range(dt: datetime):
     """Returns 24 datetime objects for a given datetime's date, one for each hour."""
-    now_date_as_dt = datetime.combine(
-        datetime.now(ZONE_INFO).date(), datetime.min.time()
-    ).replace(tzinfo=ZONE_INFO)
+    date_dt = datetime.combine(dt.date(), datetime.min.time()).replace(tzinfo=ZONE_INFO)
     return pd.date_range(
-        now_date_as_dt,
-        now_date_as_dt + timedelta(hours=23),
+        date_dt,
+        date_dt + timedelta(hours=23),
         freq="H",
     ).to_pydatetime()
 
