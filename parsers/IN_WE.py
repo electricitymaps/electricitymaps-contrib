@@ -156,7 +156,6 @@ def format_exchanges_data(
 
 def format_consumption_data(
     data: dict,
-    zone_key: str,
     target_datetime: datetime,
 ) -> float:
     """format consumption data:
@@ -242,9 +241,7 @@ def fetch_consumption(
 
     consumption_list = TotalConsumptionList(logger)
     for dt in get_date_range(target_datetime):
-        consumption_data_point = format_consumption_data(
-            zone_key=zone_key, data=data, target_datetime=dt
-        )
+        consumption_data_point = format_consumption_data(data=data, target_datetime=dt)
         consumption_list.append(
             zoneKey=zone_key,
             datetime=dt,
