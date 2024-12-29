@@ -43,17 +43,6 @@ KIND_MAPPING = {
 }
 
 
-def is_expected_downtime() -> bool:
-    """
-    Details about this expected downtime is currently being clarified via
-    https://github.com/electricitymaps/electricitymaps-contrib/pull/6184#issuecomment-2564302911.
-    """
-    expected_outage_days = [5, 6, 0]  # Saturday, Sunday and Monday
-    if datetime.now(ZONE_INFO).weekday() in expected_outage_days:
-        return True
-    return False
-
-
 def get_date_range(dt: datetime):
     """Returns 24 datetime objects for a given datetime's date, one for each hour."""
     now_date_as_dt = datetime.combine(
@@ -83,15 +72,10 @@ def fetch_data(
     try:
         data = json.loads(resp.json().get("d", {}))
     except Exception as e:
-        if is_expected_downtime(target_datetime):
-            raise ValueError(
-                "IN_WE Parser cannot get latest data during the expected downtime (Saturday to Monday)."
-            ) from e
-        else:
-            raise ParserException(
-                parser="IN_WE.py",
-                message=f"{target_datetime}: {kind} data is not available",
-            ) from e
+        raise ParserException(
+            parser="IN_WE.py",
+            message=f"{target_datetime}: {kind} data is not available",
+        ) from e
 
     for item in data:
         # replace datetime string with datetime object
