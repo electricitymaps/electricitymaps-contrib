@@ -2,7 +2,7 @@ import { Button } from 'components/Button';
 import { FormattedTime } from 'components/Time';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -12,7 +12,7 @@ import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
 
-export default function HistoricalTimeHeader() {
+function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
@@ -156,3 +156,5 @@ export default function HistoricalTimeHeader() {
     </div>
   );
 }
+
+export default memo(HistoricalTimeHeader);
