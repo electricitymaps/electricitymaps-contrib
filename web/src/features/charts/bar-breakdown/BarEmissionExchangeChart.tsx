@@ -1,8 +1,10 @@
 import { ScaleLinear } from 'd3-scale';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
 import { useIsMobile } from 'utils/styling';
 
+import { FormatTick } from './BarElectricityBreakdownChart';
 import { EXCHANGE_PADDING } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
@@ -22,7 +24,7 @@ export default function BarEmissionExchangeChart({
   width: number;
   exchangeData: ExchangeDataType[];
   co2Scale: ScaleLinear<number, number, never>;
-  formatTick: (value: number) => string;
+  formatTick: FormatTick;
   onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
@@ -30,6 +32,13 @@ export default function BarEmissionExchangeChart({
   ) => void;
 }) {
   const { t } = useTranslation();
+  const axisLegendText = useMemo(
+    () => ({
+      left: t('country-panel.graph-legends.exported'),
+      right: t('country-panel.graph-legends.imported'),
+    }),
+    [t]
+  );
   const isMobile = useIsMobile();
   if (!exchangeData || exchangeData.length === 0) {
     return null;
@@ -41,10 +50,7 @@ export default function BarEmissionExchangeChart({
           formatTick={formatTick}
           height={height}
           scale={co2Scale}
-          axisLegendText={{
-            left: t('country-panel.graph-legends.exported'),
-            right: t('country-panel.graph-legends.imported'),
-          }}
+          axisLegendText={axisLegendText}
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (

@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { ElectricityModeType, ZoneKey } from 'types';
 import { formatCo2 } from 'utils/formatting';
 
+import { FormatTick } from './BarElectricityBreakdownChart';
 import BarEmissionExchangeChart from './BarEmissionExchangeChart';
 import { BarEmissionProductionChart } from './BarEmissionProductionChart';
 import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
@@ -26,6 +27,9 @@ interface BarBreakdownEmissionsChartProps {
   ) => void;
   onExchangeRowMouseOut: () => void;
 }
+
+const formatTick: FormatTick = (t: number, _isHourly: boolean, maxCO2eqProduction = 1) =>
+  formatCo2({ value: t, total: maxCO2eqProduction });
 
 function BarBreakdownEmissionsChart({
   exchangeData,
@@ -59,12 +63,6 @@ function BarBreakdownEmissionsChart({
         .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
     [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width]
   );
-
-  const formatTick = (t: number) => {
-    const maxValue = maxCO2eqProduction || 1;
-
-    return formatCo2({ value: t, total: maxValue });
-  };
 
   return (
     <>

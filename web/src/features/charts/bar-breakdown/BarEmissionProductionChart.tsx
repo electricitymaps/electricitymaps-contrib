@@ -2,6 +2,7 @@ import { ScaleLinear } from 'd3-scale';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
+import { FormatTick } from './BarElectricityBreakdownChart';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import { ProductionSourceRow } from './elements/Row';
@@ -19,7 +20,7 @@ export function BarEmissionProductionChart({
   isMobile,
 }: {
   height: number;
-  formatTick: (value: number) => string;
+  formatTick: FormatTick;
   co2Scale: ScaleLinear<number, number, never>;
   productionY: number;
   productionData: ProductionDataType[];
