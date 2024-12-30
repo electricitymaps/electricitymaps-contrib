@@ -2,8 +2,7 @@ import { ScaleLinear } from 'd3-scale';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
-import { FormatTick } from './BarElectricityBreakdownChart';
-import Axis from './elements/Axis';
+import Axis, { FormatTick } from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import { ProductionSourceRow } from './elements/Row';
 import { ProductionDataType } from './utils';

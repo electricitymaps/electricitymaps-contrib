@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
 import { useIsMobile } from 'utils/styling';
 
-import { FormatTick } from './BarElectricityBreakdownChart';
 import { EXCHANGE_PADDING } from './constants';
-import Axis from './elements/Axis';
+import Axis, { FormatTick } from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import { ExchangeRow } from './elements/Row';
 import { ExchangeDataType } from './utils';

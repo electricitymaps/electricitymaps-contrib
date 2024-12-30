@@ -1,11 +1,10 @@
 import { ScaleLinear } from 'd3-scale';
-import { useAtomValue } from 'jotai';
 import { memo } from 'react';
-import { isHourlyAtom } from 'utils/state/atoms';
 
-import { FormatTick } from '../BarElectricityBreakdownChart';
 import { LABEL_MAX_WIDTH, SCALE_TICKS, X_AXIS_HEIGHT } from '../constants';
 import BarBreakdownAxisLegend from './BarBreakdownAxisLegend';
+
+export type FormatTick = (tick: number) => string | number;
 
 type Props = {
   height: number;
@@ -15,10 +14,8 @@ type Props = {
 };
 
 function Axis({ formatTick, height, scale, axisLegendText }: Props) {
-  const isHourly = useAtomValue(isHourlyAtom);
   const axisTicks = scale.ticks(SCALE_TICKS);
   const [rangeStart, rangeEnd] = scale.range();
-  const maxPower = scale.domain()[1];
   return (
     <g
       className="text-gray-500/30"
@@ -34,8 +31,13 @@ function Axis({ formatTick, height, scale, axisLegendText }: Props) {
         shapeRendering="auto"
         d={`M${rangeStart + 0.5},0.5H${rangeEnd + 0.5}`}
       />
-      {axisTicks.map((t) => (
-        <g key={t} className="tick" opacity="1" transform={`translate(${scale(t)}, 0)`}>
+      {axisTicks.map((tick) => (
+        <g
+          key={tick}
+          className="tick"
+          opacity="1"
+          transform={`translate(${scale(tick)}, 0)`}
+        >
           <line
             stroke="currentColor"
             strokeWidth={1}
@@ -48,9 +50,9 @@ function Axis({ formatTick, height, scale, axisLegendText }: Props) {
             y="-3"
             dy="0"
           >
-            {formatTick(t, isHourly, maxPower)}
+            {formatTick(tick)}
           </text>
-          {axisLegendText && t == 0 && (
+          {axisLegendText && tick == 0 && (
             <BarBreakdownAxisLegend height={height} legendText={axisLegendText} />
           )}
         </g>

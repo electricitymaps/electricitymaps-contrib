@@ -5,9 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
 import { CarbonUnits } from 'utils/units';
 
-import { FormatTick } from './BarElectricityBreakdownChart';
 import { EXCHANGE_PADDING } from './constants';
-import Axis from './elements/Axis';
+import Axis, { FormatTick } from './elements/Axis';
 import CapacityLegend from './elements/CapacityLegend';
 import HorizontalBar from './elements/HorizontalBar';
 import { ExchangeRow } from './elements/Row';

@@ -1,13 +1,16 @@
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
-import { useMemo } from 'react';
+import { useAtomValue } from 'jotai';
+import { useCallback, useMemo } from 'react';
 import { ElectricityModeType, ZoneDetails, ZoneKey } from 'types';
 import { formatEnergy, formatPower } from 'utils/formatting';
+import { isHourlyAtom } from 'utils/state/atoms';
 
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
 import { BarElectricityProductionChart } from './BarElectricityProductionChart';
 import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import { FormatTick } from './elements/Axis';
 import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarElectricityBreakdownChartProps {
@@ -29,25 +32,7 @@ interface BarElectricityBreakdownChartProps {
   onExchangeRowMouseOut: () => void;
   graphUnit: string | undefined;
 }
-
-export type FormatTick = (
-  t: number,
-  isHourly: boolean,
-  maxPower: number
-) => string | number;
 const NUMERIC_REGEX = /[\d.]+/;
-const formatTick: FormatTick = (t: number, isHourly: boolean, maxPower: number) => {
-  // Use same unit as max value for tick with value 0
-  if (t === 0) {
-    const tickValue = isHourly
-      ? formatPower({ value: maxPower, numberDigits: 1 })
-      : formatEnergy({ value: maxPower, numberDigits: 1 });
-    return tickValue.toString().replace(NUMERIC_REGEX, '0');
-  }
-  return isHourly
-    ? formatPower({ value: t, numberDigits: 2 })
-    : formatEnergy({ value: t, numberDigits: 2 });
-};
 
 function BarElectricityBreakdownChart({
   data,
@@ -67,6 +52,7 @@ function BarElectricityBreakdownChart({
     productionData.length,
     exchangeData
   );
+  const isHourly = useAtomValue(isHourlyAtom);
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
@@ -105,6 +91,22 @@ function BarElectricityBreakdownChart({
         .domain([minPower, maxPower])
         .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
     [minPower, maxPower, width]
+  );
+
+  const formatTick: FormatTick = useCallback(
+    (t: number) => {
+      // Use same unit as max value for tick with value 0
+      if (t === 0) {
+        const tickValue = isHourly
+          ? formatPower({ value: maxPower, numberDigits: 1 })
+          : formatEnergy({ value: maxPower, numberDigits: 1 });
+        return tickValue.toString().replace(NUMERIC_REGEX, '0');
+      }
+      return isHourly
+        ? formatPower({ value: t, numberDigits: 2 })
+        : formatEnergy({ value: t, numberDigits: 2 });
+    },
+    [isHourly, maxPower]
   );
   return (
     <>

@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
-import { FormatTick } from './BarElectricityBreakdownChart';
 import { AXIS_LEGEND_PADDING } from './constants';
-import Axis from './elements/Axis';
+import Axis, { FormatTick } from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import { ProductionSourceRow } from './elements/Row';
 import { getElectricityProductionValue, ProductionDataType } from './utils';
