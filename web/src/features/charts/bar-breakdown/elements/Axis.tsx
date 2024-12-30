@@ -1,3 +1,4 @@
+import { Group } from '@visx/group';
 import { ScaleLinear } from 'd3-scale';
 import { memo } from 'react';
 
@@ -17,13 +18,14 @@ function Axis({ formatTick, height, scale, axisLegendText }: Props) {
   const axisTicks = scale.ticks(SCALE_TICKS);
   const [rangeStart, rangeEnd] = scale.range();
   return (
-    <g
+    <Group
       className="text-gray-500/30"
       fill="none"
       fontSize="10"
       fontFamily="sans-serif"
       textAnchor="middle"
-      transform={`translate(${rangeStart + LABEL_MAX_WIDTH}, ${X_AXIS_HEIGHT})`}
+      left={rangeStart + LABEL_MAX_WIDTH}
+      top={X_AXIS_HEIGHT}
     >
       <path
         stroke="currentColor"
@@ -32,12 +34,7 @@ function Axis({ formatTick, height, scale, axisLegendText }: Props) {
         d={`M${rangeStart + 0.5},0.5H${rangeEnd + 0.5}`}
       />
       {axisTicks.map((tick) => (
-        <g
-          key={tick}
-          className="tick"
-          opacity="1"
-          transform={`translate(${scale(tick)}, 0)`}
-        >
+        <Group key={tick} className="tick" opacity="1" left={scale(tick)}>
           <line
             stroke="currentColor"
             strokeWidth={1}
@@ -55,9 +52,9 @@ function Axis({ formatTick, height, scale, axisLegendText }: Props) {
           {axisLegendText && tick == 0 && (
             <BarBreakdownAxisLegend height={height} legendText={axisLegendText} />
           )}
-        </g>
+        </Group>
       ))}
-    </g>
+    </Group>
   );
 }
 
