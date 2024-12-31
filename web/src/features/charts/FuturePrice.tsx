@@ -3,7 +3,7 @@ import { HorizontalDivider } from 'components/Divider';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
 import trackEvent from 'utils/analytics';
@@ -21,7 +21,11 @@ import {
   priceIn5Percentile,
 } from './futurePriceUtils';
 
-export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | null }) {
+export const FuturePrice = memo(function FuturePrice({
+  futurePrice,
+}: {
+  futurePrice: FuturePriceData | null;
+}) {
   const { t, i18n } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useAtom(futurePriceCollapsedAtom);
   const granularity = getGranularity(futurePrice?.priceData);
@@ -156,7 +160,7 @@ export function FuturePrice({ futurePrice }: { futurePrice: FuturePriceData | nu
       </Accordion>
     </div>
   );
-}
+});
 
 function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i18n }) {
   const formattedDate = Intl.DateTimeFormat(i18n.language, {
@@ -184,7 +188,7 @@ export function PriceBar({
     <div
       className={`h-3 rounded-full ${color}`}
       style={{
-        width: `calc(calc(${nonNegativePrice / maxPrice} * (100% - 12px)) + 12px)`,
+        width: `calc(${nonNegativePrice / maxPrice} * (100% - 12px) + 12px)`,
       }}
       data-testid="price-bar"
     />
