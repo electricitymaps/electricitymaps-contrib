@@ -2,13 +2,27 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 from requests import Session
 
 from .lib import web
 
+# IMPORTANT: This parser is as of December 2024 not functional, and the data is
+#            currently very unreliable or not available at all - in both an old
+#            and new URL.
+#
+#            The parser seems based on scraping
+#            http://uksldc.in/real-time-data.php, but this seems to have
+#            migrated to the URL https://uksldc.in/real-time-data along with
+#            some HTML changes making the parser broken for using an old URL and
+#            trying to scrape it in the same way even though there have been
+#            HTML changes.
+#
+#            Internet archive ref: https://web.archive.org/web/20180203084712/https://uksldc.in/real-time-data.php
+#
 ENDPOINT = "http://uksldc.in/real-time-data.php"
+ZONE_INFO = ZoneInfo("Asia/Kolkata")
 
 INTERCONNECTIONS = {
     "IN-UP->IN-UT": [
@@ -44,26 +58,23 @@ def get_datetime(soup, zone_key, logger):
     paras = soup.find_all("p")
     for para in paras:
         para_text = para.text.strip()
-        if "Last Updated:" in para_text:
-            datetime = arrow.get(para_text, "DD-MM-YYYY HH:mm:SS").replace(
-                tzinfo="Asia/Kolkata"
+        if "Last Updated: " in para_text:
+            dt_string = para_text[len("Last updated: ") :]
+            return datetime.strptime(dt_string, "%d-%m-%Y %H:%M:%S").replace(
+                tzinfo=ZONE_INFO
             )
-            return datetime.datetime
-
     logger.warning("Datetime could not be read from webpage.", extra={"key": zone_key})
     return None
 
 
-def get_production_values(soup, zone_key, logger):
-    cells = soup.find_all("td")
-    for cell in cells:
+def get_production_values(soup):
+    production = {}
+    for cell in soup.find_all("td"):
         cell_text = cell.text.strip()
         if cell_text == "HYDRO Total":
-            hydro_value = float(cell.find_next_sibling().text)
+            production["hydro"] = float(cell.find_next_sibling().text)
         elif cell_text == "GAS Total":
-            gas_value = float(cell.find_next_sibling().text)
-
-    production = {"gas": gas_value, "hydro": hydro_value}
+            production["gas"] = float(cell.find_next_sibling().text)
 
     return production
 
@@ -76,7 +87,7 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ):
     soup = web.get_response_soup(zone_key1, ENDPOINT)
-    datetime = get_datetime(soup, zone_key1, logger)
+    dt = get_datetime(soup, zone_key1, logger)
 
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     sorted_zone_keys = f"{sorted_zone_keys[0]}->{sorted_zone_keys[1]}"
@@ -92,7 +103,7 @@ def fetch_exchange(
         exchange_value += connection_value
 
     data = {
-        "datetime": datetime,
+        "datetime": dt,
         "netFlow": exchange_value,
         "sortedZoneKeys": sorted_zone_keys,
         "source": "uksldc.in",
@@ -108,12 +119,12 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> dict:
     soup = web.get_response_soup(zone_key, ENDPOINT)
-    datetime = get_datetime(soup, zone_key, logger)
-    production = get_production_values(soup, zone_key, logger)
+    dt = get_datetime(soup, zone_key, logger)
+    production = get_production_values(soup)
 
     data = {
         "zoneKey": "IN-UT",
-        "datetime": datetime,
+        "datetime": dt,
         "production": production,
         "source": "uksldc.in",
     }

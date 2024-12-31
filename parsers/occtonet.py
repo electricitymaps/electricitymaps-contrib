@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from datetime import datetime
+from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from requests import Session, cookies
 
@@ -46,6 +46,8 @@ FLOWS_TO_REVERT = ["JP-CB->JP-TK", "JP-CG->JP-KN", "JP-CG->JP-SK"]
 
 SOURCE_URL = "occtonet.occto.or.jp"
 EXCHANGE_COLUMNS = ["sortedZoneKeys", "netFlow", "source"]
+
+ZONE_INFO = ZoneInfo("Asia/Tokyo")
 
 
 def _fetch_exchange(
@@ -93,8 +95,13 @@ def fetch_exchange(
     """Requests the last known power exchange (in MW) between two zones."""
     if not session:
         session = Session()
+    now = datetime.now(ZONE_INFO)
+    if target_datetime is None:
+        target_datetime = now
+    else:
+        target_datetime = target_datetime.astimezone(ZONE_INFO)
 
-    query_datetime = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y/%m/%d")
+    query_datetime = target_datetime.strftime("%Y/%m/%d")
 
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
     return _fetch_exchange(session, query_datetime, sorted_zone_keys)
@@ -110,10 +117,15 @@ def fetch_exchange_forecast(
     """Gets exchange forecast between two specified zones."""
     if not session:
         session = Session()
+    now = datetime.now(ZONE_INFO)
+    if target_datetime is None:
+        target_datetime = now
+    else:
+        target_datetime = target_datetime.astimezone(ZONE_INFO)
 
-    query_datetime = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y/%m/%d")
+    query_datetime = target_datetime.strftime("%Y/%m/%d")
 
-    if query_datetime > arrow.get().to("Asia/Tokyo").strftime("%Y/%m/%d"):
+    if query_datetime > now.strftime("%Y/%m/%d"):
         raise NotImplementedError(
             "Future dates(local time) not implemented for selected exchange"
         )
@@ -207,7 +219,17 @@ def get_form_data(session: Session, exchange_id: int, datetime: str) -> dict[str
 
 def _get_exchange(session: Session, form_data: dict[str, str], columns: list[str]):
     def parse_dt(str_dt: str) -> datetime:
-        return arrow.get(str_dt).replace(tzinfo="Asia/Tokyo").datetime
+        """
+        Expects arguments like "2024/12/23 00:05", including the edge case 24:00
+        which is the same as 00:00 of the subsequent date.
+        """
+        dt = None
+        if "24:00" in str_dt:
+            str_dt = str_dt.replace("24:00", "00:00")
+            dt = datetime.strptime(str_dt, "%Y/%m/%d %H:%M") + timedelta(days=1)
+        else:
+            dt = datetime.strptime(str_dt, "%Y/%m/%d %H:%M")
+        return dt.replace(tzinfo=ZONE_INFO)
 
     form_data["fwExtention.actionSubType"] = "download"
     r = session.post(
