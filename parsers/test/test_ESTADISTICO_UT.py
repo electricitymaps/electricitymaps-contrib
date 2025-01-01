@@ -18,14 +18,14 @@ class TestESTADISTICO_UT(TestCase):
             GET,
             DAILY_OPERATION_URL,
             text=resources.files("parsers.test.mocks.ESTADISTICO_UT")
-            .joinpath("production.html")
+            .joinpath("get.html")
             .read_text(),
         )
         self.adapter.register_uri(
             POST,
             DAILY_OPERATION_URL,
             text=resources.files("parsers.test.mocks.ESTADISTICO_UT")
-            .joinpath("data.html")
+            .joinpath("post.html")
             .read_text(),
         )
 
