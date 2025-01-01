@@ -5,25 +5,68 @@ bounding_box:
     - 63.128901615737796
 capacity:
   biomass:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 34.0
   gas:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 0.0
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 6.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 7.0
   hydro:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 3558.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 3725.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 3883.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 3934.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 3933.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 3956.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 4001.0
   solar:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 9.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 17.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 0.0
   wind:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 112.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 166.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 222.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 385.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 406.0
