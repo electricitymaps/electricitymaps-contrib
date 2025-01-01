@@ -114,11 +114,11 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0
       i18next:
-        specifier: ^24.0.2
-        version: 24.0.2(typescript@5.5.4)
+        specifier: ^24.2.0
+        version: 24.2.0(typescript@5.5.4)
       i18next-browser-languagedetector:
-        specifier: ^8.0.0
-        version: 8.0.0
+        specifier: ^8.0.2
+        version: 8.0.2
       i18next-resources-to-backend:
         specifier: ^1.2.1
         version: 1.2.1
@@ -144,8 +144,8 @@ importers:
         specifier: ^2.0.5
         version: 2.0.5(react@18.3.1)
       react-i18next:
-        specifier: ^15.1.3
-        version: 15.1.3(i18next@24.0.2(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.25.7)(@babel/preset-env@7.25.4(@babel/core@7.25.7))(react@18.3.1))(react@18.3.1)
+        specifier: ^15.4.0
+        version: 15.4.0(i18next@24.2.0(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.25.7)(@babel/preset-env@7.25.4(@babel/core@7.25.7))(react@18.3.1))(react@18.3.1)
       react-icons:
         specifier: ^5.4.0
         version: 5.4.0(react@18.3.1)
@@ -5761,14 +5761,14 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  i18next-browser-languagedetector@8.0.0:
-    resolution: {integrity: sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==}
+  i18next-browser-languagedetector@8.0.2:
+    resolution: {integrity: sha512-shBvPmnIyZeD2VU5jVGIOWP7u9qNG3Lj7mpaiPFpbJ3LVfHZJvVzKR4v1Cb91wAOFpNw442N+LGPzHOHsten2g==}
 
   i18next-resources-to-backend@1.2.1:
     resolution: {integrity: sha512-okHbVA+HZ7n1/76MsfhPqDou0fptl2dAlhRDu2ideXloRRduzHsqDOznJBef+R3DFZnbvWoBW+KxJ7fnFjd6Yw==}
 
-  i18next@24.0.2:
-    resolution: {integrity: sha512-D88xyIGcWAKwBTAs4RSqASi8NXR/NhCVSTM4LDbdoU8qb/5dcEZjNCLDhtQBB7Epw/Cp1w2vH/3ujoTbqLSs5g==}
+  i18next@24.2.0:
+    resolution: {integrity: sha512-ArJJTS1lV6lgKH7yEf4EpgNZ7+THl7bsGxxougPYiXRTJ/Fe1j08/TBpV9QsXCIYVfdE/HWG/xLezJ5DOlfBOA==}
     peerDependencies:
       typescript: ^5
     peerDependenciesMeta:
@@ -7276,8 +7276,8 @@ packages:
     peerDependencies:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
 
-  react-i18next@15.1.3:
-    resolution: {integrity: sha512-J11oA30FbM3NZegUZjn8ySK903z6PLBz/ZuBYyT1JMR0QPrW6PFXvl1WoUhortdGi9dM0m48/zJQlPskVZXgVw==}
+  react-i18next@15.4.0:
+    resolution: {integrity: sha512-Py6UkX3zV08RTvL6ZANRoBh9sL/ne6rQq79XlkHEdd82cZr2H9usbWpUNVadJntIZP2pu3M2rL1CN+5rQYfYFw==}
     peerDependencies:
       i18next: '>= 23.2.3'
       react: '>= 16.8.0'
@@ -15740,17 +15740,17 @@ snapshots:
 
   husky@8.0.3: {}
 
-  i18next-browser-languagedetector@8.0.0:
+  i18next-browser-languagedetector@8.0.2:
     dependencies:
-      '@babel/runtime': 7.25.6
+      '@babel/runtime': 7.26.0
 
   i18next-resources-to-backend@1.2.1:
     dependencies:
       '@babel/runtime': 7.25.6
 
-  i18next@24.0.2(typescript@5.5.4):
+  i18next@24.2.0(typescript@5.5.4):
     dependencies:
-      '@babel/runtime': 7.25.7
+      '@babel/runtime': 7.26.0
     optionalDependencies:
       typescript: 5.5.4
 
@@ -17346,11 +17346,11 @@ snapshots:
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
-  react-i18next@15.1.3(i18next@24.0.2(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.25.7)(@babel/preset-env@7.25.4(@babel/core@7.25.7))(react@18.3.1))(react@18.3.1):
+  react-i18next@15.4.0(i18next@24.2.0(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.25.7)(@babel/preset-env@7.25.4(@babel/core@7.25.7))(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.25.7
+      '@babel/runtime': 7.26.0
       html-parse-stringify: 3.0.1
-      i18next: 24.0.2(typescript@5.5.4)
+      i18next: 24.2.0(typescript@5.5.4)
       react: 18.3.1
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
