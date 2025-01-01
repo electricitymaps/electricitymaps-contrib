@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# The arrow library is used to handle datetimes
 from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo

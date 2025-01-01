@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pytest
 
@@ -19,5 +19,5 @@ from parsers.CH import get_solar_capacity_at
     ],
 )
 def test_get_solar_capacity(dt, expected):
-    target_datetime = datetime.fromisoformat(dt)
+    target_datetime = datetime.fromisoformat(dt).replace(tzinfo=timezone.utc)
     assert get_solar_capacity_at(target_datetime) == expected

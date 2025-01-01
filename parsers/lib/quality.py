@@ -7,8 +7,6 @@ from datetime import datetime, timezone
 from typing import Any
 from warnings import warn
 
-import arrow
-
 from electricitymap.contrib.config import EXCHANGES_CONFIG, emission_factors
 from electricitymap.contrib.lib.types import ZoneKey
 
@@ -40,16 +38,16 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
 
 
 def validate_reasonable_time(item, k):
-    data_time = arrow.get(item["datetime"])
-    if data_time.year < 2000:
-        raise ValidationError(
-            f"Data from {k} can't be before year 2000, it was from: {data_time}"
-        )
+    data_dt = item["datetime"].astimezone(timezone.utc)
+    now = datetime.now(timezone.utc)
 
-    arrow_now = arrow.utcnow()
-    if data_time.astimezone(timezone.utc) > arrow_now:
+    if data_dt.year < 2000:
         raise ValidationError(
-            f"Data from {k} can't be in the future, data was {data_time}, now is {arrow_now}"
+            f"Data from {k} can't be before year 2000, it was from: {data_dt}"
+        )
+    if data_dt > now:
+        raise ValidationError(
+            f"Data from {k} can't be in the future, it was from {data_dt}, now is {now}"
         )
 
 

@@ -7,7 +7,7 @@ from ..lib import IN, web, zonekey
 
 URL = "https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx"
 ZONE_KEY = "IN-AP"
-TIME_FORMAT = "DD-MM-YYYY HH:mm"
+TIME_FORMAT = "%d-%m-%Y %H:%M"
 SOURCE = "core.ap.gov.in"
 
 
@@ -42,7 +42,7 @@ def fetch_production(
 
     return {
         "zoneKey": zone_key,
-        "datetime": india_date.datetime,
+        "datetime": india_date,
         "production": {
             "biomass": 0.0,
             "coal": thermal_value,
@@ -81,7 +81,7 @@ def fetch_consumption(
 
     return {
         "zoneKey": zone_key,
-        "datetime": india_date.datetime,
+        "datetime": india_date,
         "consumption": demand_value,
         "source": SOURCE,
     }
