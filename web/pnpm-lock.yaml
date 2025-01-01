@@ -61,10 +61,10 @@ importers:
         version: 8.47.0(react@18.3.1)
       '@tailwindcss/forms':
         specifier: 0.5.3
-        version: 0.5.3(tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4)))
+        version: 0.5.3(tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4)))
       '@tailwindcss/typography':
         specifier: ^0.5.13
-        version: 0.5.13(tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4)))
+        version: 0.5.13(tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4)))
       '@tanstack/react-query':
         specifier: 5.62.11
         version: 5.62.11(react@18.3.1)
@@ -191,7 +191,7 @@ importers:
         version: 3.1.0
       '@nabla/vite-plugin-eslint':
         specifier: 1.6.0
-        version: 1.6.0(eslint@8.57.0)(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
+        version: 1.6.0(eslint@8.57.0)(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
       '@sentry/vite-plugin':
         specifier: ^2.22.7
         version: 2.22.7
@@ -230,7 +230,7 @@ importers:
         version: 8.4.6(@storybook/test@8.4.6(storybook@8.4.6(prettier@2.8.8)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.6(prettier@2.8.8))(typescript@5.5.4)
       '@storybook/react-vite':
         specifier: ^8.4.6
-        version: 8.4.6(@storybook/test@8.4.6(storybook@8.4.6(prettier@2.8.8)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.79.2)(storybook@8.4.6(prettier@2.8.8))(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
+        version: 8.4.6(@storybook/test@8.4.6(storybook@8.4.6(prettier@2.8.8)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.79.2)(storybook@8.4.6(prettier@2.8.8))(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
       '@storybook/test':
         specifier: ^8.4.6
         version: 8.4.6(storybook@8.4.6(prettier@2.8.8))
@@ -283,14 +283,14 @@ importers:
         specifier: ^3.1.6
         version: 3.1.6
       '@types/geojson':
-        specifier: ^7946.0.14
-        version: 7946.0.14
+        specifier: ^7946.0.15
+        version: 7946.0.15
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
       '@types/node':
-        specifier: ^20.17.9
-        version: 20.17.9
+        specifier: ^20.17.11
+        version: 20.17.11
       '@types/react':
         specifier: 18.3.12
         version: 18.3.12
@@ -301,8 +301,8 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
       '@types/react-transition-group':
-        specifier: ^4.4.11
-        version: 4.4.11
+        specifier: ^4.4.12
+        version: 4.4.12(@types/react@18.3.12)
       '@types/topojson':
         specifier: ^3.2.6
         version: 3.2.6
@@ -317,10 +317,10 @@ importers:
         version: 1.0.5
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.0
-        version: 3.7.0(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
+        version: 3.7.0(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
       '@vitest/coverage-istanbul':
         specifier: 2.1.6
-        version: 2.1.6(vitest@2.1.6(@types/node@20.17.9)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.9)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0))
+        version: 2.1.6(vitest@2.1.6(@types/node@20.17.11)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.11)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0))
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.47)
@@ -395,7 +395,7 @@ importers:
         version: 13.3.0(enquirer@2.4.1)
       msw:
         specifier: 2.6.6
-        version: 2.6.6(@types/node@20.17.9)(typescript@5.5.4)
+        version: 2.6.6(@types/node@20.17.11)(typescript@5.5.4)
       nodemon:
         specifier: ^2.0.22
         version: 2.0.22
@@ -419,13 +419,13 @@ importers:
         version: 8.4.6(prettier@2.8.8)
       tailwindcss:
         specifier: 3.4.7
-        version: 3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4))
+        version: 3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4))
       tailwindcss-radix:
         specifier: ^2.9.0
         version: 2.9.0
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4)
+        version: 10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4)
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -434,16 +434,16 @@ importers:
         version: 7.5.0(eslint@8.57.0)(typescript@5.5.4)
       vite:
         specifier: 6.0.2
-        version: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+        version: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
       vite-plugin-pwa:
         specifier: 0.21.1
-        version: 0.21.1(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))(workbox-build@7.3.0(@types/babel__core@7.20.5))(workbox-window@7.3.0)
+        version: 0.21.1(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))(workbox-build@7.3.0(@types/babel__core@7.20.5))(workbox-window@7.3.0)
       vite-tsconfig-paths:
         specifier: 5.1.4
-        version: 5.1.4(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
+        version: 5.1.4(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
       vitest:
         specifier: 2.1.6
-        version: 2.1.6(@types/node@20.17.9)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.9)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0)
+        version: 2.1.6(@types/node@20.17.11)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.11)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0)
       workbox-build:
         specifier: 7.3.0
         version: 7.3.0(@types/babel__core@7.20.5)
@@ -3720,8 +3720,8 @@ packages:
   '@types/express@4.17.21':
     resolution: {integrity: sha512-ejlPM315qwLpaQlQDTjPdsUFSc6ZsP4AN6AlWnogPjQ7CVi7PYF3YVz+CY3jE2pwYf7E/7HlDAN0rV2GxTG0HQ==}
 
-  '@types/geojson@7946.0.14':
-    resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
+  '@types/geojson@7946.0.15':
+    resolution: {integrity: sha512-9oSxFzDCT2Rj6DfcHF8G++jxBKS7mBqXl5xrRW+Kbvjry6Uduya2iiwqHPhVXpasAVMBYKkEPGgKhd3+/HZ6xA==}
 
   '@types/geojson@7946.0.8':
     resolution: {integrity: sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==}
@@ -3771,9 +3771,6 @@ packages:
   '@types/node@20.17.11':
     resolution: {integrity: sha512-Ept5glCK35R8yeyIeYlRIZtX6SLRyqMhOFTgj5SOkMpLTdw3SEHI9fHx60xaUZ+V1aJxQJODE+7/j5ocZydYTg==}
 
-  '@types/node@20.17.9':
-    resolution: {integrity: sha512-0JOXkRyLanfGPE2QRCwgxhzlBAvaRdCNMcvbd7jFfpmD4eEXll7LRwy5ymJmyeZqk7Nh7eD2LeUyQ68BbndmXw==}
-
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
@@ -3806,8 +3803,10 @@ packages:
   '@types/react-router@5.1.20':
     resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
 
-  '@types/react-transition-group@4.4.11':
-    resolution: {integrity: sha512-RM05tAniPZ5DZPzzNFP+DmrcOdD0efDUxMy3145oljWSl3x9ZV5vhme98gTxFrj2lhXvmGNnUiuDyJgY9IKkNA==}
+  '@types/react-transition-group@4.4.12':
+    resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
+    peerDependencies:
+      '@types/react': '*'
 
   '@types/react@18.3.12':
     resolution: {integrity: sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==}
@@ -10511,16 +10510,16 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.2': {}
 
-  '@inquirer/confirm@5.0.2(@types/node@20.17.9)':
+  '@inquirer/confirm@5.0.2(@types/node@20.17.11)':
     dependencies:
-      '@inquirer/core': 10.1.0(@types/node@20.17.9)
-      '@inquirer/type': 3.0.1(@types/node@20.17.9)
-      '@types/node': 20.17.9
+      '@inquirer/core': 10.1.0(@types/node@20.17.11)
+      '@inquirer/type': 3.0.1(@types/node@20.17.11)
+      '@types/node': 20.17.11
 
-  '@inquirer/core@10.1.0(@types/node@20.17.9)':
+  '@inquirer/core@10.1.0(@types/node@20.17.11)':
     dependencies:
       '@inquirer/figures': 1.0.8
-      '@inquirer/type': 3.0.1(@types/node@20.17.9)
+      '@inquirer/type': 3.0.1(@types/node@20.17.11)
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
       mute-stream: 2.0.0
@@ -10533,9 +10532,9 @@ snapshots:
 
   '@inquirer/figures@1.0.8': {}
 
-  '@inquirer/type@3.0.1(@types/node@20.17.9)':
+  '@inquirer/type@3.0.1(@types/node@20.17.11)':
     dependencies:
-      '@types/node': 20.17.9
+      '@types/node': 20.17.11
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -10591,11 +10590,11 @@ snapshots:
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
-  '@joshwooding/vite-plugin-react-docgen-typescript@0.4.2(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
+  '@joshwooding/vite-plugin-react-docgen-typescript@0.4.2(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
     dependencies:
       magic-string: 0.27.0
       react-docgen-typescript: 2.2.2(typescript@5.5.4)
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
     optionalDependencies:
       typescript: 5.5.4
 
@@ -10692,12 +10691,12 @@ snapshots:
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
 
-  '@nabla/vite-plugin-eslint@1.6.0(eslint@8.57.0)(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
+  '@nabla/vite-plugin-eslint@1.6.0(eslint@8.57.0)(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
     dependencies:
       '@types/eslint': 8.56.6
       chalk: 4.1.2
       eslint: 8.57.0
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -11899,13 +11898,13 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@storybook/builder-vite@8.4.6(storybook@8.4.6(prettier@2.8.8))(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
+  '@storybook/builder-vite@8.4.6(storybook@8.4.6(prettier@2.8.8))(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
     dependencies:
       '@storybook/csf-plugin': 8.4.6(storybook@8.4.6(prettier@2.8.8))
       browser-assert: 1.2.1
       storybook: 8.4.6(prettier@2.8.8)
       ts-dedent: 2.2.0
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
 
   '@storybook/channels@7.6.17':
     dependencies:
@@ -12029,11 +12028,11 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       storybook: 8.4.6(prettier@2.8.8)
 
-  '@storybook/react-vite@8.4.6(@storybook/test@8.4.6(storybook@8.4.6(prettier@2.8.8)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.79.2)(storybook@8.4.6(prettier@2.8.8))(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
+  '@storybook/react-vite@8.4.6(@storybook/test@8.4.6(storybook@8.4.6(prettier@2.8.8)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@2.79.2)(storybook@8.4.6(prettier@2.8.8))(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
     dependencies:
-      '@joshwooding/vite-plugin-react-docgen-typescript': 0.4.2(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
+      '@joshwooding/vite-plugin-react-docgen-typescript': 0.4.2(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
       '@rollup/pluginutils': 5.1.2(rollup@2.79.2)
-      '@storybook/builder-vite': 8.4.6(storybook@8.4.6(prettier@2.8.8))(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
+      '@storybook/builder-vite': 8.4.6(storybook@8.4.6(prettier@2.8.8))(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
       '@storybook/react': 8.4.6(@storybook/test@8.4.6(storybook@8.4.6(prettier@2.8.8)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.6(prettier@2.8.8))(typescript@5.5.4)
       find-up: 5.0.0
       magic-string: 0.30.13
@@ -12043,7 +12042,7 @@ snapshots:
       resolve: 1.22.8
       storybook: 8.4.6(prettier@2.8.8)
       tsconfig-paths: 4.2.0
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@storybook/test'
       - rollup
@@ -12166,18 +12165,18 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@tailwindcss/forms@0.5.3(tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4)))':
+  '@tailwindcss/forms@0.5.3(tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4)))':
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4))
+      tailwindcss: 3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4))
 
-  '@tailwindcss/typography@0.5.13(tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4)))':
+  '@tailwindcss/typography@0.5.13(tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4)))':
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4))
+      tailwindcss: 3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4))
 
   '@tanstack/query-core@5.62.9': {}
 
@@ -13150,7 +13149,7 @@ snapshots:
   '@types/d3-contour@3.0.6':
     dependencies:
       '@types/d3-array': 3.2.1
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
 
   '@types/d3-delaunay@6.0.1': {}
 
@@ -13178,7 +13177,7 @@ snapshots:
 
   '@types/d3-geo@3.1.0':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
 
   '@types/d3-hierarchy@3.1.6': {}
 
@@ -13299,7 +13298,7 @@ snapshots:
       '@types/qs': 6.9.17
       '@types/serve-static': 1.15.7
 
-  '@types/geojson@7946.0.14': {}
+  '@types/geojson@7946.0.15': {}
 
   '@types/geojson@7946.0.8': {}
 
@@ -13327,13 +13326,13 @@ snapshots:
 
   '@types/mapbox-gl@2.7.19':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
 
   '@types/mapbox__point-geometry@0.1.4': {}
 
   '@types/mapbox__vector-tile@1.3.4':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
       '@types/mapbox__point-geometry': 0.1.4
       '@types/pbf': 3.0.5
 
@@ -13342,10 +13341,6 @@ snapshots:
   '@types/mime@1.3.5': {}
 
   '@types/node@20.17.11':
-    dependencies:
-      undici-types: 6.19.8
-
-  '@types/node@20.17.9':
     dependencies:
       undici-types: 6.19.8
 
@@ -13382,7 +13377,7 @@ snapshots:
       '@types/history': 4.7.11
       '@types/react': 18.3.12
 
-  '@types/react-transition-group@4.4.11':
+  '@types/react-transition-group@4.4.12(@types/react@18.3.12)':
     dependencies:
       '@types/react': 18.3.12
 
@@ -13418,30 +13413,30 @@ snapshots:
 
   '@types/supercluster@7.1.3':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
 
   '@types/topojson-client@3.1.5':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
       '@types/topojson-specification': 1.0.5
 
   '@types/topojson-server@3.0.4':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
       '@types/topojson-specification': 1.0.5
 
   '@types/topojson-simplify@3.0.3':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
       '@types/topojson-specification': 1.0.5
 
   '@types/topojson-specification@1.0.5':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
 
   '@types/topojson@3.2.6':
     dependencies:
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
       '@types/topojson-client': 3.1.5
       '@types/topojson-server': 3.0.4
       '@types/topojson-simplify': 3.0.3
@@ -13469,7 +13464,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 20.17.9
+      '@types/node': 20.17.11
     optional: true
 
   '@typescript-eslint/eslint-plugin@7.5.0(@typescript-eslint/parser@7.5.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)':
@@ -13665,14 +13660,14 @@ snapshots:
       d3-time-format: 4.1.0
       internmap: 2.0.3
 
-  '@vitejs/plugin-react-swc@3.7.0(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
+  '@vitejs/plugin-react-swc@3.7.0(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
     dependencies:
       '@swc/core': 1.6.6
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  '@vitest/coverage-istanbul@2.1.6(vitest@2.1.6(@types/node@20.17.9)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.9)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0))':
+  '@vitest/coverage-istanbul@2.1.6(vitest@2.1.6(@types/node@20.17.11)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.11)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0))':
     dependencies:
       '@istanbuljs/schema': 0.1.3
       debug: 4.3.7(supports-color@8.1.1)
@@ -13684,7 +13679,7 @@ snapshots:
       magicast: 0.3.5
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.6(@types/node@20.17.9)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.9)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0)
+      vitest: 2.1.6(@types/node@20.17.11)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.11)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -13702,14 +13697,14 @@ snapshots:
       chai: 5.1.2
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.6(msw@2.6.6(@types/node@20.17.9)(typescript@5.5.4))(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
+  '@vitest/mocker@2.1.6(msw@2.6.6(@types/node@20.17.11)(typescript@5.5.4))(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))':
     dependencies:
       '@vitest/spy': 2.1.6
       estree-walker: 3.0.3
       magic-string: 0.30.13
     optionalDependencies:
-      msw: 2.6.6(@types/node@20.17.9)(typescript@5.5.4)
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      msw: 2.6.6(@types/node@20.17.11)(typescript@5.5.4)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
 
   '@vitest/pretty-format@2.0.5':
     dependencies:
@@ -16463,7 +16458,7 @@ snapshots:
       '@mapbox/vector-tile': 1.3.1
       '@mapbox/whoots-js': 3.1.0
       '@maplibre/maplibre-gl-style-spec': 19.3.3
-      '@types/geojson': 7946.0.14
+      '@types/geojson': 7946.0.15
       '@types/mapbox__point-geometry': 0.1.4
       '@types/mapbox__vector-tile': 1.3.4
       '@types/pbf': 3.0.5
@@ -16749,12 +16744,12 @@ snapshots:
 
   ms@2.1.3: {}
 
-  msw@2.6.6(@types/node@20.17.9)(typescript@5.5.4):
+  msw@2.6.6(@types/node@20.17.11)(typescript@5.5.4):
     dependencies:
       '@bundled-es-modules/cookie': 2.0.1
       '@bundled-es-modules/statuses': 1.0.1
       '@bundled-es-modules/tough-cookie': 0.1.6
-      '@inquirer/confirm': 5.0.2(@types/node@20.17.9)
+      '@inquirer/confirm': 5.0.2(@types/node@20.17.11)
       '@mswjs/interceptors': 0.37.1
       '@open-draft/deferred-promise': 2.2.0
       '@open-draft/until': 2.1.0
@@ -17138,13 +17133,13 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.47
 
-  postcss-load-config@4.0.2(postcss@8.4.47)(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4)):
+  postcss-load-config@4.0.2(postcss@8.4.47)(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4)):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.5.1
     optionalDependencies:
       postcss: 8.4.47
-      ts-node: 10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4)
+      ts-node: 10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4)
 
   postcss-nested@6.2.0(postcss@8.4.47):
     dependencies:
@@ -18240,7 +18235,7 @@ snapshots:
 
   tailwindcss-radix@2.9.0: {}
 
-  tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4)):
+  tailwindcss@3.4.7(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -18259,7 +18254,7 @@ snapshots:
       postcss: 8.4.47
       postcss-import: 15.1.0(postcss@8.4.47)
       postcss-js: 4.0.1(postcss@8.4.47)
-      postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4))
+      postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4))
       postcss-nested: 6.2.0(postcss@8.4.47)
       postcss-selector-parser: 6.1.1
       resolve: 1.22.8
@@ -18407,14 +18402,14 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.9)(typescript@5.5.4):
+  ts-node@10.9.2(@swc/core@1.6.6)(@types/node@20.17.11)(typescript@5.5.4):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.9
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.17.9
+      '@types/node': 20.17.11
       acorn: 8.12.1
       acorn-walk: 8.3.3
       arg: 4.1.3
@@ -18686,13 +18681,13 @@ snapshots:
       core-util-is: 1.0.2
       extsprintf: 1.3.0
 
-  vite-node@2.1.6(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0):
+  vite-node@2.1.6(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0(supports-color@8.1.1)
       es-module-lexer: 1.5.4
       pathe: 1.1.2
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -18707,45 +18702,45 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-pwa@0.21.1(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))(workbox-build@7.3.0(@types/babel__core@7.20.5))(workbox-window@7.3.0):
+  vite-plugin-pwa@0.21.1(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))(workbox-build@7.3.0(@types/babel__core@7.20.5))(workbox-window@7.3.0):
     dependencies:
       debug: 4.3.7(supports-color@8.1.1)
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.10
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
       workbox-build: 7.3.0(@types/babel__core@7.20.5)
       workbox-window: 7.3.0
     transitivePeerDependencies:
       - supports-color
 
-  vite-tsconfig-paths@5.1.4(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)):
+  vite-tsconfig-paths@5.1.4(typescript@5.5.4)(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)):
     dependencies:
       debug: 4.4.0(supports-color@8.1.1)
       globrex: 0.1.2
       tsconfck: 3.1.0(typescript@5.5.4)
     optionalDependencies:
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0):
+  vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0):
     dependencies:
       esbuild: 0.24.0
       postcss: 8.4.49
       rollup: 4.24.0
     optionalDependencies:
-      '@types/node': 20.17.9
+      '@types/node': 20.17.11
       fsevents: 2.3.3
       jiti: 1.21.6
       less: 4.2.0
       terser: 5.37.0
       yaml: 2.7.0
 
-  vitest@2.1.6(@types/node@20.17.9)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.9)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0):
+  vitest@2.1.6(@types/node@20.17.11)(jiti@1.21.6)(jsdom@20.0.3)(less@4.2.0)(msw@2.6.6(@types/node@20.17.11)(typescript@5.5.4))(terser@5.37.0)(yaml@2.7.0):
     dependencies:
       '@vitest/expect': 2.1.6
-      '@vitest/mocker': 2.1.6(msw@2.6.6(@types/node@20.17.9)(typescript@5.5.4))(vite@6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
+      '@vitest/mocker': 2.1.6(msw@2.6.6(@types/node@20.17.11)(typescript@5.5.4))(vite@6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0))
       '@vitest/pretty-format': 2.1.6
       '@vitest/runner': 2.1.6
       '@vitest/snapshot': 2.1.6
@@ -18761,11 +18756,11 @@ snapshots:
       tinyexec: 0.3.1
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 6.0.2(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
-      vite-node: 2.1.6(@types/node@20.17.9)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite: 6.0.2(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
+      vite-node: 2.1.6(@types/node@20.17.11)(jiti@1.21.6)(less@4.2.0)(terser@5.37.0)(yaml@2.7.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 20.17.9
+      '@types/node': 20.17.11
       jsdom: 20.0.3
     transitivePeerDependencies:
       - jiti
