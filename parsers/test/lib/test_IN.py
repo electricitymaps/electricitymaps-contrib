@@ -1,6 +1,5 @@
 import unittest
 
-from arrow import get
 from bs4 import BeautifulSoup
 
 from parsers.lib import IN
@@ -11,7 +10,7 @@ class TestIndia(unittest.TestCase):
         html_span = '<p><span id="lbldate">9/4/2017 5:17:00 PM</span></p>'
         html = BeautifulSoup(html_span, "html.parser")
         india_date_time = IN.read_datetime_from_span_id(
-            html, "lbldate", "D/M/YYYY h:mm:ss A"
+            html, "lbldate", "%d/%m/%Y %I:%M:%S %p"
         )
         self.assertIsNotNone(india_date_time)
         self.assertEqual(india_date_time.isoformat(), "2017-04-09T17:17:00+05:30")
@@ -19,7 +18,7 @@ class TestIndia(unittest.TestCase):
         html_span = '<p><span id="lblPowerStatusDate">04-09-2017 17:13</span></p>'
         html = BeautifulSoup(html_span, "html.parser")
         india_date_time = IN.read_datetime_from_span_id(
-            html, "lblPowerStatusDate", "DD-MM-YYYY HH:mm"
+            html, "lblPowerStatusDate", "%d-%m-%Y %H:%M"
         )
         self.assertIsNotNone(india_date_time)
         self.assertEqual(india_date_time.isoformat(), "2017-09-04T17:13:00+05:30")
@@ -37,25 +36,6 @@ class TestIndia(unittest.TestCase):
         cgs_value = IN.read_value_from_span_id(html, "lblcgs")
         self.assertIsNotNone(cgs_value)
         self.assertEqual(cgs_value, 2998.0)
-
-    def test_read_india_datetime_with_only_time(self):
-        mock_now = get("2017-11-01T19:05:01+00:00")
-        time_string = "01:05:01"
-        time_format = "HH:mm:ss"
-        india_date_time = IN.read_datetime_with_only_time(
-            time_string, time_format, mock_now
-        )
-        self.assertIsNotNone(india_date_time)
-        self.assertEqual(india_date_time.isoformat(), "2017-11-02T01:05:01+05:30")
-
-        mock_now = get("2017-11-02T01:05:01+00:00")
-        time_string = "06:35:01"
-        time_format = "HH:mm:ss"
-        india_date_time = IN.read_datetime_with_only_time(
-            time_string, time_format, mock_now
-        )
-        self.assertIsNotNone(india_date_time)
-        self.assertEqual(india_date_time.isoformat(), "2017-11-02T06:35:01+05:30")
 
 
 if __name__ == "__main__":
