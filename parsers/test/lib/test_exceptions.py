@@ -1,19 +1,13 @@
-import unittest
-
 from parsers.lib.exceptions import ParserException
 
 
-class TestParserException(unittest.TestCase):
-    def test_instance(self):
-        exception = ParserException("ESIOS", "Parser exception")
-        self.assertIsInstance(exception, ParserException)
-        self.assertEqual(str(exception), "ESIOS Parser: Parser exception")
-
-    def test_instance_with_zone_key(self):
-        exception = ParserException("ESIOS", "Parser exception", "ES")
-        self.assertIsInstance(exception, ParserException)
-        self.assertEqual(str(exception), "ESIOS Parser (ES): Parser exception")
+def test_instance():
+    exception = ParserException("ESIOS", "Parser exception")
+    assert isinstance(exception, ParserException)
+    assert str(exception) == "ESIOS Parser: Parser exception"
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_instance_with_zone_key():
+    exception = ParserException("ESIOS", "Parser exception", "ES")
+    assert isinstance(exception, ParserException)
+    assert str(exception) == "ESIOS Parser (ES): Parser exception"
