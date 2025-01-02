@@ -1,5 +1,5 @@
 import Accordion from 'components/Accordion';
-import { Link } from 'components/Link';
+import Link from 'components/Link';
 import { DataSources } from 'features/charts/DataSources';
 import useZoneDataSources from 'features/charts/hooks/useZoneDataSources';
 import { RoundedCard } from 'features/charts/RoundedCard';
