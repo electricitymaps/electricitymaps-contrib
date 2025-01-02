@@ -21,6 +21,10 @@ interface MenuLinkProps {
   onClick?: () => void;
 }
 
+const handleClick = () => {
+  trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: 'get-data' });
+};
+
 function MenuLink({
   children,
   href,
@@ -64,10 +68,6 @@ export default function Header(): JSX.Element {
   const onFAQClick = useCallback(() => {
     setIsFAQModalOpen(true);
   }, [setIsFAQModalOpen]);
-
-  const handleClick = useCallback(() => {
-    trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: 'get-data' });
-  }, []);
 
   return (
     <header
