@@ -137,9 +137,10 @@ function BarBreakdownChart({
         id={Charts.BAR_BREAKDOWN_CHART}
       />
       {!displayByEmissions && isHourly && (
-        <CapacityLegend>
-          {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
-        </CapacityLegend>
+        <CapacityLegend
+          text={t('country-panel.graph-legends.installed-capacity')}
+          unit={graphUnit}
+        />
       )}
       {tooltipData && (
         <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full sm:h-0 sm:w-0">

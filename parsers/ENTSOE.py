@@ -125,6 +125,7 @@ ENTSOE_STORAGE_PARAMETERS = list(
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
 ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "AL": "10YAL-KESH-----5",
+    "AM": "10Y1001A1001B004",
     "AT": "10YAT-APG------L",
     "AZ": "10Y1001A1001B05V",
     "BA": "10YBA-JPCC-----D",
