@@ -1,5 +1,6 @@
 import { Button, ButtonProps } from 'components/Button';
 import { CloudCog } from 'lucide-react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface CommercialApiButtonProps
@@ -11,7 +12,7 @@ interface CommercialApiButtonProps
   type?: 'primary' | 'link' | 'secondary';
 }
 
-export function CommercialApiButton({
+function CommercialApiButton({
   iconSize = 20,
   type,
   ...restProps
@@ -28,3 +29,5 @@ export function CommercialApiButton({
     </Button>
   );
 }
+
+export default memo(CommercialApiButton);
