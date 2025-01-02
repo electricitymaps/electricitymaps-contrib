@@ -1,0 +1,20 @@
+# serializer version: 1
+# name: test_fetch_production
+  list([
+    dict({
+      'datetime': '2023-09-12T03:45:02.384000-04:00',
+      'production': dict({
+        'biomass': 0.0,
+        'oil': 108.567078,
+        'solar': 0.0,
+        'unknown': 0,
+        'wind': 4.692129,
+      }),
+      'source': 'webaruba.com',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'AW',
+    }),
+  ])
+# ---

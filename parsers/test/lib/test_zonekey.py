@@ -1,30 +1,16 @@
-import unittest
+import pytest
 
 from parsers.lib import zonekey
 from parsers.lib.exceptions import ParserException
 
 
-class TestCountyCode(unittest.TestCase):
-    def test_assert_zone_key(self):
-        try:
-            zonekey.assert_zone_key("ES", "ES", "ESIOS")
-        except ParserException:
-            self.fail("assert_zone_key() raised ParserException unexpectedly!")
+def test_assert_zone_key():
+    zonekey.assert_zone_key("ES", "ES", "ESIOS")
 
-        try:
-            zonekey.assert_zone_key("ES", "ES-IB")
-        except ParserException as ex:
-            self.assertIsInstance(ex, ParserException)
-            self.assertEqual(str(ex), "ES Parser (ES): zone_key expected ES-IB, is ES")
+    with pytest.raises(ParserException) as exc_info:
+        zonekey.assert_zone_key("ES", "ES-IB")
+    assert str(exc_info.value) == "ES Parser (ES): zone_key expected ES-IB, is ES"
 
-        try:
-            zonekey.assert_zone_key("ES", "ES-IB", "ESIOS")
-        except ParserException as ex:
-            self.assertIsInstance(ex, ParserException)
-            self.assertEqual(
-                str(ex), "ESIOS Parser (ES): zone_key expected ES-IB, is ES"
-            )
-
-
-if __name__ == "__main__":
-    unittest.main()
+    with pytest.raises(ParserException) as exc_info:
+        zonekey.assert_zone_key("ES", "ES-IB", "ESIOS")
+    assert str(exc_info.value) == "ESIOS Parser (ES): zone_key expected ES-IB, is ES"

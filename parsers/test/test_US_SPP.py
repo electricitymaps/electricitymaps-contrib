@@ -1,9 +1,4 @@
-#!/usr/bin/env python3
-
-"""Tests for US_SPP.py"""
-
 import logging
-import unittest
 from datetime import datetime, timezone
 from unittest.mock import patch
 
@@ -14,64 +9,43 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers import US_SPP
 
 
-class TestUSSPP(unittest.TestCase):
-    """Patches in a fake response from the data source to allow consistent testing."""
+def test_fetch_production():
+    filename = "parsers/test/mocks/US_SPP_Gen_Mix.pkl"
+    mock_data = read_pickle(filename)
+    # Suppress log messages to prevent interfering with test formatting.
+    with LogCapture(), patch("parsers.US_SPP.get_data") as gd:
+        gd.return_value = mock_data
+        data = US_SPP.fetch_production(
+            zone_key=ZoneKey("US-SW-AZPS"), logger=logging.getLogger("test")
+        )
+        datapoint = data[-1]
 
-    def test_fetch_production(self):
-        filename = "parsers/test/mocks/US_SPP_Gen_Mix.pkl"
-        fake_data = read_pickle(filename)
+    assert isinstance(data, list)
+    assert len(data) == 23
 
-        # Suppress log messages to prevent interfering with test formatting.
-        with LogCapture(), patch("parsers.US_SPP.get_data") as gd:
-            gd.return_value = fake_data
-            data = US_SPP.fetch_production(
+    # Unknown keys must be assigned and summed.
+    assert round(datapoint["production"]["unknown"], 2) == 33.1
+    assert datapoint["datetime"] == datetime(2018, 7, 27, 11, 45, tzinfo=timezone.utc)
+    assert datapoint["source"] == "spp.org"
+    assert datapoint["zoneKey"] == "US-SW-AZPS"
+    assert isinstance(datapoint["storage"], dict)
+
+
+def test_SPP_logging():
+    """Make sure that new generation types are logged properly."""
+    filename = "parsers/test/mocks/US_SPP_Gen_Mix.pkl"
+    mock_data = read_pickle(filename)
+
+    with LogCapture() as log:
+        with patch("parsers.US_SPP.get_data") as gd:
+            gd.return_value = mock_data
+            US_SPP.fetch_production(
                 zone_key=ZoneKey("US-SW-AZPS"), logger=logging.getLogger("test")
             )
-            datapoint = data[-1]
-
-        with self.subTest():
-            self.assertIsInstance(data, list)
-
-        with self.subTest():
-            self.assertEqual(len(data), 23)
-
-        # Unknown keys must be assigned and summed.
-        with self.subTest():
-            self.assertEqual(round(datapoint["production"]["unknown"], 2), 33.1)
-
-        with self.subTest():
-            expected_dt = datetime(2018, 7, 27, 11, 45, tzinfo=timezone.utc)
-            self.assertEqual(datapoint["datetime"], expected_dt)
-
-        with self.subTest():
-            self.assertEqual(datapoint["source"], "spp.org")
-
-        with self.subTest():
-            self.assertEqual(datapoint["zoneKey"], "US-SW-AZPS")
-
-        with self.subTest():
-            self.assertIsInstance(datapoint["storage"], dict)
-
-    def test_SPP_logging(self):
-        """Make sure that new generation types are logged properly."""
-
-        filename = "parsers/test/mocks/US_SPP_Gen_Mix.pkl"
-        fake_data = read_pickle(filename)
-
-        with LogCapture() as log:
-            with patch("parsers.US_SPP.get_data") as gd:
-                gd.return_value = fake_data
-                _data = US_SPP.fetch_production(
-                    zone_key=ZoneKey("US-SW-AZPS"), logger=logging.getLogger("test")
-                )
-            log.check(
-                (
-                    "test",
-                    "WARNING",
-                    """New column 'Flux Capacitor' present in US-SPP data source.""",
-                )
+        log.check(
+            (
+                "test",
+                "WARNING",
+                """New column 'Flux Capacitor' present in US-SPP data source.""",
             )
-
-
-if __name__ == "__main__":
-    unittest.main(buffer=True)
+        )

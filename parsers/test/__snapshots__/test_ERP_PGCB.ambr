@@ -1,0 +1,1543 @@
+# serializer version: 1
+# name: test_exchanges
+  list([
+    dict({
+      'datetime': '2024-09-04T09:00:00+06:00',
+      'netFlow': -54.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T10:00:00+06:00',
+      'netFlow': -58.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T11:00:00+06:00',
+      'netFlow': -60.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T12:00:00+06:00',
+      'netFlow': -66.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T13:00:00+06:00',
+      'netFlow': -66.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T14:00:00+06:00',
+      'netFlow': -64.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T15:00:00+06:00',
+      'netFlow': -56.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T16:00:00+06:00',
+      'netFlow': -70.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T17:00:00+06:00',
+      'netFlow': -66.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T18:00:00+06:00',
+      'netFlow': -64.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T18:30:00+06:00',
+      'netFlow': -62.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T19:00:00+06:00',
+      'netFlow': -64.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T20:00:00+06:00',
+      'netFlow': -70.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T21:00:00+06:00',
+      'netFlow': -64.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T22:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-04T23:00:00+06:00',
+      'netFlow': -74.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T00:00:00+06:00',
+      'netFlow': -74.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T01:00:00+06:00',
+      'netFlow': -70.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T02:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T03:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T04:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T05:00:00+06:00',
+      'netFlow': -62.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T06:00:00+06:00',
+      'netFlow': -64.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T07:00:00+06:00',
+      'netFlow': -58.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T08:00:00+06:00',
+      'netFlow': -58.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T09:00:00+06:00',
+      'netFlow': -56.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T10:00:00+06:00',
+      'netFlow': -56.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T11:00:00+06:00',
+      'netFlow': -60.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T12:00:00+06:00',
+      'netFlow': -64.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T13:00:00+06:00',
+      'netFlow': -66.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T14:00:00+06:00',
+      'netFlow': -62.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T15:00:00+06:00',
+      'netFlow': -66.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T16:00:00+06:00',
+      'netFlow': -64.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T17:00:00+06:00',
+      'netFlow': -62.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T18:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T18:30:00+06:00',
+      'netFlow': -66.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T19:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T20:00:00+06:00',
+      'netFlow': -64.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T21:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T22:00:00+06:00',
+      'netFlow': -72.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-05T23:00:00+06:00',
+      'netFlow': -70.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T00:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T01:00:00+06:00',
+      'netFlow': -68.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T02:00:00+06:00',
+      'netFlow': -66.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T03:00:00+06:00',
+      'netFlow': -62.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T04:00:00+06:00',
+      'netFlow': -36.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T05:00:00+06:00',
+      'netFlow': -20.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T06:00:00+06:00',
+      'netFlow': -36.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T07:00:00+06:00',
+      'netFlow': -42.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T08:00:00+06:00',
+      'netFlow': -38.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'datetime': '2024-09-06T09:00:00+06:00',
+      'netFlow': -43.0,
+      'sortedZoneKeys': 'BD->IN-NE',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+  ])
+# ---
+# name: test_fetch_consumption
+  list([
+    dict({
+      'consumption': 12850.0,
+      'datetime': '2024-09-04T09:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13200.0,
+      'datetime': '2024-09-04T10:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13800.0,
+      'datetime': '2024-09-04T11:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13900.0,
+      'datetime': '2024-09-04T12:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13800.0,
+      'datetime': '2024-09-04T13:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13870.0,
+      'datetime': '2024-09-04T14:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13750.0,
+      'datetime': '2024-09-04T15:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13350.0,
+      'datetime': '2024-09-04T16:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13100.0,
+      'datetime': '2024-09-04T17:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 14700.0,
+      'datetime': '2024-09-04T18:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 14900.0,
+      'datetime': '2024-09-04T18:30:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15100.0,
+      'datetime': '2024-09-04T19:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15350.0,
+      'datetime': '2024-09-04T20:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15100.0,
+      'datetime': '2024-09-04T21:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15100.0,
+      'datetime': '2024-09-04T22:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15000.0,
+      'datetime': '2024-09-04T23:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 14600.0,
+      'datetime': '2024-09-05T00:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 14400.0,
+      'datetime': '2024-09-05T01:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 14100.0,
+      'datetime': '2024-09-05T02:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13800.0,
+      'datetime': '2024-09-05T03:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13200.0,
+      'datetime': '2024-09-05T04:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 12650.0,
+      'datetime': '2024-09-05T05:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 12700.0,
+      'datetime': '2024-09-05T06:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 12450.0,
+      'datetime': '2024-09-05T07:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 12450.0,
+      'datetime': '2024-09-05T08:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 12750.0,
+      'datetime': '2024-09-05T09:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13100.0,
+      'datetime': '2024-09-05T10:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13300.0,
+      'datetime': '2024-09-05T11:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13600.0,
+      'datetime': '2024-09-05T12:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13800.0,
+      'datetime': '2024-09-05T13:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13990.0,
+      'datetime': '2024-09-05T14:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13800.0,
+      'datetime': '2024-09-05T15:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13600.0,
+      'datetime': '2024-09-05T16:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13300.0,
+      'datetime': '2024-09-05T17:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15000.0,
+      'datetime': '2024-09-05T18:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15200.0,
+      'datetime': '2024-09-05T18:30:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15300.0,
+      'datetime': '2024-09-05T19:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15350.0,
+      'datetime': '2024-09-05T20:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15250.0,
+      'datetime': '2024-09-05T21:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15200.0,
+      'datetime': '2024-09-05T22:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 15150.0,
+      'datetime': '2024-09-05T23:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 14650.0,
+      'datetime': '2024-09-06T00:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 14200.0,
+      'datetime': '2024-09-06T01:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 13800.0,
+      'datetime': '2024-09-06T02:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 12850.0,
+      'datetime': '2024-09-06T03:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 12650.0,
+      'datetime': '2024-09-06T04:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 11650.0,
+      'datetime': '2024-09-06T05:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 11100.0,
+      'datetime': '2024-09-06T06:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 11050.0,
+      'datetime': '2024-09-06T07:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 10850.0,
+      'datetime': '2024-09-06T08:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+    dict({
+      'consumption': 11080.0,
+      'datetime': '2024-09-06T09:00:00+06:00',
+      'source': 'erp.pgcb.gov.bd',
+    }),
+  ])
+# ---
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T09:00:00+06:00',
+      'production': dict({
+        'coal': 3280.0,
+        'gas': 5010.0,
+        'hydro': 214.0,
+        'oil': 1080.0,
+        'solar': 410.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T10:00:00+06:00',
+      'production': dict({
+        'coal': 3233.0,
+        'gas': 4873.0,
+        'hydro': 216.0,
+        'oil': 1272.0,
+        'solar': 511.0,
+        'unknown': 0.0,
+        'wind': 2.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T11:00:00+06:00',
+      'production': dict({
+        'coal': 3244.0,
+        'gas': 5122.0,
+        'hydro': 210.0,
+        'oil': 1344.0,
+        'solar': 520.0,
+        'unknown': 0.0,
+        'wind': 10.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T12:00:00+06:00',
+      'production': dict({
+        'coal': 3306.0,
+        'gas': 5145.0,
+        'hydro': 216.0,
+        'oil': 1484.0,
+        'solar': 444.0,
+        'unknown': 0.0,
+        'wind': 15.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T13:00:00+06:00',
+      'production': dict({
+        'coal': 3338.0,
+        'gas': 4981.0,
+        'hydro': 216.0,
+        'oil': 1599.0,
+        'solar': 409.0,
+        'unknown': 0.0,
+        'wind': 23.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T14:00:00+06:00',
+      'production': dict({
+        'coal': 3308.0,
+        'gas': 4838.0,
+        'hydro': 215.0,
+        'oil': 1642.0,
+        'solar': 280.0,
+        'unknown': 0.0,
+        'wind': 9.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T15:00:00+06:00',
+      'production': dict({
+        'coal': 3317.0,
+        'gas': 4758.0,
+        'hydro': 215.0,
+        'oil': 1809.0,
+        'solar': 181.0,
+        'unknown': 0.0,
+        'wind': 3.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T16:00:00+06:00',
+      'production': dict({
+        'coal': 3222.0,
+        'gas': 4645.0,
+        'hydro': 214.0,
+        'oil': 2003.0,
+        'solar': 78.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T17:00:00+06:00',
+      'production': dict({
+        'coal': 3087.0,
+        'gas': 4484.0,
+        'hydro': 214.0,
+        'oil': 2312.0,
+        'solar': 7.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T18:00:00+06:00',
+      'production': dict({
+        'coal': 3319.0,
+        'gas': 4423.0,
+        'hydro': 214.0,
+        'oil': 3164.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T18:30:00+06:00',
+      'production': dict({
+        'coal': 3327.0,
+        'gas': 4259.0,
+        'hydro': 214.0,
+        'oil': 3527.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T19:00:00+06:00',
+      'production': dict({
+        'coal': 3315.0,
+        'gas': 4463.0,
+        'hydro': 214.0,
+        'oil': 3615.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T20:00:00+06:00',
+      'production': dict({
+        'coal': 3390.0,
+        'gas': 4595.0,
+        'hydro': 214.0,
+        'oil': 3629.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T21:00:00+06:00',
+      'production': dict({
+        'coal': 3408.0,
+        'gas': 4556.0,
+        'hydro': 216.0,
+        'oil': 3270.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T22:00:00+06:00',
+      'production': dict({
+        'coal': 3417.0,
+        'gas': 4672.0,
+        'hydro': 216.0,
+        'oil': 3094.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-04T23:00:00+06:00',
+      'production': dict({
+        'coal': 3412.0,
+        'gas': 4872.0,
+        'hydro': 216.0,
+        'oil': 2702.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T00:00:00+06:00',
+      'production': dict({
+        'coal': 3259.0,
+        'gas': 4969.0,
+        'hydro': 213.0,
+        'oil': 2255.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T01:00:00+06:00',
+      'production': dict({
+        'coal': 3261.0,
+        'gas': 4950.0,
+        'hydro': 212.0,
+        'oil': 2204.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T02:00:00+06:00',
+      'production': dict({
+        'coal': 3121.0,
+        'gas': 4862.0,
+        'hydro': 211.0,
+        'oil': 2197.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T03:00:00+06:00',
+      'production': dict({
+        'coal': 3134.0,
+        'gas': 4873.0,
+        'hydro': 211.0,
+        'oil': 2180.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 2.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T04:00:00+06:00',
+      'production': dict({
+        'coal': 3132.0,
+        'gas': 4806.0,
+        'hydro': 212.0,
+        'oil': 2059.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 4.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T05:00:00+06:00',
+      'production': dict({
+        'coal': 3037.0,
+        'gas': 4852.0,
+        'hydro': 212.0,
+        'oil': 1773.0,
+        'solar': 10.0,
+        'unknown': 0.0,
+        'wind': 1.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T06:00:00+06:00',
+      'production': dict({
+        'coal': 3081.0,
+        'gas': 4796.0,
+        'hydro': 213.0,
+        'oil': 1741.0,
+        'solar': 87.0,
+        'unknown': 0.0,
+        'wind': 2.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T07:00:00+06:00',
+      'production': dict({
+        'coal': 3048.0,
+        'gas': 4596.0,
+        'hydro': 214.0,
+        'oil': 1731.0,
+        'solar': 129.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T08:00:00+06:00',
+      'production': dict({
+        'coal': 3067.0,
+        'gas': 4781.0,
+        'hydro': 214.0,
+        'oil': 1417.0,
+        'solar': 141.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T09:00:00+06:00',
+      'production': dict({
+        'coal': 2986.0,
+        'gas': 4843.0,
+        'hydro': 214.0,
+        'oil': 1434.0,
+        'solar': 232.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T10:00:00+06:00',
+      'production': dict({
+        'coal': 3022.0,
+        'gas': 4848.0,
+        'hydro': 214.0,
+        'oil': 1466.0,
+        'solar': 303.0,
+        'unknown': 0.0,
+        'wind': 10.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T11:00:00+06:00',
+      'production': dict({
+        'coal': 3119.0,
+        'gas': 4885.0,
+        'hydro': 214.0,
+        'oil': 1419.0,
+        'solar': 258.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T12:00:00+06:00',
+      'production': dict({
+        'coal': 3155.0,
+        'gas': 4941.0,
+        'hydro': 214.0,
+        'oil': 1598.0,
+        'solar': 299.0,
+        'unknown': 0.0,
+        'wind': 12.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T13:00:00+06:00',
+      'production': dict({
+        'coal': 3218.0,
+        'gas': 4948.0,
+        'hydro': 214.0,
+        'oil': 1731.0,
+        'solar': 287.0,
+        'unknown': 0.0,
+        'wind': 18.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T14:00:00+06:00',
+      'production': dict({
+        'coal': 3421.0,
+        'gas': 4958.0,
+        'hydro': 212.0,
+        'oil': 1745.0,
+        'solar': 216.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T15:00:00+06:00',
+      'production': dict({
+        'coal': 3453.0,
+        'gas': 4921.0,
+        'hydro': 212.0,
+        'oil': 1895.0,
+        'solar': 147.0,
+        'unknown': 0.0,
+        'wind': 6.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T16:00:00+06:00',
+      'production': dict({
+        'coal': 3345.0,
+        'gas': 4921.0,
+        'hydro': 212.0,
+        'oil': 2020.0,
+        'solar': 75.0,
+        'unknown': 0.0,
+        'wind': 3.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T17:00:00+06:00',
+      'production': dict({
+        'coal': 3227.0,
+        'gas': 4948.0,
+        'hydro': 212.0,
+        'oil': 2196.0,
+        'solar': 4.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T18:00:00+06:00',
+      'production': dict({
+        'coal': 3277.0,
+        'gas': 4741.0,
+        'hydro': 213.0,
+        'oil': 3105.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T18:30:00+06:00',
+      'production': dict({
+        'coal': 3350.0,
+        'gas': 4771.0,
+        'hydro': 213.0,
+        'oil': 3560.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T19:00:00+06:00',
+      'production': dict({
+        'coal': 3421.0,
+        'gas': 4954.0,
+        'hydro': 213.0,
+        'oil': 3595.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T20:00:00+06:00',
+      'production': dict({
+        'coal': 3425.0,
+        'gas': 5023.0,
+        'hydro': 214.0,
+        'oil': 3545.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 2.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T21:00:00+06:00',
+      'production': dict({
+        'coal': 3451.0,
+        'gas': 5020.0,
+        'hydro': 212.0,
+        'oil': 3377.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T22:00:00+06:00',
+      'production': dict({
+        'coal': 3405.0,
+        'gas': 5035.0,
+        'hydro': 212.0,
+        'oil': 2994.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-05T23:00:00+06:00',
+      'production': dict({
+        'coal': 3442.0,
+        'gas': 5013.0,
+        'hydro': 212.0,
+        'oil': 2739.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T00:00:00+06:00',
+      'production': dict({
+        'coal': 3398.0,
+        'gas': 5021.0,
+        'hydro': 212.0,
+        'oil': 2385.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T01:00:00+06:00',
+      'production': dict({
+        'coal': 3399.0,
+        'gas': 5003.0,
+        'hydro': 212.0,
+        'oil': 2199.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T02:00:00+06:00',
+      'production': dict({
+        'coal': 3402.0,
+        'gas': 4955.0,
+        'hydro': 210.0,
+        'oil': 2102.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T03:00:00+06:00',
+      'production': dict({
+        'coal': 3401.0,
+        'gas': 4839.0,
+        'hydro': 210.0,
+        'oil': 1937.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 3.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T04:00:00+06:00',
+      'production': dict({
+        'coal': 3400.0,
+        'gas': 4840.0,
+        'hydro': 210.0,
+        'oil': 1795.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 6.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T05:00:00+06:00',
+      'production': dict({
+        'coal': 3422.0,
+        'gas': 4676.0,
+        'hydro': 210.0,
+        'oil': 1016.0,
+        'solar': 5.0,
+        'unknown': 0.0,
+        'wind': 12.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T06:00:00+06:00',
+      'production': dict({
+        'coal': 3104.0,
+        'gas': 4439.0,
+        'hydro': 171.0,
+        'oil': 1056.0,
+        'solar': 90.0,
+        'unknown': 0.0,
+        'wind': 14.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T07:00:00+06:00',
+      'production': dict({
+        'coal': 2879.0,
+        'gas': 4546.0,
+        'hydro': 172.0,
+        'oil': 1044.0,
+        'solar': 208.0,
+        'unknown': 0.0,
+        'wind': 8.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T08:00:00+06:00',
+      'production': dict({
+        'coal': 2802.0,
+        'gas': 4679.0,
+        'hydro': 92.0,
+        'oil': 771.0,
+        'solar': 362.0,
+        'unknown': 0.0,
+        'wind': 1.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-09-06T09:00:00+06:00',
+      'production': dict({
+        'coal': 3042.0,
+        'gas': 4915.0,
+        'hydro': 93.0,
+        'oil': 561.0,
+        'solar': 469.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
+      'source': 'erp.pgcb.gov.bd',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'BD',
+    }),
+  ])
+# ---

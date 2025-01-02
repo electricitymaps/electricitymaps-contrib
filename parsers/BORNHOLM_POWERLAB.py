@@ -17,7 +17,7 @@ PRODUCTION_MAPPING = {
     "biomass": "factory",
     "solar": "solar_cells",
 }
-LATEST_DATA_URL = "http://bornholm.powerlab.dk/visualizer/latestdata"
+LATEST_DATA_URL = "https://bornholm.powerlab.dk/visualizer/latestdata"
 
 SOURCE = "bornholm.powerlab.dk"
 TIMEZONE = ZoneInfo("UTC")
