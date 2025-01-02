@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 
 function SearchBar({
   placeholder,
@@ -31,4 +31,4 @@ function SearchBar({
   );
 }
 
-export default SearchBar;
+export default memo(SearchBar);
