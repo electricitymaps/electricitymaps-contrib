@@ -1,5 +1,5 @@
 import useGetState from 'api/getState';
-import { HorizontalDivider } from 'components/Divider';
+import HorizontalDivider from 'components/HorizontalDivider';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useAtomValue } from 'jotai';
