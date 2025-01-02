@@ -1,5 +1,5 @@
 import Accordion from 'components/Accordion';
-import { HorizontalDivider } from 'components/Divider';
+import HorizontalDivider from 'components/HorizontalDivider';
 import { i18n, TFunction } from 'i18next';
 import { useAtom } from 'jotai';
 import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-react';
