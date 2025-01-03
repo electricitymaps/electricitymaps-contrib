@@ -1,5 +1,4 @@
 import { ScaleLinear } from 'd3-scale';
-import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
 import { useIsMobile } from 'utils/styling';
@@ -31,13 +30,6 @@ export default function BarEmissionExchangeChart({
   ) => void;
 }) {
   const { t } = useTranslation();
-  const axisLegendText = useMemo(
-    () => ({
-      left: t('country-panel.graph-legends.exported'),
-      right: t('country-panel.graph-legends.imported'),
-    }),
-    [t]
-  );
   const isMobile = useIsMobile();
   if (!exchangeData || exchangeData.length === 0) {
     return null;
@@ -49,7 +41,8 @@ export default function BarEmissionExchangeChart({
           formatTick={formatTick}
           height={height}
           scale={co2Scale}
-          axisLegendText={axisLegendText}
+          axisLegendTextLeft={t('country-panel.graph-legends.exported')}
+          axisLegendTextRight={t('country-panel.graph-legends.imported')}
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (

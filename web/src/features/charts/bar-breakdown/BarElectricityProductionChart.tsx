@@ -1,5 +1,4 @@
 import { ScaleLinear } from 'd3-scale';
-import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
@@ -35,20 +34,14 @@ export function BarElectricityProductionChart({
   isMobile: boolean;
 }) {
   const { t } = useTranslation();
-  const axisLegendText = useMemo(
-    () => ({
-      left: t('country-panel.graph-legends.stored'),
-      right: t('country-panel.graph-legends.produced'),
-    }),
-    [t]
-  );
   return (
     <svg className="w-full overflow-visible" height={height + AXIS_LEGEND_PADDING}>
       <Axis
         formatTick={formatTick}
         height={height}
         scale={powerScale}
-        axisLegendText={axisLegendText}
+        axisLegendTextLeft={t('country-panel.graph-legends.stored')}
+        axisLegendTextRight={t('country-panel.graph-legends.produced')}
       />
       <g transform={`translate(0, ${productionY})`}>
         {productionData.map((d, index) => (

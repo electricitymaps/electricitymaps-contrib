@@ -11,10 +11,17 @@ type Props = {
   height: number;
   scale: ScaleLinear<number, number, never>;
   formatTick: FormatTick;
-  axisLegendText?: { left: string; right: string };
+  axisLegendTextLeft?: string;
+  axisLegendTextRight?: string;
 };
 
-function Axis({ formatTick, height, scale, axisLegendText }: Props) {
+function Axis({
+  formatTick,
+  height,
+  scale,
+  axisLegendTextLeft,
+  axisLegendTextRight,
+}: Props) {
   const axisTicks = scale.ticks(SCALE_TICKS);
   const [rangeStart, rangeEnd] = scale.range();
   return (
@@ -49,8 +56,12 @@ function Axis({ formatTick, height, scale, axisLegendText }: Props) {
           >
             {formatTick(tick)}
           </text>
-          {axisLegendText && tick == 0 && (
-            <BarBreakdownAxisLegend height={height} legendText={axisLegendText} />
+          {axisLegendTextLeft && axisLegendTextRight && tick == 0 && (
+            <BarBreakdownAxisLegend
+              height={height}
+              legendTextLeft={axisLegendTextLeft}
+              legendTextRight={axisLegendTextRight}
+            />
           )}
         </Group>
       ))}
