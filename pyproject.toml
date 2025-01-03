@@ -50,6 +50,7 @@ test = 'scripts.tooling:test'
 [tool.poetry.extras]
 parsers = [
     "arrow",
+    "backports-datetime-fromisoformat",
     "beautifulsoup4",
     "demjson3",
     "eiapy",

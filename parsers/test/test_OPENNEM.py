@@ -1,6 +1,6 @@
 import unittest
+from datetime import datetime, timedelta, timezone
 
-import arrow
 import numpy as np
 import pandas as pd
 
@@ -66,10 +66,10 @@ class TestOPENNEM(unittest.TestCase):
         assert sum_wind == sum(values_wind)
 
     def test_filter_production_objs(self):
-        now = arrow.utcnow()
+        now = datetime.now(timezone.utc)
         objs = [
             {
-                "datetime": now.shift(hours=-1).datetime,
+                "datetime": now - timedelta(hours=1),
                 "production": {
                     "coal": 12,
                     "solar": 1.0,
@@ -79,7 +79,7 @@ class TestOPENNEM(unittest.TestCase):
                 },
             },
             {
-                "datetime": now.shift(hours=-2).datetime,
+                "datetime": now - timedelta(hours=2),
                 "production": {
                     "coal": 12,
                     "solar": None,

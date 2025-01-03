@@ -1,7 +1,7 @@
 import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
 import ApiButton from 'components/buttons/ApiButton';
-import { HorizontalDivider } from 'components/Divider';
+import HorizontalDivider from 'components/Divider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';

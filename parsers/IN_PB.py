@@ -5,12 +5,12 @@ from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import arrow
 import requests
 from requests import Session
 
 GENERATION_URL = "https://sldcapi.pstcl.org/wsDataService.asmx/pbGenData2"
 DATE_URL = "https://sldcapi.pstcl.org/wsDataService.asmx/dynamicData"
+ZONE_INFO = ZoneInfo("Asia/Kolkata")
 
 GENERATION_MAPPING = {
     "totalHydro": "hydro",
@@ -19,18 +19,6 @@ GENERATION_MAPPING = {
     "resSolar": "solar",
     "resNonSolar": "biomass",
 }
-
-
-def calculate_average_timestamp(timestamps):
-    """Takes a list of string timestamps and returns the average as an arrow object."""
-    arrow_timestamps = [
-        arrow.get(ts, tzinfo="Asia/Kolkata") for ts in timestamps if ts is not None
-    ]
-    unix_timestamps = [ts.timestamp for ts in arrow_timestamps]
-    average_timestamp = sum(unix_timestamps) / len(unix_timestamps)
-    arr_average_timestamp = arrow.get(average_timestamp).to("Asia/Kolkata")
-
-    return arr_average_timestamp
 
 
 def fetch_production(
@@ -51,12 +39,13 @@ def fetch_production(
 
     raw_data = data_req.json()
     timestamp_data = timestamp_req.json()
+    dt = datetime.strptime(timestamp_data["updateDate"], "%d-%m-%Y %H:%M:%S").replace(
+        tzinfo=ZONE_INFO
+    )
 
     data = {
         "zoneKey": zone_key,
-        "datetime": arrow.get(
-            timestamp_data["updateDate"], "DD-MM-YYYY HH:mm:ss", tzinfo="Asia/Kolkata"
-        ).datetime,
+        "datetime": dt,
         "production": {
             "hydro": 0.0,
             "coal": 0.0,
@@ -93,7 +82,7 @@ def fetch_consumption(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": datetime.now(tz=ZoneInfo("Asia/Kolkata")),
+        "datetime": datetime.now(tz=ZONE_INFO),
         "consumption": consumption,
         "source": "punjasldc.org",
     }
