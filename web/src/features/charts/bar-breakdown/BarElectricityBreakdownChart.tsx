@@ -2,13 +2,13 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
-import { useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { ElectricityModeType, ZoneDetails, ZoneKey } from 'types';
 import { formatEnergy, formatPower } from 'utils/formatting';
 import { isHourlyAtom } from 'utils/state/atoms';
 
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
-import { BarElectricityProductionChart } from './BarElectricityProductionChart';
+import BarElectricityProductionChart from './BarElectricityProductionChart';
 import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import { FormatTick } from './elements/Axis';
 import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
@@ -136,4 +136,4 @@ function BarElectricityBreakdownChart({
   );
 }
 
-export default BarElectricityBreakdownChart;
+export default memo(BarElectricityBreakdownChart);

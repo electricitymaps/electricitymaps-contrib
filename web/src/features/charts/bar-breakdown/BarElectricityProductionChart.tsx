@@ -1,4 +1,5 @@
 import { ScaleLinear } from 'd3-scale';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
@@ -9,7 +10,7 @@ import HorizontalBar from './elements/HorizontalBar';
 import { ProductionSourceRow } from './elements/Row';
 import { getElectricityProductionValue, ProductionDataType } from './utils';
 
-export function BarElectricityProductionChart({
+function BarElectricityProductionChart({
   powerScale,
   height,
   formatTick,
@@ -74,3 +75,5 @@ export function BarElectricityProductionChart({
     </svg>
   );
 }
+
+export default memo(BarElectricityProductionChart);

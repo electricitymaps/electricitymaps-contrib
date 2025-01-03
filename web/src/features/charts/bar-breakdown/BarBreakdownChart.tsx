@@ -6,7 +6,7 @@ import { useHeaderHeight } from 'hooks/headerHeight';
 import { TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
@@ -76,6 +76,32 @@ function BarBreakdownChart({
     currentZoneDetail?.estimatedPercentage
   );
 
+  const onMouseOver = useCallback(
+    (layerKey: ElectricityModeType | ZoneKey, event: React.MouseEvent) => {
+      const { clientX, clientY } = event;
+
+      const position = getOffsetTooltipPosition({
+        mousePositionX: clientX || 0,
+        mousePositionY: clientY || 0,
+        tooltipHeight: displayByEmissions ? 190 : 360,
+        isBiggerThanMobile,
+      });
+
+      setTooltipData({
+        selectedLayerKey: layerKey,
+        x: position.x,
+        y: position.y,
+      });
+    },
+    [displayByEmissions, isBiggerThanMobile]
+  );
+
+  const onMouseOut = useCallback(() => {
+    if (!isMobile) {
+      setTooltipData(null);
+    }
+  }, [isMobile]);
+
   if (isLoading) {
     return null;
   }
@@ -92,32 +118,6 @@ function BarBreakdownChart({
       </div>
     );
   }
-
-  const onMouseOver = (
-    layerKey: ElectricityModeType | ZoneKey,
-    event: React.MouseEvent
-  ) => {
-    const { clientX, clientY } = event;
-
-    const position = getOffsetTooltipPosition({
-      mousePositionX: clientX || 0,
-      mousePositionY: clientY || 0,
-      tooltipHeight: displayByEmissions ? 190 : 360,
-      isBiggerThanMobile,
-    });
-
-    setTooltipData({
-      selectedLayerKey: layerKey,
-      x: position.x,
-      y: position.y,
-    });
-  };
-
-  const onMouseOut = () => {
-    if (!isMobile) {
-      setTooltipData(null);
-    }
-  };
 
   return (
     <RoundedCard ref={ref}>
