@@ -5,6 +5,24 @@ bounding_box:
     - 56.3725283881
 capacity:
   biomass:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 122.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 124.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 117.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 120.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 147.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 165.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 169.0
@@ -12,6 +30,24 @@ capacity:
       source: entsoe.eu
       value: 266.0
   gas:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 1656.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1873.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 1710.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 1770.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1887.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 1527.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 1518.0
@@ -19,21 +55,39 @@ capacity:
       source: entsoe.eu
       value: 1503.0
   hydro:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
       source: entsoe.eu
       value: 128.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 129.0
   hydro storage:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
       source: entsoe.eu
       value: 900.0
   oil:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 160.0
+    - datetime: '2018-01-01'
       source: entsoe.eu
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 80.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 82.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 103.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 169.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 259.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 578.0
@@ -44,10 +98,37 @@ capacity:
       source: litgrid.eu
       value: 1878.0
   unknown:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 119.0
+    - datetime: '2018-01-01'
       source: entsoe.eu
       value: 37.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 140.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 144.0
   wind:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 426.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 509.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 525.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 534.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 540.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 671.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 814.0

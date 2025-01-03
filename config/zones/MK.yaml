@@ -5,31 +5,37 @@ bounding_box:
     - 42.3202595078
 capacity:
   biomass:
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: entsoe.eu
       value: 7.0
   coal:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
       source: entsoe.eu
       value: 824.0
   gas:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
       source: entsoe.eu
       value: 251.0
   hydro:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 506.0
+    - datetime: '2022-01-01'
       source: entsoe.eu
       value: 644.0
   oil:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
       source: entsoe.eu
       value: 165.0
   solar:
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: entsoe.eu
       value: 22.0
   wind:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 35.0
+    - datetime: '2022-01-01'
       source: entsoe.eu
       value: 37.0
 country: MK

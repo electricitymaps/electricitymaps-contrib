@@ -5,15 +5,18 @@ bounding_box:
     - 43.269883
 capacity:
   coal:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 1288.0
   hydro:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 68.0
   wind:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 32.0
+    - datetime: '2022-01-01'
       source: entsoe.eu
       value: 136.0
 contributors:
