@@ -108,14 +108,15 @@ function BarBreakdownChart({
 
   if (!currentZoneDetail) {
     return (
-      <div className="text-md relative w-full" ref={ref}>
+      <RoundedCard ref={ref}>
         <ChartTitle className="opacity-40" id={Charts.BAR_BREAKDOWN_CHART} />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
           overLayText={t('country-panel.noDataAtTimestamp')}
+          isMobile={isMobile}
         />
-      </div>
+      </RoundedCard>
     );
   }
 
