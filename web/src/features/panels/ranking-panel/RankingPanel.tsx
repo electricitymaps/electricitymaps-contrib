@@ -1,5 +1,4 @@
 import useGetState from 'api/getState';
-import HorizontalDivider from 'components/HorizontalDivider';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useAtomValue } from 'jotai';
@@ -79,9 +78,8 @@ export default function RankingPanel(): ReactElement {
         </div>
       </div>
 
-      <div className="mt-auto py-2 pr-3">
+      <div className="mt-auto pb-5 pr-3 pt-2">
         <RankingPanelAccordion />
-        <HorizontalDivider />
       </div>
     </div>
   );

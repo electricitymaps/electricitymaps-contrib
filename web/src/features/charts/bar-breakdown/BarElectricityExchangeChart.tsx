@@ -5,7 +5,7 @@ import { ZoneKey } from 'types';
 import { CarbonUnits } from 'utils/units';
 
 import { EXCHANGE_PADDING } from './constants';
-import Axis from './elements/Axis';
+import Axis, { FormatTick } from './elements/Axis';
 import CapacityLegend from './elements/CapacityLegend';
 import HorizontalBar from './elements/HorizontalBar';
 import { ExchangeRow } from './elements/Row';
@@ -28,7 +28,7 @@ export default function BarElectricityExchangeChart({
   powerScale: ScaleLinear<number, number, never>;
   co2ColorScale: ScaleLinear<string, string, string>;
   graphUnit: string | undefined;
-  formatTick: (t: number) => string | number;
+  formatTick: FormatTick;
   onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
@@ -52,10 +52,8 @@ export default function BarElectricityExchangeChart({
           formatTick={formatTick}
           height={height}
           scale={powerScale}
-          axisLegendText={{
-            left: t('country-panel.graph-legends.exported'),
-            right: t('country-panel.graph-legends.imported'),
-          }}
+          axisLegendTextLeft={t('country-panel.graph-legends.exported')}
+          axisLegendTextRight={t('country-panel.graph-legends.imported')}
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (

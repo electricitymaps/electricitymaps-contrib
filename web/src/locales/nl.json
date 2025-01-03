@@ -171,7 +171,6 @@
     "all": "jaarlijks"
   },
   "left-panel": {
-    "get-data": "Bekijk onze commerciële API-aanbiedingen",
     "applied-methodologies": {
       "title": "Toegepaste methodologieën",
       "estimations": "Electricity Maps - Schattingen",
@@ -180,7 +179,6 @@
     }
   },
   "header": {
-    "get-data": "Krijg onze gegevens",
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "We werven aan!",
