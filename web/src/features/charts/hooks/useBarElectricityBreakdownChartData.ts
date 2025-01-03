@@ -1,5 +1,6 @@
 import useGetZone from 'api/getZone';
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
 import { SpatialAggregate } from 'utils/constants';
@@ -27,6 +28,19 @@ export default function useBarBreakdownChartData() {
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   const currentData = zoneData?.zoneStates?.[selectedDatetimeString];
   const isConsumption = useAtomValue(isConsumptionAtom);
+
+  const productionData = useMemo(() => getProductionData(currentData), [currentData]);
+
+  const exchangeKeys = useMemo(
+    () => getExchangesToDisplay(isCountryView, zoneId, zoneData?.zoneStates),
+    [isCountryView, zoneId, zoneData?.zoneStates]
+  );
+
+  const exchangeData = useMemo(
+    () => getExchangeData(exchangeKeys, isConsumption, currentData),
+    [exchangeKeys, isConsumption, currentData]
+  );
+
   if (isLoading) {
     return { isLoading };
   }
@@ -41,13 +55,6 @@ export default function useBarBreakdownChartData() {
       isLoading: false,
     };
   }
-
-  const exchangeKeys = getExchangesToDisplay(zoneId, isCountryView, zoneData.zoneStates);
-
-  const productionData = getProductionData(currentData); // TODO: Consider memoing this
-  const exchangeData = isConsumption
-    ? getExchangeData(currentData, exchangeKeys, isConsumption)
-    : []; // TODO: Consider memoing this
 
   const { exchangeY } = getDataBlockPositions(
     //TODO this naming could be more descriptive

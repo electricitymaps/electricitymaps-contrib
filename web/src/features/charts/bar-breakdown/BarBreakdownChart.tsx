@@ -6,7 +6,7 @@ import { useHeaderHeight } from 'hooks/headerHeight';
 import { TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
@@ -76,48 +76,49 @@ function BarBreakdownChart({
     currentZoneDetail?.estimatedPercentage
   );
 
+  const onMouseOver = useCallback(
+    (layerKey: ElectricityModeType | ZoneKey, event: React.MouseEvent) => {
+      const { clientX, clientY } = event;
+
+      const position = getOffsetTooltipPosition({
+        mousePositionX: clientX || 0,
+        mousePositionY: clientY || 0,
+        tooltipHeight: displayByEmissions ? 190 : 360,
+        isBiggerThanMobile,
+      });
+
+      setTooltipData({
+        selectedLayerKey: layerKey,
+        x: position.x,
+        y: position.y,
+      });
+    },
+    [displayByEmissions, isBiggerThanMobile]
+  );
+
+  const onMouseOut = useCallback(() => {
+    if (!isMobile) {
+      setTooltipData(null);
+    }
+  }, [isMobile]);
+
   if (isLoading) {
     return null;
   }
 
   if (!currentZoneDetail) {
     return (
-      <div className="text-md relative w-full" ref={ref}>
+      <RoundedCard ref={ref}>
         <ChartTitle className="opacity-40" id={Charts.BAR_BREAKDOWN_CHART} />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
           overLayText={t('country-panel.noDataAtTimestamp')}
+          isMobile={isMobile}
         />
-      </div>
+      </RoundedCard>
     );
   }
-
-  const onMouseOver = (
-    layerKey: ElectricityModeType | ZoneKey,
-    event: React.MouseEvent
-  ) => {
-    const { clientX, clientY } = event;
-
-    const position = getOffsetTooltipPosition({
-      mousePositionX: clientX || 0,
-      mousePositionY: clientY || 0,
-      tooltipHeight: displayByEmissions ? 190 : 360,
-      isBiggerThanMobile,
-    });
-
-    setTooltipData({
-      selectedLayerKey: layerKey,
-      x: position.x,
-      y: position.y,
-    });
-  };
-
-  const onMouseOut = () => {
-    if (!isMobile) {
-      setTooltipData(null);
-    }
-  };
 
   return (
     <RoundedCard ref={ref}>
