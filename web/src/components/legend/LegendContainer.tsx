@@ -1,12 +1,12 @@
 import { useAtomValue } from 'jotai';
-import type { ReactElement } from 'react';
+import { memo, type ReactElement } from 'react';
 import { isSolarLayerEnabledAtom, isWindLayerEnabledAtom } from 'utils/state/atoms';
 
 import Co2Legend from './Co2Legend';
 import SolarLegend from './SolarLegend';
 import WindLegend from './WindLegend';
 
-export default function LegendContainer(): ReactElement {
+function LegendContainer(): ReactElement {
   const isSolarLayerEnabled = useAtomValue(isSolarLayerEnabledAtom);
   const isWindLayerEnabled = useAtomValue(isWindLayerEnabledAtom);
 
@@ -18,3 +18,5 @@ export default function LegendContainer(): ReactElement {
     </div>
   );
 }
+
+export default memo(LegendContainer);
