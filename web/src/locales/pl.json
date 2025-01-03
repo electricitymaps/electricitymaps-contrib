@@ -228,7 +228,6 @@
     "all": "roczne"
   },
   "left-panel": {
-    "get-data": "Zobacz nasze płatne oferty API",
     "applied-methodologies": {
       "title": "Zastosowane metody",
       "estimations": "Electricity Maps - Estymacje",
@@ -237,7 +236,6 @@
     }
   },
   "header": {
-    "get-data": "Uzyskaj nasze dane",
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Rekrutujemy!",

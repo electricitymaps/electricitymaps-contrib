@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CommercialApiButton from './CommercialApiButton';
+import ApiButton from './ApiButton';
 
-const meta: Meta<typeof CommercialApiButton> = {
+const meta: Meta<typeof ApiButton> = {
   title: 'Basics/Buttons/Commercial API',
-  component: CommercialApiButton,
+  component: ApiButton,
 };
 
 export default meta;
-type Story = StoryObj<typeof CommercialApiButton>;
+type Story = StoryObj<typeof ApiButton>;
 
 export const Primary: Story = {
   name: 'Default Commercial API Button',
