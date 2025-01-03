@@ -176,7 +176,6 @@
     "search": "Pesquise por país ou área"
   },
   "left-panel": {
-    "get-data": "Veja as ofertas do nosso API comercial",
     "applied-methodologies": {
       "title": "Metodologias aplicadas",
       "estimations": "Electricity Maps - Estimativas",
@@ -185,7 +184,6 @@
     }
   },
   "header": {
-    "get-data": "Obtem os nossos dados",
     "blog": "Blog",
     "open-source": "Código aberto",
     "hiring": "Estamos a contratar!",

@@ -1,5 +1,7 @@
 import { Button, ButtonProps } from 'components/Button';
+import { FileText } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface DocsButtonProps
   extends Omit<
@@ -9,11 +11,18 @@ interface DocsButtonProps
   iconSize?: number;
 }
 
-export function DocumentationButton({ ...restProps }: DocsButtonProps) {
+export function DocumentationButton({
+  iconSize = DEFAULT_ICON_SIZE,
+  ...restProps
+}: DocsButtonProps) {
   const { t } = useTranslation();
 
   return (
-    <Button href={'https://docs.electricitymaps.com/'} {...restProps}>
+    <Button
+      href={'https://docs.electricitymaps.com/'}
+      {...restProps}
+      icon={<FileText size={iconSize} />}
+    >
       {t('button.docs')}
     </Button>
   );

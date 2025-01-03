@@ -210,7 +210,6 @@
     "search": "Sök efter region"
   },
   "left-panel": {
-    "get-data": "Se våra kommersiella API-erbjudanden",
     "applied-methodologies": {
       "title": "Tillämpade metoder",
       "estimations": "Electricity Maps - Uppskattningar",
@@ -219,7 +218,6 @@
     }
   },
   "header": {
-    "get-data": "Använd vår data",
     "blog": "Blogg",
     "open-source": "Öppen källkod",
     "hiring": "Vi anställer!",
