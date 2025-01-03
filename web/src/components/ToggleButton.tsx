@@ -10,7 +10,7 @@ import {
   Trigger as TooltipTrigger,
 } from '@radix-ui/react-tooltip';
 import { Info } from 'lucide-react';
-import { ReactElement, useState } from 'react';
+import { memo, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
@@ -27,7 +27,7 @@ interface ToggleButtonProperties {
   transparentBackground?: boolean;
 }
 
-export default function ToggleButton({
+function ToggleButton({
   options,
   selectedOption,
   tooltipKey,
@@ -109,3 +109,5 @@ export default function ToggleButton({
     </div>
   );
 }
+
+export default memo(ToggleButton);
