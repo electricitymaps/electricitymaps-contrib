@@ -1,0 +1,29 @@
+# serializer version: 1
+# name: test_fetch_exchange
+  list([
+    dict({
+      'datetime': '2024-04-03T08:37:00-06:00',
+      'netFlow': -7.5,
+      'sortedZoneKeys': 'CR->NI',
+      'source': 'enteoperador.org',
+      'sourceType': 'measured',
+    }),
+  ])
+# ---
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': '2024-04-03T08:00:00-06:00',
+      'production': dict({
+        'unknown': 1460.3,
+      }),
+      'source': 'enteoperador.org',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+  ])
+# ---
