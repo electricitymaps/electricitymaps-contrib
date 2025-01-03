@@ -10,12 +10,20 @@ import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
 import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
-import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
+import {
+  endDatetimeAtom,
+  isHourlyAtom,
+  selectedDatetimeIndexAtom,
+  startDatetimeAtom,
+  timeRangeAtom,
+} from 'utils/state/atoms';
 
 function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
@@ -84,9 +92,9 @@ function HistoricalTimeHeader() {
     return (
       <div className="flex min-h-6 flex-row items-center justify-center">
         <FormattedTime
-          datetime={startDatetime}
+          datetime={selectedDatetime.datetime}
           language={i18n.languages[0]}
-          endDatetime={endDatetime}
+          timeRange={timeRange}
           className="text-sm font-semibold"
         />
       </div>
@@ -112,14 +120,12 @@ function HistoricalTimeHeader() {
             />
           }
         />
-        {startDatetime && endDatetime && (
-          <FormattedTime
-            datetime={startDatetime}
-            language={i18n.languages[0]}
-            endDatetime={endDatetime}
-            className="text-sm font-semibold"
-          />
-        )}
+        <FormattedTime
+          datetime={selectedDatetime.datetime}
+          language={i18n.languages[0]}
+          timeRange={timeRange}
+          className="text-sm font-semibold"
+        />
         <Button
           backgroundClasses="bg-transparent"
           size="sm"
