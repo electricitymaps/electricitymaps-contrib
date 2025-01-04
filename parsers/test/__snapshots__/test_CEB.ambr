@@ -2,7 +2,9 @@
 # name: test_production
   list([
     dict({
-      'datetime': '2023-08-23T00:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 9.582844,
         'coal': 535.0471,
@@ -12,13 +14,15 @@
         'wind': 134.589145,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T00:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 9.582244,
         'coal': 534.5295,
@@ -28,13 +32,15 @@
         'wind': 128.617261,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T00:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 9.543541,
         'coal': 540.2533,
@@ -44,13 +50,15 @@
         'wind': 140.47863,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T01:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 9.444535,
         'coal': 538.7913,
@@ -60,13 +68,15 @@
         'wind': 138.62259,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T01:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 9.742753,
         'coal': 540.999,
@@ -76,13 +86,15 @@
         'wind': 142.72405,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T01:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 9.940463,
         'coal': 542.7344,
@@ -92,13 +104,15 @@
         'wind': 138.58616,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T01:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.24288,
         'coal': 540.1766,
@@ -108,13 +122,15 @@
         'wind': 143.72577,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T02:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.11927,
         'coal': 542.1865,
@@ -124,13 +140,15 @@
         'wind': 142.10192,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T02:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.02983,
         'coal': 542.2016,
@@ -140,13 +158,15 @@
         'wind': 139.46731,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T02:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.49665,
         'coal': 542.582,
@@ -156,13 +176,15 @@
         'wind': 139.67993,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T02:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.55215,
         'coal': 540.9233,
@@ -172,13 +194,15 @@
         'wind': 125.44663,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T03:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.26534,
         'coal': 540.4814,
@@ -188,13 +212,15 @@
         'wind': 126.40797,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T03:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.32924,
         'coal': 539.6136,
@@ -204,13 +230,15 @@
         'wind': 130.46761,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T03:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.83031,
         'coal': 541.7597,
@@ -220,13 +248,15 @@
         'wind': 129.6132,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T03:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.74121,
         'coal': 540.4814,
@@ -236,13 +266,15 @@
         'wind': 135.51611,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T04:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.5969,
         'coal': 541.1967,
@@ -252,13 +284,15 @@
         'wind': 137.77664,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T04:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.48319,
         'coal': 541.5014,
@@ -268,13 +302,15 @@
         'wind': 134.40364,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T04:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.70821,
         'coal': 542.0341,
@@ -284,13 +320,15 @@
         'wind': 136.66579,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T04:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.51315,
         'coal': 537.1942,
@@ -300,13 +338,15 @@
         'wind': 135.81862,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T05:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.33764,
         'coal': 538.1072,
@@ -316,13 +356,15 @@
         'wind': 139.23463,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T05:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.17533,
         'coal': 537.6209,
@@ -332,13 +374,15 @@
         'wind': 143.28454,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T05:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.04993,
         'coal': 539.9344,
@@ -348,13 +392,15 @@
         'wind': 139.28339,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T05:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.01482,
         'coal': 541.3036,
@@ -364,13 +410,15 @@
         'wind': 144.88414,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T06:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.51555,
         'coal': 539.5076,
@@ -380,13 +428,15 @@
         'wind': 141.4328,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T06:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.94218,
         'coal': 540.9535,
@@ -396,13 +446,15 @@
         'wind': 142.58908,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T06:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.69406,
         'coal': 538.8377,
@@ -412,13 +464,15 @@
         'wind': 136.4606,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T06:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.62506,
         'coal': 540.1312,
@@ -428,13 +482,15 @@
         'wind': 127.58743,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T07:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.68836,
         'coal': 540.892,
@@ -444,13 +500,15 @@
         'wind': 129.17974,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T07:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.63016,
         'coal': 539.4613,
@@ -460,13 +518,15 @@
         'wind': 132.70247,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T07:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.47685,
         'coal': 540.7245,
@@ -476,13 +536,15 @@
         'wind': 137.85714,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T07:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.51105,
         'coal': 540.6942,
@@ -492,13 +554,15 @@
         'wind': 130.68616,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T08:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.22874,
         'coal': 542.019,
@@ -508,13 +572,15 @@
         'wind': 124.50251,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T08:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.31844,
         'coal': 540.5267,
@@ -524,13 +590,15 @@
         'wind': 122.46324,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T08:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.662,
         'coal': 541.9121,
@@ -540,13 +608,15 @@
         'wind': 118.80545,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T08:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.05563,
         'coal': 538.6844,
@@ -556,13 +626,15 @@
         'wind': 103.65566,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T09:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.01302,
         'coal': 540.8002,
@@ -572,13 +644,15 @@
         'wind': 100.78531,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T09:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.84052,
         'coal': 536.8572,
@@ -588,13 +662,15 @@
         'wind': 99.5733,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T09:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.13573,
         'coal': 537.0398,
@@ -604,13 +680,15 @@
         'wind': 83.66355,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T09:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.12013,
         'coal': 537.8167,
@@ -620,13 +698,15 @@
         'wind': 81.47051,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T10:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.26894,
         'coal': 539.5218,
@@ -636,13 +716,15 @@
         'wind': 70.10661,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T10:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.92362,
         'coal': 539.7196,
@@ -652,13 +734,15 @@
         'wind': 81.88009,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T10:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.6434,
         'coal': 539.095,
@@ -668,13 +752,15 @@
         'wind': 78.567862,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T10:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.18463,
         'coal': 540.4349,
@@ -684,13 +770,15 @@
         'wind': 77.06822,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T11:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.35174,
         'coal': 539.5673,
@@ -700,13 +788,15 @@
         'wind': 75.635324,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T11:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.53986,
         'coal': 541.12,
@@ -716,13 +806,15 @@
         'wind': 80.8908,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T11:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.14413,
         'coal': 539.309,
@@ -732,13 +824,15 @@
         'wind': 84.82274,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T11:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.22784,
         'coal': 541.4549,
@@ -748,13 +842,15 @@
         'wind': 81.930272,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T12:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.75201,
         'coal': 538.8671,
@@ -764,13 +860,15 @@
         'wind': 80.171483,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T12:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.02833,
         'coal': 542.4145,
@@ -780,13 +878,15 @@
         'wind': 73.14363,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T12:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.26774,
         'coal': 542.5669,
@@ -796,13 +896,15 @@
         'wind': 71.504827,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T12:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.22304,
         'coal': 541.0897,
@@ -812,13 +914,15 @@
         'wind': 71.991664,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T13:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.18493,
         'coal': 543.6322,
@@ -828,13 +932,15 @@
         'wind': 81.49898,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T13:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.88222,
         'coal': 541.5469,
@@ -844,13 +950,15 @@
         'wind': 87.16048,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T13:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.00732,
         'coal': 542.2016,
@@ -860,13 +968,15 @@
         'wind': 86.6778,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T13:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.05023,
         'coal': 541.4096,
@@ -876,13 +986,15 @@
         'wind': 87.86155,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T14:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.5171,
         'coal': 542.3994,
@@ -892,13 +1004,15 @@
         'wind': 88.54005,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T14:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.81201,
         'coal': 541.2572,
@@ -908,13 +1022,15 @@
         'wind': 82.03813,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T14:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.21764,
         'coal': 541.0746,
@@ -924,13 +1040,15 @@
         'wind': 79.88274,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T14:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.13843,
         'coal': 542.6577,
@@ -940,13 +1058,15 @@
         'wind': 76.56565,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T15:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.99532,
         'coal': 543.4345,
@@ -956,13 +1076,15 @@
         'wind': 72.88342,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T15:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.557,
         'coal': 543.6475,
@@ -972,13 +1094,15 @@
         'wind': 82.80592,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T15:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.68331,
         'coal': 542.3227,
@@ -988,13 +1112,15 @@
         'wind': 86.96032,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T15:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.87652,
         'coal': 541.2875,
@@ -1004,13 +1130,15 @@
         'wind': 93.33382,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T16:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.84712,
         'coal': 540.7548,
@@ -1020,13 +1148,15 @@
         'wind': 92.62987,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T16:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.30254,
         'coal': 541.8051,
@@ -1036,13 +1166,15 @@
         'wind': 110.85673,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T16:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.87802,
         'coal': 542.8554,
@@ -1052,13 +1184,15 @@
         'wind': 99.53248,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T16:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.88762,
         'coal': 538.303,
@@ -1068,13 +1202,15 @@
         'wind': 109.11659,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T17:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 7.305864,
         'coal': 539.095,
@@ -1084,13 +1220,15 @@
         'wind': 121.85211,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T17:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 9.036512,
         'coal': 539.6429,
@@ -1100,13 +1238,15 @@
         'wind': 123.51388,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T17:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.95242,
         'coal': 539.2776,
@@ -1116,13 +1256,15 @@
         'wind': 107.75946,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T17:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.89627,
         'coal': 538.3948,
@@ -1132,13 +1274,15 @@
         'wind': 112.73453,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T18:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.47415,
         'coal': 539.4755,
@@ -1148,13 +1292,15 @@
         'wind': 117.44817,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T18:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.80931,
         'coal': 541.227,
@@ -1164,13 +1310,15 @@
         'wind': 119.52368,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T18:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.99952,
         'coal': 542.6273,
@@ -1180,13 +1328,15 @@
         'wind': 124.01588,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T18:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.90562,
         'coal': 543.2822,
@@ -1196,13 +1346,15 @@
         'wind': 127.77465,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T19:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.90292,
         'coal': 541.9272,
@@ -1212,13 +1364,15 @@
         'wind': 128.19678,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T19:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.12523,
         'coal': 543.4648,
@@ -1228,13 +1382,15 @@
         'wind': 135.25679,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T19:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.51105,
         'coal': 542.3994,
@@ -1244,13 +1400,15 @@
         'wind': 132.80013,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T19:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.09703,
         'coal': 541.8969,
@@ -1260,13 +1418,15 @@
         'wind': 132.28857,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T20:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.03703,
         'coal': 543.8301,
@@ -1276,13 +1436,15 @@
         'wind': 128.92568,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T20:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.75861,
         'coal': 540.8466,
@@ -1292,13 +1454,15 @@
         'wind': 135.84487,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T20:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.71571,
         'coal': 541.5771,
@@ -1308,13 +1472,15 @@
         'wind': 133.03643,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T20:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.78921,
         'coal': 542.3076,
@@ -1324,13 +1490,15 @@
         'wind': 136.50999,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T21:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.49455,
         'coal': 543.6475,
@@ -1340,13 +1508,15 @@
         'wind': 128.78328,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T21:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.54045,
         'coal': 542.7495,
@@ -1356,13 +1526,15 @@
         'wind': 132.36975,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T21:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.93472,
         'coal': 542.7344,
@@ -1372,13 +1544,15 @@
         'wind': 134.21474,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T21:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.02293,
         'coal': 542.917,
@@ -1388,13 +1562,15 @@
         'wind': 138.08055,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T22:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.72171,
         'coal': 542.2621,
@@ -1404,13 +1580,15 @@
         'wind': 134.91349,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T22:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.5537,
         'coal': 543.4648,
@@ -1420,13 +1598,15 @@
         'wind': 139.09804,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T22:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.16753,
         'coal': 542.9623,
@@ -1436,13 +1616,15 @@
         'wind': 137.1403,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T22:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.94912,
         'coal': 541.2421,
@@ -1452,13 +1634,15 @@
         'wind': 140.37154,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T23:00:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.509,
         'coal': 541.7748,
@@ -1468,13 +1652,15 @@
         'wind': 143.09553,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T23:15:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 9.970466,
         'coal': 545.4434,
@@ -1484,13 +1670,15 @@
         'wind': 141.17221,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T23:30:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 10.36919,
         'coal': 542.6577,
@@ -1500,13 +1688,15 @@
         'wind': 143.44182,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',
     }),
     dict({
-      'datetime': '2023-08-23T23:45:00+05:30',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 8, 23, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Colombo')),
       'production': dict({
         'biomass': 11.19843,
         'coal': 542.2319,
@@ -1516,7 +1706,7 @@
         'wind': 143.09574,
       }),
       'source': 'ceb.lk',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'LK',

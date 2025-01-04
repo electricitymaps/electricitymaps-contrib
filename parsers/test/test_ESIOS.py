@@ -39,15 +39,4 @@ def test_exchange_with_snapshot(session, adapter, snapshot):
         ),
     )
     os.environ["ESIOS_TOKEN"] = "token"
-    exchange = ESIOS.fetch_exchange(ZoneKey("ES"), ZoneKey("MA"), session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "netFlow": element["netFlow"],
-            "source": element["source"],
-            "sortedZoneKeys": element["sortedZoneKeys"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in exchange
-    ]
+    assert snapshot == ESIOS.fetch_exchange(ZoneKey("ES"), ZoneKey("MA"), session)

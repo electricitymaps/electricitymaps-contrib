@@ -2,7 +2,9 @@
 # name: test_production
   list([
     dict({
-      'datetime': '2023-09-11T00:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.535,
         'coal': 14487.159,
@@ -14,14 +16,16 @@
         'wind': 1773.955,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2430.832,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T01:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.602,
         'coal': 14231.943,
@@ -33,14 +37,16 @@
         'wind': 1801.865,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2587.716,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T02:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.668,
         'coal': 14354.055,
@@ -52,14 +58,16 @@
         'wind': 1702.886,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2614.532,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T03:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.899,
         'coal': 14436.056,
@@ -71,14 +79,16 @@
         'wind': 1661.14,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2681.164,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T04:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.961,
         'coal': 15399.591,
@@ -90,14 +100,16 @@
         'wind': 1639.818,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1983.492,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T05:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.023,
         'coal': 17525.653,
@@ -109,14 +121,16 @@
         'wind': 1503.038,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -83.038,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T06:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.767,
         'coal': 17923.763,
@@ -128,14 +142,16 @@
         'wind': 1630.611,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1891.706,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T07:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.724,
         'coal': 18112.266,
@@ -147,14 +163,16 @@
         'wind': 1620.955,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -441.201,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T08:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.886,
         'coal': 18188.291,
@@ -166,14 +184,16 @@
         'wind': 1647.22,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -104.013,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T09:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.93,
         'coal': 18128.402,
@@ -185,14 +205,16 @@
         'wind': 1758.582,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 38.863,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T10:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.332,
         'coal': 17748.255,
@@ -204,14 +226,16 @@
         'wind': 1910.863,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -987.356,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T11:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.788,
         'coal': 17492.406,
@@ -223,14 +247,16 @@
         'wind': 2144.018,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -547.917,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T12:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.796,
         'coal': 17337.569,
@@ -242,14 +268,16 @@
         'wind': 2371.257,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -72.375,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T13:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.86,
         'coal': 17367.756,
@@ -261,14 +289,16 @@
         'wind': 2365.475,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -116.28,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T14:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.69,
         'coal': 16786.084,
@@ -280,14 +310,16 @@
         'wind': 2297.922,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1020.665,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T15:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.657,
         'coal': 16304.325,
@@ -299,14 +331,16 @@
         'wind': 2196.675,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2092.799,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T16:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.954,
         'coal': 16336.383,
@@ -318,14 +352,16 @@
         'wind': 2206.165,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1773.685,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T17:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.902,
         'coal': 16499.066,
@@ -337,14 +373,16 @@
         'wind': 2052.639,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2173.446,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T18:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.481,
         'coal': 16904.072,
@@ -356,14 +394,16 @@
         'wind': 1960.581,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2616.556,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T19:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.681,
         'coal': 16994.121,
@@ -375,14 +415,16 @@
         'wind': 1717.639,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2442.657,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T20:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.712,
         'coal': 17140.437,
@@ -394,14 +436,16 @@
         'wind': 1613.974,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1472.34,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T21:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.682,
         'coal': 16475.758,
@@ -413,14 +457,16 @@
         'wind': 1504.039,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 492.212,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T22:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.712,
         'coal': 15568.751,
@@ -432,14 +478,16 @@
         'wind': 1360.843,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1517.901,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-11T23:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 11, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.906,
         'coal': 15110.876,
@@ -451,14 +499,16 @@
         'wind': 1159.742,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2054.135,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T00:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.204,
         'coal': 14860.657,
@@ -470,14 +520,16 @@
         'wind': 1005.752,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2326.169,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T01:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.249,
         'coal': 14673.783,
@@ -489,14 +541,16 @@
         'wind': 1042.965,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2752.433,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T02:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.084,
         'coal': 15097.239,
@@ -508,14 +562,16 @@
         'wind': 1027.239,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2221.332,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T03:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.869,
         'coal': 15131.653,
@@ -527,14 +583,16 @@
         'wind': 1005.952,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2537.0,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T04:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.912,
         'coal': 16554.638,
@@ -546,14 +604,16 @@
         'wind': 1017.813,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1259.721,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T05:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.145,
         'coal': 17710.869,
@@ -565,14 +625,16 @@
         'wind': 1183.965,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1510.794,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T06:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.815,
         'coal': 17687.172,
@@ -584,14 +646,16 @@
         'wind': 1342.879,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2487.57,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T07:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.857,
         'coal': 17811.809,
@@ -603,14 +667,16 @@
         'wind': 1277.276,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1499.0,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T08:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.038,
         'coal': 17838.704,
@@ -622,14 +688,16 @@
         'wind': 1059.567,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -916.123,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T09:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.411,
         'coal': 17864.873,
@@ -641,14 +709,16 @@
         'wind': 1052.392,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -478.502,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T10:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.796,
         'coal': 17882.139,
@@ -660,14 +730,16 @@
         'wind': 1093.857,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -391.647,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T11:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.559,
         'coal': 17675.814,
@@ -679,14 +751,16 @@
         'wind': 1003.055,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -530.606,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T12:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.813,
         'coal': 17565.959,
@@ -698,14 +772,16 @@
         'wind': 828.316,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -732.257,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T13:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.707,
         'coal': 17459.714,
@@ -717,14 +793,16 @@
         'wind': 721.175,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -620.302,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T14:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.723,
         'coal': 17616.844,
@@ -736,14 +814,16 @@
         'wind': 702.066,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -436.202,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T15:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.705,
         'coal': 17668.651,
@@ -755,14 +835,16 @@
         'wind': 745.115,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -963.382,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T16:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.983,
         'coal': 17737.191,
@@ -774,14 +856,16 @@
         'wind': 837.591,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -762.662,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T17:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.917,
         'coal': 18014.672,
@@ -793,14 +877,16 @@
         'wind': 941.606,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1737.472,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T18:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.275,
         'coal': 18249.954,
@@ -812,14 +898,16 @@
         'wind': 1241.682,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1403.61,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T19:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.339,
         'coal': 18301.757,
@@ -831,14 +919,16 @@
         'wind': 1549.879,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -434.828,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T20:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.319,
         'coal': 17914.454,
@@ -850,14 +940,16 @@
         'wind': 1560.726,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 204.505,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T21:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.326,
         'coal': 16085.443,
@@ -869,14 +961,16 @@
         'wind': 1501.79,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1969.591,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T22:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.363,
         'coal': 15555.347,
@@ -888,14 +982,16 @@
         'wind': 1479.394,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2450.97,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-12T23:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 12, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.383,
         'coal': 15172.027,
@@ -907,14 +1003,16 @@
         'wind': 1507.718,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2775.884,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T00:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.372,
         'coal': 15176.669,
@@ -926,14 +1024,16 @@
         'wind': 1490.433,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2780.857,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T01:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.193,
         'coal': 15309.956,
@@ -945,14 +1045,16 @@
         'wind': 1372.542,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2758.531,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T02:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.303,
         'coal': 15437.735,
@@ -964,14 +1066,16 @@
         'wind': 1437.939,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2709.805,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T03:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.262,
         'coal': 15875.269,
@@ -983,14 +1087,16 @@
         'wind': 1426.093,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2339.299,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T04:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.957,
         'coal': 17470.17,
@@ -1002,14 +1108,16 @@
         'wind': 1449.507,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1083.778,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T05:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.18,
         'coal': 18460.216,
@@ -1021,14 +1129,16 @@
         'wind': 1507.858,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -785.17,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T06:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.207,
         'coal': 18340.358,
@@ -1040,14 +1150,16 @@
         'wind': 1888.947,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -961.335,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T07:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.185,
         'coal': 18178.856,
@@ -1059,14 +1171,16 @@
         'wind': 2052.527,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -329.103,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T08:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.196,
         'coal': 18348.253,
@@ -1078,14 +1192,16 @@
         'wind': 1900.928,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -543.736,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T09:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 13.986,
         'coal': 18101.21,
@@ -1097,14 +1213,16 @@
         'wind': 1863.092,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 61.74,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T10:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.627,
         'coal': 17775.894,
@@ -1116,14 +1234,16 @@
         'wind': 1954.543,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 598.019,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T11:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.178,
         'coal': 16760.894,
@@ -1135,14 +1255,16 @@
         'wind': 2147.501,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1218.616,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T12:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.004,
         'coal': 16888.327,
@@ -1154,14 +1276,16 @@
         'wind': 2292.733,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 960.728,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T13:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.981,
         'coal': 16397.378,
@@ -1173,14 +1297,16 @@
         'wind': 2333.597,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1383.586,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T14:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 13.962,
         'coal': 16487.899,
@@ -1192,14 +1318,16 @@
         'wind': 2299.789,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1316.976,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T15:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.532,
         'coal': 17244.343,
@@ -1211,14 +1339,16 @@
         'wind': 2295.946,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 556.126,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T16:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.83,
         'coal': 17855.056,
@@ -1230,14 +1360,16 @@
         'wind': 2268.529,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -619.343,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T17:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.046,
         'coal': 17838.575,
@@ -1249,14 +1381,16 @@
         'wind': 2258.799,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2101.334,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T18:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.089,
         'coal': 17982.06,
@@ -1268,14 +1402,16 @@
         'wind': 2157.05,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2893.095,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T19:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.953,
         'coal': 18134.697,
@@ -1287,14 +1423,16 @@
         'wind': 2008.076,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2295.606,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T20:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.962,
         'coal': 18002.872,
@@ -1306,14 +1444,16 @@
         'wind': 2101.354,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1750.013,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T21:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.703,
         'coal': 17601.118,
@@ -1325,14 +1465,16 @@
         'wind': 2126.596,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -14.991,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T22:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.191,
         'coal': 16850.659,
@@ -1344,14 +1486,16 @@
         'wind': 2238.389,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 805.323,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-13T23:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 13, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.323,
         'coal': 15743.68,
@@ -1363,14 +1507,16 @@
         'wind': 2194.124,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1966.358,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T00:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.31,
         'coal': 15305.423,
@@ -1382,14 +1528,16 @@
         'wind': 2278.174,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2495.971,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T01:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.248,
         'coal': 14799.503,
@@ -1401,14 +1549,16 @@
         'wind': 2332.327,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2766.421,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T02:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.327,
         'coal': 14717.302,
@@ -1420,14 +1570,16 @@
         'wind': 2309.429,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2740.009,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T03:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 32.283,
         'coal': 15175.184,
@@ -1439,14 +1591,16 @@
         'wind': 2113.479,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2617.384,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T04:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 38.009,
         'coal': 16455.666,
@@ -1458,14 +1612,16 @@
         'wind': 2242.217,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1743.279,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T05:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.011,
         'coal': 18363.392,
@@ -1477,14 +1633,16 @@
         'wind': 2062.67,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -735.258,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T06:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.05,
         'coal': 18541.7,
@@ -1496,14 +1654,16 @@
         'wind': 1785.363,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1697.604,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T07:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.081,
         'coal': 18524.118,
@@ -1515,14 +1675,16 @@
         'wind': 1601.42,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -706.251,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T08:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 37.789,
         'coal': 18601.263,
@@ -1534,14 +1696,16 @@
         'wind': 1372.768,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -919.597,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T09:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 37.648,
         'coal': 18589.592,
@@ -1553,14 +1717,16 @@
         'wind': 1495.889,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 161.094,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T10:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 28.669,
         'coal': 17969.672,
@@ -1572,14 +1738,16 @@
         'wind': 1638.929,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 897.082,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T11:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.742,
         'coal': 17167.775,
@@ -1591,14 +1759,16 @@
         'wind': 1818.458,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1450.984,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T12:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.725,
         'coal': 17174.739,
@@ -1610,14 +1780,16 @@
         'wind': 1985.113,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1386.782,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T13:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.34,
         'coal': 16933.638,
@@ -1629,14 +1801,16 @@
         'wind': 1913.911,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1264.776,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T14:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 13.801,
         'coal': 17033.444,
@@ -1648,14 +1822,16 @@
         'wind': 1805.72,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1178.685,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T15:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 13.8,
         'coal': 17707.67,
@@ -1667,14 +1843,16 @@
         'wind': 1706.233,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 624.844,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T16:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 13.59,
         'coal': 18335.622,
@@ -1686,14 +1864,16 @@
         'wind': 1675.398,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -423.352,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T17:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 13.638,
         'coal': 18505.351,
@@ -1705,14 +1885,16 @@
         'wind': 1519.395,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1734.533,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T18:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.537,
         'coal': 18506.525,
@@ -1724,14 +1906,16 @@
         'wind': 1512.361,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2559.025,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T19:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.581,
         'coal': 18482.875,
@@ -1743,14 +1927,16 @@
         'wind': 1525.991,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2008.678,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T20:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.27,
         'coal': 18418.464,
@@ -1762,14 +1948,16 @@
         'wind': 1657.748,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1865.559,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T21:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 14.723,
         'coal': 18089.856,
@@ -1781,14 +1969,16 @@
         'wind': 1564.079,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -56.913,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T22:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 13.95,
         'coal': 17487.196,
@@ -1800,14 +1990,16 @@
         'wind': 1481.886,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 732.452,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-14T23:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 14, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 13.463,
         'coal': 16436.021,
@@ -1819,14 +2011,16 @@
         'wind': 1462.628,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1941.604,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T00:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.892,
         'coal': 16161.578,
@@ -1838,14 +2032,16 @@
         'wind': 1814.583,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1887.046,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T01:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 16.196,
         'coal': 15331.948,
@@ -1857,14 +2053,16 @@
         'wind': 1941.388,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2689.449,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T02:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 16.004,
         'coal': 15202.563,
@@ -1876,14 +2074,16 @@
         'wind': 1930.479,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2774.841,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T03:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 33.821,
         'coal': 15449.089,
@@ -1895,14 +2095,16 @@
         'wind': 2086.511,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2761.036,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T04:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.886,
         'coal': 16558.105,
@@ -1914,14 +2116,16 @@
         'wind': 2243.112,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2277.678,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T05:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 40.573,
         'coal': 18493.692,
@@ -1933,14 +2137,16 @@
         'wind': 2426.389,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 750.494,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T06:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 40.489,
         'coal': 19208.302,
@@ -1952,14 +2158,16 @@
         'wind': 2408.121,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -562.267,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T07:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 40.589,
         'coal': 18859.361,
@@ -1971,14 +2179,16 @@
         'wind': 2329.687,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 234.126,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T08:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.941,
         'coal': 19189.161,
@@ -1990,14 +2200,16 @@
         'wind': 2162.82,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 54.137,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T09:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.827,
         'coal': 18092.421,
@@ -2009,14 +2221,16 @@
         'wind': 2317.628,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 964.84,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T10:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 29.999,
         'coal': 17567.777,
@@ -2028,14 +2242,16 @@
         'wind': 2500.634,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1465.201,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T11:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.362,
         'coal': 17200.022,
@@ -2047,14 +2263,16 @@
         'wind': 2527.676,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1770.336,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T12:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.606,
         'coal': 17266.279,
@@ -2066,14 +2284,16 @@
         'wind': 2622.988,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1651.093,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T13:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.666,
         'coal': 16634.255,
@@ -2085,14 +2305,16 @@
         'wind': 2809.59,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1797.633,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T14:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.502,
         'coal': 17157.189,
@@ -2104,14 +2326,16 @@
         'wind': 2785.079,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1174.096,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T15:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.441,
         'coal': 17042.097,
@@ -2123,14 +2347,16 @@
         'wind': 2887.07,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 1112.193,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T16:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.592,
         'coal': 18037.438,
@@ -2142,14 +2368,16 @@
         'wind': 2888.105,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 75.278,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T17:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.588,
         'coal': 18476.201,
@@ -2161,14 +2389,16 @@
         'wind': 2958.54,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -681.381,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T18:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.638,
         'coal': 18699.786,
@@ -2180,14 +2410,16 @@
         'wind': 2833.575,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1879.119,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T19:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.676,
         'coal': 18745.702,
@@ -2199,14 +2431,16 @@
         'wind': 2454.63,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1166.062,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T20:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.66,
         'coal': 18941.121,
@@ -2218,14 +2452,16 @@
         'wind': 2397.731,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1505.032,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T21:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.636,
         'coal': 18704.597,
@@ -2237,14 +2473,16 @@
         'wind': 2407.463,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -320.25,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T22:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.586,
         'coal': 18024.109,
@@ -2256,14 +2494,16 @@
         'wind': 2415.219,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 857.814,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-15T23:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 15, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.543,
         'coal': 16735.131,
@@ -2275,14 +2515,16 @@
         'wind': 2505.211,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2199.021,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T00:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.536,
         'coal': 16126.908,
@@ -2294,14 +2536,16 @@
         'wind': 2586.956,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2383.607,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T01:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.552,
         'coal': 15676.344,
@@ -2313,14 +2557,16 @@
         'wind': 2584.196,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2716.762,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T02:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.76,
         'coal': 15965.595,
@@ -2332,14 +2578,16 @@
         'wind': 2662.397,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2326.575,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T03:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 33.734,
         'coal': 15841.17,
@@ -2351,14 +2599,16 @@
         'wind': 2668.258,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2460.021,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T04:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.477,
         'coal': 16519.489,
@@ -2370,14 +2620,16 @@
         'wind': 2651.483,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2243.249,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T05:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 40.186,
         'coal': 16883.615,
@@ -2389,14 +2641,16 @@
         'wind': 2609.699,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 2052.732,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T06:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 40.456,
         'coal': 18174.918,
@@ -2408,14 +2662,16 @@
         'wind': 2576.675,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 962.719,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T07:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 40.502,
         'coal': 18929.041,
@@ -2427,14 +2683,16 @@
         'wind': 2551.452,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 320.537,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T08:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.706,
         'coal': 19332.959,
@@ -2446,14 +2704,16 @@
         'wind': 2622.736,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2.054,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T09:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 39.575,
         'coal': 18468.08,
@@ -2465,14 +2725,16 @@
         'wind': 2625.688,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -428.904,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T10:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 30.107,
         'coal': 18338.591,
@@ -2484,14 +2746,16 @@
         'wind': 2557.363,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -315.493,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T11:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.608,
         'coal': 18134.099,
@@ -2503,14 +2767,16 @@
         'wind': 2559.897,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1030.118,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T12:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.662,
         'coal': 17961.997,
@@ -2522,14 +2788,16 @@
         'wind': 2596.398,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -906.358,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T13:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.68,
         'coal': 17694.423,
@@ -2541,14 +2809,16 @@
         'wind': 2682.144,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -665.383,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T14:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.601,
         'coal': 17442.099,
@@ -2560,14 +2830,16 @@
         'wind': 2655.68,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -787.127,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T15:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.824,
         'coal': 17387.199,
@@ -2579,14 +2851,16 @@
         'wind': 2753.16,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -677.76,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T16:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.778,
         'coal': 17826.078,
@@ -2598,14 +2872,16 @@
         'wind': 2722.301,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1206.807,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T17:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.74,
         'coal': 18734.611,
@@ -2617,14 +2893,16 @@
         'wind': 2674.245,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1887.258,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T18:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.608,
         'coal': 19057.29,
@@ -2636,14 +2914,16 @@
         'wind': 2449.761,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2697.448,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T19:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.621,
         'coal': 18894.618,
@@ -2655,14 +2935,16 @@
         'wind': 2077.651,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -2251.274,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T20:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.652,
         'coal': 18819.52,
@@ -2674,14 +2956,16 @@
         'wind': 1958.464,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1822.087,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T21:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.695,
         'coal': 18535.428,
@@ -2693,14 +2977,16 @@
         'wind': 1594.049,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -1020.936,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T22:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.857,
         'coal': 18150.259,
@@ -2712,14 +2998,16 @@
         'wind': 1441.719,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': -385.722,
       }),
       'zoneKey': 'ZA',
     }),
     dict({
-      'datetime': '2023-09-16T23:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2023, 9, 16, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
       'production': dict({
         'biomass': 15.567,
         'coal': 17406.885,
@@ -2731,7 +3019,7 @@
         'wind': 1457.81,
       }),
       'source': 'eskom.co.za',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 618.916,
       }),

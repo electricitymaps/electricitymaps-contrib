@@ -3,14 +3,14 @@
   list([
     dict({
       'currency': 'NZD',
-      'datetime': '2024-04-24T18:30:00+00:00',
+      'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
       'price': 79.8623076923077,
       'source': 'api.em6.co.nz',
       'zoneKey': 'NZ',
     }),
     dict({
       'currency': 'NZD',
-      'datetime': '2024-04-24T18:30:00+00:00',
+      'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
       'price': 79.8623076923077,
       'source': 'api.em6.co.nz',
       'zoneKey': 'NZ',
@@ -32,7 +32,7 @@
         'unknown': 168,
         'wind': 1259,
       }),
-      'datetime': '2024-04-24T18:00:00+00:00',
+      'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'coal': 156,
         'gas': 252,
@@ -63,7 +63,7 @@
         'unknown': 168,
         'wind': 1259,
       }),
-      'datetime': '2024-04-24T18:00:00+00:00',
+      'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'coal': 156,
         'gas': 252,

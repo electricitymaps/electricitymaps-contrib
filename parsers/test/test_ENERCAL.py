@@ -15,17 +15,4 @@ def test_production_with_snapshot(adapter, session, snapshot):
         ANY,
         content=raw_data.read_bytes(),
     )
-    production = ENERCAL.fetch_production(ZoneKey("NC"), session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "correctedModes": element["correctedModes"],
-        }
-        for element in production
-    ]
+    assert snapshot == ENERCAL.fetch_production(ZoneKey("NC"), session)

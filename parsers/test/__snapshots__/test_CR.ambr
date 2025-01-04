@@ -2,11 +2,11 @@
 # name: test_fetch_exchange_live
   list([
     dict({
-      'datetime': '2024-01-01T06:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'netFlow': 31.558895,
       'sortedZoneKeys': 'CR->PA',
       'source': 'enteoperador.org',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
   ])
 # ---
@@ -15,7 +15,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T00:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 168.011,
@@ -25,7 +25,7 @@
         'wind': 334.802279,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -33,7 +33,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T01:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 168.35425,
@@ -43,7 +43,7 @@
         'wind': 332.136786,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -51,7 +51,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T02:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 168.19325,
@@ -61,7 +61,7 @@
         'wind': 337.517291,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -69,7 +69,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T03:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 168.36525,
@@ -79,7 +79,7 @@
         'wind': 338.254346,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -87,7 +87,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T04:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 168.0705,
@@ -97,7 +97,7 @@
         'wind': 327.121795,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -105,7 +105,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T05:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 168.2905,
@@ -115,7 +115,7 @@
         'wind': 319.604019,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -123,7 +123,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T06:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 167.92225,
@@ -133,7 +133,7 @@
         'wind': 311.209597,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -141,7 +141,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T07:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 167.72475,
@@ -151,7 +151,7 @@
         'wind': 288.96851,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -159,7 +159,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T08:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 163.49575,
@@ -169,7 +169,7 @@
         'wind': 290.699937,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -177,7 +177,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T09:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 163.08975,
@@ -187,7 +187,7 @@
         'wind': 287.02421,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -195,7 +195,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T10:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 162.4095,
@@ -205,7 +205,7 @@
         'wind': 290.167949,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -213,7 +213,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T11:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 162.16075,
@@ -223,7 +223,7 @@
         'wind': 298.560845,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -231,7 +231,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T12:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 161.54296,
@@ -241,7 +241,7 @@
         'wind': 310.860435,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -249,7 +249,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T13:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 161.51563,
@@ -259,7 +259,7 @@
         'wind': 303.83357,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -267,7 +267,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T14:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 161.64274,
@@ -277,7 +277,7 @@
         'wind': 283.926575,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -285,7 +285,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T15:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 164.44255,
@@ -295,7 +295,7 @@
         'wind': 268.341069,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -303,7 +303,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T16:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 166.075,
@@ -313,7 +313,7 @@
         'wind': 248.79655,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -321,7 +321,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T17:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 166.22884,
@@ -331,7 +331,7 @@
         'wind': 242.765609,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -339,7 +339,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T18:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 166.97141,
@@ -349,7 +349,7 @@
         'wind': 251.480158,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -357,7 +357,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T19:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 166.88659,
@@ -367,7 +367,7 @@
         'wind': 254.715687,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -375,7 +375,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T20:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 166.79794,
@@ -385,7 +385,7 @@
         'wind': 266.851227,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -393,7 +393,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T21:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 167.27209,
@@ -403,7 +403,7 @@
         'wind': 276.952469,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -411,7 +411,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T22:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 167.35488,
@@ -421,7 +421,7 @@
         'wind': 276.439225,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -429,7 +429,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-07-16T23:00:00-06:00',
+      'datetime': datetime.datetime(2021, 7, 16, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 0,
         'geothermal': 167.41837,
@@ -439,7 +439,7 @@
         'wind': 284.758908,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -451,7 +451,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T00:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 18.577759,
         'geothermal': 163.33713,
@@ -461,7 +461,7 @@
         'wind': 296.452908,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -469,7 +469,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T01:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 18.789446,
         'geothermal': 163.38237,
@@ -479,7 +479,7 @@
         'wind': 296.853684,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -487,7 +487,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T02:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 17.598135,
         'geothermal': 163.33988,
@@ -497,7 +497,7 @@
         'wind': 299.250986,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -505,7 +505,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T03:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 18.7675,
         'geothermal': 163.34475,
@@ -515,7 +515,7 @@
         'wind': 294.168876,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -523,7 +523,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T04:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.72423,
         'geothermal': 163.22813,
@@ -533,7 +533,7 @@
         'wind': 297.101491,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -541,7 +541,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T05:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 18.552462,
         'geothermal': 163.23762,
@@ -551,7 +551,7 @@
         'wind': 302.040768,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -559,7 +559,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T06:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 18.982145,
         'geothermal': 163.29175,
@@ -569,7 +569,7 @@
         'wind': 288.287073,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -577,7 +577,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T07:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 18.960933,
         'geothermal': 163.19012,
@@ -587,7 +587,7 @@
         'wind': 259.991192,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -595,7 +595,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T08:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 20.670307,
         'geothermal': 163.096,
@@ -605,7 +605,7 @@
         'wind': 275.683921,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -613,7 +613,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T09:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 21.566067,
         'geothermal': 162.88225,
@@ -623,7 +623,7 @@
         'wind': 303.409412,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -631,7 +631,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T10:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 21.159958,
         'geothermal': 163.17313,
@@ -641,7 +641,7 @@
         'wind': 305.820401,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -649,7 +649,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T11:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 21.016447,
         'geothermal': 162.90987,
@@ -659,7 +659,7 @@
         'wind': 310.596043,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -667,7 +667,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T12:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 20.474445,
         'geothermal': 162.81538,
@@ -677,7 +677,7 @@
         'wind': 303.005786,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -685,7 +685,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T13:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.395496,
         'geothermal': 162.82875,
@@ -695,7 +695,7 @@
         'wind': 283.384246,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -703,7 +703,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T14:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.245838,
         'geothermal': 162.66712,
@@ -713,7 +713,7 @@
         'wind': 271.445285,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -721,7 +721,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T15:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 20.083724,
         'geothermal': 162.87925,
@@ -731,7 +731,7 @@
         'wind': 279.865412,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -739,7 +739,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T16:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.78922,
         'geothermal': 162.96538,
@@ -749,7 +749,7 @@
         'wind': 281.610696,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -757,7 +757,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T17:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.509736,
         'geothermal': 163.41025,
@@ -767,7 +767,7 @@
         'wind': 287.995122,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -775,7 +775,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T18:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.820335,
         'geothermal': 163.43262,
@@ -785,7 +785,7 @@
         'wind': 309.167618,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -793,7 +793,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T19:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.630411,
         'geothermal': 163.43863,
@@ -803,7 +803,7 @@
         'wind': 309.91341,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -811,7 +811,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T20:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.146717,
         'geothermal': 163.47687,
@@ -821,7 +821,7 @@
         'wind': 313.155425,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -829,7 +829,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T21:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.258829,
         'geothermal': 163.47188,
@@ -839,7 +839,7 @@
         'wind': 319.285039,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -847,7 +847,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T22:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.376949,
         'geothermal': 163.38,
@@ -857,7 +857,7 @@
         'wind': 317.338119,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',
@@ -865,7 +865,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-01-01T23:00:00-06:00',
+      'datetime': FakeDatetime(2024, 1, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Costa_Rica')),
       'production': dict({
         'biomass': 19.324172,
         'geothermal': 163.37037,
@@ -875,7 +875,7 @@
         'wind': 315.254165,
       }),
       'source': 'grupoice.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CR',

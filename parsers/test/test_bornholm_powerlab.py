@@ -19,31 +19,8 @@ def mock_response(adapter):
 
 
 def test_fetch_production(session, snapshot):
-    production = fetch_production(zone_key=ZoneKey("DK-BHM"), session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "zoneKey": element["zoneKey"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in production
-    ]
+    assert snapshot == fetch_production(zone_key=ZoneKey("DK-BHM"), session=session)
 
 
 def test_fetch_exchange(session, snapshot):
-    exchange = fetch_exchange(session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "netFlow": element["netFlow"],
-            "source": element["source"],
-            "sortedZoneKeys": element["sortedZoneKeys"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in exchange
-    ]
+    assert snapshot == fetch_exchange(session=session)

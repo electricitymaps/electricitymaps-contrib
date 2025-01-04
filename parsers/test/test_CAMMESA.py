@@ -45,46 +45,20 @@ def mock_response(adapter):
 
 
 def test_exchanges_AR_CL_SEN(session, snapshot):
-    exchange = fetch_exchange(ZoneKey("AR"), ZoneKey("CL-SEN"), session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "netFlow": element["netFlow"],
-            "source": element["source"],
-            "sortedZoneKeys": element["sortedZoneKeys"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in exchange
-    ]
+    assert snapshot == fetch_exchange(
+        ZoneKey("AR"),
+        ZoneKey("CL-SEN"),
+        session=session,
+    )
 
 
 def test_exchanges_AR_BAS_AR_COM(session, snapshot):
-    exchange = fetch_exchange(ZoneKey("AR-BAS"), ZoneKey("AR-COM"), session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "netFlow": element["netFlow"],
-            "source": element["source"],
-            "sortedZoneKeys": element["sortedZoneKeys"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in exchange
-    ]
+    assert snapshot == fetch_exchange(
+        ZoneKey("AR-BAS"),
+        ZoneKey("AR-COM"),
+        session=session,
+    )
 
 
 def test_fetch_production(session, snapshot):
-    production = fetch_production(ZoneKey("AR"), session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "zoneKey": element["zoneKey"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in production
-    ]
+    assert snapshot == fetch_production(ZoneKey("AR"), session=session)

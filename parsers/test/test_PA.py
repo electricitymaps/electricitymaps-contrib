@@ -21,17 +21,4 @@ def mock_response(adapter):
 
 @freeze_time("2021-12-30 09:58:40", tz_offset=-5)
 def test_fetch_production(session, snapshot):
-    production = fetch_production(session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "correctedModes": element["correctedModes"],
-        }
-        for element in production
-    ]
+    assert snapshot == fetch_production(session=session)

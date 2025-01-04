@@ -2,310 +2,361 @@
 # name: test_exchanges
   list([
     dict({
-      'datetime': '2024-09-04T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -54.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T10:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -58.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T11:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -60.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T12:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -66.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T13:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -66.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T14:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -64.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T15:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -56.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T16:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -70.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T17:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -66.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T18:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -64.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T18:30:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -62.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T19:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -64.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T20:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -70.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T21:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -64.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T22:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-04T23:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -74.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T00:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -74.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T01:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -70.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T02:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T03:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T04:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T05:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -62.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T06:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -64.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T07:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -58.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T08:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -58.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -56.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T10:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -56.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T11:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -60.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T12:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -64.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T13:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -66.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T14:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -62.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T15:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -66.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T16:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -64.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T17:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -62.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T18:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T18:30:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -66.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T19:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T20:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -64.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T21:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T22:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -72.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-05T23:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -70.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T00:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T01:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -68.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T02:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -66.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T03:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -62.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T04:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -36.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T05:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -20.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T06:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -36.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T07:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -42.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T08:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -38.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
-      'datetime': '2024-09-06T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'netFlow': -43.0,
       'sortedZoneKeys': 'BD->IN-NE',
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
   ])
 # ---
@@ -313,258 +364,360 @@
   list([
     dict({
       'consumption': 12850.0,
-      'datetime': '2024-09-04T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13200.0,
-      'datetime': '2024-09-04T10:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13800.0,
-      'datetime': '2024-09-04T11:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13900.0,
-      'datetime': '2024-09-04T12:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13800.0,
-      'datetime': '2024-09-04T13:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13870.0,
-      'datetime': '2024-09-04T14:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13750.0,
-      'datetime': '2024-09-04T15:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13350.0,
-      'datetime': '2024-09-04T16:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13100.0,
-      'datetime': '2024-09-04T17:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 14700.0,
-      'datetime': '2024-09-04T18:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 14900.0,
-      'datetime': '2024-09-04T18:30:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15100.0,
-      'datetime': '2024-09-04T19:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15350.0,
-      'datetime': '2024-09-04T20:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15100.0,
-      'datetime': '2024-09-04T21:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15100.0,
-      'datetime': '2024-09-04T22:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15000.0,
-      'datetime': '2024-09-04T23:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 14600.0,
-      'datetime': '2024-09-05T00:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 14400.0,
-      'datetime': '2024-09-05T01:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 14100.0,
-      'datetime': '2024-09-05T02:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13800.0,
-      'datetime': '2024-09-05T03:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13200.0,
-      'datetime': '2024-09-05T04:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 12650.0,
-      'datetime': '2024-09-05T05:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 12700.0,
-      'datetime': '2024-09-05T06:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 12450.0,
-      'datetime': '2024-09-05T07:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 12450.0,
-      'datetime': '2024-09-05T08:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 12750.0,
-      'datetime': '2024-09-05T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13100.0,
-      'datetime': '2024-09-05T10:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13300.0,
-      'datetime': '2024-09-05T11:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13600.0,
-      'datetime': '2024-09-05T12:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13800.0,
-      'datetime': '2024-09-05T13:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13990.0,
-      'datetime': '2024-09-05T14:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13800.0,
-      'datetime': '2024-09-05T15:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13600.0,
-      'datetime': '2024-09-05T16:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13300.0,
-      'datetime': '2024-09-05T17:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15000.0,
-      'datetime': '2024-09-05T18:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15200.0,
-      'datetime': '2024-09-05T18:30:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15300.0,
-      'datetime': '2024-09-05T19:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15350.0,
-      'datetime': '2024-09-05T20:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15250.0,
-      'datetime': '2024-09-05T21:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15200.0,
-      'datetime': '2024-09-05T22:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 15150.0,
-      'datetime': '2024-09-05T23:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 14650.0,
-      'datetime': '2024-09-06T00:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 14200.0,
-      'datetime': '2024-09-06T01:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 13800.0,
-      'datetime': '2024-09-06T02:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 12850.0,
-      'datetime': '2024-09-06T03:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 12650.0,
-      'datetime': '2024-09-06T04:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 11650.0,
-      'datetime': '2024-09-06T05:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 11100.0,
-      'datetime': '2024-09-06T06:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 11050.0,
-      'datetime': '2024-09-06T07:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 10850.0,
-      'datetime': '2024-09-06T08:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
     dict({
       'consumption': 11080.0,
-      'datetime': '2024-09-06T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'source': 'erp.pgcb.gov.bd',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'BD',
     }),
   ])
 # ---
@@ -573,7 +726,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3280.0,
         'gas': 5010.0,
@@ -584,7 +737,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -592,7 +745,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T10:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3233.0,
         'gas': 4873.0,
@@ -603,7 +756,7 @@
         'wind': 2.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -611,7 +764,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T11:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3244.0,
         'gas': 5122.0,
@@ -622,7 +775,7 @@
         'wind': 10.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -630,7 +783,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T12:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3306.0,
         'gas': 5145.0,
@@ -641,7 +794,7 @@
         'wind': 15.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -649,7 +802,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T13:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3338.0,
         'gas': 4981.0,
@@ -660,7 +813,7 @@
         'wind': 23.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -668,7 +821,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T14:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3308.0,
         'gas': 4838.0,
@@ -679,7 +832,7 @@
         'wind': 9.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -687,7 +840,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T15:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3317.0,
         'gas': 4758.0,
@@ -698,7 +851,7 @@
         'wind': 3.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -706,7 +859,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T16:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3222.0,
         'gas': 4645.0,
@@ -717,7 +870,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -725,7 +878,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T17:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3087.0,
         'gas': 4484.0,
@@ -736,7 +889,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -744,7 +897,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T18:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3319.0,
         'gas': 4423.0,
@@ -755,7 +908,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -763,7 +916,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T18:30:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3327.0,
         'gas': 4259.0,
@@ -774,7 +927,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -782,7 +935,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T19:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3315.0,
         'gas': 4463.0,
@@ -793,7 +946,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -801,7 +954,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T20:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3390.0,
         'gas': 4595.0,
@@ -812,7 +965,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -820,7 +973,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T21:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3408.0,
         'gas': 4556.0,
@@ -831,7 +984,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -839,7 +992,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T22:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3417.0,
         'gas': 4672.0,
@@ -850,7 +1003,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -858,7 +1011,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-04T23:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 4, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3412.0,
         'gas': 4872.0,
@@ -869,7 +1022,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -877,7 +1030,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T00:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3259.0,
         'gas': 4969.0,
@@ -888,7 +1041,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -896,7 +1049,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T01:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3261.0,
         'gas': 4950.0,
@@ -907,7 +1060,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -915,7 +1068,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T02:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3121.0,
         'gas': 4862.0,
@@ -926,7 +1079,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -934,7 +1087,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T03:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3134.0,
         'gas': 4873.0,
@@ -945,7 +1098,7 @@
         'wind': 2.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -953,7 +1106,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T04:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3132.0,
         'gas': 4806.0,
@@ -964,7 +1117,7 @@
         'wind': 4.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -972,7 +1125,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T05:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3037.0,
         'gas': 4852.0,
@@ -983,7 +1136,7 @@
         'wind': 1.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -991,7 +1144,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T06:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3081.0,
         'gas': 4796.0,
@@ -1002,7 +1155,7 @@
         'wind': 2.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1010,7 +1163,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T07:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3048.0,
         'gas': 4596.0,
@@ -1021,7 +1174,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1029,7 +1182,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T08:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3067.0,
         'gas': 4781.0,
@@ -1040,7 +1193,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1048,7 +1201,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 2986.0,
         'gas': 4843.0,
@@ -1059,7 +1212,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1067,7 +1220,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T10:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3022.0,
         'gas': 4848.0,
@@ -1078,7 +1231,7 @@
         'wind': 10.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1086,7 +1239,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T11:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3119.0,
         'gas': 4885.0,
@@ -1097,7 +1250,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1105,7 +1258,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T12:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3155.0,
         'gas': 4941.0,
@@ -1116,7 +1269,7 @@
         'wind': 12.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1124,7 +1277,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T13:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3218.0,
         'gas': 4948.0,
@@ -1135,7 +1288,7 @@
         'wind': 18.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1143,7 +1296,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T14:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3421.0,
         'gas': 4958.0,
@@ -1154,7 +1307,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1162,7 +1315,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T15:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3453.0,
         'gas': 4921.0,
@@ -1173,7 +1326,7 @@
         'wind': 6.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1181,7 +1334,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T16:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3345.0,
         'gas': 4921.0,
@@ -1192,7 +1345,7 @@
         'wind': 3.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1200,7 +1353,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T17:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3227.0,
         'gas': 4948.0,
@@ -1211,7 +1364,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1219,7 +1372,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T18:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3277.0,
         'gas': 4741.0,
@@ -1230,7 +1383,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1238,7 +1391,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T18:30:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3350.0,
         'gas': 4771.0,
@@ -1249,7 +1402,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1257,7 +1410,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T19:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3421.0,
         'gas': 4954.0,
@@ -1268,7 +1421,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1276,7 +1429,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T20:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3425.0,
         'gas': 5023.0,
@@ -1287,7 +1440,7 @@
         'wind': 2.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1295,7 +1448,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T21:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3451.0,
         'gas': 5020.0,
@@ -1306,7 +1459,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1314,7 +1467,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T22:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3405.0,
         'gas': 5035.0,
@@ -1325,7 +1478,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1333,7 +1486,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-05T23:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 5, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3442.0,
         'gas': 5013.0,
@@ -1344,7 +1497,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1352,7 +1505,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T00:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3398.0,
         'gas': 5021.0,
@@ -1363,7 +1516,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1371,7 +1524,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T01:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3399.0,
         'gas': 5003.0,
@@ -1382,7 +1535,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1390,7 +1543,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T02:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3402.0,
         'gas': 4955.0,
@@ -1401,7 +1554,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1409,7 +1562,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T03:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3401.0,
         'gas': 4839.0,
@@ -1420,7 +1573,7 @@
         'wind': 3.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1428,7 +1581,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T04:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3400.0,
         'gas': 4840.0,
@@ -1439,7 +1592,7 @@
         'wind': 6.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1447,7 +1600,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T05:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3422.0,
         'gas': 4676.0,
@@ -1458,7 +1611,7 @@
         'wind': 12.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1466,7 +1619,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T06:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3104.0,
         'gas': 4439.0,
@@ -1477,7 +1630,7 @@
         'wind': 14.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1485,7 +1638,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T07:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 2879.0,
         'gas': 4546.0,
@@ -1496,7 +1649,7 @@
         'wind': 8.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1504,7 +1657,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T08:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 2802.0,
         'gas': 4679.0,
@@ -1515,7 +1668,7 @@
         'wind': 1.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',
@@ -1523,7 +1676,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-09-06T09:00:00+06:00',
+      'datetime': datetime.datetime(2024, 9, 6, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
       'production': dict({
         'coal': 3042.0,
         'gas': 4915.0,
@@ -1534,7 +1687,7 @@
         'wind': 0.0,
       }),
       'source': 'erp.pgcb.gov.bd',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BD',

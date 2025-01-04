@@ -2,7 +2,10 @@
 # name: test_fetch_production
   list([
     dict({
-      'datetime': '2023-09-12T03:45:02.384000-04:00',
+      'correctedModes': list([
+        'unknown',
+      ]),
+      'datetime': datetime.datetime(2023, 9, 12, 3, 45, 2, 384000, tzinfo=zoneinfo.ZoneInfo(key='America/Aruba')),
       'production': dict({
         'biomass': 0.0,
         'oil': 108.567078,
@@ -11,7 +14,7 @@
         'wind': 4.692129,
       }),
       'source': 'webaruba.com',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'AW',

@@ -32,17 +32,7 @@ def test_snapshot_production_data(adapter, session, snapshot):
     production.append(fetch_production(zone_key="NZ", session=session))
     production.append(fetch_production(zone_key="NZ", session=session))
 
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "capacity": element["capacity"],
-            "source": element["source"],
-        }
-        for element in production
-    ]
+    assert snapshot == production
 
 
 def test_snapshot_price_data(adapter, session, snapshot):
@@ -69,13 +59,4 @@ def test_snapshot_price_data(adapter, session, snapshot):
     price.append(fetch_price(zone_key="NZ", session=session))
     price.append(fetch_price(zone_key="NZ", session=session))
 
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "source": element["source"],
-            "price": element["price"],
-            "currency": element["currency"],
-        }
-        for element in price
-    ]
+    assert snapshot == price
