@@ -1,0 +1,29 @@
+# serializer version: 1
+# name: test_fetch_exchange
+  list([
+    dict({
+      'datetime': '2023-09-13T12:29:40+00:00',
+      'netFlow': -15.4,
+      'sortedZoneKeys': 'DK-BHM->SE-SE4',
+      'source': 'bornholm.powerlab.dk',
+      'sourceType': 'measured',
+    }),
+  ])
+# ---
+# name: test_fetch_production
+  list([
+    dict({
+      'datetime': '2023-09-13T12:29:40+00:00',
+      'production': dict({
+        'biomass': 1.2,
+        'solar': 3.6,
+        'wind': 8.2,
+      }),
+      'source': 'bornholm.powerlab.dk',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'DK-BHM',
+    }),
+  ])
+# ---

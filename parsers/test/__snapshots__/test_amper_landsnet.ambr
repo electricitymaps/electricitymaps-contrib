@@ -1,0 +1,18 @@
+# serializer version: 1
+# name: test_fetch_production
+  list([
+    dict({
+      'datetime': '2023-12-19T15:53:23.729935+00:00',
+      'production': dict({
+        'geothermal': 653.1291,
+        'hydro': 1588.2567,
+        'oil': 0.0,
+      }),
+      'source': 'amper.landsnet.is',
+      'sourceType': 'measured',
+      'storage': dict({
+      }),
+      'zoneKey': 'IS',
+    }),
+  ])
+# ---

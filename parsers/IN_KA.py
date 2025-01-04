@@ -20,7 +20,7 @@ def fetch_consumption(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     zonekey.assert_zone_key(zone_key, "IN-KA")
-    html = web.get_response_soup(zone_key, "http://kptclsldc.in/Default.aspx", session)
+    html = web.get_response_soup(zone_key, "https://kptclsldc.in/Default.aspx", session)
 
     india_date_time = IN.read_datetime_from_span_id(html, "Label6", "%d/%m/%Y %H:%M")
 
@@ -48,7 +48,9 @@ def fetch_production(
 
     zonekey.assert_zone_key(zone_key, "IN-KA")
 
-    html = web.get_response_soup(zone_key, "http://kptclsldc.in/StateGen.aspx", session)
+    html = web.get_response_soup(
+        zone_key, "https://kptclsldc.in/StateGen.aspx", session
+    )
 
     india_date_time = IN.read_datetime_from_span_id(
         html, "lbldate", "%d/%m/%Y %H:%M:%S"
@@ -126,7 +128,7 @@ def fetch_production(
 
     # NCEP (Non-Conventional Energy Production)
     ncep_html = web.get_response_soup(
-        zone_key, "http://kptclsldc.in/StateNCEP.aspx", session
+        zone_key, "https://kptclsldc.in/StateNCEP.aspx", session
     )
     ncep_date_time = IN.read_datetime_from_span_id(
         ncep_html, "Label1", "%d/%m/%Y %H:%M:%S"
