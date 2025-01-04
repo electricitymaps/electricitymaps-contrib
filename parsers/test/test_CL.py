@@ -26,21 +26,8 @@ def mock_response(adapter):
 def test_snapshot_historical_data(session, snapshot):
     target_datetime = datetime(2024, 2, 24, 0, 0, 0, tzinfo=timezone.utc)
 
-    production = fetch_production(
+    assert snapshot == fetch_production(
         ZoneKey("CL-SEN"),
         session=session,
         target_datetime=target_datetime,
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "correctedModes": element["correctedModes"],
-        }
-        for element in production
-    ]

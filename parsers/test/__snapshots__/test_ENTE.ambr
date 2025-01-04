@@ -2,11 +2,11 @@
 # name: test_fetch_exchange
   list([
     dict({
-      'datetime': '2024-04-03T08:37:00-06:00',
+      'datetime': FakeDatetime(2024, 4, 3, 8, 37, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
       'netFlow': -7.5,
       'sortedZoneKeys': 'CR->NI',
       'source': 'enteoperador.org',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
     }),
   ])
 # ---
@@ -15,12 +15,12 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2024-04-03T08:00:00-06:00',
+      'datetime': FakeDatetime(2024, 4, 3, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
       'production': dict({
         'unknown': 1460.3,
       }),
       'source': 'enteoperador.org',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'HN',

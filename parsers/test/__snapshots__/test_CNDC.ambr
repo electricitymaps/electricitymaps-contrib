@@ -2,147 +2,171 @@
 # name: test_fetch_generation_forecast
   list([
     dict({
-      'datetime': '2023-12-20T00:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1199.23,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T01:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1141.49,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T02:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1108.31,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T03:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1088.02,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T04:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1118.32,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T05:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1080.45,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T06:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1228.59,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T07:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1292.94,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T08:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1399.9,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T09:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1454.64,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T10:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1485.06,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T11:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1499.31,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T12:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1488.93,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T13:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1547.23,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T14:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1590.45,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T15:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1572.62,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T16:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1516.26,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T17:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1442.56,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T18:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1571.34,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T19:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1627.02,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T20:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1599.87,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T21:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1525.8,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T22:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1411.17,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T23:00:00-04:00',
+      'datetime': datetime.datetime(2023, 12, 20, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'generation': 1294.64,
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'BO',
     }),
   ])
@@ -150,7 +174,9 @@
 # name: test_fetch_production
   list([
     dict({
-      'datetime': '2023-12-20T00:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 384.86,
@@ -159,12 +185,15 @@
         'wind': 45.39,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T01:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 402.78,
@@ -173,12 +202,15 @@
         'wind': 47.16,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T02:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 406.37,
@@ -187,12 +219,15 @@
         'wind': 48.76,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T03:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 380.18,
@@ -201,12 +236,15 @@
         'wind': 47.33,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T04:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 379.26,
@@ -215,12 +253,15 @@
         'wind': 51.32,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T05:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 350.42,
@@ -229,12 +270,15 @@
         'wind': 50.26,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T06:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 422.66,
@@ -243,12 +287,15 @@
         'wind': 41.49,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T07:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 500.35,
@@ -257,12 +304,15 @@
         'wind': 45.95,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T08:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 505.62,
@@ -271,12 +321,15 @@
         'wind': 46.62,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T09:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 523.88,
@@ -285,12 +338,15 @@
         'wind': 32.52,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',
     }),
     dict({
-      'datetime': '2023-12-20T10:00:00-04:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 12, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
       'production': dict({
         'biomass': 0,
         'hydro': 511.72,
@@ -299,6 +355,7 @@
         'wind': 24.76,
       }),
       'source': 'cndc.bo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'BO',

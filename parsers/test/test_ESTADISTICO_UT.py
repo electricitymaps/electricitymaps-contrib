@@ -26,19 +26,7 @@ def mock_response(adapter):
 
 
 def test_fetch_production(session, snapshot):
-    production = fetch_production(
+    assert snapshot == fetch_production(
         zone_key=ZoneKey("SV"),
         session=session,
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "zoneKey": element["zoneKey"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in production
-    ]
