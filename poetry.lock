@@ -124,20 +124,6 @@ files = [
 frozenlist = ">=1.1.0"
 
 [[package]]
-name = "arrow"
-version = "0.16.0"
-description = "Better dates & times for Python"
-optional = true
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-files = [
-    {file = "arrow-0.16.0-py2.py3-none-any.whl", hash = "sha256:98184d8dd3e5d30b96c2df4596526f7de679ccb467f358b82b0f686436f3a6b8"},
-    {file = "arrow-0.16.0.tar.gz", hash = "sha256:92aac856ea5175c804f7ccb96aca4d714d936f1c867ba59d747a8096ec30e90a"},
-]
-
-[package.dependencies]
-python-dateutil = ">=2.7.0"
-
-[[package]]
 name = "async-timeout"
 version = "5.0.1"
 description = "Timeout context manager for asyncio programs"
@@ -1920,10 +1906,10 @@ test = ["coverage[toml]", "zope.event", "zope.testing"]
 testing = ["coverage[toml]", "zope.event", "zope.testing"]
 
 [extras]
-parsers = ["Pillow", "arrow", "beautifulsoup4", "demjson3", "freezegun", "html5lib", "imageio", "lxml", "mock", "odfpy", "opencv-python", "openpyxl", "pandas", "pycountry", "pydataxm", "pytesseract", "requests", "signalr-client-threads", "tqdm", "xlrd"]
+parsers = ["Pillow", "beautifulsoup4", "demjson3", "freezegun", "html5lib", "imageio", "lxml", "mock", "odfpy", "opencv-python", "openpyxl", "pandas", "pycountry", "pydataxm", "pytesseract", "requests", "signalr-client-threads", "tqdm", "xlrd"]
 scripts = ["xmltodict"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = ">= 3.10, < 3.11"
-content-hash = "42f5d366463e01ee3dbca6be90d417f29d77509d310ab720f55d6b380847073e"
+content-hash = "f33ae1a662462cababd0102226fc8dc9592730f6ff000f48b2c066f5bb1ab1a0"
