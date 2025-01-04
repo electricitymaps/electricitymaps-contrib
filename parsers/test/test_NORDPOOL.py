@@ -39,23 +39,11 @@ def test_price_parser_se(adapter, session, snapshot):
         json=loads(mock_data_next_day.read_text()),
     )
 
-    price = NORDPOOL.fetch_price(
+    assert snapshot == NORDPOOL.fetch_price(
         zone_key=ZoneKey("SE-SE4"),
         session=session,
         target_datetime=datetime.fromisoformat("2024-07-08"),
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "price": element["price"],
-            "currency": element["currency"],
-            "source": element["source"],
-            "zoneKey": element["zoneKey"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in price
-    ]
 
 
 def test_exchange_parser_fi_se1(adapter, session, snapshot):
@@ -81,20 +69,9 @@ def test_exchange_parser_fi_se1(adapter, session, snapshot):
         json=loads(mock_data_previous_day.read_text()),
     )
 
-    exchange = NORDPOOL.fetch_exchange(
+    assert snapshot == NORDPOOL.fetch_exchange(
         zone_key1=ZoneKey("FI"),
         zone_key2=ZoneKey("SE-SE1"),
         session=session,
         target_datetime=datetime.fromisoformat("2024-12-01"),
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "netFlow": element["netFlow"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "sortedZoneKeys": element["sortedZoneKeys"],
-        }
-        for element in exchange
-    ]

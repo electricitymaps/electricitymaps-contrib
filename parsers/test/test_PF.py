@@ -23,20 +23,7 @@ def mock_response(adapter):
 @freeze_time("2024-01-01 12:00:00")
 def test_fetch_production_live(session, snapshot):
     """That we can fetch the production mix at the current time."""
-    production = fetch_production(session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "correctedModes": element["correctedModes"],
-        }
-        for element in production
-    ]
+    assert snapshot == fetch_production(session=session)
 
 
 def test_fetch_production_raises_parser_exception_on_historical_data(adapter, session):

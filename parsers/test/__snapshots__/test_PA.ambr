@@ -4,7 +4,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': '2021-12-30T09:58:37-05:00',
+      'datetime': FakeDatetime(2021, 12, 30, 9, 58, 37, tzinfo=zoneinfo.ZoneInfo(key='America/Panama')),
       'production': dict({
         'biomass': 2.75,
         'coal': 149.6,
@@ -16,7 +16,7 @@
         'wind': 115.4,
       }),
       'source': 'sitr.cnd.com.pa',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'PA',

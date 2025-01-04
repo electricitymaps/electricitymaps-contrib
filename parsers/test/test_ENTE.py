@@ -24,22 +24,11 @@ def mock_response(adapter):
 
 @freeze_time("2024-04-03 14:37:59.999999")
 def test_fetch_exchange(session, snapshot):
-    exchange = fetch_exchange(
+    assert snapshot == fetch_exchange(
         zone_key1=ZoneKey("CR"),
         zone_key2=ZoneKey("NI"),
         session=session,
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "netFlow": element["netFlow"],
-            "source": element["source"],
-            "sortedZoneKeys": element["sortedZoneKeys"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in exchange
-    ]
 
 
 def test_fetch_exchange_raises_exception_on_exchange_not_implemented(session):
@@ -53,20 +42,7 @@ def test_fetch_exchange_raises_exception_on_exchange_not_implemented(session):
 
 @freeze_time("2024-04-03 14:00:59.123456")
 def test_fetch_production(session, snapshot):
-    production = fetch_production(
+    assert snapshot == fetch_production(
         zone_key=ZoneKey("HN"),
         session=session,
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "correctedModes": element["correctedModes"],
-        }
-        for element in production
-    ]

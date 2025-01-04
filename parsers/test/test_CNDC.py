@@ -40,37 +40,16 @@ def mock_response(adapter, target_datetime):
 
 
 def test_fetch_generation_forecast(session, snapshot, target_datetime):
-    generation_forecast = fetch_generation_forecast(
+    assert snapshot == fetch_generation_forecast(
         ZoneKey("BO"),
         session=session,
         target_datetime=target_datetime,
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "generation": element["generation"],
-            "zoneKey": element["zoneKey"],
-            "source": element["source"],
-        }
-        for element in generation_forecast
-    ]
 
 
 def test_fetch_production(session, snapshot, target_datetime):
-    production = fetch_production(
+    assert snapshot == fetch_production(
         ZoneKey("BO"),
         session=session,
         target_datetime=target_datetime,
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "zoneKey": element["zoneKey"],
-        }
-        for element in production
-    ]

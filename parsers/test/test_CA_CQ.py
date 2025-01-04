@@ -17,19 +17,7 @@ def test_production(adapter, session, snapshot):
         ),
     )
 
-    production = fetch_production(session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "production": element["production"],
-            "source": element["source"],
-            "zoneKey": element["zoneKey"],
-            "storage": element["storage"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in production
-    ]
+    assert snapshot == fetch_production(session=session)
 
 
 def test_consumption(adapter, session, snapshot):
@@ -43,14 +31,4 @@ def test_consumption(adapter, session, snapshot):
         ),
     )
 
-    consumption = fetch_consumption(session=session)
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "consumption": element["consumption"],
-            "source": element["source"],
-            "zoneKey": element["zoneKey"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in consumption
-    ]
+    assert snapshot == fetch_consumption(session=session)

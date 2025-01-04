@@ -27,36 +27,12 @@ def mock_response(adapter):
 
 
 def test_snapshot_historical_source(session, target_datetime, snapshot):
-    production = fetch_production(
+    assert snapshot == fetch_production(
         zone_key=ZoneKey("CY"),
         session=session,
         target_datetime=target_datetime,
     )
 
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "capacity": element["capacity"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-        }
-        for element in production
-    ]
-
 
 def test_snapshot_realtime_source(session, snapshot):
-    production = fetch_production(ZoneKey("CY"), session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "capacity": element["capacity"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-        }
-        for element in production
-    ]
+    assert snapshot == fetch_production(ZoneKey("CY"), session=session)

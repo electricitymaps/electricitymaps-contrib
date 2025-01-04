@@ -22,23 +22,10 @@ def mock_response(adapter):
 
 
 def test_fetch_production(session, snapshot):
-    production = fetch_production(
+    assert snapshot == fetch_production(
         zone_key=ZoneKey("PE"),
         session=session,
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "correctedModes": element["correctedModes"],
-        }
-        for element in production
-    ]
 
 
 @freeze_time("2024-02-06 10:00:00", tz_offset=-5)

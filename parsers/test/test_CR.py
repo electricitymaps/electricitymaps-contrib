@@ -23,20 +23,7 @@ def test_fetch_production_live(adapter, session, snapshot):
         ),
     )
 
-    production = fetch_production(session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "correctedModes": element["correctedModes"],
-        }
-        for element in production
-    ]
+    assert snapshot == fetch_production(session=session)
 
 
 def test_fetch_production_historical(adapter, session, snapshot):
@@ -52,23 +39,10 @@ def test_fetch_production_historical(adapter, session, snapshot):
     )
 
     historical_datetime = datetime(2021, 7, 16, 16, 20, 30, tzinfo=timezone.utc)
-    production_breakdowns = fetch_production(
+    assert snapshot == fetch_production(
         target_datetime=historical_datetime.astimezone(timezone.utc),
         session=session,
     )
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "zoneKey": element["zoneKey"],
-            "production": element["production"],
-            "storage": element["storage"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-            "correctedModes": element["correctedModes"],
-        }
-        for element in production_breakdowns
-    ]
 
 
 @freeze_time("2024-01-01 12:00:00")
@@ -84,18 +58,7 @@ def test_fetch_exchange_live(adapter, session, snapshot):
         ),
     )
 
-    exchanges = fetch_exchange(session=session)
-
-    assert snapshot == [
-        {
-            "datetime": element["datetime"].isoformat(),
-            "sortedZoneKeys": element["sortedZoneKeys"],
-            "netFlow": element["netFlow"],
-            "source": element["source"],
-            "sourceType": element["sourceType"].value,
-        }
-        for element in exchanges
-    ]
+    assert snapshot == fetch_exchange(session=session)
 
 
 def test_fetch_exchange_raises_parser_exception_on_historical_data(adapter, session):
