@@ -1,7 +1,7 @@
+from importlib import resources
 from json import loads
 
 import pytest
-from pkg_resources import resource_string
 from requests_mock import GET
 
 from electricitymap.contrib.lib.types import ZoneKey
@@ -10,14 +10,12 @@ from parsers.BORNHOLM_POWERLAB import LATEST_DATA_URL, fetch_exchange, fetch_pro
 
 @pytest.fixture(autouse=True)
 def mock_response(adapter):
-    realtime = resource_string(
-        "parsers.test.mocks.Bornholm_Powerlab", "latest_data.json"
+    realtime = (
+        resources.files("parsers.test.mocks.Bornholm_Powerlab")
+        .joinpath("latest_data.json")
+        .read_text()
     )
-    adapter.register_uri(
-        GET,
-        LATEST_DATA_URL,
-        json=loads(realtime.decode("utf-8")),
-    )
+    adapter.register_uri(GET, LATEST_DATA_URL, json=loads(realtime))
 
 
 def test_fetch_production(session, snapshot):

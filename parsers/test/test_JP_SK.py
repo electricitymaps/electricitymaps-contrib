@@ -1,7 +1,7 @@
 import datetime
 import re
+from importlib import resources
 
-from pkg_resources import resource_string
 from requests_mock import ANY, GET
 
 from parsers.JP_SK import (
@@ -27,7 +27,9 @@ def test_find_nuclear_image_url(adapter, session):
 
 
 def test_fetch_nuclear_image(adapter, session):
-    nuclear_prod_image = resource_string("parsers.test.mocks.JP-SK", "image3.gif")
+    nuclear_prod_image = (
+        resources.files("parsers.test.mocks.JP-SK").joinpath("image3.gif").read_bytes()
+    )
     adapter.register_uri(
         GET,
         ANY,
