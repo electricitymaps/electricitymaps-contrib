@@ -22,9 +22,9 @@ describe('Share Button', () => {
         </ToastProvider>
       </QueryClientProvider>
     );
-    cy.get('[data-test-id="linkIcon"]').should('be.visible');
-    cy.get('[data-test-id="iosShareIcon"]').should('not.exist');
-    cy.get('[data-test-id="defaultShareIcon"]').should('not.exist');
+    cy.get('[data-testid="linkIcon"]').should('be.visible');
+    cy.get('[data-testid="iosShareIcon"]').should('not.exist');
+    cy.get('[data-testid="defaultShareIcon"]').should('not.exist');
   });
 
   it('should display share icon for iOS native app', () => {
@@ -36,9 +36,9 @@ describe('Share Button', () => {
         </ToastProvider>
       </QueryClientProvider>
     );
-    cy.get('[data-test-id="iosShareIcon"]').should('be.visible');
-    cy.get('[data-test-id="defaultShareIcon"]').should('not.exist');
-    cy.get('[data-test-id="linkIcon"]').should('not.exist');
+    cy.get('[data-testid="iosShareIcon"]').should('be.visible');
+    cy.get('[data-testid="defaultShareIcon"]').should('not.exist');
+    cy.get('[data-testid="linkIcon"]').should('not.exist');
   });
 
   it('should display share icon for iOS mobile web', () => {
@@ -50,9 +50,9 @@ describe('Share Button', () => {
         </ToastProvider>
       </QueryClientProvider>
     );
-    cy.get('[data-test-id="iosShareIcon"]').should('be.visible');
-    cy.get('[data-test-id="defaultShareIcon"]').should('not.exist');
-    cy.get('[data-test-id="linkIcon"]').should('not.exist');
+    cy.get('[data-testid="iosShareIcon"]').should('be.visible');
+    cy.get('[data-testid="defaultShareIcon"]').should('not.exist');
+    cy.get('[data-testid="linkIcon"]').should('not.exist');
   });
 
   it('should display default share icon for non-iOS native app', () => {
@@ -64,9 +64,9 @@ describe('Share Button', () => {
         </ToastProvider>
       </QueryClientProvider>
     );
-    cy.get('[data-test-id="defaultShareIcon"]').should('be.visible');
-    cy.get('[data-test-id="iosShareIcon"]').should('not.exist');
-    cy.get('[data-test-id="linkIcon"]').should('not.exist');
+    cy.get('[data-testid="defaultShareIcon"]').should('be.visible');
+    cy.get('[data-testid="iosShareIcon"]').should('not.exist');
+    cy.get('[data-testid="linkIcon"]').should('not.exist');
   });
 
   it('should display default share icon for non-iOS mobile web', () => {
@@ -78,9 +78,9 @@ describe('Share Button', () => {
         </ToastProvider>
       </QueryClientProvider>
     );
-    cy.get('[data-test-id="defaultShareIcon"]').should('be.visible');
-    cy.get('[data-test-id="iosShareIcon"]').should('not.exist');
-    cy.get('[data-test-id="linkIcon"]').should('not.exist');
+    cy.get('[data-testid="defaultShareIcon"]').should('be.visible');
+    cy.get('[data-testid="iosShareIcon"]').should('not.exist');
+    cy.get('[data-testid="linkIcon"]').should('not.exist');
   });
 
   it('should trigger toast on click', () => {
@@ -91,9 +91,9 @@ describe('Share Button', () => {
         </ToastProvider>
       </QueryClientProvider>
     );
-    cy.get('[data-test-id="share-btn"]').should('exist');
-    cy.get('[data-test-id="toast"]').should('not.exist');
-    cy.get('[data-test-id="share-btn"]').click();
+    cy.get('[data-testid="share-btn"]').should('exist');
+    cy.get('[data-testid="toast"]').should('not.exist');
+    cy.get('[data-testid="share-btn"]').click();
     cy.get('[data-testid="toast"]').should('exist');
   });
 
@@ -105,7 +105,7 @@ describe('Share Button', () => {
         </ToastProvider>
       </QueryClientProvider>
     );
-    cy.get('[data-test-id="share-btn"]').click();
+    cy.get('[data-testid="share-btn"]').click();
     cy.get('[data-testid="toast"]').should('be.visible');
     cy.get('[data-testid="toast-dismiss"]').click();
     cy.get('[data-testid="toast"]').should('not.exist');

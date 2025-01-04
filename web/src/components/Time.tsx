@@ -1,26 +1,37 @@
-import { TimeAverages } from 'utils/constants';
-import { formatDate } from 'utils/formatting';
-import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
+import { TimeRange } from 'utils/constants';
+import { formatDate, formatDateRange } from 'utils/formatting';
+import { getZoneTimezone } from 'utils/helpers';
 
 export function FormattedTime({
   datetime,
   language,
-  timeAverage,
+  timeRange,
   className,
   zoneId,
+  endDatetime,
 }: {
   datetime: Date;
   language: string;
-  timeAverage: TimeAverages;
+  timeRange?: TimeRange;
   className?: string;
   zoneId?: string;
+  endDatetime?: Date;
 }) {
-  const pathZoneId = useGetZoneFromPath();
+  const { zoneId: pathZoneId } = useParams<RouteParameters>();
   const timeZoneZoneId = zoneId || pathZoneId;
   const timezone = getZoneTimezone(timeZoneZoneId);
+  if (timeRange) {
+    return (
+      <time dateTime={datetime.toISOString()} className={className}>
+        {formatDate(datetime, language, timeRange, timezone)}
+      </time>
+    );
+  }
   return (
     <time dateTime={datetime.toISOString()} className={className}>
-      {formatDate(datetime, language, timeAverage, timezone)}
+      {endDatetime && formatDateRange(datetime, endDatetime, language, timezone)}
     </time>
   );
 }

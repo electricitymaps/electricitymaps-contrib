@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { zoneDetailMock } from 'stories/mockData';
-import { EnergyUnits } from 'utils/units';
 
-import { TimeAverages } from '../../utils/constants';
+import { TimeRange } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
 import { getFills } from './hooks/usePriceChartData';
 
@@ -167,8 +166,7 @@ export const NegativePrices: Story = {
     layerStroke: undefined,
     layerFill: getFills(negativePrices).layerFill,
     markerFill: getFills(negativePrices).markerFill,
-    selectedTimeAggregate: TimeAverages.HOURLY,
-    isMobile: false,
+    selectedTimeRange: TimeRange.H24,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),
   },
@@ -200,8 +198,7 @@ export const MissingEntries: Story = {
     layerStroke: undefined,
     layerFill: getFills(missingEntriesData).layerFill,
     markerFill: getFills(missingEntriesData).markerFill,
-    selectedTimeAggregate: TimeAverages.HOURLY,
-    isMobile: false,
+    selectedTimeRange: TimeRange.H24,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),
   },

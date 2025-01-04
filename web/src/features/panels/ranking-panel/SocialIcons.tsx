@@ -1,3 +1,4 @@
+import { BlueskyButton } from 'components/buttons/BlueskyButton';
 import { FacebookButton } from 'components/buttons/FacebookButton';
 import { FeedbackButton } from 'components/buttons/FeedbackButton';
 import { LinkedinButton } from 'components/buttons/LinkedinButton';
@@ -14,6 +15,7 @@ export default function SocialIconRow() {
         <h3>{t('info.share-app')}</h3>
         <LinkedinButton isIconOnly size="sm" type="link" isShareLink />
         <RedditButton isIconOnly size="sm" type="link" isShareLink />
+        <BlueskyButton isIconOnly size="sm" type="link" isShareLink />
         <TwitterButton isIconOnly size="sm" type="link" isShareLink />
         <FacebookButton isIconOnly size="sm" type="link" isShareLink />
       </section>

@@ -1,13 +1,8 @@
 {
-  "info": {
-    "text": "Electricity Maps应用程序在网站和手机程序上为居民，能源专家，非政府组织和决策者们提供即时的信息，从而促使人们更好的理解能源转型的挑战。",
-    "open-source-text": "这个应用程序是一个<a href='{{link}}' target='_blank'>开源</a> 并由社区提供支持。"
-  },
   "button": {
     "feedback": "提供反馈",
     "github": "浏览我们的GitHub",
     "twitter": "在推特上转发",
-    "slack": "加入Slack讨论组",
     "privacy-policy": "隐私声明",
     "legal-notice": "法律声明"
   },
@@ -1041,9 +1036,6 @@
     },
     "NI": {
       "zoneName": "尼加拉瓜"
-    },
-    "NKR": {
-      "zoneName": "纳戈尔诺-卡拉巴赫"
     },
     "NL": {
       "zoneName": "荷兰"

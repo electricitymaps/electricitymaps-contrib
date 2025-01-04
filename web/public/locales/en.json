@@ -970,9 +970,6 @@
     "NI": {
       "zoneName": "Nicaragua"
     },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
-    },
     "NL": {
       "zoneName": "Netherlands"
     },
@@ -1427,7 +1424,7 @@
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England"
     },
     "US-NW-AVA": {
       "countryName": "USA",

@@ -156,13 +156,8 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+  - silkeholmebonnen
 country: US
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 34
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
@@ -466,9 +461,9 @@ fallbackZoneMixes:
         unknown: 0.0026028574593210904
         wind: 0.24233286045039404
 parsers:
-  consumption: EIA.fetch_consumption
+  consumption: US_ERCOT.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
-  production: EIA.fetch_production_mix
+  production: US_ERCOT.fetch_production
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:

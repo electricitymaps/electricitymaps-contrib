@@ -1,7 +1,8 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { ONE_MINUTE, QUERY_KEYS } from 'api/helpers';
 
-import { TimeAverages } from './constants';
+import { TimeRange } from './constants';
+import { isValidHistoricalTimeRange } from './helpers';
 
 /**
  * Refetches data when the hour changes to show fresh data.
@@ -19,16 +20,36 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
 
       // Invalidate hourly state query
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.STATE, { aggregate: TimeAverages.HOURLY }],
+        queryKey: [QUERY_KEYS.STATE, { aggregate: TimeRange.H24 }],
       });
 
       // Invalidate hourly zone queries - this matches all zone queries
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.ZONE, { aggregate: TimeAverages.HOURLY }],
+        queryKey: [QUERY_KEYS.ZONE, { aggregate: TimeRange.H24 }],
+      });
+
+      // Invalidate 72 hourly state query
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.STATE, { aggregate: TimeRange.H72 }],
+      });
+
+      // Invalidate 72 hourly zone queries - this matches all zone queries
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.ZONE, { aggregate: TimeRange.H72 }],
       });
 
       // Reset the start hour
       startHour = currentHour;
     }
   }, ONE_MINUTE);
+}
+
+export function getStaleTime(timeRange: TimeRange, urlDatetime?: string) {
+  if (!isValidHistoricalTimeRange(timeRange) || urlDatetime) {
+    return 0;
+  }
+  const now = new Date();
+  const nextHour = new Date(now);
+  nextHour.setHours(nextHour.getHours() + 1, 0, 0, 0);
+  return nextHour.getTime() - now.getTime();
 }

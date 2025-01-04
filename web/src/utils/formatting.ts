@@ -1,6 +1,7 @@
 import * as d3 from 'd3-format';
 
-import { TimeAverages } from './constants';
+import { TimeRange } from './constants';
+import { getLocalTime } from './helpers';
 import { EnergyUnits, PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 3;
@@ -138,11 +139,12 @@ const scalePower = (maxPower: number | undefined, isPower = false) => {
 };
 
 export const getDateTimeFormatOptions = (
-  timeAverage: TimeAverages,
+  timeRange: TimeRange,
   timezone?: string
 ): Intl.DateTimeFormatOptions => {
-  switch (timeAverage) {
-    case TimeAverages.HOURLY: {
+  switch (timeRange) {
+    case TimeRange.H72:
+    case TimeRange.H24: {
       return {
         year: 'numeric',
         month: 'short',
@@ -153,27 +155,27 @@ export const getDateTimeFormatOptions = (
         timeZone: timezone,
       };
     }
-    case TimeAverages.DAILY: {
+    case TimeRange.D30: {
       return {
         dateStyle: 'long',
         timeZone: 'UTC',
       };
     }
-    case TimeAverages.MONTHLY: {
+    case TimeRange.M12: {
       return {
         month: 'long',
         year: 'numeric',
         timeZone: 'UTC',
       };
     }
-    case TimeAverages.YEARLY: {
+    case TimeRange.ALL: {
       return {
         year: 'numeric',
         timeZone: 'UTC',
       };
     }
     default: {
-      console.error(`${timeAverage} is not implemented`);
+      console.error(`${timeRange} is not implemented`);
       return {};
     }
   }
@@ -182,30 +184,45 @@ export const getDateTimeFormatOptions = (
 const formatDate = (
   date: Date,
   lang: string,
-  timeAverage: TimeAverages,
+  timeRange: TimeRange,
   timezone?: string
 ) => {
-  if (!isValidDate(date) || !timeAverage) {
+  if (!isValidDate(date) || !timeRange) {
     return '';
   }
   return new Intl.DateTimeFormat(
     lang,
-    getDateTimeFormatOptions(timeAverage, timezone)
+    getDateTimeFormatOptions(timeRange, timezone)
   ).format(date);
 };
 
 const formatDateTick = (
   date: Date,
   lang: string,
-  timeAggregate: TimeAverages,
+  timeRange: TimeRange,
   timezone?: string
 ) => {
-  if (!isValidDate(date) || !timeAggregate) {
+  if (!isValidDate(date) || !timeRange) {
     return '';
   }
 
-  switch (timeAggregate) {
-    case TimeAverages.HOURLY: {
+  switch (timeRange) {
+    case TimeRange.H72: {
+      const { localHours, localMinutes } = getLocalTime(date, timezone);
+      if (localHours === 0 && localMinutes === 0) {
+        // Display date name when midnight
+        return new Intl.DateTimeFormat(lang, {
+          month: 'short',
+          day: 'numeric',
+          timeZone: 'UTC',
+        }).format(date);
+      }
+      return new Intl.DateTimeFormat(lang, {
+        timeStyle: 'short',
+        timeZone: timezone,
+      }).format(date);
+    }
+    case TimeRange.H24: {
       return new Intl.DateTimeFormat(lang, {
         timeStyle: 'short',
         timeZone: timezone,
@@ -213,14 +230,14 @@ const formatDateTick = (
     }
     // Instantiate below DateTimeFormat objects using UTC to avoid displaying
     // misleading time slider labels for users in UTC-negative offset timezones
-    case TimeAverages.DAILY: {
+    case TimeRange.D30: {
       return new Intl.DateTimeFormat(lang, {
         month: 'short',
         day: 'numeric',
         timeZone: 'UTC',
       }).format(date);
     }
-    case TimeAverages.MONTHLY: {
+    case TimeRange.M12: {
       return lang === 'et'
         ? new Intl.DateTimeFormat(lang, {
             month: 'short',
@@ -234,18 +251,34 @@ const formatDateTick = (
             timeZone: 'UTC',
           }).format(date);
     }
-    case TimeAverages.YEARLY: {
+    case TimeRange.ALL: {
       return new Intl.DateTimeFormat(lang, {
         year: 'numeric',
         timeZone: 'UTC',
       }).format(date);
     }
     default: {
-      console.error(`${timeAggregate} is not implemented`);
+      console.error(`${timeRange} is not implemented`);
       return '';
     }
   }
 };
+
+export function formatDateRange(
+  startDate: Date,
+  endDate: Date,
+  locale = 'en-US',
+  timeZone?: string
+) {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone,
+  });
+
+  return formatter.formatRange(startDate, endDate);
+}
 
 function isValidDate(date: Date) {
   if (!date || !(date instanceof Date)) {

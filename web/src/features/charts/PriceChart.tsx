@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
@@ -13,10 +13,10 @@ import PriceChartTooltip from './tooltips/PriceChartTooltip';
 
 interface PriceChartProps {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
-function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
+function PriceChart({ datetimes, timeRange }: PriceChartProps) {
   const { data, isLoading, isError } = usePriceChartData();
   const { t } = useTranslation();
 
@@ -51,14 +51,20 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
   if (!hasEnoughDataToDisplay) {
-    return <NotEnoughDataMessage title="country-history.electricityprices" />;
+    return (
+      <NotEnoughDataMessage
+        id={Charts.PRICE_CHART}
+        title="country-history.electricityprices"
+      />
+    );
   }
 
   return (
     <RoundedCard>
       <ChartTitle
-        translationKey="country-history.electricityprices"
+        titleText={t(`country-history.electricityprices.${timeRange}`)}
         unit={valueAxisLabel}
+        id={Charts.PRICE_CHART}
       />
       <div className="relative">
         {isPriceDisabled && (
@@ -75,10 +81,9 @@ function PriceChart({ datetimes, timeAverage }: PriceChartProps) {
           markerFill={markerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          isMobile={false}
           height="6em"
           datetimes={datetimes}
-          selectedTimeAggregate={timeAverage}
+          selectedTimeRange={timeRange}
           tooltip={PriceChartTooltip}
           isDisabled={isPriceDisabled}
         />

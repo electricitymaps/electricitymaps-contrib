@@ -1,3 +1,8 @@
+bounding_box:
+  - - 28.820493204932063
+    - -12.231828252510063
+  - - 40.948204482044844
+    - -0.49999995121406804
 country: TZ
 region: Africa
 timezone: Africa/Dar_es_Salaam

@@ -6,7 +6,7 @@ import type {
   Polygon,
 } from '@turf/turf';
 import { LineString, MultiLineString, Point } from 'geojson';
-import { EstimationMethods } from 'utils/constants';
+import { EstimationMethods, TimeRange } from 'utils/constants';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -164,6 +164,7 @@ export interface ZoneDetail extends ZoneOverview {
 export interface ZoneDetails {
   hasData: boolean;
   futurePrice: FuturePriceData;
+  //TODO Remove from backend, most likely unused
   stateAggregation: 'daily' | 'hourly' | 'monthly' | 'yearly';
   zoneStates: {
     [key: string]: ZoneDetail;
@@ -232,3 +233,10 @@ export interface FuturePriceData {
   source: string;
   zoneKey: ZoneKey;
 }
+
+// Type for the URL parameters that determine app state
+export type RouteParameters = {
+  zoneId?: string;
+  urlTimeRange?: TimeRange;
+  urlDatetime?: string;
+};

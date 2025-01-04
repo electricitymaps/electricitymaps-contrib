@@ -1,8 +1,5 @@
 {
   "info": {
-    "text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
-    "open-source-text": "Den här appen har <a href='{{link}}' target='_blank'>Öppen Källkod</a> och drivs av en gemenskap.",
-    "title": "Om appen",
     "version": "App version: {{version}}",
     "share-app": "Dela appen:"
   },
@@ -12,7 +9,6 @@
     "twitter": "Följ oss på X (Twitter)",
     "reddit": "Gå med i r/electricitymaps",
     "reddit-share": "Dela på Reddit",
-    "slack": "Gå med i Slack-gemenskapen",
     "privacy-policy": "Integritetspolicy",
     "legal-notice": "Rättsligt meddelande",
     "twitter-share": "Dela på X (Twitter)",
@@ -96,10 +92,9 @@
       "electricity-consumption": "Elkonsumtion",
       "total-emissions": "Totala koldioxidutsläpp",
       "total-electricity-production": "Total elproduktion",
-      "total-electricity-consumption": "Total ekonsumtion"
+      "total-electricity-consumption": "Total elkonsumtion"
     },
-    "electricityproduction": "Produktion",
-    "electricityconsumption": "Konsumption",
+    "electricityconsumption": "Elektricitet",
     "emissions": "Utsläpp",
     "graph-legends": {
       "installed-capacity": "Installerad kapacitet",
@@ -197,15 +192,17 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "Timvis data för:",
-      "daily": "Dagsvis data för:",
-      "monthly": "Månadsvis data för:",
-      "yearly": "Årsvis data för:"
+      "24h": "Timvis data för:",
+      "72h": "Timvis data för:",
+      "30d": "Dagsvis data för:",
+      "12mo": "Månadsvis data för:",
+      "all": "Årsvis data för:"
     },
-    "daily": "dagvis",
-    "hourly": "timvis",
-    "monthly": "månadsvis",
-    "yearly": "årsvis"
+    "30d": "dagvis",
+    "24h": "timvis",
+    "72h": "timvis",
+    "12mo": "månadsvis",
+    "all": "årsvis"
   },
   "ranking-panel": {
     "title": "Klimatpåverkan per region",
@@ -213,7 +210,6 @@
     "search": "Sök efter region"
   },
   "left-panel": {
-    "get-data": "Se våra kommersiella API-erbjudanden",
     "applied-methodologies": {
       "title": "Tillämpade metoder",
       "estimations": "Electricity Maps - Uppskattningar",
@@ -222,7 +218,6 @@
     }
   },
   "header": {
-    "get-data": "Använd vår data",
     "blog": "Blogg",
     "open-source": "Öppen källkod",
     "hiring": "Vi anställer!",
@@ -231,52 +226,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "hourly": "Timvis koldioxidintensitet",
-      "daily": "Daglig koldioxidintensitet",
-      "monthly": "Månadsvis koldioxidintensitet",
-      "yearly": "Årlig koldioxidintensitet"
+      "24h": "Timvis koldioxidintensitet",
+      "72h": "Timvis koldioxidintensitet",
+      "30d": "Daglig koldioxidintensitet",
+      "12mo": "Månadsvis koldioxidintensitet",
+      "all": "Årlig koldioxidintensitet"
     },
     "emissions": {
-      "hourly": "Timvisa koldioxidutsläpp",
-      "daily": "Dagliga koldioxidutsläpp",
-      "monthly": "Månadsvisa koldioxidutsläpp",
-      "yearly": "Årliga koldioxidutsläpp"
+      "24h": "Timvisa koldioxidutsläpp",
+      "72h": "Timvisa koldioxidutsläpp",
+      "30d": "Dagliga koldioxidutsläpp",
+      "12mo": "Månadsvisa koldioxidutsläpp",
+      "all": "Årliga koldioxidutsläpp"
     },
     "emissionsorigin": {
-      "hourly": "Timvis ursprung av koldioxidutsläpp",
-      "daily": "Dagligt ursprung av koldioxidutsläpp",
-      "monthly": "Månadsvis ursprung av koldioxidutsläpp",
-      "yearly": "Årligt ursprung av koldioxidutsläpp"
+      "24h": "Timvis ursprung av koldioxidutsläpp",
+      "72h": "Timvis ursprung av koldioxidutsläpp",
+      "30d": "Dagligt ursprung av koldioxidutsläpp",
+      "12mo": "Månadsvis ursprung av koldioxidutsläpp",
+      "all": "Årligt ursprung av koldioxidutsläpp"
     },
     "emissionsproduction": {
-      "hourly": "Timvisa produktionsutsläpp",
-      "daily": "Dagliga produktionsutsläpp",
-      "monthly": "Månadsvisa produktionsutsläpp",
-      "yearly": "Årliga produktionsutsläpp"
+      "24h": "Timvisa produktionsutsläpp",
+      "72h": "Timvisa produktionsutsläpp",
+      "30d": "Dagliga produktionsutsläpp",
+      "12mo": "Månadsvisa produktionsutsläpp",
+      "all": "Årliga produktionsutsläpp"
     },
     "electricityorigin": {
-      "hourly": "Timvis ursprung av elektricitet",
-      "daily": "Dagligt ursprung av elektricitet",
-      "monthly": "Månadsvis ursprung av elektricitet",
-      "yearly": "Årligt ursprung av elektricitet"
+      "24h": "Timvis ursprung av elektricitet",
+      "72h": "Timvis ursprung av elektricitet",
+      "30d": "Dagligt ursprung av elektricitet",
+      "12mo": "Månadsvis ursprung av elektricitet",
+      "all": "Årligt ursprung av elektricitet"
     },
     "electricityproduction": {
-      "hourly": "Timvis elproduktion",
-      "daily": "Daglig elproduktion",
-      "monthly": "Månadsvis elproduktion",
-      "yearly": "Årlig elproduktion"
+      "24h": "Timvis elproduktion",
+      "72h": "Timvis elproduktion",
+      "30d": "Daglig elproduktion",
+      "12mo": "Månadsvis elproduktion",
+      "all": "Årlig elproduktion"
     },
     "electricityprices": {
-      "hourly": "Timvisa elpriser",
-      "daily": "Dagliga elpriser",
-      "monthly": "Månadsvisa elpriser",
-      "yearly": "Årliga elpriser"
+      "24h": "Timvisa elpriser",
+      "72h": "Timvisa elpriser",
+      "30d": "Dagliga elpriser",
+      "12mo": "Månadsvisa elpriser",
+      "all": "Årliga elpriser"
     },
     "netExchange": {
-      "hourly": "Timvis nettohandel",
-      "daily": "Daglig nettohandel",
-      "monthly": "Månadsvis nettohandel",
-      "yearly": "Årlig nettohandel"
+      "24h": "Timvis nettoöverföring",
+      "72h": "Timvis nettoöverföring",
+      "30d": "Daglig nettoöverföring",
+      "12mo": "Månadsvis nettoöverföring",
+      "all": "Årlig nettoöverföring"
     },
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },
@@ -1412,9 +1415,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabach"
     },
     "NL": {
       "zoneName": "Nederländerna"

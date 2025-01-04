@@ -1,22 +1,24 @@
 import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
-import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
+import ApiButton from 'components/buttons/ApiButton';
+import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { ZoneMessage } from 'types';
-import { EstimationMethods, SpatialAggregate } from 'utils/constants';
+import { RouteParameters, ZoneMessage } from 'types';
+import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
+import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isHourlyAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
-  timeAverageAtom,
+  timeRangeAtom,
 } from 'utils/state/atoms';
-import { useIsMobile } from 'utils/styling';
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
@@ -29,14 +31,14 @@ import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
-  const { zoneId } = useParams();
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const { zoneId } = useParams<RouteParameters>();
+  const timeRange = useAtomValue(timeRangeAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
   const isHourly = useAtomValue(isHourlyAtom);
-  const isMobile = useIsMobile();
+  const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
 
@@ -54,33 +56,37 @@ export default function ZoneDetails(): JSX.Element {
     }
   }, [hasSubZones, isSubZone, setViewMode]);
 
+  useScrollHashIntoView(isLoading);
+
   if (!zoneId) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
   // TODO: App-backend should not return an empty array as "data" if the zone does not
   // exist.
   if (Array.isArray(data)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
+  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeRange);
 
   const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
-
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationPill =
+    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
     <>
-      <ZoneHeaderTitle zoneId={zoneId} />
+      <ZoneHeaderTitle zoneId={zoneId} isEstimated={cardType === 'estimated'} />
       <div
+        id="panel-scroller"
         className={twMerge(
-          'mb-3 h-full overflow-y-scroll px-3  pt-2 sm:h-full sm:pb-60',
+          'mb-3 h-full scroll-pt-5 overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-64',
           isIosCapacitor ? 'pb-72' : 'pb-48'
         )}
       >
@@ -91,7 +97,7 @@ export default function ZoneDetails(): JSX.Element {
               cardType={cardType}
               estimationMethod={estimationMethod}
               zoneMessage={zoneMessage}
-              estimatedPercentage={selectedData?.estimatedPercentage}
+              estimatedPercentage={roundedEstimatedPercentage}
             />
           )}
         <ZoneHeaderGauges zoneKey={zoneId} />
@@ -105,21 +111,22 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="link" />
+          <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
-              timeAverage={timeAverage}
+              timeRange={timeRange}
               displayByEmissions={displayByEmissions}
             />
           )}
+
           <MethodologyCard />
+          <HorizontalDivider />
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
+            <ApiButton size="sm" />
+          </div>
           <Attribution zoneId={zoneId} />
-          {isMobile ? (
-            <CommercialApiButton backgroundClasses="mt-3" />
-          ) : (
-            <div className="p-2" />
-          )}
         </ZoneDetailsContent>
       </div>
     </>
@@ -170,7 +177,7 @@ function ZoneDetailsContent({
   if (isError) {
     return (
       <div
-        data-test-id="no-parser-message"
+        data-testid="no-parser-message"
         className={`flex h-full w-full items-center justify-center text-sm`}
       >
         🤖 Unknown server error 🤖
@@ -190,3 +197,33 @@ function ZoneDetailsContent({
 
   return children as JSX.Element;
 }
+
+const useScrollHashIntoView = (isLoading: boolean) => {
+  const { hash, pathname, search } = useLocation();
+  const anchor = hash.toLowerCase();
+
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    const chartIds = Object.values<string>(Charts);
+    const anchorId = anchor.slice(1).toLowerCase(); // remove leading #
+
+    if (anchor && chartIds.includes(anchorId)) {
+      const anchorElement = anchor ? document.querySelector(anchor) : null;
+      if (anchorElement) {
+        anchorElement.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'nearest',
+        });
+      }
+    } else {
+      // If already scrolled to element, then reset scroll on re-navigation (i.e. clicking on new zone on map)
+      const element = document.querySelector('#panel-scroller');
+      if (element) {
+        element.scrollTop = 0;
+      }
+    }
+  }, [anchor, isLoading, pathname, search]);
+};

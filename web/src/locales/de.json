@@ -43,8 +43,7 @@
     "carbonintensity": "spezifische CO₂-Emissionen",
     "lowcarbon": "CO₂-arm",
     "renewable": "regenerativ",
-    "electricityproduction": "Produktion",
-    "electricityconsumption": "Verbrauch",
+    "electricityconsumption": "Elektrizität",
     "emissions": "Emissionen",
     "by-source": {
       "emissions": "CO₂-Emissionen",
@@ -77,15 +76,17 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "Stündliche Daten für:",
-      "daily": "Tägliche Daten für:",
-      "monthly": "Monatliche Daten für:",
-      "yearly": "Jährliche Daten für:"
+      "24h": "Stündliche Daten für:",
+      "72h": "Stündliche Daten für:",
+      "30d": "Tägliche Daten für:",
+      "12mo": "Monatliche Daten für:",
+      "all": "Jährliche Daten für:"
     },
-    "daily": "täglich",
-    "hourly": "stündlich",
-    "monthly": "monatlich",
-    "yearly": "jährlich"
+    "30d": "täglich",
+    "24h": "stündlich",
+    "72h": "stündlich",
+    "12mo": "monatlich",
+    "all": "jährlich"
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",
@@ -1090,9 +1091,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Bergkarabach"
     },
     "NL": {
       "zoneName": "Niederlande"

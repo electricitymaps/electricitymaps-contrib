@@ -26,8 +26,7 @@
     "carbonintensity": "Concentrația de dioxid de carbon",
     "lowcarbon": "Carbon redus",
     "renewable": "Energie regenerabilă",
-    "electricityproduction": "Producție",
-    "electricityconsumption": "Consum",
+    "electricityconsumption": "Electricitate",
     "emissions": "Emisii",
     "helpfrom": "cu ajutor de la",
     "noDataAtTimestamp": "Datele sunt indisponibile pentru perioada aleasă",
@@ -38,15 +37,15 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "Date orare pentru:",
-      "daily": "Date zilnice pentru:",
-      "monthly": "Date lunare pentru:",
-      "yearly": "Date anuale pentru:"
+      "24h": "Date orare pentru:",
+      "30d": "Date zilnice pentru:",
+      "12mo": "Date lunare pentru:",
+      "all": "Date anuale pentru:"
     },
-    "daily": "pe zi",
-    "hourly": "pe oră",
-    "monthly": "pe luna",
-    "yearly": "pe an"
+    "30d": "pe zi",
+    "24h": "pe oră",
+    "12mo": "pe luna",
+    "all": "pe an"
   },
   "ranking-panel": {
     "title": "Impact asupra climei în funcție de zonă",
@@ -1103,9 +1102,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Netherlands"

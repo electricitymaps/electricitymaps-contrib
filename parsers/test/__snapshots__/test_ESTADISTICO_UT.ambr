@@ -1,0 +1,56 @@
+# serializer version: 1
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 1, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/El_Salvador')),
+      'production': dict({
+        'biomass': 145.81,
+        'geothermal': 162.33,
+        'hydro': 160.81,
+        'unknown': 58.28,
+        'wind': 18.08,
+      }),
+      'source': 'ut.com.sv',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SV',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 1, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/El_Salvador')),
+      'production': dict({
+        'biomass': 147.53,
+        'geothermal': 165.11,
+        'hydro': 129.55,
+        'unknown': 59.52,
+        'wind': 15.79,
+      }),
+      'source': 'ut.com.sv',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SV',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 1, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/El_Salvador')),
+      'production': dict({
+        'biomass': 148.04,
+        'geothermal': 166.12,
+        'hydro': 97.36,
+        'unknown': 56.4,
+        'wind': 19.01,
+      }),
+      'source': 'ut.com.sv',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SV',
+    }),
+  ])
+# ---

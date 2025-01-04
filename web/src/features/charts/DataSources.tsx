@@ -1,6 +1,6 @@
 import * as Portal from '@radix-ui/react-portal';
 import { Button } from 'components/Button';
-import { Link } from 'components/Link';
+import Link from 'components/Link';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { TFunction } from 'i18next';
 import { Info, X } from 'lucide-react';
@@ -26,7 +26,8 @@ export function DataSources({
   const { t } = useTranslation();
   const isMobile = !useBreakpoint('md');
   const showDataSources = Boolean(
-    sources?.length > 0 || emissionFactorSourcesToProductionSources
+    sources?.length > 0 ||
+      Object.keys(emissionFactorSourcesToProductionSources || {}).length > 0
   );
 
   if (showDataSources == false) {
@@ -53,7 +54,6 @@ export function DataSources({
                 : 'rounded-xl min-w-64 text-left dark:bg-gray-900 dark:border-1 dark:border-gray-700'
             }
             side="bottom"
-            isMobile={isMobile}
           >
             <Info className="text-emerald-800 dark:text-emerald-500" size={16} />
           </TooltipWrapper>

@@ -3,7 +3,7 @@ import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/Feedbac
 import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import {
   ChartNoAxesColumn,
   CircleDashed,
@@ -51,7 +51,7 @@ export default function EstimationCard({
 }) {
   const { t } = useTranslation();
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
-  const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
+  const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
   const isTSAModel = estimationMethod === EstimationMethods.TSA;
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
@@ -178,7 +178,7 @@ function BaseCard({
       >
         <div className="flex flex-col gap-2">
           <div
-            data-test-id="body-text"
+            data-testid="body-text"
             className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
           >
             {estimationMethod != 'outage' && bodyText}
@@ -191,7 +191,7 @@ function BaseCard({
               href="https://www.electricitymaps.com/methodology#missing-data"
               target="_blank"
               rel="noreferrer"
-              data-test-id="methodology-link"
+              data-testid="methodology-link"
               className={`text-sm font-semibold text-black underline dark:text-white`}
               onClick={() => {
                 trackEvent(TrackEvent.ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED, {

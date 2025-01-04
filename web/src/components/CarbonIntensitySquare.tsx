@@ -1,4 +1,5 @@
 import { animated, useSpring } from '@react-spring/web';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
@@ -60,7 +61,7 @@ function CarbonIntensitySquare({
             >
               <p
                 className="select-none text-base leading-none"
-                data-test-id="co2-square-value"
+                data-testid="co2-square-value"
               >
                 <span className="font-semibold">{Math.round(intensity) || '?'}</span>
                 <span className="text-xs font-semibold">g</span>
@@ -80,4 +81,4 @@ function CarbonIntensitySquare({
   );
 }
 
-export default CarbonIntensitySquare;
+export default memo(CarbonIntensitySquare);

@@ -6,7 +6,6 @@
     "feedback": "Deli povratne informacije",
     "github": "Oglejte si naš GitHub",
     "twitter": "Deli na Twitterju",
-    "slack": "Pridruži se skupnosti Slack",
     "privacy-policy": "Politika zasebnosti",
     "legal-notice": "Pravno obvestilo"
   },
@@ -1131,9 +1130,6 @@
     },
     "NI": {
       "zoneName": "Nikaragva"
-    },
-    "NKR": {
-      "zoneName": "Gorski Karabah"
     },
     "NL": {
       "zoneName": "Nizozemska"

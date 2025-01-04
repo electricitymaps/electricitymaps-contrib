@@ -1,10 +1,11 @@
 import { Capacitor } from '@capacitor/core';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Button } from 'components/Button';
-import { Link } from 'components/Link';
+import Link from 'components/Link';
 import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
 import { useSetAtom } from 'jotai';
 import { ExternalLink } from 'lucide-react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
@@ -20,6 +21,10 @@ interface MenuLinkProps {
   onClick?: () => void;
 }
 
+const handleClick = () => {
+  trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: 'get-data' });
+};
+
 function MenuLink({
   children,
   href,
@@ -27,10 +32,11 @@ function MenuLink({
   id,
   onClick,
 }: MenuLinkProps): JSX.Element {
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: id });
     onClick?.();
-  };
+  }, [id, onClick]);
+
   return (
     <NavigationMenu.Item
       asChild
@@ -57,10 +63,12 @@ function MenuLink({
 export default function Header(): JSX.Element {
   const isMobileApp = Capacitor.isNativePlatform();
   const setIsFAQModalOpen = useSetAtom(isFAQModalOpenAtom);
-  const onFAQClick = () => {
-    setIsFAQModalOpen(true);
-  };
   const { t } = useTranslation();
+
+  const onFAQClick = useCallback(() => {
+    setIsFAQModalOpen(true);
+  }, [setIsFAQModalOpen]);
+
   return (
     <header
       className={twMerge(
@@ -105,14 +113,12 @@ export default function Header(): JSX.Element {
             {t('header.blog')}
           </MenuLink>
           <Button
-            onClick={() => {
-              trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: 'get-data' });
-            }}
+            onClick={handleClick}
             backgroundClasses="my-2.5"
-            foregroundClasses="text-base font-normal lg:text-[1rem] py-1 px-6"
+            foregroundClasses="text-base lg:text-[1rem] py-1 px-6"
             href="https://electricitymaps.com/get-our-data?utm_source=app.electricitymaps.com&utm_medium=referral"
           >
-            {t('header.get-data')}
+            {t('button.api')}
           </Button>
         </NavigationMenu.List>
       </NavigationMenu.Root>

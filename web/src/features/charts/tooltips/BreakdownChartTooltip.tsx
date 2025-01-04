@@ -7,13 +7,14 @@ import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe, ZoneDetail } from 'types';
-import { EstimationMethods, modeColor, TimeAverages } from 'utils/constants';
+import { EstimationMethods, modeColor, TimeRange } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
+import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
   isHourlyAtom,
-  timeAverageAtom,
+  timeRangeAtom,
 } from 'utils/state/atoms';
 
 import { getGenerationTypeKey, getRatioPercent } from '../graphUtils';
@@ -106,7 +107,7 @@ export default function BreakdownChartTooltip({
   selectedLayerKey,
 }: InnerAreaGraphTooltipProps) {
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
 
   if (!zoneDetail || !selectedLayerKey) {
@@ -124,7 +125,9 @@ export default function BreakdownChartTooltip({
   );
 
   const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
-  const hasEstimationPill = estimationMethod != undefined || Boolean(estimatedPercentage);
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationPill =
+    estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
 
   return (
     <BreakdownChartTooltipContent
@@ -132,9 +135,9 @@ export default function BreakdownChartTooltip({
       datetime={new Date(stateDatetime)}
       isExchange={isExchange}
       selectedLayerKey={selectedLayerKey}
-      timeAverage={timeAverage}
+      timeRange={timeRange}
       hasEstimationPill={hasEstimationPill}
-      estimatedPercentage={estimatedPercentage}
+      estimatedPercentage={roundedEstimatedPercentage}
       estimationMethod={estimationMethod}
     ></BreakdownChartTooltipContent>
   );
@@ -147,7 +150,7 @@ interface BreakdownChartTooltipContentProperties {
   totalElectricity: number;
   totalEmissions: number;
   co2Intensity: number;
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
   displayByEmissions: boolean;
   emissions: number;
   zoneKey: string;
@@ -168,7 +171,7 @@ export function BreakdownChartTooltipContent({
   usage,
   totalElectricity,
   displayByEmissions,
-  timeAverage,
+  timeRange,
   capacity,
   emissions,
   isExport,
@@ -203,7 +206,7 @@ export function BreakdownChartTooltipContent({
             : modeColor[selectedLayerKey as ElectricityModeType]
         }
         datetime={datetime}
-        timeAverage={timeAverage}
+        timeRange={timeRange}
         title={title}
         hasEstimationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
@@ -276,7 +279,6 @@ export function BreakdownChartTooltipContent({
       )}
       {!displayByEmissions && (Number.isFinite(co2Intensity) || usage !== 0) && (
         <>
-          <br />
           <br />
           {t('tooltips.withcarbonintensity')}
           <br />

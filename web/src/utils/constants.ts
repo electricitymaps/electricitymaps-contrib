@@ -5,12 +5,24 @@ export const metaTitleSuffix = ' | App | Electricity Maps';
 export const baseUrl = 'https://app.electricitymaps.com';
 
 // The order here determines the order displayed
-export enum TimeAverages {
-  HOURLY = 'hourly',
-  DAILY = 'daily',
-  MONTHLY = 'monthly',
-  YEARLY = 'yearly',
+export enum TimeRange {
+  H24 = '24h',
+  H72 = '72h',
+  D30 = '30d',
+  M12 = '12mo',
+  ALL = 'all',
 }
+
+export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
+
+// used in TimeAxis & areWeatherLayersAllowedAtom
+// accommodates 0-based index for 72 hours
+export const HOURLY_TIME_INDEX: Partial<Record<TimeRange, number>> = {
+  [TimeRange.H24]: 24,
+  [TimeRange.H72]: 71,
+};
+
+export const historicalTimeRange = [TimeRange.H24, TimeRange.H72];
 
 export enum ToggleOptions {
   ON = 'on',
@@ -38,11 +50,20 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+export enum Charts {
+  PRICE_CHART = 'price_chart',
+  ORIGIN_CHART = 'origin_chart',
+  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
+  CARBON_CHART = 'carbon_chart',
+  EMISSION_CHART = 'emission_chart',
+  NET_EXCHANGE_CHART = 'net_exchange_chart',
+}
+
 export enum TrackEvent {
-  DATA_SOURCES_CLICKED = 'Data Sources Clicked',
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
   APP_BANNER_DISMISSED = 'App Banner Dismissed',
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
+  SHARE_CHART = 'Share Chart',
   FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
   APP_LOADED = 'App Loaded',
   PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
@@ -57,12 +78,13 @@ export enum TrackEvent {
   PANEL_PRODUCTION_BUTTON_CLICKED = 'PanelProductionButton Clicked',
   PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
   ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
-  APPLIED_METHODOLOGIES_EXPANDED = 'AppliedMethodologies Expanded',
+  METHODOLOGIES_AND_DATA_SOURCES_EXPANDED = 'Methodologies and Data Sources Expanded',
   TIME_AGGREGATE_BUTTON_CLICKED = 'Time Aggregate Button Clicked',
   SOLAR_ENABLED = 'Solar Enabled',
   SOLAR_DISABLED = 'Solar Disabled',
   WIND_ENABLED = 'Wind Enabled',
   WIND_DISABLED = 'Wind Disabled',
+  HISTORICAL_NAVIGATION = 'Historical Navigation',
 }
 
 // color of different production modes are based on various industry standards
@@ -118,12 +140,13 @@ export const modeOrderBarBreakdown = [
   'unknown',
 ] as const;
 
-//A mapping between the TimeAverages enum and the corresponding Duration for the date-fns add/substract method
-export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
-  daily: 'days',
-  hourly: 'hours',
-  monthly: 'months',
-  yearly: 'years',
+// A mapping between the TimeRange enum and the corresponding Duration for the date-fns add/substract method
+export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
+  [TimeRange.D30]: 'days',
+  [TimeRange.H24]: 'hours',
+  [TimeRange.H72]: 'hours',
+  [TimeRange.M12]: 'months',
+  [TimeRange.ALL]: 'years',
 };
 /**
  * A mapping between the source name and a link to the source.
@@ -238,6 +261,7 @@ export const sourceLinkMapping: { [key: string]: string } = {
 };
 
 export const DEFAULT_ICON_SIZE = 16;
+export const DEFAULT_TOAST_DURATION = 3 * 1000; // 3s
 
 export enum EstimationMethods {
   TSA = 'ESTIMATED_TIME_SLICER_AVERAGE',
@@ -250,4 +274,5 @@ export enum EstimationMethods {
   AGGREGATED = 'aggregated',
   THRESHOLD_FILTERED = 'threshold_filtered',
   OUTAGE = 'outage',
+  GENERAL_PURPOSE_ZONE_MODEL = 'ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL',
 }

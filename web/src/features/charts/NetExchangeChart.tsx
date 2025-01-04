@@ -1,5 +1,6 @@
-import { useAtom } from 'jotai';
-import { TimeAverages } from 'utils/constants';
+import { useAtomValue } from 'jotai';
+import { useTranslation } from 'react-i18next';
+import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
@@ -7,18 +8,20 @@ import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
+import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { RoundedCard } from './RoundedCard';
 import NetExchangeChartTooltip from './tooltips/NetExchangeChartTooltip';
 
 interface NetExchangeChartProps {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
-function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
+function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
-  const [productionConsumption] = useAtom(productionConsumptionAtom);
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const productionConsumption = useAtomValue(productionConsumptionAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const { t } = useTranslation();
   if (productionConsumption === 'production') {
     return null;
   }
@@ -42,7 +45,11 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
 
   return (
     <RoundedCard className="pb-2">
-      <ChartTitle translationKey="country-history.netExchange" unit={valueAxisLabel} />
+      <ChartTitle
+        titleText={t(`country-history.netExchange.${timeRange}`)}
+        unit={valueAxisLabel}
+        id={Charts.NET_EXCHANGE_CHART}
+      />
       <div className="relative">
         <AreaGraph
           testId="history-exchange-graph"
@@ -53,13 +60,13 @@ function NetExchangeChart({ datetimes, timeAverage }: NetExchangeChartProps) {
           markerFill={markerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          isMobile={false}
           height="10em"
           datetimes={datetimes}
-          selectedTimeAggregate={timeAverage}
+          selectedTimeRange={timeRange}
           tooltip={NetExchangeChartTooltip}
           formatTick={formatAxisTick}
         />
+        <MissingExchangeDataDisclaimer />
       </div>
     </RoundedCard>
   );

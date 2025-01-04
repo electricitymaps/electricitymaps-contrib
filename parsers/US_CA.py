@@ -18,10 +18,10 @@ from parsers.lib.config import refetch_frequency
 
 CAISO_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 PRODUCTION_URL_REAL_TIME = (
-    f"{CAISO_PROXY}/outlook/SP/fuelsource.csv?host=https://www.caiso.com"
+    f"{CAISO_PROXY}/outlook/current/fuelsource.csv?host=https://www.caiso.com"
 )
 DEMAND_URL_REAL_TIME = (
-    f"{CAISO_PROXY}/outlook/SP/netdemand.csv?host=https://www.caiso.com"
+    f"{CAISO_PROXY}/outlook/current/netdemand.csv?host=https://www.caiso.com"
 )
 
 HISTORICAL_URL_MAPPING = {"production": "fuelsource", "consumption": "netdemand"}
@@ -29,7 +29,6 @@ REAL_TIME_URL_MAPPING = {
     "production": PRODUCTION_URL_REAL_TIME,
     "consumption": DEMAND_URL_REAL_TIME,
 }
-
 PRODUCTION_MODES_MAPPING = {
     "solar": "solar",
     "wind": "wind",
@@ -59,7 +58,7 @@ def get_target_url(target_datetime: datetime | None, kind: str) -> str:
         target_datetime = datetime.now(tz=timezone.utc)
         target_url = REAL_TIME_URL_MAPPING[kind]
     else:
-        target_url = f"{CAISO_PROXY}/outlook/SP/History/{target_datetime.strftime('%Y%m%d')}/{HISTORICAL_URL_MAPPING[kind]}.csv?host=https://www.caiso.com"
+        target_url = f"{CAISO_PROXY}/outlook/history/{target_datetime.strftime('%Y%m%d')}/{HISTORICAL_URL_MAPPING[kind]}.csv?host=https://www.caiso.com"
     return target_url
 
 

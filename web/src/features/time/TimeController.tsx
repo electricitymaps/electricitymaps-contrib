@@ -1,32 +1,44 @@
 import useGetState from 'api/getState';
-import TimeAverageToggle from 'components/TimeAverageToggle';
+import TimeRangeToggle from 'components/TimeRangeToggle';
 import TimeSlider from 'components/TimeSlider';
-import { useAtom, useAtomValue } from 'jotai';
+import { useFeatureFlag } from 'features/feature-flags/api';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
-import { getZoneTimezone, useGetZoneFromPath } from 'utils/helpers';
+import { TimeRange, TrackEvent } from 'utils/constants';
+import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
+  endDatetimeAtom,
   isHourlyAtom,
+  isRedirectedToLatestDatetimeAtom,
   selectedDatetimeIndexAtom,
-  timeAverageAtom,
+  startDatetimeAtom,
+  useTimeRangeSync,
 } from 'utils/state/atoms';
 import { useIsBiggerThanMobile } from 'utils/styling';
 
+import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeAxis from './TimeAxis';
 import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
-  const [timeAverage, setTimeAverage] = useAtom(timeAverageAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
   const isBiggerThanMobile = useIsBiggerThanMobile();
-  const zoneId = useGetZoneFromPath();
+  const { zoneId } = useParams<RouteParameters>();
+  const [selectedTimeRange, setTimeRange] = useTimeRangeSync();
+  const setEndDatetime = useSetAtom(endDatetimeAtom);
+  const setStartDatetime = useSetAtom(startDatetimeAtom);
+  const { urlDatetime } = useParams();
+  const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const zoneTimezone = getZoneTimezone(zoneId);
-
+  const navigate = useNavigateWithParameters();
+  const setIsRedirectedToLatestDatetime = useSetAtom(isRedirectedToLatestDatetimeAtom);
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
   const isLoading = dataLoading || Object.keys(data?.data?.datetimes ?? {}).length === 1;
@@ -49,8 +61,30 @@ export default function TimeController({ className }: { className?: string }) {
         datetime: datetimes.at(-1) as Date,
         index: datetimes.length - 1,
       });
+      setEndDatetime(datetimes.at(-1));
+      setStartDatetime(datetimes.at(0));
     }
-  }, [data, datetimes, setSelectedDatetime]);
+  }, [data, datetimes, setEndDatetime, setSelectedDatetime, setStartDatetime]);
+
+  // Sync the url to the datetime returned by the backend
+  useEffect(() => {
+    if (!datetimes || !urlDatetime) {
+      return;
+    }
+
+    const endDatetime = datetimes.at(-1);
+    if (!endDatetime) {
+      return;
+    }
+
+    const urlDate = new Date(urlDatetime).getTime();
+    const endDate = endDatetime.getTime();
+
+    if (urlDate !== endDate) {
+      setIsRedirectedToLatestDatetime(true);
+      navigate({ datetime: '' });
+    }
+  }, [datetimes, urlDatetime, navigate, setIsRedirectedToLatestDatetime]);
 
   const onTimeSliderChange = useCallback(
     (index: number) => {
@@ -67,25 +101,29 @@ export default function TimeController({ className }: { className?: string }) {
   );
 
   const onToggleGroupClick = useCallback(
-    (timeAverage: TimeAverages) => {
+    (timeRange: TimeRange) => {
       // Set time slider to latest value before switching aggregate to avoid flickering
       setSelectedDatetime({
         datetime: selectedDatetime.datetime,
         index: numberOfEntries,
       });
-      setTimeAverage(timeAverage);
-      trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeAverage });
+      setTimeRange(timeRange);
+      trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeRange });
     },
-    [selectedDatetime.datetime, numberOfEntries, setSelectedDatetime, setTimeAverage]
+    [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeRange]
   );
 
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
-      {isBiggerThanMobile && <TimeHeader />}
-      <TimeAverageToggle
-        timeAverage={timeAverage}
-        onToggleGroupClick={onToggleGroupClick}
-      />
+      {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
+      {isBiggerThanMobile && historicalLinkingEnabled && <HistoricalTimeHeader />}
+      <div className="flex items-center gap-2">
+        <TimeRangeToggle
+          timeRange={selectedTimeRange || TimeRange.H24}
+          onToggleGroupClick={onToggleGroupClick}
+        />
+      </div>
+
       <div>
         {/* The above div is needed to treat the TimeSlider and TimeAxis as one DOM element */}
         <TimeSlider
@@ -95,12 +133,13 @@ export default function TimeController({ className }: { className?: string }) {
         />
         <TimeAxis
           datetimes={datetimes}
-          selectedTimeAggregate={timeAverage}
+          selectedTimeRange={selectedTimeRange || TimeRange.H24}
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}
-          isLiveDisplay={isHourly}
+          isLiveDisplay={isHourly && !urlDatetime}
           timezone={zoneTimezone}
+          isTimeController={true}
         />
       </div>
     </div>

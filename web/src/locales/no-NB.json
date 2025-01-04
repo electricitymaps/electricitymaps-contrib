@@ -83,14 +83,9 @@
   "geothermal": "Jordvarme",
   "hydro": "Vannkraft",
   "hydro storage": "Pumpekraftverk",
-  "info": {
-    "text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
-    "open-source-text": "Tjenesten er <a href='{{link}}' target='_blank'>åpen kildekode</a> og utviklet i samarbeid med frivillige."
-  },
   "button": {
     "privacy-policy": "Personvern",
     "legal-notice": "Juridisk",
-    "slack": "Bli med i Slack-kanalen",
     "twitter": "Del på X/Twitter",
     "feedback": "Send tilbakemelding",
     "github": "Se på GitHub"
@@ -1211,9 +1206,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Nederland"

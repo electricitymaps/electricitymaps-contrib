@@ -1,8 +1,7 @@
 {
   "info": {
-    "title": "About the app",
-    "text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
-    "open-source-text": "This app is <a href='{{link}}' target='_blank'>Open Source</a> and powered by the community.",
+    "title": "About Electricity Maps",
+    "text": "is an API platform providing real-time and predictive electricity signals allowing any device to reduce their cost and emissions by informing them about the best time to consume electricity.",
     "version": "App version: {{version}}",
     "share-app": "Share the app:"
   },
@@ -10,18 +9,18 @@
     "title": "Settings"
   },
   "ranking-panel": {
-    "title": "Climate Impact by Area",
-    "subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-    "search": "Search areas",
+    "title": "Electricity Grid Carbon Emissions",
+    "subtitle": "See where your electricity comes from<br/> and how much CO2 was emitted to produce it",
+    "search": "Search areas (ranked by carbon intensity)",
     "no-results": "No results found for this search 🌍"
   },
   "button": {
+    "bluesky-share": "Check real-time global electricity emissions data: {{baseUrl}}",
     "reddit": "Join r/electricitymaps",
     "reddit-share": "Share on Reddit",
     "github": "Contribute on GitHub",
     "twitter": "Follow us on X (Twitter)",
     "twitter-share": "Share on X (Twitter)",
-    "slack": "Join our Slack community",
     "linkedin": "Follow us on LinkedIn",
     "linkedin-share": "Share on LinkedIn",
     "facebook": "Follow us on Facebook",
@@ -29,7 +28,9 @@
     "feedback": "Share feedback",
     "faq": "FAQ",
     "privacy-policy": "Privacy Policy",
-    "legal-notice": "Legal Notice"
+    "legal-notice": "Legal Notice",
+    "api": "Access the API",
+    "docs": "API documentation"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -44,6 +45,21 @@
     "clipboard": "URL copied to clipboard!",
     "clipboard-error": "Error copying URL to clipboard",
     "share-error": "Error sharing URL"
+  },
+  "more-options-dropdown": {
+    "title": "Share",
+    "chart-title": "Share chart",
+    "zone-title": "Share zone",
+    "mobile-share-via": "Share via",
+    "copy-link": "Copy link",
+    "copy-chart-link": "Copy link to chart",
+    "copy-zone-link": "Copy link to zone",
+    "preliminary-data": "Preliminary data may change over time.",
+    "summary": "Discover real-time electricity insights with the Electricity Maps app!"
+  },
+  "new-feature-popover": {
+    "title": "New feature: 72-hour view",
+    "content": "Explore trends in live and historical data with the new 72-hour window."
   },
   "onboarding-modal": {
     "view1": {
@@ -83,12 +99,12 @@
     "emission": "Emission factor data"
   },
   "country-panel": {
+    "forecastCta": "Looking for forecast data?",
     "source": "Source",
     "carbonintensity": "Carbon Intensity",
     "lowcarbon": "Low-carbon",
     "renewable": "Renewable",
-    "electricityproduction": "Production",
-    "electricityconsumption": "Consumption",
+    "electricityconsumption": "Electricity",
     "emissions": "Emissions",
     "helpfrom": "With help from:",
     "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
@@ -131,7 +147,7 @@
       "hide": "Hide upcoming prices",
       "today": "Today",
       "tomorrow": "Tomorrow",
-      "price-disclaimer": "Prices exclude taxes and any grid fees.",
+      "price-disclaimer": "All prices are per MWh, excl. taxes & grid fees.",
       "time-disclaimer": "All times shown are in",
       "at": "At",
       "now": "Now"
@@ -201,6 +217,11 @@
       "pill": "Not realtime",
       "body": "The data for this zone is not published in realtime and only provides the total production. Both hourly production and production sources are estimated based on historical data for each production source."
     },
+    "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
+      "title": "Data is always estimated",
+      "pill": "Estimated",
+      "body": "Real-time source data for this zone is not available. Current values are modelled using a combination of live weather data and historical production data."
+    },
     "threshold_filtered": {
       "title": "Missing data",
       "pill": "Data outage",
@@ -222,83 +243,107 @@
   },
   "time-controller": {
     "title": {
-      "hourly": "Hourly data for:",
-      "daily": "Daily data for:",
-      "monthly": "Monthly data for:",
-      "yearly": "Yearly data for:"
+      "24h": "Hourly data for:",
+      "72h": "72 hour data for:",
+      "30d": "Daily data for:",
+      "12mo": "Monthly data for:",
+      "all": "Yearly data for:"
     },
-    "daily": "daily",
-    "hourly": "hourly",
-    "monthly": "monthly",
-    "yearly": "yearly"
+    "24h": "24h",
+    "72h": "72h",
+    "30d": "30d",
+    "12mo": "12mo",
+    "all": "all",
+    "historical-linking": {
+      "24h": "24h",
+      "72h": "72h",
+      "30d": "30d",
+      "12mo": "12mo",
+      "all": "all"
+    },
+    "date-unavailable": {
+      "title": "Date unavailable",
+      "description": "Redirecting to live data"
+    }
   },
   "left-panel": {
-    "get-data": "See our commercial API offerings",
     "applied-methodologies": {
       "title": "Applied methodologies",
       "estimations": "Electricity Maps - Estimations",
       "flowtracing": "Electricity Maps - Flow-tracing",
-      "carbonintensity": "Electricity Maps - Carbon intensity"
+      "carbonintensity": "Electricity Maps - Carbon intensity",
+      "historicalAggregations": "Electricity Maps - Historical aggregations"
+    },
+    "methodologies-and-data-sources": {
+      "title": "Methodologies and data sources"
     }
   },
   "header": {
-    "get-data": "Get our data",
     "blog": "Blog",
-    "open-source": "Open Source",
+    "open-source": "Community",
     "hiring": "We're hiring!",
     "methodology": "Methodology",
     "faq": "FAQ"
   },
   "country-history": {
     "carbonintensity": {
-      "hourly": "Hourly carbon intensity",
-      "daily": "Daily carbon intensity",
-      "monthly": "Monthly carbon intensity",
-      "yearly": "Yearly carbon intensity"
+      "24h": "Hourly carbon intensity",
+      "72h": "Hourly carbon intensity",
+      "30d": "Daily carbon intensity",
+      "12mo": "Monthly carbon intensity",
+      "all": "Yearly carbon intensity"
     },
     "emissions": {
-      "hourly": "Hourly carbon emissions",
-      "daily": "Daily carbon emissions",
-      "monthly": "Monthly carbon emissions",
-      "yearly": "Yearly carbon emissions"
+      "24h": "Hourly carbon emissions",
+      "72h": "Hourly carbon emissions",
+      "30d": "Daily carbon emissions",
+      "12mo": "Monthly carbon emissions",
+      "all": "Yearly carbon emissions"
     },
     "emissionsorigin": {
-      "hourly": "Hourly carbon emission origin",
-      "daily": "Daily carbon emission origin",
-      "monthly": "Monthly carbon emission origin",
-      "yearly": "Yearly carbon emission origin"
+      "24h": "Hourly carbon emission origin",
+      "72h": "Hourly carbon emission origin",
+      "30d": "Daily carbon emission origin",
+      "12mo": "Monthly carbon emission origin",
+      "all": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
-      "hourly": "Hourly production emissions",
-      "daily": "Daily production emissions",
-      "monthly": "Monthly production emissions",
-      "yearly": "Yearly production emissions"
+      "24h": "Hourly production emissions",
+      "72h": "Hourly production emissions",
+      "30d": "Daily production emissions",
+      "12mo": "Monthly production emissions",
+      "all": "Yearly production emissions"
     },
     "electricityorigin": {
-      "hourly": "Hourly electricity origin",
-      "daily": "Daily electricity origin",
-      "monthly": "Monthly electricity origin",
-      "yearly": "Yearly electricity origin"
+      "24h": "Hourly electricity origin",
+      "72h": "Hourly electricity origin",
+      "30d": "Daily electricity origin",
+      "12mo": "Monthly electricity origin",
+      "all": "Yearly electricity origin"
     },
     "electricityproduction": {
-      "hourly": "Hourly electricity production",
-      "daily": "Daily electricity production",
-      "monthly": "Monthly electricity production",
-      "yearly": "Yearly electricity production"
+      "24h": "Hourly electricity production",
+      "72h": "Hourly electricity production",
+      "30d": "Daily electricity production",
+      "12mo": "Monthly electricity production",
+      "all": "Yearly electricity production"
     },
     "electricityprices": {
-      "hourly": "Hourly electricity prices",
-      "daily": "Daily electricity prices",
-      "monthly": "Monthly electricity prices",
-      "yearly": "Yearly electricity prices"
+      "24h": "Hourly electricity prices",
+      "72h": "Hourly electricity prices",
+      "30d": "Daily electricity prices",
+      "12mo": "Monthly electricity prices",
+      "all": "Yearly electricity prices"
     },
     "netExchange": {
-      "hourly": "Hourly net exchange",
-      "daily": "Daily net exchange",
-      "monthly": "Monthly net exchange",
-      "yearly": "Yearly net exchange"
+      "24h": "Hourly net exchange",
+      "72h": "Hourly net exchange",
+      "30d": "Daily net exchange",
+      "12mo": "Monthly net exchange",
+      "all": "Yearly net exchange"
     },
-    "not-enough-data": "Not enough data available to display chart"
+    "not-enough-data": "Not enough data available to display chart",
+    "exchange-delay": "Exchange data may be delayed by up to 48h."
   },
   "footer": {
     "foundbugs": "Found bugs or have ideas? Report them",
@@ -1447,9 +1492,6 @@
     "NI": {
       "zoneName": "Nicaragua"
     },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
-    },
     "NL": {
       "zoneName": "Netherlands"
     },
@@ -1749,7 +1791,8 @@
       "zoneName": "United States Minor Outlying Islands"
     },
     "US": {
-      "zoneName": "Contiguous United States"
+      "zoneName": "Contiguous United States",
+      "seoZoneName": "United States of America - U.S."
     },
     "US-AK": {
       "countryName": "USA",
@@ -1794,16 +1837,19 @@
     "US-CAL-BANC": {
       "countryName": "USA",
       "displayName": "BANC",
-      "zoneName": "Balancing Authority of Northern California"
+      "zoneName": "Balancing Authority of Northern California",
+      "seoZoneName": "Balancing Authority of Northern California - BANC"
     },
     "US-CAL-CISO": {
       "countryName": "USA",
       "displayName": "California ISO",
-      "zoneName": "CAISO"
+      "zoneName": "CAISO",
+      "seoZoneName": "California ISO - CAISO "
     },
     "US-CAL-IID": {
       "countryName": "USA",
-      "zoneName": "Imperial Irrigation District"
+      "zoneName": "Imperial Irrigation District",
+      "seoZoneName": "Imperial Irrigation District - California"
     },
     "US-CAL-LDWP": {
       "countryName": "USA",
@@ -1815,15 +1861,18 @@
     },
     "US-CAR-CPLE": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Progress East"
+      "zoneName": "Duke Energy Progress East",
+      "seoZoneName": "Duke Energy Progress East - North Carolina"
     },
     "US-CAR-CPLW": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Progress West"
+      "zoneName": "Duke Energy Progress West",
+      "seoZoneName": "Duke Energy Progress West - North Carolina"
     },
     "US-CAR-DUK": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Carolinas"
+      "zoneName": "Duke Energy Carolinas",
+      "seoZoneName": "Duke Energy Carolinas - North and South Carolina"
     },
     "US-CAR-SC": {
       "countryName": "USA",
@@ -1845,7 +1894,8 @@
     "US-CENT-SWPP": {
       "countryName": "USA",
       "displayName": "SPP",
-      "zoneName": "Southwest Power Pool"
+      "zoneName": "Southwest Power Pool",
+      "seoZoneName": "Southwest Power Pool - SPP"
     },
     "US-FLA-FMPP": {
       "countryName": "USA",
@@ -1886,7 +1936,8 @@
     "US-MIDA-PJM": {
       "countryName": "USA",
       "displayName": "PJM",
-      "zoneName": "PJM Interconnection"
+      "zoneName": "PJM Interconnection",
+      "seoZoneName": "PJM Interconnection - Mid-Atlantic US"
     },
     "US-MIDW-AECI": {
       "countryName": "USA",
@@ -1900,11 +1951,13 @@
     "US-MIDW-MISO": {
       "countryName": "USA",
       "displayName": "MISO",
-      "zoneName": "Midcontinent ISO"
+      "zoneName": "Midcontinent ISO",
+      "seoZoneName": "Midcontinent ISO - MISO"
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England",
+      "seoZoneName": "ISO New England - ISO-NE"
     },
     "US-NW-AVA": {
       "countryName": "USA",
@@ -1961,7 +2014,8 @@
     "US-NW-PSCO": {
       "countryName": "USA",
       "displayName": "PSCo",
-      "zoneName": "Public Service Company of Colorado"
+      "zoneName": "Public Service Company of Colorado",
+      "seoZoneName": "Public Service Company of Colorado - PSCo"
     },
     "US-NW-PSEI": {
       "countryName": "USA",
@@ -1991,7 +2045,8 @@
     },
     "US-NY-NYIS": {
       "countryName": "USA",
-      "zoneName": "New York ISO"
+      "zoneName": "New York ISO",
+      "seoZoneName": "New York ISO - NYISO"
     },
     "US-SE-SEPA": {
       "countryName": "USA",
@@ -2033,12 +2088,14 @@
     "US-TEN-TVA": {
       "countryName": "USA",
       "displayName": "TVA",
-      "zoneName": "Tennessee Valley Authority"
+      "zoneName": "Tennessee Valley Authority",
+      "seoZoneName": "Tennessee Valley Authority - TVA"
     },
     "US-TEX-ERCO": {
       "countryName": "USA",
       "displayName": "ERCOT",
-      "zoneName": "Electric Reliability Council of Texas"
+      "zoneName": "Electric Reliability Council of Texas",
+      "seoZoneName": "Electric Reliability Council of Texas - ERCOT"
     },
     "UY": {
       "zoneName": "Uruguay"

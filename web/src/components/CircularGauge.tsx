@@ -71,12 +71,7 @@ const SpringAnimatedArc = memo(function SpringAnimatedArc({
   );
 });
 
-export function CircularGauge({
-  ratio,
-  name,
-  testId,
-  tooltipContent,
-}: CircularGaugeProps) {
+function CircularGauge({ ratio, name, testId, tooltipContent }: CircularGaugeProps) {
   const height = 80;
   const width = 80;
   const radius = Math.min(width, height) / 2;
@@ -86,7 +81,7 @@ export function CircularGauge({
   return (
     <div className="flex flex-col items-center gap-2">
       <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
-        <div data-test-id={testId} className="relative flex flex-col items-center">
+        <div data-testid={testId} className="relative flex flex-col items-center">
           <svg height={height} width={width}>
             <Group top={centerY} left={centerX} height={height} width={width}>
               <BackgroundArc radius={radius} />
@@ -110,3 +105,5 @@ export function CircularGauge({
     </div>
   );
 }
+
+export default memo(CircularGauge);

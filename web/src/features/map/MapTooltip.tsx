@@ -9,13 +9,20 @@ import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
 import { TrendingUpDown } from 'lucide-react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
+import { round } from 'utils/helpers';
 import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
-export function TooltipInner({
+const emptyZoneData: StateZoneData = {
+  p: {},
+  c: {},
+};
+
+export const TooltipInner = memo(function TooltipInner({
   zoneData,
   zoneId,
 }: {
@@ -23,26 +30,21 @@ export function TooltipInner({
   zoneData?: StateZoneData;
 }) {
   const hasZoneData = Boolean(zoneData);
-  zoneData ??= {
-    p: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-    c: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-  };
+  zoneData ??= emptyZoneData;
   const { e, o } = zoneData;
+
+  const estimated = typeof e === 'number' ? round(e ?? 0, 0) : e;
 
   return (
     <div className="flex w-full flex-col gap-2 py-3 text-center">
       <div className="flex flex-col px-3">
         <div className="flex w-full flex-row justify-between">
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
-          <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
+          <DataValidityBadge
+            hasOutage={Boolean(o)}
+            estimated={estimated}
+            hasZoneData={hasZoneData}
+          />
         </div>
         <TimeDisplay
           zoneId={zoneId}
@@ -52,14 +54,16 @@ export function TooltipInner({
       <ZoneGaugesWithCO2Square zoneData={zoneData} />
     </div>
   );
-}
+});
 
-function DataValidityBadge({
+TooltipInner.displayName = 'TooltipInner';
+
+export const DataValidityBadge = memo(function DataValidityBadge({
   hasOutage,
   estimated,
   hasZoneData,
 }: {
-  hasOutage?: boolean | null;
+  hasOutage: boolean;
   estimated?: number | boolean | null;
   hasZoneData: boolean;
 }) {
@@ -79,7 +83,7 @@ function DataValidityBadge({
       />
     );
   }
-  if (estimated && estimated > 0) {
+  if (estimated && estimated > 0.5) {
     return (
       <EstimationBadge
         text={t(`estimation-card.aggregated_estimated.pill`, {
@@ -90,7 +94,9 @@ function DataValidityBadge({
     );
   }
   return null;
-}
+});
+
+DataValidityBadge.displayName = 'DataValidityBadge';
 
 export default function MapTooltip() {
   const mousePosition = useAtomValue(mousePositionAtom);
