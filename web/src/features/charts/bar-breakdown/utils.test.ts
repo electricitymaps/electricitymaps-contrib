@@ -313,7 +313,7 @@ describe('getExchangesToDisplay', () => {
         exchange: { AT: -934, BE: 934, NO: -934, 'NO-NO2': -500 },
       },
     };
-    const result = getExchangesToDisplay('DE', true, ZoneStates);
+    const result = getExchangesToDisplay(true, 'DE', ZoneStates);
     expect(result).to.deep.eq(['AT', 'BE', 'NO']);
   });
   it('shows non-aggregated exchanges only when required', () => {
@@ -323,7 +323,7 @@ describe('getExchangesToDisplay', () => {
         exchange: { AT: -934, BE: 934, NO: -934, 'NO-NO2': -500 },
       },
     };
-    const result = getExchangesToDisplay('DE', false, ZoneStates);
+    const result = getExchangesToDisplay(false, 'DE', ZoneStates);
     expect(result).to.deep.eq(['AT', 'BE', 'NO-NO2']);
   });
   it('handles empty exchange', () => {
@@ -333,7 +333,7 @@ describe('getExchangesToDisplay', () => {
         exchange: {},
       },
     };
-    const result = getExchangesToDisplay('DE', false, ZoneStates);
+    const result = getExchangesToDisplay(false, 'DE', ZoneStates);
     expect(result).to.deep.eq([]);
   });
 });
@@ -346,7 +346,7 @@ describe('getExchangeData', () => {
       exchange: { AT: -934, ES: 934 },
       exchangeCapacities: { ES: exchangeCapacity, AT: exchangeCapacity },
     };
-    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES', 'AT'], true);
+    const result = getExchangeData(['ES', 'AT'], true, exchangeCapacitiesZoneDetailsData);
 
     expect(result).to.deep.eq([
       {
@@ -369,7 +369,7 @@ describe('getExchangeData', () => {
     const exchangeCapacitiesZoneDetailsData = {
       ...zoneDetailsData,
     };
-    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES'], true);
+    const result = getExchangeData(['ES'], true, exchangeCapacitiesZoneDetailsData);
 
     expect(result).to.deep.eq([
       {
@@ -388,7 +388,7 @@ describe('getExchangeData', () => {
       exchange: {},
       exchangeCapacity: { ES: exchangeCapacity },
     };
-    const result = getExchangeData(exchangeCapacitiesZoneDetailsData, ['ES'], true);
+    const result = getExchangeData(['ES'], true, exchangeCapacitiesZoneDetailsData);
 
     expect(result).to.deep.equal([
       {
