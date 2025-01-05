@@ -62,6 +62,11 @@ def use_proxy(country_code: str):
     and other proxy methods (like cloud run datacenter proxies) do not work. Note that this
     proxy service is not free and is charged per GB.
 
+    If you create an account with webshare.io to develop parsers for this
+    project, you should subscribe to the "residential" proxy type (not "static
+    residential"), as this choice includes most countries. As a practical
+    example, South Korea proxies are only available using this subscription.
+
     Args:
         country_code (str): The ISO 3166-1 alpha-2 code of the country for which the proxy should be used.
 
@@ -74,65 +79,47 @@ def use_proxy(country_code: str):
     """
 
     def wrap(f):
+        sig = signature(f)
+        if "zone_key" in sig.parameters:
+            exchange_signature = False
+        elif "zone_key1" in sig.parameters and "zone_key2" in sig.parameters:
+            exchange_signature = True
+        else:
+            raise ValueError(
+                "Invalid function signature. Maybe you added the @decorators in "
+                "the wrong order? The use_proxy decorator should be the bottom decorator."
+            )
+
         def wrapped_f(*args, **kwargs):
             WEBSHARE_USERNAME = os.environ.get("WEBSHARE_USERNAME")
             WEBSHARE_PASSWORD = os.environ.get("WEBSHARE_PASSWORD")
-
-            sig = signature(f)
-
-            is_exchange_parser = (
-                "zone_key1" in sig.parameters or "zone_key2" in sig.parameters
-            )
-            is_production_parser = "zone_key" in sig.parameters
-
-            zone_keys = None
-            if is_exchange_parser:
-                zone_key1 = args[0] if len(args) > 0 else kwargs.get("zone_key1")
-                zone_key2 = args[1] if len(args) > 1 else kwargs.get("zone_key2")
-                session = args[2] if len(args) > 2 else kwargs.get("session")
-                target_datetime = (
-                    args[3] if len(args) > 3 else kwargs.get("target_datetime")
-                )
-                logger = (
-                    args[4]
-                    if len(args) > 4
-                    else kwargs.get("logger") or getLogger(__name__)
-                )
-                zone_keys = [zone_key1, zone_key2]
-            elif is_production_parser:
-                zone_key = args[0] if len(args) > 0 else kwargs.get("zone_key")
-                session = args[1] if len(args) > 1 else kwargs.get("session")
-                target_datetime = (
-                    args[2] if len(args) > 2 else kwargs.get("target_datetime")
-                )
-                logger = (
-                    args[3]
-                    if len(args) > 3
-                    else kwargs.get("logger") or getLogger(__name__)
-                )
-                zone_keys = [zone_key]
-            else:
-                raise ValueError(
-                    "Invalid function signature. Maybe you added the @decorators in the wrong order? The use_proxy decorator should be the bottom decorator."
-                )
-
-            if WEBSHARE_USERNAME is None or WEBSHARE_PASSWORD is None:
-                logger.error(
-                    "Proxy environment variables are not set. Continuing without proxy...\nAdd WEBSHARE_USERNAME and WEBSHARE_PASSWORD to use the proxy."
+            if not WEBSHARE_USERNAME or not WEBSHARE_PASSWORD:
+                logger = kwargs.get("logger", getLogger(__name__))
+                logger.warning(
+                    "Proxy environment variables are not set. "
+                    "Attempting without proxy...\n"
+                    "Add WEBSHARE_USERNAME and WEBSHARE_PASSWORD to use the proxy."
                 )
                 return f(*args, **kwargs)
 
-            session = Session() if session is None else session
+            # get an existing Session object from args or kwargs, or create a
+            # new one, so it can be temporarily re-configured
+            if exchange_signature and len(args) >= 3:
+                session = args[2]
+            elif not exchange_signature and len(args) >= 2:
+                session = args[1]
+            else:
+                session = kwargs.setdefault("session", Session())
+
             old_proxies = session.proxies
-            new_proxies = {
+            session.proxies = {
                 "http": f"http://{WEBSHARE_USERNAME}-{country_code}-rotate:{WEBSHARE_PASSWORD}@p.webshare.io:80/",
                 "https": f"http://{WEBSHARE_USERNAME}-{country_code}-rotate:{WEBSHARE_PASSWORD}@p.webshare.io:80/",
             }
-
-            session.proxies.update(new_proxies)
-            result = f(*zone_keys, session, target_datetime, logger)
-            session.proxies.update(old_proxies)
-            return result
+            try:
+                return f(*args, **kwargs)
+            finally:
+                session.proxies = old_proxies
 
         return wrapped_f
 
