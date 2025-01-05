@@ -41,7 +41,7 @@ export default function ZoneDetails(): JSX.Element {
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
-  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeRange);
+  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data, timeRange);
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
@@ -72,31 +72,33 @@ export default function ZoneDetails(): JSX.Element {
   // We isolate the component which is independant of `selectedData`
   // in order to avoid re-rendering it needlessly
   const zoneDetailsContent = useMemo(
-    () => (
-      <ZoneDetailsContent
-        isLoading={isLoading}
-        isError={isError}
-        zoneDataStatus={zoneDataStatus}
-      >
-        <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-        <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
-        {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
-          <AreaGraphContainer
-            datetimes={datetimes}
-            timeRange={timeRange}
-            displayByEmissions={displayByEmissions}
-          />
-        )}
+    () =>
+      zoneId &&
+      zoneDataStatus && (
+        <ZoneDetailsContent
+          isLoading={isLoading}
+          isError={isError}
+          zoneDataStatus={zoneDataStatus}
+        >
+          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+          <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
+          {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
+            <AreaGraphContainer
+              datetimes={datetimes}
+              timeRange={timeRange}
+              displayByEmissions={displayByEmissions}
+            />
+          )}
 
-        <MethodologyCard />
-        <HorizontalDivider />
-        <div className="flex items-center justify-between gap-2">
-          <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
-          <ApiButton size="sm" />
-        </div>
-        <Attribution zoneId={zoneId} />
-      </ZoneDetailsContent>
-    ),
+          <MethodologyCard />
+          <HorizontalDivider />
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
+            <ApiButton size="sm" />
+          </div>
+          <Attribution zoneId={zoneId} />
+        </ZoneDetailsContent>
+      ),
     [
       isLoading,
       isError,
