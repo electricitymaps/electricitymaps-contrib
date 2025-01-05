@@ -1,6 +1,6 @@
 import * as Portal from '@radix-ui/react-portal';
 import { Button } from 'components/Button';
-import { Link } from 'components/Link';
+import Link from 'components/Link';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { TFunction } from 'i18next';
 import { Info, X } from 'lucide-react';
