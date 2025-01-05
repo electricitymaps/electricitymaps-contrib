@@ -104,25 +104,31 @@ export default function TimeController({ className }: { className?: string }) {
     (timeRange: TimeRange) => {
       // Set time slider to latest value before switching aggregate to avoid flickering
       setSelectedDatetime({
-        datetime: selectedDatetime.datetime,
+        datetime: datetimes.at(-1),
         index: numberOfEntries,
       });
       setTimeRange(timeRange);
       trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeRange });
     },
-    [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeRange]
+    [setSelectedDatetime, datetimes, numberOfEntries, setTimeRange]
+  );
+
+  // This is required to avoid rerending the toggle needlessly
+  const timeRangeToggle = useMemo(
+    () => (
+      <TimeRangeToggle
+        timeRange={selectedTimeRange || TimeRange.H24}
+        onToggleGroupClick={onToggleGroupClick}
+      />
+    ),
+    [selectedTimeRange, onToggleGroupClick]
   );
 
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
       {isBiggerThanMobile && historicalLinkingEnabled && <HistoricalTimeHeader />}
-      <div className="flex items-center gap-2">
-        <TimeRangeToggle
-          timeRange={selectedTimeRange || TimeRange.H24}
-          onToggleGroupClick={onToggleGroupClick}
-        />
-      </div>
+      <div className="flex items-center gap-2">{timeRangeToggle}</div>
 
       <div>
         {/* The above div is needed to treat the TimeSlider and TimeAxis as one DOM element */}
