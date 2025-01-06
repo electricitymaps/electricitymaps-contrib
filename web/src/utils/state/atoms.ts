@@ -57,7 +57,7 @@ export const spatialAggregateAtom = atomWithStorage(
   'country-mode',
   SpatialAggregate.ZONE
 );
-export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTION);
+export const productionConsumptionAtom = atom(Mode.CONSUMPTION);
 export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
 );
