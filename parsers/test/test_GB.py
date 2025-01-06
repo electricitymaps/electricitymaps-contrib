@@ -45,5 +45,5 @@ def test_fetch_price_historical(snapshot, fixture_session_mock):
         .read_text(),
     )
 
-    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)    
+    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
     assert snapshot == fetch_price(target_datetime=historical_datetime, session=session)

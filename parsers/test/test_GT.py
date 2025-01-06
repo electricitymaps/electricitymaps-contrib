@@ -63,7 +63,9 @@ def test_fetch_production_historical(snapshot, fixture_session_mock):
 
     historical_datetime = datetime.fromisoformat("2023-07-16T12:00:00+00:00")
 
-    assert snapshot == fetch_production(target_datetime=historical_datetime, session=session)
+    assert snapshot == fetch_production(
+        target_datetime=historical_datetime, session=session
+    )
 
 
 @freeze_time("2024-04-10 12:28:00")

@@ -80,7 +80,9 @@ def test_fetch_exchange_live(snapshot, fixture_session_mock, neighbour):
         ),
     )
 
-    assert snapshot == fetch_exchange(ZoneKey("MD"), ZoneKey(neighbour), session=session)
+    assert snapshot == fetch_exchange(
+        ZoneKey("MD"), ZoneKey(neighbour), session=session
+    )
 
 
 @pytest.mark.parametrize("neighbour", ["RO", "UA"])
@@ -199,4 +201,6 @@ def test_fetch_production_historical(snapshot, fixture_session_mock):
         ),
     )
 
-    assert snapshot == fetch_production(target_datetime=historical_datetime, session=session)
+    assert snapshot == fetch_production(
+        target_datetime=historical_datetime, session=session
+    )
