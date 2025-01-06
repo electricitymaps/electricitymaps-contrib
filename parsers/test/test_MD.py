@@ -45,20 +45,7 @@ def test_fetch_consumption_live(snapshot, fixture_session_mock):
         ),
     )
 
-    consumption = fetch_consumption(session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "consumption": element["consumption"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-            }
-            for element in consumption
-        ]
-    )
+    assert snapshot == fetch_consumption(session=session)
 
 
 def test_fetch_consumption_historical(snapshot, fixture_session_mock):
@@ -74,21 +61,8 @@ def test_fetch_consumption_historical(snapshot, fixture_session_mock):
         ),
     )
 
-    consumption = fetch_consumption(
+    assert snapshot == fetch_consumption(
         target_datetime=historical_datetime, session=session
-    )
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "consumption": element["consumption"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-            }
-            for element in consumption
-        ]
     )
 
 
@@ -106,20 +80,7 @@ def test_fetch_exchange_live(snapshot, fixture_session_mock, neighbour):
         ),
     )
 
-    exchanges = fetch_exchange(ZoneKey("MD"), ZoneKey(neighbour), session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": exchange["datetime"].isoformat(),
-                "sortedZoneKeys": exchange["sortedZoneKeys"],
-                "netFlow": exchange["netFlow"],
-                "source": exchange["source"],
-                "sourceType": exchange["sourceType"].value,
-            }
-            for exchange in exchanges
-        ]
-    )
+    assert snapshot == fetch_exchange(ZoneKey("MD"), ZoneKey(neighbour), session=session)
 
 
 @pytest.mark.parametrize("neighbour", ["RO", "UA"])
@@ -135,24 +96,11 @@ def test_fetch_exchange_historical(snapshot, fixture_session_mock, neighbour):
         ),
     )
 
-    exchanges = fetch_exchange(
+    assert snapshot == fetch_exchange(
         ZoneKey("MD"),
         ZoneKey(neighbour),
         target_datetime=historical_datetime,
         session=session,
-    )
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": exchange["datetime"].isoformat(),
-                "sortedZoneKeys": exchange["sortedZoneKeys"],
-                "netFlow": exchange["netFlow"],
-                "source": exchange["source"],
-                "sourceType": exchange["sourceType"].value,
-            }
-            for exchange in exchanges
-        ]
     )
 
 
@@ -170,21 +118,8 @@ def test_fetch_exchange_forecast_live(snapshot, fixture_session_mock, neighbour)
         ),
     )
 
-    exchange_forecasts = fetch_exchange_forecast(
+    assert snapshot == fetch_exchange_forecast(
         ZoneKey("MD"), ZoneKey(neighbour), session=session
-    )
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": exchange["datetime"].isoformat(),
-                "sortedZoneKeys": exchange["sortedZoneKeys"],
-                "netFlow": exchange["netFlow"],
-                "source": exchange["source"],
-                "sourceType": exchange["sourceType"].value,
-            }
-            for exchange in exchange_forecasts
-        ]
     )
 
 
@@ -201,44 +136,17 @@ def test_fetch_exchange_forecast_historical(snapshot, fixture_session_mock, neig
         ),
     )
 
-    exchange_forecasts = fetch_exchange_forecast(
+    assert snapshot == fetch_exchange_forecast(
         ZoneKey("MD"),
         ZoneKey(neighbour),
         target_datetime=historical_datetime,
         session=session,
     )
 
-    snapshot.assert_match(
-        [
-            {
-                "datetime": exchange["datetime"].isoformat(),
-                "sortedZoneKeys": exchange["sortedZoneKeys"],
-                "netFlow": exchange["netFlow"],
-                "source": exchange["source"],
-                "sourceType": exchange["sourceType"].value,
-            }
-            for exchange in exchange_forecasts
-        ]
-    )
-
 
 @frozen_live_time
 def test_fetch_price_live(snapshot):
-    prices = fetch_price()
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "currency": element["currency"],
-                "price": element["price"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-            }
-            for element in prices
-        ]
-    )
+    assert snapshot == fetch_price()
 
 
 @pytest.mark.parametrize(
@@ -258,21 +166,7 @@ def test_fetch_price_live(snapshot):
     ],
 )
 def test_fetch_price_historical(snapshot, historical_datetime):
-    prices = fetch_price(target_datetime=historical_datetime)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "currency": element["currency"],
-                "price": element["price"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-            }
-            for element in prices
-        ]
-    )
+    assert snapshot == fetch_price(target_datetime=historical_datetime)
 
 
 @frozen_live_time
@@ -289,22 +183,7 @@ def test_fetch_production_live(snapshot, fixture_session_mock):
         ),
     )
 
-    production = fetch_production(session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
-    )
+    assert snapshot == fetch_production(session=session)
 
 
 def test_fetch_production_historical(snapshot, fixture_session_mock):
@@ -320,19 +199,4 @@ def test_fetch_production_historical(snapshot, fixture_session_mock):
         ),
     )
 
-    production = fetch_production(target_datetime=historical_datetime, session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
-    )
+    assert snapshot == fetch_production(target_datetime=historical_datetime, session=session)

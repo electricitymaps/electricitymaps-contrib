@@ -31,22 +31,7 @@ def test_fetch_production_live(snapshot, fixture_session_mock):
 
     adapter.register_uri(GET, ANY, content=content)
 
-    production = fetch_production(session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
-    )
+    assert snapshot == fetch_production(session=session)
 
 
 def test_fetch_production_historical(snapshot, fixture_session_mock):
@@ -61,22 +46,8 @@ def test_fetch_production_historical(snapshot, fixture_session_mock):
     adapter.register_uri(GET, ANY, content=content)
 
     historical_datetime = datetime(2020, 1, 1, tzinfo=timezone.utc)
-    production = fetch_production(target_datetime=historical_datetime, session=session)
 
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
-    )
+    assert snapshot == fetch_production(target_datetime=historical_datetime, session=session)
 
 
 @pytest.mark.parametrize("neighbour", ["AM", "AZ", "RU-1", "TR"])
@@ -93,17 +64,4 @@ def test_fetch_exchange_live(snapshot, fixture_session_mock, neighbour):
         ),
     )
 
-    exchanges = fetch_exchange(ZoneKey("GE"), ZoneKey(neighbour), session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": exchange["datetime"].isoformat(),
-                "sortedZoneKeys": exchange["sortedZoneKeys"],
-                "netFlow": exchange["netFlow"],
-                "source": exchange["source"],
-                "sourceType": exchange["sourceType"].value,
-            }
-            for exchange in exchanges
-        ]
-    )
+    assert snapshot == fetch_exchange(ZoneKey("GE"), ZoneKey(neighbour), session=session)

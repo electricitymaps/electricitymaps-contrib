@@ -32,21 +32,7 @@ def test_fetch_price_live(snapshot, fixture_session_mock, zone_key):
         .read_text(),
     )
 
-    prices = fetch_price(zone_key=ZoneKey(zone_key), session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": price["datetime"].isoformat(),
-                "zoneKey": price["zoneKey"],
-                "currency": price["currency"],
-                "price": price["price"],
-                "source": price["source"],
-                "sourceType": price["sourceType"].value,
-            }
-            for price in prices
-        ]
-    )
+    assert snapshot == fetch_price(zone_key=ZoneKey(zone_key), session=session)
 
 
 def test_fetch_price_historical(snapshot, fixture_session_mock):
@@ -59,19 +45,5 @@ def test_fetch_price_historical(snapshot, fixture_session_mock):
         .read_text(),
     )
 
-    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
-    prices = fetch_price(target_datetime=historical_datetime, session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": price["datetime"].isoformat(),
-                "zoneKey": price["zoneKey"],
-                "currency": price["currency"],
-                "price": price["price"],
-                "source": price["source"],
-                "sourceType": price["sourceType"].value,
-            }
-            for price in prices
-        ]
-    )
+    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)    
+    assert snapshot == fetch_price(target_datetime=historical_datetime, session=session)
