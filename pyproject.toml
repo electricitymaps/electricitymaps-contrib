@@ -83,6 +83,8 @@ click = "^8.0.0"
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "parsers/test", "electricitymap/contrib/lib/tests"]
+addopts = "--color=yes --durations=10"
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0,<2"]
