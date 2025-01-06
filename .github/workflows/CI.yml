@@ -513,7 +513,6 @@ jobs:
           path: .venv
           key: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           poetry install -E parsers --sync
       - name: Check formatting
@@ -557,7 +556,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
       - name: Install Poetry dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           poetry install -E parsers --sync
       - name: Run tests
