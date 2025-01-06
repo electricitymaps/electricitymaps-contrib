@@ -5,8 +5,8 @@ import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from requests import Response, Session
 
@@ -21,6 +21,7 @@ from parsers.lib.exceptions import ParserException
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?host=https://www.wrldc.in"
 CONSUMPTION_URL = f"{IN_WE_PROXY}/OnlinestateTest1.aspx/GetRealTimeData_state_Wise?host=https://www.wrldc.in"
+ZONE_INFO = ZoneInfo("Asia/Kolkata")
 
 EXCHANGES_MAPPING = {
     "WR-SR": "IN-SO->IN-WE",
@@ -29,157 +30,129 @@ EXCHANGES_MAPPING = {
 }
 
 KIND_MAPPING = {
-    "exchange": {"url": EXCHANGE_URL, "datetime_column": "lastUpdate"},
-    "consumption": {"url": CONSUMPTION_URL, "datetime_column": "current_datetime"},
+    "exchange": {
+        "url": EXCHANGE_URL,
+        "datetime_col": "lastUpdate",
+        "region_col": "Region_Name",
+    },
+    "consumption": {
+        "url": CONSUMPTION_URL,
+        "datetime_col": "current_datetime",
+        "region_col": "StateName",
+    },
 }
 
 
-def is_expected_downtime() -> bool:
-    current_day = datetime.now().weekday()
-    expected_outage_days = [5, 6, 0]  # Saturday, Sunday and Monday
-
-    if current_day in expected_outage_days:
-        return True
-
-    return False
-
-
-def get_date_range(dt: datetime):
-    return pd.date_range(
-        arrow.get(dt).floor("day").datetime,
-        arrow.get(dt).ceil("day").floor("hour").datetime,
+def _get_hour_dts(dt: datetime):
+    """
+    Returns up to 24 datetime objects for a given datetime's date, one for each
+    hour, excluding future hours.
+    """
+    date_dt = datetime.combine(dt.date(), datetime.min.time()).replace(tzinfo=ZONE_INFO)
+    dts = pd.date_range(
+        date_dt,
+        date_dt + timedelta(hours=23),
         freq="H",
     ).to_pydatetime()
 
+    now_dt = datetime.now(ZONE_INFO)
+    return [dt for dt in dts if dt < now_dt]
 
-def fetch_data(
-    kind: str | None = None,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
+
+def _fetch_data(
+    kind: str,
+    session: Session,
+    target_datetime: datetime,
 ) -> dict:
-    """- get production data from wrldc.in
-    - filter all rows with same hour as target_datetime"""
-    assert target_datetime is not None
-    assert kind is not None
+    """
+    Fetches 24 hours of either exchange or production data from wrldc.in.
+    """
+    url = KIND_MAPPING[kind]["url"]
+    datetime_col = KIND_MAPPING[kind]["datetime_col"]
 
-    r = session or Session()
     payload = {"date": target_datetime.strftime("%Y-%m-%d")}
-
-    resp: Response = r.post(url=KIND_MAPPING[kind]["url"], json=payload)
+    resp: Response = session.post(url, json=payload)
 
     try:
         data = json.loads(resp.json().get("d", {}))
     except Exception as e:
-        if is_expected_downtime():
-            raise ValueError(
-                "IN_WE Parser cannot get latest data during the expected downtime (Saturday to Monday)."
-            ) from e
-        else:
-            raise ParserException(
-                parser="IN_WE.py",
-                message=f"{target_datetime}: {kind} data is not available",
-            ) from e
+        raise ParserException(
+            parser="IN_WE.py",
+            message=f"{target_datetime}: {kind} data is not available",
+        ) from e
 
-    datetime_col = KIND_MAPPING[kind]["datetime_column"]
+    # The source data is a 12 hour format without mentioning if its AM/PM, so
+    # 12:15 (AM or PM) could mean 00:15 or 12:15. This is addressed by relying
+    # on the full date worth of ordered data, where we assume the second time
+    # 12:xx shows up it must have transitioned to PM time.
+    am_time = True
+    checkpoint = False
+    dt_format = "%Y-%d-%m %I:%M:%S %p"
     for item in data:
-        item[datetime_col] = datetime.strptime(item[datetime_col], "%Y-%d-%m %H:%M:%S")
-        dt = arrow.get(item[datetime_col])
-        if dt.second >= 30:
-            item[datetime_col] = dt.shift(minutes=1).floor("minute").datetime
-        else:
-            item[datetime_col] = dt.floor("minute").datetime
+        dt_string = item[datetime_col] + (" AM" if am_time else " PM")
+        dt = datetime.strptime(dt_string, dt_format).replace(tzinfo=ZONE_INFO)
+        if am_time:
+            if not checkpoint and dt.hour != 0:
+                checkpoint = True
+            elif checkpoint and dt.hour == 0:
+                am_time = False
+                dt_string = item[datetime_col] + (" AM" if am_time else " PM")
+                dt = datetime.strptime(dt_string, dt_format).replace(tzinfo=ZONE_INFO)
+        item[datetime_col] = dt
     return data
 
 
-def filter_raw_data(
-    kind: str,
+def _get_df_for_hour(kind: str, data: dict, hour: int) -> pd.DataFrame:
+    """
+    Returns a dataframe with a specific hour of interest.
+    """
+    datetime_col = KIND_MAPPING[kind]["datetime_col"]
+    return pd.DataFrame([item for item in data if item[datetime_col].hour == hour])
+
+
+def _get_mean_hourly_net_flow(
+    data: dict,
+    zone_key1: str,
+    zone_key2: str,
+    target_datetime: datetime,
+) -> float:
+    """
+    Average all data points in the target_datetime hour.
+    """
+    region_col = KIND_MAPPING["exchange"]["region_col"]
+    exchange_string = "->".join(sorted([zone_key1, zone_key2]))
+
+    df = _get_df_for_hour(kind="exchange", data=data, hour=target_datetime.hour)
+    df["zone_key"] = df[region_col].map(EXCHANGES_MAPPING)
+    df = df.loc[df["zone_key"] == exchange_string]
+    df.loc[:, "target_datetime"] = target_datetime
+    df = (
+        df.groupby([region_col, "target_datetime"])
+        .mean(numeric_only=True)
+        .reset_index()
+    )
+
+    return -round(df.iloc[0].get("Current_Loading", 0), 3)
+
+
+def _get_mean_hourly_consumption(
     data: dict,
     target_datetime: datetime,
-) -> pd.DataFrame:
-    """
-    Filters out correct datetimes (source data is 12 hour format)
-    """
-    assert len(data) > 0
-    assert kind != ""
-
-    dt_12_hour = arrow.get(target_datetime.strftime("%Y-%m-%d %I:%M")).datetime
-    datetime_col = KIND_MAPPING[kind]["datetime_column"]
-    filtered_data = pd.DataFrame(
-        [item for item in data if item[datetime_col].hour == dt_12_hour.hour]
-    )
-    return filtered_data
-
-
-def format_exchanges_data(
-    data: dict, zone_key1: str, zone_key2: str, target_datetime: datetime
 ) -> float:
-    """format exchanges data:
-    - filters out correct datetimes (source data is 12 hour format)
-    - average all data points in the target_datetime hour"""
-    assert target_datetime is not None
-    assert len(data) > 0
+    """
+    Average all data points in the target_datetime hour.
+    """
+    region_col = KIND_MAPPING["consumption"]["region_col"]
 
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    filtered_data = filter_raw_data(
-        kind="exchange", data=data, target_datetime=target_datetime
-    )
-
-    filtered_data["zone_key"] = filtered_data["Region_Name"].map(EXCHANGES_MAPPING)
-    df_exchanges = filtered_data.loc[filtered_data["zone_key"] == sortedZoneKeys]
-
-    if target_datetime.hour >= 12:
-        df_exchanges = df_exchanges.drop_duplicates(
-            subset=["Region_Name", "lastUpdate"], keep="last"
-        )
-    else:
-        df_exchanges = filtered_data.drop_duplicates(
-            subset=["Region_Name", "lastUpdate"], keep="first"
-        )
-    df_exchanges.loc[:, "target_datetime"] = target_datetime
-    df_exchanges = (
-        df_exchanges.groupby(["Region_Name", "target_datetime"])
-        .mean(numeric_only=True)
-        .reset_index()
-    )
-    net_flow = -round(df_exchanges.iloc[0].get("Current_Loading", 0), 3)
-
-    return net_flow
-
-
-def format_consumption_data(
-    data: dict, zone_key: str, target_datetime: datetime
-) -> float:
-    """format consumption data:
-    - filters out correct datetimes (source data is 12 hour format)
-    - average all data points in the target_datetime hour"""
-    assert target_datetime is not None
-    assert len(data) > 0
-
-    filtered_data = filter_raw_data(
-        kind="consumption",
-        data=data,
-        target_datetime=target_datetime,
-    )
-
-    if target_datetime.hour >= 12:
-        df_consumption = filtered_data.drop_duplicates(
-            subset=["StateName", "current_datetime"], keep="last"
-        )
-    else:
-        df_consumption = filtered_data.drop_duplicates(
-            subset=["StateName", "current_datetime"], keep="first"
-        )
-    df_consumption.loc[:, "target_datetime"] = target_datetime
-    df_consumption = (
-        df_consumption.groupby(["StateName", "target_datetime"])
+    df = _get_df_for_hour(kind="consumption", data=data, hour=target_datetime.hour)
+    df.loc[:, "target_datetime"] = target_datetime
+    df = (
+        df.groupby([region_col, "target_datetime"])
         .mean(numeric_only=True)
         .reset_index()
     )
 
-    consumption_value = round(
-        df_consumption.groupby(["target_datetime"])["Demand"].sum().values[0], 3
-    )
-    return consumption_value
+    return round(df.groupby(["target_datetime"])["Demand"].sum().values[0], 3)
 
 
 @refetch_frequency(timedelta(days=1))
@@ -190,26 +163,30 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    if session is None:
+        session = Session()
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+        target_datetime = datetime.now(ZONE_INFO)
+    else:
+        target_datetime = target_datetime.astimezone(ZONE_INFO)
 
-    sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    data = fetch_data(
+    exchange_string = "->".join(sorted([zone_key1, zone_key2]))
+    data = _fetch_data(
         kind="exchange",
         session=session,
         target_datetime=target_datetime,
     )
     exchange_list = ExchangeList(logger)
-    for dt in get_date_range(target_datetime):
-        net_flow = format_exchanges_data(
+    for dt in _get_hour_dts(target_datetime):
+        net_flow = _get_mean_hourly_net_flow(
             zone_key1=zone_key1,
             zone_key2=zone_key2,
             data=data,
             target_datetime=dt,
         )
         exchange_list.append(
-            zoneKey=ZoneKey(sortedZoneKeys),
-            datetime=arrow.get(dt).replace(tzinfo="Asia/Kolkata").datetime,
+            zoneKey=ZoneKey(exchange_string),
+            datetime=dt,
             netFlow=net_flow,
             source="wrldc.in",
         )
@@ -224,22 +201,26 @@ def fetch_consumption(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    if session is None:
+        session = Session()
     if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
-    data = fetch_data(
+        target_datetime = datetime.now(ZONE_INFO)
+    else:
+        target_datetime = target_datetime.astimezone(ZONE_INFO)
+
+    data = _fetch_data(
         kind="consumption",
         session=session,
         target_datetime=target_datetime,
     )
+
     consumption_list = TotalConsumptionList(logger)
-    for dt in get_date_range(target_datetime):
-        consumption_data_point = format_consumption_data(
-            zone_key=zone_key, data=data, target_datetime=dt
-        )
+    for dt in _get_hour_dts(target_datetime):
+        consumption = _get_mean_hourly_consumption(data=data, target_datetime=dt)
         consumption_list.append(
             zoneKey=zone_key,
-            datetime=arrow.get(dt).replace(tzinfo="Asia/Kolkata").datetime,
-            consumption=consumption_data_point,
+            datetime=dt,
+            consumption=consumption,
             source="wrldc.in",
         )
     return consumption_list.to_list()

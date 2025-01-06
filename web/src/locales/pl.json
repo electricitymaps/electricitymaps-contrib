@@ -1,8 +1,5 @@
 {
   "info": {
-    "title": "O aplikacji",
-    "text": "Aplikacja Electrcity Maps oferuje dostęp do danych w rzeczywistym czasie dla obywateli, ekspertów ds. energetyki i organizacji pozarządowych w celu zwiększenia świadomości na temat wyzwań transformacji energetycznej.",
-    "open-source-text": "Ta aplikacja jest <a href='{{link}}' target='_blank'>Open Source'owa</a> i wspierana przez społeczność.",
     "version": "Wersja aplikacji: {{version}}",
     "share-app": "Podziel się aplikacją:"
   },
@@ -219,17 +216,18 @@
   "time-controller": {
     "title": {
       "24h": "Dane godzinowe dla:",
+      "72h": "Dane godzinowe dla:",
       "30d": "Dane dzienne dla:",
       "12mo": "Dane miesięczne dla:",
       "all": "Dane roczne dla:"
     },
     "30d": "dzienne",
     "24h": "godzinowe",
+    "72h": "godzinowe",
     "12mo": "miesięczne",
     "all": "roczne"
   },
   "left-panel": {
-    "get-data": "Zobacz nasze płatne oferty API",
     "applied-methodologies": {
       "title": "Zastosowane metody",
       "estimations": "Electricity Maps - Estymacje",
@@ -238,7 +236,6 @@
     }
   },
   "header": {
-    "get-data": "Uzyskaj nasze dane",
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Rekrutujemy!",
@@ -248,48 +245,56 @@
   "country-history": {
     "carbonintensity": {
       "24h": "Godzinowa intensywność węglowa",
+      "72h": "Godzinowa intensywność węglowa",
       "30d": "Dzienne intensywność węglowa",
       "12mo": "Miesięczna intensywność węglowa",
       "all": "Roczna intensywność węglowa"
     },
     "emissions": {
       "24h": "Godzinowe emisje dwutlenku węgla",
+      "72h": "Godzinowe emisje dwutlenku węgla",
       "30d": "Dzienne emisje dwutlenku węgla",
       "12mo": "Miesięczne emisje dwutlenku węgla",
       "all": "Roczne emisje dwutlenku węgla"
     },
     "emissionsorigin": {
       "24h": "Godzinowe pochodzenie emisji dwutlenku węgla",
+      "72h": "Godzinowe pochodzenie emisji dwutlenku węgla",
       "30d": "Dzienne pochodzenie emisji dwutlenku węgla",
       "12mo": "Miesięczne pochodzenie emisji dwutlenku węgla",
       "all": "Roczne pochodzenie emisji dwutlenku węgla"
     },
     "emissionsproduction": {
       "24h": "Godzinowe emisje z produkcji",
+      "72h": "Godzinowe emisje z produkcji",
       "30d": "Dzienne emisje z produkcji",
       "12mo": "Miesięczne emisje z produkcji",
       "all": "Roczne emisje z produkcji"
     },
     "electricityorigin": {
       "24h": "Godzinowe pochodzenie energii elektrycznej",
+      "72h": "Godzinowe pochodzenie energii elektrycznej",
       "30d": "Dzienne pochodzenie energii elektrycznej",
       "12mo": "Miesięczne pochodzenie energii elektrycznej",
       "all": "Roczne pochodzenie energii elektrycznej"
     },
     "electricityproduction": {
       "24h": "Godzinowa produkcja energii elektrycznej",
+      "72h": "Godzinowa produkcja energii elektrycznej",
       "30d": "Dzienne produkcja energii elektrycznej",
       "12mo": "Miesięczna produkcja energii elektrycznej",
       "all": "Roczna produkcja energii elektrycznej"
     },
     "electricityprices": {
       "24h": "Godzinowe ceny energii elektrycznej",
+      "72h": "Godzinowe ceny energii elektrycznej",
       "30d": "Dzienne ceny energii elektrycznej",
       "12mo": "Miesięczne ceny energii elektrycznej",
       "all": "Roczne ceny energii elektrycznej"
     },
     "netExchange": {
       "24h": "Godzinowa wymiana netto",
+      "72h": "Godzinowa wymiana netto",
       "30d": "Dzienne wymiana netto",
       "12mo": "Miesięczna wymiana netto",
       "all": "Roczna wymiana netto"

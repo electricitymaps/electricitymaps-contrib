@@ -615,6 +615,28 @@ describe('formatDateTick', () => {
     expect(consoleSpy).toHaveBeenCalledWith('UNIMPLEMENTED is not implemented');
     consoleSpy.mockRestore();
   });
+
+  it('should format date correctly for 72-hour time aggregate at midnight', () => {
+    const date = new Date('2023-01-01T00:00:00Z');
+    const result = formatDateTick(date, 'en', TimeRange.H72);
+    expect(result).toBe(
+      new Intl.DateTimeFormat('en', {
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC',
+      }).format(date)
+    );
+  });
+
+  it('should format date correctly for 72-hour time aggregate not at midnight', () => {
+    const date = new Date('2023-01-01T12:00:00Z');
+    const result = formatDateTick(date, 'en', TimeRange.H72);
+    expect(result).toBe(
+      new Intl.DateTimeFormat('en', {
+        timeStyle: 'short',
+      }).format(date)
+    );
+  });
 });
 
 describe('formatDataSources', () => {

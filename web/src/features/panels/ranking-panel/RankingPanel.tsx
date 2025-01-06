@@ -1,11 +1,10 @@
 import useGetState from 'api/getState';
-import { HorizontalDivider } from 'components/Divider';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { metaTitleSuffix } from 'utils/constants';
 import {
   isConsumptionAtom,
@@ -16,7 +15,6 @@ import {
 import { getRankedState } from './getRankingPanelData';
 import RankingPanelAccordion from './RankingPanelAccordion';
 import SearchBar from './SearchBar';
-import SocialIconRow from './SocialIcons';
 import { VirtualizedZoneList } from './ZoneList';
 
 export default function RankingPanel(): ReactElement {
@@ -55,16 +53,16 @@ export default function RankingPanel(): ReactElement {
   );
 
   return (
-    <div className="flex h-[calc(100vh-236px)] w-full flex-col py-3 pl-4 pr-1 ">
+    <div className="flex h-[calc(100vh-220px)] w-full flex-col py-3 pl-4 pr-1 ">
       <Helmet prioritizeSeoTags>
         <title>{t('misc.maintitle') + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
 
-      <div className="flex flex-grow flex-col overflow-hidden ">
+      <div className="flex flex-grow flex-col overflow-hidden pr-2">
         <div className="pb-5">
           <h1>{t('ranking-panel.title')}</h1>
-          <h2 className="text-sm">{t('ranking-panel.subtitle')}</h2>
+          <p className="text-sm">{<Trans i18nKey="ranking-panel.subtitle" />}</p>
         </div>
 
         <SearchBar
@@ -80,10 +78,8 @@ export default function RankingPanel(): ReactElement {
         </div>
       </div>
 
-      <div className="mt-auto py-2 pr-3">
+      <div className="mt-auto pb-5 pr-3 pt-2">
         <RankingPanelAccordion />
-        <HorizontalDivider />
-        <SocialIconRow />
       </div>
     </div>
   );

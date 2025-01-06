@@ -1,11 +1,12 @@
+import ApiButton from 'components/buttons/ApiButton';
+import { DocumentationButton } from 'components/buttons/DocumentationButton';
 import { FAQButton } from 'components/buttons/FAQButton';
 import { FeedbackButton } from 'components/buttons/FeedbackButton';
-import { GithubButton } from 'components/buttons/GithubButton';
 import { LegalNoticeButton } from 'components/buttons/LegalNoticeButton';
 import { LinkedinButton } from 'components/buttons/LinkedinButton';
 import { PrivacyPolicyButton } from 'components/buttons/PrivacyPolicyButton';
-import { VerticalDivider } from 'components/Divider';
 import Modal from 'components/Modal';
+import VerticalDivider from 'components/VerticalDivider';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { useRegisterSW } from 'virtual:pwa-register/react';
@@ -28,10 +29,11 @@ export function InfoModalContent() {
     <div className="flex flex-col items-center">
       <InfoText />
       <div className="w-[330px] space-y-2 py-2">
-        <FAQButton />
+        <ApiButton />
+        <DocumentationButton />
         <FeedbackButton />
         <LinkedinButton />
-        <GithubButton />
+        <FAQButton />
       </div>
       <div className="flex gap-x-4">
         <PrivacyPolicyButton />

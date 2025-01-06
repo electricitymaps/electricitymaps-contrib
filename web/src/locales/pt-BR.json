@@ -1720,10 +1720,7 @@
   },
   "windDataError": "Dados eólicos estão indisponíveis",
   "solarDataError": "Dados solares estão indisponíveis",
-  "info": {
-    "text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no celular para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios de transição de energia.",
-    "open-source-text": "Esse aplicativo é <a href='{{link}}' target='_blank'>de código aberto</a> e apoiado pela comunidade."
-  },
+
   "button": {
     "feedback": "Compartilhar Feedback",
     "github": "Ver nosso GitHub",

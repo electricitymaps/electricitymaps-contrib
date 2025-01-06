@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 
 function SearchBar({
   placeholder,
@@ -22,7 +22,7 @@ function SearchBar({
       <Search />
       <input
         data-testid="zone-search-bar"
-        className="font h-8 w-full bg-transparent text-base placeholder-gray-500 focus:border-b-2 focus:border-gray-300 focus:outline-none dark:focus:border-gray-600"
+        className="font h-8 w-full bg-transparent text-sm placeholder-gray-500 focus:border-b-2 focus:border-gray-300 focus:outline-none dark:focus:border-gray-600"
         placeholder={placeholder}
         onChange={onHandleInput}
         value={value}
@@ -31,4 +31,4 @@ function SearchBar({
   );
 }
 
-export default SearchBar;
+export default memo(SearchBar);

@@ -4,7 +4,7 @@ import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { atom, useAtom, useAtomValue } from 'jotai';
-import React, { useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters, ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
@@ -150,7 +150,6 @@ function AreaGraph({
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);
   const containerHeight = Math.max(observerHeight - X_AXIS_HEIGHT, 0);
-  const barWidth = containerWidth / datetimes.length;
 
   // Build layers
   const layers = useMemo(
@@ -197,8 +196,8 @@ function AreaGraph({
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
 
   // Graph update handlers. Used for tooltip data.
-  const markerUpdateHandler = useMemo(
-    () => (position: { x: number; y: number }, dataPoint: AreaGraphElement) => {
+  const markerUpdateHandler = useCallback(
+    (position: { x: number; y: number }, dataPoint: AreaGraphElement) => {
       setTooltipData({
         position,
         zoneDetail: dataPoint.meta,
@@ -206,16 +205,13 @@ function AreaGraph({
     },
     [setTooltipData]
   );
-  const markerHideHandler = useMemo(
-    () => () => {
-      setTooltipData(null);
-    },
-    [setTooltipData]
-  );
+  const markerHideHandler = useCallback(() => {
+    setTooltipData(null);
+  }, [setTooltipData]);
 
   // Mouse action handlers
-  const mouseMoveHandler = useMemo(
-    () => (timeIndex: number | null, layerIndex: number | null) => {
+  const mouseMoveHandler = useCallback(
+    (timeIndex: number | null, layerIndex: number | null) => {
       setGraphIndex(timeIndex);
       if (layers.length <= 1) {
         // Select the first (and only) layer even when hovering over background
@@ -227,20 +223,18 @@ function AreaGraph({
     },
     [layers, setGraphIndex, setHoveredLayerIndex]
   );
-  const mouseOutHandler = useMemo(
-    () => () => {
-      if (!isMobile) {
-        setGraphIndex(null);
-        setHoveredLayerIndex(null);
-      }
-    },
-    [setGraphIndex, setHoveredLayerIndex, isMobile]
-  );
+  const mouseOutHandler = useCallback(() => {
+    if (!isMobile) {
+      setGraphIndex(null);
+      setHoveredLayerIndex(null);
+    }
+  }, [setGraphIndex, setHoveredLayerIndex, isMobile]);
 
-  const onCloseTooltip = () => {
+  const onCloseTooltip = useCallback(() => {
     setTooltipData(null);
     setHoveredLayerIndex(null);
-  };
+    setGraphIndex(null);
+  }, [setTooltipData, setHoveredLayerIndex, setGraphIndex]);
 
   const headerHeight = useHeaderHeight();
 
@@ -252,8 +246,8 @@ function AreaGraph({
     }
   }
 
-  if (layers.every((layer) => layer.datapoints.every((d) => d[0] === 0 && d[1] === 0))) {
-    // Don't render the graph if all datapoints are 0
+  // Don't render the graph if all datapoints are 0
+  if (totalValues.min === 0 && totalValues.max === 0) {
     return null;
   }
 
@@ -295,7 +289,7 @@ function AreaGraph({
           selectedTimeRange={selectedTimeRange}
           datetimes={datetimesWithNext}
           scaleWidth={containerWidth}
-          transform={`translate(${barWidth / 2} ${containerHeight})`}
+          transform={`translate(0 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
           timezone={zoneTimezone}
           chartHeight={containerHeight}
@@ -332,4 +326,4 @@ function AreaGraph({
   );
 }
 
-export default React.memo(AreaGraph);
+export default memo(AreaGraph);
