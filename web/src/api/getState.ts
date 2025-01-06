@@ -25,7 +25,7 @@ const getState = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v9/state/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}${
+    `v10/state/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()

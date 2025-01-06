@@ -30,7 +30,7 @@ const getZone = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v9/details/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}/${zoneId}${
+    `v10/details/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}/${zoneId}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
@@ -46,7 +46,7 @@ const getZone = async (
   const response = await fetch(path, requestOptions);
 
   if (response.ok) {
-    const { data } = (await response.json()) as { data: ZoneDetails };
+    const data = (await response.json()) as ZoneDetails;
     if (!data.zoneStates) {
       throw new Error('No data returned from API');
     }

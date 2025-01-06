@@ -13,21 +13,18 @@ export type Maybe<T> = T | null | undefined;
 export type ZoneKey = string;
 
 export interface GridState {
-  callerLocation?: [number, number];
-  data: {
-    _disclaimer: string;
-    createdAt: string;
-    datetimes: {
-      /** Object representing the grid state at a single point in time */
-      [datetimeKey: string]: {
-        /** Array of all exchanges */
-        e: {
-          [key: ZoneKey]: StateExchangeData;
-        };
-        /** Array of all zones */
-        z: {
-          [key: ZoneKey]: StateZoneData;
-        };
+  _disclaimer: string;
+  createdAt: string;
+  datetimes: {
+    /** Object representing the grid state at a single point in time */
+    [datetimeKey: string]: {
+      /** Array of all exchanges */
+      e: {
+        [key: ZoneKey]: StateExchangeData;
+      };
+      /** Array of all zones */
+      z: {
+        [key: ZoneKey]: StateZoneData;
       };
     };
   };
