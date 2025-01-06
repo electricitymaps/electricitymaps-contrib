@@ -66,7 +66,6 @@ export enum TrackEvent {
   APP_LOADED = 'App Loaded',
   PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
   HEADER_LINK_CLICKED = 'HeaderLink Clicked',
-  TIME_SLIDER_BUTTON = 'Time Slider Button Interaction',
   LANGUAGE_SELECTED = 'Language Selected',
   ESTIMATION_CARD_EXPANDED = 'EstimationCard Expanded',
   CONTRIBUTE_ON_GITHUB_BUTTON_CLICKED = 'Contribute On GitHub Button Clicked',
