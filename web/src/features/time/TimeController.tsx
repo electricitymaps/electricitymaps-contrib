@@ -119,7 +119,7 @@ export default function TimeController({ className }: { className?: string }) {
       {isBiggerThanMobile && historicalLinkingEnabled && <HistoricalTimeHeader />}
       <div className="flex items-center gap-2">
         <TimeRangeToggle
-          timeRange={selectedTimeRange || TimeRange.H24}
+          timeRange={selectedTimeRange || TimeRange.H72}
           onToggleGroupClick={onToggleGroupClick}
         />
       </div>
@@ -133,7 +133,7 @@ export default function TimeController({ className }: { className?: string }) {
         />
         <TimeAxis
           datetimes={datetimes}
-          selectedTimeRange={selectedTimeRange || TimeRange.H24}
+          selectedTimeRange={selectedTimeRange || TimeRange.H72}
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}

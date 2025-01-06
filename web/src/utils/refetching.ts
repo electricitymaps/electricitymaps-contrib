@@ -18,16 +18,6 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
     if (startHour !== currentHour) {
       console.info(`Refetching data for new hour: ${currentHour}`);
 
-      // Invalidate hourly state query
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.STATE, { aggregate: TimeRange.H24 }],
-      });
-
-      // Invalidate hourly zone queries - this matches all zone queries
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.ZONE, { aggregate: TimeRange.H24 }],
-      });
-
       // Invalidate 72 hourly state query
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.STATE, { aggregate: TimeRange.H72 }],

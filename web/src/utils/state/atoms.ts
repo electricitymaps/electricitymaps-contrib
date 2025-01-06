@@ -17,7 +17,7 @@ import {
 // TODO: Move these atoms to relevant features
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
-export const timeRangeAtom = atom<TimeRange>(TimeRange.H24);
+export const timeRangeAtom = atom<TimeRange>(TimeRange.H72);
 
 export function useTimeRangeSync() {
   const [timeRange, setTimeRange] = useAtom(timeRangeAtom);
@@ -37,9 +37,7 @@ export function useTimeRangeSync() {
 
   return [timeRange, setTimeRangeAndNavigate] as const;
 }
-export const isHourlyAtom = atom(
-  (get) => get(timeRangeAtom) === TimeRange.H24 || get(timeRangeAtom) === TimeRange.H72
-);
+export const isHourlyAtom = atom((get) => get(timeRangeAtom) === TimeRange.H72);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
@@ -61,10 +59,8 @@ export const isConsumptionAtom = atom<boolean>(
 
 export const areWeatherLayersAllowedAtom = atom<boolean>(
   (get) =>
-    (get(timeRangeAtom) === TimeRange.H24 &&
-      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H24]) ||
-    (get(timeRangeAtom) === TimeRange.H72 &&
-      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H72])
+    get(timeRangeAtom) === TimeRange.H72 &&
+    get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H72]
 );
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);

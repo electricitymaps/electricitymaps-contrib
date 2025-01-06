@@ -17,12 +17,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Hourly: Story = {
   args: {
-    timeRange: TimeRange.H24,
-  },
-};
-
-export const Hourly72: Story = {
-  args: {
     timeRange: TimeRange.H72,
   },
 };

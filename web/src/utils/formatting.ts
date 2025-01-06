@@ -143,8 +143,7 @@ export const getDateTimeFormatOptions = (
   timezone?: string
 ): Intl.DateTimeFormatOptions => {
   switch (timeRange) {
-    case TimeRange.H72:
-    case TimeRange.H24: {
+    case TimeRange.H72: {
       return {
         year: 'numeric',
         month: 'short',
@@ -217,12 +216,6 @@ const formatDateTick = (
           timeZone: 'UTC',
         }).format(date);
       }
-      return new Intl.DateTimeFormat(lang, {
-        timeStyle: 'short',
-        timeZone: timezone,
-      }).format(date);
-    }
-    case TimeRange.H24: {
       return new Intl.DateTimeFormat(lang, {
         timeStyle: 'short',
         timeZone: timezone,

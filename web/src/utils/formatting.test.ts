@@ -356,7 +356,7 @@ describe('formatCo2', () => {
 
 describe('getDateTimeFormatOptions', () => {
   it('handles hourly data', () => {
-    const actual = getDateTimeFormatOptions(TimeRange.H24, 'UTC');
+    const actual = getDateTimeFormatOptions(TimeRange.H72, 'UTC');
     const expected = {
       year: 'numeric',
       month: 'short',
@@ -370,7 +370,7 @@ describe('getDateTimeFormatOptions', () => {
   });
 
   it('handles hourly data without timezone', () => {
-    const actual = getDateTimeFormatOptions(TimeRange.H24);
+    const actual = getDateTimeFormatOptions(TimeRange.H72);
     const expected = {
       year: 'numeric',
       month: 'short',
@@ -428,13 +428,13 @@ describe('getDateTimeFormatOptions', () => {
 // and may fail if the Node version changes. Simply update the snapshot if that is the case.
 describe('formatDate', () => {
   it('handles invalid date', () => {
-    const actual = formatDate(new Date('invalid-date'), 'en', TimeRange.H24);
+    const actual = formatDate(new Date('invalid-date'), 'en', TimeRange.H72);
     const expected = '';
     expect(actual).to.deep.eq(expected);
   });
 
   it('handles a date that is not a Date object', () => {
-    const actual = formatDate('not-a-date' as unknown as Date, 'en', TimeRange.H24);
+    const actual = formatDate('not-a-date' as unknown as Date, 'en', TimeRange.H72);
     const expected = '';
     expect(actual).to.deep.eq(expected);
   });
@@ -445,7 +445,7 @@ describe('formatDate', () => {
       const actual = formatDate(
         new Date('2021-01-01T00:00:00Z'),
         language,
-        TimeRange.H24
+        TimeRange.H72
       );
       expect(actual).toMatchSnapshot();
     }
@@ -551,13 +551,13 @@ describe('scalePower', () => {
 
 describe('formatDateTick', () => {
   it('should return an empty string for invalid date', () => {
-    const result = formatDateTick(new Date('invalid-date'), 'en', TimeRange.H24);
+    const result = formatDateTick(new Date('invalid-date'), 'en', TimeRange.H72);
     expect(result).toBe('');
   });
 
   it('should format date correctly for HOURLY time aggregate', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeRange.H24);
+    const result = formatDateTick(date, 'en', TimeRange.H72);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', { timeStyle: 'short' }).format(date)
     );
