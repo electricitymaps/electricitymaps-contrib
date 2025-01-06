@@ -14,16 +14,8 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency, use_proxy
 from parsers.lib.exceptions import ParserException
-
-# FIXME: Issues as of 2024-12-29
-#
-# 1. The API isn't accessible from anywhere, for example Sweden can't access it.
-#
-# 2. There is a use of `replace(hour=int(col[-2:]) - 1)`, but should it really
-#    be -1 there?
-#
 
 #   PARSER FOR COLOMBIA / DEMAND-ONLY as of 2023-02-11 / 5-minute-granularity / returns demand data of the recent day
 #   MAIN_WEBSITE = https://www.xm.com.co/consumo/demanda-en-tiempo-real
@@ -45,11 +37,15 @@ PRODUCTION_MAPPING = {
     "JET-A1": "oil",
 }
 
+
+# settle with fetching production and price data from past days, as data doesn't
+# seem to be available for very recent days
 XM_DELAY_MIN = 2
 XM_DELAY_MAX = 5
 
 
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="CO", monkeypatch_for_pydataxm=True)
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -78,9 +74,12 @@ def _fetch_live_consumption(
     demand_data = response.json()["Variables"][0]["Datos"]
     demand_list = TotalConsumptionList(logger)
     for datapoint in demand_data:
-        # Date strings are formatted like 2023-09-14T00:00:00, see
-        # https://web.archive.org/web/20230914161535/https://serviciosfacturacion.xm.com.co/XM.Portal.Indicadores/api/Operacion/DemandaTiempoReal
-        dt = datetime.fromisoformat(datapoint["Fecha"]).replace(tzinfo=ZONE_INFO)
+        dt_string = datapoint["Fecha"]
+        # TODO: Remove the truncation of sub-seconds when we run on Python 3.11
+        #       or above and fromisoformat can parse such strings
+        if dt_string.find(".") != -1:
+            dt_string = dt_string[: dt_string.find(".")]
+        dt = datetime.fromisoformat(dt_string).replace(tzinfo=ZONE_INFO)
         demand_list.append(
             zoneKey=zone_key,
             datetime=dt,
@@ -125,6 +124,7 @@ def _fetch_historical_consumption(
 
 
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="CO", monkeypatch_for_pydataxm=True)
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -149,7 +149,7 @@ def fetch_production(
         # API request generation per power plant
         df_generation = objetoAPI.request_data("Gene", "Recurso", date, date)
         if not df_generation.empty and not df_recursos.empty:
-            acquired_datetime = datetime.combine(date, datetime.time.min).replace(
+            acquired_datetime = datetime.combine(date, datetime.min.time()).replace(
                 tzinfo=ZONE_INFO
             )
             break
@@ -204,6 +204,7 @@ def fetch_production(
 
 
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="CO", monkeypatch_for_pydataxm=True)
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -225,7 +226,7 @@ def fetch_price(
     for date in target_date_range:
         df_price = objetoAPI.request_data("PrecBolsNaci", "Sistema", date, date)
         if not df_price.empty:
-            acquired_datetime = datetime.combine(date, datetime.time.min).replace(
+            acquired_datetime = datetime.combine(date, datetime.min.time()).replace(
                 tzinfo=ZONE_INFO
             )
             break
