@@ -33,7 +33,7 @@ poetry-lock:
 
 prepare:
   FROM +src-files-with-parsers
-  RUN pip install poetry==1.6.1
+  RUN pip install "poetry==1.*"
   RUN apt-get update && apt-get install -y python3-opencv tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng libgl1
   RUN poetry config virtualenvs.create false
   RUN poetry install --compile -E parsers
