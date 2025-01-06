@@ -1,4 +1,6 @@
-export function Link({ href, children }: { href: string; children: React.ReactNode }) {
+import { memo } from 'react';
+
+function Link({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
       href={href}
@@ -10,3 +12,5 @@ export function Link({ href, children }: { href: string; children: React.ReactNo
     </a>
   );
 }
+
+export default memo(Link);

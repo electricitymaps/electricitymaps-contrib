@@ -1,0 +1,23 @@
+# serializer version: 1
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+        'unknown',
+      ]),
+      'datetime': datetime.datetime(2023, 9, 12, 3, 45, 2, 384000, tzinfo=zoneinfo.ZoneInfo(key='America/Aruba')),
+      'production': dict({
+        'biomass': 0.0,
+        'oil': 108.567078,
+        'solar': 0.0,
+        'unknown': 0,
+        'wind': 4.692129,
+      }),
+      'source': 'webaruba.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'AW',
+    }),
+  ])
+# ---

@@ -1,12 +1,12 @@
-import { ApiButton } from 'components/buttons/ApiButton';
+import ApiButton from 'components/buttons/ApiButton';
 import { DocumentationButton } from 'components/buttons/DocumentationButton';
 import { FAQButton } from 'components/buttons/FAQButton';
 import { FeedbackButton } from 'components/buttons/FeedbackButton';
 import { LegalNoticeButton } from 'components/buttons/LegalNoticeButton';
 import { LinkedinButton } from 'components/buttons/LinkedinButton';
 import { PrivacyPolicyButton } from 'components/buttons/PrivacyPolicyButton';
-import { VerticalDivider } from 'components/Divider';
 import Modal from 'components/Modal';
+import VerticalDivider from 'components/VerticalDivider';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { useRegisterSW } from 'virtual:pwa-register/react';
