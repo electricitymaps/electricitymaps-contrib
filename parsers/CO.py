@@ -19,7 +19,7 @@ from parsers.lib.exceptions import ParserException
 
 #   PARSER FOR COLOMBIA / DEMAND-ONLY as of 2023-02-11 / 5-minute-granularity / returns demand data of the recent day
 #   MAIN_WEBSITE = https://www.xm.com.co/consumo/demanda-en-tiempo-real
-colombia_demand_URL = "https://serviciosfacturacion.xm.com.co/XM.Portal.Indicadores/api/Operacion/DemandaTiempoReal"
+CO_DEMAND_URL = "https://serviciosfacturacion.xm.com.co/XM.Portal.Indicadores/api/Operacion/DemandaTiempoReal"
 
 ZONE_INFO = ZoneInfo("America/Bogota")  # UTC-5
 
@@ -47,7 +47,7 @@ XM_DELAY_MAX = 5
 @refetch_frequency(timedelta(days=1))
 @use_proxy(country_code="CO", monkeypatch_for_pydataxm=True)
 def fetch_consumption(
-    zone_key: ZoneKey,
+    zone_key: ZoneKey = ZoneKey("CO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -61,9 +61,11 @@ def fetch_consumption(
 
 
 def _fetch_live_consumption(
-    zone_key: ZoneKey, session: Session, logger: Logger
+    zone_key: ZoneKey,
+    session: Session,
+    logger: Logger,
 ) -> list[dict[str, Any]]:
-    response: Response = session.get(colombia_demand_URL, verify=False)
+    response: Response = session.get(CO_DEMAND_URL, verify=False)
     if not response.ok:
         raise ParserException(
             parser="CO",
@@ -126,7 +128,7 @@ def _fetch_historical_consumption(
 @refetch_frequency(timedelta(days=1))
 @use_proxy(country_code="CO", monkeypatch_for_pydataxm=True)
 def fetch_production(
-    zone_key: ZoneKey,
+    zone_key: ZoneKey = ZoneKey("CO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -206,7 +208,7 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 @use_proxy(country_code="CO", monkeypatch_for_pydataxm=True)
 def fetch_price(
-    zone_key: ZoneKey,
+    zone_key: ZoneKey = ZoneKey("CO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -254,10 +256,10 @@ def fetch_price(
 
 if __name__ == "__main__":
     print("fetch_consumption() ->")
-    print(fetch_consumption(ZoneKey("CO")))
+    print(fetch_consumption())
 
     print("fetch_production() ->")
-    print(fetch_production(ZoneKey("CO")))
+    print(fetch_production())
 
     print("fetch_price() ->")
-    print(fetch_price(ZoneKey("CO")))
+    print(fetch_price())
