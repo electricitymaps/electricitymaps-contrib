@@ -1,11 +1,21 @@
-[tool.poetry]
+[project]
 name = "electricitymap-contrib"
 version = "1.0.0"
 description = ""
 license = "AGPL-3.0-or-later"
-authors = ["Electricity Maps <app@electricitymaps.com>"]
+authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
 packages = [{ include = "electricitymap" }]
-include = ["config/*.json"]
+
+
+[project.scripts]
+test-parser = 'test_parser:test_parser'
+test_parser = 'test_parser:test_parser'
+capacity_update = 'capacity_update:capacity_update'
+check = 'scripts.tooling:check'
+format = 'scripts.tooling:format'
+lint = 'scripts.tooling:lint'
+test = 'scripts.tooling:test'
+
 
 [tool.poetry.dependencies]
 python = '>= 3.10, < 3.11'
@@ -36,14 +46,9 @@ ruff = "0.4.3"
 tzdata = "^2024.2"
 numpy = "^1.24.4"
 
-[tool.poetry.scripts]
-test-parser = 'test_parser:test_parser'
-test_parser = 'test_parser:test_parser'
-capacity_update = 'capacity_update:capacity_update'
-check = 'scripts.tooling:check'
-format = 'scripts.tooling:format'
-lint = 'scripts.tooling:lint'
-test = 'scripts.tooling:test'
+
+[tool.poetry]
+include = ["config/*.json"]
 
 
 [tool.poetry.extras]
