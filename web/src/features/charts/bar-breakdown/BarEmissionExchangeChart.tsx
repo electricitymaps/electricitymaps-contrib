@@ -4,7 +4,7 @@ import { ZoneKey } from 'types';
 import { useIsMobile } from 'utils/styling';
 
 import { EXCHANGE_PADDING } from './constants';
-import Axis from './elements/Axis';
+import Axis, { FormatTick } from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
 import { ExchangeRow } from './elements/Row';
 import { ExchangeDataType } from './utils';
@@ -22,7 +22,7 @@ export default function BarEmissionExchangeChart({
   width: number;
   exchangeData: ExchangeDataType[];
   co2Scale: ScaleLinear<number, number, never>;
-  formatTick: (value: number) => string;
+  formatTick: FormatTick;
   onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
@@ -41,10 +41,8 @@ export default function BarEmissionExchangeChart({
           formatTick={formatTick}
           height={height}
           scale={co2Scale}
-          axisLegendText={{
-            left: t('country-panel.graph-legends.exported'),
-            right: t('country-panel.graph-legends.imported'),
-          }}
+          axisLegendTextLeft={t('country-panel.graph-legends.exported')}
+          axisLegendTextRight={t('country-panel.graph-legends.imported')}
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (

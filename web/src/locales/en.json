@@ -267,7 +267,6 @@
     }
   },
   "left-panel": {
-    "get-data": "See our commercial API offerings",
     "applied-methodologies": {
       "title": "Applied methodologies",
       "estimations": "Electricity Maps - Estimations",
@@ -280,7 +279,6 @@
     }
   },
   "header": {
-    "get-data": "Access the API",
     "blog": "Blog",
     "open-source": "Community",
     "hiring": "We're hiring!",
