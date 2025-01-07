@@ -29,12 +29,12 @@ export const Daily: Story = {
 
 export const Monthly: Story = {
   args: {
-    timeRange: TimeRange.M12,
+    timeRange: TimeRange.ALL_MONTHS,
   },
 };
 
 export const Yearly: Story = {
   args: {
-    timeRange: TimeRange.ALL,
+    timeRange: TimeRange.ALL_YEARS,
   },
 };

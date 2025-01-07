@@ -160,14 +160,14 @@ export const getDateTimeFormatOptions = (
         timeZone: 'UTC',
       };
     }
-    case TimeRange.M12: {
+    case TimeRange.ALL_MONTHS: {
       return {
         month: 'long',
         year: 'numeric',
         timeZone: 'UTC',
       };
     }
-    case TimeRange.ALL: {
+    case TimeRange.ALL_YEARS: {
       return {
         year: 'numeric',
         timeZone: 'UTC',
@@ -230,21 +230,8 @@ const formatDateTick = (
         timeZone: 'UTC',
       }).format(date);
     }
-    case TimeRange.M12: {
-      return lang === 'et'
-        ? new Intl.DateTimeFormat(lang, {
-            month: 'short',
-            day: 'numeric',
-            timeZone: 'UTC',
-          })
-            .formatToParts(date)
-            .find((part) => part.type === 'month')?.value
-        : new Intl.DateTimeFormat(lang, {
-            month: 'short',
-            timeZone: 'UTC',
-          }).format(date);
-    }
-    case TimeRange.ALL: {
+    case TimeRange.ALL_MONTHS:
+    case TimeRange.ALL_YEARS: {
       return new Intl.DateTimeFormat(lang, {
         year: 'numeric',
         timeZone: 'UTC',

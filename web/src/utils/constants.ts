@@ -8,8 +8,9 @@ export const baseUrl = 'https://app.electricitymaps.com';
 export enum TimeRange {
   H72 = '72h',
   D30 = '30d',
-  M12 = '12mo',
-  ALL = 'all',
+  W104 = '104w',
+  ALL_MONTHS = 'all_months',
+  ALL_YEARS = 'all_years',
 }
 
 export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
@@ -139,10 +140,11 @@ export const modeOrderBarBreakdown = [
 
 // A mapping between the TimeRange enum and the corresponding Duration for the date-fns add/substract method
 export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
-  [TimeRange.D30]: 'days',
   [TimeRange.H72]: 'hours',
-  [TimeRange.M12]: 'months',
-  [TimeRange.ALL]: 'years',
+  [TimeRange.D30]: 'days',
+  [TimeRange.W104]: 'weeks',
+  [TimeRange.ALL_MONTHS]: 'months',
+  [TimeRange.ALL_YEARS]: 'years',
 };
 /**
  * A mapping between the source name and a link to the source.
