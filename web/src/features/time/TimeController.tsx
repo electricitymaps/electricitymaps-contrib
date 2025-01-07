@@ -102,17 +102,21 @@ export default function TimeController({ className }: { className?: string }) {
 
   const onToggleGroupClick = useCallback(
     (timeRange: TimeRange) => {
-      // Set time slider to latest value before switching aggregate to avoid flickering
-      setSelectedDatetime({
-        datetime: selectedDatetime.datetime,
-        index: numberOfEntries,
-      });
-      setTimeRange(timeRange);
-      trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeRange });
+      if (datetimes !== undefined) {
+        const lastDatetime = datetimes.at(-1);
+        if (lastDatetime) {
+          // Set time slider to latest value before switching aggregate to avoid flickering
+          setSelectedDatetime({
+            datetime: lastDatetime,
+            index: numberOfEntries,
+          });
+          setTimeRange(timeRange);
+          trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeRange });
+        }
+      }
     },
-    [setSelectedDatetime, selectedDatetime.datetime, numberOfEntries, setTimeRange]
+    [setSelectedDatetime, datetimes, numberOfEntries, setTimeRange]
   );
-
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
