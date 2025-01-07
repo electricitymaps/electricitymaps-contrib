@@ -1,9 +1,11 @@
+import functools
 import os
 from copy import deepcopy
 from datetime import timedelta
 from inspect import signature
 from logging import getLogger
 
+import requests
 from requests import Session
 from requests.adapters import HTTPAdapter, Retry
 
@@ -54,7 +56,7 @@ def retry_policy(retry_policy: Retry):
     return wrap
 
 
-def use_proxy(country_code: str):
+def use_proxy(country_code: str, monkeypatch_for_pydataxm: bool = False):
     """
     Decorator to route requests through webshare.io proxies for a specific country.
 
@@ -68,7 +70,17 @@ def use_proxy(country_code: str):
     example, South Korea proxies are only available using this subscription.
 
     Args:
-        country_code (str): The ISO 3166-1 alpha-2 code of the country for which the proxy should be used.
+        country_code (str):
+            The ISO 3166-1 alpha-2 code of the country for which the proxy
+            should be used.
+        monkeypatch_for_pydataxm (bool):
+            The CO parser specifically makes use both requests.post and
+            aiohttp.ClientSession via a API specific third party library called
+            pydataxm that isn't configurable to use a proxy. By setting this to
+            True, we temporarily monkeypatch whats needed to get setup the
+            proxy.
+
+            See
 
     Usage:
     ```
@@ -111,15 +123,39 @@ def use_proxy(country_code: str):
             else:
                 session = kwargs.setdefault("session", Session())
 
-            old_proxies = session.proxies
-            session.proxies = {
+            requests_proxy_dict = {
                 "http": f"http://{WEBSHARE_USERNAME}-{country_code}-rotate:{WEBSHARE_PASSWORD}@p.webshare.io:80/",
                 "https": f"http://{WEBSHARE_USERNAME}-{country_code}-rotate:{WEBSHARE_PASSWORD}@p.webshare.io:80/",
             }
+
+            if monkeypatch_for_pydataxm:
+                from aiohttp import BasicAuth, ClientSession
+
+                aiohttp_old_post = ClientSession.post
+                requests_old_post = requests.post
+
+                ClientSession.post = functools.partialmethod(
+                    ClientSession.post,
+                    proxy="http://p.webshare.io",
+                    proxy_auth=BasicAuth(
+                        f"{WEBSHARE_USERNAME}-{country_code}-rotate",
+                        WEBSHARE_PASSWORD,
+                    ),
+                )
+                requests.post = functools.partial(
+                    requests.post,
+                    proxies=requests_proxy_dict,
+                )
+
+            old_proxies = session.proxies
+            session.proxies = requests_proxy_dict
             try:
                 return f(*args, **kwargs)
             finally:
                 session.proxies = old_proxies
+                if monkeypatch_for_pydataxm:
+                    ClientSession.post = aiohttp_old_post
+                    requests.post = requests_old_post
 
         return wrapped_f
 
