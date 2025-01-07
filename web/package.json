@@ -14,6 +14,7 @@
     "build": "vite build",
     "create-generated-files": "pnpm run generate-world && pnpm run generate-zones-config && pnpm run generate-sitemap",
     "generate-world": "node --import=./scripts/register-tsNodeESM.js ./geo/generateWorld.ts",
+    "generate-bbox": "node --import=./scripts/register-tsNodeESM.js ./geo/generateZoneBoundingBoxes.ts",
     "generate-zones-config": "node --import=./scripts/register-tsNodeESM.js ./scripts/generateZonesConfig.ts",
     "generate-sitemap": "node ./scripts/generateSitemap.js",
     "predev": "pnpm run create-generated-files",
