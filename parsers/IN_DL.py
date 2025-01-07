@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
-from datetime import datetime
+from datetime import datetime, time
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
 from requests import Session
 
 from .lib import IN, web, zonekey
+
+ZONE_INFO = ZoneInfo
 
 plants = {
     "CCGT-Bawana": "Gas",
@@ -34,14 +37,14 @@ def fetch_consumption(
     )
 
     india_date_time = IN.read_datetime_from_span_id(
-        html, "DynamicData1_LblDate", "DD-MMM-YYYY hh:mm:ss A"
+        html, "DynamicData1_LblDate", "%d-%b-%Y %I:%M:%S %p"
     )
 
     demand_value = IN.read_value_from_span_id(html, "DynamicData1_LblLoad")
 
     data = {
         "zoneKey": zone_key,
-        "datetime": india_date_time.datetime,
+        "datetime": india_date_time,
         "consumption": demand_value,
         "source": "delhisldc.org",
     }
@@ -67,8 +70,11 @@ def fetch_production(
         zone_key, "http://www.delhisldc.org/Redirect.aspx?Loc=0804", session
     )
 
-    india_date_string = IN.read_text_from_span_id(html, "ContentPlaceHolder3_ddgenco")
-    india_date_time = IN.read_datetime_with_only_time(india_date_string, "HH:mm:ss")
+    india_time_string = IN.read_text_from_span_id(html, "ContentPlaceHolder3_ddgenco")
+    india_time = time.fromisoformat(india_time_string)
+    india_date_time = datetime.combine(datetime.now(IN.ZONE_INFO), india_time).replace(
+        tzinfo=IN.ZONE_INFO
+    )
 
     prod_table = html.find("table", {"id": "ContentPlaceHolder3_dgenco"})
     prod_rows = prod_table.findAll("tr")
@@ -78,7 +84,7 @@ def fetch_production(
 
     data = {
         "zoneKey": zone_key,
-        "datetime": india_date_time.datetime,
+        "datetime": india_date_time,
         "production": {
             "coal": energy["Coal"],
             "gas": energy["Gas"],

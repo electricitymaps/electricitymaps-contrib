@@ -1,0 +1,144 @@
+# serializer version: 1
+# name: test_fetch_consumption
+  list([
+    dict({
+      'consumption': 5.5,
+      'datetime': datetime.datetime(2023, 9, 4, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES-CN-HI',
+    }),
+  ])
+# ---
+# name: test_fetch_exchange
+  list([
+    dict({
+      'datetime': datetime.datetime(2023, 9, 3, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'netFlow': 309.8,
+      'sortedZoneKeys': 'ES->ES-IB-MA',
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 2, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'production': dict({
+        'biomass': 0.0,
+        'coal': 0.0,
+        'gas': 0.0,
+        'oil': 81.9,
+        'solar': 1.1,
+        'unknown': 0.0,
+        'wind': 0.2,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'ES-IB-ME',
+    }),
+  ])
+# ---
+# name: test_fetch_production_storage
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 4, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'production': dict({
+        'oil': 3.2,
+        'solar': 0.0,
+        'wind': 3.0,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 0.5,
+      }),
+      'zoneKey': 'ES-CN-HI',
+    }),
+  ])
+# ---
+# name: test_production_DST_CN
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2021, 10, 31, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'production': dict({
+        'oil': 2.8,
+        'solar': 0.0,
+        'wind': 3.3,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 1.2,
+      }),
+      'zoneKey': 'ES-CN-HI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2021, 10, 31, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'oil': 2.5,
+        'solar': 0.0,
+        'wind': 3.2,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 1.2,
+      }),
+      'zoneKey': 'ES-CN-HI',
+    }),
+  ])
+# ---
+# name: test_production_DST_IB
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2020, 10, 25, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
+      'production': dict({
+        'biomass': 19.2,
+        'coal': 73.3,
+        'gas': 127.1,
+        'oil': 0.0,
+        'solar': 0.0,
+        'unknown': 2.9,
+        'wind': 0.0,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'ES-IB-MA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2020, 10, 25, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'production': dict({
+        'biomass': 18.5,
+        'coal': 73.3,
+        'gas': 128.0,
+        'oil': 0.0,
+        'solar': 0.0,
+        'unknown': 2.9,
+        'wind': 0.0,
+      }),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'ES-IB-MA',
+    }),
+  ])
+# ---

@@ -1,17 +1,21 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { memo } from 'react';
 
 import { X_AXIS_HEIGHT } from '../constants';
 
-export default function BarBreakdownAxisLegend({
+const ARROW_OFFSET = 3;
+const HALF_ARROW_OFFSET = ARROW_OFFSET / 2;
+const ARROW_SIZE = X_AXIS_HEIGHT - ARROW_OFFSET;
+
+function BarBreakdownAxisLegend({
   height,
-  legendText,
+  legendTextLeft,
+  legendTextRight,
 }: {
   height: number;
-  legendText: { left: string; right: string };
+  legendTextLeft: string;
+  legendTextRight: string;
 }) {
-  const ARROW_OFFSET = 3;
-  const HALF_ARROW_OFFSET = ARROW_OFFSET / 2;
-  const ARROW_SIZE = X_AXIS_HEIGHT - ARROW_OFFSET;
   const ARROW_Y_POSITION = height - X_AXIS_HEIGHT + HALF_ARROW_OFFSET;
   return (
     <>
@@ -29,7 +33,7 @@ export default function BarBreakdownAxisLegend({
         x={-18.5}
         textAnchor="end"
       >
-        {legendText.left}
+        {legendTextLeft}
       </text>
       <ArrowLeft
         className="text-neutral-500"
@@ -50,8 +54,10 @@ export default function BarBreakdownAxisLegend({
         x={17.5}
         textAnchor="start"
       >
-        {legendText.right}
+        {legendTextRight}
       </text>
     </>
   );
 }
+
+export default memo(BarBreakdownAxisLegend);
