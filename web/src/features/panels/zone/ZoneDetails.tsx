@@ -27,8 +27,8 @@ import EstimationCard from './EstimationCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
+import ZoneHeader from './ZoneHeader';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
-import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -128,7 +128,7 @@ export default function ZoneDetails(): JSX.Element {
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
     <>
-      <ZoneHeaderTitle zoneId={zoneId} isEstimated={cardType === 'estimated'} />
+      <ZoneHeader zoneId={zoneId} isEstimated={cardType === 'estimated'} />
       <div
         id="panel-scroller"
         className={twMerge(
