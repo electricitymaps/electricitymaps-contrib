@@ -4,7 +4,7 @@ import {
 } from '@radix-ui/react-toggle-group';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { TFunction } from 'i18next';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TimeRange } from 'utils/constants';
 
@@ -99,4 +99,4 @@ function TimeRangeToggle({ timeRange, onToggleGroupClick }: TimeRangeToggleProps
   );
 }
 
-export default TimeRangeToggle;
+export default memo(TimeRangeToggle);
