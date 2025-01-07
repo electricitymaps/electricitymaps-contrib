@@ -53,10 +53,7 @@ export const selectedDatetimeStringAtom = atom<string>((get) => {
   return dateToDatetimeString(datetime);
 });
 
-export const spatialAggregateAtom = atomWithStorage(
-  'country-mode',
-  SpatialAggregate.ZONE
-);
+export const spatialAggregateAtom = atom(SpatialAggregate.ZONE);
 export const productionConsumptionAtom = atom(Mode.CONSUMPTION);
 export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
