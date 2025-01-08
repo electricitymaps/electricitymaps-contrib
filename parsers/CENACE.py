@@ -142,9 +142,18 @@ def fetch_csv_for_date(dt, session: Session | None = None):
 
     # cleanup and parse the data
     df.columns = df.columns.str.strip()
+
+    # transform 01-24 entries where 24 means 00 the next day
     df["Hora"] = df["Hora"].apply(lambda x: "00" if int(x) == 24 else f"{int(x):02d}")
     df["Dia"] = pd.to_datetime(df["Dia"], format="%d/%m/%Y")
     df.loc[df["Hora"] == "00", "Dia"] = df["Dia"] + pd.Timedelta(days=1)
+
+    # The hour column has been seen at least once (3rd Nov 2024) to include 1-25
+    # hours rather than the expected 1-24, due to this, we are for now dropping
+    # such entries if they show up
+    df = df.drop(df[df["Hora"] == "25"].index)
+
+    # create datetime objects
     df["Dia"] = df["Dia"].dt.strftime("%d/%m/%Y")
     df["instante"] = pd.to_datetime(df["Dia"] + " " + df["Hora"], format="%d/%m/%Y %H")
     df["instante"] = df["instante"].dt.tz_localize(TIMEZONE)

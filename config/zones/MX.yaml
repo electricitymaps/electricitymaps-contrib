@@ -55,6 +55,7 @@ capacity:
       value: 7320.0
 contributors:
   - scriptator
+  - consideRatio
 country: MX
 emissionFactors:
   direct:

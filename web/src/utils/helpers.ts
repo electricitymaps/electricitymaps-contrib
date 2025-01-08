@@ -1,4 +1,5 @@
 import { callerLocation, useMeta } from 'api/getMeta';
+import { useCallback } from 'react';
 import {
   useLocation,
   useMatch,
@@ -81,35 +82,47 @@ export function useNavigateWithParameters() {
 
   const basePath = isZoneRoute ? '/zone' : '/map';
 
-  return ({
-    to = basePath,
-    zoneId = isZoneRoute ? previousZoneId : undefined,
-    timeRange = previousTimeRange,
-    datetime = previousDatetime,
-    keepHashParameters = true,
-  }: {
-    to?: string;
-    zoneId?: string;
-    timeRange?: string;
-    datetime?: string;
-    keepHashParameters?: boolean;
-  }) => {
-    // Always preserve existing search params
-    const isDestinationZoneRoute = to.startsWith('/zone');
-    const currentSearch = new URLSearchParams(location.search);
-    const path = getDestinationPath({
-      to,
-      zoneId: isDestinationZoneRoute ? zoneId : undefined,
-      timeRange,
-      datetime,
-    });
-    const fullPath = {
-      pathname: path,
-      search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
-      hash: keepHashParameters ? location.hash : undefined,
-    };
-    navigator(fullPath);
-  };
+  return useCallback(
+    ({
+      to = basePath,
+      zoneId = isZoneRoute ? previousZoneId : undefined,
+      timeRange = previousTimeRange,
+      datetime = previousDatetime,
+      keepHashParameters = true,
+    }: {
+      to?: string;
+      zoneId?: string;
+      timeRange?: string;
+      datetime?: string;
+      keepHashParameters?: boolean;
+    }) => {
+      // Always preserve existing search params
+      const isDestinationZoneRoute = to.startsWith('/zone');
+      const currentSearch = new URLSearchParams(location.search);
+      const path = getDestinationPath({
+        to,
+        zoneId: isDestinationZoneRoute ? zoneId : undefined,
+        timeRange,
+        datetime,
+      });
+      const fullPath = {
+        pathname: path,
+        search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
+        hash: keepHashParameters ? location.hash : undefined,
+      };
+      navigator(fullPath);
+    },
+    [
+      basePath,
+      isZoneRoute,
+      location.hash,
+      location.search,
+      navigator,
+      previousDatetime,
+      previousTimeRange,
+      previousZoneId,
+    ]
+  );
 }
 
 export function getDestinationPath({
