@@ -41,11 +41,7 @@
       "30d": "Date zilnice pentru:",
       "12mo": "Date lunare pentru:",
       "all": "Date anuale pentru:"
-    },
-    "30d": "pe zi",
-    "24h": "pe oră",
-    "12mo": "pe luna",
-    "all": "pe an"
+    }
   },
   "ranking-panel": {
     "title": "Impact asupra climei în funcție de zonă",

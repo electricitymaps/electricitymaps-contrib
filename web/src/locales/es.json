@@ -158,11 +158,7 @@
       "30d": "Datos diarios para:",
       "12mo": "Datos mensuales para:",
       "all": "Datos anuales para:"
-    },
-    "30d": "diario",
-    "24h": "horario",
-    "12mo": "mensual",
-    "all": "anual"
+    }
   },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",

@@ -220,12 +220,7 @@
       "30d": "Dane dzienne dla:",
       "12mo": "Dane miesięczne dla:",
       "all": "Dane roczne dla:"
-    },
-    "30d": "dzienne",
-    "24h": "godzinowe",
-    "72h": "godzinowe",
-    "12mo": "miesięczne",
-    "all": "roczne"
+    }
   },
   "left-panel": {
     "applied-methodologies": {

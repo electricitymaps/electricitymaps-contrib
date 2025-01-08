@@ -163,12 +163,7 @@
       "30d": "Dagelijkse gegevens voor:",
       "12mo": "Maandelijkse gegevens voor:",
       "all": "Jaarlijkse gegevens voor:"
-    },
-    "30d": "dagelijks",
-    "24h": "per uur",
-    "72h": "per uur",
-    "12mo": "maandelijks",
-    "all": "jaarlijks"
+    }
   },
   "left-panel": {
     "applied-methodologies": {

@@ -197,12 +197,7 @@
       "30d": "Dagsvis data för:",
       "12mo": "Månadsvis data för:",
       "all": "Årsvis data för:"
-    },
-    "30d": "dagvis",
-    "24h": "timvis",
-    "72h": "timvis",
-    "12mo": "månadsvis",
-    "all": "årsvis"
+    }
   },
   "ranking-panel": {
     "title": "Klimatpåverkan per region",

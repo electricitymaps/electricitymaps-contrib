@@ -220,12 +220,7 @@
       "30d": "Daglig data for:",
       "12mo": "Månedlig data for:",
       "all": "Årlig data for:"
-    },
-    "30d": "daglig",
-    "24h": "timevis",
-    "72h": "timevis",
-    "12mo": "månedlig",
-    "all": "årlig"
+    }
   },
   "left-panel": {
     "applied-methodologies": {
