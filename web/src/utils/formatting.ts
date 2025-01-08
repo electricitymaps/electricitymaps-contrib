@@ -214,7 +214,7 @@ const formatDateTick = (
         return new Intl.DateTimeFormat(lang, {
           month: 'short',
           day: 'numeric',
-          timeZone: 'UTC',
+          timeZone: timezone,
         }).format(date);
       }
       return new Intl.DateTimeFormat(lang, {
