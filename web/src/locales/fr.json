@@ -240,13 +240,6 @@
     "30d": "30d",
     "12mo": "12mo",
     "all": "tout",
-    "historical-linking": {
-      "30d": "30j",
-      "24h": "24h",
-      "72h": "72h",
-      "12mo": "12mo",
-      "all": "tout"
-    },
     "date-unavailable": {
       "title": "Date indisponible",
       "description": "Redirection vers les données en temps réel"
