@@ -6,8 +6,9 @@
     "share-app": "Partagez l'application:"
   },
   "button": {
-    "reddit-share": "Partagez sur Reddit",
+    "bluesky-share": "Vizualisez en temps réel les données mondiales sur les émissions d’électricité : {{baseUrl}}",
     "reddit": "Rejoignez r/electricitymaps",
+    "reddit-share": "Partagez sur Reddit",
     "github": "Contribuez sur GitHub",
     "twitter": "Suivez nous sur X (Twitter)",
     "twitter-share": "Partagez sur X (Twitter)",
@@ -18,7 +19,9 @@
     "feedback": "Partagez vos commentaires",
     "faq": "FAQ",
     "privacy-policy": "Politique de confidentialité",
-    "legal-notice": "Informations légales"
+    "legal-notice": "Informations légales",
+    "api": "Accéder à l'API",
+    "docs": "Documentation de l'API "
   },
   "settings-modal": {
     "title": "Paramètres"
