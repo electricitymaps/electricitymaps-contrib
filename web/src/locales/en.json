@@ -254,13 +254,6 @@
     "30d": "30d",
     "12mo": "12mo",
     "all": "all",
-    "historical-linking": {
-      "24h": "24h",
-      "72h": "72h",
-      "30d": "30d",
-      "12mo": "12mo",
-      "all": "all"
-    },
     "date-unavailable": {
       "title": "Date unavailable",
       "description": "Redirecting to live data"
