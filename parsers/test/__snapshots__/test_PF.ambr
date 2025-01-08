@@ -1,0 +1,20 @@
+# serializer version: 1
+# name: test_fetch_production_live
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 1, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Tahiti')),
+      'production': dict({
+        'hydro': 0.969,
+        'oil': 54.52,
+        'solar': 6.909,
+      }),
+      'source': 'edt.pf',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PF',
+    }),
+  ])
+# ---

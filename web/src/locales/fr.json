@@ -265,13 +265,11 @@
       "flowtracing": "Electricity Maps - Traçage des flux",
       "title": "Méthologies utilisées"
     },
-    "get-data": "Voir nos offres commerciales d'API",
     "methodologies-and-data-sources": {
       "title": "Méthodologies et sources des données"
     }
   },
   "header": {
-    "get-data": "Obtenez nos données",
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Nous recrutons !",
@@ -698,14 +696,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Terre-Neuve-et-Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Terre-Neuve"
     },
     "CA-NB": {
       "countryName": "Canada",

@@ -53,8 +53,8 @@ export default function useOriginChartData() {
   }
 
   const exchangesForSelectedAggregate = getExchangesToDisplay(
-    zoneId,
     isCountryView,
+    zoneId,
     zoneData.zoneStates
   );
 

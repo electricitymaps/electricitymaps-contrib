@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
 import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
@@ -30,10 +30,13 @@ export function useTimeRangeSync() {
     }
   }, [setTimeRange, timeRange, urlTimeRange]);
 
-  const setTimeRangeAndNavigate = (newTimeRange: TimeRange) => {
-    setTimeRange(newTimeRange);
-    navigateWithParameters({ timeRange: newTimeRange });
-  };
+  const setTimeRangeAndNavigate = useCallback(
+    (newTimeRange: TimeRange) => {
+      setTimeRange(newTimeRange);
+      navigateWithParameters({ timeRange: newTimeRange });
+    },
+    [setTimeRange, navigateWithParameters]
+  );
 
   return [timeRange, setTimeRangeAndNavigate] as const;
 }
@@ -50,11 +53,8 @@ export const selectedDatetimeStringAtom = atom<string>((get) => {
   return dateToDatetimeString(datetime);
 });
 
-export const spatialAggregateAtom = atomWithStorage(
-  'country-mode',
-  SpatialAggregate.ZONE
-);
-export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTION);
+export const spatialAggregateAtom = atom(SpatialAggregate.ZONE);
+export const productionConsumptionAtom = atom(Mode.CONSUMPTION);
 export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
 );

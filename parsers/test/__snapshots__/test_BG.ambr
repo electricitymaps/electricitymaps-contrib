@@ -1,0 +1,24 @@
+# serializer version: 1
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 1, 1, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 21.58,
+        'coal': 762.85,
+        'gas': 458.2,
+        'hydro': 778.79,
+        'nuclear': 2118.06,
+        'solar': 159.23,
+        'wind': 178.62,
+      }),
+      'source': 'eso.bg',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'BG',
+    }),
+  ])
+# ---

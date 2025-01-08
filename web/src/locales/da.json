@@ -228,7 +228,6 @@
     "all": "årlig"
   },
   "left-panel": {
-    "get-data": "Se vores kommercielle API tilbud",
     "applied-methodologies": {
       "title": "Anvendte metoder",
       "estimations": "Electricity Maps - Estimations",
@@ -237,7 +236,6 @@
     }
   },
   "header": {
-    "get-data": "Få adgang til data",
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Vi ansætter!",
@@ -668,14 +666,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Newfoundland og Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canada",

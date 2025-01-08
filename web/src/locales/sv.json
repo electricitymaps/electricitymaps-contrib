@@ -92,7 +92,7 @@
       "electricity-consumption": "Elkonsumtion",
       "total-emissions": "Totala koldioxidutsläpp",
       "total-electricity-production": "Total elproduktion",
-      "total-electricity-consumption": "Total ekonsumtion"
+      "total-electricity-consumption": "Total elkonsumtion"
     },
     "electricityconsumption": "Elektricitet",
     "emissions": "Utsläpp",
@@ -210,7 +210,6 @@
     "search": "Sök efter region"
   },
   "left-panel": {
-    "get-data": "Se våra kommersiella API-erbjudanden",
     "applied-methodologies": {
       "title": "Tillämpade metoder",
       "estimations": "Electricity Maps - Uppskattningar",
@@ -219,7 +218,6 @@
     }
   },
   "header": {
-    "get-data": "Använd vår data",
     "blog": "Blogg",
     "open-source": "Öppen källkod",
     "hiring": "Vi anställer!",
@@ -277,11 +275,11 @@
       "all": "Årliga elpriser"
     },
     "netExchange": {
-      "24h": "Timvis nettohandel",
-      "72h": "Timvis nettohandel",
-      "30d": "Daglig nettohandel",
-      "12mo": "Månadsvis nettohandel",
-      "all": "Årlig nettohandel"
+      "24h": "Timvis nettoöverföring",
+      "72h": "Timvis nettoöverföring",
+      "30d": "Daglig nettoöverföring",
+      "12mo": "Månadsvis nettoöverföring",
+      "all": "Årlig nettoöverföring"
     },
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },
@@ -639,14 +637,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland och Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Kanada",

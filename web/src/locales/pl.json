@@ -228,7 +228,6 @@
     "all": "roczne"
   },
   "left-panel": {
-    "get-data": "Zobacz nasze płatne oferty API",
     "applied-methodologies": {
       "title": "Zastosowane metody",
       "estimations": "Electricity Maps - Estymacje",
@@ -237,7 +236,6 @@
     }
   },
   "header": {
-    "get-data": "Uzyskaj nasze dane",
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Rekrutujemy!",
@@ -1416,14 +1414,6 @@
     "AU-WA-RI": {
       "countryName": "Australia",
       "zoneName": "Rottnest Island"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Newfoundland"
     },
     "CC": {
       "zoneName": "Wyspy Kokosowe"
