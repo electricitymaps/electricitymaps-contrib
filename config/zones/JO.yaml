@@ -1,3 +1,8 @@
+bounding_box:
+  - - 34.4509495094951
+    - 28.689985355933374
+  - - 39.79992274590594
+    - 33.87779736975472
 country: JO
 region: Asia
 timezone: Asia/Amman
