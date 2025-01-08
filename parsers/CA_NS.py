@@ -127,7 +127,7 @@ def fetch_exchange(
         raise ParserException(PARSER, "Unable to fetch historical data", ZONE_KEY)
 
     sorted_zone_keys = ZoneKey("->".join(sorted((zone_key1, zone_key2))))
-    if sorted_zone_keys not in (ZoneKey("CA-NB->CA-NS"), ZoneKey("CA-NL-NF->CA-NS")):
+    if sorted_zone_keys not in (ZoneKey("CA-NB->CA-NS"), ZoneKey("CA-NL->CA-NS")):
         raise ParserException(PARSER, "Unimplemented exchange pair", sorted_zone_keys)
 
     session = session or Session()
