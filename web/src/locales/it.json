@@ -63,15 +63,13 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Dati orari per:",
-      "30d": "Dati giornalieri per:",
-      "12mo": "Dati mensili per:",
-      "all": "Dati annuali per:"
+      "3mo": "Dati giornalieri per:",
+      "all_months": "Dati mensili per:",
+      "all_years": "Dati annuali per:"
     },
-    "30d": "giornaliero",
-    "24h": "orario",
-    "12mo": "mensile",
-    "all": "annuale"
+    "3mo": "giornaliero",
+    "all_months": "mensile",
+    "all_years": "annuale"
   },
   "ranking-panel": {
     "title": "Impatto climatico per area",

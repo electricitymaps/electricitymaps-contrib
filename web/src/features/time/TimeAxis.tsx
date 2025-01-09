@@ -17,7 +17,7 @@ const getMajorTick = (timeRange: TimeRange, localHours: number, index: number) =
     case TimeRange.H72: {
       return localHours === 12 || localHours === 0;
     }
-    case TimeRange.D30:
+    case TimeRange.M3:
     case TimeRange.ALL_MONTHS: {
       return index % 12 === 0;
     }

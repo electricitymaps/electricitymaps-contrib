@@ -76,17 +76,15 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Stündliche Daten für:",
       "72h": "Stündliche Daten für:",
-      "30d": "Tägliche Daten für:",
-      "12mo": "Monatliche Daten für:",
-      "all": "Jährliche Daten für:"
+      "3mo": "Tägliche Daten für:",
+      "all_months": "Monatliche Daten für:",
+      "all_years": "Jährliche Daten für:"
     },
-    "30d": "täglich",
-    "24h": "stündlich",
+    "3mo": "täglich",
     "72h": "stündlich",
-    "12mo": "monatlich",
-    "all": "jährlich"
+    "all_months": "monatlich",
+    "all_years": "jährlich"
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",

@@ -37,15 +37,13 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Date orare pentru:",
-      "30d": "Date zilnice pentru:",
-      "12mo": "Date lunare pentru:",
-      "all": "Date anuale pentru:"
+      "3mo": "Date zilnice pentru:",
+      "all_months": "Date lunare pentru:",
+      "all_years": "Date anuale pentru:"
     },
-    "30d": "pe zi",
-    "24h": "pe oră",
-    "12mo": "pe luna",
-    "all": "pe an"
+    "3mo": "pe zi",
+    "all_months": "pe luna",
+    "all_years": "pe an"
   },
   "ranking-panel": {
     "title": "Impact asupra climei în funcție de zonă",

@@ -243,23 +243,20 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Hourly data for:",
       "72h": "72 hour data for:",
-      "30d": "Daily data for:",
-      "12mo": "Monthly data for:",
-      "all": "Yearly data for:"
+      "3mo": "Daily data for:",
+      "all_months": "Monthly data for:",
+      "all_years": "Yearly data for:"
     },
-    "24h": "24h",
     "72h": "72h",
-    "30d": "30d",
-    "12mo": "12mo",
-    "all": "all",
+    "3mo": "3mo",
+    "all_months": "All months",
+    "all_years": "All years",
     "historical-linking": {
-      "24h": "24h",
       "72h": "72h",
-      "30d": "30d",
-      "12mo": "12mo",
-      "all": "all"
+      "3mo": "3mo",
+      "all_months": "All months",
+      "all_years": "All years"
     },
     "date-unavailable": {
       "title": "Date unavailable",
@@ -287,60 +284,52 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Hourly carbon intensity",
       "72h": "Hourly carbon intensity",
-      "30d": "Daily carbon intensity",
-      "12mo": "Monthly carbon intensity",
-      "all": "Yearly carbon intensity"
+      "3mo": "Daily carbon intensity",
+      "all_months": "Monthly carbon intensity",
+      "all_years": "Yearly carbon intensity"
     },
     "emissions": {
-      "24h": "Hourly carbon emissions",
       "72h": "Hourly carbon emissions",
-      "30d": "Daily carbon emissions",
-      "12mo": "Monthly carbon emissions",
-      "all": "Yearly carbon emissions"
+      "3mo": "Daily carbon emissions",
+      "all_months": "Monthly carbon emissions",
+      "all_years": "Yearly carbon emissions"
     },
     "emissionsorigin": {
-      "24h": "Hourly carbon emission origin",
       "72h": "Hourly carbon emission origin",
-      "30d": "Daily carbon emission origin",
-      "12mo": "Monthly carbon emission origin",
-      "all": "Yearly carbon emission origin"
+      "3mo": "Daily carbon emission origin",
+      "all_months": "Monthly carbon emission origin",
+      "all_years": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
-      "24h": "Hourly production emissions",
       "72h": "Hourly production emissions",
-      "30d": "Daily production emissions",
-      "12mo": "Monthly production emissions",
-      "all": "Yearly production emissions"
+      "3mo": "Daily production emissions",
+      "all_months": "Monthly production emissions",
+      "all_years": "Yearly production emissions"
     },
     "electricityorigin": {
-      "24h": "Hourly electricity origin",
       "72h": "Hourly electricity origin",
-      "30d": "Daily electricity origin",
-      "12mo": "Monthly electricity origin",
-      "all": "Yearly electricity origin"
+      "3mo": "Daily electricity origin",
+      "all_months": "Monthly electricity origin",
+      "all_years": "Yearly electricity origin"
     },
     "electricityproduction": {
-      "24h": "Hourly electricity production",
       "72h": "Hourly electricity production",
-      "30d": "Daily electricity production",
-      "12mo": "Monthly electricity production",
-      "all": "Yearly electricity production"
+      "3mo": "Daily electricity production",
+      "all_months": "Monthly electricity production",
+      "all_years": "Yearly electricity production"
     },
     "electricityprices": {
-      "24h": "Hourly electricity prices",
       "72h": "Hourly electricity prices",
-      "30d": "Daily electricity prices",
-      "12mo": "Monthly electricity prices",
-      "all": "Yearly electricity prices"
+      "3mo": "Daily electricity prices",
+      "all_months": "Monthly electricity prices",
+      "all_years": "Yearly electricity prices"
     },
     "netExchange": {
-      "24h": "Hourly net exchange",
       "72h": "Hourly net exchange",
-      "30d": "Daily net exchange",
-      "12mo": "Monthly net exchange",
-      "all": "Yearly net exchange"
+      "3mo": "Daily net exchange",
+      "all_months": "Monthly net exchange",
+      "all_years": "Yearly net exchange"
     },
     "not-enough-data": "Not enough data available to display chart",
     "exchange-delay": "Exchange data may be delayed by up to 48h."

@@ -384,7 +384,7 @@ describe('getDateTimeFormatOptions', () => {
   });
 
   it('handles daily data', () => {
-    const actual = getDateTimeFormatOptions(TimeRange.D30);
+    const actual = getDateTimeFormatOptions(TimeRange.M3);
     const expected = {
       dateStyle: 'long',
       timeZone: 'UTC',
@@ -454,11 +454,7 @@ describe('formatDate', () => {
   it.each(['en', 'sv', 'de', 'fr', 'es', 'it'])(
     'handles daily data for %s',
     (language) => {
-      const actual = formatDate(
-        new Date('2021-01-01T00:00:00Z'),
-        language,
-        TimeRange.D30
-      );
+      const actual = formatDate(new Date('2021-01-01T00:00:00Z'), language, TimeRange.M3);
       expect(actual).toMatchSnapshot();
     }
   );
@@ -565,7 +561,7 @@ describe('formatDateTick', () => {
 
   it('should format date correctly for DAILY time aggregate', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeRange.D30);
+    const result = formatDateTick(date, 'en', TimeRange.M3);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', {
         month: 'short',

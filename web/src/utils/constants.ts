@@ -7,7 +7,7 @@ export const baseUrl = 'https://app.electricitymaps.com';
 // The order here determines the order displayed
 export enum TimeRange {
   H72 = '72h',
-  D30 = '30d',
+  M3 = '3mo',
   ALL_MONTHS = 'all_months',
   ALL_YEARS = 'all_years',
 }
@@ -140,7 +140,7 @@ export const modeOrderBarBreakdown = [
 // A mapping between the TimeRange enum and the corresponding Duration for the date-fns add/substract method
 export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
   [TimeRange.H72]: 'hours',
-  [TimeRange.D30]: 'days',
+  [TimeRange.M3]: 'days',
   [TimeRange.ALL_MONTHS]: 'months',
   [TimeRange.ALL_YEARS]: 'years',
 };

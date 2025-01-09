@@ -23,7 +23,7 @@ export const Hourly: Story = {
 
 export const Daily: Story = {
   args: {
-    timeRange: TimeRange.D30,
+    timeRange: TimeRange.M3,
   },
 };
 

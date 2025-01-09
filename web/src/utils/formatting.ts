@@ -154,7 +154,7 @@ export const getDateTimeFormatOptions = (
         timeZone: timezone,
       };
     }
-    case TimeRange.D30: {
+    case TimeRange.M3: {
       return {
         dateStyle: 'long',
         timeZone: 'UTC',
@@ -223,7 +223,7 @@ const formatDateTick = (
     }
     // Instantiate below DateTimeFormat objects using UTC to avoid displaying
     // misleading time slider labels for users in UTC-negative offset timezones
-    case TimeRange.D30: {
+    case TimeRange.M3: {
       return new Intl.DateTimeFormat(lang, {
         month: 'short',
         day: 'numeric',
