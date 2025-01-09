@@ -10,6 +10,7 @@ import { zoneDetailMock } from 'stories/mockData';
 import { ZoneDetail } from 'types';
 import { describe, expect, it, vi } from 'vitest';
 
+import { TimeRange } from './constants';
 import {
   dateToDatetimeString,
   getCarbonIntensity,
@@ -194,8 +195,12 @@ describe('getDestinationPath', () => {
   });
 
   it('should include timeRange when provided', () => {
-    const result = getDestinationPath({ to: '/path', timeRange: 'hourly' });
-    expect(result).toBe('/path/hourly');
+    const result = getDestinationPath({
+      to: '/path',
+      resolution: 'hourly',
+      timeRange: TimeRange.H72,
+    });
+    expect(result).toBe('/path/hourly/72h');
   });
 
   it('should include datetime when provided', () => {
@@ -207,10 +212,11 @@ describe('getDestinationPath', () => {
     const result = getDestinationPath({
       to: '/path',
       zoneId: 'FR',
-      timeRange: 'hourly',
+      resolution: 'hourly',
+      timeRange: TimeRange.H72,
       datetime: '2024-03-20',
     });
-    expect(result).toBe('/path/FR/hourly/2024-03-20');
+    expect(result).toBe('/path/FR/hourly/72h/2024-03-20');
   });
 
   it('should handle missing middle parameters', () => {
@@ -317,12 +323,13 @@ describe('useNavigateWithParameters', () => {
     result.current({
       to: '/zone',
       zoneId: 'DE',
-      timeRange: 'daily',
+      resolution: 'daily',
+      timeRange: TimeRange.M3,
       datetime: '2024-03-21',
     });
 
     expect(navigateMock).toHaveBeenCalledWith({
-      pathname: '/zone/DE/daily/2024-03-21',
+      pathname: '/zone/DE/daily/3mo/2024-03-21',
       search: '',
       hash: '',
     });
@@ -332,12 +339,13 @@ describe('useNavigateWithParameters', () => {
     result.current({
       to: '/zone',
       zoneId: 'DE',
-      timeRange: 'daily',
+      resolution: 'daily',
+      timeRange: TimeRange.M3,
       datetime: '',
     });
 
     expect(navigateMock).toHaveBeenCalledWith({
-      pathname: '/zone/DE/daily',
+      pathname: '/zone/DE/daily/3mo',
       search: '',
       hash: '',
     });

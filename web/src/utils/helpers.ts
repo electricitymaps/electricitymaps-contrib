@@ -76,7 +76,7 @@ export function useNavigateWithParameters() {
     zoneId: previousZoneId,
     urlTimeRange: previousTimeRange,
     urlDatetime: previousDatetime,
-    resolution,
+    resolution: previousResolution,
   } = useParams();
   const parameters = useMatches();
   const isZoneRoute = parameters.some((match) => match.pathname.startsWith('/zone'));
@@ -90,12 +90,14 @@ export function useNavigateWithParameters() {
       timeRange = previousTimeRange as TimeRange,
       datetime = previousDatetime,
       keepHashParameters = true,
+      resolution = previousResolution,
     }: {
       to?: string;
       zoneId?: string;
       timeRange?: TimeRange;
       datetime?: string;
       keepHashParameters?: boolean;
+      resolution?: string;
     }) => {
       // Always preserve existing search params
       const isDestinationZoneRoute = to.startsWith('/zone');
@@ -121,9 +123,9 @@ export function useNavigateWithParameters() {
       location.search,
       navigator,
       previousDatetime,
+      previousResolution,
       previousTimeRange,
       previousZoneId,
-      resolution,
     ]
   );
 }
