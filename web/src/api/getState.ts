@@ -1,10 +1,12 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import type { GridState, RouteParameters } from 'types';
 import { TimeRange } from 'utils/constants';
 import { isValidHistoricalTimeRange } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
+import { timeRangeAtom } from 'utils/state/atoms';
 
 import {
   cacheBuster,
@@ -49,8 +51,8 @@ const getState = async (
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const { urlTimeRange, urlDatetime } = useParams<RouteParameters>();
-  const timeRange = urlTimeRange || TimeRange.H72;
+  const { urlDatetime } = useParams<RouteParameters>();
+  const timeRange = useAtomValue(timeRangeAtom);
   return useQuery<GridState>({
     queryKey: [
       QUERY_KEYS.STATE,

@@ -105,7 +105,7 @@ export function useNavigateWithParameters() {
       const path = getDestinationPath({
         to,
         zoneId: isDestinationZoneRoute ? zoneId : undefined,
-        timeRange,
+        timeRange: timeRange.includes('all') ? 'all' : timeRange,
         datetime,
         resolution,
       });
@@ -139,7 +139,7 @@ export function getDestinationPath({
 }: {
   to: string;
   zoneId?: string;
-  timeRange?: TimeRange;
+  timeRange?: TimeRange | 'all';
   datetime?: string;
   resolution?: string;
 }) {

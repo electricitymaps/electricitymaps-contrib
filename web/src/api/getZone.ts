@@ -1,5 +1,6 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
@@ -7,6 +8,7 @@ import { RouteParameters } from 'types';
 import { TimeRange } from 'utils/constants';
 import { isValidHistoricalTimeRange } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
+import { timeRangeAtom } from 'utils/state/atoms';
 
 import {
   cacheBuster,
@@ -57,9 +59,9 @@ const getZone = async (
 };
 
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const { zoneId, urlTimeRange, urlDatetime } = useParams<RouteParameters>();
+  const { zoneId, urlDatetime } = useParams<RouteParameters>();
+  const timeRange = useAtomValue(timeRangeAtom);
 
-  const timeRange = urlTimeRange || TimeRange.H72;
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,

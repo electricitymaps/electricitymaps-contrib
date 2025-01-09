@@ -1,3 +1,4 @@
+import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useCallback, useEffect } from 'react';
@@ -37,7 +38,10 @@ export function useTimeRangeSync() {
   const setTimeRangeAndNavigate = useCallback(
     (newTimeRange: TimeRange) => {
       setTimeRange(newTimeRange);
-      navigateWithParameters({ timeRange: newTimeRange });
+      navigateWithParameters({
+        timeRange: newTimeRange,
+        resolution: TIME_RANGE_TO_TIME_AVERAGE[newTimeRange],
+      });
     },
     [setTimeRange, navigateWithParameters]
   );
