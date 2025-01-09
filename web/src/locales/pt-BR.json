@@ -1728,7 +1728,6 @@
   },
   "windDataError": "Dados eólicos estão indisponíveis",
   "solarDataError": "Dados solares estão indisponíveis",
-
   "button": {
     "feedback": "Compartilhar Feedback",
     "github": "Ver nosso GitHub",

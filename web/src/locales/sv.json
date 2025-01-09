@@ -230,49 +230,42 @@
       "all_years": "Årlig koldioxidintensitet"
     },
     "emissions": {
-      "24h": "Timvisa koldioxidutsläpp",
       "72h": "Timvisa koldioxidutsläpp",
       "3mo": "Dagliga koldioxidutsläpp",
       "all_months": "Månadsvisa koldioxidutsläpp",
       "all_years": "Årliga koldioxidutsläpp"
     },
     "emissionsorigin": {
-      "24h": "Timvis ursprung av koldioxidutsläpp",
       "72h": "Timvis ursprung av koldioxidutsläpp",
       "3mo": "Dagligt ursprung av koldioxidutsläpp",
       "all_months": "Månadsvis ursprung av koldioxidutsläpp",
       "all_years": "Årligt ursprung av koldioxidutsläpp"
     },
     "emissionsproduction": {
-      "24h": "Timvisa produktionsutsläpp",
       "72h": "Timvisa produktionsutsläpp",
       "3mo": "Dagliga produktionsutsläpp",
       "all_months": "Månadsvisa produktionsutsläpp",
       "all_years": "Årliga produktionsutsläpp"
     },
     "electricityorigin": {
-      "24h": "Timvis ursprung av elektricitet",
       "72h": "Timvis ursprung av elektricitet",
       "3mo": "Dagligt ursprung av elektricitet",
       "all_months": "Månadsvis ursprung av elektricitet",
       "all_years": "Årligt ursprung av elektricitet"
     },
     "electricityproduction": {
-      "24h": "Timvis elproduktion",
       "72h": "Timvis elproduktion",
       "3mo": "Daglig elproduktion",
       "all_months": "Månadsvis elproduktion",
       "all_years": "Årlig elproduktion"
     },
     "electricityprices": {
-      "24h": "Timvisa elpriser",
       "72h": "Timvisa elpriser",
       "3mo": "Dagliga elpriser",
       "all_months": "Månadsvisa elpriser",
       "all_years": "Årliga elpriser"
     },
     "netExchange": {
-      "24h": "Timvis nettoöverföring",
       "72h": "Timvis nettoöverföring",
       "3mo": "Daglig nettoöverföring",
       "all_months": "Månadsvis nettoöverföring",
