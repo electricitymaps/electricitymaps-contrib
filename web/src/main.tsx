@@ -109,7 +109,7 @@ const queryClient = new QueryClient({
 
 refetchDataOnHourChange(queryClient);
 
-function TimeRangeGuardWrapper({ children }: { children: JSX.Element }) {
+function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
   const { urlTimeRange } = useParams<RouteParameters>();
   const location = useLocation();
@@ -117,7 +117,7 @@ function TimeRangeGuardWrapper({ children }: { children: JSX.Element }) {
   if (!urlTimeRange) {
     return (
       <Navigate
-        to={`${location.pathname}/72h?${searchParameters}${location.hash}`}
+        to={`${location.pathname}/hourly/72h?${searchParameters}${location.hash}`}
         replace
       />
     );
@@ -125,7 +125,10 @@ function TimeRangeGuardWrapper({ children }: { children: JSX.Element }) {
 
   const lowerCaseTimeRange = urlTimeRange.toLowerCase();
 
-  if (!Object.values(TimeRange).includes(lowerCaseTimeRange as TimeRange)) {
+  if (
+    !Object.values(TimeRange).includes(lowerCaseTimeRange as TimeRange) &&
+    String(lowerCaseTimeRange) != 'all'
+  ) {
     return (
       <Navigate
         to={`${location.pathname}/72h?${searchParameters}${location.hash}`}
@@ -213,29 +216,29 @@ const router = createBrowserRouter([
       },
       {
         path: '/map',
-        element: <Navigate to="/map/72h" replace />,
+        element: <Navigate to="/map/hourly/72h" replace />,
       },
       {
         path: '/zone',
-        element: <Navigate to="/map/72h" replace />,
+        element: <Navigate to="/map/hourly/72h" replace />,
       },
       {
-        path: '/map/:urlTimeRange?/:urlDatetime?',
+        path: '/map/:resolution/:urlTimeRange?/:urlDatetime?',
         element: (
-          <TimeRangeGuardWrapper>
+          <TimeRangeAndResolutionGuardWrapper>
             <RankingPanel />
-          </TimeRangeGuardWrapper>
+          </TimeRangeAndResolutionGuardWrapper>
         ),
       },
       {
-        path: '/zone/:zoneId/:urlTimeRange?/:urlDatetime?',
+        path: '/zone/:zoneId/:resolution/:urlTimeRange?/:urlDatetime?',
         element: (
           <ValidZoneIdGuardWrapper>
-            <TimeRangeGuardWrapper>
+            <TimeRangeAndResolutionGuardWrapper>
               <Suspense fallback={<LoadingSpinner />}>
                 <ZoneDetails />
               </Suspense>
-            </TimeRangeGuardWrapper>
+            </TimeRangeAndResolutionGuardWrapper>
           </ValidZoneIdGuardWrapper>
         ),
       },

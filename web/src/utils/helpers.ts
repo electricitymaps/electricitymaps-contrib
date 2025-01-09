@@ -76,6 +76,7 @@ export function useNavigateWithParameters() {
     zoneId: previousZoneId,
     urlTimeRange: previousTimeRange,
     urlDatetime: previousDatetime,
+    resolution,
   } = useParams();
   const parameters = useMatches();
   const isZoneRoute = parameters.some((match) => match.pathname.startsWith('/zone'));
@@ -86,13 +87,13 @@ export function useNavigateWithParameters() {
     ({
       to = basePath,
       zoneId = isZoneRoute ? previousZoneId : undefined,
-      timeRange = previousTimeRange,
+      timeRange = previousTimeRange as TimeRange,
       datetime = previousDatetime,
       keepHashParameters = true,
     }: {
       to?: string;
       zoneId?: string;
-      timeRange?: string;
+      timeRange?: TimeRange;
       datetime?: string;
       keepHashParameters?: boolean;
     }) => {
@@ -104,6 +105,7 @@ export function useNavigateWithParameters() {
         zoneId: isDestinationZoneRoute ? zoneId : undefined,
         timeRange,
         datetime,
+        resolution,
       });
       const fullPath = {
         pathname: path,
@@ -121,6 +123,7 @@ export function useNavigateWithParameters() {
       previousDatetime,
       previousTimeRange,
       previousZoneId,
+      resolution,
     ]
   );
 }
@@ -130,15 +133,17 @@ export function getDestinationPath({
   zoneId,
   timeRange,
   datetime,
+  resolution,
 }: {
   to: string;
   zoneId?: string;
-  timeRange?: string;
+  timeRange?: TimeRange;
   datetime?: string;
+  resolution?: string;
 }) {
-  return `${to}${zoneId ? `/${zoneId}` : ''}${timeRange ? `/${timeRange}` : ''}${
-    datetime ? `/${datetime}` : ''
-  }`;
+  return `${to}${zoneId ? `/${zoneId}` : ''}${resolution ? `/${resolution}` : ''}${
+    timeRange ? `/${timeRange}` : ''
+  }${datetime ? `/${datetime}` : ''}`;
 }
 
 /**

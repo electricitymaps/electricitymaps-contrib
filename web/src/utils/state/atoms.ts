@@ -21,14 +21,18 @@ export const timeRangeAtom = atom<TimeRange>(TimeRange.H72);
 
 export function useTimeRangeSync() {
   const [timeRange, setTimeRange] = useAtom(timeRangeAtom);
-  const { urlTimeRange } = useParams<RouteParameters>();
+  const { resolution, urlTimeRange } = useParams<RouteParameters>();
   const navigateWithParameters = useNavigateWithParameters();
 
   useEffect(() => {
-    if (urlTimeRange && urlTimeRange !== timeRange) {
+    if (resolution === 'monthly' && String(urlTimeRange) === 'all') {
+      setTimeRange(TimeRange.ALL_MONTHS);
+    } else if (resolution === 'yearly' && String(urlTimeRange) === 'all') {
+      setTimeRange(TimeRange.ALL_YEARS);
+    } else if (urlTimeRange && urlTimeRange !== timeRange) {
       setTimeRange(urlTimeRange);
     }
-  }, [setTimeRange, timeRange, urlTimeRange]);
+  }, [resolution, setTimeRange, timeRange, urlTimeRange]);
 
   const setTimeRangeAndNavigate = useCallback(
     (newTimeRange: TimeRange) => {

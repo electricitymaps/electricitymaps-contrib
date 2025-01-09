@@ -233,6 +233,7 @@ export interface FuturePriceData {
 
 // Type for the URL parameters that determine app state
 export type RouteParameters = {
+  resolution?: string;
   zoneId?: string;
   urlTimeRange?: TimeRange;
   urlDatetime?: string;
