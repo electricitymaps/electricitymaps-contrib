@@ -63,10 +63,12 @@
   "time-controller": {
     "title": {
       "3mo": "Dati giornalieri per:",
+      "12mo": "Dati mensili per:",
       "all_months": "Dati mensili per:",
       "all_years": "Dati annuali per:"
     },
     "3mo": "giornaliero",
+    "12mo": "mensile",
     "all_months": "mensile",
     "all_years": "annuale"
   },

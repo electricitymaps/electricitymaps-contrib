@@ -38,10 +38,12 @@
   "time-controller": {
     "title": {
       "3mo": "Date zilnice pentru:",
+      "12mo": "Date lunare pentru:",
       "all_months": "Date lunare pentru:",
       "all_years": "Date anuale pentru:"
     },
     "3mo": "pe zi",
+    "12mo": "pe luna",
     "all_months": "pe luna",
     "all_years": "pe an"
   },

@@ -21,6 +21,7 @@ const getMajorTick = (timeRange: TimeRange, localHours: number, index: number) =
     case TimeRange.ALL_MONTHS: {
       return index % 12 === 0;
     }
+    case TimeRange.M12:
     case TimeRange.ALL_YEARS: {
       return true;
     }

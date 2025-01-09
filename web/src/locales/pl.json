@@ -217,11 +217,13 @@
     "title": {
       "72h": "Dane godzinowe dla:",
       "3mo": "Dane dzienne dla:",
+      "12mo": "Dane miesięczne dla:",
       "all_months": "Dane miesięczne dla:",
       "all_years": "Dane roczne dla:"
     },
     "3mo": "dzienne",
     "72h": "godzinowe",
+    "12mo": "miesięczne",
     "all_months": "miesięczne",
     "all_years": "roczne"
   },
@@ -244,48 +246,56 @@
     "carbonintensity": {
       "72h": "Godzinowa intensywność węglowa",
       "3mo": "Dzienne intensywność węglowa",
+      "12mo": "Miesięczna intensywność węglowa",
       "all_months": "Miesięczna intensywność węglowa",
       "all_years": "Roczna intensywność węglowa"
     },
     "emissions": {
       "72h": "Godzinowe emisje dwutlenku węgla",
       "3mo": "Dzienne emisje dwutlenku węgla",
+      "12mo": "Miesięczne emisje dwutlenku węgla",
       "all_months": "Miesięczne emisje dwutlenku węgla",
       "all_years": "Roczne emisje dwutlenku węgla"
     },
     "emissionsorigin": {
       "72h": "Godzinowe pochodzenie emisji dwutlenku węgla",
       "3mo": "Dzienne pochodzenie emisji dwutlenku węgla",
+      "12mo": "Miesięczne pochodzenie emisji dwutlenku węgla",
       "all_months": "Miesięczne pochodzenie emisji dwutlenku węgla",
       "all_years": "Roczne pochodzenie emisji dwutlenku węgla"
     },
     "emissionsproduction": {
       "72h": "Godzinowe emisje z produkcji",
       "3mo": "Dzienne emisje z produkcji",
+      "12mo": "Miesięczne emisje z produkcji",
       "all_months": "Miesięczne emisje z produkcji",
       "all_years": "Roczne emisje z produkcji"
     },
     "electricityorigin": {
       "72h": "Godzinowe pochodzenie energii elektrycznej",
       "3mo": "Dzienne pochodzenie energii elektrycznej",
+      "12mo": "Miesięczne pochodzenie energii elektrycznej",
       "all_months": "Miesięczne pochodzenie energii elektrycznej",
       "all_years": "Roczne pochodzenie energii elektrycznej"
     },
     "electricityproduction": {
       "72h": "Godzinowa produkcja energii elektrycznej",
       "3mo": "Dzienne produkcja energii elektrycznej",
+      "12mo": "Miesięczna produkcja energii elektrycznej",
       "all_months": "Miesięczna produkcja energii elektrycznej",
       "all_years": "Roczna produkcja energii elektrycznej"
     },
     "electricityprices": {
       "72h": "Godzinowe ceny energii elektrycznej",
       "3mo": "Dzienne ceny energii elektrycznej",
+      "12mo": "Miesięczne ceny energii elektrycznej",
       "all_months": "Miesięczne ceny energii elektrycznej",
       "all_years": "Roczne ceny energii elektrycznej"
     },
     "netExchange": {
       "72h": "Godzinowa wymiana netto",
       "3mo": "Dzienne wymiana netto",
+      "12mo": "Miesięczna wymiana netto",
       "all_months": "Miesięczna wymiana netto",
       "all_years": "Roczna wymiana netto"
     },

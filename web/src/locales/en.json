@@ -245,16 +245,19 @@
     "title": {
       "72h": "72 hour data for:",
       "3mo": "Daily data for:",
+      "12mo": "Monthly data for:",
       "all_months": "Monthly data for:",
       "all_years": "Yearly data for:"
     },
     "72h": "72h",
     "3mo": "3mo",
+    "12mo": "12mo",
     "all_months": "All",
     "all_years": "All years",
     "historical-linking": {
       "72h": "72h",
       "3mo": "3mo",
+      "12mo": "12mo",
       "all_months": "All",
       "all_years": "All years"
     },

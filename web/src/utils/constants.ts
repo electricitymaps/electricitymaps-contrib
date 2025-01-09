@@ -8,6 +8,7 @@ export const baseUrl = 'https://app.electricitymaps.com';
 export enum TimeRange {
   H72 = '72h',
   M3 = '3mo',
+  M12 = '12mo',
   ALL_MONTHS = 'all_months',
   ALL_YEARS = 'all_years',
 }
@@ -141,6 +142,7 @@ export const modeOrderBarBreakdown = [
 export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
   [TimeRange.H72]: 'hours',
   [TimeRange.M3]: 'days',
+  [TimeRange.M12]: 'months',
   [TimeRange.ALL_MONTHS]: 'months',
   [TimeRange.ALL_YEARS]: 'years',
 };

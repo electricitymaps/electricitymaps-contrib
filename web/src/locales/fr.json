@@ -231,16 +231,19 @@
     "title": {
       "72h": "Données des 3 derniers jours pour :",
       "3mo": "Données quotidiennes pour :",
+      "12mo": "Données mensuelles pour :",
       "all_months": "Données mensuelles pour :",
       "all_years": "Données annuelles pour :"
     },
     "72h": "72h",
     "3mo": "3mo",
+    "12mo": "12mo",
     "all_months": "12mo",
     "all_years": "tout",
     "historical-linking": {
       "3mo": "30j",
       "72h": "72h",
+      "12mo": "12mo",
       "all_months": "12mo",
       "all_years": "tout"
     },
@@ -277,48 +280,56 @@
     "carbonintensity": {
       "72h": "Intensité carbone horaire",
       "3mo": "Intensité carbone quotidienne",
+      "12mo": "Intensité carbone mensuelle",
       "all_months": "Intensité carbone mensuelle",
       "all_years": "Intensité carbone annuelle"
     },
     "emissions": {
       "72h": "Emissions de CO2 horaires",
       "3mo": "Emissions de CO2 quotidiennes",
+      "12mo": "Emissions de CO2 mensuelles",
       "all_months": "Emissions de CO2 mensuelles",
       "all_years": "Emissions de CO2 annuelles"
     },
     "emissionsorigin": {
       "72h": "Origine des émissions de CO2 horaires",
       "3mo": "Origine des émissions de CO2 quotidiennes",
+      "12mo": "Origine des émissions de CO2 mensuelles",
       "all_months": "Origine des émissions de CO2 mensuelles",
       "all_years": "Origine des émissions de CO2 annuelles"
     },
     "emissionsproduction": {
       "72h": "Origine des émissions de CO2 horaires",
       "3mo": "Emissions quotidiennes pour la production",
+      "12mo": "Emissions mensuelles pour la production",
       "all_months": "Emissions mensuelles pour la production",
       "all_years": "Emissions annuelles pour la production"
     },
     "electricityorigin": {
       "72h": "Origine de l'électricité horaire",
       "3mo": "Origine de l'électricité quotidienne",
+      "12mo": "Origine de l'électricité mensuelle",
       "all_months": "Origine de l'électricité mensuelle",
       "all_years": "Origine de l'électricité annuelle"
     },
     "electricityproduction": {
       "72h": "Production d'électricité horaire",
       "3mo": "Production d'électricité quotidienne",
+      "12mo": "Production d'électricité mensuelle",
       "all_months": "Production d'électricité mensuelle",
       "all_years": "Production d'électricité annuelle"
     },
     "electricityprices": {
       "72h": "Prix de l'électricité horaires",
       "3mo": "Prix de l'électricité quotidiens",
+      "12mo": "Prix de l'électricité mensuels",
       "all_months": "Prix de l'électricité mensuels",
       "all_years": "Prix de l'électricité annuels"
     },
     "netExchange": {
       "72h": "Echange net horaire",
       "3mo": "Echange net quotidien",
+      "12mo": "Echange net mensuel",
       "all_months": "Echange net mensuel",
       "all_years": "Echange net annuel"
     },

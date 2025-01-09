@@ -194,11 +194,13 @@
     "title": {
       "72h": "Timvis data för:",
       "3mo": "Dagsvis data för:",
+      "12mo": "Månadsvis data för:",
       "all_months": "Månadsvis data för:",
       "all_years": "Årsvis data för:"
     },
     "3mo": "dagvis",
     "72h": "timvis",
+    "12mo": "månadsvis",
     "all_months": "månadsvis",
     "all_years": "årsvis"
   },
@@ -224,50 +226,59 @@
   },
   "country-history": {
     "carbonintensity": {
+      "24h": "Timvis koldioxidintensitet",
       "72h": "Timvis koldioxidintensitet",
       "3mo": "Daglig koldioxidintensitet",
+      "12mo": "Månadsvis koldioxidintensitet",
       "all_months": "Månadsvis koldioxidintensitet",
       "all_years": "Årlig koldioxidintensitet"
     },
     "emissions": {
       "72h": "Timvisa koldioxidutsläpp",
       "3mo": "Dagliga koldioxidutsläpp",
+      "12mo": "Månadsvisa koldioxidutsläpp",
       "all_months": "Månadsvisa koldioxidutsläpp",
       "all_years": "Årliga koldioxidutsläpp"
     },
     "emissionsorigin": {
       "72h": "Timvis ursprung av koldioxidutsläpp",
       "3mo": "Dagligt ursprung av koldioxidutsläpp",
+      "12mo": "Månadsvis ursprung av koldioxidutsläpp",
       "all_months": "Månadsvis ursprung av koldioxidutsläpp",
       "all_years": "Årligt ursprung av koldioxidutsläpp"
     },
     "emissionsproduction": {
       "72h": "Timvisa produktionsutsläpp",
       "3mo": "Dagliga produktionsutsläpp",
+      "12mo": "Månadsvisa produktionsutsläpp",
       "all_months": "Månadsvisa produktionsutsläpp",
       "all_years": "Årliga produktionsutsläpp"
     },
     "electricityorigin": {
       "72h": "Timvis ursprung av elektricitet",
       "3mo": "Dagligt ursprung av elektricitet",
+      "12mo": "Månadsvis ursprung av elektricitet",
       "all_months": "Månadsvis ursprung av elektricitet",
       "all_years": "Årligt ursprung av elektricitet"
     },
     "electricityproduction": {
       "72h": "Timvis elproduktion",
       "3mo": "Daglig elproduktion",
+      "12mo": "Månadsvis elproduktion",
       "all_months": "Månadsvis elproduktion",
       "all_years": "Årlig elproduktion"
     },
     "electricityprices": {
       "72h": "Timvisa elpriser",
       "3mo": "Dagliga elpriser",
+      "12mo": "Månadsvisa elpriser",
       "all_months": "Månadsvisa elpriser",
       "all_years": "Årliga elpriser"
     },
     "netExchange": {
       "72h": "Timvis nettoöverföring",
       "3mo": "Daglig nettoöverföring",
+      "12mo": "Månadsvis nettoöverföring",
       "all_months": "Månadsvis nettoöverföring",
       "all_years": "Årlig nettoöverföring"
     },
