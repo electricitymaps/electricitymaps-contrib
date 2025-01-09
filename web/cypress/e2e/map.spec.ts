@@ -2,10 +2,10 @@
 // TODO: Uncomment tests
 describe('Map', () => {
   it('interacts with the map', () => {
-    cy.interceptAPI('v9/state/hourly_72');
+    cy.interceptAPI('v10/state/hourly_72');
     cy.visit('/?lang=en-GB');
     cy.get('[data-testid=close-modal]').click();
-    cy.waitForAPISuccess(`v9/state/hourly_72`);
+    cy.waitForAPISuccess(`v10/state/hourly_72`);
     cy.get('[data-testid=loading-overlay]').should('not.exist');
 
     // test map
