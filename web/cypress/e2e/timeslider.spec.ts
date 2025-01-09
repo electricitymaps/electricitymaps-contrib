@@ -1,7 +1,7 @@
 // import dailyData from '../../../mockserver/public/v10/details/daily/DK-DK2.json';
 import hourlyData from '../../../mockserver/public/v10/details/hourly/DK-DK2.json';
 import monthlyData from '../../../mockserver/public/v10/details/monthly/DK-DK2.json';
-import yearlyData from '../../../mockserver/public/v10/details/yearly/DK-DK2.json';
+// import yearlyData from '../../../mockserver/public/v10/details/yearly/DK-DK2.json';
 
 // TODO: For some reason the project's date formatter
 // cannot be imported (webpack compilation error) here
@@ -10,19 +10,17 @@ import yearlyData from '../../../mockserver/public/v10/details/yearly/DK-DK2.jso
 // TODO: Convert to component test
 
 interface Data {
-  data: {
-    zoneStates: {
-      [key: string]: {
-        co2intensity: number;
-        stateDatetime: string;
-      };
+  zoneStates: {
+    [key: string]: {
+      co2intensity: number;
+      stateDatetime: string;
     };
   };
 }
 
 const getco2intensity = (index: number, data: Data) => {
   return `${Math.round(
-    Object.values(data.data.zoneStates).at(index)?.co2intensity ?? Number.NaN
+    Object.values(data.zoneStates).at(index)?.co2intensity ?? Number.NaN
   )}`;
 };
 
@@ -43,8 +41,8 @@ describe('TimeController', () => {
   });
   it('interacts with the timecontroller on map', () => {
     // Intercepts all API network requests and serves fixtures directly
-    cy.interceptAPI('v10/state/hourly_72');
-    cy.interceptAPI('v10/details/hourly_72/DK-DK2');
+    cy.interceptAPI('v10/state/hourly');
+    cy.interceptAPI('v10/details/hourly/DK-DK2');
     cy.interceptAPI('v10/state/daily');
     cy.interceptAPI('v10/state/monthly');
     cy.interceptAPI('v10/state/yearly');
@@ -57,12 +55,12 @@ describe('TimeController', () => {
     cy.get('[data-testid=loading-overlay]').should('not.exist');
     cy.get('[data-testid=close-modal]').click();
     // Hourly
-    cy.waitForAPISuccess(`v10/state/hourly_72`);
-    cy.waitForAPISuccess(`v10/details/hourly_72/DK-DK2`);
+    cy.waitForAPISuccess(`v10/state/hourly`);
+    cy.waitForAPISuccess(`v10/details/hourly/DK-DK2`);
     cy.contains('LIVE');
     cy.get('[data-testid=co2-square-value').should(
       'contain.text',
-      getco2intensity(24, hourlyData)
+      getco2intensity(71, hourlyData)
     );
     // cy.get('[data-testid=date-display').should(
     //   'have.text',
@@ -75,7 +73,7 @@ describe('TimeController', () => {
     // );
 
     // Monthly
-    cy.get('[data-testid="time-controller-30d"]').click();
+    cy.get('[data-testid="time-controller-3mo"]').click();
     cy.waitForAPISuccess(`v10/state/daily`);
     cy.waitForAPISuccess(`v10/details/daily/DK-DK2`);
     // cy.get('[data-testid=co2-square-value').should(
@@ -97,7 +95,7 @@ describe('TimeController', () => {
     // );
 
     // Yearly
-    cy.get('[data-testid="time-controller-12mo"]').click();
+    cy.get('[data-testid="time-controller-all_months"]').click();
     cy.waitForAPISuccess(`v10/state/monthly`);
     cy.waitForAPISuccess(`v10/details/monthly/DK-DK2`);
     cy.get('[data-testid=co2-square-value').should(
@@ -119,13 +117,14 @@ describe('TimeController', () => {
     // );
 
     // 5 Years
-    cy.get('[data-testid="time-controller-all"]').click();
-    cy.waitForAPISuccess(`v10/state/yearly`);
-    cy.waitForAPISuccess(`v10/details/yearly/DK-DK2`);
-    cy.get('[data-testid=co2-square-value').should(
-      'contain.text',
-      getco2intensity(-1, yearlyData)
-    );
+    // TODO: Fix this test once we have a toggle in the UI
+    //cy.get('[data-testid="time-controller-all"]').click();
+    //cy.waitForAPISuccess(`v10/state/yearly`);
+    //cy.waitForAPISuccess(`v10/details/yearly/DK-DK2`);
+    //cy.get('[data-testid=co2-square-value').should(
+    //  'contain.text',
+    //  getco2intensity(-1, yearlyData)
+    //);
     // cy.get('[data-testid=date-display').should(
     //   'have.text',
     //   getFormattedDate(4, yearlyData, 'yearly')
