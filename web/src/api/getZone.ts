@@ -16,7 +16,7 @@ import {
   getHeaders,
   isValidDate,
   QUERY_KEYS,
-  TIME_RANGE_TO_TIME_AVERAGE,
+  TIME_RANGE_TO_BACKEND_PATH,
 } from './helpers';
 
 const getZone = async (
@@ -32,7 +32,7 @@ const getZone = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v10/details/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}/${zoneId}${
+    `v10/details/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}/${zoneId}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()

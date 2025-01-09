@@ -14,7 +14,7 @@ import {
   getHeaders,
   isValidDate,
   QUERY_KEYS,
-  TIME_RANGE_TO_TIME_AVERAGE,
+  TIME_RANGE_TO_BACKEND_PATH,
 } from './helpers';
 
 const getState = async (
@@ -27,7 +27,7 @@ const getState = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v10/state/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}${
+    `v10/state/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()

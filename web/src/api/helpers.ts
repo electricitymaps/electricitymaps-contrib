@@ -102,3 +102,11 @@ export const TIME_RANGE_TO_TIME_AVERAGE: Record<TimeRange, string> = {
   [TimeRange.ALL_MONTHS]: 'monthly',
   [TimeRange.ALL_YEARS]: 'yearly',
 } as const;
+
+export const TIME_RANGE_TO_BACKEND_PATH: Record<TimeRange, string> = {
+  [TimeRange.H72]: 'hourly',
+  [TimeRange.M3]: 'daily',
+  [TimeRange.M12]: 'monthly',
+  [TimeRange.ALL_MONTHS]: 'monthly_all',
+  [TimeRange.ALL_YEARS]: 'yearly',
+} as const;
