@@ -289,48 +289,56 @@
     "carbonintensity": {
       "72h": "Hourly carbon intensity",
       "3mo": "Daily carbon intensity",
+      "12mo": "Monthly carbon intensity",
       "all_months": "Monthly carbon intensity",
       "all_years": "Yearly carbon intensity"
     },
     "emissions": {
       "72h": "Hourly carbon emissions",
       "3mo": "Daily carbon emissions",
+      "12mo": "Monthly carbon emissions",
       "all_months": "Monthly carbon emissions",
       "all_years": "Yearly carbon emissions"
     },
     "emissionsorigin": {
       "72h": "Hourly carbon emission origin",
       "3mo": "Daily carbon emission origin",
+      "12mo": "Monthly carbon emission origin",
       "all_months": "Monthly carbon emission origin",
       "all_years": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
       "72h": "Hourly production emissions",
       "3mo": "Daily production emissions",
+      "12mo": "Monthly production emissions",
       "all_months": "Monthly production emissions",
       "all_years": "Yearly production emissions"
     },
     "electricityorigin": {
       "72h": "Hourly electricity origin",
       "3mo": "Daily electricity origin",
+      "12mo": "Monthly electricity origin",
       "all_months": "Monthly electricity origin",
       "all_years": "Yearly electricity origin"
     },
     "electricityproduction": {
       "72h": "Hourly electricity production",
       "3mo": "Daily electricity production",
+      "12mo": "Monthly electricity production",
       "all_months": "Monthly electricity production",
       "all_years": "Yearly electricity production"
     },
     "electricityprices": {
       "72h": "Hourly electricity prices",
       "3mo": "Daily electricity prices",
+      "12mo": "Monthly electricity prices",
       "all_months": "Monthly electricity prices",
       "all_years": "Yearly electricity prices"
     },
     "netExchange": {
       "72h": "Hourly net exchange",
       "3mo": "Daily net exchange",
+      "12mo": "Monthly net exchange",
       "all_months": "Monthly net exchange",
       "all_years": "Yearly net exchange"
     },

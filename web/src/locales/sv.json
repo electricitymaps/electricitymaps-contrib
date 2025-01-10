@@ -226,7 +226,6 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Timvis koldioxidintensitet",
       "72h": "Timvis koldioxidintensitet",
       "3mo": "Daglig koldioxidintensitet",
       "12mo": "Månadsvis koldioxidintensitet",
