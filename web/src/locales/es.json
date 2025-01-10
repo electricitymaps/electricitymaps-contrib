@@ -154,15 +154,15 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Datos horarios para:",
-      "30d": "Datos diarios para:",
+      "3mo": "Datos diarios para:",
       "12mo": "Datos mensuales para:",
-      "all": "Datos anuales para:"
+      "all_months": "Datos mensuales para:",
+      "all_years": "Datos anuales para:"
     },
-    "30d": "diario",
-    "24h": "horario",
+    "3mo": "diario",
     "12mo": "mensual",
-    "all": "anual"
+    "all_months": "mensual",
+    "all_years": "anual"
   },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",

@@ -259,7 +259,7 @@ function TimeDisclaimer() {
   const { i18n } = useTranslation();
   const date = Intl.DateTimeFormat(
     i18n.language,
-    getDateTimeFormatOptions(TimeRange.H24)
+    getDateTimeFormatOptions(TimeRange.H72)
   ).formatToParts(new Date());
   return (
     <Disclaimer
