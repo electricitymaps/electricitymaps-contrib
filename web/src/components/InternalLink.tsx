@@ -7,7 +7,7 @@ export default function InternalLink({ to, ...rest }: LinkProps) {
 
   const { urlTimeRange } = useParams<RouteParameters>();
   const toWithState = `${to}${
-    urlTimeRange ? `/${TIME_RANGE_TO_TIME_AVERAGE[urlTimeRange]}/${urlTimeRange}` : ''
+    urlTimeRange ? `/${urlTimeRange}/${TIME_RANGE_TO_TIME_AVERAGE[urlTimeRange]}` : ''
   }${location.search}${location.hash}`;
   return <Link to={toWithState} {...rest} />;
 }

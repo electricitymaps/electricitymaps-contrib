@@ -12,8 +12,8 @@ export function useGetCurrentUrl() {
   const url =
     baseUrl +
     (zoneId
-      ? `/zone/${zoneId}/${resolution}/${urlTimeRange}/${datetime.toISOString()}`
-      : '/map/hourly/72h');
+      ? `/zone/${zoneId}/${urlTimeRange}/${resolution}/${datetime.toISOString()}`
+      : '/map/72h/hourly');
 
   return url;
 }

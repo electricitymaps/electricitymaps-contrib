@@ -95,7 +95,7 @@ describe('TimeController', () => {
     // );
 
     // Yearly
-    cy.get('[data-testid="time-controller-all_months"]').click();
+    cy.get('[data-testid="time-controller-12mo"]').click();
     cy.waitForAPISuccess(`v10/state/monthly`);
     cy.waitForAPISuccess(`v10/details/monthly/DK-DK2`);
     cy.get('[data-testid=co2-square-value').should(

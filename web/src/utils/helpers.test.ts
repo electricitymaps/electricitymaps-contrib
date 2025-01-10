@@ -200,7 +200,7 @@ describe('getDestinationPath', () => {
       resolution: 'hourly',
       timeRange: TimeRange.H72,
     });
-    expect(result).toBe('/path/hourly/72h');
+    expect(result).toBe('/path/72h/hourly');
   });
 
   it('should include datetime when provided', () => {
@@ -216,7 +216,7 @@ describe('getDestinationPath', () => {
       timeRange: TimeRange.H72,
       datetime: '2024-03-20',
     });
-    expect(result).toBe('/path/FR/hourly/72h/2024-03-20');
+    expect(result).toBe('/path/FR/72h/hourly/2024-03-20');
   });
 
   it('should handle missing middle parameters', () => {
@@ -329,7 +329,7 @@ describe('useNavigateWithParameters', () => {
     });
 
     expect(navigateMock).toHaveBeenCalledWith({
-      pathname: '/zone/DE/daily/3mo/2024-03-21',
+      pathname: '/zone/DE/3mo/daily/2024-03-21',
       search: '',
       hash: '',
     });
@@ -345,7 +345,7 @@ describe('useNavigateWithParameters', () => {
     });
 
     expect(navigateMock).toHaveBeenCalledWith({
-      pathname: '/zone/DE/daily/3mo',
+      pathname: '/zone/DE/3mo/daily',
       search: '',
       hash: '',
     });

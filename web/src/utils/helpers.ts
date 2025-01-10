@@ -143,8 +143,8 @@ export function getDestinationPath({
   datetime?: string;
   resolution?: string;
 }) {
-  return `${to}${zoneId ? `/${zoneId}` : ''}${resolution ? `/${resolution}` : ''}${
-    timeRange ? `/${timeRange}` : ''
+  return `${to}${zoneId ? `/${zoneId}` : ''}${timeRange ? `/${timeRange}` : ''}${
+    resolution ? `/${resolution}` : ''
   }${datetime ? `/${datetime}` : ''}`;
 }
 
