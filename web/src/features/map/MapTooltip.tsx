@@ -112,7 +112,7 @@ export default function MapTooltip() {
   const { zoneId } = hoveredZone;
 
   const { x, y } = mousePosition;
-  const zoneData = data?.data?.datetimes[selectedDatetimeString]?.z[zoneId];
+  const zoneData = data?.datetimes[selectedDatetimeString]?.z[zoneId];
 
   const screenWidth = window.innerWidth;
   const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);

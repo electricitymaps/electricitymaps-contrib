@@ -143,8 +143,7 @@ export const getDateTimeFormatOptions = (
   timezone?: string
 ): Intl.DateTimeFormatOptions => {
   switch (timeRange) {
-    case TimeRange.H72:
-    case TimeRange.H24: {
+    case TimeRange.H72: {
       return {
         year: 'numeric',
         month: 'short',
@@ -155,20 +154,21 @@ export const getDateTimeFormatOptions = (
         timeZone: timezone,
       };
     }
-    case TimeRange.D30: {
+    case TimeRange.M3: {
       return {
         dateStyle: 'long',
         timeZone: 'UTC',
       };
     }
-    case TimeRange.M12: {
+    case TimeRange.M12:
+    case TimeRange.ALL_MONTHS: {
       return {
         month: 'long',
         year: 'numeric',
         timeZone: 'UTC',
       };
     }
-    case TimeRange.ALL: {
+    case TimeRange.ALL_YEARS: {
       return {
         year: 'numeric',
         timeZone: 'UTC',
@@ -222,15 +222,9 @@ const formatDateTick = (
         timeZone: timezone,
       }).format(date);
     }
-    case TimeRange.H24: {
-      return new Intl.DateTimeFormat(lang, {
-        timeStyle: 'short',
-        timeZone: timezone,
-      }).format(date);
-    }
     // Instantiate below DateTimeFormat objects using UTC to avoid displaying
     // misleading time slider labels for users in UTC-negative offset timezones
-    case TimeRange.D30: {
+    case TimeRange.M3: {
       return new Intl.DateTimeFormat(lang, {
         month: 'short',
         day: 'numeric',
@@ -251,7 +245,8 @@ const formatDateTick = (
             timeZone: 'UTC',
           }).format(date);
     }
-    case TimeRange.ALL: {
+    case TimeRange.ALL_MONTHS:
+    case TimeRange.ALL_YEARS: {
       return new Intl.DateTimeFormat(lang, {
         year: 'numeric',
         timeZone: 'UTC',

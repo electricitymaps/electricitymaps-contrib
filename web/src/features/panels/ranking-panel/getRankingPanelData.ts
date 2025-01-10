@@ -33,7 +33,7 @@ export const getRankedState = (
   if (!data) {
     return [];
   }
-  const gridState = data.data.datetimes[datetimeIndex];
+  const gridState = data.datetimes[datetimeIndex];
 
   if (!gridState || !gridState.z) {
     return [];
