@@ -241,14 +241,14 @@
     "72h": "72h",
     "3mo": "3mo",
     "12mo": "12mo",
-    "all_months": "12mo",
-    "all_years": "tout",
+    "all_months": "Tout",
+    "all_years": "Toutes les années",
     "historical-linking": {
       "3mo": "30j",
       "72h": "72h",
       "12mo": "12mo",
-      "all_months": "12mo",
-      "all_years": "tout"
+      "all_months": "Tout",
+      "all_years": "Toutes les années"
     },
     "date-unavailable": {
       "title": "Date indisponible",
