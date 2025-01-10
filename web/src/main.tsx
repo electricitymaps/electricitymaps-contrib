@@ -123,12 +123,19 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
       />
     );
   }
+  let sanitizedTimeRange = urlTimeRange.toLowerCase();
 
-  const lowerCaseTimeRange = urlTimeRange.toLowerCase() as TimeRange;
+  if (sanitizedTimeRange === '24h') {
+    sanitizedTimeRange = TimeRange.H72;
+  }
+
+  if (sanitizedTimeRange === '30d') {
+    sanitizedTimeRange = TimeRange.M3;
+  }
 
   if (
-    !Object.values(TimeRange).includes(lowerCaseTimeRange as TimeRange) &&
-    String(lowerCaseTimeRange) != 'all'
+    !Object.values(TimeRange).includes(sanitizedTimeRange as TimeRange) &&
+    String(sanitizedTimeRange) != 'all'
   ) {
     return (
       <Navigate
@@ -138,11 +145,11 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
     );
   }
 
-  if (urlTimeRange !== lowerCaseTimeRange) {
+  if (urlTimeRange !== sanitizedTimeRange) {
     return (
       <Navigate
-        to={`${location.pathname.replace(urlTimeRange, lowerCaseTimeRange)}/${
-          TIME_RANGE_TO_TIME_AVERAGE[lowerCaseTimeRange]
+        to={`${location.pathname.replace(urlTimeRange, sanitizedTimeRange)}/${
+          TIME_RANGE_TO_TIME_AVERAGE[sanitizedTimeRange as TimeRange]
         }?${searchParameters}${location.hash}`}
         replace
       />
