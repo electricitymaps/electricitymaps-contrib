@@ -75,12 +75,7 @@ def get_data(session: Session, logger: Logger, timestamp: datetime):
     return production_dict
 
 
-# The data is hourly, but it takes a few minutes after the turn of each hour
-# for the server to populate it. Setting the re-fetch frequency to 45 min will
-# ensure that if the live data is missing for a given hour when it's first
-# fetched, it will be fetched again during the same hour. (As far as I can
-# tell, the table is always populated within 15 min of the turn of the hour).
-@config.refetch_frequency(timedelta(minutes=45))
+@config.refetch_frequency(timedelta(hours=24))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("NG"),
     session: Session | None = None,
