@@ -34,21 +34,8 @@ def test_production(snapshot, zone_key: ZoneKey):
             REPORTS_LINK,
             content=reports_byte_content.read(),
         )
-    production = fetch_production(
+    assert snapshot == fetch_production(
         zone_key=ZoneKey(zone_key),
         session=session,
         target_datetime=target_datetime,
-    )
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "zoneKey": element["zoneKey"],
-                "sourceType": element["sourceType"].value,
-            }
-            for element in production
-        ]
     )
