@@ -1,5 +1,4 @@
 {
-  "info": {},
   "button": {
     "feedback": "Condividi un feedback",
     "github": "Visualizza il nostro GitHub",
@@ -63,15 +62,15 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Dati orari per:",
-      "30d": "Dati giornalieri per:",
+      "3mo": "Dati giornalieri per:",
       "12mo": "Dati mensili per:",
-      "all": "Dati annuali per:"
+      "all_months": "Dati mensili per:",
+      "all_years": "Dati annuali per:"
     },
-    "30d": "giornaliero",
-    "24h": "orario",
+    "3mo": "giornaliero",
     "12mo": "mensile",
-    "all": "annuale"
+    "all_months": "mensile",
+    "all_years": "annuale"
   },
   "ranking-panel": {
     "title": "Impatto climatico per area",

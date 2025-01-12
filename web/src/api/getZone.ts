@@ -1,5 +1,6 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
@@ -7,6 +8,7 @@ import { RouteParameters } from 'types';
 import { TimeRange } from 'utils/constants';
 import { isValidHistoricalTimeRange } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
+import { timeRangeAtom } from 'utils/state/atoms';
 
 import {
   cacheBuster,
@@ -14,7 +16,7 @@ import {
   getHeaders,
   isValidDate,
   QUERY_KEYS,
-  TIME_RANGE_TO_TIME_AVERAGE,
+  TIME_RANGE_TO_BACKEND_PATH,
 } from './helpers';
 
 const getZone = async (
@@ -30,7 +32,7 @@ const getZone = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v9/details/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}/${zoneId}${
+    `v10/details/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}/${zoneId}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
@@ -46,7 +48,7 @@ const getZone = async (
   const response = await fetch(path, requestOptions);
 
   if (response.ok) {
-    const { data } = (await response.json()) as { data: ZoneDetails };
+    const data = (await response.json()) as ZoneDetails;
     if (!data.zoneStates) {
       throw new Error('No data returned from API');
     }
@@ -57,9 +59,9 @@ const getZone = async (
 };
 
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const { zoneId, urlTimeRange, urlDatetime } = useParams<RouteParameters>();
+  const { zoneId, urlDatetime } = useParams<RouteParameters>();
+  const timeRange = useAtomValue(timeRangeAtom);
 
-  const timeRange = urlTimeRange || TimeRange.H72;
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,
