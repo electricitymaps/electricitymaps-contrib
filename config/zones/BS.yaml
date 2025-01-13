@@ -1,3 +1,8 @@
+bounding_box:
+  - - -79.49738997389969
+    - 20.412602250102395
+  - - -72.25492754927544
+    - 27.407408237364848
 country: BS
 region: Americas
 timezone: America/Nassau

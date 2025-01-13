@@ -1,3 +1,8 @@
+bounding_box:
+  - - 10.615111151111535
+    - -5.520049765935497
+  - - 19.124786247862488
+    - 4.2081244322773586
 country: CG
 region: Africa
 timezone: Africa/Brazzaville
