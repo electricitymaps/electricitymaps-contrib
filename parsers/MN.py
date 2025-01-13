@@ -15,77 +15,85 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.exceptions import ParserException
 
-NDC_GENERATION = "https://disnews.energy.mn/convertt.php"
+NDC_API = "https://disnews.energy.mn/convertt.php"
 TZ = ZoneInfo("Asia/Ulaanbaatar")  # UTC+8
 
-# Query fields to web API fields
-JSON_QUERY_TO_SRC = {
-    "time": "date",
-    "consumptionMW": "syssum",
-    "solarMW": "sumnar",
-    "windMW": "sums",
-    "importMW": "energyimport",  # positive = import
-    "temperatureC": "t",  # current temperature
+# https://ndc.energy.mn/ provides a list with icons and numbers next to them,
+# where the JSON response from https://disnews.energy.mn/convertt.php is used to
+# populate the numbers. Below is a formatted JSON response from 2025-01-13:
+#
+#     {
+#         "date": "2025-01-14 03:00:00",
+#         "syssum": "1351.8",
+#         "dts": 1061,
+#         "sumnar": -0.5,
+#         "sumsalhit": 128.6,
+#         "energyimport": "162.7",
+#         "t": "-20.2",
+#         "Songino": "-23.9"
+#     }
+#
+# Notes:
+# - dts is assumed to be coal, as coal is reported as the main source of
+#   electricity for mongolia.
+# - Songino is ignored for now, but it seems to be a specific area of Mongolia.
+#   Ideally we'd figure out if we should make use of this value.
+# - t is temperature, and ignored.
+#
+JSON_API_MAPPING = {
+    "date": "datetime",
+    "syssum": "consumption",
+    "energyimport": "import",  # positive = import
+    "dts": "coal",
+    "sumnar": "solar",
+    "sumsalhit": "wind",
 }
 
 
-def parse_json(web_json: dict, logger: Logger, zone_key: ZoneKey) -> dict[str, Any]:
+def _fetch_and_parse(session: Session) -> dict[str, Any]:
     """
-    Parse the fetched JSON data to our query format according to JSON_QUERY_TO_SRC.
-    Example of expected JSON format present at URL:
-    {"date":"2023-06-27 18:00:00","syssum":"869.37","sumnar":42.34,"sums":119.79,"energyimport":"49.58"}
+    Fetches and parses consumption and production data from a JSON API seen used
+    at https://ndc.energy.mn/.
     """
-
-    # Validate first if keys in fetched dict match expected keys
-    if set(JSON_QUERY_TO_SRC.values()) != set(web_json.keys()):
-        logger.error(
-            msg=f"Fetched keys from source {web_json.keys()} do not match expected keys {JSON_QUERY_TO_SRC.values()}.",
-            extra={"zone_key": zone_key, "parser": "MN.py"},
-        )
-
-    if None in web_json.values():
+    response: Response = session.get(NDC_API)
+    if not response.ok:
         raise ParserException(
             parser="MN.py",
-            message=f"Fetched values contain null. Fetched data: {web_json}.",
+            message=f"Data request did not succeed: {response.status_code}",
+        )
+    data = response.json()
+
+    # validate that the expected and required keys are present
+    received_keys = set(data.keys())
+    expected_keys = set(JSON_API_MAPPING.keys())
+    if not set(expected_keys).issubset(received_keys):
+        missing = expected_keys - received_keys
+        raise ParserException(
+            parser="MN.py",
+            message=f"Fetched JSON didn't include expected keys: {missing}",
         )
 
-    # Then we can safely parse them
-    query_data = {}
-    for query_key, src_key in JSON_QUERY_TO_SRC.items():
-        if "time" in query_key:
-            # convert to datetime
-            query_data[query_key] = datetime.fromisoformat(web_json[src_key]).replace(
-                tzinfo=TZ
-            )
+    # pick out relevant values into a new dictionary with keys with our names
+    result = {JSON_API_MAPPING[k]: data[k] for k in expected_keys}
+
+    # ensure that relevant values are set
+    if None in result.values():
+        raise ParserException(
+            parser="MN.py",
+            message=f"Fetched values contain null. Fetched data: {result}.",
+        )
+
+    # parse values
+    for k, v in result.items():
+        if k == "datetime":
+            result[k] = datetime.fromisoformat(v).replace(tzinfo=TZ)
         else:
-            # or convert to float, might also be string
-            query_data[query_key] = float(web_json[src_key])
-
-    return query_data
-
-
-def query(session: Session, logger: Logger, zone_key: ZoneKey) -> dict[str, Any]:
-    """
-    Query the JSON endpoint and parse it.
-    """
-
-    target_response: Response = session.get(NDC_GENERATION)
-
-    if not target_response.ok:
-        raise ParserException(
-            parser="MN.py",
-            message=f"Data request did not succeed: {target_response.status_code}",
-        )
-
-    # Read as JSON
-    response_json = target_response.json()
-    query_result = parse_json(response_json, logger, zone_key)
-
-    return query_result
+            result[k] = float(v)
+    return result
 
 
 def fetch_production(
-    zone_key: ZoneKey,
+    zone_key: ZoneKey = ZoneKey("MN"),
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -93,26 +101,16 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates.")
 
-    query_data = query(session, logger, zone_key)
-
-    # Calculated 'unknown' production from available data (consumption, import, solar, wind, tpp).
-    # 'unknown' consists of 92.8% coal, 5.8% oil and 1.4% hydro as per 2020; sources: IEA and IRENA statistics.
-    query_data["leftoverMW"] = round(
-        query_data["consumptionMW"]
-        - query_data["importMW"]
-        - query_data["solarMW"]
-        - query_data["windMW"],
-        13,
-    )
+    data = _fetch_and_parse(session)
 
     prod_mix = ProductionMix()
-    prod_mix.add_value("solar", query_data["solarMW"])
-    prod_mix.add_value("wind", query_data["windMW"])
-    prod_mix.add_value("unknown", query_data["leftoverMW"])
+    prod_mix.add_value("coal", data["coal"])
+    prod_mix.add_value("solar", data["solar"])
+    prod_mix.add_value("wind", data["wind"])
 
     prod_breakdown_list = ProductionBreakdownList(logger)
     prod_breakdown_list.append(
-        datetime=query_data["time"],
+        datetime=data["datetime"],
         zoneKey=zone_key,
         source="https://ndc.energy.mn/",
         production=prod_mix,
@@ -122,7 +120,7 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key: ZoneKey,
+    zone_key: ZoneKey = ZoneKey("MN"),
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -130,13 +128,13 @@ def fetch_consumption(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates.")
 
-    query_data = query(session, logger, zone_key)
+    data = _fetch_and_parse(session)
 
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
-        datetime=query_data["time"],
+        datetime=data["datetime"],
         zoneKey=zone_key,
-        consumption=query_data["consumptionMW"],
+        consumption=data["consumption"],
         source="https://ndc.energy.mn/",
     )
 
@@ -145,6 +143,6 @@ def fetch_consumption(
 
 if __name__ == "__main__":
     print("fetch_production() ->")
-    print(fetch_production(ZoneKey("MN")))
+    print(fetch_production())
     print("fetch_consumption() ->")
-    print(fetch_consumption(ZoneKey("MN")))
+    print(fetch_consumption())
