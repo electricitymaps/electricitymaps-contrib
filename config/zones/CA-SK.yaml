@@ -194,6 +194,5 @@ fallbackZoneMixes:
         wind: 0.08756286656629877
 parsers:
   consumption: CA_SK.fetch_consumption
-  production: CA_SK.fetch_production
 region: Americas
 timezone: America/Regina
