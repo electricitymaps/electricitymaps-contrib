@@ -1,8 +1,11 @@
+from importlib import resources
+
 import pandas as pd
 import pytest
 from numpy import nan
+from requests_mock import ANY
 
-from electricitymap.contrib.parsers.DO import correct_solar_production
+from electricitymap.contrib.parsers.DO import correct_solar_production, fetch_production
 
 
 @pytest.fixture
@@ -165,3 +168,15 @@ def test_correct_solar_production_prod_then_nan_then_prod(production_df):
         .loc[pd.Timestamp("2024-04-18 07:00:00-0400", tz="America/Dominica") :]
         .isnull()
     )
+
+
+def test_fetch_production(adapter, session, snapshot):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        content=resources.files("parsers.test.mocks.DO")
+        .joinpath("production.html")
+        .read_bytes(),
+    )
+
+    assert snapshot == fetch_production(session=session)
