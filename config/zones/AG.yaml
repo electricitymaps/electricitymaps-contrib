@@ -1,3 +1,8 @@
+bounding_box:
+  - - -62.382818828188235
+    - 16.548678601114915
+  - - -61.170416704166996
+    - 17.66459631058453
 country: AG
 region: Americas
 timezone: America/Antigua

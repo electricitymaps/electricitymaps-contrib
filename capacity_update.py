@@ -41,7 +41,6 @@ def capacity_update(
     assert not (zone is None and source is None), "Zone and source cannot be both set"
 
     session = Session()
-    update_aggregate = eval(update_aggregate)
     parsed_target_datetime = None
     if target_datetime is None:
         raise ValueError("target_datetime must be specified")

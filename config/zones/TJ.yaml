@@ -1,3 +1,8 @@
+bounding_box:
+  - - 66.85127351273513
+    - 36.19887698046574
+  - - 75.66335163351633
+    - 41.52647146733173
 country: TJ
 region: Asia
 timezone: Asia/Dushanbe
