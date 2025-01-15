@@ -1,7 +1,3 @@
-aggregates_displayed:
-  - daily
-  - monthly
-  - yearly
 bounding_box:
   - - -110.49997270417693
     - 48.49261789994816
@@ -35,10 +31,6 @@ capacity:
 contributors:
   - VIKTORVAV99
 country: CA
-delays:
-  production: 48
-disclaimer: The hourly production mix is estimated based on the daily average production
-  mix.
 emissionFactors:
   lifecycle:
     battery discharge:
