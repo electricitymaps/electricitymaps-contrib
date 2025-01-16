@@ -77,7 +77,6 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
-  production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Europe
