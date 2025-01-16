@@ -83,14 +83,4 @@ region: Americas
 sources:
   IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
-subZoneNames:
-  - MX-BC
-  - MX-BCS
-  - MX-CE
-  - MX-NE
-  - MX-NO
-  - MX-NW
-  - MX-OC
-  - MX-OR
-  - MX-PN
 timezone: America/Mexico_City

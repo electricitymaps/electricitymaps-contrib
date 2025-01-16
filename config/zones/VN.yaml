@@ -64,8 +64,4 @@ region: Asia
 sources:
   EMBER 2022:
     link: https://ember-climate.org/countries-and-regions/countries/viet-nam/
-subZoneNames:
-  - VN-N
-  - VN-C
-  - VN-S
 timezone: Asia/Ho_Chi_Minh
