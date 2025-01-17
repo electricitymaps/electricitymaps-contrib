@@ -1,3 +1,8 @@
+bounding_box:
+  - - 177.133330
+    - -19.62909541607167
+  - - 179.9
+    - -15.649580957852429
 country: FJ
 region: Oceania
 timezone: Pacific/Fiji

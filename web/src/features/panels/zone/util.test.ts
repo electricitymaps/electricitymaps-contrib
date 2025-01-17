@@ -48,7 +48,7 @@ describe('getZoneDataStatus', () => {
     const result = getZoneDataStatus(
       'FI',
       undefined as unknown as ZoneDetails,
-      TimeRange.H24
+      TimeRange.H72
     );
     expect(result).toEqual(ZoneDataStatus.UNKNOWN);
   });

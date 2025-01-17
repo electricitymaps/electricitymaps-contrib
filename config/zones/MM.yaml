@@ -1,3 +1,8 @@
+bounding_box:
+  - - 91.68432184321844
+    - 9.487715903298508
+  - - 101.6592115921159
+    - 29.03884266693734
 country: MM
 region: Asia
 timezone: Asia/Yangon

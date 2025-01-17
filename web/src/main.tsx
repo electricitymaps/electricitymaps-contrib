@@ -7,6 +7,7 @@ import { Capacitor } from '@capacitor/core';
 import * as Sentry from '@sentry/react';
 import { captureException } from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import App from 'App';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { zoneExists } from 'features/panels/zone/util';
@@ -109,7 +110,7 @@ const queryClient = new QueryClient({
 
 refetchDataOnHourChange(queryClient);
 
-function TimeRangeGuardWrapper({ children }: { children: JSX.Element }) {
+function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Element }) {
   const [searchParameters] = useSearchParams();
   const { urlTimeRange } = useParams<RouteParameters>();
   const location = useLocation();
@@ -117,30 +118,39 @@ function TimeRangeGuardWrapper({ children }: { children: JSX.Element }) {
   if (!urlTimeRange) {
     return (
       <Navigate
-        to={`${location.pathname}/72h?${searchParameters}${location.hash}`}
+        to={`${location.pathname}/72h/hourly?${searchParameters}${location.hash}`}
+        replace
+      />
+    );
+  }
+  let sanitizedTimeRange = urlTimeRange.toLowerCase();
+
+  if (sanitizedTimeRange === '24h') {
+    sanitizedTimeRange = TimeRange.H72;
+  }
+
+  if (sanitizedTimeRange === '30d') {
+    sanitizedTimeRange = TimeRange.M3;
+  }
+
+  if (
+    !Object.values(TimeRange).includes(sanitizedTimeRange as TimeRange) &&
+    String(sanitizedTimeRange) != 'all'
+  ) {
+    return (
+      <Navigate
+        to={`${location.pathname}/72h/hourly?${searchParameters}${location.hash}`}
         replace
       />
     );
   }
 
-  const lowerCaseTimeRange = urlTimeRange.toLowerCase();
-
-  if (!Object.values(TimeRange).includes(lowerCaseTimeRange as TimeRange)) {
+  if (urlTimeRange !== sanitizedTimeRange) {
     return (
       <Navigate
-        to={`${location.pathname}/72h?${searchParameters}${location.hash}`}
-        replace
-      />
-    );
-  }
-
-  if (urlTimeRange !== lowerCaseTimeRange) {
-    return (
-      <Navigate
-        to={`${location.pathname.replace(
-          urlTimeRange,
-          lowerCaseTimeRange
-        )}?${searchParameters}${location.hash}`}
+        to={`${location.pathname.replace(urlTimeRange, sanitizedTimeRange)}/${
+          TIME_RANGE_TO_TIME_AVERAGE[sanitizedTimeRange as TimeRange]
+        }?${searchParameters}${location.hash}`}
         replace
       />
     );
@@ -153,7 +163,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   const [searchParameters] = useSearchParams();
   const { zoneId } = useParams<RouteParameters>();
   if (!zoneId) {
-    return <Navigate to={`/map/72h?${searchParameters}`} replace />;
+    return <Navigate to={`/map/72h/hourly?${searchParameters}`} replace />;
   }
 
   // Sanitize the zone ID by removing any special characters except for hyphens and making it uppercase
@@ -176,7 +186,7 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
   // Only allow valid zone ids
   // TODO: This should redirect to a 404 page specifically for zones
   if (!zoneExists(sanitizedZoneId)) {
-    return <Navigate to={`/map/72h?${searchParameters}`} replace />;
+    return <Navigate to={`/map/72h/hourly?${searchParameters}`} replace />;
   }
 
   return children;
@@ -213,29 +223,29 @@ const router = createBrowserRouter([
       },
       {
         path: '/map',
-        element: <Navigate to="/map/72h" replace />,
+        element: <Navigate to="/map/72h/hourly" replace />,
       },
       {
         path: '/zone',
-        element: <Navigate to="/map/72h" replace />,
+        element: <Navigate to="/map/72h/hourly" replace />,
       },
       {
-        path: '/map/:urlTimeRange?/:urlDatetime?',
+        path: '/map/:urlTimeRange?/:resolution?/:urlDatetime?',
         element: (
-          <TimeRangeGuardWrapper>
+          <TimeRangeAndResolutionGuardWrapper>
             <RankingPanel />
-          </TimeRangeGuardWrapper>
+          </TimeRangeAndResolutionGuardWrapper>
         ),
       },
       {
-        path: '/zone/:zoneId/:urlTimeRange?/:urlDatetime?',
+        path: '/zone/:zoneId/:urlTimeRange?/:resolution?/:urlDatetime?',
         element: (
           <ValidZoneIdGuardWrapper>
-            <TimeRangeGuardWrapper>
+            <TimeRangeAndResolutionGuardWrapper>
               <Suspense fallback={<LoadingSpinner />}>
                 <ZoneDetails />
               </Suspense>
-            </TimeRangeGuardWrapper>
+            </TimeRangeAndResolutionGuardWrapper>
           </ValidZoneIdGuardWrapper>
         ),
       },

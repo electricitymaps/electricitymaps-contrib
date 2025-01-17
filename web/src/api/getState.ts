@@ -1,10 +1,12 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import type { GridState, RouteParameters } from 'types';
 import { TimeRange } from 'utils/constants';
 import { isValidHistoricalTimeRange } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
+import { timeRangeAtom } from 'utils/state/atoms';
 
 import {
   cacheBuster,
@@ -12,7 +14,7 @@ import {
   getHeaders,
   isValidDate,
   QUERY_KEYS,
-  TIME_RANGE_TO_TIME_AVERAGE,
+  TIME_RANGE_TO_BACKEND_PATH,
 } from './helpers';
 
 const getState = async (
@@ -25,7 +27,7 @@ const getState = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v9/state/${TIME_RANGE_TO_TIME_AVERAGE[timeRange]}${
+    `v10/state/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}${
       shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
     }`,
     getBasePath()
@@ -49,8 +51,8 @@ const getState = async (
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const { urlTimeRange, urlDatetime } = useParams<RouteParameters>();
-  const timeRange = urlTimeRange || TimeRange.H72;
+  const { urlDatetime } = useParams<RouteParameters>();
+  const timeRange = useAtomValue(timeRangeAtom);
   return useQuery<GridState>({
     queryKey: [
       QUERY_KEYS.STATE,

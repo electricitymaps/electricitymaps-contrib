@@ -2,7 +2,9 @@
 # name: test_production
   list([
     dict({
-      'datetime': '2023-09-21T02:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 676.5,
         'coal': 7.0,
@@ -14,7 +16,7 @@
         'wind': 9451.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 2.0,
         'hydro': 781.0,
@@ -22,7 +24,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T02:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 676.5,
         'coal': 7.0,
@@ -34,7 +38,7 @@
         'wind': 9097.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 1.5,
         'hydro': 1097.5,
@@ -42,7 +46,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T03:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 677.0,
         'coal': 7.0,
@@ -54,7 +60,7 @@
         'wind': 9050.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 4.5,
         'hydro': 1423.0,
@@ -62,7 +68,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T03:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 676.5,
         'coal': 7.0,
@@ -74,7 +82,7 @@
         'wind': 8904.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 8.5,
         'hydro': 1422.5,
@@ -82,7 +90,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T04:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 677.0,
         'coal': 7.0,
@@ -94,7 +104,7 @@
         'wind': 8366.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 5.0,
         'hydro': 1422.0,
@@ -102,7 +112,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T04:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 676.0,
         'coal': 7.0,
@@ -114,7 +126,7 @@
         'wind': 7937.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 3.0,
         'hydro': 1421.5,
@@ -122,7 +134,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T05:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 676.5,
         'coal': 7.0,
@@ -134,7 +148,7 @@
         'wind': 7489.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 3.5,
         'hydro': 1256.5,
@@ -142,7 +156,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T05:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 676.5,
         'coal': 7.0,
@@ -154,7 +170,7 @@
         'wind': 6962.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.0,
         'hydro': 932.5,
@@ -162,7 +178,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T06:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 674.0,
         'coal': 7.0,
@@ -174,7 +192,7 @@
         'wind': 6596.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 12.0,
         'hydro': 586.0,
@@ -182,7 +200,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T06:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 675.5,
         'coal': 7.0,
@@ -194,7 +214,7 @@
         'wind': 6485.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -2.5,
         'hydro': -323.0,
@@ -202,7 +222,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T07:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 674.5,
         'coal': 7.0,
@@ -214,7 +236,7 @@
         'wind': 5863.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 5.0,
         'hydro': -667.0,
@@ -222,7 +244,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T07:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 674.5,
         'coal': 7.0,
@@ -234,7 +258,7 @@
         'wind': 5586.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 1.0,
         'hydro': -1045.0,
@@ -242,7 +266,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T08:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 673.5,
         'coal': 9.0,
@@ -254,7 +280,7 @@
         'wind': 5789.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 3.5,
         'hydro': -956.0,
@@ -262,7 +288,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T08:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 675.0,
         'coal': 11.0,
@@ -274,7 +302,7 @@
         'wind': 5908.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -3.0,
         'hydro': -882.0,
@@ -282,7 +310,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T09:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 669.5,
         'coal': 11.0,
@@ -294,7 +324,7 @@
         'wind': 5784.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 1.0,
         'hydro': -957.0,
@@ -302,7 +332,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T09:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 668.0,
         'coal': 11.0,
@@ -314,7 +346,7 @@
         'wind': 5504.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 4.5,
         'hydro': -939.5,
@@ -322,7 +354,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T10:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 670.5,
         'coal': 11.0,
@@ -334,7 +368,7 @@
         'wind': 5099.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.0,
         'hydro': -902.5,
@@ -342,7 +376,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T10:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 670.5,
         'coal': 11.0,
@@ -354,7 +390,7 @@
         'wind': 4500.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.5,
         'hydro': -753.0,
@@ -362,7 +398,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T11:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 670.5,
         'coal': 11.0,
@@ -374,7 +412,7 @@
         'wind': 4020.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 4.5,
         'hydro': -823.0,
@@ -382,7 +420,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T11:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 669.5,
         'coal': 11.0,
@@ -394,7 +434,7 @@
         'wind': 3706.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 8.5,
         'hydro': -879.5,
@@ -402,7 +442,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T12:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 668.0,
         'coal': 11.0,
@@ -414,7 +456,7 @@
         'wind': 3465.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 5.5,
         'hydro': -908.5,
@@ -422,7 +464,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T12:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 668.0,
         'coal': 11.0,
@@ -434,7 +478,7 @@
         'wind': 3696.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 6.5,
         'hydro': -807.0,
@@ -442,7 +486,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T13:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 665.5,
         'coal': 11.0,
@@ -454,7 +500,7 @@
         'wind': 4014.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 7.5,
         'hydro': -480.5,
@@ -462,7 +508,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T13:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 665.0,
         'coal': 11.0,
@@ -474,7 +522,7 @@
         'wind': 4111.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 3.5,
         'hydro': -478.5,
@@ -482,7 +530,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T14:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 670.0,
         'coal': 11.0,
@@ -494,7 +544,7 @@
         'wind': 4422.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 7.0,
         'hydro': -346.0,
@@ -502,7 +552,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T14:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 667.0,
         'coal': 11.0,
@@ -514,7 +566,7 @@
         'wind': 5231.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.5,
         'hydro': -96.0,
@@ -522,7 +574,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T15:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 664.0,
         'coal': 11.0,
@@ -534,7 +588,7 @@
         'wind': 5716.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 3.5,
         'hydro': 22.5,
@@ -542,7 +596,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T15:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 655.0,
         'coal': 11.0,
@@ -554,7 +610,7 @@
         'wind': 5908.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -2.5,
         'hydro': -121.0,
@@ -562,7 +618,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T16:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 635.5,
         'coal': 11.0,
@@ -574,7 +632,7 @@
         'wind': 5689.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 3.0,
         'hydro': -480.5,
@@ -582,7 +640,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T16:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 639.0,
         'coal': 11.0,
@@ -594,7 +654,7 @@
         'wind': 5525.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.0,
         'hydro': -1101.0,
@@ -602,7 +662,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T17:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 645.5,
         'coal': 11.0,
@@ -614,7 +676,7 @@
         'wind': 5645.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 9.5,
         'hydro': -959.0,
@@ -622,7 +684,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T17:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 651.5,
         'coal': 11.0,
@@ -634,7 +698,7 @@
         'wind': 5495.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -6.5,
         'hydro': -1170.0,
@@ -642,7 +706,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T18:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 651.0,
         'coal': 11.0,
@@ -654,7 +720,7 @@
         'wind': 5446.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 12.0,
         'hydro': -936.0,
@@ -662,7 +728,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T18:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 650.0,
         'coal': 11.0,
@@ -674,7 +742,7 @@
         'wind': 5308.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -2.0,
         'hydro': -509.0,
@@ -682,7 +750,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T19:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 653.0,
         'coal': 11.0,
@@ -694,7 +764,7 @@
         'wind': 5164.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 5.0,
         'hydro': -945.5,
@@ -702,7 +772,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T19:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 657.0,
         'coal': 11.0,
@@ -714,7 +786,7 @@
         'wind': 5344.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 8.5,
         'hydro': -900.5,
@@ -722,7 +794,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T20:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 657.0,
         'coal': 11.0,
@@ -734,7 +808,7 @@
         'wind': 5333.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 7.0,
         'hydro': -1151.0,
@@ -742,7 +816,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T20:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 655.5,
         'coal': 11.0,
@@ -754,7 +830,7 @@
         'wind': 5381.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 3.0,
         'hydro': -1228.5,
@@ -762,7 +838,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T21:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 655.5,
         'coal': 11.0,
@@ -774,7 +852,7 @@
         'wind': 5378.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.0,
         'hydro': -1421.5,
@@ -782,7 +860,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T21:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 653.0,
         'coal': 11.0,
@@ -794,7 +874,7 @@
         'wind': 5526.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 10.5,
         'hydro': -596.5,
@@ -802,7 +882,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T22:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 658.5,
         'coal': 11.0,
@@ -814,7 +896,7 @@
         'wind': 5895.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 5.5,
         'hydro': -486.5,
@@ -822,7 +904,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T22:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 655.0,
         'coal': 11.0,
@@ -834,7 +918,7 @@
         'wind': 6158.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 3.0,
         'hydro': -607.5,
@@ -842,7 +926,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T23:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 652.0,
         'coal': 11.0,
@@ -854,7 +940,7 @@
         'wind': 6445.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 2.0,
         'hydro': -703.0,
@@ -862,7 +948,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-21T23:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 21, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 653.5,
         'coal': 9.0,
@@ -874,7 +962,7 @@
         'wind': 6631.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 7.5,
         'hydro': -461.5,
@@ -882,7 +970,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-22T00:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 22, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 655.0,
         'coal': 7.0,
@@ -894,7 +984,7 @@
         'wind': 6738.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.5,
         'hydro': -657.5,
@@ -902,7 +992,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-22T00:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 22, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 654.0,
         'coal': 7.0,
@@ -914,7 +1006,7 @@
         'wind': 6931.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 6.0,
         'hydro': -586.5,
@@ -922,7 +1014,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-22T01:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 22, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 654.0,
         'coal': 7.0,
@@ -934,7 +1028,7 @@
         'wind': 6831.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -2.0,
         'hydro': -556.5,
@@ -942,7 +1036,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-22T01:30:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 22, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 649.5,
         'coal': 7.0,
@@ -954,7 +1050,7 @@
         'wind': 7137.5,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 5.0,
         'hydro': -567.0,
@@ -962,7 +1058,9 @@
       'zoneKey': 'FR',
     }),
     dict({
-      'datetime': '2023-09-22T02:00:00+02:00',
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 22, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
       'production': dict({
         'biomass': 651.0,
         'coal': 7.0,
@@ -974,7 +1072,7 @@
         'wind': 7440.0,
       }),
       'source': 'opendata.reseaux-energies.fr',
-      'sourceType': 'measured',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.0,
         'hydro': -207.0,

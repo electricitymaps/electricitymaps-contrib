@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -14,6 +14,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from parsers.lib.config import refetch_frequency
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
 # The 'Termico' category historically only consisted of generation from oil/diesel, but this changed in 2022
@@ -38,7 +39,7 @@ MODE_MAPPING = {
 }
 
 
-def _fetch_data(session: Session) -> dict:
+def _fetch_data(session: Session, target_datetime: datetime | None = None) -> dict:
     """
     Fetches production data from a webpage meant for human eyes rather than
     programmatic access.
@@ -51,6 +52,13 @@ def _fetch_data(session: Session) -> dict:
     soup = BeautifulSoup(initial_resp.content, "html.parser")
 
     # define POST request's post data based on
+    if not target_datetime:
+        date_encoded = "1990-01-01T17%3A32%3A00.000"  # This means live data - I know it is weird but it works
+    else:
+        date_encoded = (
+            target_datetime.strftime("%Y-%m-%d") + "T00%3A00%3A00%2E000"
+        )  # This means historical data
+
     post_data = {
         # dynamically set based on initial request's response
         "__VIEWSTATE": soup.find("input", {"id": "__VIEWSTATE"})["value"],
@@ -61,7 +69,9 @@ def _fetch_data(session: Session) -> dict:
         # hardcoded based on mimicing requests seen at
         # https://estadistico.ut.com.sv/OperacionDiaria.aspx
         "__CALLBACKID": "ASPxDashboardViewer1",
-        "__CALLBACKPARAM": 'c1:{"url":"DXDD.axd?action=DashboardItemBatchGetAction&dashboardId=DashboardID&parameters=%5B%7B%22name%22%3A%22FechaConsulta%22%2C%22value%22%3A%221990-01-01T17%3A32%3A00.000%22%2C%22type%22%3A%22System.DateTime%22%2C%22allowMultiselect%22%3Afalse%2C%22selectAll%22%3Afalse%7D%5D&items=%7B%22pivotDashboardItem1%22%3A%7B%7D%2C%22chartDashboardItem1%22%3A%7B%7D%2C%22gridDashboardItem1%22%3A%7B%7D%2C%22gridDashboardItem2%22%3A%7B%7D%2C%22gridDashboardItem3%22%3A%7B%7D%7D","method":"GET","data":""}',
+        "__CALLBACKPARAM": 'c1:{"url":"DXDD.axd?action=DashboardItemBatchGetAction&dashboardId=DashboardID&parameters=%5B%7B%22name%22%3A%22FechaConsulta%22%2C%22value%22%3A%22'
+        + date_encoded
+        + '%22%2C%22type%22%3A%22System.DateTime%22%2C%22allowMultiselect%22%3Afalse%2C%22selectAll%22%3Afalse%7D%5D&items=%7B%22pivotDashboardItem1%22%3A%7B%7D%2C%22chartDashboardItem1%22%3A%7B%7D%2C%22gridDashboardItem1%22%3A%7B%7D%2C%22gridDashboardItem2%22%3A%7B%7D%2C%22gridDashboardItem3%22%3A%7B%7D%7D","method":"GET","data":""}',
         "DXScript": "1_9,1_10,1_253,1_21,1_62,1_12,1_13,1_0,1_4,24_364,24_365,24_366,24_367,24_359,24_362,24_363,24_360,24_361,24_479,24_480,25_0,24_368,24_440,24_441,15_0,25_2,25_1,25_3",
         "DXCss": "1_72,1_66,24_378,24_379,24_414,24_442,24_443,24_478,15_1",
     }
@@ -165,6 +175,7 @@ def _process_data(
     )
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("SV"),
     session: Session | None = None,
@@ -172,12 +183,10 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
     if session is None:
         session = Session()
 
-    data = _fetch_data(session)
+    data = _fetch_data(session, target_datetime)
     parsed_data = _parse_data(data)
     production_breakdown = _process_data(zone_key, parsed_data, logger)
     return production_breakdown.to_list()
