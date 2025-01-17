@@ -1,48 +1,42 @@
+from datetime import datetime
 from importlib import resources
 
+import pytest
 from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.ERP_PGCB import fetch_consumption, fetch_exchange, fetch_production
 
+historical_dt = datetime.fromisoformat("2025-01-01 00:00:00 +06:00")
 
-def test_fetch_consumption(adapter, session, snapshot):
+
+def _load_mock_response(adapter, target_datetime):
+    mock_data_file = "latest.html"
+    if target_datetime:
+        mock_data_file = "historical.html"
+
     adapter.register_uri(
         GET,
         ANY,
         text=resources.files("parsers.test.mocks.ERP_PGCB")
-        .joinpath("latest.html")
+        .joinpath(mock_data_file)
         .read_text(),
     )
 
-    assert snapshot == fetch_consumption(zone_key=ZoneKey("BD"), session=session)
+
+@pytest.mark.parametrize("target_datetime", [None, historical_dt])
+def test_fetch_consumption(adapter, session, snapshot, target_datetime):
+    _load_mock_response(adapter, target_datetime)
+    assert snapshot == fetch_consumption(session=session)
 
 
-def test_exchanges(adapter, session, snapshot):
-    adapter.register_uri(
-        GET,
-        ANY,
-        text=resources.files("parsers.test.mocks.ERP_PGCB")
-        .joinpath("latest.html")
-        .read_text(),
-    )
-
-    assert snapshot == fetch_exchange(
-        zone_key1=ZoneKey("BD"),
-        zone_key2=ZoneKey("IN-NE"),
-        session=session,
-    )
+@pytest.mark.parametrize("target_datetime", [None, historical_dt])
+def test_exchanges(adapter, session, snapshot, target_datetime):
+    _load_mock_response(adapter, target_datetime)
+    assert snapshot == fetch_exchange(ZoneKey("BD"), ZoneKey("IN-NE"), session=session)
 
 
-def test_fetch_production(adapter, session, snapshot):
-    adapter.register_uri(
-        GET,
-        ANY,
-        text=resources.files("parsers.test.mocks.ERP_PGCB")
-        .joinpath("latest.html")
-        .read_text(),
-    )
-    assert snapshot == fetch_production(
-        zone_key=ZoneKey("BD"),
-        session=session,
-    )
+@pytest.mark.parametrize("target_datetime", [None, historical_dt])
+def test_fetch_production(adapter, session, snapshot, target_datetime):
+    _load_mock_response(adapter, target_datetime)
+    assert snapshot == fetch_production(session=session)
