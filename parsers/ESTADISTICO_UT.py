@@ -133,9 +133,9 @@ def _parse_data(data: dict) -> list[dict]:
 
         mwh_production = mwh_production_dict["0"]
 
-        # Python <=3.10 fromisoformat can't parse strings with sub-seconds,
-        # which the day string includes
-        day = day[: -len(".0000000")]
+        # TODO: Remove the truncation of sub-seconds when we run on Python 3.11
+        #       or above and fromisoformat can parse such strings
+        day = day[: day.find(".")]
         dt = datetime.fromisoformat(day).replace(hour=int(hour), tzinfo=ZONE_INFO)
 
         data_points.append(
