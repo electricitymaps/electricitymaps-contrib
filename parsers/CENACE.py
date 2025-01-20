@@ -39,9 +39,11 @@ EXCHANGES = {
     "MX-NO->MX-OC": "IntercambioNTE-OCC",
     "MX-NW->MX-OC": "IntercambioNOR-OCC",
     "MX-BC->US-CAL-CISO": "IntercambioUSA-BCA",
+    "MX->US-CAL-CISO": "IntercambioUSA-BCA",
+    # TODO: Ensure these are summed up to a single value for MX->US-TEX-ERCO
     "MX-NO->US-TEX-ERCO": "IntercambioUSA-NTE",
     "MX-NE->US-TEX-ERCO": "IntercambioUSA-NES",
-    "BZ->MX-PN": "IntercambioPEN-BEL",
+    "BZ->MX": "IntercambioPEN-BEL",
 }
 
 REGION_MAPPING = {
