@@ -96,7 +96,7 @@ jobs:
     if: >-
       needs.setup.outputs.json != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 1
     steps:
       - name: Checkout
@@ -118,7 +118,7 @@ jobs:
     if: >-
       needs.setup.outputs.json != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -135,7 +135,7 @@ jobs:
     if: >-
       needs.setup.outputs.json != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
