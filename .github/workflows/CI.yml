@@ -155,7 +155,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 4
     defaults:
       run:
@@ -192,7 +192,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
       security-events: write
@@ -252,7 +252,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 4
     defaults:
       run:
@@ -291,7 +291,7 @@ jobs:
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 2
     defaults:
       run:
@@ -324,7 +324,7 @@ jobs:
   build_storybook:
     name: Frontend / Build / Storybook
     needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     defaults:
       run:
@@ -375,7 +375,7 @@ jobs:
   cypress_component:
     name: Frontend / Cypress / Component
     needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
@@ -433,7 +433,7 @@ jobs:
   cypress_e2e:
     name: Frontend / Cypress / E2E
     needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 10
     steps:
       - name: Checkout
