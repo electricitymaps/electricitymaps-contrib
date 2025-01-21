@@ -12,7 +12,6 @@ from bs4 import BeautifulSoup
 from dateutil import tz
 from requests import Response, Session
 
-from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
@@ -240,8 +239,6 @@ def fetch_MX_exchange(sorted_zone_keys: ZoneKey, s: Session) -> float:
         val = val.translate(trantab)
         flow = float(val)
 
-
-
     if sorted_zone_keys in ["BZ->MX", "BZ->MX-PN", "MX-CE->MX-OR", "MX-CE->MX-OC"]:
         # reversal needed for these zones due to EM ordering
         flow = -1 * flow
@@ -305,8 +302,9 @@ def fetch_consumption(
     if demand_td is None:
         raise ParserException("CENACE.py", "Could not find demand cell", zone_key)
     demand = float(demand_td.text.replace(",", ""))
-    timezone = ZONES_CONFIG[zone_key].get("timezone")
-    if timezone is None:
+    if zone_key == "MX-BC" or zone_key == "MX-BCS":
+        timezone = "America/Tijuana"
+    else:
         timezone = "America/Mexico_City"
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
