@@ -317,7 +317,11 @@ def fetch_consumption(
 
 
 if __name__ == "__main__":
-    print(fetch_production(ZoneKey("MX"), target_datetime=datetime(year=2019, month=7, day=1)))
+    print(
+        fetch_production(
+            ZoneKey("MX"), target_datetime=datetime(year=2019, month=7, day=1)
+        )
+    )
     print("fetch_exchange(MX-NO, MX-NW)")
     print(fetch_exchange(ZoneKey("MX-NO"), ZoneKey("MX-NW")))
     print("fetch_exchange(MX-OR, MX-PN)")
