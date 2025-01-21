@@ -28,9 +28,9 @@ from parsers.lib.exceptions import ParserException
 
 ELEXON_API_ENDPOINT = "https://data.elexon.co.uk/bmrs/api/v1"
 ELEXON_URLS = {
-    "production": "/".join((ELEXON_API_ENDPOINT, "datasets/AGPT/stream")),
-    "production_fuelhh": "/".join((ELEXON_API_ENDPOINT, "datasets/FUELHH/stream")),
+    "production_fuelhh": "/".join((ELEXON_API_ENDPOINT, "datasets/FUELINST/stream")),
     "exchange": "/".join((ELEXON_API_ENDPOINT, "generation/outturn/interconnectors")),
+    "balancing": "/".join((ELEXON_API_ENDPOINT, "balancing/physical")),
 }
 ELEXON_START_DATE = datetime(
     2019, 1, 1, tzinfo=timezone.utc
@@ -70,16 +70,17 @@ FUEL_INST_MAPPING = {
     "NPSHYD": "hydro",
     "OCGT": "gas",
     "OTHER": "unknown",
-    "INTFR": "exchange",
-    "INTIRL": "exchange",
-    "INTNED": "exchange",
-    "INTEW": "exchange",
+    "INTFR": "exchange",  # IFA (France)
+    "INTIRL": "exchange",  # Northen Ireland
+    "INTGRNL": "exchange",  # Greenlink (Ireland)
+    "INTNED": "exchange",  # BritNed (Netherlands)
+    "INTEW": "exchange",  # East West (Ireland)
     "BIOMASS": "biomass",
-    "INTNEM": "exchange",
-    "INTELEC": "exchange",
-    "INTIFA2": "exchange",
-    "INTNSL": "exchange",
-    "INTVKL": "exchange",
+    "INTNEM": "exchange",  # Nemolink (Belgium)
+    "INTELEC": "exchange",  # Eleclink (France)
+    "INTIFA2": "exchange",  # IFA2 (France)
+    "INTNSL": "exchange",  # North Sea Link (Norway)
+    "INTVKL": "exchange",  # Viking Link (Denmark)
 }
 
 ESO_FUEL_MAPPING = {
@@ -93,13 +94,28 @@ ZONEKEY_TO_INTERCONNECTOR = {
     "DK-DK1->GB": ["Denmark (Viking link)"],
     "FR->GB": ["Eleclink (INTELEC)", "France(IFA)", "IFA2 (INTIFA2)"],
     "GB->GB-NIR": ["Northern Ireland(Moyle)"],
-    "GB->IE": ["Ireland(East-West)"],
+    "GB->IE": ["Ireland(East-West)", "Ireland (Greenlink)"],
     "GB->NL": ["Netherlands(BritNed)"],
     "GB->NO-NO2": ["North Sea Link (INTNSL)"],
 }
 
+# Change direction of exchange for connectors where data is from Elexon and zonekey "GB->*". Due to Elexon showing wrt UK
+EXHANGE_KEY_IS_IMPORT = {
+    "BE->GB": False,
+    "DK-DK1->GB": False,
+    "FR->GB": False,
+    "GB->GB-NIR": False,
+    "GB->IE": True,
+    "GB->NL": True,
+    "GB->NO-NO2": False,
+}
 
-def query_elexon(url: str, session: Session, params: dict) -> list:
+
+def zulu_to_utc(datetime_str: str) -> str:
+    return datetime_str.replace("Z", "+00:00")
+
+
+def query_elexon(url: str, session: Session, params: dict) -> list | dict:
     r: Response = session.get(url, params=params)
     if not r.ok:
         raise ParserException(
@@ -122,22 +138,35 @@ def parse_datetime(
     return parsed_datetime.replace(tzinfo=timezone.utc)
 
 
-def query_production(
+def query_IM_exchange(
     session: Session, target_datetime: datetime, logger: Logger
-) -> ProductionBreakdownList:
-    """Fetches production data from the B1620 endpoint from the ELEXON API."""
-    production_params = {
-        "publishDateTimeFrom": (target_datetime - timedelta(days=2)).strftime(
-            "%Y-%m-%d 00:00"
-        ),
-        "publishDateTimeTo": target_datetime.strftime("%Y-%m-%d %H:%M"),
+) -> ExchangeList:
+    """
+    Fetches balancing mechanism data from the ELEXON API.
+    This is used to get the imbalance quantity for the GB->IM interconnector.
+    """
+    bm_unit = "MANXENR-1"
+    balancing_params = {
+        "bmUnit": bm_unit,
+        "dataset": "PN",  # Physical data
+        "from": (target_datetime - timedelta(days=2)).strftime("%Y-%m-%d"),
+        "to": (target_datetime + timedelta(days=1)).strftime("%Y-%m-%d"),
     }
-    production_data = query_elexon(
-        ELEXON_URLS["production"], session, production_params
-    )
+    balancing_data = query_elexon(ELEXON_URLS["balancing"], session, balancing_params)
 
-    parsed_events = parse_production(production_data, logger, "B1620")
-    return parsed_events
+    exchange_list = ExchangeList(logger)
+    if isinstance(balancing_data, dict):
+        for event in balancing_data.get("data", []):
+            event_datetime = datetime.fromisoformat(
+                event["timeFrom"].replace("Z", "+00:00")
+            )
+            exchange_list.append(
+                zoneKey=ZoneKey("GB->IM"),
+                netFlow=event.get("levelFrom") * -1,
+                source=ELEXON_SOURCE,
+                datetime=event_datetime,
+            )
+    return exchange_list
 
 
 def get_event_value(event: dict[str, Any], key: str) -> float | None:
@@ -171,9 +200,7 @@ def parse_production(
 
     for event in production_data:
         production_breakdown = ProductionBreakdownList(logger=logger)
-        event_datetime = parse_datetime(
-            event.get("settlementDate"), event.get("settlementPeriod")
-        )
+        event_datetime_str = event.get("startTime")
         production_mix = ProductionMix()
         storage_mix = StorageMix()
 
@@ -184,26 +211,23 @@ def parse_production(
 
         if production_mode == "hydro storage":
             storage_value = get_event_value(event, quantity_key)
-            if storage_value:
+            if storage_value is not None:
                 storage_mix.add_value("hydro", -1 * storage_value)
-                production_breakdown.append(
-                    zoneKey=ZoneKey("GB"),
-                    storage=storage_mix,
-                    source=ELEXON_SOURCE,
-                    datetime=event_datetime,
-                )
+
         else:
             production_value = get_event_value(event, quantity_key)
-            if production_value:
-                production_mix.add_value(
-                    production_mode, production_value, correct_negative_with_zero=True
-                )
-                production_breakdown.append(
-                    zoneKey=ZoneKey("GB"),
-                    production=production_mix,
-                    source=ELEXON_SOURCE,
-                    datetime=event_datetime,
-                )
+            production_mix.add_value(
+                production_mode, production_value, correct_negative_with_zero=True
+            )
+        if event_datetime_str:
+            event_datetime = datetime.fromisoformat(zulu_to_utc(event_datetime_str))
+            production_breakdown.append(
+                zoneKey=ZoneKey("GB"),
+                production=production_mix,
+                storage=storage_mix,
+                source=ELEXON_SOURCE,
+                datetime=event_datetime,
+            )
 
         all_production_breakdowns.append(production_breakdown)
     events = ProductionBreakdownList.merge_production_breakdowns(
@@ -301,14 +325,13 @@ def parse_eso_hydro_storage(
         )
         storage_mix = StorageMix()
         storage_value = get_event_value(event, "PUMP_STORAGE_PUMPING")
-        if storage_value:
-            storage_mix.add_value("hydro", storage_value)
-            storage_breakdown.append(
-                zoneKey=ZoneKey("GB"),
-                storage=storage_mix,
-                source=ESO_SOURCE,
-                datetime=event_datetime,
-            )
+        storage_mix.add_value("hydro", storage_value)
+        storage_breakdown.append(
+            zoneKey=ZoneKey("GB"),
+            storage=storage_mix,
+            source=ESO_SOURCE,
+            datetime=event_datetime,
+        )
     return storage_breakdown
 
 
@@ -329,7 +352,8 @@ def query_production_fuelhh(
     }
 
     fuelhh_data = query_elexon(ELEXON_URLS["production_fuelhh"], session, params)
-    return fuelhh_data
+
+    return fuelhh_data if isinstance(fuelhh_data, list) else []
 
 
 def query_and_merge_production_fuelhh_and_eso(
@@ -346,6 +370,7 @@ def query_and_merge_production_fuelhh_and_eso(
     return merged_events
 
 
+# TODO: Why are we using this other endpoint instead of FUELINST that also have this data?
 def query_exchange(
     zone_key: ZoneKey, session: Session, target_datetime: datetime, logger: Logger
 ) -> ExchangeList:
@@ -359,9 +384,12 @@ def query_exchange(
             "interconnectorName": interconnector,
             "format": "json",
         }
-        exchange_data = query_elexon(
-            ELEXON_URLS["exchange"], session, exchange_params
-        ).get("data")
+        data = query_elexon(ELEXON_URLS["exchange"], session, exchange_params)
+        exchange_data = data.get("data", []) if isinstance(data, dict) else []
+
+        if EXHANGE_KEY_IS_IMPORT.get(zone_key):
+            for event in exchange_data:
+                event["generation"] = -1 * event["generation"]
 
         if not exchange_data:
             raise ParserException(
@@ -370,16 +398,15 @@ def query_exchange(
             )
         for event in exchange_data:
             exchange_list = ExchangeList(logger)
-            event_datetime = parse_datetime(
-                event.get("settlementDate"), event.get("settlementPeriod")
-            )
-
-            exchange_list.append(
-                zoneKey=zone_key,
-                netFlow=event.get("generation"),
-                source=ELEXON_SOURCE,
-                datetime=event_datetime,
-            )
+            event_datetime_str = event.get("startTime")
+            if event_datetime_str:
+                event_datetime = datetime.fromisoformat(zulu_to_utc(event_datetime_str))
+                exchange_list.append(
+                    zoneKey=zone_key,
+                    netFlow=event.get("generation"),
+                    source=ELEXON_SOURCE,
+                    datetime=event_datetime,
+                )
             all_exchanges.append(exchange_list)
     return ExchangeList.merge_exchanges(all_exchanges, logger)
 
@@ -396,13 +423,20 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = datetime.now(tz=timezone.utc)
 
+    if target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+
     exchangeKey = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     if target_datetime < ELEXON_START_DATE:
         raise ParserException(
             parser="ELEXON.py",
             message=f"Production data is not available before {ELEXON_START_DATE.date()}",
         )
-    exchange_data = query_exchange(exchangeKey, session, target_datetime, logger)
+    exchange_data = (
+        query_exchange(exchangeKey, session, target_datetime, logger)
+        if exchangeKey != "GB->IM"
+        else query_IM_exchange(session, target_datetime, logger)
+    )
 
     return exchange_data.to_list()
 
@@ -426,22 +460,15 @@ def fetch_production(
             message=f"Production data is not available before {ELEXON_START_DATE.date()}",
         )
 
-    data_b1620 = query_production(session, target_datetime, logger)
+    data = query_and_merge_production_fuelhh_and_eso(session, target_datetime, logger)
+    eso_data = query_additional_eso_data(target_datetime, session)
+    parsed_hydro_storage_data = parse_eso_hydro_storage(eso_data, logger)
 
-    if not validate_bmrs_data(data_b1620):
-        data = query_and_merge_production_fuelhh_and_eso(
-            session, target_datetime, logger
-        )
-    else:
-        # add hydro pumping data from ESO (B1620 only includes pumped storage production (injected on the grid) and not the pumping (withdrawn from the grid)
-        eso_data = query_additional_eso_data(target_datetime, session)
-        parsed_hydro_storage_data = parse_eso_hydro_storage(eso_data, logger)
-        data = ProductionBreakdownList.merge_production_breakdowns(
-            [data_b1620, parsed_hydro_storage_data],
-            logger,
-            matching_timestamps_only=True,
-        )
-    return data.to_list()
+    return ProductionBreakdownList.merge_production_breakdowns(
+        [data, parsed_hydro_storage_data],
+        logger,
+        matching_timestamps_only=True,
+    ).to_list()
 
 
 def validate_bmrs_data(data: ProductionBreakdownList):

@@ -19,6 +19,7 @@ prepare:
   COPY index.html .postcssrc.json tailwind.config.cjs tsconfig.json tsconfig.node.json vite.config.ts .
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
   COPY scripts/register-tsNodeESM.js ./scripts/register-tsNodeESM.js
+  COPY scripts/generateSitemap.js ./scripts/generateSitemap.js
   COPY --dir geo public src ./
 
 test:
@@ -35,7 +36,7 @@ build:
   FROM +prepare
   RUN pnpm run create-generated-files
   RUN pnpm version minor
-  RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=ELECTRICITYMAP_PUBLIC_TOKEN pnpm run build
+  RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9=ELECTRICITYMAPS_APP_PUBLIC_TOKEN_V9 pnpm run build
 
   # Local outputs for debugging
   SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json

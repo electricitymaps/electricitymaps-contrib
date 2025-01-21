@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# The arrow library is used to handle datetimes
 from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -18,7 +17,7 @@ PRODUCTION_MAPPING = {
     "biomass": "factory",
     "solar": "solar_cells",
 }
-LATEST_DATA_URL = "http://bornholm.powerlab.dk/visualizer/latestdata"
+LATEST_DATA_URL = "https://bornholm.powerlab.dk/visualizer/latestdata"
 
 SOURCE = "bornholm.powerlab.dk"
 TIMEZONE = ZoneInfo("UTC")

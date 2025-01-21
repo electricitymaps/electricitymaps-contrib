@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods } from 'utils/constants';
+import { round } from 'utils/helpers';
 
 export function useGetEstimationTranslation(
   field: 'title' | 'pill' | 'body',
@@ -7,9 +8,10 @@ export function useGetEstimationTranslation(
   estimatedPercentage?: number
 ) {
   const { t } = useTranslation();
-  const exactTranslation = estimatedPercentage
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const exactTranslation = roundedEstimatedPercentage
     ? t(`estimation-card.aggregated_estimated.${field}`, {
-        percentage: estimatedPercentage,
+        percentage: roundedEstimatedPercentage,
       })
     : t(`estimation-card.${estimationMethod}.${field}`);
 

@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import arrow
 import pandas as pd
 from requests import Session
 
@@ -36,6 +35,7 @@ sources = {
     "JP-ON": "www.okiden.co.jp/denki/",
 }
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
+ZONE_INFO = ZoneInfo("Asia/Tokyo")
 
 
 def get_wind_capacity(datetime: datetime, zone_key, logger: Logger):
@@ -91,7 +91,7 @@ def fetch_production(
                 "unknown": df.loc[i, "unknown"],
             },
             "capacity": {"wind": capacity if capacity is not None else {}},
-            "source": f"occtonet.or.jp, {sources[zone_key]}",
+            "source": f"occto.or.jp, {sources[zone_key]}",
         }
         datalist.append(data)
     return datalist
@@ -156,7 +156,9 @@ def fetch_consumption_df(
     """
     if target_datetime is not None and zone_key in ZONES_ONLY_LIVE:
         raise NotImplementedError("This parser can only fetch live data")
-    datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
+    if target_datetime is None:
+        target_datetime = datetime.now(ZONE_INFO)
+    datestamp = target_datetime.astimezone(ZONE_INFO).strftime("%Y%m%d")
     consumption_url = {
         "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/juyo_01_{datestamp}.csv",
         "JP-TH": f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{datestamp}.csv",
@@ -210,11 +212,18 @@ def fetch_consumption_forecast(
 ) -> list:
     """Gets consumption forecast for specified zone."""
     # Currently past dates not implemented for areas with no date in their demand csv files
-    if target_datetime and zone_key == "JP-HKD":
+    now = datetime.now(ZONE_INFO)
+    if target_datetime is None:
+        target_datetime = now
+    else:
+        target_datetime = target_datetime.astimezone(ZONE_INFO)
+
+    if target_datetime != now and zone_key == "JP-HKD":
         raise NotImplementedError("Past dates not yet implemented for selected region")
-    datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
+
+    datestamp = target_datetime.astimezone(ZONE_INFO).strftime("%Y%m%d")
     # Forecasts ahead of current date are not available
-    if datestamp > arrow.get().to("Asia/Tokyo").strftime("%Y%m%d"):
+    if datestamp > datetime.now(ZONE_INFO).strftime("%Y%m%d"):
         raise NotImplementedError(
             "Future dates(local time) not implemented for selected region"
         )
@@ -275,14 +284,16 @@ def fetch_price(
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
-        target_datetime = datetime.now() + timedelta(days=1)
+        target_datetime = datetime.now(ZONE_INFO) + timedelta(days=1)
+    else:
+        target_datetime = target_datetime.astimezone(ZONE_INFO)
 
     # price files contain data for fiscal year and not calendar year.
     if target_datetime.month <= 3:
         fiscal_year = target_datetime.year - 1
     else:
         fiscal_year = target_datetime.year
-    url = f"http://www.jepx.org/market/excel/spot_{fiscal_year}.csv"
+    url = f"http://www.jepx.jp/market/excel/spot_{fiscal_year}.csv"
     df = pd.read_csv(url, encoding="shift-jis")
 
     df = df.iloc[:, [0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
@@ -308,9 +319,10 @@ def fetch_price(
     df = df[(df["Date"] >= start.date()) & (df["Date"] <= target_datetime.date())]
 
     df["datetime"] = df.apply(
-        lambda row: arrow.get(row["Date"])
-        .shift(minutes=30 * (row["Period"] - 1))
-        .replace(tzinfo="Asia/Tokyo"),
+        lambda row: datetime.combine(row["Date"], datetime.min.time()).replace(
+            tzinfo=ZONE_INFO
+        )
+        + timedelta(minutes=30 * (row["Period"] - 1)),
         axis=1,
     )
 
@@ -320,11 +332,11 @@ def fetch_price(
             {
                 "zoneKey": zone_key,
                 "currency": "JPY",
-                "datetime": row[1]["datetime"].datetime,
+                "datetime": row[1]["datetime"].to_pydatetime(),
                 "price": round(
                     int(1000 * row[1][zone_key]), -1
                 ),  # Convert from JPY/kWh to JPY/MWh
-                "source": "jepx.org",
+                "source": "jepx.jp",
             }
         )
 
@@ -332,25 +344,12 @@ def fetch_price(
 
 
 def parse_dt(row):
-    """Parses timestamps from date and time."""
+    """Parses datetime objects from date and time strings."""
+    format_string = "%Y/%m/%d %H:%M"
     if "AM" in row["Time"] or "PM" in row["Time"]:
-        timestamp = (
-            arrow.get(
-                " ".join([row["Date"], row["Time"]]).replace("/", "-"),
-                "YYYY-M-D H:mm A",
-            )
-            .replace(tzinfo="Asia/Tokyo")
-            .datetime
-        )
-    else:
-        timestamp = (
-            arrow.get(
-                " ".join([row["Date"], row["Time"]]).replace("/", "-"), "YYYY-M-D H:mm"
-            )
-            .replace(tzinfo="Asia/Tokyo")
-            .datetime
-        )
-    return timestamp
+        format_string = "%Y/%m/%d %I:%M %p"
+    datetime_string = " ".join([row["Date"], row["Time"]])
+    return datetime.strptime(datetime_string, format_string).replace(tzinfo=ZONE_INFO)
 
 
 if __name__ == "__main__":

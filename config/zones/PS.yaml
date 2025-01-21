@@ -1,3 +1,8 @@
-timezone: Asia/Gaza
-region: Asia
+bounding_box:
+  - - 33.698541985419865
+    - 30.712105398903503
+  - - 36.05935559355595
+    - 33.04301243355475
 country: PS
+region: Asia
+timezone: Asia/Gaza

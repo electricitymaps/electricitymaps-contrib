@@ -1,8 +1,8 @@
 import { Button, ButtonProps } from 'components/Button';
 import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
 import { useSetAtom } from 'jotai';
+import { Info } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { FaCircleInfo } from 'react-icons/fa6';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface FAQButtonProps
@@ -30,7 +30,7 @@ export function FAQButton({
   return (
     <Button
       type="secondary"
-      icon={<FaCircleInfo size={iconSize} />}
+      icon={<Info size={iconSize} />}
       onClick={() => setIsFAQModalOpen(true)}
       {...restProps}
     >

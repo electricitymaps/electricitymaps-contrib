@@ -9,11 +9,10 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 
-import arrow
 from dateutil import parser, tz
 from requests import Session
 
@@ -382,7 +381,7 @@ FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-NW-PACE": ["biomass", "geothermal", "oil"],
     "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
     "US-TEN-TVA": ["biomass", "geothermal", "oil"],
-    "US-SE-SOCO": ["biomass", "geothermal", "oil"],
+    "US-SE-SOCO": ["biomass", "geothermal", "oil", "hydro"],
     "US-FLA-FPL": ["biomass", "geothermal", "oil"],
 }
 
@@ -507,7 +506,6 @@ def fetch_production_mix(
             for datapoint in production_values
             if datapoint["value"] is not None
         ]
-
         # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
         # US-CAR-SCEG and US-CAR-SC,
@@ -669,20 +667,19 @@ def _fetch(
     # get EIA API key
     API_KEY = get_token("EIA_KEY")
 
+    start, end = None, None
     if target_datetime:
-        try:
-            target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError as e:
-            raise ValueError(
-                f"target_datetime must be a valid datetime - received {target_datetime}"
-            ) from e
         utc = tz.gettz("UTC")
-        eia_ts_format = "%Y-%m-%dT%H"
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
-        url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
     else:
-        url = f"{url_prefix}&api_key={API_KEY}&sort[0][column]=period&sort[0][direction]=desc&length=24"
+        end = datetime.now(tz=tz.gettz("UTC")).replace(
+            minute=0, second=0, microsecond=0
+        ) + timedelta(hours=1)
+        start = end - timedelta(hours=72)
+
+    eia_ts_format = "%Y-%m-%dT%H"
+    url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
 
     s = session or Session()
     req = s.get(url)
@@ -692,9 +689,7 @@ def _fetch(
     return [
         {
             "zoneKey": zone_key,
-            "datetime": _get_utc_datetime_from_datapoint(
-                parser.parse(datapoint["period"])
-            ),
+            "datetime": _parse_hourly_interval(datapoint["period"]),
             "value": float(datapoint["value"]) if datapoint["value"] else None,
             "source": "eia.gov",
         }
@@ -702,19 +697,20 @@ def _fetch(
     ]
 
 
-def _conform_timestamp_convention(dt: datetime):
+def _parse_hourly_interval(period: str):
+    interval_end_naive = parser.parse(period)
+
+    # NB: the EIA API can respond with time intervals relative to either UTC
+    # or local-time.  We request UTC times using the 'frequency=hourly'
+    # parameter, meaning that we can attach timezone.utc without performing
+    # any timezone conversion.
+    interval_end = interval_end_naive.replace(tzinfo=timezone.utc)
+
     # The timestamp given by EIA represents the end of the time interval.
     # ElectricityMap using another convention,
     # where the timestamp represents the beginning of the interval.
     # So we need shift the datetime 1 hour back.
-    return dt - timedelta(hours=1)
-
-
-def _get_utc_datetime_from_datapoint(dt: datetime):
-    """update to beginning hour convention and timezone to utc"""
-    dt_beginning_hour = _conform_timestamp_convention(dt)
-    dt_utc = arrow.get(dt_beginning_hour).to("utc")
-    return dt_utc.datetime
+    return interval_end - timedelta(hours=1)
 
 
 if __name__ == "__main__":

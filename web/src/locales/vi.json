@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Dự án này là",
-    "opensource": "Dự Án Nguồn mở (Open-Source)",
-    "see": "xem",
-    "datasources": "các nguồn dữ liệu",
-    "contribute": "Tham gia bằng cách <a href=\"{{link}}\" target=\"_blank\">thêm khu vực của bạn</a>"
-  },
   "mobile-main-menu": {
     "map": "Bản đồ",
     "areas": "Khu vực",
@@ -922,6 +915,9 @@
       "countryName": "Mexico",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Malaysia"
+    },
     "MY-EM": {
       "countryName": "Malaysia",
       "zoneName": "Borneo"
@@ -950,9 +946,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Hà Lan"

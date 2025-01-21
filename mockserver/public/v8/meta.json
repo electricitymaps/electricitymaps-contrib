@@ -1,7 +1,0 @@
-{
-    "features": {
-      "feature-flag-1": true,
-      "flag-2": false
-    },
-    "callerLocation": [138, 36]
-  }

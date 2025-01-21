@@ -192,14 +192,6 @@
       "countryName": "Canada",
       "zoneName": "Newfoundland and Labrador"
     },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
-    },
     "CA-NS": {
       "countryName": "Canada",
       "zoneName": "Nova Scotia"
@@ -938,6 +930,9 @@
       "countryName": "Mexico",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Malaysia"
+    },
     "MY-EM": {
       "countryName": "Malaysia",
       "zoneName": "Borneo"
@@ -966,9 +961,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Netherlands"
@@ -1318,8 +1310,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CAL-IID": {
       "countryName": "USA",
@@ -1424,7 +1416,7 @@
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England"
     },
     "US-NW-AVA": {
       "countryName": "USA",
@@ -1585,18 +1577,6 @@
     },
     "VN": {
       "zoneName": "Vietnam"
-    },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Central Vietnam"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Northern Vietnam"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Southern Vietnam"
     },
     "VU": {
       "zoneName": "Vanuatu"

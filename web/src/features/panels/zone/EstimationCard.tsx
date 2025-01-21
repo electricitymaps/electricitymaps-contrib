@@ -3,13 +3,19 @@ import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/Feedbac
 import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
-import { useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+import {
+  ChartNoAxesColumn,
+  CircleDashed,
+  TrendingUpDown,
+  TriangleAlert,
+} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
-import { EstimationMethods } from 'utils/constants';
+import { EstimationMethods, TrackEvent } from 'utils/constants';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -45,7 +51,7 @@ export default function EstimationCard({
 }) {
   const { t } = useTranslation();
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
-  const [feedbackCardCollapsedNumber, _] = useAtom(feedbackCardCollapsedNumberAtom);
+  const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
   const isTSAModel = estimationMethod === EstimationMethods.TSA;
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
@@ -115,8 +121,8 @@ function BaseCard({
   estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
-  icon: string;
-  iconPill?: string;
+  icon: React.ReactElement;
+  iconPill?: React.ReactElement;
   showMethodologyLink: boolean;
   pillType?: PillType;
   textColorTitle: string;
@@ -128,12 +134,11 @@ function BaseCard({
   const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
-  const handleToggleCollapse = () => {
+  const trackToggle = () => {
     if (isCollapsed) {
-      trackEvent('EstimationCard Expanded', { cardType: cardType });
+      trackEvent(TrackEvent.ESTIMATION_CARD_EXPANDED, { cardType: cardType });
     }
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
-    setIsCollapsed((previous: boolean) => !previous);
   };
   const { t } = useTranslation();
 
@@ -158,21 +163,22 @@ function BaseCard({
         estimationMethod == 'outage'
           ? 'bg-warning/20 dark:bg-warning-dark/20'
           : 'bg-neutral-100 dark:bg-gray-800'
-      } mb-4 gap-2 border border-neutral-200 transition-all dark:border-gray-700`}
+      } mb-4 border border-neutral-200 transition-all dark:border-gray-700`}
     >
       <Accordion
-        onClick={() => handleToggleCollapse()}
-        isCollapsedDefault={isCollapsedDefault}
+        onClick={() => trackToggle()}
         badge={
           showBadge && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
         }
         className={textColorTitle}
-        icon={<div className={`h-[16px] w-[16px] bg-center ${icon}`} />}
+        icon={icon}
         title={title}
+        isCollapsed={isCollapsed}
+        setState={setIsCollapsed}
       >
-        <div className="gap-2">
+        <div className="flex flex-col gap-2">
           <div
-            data-test-id="body-text"
+            data-testid="body-text"
             className={`text-sm font-normal text-neutral-600 dark:text-neutral-400`}
           >
             {estimationMethod != 'outage' && bodyText}
@@ -181,22 +187,20 @@ function BaseCard({
             )}
           </div>
           {showMethodologyLink && (
-            <div className="">
-              <a
-                href="https://www.electricitymaps.com/methodology#missing-data"
-                target="_blank"
-                rel="noreferrer"
-                data-test-id="methodology-link"
-                className={`text-sm font-semibold text-black underline dark:text-white`}
-                onClick={() => {
-                  trackEvent('EstimationCard Methodology Link Clicked', {
-                    cardType: cardType,
-                  });
-                }}
-              >
-                <span className="underline">{t(`estimation-card.link`)}</span>
-              </a>
-            </div>
+            <a
+              href="https://www.electricitymaps.com/methodology#missing-data"
+              target="_blank"
+              rel="noreferrer"
+              data-testid="methodology-link"
+              className={`text-sm font-semibold text-black underline dark:text-white`}
+              onClick={() => {
+                trackEvent(TrackEvent.ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED, {
+                  cardType: cardType,
+                });
+              }}
+            >
+              {t(`estimation-card.link`)}
+            </a>
           )}
         </div>
       </Accordion>
@@ -220,8 +224,8 @@ function OutageCard({
     <BaseCard
       estimationMethod={EstimationMethods.OUTAGE}
       zoneMessage={zoneMessageText}
-      icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
-      iconPill="h-[12px] w-[12px] mt-[1px] bg-[url('/images/warning_light.svg')] bg-center dark:bg-[url('/images/warning_dark.svg')]"
+      icon={<TrendingUpDown size={16} />}
+      iconPill={<TriangleAlert size={16} />}
       showMethodologyLink={false}
       pillType="warning"
       textColorTitle="text-warning dark:text-warning-dark"
@@ -236,7 +240,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
       estimationMethod={EstimationMethods.AGGREGATED}
       estimatedPercentage={estimatedPercentage}
       zoneMessage={undefined}
-      icon="bg-[url('/images/aggregated_light.svg')] dark:bg-[url('/images/aggregated_dark.svg')]"
+      icon={<ChartNoAxesColumn size={16} />}
       iconPill={undefined}
       showMethodologyLink={false}
       pillType={'warning'}
@@ -255,7 +259,7 @@ function EstimatedCard({
     <BaseCard
       estimationMethod={estimationMethod}
       zoneMessage={undefined}
-      icon="bg-[url('/images/estimated_light.svg')] dark:bg-[url('/images/estimated_dark.svg')]"
+      icon={<TrendingUpDown size={16} />}
       iconPill={undefined}
       showMethodologyLink={true}
       pillType="default"
@@ -270,7 +274,7 @@ function EstimatedTSACard() {
     <BaseCard
       estimationMethod={EstimationMethods.TSA}
       zoneMessage={undefined}
-      icon="bg-[url('/images/preliminary_light.svg')] dark:bg-[url('/images/preliminary_dark.svg')]"
+      icon={<CircleDashed size={16} />}
       iconPill={undefined}
       showMethodologyLink={true}
       pillType={undefined}

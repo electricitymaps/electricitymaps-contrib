@@ -1,3 +1,8 @@
-timezone: Asia/Phnom_Penh
-region: Asia
+bounding_box:
+  - - 101.82922329223291
+    - 9.919902918851918
+  - - 108.10687606876067
+    - 15.204564920729169
 country: KH
+region: Asia
+timezone: Asia/Phnom_Penh

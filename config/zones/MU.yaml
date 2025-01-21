@@ -1,3 +1,8 @@
-timezone: Indian/Mauritius
-region: Africa
+bounding_box:
+  - - 56.87197371973721
+    - -21.00722818421054
+  - - 58.29677796777969
+    - -19.493469447178505
 country: MU
+region: Africa
+timezone: Indian/Mauritius

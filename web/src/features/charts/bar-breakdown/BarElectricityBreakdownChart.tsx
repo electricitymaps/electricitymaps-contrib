@@ -2,42 +2,40 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
-import { useMemo } from 'react';
-import { ElectricityModeType, ZoneDetail, ZoneDetails, ZoneKey } from 'types';
+import { memo, useCallback, useMemo } from 'react';
+import { ElectricityModeType, ZoneDetails, ZoneKey } from 'types';
 import { formatEnergy, formatPower } from 'utils/formatting';
 import { isHourlyAtom } from 'utils/state/atoms';
 
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
-import { BarElectricityProductionChart } from './BarElectricityProductionChart';
+import BarElectricityProductionChart from './BarElectricityProductionChart';
 import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import { FormatTick } from './elements/Axis';
 import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarElectricityBreakdownChartProps {
   height: number;
   width: number;
   data: ZoneDetails;
-  currentData: ZoneDetail;
   exchangeData: ExchangeDataType[];
   productionData: ProductionDataType[];
   isMobile: boolean;
   onProductionRowMouseOver: (
     rowKey: ElectricityModeType,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onProductionRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
-    data: ZoneDetail,
     event: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => void;
   onExchangeRowMouseOut: () => void;
   graphUnit: string | undefined;
 }
+const NUMERIC_REGEX = /[\d.]+/;
 
 function BarElectricityBreakdownChart({
   data,
-  currentData,
   exchangeData,
   height,
   isMobile,
@@ -58,8 +56,8 @@ function BarElectricityBreakdownChart({
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
-  const [minPower, maxPower] = useMemo(() => {
-    return [
+  const [minPower, maxPower] = useMemo(
+    () => [
       d3Min(
         Object.values(data.zoneStates).map((zoneData) =>
           Math.min(
@@ -82,23 +80,34 @@ function BarElectricityBreakdownChart({
           )
         )
       ) || 0,
-    ];
-  }, [data]);
+    ],
+    [data]
+  );
 
   // Power in MW
-  const powerScale = scaleLinear()
-    .domain([minPower, maxPower])
-    .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
+  const powerScale = useMemo(
+    () =>
+      scaleLinear()
+        .domain([minPower, maxPower])
+        .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
+    [minPower, maxPower, width]
+  );
 
-  const formatTick = (t: number) => {
-    // Use same unit as max value for tick with value 0
-    if (t === 0) {
-      const tickValue = isHourly ? formatPower(maxPower, 1) : formatEnergy(maxPower, 1);
-      return tickValue.toString().replace(/[\d.]+/, '0');
-    }
-    return isHourly ? formatPower(t, 2) : formatEnergy(t, 2);
-  };
-
+  const formatTick: FormatTick = useCallback(
+    (t: number) => {
+      // Use same unit as max value for tick with value 0
+      if (t === 0) {
+        const tickValue = isHourly
+          ? formatPower({ value: maxPower, numberDigits: 1 })
+          : formatEnergy({ value: maxPower, numberDigits: 1 });
+        return tickValue.toString().replace(NUMERIC_REGEX, '0');
+      }
+      return isHourly
+        ? formatPower({ value: t, numberDigits: 2 })
+        : formatEnergy({ value: t, numberDigits: 2 });
+    },
+    [isHourly, maxPower]
+  );
   return (
     <>
       <BarElectricityProductionChart
@@ -107,7 +116,6 @@ function BarElectricityBreakdownChart({
         formatTick={formatTick}
         productionY={productionY}
         productionData={productionData}
-        currentData={currentData}
         width={width}
         onProductionRowMouseOver={onProductionRowMouseOver}
         onProductionRowMouseOut={onProductionRowMouseOut}
@@ -118,7 +126,6 @@ function BarElectricityBreakdownChart({
         onExchangeRowMouseOut={onExchangeRowMouseOut}
         onExchangeRowMouseOver={onExchangeRowMouseOver}
         exchangeData={exchangeData}
-        data={currentData}
         width={width}
         powerScale={powerScale}
         formatTick={formatTick}
@@ -129,4 +136,4 @@ function BarElectricityBreakdownChart({
   );
 }
 
-export default BarElectricityBreakdownChart;
+export default memo(BarElectricityBreakdownChart);

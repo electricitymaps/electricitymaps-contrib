@@ -1,0 +1,25 @@
+# serializer version: 1
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2021, 12, 30, 9, 58, 37, tzinfo=zoneinfo.ZoneInfo(key='America/Panama')),
+      'production': dict({
+        'biomass': 2.75,
+        'coal': 149.6,
+        'gas': 355.88,
+        'hydro': 421.84,
+        'oil': 238.2,
+        'solar': 262.76,
+        'unknown': 0.0,
+        'wind': 115.4,
+      }),
+      'source': 'sitr.cnd.com.pa',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PA',
+    }),
+  ])
+# ---

@@ -15,7 +15,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency, use_proxy
 from parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("Asia/Seoul")
@@ -27,6 +27,12 @@ HISTORICAL_PRODUCTION_URL = (
     "https://new.kpx.or.kr/powerSource.es?mid=a10606030000&device=chart"
 )
 
+#### Classification of New & Renewable Energy Sources ####
+#
+# Source: https://cms.khnp.co.kr/eng/content/563/main.do?mnCd=EN040101
+# New energy: Hydrogen, Fuel Cell, Coal liquefied or gasified energy, and vacuum residue gasified energy, etc.
+# Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
+#
 PRODUCTION_MAPPING = {
     "coal": "coal",
     "localCoal": "coal",
@@ -34,24 +40,31 @@ PRODUCTION_MAPPING = {
     "oil": "oil",
     "nuclearPower": "nuclear",
     "waterPower": "hydro",
+    "windPower": "wind",
     "sunlight": "solar",
     "newRenewable": "unknown",
 }
+STORAGE_MAPPING = {
+    "raisingWater": "hydro",
+}
+IGNORE_LIST = [
+    "ppa",
+    "btm",
+    "newRenewablePlusWindPower",
+    "once",
+    "regDate",
+    "seq",
+]
 
-STORAGE_MAPPING = {"raisingWater": "hydro"}
 
-#### Classification of New & Renewable Energy Sources ####
-# Source: https://cms.khnp.co.kr/eng/content/563/main.do?mnCd=EN040101
-# New energy: Hydrogen, Fuel Cell, Coal liquefied or gasified energy, and vacuum residue gasified energy, etc.
-# Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
-
-
+@use_proxy(country_code="KR")
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     if target_datetime:
         raise ParserException(
             "KPX.py",
@@ -60,40 +73,41 @@ def fetch_consumption(
         )
 
     logger.debug(f"Fetching consumption data from {REAL_TIME_URL}")
-    session = session or Session()
     response = session.get(REAL_TIME_URL, verify=False)
-    assert response.status_code == 200
+    assert response.ok
 
     soup = BeautifulSoup(response.text, "html.parser")
-    consumption_title = soup.find("th", string=re.compile(r"\s*현재부하\s*"))
-    consumption_val = float(
-        consumption_title.find_next_sibling().text.split()[0].replace(",", "")
-    )
 
-    consumption_date_list = soup.find("p", {"class": "info_top"}).text.split(" ")[:2]
-    consumption_date_list[0] = consumption_date_list[0].replace(".", "-").split("(")[0]
-    consumption_date = datetime.strptime(
-        " ".join(consumption_date_list), "%Y-%m-%d %H:%M"
-    ).replace(tzinfo=TIMEZONE)
+    # value_text looks like: 64,918 MW
+    value_text = soup.find("td", {"id": "load"}).text
+    value = float(value_text.split()[0].replace(",", ""))
+
+    # dt_text looks like: 2025.01.05(일) 23:10 새로고침
+    dt_text = soup.find("p", {"class": "info_top"}).text
+    dt_parts = dt_text.split(" ")[:2]
+    dt_string = dt_parts[0].split("(")[0] + " " + dt_parts[1]
+    dt = datetime.strptime(dt_string, "%Y.%m.%d %H:%M").replace(tzinfo=TIMEZONE)
 
     consumption_list = TotalConsumptionList(logger)
     consumption_list.append(
         zoneKey=zone_key,
-        datetime=consumption_date,
+        datetime=dt,
         source=KR_SOURCE,
-        consumption=consumption_val,
+        consumption=value,
     )
 
     return consumption_list.to_list()
 
 
 @refetch_frequency(timedelta(hours=167))
+@use_proxy(country_code="KR")
 def fetch_price(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     now = datetime.now(tz=TIMEZONE)
     target_datetime = (
         now if target_datetime is None else target_datetime.astimezone(TIMEZONE)
@@ -109,9 +123,8 @@ def fetch_price(
         )
 
     logger.debug(f"Fetching price data from {PRICE_URL}")
-    session = session or Session()
     response = session.get(PRICE_URL, verify=False)
-    assert response.status_code == 200
+    assert response.ok
 
     price_list = PriceList(logger)
 
@@ -152,15 +165,8 @@ def parse_chart_prod_data(
     production_list = ProductionBreakdownList(logger)
 
     # Extract object with data
-    data_source = re.search(r"var ictArr = (\[\{.+\}\]);", raw_data).group(1)
-    # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}).
-    # Will break if other keys than these are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
-    data_source = re.sub(
-        r'"(localCoal|newRenewable|oil|once|gas|nuclearPower|coal|regDate|raisingWater|waterPower|seq)"',
-        r'"\1"',
-        data_source,
-    )
-    json_obj = json.loads(data_source)
+    json_string = re.search(r"var ictArr = (\[\{.+\}\]);", raw_data).group(1)
+    json_obj = json.loads(json_string)
 
     for item in json_obj:
         if item["regDate"] == "0":
@@ -173,7 +179,7 @@ def parse_chart_prod_data(
         production_mix = ProductionMix()
         storage_mix = StorageMix()
         for item_key, item_value in item.items():
-            if item_key == "regDate":
+            if item_key in IGNORE_LIST:
                 continue
             elif item_key in PRODUCTION_MAPPING:
                 production_mix.add_value(
@@ -233,19 +239,20 @@ def get_historical_prod_data(
 
     logger.debug(f"Fetching production data from {HISTORICAL_PRODUCTION_URL}")
     res = session.post(HISTORICAL_PRODUCTION_URL, payload)
-
-    assert res.status_code == 200
+    assert res.ok
 
     return parse_chart_prod_data(res.text, zone_key, logger)
 
 
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="KR")
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("KR"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    session = session or Session()
     first_available_date = datetime(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE)
     if target_datetime is not None and target_datetime < first_available_date:
         raise ParserException(
@@ -254,12 +261,10 @@ def fetch_production(
             zone_key,
         )
 
-    session = session or Session()
     if target_datetime is None:
         production_list = get_real_time_prod_data(
             zone_key=zone_key, session=session, logger=logger
         )
-
     else:
         production_list = get_historical_prod_data(
             zone_key=zone_key,

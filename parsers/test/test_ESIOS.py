@@ -1,42 +1,42 @@
 import json
 import os
-import unittest
 from importlib import resources
 
-from requests import Session
-from requests_mock import ANY, Adapter
+from requests_mock import ANY
 
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ESIOS
 
 
-class TestESIOS(unittest.TestCase):
-    def setUp(self):
-        self.session = Session()
-        self.adapter = Adapter()
-        self.session.mount("https://", self.adapter)
-
-    def test_fetch_exchange(self):
-        self.adapter.register_uri(
-            ANY,
-            ANY,
-            json=json.loads(
-                resources.files("parsers.test.mocks")
-                .joinpath("ESIOS_ES_MA.json")
-                .read_text()
-            ),
-        )
-        try:
-            os.environ["ESIOS_TOKEN"] = "token"
-            data_list = ESIOS.fetch_exchange("ES", "MA", self.session)
-            self.assertIsNotNone(data_list)
-            for data in data_list:
-                self.assertEqual(data["sortedZoneKeys"], "ES->MA")
-                self.assertEqual(data["source"], "api.esios.ree.es")
-                self.assertIsNotNone(data["datetime"])
-                self.assertIsNotNone(data["netFlow"])
-        except Exception as ex:
-            self.fail(ex.message)
+def test_fetch_exchange(adapter, session):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks")
+            .joinpath("ESIOS_ES_MA.json")
+            .read_text()
+        ),
+    )
+    os.environ["ESIOS_TOKEN"] = "token"
+    data_list = ESIOS.fetch_exchange(ZoneKey("ES"), ZoneKey("MA"), session)
+    assert data_list is not None
+    for data in data_list:
+        assert data["sortedZoneKeys"] == "ES->MA"
+        assert data["source"] == "api.esios.ree.es"
+        assert data["datetime"] is not None
+        assert data["netFlow"] is not None
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_exchange_with_snapshot(session, adapter, snapshot):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks")
+            .joinpath("ESIOS_ES_MA.json")
+            .read_text()
+        ),
+    )
+    os.environ["ESIOS_TOKEN"] = "token"
+    assert snapshot == ESIOS.fetch_exchange(ZoneKey("ES"), ZoneKey("MA"), session)

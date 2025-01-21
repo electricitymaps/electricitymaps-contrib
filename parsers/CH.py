@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+from io import StringIO
 from logging import Logger, getLogger
 
 import pandas as pd
@@ -9,32 +10,47 @@ from parsers import ENTSOE
 from parsers.lib.config import refetch_frequency
 
 
-def get_solar_capacity_at(date: datetime) -> float:
+def get_solar_capacity_at(target_datetime: datetime) -> float:
+    """Returns the solar capacity (in MW) at a given time.
+
+    References:
+        https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/?lang=en
+        https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/data/solar.csv
+    """
+
     # Prepare historical records
-    # Source https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/?lang=en
-    historical_capacities = pd.DataFrame.from_records(
-        [
-            ("2015-01-01", 1393.0),
-            ("2016-01-01", 1646.0),
-            ("2017-01-01", 1859.0),
-            ("2018-01-01", 2090.0),
-            ("2019-01-01", 2375.0),
-            ("2020-01-01", 2795.0),
-            ("2021-01-01", 3314.0),
-            ("2022-01-01", 3904.0),
-        ],
-        columns=["datetime", "capacity.solar"],
-    ).set_index("datetime")
-    historical_capacities.index = pd.DatetimeIndex(
-        historical_capacities.index, tz="UTC"
+    # Values before 2015 are ignored as that is the absolute earliest we have some confidence in the data we are
+    # collecting and flowtracing (2015 is when the ENTSO-E transparency platform launched).
+    historical_data = """
+        Power_sum,Year,Plant_count
+        1398.217,2015,46162
+        1656.707,2016,56830
+        1875.034,2017,70074
+        2107.374,2018,83239
+        2398.745,2019,97776
+        2831.102,2020,117258
+        3370.261,2021,140428
+        4080.415,2022,173068
+        5094.375,2023,216440
+        5108.034,2024,216918
+        """
+
+    historical_capacities = pd.read_csv(
+        StringIO(historical_data),
+        names=["installed capacity in megawatts", "year", "number of plants"],
+        header=0,
+        index_col=["year"],
+    )
+    historical_capacities.index = pd.to_datetime(
+        historical_capacities.index, format="%Y", utc=True
     )
 
-    year = date.year
-    if year < 2015:
-        return historical_capacities.loc["2015-01-01", "capacity.solar"]
-    else:
-        mask = historical_capacities.index <= date
-        return historical_capacities[mask].iloc[-1].loc["capacity.solar"]
+    # mask all rows earlier than target date (use the earliest date in dataset if target date is even earlier)
+    dt = max(
+        target_datetime.astimezone(timezone.utc), historical_capacities.index.min()
+    )
+    mask = historical_capacities.index <= dt
+    return historical_capacities[mask].iloc[-1].loc["installed capacity in megawatts"]
 
 
 def fetch_swiss_exchanges(session, target_datetime, logger):

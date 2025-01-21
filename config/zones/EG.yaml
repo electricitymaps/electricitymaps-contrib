@@ -1,3 +1,8 @@
-timezone: Africa/Cairo
-region: Africa
+bounding_box:
+  - - 24.187246872468734
+    - 21.49593195465185
+  - - 37.39496894968951
+    - 32.15717215995355
 country: EG
+region: Africa
+timezone: Africa/Cairo

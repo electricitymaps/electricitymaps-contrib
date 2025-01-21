@@ -1,3 +1,8 @@
-timezone: Africa/Addis_Ababa
-region: Africa
+bounding_box:
+  - - 32.4889298892989
+    - 2.904734871690188
+  - - 48.47947979479795
+    - 15.379157026350086
 country: ET
+region: Africa
+timezone: Africa/Addis_Ababa

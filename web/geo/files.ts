@@ -8,17 +8,9 @@ import { ZoneConfig } from './types';
 
 const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 
-const sortObjectByKey = (object: ZoneConfig) =>
-  Object.keys(object)
-    .sort()
-    .reduce((result, key) => {
-      result[key] = object[key];
-      return result;
-    }, {} as { [key: string]: ZoneConfig });
-
 const saveZoneYaml = (zoneKey: string, zone: ZoneConfig) => {
   const zonePath = path.resolve(currentDirectory, `../../config/zones/${zoneKey}.yaml`);
-  fs.writeFile(zonePath, yaml.dump(sortObjectByKey(zone)), (error) => {
+  fs.writeFile(zonePath, yaml.dump(zone, { sortKeys: true }), (error) => {
     if (error) {
       console.error(error);
     }

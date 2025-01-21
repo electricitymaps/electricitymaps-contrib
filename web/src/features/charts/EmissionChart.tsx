@@ -1,34 +1,23 @@
-import Accordion from 'components/Accordion';
-import { HorizontalDivider } from 'components/Divider';
-import { IndustryIcon } from 'icons/industryIcon';
-import { WindTurbineIcon } from 'icons/windTurbineIcon';
+import EstimationBadge from 'components/EstimationBadge';
 import { useTranslation } from 'react-i18next';
-import trackEvent from 'utils/analytics';
-import { TimeAverages, TrackEvent } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { dataSourcesCollapsedEmission } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
-import { DataSources } from './DataSources';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, noop } from './graphUtils';
+import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
-import useZoneDataSources from './hooks/useZoneDataSources';
 import { RoundedCard } from './RoundedCard';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 
 interface EmissionChartProps {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
-function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
+function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
-  const {
-    emissionFactorSources,
-    powerGenerationSources,
-    emissionFactorSourcesToProductionSources,
-  } = useZoneDataSources();
+
   const { t } = useTranslation();
   if (isLoading || isError || !data) {
     return null;
@@ -37,16 +26,18 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
   const { chartData, layerFill, layerKeys } = data;
 
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
-  const formatAxisTick = (t: number) => formatCo2(t, maxEmissions);
+  const formatAxisTick = (t: number) => formatCo2({ value: t, total: maxEmissions });
 
-  const badgeText = getBadgeText(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        translationKey="country-history.emissions"
-        badgeText={badgeText}
+        titleText={t(`country-history.emissions.${timeRange}`)}
+        badge={badge}
         unit={'CO₂eq'}
+        id={Charts.EMISSION_CHART}
       />
       <AreaGraph
         testId="history-emissions-graph"
@@ -56,35 +47,11 @@ function EmissionChart({ timeAverage, datetimes }: EmissionChartProps) {
         markerUpdateHandler={noop}
         markerHideHandler={noop}
         datetimes={datetimes}
-        isMobile={false}
-        selectedTimeAggregate={timeAverage}
+        selectedTimeRange={timeRange}
         height="8em"
         tooltip={EmissionChartTooltip}
         formatTick={formatAxisTick}
       />
-      <HorizontalDivider />
-      <Accordion
-        onOpen={() => {
-          trackEvent(TrackEvent.DATA_SOURCES_CLICKED, { chart: 'emission-chart' });
-        }}
-        title={t('data-sources.title')}
-        className="text-md"
-        isCollapsedAtom={dataSourcesCollapsedEmission}
-      >
-        <DataSources
-          title={t('data-sources.power')}
-          icon={<WindTurbineIcon />}
-          sources={powerGenerationSources}
-        />
-        <DataSources
-          title={t('data-sources.emission')}
-          icon={<IndustryIcon />}
-          sources={emissionFactorSources}
-          emissionFactorSourcesToProductionSources={
-            emissionFactorSourcesToProductionSources
-          }
-        />
-      </Accordion>
     </RoundedCard>
   );
 }

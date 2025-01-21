@@ -1,17 +1,47 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom, useAtomValue } from 'jotai';
-import type { GridState } from 'types';
-import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
+import { useAtomValue } from 'jotai';
+import { useParams } from 'react-router-dom';
+import type { GridState, RouteParameters } from 'types';
+import { TimeRange } from 'utils/constants';
+import { isValidHistoricalTimeRange } from 'utils/helpers';
+import { getStaleTime } from 'utils/refetching';
+import { timeRangeAtom } from 'utils/state/atoms';
 
-import { cacheBuster, getBasePath, QUERY_KEYS } from './helpers';
+import {
+  cacheBuster,
+  getBasePath,
+  getHeaders,
+  isValidDate,
+  QUERY_KEYS,
+  TIME_RANGE_TO_BACKEND_PATH,
+} from './helpers';
 
-const getState = async (timeAverage: string): Promise<GridState> => {
-  const path: URL = new URL(`v8/state/${timeAverage}`, getBasePath());
-  path.searchParams.append('cacheKey', cacheBuster());
+const getState = async (
+  timeRange: TimeRange,
+  targetDatetime?: string
+): Promise<GridState> => {
+  const shouldQueryHistorical =
+    targetDatetime &&
+    isValidDate(targetDatetime) &&
+    isValidHistoricalTimeRange(timeRange);
 
-  const response = await fetch(path);
+  const path: URL = new URL(
+    `v10/state/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}${
+      shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
+    }`,
+    getBasePath()
+  );
 
+  const requestOptions: RequestInit = {
+    method: 'GET',
+    headers: await getHeaders(path),
+  };
+
+  if (!targetDatetime) {
+    path.searchParams.append('cacheKey', cacheBuster());
+  }
+  const response = await fetch(path, requestOptions);
   if (response.ok) {
     const result = (await response.json()) as GridState;
     return result;
@@ -21,30 +51,20 @@ const getState = async (timeAverage: string): Promise<GridState> => {
 };
 
 const useGetState = (): UseQueryResult<GridState> => {
-  const [timeAverage] = useAtom(timeAverageAtom);
-  const isHourly = useAtomValue(isHourlyAtom);
-
-  // First fetch last hour only
-  const last_hour = useQuery<GridState>({
-    queryKey: [QUERY_KEYS.STATE, { aggregate: 'last_hour' }],
-    queryFn: async () => getState('last_hour'),
-    enabled: isHourly,
+  const { urlDatetime } = useParams<RouteParameters>();
+  const timeRange = useAtomValue(timeRangeAtom);
+  return useQuery<GridState>({
+    queryKey: [
+      QUERY_KEYS.STATE,
+      {
+        aggregate: timeRange,
+        targetDatetime: urlDatetime,
+      },
+    ],
+    queryFn: () => getState(timeRange, urlDatetime),
+    staleTime: getStaleTime(timeRange, urlDatetime),
+    refetchOnWindowFocus: true,
   });
-
-  const hourZeroWasSuccessful = Boolean(last_hour.isLoading === false && last_hour.data);
-
-  const shouldFetchFullState =
-    !isHourly || hourZeroWasSuccessful || last_hour.isError === true;
-
-  // Then fetch the rest of the data
-  const all_data = useQuery<GridState>({
-    queryKey: [QUERY_KEYS.STATE, { aggregate: timeAverage }],
-    queryFn: async () => getState(timeAverage),
-
-    // The query should not execute until the last_hour query is done
-    enabled: shouldFetchFullState,
-  });
-  return (all_data.data || !isHourly ? all_data : last_hour) ?? {};
 };
 
 export default useGetState;

@@ -1,3 +1,8 @@
-timezone: Africa/Accra
-region: Africa
+bounding_box:
+  - - -3.763432634326307
+    - 4.237072989174393
+  - - 1.686211862118654
+    - 11.66263490915729
 country: GH
+region: Africa
+timezone: Africa/Accra

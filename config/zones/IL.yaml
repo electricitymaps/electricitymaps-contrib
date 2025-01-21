@@ -58,6 +58,7 @@ contributors:
   - alixunderplatz
   - jarek
   - yuvalabou
+country: IL
 disclaimer: The data source (Israel Electric Corporation) has been blocking access
   to real-time production mix data. The data is therefore fully estimated by Electricity
   Maps.
@@ -117,19 +118,25 @@ emissionFactors:
         value: 573.2289528740077
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 573.222327156179
+        value: 540.13
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 573.2223695876727
+        value: 540.13
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 569.5234011882746
+        value: 533.14
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 569.721896879354
+        value: 544.19
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 574.4101372912717
+        value: 550.86
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 542.42
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 529.97
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -139,19 +146,25 @@ emissionFactors:
         value: 573.2289528740077
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 573.222327156179
+        value: 540.13
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 573.2223695876727
+        value: 540.13
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 569.5234011882746
+        value: 533.14
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 569.721896879354
+        value: 544.19
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 574.4101372912717
+        value: 550.86
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 542.42
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 529.97
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
@@ -195,76 +208,106 @@ fallbackZoneMixes:
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.2893871272428585
-        gas: 0.6735870856255691
+        coal: 0.2297224747728945
+        gas: 0.703460637442064
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.003978777818194321
-        solar: 0.02955328248295277
-        unknown: 0.0034936037911983053
-        wind: 0.0
+        oil: 0.00423152527643478
+        solar: 0.05957547207835695
+        unknown: 0.0029150241776447986
+        wind: 9.49265027597112e-05
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.28938718201097796
-        gas: 0.6735872126616805
+        coal: 0.22972256558158094
+        gas: 0.7034609161532113
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.003978775765740139
-        solar: 0.029553093225072356
-        unknown: 0.003493603359102688
-        wind: 0.0
+        oil: 0.004231528852433173
+        solar: 0.05957509378107255
+        unknown: 0.002915029812551355
+        wind: 9.49265027597112e-05
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.28736077091403334
-        gas: 0.6688702500069283
+        coal: 0.2264825320322812
+        gas: 0.6935389509648741
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.003950966970214933
-        solar: 0.036348872304722224
-        unknown: 0.003469127399976101
-        wind: 0.0
+        oil: 0.004171828936619794
+        solar: 0.07281588544478874
+        unknown: 0.0028738802414383455
+        wind: 0.00011683941867550777
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.2874695362105059
-        gas: 0.6691234274859038
+        coal: 0.23160730827504733
+        gas: 0.709232212813954
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.003952464254637339
-        solar: 0.035984119164535054
-        unknown: 0.0034704571182351883
-        wind: 0.0
+        oil: 0.004266198190054066
+        solar: 0.05183532401607507
+        unknown: 0.002938932624888138
+        wind: 0.0001199672648831553
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.2900379952510115
-        gas: 0.6751018633094137
+        coal: 0.2347010059371511
+        gas: 0.7187057909580122
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.003987777873555271
-        solar: 0.027370886270618757
-        unknown: 0.0035014545848240067
-        wind: 0.0
+        oil: 0.004323168269065913
+        solar: 0.039204124391915715
+        unknown: 0.002978185989163948
+        wind: 8.764081573890674e-05
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.23078808806727893
+        gas: 0.7067235075760993
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.004251098307872329
+        solar: 0.05523703627478361
+        unknown: 0.00292856022821741
+        wind: 7.165302492644688e-05
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.22500956818472811
+        gas: 0.6890284813288783
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.004144710898821678
+        solar: 0.07885978495969828
+        unknown: 0.0028552075588228272
+        wind: 0.00010229740030611146
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in IL unknown production
@@ -278,6 +321,5 @@ parsers:
   price: IL.fetch_price
   production: IL.fetch_production
   productionCapacity: IRENA.fetch_production_capacity
-timezone: Asia/Jerusalem
 region: Asia
-country: IL
+timezone: Asia/Jerusalem

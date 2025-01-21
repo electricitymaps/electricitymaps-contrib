@@ -3,7 +3,7 @@
 """Parser for the PJM area of the United States."""
 
 import re
-from datetime import datetime, time, timedelta, timezone
+from datetime import datetime, time, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -17,9 +17,12 @@ from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("America/New_York")
-
 # Used for consumption forecast data.
 API_ENDPOINT = "https://api.pjm.com/api/v1/"
+
+US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
+DATA_PATH = "api/v1"
+
 # Used for both production and price data.
 url = "http://www.pjm.com/markets-and-operations.aspx"
 
@@ -77,15 +80,16 @@ def get_api_subscription_key(session: Session) -> str:
     )
 
 
-def fetch_api_data(kind: str, params: dict, session: Session) -> list:
+def fetch_api_data(kind: str, params: dict, session: Session) -> dict:
     headers = {
-        "Host": "api.pjm.com",
         "Ocp-Apim-Subscription-Key": get_api_subscription_key(session=session),
-        "Origin": "http://dataminer2.pjm.com",
-        "Referer": "http://dataminer2.pjm.com/",
+        "Accept-Encoding": "identity",
     }
-    url = API_ENDPOINT + kind
-    resp: Response = session.get(url=url, params=params, headers=headers)
+
+    url = f"{US_PROXY}/{DATA_PATH}/{kind}"
+    resp: Response = session.get(
+        url=url, params={"host": "https://api.pjm.com", **params}, headers=headers
+    )
     if resp.status_code == 200:
         data = resp.json()
         return data
@@ -96,62 +100,32 @@ def fetch_api_data(kind: str, params: dict, session: Session) -> list:
         )
 
 
-def fetch_consumption_forecast_7_days(
-    zone_key: str = "US-PJM",
-    session: Session = Session(),
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """Gets consumption forecast for specified zone."""
-
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-    if not session:
-        session = Session()
-
-    # startRow must be set if forecast_area is set.
-    # RTO_COMBINED is area for whole PJM zone.
-    params = {"download": True, "startRow": 1, "forecast_area": "RTO_COMBINED"}
-
-    # query API
-    data = fetch_api_data(kind="load_frcstd_7_day", params=params, session=session)
-
-    data_points = []
-    for elem in data:
-        utc_datetime = elem["forecast_datetime_beginning_utc"]
-        data_point = {
-            "zoneKey": zone_key,
-            "datetime": datetime.fromisoformat(utc_datetime).replace(
-                tzinfo=timezone.utc
-            ),
-            "value": elem["forecast_load_mw"],
-            "source": "pjm.com",
-        }
-        data_points.append(data_point)
-
-    return data_points
-
-
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-PJM",
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """uses PJM API to get generation  by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
+    """uses PJM API to get generation by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
+        target_datetime = datetime.now(TIMEZONE).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+    else:
+        target_datetime = target_datetime.astimezone(TIMEZONE)
+
+    if not session:
+        session = Session()
 
     params = {
-        "download": True,
         "startRow": 1,
+        "rowCount": 500,
         "fields": "datetime_beginning_ept,fuel_type,mw",
         "datetime_beginning_ept": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
     }
     resp_data = fetch_api_data(kind="gen_by_fuel", params=params, session=session)
-
-    data = pd.DataFrame(resp_data)
+    data = pd.DataFrame(resp_data.get("items", []))
     if not data.empty:
         data["datetime_beginning_ept"] = pd.to_datetime(data["datetime_beginning_ept"])
         data = data.set_index("datetime_beginning_ept")
@@ -302,13 +276,16 @@ def combine_NY_exchanges(session: Session) -> list:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
     """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    if not session:
+        session = Session()
 
     # PJM reports exports as negative.
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
@@ -354,13 +331,16 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = "US-PJM",
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power price of a given country."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    if not session:
+        session = Session()
 
     res: Response = session.get(url)
     soup = BeautifulSoup(res.text, "html.parser")
@@ -384,8 +364,6 @@ def fetch_price(
 
 
 if __name__ == "__main__":
-    print("fetch_consumption_forecast_7_days() ->")
-    print(fetch_consumption_forecast_7_days())
     print("fetch_production() ->")
     print(fetch_production())
     print("fetch_exchange(US-NY, US-PJM) ->")

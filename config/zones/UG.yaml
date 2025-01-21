@@ -1,3 +1,8 @@
-timezone: Africa/Kampala
-region: Africa
+bounding_box:
+  - - 29.054495544955472
+    - -1.969533257365882
+  - - 35.47974979749799
+    - 4.719021003643483
 country: UG
+region: Africa
+timezone: Africa/Kampala

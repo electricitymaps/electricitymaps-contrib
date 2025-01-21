@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 import urllib
 from datetime import datetime, timedelta
 from io import StringIO
@@ -22,10 +23,9 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
-MX_PRODUCTION_URL = (
-    "https://www.cenace.gob.mx/SIM/VISTA/REPORTES/EnergiaGenLiqAgregada.aspx"
-)
-MX_EXCHANGE_URL = "https://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
+CAISO_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
+MX_PRODUCTION_URL = f"{CAISO_PROXY}/Paginas/SIM/Reportes/EnergiaGeneradaTipoTec.aspx?host=https://www.cenace.gob.mx"
+MX_EXCHANGE_URL = f"{CAISO_PROXY}/Paginas/Publicas/Info/DemandaRegional.aspx?host=https://www.cenace.gob.mx"
 
 EXCHANGES = {
     "MX-NO->MX-NW": "IntercambioNTE-NOR",
@@ -70,7 +70,7 @@ MAPPING = {
     "Turbo Gas": "gas",
 }
 SOURCE = "cenace.gob.mx"
-TIMEZONE = ZoneInfo("America/Tijuana")
+TIMEZONE = ZoneInfo("America/Mexico_City")
 
 # cache where the data for whole months is stored as soon as it has been fetched once
 DATA_CACHE = {}
@@ -91,23 +91,25 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     """
     session = session or Session()
 
-    # build the parameters and fill in the requested date
-    # TODO find something prettier than string concatenation which works
-    # TODO find out whether VIEWSTATE stays valid or needs to be fetched before making the post request
+    response = session.get(MX_PRODUCTION_URL)
+    response.raise_for_status()
+
+    # extract necessary viewstate, validation tokens
+    soup = BeautifulSoup(response.content, "html.parser")
+    viewstate = soup.find("input", {"name": "__VIEWSTATE"})["value"]
+    eventvalidation = soup.find("input", {"name": "__EVENTVALIDATION"})["value"]
+
+    # format date string for the requested date
     datestr = dt.strftime("%m/%d/%Y")
+    client_state = {"minDateStr": f"{datestr} 0:0:0", "maxDateStr": f"{datestr} 0:0:0"}
+
+    # build parameters for POST request
     parameters = {
-        "__EVENTTARGET": "",
-        "__EVENTARGUMENT": "",
-        "__VIEWSTATE": "/wEPDwUKLTM2ODQwNzIwMw9kFgJmD2QWAgIDD2QWAgIBD2QWCAIBD2QWAmYPZBYCAgMPDxYCHgRUZXh0BTNTaXN0ZW1hIGRlIEluZm9ybWFjacOzbiBkZWwgTWVyY2Fkby4gw4FyZWEgUMO6YmxpY2FkZAIFDzwrABEDAA8WBB4LXyFEYXRhQm91bmRnHgtfIUl0ZW1Db3VudGZkARAWABYAFgAMFCsAAGQCCQ9kFgJmD2QWAgIDD2QWAmYPZBYEZg9kFgYCAQ8PFgQFBE1pbkQGAECJX4pw0wgFBE1heEQGAMBI0Tg61wgPFg4eB01pbkRhdGUGAECJX4pw0wgeDFNlbGVjdGVkRGF0ZQYAwEjRODrXCB4HTWF4RGF0ZQYAwEjRODrXCB4VRW5hYmxlRW1iZWRkZWRTY3JpcHRzZx4cRW5hYmxlRW1iZWRkZWRCYXNlU3R5bGVzaGVldGceElJlc29sdmVkUmVuZGVyTW9kZQspclRlbGVyaWsuV2ViLlVJLlJlbmRlck1vZGUsIFRlbGVyaWsuV2ViLlVJLCBWZXJzaW9uPTIwMTQuMi43MjQuNDUsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MTIxZmFlNzgxNjViYTNkNAEeF0VuYWJsZUFqYXhTa2luUmVuZGVyaW5naGQWBGYPFCsACA8WEB8ABRMyMDE5LTA5LTE2LTAwLTAwLTAwHhFFbmFibGVBcmlhU3VwcG9ydGgfBmceDUxhYmVsQ3NzQ2xhc3MFB3JpTGFiZWwfCWgfB2ceBFNraW4FB0RlZmF1bHQfCAsrBAFkFggeBVdpZHRoGwAAAAAAAFlABwAAAB4KUmVzaXplTW9kZQspclRlbGVyaWsuV2ViLlVJLlJlc2l6ZU1vZGUsIFRlbGVyaWsuV2ViLlVJLCBWZXJzaW9uPTIwMTQuMi43MjQuNDUsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MTIxZmFlNzgxNjViYTNkNAAeCENzc0NsYXNzBRFyaVRleHRCb3ggcmlIb3Zlch4EXyFTQgKCAhYIHw0bAAAAAAAAWUAHAAAAHw4LKwUAHw8FEXJpVGV4dEJveCByaUVycm9yHxACggIWCB8NGwAAAAAAAFlABwAAAB8OCysFAB8PBRNyaVRleHRCb3gg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BQtFZGl0SW5kZXhlcxYAARYCFgsPAgYUKwAGPCsABQEAFgQeCERhdGFUeXBlGSsCHgRvaW5kAgI8KwAFAQAWBB8VGSsCHxYCAxQrAAUWAh8WAgRkZGQFBmNvbHVtbhQrAAUWAh8WAgVkZGQFB2NvbHVtbjEUKwAFFgIfFgIGZGRkBQdjb2x1bW4yPCsABQEAFgQfFRkrAh8WAgdkZRQrAAALKXlUZWxlcmlrLldlYi5VSS5HcmlkQ2hpbGRMb2FkTW9kZSwgVGVsZXJpay5XZWIuVUksIFZlcnNpb249MjAxNC4yLjcyNC40NSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xMjFmYWU3ODE2NWJhM2Q0ATwrAAcACyl0VGVsZXJpay5XZWIuVUkuR3JpZEVkaXRNb2RlLCBUZWxlcmlrLldlYi5VSSwgVmVyc2lvbj0yMDE0LjIuNzI0LjQ1LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTEyMWZhZTc4MTY1YmEzZDQBZGQWDB8BZx4USXNCb3VuZFRvRm9yd2FyZE9ubHloHgVfcWVsdBkpZ1N5c3RlbS5EYXRhLkRhdGFSb3dWaWV3LCBTeXN0ZW0uRGF0YSwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkeCERhdGFLZXlzFgAeBV8hQ0lTFwAfAgIBZGYWBGYPFCsAA2RkZGQCAQ8WBRQrAAIPFgwfAWcfF2gfGBkrCR8ZFgAfGhcAHwICAWQXAwULXyFJdGVtQ291bnQCAQUIXyFQQ291bnRkBQZfIURTSUMCARYCHgNfc2UWAh4CX2NmZBYGZGRkZGRkFgJnZxYCZg9kFghmD2QWAmYPZBYQZg8PFgQfAAUGJm5ic3A7HgdWaXNpYmxlaGRkAgEPDxYEHwAFBiZuYnNwOx8daGRkAgIPDxYCHwAFEU1lcyBkZSBPcGVyYWNpw7NuZGQCAw8PFgIfAAUcTm8uIGRlIExpcXVpZGFjacOzbiBBc29jaWFkYWRkAgQPDxYCHwAFA0NzdmRkAgUPDxYCHwAFA1BkZmRkAgYPDxYCHwAFBEh0bWxkZAIHDw8WAh8ABRVGZWNoYSBkZSBQdWJsaWNhY2nDs25kZAIBDw8WAh8daGQWAmYPZBYQZg8PFgIfAAUGJm5ic3A7ZGQCAQ8PFgIfAAUGJm5ic3A7ZGQCAg8PFgIfAAUGJm5ic3A7ZGQCAw8PFgIfAAUGJm5ic3A7ZGQCBA8PFgIfAAUGJm5ic3A7ZGQCBQ8PFgIfAAUGJm5ic3A7ZGQCBg8PFgIfAAUGJm5ic3A7ZGQCBw8PFgIfAAUGJm5ic3A7ZGQCAg8PFgIeBF9paWgFATBkFhBmDw8WAh8daGRkAgEPDxYEHwAFBiZuYnNwOx8daGRkAgIPDxYCHwAFD1NlcHRpZW1icmUgMjAxOWRkAgMPDxYCHwAFATBkZAIED2QWAmYPDxYEHg1BbHRlcm5hdGVUZXh0ZR4HVG9vbFRpcGVkZAIFD2QWAmYPDxYEHx9lHyBlZGQCBg9kFgJmDw8WBB8fZR8gZWRkAgcPDxYCHwAFGTE0LzEwLzIwMTkgMDU6MDA6MDEgYS4gbS5kZAIDD2QWAmYPDxYCHx1oZGQCCw8PFggfB2cfCWgfCAsrBAEfBmdkFgRmDw8WBh8JaB8GZx8ICysEAWRkAgEPFCsAAhQrAAIUKwACDxYOHwdnHhNFbmFibGVFbWJlZGRlZFNraW5zZx8JaB4URW5hYmxlUm91bmRlZENvcm5lcnNnHg1FbmFibGVTaGFkb3dzaB8GZx8ICysEAWRkZGRkGAIFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYMBSdjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEZlY2hhQ29uc3VsdGEFJmN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkRmVjaGFJbmljaWFsBSRjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEZlY2hhRmluYWwFK2N0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkRGVzY2FyZ2FyUmVwb3J0ZXMFKmN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkR3JpZFJhZFJlc3VsdGFkbwVAY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRHcmlkUmFkUmVzdWx0YWRvJGN0bDAwJGN0bDA0JGdiY2NvbHVtbgVBY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRHcmlkUmFkUmVzdWx0YWRvJGN0bDAwJGN0bDA0JGdiY2NvbHVtbjEFQWN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkR3JpZFJhZFJlc3VsdGFkbyRjdGwwMCRjdGwwNCRnYmNjb2x1bW4yBSVjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJE5vdGlmQXZpc29zBS5jdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJE5vdGlmQXZpc29zJFhtbFBhbmVsBS9jdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJE5vdGlmQXZpc29zJFRpdGxlTWVudQUoY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRidG5DZXJyYXJQYW5lbAUfY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRjdGwwMA88KwAMAQhmZHAKRKrT54JyF09yAgRL16DIn42vcyspzOtg86mdF/6Z",
-        "__VIEWSTATEGENERATOR": "5B6503FA",
-        "__EVENTVALIDATION": "/wEdABPIFpMnlAgkSZvMhE+vOQYa0gsvRcXibJrviW3Dmsx0G+jYKkdCU41GOhiZPOlFyBecIegvepvm5r48BtByTWSkIC/PSPgmtogq3vXUp+YNvsMPaGT0F8ZMY05tsTP7KXY5p77wXhhk2nxxmhBw8yYO6yoq09PpCPpnHhKGI5XXqN0NAXFS9Kcv7U1TgXuCACxTET4yjIt6nVt9qCHIyzbla16U6SvCvrhBDl88f4l+A2AwM+Efhx0eY7z5UUNUDwDoCL/OENuuNNFPCRAmSpT1/nxKmb/ucFs0tCWRV4G4iLScixGy8IhVeNkOJJPR8q4msGM8DGO6o6g/gMszmMRrbD50rXo0f8u6b2IB+RzVpsHxVceaRLBN56ddyVdqKV1RL0jZlTtb1Prpo6YdA7cH301O2Ez19CJOtDoyAWUZ982dVJTM6fLOsQokHcEDIxQ=",
-        "ctl00_ContentPlaceHolder1_FechaConsulta_ClientState": '{"minDateStr":"'
-        + datestr
-        + '+0:0:0","maxDateStr":"'
-        + datestr
-        + '+0:0:0"}',
-        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.x": "10",
-        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.y": "9",
+        "__VIEWSTATE": viewstate,
+        "__EVENTVALIDATION": eventvalidation,
+        "ctl00_ContentPlaceHolder1_FechaConsulta_ClientState": json.dumps(client_state),
+        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.x": "0",
+        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.y": "0",
     }
 
     # urlencode the data in the weird form which is expected by the API
@@ -126,27 +128,42 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     response.raise_for_status()
 
     # API returns normally status 200 but content type text/html when data is missing
-    if (
-        "Content-Type" not in response.headers
-        or response.headers["Content-Type"] != "application/octet-stream"
+    if "Content-Type" not in response.headers or "text/html" in response.headers.get(
+        "Content-Type", ""
     ):
-        raise Exception(
-            f"Error while fetching csv for date {datestr}: No CSV was returned by the API. Probably the data for this date has not yet been published."
-        )
+        return None
 
     # skip non-csv data, the header starts with "Sistema"
     csv_str = response.text
-    csv_str = csv_str[csv_str.find('"Sistema"') :]
-
-    return pd.read_csv(
-        StringIO(csv_str), parse_dates={"instante": [1, 2]}, date_parser=parse_date
+    df = pd.read_csv(
+        StringIO(csv_str),
+        skiprows=7,
     )
+
+    # cleanup and parse the data
+    df.columns = df.columns.str.strip()
+
+    # transform 01-24 entries where 24 means 00 the next day
+    df["Hora"] = df["Hora"].apply(lambda x: "00" if int(x) == 24 else f"{int(x):02d}")
+    df["Dia"] = pd.to_datetime(df["Dia"], format="%d/%m/%Y")
+    df.loc[df["Hora"] == "00", "Dia"] = df["Dia"] + pd.Timedelta(days=1)
+
+    # The hour column has been seen at least once (3rd Nov 2024) to include 1-25
+    # hours rather than the expected 1-24, due to this, we are for now dropping
+    # such entries if they show up
+    df = df.drop(df[df["Hora"] == "25"].index)
+
+    # create datetime objects
+    df["Dia"] = df["Dia"].dt.strftime("%d/%m/%Y")
+    df["instante"] = pd.to_datetime(df["Dia"] + " " + df["Hora"], format="%d/%m/%Y %H")
+    df["instante"] = df["instante"].dt.tz_localize(TIMEZONE)
+    return df
 
 
 def convert_production(series: pd.Series) -> ProductionMix:
     mix = ProductionMix()
 
-    for name, val in series.iteritems():
+    for name, val in series.items():
         name = name.strip()
         if isinstance(val, float | int):
             mix.add_value(MAPPING.get(name, "unknown"), val)
@@ -164,17 +181,31 @@ def fetch_production(
         raise ValueError(f"MX parser cannot fetch production for zone {zone_key}")
 
     if target_datetime is None:
-        raise ValueError(
-            "Parser only supports fetching historical production data, please specify a terget_datetime in the past"
-        )
+        target_datetime = datetime.now(tz=TIMEZONE)
 
-    # retrieve data for the month either from the cache or fetch it
-    cache_key = target_datetime.strftime("%Y-%m")
-    if cache_key in DATA_CACHE:
-        df = DATA_CACHE[cache_key]
-    else:
-        df = fetch_csv_for_date(target_datetime, session=session)
-        DATA_CACHE[cache_key] = df
+    original_target_datetime = target_datetime
+    df = None
+    up_to_months = 6  # Try up to 6 previous months
+    for _ in range(up_to_months):
+        cache_key = target_datetime.strftime("%Y-%m")
+        if cache_key in DATA_CACHE:
+            df = DATA_CACHE[cache_key]
+            break
+        else:
+            df = fetch_csv_for_date(target_datetime, session=session)
+            if df is not None and not df.empty:
+                DATA_CACHE[cache_key] = df
+                break
+            else:
+                logger.warning(f"No data found for {cache_key}. Trying previous month.")
+                target_datetime = (
+                    target_datetime.replace(day=1) - timedelta(days=1)
+                ).replace(day=1)
+
+    if df is None or df.empty:
+        raise Exception(
+            f"No data found for {original_target_datetime}, or any previous {up_to_months} months."
+        )
 
     production = ProductionBreakdownList(logger)
     for _idx, series in df.iterrows():

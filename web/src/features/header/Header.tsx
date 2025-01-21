@@ -1,13 +1,15 @@
 import { Capacitor } from '@capacitor/core';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Button } from 'components/Button';
-import { Link } from 'components/Link';
+import Link from 'components/Link';
 import { isFAQModalOpenAtom } from 'features/modals/modalAtoms';
 import { useSetAtom } from 'jotai';
+import { ExternalLink } from 'lucide-react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HiOutlineExternalLink } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 
 import Logo from './Logo';
 
@@ -19,6 +21,10 @@ interface MenuLinkProps {
   onClick?: () => void;
 }
 
+const handleClick = () => {
+  trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: 'get-data' });
+};
+
 function MenuLink({
   children,
   href,
@@ -26,45 +32,47 @@ function MenuLink({
   id,
   onClick,
 }: MenuLinkProps): JSX.Element {
-  const handleClick = () => {
-    trackEvent('HeaderLink Clicked', { linkId: id });
+  const handleClick = useCallback(() => {
+    trackEvent(TrackEvent.HEADER_LINK_CLICKED, { linkId: id });
     onClick?.();
-  };
+  }, [id, onClick]);
+
   return (
-    <div className="relative flex py-3">
-      <NavigationMenu.Item
-        asChild
-        className="cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+    <NavigationMenu.Item
+      asChild
+      className="relative my-3 cursor-pointer rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+    >
+      <NavigationMenu.Link
+        onClick={handleClick}
+        href={href}
+        target={isExternal ? '_blank' : '_self'}
+        className="group px-1 py-2 text-sm lg:px-2 lg:text-base"
       >
-        <NavigationMenu.Link
-          onClick={handleClick}
-          href={href}
-          target={isExternal ? '_blank' : '_self'}
-          className="group px-1 py-2 text-base lg:px-2 lg:text-[1rem]"
-        >
-          {children}
-          {isExternal && (
-            <div className="absolute bottom-0 top-1 flex w-full justify-end text-gray-400 opacity-0 transition-opacity group-hover:opacity-80 dark:text-gray-600">
-              <HiOutlineExternalLink />
-            </div>
-          )}
-        </NavigationMenu.Link>
-      </NavigationMenu.Item>
-    </div>
+        {children}
+        {isExternal && (
+          <ExternalLink
+            size={16}
+            className="absolute -right-2 -top-2 text-gray-500 opacity-0 transition-opacity group-hover:opacity-80"
+          />
+        )}
+      </NavigationMenu.Link>
+    </NavigationMenu.Item>
   );
 }
 
 export default function Header(): JSX.Element {
   const isMobileApp = Capacitor.isNativePlatform();
   const setIsFAQModalOpen = useSetAtom(isFAQModalOpenAtom);
-  const onFAQClick = () => {
-    setIsFAQModalOpen(true);
-  };
   const { t } = useTranslation();
+
+  const onFAQClick = useCallback(() => {
+    setIsFAQModalOpen(true);
+  }, [setIsFAQModalOpen]);
+
   return (
     <header
       className={twMerge(
-        'z-30 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
+        'z-40 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
         !isMobileApp && 'sm:block md:flex'
       )}
     >
@@ -105,14 +113,12 @@ export default function Header(): JSX.Element {
             {t('header.blog')}
           </MenuLink>
           <Button
-            onClick={() => {
-              trackEvent('HeaderLink Clicked', { linkId: 'get-data' });
-            }}
+            onClick={handleClick}
             backgroundClasses="my-2.5"
-            foregroundClasses="text-base font-normal lg:text-[1rem] py-1 px-6"
+            foregroundClasses="text-base lg:text-[1rem] py-1 px-6"
             href="https://electricitymaps.com/get-our-data?utm_source=app.electricitymaps.com&utm_medium=referral"
           >
-            {t('header.get-data')}
+            {t('button.api')}
           </Button>
         </NavigationMenu.List>
       </NavigationMenu.Root>

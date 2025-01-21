@@ -15,6 +15,7 @@ contributors:
   - systemcatch
   - alixunderplatz
   - nessie2013
+country: AM
 emissionFactors:
   direct:
     battery discharge:
@@ -35,17 +36,17 @@ emissionFactors:
     battery discharge:
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 230.2839924469498
+        value: 230.28
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 235.97485082659796
+        value: 235.97
     hydro discharge:
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 230.2839924469498
+        value: 230.28
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 235.97485082659796
+        value: 235.97
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2019 average
@@ -53,32 +54,31 @@ fallbackZoneMixes:
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 5.269446440699319e-07
-        gas: 0.44802996436622095
+        coal: 5.250073475843808e-07
+        gas: 0.4486470475411705
         geothermal: 0.0
-        hydro: 0.33765433172171194
+        hydro: 0.33631244393803006
         hydro discharge: 0.0
-        nuclear: 0.21408260839892573
-        oil: 4.663653829667453e-05
-        solar: 1.3754805047413668e-07
-        unknown: 8.436538735278456e-05
-        wind: 5.5352435185169484e-05
+        nuclear: 0.21485408635458791
+        oil: 4.6467993502431576e-05
+        solar: 1.3561075398858545e-07
+        unknown: 8.439057220709672e-05
+        wind: 5.4428344761561545e-05
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
         coal: 0.0
-        gas: 0.46377516996269275
+        gas: 0.46389459701538915
         geothermal: 0.0
-        hydro: 0.19084097045703635
+        hydro: 0.19046400663928753
         hydro discharge: 0.0
-        nuclear: 0.3454011583392152
-        oil: 1.8951088677709353e-05
+        nuclear: 0.3456206557298584
+        oil: 1.8968983945582545e-05
         solar: 0.0
         unknown: 4.115911610833948e-07
-        wind: 1.592678840714006e-06
+        wind: 1.300389465451885e-06
 parsers: {}
-timezone: Asia/Yerevan
 region: Asia
-country: AM
+timezone: Asia/Yerevan

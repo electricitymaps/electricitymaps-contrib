@@ -28,8 +28,8 @@ export function CarbonIntensityDisplay({
     <>
       {withSquare && <Square co2Intensity={intensityAsNumber} />}
       <p className={className}>
-        <b>{Math.round(intensityAsNumber) || '?'}</b>&nbsp;
-        {CarbonUnits.GRAMS_CO2EQ_PER_WATT_HOUR}
+        <b>{co2Intensity == null ? '?' : Math.round(intensityAsNumber)}</b>&nbsp;
+        {CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR}
       </p>
     </>
   );

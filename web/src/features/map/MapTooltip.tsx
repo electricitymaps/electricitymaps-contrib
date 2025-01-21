@@ -1,76 +1,69 @@
 import * as Portal from '@radix-ui/react-portal';
 import useGetState from 'api/getState';
-import CarbonIntensitySquare from 'components/CarbonIntensitySquare';
-import { CircularGauge } from 'components/CircularGauge';
 import EstimationBadge from 'components/EstimationBadge';
 import NoDataBadge from 'components/NoDataBadge';
 import OutageBadge from 'components/OutageBadge';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
+import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
+import { TrendingUpDown } from 'lucide-react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
-import { Mode } from 'utils/constants';
-import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
-import { productionConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
+import { round } from 'utils/helpers';
+import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
-export function TooltipInner({
+const emptyZoneData: StateZoneData = {
+  p: {},
+  c: {},
+};
+
+export const TooltipInner = memo(function TooltipInner({
   zoneData,
   zoneId,
 }: {
   zoneId: string;
-  zoneData: StateZoneData | undefined;
+  zoneData?: StateZoneData;
 }) {
   const hasZoneData = Boolean(zoneData);
-  zoneData ??= {
-    p: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-    c: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-  };
+  zoneData ??= emptyZoneData;
   const { e, o } = zoneData;
 
-  const { t } = useTranslation();
-
-  const currentMode = useAtomValue(productionConsumptionAtom);
-  const isConsumption = currentMode === Mode.CONSUMPTION;
-  const intensity = getCarbonIntensity(zoneData, isConsumption);
-  const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
-  const renewable = getRenewableRatio(zoneData, isConsumption);
+  const estimated = typeof e === 'number' ? round(e ?? 0, 0) : e;
 
   return (
-    <div className="w-full p-3 text-center">
-      <div className="flex flex-col">
+    <div className="flex w-full flex-col gap-2 py-3 text-center">
+      <div className="flex flex-col px-3">
         <div className="flex w-full flex-row justify-between">
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
-          <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
+          <DataValidityBadge
+            hasOutage={Boolean(o)}
+            estimated={estimated}
+            hasZoneData={hasZoneData}
+          />
         </div>
-        <TimeDisplay className="self-start text-neutral-600 dark:text-neutral-400" />
+        <TimeDisplay
+          zoneId={zoneId}
+          className="self-start text-neutral-600 dark:text-neutral-400"
+        />
       </div>
-      <div className="flex w-full grow justify-around py-1 pt-4 sm:pr-2">
-        <CarbonIntensitySquare intensity={intensity} />
-        <CircularGauge name={t('country-panel.lowcarbon')} ratio={fossilFuelPercentage} />
-        <CircularGauge name={t('country-panel.renewable')} ratio={renewable} />
-      </div>
+      <ZoneGaugesWithCO2Square zoneData={zoneData} />
     </div>
   );
-}
+});
 
-function DataValidityBadge({
+TooltipInner.displayName = 'TooltipInner';
+
+export const DataValidityBadge = memo(function DataValidityBadge({
   hasOutage,
   estimated,
   hasZoneData,
 }: {
-  hasOutage?: boolean | null;
+  hasOutage: boolean;
   estimated?: number | boolean | null;
   hasZoneData: boolean;
 }) {
@@ -83,19 +76,27 @@ function DataValidityBadge({
     return <OutageBadge />;
   }
   if (estimated === true) {
-    return <EstimationBadge text={t('estimation-badge.fully-estimated')} />;
+    return (
+      <EstimationBadge
+        text={t('estimation-badge.fully-estimated')}
+        Icon={TrendingUpDown}
+      />
+    );
   }
-  if (estimated && estimated > 0) {
+  if (estimated && estimated > 0.5) {
     return (
       <EstimationBadge
         text={t(`estimation-card.aggregated_estimated.pill`, {
           percentage: estimated,
         })}
+        Icon={TrendingUpDown}
       />
     );
   }
   return null;
-}
+});
+
+DataValidityBadge.displayName = 'DataValidityBadge';
 
 export default function MapTooltip() {
   const mousePosition = useAtomValue(mousePositionAtom);
@@ -111,7 +112,7 @@ export default function MapTooltip() {
   const { zoneId } = hoveredZone;
 
   const { x, y } = mousePosition;
-  const zoneData = data?.data?.datetimes[selectedDatetimeString]?.z[zoneId];
+  const zoneData = data?.datetimes[selectedDatetimeString]?.z[zoneId];
 
   const screenWidth = window.innerWidth;
   const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);

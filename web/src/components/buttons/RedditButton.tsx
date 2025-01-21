@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from 'components/Button';
 import { useTranslation } from 'react-i18next';
 import { FaReddit } from 'react-icons/fa6';
-import { DEFAULT_ICON_SIZE } from 'utils/constants';
+import { baseUrl, DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface RedditButtonProps
   extends Omit<
@@ -10,11 +10,13 @@ interface RedditButtonProps
   > {
   iconSize?: number;
   isIconOnly?: boolean;
+  isShareLink?: boolean;
 }
 
 export function RedditButton({
   isIconOnly,
   iconSize = DEFAULT_ICON_SIZE,
+  isShareLink,
   ...restProps
 }: RedditButtonProps) {
   const { t } = useTranslation();
@@ -22,11 +24,15 @@ export function RedditButton({
     <Button
       backgroundClasses="bg-[#FF4500]"
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#0A66C2]"
-      href={'https://www.reddit.com/r/electricitymaps/'}
+      href={
+        isShareLink
+          ? `https://www.reddit.com/web/submit?url=${baseUrl}`
+          : 'https://www.reddit.com/r/electricitymaps/'
+      }
       icon={<FaReddit size={iconSize} />}
       {...restProps}
     >
-      {isIconOnly ? undefined : t('button.reddit')}
+      {isIconOnly ? undefined : t(isShareLink ? 'button.reddit-share' : 'button.reddit')}
     </Button>
   );
 }

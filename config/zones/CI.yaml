@@ -1,3 +1,8 @@
-timezone: Africa/Abidjan
-region: Africa
+bounding_box:
+  - - -9.12028620286199
+    - 3.8535427899415637
+  - - -2.007425074250705
+    - 11.220430313773178
 country: CI
+region: Africa
+timezone: Africa/Abidjan

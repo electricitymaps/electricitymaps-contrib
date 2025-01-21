@@ -1,14 +1,14 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { timeRangeAtom } from 'utils/state/atoms';
 
 import { convertPrice } from '../bar-breakdown/utils';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const { t } = useTranslation();
 
   if (!zoneDetail) {
@@ -20,13 +20,13 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
     priceObject?.currency
   );
   const currencySymbol = getSymbolFromCurrency(currency) ?? '?';
-  const price = value ?? Number.NaN;
+  const price = Number.isFinite(value) ? value : '?';
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-64">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
-        timeAverage={timeAverage}
+        timeRange={timeRange}
         squareColor="#7f7f7f" // TODO: use price scale color
         title={t('tooltips.price')}
       />

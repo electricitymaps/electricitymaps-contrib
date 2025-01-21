@@ -33,7 +33,7 @@ export default function MapButton({
           asToggle && 'pointer-events-auto'
         )}
         aria-label={ariaLabel}
-        data-test-id={dataTestId}
+        data-testid={dataTestId}
         role="button"
       >
         <div>{icon}</div>

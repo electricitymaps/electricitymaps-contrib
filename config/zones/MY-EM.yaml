@@ -1,3 +1,13 @@
-timezone: Asia/Kuala_Lumpur
-region: Asia
+aggregates_displayed:
+  - yearly
+bounding_box:
+  - - 109.02929529295292
+    - 0.35168309769252903
+  - - 119.76739267392671
+    - 7.843074827991515
+contributors:
+  - FelixDQ
 country: MY
+estimation_method: CONSTRUCT_BREAKDOWN
+region: Asia
+timezone: Asia/Kuala_Lumpur

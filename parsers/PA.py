@@ -41,6 +41,7 @@ PRODUCTION_SOURCE = "sitr.cnd.com.pa"
 # 8. https://www.asep.gob.pa/wp-content/uploads/electricidad/resoluciones/anno_12528_elec.pdf
 # 9. https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/May/IRENA_RRA_Panama_2018_En.pdf
 # 10. https://www.asep.gob.pa/wp-content/uploads/electricidad/concesiones_licencias/concesiones_licencias/2021/listado_licencias_abr27.pdf
+# 11. https://generadoragatun.com/
 MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE = {
     "ACP Miraflores 2": "oil",  # [7] Sheet "C-GE-1A-1 CapInstXEmp"
     "ACP Miraflores 5": "oil",  # [7] Sheet "C-GE-1A-1 CapInstXEmp"
@@ -94,6 +95,9 @@ MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE = {
     "PanAm 7": "oil",  # [6][7]
     "PanAm 8": "oil",  # [6][7]
     "PanAm 9": "oil",  # [6][7]
+    "Proyecto Gatún 1": "gas",  # [11]
+    "Proyecto Gatún 2": "gas",  # [11]
+    "Proyecto Gatún 3": "gas",  # [11]
     "Sparkle Power 1": "oil",  # [10]
     "Sparkle Power 2": "oil",  # [10]
     "Sparkle Power 3": "oil",  # [10]

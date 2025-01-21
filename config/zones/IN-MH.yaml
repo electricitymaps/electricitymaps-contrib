@@ -19,6 +19,7 @@ contributors:
   - systemcatch
   - Manu1400
   - gopikrishna1793
+country: IN
 emissionFactors:
   direct:
     battery discharge:
@@ -84,10 +85,16 @@ emissionFactors:
         value: 725.8839591736314
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 724.8027067152332
+        value: 701.79
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 728.9448907770259
+        value: 706.47
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 694.85
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 705.59
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -106,10 +113,16 @@ emissionFactors:
         value: 725.8839591736314
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 724.8027067152332
+        value: 701.79
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 728.9448907770259
+        value: 706.47
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 694.85
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 705.59
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
@@ -192,34 +205,63 @@ fallbackZoneMixes:
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.8633450385121986
-        gas: 0.02993058667507769
+        biomass: 0.012869117854221141
+        coal: 0.8286959143856343
+        gas: 0.02129974558836605
         geothermal: 0.0
-        hydro: 0.03464468041999834
+        hydro: 0.03976543507110578
         hydro discharge: 0.0
-        nuclear: 0.020450645793295266
+        nuclear: 0.03972233460564866
         oil: 0.0
-        solar: 0.01614629949152879
-        unknown: 0.0
-        wind: 0.03548274690570536
+        solar: 0.012961419118905925
+        unknown: 0.00923911862779166
+        wind: 0.03544688193022671
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.8684780403186796
-        gas: 0.030108537753421663
+        biomass: 0.02669617097224994
+        coal: 0.8297295752376328
+        gas: 0.021536733601776853
         geothermal: 0.0
-        hydro: 0.03485066094522507
+        hydro: 0.034600319568647946
         hydro discharge: 0.0
-        nuclear: 0.020572231651068022
+        nuclear: 0.03229052146171313
         oil: 0.0
-        solar: 0.013250569731097632
-        unknown: 0.0
-        wind: 0.03273995683843821
+        solar: 0.014965327418330485
+        unknown: 0.010270868469352998
+        wind: 0.029910465330732435
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.03653668880737519
+        coal: 0.8172899649142811
+        gas: 0.013606422259454562
+        geothermal: 0.0
+        hydro: 0.038349152619989835
+        hydro discharge: 0.0
+        nuclear: 0.03225291927307697
+        oil: 0.0
+        solar: 0.016434291882701003
+        unknown: 0.010262173139609457
+        wind: 0.035268381935848116
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.015422958475641076
+        coal: 0.8413485177267193
+        gas: 0.012468589767142583
+        geothermal: 0.0
+        hydro: 0.029351021063500297
+        hydro discharge: 0.0
+        nuclear: 0.033169880050444314
+        oil: 0.0
+        solar: 0.0242120664068756
+        unknown: 0.004873399116179451
+        wind: 0.039153561778823565
 parsers:
   production: IN_MH.fetch_production
-timezone: Asia/Kolkata
 region: Asia
-country: IN
+timezone: Asia/Kolkata

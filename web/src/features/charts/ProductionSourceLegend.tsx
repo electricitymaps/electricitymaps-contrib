@@ -1,9 +1,10 @@
+import { memo } from 'react';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
 import ProductionSourceIcon from './ProductionsSourceIcons';
 
-export default function ProductionSourceLegend({
+function ProductionSourceLegend({
   electricityType,
 }: {
   electricityType: ElectricityModeType;
@@ -24,3 +25,5 @@ export default function ProductionSourceLegend({
     </svg>
   );
 }
+
+export default memo(ProductionSourceLegend);

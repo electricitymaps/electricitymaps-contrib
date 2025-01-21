@@ -1,3 +1,8 @@
-timezone: Pacific/Guam
-region: Oceania
+bounding_box:
+  - - 144.15484654846549
+    - 12.746291513944627
+  - - 145.45364953649536
+    - 14.139839293008166
 country: GU
+region: Oceania
+timezone: Pacific/Guam

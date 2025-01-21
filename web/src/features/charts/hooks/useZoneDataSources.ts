@@ -1,52 +1,46 @@
 import useGetZone from 'api/getZone';
+import { useMemo } from 'react';
 import { ElectricityModeType, ZoneDetails } from 'types';
 
-export default function useZoneDataSources() {
-  const { data: zoneData, isSuccess } = useGetZone();
+const useZoneDataSources = () => {
+  const { data: zoneData } = useGetZone();
 
-  if (!isSuccess) {
-    return {
-      capacitySources: [],
-      powerGenerationSources: [],
-      emissionFactorSources: [],
-      emissionFactorSourcesToProductionSources: {},
-    };
-  }
+  return useMemo(
+    () => ({
+      capacitySources: getCapacitySources(zoneData),
+      powerGenerationSources: getPowerGenerationSources(zoneData),
+      emissionFactorSources: getEmissionFactorSource(zoneData),
+      emissionFactorSourcesToProductionSources:
+        getEmissionFactorSourcesToProductionSource(zoneData),
+    }),
+    [zoneData]
+  );
+};
 
-  const capacitySources = getCapacitySources(zoneData);
-  const powerGenerationSources = getPowerGenerationSources(zoneData);
-  const emissionFactorSourcesToProductionSources =
-    getEmissionFactorSourcesToProductionSource(zoneData);
-  const emissionFactorSources = getEmissionFactorSource(zoneData);
+export default useZoneDataSources;
 
-  return {
-    capacitySources,
-    powerGenerationSources,
-    emissionFactorSources,
-    emissionFactorSourcesToProductionSources,
-  };
-}
-
-function getCapacitySources(zoneData: ZoneDetails) {
+const getCapacitySources = (zoneData?: ZoneDetails): string[] => {
   const capacitySources: string[] = [];
-  for (const state of Object.values(zoneData.zoneStates)) {
-    const currentSources = extractUniqueSourcesFromDictionary(state.capacitySources);
-    for (const source of currentSources) {
-      if (!capacitySources.includes(source)) {
-        capacitySources.push(source);
+  if (zoneData) {
+    for (const state of Object.values(zoneData.zoneStates)) {
+      const currentSources = extractUniqueSourcesFromDictionary(state.capacitySources);
+      for (const source of currentSources) {
+        if (!capacitySources.includes(source)) {
+          capacitySources.push(source);
+        }
       }
     }
   }
   return capacitySources;
-}
+};
 
-function extractUniqueSourcesFromDictionary(
+const extractUniqueSourcesFromDictionary = (
   sourceDict:
     | {
         [key in ElectricityModeType]: string[] | null;
       }
     | undefined
-): Set<string> {
+): Set<string> => {
   const sourcesWithoutDuplicates: Set<string> = new Set();
   if (!sourceDict) {
     return sourcesWithoutDuplicates;
@@ -60,66 +54,70 @@ function extractUniqueSourcesFromDictionary(
     }
   }
   return sourcesWithoutDuplicates;
-}
+};
 
-function getPowerGenerationSources(zoneData: ZoneDetails) {
+const getPowerGenerationSources = (zoneData?: ZoneDetails) => {
   const sourceSet = new Set<string>();
-
-  for (const state of Object.values(zoneData.zoneStates)) {
-    const currentSources = state.source;
-    for (const source of currentSources) {
-      sourceSet.add(source);
+  if (zoneData) {
+    for (const state of Object.values(zoneData.zoneStates)) {
+      const currentSources = state.source;
+      for (const source of currentSources) {
+        sourceSet.add(source);
+      }
     }
   }
 
-  const sources = [...sourceSet];
-  return sources;
-}
+  return [...sourceSet];
+};
 
-function getEmissionFactorSource(zoneData: ZoneDetails) {
+const getEmissionFactorSource = (zoneData?: ZoneDetails) => {
   const emissionFactorSources = new Set<string>();
 
-  const processSources = (sources: Record<string, string>) => {
-    for (const source of Object.entries(sources)) {
-      for (const emissionFactorSource of source[1].split('; ')) {
-        if (!emissionFactorSource.startsWith('assumes')) {
-          emissionFactorSources.add(emissionFactorSource);
+  if (zoneData) {
+    const processSources = (sources: Record<string, string>) => {
+      for (const source of Object.entries(sources)) {
+        for (const emissionFactorSource of source[1].split('; ')) {
+          if (!emissionFactorSource.startsWith('assumes')) {
+            emissionFactorSources.add(emissionFactorSource);
+          }
         }
       }
-    }
-  };
+    };
 
-  for (const state of Object.values(zoneData.zoneStates)) {
-    processSources(state.productionCo2IntensitySources);
-    processSources(state.dischargeCo2IntensitySources);
+    for (const state of Object.values(zoneData.zoneStates)) {
+      processSources(state.productionCo2IntensitySources);
+      processSources(state.dischargeCo2IntensitySources);
+    }
   }
 
   return [...emissionFactorSources];
-}
+};
 
-function getEmissionFactorSourcesToProductionSource(zoneData: ZoneDetails) {
+const getEmissionFactorSourcesToProductionSource = (zoneData?: ZoneDetails) => {
   const emissionFactorsourceToProductionSource = {};
 
-  for (const state of Object.values(zoneData.zoneStates)) {
-    updateEmissionFactorSourcesWithProductionSources(
-      state.dischargeCo2IntensitySources,
-      emissionFactorsourceToProductionSource,
-      true
-    );
-    updateEmissionFactorSourcesWithProductionSources(
-      state.productionCo2IntensitySources,
-      emissionFactorsourceToProductionSource
-    );
+  if (zoneData) {
+    for (const state of Object.values(zoneData.zoneStates)) {
+      updateEmissionFactorSourcesWithProductionSources(
+        state.dischargeCo2IntensitySources,
+        emissionFactorsourceToProductionSource,
+        true
+      );
+      updateEmissionFactorSourcesWithProductionSources(
+        state.productionCo2IntensitySources,
+        emissionFactorsourceToProductionSource
+      );
+    }
   }
 
   return emissionFactorsourceToProductionSource;
-}
+};
 
-function updateEmissionFactorSourcesWithProductionSources(
+const updateEmissionFactorSourcesWithProductionSources = (
   sources: { [key: string]: string },
   emissionFactorsourceToProductionSource: { [key: string]: string[] },
   storageType?: boolean
-) {
+) => {
   for (const entry of Object.entries(sources)) {
     for (const emissionFactorSource of entry[1].split('; ')) {
       const productionSources = getProductionSourcesToAdd(
@@ -132,13 +130,13 @@ function updateEmissionFactorSourcesWithProductionSources(
       }
     }
   }
-}
+};
 
-function getProductionSourcesToAdd(
+const getProductionSourcesToAdd = (
   productionSource: string,
   productionSourceArray: string[] | undefined,
   emissionFactorSource: string
-): string[] {
+): string[] => {
   if (emissionFactorSource.startsWith('assumes')) {
     return [];
   } else if (productionSourceArray == undefined) {
@@ -147,4 +145,4 @@ function getProductionSourcesToAdd(
     productionSourceArray?.push(productionSource);
   }
   return productionSourceArray;
-}
+};

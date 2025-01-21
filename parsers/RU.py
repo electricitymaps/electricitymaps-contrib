@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
 import json
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from functools import reduce
 from logging import Logger, getLogger
+from zoneinfo import ZoneInfo
 
-import arrow
 import pandas as pd
 from requests import Session
 
@@ -53,7 +53,7 @@ exchange_ids = {
 # Each exchange is contained in a div tag with a "data-id" attribute that is unique.
 
 
-tz = "Europe/Moscow"
+TIMEZONE = ZoneInfo("Europe/Moscow")
 
 
 def fetch_production(
@@ -115,13 +115,13 @@ def fetch_production_1st_synchronous_zone(
         raise NotImplementedError("This parser is not able to parse given zone")
 
     if target_datetime:
-        target_datetime_tz = arrow.get(target_datetime).to(tz)
+        target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
     else:
-        target_datetime_tz = arrow.now(tz)
+        target_datetime_tz = datetime.now(TIMEZONE)
     # Query at t gives production from t to t+1
     # I need to shift 1 to get the last value at t
-    datetime_to_fetch = target_datetime_tz.shift(hours=-1)
-    date = datetime_to_fetch.format("YYYY.MM.DD")
+    datetime_to_fetch = target_datetime_tz - timedelta(hours=1)
+    date = datetime_to_fetch.strftime("%Y.%m.%d")
 
     r = session or Session()
 
@@ -155,9 +155,10 @@ def fetch_production_1st_synchronous_zone(
 
         # Date
         hour = "%02d" % (int(datapoint["INTERVAL"]))
-        datetime = arrow.get(f"{date} {hour}", "YYYY.MM.DD HH", tzinfo=tz)
-        row["datetime"] = datetime.datetime
-        last_dt = arrow.now(tz).shift(hours=-1).datetime
+        row["datetime"] = datetime.strptime(f"{date} {hour}", "%Y.%m.%d %H").replace(
+            tzinfo=TIMEZONE
+        )
+        last_dt = datetime.now(TIMEZONE) - timedelta(hours=1)
 
         # Drop datapoints in the future
         if row["datetime"] > last_dt:
@@ -181,12 +182,12 @@ def fetch_production_2nd_synchronous_zone(
         raise NotImplementedError("This parser is not able to parse given zone")
 
     if target_datetime:
-        target_datetime_tz = arrow.get(target_datetime).to(tz)
+        target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
     else:
-        target_datetime_tz = arrow.now(tz)
+        target_datetime_tz = datetime.now(TIMEZONE)
     # Here we should shift 30 minutes but it would be inconsistent with 1st zone
-    datetime_to_fetch = target_datetime_tz.shift(hours=-1)
-    date = datetime_to_fetch.format("YYYY.MM.DD")
+    datetime_to_fetch = target_datetime_tz - timedelta(hours=1)
+    date = datetime_to_fetch.strftime("%Y.%m.%d")
 
     r = session or Session()
 
@@ -222,9 +223,10 @@ def fetch_production_2nd_synchronous_zone(
         if len(hour) == 1:
             hour = "0" + hour
 
-        datetime = arrow.get(f"{date} {hour}", "YYYY.MM.DD HH", tzinfo=tz)
-        row["datetime"] = datetime.datetime
-        last_dt = arrow.now(tz).shift(minutes=-30).datetime
+        row["datetime"] = datetime.strptime(f"{date} {hour}", "%Y.%m.%d %H").replace(
+            tzinfo=TIMEZONE
+        )
+        last_dt = datetime.now(TIMEZONE) - timedelta(minutes=30)
 
         # Drop datapoints in the future
         if row["datetime"] > last_dt:
@@ -266,12 +268,9 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
-    if target_datetime:
-        today = arrow.get(target_datetime, "YYYYMMDD")
-    else:
-        today = arrow.utcnow()
+    today = target_datetime if target_datetime else datetime.now(timezone.utc)
 
-    date = today.format("YYYY-MM-DD")
+    date = today.date().isoformat()
     r = session or Session()
     DATE = f"Date={date}"
 
@@ -283,7 +282,7 @@ def fetch_exchange(
     else:
         # Only fetch last 2 hours when not fetching historical data.
         for shift in range(0, 2):
-            hour = today.shift(hours=-shift).format("HH")
+            hour = (today - timedelta(hours=shift)).strftime("%H")
             url = BASE_EXCHANGE_URL + DATE + f"&Hour={hour}"
             exchange_urls.append((url, int(hour)))
 
@@ -319,7 +318,7 @@ def fetch_exchange(
             # flow is unknown or not available
             flow = None
 
-        dt = today.replace(hour=hour).floor("hour").datetime
+        dt = today.replace(hour=hour, minute=0, second=0, microsecond=0)
 
         exchange = {
             "sortedZoneKeys": sortedcodes,
