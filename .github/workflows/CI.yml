@@ -48,7 +48,7 @@ jobs:
   #                        #
   prettier:
     name: Prettier
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
