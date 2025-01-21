@@ -573,7 +573,7 @@ jobs:
     if: >-
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
