@@ -38,12 +38,13 @@ EXCHANGES = {
     "MX-NE->MX-OC": "IntercambioNES-OCC",
     "MX-NO->MX-OC": "IntercambioNTE-OCC",
     "MX-NW->MX-OC": "IntercambioNOR-OCC",
-    "MX-BC->US-CAL-CISO": "IntercambioUSA-BCA",
     "MX->US-CAL-CISO": "IntercambioUSA-BCA",
-    # TODO: Ensure these are summed up to a single value for MX->US-TEX-ERCO
+    "MX-BC->US-CAL-CISO": "IntercambioUSA-BCA",
+    "MX->US-TEX-ERCO": "DummyValueNotUsed",
     "MX-NO->US-TEX-ERCO": "IntercambioUSA-NTE",
     "MX-NE->US-TEX-ERCO": "IntercambioUSA-NES",
     "BZ->MX": "IntercambioPEN-BEL",
+    "BZ->MX-PN": "IntercambioPEN-BEL",
 }
 
 REGION_MAPPING = {
@@ -224,16 +225,24 @@ def fetch_MX_exchange(sorted_zone_keys: ZoneKey, s: Session) -> float:
     """Finds current flow between two Mexican control areas."""
     req = s.get(MX_EXCHANGE_URL, headers={"User-Agent": "Mozilla/5.0"})
     soup = BeautifulSoup(req.text, "html.parser")
-    exchange_div = soup.find("div", attrs={"id": EXCHANGES[sorted_zone_keys]})
-    val = exchange_div.text
-
     # cenace html uses unicode hyphens instead of minus signs and , as thousand separator
     trantab = str.maketrans({chr(8208): chr(45), ",": ""})
+    if sorted_zone_keys == "MX->US-TEX-ERCO":
+        exchange_div1 = soup.find("div", attrs={"id": "IntercambioUSA-NTE"})
+        exchange_div2 = soup.find("div", attrs={"id": "IntercambioUSA-NES"})
+        val1, val2 = exchange_div1.text, exchange_div2.text
+        val1 = val1.translate(trantab)
+        val2 = val2.translate(trantab)
+        flow = float(val1) + float(val2)
+    else:
+        exchange_div = soup.find("div", attrs={"id": EXCHANGES[sorted_zone_keys]})
+        val = exchange_div.text
+        val = val.translate(trantab)
+        flow = float(val)
 
-    val = val.translate(trantab)
-    flow = float(val)
 
-    if sorted_zone_keys in ["BZ->MX-PN", "MX-CE->MX-OR", "MX-CE->MX-OC"]:
+
+    if sorted_zone_keys in ["BZ->MX", "BZ->MX-PN", "MX-CE->MX-OR", "MX-CE->MX-OC"]:
         # reversal needed for these zones due to EM ordering
         flow = -1 * flow
 
