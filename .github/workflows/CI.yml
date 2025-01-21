@@ -15,7 +15,7 @@ jobs:
   # This job is used to determine what files have changed and is used by later jobs to determine if they should run.
   setup:
     name: Setup
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 1
     outputs:
       frontend: ${{ steps.check-changed-files.outputs.frontend_any_changed }}
