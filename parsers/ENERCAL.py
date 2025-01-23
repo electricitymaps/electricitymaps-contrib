@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -8,6 +8,8 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
+
+from .lib.exceptions import ParserException
 
 TZ = ZoneInfo("Pacific/Noumea")
 
@@ -24,14 +26,13 @@ def fetch_production(
 ) -> list:
     session = session or Session()
 
-    sixteen_weeks_ago = datetime.now(tz=TZ) - timedelta(weeks=16)
+    if target_datetime and target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=TZ)
 
-    target_datetime = (
-        target_datetime
-        if target_datetime and target_datetime > sixteen_weeks_ago
-        else sixteen_weeks_ago
-    )
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TZ)
 
+    # No data since 2024-06-30, but the API is still working
     data = session.get(
         "https://www.enercal.nc/wp-content/themes/enercal/ajax-e-co2.php",
         params={"date_day": target_datetime.strftime("%Y-%m-%d")},
@@ -43,6 +44,13 @@ def fetch_production(
     mix = [json.loads(m) for m in data["mix"]]
     time = json.loads(data["time"][0])
     prettyTime = json.loads(data["prettyTime"][0])
+
+    if not time:
+        raise ParserException(
+            "ENERCAL.py",
+            f"This parser cannot retrieve data for: {target_datetime}",
+            ZoneKey("NC"),
+        )
 
     # Reformat the data to add key value pairs instead of using index values.
     production_data = []
