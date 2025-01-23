@@ -1,8 +1,8 @@
 bounding_box:
-  - - 101.62042120421202
-    - 8.090979058331172
-  - - 109.96449464494643
-    - 23.86547822579297
+  - - 102.12042120421202
+    - 8.590979058331172
+  - - 109.46449464494643
+    - 23.36547822579297
 capacity:
   biomass: 356
   coal: 25820
@@ -64,8 +64,4 @@ region: Asia
 sources:
   EMBER 2022:
     link: https://ember-climate.org/countries-and-regions/countries/viet-nam/
-subZoneNames:
-  - VN-N
-  - VN-C
-  - VN-S
 timezone: Asia/Ho_Chi_Minh
