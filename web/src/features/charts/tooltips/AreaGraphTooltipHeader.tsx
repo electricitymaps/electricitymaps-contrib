@@ -1,5 +1,5 @@
-import { HorizontalDivider } from 'components/Divider';
 import EstimationBadge from 'components/EstimationBadge';
+import HorizontalDivider from 'components/HorizontalDivider';
 import { FormattedTime } from 'components/Time';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtomValue } from 'jotai';

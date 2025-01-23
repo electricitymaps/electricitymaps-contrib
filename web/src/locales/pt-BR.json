@@ -1671,14 +1671,6 @@
       "countryName": "Austrália",
       "zoneName": "Ilha Rottnest"
     },
-    "CA-NL-LB": {
-      "countryName": "Canadá",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canadá",
-      "zoneName": "Newfoundland"
-    },
     "CL-CHP": {
       "countryName": "Chile",
       "zoneName": "Ilha de Páscoa"
@@ -1728,7 +1720,6 @@
   },
   "windDataError": "Dados eólicos estão indisponíveis",
   "solarDataError": "Dados solares estão indisponíveis",
-
   "button": {
     "feedback": "Compartilhar Feedback",
     "github": "Ver nosso GitHub",

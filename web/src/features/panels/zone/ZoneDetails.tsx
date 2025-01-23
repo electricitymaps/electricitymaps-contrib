@@ -1,11 +1,11 @@
 import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
-import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
-import { HorizontalDivider } from 'components/Divider';
+import ApiButton from 'components/buttons/ApiButton';
+import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -27,8 +27,8 @@ import EstimationCard from './EstimationCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
+import ZoneHeader from './ZoneHeader';
 import { ZoneHeaderGauges } from './ZoneHeaderGauges';
-import ZoneHeaderTitle from './ZoneHeaderTitle';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -41,6 +41,12 @@ export default function ZoneDetails(): JSX.Element {
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
+  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data, timeRange);
+  const selectedData = data?.zoneStates[selectedDatetimeString];
+  const { estimationMethod, estimatedPercentage } = selectedData || {};
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationPill =
+    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -58,6 +64,54 @@ export default function ZoneDetails(): JSX.Element {
 
   useScrollHashIntoView(isLoading);
 
+  const datetimes = useMemo(
+    () => Object.keys(data?.zoneStates || {})?.map((key) => new Date(key)),
+    [data]
+  );
+
+  // We isolate the component which is independant of `selectedData`
+  // in order to avoid re-rendering it needlessly
+  const zoneDetailsContent = useMemo(
+    () =>
+      zoneId &&
+      zoneDataStatus && (
+        <ZoneDetailsContent
+          isLoading={isLoading}
+          isError={isError}
+          zoneDataStatus={zoneDataStatus}
+        >
+          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+          <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
+          {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
+            <AreaGraphContainer
+              datetimes={datetimes}
+              timeRange={timeRange}
+              displayByEmissions={displayByEmissions}
+            />
+          )}
+
+          <MethodologyCard />
+          <HorizontalDivider />
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
+            <ApiButton size="sm" />
+          </div>
+          <Attribution zoneId={zoneId} />
+        </ZoneDetailsContent>
+      ),
+    [
+      isLoading,
+      isError,
+      zoneDataStatus,
+      hasEstimationPill,
+      datetimes,
+      timeRange,
+      displayByEmissions,
+      zoneId,
+      t,
+    ]
+  );
+
   if (!zoneId) {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
@@ -68,21 +122,13 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeRange);
-
-  const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
-  const selectedData = data?.zoneStates[selectedDatetimeString];
-  const { estimationMethod, estimatedPercentage } = selectedData || {};
   const zoneMessage = data?.zoneMessage;
   const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
-  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationPill =
-    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
     <>
-      <ZoneHeaderTitle zoneId={zoneId} isEstimated={cardType === 'estimated'} />
+      <ZoneHeader zoneId={zoneId} isEstimated={cardType === 'estimated'} />
       <div
         id="panel-scroller"
         className={twMerge(
@@ -105,29 +151,7 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
             <DisplayByEmissionToggle />
           )}
-        <ZoneDetailsContent
-          isLoading={isLoading}
-          isError={isError}
-          zoneDataStatus={zoneDataStatus}
-        >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="primary" />
-          {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
-            <AreaGraphContainer
-              datetimes={datetimes}
-              timeRange={timeRange}
-              displayByEmissions={displayByEmissions}
-            />
-          )}
-
-          <MethodologyCard />
-          <HorizontalDivider />
-          <div className="flex items-center justify-between gap-2">
-            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
-            <CommercialApiButton size="sm" />
-          </div>
-          <Attribution zoneId={zoneId} />
-        </ZoneDetailsContent>
+        {zoneDetailsContent}
       </div>
     </>
   );

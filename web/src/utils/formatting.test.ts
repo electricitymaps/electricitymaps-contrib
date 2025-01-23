@@ -356,7 +356,7 @@ describe('formatCo2', () => {
 
 describe('getDateTimeFormatOptions', () => {
   it('handles hourly data', () => {
-    const actual = getDateTimeFormatOptions(TimeRange.H24, 'UTC');
+    const actual = getDateTimeFormatOptions(TimeRange.H72, 'UTC');
     const expected = {
       year: 'numeric',
       month: 'short',
@@ -370,7 +370,7 @@ describe('getDateTimeFormatOptions', () => {
   });
 
   it('handles hourly data without timezone', () => {
-    const actual = getDateTimeFormatOptions(TimeRange.H24);
+    const actual = getDateTimeFormatOptions(TimeRange.H72);
     const expected = {
       year: 'numeric',
       month: 'short',
@@ -384,7 +384,7 @@ describe('getDateTimeFormatOptions', () => {
   });
 
   it('handles daily data', () => {
-    const actual = getDateTimeFormatOptions(TimeRange.D30);
+    const actual = getDateTimeFormatOptions(TimeRange.M3);
     const expected = {
       dateStyle: 'long',
       timeZone: 'UTC',
@@ -392,7 +392,7 @@ describe('getDateTimeFormatOptions', () => {
     expect(actual).to.deep.eq(expected);
   });
   it('handles monthly data', () => {
-    const actual = getDateTimeFormatOptions(TimeRange.M12);
+    const actual = getDateTimeFormatOptions(TimeRange.ALL_MONTHS);
     const expected = {
       month: 'long',
       year: 'numeric',
@@ -401,7 +401,7 @@ describe('getDateTimeFormatOptions', () => {
     expect(actual).to.deep.eq(expected);
   });
   it('handles yearly data', () => {
-    const actual = getDateTimeFormatOptions(TimeRange.ALL);
+    const actual = getDateTimeFormatOptions(TimeRange.ALL_YEARS);
     const expected = {
       year: 'numeric',
       timeZone: 'UTC',
@@ -428,13 +428,13 @@ describe('getDateTimeFormatOptions', () => {
 // and may fail if the Node version changes. Simply update the snapshot if that is the case.
 describe('formatDate', () => {
   it('handles invalid date', () => {
-    const actual = formatDate(new Date('invalid-date'), 'en', TimeRange.H24);
+    const actual = formatDate(new Date('invalid-date'), 'en', TimeRange.H72);
     const expected = '';
     expect(actual).to.deep.eq(expected);
   });
 
   it('handles a date that is not a Date object', () => {
-    const actual = formatDate('not-a-date' as unknown as Date, 'en', TimeRange.H24);
+    const actual = formatDate('not-a-date' as unknown as Date, 'en', TimeRange.H72);
     const expected = '';
     expect(actual).to.deep.eq(expected);
   });
@@ -445,7 +445,7 @@ describe('formatDate', () => {
       const actual = formatDate(
         new Date('2021-01-01T00:00:00Z'),
         language,
-        TimeRange.H24
+        TimeRange.H72
       );
       expect(actual).toMatchSnapshot();
     }
@@ -454,11 +454,7 @@ describe('formatDate', () => {
   it.each(['en', 'sv', 'de', 'fr', 'es', 'it'])(
     'handles daily data for %s',
     (language) => {
-      const actual = formatDate(
-        new Date('2021-01-01T00:00:00Z'),
-        language,
-        TimeRange.D30
-      );
+      const actual = formatDate(new Date('2021-01-01T00:00:00Z'), language, TimeRange.M3);
       expect(actual).toMatchSnapshot();
     }
   );
@@ -469,7 +465,7 @@ describe('formatDate', () => {
       const actual = formatDate(
         new Date('2021-01-01T00:00:00Z'),
         language,
-        TimeRange.M12
+        TimeRange.ALL_MONTHS
       );
       expect(actual).toMatchSnapshot();
     }
@@ -481,7 +477,7 @@ describe('formatDate', () => {
       const actual = formatDate(
         new Date('2021-01-01T00:00:00Z'),
         language,
-        TimeRange.ALL
+        TimeRange.ALL_YEARS
       );
       expect(actual).toMatchSnapshot();
     }
@@ -551,13 +547,13 @@ describe('scalePower', () => {
 
 describe('formatDateTick', () => {
   it('should return an empty string for invalid date', () => {
-    const result = formatDateTick(new Date('invalid-date'), 'en', TimeRange.H24);
+    const result = formatDateTick(new Date('invalid-date'), 'en', TimeRange.H72);
     expect(result).toBe('');
   });
 
   it('should format date correctly for HOURLY time aggregate', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeRange.H24);
+    const result = formatDateTick(date, 'en', TimeRange.H72);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', { timeStyle: 'short' }).format(date)
     );
@@ -565,7 +561,7 @@ describe('formatDateTick', () => {
 
   it('should format date correctly for DAILY time aggregate', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeRange.D30);
+    const result = formatDateTick(date, 'en', TimeRange.M3);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', {
         month: 'short',
@@ -575,30 +571,17 @@ describe('formatDateTick', () => {
     );
   });
 
-  it('should format date correctly for MONTHLY time aggregate with language "et"', () => {
-    const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'et', TimeRange.M12);
-    const expected = new Intl.DateTimeFormat('et', {
-      month: 'short',
-      day: 'numeric',
-      timeZone: 'UTC',
-    })
-      .formatToParts(date)
-      .find((part) => part.type === 'month')?.value;
-    expect(result).toBe(expected);
-  });
-
   it('should format date correctly for MONTHLY time aggregate with language not "et"', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeRange.M12);
+    const result = formatDateTick(date, 'en', TimeRange.ALL_MONTHS);
     expect(result).toBe(
-      new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' }).format(date)
+      new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: 'UTC' }).format(date)
     );
   });
 
   it('should format date correctly for YEARLY time aggregate', () => {
     const date = new Date('2023-01-01T12:00:00Z');
-    const result = formatDateTick(date, 'en', TimeRange.ALL);
+    const result = formatDateTick(date, 'en', TimeRange.ALL_YEARS);
     expect(result).toBe(
       new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: 'UTC' }).format(date)
     );

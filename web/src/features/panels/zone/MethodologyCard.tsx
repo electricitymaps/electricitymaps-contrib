@@ -1,16 +1,16 @@
 import Accordion from 'components/Accordion';
-import { Link } from 'components/Link';
+import Link from 'components/Link';
 import { DataSources } from 'features/charts/DataSources';
 import useZoneDataSources from 'features/charts/hooks/useZoneDataSources';
 import { RoundedCard } from 'features/charts/RoundedCard';
 import { t } from 'i18next';
 import { EmapsIcon } from 'icons/emapsIcon';
 import { Factory, UtilityPole, Zap } from 'lucide-react';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import trackEvent from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
 
-export default function MethodologyCard() {
+function MethodologyCard() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const {
     capacitySources,
@@ -71,3 +71,5 @@ export default function MethodologyCard() {
     </RoundedCard>
   );
 }
+
+export default memo(MethodologyCard);

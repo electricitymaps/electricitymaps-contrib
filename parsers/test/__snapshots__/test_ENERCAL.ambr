@@ -1,0 +1,413 @@
+# serializer version: 1
+# name: test_production_with_snapshot
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 23.7,
+        'hydro': 35.9,
+        'oil': 32,
+        'solar': 0.3,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 20.7,
+        'hydro': 35.2,
+        'oil': 32.3,
+        'solar': 0,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 16.8,
+        'hydro': 35.7,
+        'oil': 33.8,
+        'solar': 0,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 21.1,
+        'hydro': 28.8,
+        'oil': 32,
+        'solar': 0,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 28.4,
+        'hydro': 21,
+        'oil': 32.6,
+        'solar': 0,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 27.8,
+        'hydro': 23.5,
+        'oil': 33.6,
+        'solar': 0.1,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 16.6,
+        'hydro': 34.5,
+        'oil': 33.7,
+        'solar': 3.6,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 20.2,
+        'hydro': 14,
+        'oil': 32.5,
+        'solar': 20,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 18.3,
+        'hydro': 0.3,
+        'oil': 27.3,
+        'solar': 34.6,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 12.8,
+        'hydro': 0.8,
+        'oil': 9.5,
+        'solar': 55.3,
+        'wind': 0.2,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 11.5,
+        'hydro': 1.4,
+        'oil': 5.9,
+        'solar': 53.1,
+        'wind': 1.3,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 9.4,
+        'hydro': 6.8,
+        'oil': 10.9,
+        'solar': 48.9,
+        'wind': 2,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 13.1,
+        'hydro': 10.2,
+        'oil': 27.9,
+        'solar': 41.5,
+        'wind': 3.4,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 16.5,
+        'hydro': 1.4,
+        'oil': 23.5,
+        'solar': 39.2,
+        'wind': 3.2,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 21.5,
+        'hydro': 6.8,
+        'oil': 17.8,
+        'solar': 24.6,
+        'wind': 2.4,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 18.5,
+        'hydro': 17.2,
+        'oil': 32,
+        'solar': 18.7,
+        'wind': 2.1,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 18.4,
+        'hydro': 34.6,
+        'oil': 36.4,
+        'solar': 14.2,
+        'wind': 2.2,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 20,
+        'hydro': 34.6,
+        'oil': 33.9,
+        'solar': 10.3,
+        'wind': 0.6,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 19.8,
+        'hydro': 37.5,
+        'oil': 34.9,
+        'solar': 3.1,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 21.3,
+        'hydro': 38.7,
+        'oil': 42.4,
+        'solar': 1.2,
+        'wind': 0,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 21.5,
+        'hydro': 39,
+        'oil': 44,
+        'solar': 0.5,
+        'wind': 0.1,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 20.2,
+        'hydro': 38.7,
+        'oil': 42.5,
+        'solar': 0,
+        'wind': 1.9,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 19,
+        'hydro': 38.6,
+        'oil': 37.1,
+        'solar': 0,
+        'wind': 3.2,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Pacific/Noumea')),
+      'production': dict({
+        'coal': 17.3,
+        'hydro': 38.4,
+        'oil': 32,
+        'solar': 0.3,
+        'wind': 2.8,
+      }),
+      'source': 'enercal.nc',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'NC',
+    }),
+  ])
+# ---

@@ -1,3 +1,8 @@
+bounding_box:
+  - - 59.98600486004861
+    - 28.886043704048674
+  - - 75.39334893348934
+    - 38.943366953841945
 country: AF
 region: Asia
 timezone: Asia/Kabul

@@ -192,17 +192,17 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Timvis data för:",
       "72h": "Timvis data för:",
-      "30d": "Dagsvis data för:",
+      "3mo": "Dagsvis data för:",
       "12mo": "Månadsvis data för:",
-      "all": "Årsvis data för:"
+      "all_months": "Månadsvis data för:",
+      "all_years": "Årsvis data för:"
     },
-    "30d": "dagvis",
-    "24h": "timvis",
+    "3mo": "dagvis",
     "72h": "timvis",
     "12mo": "månadsvis",
-    "all": "årsvis"
+    "all_months": "månadsvis",
+    "all_years": "årsvis"
   },
   "ranking-panel": {
     "title": "Klimatpåverkan per region",
@@ -210,7 +210,6 @@
     "search": "Sök efter region"
   },
   "left-panel": {
-    "get-data": "Se våra kommersiella API-erbjudanden",
     "applied-methodologies": {
       "title": "Tillämpade metoder",
       "estimations": "Electricity Maps - Uppskattningar",
@@ -219,7 +218,6 @@
     }
   },
   "header": {
-    "get-data": "Använd vår data",
     "blog": "Blogg",
     "open-source": "Öppen källkod",
     "hiring": "Vi anställer!",
@@ -228,60 +226,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Timvis koldioxidintensitet",
       "72h": "Timvis koldioxidintensitet",
-      "30d": "Daglig koldioxidintensitet",
+      "3mo": "Daglig koldioxidintensitet",
       "12mo": "Månadsvis koldioxidintensitet",
-      "all": "Årlig koldioxidintensitet"
+      "all_months": "Månadsvis koldioxidintensitet",
+      "all_years": "Årlig koldioxidintensitet"
     },
     "emissions": {
-      "24h": "Timvisa koldioxidutsläpp",
       "72h": "Timvisa koldioxidutsläpp",
-      "30d": "Dagliga koldioxidutsläpp",
+      "3mo": "Dagliga koldioxidutsläpp",
       "12mo": "Månadsvisa koldioxidutsläpp",
-      "all": "Årliga koldioxidutsläpp"
+      "all_months": "Månadsvisa koldioxidutsläpp",
+      "all_years": "Årliga koldioxidutsläpp"
     },
     "emissionsorigin": {
-      "24h": "Timvis ursprung av koldioxidutsläpp",
       "72h": "Timvis ursprung av koldioxidutsläpp",
-      "30d": "Dagligt ursprung av koldioxidutsläpp",
+      "3mo": "Dagligt ursprung av koldioxidutsläpp",
       "12mo": "Månadsvis ursprung av koldioxidutsläpp",
-      "all": "Årligt ursprung av koldioxidutsläpp"
+      "all_months": "Månadsvis ursprung av koldioxidutsläpp",
+      "all_years": "Årligt ursprung av koldioxidutsläpp"
     },
     "emissionsproduction": {
-      "24h": "Timvisa produktionsutsläpp",
       "72h": "Timvisa produktionsutsläpp",
-      "30d": "Dagliga produktionsutsläpp",
+      "3mo": "Dagliga produktionsutsläpp",
       "12mo": "Månadsvisa produktionsutsläpp",
-      "all": "Årliga produktionsutsläpp"
+      "all_months": "Månadsvisa produktionsutsläpp",
+      "all_years": "Årliga produktionsutsläpp"
     },
     "electricityorigin": {
-      "24h": "Timvis ursprung av elektricitet",
       "72h": "Timvis ursprung av elektricitet",
-      "30d": "Dagligt ursprung av elektricitet",
+      "3mo": "Dagligt ursprung av elektricitet",
       "12mo": "Månadsvis ursprung av elektricitet",
-      "all": "Årligt ursprung av elektricitet"
+      "all_months": "Månadsvis ursprung av elektricitet",
+      "all_years": "Årligt ursprung av elektricitet"
     },
     "electricityproduction": {
-      "24h": "Timvis elproduktion",
       "72h": "Timvis elproduktion",
-      "30d": "Daglig elproduktion",
+      "3mo": "Daglig elproduktion",
       "12mo": "Månadsvis elproduktion",
-      "all": "Årlig elproduktion"
+      "all_months": "Månadsvis elproduktion",
+      "all_years": "Årlig elproduktion"
     },
     "electricityprices": {
-      "24h": "Timvisa elpriser",
       "72h": "Timvisa elpriser",
-      "30d": "Dagliga elpriser",
+      "3mo": "Dagliga elpriser",
       "12mo": "Månadsvisa elpriser",
-      "all": "Årliga elpriser"
+      "all_months": "Månadsvisa elpriser",
+      "all_years": "Årliga elpriser"
     },
     "netExchange": {
-      "24h": "Timvis nettoöverföring",
       "72h": "Timvis nettoöverföring",
-      "30d": "Daglig nettoöverföring",
+      "3mo": "Daglig nettoöverföring",
       "12mo": "Månadsvis nettoöverföring",
-      "all": "Årlig nettoöverföring"
+      "all_months": "Månadsvis nettoöverföring",
+      "all_years": "Årlig nettoöverföring"
     },
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },
@@ -639,14 +637,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland och Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Kanada",
@@ -2033,18 +2023,6 @@
     },
     "VN": {
       "zoneName": "Vietnam"
-    },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Centrala Vietnam"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Norra Vietnam"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Södra Vietnam"
     },
     "VU": {
       "zoneName": "Vanuatu"

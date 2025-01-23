@@ -9,7 +9,7 @@ export interface Meta {
 }
 
 export async function getMeta(): Promise<Meta> {
-  const path: URL = new URL(`/v9/${QUERY_KEYS.META}`, getBasePath());
+  const path: URL = new URL(`/v10/${QUERY_KEYS.META}`, getBasePath());
 
   try {
     const response = await fetch(path);

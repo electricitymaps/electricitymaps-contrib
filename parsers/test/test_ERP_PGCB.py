@@ -1,92 +1,42 @@
+from datetime import datetime
 from importlib import resources
 
-from requests import Session
-from requests_mock import ANY, GET, Adapter
-from snapshottest import TestCase
+import pytest
+from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.ERP_PGCB import fetch_consumption, fetch_exchange, fetch_production
 
+historical_dt = datetime.fromisoformat("2025-01-01 00:00:00 +06:00")
 
-class TestERP_PGCB(TestCase):
-    def setUp(self) -> None:
-        self.session = Session()
-        self.adapter = Adapter()
-        self.session.mount("https://", self.adapter)
 
-    def test_fetch_consumption(self):
-        self.adapter.register_uri(
-            GET,
-            ANY,
-            text=resources.files("parsers.test.mocks.ERP_PGCB")
-            .joinpath("latest.html")
-            .read_text(),
-        )
+def _load_mock_response(adapter, target_datetime):
+    mock_data_file = "latest.html"
+    if target_datetime:
+        mock_data_file = "historical.html"
 
-        consumption = fetch_consumption(zone_key=ZoneKey("BD"), session=self.session)
+    adapter.register_uri(
+        GET,
+        ANY,
+        text=resources.files("parsers.test.mocks.ERP_PGCB")
+        .joinpath(mock_data_file)
+        .read_text(),
+    )
 
-        self.assertMatchSnapshot(
-            [
-                {
-                    "datetime": element["datetime"].isoformat(),
-                    "consumption": element["consumption"],
-                    "source": element["source"],
-                }
-                for element in consumption
-            ]
-        )
 
-    def test_exchanges(self):
-        self.adapter.register_uri(
-            GET,
-            ANY,
-            text=resources.files("parsers.test.mocks.ERP_PGCB")
-            .joinpath("latest.html")
-            .read_text(),
-        )
+@pytest.mark.parametrize("target_datetime", [None, historical_dt])
+def test_fetch_consumption(adapter, session, snapshot, target_datetime):
+    _load_mock_response(adapter, target_datetime)
+    assert snapshot == fetch_consumption(session=session)
 
-        exchange = fetch_exchange(
-            zone_key1=ZoneKey("BD"),
-            zone_key2=ZoneKey("IN-NE"),
-            session=self.session,
-        )
 
-        self.assertMatchSnapshot(
-            [
-                {
-                    "datetime": element["datetime"].isoformat(),
-                    "netFlow": element["netFlow"],
-                    "source": element["source"],
-                    "sortedZoneKeys": element["sortedZoneKeys"],
-                }
-                for element in exchange
-            ]
-        )
+@pytest.mark.parametrize("target_datetime", [None, historical_dt])
+def test_exchanges(adapter, session, snapshot, target_datetime):
+    _load_mock_response(adapter, target_datetime)
+    assert snapshot == fetch_exchange(ZoneKey("BD"), ZoneKey("IN-NE"), session=session)
 
-    def test_fetch_production(self):
-        self.adapter.register_uri(
-            GET,
-            ANY,
-            text=resources.files("parsers.test.mocks.ERP_PGCB")
-            .joinpath("latest.html")
-            .read_text(),
-        )
-        production = fetch_production(
-            zone_key=ZoneKey("BD"),
-            session=self.session,
-        )
 
-        self.assertMatchSnapshot(
-            [
-                {
-                    "datetime": element["datetime"].isoformat(),
-                    "zoneKey": element["zoneKey"],
-                    "production": element["production"],
-                    "storage": element["storage"],
-                    "source": element["source"],
-                    "sourceType": element["sourceType"].value,
-                    "correctedModes": element["correctedModes"],
-                }
-                for element in production
-            ]
-        )
+@pytest.mark.parametrize("target_datetime", [None, historical_dt])
+def test_fetch_production(adapter, session, snapshot, target_datetime):
+    _load_mock_response(adapter, target_datetime)
+    assert snapshot == fetch_production(session=session)

@@ -19,20 +19,7 @@ def test_production(snapshot):
             content=mock_file.read(),
         )
 
-    production = fetch_production(
+    assert snapshot == fetch_production(
         zone_key=ZoneKey("FR"),
         session=session,
-    )
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "zoneKey": element["zoneKey"],
-                "sourceType": "measured",
-            }
-            for element in production
-        ]
     )

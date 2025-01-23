@@ -3,7 +3,7 @@ import { FormattedTime } from 'components/Time';
 import { addDays, subDays, subHours } from 'date-fns';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -11,12 +11,20 @@ import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
 import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
-import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
+import {
+  endDatetimeAtom,
+  isHourlyAtom,
+  selectedDatetimeIndexAtom,
+  startDatetimeAtom,
+  timeRangeAtom,
+} from 'utils/state/atoms';
 
-export default function HistoricalTimeHeader() {
+function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
@@ -76,9 +84,9 @@ export default function HistoricalTimeHeader() {
     return (
       <div className="flex min-h-6 flex-row items-center justify-center">
         <FormattedTime
-          datetime={startDatetime}
+          datetime={selectedDatetime.datetime}
           language={i18n.languages[0]}
-          endDatetime={endDatetime}
+          timeRange={timeRange}
           className="text-sm font-semibold"
         />
       </div>
@@ -104,14 +112,12 @@ export default function HistoricalTimeHeader() {
             />
           }
         />
-        {startDatetime && endDatetime && (
-          <FormattedTime
-            datetime={startDatetime}
-            language={i18n.languages[0]}
-            endDatetime={endDatetime}
-            className="text-sm font-semibold"
-          />
-        )}
+        <FormattedTime
+          datetime={selectedDatetime.datetime}
+          language={i18n.languages[0]}
+          timeRange={timeRange}
+          className="text-sm font-semibold"
+        />
         <Button
           backgroundClasses="bg-transparent"
           size="sm"
@@ -148,3 +154,5 @@ export default function HistoricalTimeHeader() {
     </div>
   );
 }
+
+export default memo(HistoricalTimeHeader);
