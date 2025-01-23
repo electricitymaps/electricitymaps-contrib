@@ -21,6 +21,7 @@ from electricitymap.contrib.lib.types import ZoneKey
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
+RETIRED_ZONES_CONFIG = read_zones_config(CONFIG_DIR, retired=True)
 EXCHANGES_CONFIG = read_exchanges_config(CONFIG_DIR)
 
 EU_ZONES = [

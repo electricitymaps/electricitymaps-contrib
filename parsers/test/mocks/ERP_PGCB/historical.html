@@ -8,22 +8,62 @@
 
 
 <meta name="msapplication-TileColor" content=""/>
-<meta name="theme-color" content=""/>
+
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="HandheldFriendly" content="True"/>
 <meta name="MobileOptimized" content="320"/>
 
+<!-- PWA  -->
+<meta name="theme-color" content="#6777ef"/>
+<link rel="apple-touch-icon" href="https://erp.pgcb.gov.bd/images/logo_r.png">
+
+
+
+    <!--<link rel="manifest" href="https://erp.pgcb.gov.bd/manifests/transgrid.json"> -->
+
+
+
+
 
 
     <title>PGCB Website</title>
+    <link rel="icon" href="https://erp.pgcb.gov.bd/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="https://erp.pgcb.gov.bd/favicon.ico" type="image/x-icon"/>
+
+<link href="https://erp.pgcb.gov.bd/dist/css/tabler.min.css" rel="stylesheet"/>
+<link href="https://erp.pgcb.gov.bd/dist/css/tabler-flags.min.css" rel="stylesheet"/>
+<link href="https://erp.pgcb.gov.bd/dist/css/tabler-payments.min.css" rel="stylesheet"/>
+<link href="https://erp.pgcb.gov.bd/dist/css/tabler-vendors.min.css" rel="stylesheet"/>
+<link href="https://erp.pgcb.gov.bd/dist/css/demo.min.css" rel="stylesheet"/>
+<link href="https://erp.pgcb.gov.bd/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+
+<!-- Styles -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
 
 
 
 
 
 <style>
+    /* Chrome, Safari, Edge, Opera */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
     .tooltip-inner {
         white-space: pre-line;
     }
@@ -134,7 +174,7 @@
         <div class="col-sm-3">
             <form method="GET" action="https://erp.pgcb.gov.bd/web/generations/view_generations" accept-charset="UTF-8">
             <input type="text" name="search" placeholder="Search by Date" id="search" class="form-control"
-                   style="margin: 5px; margin-left: 0px;" value="01-12-2023">
+                   style="margin: 5px; margin-left: 0px;" value="01-01-2025">
             <button type="submit" class="btn btn-sm btn-success" style="display: none">
                 Search
             </button>
@@ -150,501 +190,558 @@
             <table class="table-bordered" style=" border-color: #e2e8f0; ">
                 <!-- <table class="table table-vcenter card-table ">-->
                 <thead>
-                <th style="width: 80px;">Date</th>
-                <th>Time</th>
-                <th>Generation(MW)</th>
-                <th>Demand(MW)</th>
-                <th>Loadshed</th>
-                <th>Gas</th>
-                <th>Liquid Fuel</th>
-                <th>Coal</th>
-                <th>Hydro</th>
-                <th>Solar</th>
-                <th>Wind</th>
-                <th>Bheramara HVDC</th>
-                <th>Tripura</th>
-                <th style="width: 100px;">Remarks</th>
+                <tr>
+                    <th style="width: 80px;" rowspan="2">Date</th>
+                    <th rowspan="2">Time</th>
+                    <th rowspan="2">Generation(MW)</th>
+                    <th rowspan="2">Demand(MW)</th>
+                    <th rowspan="2">Loadshed</th>
+                    <th rowspan="2">Gas</th>
+                    <th rowspan="2">Liquid Fuel</th>
+                    <th rowspan="2">Coal</th>
+                    <th rowspan="2">Hydro</th>
+                    <th rowspan="2">Solar</th>
+                    <th rowspan="2">Wind</th>
+                    <th rowspan="1" colspan="3">India</th>
+                    <th rowspan="2">Nepal</th>
+                    <th style="width: 100px;" rowspan="2">Remarks</th>
+                </tr>
+                <tr>
+                    <th rowspan="1" colspan="1" >Bheramara HVDC</th>
+                    <th rowspan="1" colspan="1" >Tripura</th>
+                    <th rowspan="1" colspan="1" >Adani</th>
+                </tr>
                 </thead>
                 <tbody>
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>24:00:00</td>
-                        <td>8160</td>
-                        <td>8160</td>
+                        <td>8514</td>
+                        <td>8514</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4761</td>
+                        <td>4132</td>
+                        <td>35</td>
+                        <td>2847</td>
+                        <td>40</td>
                         <td>0</td>
-                        <td>2292</td>
-                        <td>86</td>
+                        <td>19</td>
+                        <td>911</td>
+                        <td>48</td>
+                        <td>482</td>
                         <td>0</td>
-                        <td>0</td>
-                        <td>917</td>
-                        <td>104</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>23:00:00</td>
-                        <td>8444</td>
-                        <td>8444</td>
+                        <td>8898</td>
+                        <td>8898</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4841</td>
-                        <td>100</td>
-                        <td>2395</td>
-                        <td>86</td>
+                        <td>4161</td>
+                        <td>62</td>
+                        <td>3081</td>
+                        <td>40</td>
                         <td>0</td>
+                        <td>19</td>
+                        <td>910</td>
+                        <td>50</td>
+                        <td>575</td>
                         <td>0</td>
-                        <td>916</td>
-                        <td>106</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>22:00:00</td>
-                        <td>8710</td>
-                        <td>8710</td>
+                        <td>9430</td>
+                        <td>9430</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4922</td>
-                        <td>254</td>
-                        <td>2422</td>
-                        <td>86</td>
+                        <td>4204</td>
+                        <td>88</td>
+                        <td>3379</td>
+                        <td>40</td>
                         <td>0</td>
+                        <td>18</td>
+                        <td>910</td>
+                        <td>52</td>
+                        <td>739</td>
                         <td>0</td>
-                        <td>914</td>
-                        <td>112</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>21:00:00</td>
-                        <td>9032</td>
-                        <td>9032</td>
+                        <td>9829</td>
+                        <td>9829</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4929</td>
-                        <td>497</td>
-                        <td>2498</td>
-                        <td>86</td>
+                        <td>4228</td>
+                        <td>202</td>
+                        <td>3626</td>
+                        <td>40</td>
                         <td>0</td>
+                        <td>11</td>
+                        <td>909</td>
+                        <td>54</td>
+                        <td>759</td>
                         <td>0</td>
-                        <td>908</td>
-                        <td>114</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>20:00:00</td>
-                        <td>9199</td>
-                        <td>9199</td>
+                        <td>9970</td>
+                        <td>9970</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4927</td>
-                        <td>789</td>
-                        <td>2464</td>
-                        <td>86</td>
+                        <td>4295</td>
+                        <td>587</td>
+                        <td>3603</td>
+                        <td>40</td>
                         <td>0</td>
-                        <td>1</td>
-                        <td>824</td>
-                        <td>108</td>
+                        <td>7</td>
+                        <td>627</td>
+                        <td>56</td>
+                        <td>755</td>
+                        <td>0</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>19:30:00</td>
-                        <td>9138</td>
-                        <td>9138</td>
+                        <td>10107</td>
+                        <td>10107</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4952</td>
-                        <td>807</td>
-                        <td>2469</td>
-                        <td>86</td>
+                        <td>4371</td>
+                        <td>620</td>
+                        <td>3630</td>
+                        <td>40</td>
                         <td>0</td>
+                        <td>9</td>
+                        <td>627</td>
+                        <td>54</td>
+                        <td>756</td>
                         <td>0</td>
-                        <td>718</td>
-                        <td>106</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>19:00:00</td>
-                        <td>9203</td>
-                        <td>9203</td>
+                        <td>10118</td>
+                        <td>10118</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>5082</td>
-                        <td>870</td>
-                        <td>2434</td>
-                        <td>86</td>
+                        <td>4422</td>
+                        <td>586</td>
+                        <td>3615</td>
+                        <td>40</td>
                         <td>0</td>
+                        <td>13</td>
+                        <td>627</td>
+                        <td>56</td>
+                        <td>759</td>
                         <td>0</td>
-                        <td>625</td>
-                        <td>106</td>
+                        <td></td>
+                    </tr>
+
+                
+                    <tr>
+                        <td class="text-nowrap">01-01-2025</td>
+                        <td>18:00:00</td>
+                        <td>10336</td>
+                        <td>10336</td>
+                    <!--<td>0.00</td>-->
+                        <td>0</td>
+                        <td>4307</td>
+                        <td>1256</td>
+                        <td>3364</td>
+                        <td>40</td>
+                        <td>0</td>
+                        <td>8</td>
+                        <td>680</td>
+                        <td>54</td>
+                        <td>627</td>
+                        <td>0</td>
                         <td>Evening Peak</td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
-                        <td>18:00:00</td>
-                        <td>9095</td>
-                        <td>9095</td>
-                    <!--<td>0.00</td>-->
-                        <td>0</td>
-                        <td>5070</td>
-                        <td>865</td>
-                        <td>2253</td>
-                        <td>86</td>
-                        <td>0</td>
-                        <td>1</td>
-                        <td>708</td>
-                        <td>112</td>
-                        <td></td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>17:00:00</td>
-                        <td>7629</td>
-                        <td>7629</td>
+                        <td>9175</td>
+                        <td>9175</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4390</td>
-                        <td>324</td>
-                        <td>1906</td>
-                        <td>86</td>
+                        <td>3946</td>
+                        <td>635</td>
+                        <td>3057</td>
+                        <td>30</td>
+                        <td>12</td>
                         <td>3</td>
+                        <td>907</td>
+                        <td>58</td>
+                        <td>527</td>
                         <td>0</td>
-                        <td>824</td>
-                        <td>96</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>16:00:00</td>
-                        <td>7461</td>
-                        <td>7461</td>
+                        <td>8829</td>
+                        <td>8829</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4427</td>
-                        <td>33</td>
-                        <td>1924</td>
-                        <td>86</td>
-                        <td>72</td>
+                        <td>4267</td>
+                        <td>252</td>
+                        <td>2765</td>
+                        <td>30</td>
+                        <td>90</td>
+                        <td>7</td>
+                        <td>907</td>
+                        <td>54</td>
+                        <td>457</td>
                         <td>0</td>
-                        <td>821</td>
-                        <td>98</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>15:00:00</td>
-                        <td>7604</td>
-                        <td>7604</td>
+                        <td>9201</td>
+                        <td>9201</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4478</td>
-                        <td>33</td>
-                        <td>1931</td>
-                        <td>86</td>
-                        <td>149</td>
-                        <td>2</td>
-                        <td>821</td>
-                        <td>104</td>
+                        <td>4257</td>
+                        <td>285</td>
+                        <td>2904</td>
+                        <td>26</td>
+                        <td>205</td>
+                        <td>7</td>
+                        <td>907</td>
+                        <td>56</td>
+                        <td>554</td>
+                        <td>0</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>14:00:00</td>
-                        <td>7860</td>
-                        <td>7860</td>
+                        <td>9531</td>
+                        <td>9531</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4432</td>
-                        <td>232</td>
-                        <td>1964</td>
-                        <td>86</td>
-                        <td>225</td>
+                        <td>4120</td>
+                        <td>244</td>
+                        <td>3142</td>
+                        <td>26</td>
+                        <td>304</td>
+                        <td>16</td>
+                        <td>907</td>
+                        <td>58</td>
+                        <td>714</td>
                         <td>0</td>
-                        <td>821</td>
-                        <td>100</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>13:00:00</td>
-                        <td>8808</td>
-                        <td>8808</td>
+                        <td>10087</td>
+                        <td>10087</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4960</td>
-                        <td>232</td>
-                        <td>2137</td>
-                        <td>86</td>
-                        <td>368</td>
+                        <td>4344</td>
+                        <td>261</td>
+                        <td>3406</td>
+                        <td>30</td>
+                        <td>316</td>
+                        <td>6</td>
+                        <td>908</td>
+                        <td>62</td>
+                        <td>754</td>
                         <td>0</td>
-                        <td>917</td>
-                        <td>108</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>12:00:00</td>
-                        <td>8306</td>
-                        <td>8306</td>
+                        <td>9764</td>
+                        <td>9764</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4869</td>
-                        <td>232</td>
-                        <td>1697</td>
-                        <td>86</td>
-                        <td>404</td>
+                        <td>4078</td>
+                        <td>334</td>
+                        <td>3297</td>
+                        <td>46</td>
+                        <td>288</td>
+                        <td>2</td>
+                        <td>907</td>
+                        <td>58</td>
+                        <td>754</td>
                         <td>0</td>
-                        <td>918</td>
-                        <td>100</td>
                         <td>Day Peak</td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>11:00:00</td>
-                        <td>7585</td>
-                        <td>7585</td>
+                        <td>9272</td>
+                        <td>9272</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4350</td>
-                        <td>232</td>
-                        <td>1530</td>
-                        <td>86</td>
-                        <td>385</td>
+                        <td>3609</td>
+                        <td>347</td>
+                        <td>3289</td>
+                        <td>46</td>
+                        <td>267</td>
+                        <td>2</td>
+                        <td>906</td>
+                        <td>54</td>
+                        <td>752</td>
                         <td>0</td>
-                        <td>918</td>
-                        <td>84</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>10:00:00</td>
-                        <td>7330</td>
-                        <td>7330</td>
+                        <td>9048</td>
+                        <td>9048</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4153</td>
-                        <td>233</td>
-                        <td>1537</td>
-                        <td>86</td>
-                        <td>334</td>
+                        <td>3780</td>
+                        <td>274</td>
+                        <td>3407</td>
+                        <td>46</td>
+                        <td>206</td>
+                        <td>1</td>
+                        <td>627</td>
+                        <td>50</td>
+                        <td>657</td>
                         <td>0</td>
-                        <td>917</td>
-                        <td>70</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>09:00:00</td>
-                        <td>7361</td>
-                        <td>7361</td>
+                        <td>9335</td>
+                        <td>9335</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4168</td>
-                        <td>233</td>
-                        <td>1625</td>
-                        <td>86</td>
-                        <td>251</td>
-                        <td>0</td>
-                        <td>916</td>
-                        <td>82</td>
-                        <td></td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="text-nowrap">01-12-2023</td>
-                        <td>08:00:00</td>
-                        <td>7627</td>
-                        <td>7627</td>
-                    <!--<td>0.00</td>-->
-                        <td>0</td>
-                        <td>4483</td>
-                        <td>138</td>
-                        <td>1883</td>
-                        <td>86</td>
-                        <td>128</td>
-                        <td>0</td>
-                        <td>821</td>
-                        <td>88</td>
-                        <td></td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="text-nowrap">01-12-2023</td>
-                        <td>07:00:00</td>
-                        <td>7450</td>
-                        <td>7450</td>
-                    <!--<td>0.00</td>-->
-                        <td>0</td>
-                        <td>4616</td>
+                        <td>4496</td>
+                        <td>163</td>
+                        <td>3225</td>
+                        <td>46</td>
+                        <td>127</td>
+                        <td>3</td>
+                        <td>721</td>
                         <td>42</td>
-                        <td>1804</td>
-                        <td>86</td>
-                        <td>34</td>
-                        <td>4</td>
-                        <td>780</td>
-                        <td>84</td>
+                        <td>512</td>
+                        <td>0</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
+                        <td>08:00:00</td>
+                        <td>8896</td>
+                        <td>8896</td>
+                    <!--<td>0.00</td>-->
+                        <td>0</td>
+                        <td>4756</td>
+                        <td>111</td>
+                        <td>2531</td>
+                        <td>26</td>
+                        <td>65</td>
+                        <td>11</td>
+                        <td>910</td>
+                        <td>42</td>
+                        <td>444</td>
+                        <td>0</td>
+                        <td></td>
+                    </tr>
+
+                
+                    <tr>
+                        <td class="text-nowrap">01-01-2025</td>
+                        <td>07:00:00</td>
+                        <td>8038</td>
+                        <td>8038</td>
+                    <!--<td>0.00</td>-->
+                        <td>0</td>
+                        <td>4672</td>
+                        <td>15</td>
+                        <td>2130</td>
+                        <td>26</td>
+                        <td>6</td>
+                        <td>11</td>
+                        <td>721</td>
+                        <td>40</td>
+                        <td>417</td>
+                        <td>0</td>
+                        <td></td>
+                    </tr>
+
+                
+                    <tr>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>06:00:00</td>
                         <td>7382</td>
                         <td>7382</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4392</td>
-                        <td>9</td>
-                        <td>2127</td>
-                        <td>86</td>
+                        <td>4131</td>
                         <td>0</td>
-                        <td>3</td>
-                        <td>676</td>
-                        <td>90</td>
+                        <td>2126</td>
+                        <td>26</td>
+                        <td>0</td>
+                        <td>16</td>
+                        <td>627</td>
+                        <td>40</td>
+                        <td>416</td>
+                        <td>0</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>05:00:00</td>
-                        <td>7375</td>
-                        <td>7375</td>
+                        <td>6952</td>
+                        <td>6952</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4332</td>
+                        <td>3768</td>
                         <td>0</td>
-                        <td>2185</td>
-                        <td>86</td>
+                        <td>2045</td>
+                        <td>26</td>
                         <td>0</td>
+                        <td>31</td>
+                        <td>627</td>
+                        <td>38</td>
+                        <td>417</td>
                         <td>0</td>
-                        <td>676</td>
-                        <td>96</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>04:00:00</td>
-                        <td>7615</td>
-                        <td>7615</td>
+                        <td>7082</td>
+                        <td>7082</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4389</td>
+                        <td>3843</td>
                         <td>0</td>
-                        <td>2370</td>
-                        <td>86</td>
+                        <td>2103</td>
+                        <td>26</td>
                         <td>0</td>
+                        <td>29</td>
+                        <td>627</td>
+                        <td>38</td>
+                        <td>416</td>
                         <td>0</td>
-                        <td>676</td>
-                        <td>94</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>03:00:00</td>
-                        <td>7908</td>
-                        <td>7908</td>
+                        <td>7351</td>
+                        <td>7351</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4529</td>
+                        <td>4021</td>
                         <td>0</td>
-                        <td>2531</td>
-                        <td>86</td>
+                        <td>2105</td>
+                        <td>26</td>
                         <td>0</td>
+                        <td>21</td>
+                        <td>722</td>
+                        <td>40</td>
+                        <td>416</td>
                         <td>0</td>
-                        <td>676</td>
-                        <td>86</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>02:00:00</td>
-                        <td>8127</td>
-                        <td>8127</td>
+                        <td>7669</td>
+                        <td>7669</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4570</td>
+                        <td>4311</td>
                         <td>0</td>
-                        <td>2678</td>
-                        <td>86</td>
+                        <td>2131</td>
+                        <td>26</td>
                         <td>0</td>
+                        <td>18</td>
+                        <td>721</td>
+                        <td>42</td>
+                        <td>420</td>
                         <td>0</td>
-                        <td>703</td>
-                        <td>90</td>
                         <td></td>
                     </tr>
 
-
+                
                     <tr>
-                        <td class="text-nowrap">01-12-2023</td>
+                        <td class="text-nowrap">01-01-2025</td>
                         <td>01:00:00</td>
-                        <td>8521</td>
-                        <td>8521</td>
+                        <td>8104</td>
+                        <td>8104</td>
                     <!--<td>0.00</td>-->
                         <td>0</td>
-                        <td>4542</td>
+                        <td>4489</td>
                         <td>0</td>
-                        <td>2877</td>
-                        <td>86</td>
+                        <td>2139</td>
+                        <td>26</td>
                         <td>0</td>
-                        <td>0</td>
+                        <td>20</td>
                         <td>910</td>
-                        <td>106</td>
+                        <td>44</td>
+                        <td>476</td>
+                        <td>0</td>
                         <td></td>
                     </tr>
 
                                 </tbody>
             </table>
         </div>
-
+        
     </div>
             </div>
         </div>
@@ -666,8 +763,8 @@
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item font-weight-lighter">
-                        Copyright &copy; 2023
-                        <a href="http://pgcb.gov.bd/" class="link-secondary" style="font-weight: bold;">ICT, PGCB</a>.
+                        Copyright &copy; 2024
+                        <a href="http://pgcb.gov.bd/" class="link-secondary" style="font-weight: bold;">ICT, Power Grid</a>.
                         All rights reserved.
 
 
@@ -684,12 +781,87 @@
     </div>
 </footer>    </div>
 </div>
+<script src="https://erp.pgcb.gov.bd/js/printThis.js"></script>
+<script src="https://erp.pgcb.gov.bd/dist/js/demo-theme.min.js"></script>
+<script src="https://erp.pgcb.gov.bd/dist/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script src="https://erp.pgcb.gov.bd/dist/libs/jsvectormap/dist/js/jsvectormap.min.js"></script>
+<script src="https://erp.pgcb.gov.bd/dist/libs/jsvectormap/dist/maps/world.js"></script>
+<script src="https://erp.pgcb.gov.bd/dist/libs/jsvectormap/dist/maps/world-merc.js"></script>
+<!-- Tabler Core -->
+<script src="https://erp.pgcb.gov.bd/dist/js/tabler.min.js"></script>
+<script src="https://erp.pgcb.gov.bd/dist/js/demo.min.js"></script>
+
+<script src="https://erp.pgcb.gov.bd/dist/libs/nouislider/dist/nouislider.min.js" defer></script>
+<script src="https://erp.pgcb.gov.bd/dist/libs/litepicker/dist/litepicker.js" defer></script>
+<script src="https://erp.pgcb.gov.bd/dist/libs/tom-select/dist/js/tom-select.base.min.js" defer></script>
+<!-- Libs JS -->
+<script src="./dist/libs/fslightbox/index.js?1674944800" defer></script>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+
+
+<link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 
 <script>
 
 
     $(document).ready(function () {
+        $(".readonly").on('keydown paste focus', function(e){
+            if(e.keyCode != 9) // ignore tab
+                e.preventDefault();
+        });
+        $('input[type="number"]').on('click', function() {
+            $(this).select();
+        });
+        $('.input-source').on('click', function() {
+            $(this).select();
+        });
+        // Function to format the number in the Bangladesh currency format
+        function formatBangladeshiCurrency(amount) {
+            if (!amount) return "";
+            amount = amount.toString().replace(/,/g, ""); // Remove existing commas
+            const parts = amount.split(".");
+            const integerPart = parts[0];
+            const decimalPart = parts[1] ? "." + parts[1] : "";
 
+            // Format the integer part with commas
+            const lastThree = integerPart.slice(-3);
+            const otherNumbers = integerPart.slice(0, -3);
+            const formattedInteger =
+                otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + (otherNumbers ? "," : "") + lastThree;
+
+            return formattedInteger + decimalPart;
+        }
+
+        // On input change, update the formatted value
+        $(".bdcurrency-input").on("input", function () {
+            const rawValue = $(this).val();
+            const formattedValue = formatBangladeshiCurrency(rawValue);
+            $(".bdcurrency-display").text(formattedValue); // Update the span
+            $(this).val(formattedValue); // Optionally update the input itself
+        });
+
+
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            todayBtn: "linked",
+            todayHighlight : true,
+            keyboardNavigation : true
+        });
+
+        //$('.msg').fadeOut(5000);
         $('.select2').select2({
             theme: "bootstrap-5",
             selectionCssClass: "select2--small",
@@ -786,6 +958,23 @@
     });
 
 
+</script>
+<script src="https://erp.pgcb.gov.bd/sw.js"></script>
+<script>
+    if ("serviceWorker" in navigator) {
+        // Register a service worker hosted at the root of the
+        // site using the default scope.
+        navigator.serviceWorker.register("/sw.js").then(
+            (registration) => {
+            console.log("Service worker registration succeeded:", registration);
+    },
+        (error) => {
+            console.error('Service worker registration failed: ${error}');
+        },
+    );
+    } else {
+        console.error("Service workers are not supported.");
+    }
 </script>
 
 
