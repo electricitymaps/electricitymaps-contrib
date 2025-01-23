@@ -170,6 +170,7 @@ def test_correct_solar_production_prod_then_nan_then_prod(production_df):
         .isnull()
     )
 
+
 @freezegun.freeze_time("2025-01-15")
 def test_fetch_production(adapter, session, snapshot):
     adapter.register_uri(
