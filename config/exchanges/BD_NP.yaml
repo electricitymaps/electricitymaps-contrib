@@ -1,0 +1,9 @@
+capacity:
+  - -40
+  - 40
+lonlat:
+  - 88.259123
+  - 26.595468
+parsers:
+  exchange: ERP_PGCB.fetch_exchange
+rotation: -60
