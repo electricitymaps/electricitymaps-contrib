@@ -1,4 +1,5 @@
 import { round } from 'utils/helpers';
+import { describe, expect, it } from 'vitest';
 
 import { bilinearInterpolateVector, buildBounds, distort } from './calc';
 
@@ -19,7 +20,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).to.deep.eq([4, 5, round(Math.sqrt(41), 13)]);
+    expect(result).toEqual([4, 5, round(Math.sqrt(41), 13)]);
   });
 
   it('should interpolate a vector at the top left corner of the square', () => {
@@ -38,7 +39,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).to.deep.eq([1, 2, round(Math.sqrt(5), 13)]);
+    expect(result).toEqual([1, 2, round(Math.sqrt(5), 13)]);
   });
 
   it('should interpolate a vector at the top right corner of the square', () => {
@@ -57,7 +58,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).to.deep.eq([3, 4, 5]);
+    expect(result).toEqual([3, 4, 5]);
   });
 
   it('should interpolate a vector at the bottom left corner of the square', () => {
@@ -76,7 +77,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).to.deep.eq([5, 6, round(Math.sqrt(61), 13)]);
+    expect(result).toEqual([5, 6, round(Math.sqrt(61), 13)]);
   });
 
   it('should interpolate a vector at the bottom right corner of the square', () => {
@@ -95,7 +96,7 @@ describe('bilinearInterpolateVector', () => {
       g11
     );
     const result = [result1, result2, round(result3, 13)];
-    expect(result).to.deep.eq([7, 8, round(Math.sqrt(113), 13)]);
+    expect(result).toEqual([7, 8, round(Math.sqrt(113), 13)]);
   });
 });
 
@@ -136,25 +137,25 @@ describe('distort', () => {
       0.006_120_000_000_000_000_4,
       [0.551_289_441_234_658_4, -0.174_103_992_708_016_4, 11.492_476_595_423_65]
     );
-    expect(isFloatClose(u, 0.027_732_572_562_027_27)).to.be.true;
-    expect(isFloatClose(v, 0.008_758_287_040_257)).to.be.true;
-    expect(isFloatClose(m, 11.492_476_595_423_65)).to.be.true;
+    expect(isFloatClose(u, 0.027_732_572_562_027_27)).toBe(true);
+    expect(isFloatClose(v, 0.008_758_287_040_257)).toBe(true);
+    expect(isFloatClose(m, 11.492_476_595_423_65)).toBe(true);
   });
 
   it('test custom project', () => {
     const result = distort(mapMock, 0, 0, 0, 0, 1, [1, 1, 1]);
     // This result is mainly used as reference for following tests
-    expect(result).to.deep.eq([2, 2, 1]);
+    expect(result).toEqual([2, 2, 1]);
   });
 
   it('test scale using custom project', () => {
     const result = distort(mapMock, 0, 0, 0, 0, 2, [1, 1, 3]);
-    expect(result).to.deep.eq([4, 4, 3]);
+    expect(result).toEqual([4, 4, 3]);
   });
 
   it('test non-zero x and y bounds using custom project', () => {
     const result = distort(mapMock, 0, 0, -H, -H, 1, [1, 1, 7]);
-    expect(result).to.deep.eq([-0, -0, 7]);
+    expect(result).toEqual([-0, -0, 7]);
   });
 });
 
@@ -168,7 +169,7 @@ describe('buildBounds', () => {
     const height = 765;
     const result = buildBounds(bounds, width, height);
 
-    expect(result).to.deep.eq({ x: 0, y: 0, yMax: 764, width: 821, height: 765 });
+    expect(result).toEqual({ x: 0, y: 0, yMax: 764, width: 821, height: 765 });
   });
 
   it('handles unexpected dimension values', () => {
@@ -180,7 +181,7 @@ describe('buildBounds', () => {
     const height = 50;
     const result = buildBounds(bounds, width, height);
 
-    expect(result).to.deep.eq({ x: 1, y: 0, yMax: 49, width: 100, height: 50 });
+    expect(result).toEqual({ x: 1, y: 0, yMax: 49, width: 100, height: 50 });
   });
 
   it('handles decimals', () => {
@@ -192,6 +193,6 @@ describe('buildBounds', () => {
     const height = 6.9;
     const result = buildBounds(bounds, width, height);
 
-    expect(result).to.deep.eq({ x: 1, y: 2, yMax: 5.9, width: 5.8, height: 6.9 });
+    expect(result).toEqual({ x: 1, y: 2, yMax: 5.9, width: 5.8, height: 6.9 });
   });
 });
