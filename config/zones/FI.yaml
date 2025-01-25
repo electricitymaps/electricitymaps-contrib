@@ -73,6 +73,9 @@ capacity:
     - datetime: '2024-11-17'
       source: fingrid.fi
       value: 8092
+    - datetime: '2025-01-23'
+      source: fingrid.fi
+      value: 8411
 contributors:
   - corradio
   - nessie2013
