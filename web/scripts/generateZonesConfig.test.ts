@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies -- 'vitest' should be listed in the project's dependencies, not devDependencies */
+import { describe, expect, it } from 'vitest';
+
 import { getConfig } from './generateZonesConfig';
 
 describe('generateZonesConfig', () => {
