@@ -24,10 +24,9 @@ def test_fetch_production_storage(adapter, session, snapshot):
     adapter.register_uri(ANY, ANY, content=mock_data)
 
     assert snapshot == ES.fetch_production(
-        ZoneKey("ES-CN-HI"),
-        session,
-        datetime.fromisoformat("2025-01-25")
+        ZoneKey("ES-CN-HI"), session, datetime.fromisoformat("2025-01-25")
     )
+
 
 ### Menorca
 # Production
@@ -36,9 +35,7 @@ def test_fetch_production(adapter, session, snapshot):
     adapter.register_uri(ANY, ANY, content=mock_data)
 
     assert snapshot == ES.fetch_production(
-        ZoneKey("ES-IB-ME"),
-        session,
-        datetime.fromisoformat("2025-01-25")
+        ZoneKey("ES-IB-ME"), session, datetime.fromisoformat("2025-01-25")
     )
 
 
@@ -52,5 +49,5 @@ def test_fetch_exchange(adapter, session, snapshot):
         ZoneKey("ES"),
         ZoneKey("ES-IB-MA"),
         session,
-        datetime.fromisoformat("2025-01-25")
+        datetime.fromisoformat("2025-01-25"),
     )
