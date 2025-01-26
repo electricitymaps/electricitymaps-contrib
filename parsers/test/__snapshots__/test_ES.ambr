@@ -27,7 +27,16 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'production': dict({'biomass': 0.0, 'coal': 0.0, 'gas': 20.6, 'geothermal': 0.0, 'oil': 0.0, 'solar': 0.0, 'unknown': 0.0, 'wind': 0.0}),
+      'production': dict({
+        'biomass': 0.0,
+        'coal': 0.0,
+        'gas': 20.6,
+        'geothermal': 0.0,
+        'oil': 0.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+        'wind': 0.0,
+      }),
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
@@ -40,16 +49,22 @@
   list([
     dict({
       'correctedModes': list([
+        'hydro',
       ]),
       'datetime': datetime.datetime(2025, 1, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
-      'production': dict({'gas': 0.0, 'hydro': None, 'oil': 3.4, 'solar': 0.0, 'wind': 1.9}),
+      'production': dict({
+        'gas': 0.0,
+        'hydro': None,
+        'oil': 3.4,
+        'solar': 0.0,
+        'wind': 1.9,
+      }),
       'source': 'demanda.ree.es',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'hydro': 0.2,
       }),
       'zoneKey': 'ES-CN-HI',
-      'correctedModes': ['hydro']
     }),
   ])
 # ---
