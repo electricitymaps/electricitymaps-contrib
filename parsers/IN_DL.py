@@ -10,15 +10,18 @@ from .lib import IN, web, zonekey
 
 ZONE_INFO = ZoneInfo
 
-plants = {
-    "CCGT-Bawana": "Gas",
-    "DMSWSL-Dsidc": "G2E",
-    "EDWPL-Gazipur": "G2E",
-    "GT": "Gas",
-    "Pragati": "Gas",
-    "TOWMP-Okhla": "G2E",
-    "TWEPL-TUGLAK": "G2E",
+# Constant mapping of plant names to type
+_PLANT_NAME_TO_TYPE = {
+    "CCGT-Bawana": "gas",
+    "DMSWSL-Dsidc": "biomass",
+    "EDWPL-Gazipur": "biomass",
+    "GT": "gas",
+    "Pragati": "gas",
+    "TOWMP-Okhla": "biomass",
+    "TWEPL-TUGLAKABAD": "biomass",
 }
+_POWER_COLUMN_HEADER = "Actual"
+_TOTAL_ROW_TITLE = "Total"
 
 
 def fetch_consumption(
@@ -62,7 +65,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    energy: dict[str, float] = {"Gas": 0, "G2E": 0, "Coal": 0}
+    energy: dict[str, float] = {"gas": 0, "biomass": 0, "coal": 0}
 
     zonekey.assert_zone_key(zone_key, "IN-DL")
 
@@ -79,30 +82,34 @@ def fetch_production(
     prod_table = html.find("table", {"id": "ContentPlaceHolder3_dgenco"})
     prod_rows = prod_table.findAll("tr")
 
-    for plant in range(1, len(plants) + 1):
-        energy[plants[read_name(prod_rows[plant])]] += read_value(prod_rows[plant])
+    # Determine the index of the column that contains the actual power values
+    header_row = prod_rows[0]
+    column_headers = [cell.text for cell in header_row.findAll("td")]
+    try:
+        value_column_index = column_headers.index(_POWER_COLUMN_HEADER)
+    except ValueError as e:
+        raise ValueError(f"Could not find a column with header '{_POWER_COLUMN_HEADER}' in the scraped HTML table") from e
+
+    for row in prod_rows[1:]:
+        cells = row.findAll("td")
+        plant_name = cells[0].text
+        if plant_name == _TOTAL_ROW_TITLE:
+            continue
+        try:
+            plant_type = _PLANT_NAME_TO_TYPE[plant_name]
+        except KeyError as e:
+            raise KeyError(f"Unknown plant '{plant_name}'; manually add the type of this plant to `_PLANT_NAME_TO_TYPE`") from e
+        power = max(0.0, float(cells[value_column_index].text))
+        energy[plant_type] += power
 
     data = {
         "zoneKey": zone_key,
         "datetime": india_date_time,
-        "production": {
-            "coal": energy["Coal"],
-            "gas": energy["Gas"],
-            "biomass": energy["G2E"],
-        },
+        "production": energy,
         "source": "delhisldc.org",
     }
 
     return data
-
-
-def read_value(row, index=2):
-    value = float(row.findAll("td")[index].text)
-    return value if value >= 0.0 else 0.0
-
-
-def read_name(row, index=0):
-    return row.findAll("td")[index].text
 
 
 if __name__ == "__main__":
