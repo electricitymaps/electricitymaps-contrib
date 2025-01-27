@@ -33,6 +33,8 @@ from parsers.lib.exceptions import ParserException
 #    ZoneKey("ES-IB-MA"): "Mallorca"
 #    ZoneKey("ES-IB-ME"): "Menorca"
 #    ZoneKey("ES-ML"): "Melilla"
+#    ZoneKey("ES-CN-FV"): "Fuerteventura"
+#    ZoneKey("ES-CN-LZ"): "Lanzarote"
 
 PRODUCTION_PARSE_MAPPING = {
     "nuc": "nuclear",  # Nuclear
@@ -67,7 +69,6 @@ PRODUCTION_IGNORE_KEYS = [
     "dem",  # Demand
     "hid",  # Hydro => sum of hydro
     "ts",  # Timestamp
-    "efl",  # Fuerteventura-Lanzarote link => not used
     "expTot",  # Exportation Total
     "impTot",  # Importation Total
     "dif",  # ?
@@ -143,6 +144,16 @@ ZONE_MAPPING = {
         "SYSTEM": "Peninsula",
         "TZ": "Africa/Ceuta",
     },
+    ZoneKey("ES-CN-FV"): {
+        "API_CODE": "FUERTEVEAU",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
+    ZoneKey("ES-CN-LZ"): {
+        "API_CODE": "LANZAROTAU",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
 }
 
 EXCHANGE_MAPPING = {
@@ -184,6 +195,11 @@ EXCHANGE_MAPPING = {
     ZoneKey("ES->FR"): {
         "zone_ref": ZoneKey("ES"),
         "codes": ["expFra", "impFra"],
+        "coef": -1,
+    },
+    ZoneKey("ES-CN-FV->ES-CN-LZ"): {
+        "zone_ref": ZoneKey("ES-CN-LZ"),
+        "codes": ["efl"],
         "coef": -1,
     },
 }
@@ -438,6 +454,10 @@ if __name__ == "__main__":
     print(fetch_consumption(ZoneKey("ES-CN-HI")))
     print("fetch_production(ES-CN-HI)")
     print(fetch_production(ZoneKey("ES-CN-HI")))
+    print("fetch_consumption(ES-CN-FV)")
+    print(fetch_consumption(ZoneKey("ES-CN-FV")))
+    print("fetch_production(ES-CN-LZ)")
+    print(fetch_production(ZoneKey("ES-CN-LZ")))    
 
     # Balearic Islands
     print("fetch_consumption(ES-IB-FO)")
@@ -474,3 +494,5 @@ if __name__ == "__main__":
     print(fetch_exchange(ZoneKey("ES"), ZoneKey("FR")))
     print("fetch_exchange(ES, PT)")
     print(fetch_exchange(ZoneKey("ES"), ZoneKey("PT")))
+    print("fetch_exchange(ES-CN-FV, ES-CN-LZ)")
+    print(fetch_exchange(ZoneKey("ES-CN-FV"), ZoneKey("ES-CN-LZ")))
