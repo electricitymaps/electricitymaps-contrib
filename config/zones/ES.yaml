@@ -413,11 +413,11 @@ fallbackZoneMixes:
         unknown: 0.0031572278831574004
         wind: 0.23854097792830004
 parsers:
-  consumption: ES.fetch_consumption
+  consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
-  production: ES.fetch_production
+  production: ENTSOE.fetch_production
   productionCapacity: REE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Europe

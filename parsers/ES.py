@@ -46,7 +46,7 @@ PRODUCTION_PARSE_MAPPING = {
     "fot": "solar",  # Solar PV
     "sol": "solar",  # Solar
     "car": "coal",  # Coal
-    "resid": "unknown",  # Wastes
+    "resid": "biomass",  # Wastes
     "termRenov": "geothermal",  # Thermal renewable
     "cogenResto": "unknown",  # Cogeneration and waste
     "tnr": "unknown",  # Other special regime
@@ -62,6 +62,20 @@ PRODUCTION_PARSE_MAPPING = {
     "aut": "unknown",  # Other special regime
     "gnhd": "hydro",  # Hydro
 }
+
+PRODUCTION_IGNORE_KEYS = [
+    "dem",  # Demand
+    "hid",  # Hydro => sum of hydro
+    "ts",  # Timestamp
+    "efl",  # Fuerteventura-Lanzarote link => not used
+    "expTot",  # Exportation Total
+    "impTot",  # Importation Total
+    "dif",  # ?
+    "solFot",  # Solar PV => include in solar
+    "solTer",  # Solar thermal => include in solar
+    "inter",  # Int. exchanges
+    "icb",  # Balear link => include in cb (Balearic-Peninsula link)
+]
 
 ZONE_MAPPING = {
     ZoneKey("ES"): {
@@ -174,7 +188,17 @@ EXCHANGE_MAPPING = {
     },
 }
 
+EXCHANGE_MAPPING_CODES = [m for v in EXCHANGE_MAPPING.values() for m in v["codes"]]
+
+KNOWN_KEY = (
+    EXCHANGE_MAPPING_CODES
+    + list(PRODUCTION_PARSE_MAPPING.keys())
+    + PRODUCTION_IGNORE_KEYS
+)
+
 SOURCE = "demanda.ree.es"
+
+URL_PATERN = "https://demanda.ree.es/WSvisionaMoviles{system}Rest/resources/demandaGeneracion{system}?curva={zone}&fecha={date}"
 
 
 def check_valid_parameters(
@@ -212,39 +236,28 @@ def check_valid_parameters(
 
 def check_known_key(key: str, logger: Logger):
     """Check if the given key is already known and log a warning if not."""
-    if (
-        key not in sum([v["codes"] for v in EXCHANGE_MAPPING.values()], [])
-        and key not in PRODUCTION_PARSE_MAPPING
-        and key
-        not in {
-            "dem",  # Demand
-            "hid",  # Hydro => sum of hydro
-            "ts",  # Timestamp
-            "efl",  # Fuerteventura-Lanzarote link => not used
-            "expTot",  # Exportation Total
-            "impTot",  # Importation Total
-            "dif",  # ?
-            "solFot",  # Solar PV => include in solar
-            "solTer",  # Solar thermal => include in solar
-            "inter",  # Int. exchanges
-            "icb",  # Balear link => include in cb (Balearic-Peninsula link)
-        }
-    ):
+    if key not in KNOWN_KEY:
         logger.warning(f'Key "{key}" could not be parsed!')
 
 
+def get_url(zone_key: ZoneKey, date: str) -> str:
+    return URL_PATERN.format(
+        system=ZONE_MAPPING[zone_key]["SYSTEM"],
+        zone=ZONE_MAPPING[zone_key]["API_CODE"],
+        date=date,
+    )
+
+
 def get_ree_data(
-    zone_key: ZoneKey, session: Session, target_datetime: datetime | None, tz: str
+    zone_key: ZoneKey, session: Session, target_datetime: datetime | None
 ) -> dict:
     if target_datetime is None:
-        date = datetime.now(tz=ZoneInfo(tz)).strftime("%Y-%m-%d")
+        date = datetime.now(tz=ZoneInfo(ZONE_MAPPING[zone_key]["TZ"])).strftime(
+            "%Y-%m-%d"
+        )
     else:
         date = target_datetime.strftime("%Y-%m-%d")
-    system = ZONE_MAPPING[zone_key]["SYSTEM"]
-    zone = ZONE_MAPPING[zone_key]["API_CODE"]
-    res = session.get(
-        f"https://demanda.ree.es/WSvisionaMoviles{system}Rest/resources/demandaGeneracion{system}?curva={zone}&fecha={date}"
-    )
+    res = session.get(get_url(zone_key, date))
     if not res.ok:
         raise ParserException(
             "ES.py",
@@ -268,11 +281,10 @@ def fetch_and_preprocess_data(
     target_datetime: datetime | None,
 ):
     """Fetch data for the given zone key."""
-    tz = ZONE_MAPPING[zone_key]["TZ"]
-    data = get_ree_data(zone_key, session, target_datetime, tz)
+    data = get_ree_data(zone_key, session, target_datetime)
     for value in data:
         # Add timezone info to time object
-        value["ts"] = parse_date(value["ts"], tz)
+        value["ts"] = parse_date(value["ts"], ZONE_MAPPING[zone_key]["TZ"])
 
         for key in value:
             check_known_key(key, logger)
@@ -318,6 +330,9 @@ def fetch_production(
     check_valid_parameters(zone_key, session, target_datetime)
     ses = session or Session()
     data_mapping = PRODUCTION_PARSE_MAPPING.copy()
+    # Remove the key "gnhd" for the zone ES-CN-HI because it is already included in storage
+    if zone_key == ZoneKey("ES-CN-HI"):
+        del data_mapping["gnhd"]
 
     data = fetch_and_preprocess_data(zone_key, ses, logger, target_datetime)
     productionEventList = ProductionBreakdownList(logger)
@@ -363,98 +378,99 @@ def fetch_exchange(
 
     exchangeList = ExchangeList(logger)
     for event in data:
-        net_flow = 0.0
+        net_flow = None
         for key in event:
             if key in EXCHANGE_MAPPING[sorted_zone_keys]["codes"]:
-                net_flow = (
-                    net_flow + EXCHANGE_MAPPING[sorted_zone_keys]["coef"] * event[key]
-                )
+                net_flow = (0 if net_flow is None else net_flow) + EXCHANGE_MAPPING[
+                    sorted_zone_keys
+                ]["coef"] * event[key]
 
-        exchangeList.append(
-            zoneKey=sorted_zone_keys,
-            datetime=event["ts"],
-            netFlow=net_flow,
-            source="demanda.ree.es",
-        )
+        if net_flow is not None and net_flow != 0:
+            exchangeList.append(
+                zoneKey=sorted_zone_keys,
+                datetime=event["ts"],
+                netFlow=net_flow,
+                source="demanda.ree.es",
+            )
 
     return exchangeList.to_list()
 
 
 if __name__ == "__main__":
-    # # Spain
-    # print("fetch_consumption(ES)")
-    # print(fetch_consumption(ZoneKey("ES")))
-    # print("fetch_production(ES)")
-    # print(fetch_production(ZoneKey("ES")))
+    # Spain
+    print("fetch_consumption(ES)")
+    print(fetch_consumption(ZoneKey("ES")))
+    print("fetch_production(ES)")
+    print(fetch_production(ZoneKey("ES")))
 
-    # # Autonomous cities
-    # print("fetch_consumption(ES-CE)")
-    # print(fetch_consumption(ZoneKey("ES-CE")))
-    # print("fetch_production(ES-CE)")
-    # print(fetch_production(ZoneKey("ES-CE")))
-    # print("fetch_consumption(ES-ML)")
-    # print(fetch_consumption(ZoneKey("ES-ML")))
-    # print("fetch_production(ES-ML)")
-    # print(fetch_production(ZoneKey("ES-ML")))
+    # Autonomous cities
+    print("fetch_consumption(ES-CE)")
+    print(fetch_consumption(ZoneKey("ES-CE")))
+    print("fetch_production(ES-CE)")
+    print(fetch_production(ZoneKey("ES-CE")))
+    print("fetch_consumption(ES-ML)")
+    print(fetch_consumption(ZoneKey("ES-ML")))
+    print("fetch_production(ES-ML)")
+    print(fetch_production(ZoneKey("ES-ML")))
 
-    # # Canary Islands
-    # print("fetch_consumption(ES-CN-FVLZ)")
-    # print(fetch_consumption(ZoneKey("ES-CN-FVLZ")))
-    # print("fetch_production(ES-CN-FVLZ)")
-    # print(fetch_production(ZoneKey("ES-CN-FVLZ")))
-    # print("fetch_consumption(ES-CN-GC)")
-    # print(fetch_consumption(ZoneKey("ES-CN-GC")))
-    # print("fetch_production(ES-CN-GC)")
-    # print(fetch_production(ZoneKey("ES-CN-GC")))
-    # print("fetch_consumption(ES-CN-IG)")
-    # print(fetch_consumption(ZoneKey("ES-CN-IG")))
-    # print("fetch_production(ES-CN-IG)")
-    # print(fetch_production(ZoneKey("ES-CN-IG")))
-    # print("fetch_consumption(ES-CN-LP)")
-    # print(fetch_consumption(ZoneKey("ES-CN-LP")))
-    # print("fetch_production(ES-CN-LP)")
-    # print(fetch_production(ZoneKey("ES-CN-LP")))
-    # print("fetch_consumption(ES-CN-TE)")
-    # print(fetch_consumption(ZoneKey("ES-CN-TE")))
-    # print("fetch_production(ES-CN-TE)")
-    # print(fetch_production(ZoneKey("ES-CN-TE")))
-    # print("fetch_consumption(ES-CN-HI)")
-    # print(fetch_consumption(ZoneKey("ES-CN-HI")))
-    # print("fetch_production(ES-CN-HI)")
-    # print(fetch_production(ZoneKey("ES-CN-HI")))
+    # Canary Islands
+    print("fetch_consumption(ES-CN-FVLZ)")
+    print(fetch_consumption(ZoneKey("ES-CN-FVLZ")))
+    print("fetch_production(ES-CN-FVLZ)")
+    print(fetch_production(ZoneKey("ES-CN-FVLZ")))
+    print("fetch_consumption(ES-CN-GC)")
+    print(fetch_consumption(ZoneKey("ES-CN-GC")))
+    print("fetch_production(ES-CN-GC)")
+    print(fetch_production(ZoneKey("ES-CN-GC")))
+    print("fetch_consumption(ES-CN-IG)")
+    print(fetch_consumption(ZoneKey("ES-CN-IG")))
+    print("fetch_production(ES-CN-IG)")
+    print(fetch_production(ZoneKey("ES-CN-IG")))
+    print("fetch_consumption(ES-CN-LP)")
+    print(fetch_consumption(ZoneKey("ES-CN-LP")))
+    print("fetch_production(ES-CN-LP)")
+    print(fetch_production(ZoneKey("ES-CN-LP")))
+    print("fetch_consumption(ES-CN-TE)")
+    print(fetch_consumption(ZoneKey("ES-CN-TE")))
+    print("fetch_production(ES-CN-TE)")
+    print(fetch_production(ZoneKey("ES-CN-TE")))
+    print("fetch_consumption(ES-CN-HI)")
+    print(fetch_consumption(ZoneKey("ES-CN-HI")))
+    print("fetch_production(ES-CN-HI)")
+    print(fetch_production(ZoneKey("ES-CN-HI")))
 
-    # # Balearic Islands
-    # print("fetch_consumption(ES-IB-FO)")
-    # print(fetch_consumption(ZoneKey("ES-IB-FO")))
-    # print("fetch_production(ES-IB-FO)")
-    # print(fetch_production(ZoneKey("ES-IB-FO")))
-    # print("fetch_consumption(ES-IB-IZ)")
-    # print(fetch_consumption(ZoneKey("ES-IB-IZ")))
-    # print("fetch_production(ES-IB-IZ)")
-    # print(fetch_production(ZoneKey("ES-IB-IZ")))
-    # print("fetch_consumption(ES-IB-MA)")
-    # print(fetch_consumption(ZoneKey("ES-IB-MA")))
-    # print("fetch_production(ES-IB-MA)")
-    # print(fetch_production(ZoneKey("ES-IB-MA")))
-    # print("fetch_consumption(ES-IB-ME)")
-    # print(fetch_consumption(ZoneKey("ES-IB-ME")))
-    # print("fetch_production(ES-IB-ME)")
-    # print(fetch_production(ZoneKey("ES-IB-ME")))
+    # Balearic Islands
+    print("fetch_consumption(ES-IB-FO)")
+    print(fetch_consumption(ZoneKey("ES-IB-FO")))
+    print("fetch_production(ES-IB-FO)")
+    print(fetch_production(ZoneKey("ES-IB-FO")))
+    print("fetch_consumption(ES-IB-IZ)")
+    print(fetch_consumption(ZoneKey("ES-IB-IZ")))
+    print("fetch_production(ES-IB-IZ)")
+    print(fetch_production(ZoneKey("ES-IB-IZ")))
+    print("fetch_consumption(ES-IB-MA)")
+    print(fetch_consumption(ZoneKey("ES-IB-MA")))
+    print("fetch_production(ES-IB-MA)")
+    print(fetch_production(ZoneKey("ES-IB-MA")))
+    print("fetch_consumption(ES-IB-ME)")
+    print(fetch_consumption(ZoneKey("ES-IB-ME")))
+    print("fetch_production(ES-IB-ME)")
+    print(fetch_production(ZoneKey("ES-IB-ME")))
 
-    # # Exchanges
-    # print("fetch_exchange(ES, ES-IB-MA)")
-    # print(fetch_exchange(ZoneKey("ES"), ZoneKey("ES-IB-MA")))
-    # print("fetch_exchange(ES-IB-MA, ES-IB-ME)")
-    # print(fetch_exchange(ZoneKey("ES-IB-MA"), ZoneKey("ES-IB-ME")))
-    # print("fetch_exchange(ES-IB-MA, ES-IB-IZ)")
-    # print(fetch_exchange(ZoneKey("ES-IB-MA"), ZoneKey("ES-IB-IZ")))
-    # print("fetch_exchange(ES-IB-IZ, ES-IB-FO)")
-    # print(fetch_exchange(ZoneKey("ES-IB-IZ"), ZoneKey("ES-IB-FO")))
-    # print("fetch_exchange(ES, MA)")
-    # print(fetch_exchange(ZoneKey("ES"), ZoneKey("MA")))
-    # print("fetch_exchange(ES, AD)")
-    # print(fetch_exchange(ZoneKey("ES"), ZoneKey("AD")))
-    # print("fetch_exchange(ES, FR)")
-    # print(fetch_exchange(ZoneKey("ES"), ZoneKey("FR")))
-    # print("fetch_exchange(ES, PT)")
+    # Exchanges
+    print("fetch_exchange(ES, ES-IB-MA)")
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("ES-IB-MA")))
+    print("fetch_exchange(ES-IB-MA, ES-IB-ME)")
+    print(fetch_exchange(ZoneKey("ES-IB-MA"), ZoneKey("ES-IB-ME")))
+    print("fetch_exchange(ES-IB-MA, ES-IB-IZ)")
+    print(fetch_exchange(ZoneKey("ES-IB-MA"), ZoneKey("ES-IB-IZ")))
+    print("fetch_exchange(ES-IB-IZ, ES-IB-FO)")
+    print(fetch_exchange(ZoneKey("ES-IB-IZ"), ZoneKey("ES-IB-FO")))
+    print("fetch_exchange(ES, MA)")
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("MA")))
+    print("fetch_exchange(ES, AD)")
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("AD")))
+    print("fetch_exchange(ES, FR)")
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("FR")))
+    print("fetch_exchange(ES, PT)")
     print(fetch_exchange(ZoneKey("ES"), ZoneKey("PT")))
