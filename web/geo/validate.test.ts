@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { GEO_CONFIG } from './generateWorld';
 import { WorldFeatureCollection } from './types';
 import { zeroOverlaps } from './validate';
