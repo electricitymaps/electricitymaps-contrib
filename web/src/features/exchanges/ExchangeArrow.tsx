@@ -109,9 +109,9 @@ function ExchangeArrow({
 
   const mapZoom = map.getZoom();
   const { x, y } = map.project(lonlat);
-  const k = 0.04 + (mapZoom - 1.5) * 0.1;
-  const r = rotation + (netFlow > 0 ? 180 : 0);
-  const factor = 100 * k;
+  const baseZoom = 0.04 + (mapZoom - 1.5) * 0.1;
+  const directionalRotation = rotation + (netFlow > 0 ? 180 : 0);
+  const scaledZoom = 100 * baseZoom;
 
   // Setting the top position from the arrow tooltip preventing overflowing to top.
   let tooltipClassName =
@@ -122,12 +122,12 @@ function ExchangeArrow({
 
   if (
     // or if the arrow would be very tiny
-    k < 0.1 ||
+    baseZoom < 0.1 ||
     // or if it would be rendered outside of viewport.
-    x + factor < 0 ||
-    y + factor < 0 ||
-    x - factor > viewportWidth ||
-    y - factor > viewportHeight
+    x + scaledZoom < 0 ||
+    y + scaledZoom < 0 ||
+    x - scaledZoom > viewportWidth ||
+    y - scaledZoom > viewportHeight
   ) {
     return null;
   }
@@ -148,7 +148,7 @@ function ExchangeArrow({
     >
       <picture
         style={{
-          transform: `translateX(${x}px) translateY(${y}px) rotate(${r}deg) scale(${k})`,
+          transform: `translateX(${x}px) translateY(${y}px) rotate(${directionalRotation}deg) scale(${baseZoom})`,
           cursor: 'grab',
           overflow: 'hidden',
           position: 'absolute',
