@@ -307,9 +307,9 @@ describe('extractLinkFromSource', () => {
   });
 
   it('should return source if source includes http', () => {
-    expect(
-      extractLinkFromSource('http://sourceWithHttp.com', sourceLinkMapping)
-    ).to.equal('http://sourceWithHttp.com');
+    expect(extractLinkFromSource('http://sourceWithHttp.com', sourceLinkMapping)).toEqual(
+      'http://sourceWithHttp.com'
+    );
   });
 
   it('should return source with http prefix if source includes a dot but not http', () => {
