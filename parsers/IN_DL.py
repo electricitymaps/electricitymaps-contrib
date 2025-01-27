@@ -88,7 +88,9 @@ def fetch_production(
     try:
         value_column_index = column_headers.index(_POWER_COLUMN_HEADER)
     except ValueError as e:
-        raise ValueError(f"Could not find a column with header '{_POWER_COLUMN_HEADER}' in the scraped HTML table") from e
+        raise ValueError(
+            f"Could not find a column with header '{_POWER_COLUMN_HEADER}' in the scraped HTML table"
+        ) from e
 
     for row in prod_rows[1:]:
         cells = row.findAll("td")
@@ -98,7 +100,9 @@ def fetch_production(
         try:
             plant_type = _PLANT_NAME_TO_TYPE[plant_name]
         except KeyError as e:
-            raise KeyError(f"Unknown plant '{plant_name}'; manually add the type of this plant to `_PLANT_NAME_TO_TYPE`") from e
+            raise KeyError(
+                f"Unknown plant '{plant_name}'; manually add the type of this plant to `_PLANT_NAME_TO_TYPE`"
+            ) from e
         power = max(0.0, float(cells[value_column_index].text))
         energy[plant_type] += power
 
