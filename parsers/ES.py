@@ -457,7 +457,7 @@ if __name__ == "__main__":
     print("fetch_consumption(ES-CN-FV)")
     print(fetch_consumption(ZoneKey("ES-CN-FV")))
     print("fetch_production(ES-CN-LZ)")
-    print(fetch_production(ZoneKey("ES-CN-LZ")))    
+    print(fetch_production(ZoneKey("ES-CN-LZ")))
 
     # Balearic Islands
     print("fetch_consumption(ES-IB-FO)")
