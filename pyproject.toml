@@ -15,10 +15,10 @@ demjson3 = { version = "^3.0.5", optional = true }
 freezegun = { version = "^0.3.15", optional = true }
 imageio = { version = "^2.18.0", optional = true }
 lxml = { version = "^4.9.1", optional = true }
-opencv-python = { version = "4.6.0.66", optional = true }
+opencv-python = { version = "4.8.1.78", optional = true }
 pandas = { version = "^1.4.4", optional = true }
 pytesseract = { version = "0.2.0", optional = true }
-requests = { version = "~2.31.0", optional = true }
+requests = { version = "~2.32.2", optional = true }
 signalr-client-threads = { version = "~0.0.12", optional = true }
 xlrd = { version = "^2.0.1", optional = true }
 xmltodict = { version = "^0.13.0", optional = true }
