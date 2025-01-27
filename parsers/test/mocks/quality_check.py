@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 """
 Test datapoints for quality.py
 Each one is designed to test some part of the validation functions.

@@ -4,16 +4,115 @@ bounding_box:
   - - 22.5581376482
     - 49.5715740017
 capacity:
-  biomass: 234
-  coal: 277
-  gas: 1183
-  hydro: 1630
-  hydro storage: 916
-  nuclear: 2308
-  oil: 259
-  solar: 532
-  unknown: 742
-  wind: 3
+  biomass:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 225.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 224.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 214.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 234.0
+  coal:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 554.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 566.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 541.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 309.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 277.0
+  gas:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 1106.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1111.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 1153.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 1152.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1183.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 1623.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1626.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 1628.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1630.0
+  hydro storage:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 916.0
+  nuclear:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 1940.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 2003.0
+    - datetime: '2023-12-31'
+      source: IAEA
+      value: 2471.0
+  oil:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 257.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 259.0
+  solar:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 530.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 531.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 532.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 567.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 554.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 534.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 756.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 742.0
+  wind:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 3.0
 contributors:
   - corradio
   - nessie2013

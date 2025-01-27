@@ -40,22 +40,7 @@ def test_fetch_production_live(snapshot, fixture_session_mock):
         ],
     )
 
-    production = fetch_production(session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
-    )
+    assert snapshot == fetch_production(session=session)
 
 
 def test_fetch_production_historical(snapshot, fixture_session_mock):
@@ -77,21 +62,9 @@ def test_fetch_production_historical(snapshot, fixture_session_mock):
     )
 
     historical_datetime = datetime.fromisoformat("2023-07-16T12:00:00+00:00")
-    production = fetch_production(target_datetime=historical_datetime, session=session)
 
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
+    assert snapshot == fetch_production(
+        target_datetime=historical_datetime, session=session
     )
 
 
@@ -114,20 +87,7 @@ def test_fetch_consumption_live(snapshot, fixture_session_mock):
         ],
     )
 
-    consumption = fetch_consumption(session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "consumption": element["consumption"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-            }
-            for element in consumption
-        ]
-    )
+    assert snapshot == fetch_consumption(session=session)
 
 
 def test_fetch_consumption_historical(snapshot, fixture_session_mock):
@@ -149,19 +109,7 @@ def test_fetch_consumption_historical(snapshot, fixture_session_mock):
     )
 
     historical_datetime = datetime.fromisoformat("2023-07-16T12:00:00+00:00")
-    consumption = fetch_consumption(
-        target_datetime=historical_datetime, session=session
-    )
 
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "consumption": element["consumption"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-            }
-            for element in consumption
-        ]
+    assert snapshot == fetch_consumption(
+        target_datetime=historical_datetime, session=session
     )

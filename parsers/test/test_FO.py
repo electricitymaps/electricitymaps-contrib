@@ -41,22 +41,7 @@ def test_fetch_production_live(snapshot, fixture_session_mock, zone):
         ],
     )
 
-    production = fetch_production(ZoneKey(zone), session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
-    )
+    assert snapshot == fetch_production(ZoneKey(zone), session=session)
 
 
 @pytest.mark.parametrize("zone", ["FO", "FO-MI", "FO-SI"])
@@ -82,21 +67,6 @@ def test_fetch_production_historical(snapshot, fixture_session_mock, zone, utc_o
         ),
     )
 
-    production = fetch_production(
+    assert snapshot == fetch_production(
         ZoneKey(zone), target_datetime=target_datetime, session=session
-    )
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
     )

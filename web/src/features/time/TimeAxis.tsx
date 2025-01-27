@@ -14,15 +14,15 @@ import { formatDateTick } from '../../utils/formatting';
 
 const getMajorTick = (timeRange: TimeRange, localHours: number, index: number) => {
   switch (timeRange) {
-    case TimeRange.H24:
-    case TimeRange.D30: {
-      return index % 6 === 0;
-    }
     case TimeRange.H72: {
       return localHours === 12 || localHours === 0;
     }
+    case TimeRange.M3:
+    case TimeRange.ALL_MONTHS: {
+      return index % 12 === 0;
+    }
     case TimeRange.M12:
-    case TimeRange.ALL: {
+    case TimeRange.ALL_YEARS: {
       return true;
     }
     default: {

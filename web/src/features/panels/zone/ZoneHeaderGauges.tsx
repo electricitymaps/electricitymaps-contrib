@@ -6,11 +6,10 @@ import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 export function ZoneHeaderGauges({ zoneKey }: { zoneKey?: string }) {
   const { data } = useGetState();
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
-  const actualData = data?.data;
-  if (!actualData || !zoneKey) {
+  if (!data || !zoneKey) {
     return null;
   }
-  const selectedData = actualData.datetimes[selectedDatetimeString]?.z[zoneKey];
+  const selectedData = data.datetimes[selectedDatetimeString]?.z[zoneKey];
 
   return <ZoneGaugesWithCO2Square zoneData={selectedData} withTooltips />;
 }

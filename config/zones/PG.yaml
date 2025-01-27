@@ -1,3 +1,8 @@
+bounding_box:
+  - - 140.34960849608493
+    - -12.135945702701854
+  - - 156.43375933759333
+    - -0.8464601337314619
 country: PG
 region: Oceania
 timezone: Pacific/Port_Moresby

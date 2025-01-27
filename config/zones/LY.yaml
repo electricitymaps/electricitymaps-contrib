@@ -1,3 +1,8 @@
+bounding_box:
+  - - 8.786292862928661
+    - 18.995830245473655
+  - - 25.651651516515187
+    - 33.68127537705416
 country: LY
 region: Africa
 timezone: Africa/Tripoli

@@ -15,10 +15,12 @@ def read_defaults(config_dir) -> dict[str, Any]:
         return yaml.load(file)
 
 
-def read_zones_config(config_dir) -> dict[ZoneKey, Any]:
+def read_zones_config(config_dir, retired=False) -> dict[ZoneKey, Any]:
     """Reads all the zone config files."""
     zones_config: dict[ZoneKey, Any] = {}
-    for zone_path in config_dir.joinpath("zones").glob("*.yaml"):
+    for zone_path in config_dir.joinpath(
+        "retired_zones" if retired is True else "zones"
+    ).glob("*.yaml"):
         zone_key = ZoneKey(zone_path.stem)
         with open(zone_path, encoding="utf-8") as file:
             zones_config[zone_key] = yaml.load(file)

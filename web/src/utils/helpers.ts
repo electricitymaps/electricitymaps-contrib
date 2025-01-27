@@ -1,4 +1,5 @@
 import { callerLocation, useMeta } from 'api/getMeta';
+import { useCallback } from 'react';
 import {
   useLocation,
   useMatch,
@@ -75,41 +76,58 @@ export function useNavigateWithParameters() {
     zoneId: previousZoneId,
     urlTimeRange: previousTimeRange,
     urlDatetime: previousDatetime,
+    resolution: previousResolution,
   } = useParams();
   const parameters = useMatches();
   const isZoneRoute = parameters.some((match) => match.pathname.startsWith('/zone'));
 
   const basePath = isZoneRoute ? '/zone' : '/map';
 
-  return ({
-    to = basePath,
-    zoneId = isZoneRoute ? previousZoneId : undefined,
-    timeRange = previousTimeRange,
-    datetime = previousDatetime,
-    keepHashParameters = true,
-  }: {
-    to?: string;
-    zoneId?: string;
-    timeRange?: string;
-    datetime?: string;
-    keepHashParameters?: boolean;
-  }) => {
-    // Always preserve existing search params
-    const isDestinationZoneRoute = to.startsWith('/zone');
-    const currentSearch = new URLSearchParams(location.search);
-    const path = getDestinationPath({
-      to,
-      zoneId: isDestinationZoneRoute ? zoneId : undefined,
-      timeRange,
-      datetime,
-    });
-    const fullPath = {
-      pathname: path,
-      search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
-      hash: keepHashParameters ? location.hash : undefined,
-    };
-    navigator(fullPath);
-  };
+  return useCallback(
+    ({
+      to = basePath,
+      zoneId = isZoneRoute ? previousZoneId : undefined,
+      timeRange = previousTimeRange as TimeRange,
+      datetime = previousDatetime,
+      keepHashParameters = true,
+      resolution = previousResolution,
+    }: {
+      to?: string;
+      zoneId?: string;
+      timeRange?: TimeRange;
+      datetime?: string;
+      keepHashParameters?: boolean;
+      resolution?: string;
+    }) => {
+      // Always preserve existing search params
+      const isDestinationZoneRoute = to.startsWith('/zone');
+      const currentSearch = new URLSearchParams(location.search);
+      const path = getDestinationPath({
+        to,
+        zoneId: isDestinationZoneRoute ? zoneId : undefined,
+        timeRange: timeRange.includes('all') ? 'all' : timeRange,
+        datetime,
+        resolution,
+      });
+      const fullPath = {
+        pathname: path,
+        search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
+        hash: keepHashParameters ? location.hash : undefined,
+      };
+      navigator(fullPath);
+    },
+    [
+      basePath,
+      isZoneRoute,
+      location.hash,
+      location.search,
+      navigator,
+      previousDatetime,
+      previousResolution,
+      previousTimeRange,
+      previousZoneId,
+    ]
+  );
 }
 
 export function getDestinationPath({
@@ -117,15 +135,17 @@ export function getDestinationPath({
   zoneId,
   timeRange,
   datetime,
+  resolution,
 }: {
   to: string;
   zoneId?: string;
-  timeRange?: string;
+  timeRange?: TimeRange | 'all';
   datetime?: string;
+  resolution?: string;
 }) {
   return `${to}${zoneId ? `/${zoneId}` : ''}${timeRange ? `/${timeRange}` : ''}${
-    datetime ? `/${datetime}` : ''
-  }`;
+    resolution ? `/${resolution}` : ''
+  }${datetime ? `/${datetime}` : ''}`;
 }
 
 /**

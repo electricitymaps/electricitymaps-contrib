@@ -113,7 +113,7 @@ function Modal({
               </picture>
             )}
           </div>
-          <div className="flex w-auto flex-col justify-center rounded-b-3xl px-4 pt-6 text-center dark:bg-gray-700">
+          <div className="flex w-auto flex-col justify-center overflow-y-scroll rounded-b-3xl px-4 pt-6 text-center dark:bg-gray-700">
             {currentView.renderContent(t)}
           </div>
         </div>

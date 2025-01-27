@@ -5,17 +5,59 @@ bounding_box:
     - 49.0390742051
 capacity:
   biomass:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 618.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 641.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 650.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 647.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 600.0
+    - datetime: '2022-01-01'
       source: entsoe.eu
       value: 585.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 584.0
+      value: 629.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 677.0
   coal:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 598.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 246.0
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 4466.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 4468.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 4463.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 4015.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 4449.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 4350.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 4206.0
@@ -23,55 +65,157 @@ capacity:
       source: entsoe.eu
       value: 4225.0
   geothermal:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 1.0
+    - datetime: '2020-01-01'
       source: entsoe.eu
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 8546.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 8590.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 7998.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 8160.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 8371.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 8312.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 8673.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 8336.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 8427.0
   hydro storage:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 3401.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 3120.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 3459.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 3503.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 3363.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 3485.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 3512.0
   nuclear:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
       source: entsoe.eu
       value: 0.0
   oil:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 178.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 164.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 120.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 122.0
+      value: 125.0
   solar:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 1031.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 1193.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 1333.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1851.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 2500.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 3265.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 6305.0
+      value: 7294.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 8254.0
   unknown:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 56.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 65.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 123.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 957.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 954.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 845.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 879.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 855.0
   wind:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 2696.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 2887.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 3035.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 3133.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 3198.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 3500.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 3569.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 3967.0
+      value: 4021.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 4035.0
 contributors:
   - corradio
   - brandongalbraith

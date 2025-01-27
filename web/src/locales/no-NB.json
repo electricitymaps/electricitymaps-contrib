@@ -429,14 +429,6 @@
       "countryName": "Canada",
       "zoneName": "Newfoundland og Labrador"
     },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
-    },
     "CA-NS": {
       "countryName": "Canada",
       "zoneName": "Nova Scotia"
@@ -1805,18 +1797,6 @@
     },
     "VN": {
       "zoneName": "Vietnam"
-    },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Sentral-Vietnam"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Nord-Vietnam"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Sør-Vietnam"
     },
     "VU": {
       "zoneName": "Vanuatu"
