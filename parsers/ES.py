@@ -286,8 +286,30 @@ def get_ree_data(
     return json["valoresHorariosGeneracion"]
 
 
+# Parses the date. In DST end days, the repeated hours are distinguished using a leter, this needs to be parsed
 def parse_date(str_date, tz):
-    return datetime.fromisoformat(str_date).replace(tzinfo=ZoneInfo(tz))
+    if "A" in str_date:
+        index = str_date.index("A")
+        new_value = (
+            str_date[: index - 1] + "0" + str_date[index - 1] + str_date[index + 1 :]
+        )
+        # If A, we use the timezone from yesterday
+        return datetime.fromisoformat(
+            new_value
+            + f" +0{ZoneInfo(tz).utcoffset(datetime.fromisoformat(new_value) - timedelta(days=1))}"
+        )
+    elif "B" in str_date:
+        index = str_date.index("B")
+        new_value = (
+            str_date[: index - 1] + "0" + str_date[index - 1] + str_date[index + 1 :]
+        )
+        # If B, we use the timezone from tomorrow
+        return datetime.fromisoformat(
+            new_value
+            + f" +0{ZoneInfo(tz).utcoffset(datetime.fromisoformat(new_value) + timedelta(days=1))}"
+        )
+    else:
+        return datetime.fromisoformat(str_date).replace(tzinfo=ZoneInfo(tz))
 
 
 def fetch_and_preprocess_data(
@@ -496,3 +518,7 @@ if __name__ == "__main__":
     print(fetch_exchange(ZoneKey("ES"), ZoneKey("PT")))
     print("fetch_exchange(ES-CN-FV, ES-CN-LZ)")
     print(fetch_exchange(ZoneKey("ES-CN-FV"), ZoneKey("ES-CN-LZ")))
+
+    # DST date test (his only happened when they switched time zones twice a year )
+    print("fetch_production(ES, '2024-10-26') DST")
+    print(fetch_production(ZoneKey("ES"), None, datetime(2024, 10, 26, 0, 0, 0)))

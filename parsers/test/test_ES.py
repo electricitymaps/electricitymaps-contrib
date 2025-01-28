@@ -13,7 +13,7 @@ def mock_response(adapter):
     with open("parsers/test/mocks/ES/demandaGeneracionPeninsula.json", "rb") as data:
         adapter.register_uri(
             GET,
-            ES.get_url(ZoneKey("ES"), "2025-01-27"),
+            ES.get_url(ZoneKey("ES"), "2024-10-26"),
             content=data.read(),
         )
     with open("parsers/test/mocks/ES/demandaGeneracionBaleares.json", "rb") as data:
@@ -27,14 +27,14 @@ def mock_response(adapter):
 ### Iberian Peninsula (ES) Consumption
 def test_es_consumption(adapter, session, snapshot):
     assert snapshot == ES.fetch_consumption(
-        ZoneKey("ES"), session, datetime.fromisoformat("2025-01-27")
+        ZoneKey("ES"), session, datetime.fromisoformat("2024-10-26")
     )
 
 
-### Iberian Peninsula (ES) Production
+### Iberian Peninsula (ES) Production with DST Tests
 def test_es_production(adapter, session, snapshot):
     assert snapshot == ES.fetch_production(
-        ZoneKey("ES"), session, datetime.fromisoformat("2025-01-27")
+        ZoneKey("ES"), session, datetime.fromisoformat("2024-10-26")
     )
 
 
@@ -44,7 +44,7 @@ def test_es_pt_exchange(adapter, session, snapshot):
         ZoneKey("ES"),
         ZoneKey("PT"),
         session,
-        datetime.fromisoformat("2025-01-27"),
+        datetime.fromisoformat("2024-10-26"),
     )
 
 
