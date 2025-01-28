@@ -1,4 +1,4 @@
-import { DownloadCsv } from 'components/buttons/DownloadCsv';
+import DownloadCsv from 'components/buttons/DownloadCsv';
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { useFeatureFlag } from 'features/feature-flags/api';
