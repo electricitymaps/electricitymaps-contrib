@@ -49,10 +49,10 @@ PRODUCTION_PARSE_MAPPING = {
     "sol": "solar",  # Solar
     "car": "coal",  # Coal
     "resid": "biomass",  # Wastes
-    "termRenov": "geothermal",  # Thermal renewable
+    "termRenov": "unknown",  # Thermal renewable
     "cogenResto": "unknown",  # Cogeneration and waste
     "tnr": "unknown",  # Other special regime
-    "trn": "geothermal",  # Thermal renewable
+    "trn": "unknown",  # Thermal renewable
     "otrRen": "unknown",  # Other renewable
     "cogen": "gas",  # Cogeneration
     "turb": "hydro_storage",  # Pumping Turbine
