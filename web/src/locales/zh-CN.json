@@ -279,14 +279,6 @@
       "zoneName": "纽芬兰与拉布拉多",
       "countryName": "加拿大"
     },
-    "CA-NL-LB": {
-      "zoneName": "拉布拉多",
-      "countryName": "加拿大"
-    },
-    "CA-NL-NF": {
-      "zoneName": "纽芬兰",
-      "countryName": "加拿大"
-    },
     "CA-NS": {
       "zoneName": "新斯科舍",
       "countryName": "加拿大"
@@ -1623,18 +1615,6 @@
     },
     "VN": {
       "zoneName": "越南"
-    },
-    "VN-C": {
-      "countryName": "越南",
-      "zoneName": "越南中部"
-    },
-    "VN-N": {
-      "countryName": "越南",
-      "zoneName": "越南北部"
-    },
-    "VN-S": {
-      "countryName": "越南",
-      "zoneName": "越南南部"
     },
     "VU": {
       "zoneName": "瓦努阿图"

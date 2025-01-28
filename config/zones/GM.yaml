@@ -1,3 +1,8 @@
+bounding_box:
+  - - -17.328368283682806
+    - 12.564543994158925
+  - - -13.318738187381854
+    - 14.320155729960916
 country: GM
 region: Africa
 timezone: Africa/Banjul

@@ -72,16 +72,16 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
 
   // Find outages in state data and hide exports from those zones
   const zonesWithOutages = useMemo(() => {
-    const zoneData = data?.data?.datetimes?.[selectedDatetimeString]?.z;
+    const zoneData = data?.datetimes?.[selectedDatetimeString]?.z;
     return zoneData
       ? Object.entries(zoneData)
-          .filter(([_, value]) => value.o)
+          .filter(([, value]) => value.o)
           .map(([zone]) => zone)
       : [];
   }, [data, selectedDatetimeString]);
 
   const exchangesToUse: { [key: string]: StateExchangeData } = useMemo(() => {
-    const exchanges = data?.data?.datetimes?.[selectedDatetimeString]?.e;
+    const exchanges = data?.datetimes?.[selectedDatetimeString]?.e;
 
     if (!exchanges) {
       return {};
