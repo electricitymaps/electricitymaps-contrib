@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import {
   convertPrice,
   ExchangeDataType,
@@ -229,7 +231,7 @@ describe('getProductionData', () => {
   it('returns correct data', () => {
     const result = getProductionData(zoneDetailsData);
     // TODO: Match snapshot
-    expect(result).to.deep.eq(productionData);
+    expect(result).toEqual(productionData);
   });
 });
 
@@ -241,7 +243,7 @@ describe('getElectricityProductionValue', () => {
       production: 500,
       storage: 0,
     });
-    expect(result).to.eq(500);
+    expect(result).toEqual(500);
   });
   it('handles missing production value with zero capacity', () => {
     const result = getElectricityProductionValue({
@@ -250,7 +252,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 0,
     });
-    expect(result).to.eq(0);
+    expect(result).toEqual(0);
   });
 
   it('handles missing production value', () => {
@@ -261,7 +263,7 @@ describe('getElectricityProductionValue', () => {
       storage: 0,
     });
 
-    expect(result).to.eq(null);
+    expect(result).toEqual(null);
   });
   it('handles storage', () => {
     const result = getElectricityProductionValue({
@@ -270,7 +272,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 300,
     });
-    expect(result).to.eq(-300);
+    expect(result).toEqual(-300);
   });
   it('handles zero storage', () => {
     const result = getElectricityProductionValue({
@@ -279,7 +281,7 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: 0,
     });
-    expect(result).to.eq(0);
+    expect(result).toEqual(0);
   });
   it('handles missing storage', () => {
     const result = getElectricityProductionValue({
@@ -288,14 +290,14 @@ describe('getElectricityProductionValue', () => {
       production: null,
       storage: null,
     });
-    expect(result).to.eq(null);
+    expect(result).toEqual(null);
   });
 });
 
 describe('getDataBlockPositions', () => {
   it('returns correct data', () => {
     const result = getDataBlockPositions(productionData.length, exchangeData);
-    expect(result).to.deep.eq({
+    expect(result).toEqual({
       exchangeFlagX: 50,
       exchangeHeight: 40,
       exchangeY: 262,
@@ -314,7 +316,7 @@ describe('getExchangesToDisplay', () => {
       },
     };
     const result = getExchangesToDisplay(true, 'DE', ZoneStates);
-    expect(result).to.deep.eq(['AT', 'BE', 'NO']);
+    expect(result).toEqual(['AT', 'BE', 'NO']);
   });
   it('shows non-aggregated exchanges only when required', () => {
     const ZoneStates = {
@@ -324,7 +326,7 @@ describe('getExchangesToDisplay', () => {
       },
     };
     const result = getExchangesToDisplay(false, 'DE', ZoneStates);
-    expect(result).to.deep.eq(['AT', 'BE', 'NO-NO2']);
+    expect(result).toEqual(['AT', 'BE', 'NO-NO2']);
   });
   it('handles empty exchange', () => {
     const ZoneStates = {
@@ -334,7 +336,7 @@ describe('getExchangesToDisplay', () => {
       },
     };
     const result = getExchangesToDisplay(false, 'DE', ZoneStates);
-    expect(result).to.deep.eq([]);
+    expect(result).toEqual([]);
   });
 });
 
@@ -348,7 +350,7 @@ describe('getExchangeData', () => {
     };
     const result = getExchangeData(['ES', 'AT'], true, exchangeCapacitiesZoneDetailsData);
 
-    expect(result).to.deep.eq([
+    expect(result).toEqual([
       {
         exchange: 934,
         exchangeCapacityRange: [-1000, 1000],
@@ -371,7 +373,7 @@ describe('getExchangeData', () => {
     };
     const result = getExchangeData(['ES'], true, exchangeCapacitiesZoneDetailsData);
 
-    expect(result).to.deep.eq([
+    expect(result).toEqual([
       {
         exchange: -934,
         exchangeCapacityRange: [0, 0],
@@ -390,7 +392,7 @@ describe('getExchangeData', () => {
     };
     const result = getExchangeData(['ES'], true, exchangeCapacitiesZoneDetailsData);
 
-    expect(result).to.deep.equal([
+    expect(result).toEqual([
       {
         exchange: undefined,
         exchangeCapacityRange: [0, 0],
@@ -411,7 +413,7 @@ describe('getExchangeCo2Intensity', () => {
     };
 
     const result = getExchangeCo2Intensity('ES', exchangeCapacitiesZoneDetailsData, true);
-    expect(result).to.eq(999);
+    expect(result).toEqual(999);
   });
   describe('when exchange value is less than 0', () => {
     it('returns Co2 insensity when in Consumption mode', () => {
@@ -426,7 +428,7 @@ describe('getExchangeCo2Intensity', () => {
         exchangeCapacitiesZoneDetailsData,
         true
       );
-      expect(result).to.eq(187.32);
+      expect(result).toEqual(187.32);
     });
     it('returns Co2 insensity production when in Production mode', () => {
       const exchangeCapacitiesZoneDetailsData = {
@@ -440,7 +442,7 @@ describe('getExchangeCo2Intensity', () => {
         exchangeCapacitiesZoneDetailsData,
         false
       );
-      expect(result).to.eq(190.6);
+      expect(result).toEqual(190.6);
     });
   });
 });
@@ -448,26 +450,26 @@ describe('getExchangeCo2Intensity', () => {
 describe('convertPrice', () => {
   it('dont convert USD to price/KWh', () => {
     const result = convertPrice(120, 'USD');
-    expect(result).to.deep.eq({ value: 120, currency: 'USD', unit: 'MWh' });
+    expect(result).toEqual({ value: 120, currency: 'USD', unit: 'MWh' });
   });
 
   it('handles missing currency', () => {
     const result = convertPrice(120, undefined);
-    expect(result).to.deep.eq({ value: 120, currency: undefined, unit: 'MWh' });
+    expect(result).toEqual({ value: 120, currency: undefined, unit: 'MWh' });
   });
 
   it('handles missing price with EUR', () => {
     const result = convertPrice(undefined, 'EUR');
-    expect(result).to.deep.eq({ value: undefined, currency: 'EUR', unit: 'MWh' });
+    expect(result).toEqual({ value: undefined, currency: 'EUR', unit: 'MWh' });
   });
 
   it('handles missing price without EUR', () => {
     const result = convertPrice(undefined, 'USD');
-    expect(result).to.deep.eq({ value: undefined, currency: 'USD', unit: 'MWh' });
+    expect(result).toEqual({ value: undefined, currency: 'USD', unit: 'MWh' });
   });
 
   it('handles missing price and currency', () => {
     const result = convertPrice(undefined, undefined);
-    expect(result).to.deep.eq({ value: undefined, currency: undefined, unit: 'MWh' });
+    expect(result).toEqual({ value: undefined, currency: undefined, unit: 'MWh' });
   });
 });
