@@ -61,7 +61,7 @@ def test_es_ib_ma_consumption(adapter, session, snapshot):
     )
 
 
-### Mallorca Production
+### Mallorca Production with DST Tests
 def test_es_ib_ma_production(adapter, session, snapshot):
     assert snapshot == ES.fetch_production(
         ZoneKey("ES-IB-MA"), session, datetime.fromisoformat("2024-10-26")
@@ -85,7 +85,7 @@ def test_es_cn_te_consumption(adapter, session, snapshot):
     )
 
 
-### Tenerife Production
+### Tenerife Production with DST Tests
 def test_es_cn_te_production(adapter, session, snapshot):
     assert snapshot == ES.fetch_production(
         ZoneKey("ES-CN-TE"), session, datetime.fromisoformat("2024-10-26")
