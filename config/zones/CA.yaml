@@ -1,0 +1,18 @@
+
+country: CA
+region: Americas
+subZoneNames:
+  - CA-AB
+  - CA-BC
+  - CA-MB
+  - CA-NB
+  - CA-NL
+  - CA-NS
+  - CA-NT
+  - CA-NU
+  - CA-ON
+  - CA-PE
+  - CA-QC
+  - CA-SK
+  - CA-YT
+timezone: America/Toronto
