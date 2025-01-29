@@ -19,7 +19,13 @@ def mock_response(adapter):
     with open("parsers/test/mocks/ES/demandaGeneracionBaleares.json", "rb") as data:
         adapter.register_uri(
             GET,
-            ES.get_url(ZoneKey("ES-IB-MA"), "2025-01-27"),
+            ES.get_url(ZoneKey("ES-IB-MA"), "2024-10-26"),
+            content=data.read(),
+        )
+    with open("parsers/test/mocks/ES/demandaGeneracionCanarias.json", "rb") as data:
+        adapter.register_uri(
+            GET,
+            ES.get_url(ZoneKey("ES-CN-TE"), "2024-10-26"),
             content=data.read(),
         )
 
@@ -51,14 +57,14 @@ def test_es_pt_exchange(adapter, session, snapshot):
 ### Mallorca Consumption
 def test_es_ib_ma_consumption(adapter, session, snapshot):
     assert snapshot == ES.fetch_consumption(
-        ZoneKey("ES-IB-MA"), session, datetime.fromisoformat("2025-01-27")
+        ZoneKey("ES-IB-MA"), session, datetime.fromisoformat("2024-10-26")
     )
 
 
 ### Mallorca Production
 def test_es_ib_ma_production(adapter, session, snapshot):
     assert snapshot == ES.fetch_production(
-        ZoneKey("ES-IB-MA"), session, datetime.fromisoformat("2025-01-27")
+        ZoneKey("ES-IB-MA"), session, datetime.fromisoformat("2024-10-26")
     )
 
 
@@ -68,5 +74,19 @@ def test_es_ib_ma_exchange(adapter, session, snapshot):
         ZoneKey("ES-IB-IZ"),
         ZoneKey("ES-IB-MA"),
         session,
-        datetime.fromisoformat("2025-01-27"),
+        datetime.fromisoformat("2024-10-26"),
+    )
+
+
+### Tenerife Consumption
+def test_es_cn_te_consumption(adapter, session, snapshot):
+    assert snapshot == ES.fetch_consumption(
+        ZoneKey("ES-CN-TE"), session, datetime.fromisoformat("2024-10-26")
+    )
+
+
+### Tenerife Production
+def test_es_cn_te_production(adapter, session, snapshot):
+    assert snapshot == ES.fetch_production(
+        ZoneKey("ES-CN-TE"), session, datetime.fromisoformat("2024-10-26")
     )
