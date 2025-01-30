@@ -6,23 +6,23 @@ bounding_box:
 capacity:
   solar:
   - datetime: '2024-08-30'
-    source: 'The Ministry of Energy of the Republic of Uzbekistan'
-    comment: https://gov.uz/oz/minenergy/news/view/29602
+    source: gov.uz
+    comment: 'The Ministry of Energy of the Republic of Uzbekistan'
     value: 2300
   wind: 
   - datetime: '2024-08-30'
-    source: 'The Ministry of Energy of the Republic of Uzbekistan'
-    comment: https://gov.uz/oz/minenergy/news/view/29602
+    source: gov.uz
+    comment: 'The Ministry of Energy of the Republic of Uzbekistan'
     value: 500
   hydro:
   - datetime: '2024-08-29'
-    source: 'Statistics Agency under the President of the Republic of Uzbekistan'
-    comment: https://stat.uz/uz/rasmiy-statistika/industry-2
+    source: stat.uz
+    comment: 'Statistics Agency under the President of the Republic of Uzbekistan'
     value: 2381
   gas:
   - datetime: '2024-08-29'
-    source: 'Statistics Agency under the President of the Republic of Uzbekistan'
-    comment: https://stat.uz/uz/rasmiy-statistika/industry-2
+    source: stat.uz
+    comment: 'Statistics Agency under the President of the Republic of Uzbekistan'
     value: 13874
 country: UZ
 region: Asia
