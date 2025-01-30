@@ -32563,6 +32563,13 @@
       'sourceType': <EventSourceType.measured: 'measured'>,
     }),
     dict({
+      'datetime': datetime.datetime(2024, 10, 26, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
+      'netFlow': 0.0,
+      'sortedZoneKeys': 'ES->PT',
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
       'netFlow': -624.0,
       'sortedZoneKeys': 'ES->PT',
