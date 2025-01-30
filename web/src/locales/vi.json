@@ -203,6 +203,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
