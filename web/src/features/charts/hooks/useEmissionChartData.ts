@@ -16,16 +16,13 @@ export function useEmissionChartData() {
   }
 
   const chartData: AreaGraphElement[] = Object.entries(data.zoneStates).map(
-    ([datetimeString, value]) => {
-      const datetime = new Date(datetimeString);
-      return {
-        datetime,
-        layerData: {
-          emissions: getTotalEmissionsAvailable(value, isConsumption),
-        },
-        meta: value,
-      };
-    }
+    ([datetimeString, value]) => ({
+      datetime: new Date(datetimeString),
+      layerData: {
+        emissions: getTotalEmissionsAvailable(value, isConsumption),
+      },
+      meta: value,
+    })
   );
 
   const maxEmissions =
