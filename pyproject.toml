@@ -5,7 +5,7 @@ description = ""
 license = "AGPL-3.0-or-later"
 authors = ["Electricity Maps <app@electricitymaps.com>"]
 packages = [{ include = "electricitymap" }]
-include = ["config/*.json"]
+include = ["config/*.json", "config/*.yaml"]
 
 [tool.poetry.dependencies]
 python = '>= 3.10, < 3.11'
