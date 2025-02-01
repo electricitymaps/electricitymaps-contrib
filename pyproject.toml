@@ -27,7 +27,7 @@ openpyxl = { version = "^3.1.2", optional = true }
 pydataxm = { version = "^0.3.2", optional = true }
 ruamel-yaml = "^0.17.24"
 pycountry = { version = "^22.3.5", optional = true }
-ruff = "0.4.3"
+ruff = "0.9.4"
 tzdata = "^2025.1"
 numpy = "^1.24.4"
 
