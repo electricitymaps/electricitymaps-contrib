@@ -102,7 +102,7 @@
     "react-i18next": "^15.4.0",
     "react-icons": "^5.4.0",
     "react-map-gl": "~7.1.8",
-    "react-router-dom": "6.28.0",
+    "react-router-dom": "6.29.0",
     "react-spinners": "^0.14.1",
     "react-spring-bottom-sheet": "3.5.0-alpha.0",
     "storybook-mock-date-decorator": "^2.0.6",
