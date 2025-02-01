@@ -89,7 +89,7 @@
     "d3-shape": "^3.2.0",
     "date-fns": "^3.6.0",
     "geojson": "^0.5.0",
-    "i18next": "^24.2.1",
+    "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.2",
     "i18next-resources-to-backend": "^1.2.1",
     "jotai": "^2.11.0",
