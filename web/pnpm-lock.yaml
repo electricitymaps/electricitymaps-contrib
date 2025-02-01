@@ -244,8 +244,8 @@ importers:
         specifier: ^5.64.0
         version: 5.64.0(@tanstack/react-query@5.64.0(react@18.3.1))(react@18.3.1)
       '@testing-library/cypress':
-        specifier: 10.0.2
-        version: 10.0.2(cypress@13.17.0)
+        specifier: 10.0.3
+        version: 10.0.3(cypress@13.17.0)
       '@testing-library/dom':
         specifier: 9.3.4
         version: 9.3.4
@@ -3097,15 +3097,11 @@ packages:
   '@tanstack/virtual-core@3.11.2':
     resolution: {integrity: sha512-vTtpNt7mKCiZ1pwU9hfKPhpdVO2sVzFQsxoVBGtOSHxlrRRzYr8iQ2TlwbAcRYCcEiZ9ECAM8kBzH0v2+VzfKw==}
 
-  '@testing-library/cypress@10.0.2':
-    resolution: {integrity: sha512-dKv95Bre5fDmNb9tOIuWedhGUryxGu1GWYWtXDqUsDPcr9Ekld0fiTb+pcBvSsFpYXAZSpmyEjhoXzLbhh06yQ==}
+  '@testing-library/cypress@10.0.3':
+    resolution: {integrity: sha512-TeZJMCNtiS59cPWalra7LgADuufO5FtbqQBYxuAgdX6ZFAR2D9CtQwAG8VbgvFcchW3K414va/+7P4OkQ80UVg==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
-      cypress: ^12.0.0 || ^13.0.0
-
-  '@testing-library/dom@10.2.0':
-    resolution: {integrity: sha512-CytIvb6tVOADRngTHGWNxH8LPgO/3hi/BdCEHOf7Qd2GvZVClhVP0Wo/QHzWhpki49Bk0b4VT6xpt3fx8HTSIw==}
-    engines: {node: '>=18'}
+      cypress: ^12.0.0 || ^13.0.0 || ^14.0.0
 
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
@@ -12161,22 +12157,11 @@ snapshots:
 
   '@tanstack/virtual-core@3.11.2': {}
 
-  '@testing-library/cypress@10.0.2(cypress@13.17.0)':
+  '@testing-library/cypress@10.0.3(cypress@13.17.0)':
     dependencies:
-      '@babel/runtime': 7.25.6
-      '@testing-library/dom': 10.2.0
+      '@babel/runtime': 7.26.7
+      '@testing-library/dom': 10.4.0
       cypress: 13.17.0
-
-  '@testing-library/dom@10.2.0':
-    dependencies:
-      '@babel/code-frame': 7.24.7
-      '@babel/runtime': 7.25.6
-      '@types/aria-query': 5.0.4
-      aria-query: 5.3.0
-      chalk: 4.1.2
-      dom-accessibility-api: 0.5.16
-      lz-string: 1.5.0
-      pretty-format: 27.5.1
 
   '@testing-library/dom@10.4.0':
     dependencies:
@@ -17608,7 +17593,7 @@ snapshots:
 
   regenerator-transform@0.15.2:
     dependencies:
-      '@babel/runtime': 7.25.7
+      '@babel/runtime': 7.26.7
 
   regexp-tree@0.1.27: {}
 
