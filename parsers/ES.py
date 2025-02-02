@@ -61,7 +61,7 @@ PRODUCTION_PARSE_MAPPING = {
     "residNr": "unknown",  # Non-renewable waste
     "residRen": "biomass",  # Renewable wastes
     "bat": "battery_storage",  # Battery
-    "consBat": "battery_storage",  # Batteries consume
+    "consBat": "battery_storage",  # Battery consumption
     "aut": "unknown",  # Other special regime
     "gnhd": "hydro",  # Hydro
 }
