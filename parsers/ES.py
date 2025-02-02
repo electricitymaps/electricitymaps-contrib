@@ -279,7 +279,7 @@ def get_ree_data(
             f"Failed fetching data for {zone_key}",
             zone_key,
         )
-    # The response is not rely a JSON, but a JSON-like string starting with "'null(" and ending with ");" or ")"
+    # The response is not a valid JSON, but a JSON-like string starting with "'null(" and ending with ");" or ")"
     json = loads(res.text[5:-2]) if res.text[-1] == ";" else loads(res.text[5:-1])
 
     return json["valoresHorariosGeneracion"]
