@@ -40,7 +40,7 @@ from .lib.exceptions import ParserException
 PRODUCTION_PARSE_MAPPING = {
     "nuc": "nuclear",  # Nuclear
     "die": "oil",  # Diesel engines
-    "genAux": "oil",  # TAuxiliary generation
+    "genAux": "oil",  # Auxiliary generation
     "gas": "gas",  # Gas turbine
     "gf": "gas",  # Fuel/gas
     "eol": "wind",  # Wind
