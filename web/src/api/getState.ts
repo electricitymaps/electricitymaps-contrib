@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import type { GridState, RouteParameters } from 'types';
 import { TimeRange } from 'utils/constants';
 import { isValidHistoricalTimeRange } from 'utils/helpers';
-import { getStaleTime } from 'utils/refetching';
 import { timeRangeAtom } from 'utils/state/atoms';
 
 import {
@@ -62,8 +61,8 @@ const useGetState = (): UseQueryResult<GridState> => {
       },
     ],
     queryFn: () => getState(timeRange, urlDatetime),
-    staleTime: getStaleTime(timeRange, urlDatetime),
-    refetchOnWindowFocus: true,
+    staleTime: 3_600_000,
+    refetchOnWindowFocus: false,
   });
 };
 

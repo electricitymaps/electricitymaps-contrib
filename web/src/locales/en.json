@@ -355,7 +355,8 @@
     "windpotential": "Wind power potential",
     "solarpotential": "Solar power potential",
     "colorblindmode": "color blind mode",
-    "carbonintensity": "Carbon intensity"
+    "carbonintensity": "Carbon intensity",
+    "price": "Price"
   },
   "tooltips": {
     "carbonintensity": "Carbon intensity",

@@ -7,6 +7,7 @@ import { isConsumptionAtom } from 'utils/state/atoms';
 
 import CarbonIntensitySquare from './CarbonIntensitySquare';
 import CircularGauge from './CircularGauge';
+import PriceSquare from './PriceSquare';
 
 interface ZoneGaugesWithCO2SquareProps {
   zoneData: StateZoneData;
@@ -20,17 +21,32 @@ function ZoneGaugesWithCO2Square({
   const { t } = useTranslation();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const intensity = getCarbonIntensity(zoneData, isConsumption);
+  const price = zoneData?.p?.p ?? null;
+
   const renewable = getRenewableRatio(zoneData, isConsumption);
   const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
   return (
     <div className="flex w-full flex-row justify-evenly">
-      <CarbonIntensitySquare
-        data-testid="co2-square-value"
-        intensity={intensity}
-        tooltipContent={
-          withTooltips ? <p>{t('tooltips.zoneHeader.carbonIntensity')}</p> : undefined
-        }
-      />
+      {isConsumption ? (
+        <CarbonIntensitySquare
+          data-testid="co2-square-value"
+          intensity={intensity}
+          tooltipContent={
+            withTooltips ? <p>{t('tooltips.zoneHeader.carbonIntensity')}</p> : undefined
+          }
+        />
+      ) : (
+        price !== null && (
+          <PriceSquare
+            data-testid="co2-square-value"
+            price={price}
+            tooltipContent={
+              withTooltips ? <p>{t('tooltips.zoneHeader.carbonIntensity')}</p> : undefined
+            }
+          />
+        )
+      )}
+
       <CircularGauge
         name={t('country-panel.lowcarbon')}
         ratio={fossilFuelPercentage}

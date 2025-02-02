@@ -48,3 +48,16 @@ export function getCo2ColorScale(theme: MapTheme) {
     .unknown(theme.clickableFill)
     .clamp(true);
 }
+
+export function usePriceColorScale() {
+  const theme = useTheme();
+  return useMemo(() => getPriceColorScale(theme), [theme]);
+}
+
+export function getPriceColorScale(theme: MapTheme) {
+  return scaleLinear<string>()
+    .domain(theme.priceScale.steps)
+    .range(theme.priceScale.colors)
+    .unknown(theme.clickableFill)
+    .clamp(true);
+}

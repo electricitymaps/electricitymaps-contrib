@@ -39,6 +39,8 @@ export interface StateZoneData {
     fr?: number | null;
     /** Renewable ratio */
     rr?: number | null;
+    /** Price */
+    p?: number | null;
   };
   /** Object representing all consumption values */
   c: {
@@ -210,6 +212,10 @@ export interface StatesGeometry extends Feature<LineString | MultiLineString | P
 
 export interface MapTheme {
   co2Scale: {
+    steps: number[];
+    colors: string[];
+  };
+  priceScale: {
     steps: number[];
     colors: string[];
   };

@@ -24,7 +24,7 @@ import {
   userLocationAtom,
 } from 'utils/state/atoms';
 
-import { useCo2ColorScale, useTheme } from '../../hooks/theme';
+import { useCo2ColorScale, usePriceColorScale, useTheme } from '../../hooks/theme';
 import BackgroundLayer from './map-layers/BackgroundLayer';
 import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
@@ -72,6 +72,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
+  const getPriceColorScale = usePriceColorScale();
   const navigate = useNavigateWithParameters();
   const theme = useTheme();
   const isConsumption = useAtomValue(isConsumptionAtom);
@@ -181,9 +182,14 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       const { zoneId } = feature.properties;
       const zone = data?.datetimes[selectedDatetimeString]?.z[zoneId];
       const co2intensity = zone ? getCarbonIntensity(zone, isConsumption) : undefined;
-      const fillColor = co2intensity
+      const price = zone?.p?.p;
+
+      const fillColorCo2 = co2intensity
         ? getCo2colorScale(co2intensity)
         : theme.clickableFill;
+      const fillColorPrice = price ? getPriceColorScale(price) : theme.clickableFill;
+
+      const fillColor = isConsumption ? fillColorCo2 : fillColorPrice;
       const existingColor = map.getFeatureState({
         source: ZONE_SOURCE,
         id: zoneId,
@@ -205,6 +211,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     map,
     data,
     getCo2colorScale,
+    getPriceColorScale,
     isLoadingMap,
     isSourceLoaded,
     spatialAggregate,

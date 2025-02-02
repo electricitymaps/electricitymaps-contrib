@@ -64,6 +64,7 @@ export const productionConsumptionAtom = atom(Mode.CONSUMPTION);
 export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
 );
+export const isPriceModeAtom = atom<boolean>(false);
 
 export const areWeatherLayersAllowedAtom = atom<boolean>(
   (get) =>
