@@ -1,4 +1,3 @@
-import DownloadCsv from 'components/buttons/DownloadCsv';
 import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { useFeatureFlag } from 'features/feature-flags/api';
@@ -46,7 +45,7 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
         <ZoneHeaderTitle zoneId={zoneId} zoneNameFull={zoneNameFull} />
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
-      <DownloadCsv />
+
       {isShareButtonEnabled &&
         isConsumption &&
         (showMoreOptions ? (

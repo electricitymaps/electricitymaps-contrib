@@ -2,10 +2,11 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
 import { useAtomValue } from 'jotai';
-import { Link } from 'lucide-react';
+import { Download, ExternalLink, Link } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
+import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { getTrackByShareType, ShareType } from 'utils/analytics';
 import {
@@ -42,11 +43,13 @@ export function MoreOptionsDropdown({
   title,
   id,
 }: MoreOptionsDropdownProps) {
+  const { zoneId } = useParams();
   const { t } = useTranslation();
   const [toastMessage, setToastMessage] = useState('');
   const { isOpen, onDismiss, onToggleDropdown } = useDropdownCtl();
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
+  const downloadUrl = `https://portal.electricitymaps.com/datasets/${zoneId}?utm_source=app&utm_medium=download_button&utm_campaign=csv_download`;
 
   const summary = t('more-options-dropdown.summary');
 
@@ -108,6 +111,19 @@ export function MoreOptionsDropdown({
             </DropdownMenu.Label>
             <DropdownMenu.Separator className="mb-1 mt-3 h-px bg-neutral-200 dark:bg-gray-700" />
             <DropdownMenu.Group className="flex cursor-pointer flex-col">
+              <DropdownMenu.Item
+                className={dropdownItemStyle}
+                onSelect={() => window.open(downloadUrl, '_blank')}
+              >
+                <Download size={DEFAULT_ICON_SIZE} />
+                <p className={dropdownContentStyle}>
+                  {t('more-options-dropdown.download')}
+                </p>
+                <ExternalLink
+                  size={DEFAULT_ICON_SIZE}
+                  className="text-gray-500 opacity-80"
+                />
+              </DropdownMenu.Item>
               <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
                 <Link size={DEFAULT_ICON_SIZE} />
                 <p className={dropdownContentStyle}>{copyLinkText}</p>
