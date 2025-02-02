@@ -5,7 +5,7 @@ description = ""
 license = "AGPL-3.0-or-later"
 authors = ["Electricity Maps <app@electricitymaps.com>"]
 packages = [{ include = "electricitymap" }]
-include = ["config/*.json"]
+include = ["config/*.json", "config/*.yaml"]
 
 [tool.poetry.dependencies]
 python = '>= 3.10, < 3.11'
@@ -28,7 +28,7 @@ pydataxm = { version = "^0.3.2", optional = true }
 ruamel-yaml = "^0.17.24"
 pycountry = { version = "^22.3.5", optional = true }
 ruff = "0.4.3"
-tzdata = "^2024.2"
+tzdata = "^2025.1"
 numpy = "^1.24.4"
 
 [tool.poetry.scripts]
