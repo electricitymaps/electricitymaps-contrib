@@ -1,0 +1,6 @@
+lonlat:
+  - -108.721
+  - 29.325
+parsers:
+  exchange: CENACE.fetch_exchange
+rotation: -90
