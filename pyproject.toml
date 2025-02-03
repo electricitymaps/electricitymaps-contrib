@@ -6,8 +6,8 @@ license = "AGPL-3.0-or-later"
 authors = ["Electricity Maps <app@electricitymaps.com>"]
 packages = [{ include = "electricitymap" }]
 include = [
-    { path = "config/*.json", format = ["sdist", "wheel"] },
-    { path = "config/**/*.yaml", format = ["sdist", "wheel"] }
+    { path = "electricitymap/contrib/config/config/*.json", format = ["sdist", "wheel"] },
+    { path = "electricitymap/contrib/config/config/**/*.yaml", format = ["sdist", "wheel"] }
 ]
 
 [tool.poetry.dependencies]

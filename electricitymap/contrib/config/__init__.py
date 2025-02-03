@@ -18,7 +18,7 @@ from electricitymap.contrib.config.zones import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
-CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
+CONFIG_DIR = Path(__file__).parent.joinpath("config").resolve()
 
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 RETIRED_ZONES_CONFIG = read_zones_config(CONFIG_DIR, retired=True)
