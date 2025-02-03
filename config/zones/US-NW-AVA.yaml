@@ -12,7 +12,7 @@ capacity:
     - datetime: '2019-01-01'
       source: EIA.gov
       value: 179.9
-    - datetime: '2023-10-01'
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 173.7
   coal:
@@ -31,7 +31,10 @@ capacity:
     - datetime: '2019-01-01'
       source: EIA.gov
       value: 1251.8
-    - datetime: '2023-10-01'
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1170.1
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 1170.4
   hydro storage:
@@ -58,7 +61,7 @@ capacity:
     - datetime: '2019-01-01'
       source: EIA.gov
       value: 105.3
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 249.3
 comment: Avista Corporation
