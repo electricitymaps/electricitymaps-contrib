@@ -16750,7 +16750,7 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": "ES-CN-FVLZ",
+        "zoneName": "ES-CN-FV",
         "countryKey": "ES",
         "countryName": "Spain"
       },
@@ -16768,7 +16768,20 @@
               [-14.268742687426851, 28.175347627365923],
               [-14.463587593357897, 28.06789429485049]
             ]
-          ],
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zoneName": "ES-CN-LZ",
+        "countryKey": "ES",
+        "countryName": "Spain"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [-13.458734587345845, 29.147052870944634],
