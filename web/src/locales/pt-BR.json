@@ -518,9 +518,13 @@
       "countryName": "Espanha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanha",

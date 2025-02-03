@@ -720,9 +720,13 @@
       "countryName": "西班牙",
       "zoneName": "梅諾卡島"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "西班牙",
-      "zoneName": "富埃特文圖拉島/蘭薩羅特島"
+      "zoneName": "富埃特文圖拉島"
+    },
+    "ES-CN-LZ": {
+      "countryName": "西班牙",
+      "zoneName": "蘭薩羅特島"
     },
     "ES-CN-GC": {
       "countryName": "西班牙",
