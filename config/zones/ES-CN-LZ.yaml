@@ -1,0 +1,12 @@
+contributors:
+  - hectorespert
+  - systemcatch
+  - silimotion
+  - t-couery
+  - VIKTORVAV99
+country: ES
+parsers:
+  consumption: ES.fetch_consumption
+  production: ES.fetch_production
+region: Europe
+timezone: Atlantic/Canary
