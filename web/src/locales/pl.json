@@ -703,9 +703,13 @@
       "countryName": "Hiszpania",
       "zoneName": "Ceuta"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Hiszpania",
-      "zoneName": "Fuerteventura i Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Hiszpania",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Hiszpania",
