@@ -5,7 +5,7 @@ import pytest
 from requests_mock import GET
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.UY import fetch_consumption, fetch_production, fetch_exchange
+from parsers.UY import fetch_consumption, fetch_exchange, fetch_production
 
 
 def test_fetch_production(adapter, session, snapshot):
@@ -26,6 +26,7 @@ def test_fetch_production(adapter, session, snapshot):
         session=session,
     )
 
+
 def test_fetch_consumption(adapter, session, snapshot):
     html = Path("parsers/test/mocks/UY/html.html")
     adapter.register_uri(
@@ -43,6 +44,7 @@ def test_fetch_consumption(adapter, session, snapshot):
         zone_key=ZoneKey("UY"),
         session=session,
     )
+
 
 @pytest.mark.parametrize("zone_key", [ZoneKey("AR"), ZoneKey("BR-S")])
 def test_fetch_exchange(adapter, session, snapshot, zone_key):
@@ -62,4 +64,4 @@ def test_fetch_exchange(adapter, session, snapshot, zone_key):
         zone_key1=ZoneKey("UY"),
         zone_key2=zone_key,
         session=session,
-   )
+    )
