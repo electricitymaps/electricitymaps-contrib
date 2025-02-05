@@ -50,6 +50,9 @@ capacity:
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 327.0
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 337.0
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
