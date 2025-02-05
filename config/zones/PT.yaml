@@ -156,7 +156,7 @@ capacity:
       value: 2589.0
     - datetime: '2025-01-31'
       source: ren.pt
-      value: 3901.0
+      value: 3900.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
