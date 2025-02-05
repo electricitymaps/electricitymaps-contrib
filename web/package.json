@@ -200,7 +200,7 @@
     "vite": "6.0.11",
     "vite-plugin-pwa": "0.21.1",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "2.1.6",
+    "vitest": "2.1.9",
     "workbox-build": "7.3.0",
     "workbox-window": "7.3.0"
   },
