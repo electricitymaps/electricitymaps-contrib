@@ -121,7 +121,7 @@ export function MoreOptionsDropdown({
                 />
               </button>
             </DropdownMenu.Label>
-            <DropdownMenu.Separator className="my-2 h-px bg-neutral-200 dark:bg-gray-700" />
+            <DropdownMenu.Separator className="my-1 h-px bg-neutral-200 dark:bg-gray-700" />
             <DropdownMenu.Group className="flex cursor-pointer flex-col px-2">
               <DropdownMenu.Item className={dropdownItemStyle}>
                 <div className="flex flex-col">
