@@ -323,18 +323,18 @@
       "all_years": "Production d'électricité annuelle"
     },
     "electricityprices": {
-      "72h": "Prix de l'électricité horaires",
-      "3mo": "Prix de l'électricité quotidiens",
-      "12mo": "Prix de l'électricité mensuels",
-      "all_months": "Prix de l'électricité mensuels",
-      "all_years": "Prix de l'électricité annuels"
+      "72h": "Prix horaires de l'électricité",
+      "3mo": "Prix quotidiens de l'électricité",
+      "12mo": "Prix mensuels de l'électricité",
+      "all_months": "Prix mensuels de l'électricité",
+      "all_years": "Prix annuels de l'électricité"
     },
     "netExchange": {
-      "72h": "Echange net horaire",
-      "3mo": "Echange net quotidien",
-      "12mo": "Echange net mensuel",
-      "all_months": "Echange net mensuel",
-      "all_years": "Echange net annuel"
+      "72h": "Echanges nets horaires",
+      "3mo": "Echanges nets quotidiens",
+      "12mo": "Echange nets mensuels",
+      "all_months": "Echanges nets mensuels",
+      "all_years": "Echanges nets annuels"
     },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
@@ -356,9 +356,9 @@
     "zoneHeader": {
       "lowcarbon": "Inclut les énergies renouvelables et le nucléaire",
       "renewable": "Inclut le solaire, l'éolien, l'hydroélectricité, la biomasse et la géothermie",
-      "carbonIntensity": "Grammes d'équivalent CO2 par kilowattheure (gCO2eq/kWh) mesurant les émissions de gaz à effet de serre issues de la production d'électricité"
+      "carbonIntensity": "rammes d'équivalent CO2 par kilowattheure (gCO2eq/kWh) mesurant les émissions de gaz à effet de serre issues de la production d'électricité"
     },
-    "crossborderexport": "Export transfrontalier",
+    "crossborderexport": "Exports transfrontaliers",
     "carbonintensityexport": "Intensité carbone de l’export",
     "ofinstalled": "de la capacité installée",
     "utilizing": "utilisant",
