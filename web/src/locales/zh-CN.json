@@ -259,6 +259,9 @@
     "BZ": {
       "zoneName": "伯利兹"
     },
+    "CA": {
+      "zoneName": "加拿大"
+    },
     "CA-AB": {
       "zoneName": "阿尔伯塔",
       "countryName": "加拿大"
@@ -445,10 +448,6 @@
     "ES-IB-ME": {
       "countryName": "西班牙",
       "zoneName": "梅诺卡岛"
-    },
-    "ES-CN-FVLZ": {
-      "countryName": "西班牙",
-      "zoneName": "富埃特文图拉岛"
     },
     "ES-CN-GC": {
       "countryName": "西班牙",
@@ -1615,18 +1614,6 @@
     },
     "VN": {
       "zoneName": "越南"
-    },
-    "VN-C": {
-      "countryName": "越南",
-      "zoneName": "越南中部"
-    },
-    "VN-N": {
-      "countryName": "越南",
-      "zoneName": "越南北部"
-    },
-    "VN-S": {
-      "countryName": "越南",
-      "zoneName": "越南南部"
     },
     "VU": {
       "zoneName": "瓦努阿图"

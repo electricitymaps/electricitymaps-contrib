@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { getConfig } from './generateZonesConfig';
 
 describe('generateZonesConfig', () => {
@@ -10,10 +12,10 @@ describe('generateZonesConfig', () => {
     const indexOfContributor = result.contributors.indexOf(contributorName);
 
     // Person should be in the list of contributors
-    expect(result.contributors).to.contain(contributorName);
+    expect(result.contributors).toContain(contributorName);
     // Person should be in the list of contributors for the zone
-    expect(result.zones['DK-DK2'].contributors).to.contain(indexOfContributor);
+    expect(result.zones['DK-DK2'].contributors).toContain(indexOfContributor);
     // Person should be in the list of contributors for the aggregated country
-    expect(result.zones['DK'].contributors).to.contain(indexOfContributor);
+    expect(result.zones['DK'].contributors).toContain(indexOfContributor);
   });
 });

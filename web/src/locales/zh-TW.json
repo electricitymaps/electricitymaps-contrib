@@ -530,6 +530,9 @@
     "BZ": {
       "zoneName": "貝里斯"
     },
+    "CA": {
+      "zoneName": "加拿大"
+    },
     "CA-AB": {
       "countryName": "加拿大",
       "zoneName": "亞伯達省"
@@ -717,9 +720,13 @@
       "countryName": "西班牙",
       "zoneName": "梅諾卡島"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "西班牙",
-      "zoneName": "富埃特文圖拉島/蘭薩羅特島"
+      "zoneName": "富埃特文圖拉島"
+    },
+    "ES-CN-LZ": {
+      "countryName": "西班牙",
+      "zoneName": "蘭薩羅特島"
     },
     "ES-CN-GC": {
       "countryName": "西班牙",
@@ -1956,18 +1963,6 @@
     "PH-VI": {
       "countryName": "菲律賓",
       "zoneName": "維薩亞斯群島"
-    },
-    "VN-C": {
-      "countryName": "越南",
-      "zoneName": "越南中部"
-    },
-    "VN-N": {
-      "countryName": "越南",
-      "zoneName": "越南北部"
-    },
-    "VN-S": {
-      "countryName": "越南",
-      "zoneName": "越南南部"
     }
   }
 }

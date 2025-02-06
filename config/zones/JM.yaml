@@ -1,3 +1,8 @@
+bounding_box:
+  - - -78.87458374583741
+    - 17.21699428410645
+  - - -75.68936189361888
+    - 19.01840067056311
 country: JM
 region: Americas
 timezone: America/Jamaica

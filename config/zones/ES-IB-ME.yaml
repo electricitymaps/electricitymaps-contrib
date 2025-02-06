@@ -8,7 +8,52 @@ contributors:
   - systemcatch
   - alixunderplatz
   - silimotion
+  - hectodium
 country: ES
+capacity:
+  # capacity sources described in https://github.com/electricitymaps/electricitymaps-contrib/issues/7520
+  biomass:
+    - datetime: '2023-12-31'
+      source: ree.es
+      value: 0
+  coal:
+    - datetime: '2023-12-31'
+      source: ree.es
+      value: 0
+  gas:
+    - datetime: '2023-12-31'
+      source: ree.es
+      value: 0
+  geothermal:
+    - datetime: '2023-12-31'
+      source: ree.es
+      value: 0
+  hydro:
+    - datetime: '2023-12-31'
+      source: ree.es
+      value: 0
+  nuclear:
+    - datetime: '2023-12-31'
+      source: ree.es
+      value: 0
+  oil:
+    - datetime: '2018-05-01'
+      source: ime.cat
+      value: 271.6
+  solar:
+    - datetime: '2018-05-01'
+      source: ime.cat
+      value: 5.1
+    - datetime: '2023-05-01'
+      source: ime.cat, menorca.info
+      value: 50.8
+  wind:
+    - datetime: '2018-05-01'
+      source: ime.cat
+      value: 3.2
+    - datetime: '2023-12-31'
+      source: ree.es
+      value: 0
 delays:
   production: 5
 emissionFactors:

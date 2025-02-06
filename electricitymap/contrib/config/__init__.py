@@ -1,5 +1,6 @@
 """Global config variables with data read from the config directory."""
 
+import os
 from copy import deepcopy
 from pathlib import Path
 
@@ -20,7 +21,12 @@ from electricitymap.contrib.lib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
+# Note: Needed to deploy contrib as a packaged module to Ray. The config/ folder is built into the electricitymap package.
+if os.environ.get("RUNNING_IN_RAY") == "true":
+    CONFIG_DIR = Path(__file__).parent.joinpath("config").resolve()
+
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
+RETIRED_ZONES_CONFIG = read_zones_config(CONFIG_DIR, retired=True)
 EXCHANGES_CONFIG = read_exchanges_config(CONFIG_DIR)
 
 EU_ZONES = [
