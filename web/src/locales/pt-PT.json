@@ -578,6 +578,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canadá"
+    },
     "CA-AB": {
       "countryName": "Canadá",
       "zoneName": "Alberta"
@@ -765,9 +768,13 @@
       "countryName": "Espanha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanha",
@@ -1981,18 +1988,6 @@
     },
     "VN": {
       "zoneName": "Vietname"
-    },
-    "VN-C": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Central"
-    },
-    "VN-N": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Norte"
-    },
-    "VN-S": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Sul"
     },
     "VU": {
       "zoneName": "Vanuatu"

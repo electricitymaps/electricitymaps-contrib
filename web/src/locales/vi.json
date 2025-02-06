@@ -203,6 +203,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -382,9 +385,13 @@
       "countryName": "Tây Ban Nha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Tây Ban Nha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Tây Ban Nha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Tây Ban Nha",
