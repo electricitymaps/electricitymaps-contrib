@@ -356,7 +356,7 @@
     "zoneHeader": {
       "lowcarbon": "Inclut les énergies renouvelables et le nucléaire",
       "renewable": "Inclut le solaire, l'éolien, l'hydroélectricité, la biomasse et la géothermie",
-      "carbonIntensity": "rammes d'équivalent CO2 par kilowattheure (gCO2eq/kWh) mesurant les émissions de gaz à effet de serre issues de la production d'électricité"
+      "carbonIntensity": "Grammes d'équivalent CO2 par kilowattheure (gCO2eq/kWh) mesurant les émissions de gaz à effet de serre issues de la production d'électricité"
     },
     "crossborderexport": "Exports transfrontaliers",
     "carbonintensityexport": "Intensité carbone de l’export",
