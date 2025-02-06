@@ -4,8 +4,8 @@ version = "1.0.0"
 description = ""
 license = "AGPL-3.0-or-later"
 authors = ["Electricity Maps <app@electricitymaps.com>"]
-packages = [{ include = "electricitymap" }]
-include = ["config/*.json", "config/*.yaml"]
+packages = [{ include = "electricitymap" }, { include = "config", to = "electricitymap/contrib/config" }]
+include = ["config/*.json", "config/**/*.yaml"]
 
 [tool.poetry.dependencies]
 python = '>= 3.10, < 3.11'
@@ -30,6 +30,7 @@ pycountry = { version = "^22.3.5", optional = true }
 ruff = "0.4.3"
 tzdata = "^2025.1"
 numpy = "^1.24.4"
+odfpy = { version = "^1.4.1", optional = true }
 
 [tool.poetry.scripts]
 test-parser = 'test_parser:test_parser'
@@ -58,6 +59,7 @@ parsers = [
     "openpyxl",
     "pydataxm",
     "pycountry",
+    "odfpy",
 ]
 
 scripts = ["xmltodict"]
