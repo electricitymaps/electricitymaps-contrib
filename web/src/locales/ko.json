@@ -483,9 +483,13 @@
       "countryName": "스페인",
       "zoneName": "메노르카섬"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "스페인",
-      "zoneName": "푸에르테벤투라섬/란사로테섬"
+      "zoneName": "푸에르테벤투라섬"
+    },
+    "ES-CN-LZ": {
+      "countryName": "스페인",
+      "zoneName": "란사로테섬"
     },
     "ES-CN-GC": {
       "countryName": "스페인",
