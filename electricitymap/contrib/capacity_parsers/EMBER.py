@@ -59,13 +59,10 @@ def map_variable_to_mode(data: pd.Series) -> str:
 
 
 def get_data_from_url(session: Session) -> pd.DataFrame:
-    yearly_catalogue_url = EMBER_URL + "/data-catalogue/yearly-electricity-data/"
-    r: Response = session.get(yearly_catalogue_url)
-    soup = BeautifulSoup(r.text, "html.parser")
-    csv_link = soup.find("a", {"download": "yearly_full_release_long_format.csv"})[
-        "href"
-    ]
-    r_csv: Response = session.get(EMBER_URL + csv_link)
+    # The page where the link below has been found: https://ember-energy.org/data/yearly-electricity-data/
+    yearly_catalogue_url = "https://storage.googleapis.com/emb-prod-bkt-publicdata/public-downloads/yearly_full_release_long_format.csv"
+
+    r_csv: Response = session.get(yearly_catalogue_url)
     df = pd.read_csv(io.StringIO(r_csv.text))
     return df
 
