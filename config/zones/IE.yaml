@@ -16,7 +16,7 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 4320.0
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 4270.0
   hydro:
@@ -31,13 +31,16 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 670.0
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 830.0
   solar:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 140.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 290.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 740.0
@@ -51,7 +54,7 @@ capacity:
       value: 4340.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 4620.0
+      value: 4540.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 4810.0

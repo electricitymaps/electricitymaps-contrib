@@ -5,15 +5,15 @@ bounding_box:
     - 13.132147528000104
 capacity:
   solar:
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
   unknown:
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 220.0
   wind:
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
 contributors:

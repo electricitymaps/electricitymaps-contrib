@@ -22,16 +22,14 @@ capacity:
   solar:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 550.0
+      value: 570.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 590.0
   unknown:
-    - _comment: Sum of fossil (gas + other fossils) from Ember. The parser aggregates
-        thermal into unknown.
-      datetime: '2022-01-01'
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 930
+      value: 930.0
   wind:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data

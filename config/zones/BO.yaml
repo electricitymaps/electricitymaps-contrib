@@ -7,7 +7,7 @@ capacity:
   biomass:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 270.0
+      value: 190.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 250.0
@@ -15,7 +15,7 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 800.0
-    - datetime: '2023-01-01'
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 740.0
   solar:
@@ -25,7 +25,7 @@ capacity:
   unknown:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 2190.0
+      value: 1760.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 2680.0

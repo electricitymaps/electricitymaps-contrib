@@ -26,14 +26,14 @@ capacity:
   oil:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 7660.0
+      value: 7550.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 7720.0
   solar:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 560.0
+      value: 520.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 770.0
