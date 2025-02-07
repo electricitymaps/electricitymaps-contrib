@@ -1,8 +1,7 @@
 from datetime import datetime, timezone
 
 import pytest
-from requests import Session
-from requests_mock import GET, POST, Adapter
+from requests_mock import GET, POST
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.IEMOP import REPORTS_ADMIN_URL, fetch_production
@@ -11,13 +10,10 @@ zone_keys = [ZoneKey("PH-LU"), ZoneKey("PH-MI"), ZoneKey("PH-VI")]
 
 
 @pytest.mark.parametrize("zone_key", zone_keys)
-def test_production(snapshot, zone_key: ZoneKey):
+def test_production(adapter, session, snapshot, zone_key: ZoneKey):
     """
     Reports have been reduced to 14 September 2023 00:00 to 13 September 2023 22:00 for ease
     """
-    session = Session()
-    adapter = Adapter()
-    session.mount("https://", adapter)
     target_datetime = datetime(2023, 9, 14, 0, 0, tzinfo=timezone.utc)
     with open(
         "parsers/test/mocks/IEMOP/list_reports_items.json", "rb"
