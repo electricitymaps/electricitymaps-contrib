@@ -4,14 +4,34 @@ bounding_box:
   - - -82.4981
     - 17.4603
 capacity:
-  biomass: 210
-  coal: 135
-  geothermal: 35
-  hydro: 706
-  nuclear: 0
-  oil: 875
-  solar: 451
-  wind: 225
+  biomass:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
+  coal:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+  gas:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 910.0
+  solar:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 530.0
+  unknown:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 920.0
+  wind:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 240.0
 contributors:
   - alixunderplatz
   - VIKTORVAV99

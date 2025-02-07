@@ -6,15 +6,30 @@ bounding_box:
   - - 32.6936430193
     - 56.1691299506
 capacity:
-  biomass: 31
-  coal: 0
-  gas: 9468
-  hydro: 73
-  hydro storage: 0
-  nuclear: 0
-  oil: 447
-  solar: 50.9
-  wind: 70.4
+  biomass:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
+  gas:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 9720.0
+  hydro:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+  nuclear:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1170.0
+  solar:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 270.0
+  wind:
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
 contributors:
   - admetny
 country: BY
