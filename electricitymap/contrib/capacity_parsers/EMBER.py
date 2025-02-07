@@ -5,7 +5,6 @@ from typing import Any
 
 import pandas as pd
 import pycountry
-from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
