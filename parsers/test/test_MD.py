@@ -107,8 +107,8 @@ def test_fetch_exchange_forecast_live(adapter, session, snapshot, neighbor):
     )
 
 
-@pytest.mark.parametrize("neighbour", ["RO", "UA"])
-def test_fetch_exchange_forecast_historical(adapter, session, snapshot, neighbour):
+@pytest.mark.parametrize("neighbor", ["RO", "UA"])
+def test_fetch_exchange_forecast_historical(adapter, session, snapshot, neighbor):
     adapter.register_uri(
         GET,
         ANY,
@@ -121,7 +121,7 @@ def test_fetch_exchange_forecast_historical(adapter, session, snapshot, neighbou
 
     assert snapshot == fetch_exchange_forecast(
         ZoneKey("MD"),
-        ZoneKey(neighbour),
+        ZoneKey(neighbor),
         target_datetime=historical_datetime,
         session=session,
     )
