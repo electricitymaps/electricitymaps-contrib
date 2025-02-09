@@ -1,8 +1,8 @@
+import re
 from json import loads
 from pathlib import Path
-import re
 
-from requests_mock import ANY, GET
+from requests_mock import GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.US_PJM import fetch_production
