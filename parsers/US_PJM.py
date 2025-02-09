@@ -4,15 +4,19 @@
 
 import re
 from datetime import datetime, time, timedelta
+from itertools import groupby
 from logging import Logger, getLogger
+from operator import itemgetter
 from zoneinfo import ZoneInfo
 
 import demjson3 as demjson
-import pandas as pd
 from bs4 import BeautifulSoup
 from dateutil import parser
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -22,6 +26,8 @@ API_ENDPOINT = "https://api.pjm.com/api/v1/"
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 DATA_PATH = "api/v1"
+
+SOURCE = "pjm.com"
 
 # Used for both production and price data.
 url = "http://www.pjm.com/markets-and-operations.aspx"
@@ -102,7 +108,7 @@ def fetch_api_data(kind: str, params: dict, session: Session) -> dict:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "US-PJM",
+    zone_key: ZoneKey = ZoneKey("US-PJM"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -125,38 +131,36 @@ def fetch_production(
         "datetime_beginning_ept": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
     }
     resp_data = fetch_api_data(kind="gen_by_fuel", params=params, session=session)
-    data = pd.DataFrame(resp_data.get("items", []))
-    if not data.empty:
-        data["datetime_beginning_ept"] = pd.to_datetime(data["datetime_beginning_ept"])
-        data = data.set_index("datetime_beginning_ept")
-        data["fuel_type"] = data["fuel_type"].map(FUEL_MAPPING)
 
-        all_data_points = []
-        for dt in data.index.unique():
-            production = {}
-            storage = {}
-            data_dt = data.loc[data.index == dt]
-            for i in range(len(data_dt)):
-                row = data_dt.iloc[i]
-                if row["fuel_type"] == "battery":
-                    storage["battery"] = row.get("mw")
-                else:
-                    mode = row["fuel_type"]
-                    production[mode] = row.get("mw")
-            data_point = {
-                "zoneKey": zone_key,
-                "datetime": dt.to_pydatetime().replace(tzinfo=TIMEZONE),
-                "production": production,
-                "storage": storage,
-                "source": "pjm.com",
-            }
-            all_data_points += [data_point]
-        return all_data_points
-    else:
+    productionBreakdownList = ProductionBreakdownList(logger=logger)
+
+    items = resp_data.get("items", [])
+
+    if items == []:
         raise ParserException(
             parser="US_PJM.py",
             message=f"{target_datetime}: Production data is not available in the API",
         )
+
+    for key, group in groupby(items, itemgetter("datetime_beginning_ept")):
+        dt = datetime.fromisoformat(key).replace(tzinfo=TIMEZONE)
+        production = ProductionMix()
+        storage = StorageMix()
+        for data in group:
+            mode = FUEL_MAPPING[data["fuel_type"]]
+            value = data["mw"]
+            if mode == "battery":
+                storage.add_value(mode, value)
+            else:
+                production.add_value(mode, value)
+        productionBreakdownList.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            production=production,
+            storage=storage,
+            source=SOURCE,
+        )
+    return productionBreakdownList.to_list()
 
 
 def get_miso_exchange(session: Session) -> tuple:

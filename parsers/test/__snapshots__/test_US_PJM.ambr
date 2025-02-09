@@ -2,6 +2,8 @@
 # name: test_production
   list([
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 15849.0,
@@ -10,16 +12,19 @@
         'nuclear': 33001.0,
         'oil': 206.0,
         'solar': 28.0,
-        'unknown': 665.0,
+        'unknown': 666.0,
         'wind': 5096.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 15450.0,
@@ -28,16 +33,19 @@
         'nuclear': 33011.0,
         'oil': 206.0,
         'solar': 28.0,
-        'unknown': 663.0,
+        'unknown': 664.0,
         'wind': 5070.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 14787.0,
@@ -46,16 +54,19 @@
         'nuclear': 33027.0,
         'oil': 206.0,
         'solar': 28.0,
-        'unknown': 664.0,
+        'unknown': 665.0,
         'wind': 4624.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 14447.0,
@@ -64,16 +75,19 @@
         'nuclear': 33054.0,
         'oil': 207.0,
         'solar': 28.0,
-        'unknown': 668.0,
+        'unknown': 669.0,
         'wind': 4225.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 14471.0,
@@ -82,16 +96,19 @@
         'nuclear': 33076.0,
         'oil': 209.0,
         'solar': 28.0,
-        'unknown': 671.0,
+        'unknown': 672.0,
         'wind': 3883.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 14664.0,
@@ -100,16 +117,19 @@
         'nuclear': 33177.0,
         'oil': 211.0,
         'solar': 28.0,
-        'unknown': 670.0,
+        'unknown': 671.0,
         'wind': 3144.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 15121.0,
@@ -118,16 +138,19 @@
         'nuclear': 33293.0,
         'oil': 212.0,
         'solar': 28.0,
-        'unknown': 671.0,
+        'unknown': 672.0,
         'wind': 2900.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 15494.0,
@@ -136,16 +159,19 @@
         'nuclear': 33392.0,
         'oil': 210.0,
         'solar': 148.0,
-        'unknown': 668.0,
+        'unknown': 669.0,
         'wind': 2861.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 2, 9, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
       'production': dict({
         'coal': 15427.0,
@@ -154,10 +180,11 @@
         'nuclear': 33499.0,
         'oil': 211.0,
         'solar': 2022.0,
-        'unknown': 666.0,
+        'unknown': 667.0,
         'wind': 2575.0,
       }),
       'source': 'pjm.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': 0.0,
       }),
