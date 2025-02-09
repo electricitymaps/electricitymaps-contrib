@@ -1,0 +1,481 @@
+{
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://api.pjm.com/api/v1/gen_by_fuel?RowCount=500&Order=Asc&StartRow=1&IsActiveMetadata=True&Fields=datetime_beginning_ept%2Cfuel_type%2Cmw&datetime_beginning_ept=2025-02-09T00%3A00%3A00.0000000"
+    },
+    {
+      "rel": "metadata",
+      "href": "https://api.pjm.com/api/v1/gen_by_fuel/metadata"
+    }
+  ],
+  "items": [
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Coal",
+      "mw": 15849.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Gas",
+      "mw": 41727.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Hydro",
+      "mw": 521.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33001.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Oil",
+      "mw": 206.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 665.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Solar",
+      "mw": 28.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T00:00:00",
+      "fuel_type": "Wind",
+      "mw": 5096.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Coal",
+      "mw": 15450.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Gas",
+      "mw": 40800.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Hydro",
+      "mw": 452.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33011.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Oil",
+      "mw": 206.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 663.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Solar",
+      "mw": 28.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T01:00:00",
+      "fuel_type": "Wind",
+      "mw": 5070.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Coal",
+      "mw": 14787.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Gas",
+      "mw": 40089.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Hydro",
+      "mw": 412.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33027.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Oil",
+      "mw": 206.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 664.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Solar",
+      "mw": 28.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T02:00:00",
+      "fuel_type": "Wind",
+      "mw": 4624.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Coal",
+      "mw": 14447.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Gas",
+      "mw": 39422.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Hydro",
+      "mw": 445.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33054.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Oil",
+      "mw": 207.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 668.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Solar",
+      "mw": 28.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T03:00:00",
+      "fuel_type": "Wind",
+      "mw": 4225.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Coal",
+      "mw": 14471.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Gas",
+      "mw": 39989.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Hydro",
+      "mw": 442.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33076.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Oil",
+      "mw": 209.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 671.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Solar",
+      "mw": 28.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T04:00:00",
+      "fuel_type": "Wind",
+      "mw": 3883.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Coal",
+      "mw": 14664.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Gas",
+      "mw": 40113.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Hydro",
+      "mw": 435.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33177.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Oil",
+      "mw": 211.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 670.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Solar",
+      "mw": 28.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T05:00:00",
+      "fuel_type": "Wind",
+      "mw": 3144.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Coal",
+      "mw": 15121.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Gas",
+      "mw": 40844.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Hydro",
+      "mw": 470.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33293.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Oil",
+      "mw": 212.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 671.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Solar",
+      "mw": 28.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T06:00:00",
+      "fuel_type": "Wind",
+      "mw": 2900.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Coal",
+      "mw": 15494.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Gas",
+      "mw": 41543.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Hydro",
+      "mw": 934.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33392.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Oil",
+      "mw": 210.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 668.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Solar",
+      "mw": 148.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T07:00:00",
+      "fuel_type": "Wind",
+      "mw": 2861.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Coal",
+      "mw": 15427.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Gas",
+      "mw": 41516.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Hydro",
+      "mw": 1015.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Multiple Fuels",
+      "mw": 1.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Nuclear",
+      "mw": 33499.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Oil",
+      "mw": 211.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Other Renewables",
+      "mw": 666.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Solar",
+      "mw": 2022.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Storage",
+      "mw": 0.0
+    },
+    {
+      "datetime_beginning_ept": "2025-02-09T08:00:00",
+      "fuel_type": "Wind",
+      "mw": 2575.0
+    }
+  ],
+  "searchSpecification": {
+    "rowCount": 500,
+    "order": "Asc",
+    "startRow": 1,
+    "isActiveMetadata": true,
+    "fields": [
+      "datetime_beginning_ept",
+      "fuel_type",
+      "mw"
+    ],
+    "filters": [
+      {
+        "datetime_beginning_ept": "2025-02-09T00:00:00.0000000"
+      }
+    ]
+  },
+  "totalRows": 90
+}
