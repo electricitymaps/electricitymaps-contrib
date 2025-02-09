@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0093)https://pronos.adme.com.uy/gpf.php?fecha_ini=5%2F2%2F2025&fecha_fin=6%2F2%2F2025&send=MOSTRAR -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+        <title>Generación por fuente.</title>
+        <link href="./html_files/calendario_dw-estilos.css" type="text/css" rel="STYLESHEET">
+        <style type="text/css">
+            body{
+                font-family:verdana,sans-serif;
+            }
+        </style>
+        <script type="text/javascript" src="./html_files/jquery-1.4.4.min.js"></script>
+        <script type="text/javascript" src="./html_files/calendario_dw.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".campofecha").calendarioDW();
+            });
+        </script>
+    </head>
+    <!--<hr>command60: /home/upronos/SimSEE/bin/Gen_EOL_SOL_EXP 45693 45694 60 <br><hr>comand: /home/upronos/SimSEE/bin/Gen_EOL_SOL_EXP 45693 45694 <br>-->
+    <body style="overscroll-behavior-x: auto;">
+        <script type="text/javascript">
+            window.onload = function () {
+                document.forms['fdatos'].elements['fecha_ini'].value = '5/2/2025';
+                document.forms['fdatos'].elements['fecha_fin'].value = '6/2/2025';
+            }
+        </script>
+    <a href="https://www.adme.com.uy/"><img src="./html_files/logo_adme.png"></a>
+    <p style="font-family:Verdana; font-size: 20px; font-color:#287cd2">Generación por fuente. (datos del SCADA)</p><br>
+    <form action="https://pronos.adme.com.uy/gpf.php?fecha_ini=5%2F2%2F2025&amp;fecha_fin=6%2F2%2F2025&amp;send=MOSTRAR" name="fdatos">
+
+        Fecha inicial:<input type="text" name="fecha_ini" class="campofecha" size="12"><a class="botoncal" href="https://pronos.adme.com.uy/gpf.php?fecha_ini=5%2F2%2F2025&amp;fecha_fin=6%2F2%2F2025&amp;send=MOSTRAR#"><span></span></a>
+
+        Fecha final:<input type="text" name="fecha_fin" class="campofecha" size="12"><a class="botoncal" href="https://pronos.adme.com.uy/gpf.php?fecha_ini=5%2F2%2F2025&amp;fecha_fin=6%2F2%2F2025&amp;send=MOSTRAR#"><span></span></a>
+
+
+        <input name="send" type="submit" value="MOSTRAR">    
+    </form>
+    <hr>
+
+
+<div style="float: center; width: 100%;">
+                <img title="Generación por fuente." src="./html_files/gpf_6579792_6579859.svg" alt="gráfico de generación por fuente." style="width: 100%;">
+        </div>
+    <div style="float: center; width: 50%;">
+		<a href="https://pronos.adme.com.uy/cache/gpf_6579792_6579859_diezminutal.ods"><button>Archivo Scada Detalle 10minutal</button></a>
+         
+	</div>    <div style="float: center; width: 50%;">
+		<a href="https://pronos.adme.com.uy/cache/gpf_6579792_6579859_horario.ods"><button>Archivo Scada Detalle Horario</button></a>
+         
+	</div>     
+
+
+
+</body></html>

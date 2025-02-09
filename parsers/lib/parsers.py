@@ -41,7 +41,7 @@ for zone_id, zone_config in ZONES_CONFIG.items():
     for parser_key, v in zone_config.get("parsers", {}).items():
         mod_name, fun_name = v.split(".")
         mod = importlib.import_module(
-            f"{_parser_key_to_parser_folder(parser_key)}.%s" % mod_name
+            f"{_parser_key_to_parser_folder(parser_key)}.{mod_name}"
         )
         PARSER_KEY_TO_DICT[parser_key][zone_id] = getattr(mod, fun_name)
 
@@ -50,5 +50,5 @@ for zone_id, zone_config in ZONES_CONFIG.items():
 for exchange_id, exchange_config in EXCHANGES_CONFIG.items():
     for parser_key, v in exchange_config.get("parsers", {}).items():
         mod_name, fun_name = v.split(".")
-        mod = importlib.import_module("parsers.%s" % mod_name)
+        mod = importlib.import_module(f"parsers.{mod_name}")
         PARSER_KEY_TO_DICT[parser_key][exchange_id] = getattr(mod, fun_name)

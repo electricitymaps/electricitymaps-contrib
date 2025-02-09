@@ -7,8 +7,6 @@ from datetime import datetime, timezone
 from typing import Any
 from warnings import warn
 
-import arrow
-
 from electricitymap.contrib.config import EXCHANGES_CONFIG, emission_factors
 from electricitymap.contrib.lib.types import ZoneKey
 
@@ -40,16 +38,16 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
 
 
 def validate_reasonable_time(item, k):
-    data_time = arrow.get(item["datetime"])
-    if data_time.year < 2000:
-        raise ValidationError(
-            f"Data from {k} can't be before year 2000, it was from: {data_time}"
-        )
+    data_dt = item["datetime"].astimezone(timezone.utc)
+    now = datetime.now(timezone.utc)
 
-    arrow_now = arrow.utcnow()
-    if data_time.astimezone(timezone.utc) > arrow_now:
+    if data_dt.year < 2000:
         raise ValidationError(
-            f"Data from {k} can't be in the future, data was {data_time}, now is {arrow_now}"
+            f"Data from {k} can't be before year 2000, it was from: {data_dt}"
+        )
+    if data_dt > now:
+        raise ValidationError(
+            f"Data from {k} can't be in the future, it was from {data_dt}, now is {now}"
         )
 
 
@@ -82,7 +80,7 @@ def validate_exchange(item, k) -> None:
         raise ValidationError(f"netFlow was not returned for {k}")
     # Verify that the exchange flow is not greater than the interconnector
     # capacity and has physical sense (no exchange should exceed 100GW)
-    # Use https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/example.py for expected format
+    # Use https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/examples/example_parser.py for expected format
     if item.get("sortedZoneKeys", None) and item.get("netFlow", None):
         zone_names: list[str] = item["sortedZoneKeys"]
         if abs(item.get("netFlow", 0)) > 100000:
@@ -109,7 +107,7 @@ def validate_exchange(item, k) -> None:
 def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
     validate_datapoint_format(datapoint=obj, kind="production", zone_key=zone_key)
     if "datetime" not in obj:
-        raise ValidationError("datetime was not returned for %s" % zone_key)
+        raise ValidationError(f"datetime was not returned for {zone_key}")
     if "countryCode" in obj:
         warn(
             "object has field `countryCode`. It should have "
@@ -117,7 +115,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             stacklevel=1,
         )
     if "zoneKey" not in obj and "countryCode" not in obj:
-        raise ValidationError("zoneKey was not returned for %s" % zone_key)
+        raise ValidationError(f"zoneKey was not returned for {zone_key}")
     if not isinstance(obj["datetime"], datetime):
         raise ValidationError(
             "datetime {} is not valid for {}".format(obj["datetime"], zone_key)
@@ -139,6 +137,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
             "AU-TAS",
             "DK-BHM",
             "US-CAR-YAD",
+            "US-CENT-SPA",
             "US-NW-SCL",
             "US-NW-CHPD",
             "US-NW-WWA",
@@ -152,13 +151,12 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
         ]
     ):
         raise ValidationError(
-            "Coal, gas or oil or unknown production value is required for"
-            " %s" % zone_key
+            f"Coal, gas or oil or unknown production value is required for {zone_key}"
         )
 
     if zone_key in ["US-CAR-YAD"] and obj.get("production", {}).get("hydro", 0) < 5:
         raise ValidationError(
-            "Hydro production value is required to be greater than 5 for %s" % zone_key
+            f"Hydro production value is required to be greater than 5 for {zone_key}"
         )
 
     if obj.get("storage"):

@@ -1,3 +1,5 @@
+aggregates_displayed:
+  - none
 bounding_box:
   - - 46.155
     - 28.3985
@@ -51,6 +53,8 @@ capacity:
 contributors:
   - alixunderplatz
   - nessie2013
+  - consideRatio
+country: KW
 emissionFactors:
   direct:
     battery discharge:
@@ -75,12 +79,24 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 550.0
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 550.0
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 550.0
     hydro discharge:
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
         value: 550.0
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
+        value: 550.0
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 550.0
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
         value: 550.0
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
@@ -101,7 +117,7 @@ fallbackZoneMixes:
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
-        unknown: 1.0
+        unknown: 0.9999999963920968
         wind: 0.0
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
@@ -116,9 +132,40 @@ fallbackZoneMixes:
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
-        unknown: 1.0
+        unknown: 0.9999999967729631
+        wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.9999999991671333
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.9999999920933934
         wind: 0.0
 parsers:
   consumption: KW.fetch_consumption
   productionCapacity: IRENA.fetch_production_capacity
+region: Asia
 timezone: Asia/Kuwait

@@ -30,7 +30,162 @@ contributors:
   - jarek
   - ajoga
   - brandongalbraith
+country: AU
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 628.16
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 645.77
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 616.67
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 577.05
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 525.99
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 467.04
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 376.82
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 628.16
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 645.77
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 616.67
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 577.05
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 525.99
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 467.04
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 376.82
 estimation_method: RECONSTRUCT_BREAKDOWN
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.00021892240231451658
+        biomass: 0.0014889857628047735
+        coal: 0.6949050081527185
+        gas: 0.11728330054195606
+        geothermal: 0.0
+        hydro: 0.06394983294280067
+        hydro discharge: 3.2223797292023245e-09
+        nuclear: 0.0
+        oil: 0.0002851738390369744
+        solar: 0.04737690999408793
+        unknown: 0.0
+        wind: 0.07449182207957626
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.00014345795772109318
+        biomass: 0.001717819711424113
+        coal: 0.7050793058924584
+        gas: 0.11034623195768384
+        geothermal: 0.0
+        hydro: 0.06860729496652633
+        hydro discharge: 2.9256675080691224e-09
+        nuclear: 0.0
+        oil: 0.00011993101960073606
+        solar: 0.038430650594956
+        unknown: 4.3903298042962267e-07
+        wind: 0.07555488084360047
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0002918359506617195
+        biomass: 0.001663366146524024
+        coal: 0.6815699485855328
+        gas: 0.12154196366118887
+        geothermal: 0.0
+        hydro: 0.06273219392055972
+        hydro discharge: 4.482086468185452e-09
+        nuclear: 0.0
+        oil: 0.0001381788444196902
+        solar: 0.04173230584301815
+        unknown: 1.1103560601082105e-07
+        wind: 0.09033009287040773
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.00036328787962115213
+        biomass: 0.0013885939081114014
+        coal: 0.6625499916955211
+        gas: 0.10938918018279138
+        geothermal: 0.0
+        hydro: 0.06735547617153584
+        hydro discharge: 5.081486994814711e-09
+        nuclear: 0.0
+        oil: 9.669853317427059e-05
+        solar: 0.05348413328540798
+        unknown: 2.2664373012983758e-07
+        wind: 0.10537239335029262
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0005413018201795112
+        biomass: 0.0013434641790451651
+        coal: 0.6350136162285791
+        gas: 0.08746057792324981
+        geothermal: 0.0
+        hydro: 0.0742252116285408
+        hydro discharge: 4.690571257141756e-09
+        nuclear: 0.0
+        oil: 0.0004903357145993489
+        solar: 0.0775609943542627
+        unknown: 9.361066869302947e-06
+        wind: 0.12335513778825985
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0011225067020465412
+        biomass: 0.0011410394962316959
+        coal: 0.5698620954252588
+        gas: 0.09820495001380032
+        geothermal: 0.0
+        hydro: 0.07468347054837697
+        hydro discharge: 1.0457468834754985e-05
+        nuclear: 0.0
+        oil: 0.000461972716683983
+        solar: 0.12358427911274593
+        unknown: 1.0688917618962704e-05
+        wind: 0.13091854283293475
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.001358607256286131
+        biomass: 0.0014607971090871718
+        coal: 0.5390270486325649
+        gas: 0.07863859169080735
+        geothermal: 0.0
+        hydro: 0.06679120639417538
+        hydro discharge: 1.526671728995774e-06
+        nuclear: 0.0
+        oil: 0.0001916394090004416
+        solar: 0.17916860853314337
+        unknown: 5.5029646668646404e-05
+        wind: 0.13330695088316433
+region: Oceania
 subZoneNames:
   - AU-LH
   - AU-NSW

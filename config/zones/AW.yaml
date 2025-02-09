@@ -8,6 +8,7 @@ capacity:
   wind: 30
 contributors:
   - pascalheraud
+country: AW
 emissionFactors:
   direct:
     battery discharge:
@@ -40,29 +41,41 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 542.2651508954125
+        value: 542.27
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 525.1055410544062
+        value: 525.11
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 551.8304451520281
+        value: 551.83
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 542.2158586094773
+        value: 542.22
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 519.64
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 563.27
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 542.2651508954125
+        value: 542.27
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 525.1055410544062
+        value: 525.11
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 551.8304451520281
+        value: 551.83
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 542.2158586094773
+        value: 542.22
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 519.64
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 563.27
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -76,10 +89,10 @@ fallbackZoneMixes:
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.8309254853151503
-        solar: 0.010210357055236428
+        oil: 0.830847454974291
+        solar: 0.010173009687123279
         unknown: 0.0
-        wind: 0.15894402682943698
+        wind: 0.15897836645149213
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
@@ -91,10 +104,10 @@ fallbackZoneMixes:
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.803937386818513
-        solar: 0.015838011192107374
+        oil: 0.803703036421306
+        solar: 0.0158128937582308
         unknown: 0.0
-        wind: 0.18049515940447672
+        wind: 0.18048327996405208
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
@@ -106,10 +119,10 @@ fallbackZoneMixes:
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.845542446210256
-        solar: 0.016019614923319166
+        oil: 0.8454059505301171
+        solar: 0.016015302784506125
         unknown: 0.0
-        wind: 0.1384827087676215
+        wind: 0.13857838842381132
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
@@ -121,11 +134,42 @@ fallbackZoneMixes:
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.8300134466816113
-        solar: 0.012112561598734299
-        unknown: 0.0007195554431291911
-        wind: 0.15728253495460173
+        oil: 0.8298272126210017
+        solar: 0.012127157143873933
+        unknown: 0.0007192733326606231
+        wind: 0.1573257926991776
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.7939078589008981
+        solar: 0.014544986130697591
+        unknown: 0.001272621935162575
+        wind: 0.19027148505956717
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.8609520728550746
+        solar: 0.008366461052547531
+        unknown: 0.0018877833779848713
+        wind: 0.12879356403066494
 parsers:
   production: AW.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Americas
 timezone: America/Aruba

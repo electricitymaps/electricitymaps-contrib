@@ -3,35 +3,31 @@ import { zoneStateMock } from 'stories/mockData';
 
 import { TooltipInner } from './MapTooltip';
 
-function TestWrapper({
-  zoneKey = 'DK-DK2',
-  estimationMethod = undefined,
-  hasOutage = undefined,
-  co2intensity,
-  fossilFuelRatio,
-  renewableRatio,
-}: {
-  zoneKey?: string;
-  estimationMethod?: string;
-  hasOutage?: boolean;
-  co2intensity: number;
-  fossilFuelRatio: number;
-  renewableRatio: number;
-}) {
+interface StoryStateZoneData {
+  zoneKey: string;
+  ci: number;
+  fr: number;
+  rr: number;
+  e?: boolean | null;
+  o?: boolean | null;
+}
+
+function TestWrapper({ zoneKey, ci, fr, rr, e, o }: StoryStateZoneData) {
   return (
     <div className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900 ">
       <div>
         <TooltipInner
           zoneData={{
             ...zoneStateMock,
-            co2intensity,
-            fossilFuelRatio,
-            renewableRatio,
-            estimationMethod,
-            hasOutage,
+            c: {
+              ci,
+              fr,
+              rr,
+            },
+            e,
+            o,
           }}
           zoneId={zoneKey}
-          date={'2022-01-01'}
         />
       </div>
     </div>
@@ -49,38 +45,41 @@ type Story = StoryObj<typeof TestWrapper>;
 export const MeasuredData: Story = {
   args: {
     zoneKey: 'DK-DK2',
-    co2intensity: 176.01,
-    fossilFuelRatio: 0.1664,
-    renewableRatio: 0.683,
-    hasOutage: false,
+    ci: 176.01,
+    fr: 0.1664,
+    rr: 0.683,
+    o: false,
+    e: false,
   },
 };
 
 export const DisplayTitle: Story = {
   args: {
     zoneKey: 'US-TEX-ERCO',
-    co2intensity: 176.01,
-    fossilFuelRatio: 0.1664,
-    renewableRatio: 0.683,
-    hasOutage: false,
+    ci: 176.01,
+    fr: 0.1664,
+    rr: 0.683,
+    o: false,
+    e: false,
   },
 };
 export const TruncatedTitle: Story = {
   args: {
     zoneKey: 'US-CAL-CISO',
-    co2intensity: 176.01,
-    fossilFuelRatio: 0.1664,
-    renewableRatio: 0.683,
-    hasOutage: false,
+    ci: 176.01,
+    fr: 0.1664,
+    rr: 0.683,
+    o: false,
+    e: false,
   },
 };
 export const TruncatedAndEstimated: Story = {
   args: {
     zoneKey: 'US-CAL-CISO',
-    co2intensity: 176.01,
-    fossilFuelRatio: 0.1664,
-    renewableRatio: 0.683,
-    hasOutage: false,
-    estimationMethod: 'TSA',
+    ci: 176.01,
+    fr: 0.1664,
+    rr: 0.683,
+    o: false,
+    e: true,
   },
 };

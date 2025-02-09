@@ -5,6 +5,10 @@ bounding_box:
     - 57.32198154784774
 contributors:
   - wrma6
+country: US
+delays:
+  production: 2
 parsers:
   production: SEAPA.fetch_production
+region: Americas
 timezone: America/Anchorage

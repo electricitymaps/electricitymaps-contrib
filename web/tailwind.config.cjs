@@ -3,6 +3,7 @@ const defaultConfig = require('tailwindcss/defaultConfig');
 const formsPlugin = require('@tailwindcss/forms');
 const radix = require('tailwindcss-radix');
 const typography = require('@tailwindcss/typography');
+const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss/types').Config} */
 const config = {
@@ -10,8 +11,22 @@ const config = {
   darkMode: 'class',
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            '--tw-prose-links': colors.emerald[800],
+            '--tw-prose-invert-links': colors.emerald[500],
+          },
+        },
+      },
+      spacing: {
+        15: '3.75rem',
+      },
       screens: {
         xs: '475px',
+      },
+      fontSize: {
+        xxs: '0.625rem', // 10px
       },
       animation: {
         'slide-down': 'slide-down 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
@@ -33,23 +48,30 @@ const config = {
       },
       colors: {
         'brand-green': '#135836',
+        'brand-green-dark': '#41866B',
         'brand-yellow': '#E9B73B',
         'brand-brown': '#702214',
+        'price-light': '#18214F',
+        'price-dark': '#848EC0',
+        success: {
+          DEFAULT: colors.emerald[800],
+          dark: colors.emerald[500],
+        },
+        warning: {
+          DEFAULT: colors.amber[700],
+          dark: colors.amber[500],
+        },
+        danger: {
+          DEFAULT: colors.red[700],
+          dark: colors.red[400],
+        },
       },
+      minWidth: { 18: '4.5rem' },
     },
     fontFamily: {
       sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
       poppins: ['Poppins', ...defaultConfig.theme.fontFamily.sans],
       inter: ['Inter', ...defaultConfig.theme.fontFamily.sans],
-    },
-    fontSize: {
-      xs: '0.6rem',
-      sm: '0.75rem',
-      md: '0.8rem',
-      base: '0.875rem',
-      lg: '1.3rem',
-      xl: '1.5rem',
-      '2xl': '3rem',
     },
   },
   plugins: [formsPlugin, typography, radix()],

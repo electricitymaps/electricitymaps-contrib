@@ -20,8 +20,10 @@ from parsers.lib.exceptions import ParserException
 
 EGAT_GENERATION_URL = "https://www.sothailand.com/sysgen/ws/sysgen"
 EGAT_URL = "www.egat.co.th"
-MEA_BASEPRICE_URL = "https://www.mea.or.th/en/profile/109/111"
-MEA_FT_URL = "https://www.mea.or.th/content/detail/2985/2987/474"
+MEA_BASEPRICE_URL = (
+    "https://www.mea.or.th/en/our-services/tariff-calculation/other/-yosbxMGAjzp0"
+)
+MEA_FT_URL = "https://www.mea.or.th/our-services/tariff-calculation/ft/bG2m6iSUN"
 MEA_URL = "www.mea.or.th"
 TZ = ZoneInfo("Asia/Bangkok")
 
@@ -201,7 +203,7 @@ def fetch_price(
         )
 
     unit_price_table = soup_base.find_all("table")[1]
-    price_base = unit_price_table.find_all("td")[19].text
+    price_base = unit_price_table.find_all("td")[8].text
 
     # Available Ft pricing history dated back as far as September 2535 B.E. (1992 C.E.)
     # `price_ft` slot's is 0+(month number), additional +13 is needed if that slot is " "
@@ -216,7 +218,7 @@ def fetch_price(
             zone_key=zone_key,
         )
 
-    ft_rate_table = soup_ft.find_all("table")[1]
+    ft_rate_table = soup_ft.find_all("table")[0]
     curr_ft_month = _as_localtime(datetime.now()).month
     price_ft = ft_rate_table.find_all("td")[curr_ft_month].text
 

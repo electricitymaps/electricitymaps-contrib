@@ -34,113 +34,188 @@ from .lib.exceptions import ParserException
 #    ZoneKey("ES-IB-MA"): "Mallorca"
 #    ZoneKey("ES-IB-ME"): "Menorca"
 #    ZoneKey("ES-ML"): "Melilla"
+#    ZoneKey("ES-CN-FV"): "Fuerteventura"
+#    ZoneKey("ES-CN-LZ"): "Lanzarote"
 
 PRODUCTION_PARSE_MAPPING = {
-    "nuc": "nuclear",
-    "die": "oil",
-    "genAux": "oil",
-    "gas": "gas",
-    "gf": "gas",
-    "eol": "wind",
-    "cc": "gas",
-    "vap": "oil",
-    "fot": "solar",
-    "sol": "solar",
-    "car": "coal",
-    "resid": "biomass",
-    "termRenov": "unknown",
-    "cogenResto": "unknown",
-    "tnr": "unknown",
-    "trn": "unknown",
-    "otrRen": "unknown",
-    "cogen": "unknown",
+    "nuc": "nuclear",  # Nuclear
+    "die": "oil",  # Diesel engines
+    "genAux": "oil",  # Auxiliary generation
+    "gas": "gas",  # Gas turbine
+    "gf": "gas",  # Fuel/gas
+    "eol": "wind",  # Wind
+    "cc": "gas",  # Combined cycle
+    "vap": "oil",  # Vapor turbine
+    "fot": "solar",  # Solar PV
+    "sol": "solar",  # Solar
+    "car": "coal",  # Coal
+    "resid": "biomass",  # Wastes
+    "termRenov": "unknown",  # Thermal renewable
+    "cogenResto": "unknown",  # Cogeneration and waste
+    "tnr": "unknown",  # Other special regime
+    "trn": "unknown",  # Thermal renewable
+    "otrRen": "unknown",  # Other renewable
+    "cogen": "gas",  # Cogeneration
+    "turb": "hydro_storage",  # Pumping Turbine
+    "conb": "hydro_storage",  # Pumping consumption
+    "residNr": "unknown",  # Non-renewable waste
+    "residRen": "biomass",  # Renewable wastes
+    "bat": "battery_storage",  # Battery
+    "consBat": "battery_storage",  # Battery consumption
+    "aut": "unknown",  # Other special regime
+    "gnhd": "hydro",  # Hydro
 }
 
-EXCHANGE_PARSE_MAPPING = {
-    "cb": "pe_ma",
-    "icb": "pe_ma",
-    "emm": "ma_me",
-    "emi": "ma_ib",
-    "eif": "ib_fo",
-    "inter": "int",
-}
+PRODUCTION_IGNORE_KEYS = [
+    "dem",  # Demand
+    "hid",  # Hydro => sum of hydro
+    "ts",  # Timestamp
+    "expTot",  # Exportation Total
+    "impTot",  # Importation Total
+    "dif",  # ?
+    "solFot",  # Solar PV => include in solar
+    "solTer",  # Solar thermal => include in solar
+    "inter",  # Int. exchanges
+    "icb",  # Balear link => include in cb (Balearic-Peninsula link)
+]
 
 ZONE_MAPPING = {
     ZoneKey("ES"): {
-        "API_CODE": "DEMANDAQH",
+        "API_CODE": "DEMANDAAU",
         "SYSTEM": "Peninsula",
         "TZ": "Europe/Madrid",
     },
     ZoneKey("ES-CE"): {
-        "API_CODE": "CEUTA5M",
+        "API_CODE": "CEUTAAU",
         "SYSTEM": "Peninsula",
         "TZ": "Africa/Ceuta",
     },
     ZoneKey("ES-CN-FVLZ"): {
-        "API_CODE": "LZ_FV5M",
+        "API_CODE": "LZ_FVAU",
         "SYSTEM": "Canarias",
         "TZ": "Atlantic/Canary",
     },
     ZoneKey("ES-CN-GC"): {
-        "API_CODE": "GCANARIA5M",
+        "API_CODE": "GCANARIAAU",
         "SYSTEM": "Canarias",
         "TZ": "Atlantic/Canary",
     },
     ZoneKey("ES-CN-HI"): {
-        "API_CODE": "EL_HIERRO5M",
+        "API_CODE": "EL_HIERROAU",
         "SYSTEM": "Canarias",
         "TZ": "Atlantic/Canary",
     },
     ZoneKey("ES-CN-IG"): {
-        "API_CODE": "LA_GOMERA5M",
+        "API_CODE": "LA_GOMERAAU",
         "SYSTEM": "Canarias",
         "TZ": "Atlantic/Canary",
     },
     ZoneKey("ES-CN-LP"): {
-        "API_CODE": "LA_PALMA5M",
+        "API_CODE": "LA_PALMAAU",
         "SYSTEM": "Canarias",
         "TZ": "Atlantic/Canary",
     },
     ZoneKey("ES-CN-TE"): {
-        "API_CODE": "TENERIFE5M",
+        "API_CODE": "TENERIFEAU",
         "SYSTEM": "Canarias",
         "TZ": "Atlantic/Canary",
     },
     ZoneKey("ES-IB-FO"): {
-        "API_CODE": "FORMENTERA5M",
+        "API_CODE": "FORMENTERAAU",
         "SYSTEM": "Baleares",
         "TZ": "Europe/Madrid",
     },
     ZoneKey("ES-IB-IZ"): {
-        "API_CODE": "IBIZA5M",
+        "API_CODE": "IBIZAAU",
         "SYSTEM": "Baleares",
         "TZ": "Europe/Madrid",
     },
     ZoneKey("ES-IB-MA"): {
-        "API_CODE": "MALLORCA5M",
+        "API_CODE": "MALLORCAAU",
         "SYSTEM": "Baleares",
         "TZ": "Europe/Madrid",
     },
     ZoneKey("ES-IB-ME"): {
-        "API_CODE": "MENORCA5M",
+        "API_CODE": "MENORCAAU",
         "SYSTEM": "Baleares",
         "TZ": "Europe/Madrid",
     },
     ZoneKey("ES-ML"): {
-        "API_CODE": "MELILLA5M",
+        "API_CODE": "MELILLAAU",
         "SYSTEM": "Peninsula",
         "TZ": "Africa/Ceuta",
     },
+    ZoneKey("ES-CN-FV"): {
+        "API_CODE": "FUERTEVEAU",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
+    ZoneKey("ES-CN-LZ"): {
+        "API_CODE": "LANZAROTAU",
+        "SYSTEM": "Canarias",
+        "TZ": "Atlantic/Canary",
+    },
 }
+
+EXCHANGE_MAPPING = {
+    ZoneKey("ES->ES-IB-MA"): {
+        "zone_ref": ZoneKey("ES-IB-MA"),
+        "codes": ["cb"],
+        "coef": 1,
+    },
+    ZoneKey("ES-IB-IZ->ES-IB-MA"): {
+        "zone_ref": ZoneKey("ES-IB-MA"),
+        "codes": ["emi"],
+        "coef": 1,
+    },
+    ZoneKey("ES-IB-FO->ES-IB-IZ"): {
+        "zone_ref": ZoneKey("ES-IB-FO"),
+        "codes": ["eif"],
+        "coef": -1,
+    },
+    ZoneKey("ES-IB-MA->ES-IB-ME"): {
+        "zone_ref": ZoneKey("ES-IB-MA"),
+        "codes": ["emm"],
+        "coef": -1,
+    },
+    ZoneKey("AD->ES"): {
+        "zone_ref": ZoneKey("ES"),
+        "codes": ["expAnd", "impAnd"],
+        "coef": 1,
+    },
+    ZoneKey("ES->MA"): {
+        "zone_ref": ZoneKey("ES"),
+        "codes": ["expMar", "impMar"],
+        "coef": -1,
+    },
+    ZoneKey("ES->PT"): {
+        "zone_ref": ZoneKey("ES"),
+        "codes": ["expPor", "impPor"],
+        "coef": -1,
+    },
+    ZoneKey("ES->FR"): {
+        "zone_ref": ZoneKey("ES"),
+        "codes": ["expFra", "impFra"],
+        "coef": -1,
+    },
+    ZoneKey("ES-CN-FV->ES-CN-LZ"): {
+        "zone_ref": ZoneKey("ES-CN-LZ"),
+        "codes": ["efl"],
+        "coef": -1,
+    },
+}
+
+EXCHANGE_MAPPING_CODES = [m for v in EXCHANGE_MAPPING.values() for m in v["codes"]]
+
+KNOWN_KEY = (
+    EXCHANGE_MAPPING_CODES
+    + list(PRODUCTION_PARSE_MAPPING.keys())
+    + PRODUCTION_IGNORE_KEYS
+)
 
 SOURCE = "demanda.ree.es"
 
-EXCHANGE_FUNCTION_MAP: dict[ZoneKey, ZoneKey] = {
-    ZoneKey("ES->ES-IB-MA"): ZoneKey("ES-IB-MA"),
-    ZoneKey("ES-IB-IZ->ES-IB-MA"): ZoneKey("ES-IB-MA"),
-    ZoneKey("ES-IB-FO->ES-IB-IZ"): ZoneKey("ES-IB-FO"),
-    ZoneKey("ES-IB-MA->ES-IB-ME"): ZoneKey("ES-IB-MA"),
-}
+URL_PATERN = "https://demanda.ree.es/WSvisionaMoviles{system}Rest/resources/demandaGeneracion{system}?curva={zone}&fecha={date}"
 
 
 def check_valid_parameters(
@@ -155,7 +230,7 @@ def check_valid_parameters(
             f"This parser cannot parse data for zone: {zone_key}",
             zone_key,
         )
-    elif "->" in zone_key and zone_key not in EXCHANGE_FUNCTION_MAP:
+    elif "->" in zone_key and zone_key not in EXCHANGE_MAPPING:
         zone_key1, zone_key2 = zone_key.split("->")
         raise ParserException(
             "ES.py",
@@ -178,12 +253,16 @@ def check_valid_parameters(
 
 def check_known_key(key: str, logger: Logger):
     """Check if the given key is already known and log a warning if not."""
-    if (
-        key not in EXCHANGE_PARSE_MAPPING
-        and key not in PRODUCTION_PARSE_MAPPING
-        and key not in {"dem", "hid", "ts"}
-    ):
+    if key not in KNOWN_KEY:
         logger.warning(f'Key "{key}" could not be parsed!')
+
+
+def get_url(zone_key: ZoneKey, date: str) -> str:
+    return URL_PATERN.format(
+        system=ZONE_MAPPING[zone_key]["SYSTEM"],
+        zone=ZONE_MAPPING[zone_key]["API_CODE"],
+        date=date,
+    )
 
 
 def get_ree_data(
@@ -193,19 +272,43 @@ def get_ree_data(
         date = datetime.now(tz=ZoneInfo(tz)).strftime("%Y-%m-%d")
     else:
         date = target_datetime.strftime("%Y-%m-%d")
-    system = ZONE_MAPPING[zone_key]["SYSTEM"]
-    zone = ZONE_MAPPING[zone_key]["API_CODE"]
-    res = session.get(
-        f"https://demanda.ree.es/WSvisionaMoviles{system}Rest/resources/demandaGeneracion{system}?curva={zone}&fecha={date}"
-    )
+    res = session.get(get_url(zone_key, date))
     if not res.ok:
         raise ParserException(
             "ES.py",
             f"Failed fetching data for {zone_key}",
             zone_key,
         )
-    json = loads(res.text.replace("null(", "", 1).replace(r");", "", 1))
+    # The response is not a valid JSON, but a JSON-like string starting with "'null(" and ending with ");" or ")"
+    json = loads(res.text[5:-2]) if res.text[-1] == ";" else loads(res.text[5:-1])
+
     return json["valoresHorariosGeneracion"]
+
+
+# Parses the date. In DST end days, the repeated hours are distinguished using a leter, this needs to be parsed
+def parse_date(str_date, tz):
+    if "A" in str_date:
+        index = str_date.index("A")
+        new_value = (
+            str_date[: index - 1] + "0" + str_date[index - 1] + str_date[index + 1 :]
+        )
+        # If A, we use the timezone from yesterday
+        return datetime.fromisoformat(
+            new_value
+            + f" +0{ZoneInfo(tz).utcoffset(datetime.fromisoformat(new_value) - timedelta(days=1))}"
+        )
+    elif "B" in str_date:
+        index = str_date.index("B")
+        new_value = (
+            str_date[: index - 1] + "0" + str_date[index - 1] + str_date[index + 1 :]
+        )
+        # If B, we use the timezone from tomorrow
+        return datetime.fromisoformat(
+            new_value
+            + f" +0{ZoneInfo(tz).utcoffset(datetime.fromisoformat(new_value) + timedelta(days=1))}"
+        )
+    else:
+        return datetime.fromisoformat(str_date).replace(tzinfo=ZoneInfo(tz))
 
 
 def fetch_and_preprocess_data(
@@ -219,7 +322,7 @@ def fetch_and_preprocess_data(
     data = get_ree_data(zone_key, session, target_datetime, tz)
     for value in data:
         # Add timezone info to time object
-        value["ts"] = datetime.fromisoformat(value["ts"]).replace(tzinfo=ZoneInfo(tz))
+        value["ts"] = parse_date(value["ts"], tz)
 
         for key in value:
             check_known_key(key, logger)
@@ -269,8 +372,8 @@ def fetch_production(
     ## Production mapping override for Canary Islands
     # NOTE the LNG terminals are not built yet, so power generated by "gas" or "cc" in ES-CN domain is actually using oil.
     # Recheck this every 6 months and move to gas key if there has been a change.
-    # Last checked: 2022-06-27
-    if zone_key.split("-")[1] == "CN":
+    # As of 2025-02-02 it seems LNG terminals have been canceled.
+    if zone_key.startswith("ES-CN"):
         data_mapping["gas"] = "oil"
         data_mapping["cc"] = "oil"
 
@@ -279,17 +382,21 @@ def fetch_production(
     if zone_key == "ES-IB-IZ":
         data_mapping["die"] = "gas"
 
+    # Remove the key "gnhd" for the zone ES-CN-HI because it is already included in storage
+    if zone_key == ZoneKey("ES-CN-HI"):
+        del data_mapping["gnhd"]
+
     data = fetch_and_preprocess_data(zone_key, ses, logger, target_datetime)
     productionEventList = ProductionBreakdownList(logger)
     for event in data:
         storage = StorageMix()
-        if "hid" in event:
-            storage.add_value("hydro", -event["hid"])
-
         production = ProductionMix()
         for key in event:
             if key in data_mapping:
-                production.add_value(data_mapping[key], event[key])
+                if data_mapping[key].endswith("_storage"):
+                    storage.add_value(data_mapping[key].split("_")[0], -event[key])
+                else:
+                    production.add_value(data_mapping[key], event[key])
 
         productionEventList.append(
             zoneKey=zone_key,
@@ -315,7 +422,7 @@ def fetch_exchange(
     ses = session or Session()
 
     data = fetch_and_preprocess_data(
-        EXCHANGE_FUNCTION_MAP[sorted_zone_keys],
+        EXCHANGE_MAPPING[sorted_zone_keys]["zone_ref"],
         ses,
         logger,
         target_datetime,
@@ -323,27 +430,20 @@ def fetch_exchange(
 
     exchangeList = ExchangeList(logger)
     for event in data:
-        exchanges = {}
+        net_flow = None
         for key in event:
-            if key in EXCHANGE_PARSE_MAPPING:
-                exchanges[EXCHANGE_PARSE_MAPPING[key]] = event[key]
+            if key in EXCHANGE_MAPPING[sorted_zone_keys]["codes"]:
+                net_flow = (0 if net_flow is None else net_flow) + EXCHANGE_MAPPING[
+                    sorted_zone_keys
+                ]["coef"] * event[key]
 
-        net_flow: float
-        if sorted_zone_keys == "ES-IB-MA->ES-IB-ME":
-            net_flow = -1 * exchanges["ma_me"]
-        elif sorted_zone_keys == "ES-IB-IZ->ES-IB-MA":
-            net_flow = exchanges["ma_ib"]
-        elif sorted_zone_keys == "ES-IB-FO->ES-IB-IZ":
-            net_flow = -1 * exchanges["ib_fo"]
-        else:
-            net_flow = exchanges["pe_ma"]
-
-        exchangeList.append(
-            zoneKey=sorted_zone_keys,
-            datetime=event["ts"],
-            netFlow=net_flow,
-            source="demanda.ree.es",
-        )
+        if net_flow is not None:
+            exchangeList.append(
+                zoneKey=sorted_zone_keys,
+                datetime=event["ts"],
+                netFlow=net_flow,
+                source="demanda.ree.es",
+            )
 
     return exchangeList.to_list()
 
@@ -390,6 +490,10 @@ if __name__ == "__main__":
     print(fetch_consumption(ZoneKey("ES-CN-HI")))
     print("fetch_production(ES-CN-HI)")
     print(fetch_production(ZoneKey("ES-CN-HI")))
+    print("fetch_consumption(ES-CN-FV)")
+    print(fetch_consumption(ZoneKey("ES-CN-FV")))
+    print("fetch_production(ES-CN-LZ)")
+    print(fetch_production(ZoneKey("ES-CN-LZ")))
 
     # Balearic Islands
     print("fetch_consumption(ES-IB-FO)")
@@ -418,3 +522,17 @@ if __name__ == "__main__":
     print(fetch_exchange(ZoneKey("ES-IB-MA"), ZoneKey("ES-IB-IZ")))
     print("fetch_exchange(ES-IB-IZ, ES-IB-FO)")
     print(fetch_exchange(ZoneKey("ES-IB-IZ"), ZoneKey("ES-IB-FO")))
+    print("fetch_exchange(ES, MA)")
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("MA")))
+    print("fetch_exchange(ES, AD)")
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("AD")))
+    print("fetch_exchange(ES, FR)")
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("FR")))
+    print("fetch_exchange(ES, PT)")
+    print(fetch_exchange(ZoneKey("ES"), ZoneKey("PT")))
+    print("fetch_exchange(ES-CN-FV, ES-CN-LZ)")
+    print(fetch_exchange(ZoneKey("ES-CN-FV"), ZoneKey("ES-CN-LZ")))
+
+    # DST date test (his only happened when they switched time zones twice a year )
+    print("fetch_production(ES, '2024-10-26') DST")
+    print(fetch_production(ZoneKey("ES"), None, datetime(2024, 10, 26, 0, 0, 0)))

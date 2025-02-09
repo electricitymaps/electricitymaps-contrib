@@ -5,11 +5,11 @@ on:
         required: true
       CLOUDFLARE_ACCOUNT_ID:
         required: true
-      VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN:
+      VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9:
         required: true
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
       deployments: write
@@ -18,9 +18,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -39,7 +39,7 @@ jobs:
         working-directory: ./web
         run: pnpm run build
         env:
-          VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}'
+          VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9: '${{ secrets.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9 }}'
       - name: Publish
         uses: cloudflare/pages-action@1
         with:

@@ -13,11 +13,6 @@ WEATHER_DATABASE_KEYS = [
     "dewpoint",
     "precipitation",
 ]
-OTHER_FORECAST_KEYS = [
-    "price",
-    "production",
-    "consumption",
-]
 
 # Note: this is sorted for plotting purposes
 PRODUCTION_MODES = [

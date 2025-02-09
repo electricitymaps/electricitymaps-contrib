@@ -1,1 +1,14 @@
+contributors:
+  - VIKTORVAV99
+  - AJDelusion
+country: IM
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: https://www.manxutilities.im/media/2830/mu_annual-report_r9.pdf
+      datetime: '2022-01-01'
+      value:
+        gas: 0.988
+        hydro: 0.007
+        oil: 0.005
+region: Europe
 timezone: Europe/Isle_of_Man

@@ -3,6 +3,7 @@ bounding_box:
     - 29.529242255000057
   - - -15.354969855999883
     - 33.61078522300012
+country: PT
 emissionFactors:
   direct:
     biomass:
@@ -75,6 +76,7 @@ emissionFactors:
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
+region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

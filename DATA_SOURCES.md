@@ -141,10 +141,10 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
   - California (US-CAL-CISO): [CAISO](http://www.caiso.com/Pages/default.aspx)
   - Hawaii, Oahu Island (US-HI-OA): [Islandpulse](https://www.islandpulse.org/)
   - New England (US-NE-ISNE): [NEISO](https://www.iso-ne.com/isoexpress/)
-  - New York (US-NY-NYIS): [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
+  - New York (US-NY-NYIS): [NYISO](https://www.nyiso.com/real-time-dashboard)
   - PJM (US-MIDA-PJM): [PJM](http://www.pjm.com/markets-and-operations.aspx)
-  - Puerto Rico (PR): [AEEPR](https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx)
-  - Southwest Power Pool (US-CENT-SWPP): [SPP](https://marketplace.spp.org/pages/generation-mix)
+  - Puerto Rico (PR): [AEEPR](https://aeepr.com/#/operacion)
+  - Southwest Power Pool (US-CENT-SWPP): [SPP](https://portal.spp.org/integrated-marketplace)
 - Uruguay: [UTE](https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 - Vietnam: [EVN](https://www.nldc.evn.vn/)
   &nbsp;</details>
@@ -536,7 +536,7 @@ A ⇉ B: unidirectional operation, only with power flow "from A to B"
 ### Electricity prices (day-ahead) data sources
 
 - France: [RTE](https://www.rte-france.com/en/eco2mix/market-data)
-- Japan: [JEPX](http://www.jepx.org)
+- Japan: [JEPX](http://www.jepx.jp)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Singapore: [EMC](https://www.emcsg.com)
 - Turkey: [EPIAS](https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml)

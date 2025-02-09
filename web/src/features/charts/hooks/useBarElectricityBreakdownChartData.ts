@@ -1,10 +1,12 @@
 import useGetZone from 'api/getZone';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { Mode, SpatialAggregate } from 'utils/constants';
+import { RouteParameters } from 'types';
+import { SpatialAggregate } from 'utils/constants';
 import {
-  productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  isConsumptionAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 
@@ -20,18 +22,30 @@ const DEFAULT_BAR_PX_HEIGHT = 265;
 export default function useBarBreakdownChartData() {
   // TODO: Create hook for using "current" selectedTimeIndex of data instead
   const { data: zoneData, isLoading } = useGetZone();
-  const { zoneId } = useParams();
-  const [viewMode] = useAtom(spatialAggregateAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const { zoneId } = useParams<RouteParameters>();
+  const viewMode = useAtomValue(spatialAggregateAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
-  const currentData = zoneData?.zoneStates?.[selectedDatetime.datetimeString];
-  const isConsumption = mixMode === Mode.CONSUMPTION;
+  const currentData = zoneData?.zoneStates?.[selectedDatetimeString];
+  const isConsumption = useAtomValue(isConsumptionAtom);
+
+  const productionData = useMemo(() => getProductionData(currentData), [currentData]);
+
+  const exchangeKeys = useMemo(
+    () => getExchangesToDisplay(isCountryView, zoneId, zoneData?.zoneStates),
+    [isCountryView, zoneId, zoneData?.zoneStates]
+  );
+
+  const exchangeData = useMemo(
+    () => getExchangeData(exchangeKeys, isConsumption, currentData),
+    [exchangeKeys, isConsumption, currentData]
+  );
+
   if (isLoading) {
     return { isLoading };
   }
 
-  if (!zoneId || !zoneData || !selectedDatetime.datetimeString || !currentData) {
+  if (!zoneId || !zoneData || !selectedDatetimeString || !currentData) {
     return {
       height: DEFAULT_BAR_PX_HEIGHT,
       zoneDetails: undefined,
@@ -42,22 +56,13 @@ export default function useBarBreakdownChartData() {
     };
   }
 
-  const exchangeKeys = getExchangesToDisplay(zoneId, isCountryView, zoneData.zoneStates);
-
-  const productionData = getProductionData(currentData); // TODO: Consider memoing this
-  const exchangeData = isConsumption
-    ? getExchangeData(currentData, exchangeKeys, mixMode)
-    : []; // TODO: Consider memoing this
-
-  const { exchangeY, exchangeHeight } = getDataBlockPositions(
+  const { exchangeY } = getDataBlockPositions(
     //TODO this naming could be more descriptive
     productionData.length,
     exchangeData
   );
-  const height = isConsumption ? exchangeY + exchangeHeight : exchangeY;
-
   return {
-    height,
+    height: exchangeY,
     zoneDetails: zoneData, // TODO: Data is returned here just to pass it back to the tooltip
     currentZoneDetail: currentData,
     exchangeData,

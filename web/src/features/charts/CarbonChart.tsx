@@ -1,21 +1,26 @@
+import EstimationBadge from 'components/EstimationBadge';
+import HorizontalColorbar from 'components/legend/ColorBar';
+import { useCo2ColorScale } from 'hooks/theme';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeText, noop } from './graphUtils';
+import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
+import { RoundedCard } from './RoundedCard';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
 
 interface CarbonChartProps {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
 }
 
-function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
+function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
   const { t } = useTranslation();
+  const co2ColorScale = useCo2ColorScale();
 
   if (isLoading || isError || !data) {
     return null;
@@ -25,32 +30,42 @@ function CarbonChart({ datetimes, timeAverage }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const badgeText = getBadgeText(chartData, t);
+  const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  const badge = <EstimationBadge text={text} Icon={icon} />;
 
   if (!hasEnoughDataToDisplay) {
-    return <NotEnoughDataMessage title="country-history.carbonintensity" />;
+    return (
+      <NotEnoughDataMessage
+        title="country-history.carbonintensity"
+        id={Charts.CARBON_CHART}
+      />
+    );
   }
   return (
-    <>
+    <RoundedCard className="pb-2">
       <ChartTitle
-        translationKey="country-history.carbonintensity"
-        badgeText={badgeText}
+        titleText={t(`country-history.carbonintensity.${timeRange}`)}
+        badge={badge}
+        unit={'gCO₂eq / kWh'}
+        isEstimated={Boolean(text)}
+        id={Charts.CARBON_CHART}
       />
       <AreaGraph
         testId="details-carbon-graph"
         data={chartData}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        valueAxisLabel="g / kWh"
         markerUpdateHandler={noop}
         markerHideHandler={noop}
-        isMobile={false}
         height="8em"
         datetimes={datetimes}
-        selectedTimeAggregate={timeAverage}
+        selectedTimeRange={timeRange}
         tooltip={CarbonChartTooltip}
       />
-    </>
+      <div className="pb-1 pt-2">
+        <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />
+      </div>
+    </RoundedCard>
   );
 }
 

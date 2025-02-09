@@ -6,6 +6,6 @@ lonlat:
   - 7.1
   - 61.194118
 parsers:
-  exchange: ENTSOE.fetch_exchange
+  exchange: NORDPOOL.fetch_exchange
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 140

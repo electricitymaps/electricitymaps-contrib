@@ -1,36 +1,33 @@
-import BreakdownChart from 'features/charts/BreakdownChart';
 import CarbonChart from 'features/charts/CarbonChart';
 import EmissionChart from 'features/charts/EmissionChart';
 import NetExchangeChart from 'features/charts/NetExchangeChart';
+import OriginChart from 'features/charts/OriginChart';
 import PriceChart from 'features/charts/PriceChart';
-import { TimeAverages } from 'utils/constants';
-
-import Divider from './Divider';
+import { TimeRange } from 'utils/constants';
 
 export default function AreaGraphContainer({
   datetimes,
-  timeAverage,
+  timeRange,
   displayByEmissions,
 }: {
   datetimes: Date[];
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
   displayByEmissions: boolean;
 }) {
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       {displayByEmissions ? (
-        <EmissionChart datetimes={datetimes} timeAverage={timeAverage} />
+        <EmissionChart datetimes={datetimes} timeRange={timeRange} />
       ) : (
-        <CarbonChart datetimes={datetimes} timeAverage={timeAverage} />
+        <CarbonChart datetimes={datetimes} timeRange={timeRange} />
       )}
-      <BreakdownChart
+      <OriginChart
         displayByEmissions={displayByEmissions}
         datetimes={datetimes}
-        timeAverage={timeAverage}
+        timeRange={timeRange}
       />
-      <NetExchangeChart datetimes={datetimes} timeAverage={timeAverage} />
-      <PriceChart datetimes={datetimes} timeAverage={timeAverage} />
-      <Divider />
+      <NetExchangeChart datetimes={datetimes} timeRange={timeRange} />
+      <PriceChart datetimes={datetimes} timeRange={timeRange} />
     </div>
   );
 }

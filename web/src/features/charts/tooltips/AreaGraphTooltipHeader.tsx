@@ -1,70 +1,72 @@
 import EstimationBadge from 'components/EstimationBadge';
+import HorizontalDivider from 'components/HorizontalDivider';
+import { FormattedTime } from 'components/Time';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
+import { useAtomValue } from 'jotai';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { TimeAverages } from 'utils/constants';
-import { formatDate } from 'utils/formatting';
+import { EstimationMethods, TimeRange } from 'utils/constants';
+import { endDatetimeAtom } from 'utils/state/atoms';
 
-import ProductionSourceIcon from '../bar-breakdown/ProductionsSourceIcons';
+import ProductionSourceIcon from '../ProductionsSourceIcons';
 
 interface AreaGraphToolTipHeaderProps {
   squareColor: string;
   datetime: Date;
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
   title: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
   productionSource?: string;
+  estimationMethod?: EstimationMethods;
 }
 
-export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {
-  const {
-    squareColor,
-    datetime,
-    timeAverage,
-    title,
-    hasEstimationPill = false,
-    estimatedPercentage,
-    productionSource,
-  } = props;
-  const { t, i18n } = useTranslation();
-
+export default function AreaGraphToolTipHeader({
+  squareColor,
+  datetime,
+  timeRange,
+  title,
+  hasEstimationPill = false,
+  estimatedPercentage,
+  productionSource,
+  estimationMethod,
+}: AreaGraphToolTipHeaderProps) {
+  const { i18n } = useTranslation();
+  const pillText = useGetEstimationTranslation(
+    'pill',
+    estimationMethod,
+    estimatedPercentage
+  );
+  const endDatetime = useAtomValue(endDatetimeAtom);
   return (
     <>
-      <div className="mb-2 flex justify-between">
-        <div className="inline-flex items-center gap-x-1 font-bold">
-          <div
-            style={{
-              backgroundColor: squareColor,
-              height: 16,
-              width: 16,
-            }}
-            className="rounded-sm  font-bold"
-          >
-            {productionSource && (
-              <div className="flex h-4 w-4 scale-125 justify-center pt-1">
-                <ProductionSourceIcon source={productionSource} />
-              </div>
-            )}
-          </div>
-          <p className="px-1 text-base">{title}</p>
+      <div className="flex items-center gap-1 font-bold">
+        <div
+          style={{
+            backgroundColor: squareColor,
+          }}
+          className="flex h-4 w-4 items-center justify-center rounded-sm"
+        >
+          {productionSource && <ProductionSourceIcon source={productionSource} />}
         </div>
-        <div className="inline-flex items-center gap-x-2">
-          {hasEstimationPill && estimatedPercentage !== 0 && (
-            <EstimationBadge
-              text={
-                estimatedPercentage
-                  ? t('estimation-card.aggregated_estimated.pill', {
-                      percentage: estimatedPercentage,
-                    })
-                  : t('estimation-badge.fully-estimated')
-              }
-            />
-          )}
-          <div className="my-1 h-[32px] max-w-[165px] select-none whitespace-nowrap rounded-full bg-brand-green/10 px-3 py-2 text-sm text-brand-green dark:bg-gray-700 dark:text-white">
-            {formatDate(datetime, i18n.language, timeAverage)}
-          </div>
-        </div>
+        <h2 className="grow px-1">{title}</h2>
+        {hasEstimationPill && (
+          <EstimationBadge
+            text={pillText}
+            Icon={
+              estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
+            }
+          />
+        )}
       </div>
-      <hr className="my-1 mb-3 dark:border-gray-600" />
+      <FormattedTime
+        endDatetime={endDatetime}
+        datetime={datetime}
+        language={i18n.languages[0]}
+        timeRange={timeRange}
+        className="text-sm"
+      />
+      <HorizontalDivider />
     </>
   );
 }

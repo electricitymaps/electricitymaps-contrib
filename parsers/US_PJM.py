@@ -29,9 +29,12 @@ from parsers.lib.exceptions import ParserException
 PARSER = "US_PJM.py"
 TIMEZONE = ZoneInfo("America/New_York")
 ZONE_KEY = ZoneKey("US-MIDA-PJM")
-
 # Used for production and consumption forecast data (https://dataminer2.pjm.com/list)
 DATA_MINER_API_ENDPOINT = "https://api.pjm.com/api/v1/"
+
+
+US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
+DATA_PATH = "api/v1"
 
 # Used for price data.
 PRICE_API_ENDPOINT = "http://www.pjm.com/markets-and-operations.aspx"
@@ -84,22 +87,24 @@ def _get_api_subscription_key(session: Session) -> str:
 
 def _fetch_api_data(
     kind: Literal["load_frcstd_7_day", "gen_by_fuel"], params: dict, session: Session
-) -> list:
+) -> dict:
     headers = {
-        "Host": "api.pjm.com",
         "Ocp-Apim-Subscription-Key": _get_api_subscription_key(session=session),
-        "Origin": "http://dataminer2.pjm.com",
-        "Referer": "http://dataminer2.pjm.com/",
+        "Accept-Encoding": "identity",
     }
-    url = DATA_MINER_API_ENDPOINT + kind
-    response: Response = session.get(url=url, params=params, headers=headers)
-    if not response.ok:
+
+    url = f"{US_PROXY}/{DATA_PATH}/{kind}"
+    resp: Response = session.get(
+        url=url, params={"host": "https://api.pjm.com", **params}, headers=headers
+    )
+    if resp.status_code == 200:
+        data = resp.json()
+        return data
+    else:
         raise ParserException(
             PARSER,
-            f"{kind} data is not available in the API: {response.status_code}: {response.text}",
+            f"{kind} data is not available in the API: {resp.status_code}: {resp.text}",
         )
-
-    return response.json()
 
 
 def fetch_consumption_forecast_7_days(
@@ -145,7 +150,7 @@ def fetch_production(
     We assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)
     """
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
         if target_datetime is None
         else target_datetime.astimezone(timezone.utc)
     )
@@ -153,14 +158,15 @@ def fetch_production(
     session = session or Session()
 
     params = {
-        "download": True,
         "startRow": 1,
+        "rowCount": 500,
         "fields": "datetime_beginning_utc,fuel_type,mw",
         "datetime_beginning_utc": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
     }
     resp_data = _fetch_api_data(kind="gen_by_fuel", params=params, session=session)
+    print(resp_data)
 
-    data = pd.DataFrame(resp_data)
+    data = pd.DataFrame(resp_data["items"])
     if data.empty:
         raise ParserException(
             parser=PARSER,
@@ -304,6 +310,9 @@ def fetch_exchange(
             sorted_zone_keys,
         )
 
+    if not session:
+        session = Session()
+
     # PJM reports exports as negative.
     direction = -1 if sorted_zone_keys.startswith(ZONE_KEY) else 1
 
@@ -340,7 +349,7 @@ if __name__ == "__main__":
     print("fetch_price() ->")
     print(fetch_price())
 
-    for neighbour in [
+    for neighbor in [
         "US-CAR-DUK",
         "US-CAR-CPLE",
         "US-CAR-CPLW",
@@ -349,5 +358,5 @@ if __name__ == "__main__":
         "US-NY-NYIS",
         "US-TEN-TVA",
     ]:
-        print(f"fetch_exchange(US-MIDA-PJM, {neighbour}) ->")
-        print(fetch_exchange(ZONE_KEY, ZoneKey(neighbour)))
+        print(f"fetch_exchange(US-MIDA-PJM, {neighbor}) ->")
+        print(fetch_exchange(ZONE_KEY, ZoneKey(neighbor)))

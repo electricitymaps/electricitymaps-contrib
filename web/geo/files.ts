@@ -6,19 +6,11 @@ import yaml from 'js-yaml';
 
 import { ZoneConfig } from './types';
 
-const sortObjectByKey = (object: ZoneConfig) =>
-  Object.keys(object)
-    .sort()
-    .reduce((result, key) => {
-      result[key] = object[key];
-      return result;
-    }, {} as { [key: string]: ZoneConfig });
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 const saveZoneYaml = (zoneKey: string, zone: ZoneConfig) => {
-  const zonePath = path.resolve(
-    fileURLToPath(new URL(`../../config/zones/${zoneKey}.yaml`, import.meta.url))
-  );
-  fs.writeFile(zonePath, yaml.dump(sortObjectByKey(zone)), (error) => {
+  const zonePath = path.resolve(currentDirectory, `../../config/zones/${zoneKey}.yaml`);
+  fs.writeFile(zonePath, yaml.dump(zone, { sortKeys: true }), (error) => {
     if (error) {
       console.error(error);
     }

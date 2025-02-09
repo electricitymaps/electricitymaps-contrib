@@ -21,6 +21,7 @@ capacity:
 contributors:
   - chuqtas
   - ajoga
+country: AU
 emissionFactors:
   direct:
     battery discharge:
@@ -35,17 +36,29 @@ emissionFactors:
     battery discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 222.3430624603678
+        value: 222.34
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 258.84
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 236.22
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 222.3430624603678
+        value: 222.34
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 258.84
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 236.22
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
       datetime: '2021-01-01'
       value:
-        battery discharge: 0.008755639165674524
+        battery discharge: 0.008958418242889184
         biomass: 0.0
         coal: 0.0
         gas: 0.0
@@ -53,10 +66,41 @@ fallbackZoneMixes:
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.3132555277375678
-        solar: 0.02173952324832005
+        oil: 0.3128961469967616
+        solar: 0.022092880848218862
         unknown: 0.0
-        wind: 0.6558537902621875
+        wind: 0.6556168800531644
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.009709832658485218
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.409093274765538
+        solar: 0.020271465895015144
+        unknown: 0.0
+        wind: 0.5604813106972967
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.011135109728392852
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.3832921129103856
+        solar: 0.017372263318300003
+        unknown: 0.0
+        wind: 0.5876689384528726
 parsers:
   production: ajenti.fetch_production
+region: Oceania
 timezone: Australia/Hobart

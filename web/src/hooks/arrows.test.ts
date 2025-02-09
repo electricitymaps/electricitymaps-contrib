@@ -1,36 +1,18 @@
 import { describe, expect, it } from 'vitest';
 
-import { filterExchanges } from './arrows';
+import { filterExchanges, shouldHideExchangeIntensity } from './arrows';
 
 const mockExchangesToExcludeZoneView = ['exchange1', 'exchange2', 'exchange4'];
 
 const mockExchangesToExcludeCountryView = ['exchange3', 'exchange5'];
 
 const mockExchangesResponses = {
-  exchange1: {
-    '2024-01-31T12:00:00Z': { co2intensity: 137.68, netFlow: -44 },
-    '2024-01-31T13:00:00Z': { co2intensity: 133.44, netFlow: -57 },
-  },
-  exchange2: {
-    '2024-01-31T14:00:00Z': { co2intensity: 131.44, netFlow: -56 },
-    '2024-01-31T15:00:00Z': { co2intensity: 135.82, netFlow: -55 },
-  },
-  exchange3: {
-    '2024-01-31T16:00:00Z': { co2intensity: 168.29, netFlow: -55 },
-    '2024-01-31T17:00:00Z': { co2intensity: 199.8, netFlow: -13 },
-  },
-  exchange4: {
-    '2024-01-31T18:00:00Z': { co2intensity: 199.73, netFlow: -18 },
-    '2024-01-31T19:00:00Z': { co2intensity: 195.2, netFlow: -18 },
-  },
-  exchange5: {
-    '2024-01-31T20:00:00Z': { co2intensity: 188.22, netFlow: -11 },
-    '2024-01-31T21:00:00Z': { co2intensity: 178.86, netFlow: -50 },
-  },
-  exchange6: {
-    '2024-01-31T22:00:00Z': { co2intensity: 150.5, netFlow: -20 },
-    '2024-01-31T23:00:00Z': { co2intensity: 140.7, netFlow: -30 },
-  },
+  exchange1: { ci: 137.68, f: -44 },
+  exchange2: { ci: 131.44, f: -56 },
+  exchange3: { ci: 168.29, f: -55 },
+  exchange4: { ci: 199.73, f: -18 },
+  exchange5: { ci: 188.22, f: -11 },
+  exchange6: { ci: 150.5, f: -20 },
 };
 
 const expectedAfterZoneViewFilter = {
@@ -141,5 +123,17 @@ describe('filterExchanges', () => {
         )
       ).toThrow(TypeError);
     });
+  });
+});
+
+describe('shouldHideExchangeIntensity', () => {
+  it('should hide exported intensity if zone has an outage', () => {
+    expect(shouldHideExchangeIntensity('zone1->zone2', ['zone2'], -10)).toBe(true); // zone2 is exporting
+    expect(shouldHideExchangeIntensity('zone2->zone1', ['zone2'], 10)).toBe(true); // zone2 is exporting
+    expect(shouldHideExchangeIntensity('zone1->zone2', ['zone2'], 10)).toBe(false); // zone2 is importing
+  });
+  it('should not hide intensity of zones are not having an outage', () => {
+    expect(shouldHideExchangeIntensity('zone1->zone2', [], 10)).toBe(false);
+    expect(shouldHideExchangeIntensity('zone1->zone2', ['zone3'], -10)).toBe(false);
   });
 });

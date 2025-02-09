@@ -17,6 +17,9 @@ capacity:
   wind: 154
 contributors:
   - nessie2013
+country: ID
+disclaimer: Real-time consumption and generation mix data is not available and is
+  fully estimated.
 emissionFactors:
   direct:
     battery discharge:
@@ -73,19 +76,25 @@ emissionFactors:
         value: 652.36
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 652.3600000000001
+        value: 652.36
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 652.3599999999998
+        value: 652.36
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 652.3600000000001
+        value: 652.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 652.3599999999998
+        value: 652.36
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 652.3600000000001
+        value: 652.36
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 652.36
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 652.36
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -95,19 +104,25 @@ emissionFactors:
         value: 652.36
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 652.3600000000001
+        value: 652.36
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 652.3599999999998
+        value: 652.36
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 652.3600000000001
+        value: 652.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 652.3599999999998
+        value: 652.36
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 652.3600000000001
+        value: 652.36
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 652.36
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 652.36
 estimation_method: CONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
@@ -216,5 +231,35 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.000999944185287075
+        coal: 0.6590001502276599
+        gas: 0.18700011468396235
+        geothermal: 0.05699987309789149
+        hydro: 0.07099992474732733
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.024999993057871518
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0010000489328755927
+        coal: 0.658999892240717
+        gas: 0.18700005909380069
+        geothermal: 0.05700011524628079
+        hydro: 0.07099999812825067
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.02499988635807582
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+region: Asia
 timezone: Asia/Jakarta

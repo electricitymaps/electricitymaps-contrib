@@ -15,7 +15,7 @@ jobs:
   # This job is used to determine what files have changed and is used by later jobs to determine if they should run.
   setup:
     name: Setup
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 1
     outputs:
       frontend: ${{ steps.check-changed-files.outputs.frontend_any_changed }}
@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 2
       - name: Check which files have changed
         id: check-changed-files
-        uses: tj-actions/changed-files@v44.0.0
+        uses: tj-actions/changed-files@v45.0.1
         with:
           files_yaml_from_source_file: .github/filter-groups.yml
       - name: Log outputs
@@ -48,15 +48,15 @@ jobs:
   #                        #
   prettier:
     name: Prettier
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -96,7 +96,7 @@ jobs:
     if: >-
       needs.setup.outputs.json != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 1
     steps:
       - name: Checkout
@@ -110,7 +110,41 @@ jobs:
           npm install -g jsonlint-mod
       - name: Lint json
         run: |
-          jsonlint -q web/public/locales/*.json
+          jsonlint -q web/src/locales/*.json
+
+  validate_translation_files:
+    name: Frontend / Validate Translation Files
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.json != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Run translation out of sync script
+        run: node web/scripts/detectTranslationsOutOfSync.js
+
+  validate_escaped_quotes_in_translation_files:
+    name: Frontend / Validate Escaped Quotes in Translation Files
+    needs: [setup]
+    if: >-
+      needs.setup.outputs.json != 'false' ||
+      needs.setup.outputs.workflows != 'false'
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: '.python-version'
+      - name: Run escaped quotes script
+        run: python scripts/remove_escaped_quotes_in_locales.py --detect
 
   #                 #
   # Frontend checks #
@@ -121,7 +155,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 4
     defaults:
       run:
@@ -130,9 +164,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -158,7 +192,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
       security-events: write
@@ -170,9 +204,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -218,7 +252,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 4
     defaults:
       run:
@@ -227,9 +261,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -257,7 +291,7 @@ jobs:
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 2
     defaults:
       run:
@@ -266,9 +300,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -287,6 +321,46 @@ jobs:
       - name: Generate world file
         run: pnpm run generate-world
 
+  build_storybook:
+    name: Frontend / Build / Storybook
+    needs: [eslint, typecheck, validate_generate_files, unit_test]
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './web/.node-version'
+      - name: Restore node_modules for web
+        id: cache-web
+        uses: actions/cache@v4
+        with:
+          path: ./web/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+      - name: Install web dependencies
+        if: steps.cache-web.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+      - name: Generate config files
+        run: pnpm create-generated-files
+      - name: Build Storybook
+        run: pnpm run storybook:build
+      - name: Upload Storybook artifacts
+        uses: actions/upload-artifact@v4
+        if: github.ref_name == 'master' || github.event_name == 'pull_request'
+        with:
+          name: storybook-${{ github.ref_name == 'master' && 'latest' || '' }}${{ github.event_name == 'pull_request' && 'PR-' || '' }}${{ github.event_name == 'pull_request' && github.event.number || '' }}
+          path: web/storybook-static
+          overwrite: true
+
   deploy_preview_branch:
     name: Deploy preview
     needs: [eslint, typecheck, setup, validate_generate_files, unit_test]
@@ -301,15 +375,15 @@ jobs:
   cypress_component:
     name: Frontend / Cypress / Component
     needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -359,15 +433,15 @@ jobs:
   cypress_e2e:
     name: Frontend / Cypress / E2E
     needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -416,14 +490,14 @@ jobs:
     if: >-
       needs.setup.outputs.python != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install poetry
         run: |
-          pipx install poetry
+          pipx install "poetry==1.*"
       - name: Get poetry version
         id: get-poetry-version
         run: |
@@ -457,14 +531,14 @@ jobs:
       needs.setup.outputs.python != 'false' ||
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install poetry
         run: |
-          pipx install poetry
+          pipx install "poetry==1.*"
       - name: Get poetry version
         id: get-poetry-version
         run: |
@@ -499,7 +573,7 @@ jobs:
     if: >-
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout

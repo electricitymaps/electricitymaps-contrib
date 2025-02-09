@@ -40,7 +40,7 @@ There are several ways to help out without coding, these are primarily:
 ## Zone and exchange configurations
 
 Static information about zones and exchanges are located at [config/zones][config zones] and [config/exchanges][config exchanges] respectively.
-The zone configurations hold information such as the installed capacity, which parsers to use, fallback mixes, contributors and other keys that are required by our frontend and internal systems; and while similar the exchange configs hold the the location, capacity, direction and parsers required.
+The zone configurations hold information such as the installed capacity, which parsers to use, fallback mixes, contributors and other keys that are required by our frontend and internal systems; and while similar the exchange configs hold the location, capacity, direction and parsers required.
 
 ## Parser guidelines
 
@@ -94,7 +94,7 @@ mobileapp
 ├── android
 ├── assets
 ├── icons
-└──ios
+└── ios
 web
 ├── config
 ├── cypress
@@ -114,7 +114,7 @@ web
 
 ### State management
 
-We use [Jotai][jotai homepage] that saves our state in primitive atoms, these live in #TODO: LINK TO ATOM FILE WHEN REWRITE IS MERGED and are then imported in the individual frontend files where it's needed. If you have a need to save the state for a new feature you should add a new atom to this file so we keep everything organized.
+We use [Jotai][jotai homepage] that saves our state in primitive atoms, these live in [web/src/utils/state/atoms.ts][jotai atoms] and are then imported in the individual frontend files where it's needed. If you have a need to save the state for a new feature you should add a new atom to this file so we keep everything organized.
 
 ### Formatting the frontend
 
@@ -123,6 +123,61 @@ The frontend uses [ESLint][eslint homepage] and [Prettier][prettier homepage] as
 If these jobs fail and you need to format the code you can run `yarn lint --fix` in the `/web` folder to do so.
 
 Check the [wiki page][wiki js code formatting] on formatting for more details and tips.
+
+# Contribution lifecycle
+
+In order for your PR to be accepted and deployed it will need to pass a series of checks, these checks will be defined and explained in the following section of this document.
+
+## Overview
+
+```mermaid
+%%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
+flowchart LR
+    subgraph idContrib["Electricity Maps contrib"]
+    direction LR
+        id1((Open a PR))
+        id2{First time contributor?}
+        id3(Await EMaps team CI approval)
+        id4{Is the CI tests passing?}
+        id5(Make changes)
+        id6{Passing review from EMaps team member}
+        id7(PR is merged)
+        id8(Deployed to Staging)
+        id1-->id2
+        id2-->|Yes|id3
+        id2-->|No|id4
+        id3-->id4
+        id4-->|No|id5
+        id5-->id4
+        id4-->|Yes|id6
+        id6-->|No|id5
+        id6-->|Yes|id7
+        id7-->id8
+    end
+    subgraph idInternal["Electricity Maps internal"]
+    direction LR
+        id9((Automatic PR created))
+        id10{Are internal CI tests passing}
+        id11(Make changes)
+        id12{Passing review from Emaps member?}
+        id13(Deployed to production)
+        id9-->id10
+        id10-->|No|id11
+        id11-->id10
+        id10-->|Yes|id12
+        id12-->|No|id11
+        id12-->|Yes|id13
+    end
+    id7-->id9
+```
+
+## Description
+
+In order to do code changes to the Electricity Maps repository you need to fork the repo and make changes in your own fork and then open a pull request (PR) against the Electricity Maps repository.
+
+Once this has been done the automatic and manual review process starts, this consists of manual approval of the CI pipeline if you are a first time contributor, if the CI pipeline passes a team member will review your specific code changes. If they pass all automated tests and manual review from a Electricity Maps Employee it will be merged in our contrib PR. This does not mean it will be automatically de deployed or that the changes will be instantly visible.
+
+If it is frontend changes it will be deployed to our staging environment at https://staging.electricitymaps.com and if there is parser changes these go on to more internal tests that includes both automated test suits and manual reviews. Once everything passes and an approval has been granted a new release will be created that updates the production environment for both the frontend and parser changes.
 
 <!-- Link definitions to keep the text clean -->
 
@@ -136,9 +191,10 @@ Check the [wiki page][wiki js code formatting] on formatting for more details an
 [wiki python code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#python-code-formatting
 [node homepage]: https://nodejs.org/
 [pnpm homepage]: https://pnpm.io/
-[node installation guide]: https://nodejs.dev/en/learn/how-to-install-nodejs/
+[node installation guide]: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs
 [pnpm installation guide]: https://pnpm.io/installation
 [jotai homepage]: https://jotai.org/
+[jotai atoms]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/web/src/utils/state/atoms.ts
 [eslint homepage]: https://eslint.org/
 [prettier homepage]: https://prettier.io/
 [wiki js code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#js-code-formatting

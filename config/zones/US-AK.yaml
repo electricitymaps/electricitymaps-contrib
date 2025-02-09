@@ -3,6 +3,7 @@ bounding_box:
     - 51
   - - -130
     - 72
+country: US
 emissionFactors:
   direct:
     coal:
@@ -50,6 +51,7 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
         value: 907.88
+region: Americas
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

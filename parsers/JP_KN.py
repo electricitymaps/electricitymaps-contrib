@@ -4,9 +4,8 @@ from datetime import datetime
 from io import BytesIO
 from logging import Logger, getLogger
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
-# The arrow library is used to handle datetimes
-import arrow
 from bs4 import BeautifulSoup
 from PIL import Image
 from pytesseract import image_to_string
@@ -14,10 +13,12 @@ from pytesseract import image_to_string
 # The request library is used to fetch content through HTTP
 from requests import Session
 
-from .JP import fetch_production as JP_fetch_production
+from .JP import fetch_production as jp_fetch_production
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
+
+TIMEZONE = ZoneInfo("Asia/Tokyo")
 
 
 def fetch_production(
@@ -35,9 +36,9 @@ def fetch_production(
     if target_datetime is not None:
         raise NotImplementedError("This parser can only fetch live data")
 
-    JP_data = JP_fetch_production(zone_key, session, target_datetime, logger)
+    jp_data = jp_fetch_production(zone_key, session, target_datetime, logger)
     nuclear_mw, nuclear_datetime = get_nuclear_production()
-    latest = JP_data[
+    latest = jp_data[
         -1
     ]  # latest solar data is the most likely to fit with nuclear production
     diff = None
@@ -59,21 +60,22 @@ URL = (
 IMAGE_CORE_URL = "https://www.kepco.co.jp/"
 
 
-def getImageText(imgUrl, lang):
+def get_image_text(img_url, lang):
     """
     Fetches image based on URL, crops it and extract text from the image.
     """
-    req = Request(imgUrl, headers={"User-Agent": "Mozilla/5.0"})
-    img_bytes = urlopen(req).read()
+    r = Request(img_url, headers={"User-Agent": "Mozilla/5.0"})
+    img_bytes = urlopen(r).read()
     img = Image.open(BytesIO(img_bytes))
+
     width, height = img.size
-    img = img.crop((0, (height / 8), 160, height))
+    img = img.crop((0, int(height / 8), 160, height))
     # cropping the image, makes it easier to read for tesseract
     text = image_to_string(img, lang=lang)
     return text
 
 
-def extractCapacity(tr):
+def extract_capacity(tr):
     """
     The capacity for each unit has the class "list03".
     and it uses the chinese symbol for 10k(万).
@@ -87,15 +89,15 @@ def extractCapacity(tr):
     return float(kw_energy) * 10000
 
 
-def extractOperationPercentage(tr):
+def extract_operation_percentage(tr):
     """Operation percentage is located on images of type .gif"""
     td = tr.findAll("img")
     if len(td) == 0:
         return None
     img = td[0]
-    URL = IMAGE_CORE_URL + img["src"]
-    if ".gif" in URL:
-        text = getImageText(URL, "eng")
+    url = IMAGE_CORE_URL + img["src"]
+    if ".gif" in url:
+        text = get_image_text(url, "eng")
         # will return a number and percentage eg ("104%"). Sometimes a little more eg: ("104% 4...")
         split = text.split("%")
         if len(split) == 0:
@@ -105,24 +107,27 @@ def extractOperationPercentage(tr):
         return None
 
 
-def extractTime(soup):
+def extract_time(soup):
     """
     Time is located in an image.
     Decipher the text containing the data and assumes there will only be 4 digits making up the datetime.
     """
-    imgRelative = soup.findAll("img", {"class": "time-data"})[0]["src"]
-    imgUrlFull = IMAGE_CORE_URL + imgRelative
-    text = getImageText(imgUrlFull, "jpn")
+    img_relative = soup.findAll("img", {"class": "time-data"})[0]["src"]
+    img_url_full = IMAGE_CORE_URL + img_relative
+    text = get_image_text(img_url_full, "jpn")
     digits = re.findall(r"\d+", text)
     digits = [int(x) for x in digits]
     if len(digits) != 4:
         # something went wrong while extracting time from Japan
         raise Exception("Something went wrong while extracting local time")
-    nuclear_datetime = (
-        arrow.now(tz="Asia/Tokyo")
-        .replace(month=digits[0], day=digits[1], hour=digits[2], minute=digits[3])
-        .floor("minute")
-        .datetime
+
+    nuclear_datetime = datetime.now(tz=TIMEZONE).replace(
+        month=digits[0],
+        day=digits[1],
+        hour=digits[2],
+        minute=digits[3],
+        second=0,
+        microsecond=0,
     )
     return nuclear_datetime
 
@@ -135,21 +140,24 @@ def get_nuclear_production():
     r = Request(URL, headers={"User-Agent": "Mozilla/5.0"})
     html = urlopen(r).read()
     soup = BeautifulSoup(html, "html.parser")
-    nuclear_datetime = extractTime(soup)
+
+    nuclear_datetime = extract_time(soup)
     _rows = soup.findAll(
         "tr", {"class": "mihama_realtime"}
     )  # TODO: Should we just remove this?
     tr_list = soup.findAll("tr")
+
     total_kw = 0
     for tr in tr_list:
-        capacity = extractCapacity(tr)
-        operation_percentage = extractOperationPercentage(tr)
+        capacity = extract_capacity(tr)
+        operation_percentage = extract_operation_percentage(tr)
         if capacity is None or operation_percentage is None:
             continue
         kw = capacity * operation_percentage
         total_kw = total_kw + kw
     nuclear_mw = total_kw / 1000.0  # convert to mw
-    return (nuclear_mw, nuclear_datetime)
+
+    return nuclear_mw, nuclear_datetime
 
 
 if __name__ == "__main__":

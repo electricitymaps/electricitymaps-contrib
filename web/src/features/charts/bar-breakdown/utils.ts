@@ -7,8 +7,9 @@ import {
   ZoneDetail,
   ZoneKey,
 } from 'types';
-import { Mode, modeOrder } from 'utils/constants';
+import { modeOrderBarBreakdown } from 'utils/constants';
 import { getProductionCo2Intensity } from 'utils/helpers';
+import { EnergyUnits } from 'utils/units';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
 
@@ -22,7 +23,7 @@ const DEFAULT_FLAG_SIZE = 16;
 export function getExchangeCo2Intensity(
   zoneKey: ZoneKey,
   zoneData: ZoneDetail,
-  electricityMixMode: Mode
+  isConsumption: boolean
 ) {
   const exchange = zoneData.exchange?.[zoneKey];
   const exchangeCo2Intensity = zoneData.exchangeCo2Intensities?.[zoneKey];
@@ -32,7 +33,7 @@ export function getExchangeCo2Intensity(
   }
 
   // We don't use getCO2IntensityByMode in order to more easily return 0 for invalid numbers
-  if (electricityMixMode === Mode.CONSUMPTION) {
+  if (isConsumption) {
     return zoneData.co2intensity || 0;
   }
 
@@ -48,8 +49,11 @@ export interface ProductionDataType {
   gCo2eq: number;
 }
 
-export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
-  modeOrder.map((mode) => {
+export const getProductionData = (data?: ZoneDetail): ProductionDataType[] => {
+  if (!data) {
+    return [];
+  }
+  return modeOrderBarBreakdown.map((mode) => {
     const isStorage = mode.includes('storage');
     const generationMode = mode.replace(' storage', '') as GenerationType;
     // Power in MW
@@ -72,7 +76,7 @@ export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
       gCo2eq,
     };
   });
-
+};
 interface GetElectricityProductionValueType {
   capacity: Maybe<number>;
   isStorage: boolean;
@@ -117,7 +121,7 @@ export const getDataBlockPositions = (
   const exchangeFlagX =
     LABEL_MAX_WIDTH - 4 * PADDING_X - DEFAULT_FLAG_SIZE - exchangeMax * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
-  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+  const exchangeY = productionY + productionHeight;
 
   return {
     productionHeight,
@@ -136,17 +140,20 @@ export interface ExchangeDataType {
   exchangeCapacityRange: number[];
 }
 export const getExchangeData = (
-  data: ZoneDetail,
   exchangeKeys: ZoneKey[],
-  electricityMixMode: Mode
-): ExchangeDataType[] =>
-  exchangeKeys.map((zoneKey: ZoneKey) => {
+  isConsumption: boolean,
+  data?: ZoneDetail
+): ExchangeDataType[] => {
+  if (!data || !isConsumption) {
+    return [];
+  }
+  return exchangeKeys.map((zoneKey: ZoneKey) => {
     // Power in MW
     const exchange = data.exchange?.[zoneKey];
     const exchangeCapacityRange = data.exchangeCapacities?.[zoneKey] ?? [0, 0];
 
     // Exchange CO₂ intensity
-    const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, electricityMixMode);
+    const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, isConsumption);
     const gCo2eq = gCo2eqPerkWh * 1000 * exchange;
 
     return {
@@ -157,14 +164,19 @@ export const getExchangeData = (
       gCo2eq,
     };
   });
+};
 
 export const getExchangesToDisplay = (
-  currentZoneKey: ZoneKey,
   isCountryView: boolean,
-  zoneStates: {
+  currentZoneKey?: ZoneKey,
+  zoneStates?: {
     [key: string]: ZoneDetail;
   }
 ): ZoneKey[] => {
+  if (!currentZoneKey || !zoneStates) {
+    return [];
+  }
+
   const exchangeKeysToRemove = isCountryView
     ? exchangesToExclude.exchangesToExcludeCountryView
     : exchangesToExclude.exchangesToExcludeZoneView;
@@ -192,3 +204,18 @@ export const getExchangesToDisplay = (
     (exchangeZoneKey) => !exchangeZoneKeysToRemove.has(exchangeZoneKey)
   );
 };
+
+/**
+ * Convents the price value and unit to the correct value and unit for the matching currency.
+ *
+ * If no currency is provided, the parameters are returned as is.
+ */
+export const convertPrice = (
+  value?: number,
+  currency?: string,
+  unit: EnergyUnits = EnergyUnits.MEGAWATT_HOURS
+): { value?: number; currency?: string; unit: EnergyUnits } => ({
+  value,
+  currency,
+  unit,
+});

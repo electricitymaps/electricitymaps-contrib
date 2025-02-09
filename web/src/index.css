@@ -25,6 +25,30 @@
     /* Disables mobile touch specific blue user select effect */
     -webkit-tap-highlight-color: transparent;
   }
+  h1 {
+    @apply text-xl;
+    @apply font-poppins;
+    @apply font-medium;
+  }
+  h2 {
+    @apply text-base;
+    @apply font-poppins;
+    @apply font-medium;
+  }
+  h3 {
+    @apply text-sm;
+    @apply font-poppins;
+    @apply font-medium;
+  }
+  h4 {
+    @apply text-xs;
+    @apply font-poppins;
+    @apply font-medium;
+  }
+  p {
+    @apply text-sm;
+    @apply font-inter;
+  }
 }
 *::-webkit-scrollbar {
   /*remove scrollbar track chrome*/
@@ -150,4 +174,14 @@ noscript div {
 
 noscript img {
   max-width: 300px;
+}
+
+@keyframes loading-icon-spinner-animation {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }

@@ -1,22 +1,27 @@
-import 'maplibre-gl/dist/maplibre-gl.css';
-
+import { App } from '@capacitor/app';
+import { PluginListenerHandle } from '@capacitor/core/types/definitions';
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
-import { matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { Mode } from 'utils/constants';
-import { createToWithState, getCO2IntensityByMode } from 'utils/helpers';
+import { useLocation, useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import {
-  productionConsumptionAtom,
-  selectedDatetimeIndexAtom,
+  getCarbonIntensity,
+  useNavigateWithParameters,
+  useUserLocation,
+} from 'utils/helpers';
+import {
+  isConsumptionAtom,
+  selectedDatetimeStringAtom,
   spatialAggregateAtom,
+  userLocationAtom,
 } from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
@@ -25,6 +30,7 @@ import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
+import { getZoneIdFromLocation } from './map-utils/getZoneIdFromLocation';
 import {
   hoveredZoneAtom,
   loadingMapAtom,
@@ -48,6 +54,10 @@ type MapPageProps = {
   onMapLoad?: (map: maplibregl.Map) => void;
 };
 
+interface ExtendedWindow extends Window {
+  killMap?: () => void;
+}
+
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
@@ -55,39 +65,95 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
+  const setUserLocation = useSetAtom(userLocationAtom);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
-  const navigate = useNavigate();
+  const navigate = useNavigateWithParameters();
   const theme = useTheme();
-  const [currentMode] = useAtom(productionConsumptionAtom);
-  const mixMode = currentMode === Mode.CONSUMPTION ? 'consumption' : 'production';
+  const isConsumption = useAtomValue(isConsumptionAtom);
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
-  const [isDragging, setIsDragging] = useState(false);
-  const [isZooming, setIsZooming] = useState(false);
-  const [spatialAggregate] = useAtom(spatialAggregateAtom);
+  const spatialAggregate = useAtomValue(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const { isLoading, isSuccess, isError, data } = useGetState();
   const { worldGeometries } = useGetGeometries();
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
-
+  const userLocation = useUserLocation();
+  const { zoneId: pathZoneId } = useParams<RouteParameters>();
+  const [wasInBackground, setWasInBackground] = useState(false);
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
 
   useEffect(() => {
+    let subscription: PluginListenerHandle | null = null;
+    // Dev testing function to break the map state and test recovery
+    if (import.meta.env.DEV) {
+      (window as ExtendedWindow).killMap = () => {
+        console.log('Attempting to break map state');
+        if (map && map.loaded()) {
+          try {
+            if (map.getSource(ZONE_SOURCE)) {
+              console.log('Removing zone source');
+              map.removeSource(ZONE_SOURCE);
+            }
+
+            const canvas = map.getCanvas();
+            canvas.width = 0;
+            canvas.height = 0;
+
+            const container = map.getContainer();
+            container.innerHTML = '';
+
+            console.log('Map should now be broken');
+          } catch (error) {
+            console.error('Error while killing map:', error);
+          }
+        } else {
+          console.log('Map not ready or already broken');
+        }
+      };
+    }
+    const setupListener = async () => {
+      subscription = await App.addListener('appStateChange', ({ isActive }) => {
+        if (!isActive) {
+          setWasInBackground(true);
+        } else if (wasInBackground && map) {
+          const isMapBroken =
+            !map.loaded() ||
+            map.getCanvas().width === 0 ||
+            map.getContainer().offsetWidth === 0 ||
+            map.getContainer().style.display === 'none';
+          if (isMapBroken) {
+            window.location.reload();
+          } else {
+            map.resize();
+          }
+        }
+      });
+    };
+
+    setupListener();
+
+    return () => {
+      if (subscription) {
+        subscription.remove();
+      }
+    };
+  }, [map, wasInBackground, setMapReference]);
+
+  useEffect(() => {
     const setSourceLoadedForMap = () => {
       setSourceLoaded(
         Boolean(
-          map &&
-            map.getSource(ZONE_SOURCE) !== undefined &&
-            map.getSource('states') !== undefined &&
-            map.isSourceLoaded('states')
+          map?.getSource(ZONE_SOURCE) !== undefined &&
+            map?.getSource('states') !== undefined &&
+            map?.isSourceLoaded('states')
         )
       );
     };
@@ -113,11 +179,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
-      const zone = data.data?.zones[zoneId];
-      const co2intensity =
-        zone && zone[selectedDatetime.datetimeString]
-          ? getCO2IntensityByMode(zone[selectedDatetime.datetimeString], mixMode)
-          : undefined;
+      const zone = data?.datetimes[selectedDatetimeString]?.z[zoneId];
+      const co2intensity = zone ? getCarbonIntensity(zone, isConsumption) : undefined;
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
         : theme.clickableFill;
@@ -142,29 +205,64 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     map,
     data,
     getCo2colorScale,
-    selectedDatetime,
-    mixMode,
     isLoadingMap,
     isSourceLoaded,
     spatialAggregate,
     isSuccess,
+    isLoading,
+    isError,
+    worldGeometries.features,
+    theme.clickableFill,
+    selectedDatetimeString,
+    isConsumption,
   ]);
 
   useEffect(() => {
     // Run on first load to center the map on the user's location
-    if (!map || isError || !isFirstLoad) {
+    if (!map || isError || !isFirstLoad || !isSourceLoaded || !userLocation) {
       return;
     }
-    if (data?.callerLocation && !selectedZoneId) {
-      map.flyTo({ center: [data.callerLocation[0], data.callerLocation[1]] });
+    if (!selectedZoneId) {
+      map.flyTo({ center: [userLocation[0], userLocation[1]] });
+
+      const handleIdle = () => {
+        if (map.isSourceLoaded(ZONE_SOURCE) && map.areTilesLoaded()) {
+          const source = map.getSource(ZONE_SOURCE);
+          const layer = map.getLayer('zones-clickable-layer');
+          if (!source) {
+            console.error(`Source "${ZONE_SOURCE}" not found`);
+            return;
+          }
+          if (!layer) {
+            console.error('Layer "zones-clickable-layer" not found or not rendered');
+            return;
+          }
+          const zoneFeature = getZoneIdFromLocation(map, userLocation, ZONE_SOURCE);
+          if (zoneFeature) {
+            const zoneId = zoneFeature.properties.zoneId;
+            setUserLocation(zoneId);
+          }
+          map.off('idle', handleIdle);
+        }
+      };
       setIsFirstLoad(false);
+      map.on('idle', handleIdle);
     }
-  }, [map, isSuccess]);
+  }, [
+    map,
+    isSuccess,
+    isError,
+    isFirstLoad,
+    userLocation,
+    selectedZoneId,
+    isSourceLoaded,
+    setUserLocation,
+  ]);
 
   useEffect(() => {
     // Run when the selected zone changes
     // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
-    if (map && location.pathname === '/map' && selectedZoneId) {
+    if (map && location.pathname.startsWith('/map') && selectedZoneId) {
       map.setFeatureState(
         { source: ZONE_SOURCE, id: selectedZoneId },
         { selected: false, hover: false }
@@ -172,7 +270,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+
     setSelectedZoneId(pathZoneId);
     if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
@@ -189,88 +287,105 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         map.flyTo({ center: isMobile ? center : centerMinusLeftPanelWidth, zoom: 3.5 });
       }
     }
-  }, [map, location.pathname, isLoadingMap]);
+  }, [
+    map,
+    location.pathname,
+    isLoadingMap,
+    selectedZoneId,
+    setHoveredZone,
+    worldGeometries.features,
+    setLeftPanelOpen,
+    pathZoneId,
+  ]);
 
-  const onClick = (event: maplibregl.MapLayerMouseEvent) => {
-    if (!map || !event.features) {
-      return;
-    }
-    const feature = event.features[0];
+  const onClick = useCallback(
+    ({ features }: maplibregl.MapLayerMouseEvent) => {
+      if (!map || !features) {
+        return;
+      }
+      const feature = features[0];
 
-    // Remove state from old feature if we are no longer hovering anything,
-    // or if we are hovering a different feature than the previous one
-    if (selectedZoneId && (!feature || selectedZoneId !== feature.id)) {
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: selectedZoneId },
-        { selected: false }
-      );
-    }
+      // Remove state from old feature if we are no longer hovering anything,
+      // or if we are hovering a different feature than the previous one
+      if (selectedZoneId && (!feature || selectedZoneId !== feature.id)) {
+        map.setFeatureState(
+          { source: ZONE_SOURCE, id: selectedZoneId },
+          { selected: false }
+        );
+      }
 
-    if (hoveredZone && (!feature || hoveredZone.featureId !== selectedZoneId)) {
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredZone.featureId },
-        { hover: false }
-      );
-    }
-    setHoveredZone(null);
-    if (feature && feature.properties) {
-      const zoneId = feature.properties.zoneId;
-      navigate(createToWithState(`/zone/${zoneId}`));
-    } else {
-      navigate(createToWithState('/map'));
-    }
-  };
+      if (hoveredZone && (!feature || hoveredZone.featureId !== selectedZoneId)) {
+        map.setFeatureState(
+          { source: ZONE_SOURCE, id: hoveredZone.featureId },
+          { hover: false }
+        );
+      }
+      setHoveredZone(null);
+      if (feature?.properties) {
+        const zoneId = feature.properties.zoneId;
+        // Do not keep hash on navigate so that users are not scrolled to id element in new view
+        navigate({ to: '/zone', zoneId, keepHashParameters: false });
+      } else {
+        navigate({ to: '/map', keepHashParameters: false });
+      }
+    },
+    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
+  );
 
   // TODO: Consider if we need to ignore zone hovering if the map is dragging
-  const onMouseMove = (event: maplibregl.MapLayerMouseEvent) => {
-    if (!map || !event.features) {
-      return;
-    }
-    const feature = event.features[0];
-    const isHoveringAZone = feature?.id !== undefined;
-    const isHoveringANewZone = isHoveringAZone && hoveredZone?.featureId !== feature?.id;
+  const onMouseMove = useCallback(
+    ({ features, point }: maplibregl.MapLayerMouseEvent) => {
+      if (!map || !features) {
+        return;
+      }
+      const feature = features[0];
+      const isHoveringAZone = feature?.id !== undefined;
+      const isHoveringANewZone =
+        isHoveringAZone && hoveredZone?.featureId !== feature?.id;
 
-    // Reset currently hovered zone if we are no longer hovering anything
-    if (!isHoveringAZone && hoveredZone) {
-      setHoveredZone(null);
-      map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredZone?.featureId },
-        { hover: false }
-      );
-    }
-
-    // Do no more if we are not hovering a zone
-    if (!isHoveringAZone) {
-      return;
-    }
-
-    // Update mouse position to help position the tooltip
-    setMousePosition({
-      x: event.point.x,
-      y: event.point.y,
-    });
-
-    // Update hovered zone if we are hovering a new zone
-    if (isHoveringANewZone) {
-      // Reset the old one first
-      if (hoveredZone) {
+      // Reset currently hovered zone if we are no longer hovering anything
+      if (!isHoveringAZone && hoveredZone) {
+        setHoveredZone(null);
         map.setFeatureState(
           { source: ZONE_SOURCE, id: hoveredZone?.featureId },
           { hover: false }
         );
       }
 
-      setHoveredZone({ featureId: feature.id, zoneId: feature.properties?.zoneId });
-      map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
-    }
-  };
+      // Do no more if we are not hovering a zone
+      if (!isHoveringAZone) {
+        return;
+      }
 
-  const onMouseOut = () => {
+      // Update mouse position to help position the tooltip
+      setMousePosition({
+        x: point.x,
+        y: point.y,
+      });
+
+      // Update hovered zone if we are hovering a new zone
+      if (isHoveringANewZone) {
+        // Reset the old one first
+        if (hoveredZone) {
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: hoveredZone?.featureId },
+            { hover: false }
+          );
+        }
+
+        setHoveredZone({ featureId: feature.id, zoneId: feature.properties?.zoneId });
+        map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
+      }
+    },
+    [map, hoveredZone, setHoveredZone, setMousePosition]
+  );
+
+  const onMouseOut = useCallback(() => {
     if (!map) {
       return;
     }
 
-    // Reset hovered state when mouse leaves map (e.g. cursor moving into panel)
+    // Reset hovered state when mouse leaves map (e.g., cursor moving into panel)
     if (hoveredZone?.featureId !== undefined) {
       map.setFeatureState(
         { source: ZONE_SOURCE, id: hoveredZone?.featureId },
@@ -278,44 +393,33 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       );
       setHoveredZone(null);
     }
-  };
+  }, [map, hoveredZone, setHoveredZone]);
 
-  const onError = (event: ErrorEvent) => {
-    console.error(event.error);
-    setIsLoadingMap(false);
-    // TODO: Show error message to user
-    // TODO: Send to Sentry
-    // TODO: Handle the "no webgl" error gracefully
-  };
+  const onError = useCallback(
+    ({ error }: ErrorEvent) => {
+      console.error(error);
+      setIsLoadingMap(false);
+      // TODO: Show error message to user
+      // TODO: Send to Sentry
+      // TODO: Handle the "no webgl" error gracefully
+    },
+    [setIsLoadingMap]
+  );
 
-  const onLoad = () => {
+  const onLoad = useCallback(() => {
     setIsLoadingMap(false);
     if (onMapLoad && mapReference) {
       onMapLoad(mapReference.getMap());
     }
-  };
+  }, [setIsLoadingMap, onMapLoad, mapReference]);
 
-  const onZoomStart = () => {
-    setIsZooming(true);
+  const onMoveStart = useCallback(() => {
     setIsMoving(true);
-  };
-  const onDragStart = () => {
-    setIsDragging(true);
-    setIsMoving(true);
-  };
+  }, [setIsMoving]);
 
-  const onZoomEnd = () => {
-    setIsZooming(false);
-    if (!isDragging) {
-      setIsMoving(false);
-    }
-  };
-  const onDragEnd = () => {
-    setIsDragging(false);
-    if (!isZooming) {
-      setIsMoving(false);
-    }
-  };
+  const onMoveEnd = useCallback(() => {
+    setIsMoving(false);
+  }, [setIsMoving]);
 
   return (
     <Map
@@ -333,11 +437,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       onError={onError}
       onMouseMove={onMouseMove}
       onMouseOut={onMouseOut}
-      onTouchStart={onDragStart}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-      onZoomStart={onZoomStart}
-      onZoomEnd={onZoomEnd}
+      onMoveStart={onMoveStart}
+      onMoveEnd={onMoveEnd}
       dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
       dragRotate={false}
       minZoom={0.7}
@@ -345,7 +446,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
         [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
       ]}
-      style={{ minWidth: '100vw', height: '100vh' }}
+      style={{
+        minWidth: '100vw',
+        height: '100vh',
+        position: 'absolute',
+      }}
       mapStyle={MAP_STYLE as StyleSpecification}
     >
       <BackgroundLayer />

@@ -13,11 +13,18 @@ const translations = {
     name: 'country-panel.aggregationDisabled',
     object: {},
   },
+  [ZoneDataStatus.FULLY_DISABLED]: {
+    name: 'country-panel.fullyDisabled',
+    object: {
+      link: 'https://github.com/electricitymaps/electricitymaps-contrib',
+    },
+  },
 };
 
 type PossibleStatusTypes =
   | ZoneDataStatus.NO_INFORMATION
-  | ZoneDataStatus.AGGREGATE_DISABLED;
+  | ZoneDataStatus.AGGREGATE_DISABLED
+  | ZoneDataStatus.FULLY_DISABLED;
 export default function NoInformationMessage({ status }: { status: ZoneDataStatus }) {
   const { t } = useTranslation();
 
@@ -26,7 +33,7 @@ export default function NoInformationMessage({ status }: { status: ZoneDataStatu
     translations[ZoneDataStatus.NO_INFORMATION];
 
   return (
-    <div data-test-id="no-parser-message" className="pt-4 text-center text-base">
+    <div data-testid="no-parser-message" className="pt-4 text-center text-base">
       <span
         className="prose text-sm dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline"
         dangerouslySetInnerHTML={{

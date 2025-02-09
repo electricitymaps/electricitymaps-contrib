@@ -7,6 +7,9 @@ const baseConfig: CapacitorConfig = {
   appName: 'Electricity Maps',
   webDir: '../web/dist',
   bundledWebRuntime: false,
+  ios: {
+    scheme: 'Electricity Maps',
+  },
 };
 
 switch (process.env.NODE_ENV) {
@@ -15,7 +18,8 @@ switch (process.env.NODE_ENV) {
     config = {
       ...baseConfig,
       server: {
-        url: 'use address from pnpm dev --host',
+        // Optionally use 'http://localhost:5173?remote=true'
+        url: 'http://localhost:5173',
         cleartext: true,
       },
     };

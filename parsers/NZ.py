@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
+# The datetime library is used to handle datetimes
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from logging import Logger, getLogger
 
-import arrow
 from bs4 import BeautifulSoup
 
 # The request library is used to fetch content through HTTP
 from requests import Session
 
-timezone = "Pacific/Auckland"
+time_zone = "Pacific/Auckland"
 
 NZ_PRICE_REGIONS = set(range(1, 14))
+PRODUCTION_URL = "https://www.transpower.co.nz/system-operator/live-system-and-market-data/consolidated-live-data"
+PRICE_URL = "https://api.em6.co.nz/ords/em6/data_api/region/price/"
 
 
 def fetch(session: Session | None = None):
     r = session or Session()
-    url = "https://www.transpower.co.nz/system-operator/live-system-and-market-data/consolidated-live-data"
+    url = PRODUCTION_URL
     response = r.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     for item in soup.find_all("script"):
@@ -46,7 +47,7 @@ def fetch_price(
         )
 
     r = session or Session()
-    url = "https://api.em6.co.nz/ords/em6/data_api/region/price/"
+    url = PRICE_URL
     response = r.get(url, verify=False)
     obj = response.json()
     region_prices = []
@@ -60,10 +61,12 @@ def fetch_price(
             region_prices.append(price)
 
     avg_price = sum(region_prices) / len(region_prices)
-    datetime = arrow.get(time, tzinfo="UTC")
+    date_time = datetime.strptime(time, "%Y-%m-%dT%H:%M:%SZ").replace(
+        tzinfo=timezone.utc
+    )
 
     return {
-        "datetime": datetime.datetime,
+        "datetime": date_time,
         "price": avg_price,
         "currency": "NZD",
         "source": "api.em6.co.nz",
@@ -85,14 +88,14 @@ def fetch_production(
 
     obj = fetch(session)
 
-    datetime = arrow.get(str(obj["soPgenGraph"]["timestamp"]), "X").datetime
+    date_time = datetime.fromtimestamp(obj["soPgenGraph"]["timestamp"], tz=timezone.utc)
 
     region_key = "New Zealand"
     productions = obj["soPgenGraph"]["data"][region_key]
 
     data = {
         "zoneKey": zone_key,
-        "datetime": datetime,
+        "datetime": date_time,
         "production": {
             "coal": productions.get("Coal", {"generation": None})["generation"],
             "oil": productions.get("Diesel/Oil", {"generation": None})["generation"],

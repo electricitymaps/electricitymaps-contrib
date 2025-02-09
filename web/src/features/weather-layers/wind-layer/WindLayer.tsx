@@ -1,14 +1,9 @@
 import { GfsForecastResponse, useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useAtom, useSetAtom } from 'jotai';
-import { useEffect, useMemo, useState } from 'react';
-import { ToggleOptions } from 'utils/constants';
-import {
-  selectedDatetimeIndexAtom,
-  windLayerAtom,
-  windLayerLoadingAtom,
-} from 'utils/state/atoms';
-import { useReferenceWidthHeightObserver } from 'utils/viewport';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import useResizeObserver from 'use-resize-observer';
+import { isWindLayerEnabledAtom, windLayerLoadingAtom } from 'utils/state/atoms';
 
 import { Windy } from './windy';
 
@@ -25,9 +20,12 @@ const createWindy = async (
 };
 
 export default function WindLayer({ map }: { map?: maplibregl.Map }) {
-  const [isMapMoving] = useAtom(mapMovingAtom);
+  const isMapMoving = useAtomValue(mapMovingAtom);
   const [windy, setWindy] = useState<Windy | null>(null);
-  const { ref, node, width, height } = useReferenceWidthHeightObserver();
+  const reference = useRef(null);
+  const { width = 0, height = 0 } = useResizeObserver<HTMLCanvasElement>({
+    ref: reference,
+  });
   const viewport = useMemo(() => {
     const sw = map?.unproject([0, height]);
     const ne = map?.unproject([width, 0]);
@@ -45,17 +43,21 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
     };
   }, [map, width, height]);
 
-  const [selectedDatetime] = useAtom(selectedDatetimeIndexAtom);
-  const [windLayerToggle] = useAtom(windLayerAtom);
   const setIsLoadingWindLayer = useSetAtom(windLayerLoadingAtom);
-  const isWindLayerEnabled =
-    windLayerToggle === ToggleOptions.ON && selectedDatetime.index === 24;
+  const isWindLayerEnabled = useAtomValue(isWindLayerEnabledAtom);
   const { data: windData, isSuccess } = useGetWind({ enabled: isWindLayerEnabled });
   const isVisible = isSuccess && !isMapMoving && isWindLayerEnabled;
 
   useEffect(() => {
-    if (map && !windy && isVisible && node && isWindLayerEnabled && windData) {
-      createWindy(node as HTMLCanvasElement, windData, map).then((w) => {
+    if (
+      map &&
+      !windy &&
+      isVisible &&
+      reference.current &&
+      isWindLayerEnabled &&
+      windData
+    ) {
+      createWindy(reference.current as HTMLCanvasElement, windData, map).then((w) => {
         const { bounds, width, height } = viewport;
         w.start(bounds, width, height);
         setWindy(w);
@@ -65,7 +67,23 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
       windy.stop();
       setWindy(null);
     }
-  }, [isVisible, isSuccess, node, windy, viewport]);
+  }, [
+    isVisible,
+    isSuccess,
+    windy,
+    map,
+    isWindLayerEnabled,
+    windData,
+    setIsLoadingWindLayer,
+    viewport,
+  ]);
+
+  useEffect(() => {
+    if (windy) {
+      const { bounds, width, height } = viewport;
+      windy.start(bounds, width, height);
+    }
+  }, [viewport, windy]);
 
   return (
     <canvas
@@ -75,10 +93,10 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       id="wind"
-      data-test-id="wind-layer"
+      data-testid="wind-layer"
       width={width}
       height={height}
-      ref={ref}
+      ref={reference}
     />
   );
 }

@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { GEO_CONFIG } from './generateWorld';
 import { WorldFeatureCollection } from './types';
 import { zeroOverlaps } from './validate';
@@ -169,7 +171,7 @@ const mockFeatureCollection: WorldFeatureCollection = {
 describe('zeroOverlaps', () => {
   it('should not throw if there are no overlaps', () => {
     // assert that function does not throw error
-    expect(() => zeroOverlaps(mockFeatureCollection, GEO_CONFIG)).not.to.throw();
+    expect(() => zeroOverlaps(mockFeatureCollection, GEO_CONFIG)).not.toThrow();
   });
 
   it('should throw on overlaps', () => {
@@ -179,7 +181,7 @@ describe('zeroOverlaps', () => {
     overlappingFeatureCollection.features[1].geometry.coordinates[1][0][0][0] = 11.0754;
     overlappingFeatureCollection.features[1].geometry.coordinates[1][0][8][0] = 11.0754;
     // assert that function throws error with specific message
-    expect(() => zeroOverlaps(overlappingFeatureCollection, GEO_CONFIG)).to.throw(
+    expect(() => zeroOverlaps(overlappingFeatureCollection, GEO_CONFIG)).toThrow(
       'SE-SE3 overlaps with SE-SE4'
     );
   });

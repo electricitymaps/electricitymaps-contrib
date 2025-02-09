@@ -26,8 +26,58 @@ capacity:
       value: 1.0
 contributors:
   - VIKTORVAV99
+country: ES
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 618.54
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 621.8
+    hydro discharge:
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 618.54
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 621.8
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.07502462217888135
+        coal: 0.0
+        gas: 8.917144295971451e-05
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.9248783467157186
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.06709185663311673
+        coal: 0.0
+        gas: 0.00024063903846862072
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.9326652740711664
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
   productionCapacity: REE.fetch_production_capacity
+region: Europe
 timezone: Europe/Madrid

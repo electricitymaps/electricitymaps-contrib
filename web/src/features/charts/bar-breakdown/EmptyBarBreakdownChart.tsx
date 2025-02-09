@@ -1,21 +1,28 @@
+import { Group } from '@visx/group';
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { modeOrder } from 'utils/constants';
+import { modeOrderBarBreakdown } from 'utils/constants';
 import { PowerUnits } from 'utils/units';
 
 import { LABEL_MAX_WIDTH, PADDING_X } from './constants';
 import Axis from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
-import Row from './elements/Row';
+import { ProductionSourceRow } from './elements/Row';
 import { getDataBlockPositions } from './utils';
 
 interface EmptyBarBreakdownChartProps {
   height: number;
   width: number;
-  isMobile?: boolean;
+  isMobile: boolean;
   overLayText?: string;
 }
+
+const MAX_CO2EQ = 10;
+const MIN_CO2EQ = -1;
+
+const formatTick = (t: number) =>
+  // TODO: format tick depending on displayByEmissions
+  `${t} ${PowerUnits.GIGAWATTS}`;
 
 function EmptyBarBreakdownChart({
   height,
@@ -23,37 +30,16 @@ function EmptyBarBreakdownChart({
   overLayText,
   width,
 }: EmptyBarBreakdownChartProps) {
-  const productionData = modeOrder.map((d) => ({
-    mode: d,
-    gCo2eq: 0,
-    gCo2eqByFuel: {},
-    gCo2eqByFuelAndSource: {},
-    isStorage: false,
-  }));
-  const { t } = useTranslation();
   const { productionY } = getDataBlockPositions(0, []);
-
-  const maxCO2eqExport = 1;
-  const maxCO2eqImport = 10;
-  const maxCO2eqProduction = 10;
 
   // in CO₂eq
   const co2Scale = useMemo(
     () =>
       scaleLinear()
-        .domain([
-          -maxCO2eqExport || 0,
-          Math.max(maxCO2eqProduction || 0, maxCO2eqImport || 0),
-        ])
+        .domain([MIN_CO2EQ, MAX_CO2EQ])
         .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
-    [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width]
+    [width]
   );
-
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  const formatTick = (t: number) => {
-    // TODO: format tick depending on displayByEmissions
-    return `${t} ${PowerUnits.GIGAWATTS}`;
-  };
 
   return (
     <>
@@ -67,20 +53,20 @@ function EmptyBarBreakdownChart({
       <svg
         className={`${
           overLayText ? 'opacity-40' : 'opacity-1'
-        } w-full overflow-visible text-md`}
+        } text-md w-full overflow-visible`}
         height={height}
       >
         <Axis formatTick={formatTick} height={height} scale={co2Scale} />
-        <g transform={`translate(0, ${productionY})`}>
-          {productionData.map((d, index) => (
-            <Row
-              key={d.mode}
+        <Group top={productionY}>
+          {modeOrderBarBreakdown.map((mode, index) => (
+            <ProductionSourceRow
+              key={mode}
               index={index}
-              label={t(d.mode)}
+              productionMode={mode}
               width={width}
               scale={co2Scale}
-              value={Math.abs(d.gCo2eq)}
-              isMobile={Boolean(isMobile)}
+              value={0}
+              isMobile={isMobile}
             >
               <HorizontalBar
                 className="production"
@@ -88,9 +74,9 @@ function EmptyBarBreakdownChart({
                 range={[0, Math.floor(Math.random() * 10)]}
                 scale={co2Scale}
               />
-            </Row>
+            </ProductionSourceRow>
           ))}
-        </g>
+        </Group>
       </svg>
     </>
   );

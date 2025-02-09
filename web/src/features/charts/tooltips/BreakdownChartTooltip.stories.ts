@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { TimeAverages } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 
 import { BreakdownChartTooltipContent } from './BreakdownChartTooltip';
 
@@ -17,7 +17,7 @@ export const Example: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 599,
-    timeAverage: TimeAverages.HOURLY,
+    timeRange: TimeRange.H72,
     capacity: 500,
     co2Intensity: 130,
     co2IntensitySource: 'IPCC 2014; EU-ETS, ENTSO-E 2021',
@@ -27,7 +27,6 @@ export const Example: Story = {
     totalEmissions: 1_200_000_000,
     selectedLayerKey: 'nuclear',
     zoneKey: 'DK-DK1',
-    originTranslateKey: 'electricityComesFrom',
   },
 };
 
@@ -36,7 +35,7 @@ export const WithoutCapacity: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 599,
-    timeAverage: TimeAverages.HOURLY,
+    timeRange: TimeRange.H72,
     capacity: undefined,
     co2Intensity: 130,
     co2IntensitySource: 'IPCC 2014; EU-ETS, ENTSO-E 2021',
@@ -46,7 +45,6 @@ export const WithoutCapacity: Story = {
     totalEmissions: 1_200_000_000,
     selectedLayerKey: 'nuclear',
     zoneKey: 'DK-DK1',
-    originTranslateKey: 'electricityComesFrom',
   },
 };
 
@@ -55,7 +53,7 @@ export const isStoring: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 80,
-    timeAverage: TimeAverages.HOURLY,
+    timeRange: TimeRange.H72,
     capacity: 700,
     co2Intensity: 130,
     co2IntensitySource: 'IPCC 2014; EU-ETS, ENTSO-E 2021',
@@ -67,7 +65,8 @@ export const isStoring: Story = {
     zoneKey: 'PL',
     storage: 60,
     production: 0,
-    originTranslateKey: 'electricityStoredUsing',
+    isExchange: false,
+    isExport: true,
   },
 };
 
@@ -76,7 +75,7 @@ export const IsDischarging: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 80,
-    timeAverage: TimeAverages.HOURLY,
+    timeRange: TimeRange.H72,
     capacity: 700,
     co2Intensity: 130,
     co2IntensitySource: 'IPCC 2014; EU-ETS, ENTSO-E 2021',
@@ -87,7 +86,6 @@ export const IsDischarging: Story = {
     selectedLayerKey: 'battery storage',
     zoneKey: 'PL',
     storage: 0,
-    originTranslateKey: 'electricityComesFrom',
     production: 80,
   },
 };
@@ -97,7 +95,7 @@ export const LongSource: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 80,
-    timeAverage: TimeAverages.HOURLY,
+    timeRange: TimeRange.H72,
     capacity: 700,
     co2Intensity: 130,
     co2IntensitySource:
@@ -109,7 +107,6 @@ export const LongSource: Story = {
     selectedLayerKey: 'battery storage',
     zoneKey: 'PL',
     storage: 0,
-    originTranslateKey: 'electricityComesFrom',
     production: 80,
   },
 };
@@ -118,7 +115,7 @@ export const Exporting: Story = {
   args: {
     datetime: new Date('2022-11-28T07:00:00.000Z'),
     usage: 80,
-    timeAverage: TimeAverages.HOURLY,
+    timeRange: TimeRange.H72,
     capacity: 700,
     co2Intensity: 450,
     co2IntensitySource:
@@ -127,7 +124,7 @@ export const Exporting: Story = {
     emissions: 100_000_000,
     totalElectricity: 1100,
     totalEmissions: 1_200_000_000,
-    originTranslateKey: 'electricityExportedTo',
+    isExport: true,
     selectedLayerKey: 'DE',
     zoneKey: 'DK-DK1',
     storage: 0,

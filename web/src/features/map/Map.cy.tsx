@@ -1,12 +1,34 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider } from 'jotai';
-import { useHydrateAtoms } from 'jotai/utils';
-import { BrowserRouter } from 'react-router-dom';
-import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import { atom, WritableAtom } from 'jotai';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { TestProvider } from 'testing/testUtils';
 
 import Map from './Map';
 
 const zonesToTest = ['DE', 'FR', 'NL', 'NO-NO1', 'SE-SE1', 'CH', 'ES'];
+interface DatetimeState {
+  datetime: Date;
+  index: number;
+}
+
+type TestProviderValue = [
+  WritableAtom<DatetimeState, [DatetimeState], void>,
+  DatetimeState
+];
+
+export const selectedDatetimeIndexAtom: WritableAtom<
+  DatetimeState,
+  [DatetimeState],
+  void
+> = atom(
+  {
+    datetime: new Date(),
+    index: 0,
+  },
+  (get, set, newValue: DatetimeState) => {
+    set(selectedDatetimeIndexAtom, newValue);
+  }
+);
 
 type ZoneLayer = {
   id: string;
@@ -122,18 +144,6 @@ const zonesSnapshot: ZonesSnapshot = {
     layout: {},
   },
 };
-const HydrateAtoms = ({ initialValues, children }: any) => {
-  useHydrateAtoms(initialValues);
-  return children;
-};
-
-function TestProvider({ initialValues, children }: any) {
-  return (
-    <Provider>
-      <HydrateAtoms initialValues={initialValues}>{children}</HydrateAtoms>
-    </Provider>
-  );
-}
 
 const handleMapLoad = (map: any) => {
   const features = map.queryRenderedFeatures({ layers: ['zones-clickable-layer'] });
@@ -152,30 +162,40 @@ describe('Map Component', () => {
   it('should display loading state initially', () => {
     const queryClient = new QueryClient();
 
-    cy.intercept('v7/state/hourly', { fixture: 'v7/state/hourly' });
-    cy.intercept('v7/state/last_hour', { fixture: 'v7/state/last_hour' });
+    const initialState: DatetimeState = {
+      datetime: new Date('2022-12-05T08:00:00+00:00'),
+      index: 0,
+    };
 
-    cy.mount(
-      <TestProvider
-        initialValues={[
-          [
-            selectedDatetimeIndexAtom,
-            {
-              datetimeString: '2022-12-05T08:00:00Z',
-              index: 0,
-            },
-          ],
-        ]}
-      >
-        <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
+    const initialValues: [TestProviderValue] = [
+      [selectedDatetimeIndexAtom, initialState],
+    ];
+
+    function TestComponent() {
+      return (
+        <TestProvider initialValues={initialValues as any}>
+          <QueryClientProvider client={queryClient}>
             <Map onMapLoad={handleMapLoad} />
-          </BrowserRouter>
-        </QueryClientProvider>
-      </TestProvider>
+          </QueryClientProvider>
+        </TestProvider>
+      );
+    }
+
+    const router = createMemoryRouter(
+      [
+        {
+          path: '*',
+          element: <TestComponent />,
+        },
+      ],
+      {
+        initialEntries: ['/'],
+      }
     );
-    cy.get('[data-test-id=exchange-layer]').should('be.visible');
-    cy.get('[data-test-id=wind-layer]').should('exist');
+
+    cy.mount(<RouterProvider router={router} />);
+    cy.get('[data-testid=exchange-layer]').should('be.visible');
+    cy.get('[data-testid=wind-layer]').should('exist');
     cy.get('.maplibregl-map').should('be.visible');
   });
 });

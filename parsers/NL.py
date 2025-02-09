@@ -1,14 +1,12 @@
-#!/usr/bin/env python3
-
 from copy import copy
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 
-import arrow
 import pandas as pd
 from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import DK, ENTSOE
 from parsers.lib.config import refetch_frequency
 
@@ -18,13 +16,16 @@ UTC = timezone.utc
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "NL",
+    zone_key: ZoneKey = ZoneKey("NL"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    if target_datetime is None:
-        target_datetime = arrow.utcnow().datetime
+    target_datetime = (
+        datetime.now(UTC)
+        if target_datetime is None
+        else target_datetime.astimezone(UTC)
+    )
 
     r = session or Session()
 
@@ -56,7 +57,7 @@ def fetch_production(
         exchanges.extend(exchange or [])
 
     # add DK1 data (only for dates after operation)
-    if target_datetime > arrow.get("2019-08-24", "YYYY-MM-DD"):
+    if target_datetime > datetime(2019, 8, 24, tzinfo=UTC):
         zone_1, zone_2 = sorted(["DK-DK1", zone_key])
         df_dk = pd.DataFrame(
             DK.fetch_exchange(
@@ -183,7 +184,7 @@ def get_solar_capacities() -> pd.DataFrame:
     solar_capacity_base_url = "https://opendata.cbs.nl/ODataApi/odata/82610ENG/UntypedDataSet?$filter=((EnergySourcesTechniques+eq+%27E006590+%27))+and+("
 
     START_YEAR = 2010
-    end_year = arrow.now().year
+    end_year = datetime.now(UTC).year
 
     years = list(range(START_YEAR, end_year + 1))
     url_solar_capacity = copy(solar_capacity_base_url)
@@ -205,11 +206,11 @@ def get_solar_capacities() -> pd.DataFrame:
 
     for yearly_row in per_year_capacity:
         capacity = float(yearly_row["ElectricalCapacityEndOfYear_8"])
-        datetime = arrow.get(yearly_row["Periods"].split("JJ")[0]).format()
+        year = yearly_row["Periods"].split("JJ")[0]
+        dt = datetime(int(year), 1, 1, tzinfo=UTC)
         solar_capacity_df = solar_capacity_df.append(
-            {"datetime": datetime, "capacity (MW)": capacity}, ignore_index=True
+            {"datetime": dt, "capacity (MW)": capacity}, ignore_index=True
         )
-    solar_capacity_df.datetime = pd.to_datetime(solar_capacity_df.datetime)
     solar_capacity_df = solar_capacity_df.set_index("datetime")
 
     return solar_capacity_df

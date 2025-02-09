@@ -1,4 +1,5 @@
 import invariant from 'tiny-invariant';
+import { TimeRange } from 'utils/constants';
 
 export const ONE_MINUTE = 60 * 1000;
 export const FIVE_MINUTES = 5 * ONE_MINUTE;
@@ -33,10 +34,10 @@ function isUsingLocalEndpoint(): boolean {
 
 function getToken(): string {
   invariant(
-    import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN,
-    'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN is not defined in environment'
+    import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9,
+    'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9 is not defined in environment'
   );
-  return String(import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN);
+  return String(import.meta.env.VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9);
 }
 
 /**
@@ -45,13 +46,12 @@ function getToken(): string {
  * @param route The route to generate x-signature for. Has to be given without the base path.
  * For example. `/v5/state/hourly` is a valid route, but `http://localhost:8001/v5/state/yearly` is not.
  */
-export async function getHeaders(route: string): Promise<Headers> {
+export async function getHeaders(route: URL): Promise<Headers> {
   const token = isUsingLocalEndpoint() ? 'development' : getToken();
   const timestamp = Date.now().toString();
-  const signature = await sha256(`${token}${route}${timestamp}`);
+  const signature = await sha256(`${token}${route.pathname}${timestamp}`);
 
   return new Headers({
-    'electricitymap-token': token,
     'x-request-timestamp': timestamp,
     'x-signature': signature,
     'Cache-Control': 'public,maxage=60',
@@ -65,11 +65,48 @@ export async function getHeaders(route: string): Promise<Headers> {
 export function getBasePath() {
   return isUsingLocalEndpoint()
     ? 'http://127.0.0.1:8001'
-    : 'https://app-backend.electricitymap.org';
+    : 'https://app-backend.electricitymaps.com';
+}
+
+export function cacheBuster(): string {
+  const currentDate = new Date();
+  const minutes = currentDate.getMinutes();
+  currentDate.setMinutes(minutes - (minutes % 5));
+  currentDate.setSeconds(0);
+  currentDate.setMilliseconds(0);
+
+  return currentDate.toISOString();
 }
 
 export const QUERY_KEYS = {
   STATE: 'state',
   ZONE: 'zone',
-  FEATURE_FLAGS: 'feature-flags',
+  META: 'meta',
 };
+export function isValidDate(dateString: string) {
+  if (Number.isNaN(Date.parse(dateString))) {
+    throw new TypeError('Invalid date string: ' + dateString);
+  }
+  const oldestDatetimeToSupport = new Date('2017-01-01T00:00:00Z');
+  const parsedDate = new Date(dateString);
+  if (parsedDate > oldestDatetimeToSupport) {
+    return true;
+  }
+  return false;
+}
+
+export const TIME_RANGE_TO_TIME_AVERAGE: Record<TimeRange, string> = {
+  [TimeRange.H72]: 'hourly',
+  [TimeRange.M3]: 'daily',
+  [TimeRange.M12]: 'monthly',
+  [TimeRange.ALL_MONTHS]: 'monthly',
+  [TimeRange.ALL_YEARS]: 'yearly',
+} as const;
+
+export const TIME_RANGE_TO_BACKEND_PATH: Record<TimeRange, string> = {
+  [TimeRange.H72]: 'hourly',
+  [TimeRange.M3]: 'daily',
+  [TimeRange.M12]: 'monthly',
+  [TimeRange.ALL_MONTHS]: 'monthly_all',
+  [TimeRange.ALL_YEARS]: 'yearly',
+} as const;

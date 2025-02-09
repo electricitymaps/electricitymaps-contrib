@@ -24,6 +24,8 @@ contributors:
   - q--
   - alixunderplatz
   - MuffinCompiler
+  - consideRatio
+country: MN
 emissionFactors:
   direct:
     unknown:
@@ -32,11 +34,36 @@ emissionFactors:
         source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
         value: 729.1
   lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 712.24
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 712.24
     unknown:
       - _url: https://www.iea.org/fuels-and-technologies/electricity
         datetime: '2020-01-01'
         source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
         value: 799.2
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0008970047023211626
+        gas: 0.00023905248863756158
+        geothermal: 0.0
+        hydro: 0.021838461260731995
+        hydro discharge: 0.0
+        nuclear: 6.232263775723864e-05
+        oil: 9.31594030933825e-06
+        solar: 0.025727593324883617
+        unknown: 0.8876911885022577
+        wind: 0.06354042950942215
 isLowCarbon:
   unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
@@ -51,4 +78,5 @@ parsers:
   consumption: MN.fetch_consumption
   production: MN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Asia
 timezone: Asia/Ulaanbaatar

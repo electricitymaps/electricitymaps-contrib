@@ -98,7 +98,7 @@ def fetch_production(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict[str, Any]:
+) -> dict[str, Any] | None:
     """Request the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -116,24 +116,26 @@ def fetch_production(
     return validation.validate(
         {
             "capacity": {
-                "gas": generation["GAS"]["MC"],
-                "hydro": generation["HYDRO"]["MC"],
-                "battery storage": generation["ENERGY STORAGE"]["MC"],
-                "solar": generation["SOLAR"]["MC"],
+                "gas": generation["COGENERATION"]["MC"]
+                + generation["COMBINED CYCLE"]["MC"]
+                + generation["GAS FIRED STEAM"]["MC"]
+                + generation["SIMPLE CYCLE"]["MC"],
                 "wind": generation["WIND"]["MC"],
+                "solar": generation["SOLAR"]["MC"],
+                "hydro": generation["HYDRO"]["MC"],
                 "biomass": generation["OTHER"]["MC"],
-                "unknown": generation["DUAL FUEL"]["MC"],
-                "coal": generation["COAL"]["MC"],
+                "battery storage": generation["ENERGY STORAGE"]["MC"],
             },
             "datetime": get_csd_report_timestamp(response.text),
             "production": {
-                "gas": generation["GAS"]["TNG"],
-                "hydro": generation["HYDRO"]["TNG"],
-                "solar": generation["SOLAR"]["TNG"],
+                "gas": generation["COGENERATION"]["TNG"]
+                + generation["COMBINED CYCLE"]["TNG"]
+                + generation["GAS FIRED STEAM"]["TNG"]
+                + generation["SIMPLE CYCLE"]["TNG"],
                 "wind": generation["WIND"]["TNG"],
+                "solar": generation["SOLAR"]["TNG"],
+                "hydro": generation["HYDRO"]["TNG"],
                 "biomass": generation["OTHER"]["TNG"],
-                "unknown": generation["DUAL FUEL"]["TNG"],
-                "coal": generation["COAL"]["TNG"],
             },
             "source": URL.netloc,
             "storage": {

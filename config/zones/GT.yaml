@@ -16,6 +16,8 @@ contributors:
   - corradio
   - igorarduin
   - kruschk
+  - amv213
+country: GT
 emissionFactors:
   direct:
     battery discharge:
@@ -68,49 +70,43 @@ emissionFactors:
       value: 383.240577
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 220.83700299654305
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 374.066880936666
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 311.96960860247304
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 181.42758260014966
+        value: 181.43
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 30.940010953482037
+        value: 330.24
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 411.55337384273463
+        value: 411.55
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 311.9991841222269
+        value: 312.0
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 173.84
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 304.87
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 220.83700299654305
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 374.066880936666
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 311.96960860247304
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 181.42758260014966
+        value: 181.43
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 30.940010953482037
+        value: 330.24
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 411.55337384273463
+        value: 411.55
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 311.9991841222269
+        value: 312.0
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 173.84
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 304.87
     unknown:
       _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
       source: Guatemala AMM 2021-2022; IEA 2020
@@ -136,51 +132,82 @@ fallbackZoneMixes:
       datetime: '2018-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.004852599812626857
-        coal: 0.00693440519222716
-        gas: 3.3112094168302676e-06
-        geothermal: 0.00043518123294307946
-        hydro: 0.9862339649136561
+        biomass: 0.2141016115909956
+        coal: 0.3059597703791984
+        gas: 0.00014609543268142596
+        geothermal: 0.019200463897668312
+        hydro: 0.39261701031404705
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.0006615754440213553
-        solar: 0.00032051710939075024
+        oil: 0.029189643442237182
+        solar: 0.0141416865814144
         unknown: 0.0
-        wind: 0.000558552467545246
+        wind: 0.024643632205022217
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.10739703974744741
-        coal: 0.425955275340774
-        gas: 0.00015175964819214848
-        geothermal: 0.021465427592427876
-        hydro: 0.35918632854157356
+        biomass: 0.10738415999588834
+        coal: 0.425908286916578
+        gas: 0.00015175587478472328
+        geothermal: 0.021462458105609476
+        hydro: 0.3591406797013392
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.04157509541438052
-        solar: 0.017164195905425738
-        unknown: 2.8932292813808485e-05
-        wind: 0.027200360413057942
+        oil: 0.04157849114495589
+        solar: 0.01716207254913335
+        unknown: 1.4657632276526216e-05
+        wind: 0.027197477697206027
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.0012667362350007403
-        coal: 0.3399749732985906
-        gas: 0.0012022532471483419
-        geothermal: 0.025261531613986855
-        hydro: 0.5629151873667574
+        biomass: 0.0012660920830537571
+        coal: 0.33996932189350915
+        gas: 0.0012023232670759013
+        geothermal: 0.025254573274804168
+        hydro: 0.5629133861839228
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.025395136525346678
-        solar: 0.017429416935882045
-        unknown: 0.0009137061026630706
-        wind: 0.02567292271398894
+        oil: 0.025391491893842464
+        solar: 0.017425599151481123
+        unknown: 0.0009033652503182605
+        wind: 0.025673742613209437
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.038615727677290886
+        coal: 0.0744460923911323
+        gas: 0.006380651810328505
+        geothermal: 0.02765750677028134
+        hydro: 0.6618757413905424
+        hydro discharge: 0.0
+        nuclear: 0.0025905004647959885
+        oil: 0.02680057424301443
+        solar: 0.017835011252387734
+        unknown: 0.12022276045322329
+        wind: 0.023575207679511677
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.09564663253080441
+        coal: 0.14254089469001524
+        gas: 0.00991487046440112
+        geothermal: 0.025006661476381937
+        hydro: 0.39565218566614996
+        hydro discharge: 0.0
+        nuclear: 0.00435787503319231
+        oil: 0.0509874330713685
+        solar: 0.01754472879799632
+        unknown: 0.23133770252127814
+        wind: 0.027010687083095453
 parsers:
   consumption: GT.fetch_consumption
   production: GT.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Americas
 sources:
   Guatemala AMM 2021-2022:
     link: https://www.amm.org.gt/portal

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from datetime import datetime, time, timedelta
+from datetime import date, datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -40,9 +40,12 @@ TABLE_HEADERS = [
     "Hydro",
     "Solar",
     "Wind",
-    "Bheramara HVDC",
-    "Tripura",
+    "India",  # Visual grouping of India imports
+    "Nepal",  # Import
     "Remarks",
+    "Bheramara HVDC",  # Import
+    "Tripura",  # Import
+    "Adani",  # Import
 ]
 PARSER = "ERP_PGCB.py"
 
@@ -99,7 +102,9 @@ def parse_table_body(table_body: Tag) -> list[dict]:
                 "wind": table_entry_to_float(row_items[10]),
                 "bd_import_bheramara": table_entry_to_float(row_items[11]),
                 "bd_import_tripura": table_entry_to_float(row_items[12]),
-                "remarks": row_items[13],
+                "bd_import_adani": table_entry_to_float(row_items[13]),
+                "bd_import_nepal": table_entry_to_float(row_items[14]),
+                "remarks": row_items[15],
             }
         )
 
@@ -118,8 +123,8 @@ def verify_table_header(table_header: Tag):
         raise ParserException(
             parser=PARSER,
             message=(
-                f"Table headers mismatch with expected ones."
-                f"Expected: {TABLE_HEADERS}"
+                f"Table headers mismatch with expected ones.\n"
+                f"Expected: {TABLE_HEADERS}\n"
                 f"Parsed: {header_items}"
             ),
         )
@@ -132,7 +137,7 @@ def query(
     Query the table and read it into list.
     """
 
-    if target_datetime is not None and target_datetime < datetime(2015, 5, 1):
+    if target_datetime is not None and target_datetime.date() < date(2015, 5, 1):
         raise ParserException(
             parser=PARSER,
             message="Data before 2015-05-01 is not reliable and will not be parsed.",
@@ -197,13 +202,12 @@ def fetch_production(
     session = session or Session()
 
     row_data = query(session, target_datetime, logger)
-
     production_data_list = ProductionBreakdownList(logger)
     for row in row_data:
         # Create data with empty production
         production = ProductionMix()
 
-        # And add sources if they are present in the table
+        # And add sources if they are present in the table z
         known_sources_sum_mw = 0.0
         for source_type in ["coal", "gas", "hydro", "oil", "solar", "wind"]:
             if row[source_type] is not None:
@@ -214,12 +218,18 @@ def fetch_production(
         # infer 'unknown'
         if row["total_generation"] is not None:
             # Total generation includes all sources, including imports so we need to subtract them to get the unknown source
+            # Before this date Adani import in NoneType
+
             unknown_source_mw = (
                 row["total_generation"]
                 - known_sources_sum_mw
                 - row["bd_import_bheramara"]
                 - row["bd_import_tripura"]
             )
+            # Adani import was added after this date
+            if target_datetime is None or target_datetime.date() > date(2024, 8, 27):
+                unknown_source_mw -= row["bd_import_adani"]
+
             production.add_value(
                 "unknown", unknown_source_mw, correct_negative_with_zero=True
             )
@@ -286,21 +296,29 @@ def fetch_exchange(
     sortedZoneKeys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     for row in row_data:
-        # BD -> IN_xx
         if zone_key2 == "IN-NE":
-            # Export to India NorthEast via Tripura
+            # Import from India NorthEast via Tripura
             bd_import = row["bd_import_tripura"]
         elif zone_key2 == "IN-EA":
-            # Export to India East via Bheramara
+            # Import from India East via Bheramara and Adani (Jharkhand plant)
             bd_import = row["bd_import_bheramara"]
+
+            if (
+                target_datetime is None
+                or target_datetime.date() > datetime(2024, 8, 27).date()
+            ):
+                bd_import += row["bd_import_adani"]
+        elif zone_key2 == "NP":
+            # Import from Nepal
+            bd_import = row["bd_import_nepal"]
         else:
             raise ParserException(
                 parser=PARSER,
                 message=f"Exchange pair {sortedZoneKeys} is not implemented.",
             )
-
         if bd_import is None:
             continue  # no data in table
+
         bd_export = -1.0 * bd_import
 
         exchange_list.append(
