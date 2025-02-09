@@ -62,15 +62,6 @@ def get_target_url(target_datetime: datetime | None, kind: str) -> str:
     return target_url
 
 
-def add_production_to_dict(mode: str, value: float, production_dict: dict) -> dict:
-    """Add production to production_dict, if mode is in PRODUCTION_MODES."""
-    if PRODUCTION_MODES_MAPPING[mode] not in production_dict:
-        production_dict[PRODUCTION_MODES_MAPPING[mode]] = value
-    else:
-        production_dict[PRODUCTION_MODES_MAPPING[mode]] += value
-    return production_dict
-
-
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
