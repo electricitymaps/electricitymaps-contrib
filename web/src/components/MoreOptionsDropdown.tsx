@@ -111,7 +111,7 @@ export function MoreOptionsDropdown({
               >
                 <div className="my-auto flex items-center">
                   <FileDownIcon size={DEFAULT_ICON_SIZE} />
-                  <div className="ml-2 text-sm font-semibold text-black">
+                  <div className="ml-2 text-sm font-semibold">
                     {t('more-options-dropdown.download')}
                   </div>
                 </div>

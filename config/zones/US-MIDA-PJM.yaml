@@ -177,6 +177,7 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+  - amv213
 country: US
 delays:
   production: 7
@@ -498,4 +499,4 @@ sources:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
-timezone: US/Eastern
+timezone: America/New_York
