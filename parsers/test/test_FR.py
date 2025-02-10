@@ -1,17 +1,13 @@
 import os
 
-from requests import Session
-from requests_mock import GET, Adapter
+from requests_mock import GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.FR import API_ENDPOINT, fetch_production
 
 
-def test_production(snapshot):
-    session = Session()
-    adapter = Adapter()
+def test_production(adapter, session, snapshot):
     os.environ["RESEAUX_ENERGIES_TOKEN"] = "test_token"
-    session.mount("https://", adapter)
     with open("parsers/test/mocks/FR/response.json", "rb") as mock_file:
         adapter.register_uri(
             GET,

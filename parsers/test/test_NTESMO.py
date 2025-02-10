@@ -11,10 +11,7 @@ australia = ZoneInfo("Australia/Darwin")
 
 
 @pytest.fixture()
-def fixture_session_mock() -> tuple[requests.Session, Adapter]:
-    adapter = Adapter()
-    session = requests.Session()
-
+def fixture_session_mock(adapter, session) -> tuple[requests.Session, Adapter]:
     # do not mount mock adapter on generic https:// prefix or the parser's @retry_policy decorator will overwrite it
     session.mount("https://ntesmo.com.au/", adapter)
 
