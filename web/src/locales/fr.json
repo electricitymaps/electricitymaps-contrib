@@ -335,11 +335,11 @@
       "all_years": "Prix annuels de l'électricité"
     },
     "netExchange": {
-      "72h": "Échange net horaire",
-      "3mo": "Échange net quotidien",
-      "12mo": "Échange net mensuel",
-      "all_months": "Échange net mensuel",
-      "all_years": "Échange net annuel"
+      "72h": "Échanges nets horaire",
+      "3mo": "Échanges nets quotidien",
+      "12mo": "Échanges nets mensuel",
+      "all_months": "Échanges nets mensuel",
+      "all_years": "Échanges nets annuel"
     },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
