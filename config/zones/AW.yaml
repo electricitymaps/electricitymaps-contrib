@@ -4,8 +4,24 @@ bounding_box:
   - - -69.37682044199994
     - 13.132147528000104
 capacity:
-  oil: 257.88
-  wind: 30
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 260.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
 contributors:
   - pascalheraud
 country: AW
