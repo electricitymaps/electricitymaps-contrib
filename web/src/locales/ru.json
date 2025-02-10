@@ -230,6 +230,9 @@
     "BZ": {
       "zoneName": "Белиз"
     },
+    "CA": {
+      "zoneName": "Канада"
+    },
     "CA-AB": {
       "countryName": "Канада",
       "zoneName": "Альберта"
@@ -389,9 +392,13 @@
     "ES": {
       "zoneName": "Испания"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Испания",
-      "zoneName": "Фуэртевентура / Лансароте"
+      "zoneName": "Фуэртевентура"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Испания",
+      "zoneName": "Лансароте"
     },
     "ES-CN-GC": {
       "countryName": "Испания",

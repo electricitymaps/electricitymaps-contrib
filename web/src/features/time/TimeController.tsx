@@ -7,8 +7,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import trackEvent from 'utils/analytics';
-import { TimeRange, TrackEvent } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
@@ -111,7 +110,6 @@ export default function TimeController({ className }: { className?: string }) {
             index: numberOfEntries,
           });
           setTimeRange(timeRange);
-          trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeRange });
         }
       }
     },

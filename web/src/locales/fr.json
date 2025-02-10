@@ -328,11 +328,11 @@
       "all_years": "Production d'électricité annuelle"
     },
     "electricityprices": {
-      "72h": "Prix de l'électricité horaires",
-      "3mo": "Prix de l'électricité quotidiens",
-      "12mo": "Prix de l'électricité mensuels",
-      "all_months": "Prix de l'électricité mensuels",
-      "all_years": "Prix de l'électricité annuels"
+      "72h": "Prix horaires de l'électricité",
+      "3mo": "Prix quotidiens de l'électricité",
+      "12mo": "Prix mensuels de l'électricité",
+      "all_months": "Prix mensuels de l'électricité",
+      "all_years": "Prix annuels de l'électricité"
     },
     "netExchange": {
       "72h": "Échange net horaire",
@@ -363,7 +363,7 @@
       "renewable": "Inclut le solaire, l'éolien, l'hydroélectricité, la biomasse et la géothermie",
       "carbonIntensity": "Grammes d'équivalent CO2 par kilowattheure (gCO2eq/kWh) mesurant les émissions de gaz à effet de serre issues de la production d'électricité"
     },
-    "crossborderexport": "Export transfrontalier",
+    "crossborderexport": "Exports transfrontaliers",
     "carbonintensityexport": "Intensité carbone de l’export",
     "ofinstalled": "de la capacité installée",
     "utilizing": "utilisant",
@@ -690,6 +690,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -880,9 +883,13 @@
       "countryName": "Espagne",
       "zoneName": "Minorque"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espagne",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espagne",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espagne",
