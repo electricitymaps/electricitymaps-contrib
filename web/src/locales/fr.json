@@ -215,7 +215,7 @@
       "title": "Les données sont toujours estimées",
       "pill": "Estimé",
       "body": "Les données en temps réel pour cette zone ne sont pas disponibles. Les valeurs actuelles sont modélisées en utilisant une combinaison de données météorologiques en direct et de données historiques de production."
-    },    
+    },
     "threshold_filtered": {
       "title": "Données manquantes",
       "pill": "Panne",
@@ -784,7 +784,7 @@
     },
     "CL": {
       "zoneName": "Chili"
-    },    
+    },
     "CM": {
       "zoneName": "Cameroun"
     },
