@@ -29,6 +29,11 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 266.0
+    # https://www.litgrid.eu/index.php/energetikos-sistema/elektros-energetikos-sistemos-informacija/irengtoji-galia/502
+    - datetime: '2024-10-22'
+      _comment: biomass (198 MW) and biogas (10 MW)
+      source: litgrid.eu
+      value: 208.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -110,6 +115,11 @@ capacity:
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 144.0
+    - datetime: '2024-10-22'
+      # https://www.litgrid.eu/index.php/energetikos-sistema/elektros-energetikos-sistemos-informacija/irengtoji-galia/502
+      # 6394 - (338 + 1166 + 900 + 1669 + 1878 + 129 + 198 + 10)
+      _comment: Waste included (69 MW)
+      value: 106.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -141,6 +151,7 @@ capacity:
 contributors:
   - corradio
   - nessie2013
+  - manu1400
 country: LT
 delays:
   production: 6
