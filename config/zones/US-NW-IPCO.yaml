@@ -8,10 +8,16 @@ capacity:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 100.0
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
       value: 20.3
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 23.5
   coal:
     - datetime: '2023-10-01'
       source: EIA.gov

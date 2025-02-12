@@ -1,5 +1,4 @@
 {
-  "info": {},
   "button": {
     "feedback": "Condividi un feedback",
     "github": "Visualizza il nostro GitHub",
@@ -63,11 +62,15 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Dati orari per:",
-      "30d": "Dati giornalieri per:",
+      "3mo": "Dati giornalieri per:",
       "12mo": "Dati mensili per:",
-      "all": "Dati annuali per:"
-    }
+      "all_months": "Dati mensili per:",
+      "all_years": "Dati annuali per:"
+    },
+    "3mo": "giornaliero",
+    "12mo": "mensile",
+    "all_months": "mensile",
+    "all_years": "annuale"
   },
   "ranking-panel": {
     "title": "Impatto climatico per area",
@@ -377,6 +380,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -396,14 +402,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Terranova e Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Terranova"
     },
     "CA-NS": {
       "countryName": "Canada",
@@ -572,9 +570,13 @@
       "countryName": "Spagna",
       "zoneName": "Minorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spagna",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spagna",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spagna",

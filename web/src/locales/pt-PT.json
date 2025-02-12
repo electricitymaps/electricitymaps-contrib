@@ -163,6 +163,13 @@
       "body": "Os dados consistem numa agregação de valores horários. {{percentage}}% dos valores de produção são estimados."
     }
   },
+  "time-controller": {
+    "3mo": "diários",
+    "72h": "horários",
+    "12mo": "mensais",
+    "all_months": "mensais",
+    "all_years": "anuais"
+  },
   "ranking-panel": {
     "title": "Impacto climático",
     "subtitle": "Áreas ordenadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
@@ -185,60 +192,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Intensidade de carbono horária",
       "72h": "Intensidade de carbono horária",
-      "30d": "Intensidade de carbono diária",
+      "3mo": "Intensidade de carbono diária",
       "12mo": "Intensidade de carbono mensal",
-      "all": "Intensidade de carbono anual"
+      "all_months": "Intensidade de carbono mensal",
+      "all_years": "Intensidade de carbono anual"
     },
     "emissions": {
-      "24h": "Emissões de carbono horárias",
       "72h": "Emissões de carbono horárias",
-      "30d": "Emissões de carbono diárias",
+      "3mo": "Emissões de carbono diárias",
       "12mo": "Emissões de carbono mensais",
-      "all": "Emissões de carbono anuais"
+      "all_months": "Emissões de carbono mensais",
+      "all_years": "Emissões de carbono anuais"
     },
     "emissionsorigin": {
-      "24h": "Origem horária das emissões de carbono",
       "72h": "Origem horária das emissões de carbono",
-      "30d": "Origem diária das emissões de carbono",
+      "3mo": "Origem diária das emissões de carbono",
       "12mo": "Origem mensal das emissões de carbono",
-      "all": "Origem anual das emissões de carbono"
+      "all_months": "Origem mensal das emissões de carbono",
+      "all_years": "Origem anual das emissões de carbono"
     },
     "emissionsproduction": {
-      "24h": "Emissões horárias de produção",
       "72h": "Emissões horárias de produção",
-      "30d": "Emissões diárias de produção",
+      "3mo": "Emissões diárias de produção",
       "12mo": "Emissões mensais de produção",
-      "all": "Emissões anuais de produção"
+      "all_months": "Emissões mensais de produção",
+      "all_years": "Emissões anuais de produção"
     },
     "electricityorigin": {
-      "24h": "Origem horária da eletricidade",
       "72h": "Origem horária da eletricidade",
-      "30d": "Origem diária da eletricidade",
+      "3mo": "Origem diária da eletricidade",
       "12mo": "Origem mensal da eletricidade",
-      "all": "Origem anual da eletricidade"
+      "all_months": "Origem mensal da eletricidade",
+      "all_years": "Origem anual da eletricidade"
     },
     "electricityproduction": {
-      "24h": "Produção horária de eletricidade",
       "72h": "Produção horária de eletricidade",
-      "30d": "Produção diária de eletricidade",
+      "3mo": "Produção diária de eletricidade",
       "12mo": "Produção mensal de eletricidade",
-      "all": "Produção anual de eletricidade"
+      "all_months": "Produção mensal de eletricidade",
+      "all_years": "Produção anual de eletricidade"
     },
     "electricityprices": {
-      "24h": "Preços horários da eletricidade",
       "72h": "Preços horários da eletricidade",
-      "30d": "Preços diários da eletricidade",
+      "3mo": "Preços diários da eletricidade",
       "12mo": "Preços mensais da eletricidade",
-      "all": "Preços anuais da eletricidade"
+      "all_months": "Preços mensais da eletricidade",
+      "all_years": "Preços anuais da eletricidade"
     },
     "netExchange": {
-      "24h": "Troca líquida horária",
       "72h": "Troca líquida horária",
-      "30d": "Troca líquida diária",
+      "3mo": "Troca líquida diária",
       "12mo": "Troca líquida mensal",
-      "all": "Troca líquida anual"
+      "all_months": "Troca líquida mensal",
+      "all_years": "Troca líquida anual"
     },
     "not-enough-data": "Dados insuficientes disponíveis para exibir o gráfico"
   },
@@ -571,6 +578,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canadá"
+    },
     "CA-AB": {
       "countryName": "Canadá",
       "zoneName": "Alberta"
@@ -590,14 +600,6 @@
     "CA-NL": {
       "countryName": "Canadá",
       "zoneName": "Terra Nova e Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canadá",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canadá",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canadá",
@@ -766,9 +768,13 @@
       "countryName": "Espanha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanha",
@@ -1982,18 +1988,6 @@
     },
     "VN": {
       "zoneName": "Vietname"
-    },
-    "VN-C": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Central"
-    },
-    "VN-N": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Norte"
-    },
-    "VN-S": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Sul"
     },
     "VU": {
       "zoneName": "Vanuatu"

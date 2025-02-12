@@ -6,8 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import trackEvent from 'utils/analytics';
-import { TimeRange, TrackEvent } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
@@ -38,12 +37,12 @@ export default function TimeController({ className }: { className?: string }) {
   const setIsRedirectedToLatestDatetime = useSetAtom(isRedirectedToLatestDatetimeAtom);
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
-  const isLoading = dataLoading || Object.keys(data?.data?.datetimes ?? {}).length === 1;
+  const isLoading = dataLoading || Object.keys(data?.datetimes ?? {}).length === 1;
 
   // TODO: Figure out whether we want to work with datetimes as strings
   // or as Date objects. In this case datetimes are easier to work with
   const datetimes = useMemo(
-    () => (data ? Object.keys(data.data?.datetimes).map((d) => new Date(d)) : undefined),
+    () => (data ? Object.keys(data?.datetimes).map((d) => new Date(d)) : undefined),
     // eslint-disable-next-line react-hooks/exhaustive-deps -- is loading is used to trigger the re-memoization on hour change
     [data, isLoading]
   );
@@ -108,7 +107,6 @@ export default function TimeController({ className }: { className?: string }) {
             index: numberOfEntries,
           });
           setTimeRange(timeRange);
-          trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeRange });
         }
       }
     },
@@ -119,7 +117,7 @@ export default function TimeController({ className }: { className?: string }) {
       {isBiggerThanMobile && <TimeHeader />}
       <div className="flex items-center gap-2">
         <TimeRangeToggle
-          timeRange={selectedTimeRange || TimeRange.H24}
+          timeRange={selectedTimeRange || TimeRange.H72}
           onToggleGroupClick={onToggleGroupClick}
         />
       </div>
@@ -133,7 +131,7 @@ export default function TimeController({ className }: { className?: string }) {
         />
         <TimeAxis
           datetimes={datetimes}
-          selectedTimeRange={selectedTimeRange || TimeRange.H24}
+          selectedTimeRange={selectedTimeRange || TimeRange.H72}
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}

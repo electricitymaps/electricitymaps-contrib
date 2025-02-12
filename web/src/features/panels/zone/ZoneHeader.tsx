@@ -34,7 +34,7 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
   const { t } = useTranslation();
 
   return (
-    <div className="flex w-full items-center pl-2 pr-3 pt-2">
+    <div className="flex w-full items-center pl-2 pr-3 sm:pt-2">
       <Helmet prioritizeSeoTags>
         <title>{seoZoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
@@ -45,6 +45,7 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
         <ZoneHeaderTitle zoneId={zoneId} zoneNameFull={zoneNameFull} />
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
+
       {isShareButtonEnabled &&
         isConsumption &&
         (showMoreOptions ? (

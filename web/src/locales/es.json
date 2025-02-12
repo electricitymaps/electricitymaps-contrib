@@ -154,11 +154,15 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Datos horarios para:",
-      "30d": "Datos diarios para:",
+      "3mo": "Datos diarios para:",
       "12mo": "Datos mensuales para:",
-      "all": "Datos anuales para:"
-    }
+      "all_months": "Datos mensuales para:",
+      "all_years": "Datos anuales para:"
+    },
+    "3mo": "diario",
+    "12mo": "mensual",
+    "all_months": "mensual",
+    "all_years": "anual"
   },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
@@ -487,6 +491,9 @@
     "BZ": {
       "zoneName": "Belice"
     },
+    "CA": {
+      "zoneName": "Canadá"
+    },
     "CA-AB": {
       "countryName": "Canadá",
       "zoneName": "Alberta"
@@ -674,9 +681,13 @@
       "countryName": "España",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "España",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "España",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "España",

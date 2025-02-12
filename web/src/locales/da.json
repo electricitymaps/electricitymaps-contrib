@@ -215,12 +215,17 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Timevis data for:",
       "72h": "Timevis data for:",
-      "30d": "Daglig data for:",
+      "3mo": "Daglig data for:",
       "12mo": "Månedlig data for:",
-      "all": "Årlig data for:"
-    }
+      "all_months": "Månedlig data for:",
+      "all_years": "Årlig data for:"
+    },
+    "3mo": "daglig",
+    "72h": "timevis",
+    "12mo": "månedlig",
+    "all_months": "månedlig",
+    "all_years": "årlig"
   },
   "left-panel": {
     "applied-methodologies": {
@@ -239,60 +244,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Timevis CO₂-intensitet",
       "72h": "Timevis CO₂-intensitet",
-      "30d": "Daglig CO₂-intensitet",
+      "3mo": "Daglig CO₂-intensitet",
       "12mo": "Månedlig CO₂-intensitet",
-      "all": "Årlig CO₂-intensitet"
+      "all_months": "Månedlig CO₂-intensitet",
+      "all_years": "Årlig CO₂-intensitet"
     },
     "emissions": {
-      "24h": "Timevis CO₂-udledninger",
       "72h": "Timevis CO₂-udledninger",
-      "30d": "Daglig CO₂-udledninger",
+      "3mo": "Daglig CO₂-udledninger",
       "12mo": "Månedlig CO₂-udledninger",
-      "all": "Årlig CO₂-udledninger"
+      "all_months": "Månedlig CO₂-udledninger",
+      "all_years": "Årlig CO₂-udledninger"
     },
     "emissionsorigin": {
-      "24h": "Timevis CO₂-udlednings oprindelse",
       "72h": "Timevis CO₂-udlednings oprindelse",
-      "30d": "Daglig CO₂-udlednings oprindelse",
+      "3mo": "Daglig CO₂-udlednings oprindelse",
       "12mo": "Månedlig CO₂-udlednings oprindelse",
-      "all": "Årlig CO₂-udlednings oprindelse"
+      "all_months": "Månedlig CO₂-udlednings oprindelse",
+      "all_years": "Årlig CO₂-udlednings oprindelse"
     },
     "emissionsproduction": {
-      "24h": "Timevis elproduktions udledning",
       "72h": "Timevis elproduktions udledning",
-      "30d": "Daglig elproduktions udledning",
+      "3mo": "Daglig elproduktions udledning",
       "12mo": "Månedlig elproduktions udledning",
-      "all": "Årlig elproduktions udledning"
+      "all_months": "Månedlig elproduktions udledning",
+      "all_years": "Årlig elproduktions udledning"
     },
     "electricityorigin": {
-      "24h": "Timevis elektricitets oprindelse",
       "72h": "Timevis elektricitets oprindelse",
-      "30d": "Daglig elektricitets oprindelse",
+      "3mo": "Daglig elektricitets oprindelse",
       "12mo": "Månedlig elektricitets oprindelse",
-      "all": "Årlig elektricitets oprindelse"
+      "all_months": "Månedlig elektricitets oprindelse",
+      "all_years": "Årlig elektricitets oprindelse"
     },
     "electricityproduction": {
-      "24h": "Timevis elektricitets produktion",
       "72h": "Timevis elektricitets produktion",
-      "30d": "Daglig elektricitets produktion",
+      "3mo": "Daglig elektricitets produktion",
       "12mo": "Månedlig elektricitets produktion",
-      "all": "Årlig elektricitets produktion"
+      "all_months": "Månedlig elektricitets produktion",
+      "all_years": "Årlig elektricitets produktion"
     },
     "electricityprices": {
-      "24h": "Timevise elektricitets priser",
       "72h": "Timevise elektricitets priser",
-      "30d": "Daglige elektricitets priser",
+      "3mo": "Daglige elektricitets priser",
       "12mo": "Månedlige elektricitets priser",
-      "all": "Årlige elektricitets priser"
+      "all_months": "Månedlige elektricitets priser",
+      "all_years": "Årlige elektricitets priser"
     },
     "netExchange": {
-      "24h": "Timevis nettoudveksling",
       "72h": "Timevis nettoudveksling",
-      "30d": "Daglig nettoudveksling",
+      "3mo": "Daglig nettoudveksling",
       "12mo": "Månedlig nettoudveksling",
-      "all": "Årlig nettoudveksling"
+      "all_months": "Månedlig nettoudveksling",
+      "all_years": "Årlig nettoudveksling"
     },
     "not-enough-data": "Ikke nok data tilgængeligt til at vise diagrammet."
   },
@@ -642,6 +647,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -661,14 +669,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Newfoundland og Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canada",
@@ -837,9 +837,13 @@
       "countryName": "Spanien",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spanien",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanien",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spanien",

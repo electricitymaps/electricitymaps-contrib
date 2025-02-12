@@ -76,12 +76,17 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Stündliche Daten für:",
       "72h": "Stündliche Daten für:",
-      "30d": "Tägliche Daten für:",
+      "3mo": "Tägliche Daten für:",
       "12mo": "Monatliche Daten für:",
-      "all": "Jährliche Daten für:"
-    }
+      "all_months": "Monatliche Daten für:",
+      "all_years": "Jährliche Daten für:"
+    },
+    "3mo": "täglich",
+    "72h": "stündlich",
+    "12mo": "monatlich",
+    "all_months": "monatlich",
+    "all_years": "jährlich"
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",
@@ -429,6 +434,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -444,14 +452,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland and Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Neufundland"
     },
     "CA-NB": {
       "countryName": "Kanada",
@@ -604,9 +604,13 @@
       "countryName": "Spanien",
       "zoneName": "Ceuta"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spanien",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanien",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spanien",

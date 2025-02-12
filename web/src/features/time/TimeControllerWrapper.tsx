@@ -17,7 +17,7 @@ function BottomSheetWrappedTimeController() {
   const safeAreaBottom = safeAreaBottomString
     ? Number.parseInt(safeAreaBottomString.replace('px', ''))
     : 0;
-  const SNAP_POINTS = [60 + safeAreaBottom, 160 + safeAreaBottom];
+  const SNAP_POINTS = [60 + safeAreaBottom, 170 + safeAreaBottom];
 
   // Don't show the time controller until the onboarding has been seen
   // But it still has to be rendered to avoid re-querying data and showing loading

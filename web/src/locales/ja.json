@@ -309,6 +309,9 @@
     "BZ": {
       "zoneName": "ベリーズ"
     },
+    "CA": {
+      "zoneName": "カナダ"
+    },
     "CA-AB": {
       "countryName": "カナダ",
       "zoneName": "アルバータ州"
@@ -488,9 +491,13 @@
       "countryName": "スペイン",
       "zoneName": "メノルカ島"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "スペイン",
-      "zoneName": "フエルテベントゥラ島/ランサローテ島"
+      "zoneName": "フエルテベントゥラ島"
+    },
+    "ES-CN-LZ": {
+      "countryName": "スペイン",
+      "zoneName": "ランサローテ島"
     },
     "ES-CN-GC": {
       "countryName": "スペイン",

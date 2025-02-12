@@ -6,8 +6,9 @@
     "share-app": "Partagez l'application:"
   },
   "button": {
-    "reddit-share": "Partagez sur Reddit",
+    "bluesky-share": "Vizualisez en temps réel les données mondiales sur les émissions d’électricité : {{baseUrl}}",
     "reddit": "Rejoignez r/electricitymaps",
+    "reddit-share": "Partagez sur Reddit",
     "github": "Contribuez sur GitHub",
     "twitter": "Suivez nous sur X (Twitter)",
     "twitter-share": "Partagez sur X (Twitter)",
@@ -18,7 +19,9 @@
     "feedback": "Partagez vos commentaires",
     "faq": "FAQ",
     "privacy-policy": "Politique de confidentialité",
-    "legal-notice": "Informations légales"
+    "legal-notice": "Informations légales",
+    "api": "Accéder à l'API",
+    "docs": "Documentation de l'API "
   },
   "settings-modal": {
     "title": "Paramètres"
@@ -229,11 +232,23 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Données horaires pour :",
       "72h": "Données des 3 derniers jours pour :",
-      "30d": "Données quotidiennes pour :",
+      "3mo": "Données quotidiennes pour :",
       "12mo": "Données mensuelles pour :",
-      "all": "Données annuelles pour :"
+      "all_months": "Données mensuelles pour :",
+      "all_years": "Données annuelles pour :"
+    },
+    "72h": "72h",
+    "3mo": "3mo",
+    "12mo": "12mo",
+    "all_months": "Tout",
+    "all_years": "Toutes les années",
+    "historical-linking": {
+      "3mo": "30j",
+      "72h": "72h",
+      "12mo": "12mo",
+      "all_months": "Tout",
+      "all_years": "Toutes les années"
     },
     "date-unavailable": {
       "title": "Date indisponible",
@@ -266,60 +281,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Intensité carbone horaire",
       "72h": "Intensité carbone horaire",
-      "30d": "Intensité carbone quotidienne",
+      "3mo": "Intensité carbone quotidienne",
       "12mo": "Intensité carbone mensuelle",
-      "all": "Intensité carbone annuelle"
+      "all_months": "Intensité carbone mensuelle",
+      "all_years": "Intensité carbone annuelle"
     },
     "emissions": {
-      "24h": "Emissions de CO2 horaires",
       "72h": "Emissions de CO2 horaires",
-      "30d": "Emissions de CO2 quotidiennes",
+      "3mo": "Emissions de CO2 quotidiennes",
       "12mo": "Emissions de CO2 mensuelles",
-      "all": "Emissions de CO2 annuelles"
+      "all_months": "Emissions de CO2 mensuelles",
+      "all_years": "Emissions de CO2 annuelles"
     },
     "emissionsorigin": {
-      "24h": "Origine des émissions de CO2 horaires",
       "72h": "Origine des émissions de CO2 horaires",
-      "30d": "Origine des émissions de CO2 quotidiennes",
+      "3mo": "Origine des émissions de CO2 quotidiennes",
       "12mo": "Origine des émissions de CO2 mensuelles",
-      "all": "Origine des émissions de CO2 annuelles"
+      "all_months": "Origine des émissions de CO2 mensuelles",
+      "all_years": "Origine des émissions de CO2 annuelles"
     },
     "emissionsproduction": {
-      "24h": "Emissions horaires pour la production",
       "72h": "Origine des émissions de CO2 horaires",
-      "30d": "Emissions quotidiennes pour la production",
+      "3mo": "Emissions quotidiennes pour la production",
       "12mo": "Emissions mensuelles pour la production",
-      "all": "Emissions annuelles pour la production"
+      "all_months": "Emissions mensuelles pour la production",
+      "all_years": "Emissions annuelles pour la production"
     },
     "electricityorigin": {
-      "24h": "Origine de l'électricité horaire",
       "72h": "Origine de l'électricité horaire",
-      "30d": "Origine de l'électricité quotidienne",
+      "3mo": "Origine de l'électricité quotidienne",
       "12mo": "Origine de l'électricité mensuelle",
-      "all": "Origine de l'électricité annuelle"
+      "all_months": "Origine de l'électricité mensuelle",
+      "all_years": "Origine de l'électricité annuelle"
     },
     "electricityproduction": {
-      "24h": "Production d'électricité horaire",
       "72h": "Production d'électricité horaire",
-      "30d": "Production d'électricité quotidienne",
+      "3mo": "Production d'électricité quotidienne",
       "12mo": "Production d'électricité mensuelle",
-      "all": "Production d'électricité annuelle"
+      "all_months": "Production d'électricité mensuelle",
+      "all_years": "Production d'électricité annuelle"
     },
     "electricityprices": {
-      "24h": "Prix de l'électricité horaires",
-      "72h": "Prix de l'électricité horaires",
-      "30d": "Prix de l'électricité quotidiens",
-      "12mo": "Prix de l'électricité mensuels",
-      "all": "Prix de l'électricité annuels"
+      "72h": "Prix horaires de l'électricité",
+      "3mo": "Prix quotidiens de l'électricité",
+      "12mo": "Prix mensuels de l'électricité",
+      "all_months": "Prix mensuels de l'électricité",
+      "all_years": "Prix annuels de l'électricité"
     },
     "netExchange": {
-      "24h": "Echange net horaire",
-      "72h": "Echange net horaire",
-      "30d": "Echange net quotidien",
-      "12mo": "Echange net mensuel",
-      "all": "Echange net annuel"
+      "72h": "Echanges nets horaires",
+      "3mo": "Echanges nets quotidiens",
+      "12mo": "Echange nets mensuels",
+      "all_months": "Echanges nets mensuels",
+      "all_years": "Echanges nets annuels"
     },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
@@ -343,7 +358,7 @@
       "renewable": "Inclut le solaire, l'éolien, l'hydroélectricité, la biomasse et la géothermie",
       "carbonIntensity": "Grammes d'équivalent CO2 par kilowattheure (gCO2eq/kWh) mesurant les émissions de gaz à effet de serre issues de la production d'électricité"
     },
-    "crossborderexport": "Export transfrontalier",
+    "crossborderexport": "Exports transfrontaliers",
     "carbonintensityexport": "Intensité carbone de l’export",
     "ofinstalled": "de la capacité installée",
     "utilizing": "utilisant",
@@ -669,6 +684,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -684,14 +702,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Terre-Neuve-et-Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Terre-Neuve"
     },
     "CA-NB": {
       "countryName": "Canada",
@@ -864,9 +874,13 @@
       "countryName": "Espagne",
       "zoneName": "Minorque"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espagne",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espagne",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espagne",
@@ -2068,18 +2082,6 @@
     },
     "VN": {
       "zoneName": "Vietnam"
-    },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Centre"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Nord"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Sud"
     },
     "VU": {
       "zoneName": "Vanuatu"
