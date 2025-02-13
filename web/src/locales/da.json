@@ -100,8 +100,6 @@
     "aggregatedTooltip": "Data fra dette område er sammenlagt baseret på historiske timevise værdier.",
     "helpUs": "Hjælp os med at identificere problemet ved at kigge på <a href='{{link}}' target='_blank'>runtime logs</a> eller kontakte data udbyderen.",
     "noParserInfo": "Vi har endnu ingen information om dette område.<br/> Vil du hjælpe med at finde det? Du kan bidrage ved at <a href='{{link}}' target='_blank'>tilføje områdedata</a>.",
-    "aggregationDisabled": "Data er ikke tilgængelig for den valgte tidsperiode på grund af manglende detaljeret opdeling. Prøv en bredere tidsperiode.",
-    "fullyDisabled": "Data, vi har tilgængelige for dette område, er utilstrækkelige og vises derfor ikke. Hvis du kender til datakilder for dette område, bedes du venligst <a href='{{link}}' target='_blank'>informere os</a>.",
     "now": "Nu",
     "by-source": {
       "emissions": "CO₂-udledning",

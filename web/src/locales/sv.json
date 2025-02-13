@@ -84,7 +84,6 @@
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href='{{link}}' target='_blank'>körningsloggarna</a> eller kontakta dataleverantören.",
     "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href='{{link}}' target='_blank'>lägga till data för regionen</a>.",
-    "aggregationDisabled": "Data är inte tillgänglig för den valda tidsperioden på grund av saknad detaljerad uppdelning. Försök med en bredare tidsperiod.",
     "now": "Nu",
     "by-source": {
       "emissions": "Koldioxidutsläpp",
@@ -104,8 +103,7 @@
       "stored": "Lagrad",
       "produced": "Producerad"
     },
-    "emissionFactorDataSourcesTooltip": "Utsläppsfaktorer för elproduktion kan komma från flera olika källor. Detta sker eftersom flera faktorer, som anläggningsspecifika data, produktion och ibland standardkällor, beaktas i utsläppsberäkningar.",
-    "fullyDisabled": "De data som är tillgängliga för denna zon är otillräckliga och visas därför inte. Om du känner till några datakällor för detta område, vänligen <a href='{{link}}' target='_blank'>meddela oss</a>."
+    "emissionFactorDataSourcesTooltip": "Utsläppsfaktorer för elproduktion kan komma från flera olika källor. Detta sker eftersom flera faktorer, som anläggningsspecifika data, produktion och ibland standardkällor, beaktas i utsläppsberäkningar."
   },
   "feedback-card": {
     "title": "Hjälp oss bli bättre!",
