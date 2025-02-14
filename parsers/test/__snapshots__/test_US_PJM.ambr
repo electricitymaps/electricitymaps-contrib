@@ -18,7 +18,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 8.0,
+        'battery': -8.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -39,7 +39,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 3.0,
+        'battery': -3.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -60,7 +60,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 1.0,
+        'battery': -1.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -81,7 +81,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -102,7 +102,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -123,7 +123,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -144,7 +144,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -165,7 +165,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -186,7 +186,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -207,7 +207,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -228,7 +228,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -249,7 +249,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -270,7 +270,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -291,7 +291,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -312,7 +312,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -333,7 +333,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 5.0,
+        'battery': -5.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -354,7 +354,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 7.0,
+        'battery': -7.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -375,7 +375,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 4.0,
+        'battery': -4.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -396,7 +396,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -417,7 +417,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -438,7 +438,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
@@ -459,7 +459,7 @@
       'source': 'pjm.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': 0.0,
+        'battery': -0.0,
       }),
       'zoneKey': 'US-MIDA-PJM',
     }),
