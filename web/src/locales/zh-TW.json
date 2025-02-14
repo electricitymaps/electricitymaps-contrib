@@ -64,7 +64,6 @@
     "aggregatedTooltip": "該區域的的資料是由過去的每小時資料聚合而成。",
     "helpUs": "請檢視<a href='{{link}}' target='_blank'>執行環境日誌</a>並幫助我們找出問題。",
     "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href='{{link}}' target='_blank'>新增這個地區的資料</a>！",
-    "aggregationDisabled": "由於缺少詳細細分，無法取得所選時間段的資料。請嘗試選擇一個更廣泛的時間段。",
     "now": "現在"
   },
   "feedback-card": {
