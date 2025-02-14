@@ -8,8 +8,7 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import numpy as np
-import pandas
-import requests
+import pandas as pd
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -95,7 +94,7 @@ def fetch_production(
         )
 
     # Get the production from the CSV
-    csv = pandas.read_csv(target_url)
+    csv = pd.read_csv(target_url)
 
     # Filter out last row if timestamp is 00:00
     df = csv.copy().iloc[:-1] if csv.iloc[-1]["Time"] == "OO:OO" else csv.copy()
@@ -159,7 +158,7 @@ def fetch_consumption(
         )
 
     # Get the demand from the CSV
-    csv = pandas.read_csv(target_url)
+    csv = pd.read_csv(target_url)
 
     # Filter out last row if timestamp is 00:00
     df = csv.copy().iloc[:-1] if csv.iloc[-1]["Time"] == "OO:OO" else csv.copy()
@@ -196,7 +195,7 @@ def fetch_exchange(
     # Electricity Map expects A->B to indicate flow to B as positive.
     # So values in CSV can be used as-is.
     target_url = get_target_url(target_datetime, kind="production")
-    csv = pandas.read_csv(target_url)
+    csv = pd.read_csv(target_url)
     latest_index = len(csv) - 1
     daily_data = []
     for i in range(0, latest_index + 1):
@@ -236,6 +235,17 @@ def _generate_oasis_url(oasis_url_config) -> str:
         )
     )
     return url
+
+
+def _get_oasis_data(session: Session, target_url: str) -> pd.DataFrame:
+    # Make a request to download the ZIP file and open the ZIP file in memory
+    response = session.get(target_url)
+    with zipfile.ZipFile(io.BytesIO(response.content)) as z:
+        csv_filename = z.namelist()[0]  # Get the first file in the zip
+        with z.open(csv_filename) as f:  # Read the CSV file into a pandas DataFrame
+            df = pd.read_csv(f)
+
+    return df
 
 
 @refetch_frequency(timedelta(days=7))
@@ -280,12 +290,7 @@ def fetch_wind_solar_forecasts(
 
     target_url = _generate_oasis_url(oasis_config)
 
-    # Make a request to download the ZIP file and open the ZIP file in memory
-    response = requests.get(target_url)
-    with zipfile.ZipFile(io.BytesIO(response.content)) as z:
-        csv_filename = z.namelist()[0]  # Get the first file in the zip
-        with z.open(csv_filename) as f:  # Read the CSV file into a pandas DataFrame
-            df = pandas.read_csv(f)
+    df = _get_oasis_data(session, target_url)
 
     # There are 3 trading hubs in CAISO
     COL_DATETIME, COL_DATATYPE = "INTERVALSTARTTIME_GMT", "RENEWABLE_TYPE"
@@ -297,13 +302,17 @@ def fetch_wind_solar_forecasts(
     )  # all events with a datetime and a production breakdown
     production_list = ProductionBreakdownList(logger)
     for _index, event in all_production_events.iterrows():
-        event_datetime = _index
-        production_mix = ProductionMix(solar=event["Solar"], wind=event["Wind"])
+        event_datetime = datetime.fromisoformat(_index)
+        production_mix = ProductionMix()
+        production_mix.add_value(
+            "solar", event["Solar"], correct_negative_with_zero=True
+        )
+        production_mix.add_value("wind", event["Wind"], correct_negative_with_zero=True)
         production_list.append(
             zoneKey=zone_key,
             datetime=event_datetime,
             production=production_mix,
-            source="oasis.caiso.com",  # or BASE_OASIS_URL
+            source="oasis.caiso.com",
             sourceType=EventSourceType.forecasted,
         )
     return production_list.to_list()
