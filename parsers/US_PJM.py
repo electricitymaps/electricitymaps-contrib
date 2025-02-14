@@ -184,7 +184,7 @@ def fetch_production(
             mode = FUEL_MAPPING[data["fuel_type"]]
             value = data["mw"]
             if mode == "battery":
-                storage.add_value(mode, value)
+                storage.add_value(mode, -value)
             else:
                 production.add_value(mode, value)
         production_breakdown_list.append(
