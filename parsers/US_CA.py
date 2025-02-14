@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
 
+import io
+import zipfile
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from zoneinfo import ZoneInfo
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas
-from requests import Session
 import requests
-import zipfile
-import io
+from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
@@ -215,6 +218,7 @@ def fetch_exchange(
 
 BASE_OASIS_URL = "http://oasis.caiso.com/oasisapi/"
 
+
 def _generate_oasis_url(oasis_url_config) -> str:
     dataset_config = {
         **oasis_url_config["wind_solar_forecast"],
@@ -224,8 +228,14 @@ def _generate_oasis_url(oasis_url_config) -> str:
         **dataset_config["query"],
         **dataset_config["params"],
     }
-    url = BASE_OASIS_URL + f"{config_flat.pop('path')}?" + "&".join([f"{k}={v}" for k, v in config_flat.items()],)
-    return url 
+    url = (
+        BASE_OASIS_URL
+        + f"{config_flat.pop('path')}?"
+        + "&".join(
+            [f"{k}={v}" for k, v in config_flat.items()],
+        )
+    )
+    return url
 
 
 @refetch_frequency(timedelta(days=7))
@@ -240,12 +250,16 @@ def fetch_wind_solar_forecasts(
 
     # Interval of time: datetime is in GMT
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)#.replace(hour=0, minute=0, second=0, microsecond=0) # TODO: is it necessary to replace the time?
+        target_datetime = datetime.now(
+            tz=timezone.utc
+        )  # .replace(hour=0, minute=0, second=0, microsecond=0) # TODO: is it necessary to replace the time?
     target_datetime_gmt = target_datetime
     GMT_URL_SUFFIX = "-0000"
     END_OFFSET = timedelta(days=7)
     startdatetime = target_datetime_gmt.strftime("%Y%m%dT%H:%M") + GMT_URL_SUFFIX
-    enddatetime = (target_datetime_gmt + END_OFFSET).strftime("%Y%m%dT%H:%M") + GMT_URL_SUFFIX
+    enddatetime = (target_datetime_gmt + END_OFFSET).strftime(
+        "%Y%m%dT%H:%M"
+    ) + GMT_URL_SUFFIX
 
     # Config to obtain the url
     oasis_config = {
@@ -266,29 +280,31 @@ def fetch_wind_solar_forecasts(
 
     target_url = _generate_oasis_url(oasis_config)
 
-    # Make a request to download the ZIP file and open the ZIP file in memory 
+    # Make a request to download the ZIP file and open the ZIP file in memory
     response = requests.get(target_url)
     with zipfile.ZipFile(io.BytesIO(response.content)) as z:
         csv_filename = z.namelist()[0]  # Get the first file in the zip
-        with z.open(csv_filename) as f: # Read the CSV file into a pandas DataFrame
+        with z.open(csv_filename) as f:  # Read the CSV file into a pandas DataFrame
             df = pandas.read_csv(f)
-    
+
     # There are 3 trading hubs in CAISO
     COL_DATETIME, COL_DATATYPE = "INTERVALSTARTTIME_GMT", "RENEWABLE_TYPE"
     df = df.groupby([COL_DATETIME, COL_DATATYPE], as_index=False).sum()
-    df = df.pivot(index=COL_DATETIME, columns=COL_DATATYPE, values='MW')
+    df = df.pivot(index=COL_DATETIME, columns=COL_DATATYPE, values="MW")
 
-    all_production_events = df.copy() # all events with a datetime and a production breakdown
+    all_production_events = (
+        df.copy()
+    )  # all events with a datetime and a production breakdown
     production_list = ProductionBreakdownList(logger)
     for _index, event in all_production_events.iterrows():
         event_datetime = _index
-        production_mix = ProductionMix(solar= event['Solar'], wind= event['Wind'])
+        production_mix = ProductionMix(solar=event["Solar"], wind=event["Wind"])
         production_list.append(
             zoneKey=zone_key,
             datetime=event_datetime,
             production=production_mix,
-            source='oasis.caiso.com', # or BASE_OASIS_URL
-            sourceType=EventSourceType.forecasted
+            source="oasis.caiso.com",  # or BASE_OASIS_URL
+            sourceType=EventSourceType.forecasted,
         )
     return production_list.to_list()
 
@@ -307,5 +323,5 @@ if __name__ == "__main__":
     # pprint(fetch_production(target_datetime=datetime(2023,1,20)))s
     # pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))
 
-    print('fetch_wind_solar_forecasts() ->')
+    print("fetch_wind_solar_forecasts() ->")
     pprint(fetch_wind_solar_forecasts())
