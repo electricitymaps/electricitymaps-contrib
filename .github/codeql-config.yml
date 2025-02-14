@@ -2,3 +2,4 @@ name: 'CodeQL config'
 paths-ignore:
   - mockserver
   - 'web/**/*.test.ts'
+  - 'config/**/*.yaml'
