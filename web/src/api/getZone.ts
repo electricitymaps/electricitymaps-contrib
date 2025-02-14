@@ -1,5 +1,6 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
@@ -14,6 +15,7 @@ import {
   cacheBuster,
   getBasePath,
   getHeaders,
+  getParameters,
   isValidDate,
   QUERY_KEYS,
   TIME_RANGE_TO_BACKEND_PATH,
@@ -22,6 +24,7 @@ import {
 const getZone = async (
   timeRange: TimeRange,
   zoneId: string,
+  is1HourAppDelay: boolean,
   targetDatetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
@@ -32,9 +35,11 @@ const getZone = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v10/details/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}/${zoneId}${
-      shouldQueryHistorical ? `?targetDate=${targetDatetime}` : ''
-    }`,
+    `v10/details/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}/${zoneId}${getParameters(
+      shouldQueryHistorical,
+      is1HourAppDelay,
+      targetDatetime
+    )}`,
     getBasePath()
   );
   if (!targetDatetime) {
@@ -62,6 +67,8 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
   const { zoneId, urlDatetime } = useParams<RouteParameters>();
   const timeRange = useAtomValue(timeRangeAtom);
 
+  const is1HourAppDelay = useFeatureFlag('1-hour-app-delay');
+
   return useQuery<ZoneDetails>({
     queryKey: [
       QUERY_KEYS.ZONE,
@@ -69,13 +76,14 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
         zone: zoneId,
         aggregate: timeRange,
         targetDatetime: urlDatetime,
+        is1HourAppDelay,
       },
     ],
     queryFn: async () => {
       if (!zoneId) {
         throw new Error('Zone ID is required');
       }
-      return getZone(timeRange, zoneId, urlDatetime);
+      return getZone(timeRange, zoneId, is1HourAppDelay, urlDatetime);
     },
     staleTime: getStaleTime(timeRange, urlDatetime),
     refetchOnWindowFocus: true,
