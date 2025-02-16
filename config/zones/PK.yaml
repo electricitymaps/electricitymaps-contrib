@@ -1,3 +1,8 @@
+bounding_box:
+  - - 60.34600846008462
+    - 23.19605836020635
+  - - 77.549770497705
+    - 37.52230170071432
 country: PK
 region: Asia
 timezone: Asia/Karachi

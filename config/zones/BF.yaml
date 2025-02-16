@@ -1,3 +1,8 @@
+bounding_box:
+  - - -6.024255242552385
+    - 8.892385444787848
+  - - 2.888623886238889
+    - 15.569491043133539
 country: BF
 region: Africa
 timezone: Africa/Ouagadougou

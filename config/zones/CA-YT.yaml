@@ -195,7 +195,5 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.08804942933376388
         wind: 0.0
-parsers:
-  production: YUKONENERGY.fetch_production
 region: Americas
 timezone: America/Whitehorse

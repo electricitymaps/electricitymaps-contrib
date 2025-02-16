@@ -332,6 +332,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canadá"
+    },
     "CA-AB": {
       "countryName": "Canadá",
       "zoneName": "Alberta"
@@ -515,9 +518,13 @@
       "countryName": "Espanha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanha",
@@ -1671,14 +1678,6 @@
       "countryName": "Austrália",
       "zoneName": "Ilha Rottnest"
     },
-    "CA-NL-LB": {
-      "countryName": "Canadá",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canadá",
-      "zoneName": "Newfoundland"
-    },
     "CL-CHP": {
       "countryName": "Chile",
       "zoneName": "Ilha de Páscoa"
@@ -1728,7 +1727,6 @@
   },
   "windDataError": "Dados eólicos estão indisponíveis",
   "solarDataError": "Dados solares estão indisponíveis",
-
   "button": {
     "feedback": "Compartilhar Feedback",
     "github": "Ver nosso GitHub",

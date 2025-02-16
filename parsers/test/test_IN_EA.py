@@ -2,8 +2,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import pytest
-from requests import Session
-from requests_mock import GET, Adapter
+from requests_mock import GET
 
 from electricitymap.contrib.config import ZONE_NEIGHBOURS, ZoneKey
 from parsers import IN_EA
@@ -20,10 +19,7 @@ NETFLOWS = {
 
 
 @pytest.mark.parametrize("neighbour_zone_key", ZONE_NEIGHBOURS[ZoneKey("IN-EA")])
-def test_exchanges(neighbour_zone_key: ZoneKey):
-    session = Session()
-    adapter = Adapter()
-    session.mount("https://", adapter)
+def test_exchanges(adapter, session, neighbour_zone_key: ZoneKey):
     target_date = datetime(2023, 6, 25, 0, 0, tzinfo=ZoneInfo("Asia/Kolkata"))
     sorted_zone_keys = ZoneKey("->".join(sorted([neighbour_zone_key, "IN-EA"])))
     url, _ = IN_EA.get_fetch_function(sorted_zone_keys)

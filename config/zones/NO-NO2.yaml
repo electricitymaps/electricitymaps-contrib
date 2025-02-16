@@ -5,34 +5,77 @@ bounding_box:
     - 60.73048157269916
 capacity:
   biomass:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 22.0
   gas:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 5.0
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 9.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 23.0
   hydro:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 10111.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 10849.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 11018.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 11042.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 11197.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 11202.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 11225.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 11387.0
   hydro storage:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 520.0
+    - datetime: '2018-01-01'
       source: entsoe.eu
       value: 522.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 0.0
   wind:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
+      source: entsoe.eu
+      value: 339.0
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 575.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 933.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 1087.0
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 1444.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 1447.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 1453.0
 country: 'NO'
 delays:
   production: 7

@@ -96,9 +96,31 @@ export function isValidDate(dateString: string) {
 }
 
 export const TIME_RANGE_TO_TIME_AVERAGE: Record<TimeRange, string> = {
-  [TimeRange.H24]: 'hourly',
-  [TimeRange.H72]: 'hourly_72',
-  [TimeRange.D30]: 'daily',
+  [TimeRange.H72]: 'hourly',
+  [TimeRange.M3]: 'daily',
   [TimeRange.M12]: 'monthly',
-  [TimeRange.ALL]: 'yearly',
+  [TimeRange.ALL_MONTHS]: 'monthly',
+  [TimeRange.ALL_YEARS]: 'yearly',
 } as const;
+
+export const TIME_RANGE_TO_BACKEND_PATH: Record<TimeRange, string> = {
+  [TimeRange.H72]: 'hourly',
+  [TimeRange.M3]: 'daily',
+  [TimeRange.M12]: 'monthly',
+  [TimeRange.ALL_MONTHS]: 'monthly_all',
+  [TimeRange.ALL_YEARS]: 'yearly',
+} as const;
+
+export const getParameters = (
+  shouldQueryHistorical: boolean | '' | undefined,
+  is1HourAppDelay: boolean,
+  targetDatetime?: string
+) => {
+  if (shouldQueryHistorical) {
+    return `?targetDate=${targetDatetime}`;
+  }
+  if (is1HourAppDelay) {
+    return '?delay=1';
+  }
+  return '';
+};

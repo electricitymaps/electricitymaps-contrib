@@ -1,6 +1,7 @@
+import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
 import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
@@ -17,29 +18,37 @@ import {
 // TODO: Move these atoms to relevant features
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
-export const timeRangeAtom = atom<TimeRange>(TimeRange.H24);
+export const timeRangeAtom = atom<TimeRange>(TimeRange.H72);
 
 export function useTimeRangeSync() {
   const [timeRange, setTimeRange] = useAtom(timeRangeAtom);
-  const { urlTimeRange } = useParams<RouteParameters>();
+  const { resolution, urlTimeRange } = useParams<RouteParameters>();
   const navigateWithParameters = useNavigateWithParameters();
 
   useEffect(() => {
-    if (urlTimeRange && urlTimeRange !== timeRange) {
+    if (resolution === 'monthly' && String(urlTimeRange) === 'all') {
+      setTimeRange(TimeRange.ALL_MONTHS);
+    } else if (resolution === 'yearly' && String(urlTimeRange) === 'all') {
+      setTimeRange(TimeRange.ALL_YEARS);
+    } else if (urlTimeRange && urlTimeRange !== timeRange) {
       setTimeRange(urlTimeRange);
     }
-  }, [setTimeRange, timeRange, urlTimeRange]);
+  }, [resolution, setTimeRange, timeRange, urlTimeRange]);
 
-  const setTimeRangeAndNavigate = (newTimeRange: TimeRange) => {
-    setTimeRange(newTimeRange);
-    navigateWithParameters({ timeRange: newTimeRange });
-  };
+  const setTimeRangeAndNavigate = useCallback(
+    (newTimeRange: TimeRange) => {
+      setTimeRange(newTimeRange);
+      navigateWithParameters({
+        timeRange: newTimeRange,
+        resolution: TIME_RANGE_TO_TIME_AVERAGE[newTimeRange],
+      });
+    },
+    [setTimeRange, navigateWithParameters]
+  );
 
   return [timeRange, setTimeRangeAndNavigate] as const;
 }
-export const isHourlyAtom = atom(
-  (get) => get(timeRangeAtom) === TimeRange.H24 || get(timeRangeAtom) === TimeRange.H72
-);
+export const isHourlyAtom = atom((get) => get(timeRangeAtom) === TimeRange.H72);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
@@ -50,21 +59,16 @@ export const selectedDatetimeStringAtom = atom<string>((get) => {
   return dateToDatetimeString(datetime);
 });
 
-export const spatialAggregateAtom = atomWithStorage(
-  'country-mode',
-  SpatialAggregate.ZONE
-);
-export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTION);
+export const spatialAggregateAtom = atom(SpatialAggregate.ZONE);
+export const productionConsumptionAtom = atom(Mode.CONSUMPTION);
 export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
 );
 
 export const areWeatherLayersAllowedAtom = atom<boolean>(
   (get) =>
-    (get(timeRangeAtom) === TimeRange.H24 &&
-      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H24]) ||
-    (get(timeRangeAtom) === TimeRange.H72 &&
-      get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H72])
+    get(timeRangeAtom) === TimeRange.H72 &&
+    get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H72]
 );
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);

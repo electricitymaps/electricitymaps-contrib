@@ -9,11 +9,10 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 
-import arrow
 from dateutil import parser, tz
 from requests import Session
 
@@ -670,12 +669,6 @@ def _fetch(
 
     start, end = None, None
     if target_datetime:
-        try:
-            target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError as e:
-            raise ValueError(
-                f"target_datetime must be a valid datetime - received {target_datetime}"
-            ) from e
         utc = tz.gettz("UTC")
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
@@ -696,9 +689,7 @@ def _fetch(
     return [
         {
             "zoneKey": zone_key,
-            "datetime": _get_utc_datetime_from_datapoint(
-                parser.parse(datapoint["period"])
-            ),
+            "datetime": _parse_hourly_interval(datapoint["period"]),
             "value": float(datapoint["value"]) if datapoint["value"] else None,
             "source": "eia.gov",
         }
@@ -706,19 +697,20 @@ def _fetch(
     ]
 
 
-def _conform_timestamp_convention(dt: datetime):
+def _parse_hourly_interval(period: str):
+    interval_end_naive = parser.parse(period)
+
+    # NB: the EIA API can respond with time intervals relative to either UTC
+    # or local-time.  We request UTC times using the 'frequency=hourly'
+    # parameter, meaning that we can attach timezone.utc without performing
+    # any timezone conversion.
+    interval_end = interval_end_naive.replace(tzinfo=timezone.utc)
+
     # The timestamp given by EIA represents the end of the time interval.
     # ElectricityMap using another convention,
     # where the timestamp represents the beginning of the interval.
     # So we need shift the datetime 1 hour back.
-    return dt - timedelta(hours=1)
-
-
-def _get_utc_datetime_from_datapoint(dt: datetime):
-    """update to beginning hour convention and timezone to utc"""
-    dt_beginning_hour = _conform_timestamp_convention(dt)
-    dt_utc = arrow.get(dt_beginning_hour).to("utc")
-    return dt_utc.datetime
+    return interval_end - timedelta(hours=1)
 
 
 if __name__ == "__main__":

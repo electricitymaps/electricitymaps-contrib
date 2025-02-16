@@ -192,8 +192,6 @@ isRenewable:
     - _comment: Sum of renewable sources
       datetime: '2019-01-01'
       value: 0.3284
-parsers:
-  production: CA_NB.fetch_production
 region: Americas
 sources:
   Government of Canada 2019:
