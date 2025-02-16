@@ -9,7 +9,7 @@ from electricitymap.contrib.lib.types import ZoneKey
 
 def generate_co2eq_parameters(
     defaults: dict[str, Any], zones_config: dict[ZoneKey, Any]
-) -> dict[dict, Any]:
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     """Returns dicts with co2eq parameters.
 
     Args:
