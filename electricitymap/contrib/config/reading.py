@@ -27,7 +27,7 @@ def read_zones_config(config_dir, retired=False) -> dict[ZoneKey, Any]:
     return zones_config
 
 
-def read_exchanges_config(config_dir) -> dict[str, Any]:
+def read_exchanges_config(config_dir) -> dict[ZoneKey, Any]:
     """Reads all the exchange config files."""
     exchanges_config = {}
     for exchange_path in config_dir.joinpath("exchanges").glob("*.yaml"):
