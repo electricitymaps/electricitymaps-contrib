@@ -120,7 +120,7 @@ export const getParameters = (
     return `?targetDate=${targetDatetime}`;
   }
   if (is1HourAppDelay) {
-    return '?delay=1';
+    return '?delay=0';
   }
   return '';
 };
