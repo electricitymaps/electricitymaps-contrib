@@ -18,8 +18,7 @@ import { useSetAtom } from 'jotai';
 import { lazy, ReactElement, Suspense, useEffect, useLayoutEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import trackEvent from 'utils/analytics';
-import { metaTitleSuffix, Mode, TrackEvent } from 'utils/constants';
+import { metaTitleSuffix, Mode } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
@@ -29,15 +28,6 @@ const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
 const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
-
-const isProduction = import.meta.env.PROD;
-
-if (isProduction) {
-  trackEvent(TrackEvent.APP_LOADED, {
-    isNative: Capacitor.isNativePlatform(),
-    platform: Capacitor.getPlatform(),
-  });
-}
 
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible

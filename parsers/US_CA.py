@@ -1,18 +1,25 @@
 #!/usr/bin/env python3
 
+import io
+import zipfile
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import numpy as np
-import pandas
+import pandas as pd
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 
@@ -87,7 +94,7 @@ def fetch_production(
         )
 
     # Get the production from the CSV
-    csv = pandas.read_csv(target_url)
+    csv = pd.read_csv(target_url)
 
     # Filter out last row if timestamp is 00:00
     df = csv.copy().iloc[:-1] if csv.iloc[-1]["Time"] == "OO:OO" else csv.copy()
@@ -151,7 +158,7 @@ def fetch_consumption(
         )
 
     # Get the demand from the CSV
-    csv = pandas.read_csv(target_url)
+    csv = pd.read_csv(target_url)
 
     # Filter out last row if timestamp is 00:00
     df = csv.copy().iloc[:-1] if csv.iloc[-1]["Time"] == "OO:OO" else csv.copy()
@@ -188,7 +195,7 @@ def fetch_exchange(
     # Electricity Map expects A->B to indicate flow to B as positive.
     # So values in CSV can be used as-is.
     target_url = get_target_url(target_datetime, kind="production")
-    csv = pandas.read_csv(target_url)
+    csv = pd.read_csv(target_url)
     latest_index = len(csv) - 1
     daily_data = []
     for i in range(0, latest_index + 1):
@@ -208,16 +215,122 @@ def fetch_exchange(
     return daily_data
 
 
+BASE_OASIS_URL = "http://oasis.caiso.com/oasisapi/"
+
+
+def _generate_oasis_url(oasis_url_config) -> str:
+    dataset_config = {
+        **oasis_url_config["wind_solar_forecast"],
+    }
+    # combine kv from query and params
+    config_flat = {
+        **dataset_config["query"],
+        **dataset_config["params"],
+    }
+    url = (
+        BASE_OASIS_URL
+        + f"{config_flat.pop('path')}?"
+        + "&".join(
+            [f"{k}={v}" for k, v in config_flat.items()],
+        )
+    )
+    return url
+
+
+def _get_oasis_data(session: Session, target_url: str) -> pd.DataFrame:
+    # Make a request to download the ZIP file and open the ZIP file in memory
+    response = session.get(target_url)
+    with zipfile.ZipFile(io.BytesIO(response.content)) as z:
+        csv_filename = z.namelist()[0]  # Get the first file in the zip
+        with z.open(csv_filename) as f:  # Read the CSV file into a pandas DataFrame
+            df = pd.read_csv(f)
+
+    return df
+
+
+@refetch_frequency(timedelta(days=7))
+def fetch_wind_solar_forecasts(
+    zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the wind and solar forecast (in MW) for a given date in hourly intervals."""
+    session = session or Session()
+
+    # Interval of time: datetime is in GMT
+    if target_datetime is None:
+        target_datetime = datetime.now(
+            tz=timezone.utc
+        )  # .replace(hour=0, minute=0, second=0, microsecond=0) # TODO: is it necessary to replace the time?
+    target_datetime_gmt = target_datetime
+    GMT_URL_SUFFIX = "-0000"
+    END_OFFSET = timedelta(days=7)
+    startdatetime = target_datetime_gmt.strftime("%Y%m%dT%H:%M") + GMT_URL_SUFFIX
+    enddatetime = (target_datetime_gmt + END_OFFSET).strftime(
+        "%Y%m%dT%H:%M"
+    ) + GMT_URL_SUFFIX
+
+    # Config to obtain the url
+    oasis_config = {
+        "wind_solar_forecast": {
+            "query": {
+                "path": "SingleZip",
+                "resultformat": 6,
+                "queryname": "SLD_REN_FCST",
+                "version": 1,
+            },
+            "params": {
+                "market_run_id": "DAM",
+                "startdatetime": startdatetime,
+                "enddatetime": enddatetime,
+            },
+        },
+    }
+
+    target_url = _generate_oasis_url(oasis_config)
+
+    df = _get_oasis_data(session, target_url)
+
+    # There are 3 trading hubs in CAISO
+    COL_DATETIME, COL_DATATYPE = "INTERVALSTARTTIME_GMT", "RENEWABLE_TYPE"
+    df = df.groupby([COL_DATETIME, COL_DATATYPE], as_index=False).sum()
+    df = df.pivot(index=COL_DATETIME, columns=COL_DATATYPE, values="MW")
+
+    all_production_events = (
+        df.copy()
+    )  # all events with a datetime and a production breakdown
+    production_list = ProductionBreakdownList(logger)
+    for _index, event in all_production_events.iterrows():
+        event_datetime = datetime.fromisoformat(_index)
+        production_mix = ProductionMix()
+        production_mix.add_value(
+            "solar", event["Solar"], correct_negative_with_zero=True
+        )
+        production_mix.add_value("wind", event["Wind"], correct_negative_with_zero=True)
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=event_datetime,
+            production=production_mix,
+            source="oasis.caiso.com",
+            sourceType=EventSourceType.forecasted,
+        )
+    return production_list.to_list()
+
+
 if __name__ == "__main__":
     "Main method, not used by Electricity Map backend, but handy for testing"
 
     from pprint import pprint
 
-    print("fetch_production() ->")
-    pprint(fetch_production(target_datetime=datetime(2020, 1, 20)))
+    # print("fetch_production() ->")
+    # pprint(fetch_production(target_datetime=datetime(2020, 1, 20)))
 
-    print('fetch_exchange("US-CA", "US") ->')
+    # print('fetch_exchange("US-CA", "US") ->')
     # pprint(fetch_exchange("US-CA", "US"))
 
     # pprint(fetch_production(target_datetime=datetime(2023,1,20)))s
-    pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))
+    # pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))
+
+    print("fetch_wind_solar_forecasts() ->")
+    pprint(fetch_wind_solar_forecasts())

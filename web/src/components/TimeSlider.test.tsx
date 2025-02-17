@@ -6,8 +6,8 @@ import { COLORS, getThumbIcon, getTrackBackground } from './TimeSlider';
 
 describe('getTrackBackground', () => {
   it('returns the day color when no sets are provided', () => {
-    expect(getTrackBackground(false, 10)).to.eq(COLORS.LIGHT_DAY);
-    expect(getTrackBackground(true, 10)).to.eq(COLORS.DARK_DAY);
+    expect(getTrackBackground(false, 10)).toEqual(COLORS.LIGHT_DAY);
+    expect(getTrackBackground(true, 10)).toEqual(COLORS.DARK_DAY);
   });
 
   it('returns a linear gradient with night time sets when sets are provided', () => {

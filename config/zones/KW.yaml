@@ -1,5 +1,3 @@
-aggregates_displayed:
-  - none
 bounding_box:
   - - 46.155
     - 28.3985
@@ -53,6 +51,7 @@ capacity:
 contributors:
   - alixunderplatz
   - nessie2013
+  - consideRatio
 country: KW
 emissionFactors:
   direct:
