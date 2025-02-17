@@ -100,8 +100,6 @@
     "aggregatedTooltip": "Dane dla tego obszaru są zagregowane na podstawie historycznych wartości godzinowych.",
     "helpUs": "Pomóż nam zidentyfikować problem, zaglądając do <a href='{{link}}' target='_blank'>logów</a> lub skontaktuj się z dostawcą danych.",
     "noParserInfo": "Nie posiadamy jeszcze żadnych informacji o tym obszarze.<br/> Chcesz pomóc? Możesz to zrobić <a href='{{link}}' target='_blank'>dodając dane dla obszaru</a>.",
-    "aggregationDisabled": "Dane nie są dostępne dla wybranego okresu z powodu braku szczegółowego podziału. Spróbuj wybrać dłuższy przedział czasowy.",
-    "fullyDisabled": "Dane, które posiadamy dla tej strefy, są niewystarczające i dlatego nie są wyświetlane. Jeśli znasz źródła danych dla tego obszaru, prosimy o informację tutaj <a href='{{link}}' target='_blank'>Skontaktuj się z nami</a>.",
     "now": "Obecnie",
     "by-source": {
       "emissions": "Emisje dwutlenku węgla",

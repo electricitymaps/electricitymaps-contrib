@@ -41,7 +41,7 @@ export default function ZoneDetails(): JSX.Element {
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
-  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data, timeRange);
+  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
@@ -136,21 +136,16 @@ export default function ZoneDetails(): JSX.Element {
           isIosCapacitor ? 'pb-72' : 'pb-48'
         )}
       >
-        {cardType != 'none' &&
-          zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
-          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
-            <EstimationCard
-              cardType={cardType}
-              estimationMethod={estimationMethod}
-              zoneMessage={zoneMessage}
-              estimatedPercentage={roundedEstimatedPercentage}
-            />
-          )}
+        {cardType != 'none' && zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
+          <EstimationCard
+            cardType={cardType}
+            estimationMethod={estimationMethod}
+            zoneMessage={zoneMessage}
+            estimatedPercentage={roundedEstimatedPercentage}
+          />
+        )}
         <ZoneHeaderGauges zoneKey={zoneId} />
-        {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
-          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
-            <DisplayByEmissionToggle />
-          )}
+        {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}
         {zoneDetailsContent}
       </div>
     </>
@@ -209,14 +204,8 @@ function ZoneDetailsContent({
     );
   }
 
-  if (
-    [
-      ZoneDataStatus.NO_INFORMATION,
-      ZoneDataStatus.AGGREGATE_DISABLED,
-      ZoneDataStatus.FULLY_DISABLED,
-    ].includes(zoneDataStatus)
-  ) {
-    return <NoInformationMessage status={zoneDataStatus} />;
+  if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION) {
+    return <NoInformationMessage />;
   }
 
   return children as JSX.Element;

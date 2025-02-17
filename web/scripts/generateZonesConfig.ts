@@ -36,7 +36,6 @@ const getConfig = (): CombinedZonesConfig => {
     'estimation_method',
     'parsers',
     'subZoneNames',
-    'aggregates_displayed',
     'generation_only',
     'timezone',
   ]);
