@@ -2,12 +2,13 @@
 
 import re
 from datetime import datetime, time, timedelta, timezone
+from itertools import groupby
 from logging import Logger, getLogger
+from operator import itemgetter
 from typing import Literal
 from zoneinfo import ZoneInfo
 
 import demjson3 as demjson
-import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
@@ -164,40 +165,34 @@ def fetch_production(
         "datetime_beginning_utc": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
     }
     resp_data = _fetch_api_data(kind="gen_by_fuel", params=params, session=session)
-    print(resp_data)
 
-    data = pd.DataFrame(resp_data["items"])
-    if data.empty:
+    items = resp_data.get("items", [])
+
+    if items == []:
         raise ParserException(
             parser=PARSER,
             message=f"{target_datetime}: Production data is not available in the API",
             zone_key=zone_key,
         )
 
-    data["datetime_beginning_utc"] = pd.to_datetime(data["datetime_beginning_utc"])
-    data = data.set_index("datetime_beginning_utc")
-    data["fuel_type"] = data["fuel_type"].map(FUEL_MAPPING)
-
     production_breakdown_list = ProductionBreakdownList(logger)
-    for dt in data.index.unique():
-        production_mix = ProductionMix()
-        storage_mix = StorageMix()
-
-        data_dt = data.loc[data.index == dt]
-        for i in range(len(data_dt)):
-            row = data_dt.iloc[i]
-            if row["fuel_type"] == "battery":
-                storage_mix.add_value("battery", row.get("mw"))
+    for key, group in groupby(items, itemgetter("datetime_beginning_utc")):
+        dt = datetime.fromisoformat(key).replace(tzinfo=timezone.utc)
+        production = ProductionMix()
+        storage = StorageMix()
+        for data in group:
+            mode = FUEL_MAPPING[data["fuel_type"]]
+            value = data["mw"]
+            if mode == "battery":
+                storage.add_value(mode, -value)
             else:
-                mode = row["fuel_type"]
-                production_mix.add_value(mode, row.get("mw"))
-
+                production.add_value(mode, value)
         production_breakdown_list.append(
             zoneKey=zone_key,
-            datetime=dt.to_pydatetime().replace(tzinfo=timezone.utc),
+            datetime=dt,
+            production=production,
+            storage=storage,
             source=SOURCE,
-            production=production_mix,
-            storage=storage_mix,
         )
 
     return production_breakdown_list.to_list()
