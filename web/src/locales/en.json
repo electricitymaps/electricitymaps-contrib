@@ -124,8 +124,6 @@
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href='{{link}}' target='_blank'>runtime logs</a> or contact the data provider.",
     "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href='{{link}}' target='_blank'>adding area data</a>.",
-    "aggregationDisabled": "Data is not available for the selected time period due to missing granular breakdown. Try a broader time period.",
-    "fullyDisabled": "The data we have available for this zone is insufficient and therefore not shown. If you are aware of data sources for this area, please <a href='{{link}}' target='_blank'>let us know</a>.",
     "now": "Now",
     "by-source": {
       "emissions": "Carbon emissions",

@@ -6,7 +6,7 @@
     "share-app": "Partagez l'application:"
   },
   "button": {
-    "bluesky-share": "Vizualisez en temps réel les données mondiales sur les émissions d’électricité : {{baseUrl}}",
+    "bluesky-share": "Visualisez en temps réel les données mondiales sur les émissions d’électricité : {{baseUrl}}",
     "reddit": "Rejoignez r/electricitymaps",
     "reddit-share": "Partagez sur Reddit",
     "github": "Contribuez sur GitHub",
@@ -74,11 +74,11 @@
     },
     "view5": {
       "header": "Alternez entre les données d’électricité et d’émissions",
-      "text": "Passez des graphiques détaillant nos données pour l’électricité à ceux présentants les émissions carbone. Les valeurs affichées représentent le total pour la période sélectionnée, et les valeurs correspondent au mode de production ou de consommation choisi."
+      "text": "Passez des graphiques détaillant nos données pour l’électricité à ceux présentant les émissions carbone. Les valeurs affichées représentent le total pour la période sélectionnée, et les valeurs correspondent au mode de production ou de consommation choisi."
     },
     "view6": {
       "header": "Explorez l’historique de données",
-      "text": "En bas à gauche, vous pouvez visualiser à la fois les données d’émissions et d’électricité en temps réel et dans le passé, pour le monde entier. Modifiez la période d’aggrégation des données à l’aide des différents boutons et déplacez le sélecteur de date pour explorer l’évolution de nos données au fil du temps."
+      "text": "En bas à gauche, vous pouvez visualiser à la fois les données d’émissions et d’électricité en temps réel et dans le passé, pour le monde entier. Modifiez la période d’agrégation des données à l’aide des différents boutons et déplacez le sélecteur de date pour explorer l’évolution de nos données au fil du temps."
     },
     "view7": {
       "header": "Vitesse du vent et ensoleillement en temps réel",
@@ -110,15 +110,13 @@
     "disabledBreakdownChartReason": "Désactivé pour la vue consommation. Merci de changer la vue en production pour activer le graphique d'origine de l'électricité.",
     "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
     "estimated": "estimé",
-    "aggregated": "aggrégé",
+    "aggregated": "agrégé",
     "dataIsEstimated": "Certaines données de cette région sont estimées. En savoir plus sur notre méthodologie d'estimation <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>ici</a>.",
     "exchangesAreMissing": "Les échanges sont pris en compte dans les calculs mais ne sont pas indiqués actuellement. En savoir plus sur notre agrégation historique  <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>ici</a>.",
     "estimatedTooltip": "Les données en temps réel pour cette zone sont estimées sur la base des données de la source et des hypothèses du modèle.",
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href='{{link}}' target='_blank'>journaux d'exécution</a> ou contactez le fournisseur de données.",
     "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href='{{link}}' target='_blank'>ajoutant des données de zone</a>.",
-    "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
-    "fullyDisabled": "Les données dont nous disposons pour cette zone sont insuffisantes et ne sont donc pas affichées. Si vous connaissez des sources de données pour cette zone, veuillez <a href='{{link}}' target='_blank'>nous le faire savoir</a>.",
     "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
@@ -155,7 +153,7 @@
     "estimations": {
       "primary-question": "Les descriptions des données estimées sont faciles à comprendre:",
       "secondary-question": "Comment pouvons-nous l'améliorer ?",
-      "subtitle": "Evaluez les affirmations suivantes."
+      "subtitle": "Évaluez les affirmations suivantes."
     },
     "input-question": "Faites-nous savoir si vous souhaitez voir des fonctionnalités supplémentaires.",
     "optional": "Optionnel :",
@@ -184,7 +182,7 @@
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Les données sont préliminaires",
       "pill": "Préliminaires",
-      "body": "Le fournisseur de données n'a encore rien reporté pour cette heure. Les valeurs affichées ont été estimées à partir de données historiques et seront mises à jour dès que les données réelles seront disponibles. Veuillez noter que les valeurs estimées ne tiennent pas toujours compte de la météo en temps réel."
+      "body": "Le fournisseur de données n'a pas encore communiqué de données pour cette heure. Les valeurs affichées ont été estimées à partir de données historiques et seront mises à jour dès que les données réelles seront disponibles. Veuillez noter que les valeurs estimées ne tiennent pas toujours compte de la météo en temps réel."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Données estimées",
@@ -210,6 +208,11 @@
       "title": "Les données sont toujours estimées",
       "pill": "Pas en temps réel",
       "body": "Les données pour cette zone ne sont pas publiées en temps réel et ne fournissent que la production totale. La production horaire et les sources de production sont estimées sur la base des données historiques pour chaque source de production."
+    },
+    "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
+      "title": "Les données sont toujours estimées",
+      "pill": "Estimé",
+      "body": "Les données en temps réel pour cette zone ne sont pas disponibles. Les valeurs actuelles sont modélisées en utilisant une combinaison de données météorologiques en direct et de données historiques de production."
     },
     "threshold_filtered": {
       "title": "Données manquantes",
@@ -266,7 +269,7 @@
       "carbonintensity": "Electricity Maps - Intensité carbone",
       "estimations": "Electricity Maps - Estimations",
       "flowtracing": "Electricity Maps - Traçage des flux",
-      "title": "Méthologies utilisées"
+      "title": "Méthodologies utilisées"
     },
     "methodologies-and-data-sources": {
       "title": "Méthodologies et sources des données"
@@ -288,11 +291,11 @@
       "all_years": "Intensité carbone annuelle"
     },
     "emissions": {
-      "72h": "Emissions de CO2 horaires",
-      "3mo": "Emissions de CO2 quotidiennes",
-      "12mo": "Emissions de CO2 mensuelles",
-      "all_months": "Emissions de CO2 mensuelles",
-      "all_years": "Emissions de CO2 annuelles"
+      "72h": "Émissions de CO2 horaires",
+      "3mo": "Émissions de CO2 quotidiennes",
+      "12mo": "Émissions de CO2 mensuelles",
+      "all_months": "Émissions de CO2 mensuelles",
+      "all_years": "Émissions de CO2 annuelles"
     },
     "emissionsorigin": {
       "72h": "Origine des émissions de CO2 horaires",
@@ -303,10 +306,10 @@
     },
     "emissionsproduction": {
       "72h": "Origine des émissions de CO2 horaires",
-      "3mo": "Emissions quotidiennes pour la production",
-      "12mo": "Emissions mensuelles pour la production",
-      "all_months": "Emissions mensuelles pour la production",
-      "all_years": "Emissions annuelles pour la production"
+      "3mo": "Émissions quotidiennes pour la production",
+      "12mo": "Émissions mensuelles pour la production",
+      "all_months": "Émissions mensuelles pour la production",
+      "all_years": "Émissions annuelles pour la production"
     },
     "electricityorigin": {
       "72h": "Origine de l'électricité horaire",
@@ -330,11 +333,11 @@
       "all_years": "Prix annuels de l'électricité"
     },
     "netExchange": {
-      "72h": "Echanges nets horaires",
-      "3mo": "Echanges nets quotidiens",
-      "12mo": "Echange nets mensuels",
-      "all_months": "Echanges nets mensuels",
-      "all_years": "Echanges nets annuels"
+      "72h": "Échanges nets horaires",
+      "3mo": "Échanges nets quotidiens",
+      "12mo": "Échanges nets mensuels",
+      "all_months": "Échanges nets mensuels",
+      "all_years": "Échanges nets annuels"
     },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
@@ -370,6 +373,7 @@
     "changeTheme": "Changer de thème",
     "noParserInfo": "Pas de données disponibles",
     "temporaryDataOutage": "Données temporairement indisponibles",
+    "temporarilyUnavailable": "Temporairement indisponible",
     "production": "production",
     "consumption": "consommation",
     "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
@@ -381,14 +385,14 @@
     "zoomOut": "Dézoomer",
     "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
     "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
-    "netExchange": "Echange net",
+    "netExchange": "Échange net",
     "price": "Prix",
     "importing": "Important",
     "exporting": "Exportant"
   },
   "aria": {
     "label": {
-      "selectLanguage": "Selectionner votre langue",
+      "selectLanguage": "Sélectionner votre langue",
       "colorBlindMode": "Mode daltonien",
       "windLayer": "Calque de vent",
       "solarLayer": "Calque d'ensoleillement",
@@ -436,7 +440,7 @@
   "electricityStoredUsing": "est stockée via",
   "emissionsStoredUsing": "sont stockées via",
   "electricityExportedTo": "est exportée vers",
-  "emissionsExportedTo": "son exportées vers",
+  "emissionsExportedTo": "sont exportées vers",
   "electricityImportedFrom": "est importée depuis",
   "emissionsImportedFrom": "sont importées depuis",
   "electricityAvailableIn": "de l'électricité disponible en",
@@ -470,24 +474,24 @@
     "groupName": "Nos méthodes",
     "carbonIntensity-question": "Qu’est-ce que « l’intensité carbone » ?",
     "carbonIntensity-answer": "L’intensité carbone est une mesure des émissions de gaz à effet de serre associées à la production de l’électricité que vous consommez (en gCO₂eq/kWh - gramme d’équivalent dioxyde de carbone émis par kilowattheure d’électricité consommée). <br><br>Nous mesurons les émissions de consommation d’électricité (et non de production), c’est-à-dire toutes les émissions de gaz à effet de serre (CO₂ et autres gaz à effet de serre tels que le méthane) ayant servi à produire de l’électricité consommée dans une région, en tenant compte de l’intensité en carbone de l’électricité importée depuis d’autres régions. Nous utilisons une approche d’analyse du cycle de vie (ACV), ce qui signifie que nous prenons en compte les émissions provenant de l’ensemble du cycle de vie des centrales (construction, production de combustible, émissions opérationnelles et démantèlement).",
-    "methodology-question": "Commment calculez-vous ces chiffres ?",
+    "methodology-question": "Comment calculez-vous ces chiffres ?",
     "methodology-answer": "Nous détaillons la méthodologie complète sur <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a>, et dans une documentation additionnelle sur <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>notre Wiki GitHub</a>.",
     "regionalEmissionFactors-question": "Pourquoi les facteurs d'émission sont différents selon les zones ?",
-    "regionalEmissionFactors-answer": "Pour certaines zones, nous sommes en mesure d’obtenir des facteurs d’émission plus précis que la moyenne mondiale utilisée par defaut. Par exemple, pour les États-Unis et l’Union européenne, les émissions directes des centrales électriques sont accessibles au public. Nous comparons ensuite ces émissions avec les données de production des centrales électriques et calculons les facteurs d'émission par centrale électrique, lesquels sont agrégés au niveau de la zone. Voir les <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>détails sur le Wiki</a>.",
+    "regionalEmissionFactors-answer": "Pour certaines zones, nous sommes en mesure d’obtenir des facteurs d’émission plus précis que la moyenne mondiale utilisée par défaut. Par exemple, pour les États-Unis et l’Union européenne, les émissions directes des centrales électriques sont accessibles au public. Nous comparons ensuite ces émissions avec les données de production des centrales électriques et calculons les facteurs d'émission par centrale électrique, lesquels sont agrégés au niveau de la zone. Voir les <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>détails sur le Wiki</a>.",
     "renewableLowCarbonDifference-question": "Quelle est la différence entre « renouvelable » et « bas carbone » ?",
     "renewableLowCarbonDifference-answer": "La production d’énergie renouvelable repose sur des sources d’énergie renouvelables telles que le vent, l’écoulement d’eau, l’ensoleillement et l’énergie géothermique. La production d’énergie à faible intensité carbone signifie que la production n’émet qu’un faible niveau d’émissions de gaz à effet de serre, par exemple la production d’énergie nucléaire.",
     "importsAndExports-question": "Prenez-vous en compte les importations et les exportations d’électricité ?",
     "importsAndExports-answer": "Oui. Les importations et les exportations apparaissent sur la carte sous forme de petites <a href='#mapArrows' class='entry-link'>flèches entre différentes zones</a>. Des informations détaillées sont visibles dans les graphiques affichés lorsque vous cliquez sur une zone.",
     "emissionsOfStored-question": "Qu’en est-il des émissions générées par la production d’électricité qui est ensuite stockée dans des batteries ou utilisée pour remplir des réservoirs ?",
     "emissionsOfStored-answer": "Comme à l’heure actuelle, seule une petite partie de l’électricité est stockée, les imprécisions dans la modélisation de ces émissions ne devraient pas avoir beaucoup d’incidence sur le total actuel. Cependant, étant donné l’importance croissante du stockage, nous espérons pouvoir le prendre davantage en compte dans notre modèle prochainement.",
-    "guaranteesOfOrigin-question": "Que sont les certificats verts et comment sont-ils pris en compte ?",
+    "guaranteesOfOrigin-question": "Quels sont les certificats verts et comment sont-ils pris en compte ?",
     "guaranteesOfOrigin-answer": "Lorsque les producteurs d’énergie renouvelable produisent de l’électricité, ils peuvent créer des garanties d’origine (« Guarantee of origin » en Europe ou « Renewable Energy Certificate » aux États-Unis), preuve que l’électricité renouvelable a été produite et distribuée dans le réseau électrique. Ces garanties peuvent ensuite être vendues, donnant ainsi à d’autres revendeurs d’électricité le droit de prétendre que l’électricité qu’elles vendent provient de sources renouvelables, quelle que soit leur source réelle et physique. <br><br>Cela signifie que l’on peut dire aux consommateurs d’électricité que leur électricité est vient de panneau solaire, alors même qu’il fait nuit. Ceci est problématique, dans la mesure où elle élimine les incitations des consommateurs à consommer de l’électricité au meilleur moment (par exemple, lorsque la quantité d’électricité renouvelable dans le réseau est la plus élevée). Cette carte exclut donc les garanties d’origine, mais offre plutôt une image physique du réseau électrique en fonction de la localisation, afin de responsabiliser les consommateurs.",
     "otherSources-question": "Pourquoi ne montrez-vous pas d’autres sources d’émission que la production d’électricité ?",
     "otherSources-answer": "Ce serait en dehors de la portée de ce projet. Toutefois, à Electricity Maps nous travaillons activement au développement de <a href='#whoAreYou' class='entry-link'>nouvelles solutions permettant de quantifier l’impact de vos décisions au quotidien sur le climat</a>.",
-    "homeSolarPanel-question": "Et si j’ai un panneau solaire installé chez moi ?",
+    "homeSolarPanel-question": "Et si j’avais un panneau solaire installé chez moi ?",
     "homeSolarPanel-answer": "Nous mesurons l’intensité en carbone du réseau électrique local, de sorte que toute l’électricité que vous consommez directement de votre panneau solaire (hors réseau) ne fait pas partie de nos mesures. Toutefois, si votre panneau solaire alimente votre réseau électrique local, sa production est incluse dans nos statistiques dans les zones où les estimations de la production locale d’énergie solaire sont accessibles au public (comme en France et au Royaume-Uni).",
     "emissionsPerCapita-question": "Pourquoi ne montrez-vous pas les émissions par habitant ?",
-    "emissionsPerCapita-answer": "Une partie de l’électricité consommée dans une zone est utilisée dans la fabrication de biens physiques et de produits qui sont ensuite exportés et consommés dans d’autres zones. Cette fabrication, et donc aussi sa consommation d’électricité et ses émissions associées, est dictée par la consommation de produits dans les <em>zones importatrices</em> et non dans la zone où la production a lieu. Nous pensons que les gens ne devraient être responsables que de ce qu’ils consomment, et non des produits fabriqués dans la région où ils habitent, car ils ne le consomment pas eux-mêmes. En ce sens, montrer les émissions de consommation d’électricité par habitant pour les zones est trompeur."
+    "emissionsPerCapita-answer": "Une partie de l’électricité consommée dans une zone est utilisée dans la fabrication de biens physiques et de produits qui sont ensuite exportés et consommés dans d’autres zones. Cette fabrication, et donc aussi sa consommation d’électricité et ses émissions associées, est dictée par la consommation de produits dans les <em>zones importatrices</em> et non dans la zone où la production a lieu. Nous pensons que les gens ne devraient être responsables que de ce qu’ils consomment, et non des produits fabriqués dans la région où ils habitent, car ils ne les consomment pas eux-mêmes. En ce sens, montrer les émissions de consommation d’électricité par habitant pour les zones est trompeur."
   },
   "data": {
     "groupName": "Nos données",
@@ -776,6 +780,9 @@
       "countryName": "Chili",
       "zoneName": "Île de Pâques"
     },
+    "CL": {
+      "zoneName": "Chili"
+    },
     "CM": {
       "zoneName": "Cameroun"
     },
@@ -926,7 +933,7 @@
     },
     "FO-MI": {
       "countryName": "Îles Féroé",
-      "zoneName": "Iles principales"
+      "zoneName": "Îles principales"
     },
     "FO-SI": {
       "countryName": "Îles Féroé",
@@ -1130,7 +1137,7 @@
     },
     "IN-NE": {
       "countryName": "Inde",
-      "zoneName": "Nort-Est"
+      "zoneName": "Nord-Est"
     },
     "IN-NL": {
       "countryName": "Inde",
@@ -1457,7 +1464,7 @@
     },
     "MY-WM": {
       "countryName": "Malaisie",
-      "zoneName": "Peninsule"
+      "zoneName": "Péninsule"
     },
     "MZ": {
       "zoneName": "Mozambique"
@@ -1687,7 +1694,7 @@
       "zoneName": "Sierra Leone"
     },
     "SM": {
-      "zoneName": "Sain Marin"
+      "zoneName": "Saint Marin"
     },
     "SN": {
       "zoneName": "Sénégal"
@@ -1819,7 +1826,7 @@
     },
     "US-CAR-DUK": {
       "countryName": "États-Unis",
-      "zoneName": "Duke Energy Carolines"
+      "zoneName": "Duke Energy Carolinas"
     },
     "US-CAR-SC": {
       "countryName": "États-Unis",
@@ -1847,7 +1854,7 @@
     },
     "US-FLA-FPC": {
       "countryName": "États-Unis",
-      "zoneName": "Duke Energy Floride Inc"
+      "zoneName": "Duke Energy Florida Inc"
     },
     "US-FLA-FPL": {
       "countryName": "États-Unis",
