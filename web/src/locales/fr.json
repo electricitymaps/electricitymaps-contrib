@@ -117,8 +117,6 @@
     "aggregatedTooltip": "Les données pour cette zone sont agrégées sur la base des valeurs horaires historiques.",
     "helpUs": "Aidez-nous à identifier le problème en consultant les <a href='{{link}}' target='_blank'>journaux d'exécution</a> ou contactez le fournisseur de données.",
     "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href='{{link}}' target='_blank'>ajoutant des données de zone</a>.",
-    "aggregationDisabled": "Les données ne sont pas disponibles pour la période sélectionnée en raison de données spécifiques manquantes. Essayez une période plus longue.",
-    "fullyDisabled": "Les données dont nous disposons pour cette zone sont insuffisantes et ne sont donc pas affichées. Si vous connaissez des sources de données pour cette zone, veuillez <a href='{{link}}' target='_blank'>nous le faire savoir</a>.",
     "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
