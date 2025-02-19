@@ -201,7 +201,7 @@ EXCHANGE_MAPPING = {
     ZoneKey("ES-CN-FV->ES-CN-LZ"): {
         "zone_ref": ZoneKey("ES-CN-LZ"),
         "codes": ["efl"],
-        "coef": -1,
+        "coef": 1,
     },
 }
 

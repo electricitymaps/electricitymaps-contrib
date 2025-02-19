@@ -27,7 +27,7 @@ def zone_parents(zones_config: dict[ZoneKey, Any]) -> dict[ZoneKey, ZoneKey]:
 
 
 def generate_zone_neighbours(
-    zones_config: dict[ZoneKey, Any], exchanges_config: dict[str, Any]
+    zones_config: dict[ZoneKey, Any], exchanges_config: dict[ZoneKey, Any]
 ) -> dict[ZoneKey, list[ZoneKey]]:
     """Returns a dict mapping each zone to its neighbours.
 
@@ -56,7 +56,7 @@ def generate_zone_neighbours(
 
 
 def generate_all_neighbours(
-    exchanges_config: dict[str, Any],
+    exchanges_config: dict[ZoneKey, Any],
 ) -> dict[ZoneKey, list[ZoneKey]]:
     """This object represents all neighbours regardless of granularity."""
     zone_neighbours = defaultdict(set)
