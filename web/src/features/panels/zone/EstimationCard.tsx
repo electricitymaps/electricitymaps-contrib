@@ -236,11 +236,7 @@ function EstimatedCard({
       zoneMessage={undefined}
       icon={<TrendingUpDown size={16} />}
       showMethodologyLink={true}
-      textColorTitle={
-        estimationMethod === EstimationMethods.FORECASTS_HIERARCHY
-          ? 'text-black dark:text-white'
-          : 'text-warning dark:text-warning-dark'
-      }
+      textColorTitle={'text-warning dark:text-warning-dark'}
       cardType="estimated-card"
     />
   );
