@@ -10,7 +10,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { Charts, EstimationMethods, TimeRange } from 'utils/constants';
+import { Charts, isTSAModel, TimeRange } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
@@ -75,6 +75,7 @@ function BarBreakdownChart({
     estimationMethod,
     currentZoneDetail?.estimatedPercentage
   );
+  const isTSA = isTSAModel(estimationMethod);
 
   const onMouseOver = useCallback(
     (layerKey: ElectricityModeType | ZoneKey, event: React.MouseEvent) => {
@@ -129,9 +130,8 @@ function BarBreakdownChart({
           hasEstimationPill ? (
             <EstimationBadge
               text={pillText}
-              Icon={
-                estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
-              }
+              Icon={isTSA ? CircleDashed : TrendingUpDown}
+              isPreliminary={isTSA}
             />
           ) : undefined
         }

@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
-import { EstimationMethods, TrackEvent } from 'utils/constants';
+import { EstimationMethods, isTSAModel, TrackEvent } from 'utils/constants';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -47,7 +47,7 @@ export default function EstimationCard({
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
-  const isTSAModel = estimationMethod === EstimationMethods.TSA;
+  const isTSA = isTSAModel(estimationMethod);
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
     hasEstimationFeedbackBeenSeenAtom
   );
@@ -80,12 +80,12 @@ export default function EstimationCard({
     case 'estimated': {
       return (
         <div>
-          {isTSAModel ? (
+          {isTSA ? (
             <EstimatedTSACard />
           ) : (
             <EstimatedCard estimationMethod={estimationMethod} />
           )}
-          {isFeedbackCardVisible && isTSAModel && (
+          {isFeedbackCardVisible && isTSA && (
             <FeedbackCard
               surveyReference={estimationMethod}
               postSurveyResponse={postSurveyResponse}
@@ -250,7 +250,7 @@ function EstimatedTSACard() {
       zoneMessage={undefined}
       icon={<CircleDashed size={16} />}
       showMethodologyLink={true}
-      textColorTitle="text-warning dark:text-warning-dark"
+      textColorTitle="text-black dark:text-white"
       cardType="estimated-card"
     />
   );
