@@ -14,6 +14,7 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
+    TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
@@ -218,9 +219,9 @@ def fetch_exchange(
 BASE_OASIS_URL = "http://oasis.caiso.com/oasisapi/"
 
 
-def _generate_oasis_url(oasis_url_config) -> str:
+def _generate_oasis_url(oasis_url_config, data_type) -> str:
     dataset_config = {
-        **oasis_url_config["wind_solar_forecast"],
+        **oasis_url_config[data_type],
     }
     # combine kv from query and params
     config_flat = {
@@ -249,13 +250,80 @@ def _get_oasis_data(session: Session, target_url: str) -> pd.DataFrame:
 
 
 @refetch_frequency(timedelta(days=7))
+def fetch_generation_forecast(
+    zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the total load forecast 7 days ahead (in MW) for a given date in hourly intervals."""
+    session = session or Session()
+
+    # Interval of time
+    if target_datetime is None:
+        target_datetime = datetime.now(
+            tz=timezone.utc
+        )  # .replace(hour=0, minute=0, second=0, microsecond=0) # TODO: is it necessary to replace the time?
+    target_datetime_gmt = target_datetime
+    GMT_URL_SUFFIX = "-0000"
+    END_OFFSET = timedelta(days=7)
+    startdatetime = target_datetime_gmt.strftime("%Y%m%dT%H:%M") + GMT_URL_SUFFIX
+    enddatetime = (target_datetime_gmt + END_OFFSET).strftime(
+        "%Y%m%dT%H:%M"
+    ) + GMT_URL_SUFFIX
+
+    # Config to obtain the url
+    oasis_config = {
+        "load_forecast_7_day_ahead": {
+            "query": {
+                "path": "SingleZip",
+                "resultformat": 6,
+                "queryname": "SLD_FCST",
+                "version": 1,
+            },
+            "params": {
+                "market_run_id": "7DA",
+                "startdatetime": startdatetime,
+                "enddatetime": enddatetime,
+            },
+        },
+    }
+
+    # Extract data
+    target_url = _generate_oasis_url(oasis_config, "load_forecast_7_day_ahead")
+    df = _get_oasis_data(session, target_url)
+
+    # Transform dataframe
+    COL_DATETIME, COL_TACAREA = "INTERVALSTARTTIME_GMT", "TAC_AREA_NAME"
+    df = df.sort_values(by=COL_DATETIME)
+    df = df[df[COL_TACAREA] == "CA ISO-TAC"]
+
+    # Add events
+    all_generation_events = (
+        df.copy()
+    )  # all events with a datetime and a generation value
+    generation_list = TotalProductionList(logger)
+    for _index, event in all_generation_events.iterrows():
+        event_datetime = datetime.fromisoformat(event[COL_DATETIME])
+        event_generation_value = event["MW"]
+        generation_list.append(
+            zoneKey=zone_key,
+            datetime=event_datetime,
+            value=event_generation_value,
+            source="oasis.caiso.com",
+            sourceType=EventSourceType.forecasted,
+        )
+    return generation_list.to_list()
+
+
+@refetch_frequency(timedelta(days=7))
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    """Requests the wind and solar forecast (in MW) for a given date in hourly intervals."""
+    """Requests the wind and solar forecast 7 days ahead (in MW) for a given date in hourly intervals."""
     session = session or Session()
 
     # Interval of time: datetime is in GMT
@@ -288,8 +356,8 @@ def fetch_wind_solar_forecasts(
         },
     }
 
-    target_url = _generate_oasis_url(oasis_config)
-
+    # Extract data and get the dataframe
+    target_url = _generate_oasis_url(oasis_config, "wind_solar_forecast")
     df = _get_oasis_data(session, target_url)
 
     # There are 3 trading hubs in CAISO
@@ -332,5 +400,8 @@ if __name__ == "__main__":
     # pprint(fetch_production(target_datetime=datetime(2023,1,20)))s
     # pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))
 
-    print("fetch_wind_solar_forecasts() ->")
-    pprint(fetch_wind_solar_forecasts())
+    # print("fetch_generation_forecast() ->")
+    pprint(fetch_generation_forecast())
+
+    # print("fetch_wind_solar_forecasts() ->")
+    # pprint(fetch_wind_solar_forecasts())
