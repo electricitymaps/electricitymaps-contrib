@@ -49,8 +49,10 @@ export interface StateZoneData {
     /** Renewable ratio */
     rr?: number | null;
   };
-  /** Represents if a zone is estimated or not, will be true for hourly data else number */
-  e?: boolean | number | null;
+  /** Estimation method */
+  em?: EstimationMethods | null;
+  /** Estimation percentage */
+  ep?: number | null;
   /** Represents if the zone has a outage message or not */
   o?: boolean | null;
 }
