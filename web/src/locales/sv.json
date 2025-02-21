@@ -134,21 +134,6 @@
   "estimation-card": {
     "link": "Läs om våra uppskattningsmodeller",
     "outage-details": "Se detaljer",
-    "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Data är uppskattad",
-      "pill": "Uppskattad",
-      "body": "Data för denna zon är uppskattad med en kombination av interna och externa produktionsprognoser och historiska genomsnitt. Detta syftar till att ge en mer exakt representation än enbart historiska genomsnitt, men data kan fortfarande vara felaktig. Data kommer att uppdateras så snart realtidsdata blir tillgänglig."
-    },
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Data är för närvarande uppskattad",
-      "body": "Dataleverantören rapporterar för närvarande inte data för denna timme. De visade värdena är uppskattade baserat på historiska mätningar och kommer att ersättas med konsoliderade data när de blir tillgängliga. Observera att uppskattade värden kanske inte alltid är korrekta eftersom de inte tar hänsyn till specifika realtidshändelser som väder.",
-      "pill": "Preliminär"
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Data är delvis uppskattad",
-      "pill": "Ofullständig",
-      "body": "Data om elproduktion för denna zon är ofullständig; saknade värden har beräknats med en uppskattningsmodell."
-    },
     "estimated_generic_method": {
       "title": "Data är uppskattad",
       "pill": "Opålitlig",

@@ -157,21 +157,6 @@
   "estimation-card": {
     "link": "Læs om vores estimeringsmodeller",
     "outage-details": "Se detaljer",
-    "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Data er estimeret",
-      "pill": "Estimeret",
-      "body": "Data for dette område er estimeret ved hjælp af en kombination af interne og eksterne forudsigelser for elproduktion og vejret. Formålet med dette er at udbyde en mere korrekt repræsentation, men data kan stadig godt være ukorrekt. Data vil blive opdateret så snart realtidsdata bliver tilgængeligt igen."
-    },
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Data er foreløbig",
-      "pill": "Foreløbig",
-      "body": "Dataudbyderen rapporterer ikke data for denne time. De viste værdier er estimeret på baggrund af historiske målinger og vil blive opdateret når der er tilgængelig data igen. Bemærk at estimerede værdier ikke tager højde for kortsigtede ændringer i vejret."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Data er delvist estimeret",
-      "pill": "Ukomplet",
-      "body": "Produktions data for dette område er ufuldkommen; manglende værdier er blevet udregnet vha. en estimations model."
-    },
     "estimated_generic_method": {
       "title": "Data er estimeret",
       "pill": "Upræcis",

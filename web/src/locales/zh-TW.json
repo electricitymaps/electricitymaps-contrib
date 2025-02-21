@@ -87,15 +87,6 @@
   },
   "estimation-card": {
     "link": "了解我們的估計模型",
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "數據為初步的值",
-      "body": "資料提供者未提供此小時的數據。目前顯示的數值是基於歷史測量值估計的，一旦實際數據可用將立即更新。\n\n請注意，估計值可能未考慮到即時的天氣事件。"
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "數據部分為估計值",
-      "pill": "不完整",
-      "body": "該區域發電數據不完整； 缺失值是使用估計模型計算的。"
-    },
     "estimated_generic_method": {
       "title": "數據為估計值",
       "pill": "不精確",

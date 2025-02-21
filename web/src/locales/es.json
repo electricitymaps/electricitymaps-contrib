@@ -109,15 +109,6 @@
   },
   "estimation-card": {
     "link": "Más información sobre nuestros modelos de estimación",
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Los datos son preliminares",
-      "body": "Los datos para esta hora aún no se han transmitido. Los valores mostrados son estimaciones calculadas a partir de valores históricos y se reemplazarán cuando los datos reales estén disponibles. Es posible que los valores estimados no tengan en consideración fenómenos meteorológicos en tiempo real."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Datos parcialmente estimados",
-      "pill": "Datos incompletos",
-      "body": "Los datos de generación de electricidad correspondientes a zona son incompletos.Los valores faltantes se han calculado mediante un modelo de estimación."
-    },
     "estimated_generic_method": {
       "title": "Los datos son estimados",
       "pill": "Datos imprecisos",
