@@ -47,6 +47,7 @@ export default function EstimationCard({
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
+  const isTSA = isTSAModel(estimationMethod);
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
     hasEstimationFeedbackBeenSeenAtom
   );
@@ -79,12 +80,12 @@ export default function EstimationCard({
     case 'estimated': {
       return (
         <div>
-          {isTSAModel(estimationMethod) ? (
+          {isTSA ? (
             <EstimatedTSACard />
           ) : (
             <EstimatedCard estimationMethod={estimationMethod} />
           )}
-          {isFeedbackCardVisible && isTSAModel(estimationMethod) && (
+          {isFeedbackCardVisible && isTSA && (
             <FeedbackCard
               surveyReference={estimationMethod}
               postSurveyResponse={postSurveyResponse}
@@ -236,7 +237,7 @@ function EstimatedCard({
       zoneMessage={undefined}
       icon={<TrendingUpDown size={16} />}
       showMethodologyLink={true}
-      textColorTitle={'text-warning dark:text-warning-dark'}
+      textColorTitle="text-warning dark:text-warning-dark"
       cardType="estimated-card"
     />
   );
