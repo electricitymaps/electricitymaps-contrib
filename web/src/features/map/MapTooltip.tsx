@@ -32,9 +32,7 @@ export const TooltipInner = memo(function TooltipInner({
 }) {
   const hasZoneData = Boolean(zoneData);
   zoneData ??= emptyZoneData;
-  const { e, o } = zoneData;
-
-  const estimated = typeof e === 'number' ? round(e ?? 0, 0) : e;
+  const { em: estimationMethod, ep: estimationPercentage, o } = zoneData;
 
   return (
     <div className="flex w-full flex-col gap-2 py-3 text-center">
@@ -43,7 +41,8 @@ export const TooltipInner = memo(function TooltipInner({
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge
             hasOutage={Boolean(o)}
-            estimated={estimated}
+            estimatedMethod={estimationMethod}
+            estimatedPercentage={round(estimationPercentage ?? 0, 0)}
             hasZoneData={hasZoneData}
           />
         </div>
@@ -61,11 +60,13 @@ TooltipInner.displayName = 'TooltipInner';
 
 export const DataValidityBadge = memo(function DataValidityBadge({
   hasOutage,
-  estimated,
+  estimatedMethod,
+  estimatedPercentage,
   hasZoneData,
 }: {
   hasOutage: boolean;
-  estimated?: number | string | null;
+  estimatedMethod?: EstimationMethods | null;
+  estimatedPercentage?: number | null;
   hasZoneData: boolean;
 }) {
   const { t } = useTranslation();
@@ -76,8 +77,8 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   if (hasOutage) {
     return <OutageBadge />;
   }
-  if (typeof estimated === 'string') {
-    if (isTSAModel(estimated as EstimationMethods)) {
+  if (estimatedMethod) {
+    if (isTSAModel(estimatedMethod)) {
       return (
         <EstimationBadge
           text={t('estimation-card.ESTIMATED_TIME_SLICER_AVERAGE.pill')}
@@ -87,16 +88,16 @@ export const DataValidityBadge = memo(function DataValidityBadge({
     }
     return (
       <EstimationBadge
-        text={t(`estimation-card.${estimated}.pill`)}
+        text={t(`estimation-card.${estimatedMethod}.pill`)}
         Icon={TrendingUpDown}
       />
     );
   }
-  if (estimated && estimated > 0.5) {
+  if (estimatedPercentage && estimatedPercentage > 0.5) {
     return (
       <EstimationBadge
         text={t(`estimation-card.aggregated_estimated.pill`, {
-          percentage: estimated,
+          percentage: estimatedPercentage,
         })}
         Icon={TrendingUpDown}
       />
