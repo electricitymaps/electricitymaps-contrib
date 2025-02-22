@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+from itertools import groupby
 from logging import Logger, getLogger
 
 from requests import Response, Session
@@ -161,22 +162,19 @@ def fetch_wind_solar_forecasts(
 ) -> list:
     data = fetch_data(zone_key, session, target_datetime, logger, True)
 
-    # Production mixs by datetime
-    productionMixs = {}
-    for datapoint in data["records"]:
-        date_time = datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
-            tzinfo=timezone.utc
-        )
-        if date_time not in productionMixs:
-            productionMixs[date_time] = ProductionMix()
-
-        productionMixs[date_time].add_value(
-            FORCAST_PARSE_MAPPING[datapoint["ForecastType"]],
-            datapoint["ForecastCurrent"],
-        )
+    # Group data by datetime Minutes5UTC
+    data["records"].sort(key=lambda x: x["Minutes5UTC"])
+    grouped_data = groupby(data["records"], key=lambda x: x["Minutes5UTC"])
 
     forecast = ProductionBreakdownList(logger=logger)
-    for date_time, productionMix in productionMixs.items():
+    for date_time_str, group in grouped_data:
+        date_time = datetime.fromisoformat(date_time_str).replace(tzinfo=timezone.utc)
+        productionMix = ProductionMix()
+        for datapoint in group:
+            productionMix.add_value(
+                FORCAST_PARSE_MAPPING[datapoint["ForecastType"]],
+                datapoint["ForecastCurrent"],
+            )
         forecast.append(
             zoneKey=zone_key,
             production=productionMix,
