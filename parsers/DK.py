@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from itertools import groupby
 from logging import Logger, getLogger
+from operator import itemgetter
 
 from requests import Response, Session
 
@@ -163,8 +164,7 @@ def fetch_wind_solar_forecasts(
     data = fetch_data(zone_key, session, target_datetime, logger, True)
 
     # Group data by datetime Minutes5UTC
-    data["records"].sort(key=lambda x: x["Minutes5UTC"])
-    grouped_data = groupby(data["records"], key=lambda x: x["Minutes5UTC"])
+    grouped_data = groupby(data["records"], key=itemgetter("Minutes5UTC"))
 
     forecast = ProductionBreakdownList(logger=logger)
     for date_time_str, group in grouped_data:
