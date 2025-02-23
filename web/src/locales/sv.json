@@ -84,7 +84,6 @@
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href='{{link}}' target='_blank'>körningsloggarna</a> eller kontakta dataleverantören.",
     "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href='{{link}}' target='_blank'>lägga till data för regionen</a>.",
-    "aggregationDisabled": "Data är inte tillgänglig för den valda tidsperioden på grund av saknad detaljerad uppdelning. Försök med en bredare tidsperiod.",
     "now": "Nu",
     "by-source": {
       "emissions": "Koldioxidutsläpp",
@@ -104,8 +103,7 @@
       "stored": "Lagrad",
       "produced": "Producerad"
     },
-    "emissionFactorDataSourcesTooltip": "Utsläppsfaktorer för elproduktion kan komma från flera olika källor. Detta sker eftersom flera faktorer, som anläggningsspecifika data, produktion och ibland standardkällor, beaktas i utsläppsberäkningar.",
-    "fullyDisabled": "De data som är tillgängliga för denna zon är otillräckliga och visas därför inte. Om du känner till några datakällor för detta område, vänligen <a href='{{link}}' target='_blank'>meddela oss</a>."
+    "emissionFactorDataSourcesTooltip": "Utsläppsfaktorer för elproduktion kan komma från flera olika källor. Detta sker eftersom flera faktorer, som anläggningsspecifika data, produktion och ibland standardkällor, beaktas i utsläppsberäkningar."
   },
   "feedback-card": {
     "title": "Hjälp oss bli bättre!",
@@ -136,40 +134,10 @@
   "estimation-card": {
     "link": "Läs om våra uppskattningsmodeller",
     "outage-details": "Se detaljer",
-    "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Data är uppskattad",
-      "pill": "Uppskattad",
-      "body": "Data för denna zon är uppskattad med en kombination av interna och externa produktionsprognoser och historiska genomsnitt. Detta syftar till att ge en mer exakt representation än enbart historiska genomsnitt, men data kan fortfarande vara felaktig. Data kommer att uppdateras så snart realtidsdata blir tillgänglig."
-    },
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Data är för närvarande uppskattad",
-      "body": "Dataleverantören rapporterar för närvarande inte data för denna timme. De visade värdena är uppskattade baserat på historiska mätningar och kommer att ersättas med konsoliderade data när de blir tillgängliga. Observera att uppskattade värden kanske inte alltid är korrekta eftersom de inte tar hänsyn till specifika realtidshändelser som väder.",
-      "pill": "Preliminär"
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Data är delvis uppskattad",
-      "pill": "Ofullständig",
-      "body": "Data om elproduktion för denna zon är ofullständig; saknade värden har beräknats med en uppskattningsmodell."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Data är alltid uppskattad",
-      "pill": "Opålitlig",
-      "body": "De publicerade data för denna zon tillhandahåller endast den totala produktionen. Förnybara källor uppskattas med hjälp av aktuella väderdata, medan fossila källor beräknas baserat på historiska data för varje produktionskälla."
-    },
     "estimated_generic_method": {
       "title": "Data är uppskattad",
       "pill": "Opålitlig",
       "body": "De publicerade data för denna zon är otillgängliga eller ofullständiga. Data som visas på kartan är uppskattad enligt bästa förmåga men kan skilja sig från de faktiska värdena."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Data är alltid uppskattad",
-      "pill": "Ej realtid",
-      "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Data är alltid uppskattad",
-      "pill": "Ej realtid",
-      "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
     },
     "threshold_filtered": {
       "title": "Saknar data",
@@ -618,6 +586,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -805,9 +776,13 @@
       "countryName": "Spanien",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spanien",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanien",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spanien",

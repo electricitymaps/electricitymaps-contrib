@@ -64,7 +64,6 @@
     "aggregatedTooltip": "該區域的的資料是由過去的每小時資料聚合而成。",
     "helpUs": "請檢視<a href='{{link}}' target='_blank'>執行環境日誌</a>並幫助我們找出問題。",
     "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href='{{link}}' target='_blank'>新增這個地區的資料</a>！",
-    "aggregationDisabled": "由於缺少詳細細分，無法取得所選時間段的資料。請嘗試選擇一個更廣泛的時間段。",
     "now": "現在"
   },
   "feedback-card": {
@@ -88,34 +87,10 @@
   },
   "estimation-card": {
     "link": "了解我們的估計模型",
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "數據為初步的值",
-      "body": "資料提供者未提供此小時的數據。目前顯示的數值是基於歷史測量值估計的，一旦實際數據可用將立即更新。\n\n請注意，估計值可能未考慮到即時的天氣事件。"
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "數據部分為估計值",
-      "pill": "不完整",
-      "body": "該區域發電數據不完整； 缺失值是使用估計模型計算的。"
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "數據始終為估計值",
-      "pill": "不精確",
-      "body": "該區域發布的數據僅提供總產量。可再生能源是使用即時天氣數據估算的，而化石能源是根據每個生產來源的歷史數據扣除的。"
-    },
     "estimated_generic_method": {
       "title": "數據為估計值",
       "pill": "不精確",
       "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "數據始終為估計值",
-      "pill": "非即時",
-      "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "數據始終為估計值",
-      "pill": "非即時",
-      "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
     },
     "threshold_filtered": {
       "title": "缺失數據",
@@ -530,6 +505,9 @@
     "BZ": {
       "zoneName": "貝里斯"
     },
+    "CA": {
+      "zoneName": "加拿大"
+    },
     "CA-AB": {
       "countryName": "加拿大",
       "zoneName": "亞伯達省"
@@ -717,9 +695,13 @@
       "countryName": "西班牙",
       "zoneName": "梅諾卡島"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "西班牙",
-      "zoneName": "富埃特文圖拉島/蘭薩羅特島"
+      "zoneName": "富埃特文圖拉島"
+    },
+    "ES-CN-LZ": {
+      "countryName": "西班牙",
+      "zoneName": "蘭薩羅特島"
     },
     "ES-CN-GC": {
       "countryName": "西班牙",

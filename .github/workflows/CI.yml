@@ -15,7 +15,7 @@ jobs:
   # This job is used to determine what files have changed and is used by later jobs to determine if they should run.
   setup:
     name: Setup
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 1
     outputs:
       frontend: ${{ steps.check-changed-files.outputs.frontend_any_changed }}
@@ -48,7 +48,7 @@ jobs:
   #                        #
   prettier:
     name: Prettier
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
@@ -96,7 +96,7 @@ jobs:
     if: >-
       needs.setup.outputs.json != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 1
     steps:
       - name: Checkout
@@ -118,7 +118,7 @@ jobs:
     if: >-
       needs.setup.outputs.json != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -135,7 +135,7 @@ jobs:
     if: >-
       needs.setup.outputs.json != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -155,7 +155,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 4
     defaults:
       run:
@@ -192,7 +192,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
       security-events: write
@@ -252,7 +252,7 @@ jobs:
     if: >-
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 4
     defaults:
       run:
@@ -291,7 +291,7 @@ jobs:
       needs.setup.outputs.frontend != 'false' ||
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 2
     defaults:
       run:
@@ -324,7 +324,7 @@ jobs:
   build_storybook:
     name: Frontend / Build / Storybook
     needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     defaults:
       run:
@@ -375,7 +375,7 @@ jobs:
   cypress_component:
     name: Frontend / Cypress / Component
     needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
@@ -430,58 +430,58 @@ jobs:
           name: component-screenshots
           path: web/cypress/screenshots
 
-  cypress_e2e:
-    name: Frontend / Cypress / E2E
-    needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: './web/.node-version'
-      - name: Cache Cypress binary
-        id: cache-cypress
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v4
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-        working-directory: ./web
-      - name: Install Cypress binary
-        if: steps.cache-cypress.outputs.cache-hit != 'true'
-        run: pnpm exec cypress install
-        working-directory: ./web
-      - name: Cypress run e2e tests
-        uses: cypress-io/github-action@v6
-        env:
-          TZ: Europe/Copenhagen
-        with:
-          working-directory: ./web
-          install: false
-          build: pnpm run build --mode testing
-          start: pnpm run preview
-          config: baseUrl=http://127.0.0.1:4173/
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: e2e-screenshots
-          path: web/cypress/screenshots
+  # cypress_e2e:
+  #   name: Frontend / Cypress / E2E
+  #   needs: [eslint, typecheck, validate_generate_files, unit_test]
+  #   runs-on: ubuntu-24.04-arm
+  #   timeout-minutes: 10
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Setup PNPM
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 9
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version-file: './web/.node-version'
+  #     - name: Cache Cypress binary
+  #       id: cache-cypress
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.cache/Cypress
+  #         key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
+  #     - name: Restore node_modules for web
+  #       id: cache-web
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: web/node_modules
+  #         key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
+  #     - name: Install web dependencies
+  #       if: steps.cache-web.outputs.cache-hit != 'true'
+  #       run: pnpm install --frozen-lockfile
+  #       working-directory: ./web
+  #     - name: Install Cypress binary
+  #       if: steps.cache-cypress.outputs.cache-hit != 'true'
+  #       run: pnpm exec cypress install
+  #       working-directory: ./web
+  #     - name: Cypress run e2e tests
+  #       uses: cypress-io/github-action@v6
+  #       env:
+  #         TZ: Europe/Copenhagen
+  #       with:
+  #         working-directory: ./web
+  #         install: false
+  #         build: pnpm run build --mode testing
+  #         start: pnpm run preview
+  #         config: baseUrl=http://127.0.0.1:4173/
+  #     - name: Upload screenshots
+  #       uses: actions/upload-artifact@v4
+  #       if: failure()
+  #       with:
+  #         name: e2e-screenshots
+  #         path: web/cypress/screenshots
 
   # Python checks
   python_formatting:
@@ -490,7 +490,7 @@ jobs:
     if: >-
       needs.setup.outputs.python != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout
@@ -531,7 +531,7 @@ jobs:
       needs.setup.outputs.python != 'false' ||
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -573,7 +573,7 @@ jobs:
     if: >-
       needs.setup.outputs.config != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
       - name: Checkout

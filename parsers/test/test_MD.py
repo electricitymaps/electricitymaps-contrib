@@ -3,9 +3,8 @@ from datetime import datetime, timezone
 from importlib import resources
 
 import pytest
-import requests
 from freezegun import freeze_time
-from requests_mock import ANY, GET, Adapter
+from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.MD import (
@@ -23,18 +22,8 @@ frozen_live_time = freeze_time("2024-04-11 06:32:00")
 historical_datetime = datetime(2021, 7, 25, 12, tzinfo=timezone.utc)
 
 
-@pytest.fixture()
-def fixture_session_mock() -> tuple[requests.Session, Adapter]:
-    adapter = Adapter()
-    session = requests.Session()
-    session.mount("https://", adapter)
-    return session, adapter
-
-
 @frozen_live_time
-def test_fetch_consumption_live(snapshot, fixture_session_mock):
-    session, adapter = fixture_session_mock
-
+def test_fetch_consumption_live(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -48,9 +37,7 @@ def test_fetch_consumption_live(snapshot, fixture_session_mock):
     assert snapshot == fetch_consumption(session=session)
 
 
-def test_fetch_consumption_historical(snapshot, fixture_session_mock):
-    session, adapter = fixture_session_mock
-
+def test_fetch_consumption_historical(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -66,10 +53,9 @@ def test_fetch_consumption_historical(snapshot, fixture_session_mock):
     )
 
 
-@pytest.mark.parametrize("neighbour", ["RO", "UA"])
+@pytest.mark.parametrize("neighbor", ["RO", "UA"])
 @frozen_live_time
-def test_fetch_exchange_live(snapshot, fixture_session_mock, neighbour):
-    session, adapter = fixture_session_mock
+def test_fetch_exchange_live(adapter, session, snapshot, neighbor):
     adapter.register_uri(
         GET,
         ANY,
@@ -80,14 +66,11 @@ def test_fetch_exchange_live(snapshot, fixture_session_mock, neighbour):
         ),
     )
 
-    assert snapshot == fetch_exchange(
-        ZoneKey("MD"), ZoneKey(neighbour), session=session
-    )
+    assert snapshot == fetch_exchange(ZoneKey("MD"), ZoneKey(neighbor), session=session)
 
 
-@pytest.mark.parametrize("neighbour", ["RO", "UA"])
-def test_fetch_exchange_historical(snapshot, fixture_session_mock, neighbour):
-    session, adapter = fixture_session_mock
+@pytest.mark.parametrize("neighbor", ["RO", "UA"])
+def test_fetch_exchange_historical(adapter, session, snapshot, neighbor):
     adapter.register_uri(
         GET,
         ANY,
@@ -100,16 +83,15 @@ def test_fetch_exchange_historical(snapshot, fixture_session_mock, neighbour):
 
     assert snapshot == fetch_exchange(
         ZoneKey("MD"),
-        ZoneKey(neighbour),
+        ZoneKey(neighbor),
         target_datetime=historical_datetime,
         session=session,
     )
 
 
-@pytest.mark.parametrize("neighbour", ["RO", "UA"])
+@pytest.mark.parametrize("neighbor", ["RO", "UA"])
 @frozen_live_time
-def test_fetch_exchange_forecast_live(snapshot, fixture_session_mock, neighbour):
-    session, adapter = fixture_session_mock
+def test_fetch_exchange_forecast_live(adapter, session, snapshot, neighbor):
     adapter.register_uri(
         GET,
         ANY,
@@ -121,13 +103,12 @@ def test_fetch_exchange_forecast_live(snapshot, fixture_session_mock, neighbour)
     )
 
     assert snapshot == fetch_exchange_forecast(
-        ZoneKey("MD"), ZoneKey(neighbour), session=session
+        ZoneKey("MD"), ZoneKey(neighbor), session=session
     )
 
 
-@pytest.mark.parametrize("neighbour", ["RO", "UA"])
-def test_fetch_exchange_forecast_historical(snapshot, fixture_session_mock, neighbour):
-    session, adapter = fixture_session_mock
+@pytest.mark.parametrize("neighbor", ["RO", "UA"])
+def test_fetch_exchange_forecast_historical(adapter, session, snapshot, neighbor):
     adapter.register_uri(
         GET,
         ANY,
@@ -140,7 +121,7 @@ def test_fetch_exchange_forecast_historical(snapshot, fixture_session_mock, neig
 
     assert snapshot == fetch_exchange_forecast(
         ZoneKey("MD"),
-        ZoneKey(neighbour),
+        ZoneKey(neighbor),
         target_datetime=historical_datetime,
         session=session,
     )
@@ -172,9 +153,7 @@ def test_fetch_price_historical(snapshot, historical_datetime):
 
 
 @frozen_live_time
-def test_fetch_production_live(snapshot, fixture_session_mock):
-    session, adapter = fixture_session_mock
-
+def test_fetch_production_live(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -188,9 +167,7 @@ def test_fetch_production_live(snapshot, fixture_session_mock):
     assert snapshot == fetch_production(session=session)
 
 
-def test_fetch_production_historical(snapshot, fixture_session_mock):
-    session, adapter = fixture_session_mock
-
+def test_fetch_production_historical(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,

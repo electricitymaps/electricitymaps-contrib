@@ -29,6 +29,9 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 9821.4
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 10905.8
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -88,6 +91,9 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 6052.1
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 6053.1
   hydro storage:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -134,6 +140,9 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 21498.2
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 21785.4
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -162,6 +171,7 @@ contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
+  - alejandranavcas
 country: US
 delays:
   production: 5
@@ -486,6 +496,7 @@ parsers:
   consumptionForecast: EIA.fetch_consumption_forecast
   production: US_CA.fetch_production
   productionCapacity: EIA.fetch_production_capacity
+  productionPerModeForecast: US_CA.fetch_wind_solar_forecasts
 region: Americas
 sources:
   INCER ACV:
