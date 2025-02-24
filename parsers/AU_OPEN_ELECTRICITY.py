@@ -11,14 +11,6 @@ from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownLis
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
-from .lib.exceptions import ParserException
-
-FUEL_MAPPING = {
-    "Fossil": "oil",
-    "Wind": "wind",
-    "TotalSolar": "solar",
-    "total_bio_gas": "biomass",
-}
 SOURCE = "openelectricity.org.au"
 mapping_states = {
     "AU-NSW": "NEM/NSW1",
@@ -42,8 +34,6 @@ def get_url(zone_key: ZoneKey, time_period: str = "7d") -> str:
     return f"https://data.openelectricity.org.au/v4/stats/au/{mapping_states[zone_key]}/power/{time_period}.json"
 
 
-
-
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -56,44 +46,38 @@ def fetch_production(
     r = session or Session()
     response = r.get(url)
     data = response.json()
-    top_data = data["data"]["power"]["total"]
+    return data
+    # top_data = data["data"]["power"]["total"]
 
-    mix = ProductionMix()
-    sources_total = 0
-    for fuel, mode in FUEL_MAPPING.items():
-        value = float(top_data[fuel]["value"])
-        mix.add_value(mode, value)
-        sources_total += value
-    # "unknown" is when data reported in the categories above is less than total reported.
-    # If categories sum up to more than total, accept the datapoint, but only if it's less than 10% of total.
-    # This helps avoid missing data when it's a little bit off, due to rounding or reporting
-    reported_total = float(top_data["TotalPower"]["value"])
+    # mix = ProductionMix()
+    # sources_total = 0
+    # for fuel, mode in FUEL_MAPPING.items():
+    #     value = float(top_data[fuel]["value"])
+    #     mix.add_value(mode, value)
+    #     sources_total += value
+    # # "unknown" is when data reported in the categories above is less than total reported.
+    # # If categories sum up to more than total, accept the datapoint, but only if it's less than 10% of total.
+    # # This helps avoid missing data when it's a little bit off, due to rounding or reporting
+    # reported_total = float(top_data["TotalPower"]["value"])
 
-    if (sources_total / reported_total) > 1.1:
-        raise ParserException(
-            "AW.py",
-            f"AW parser reports fuel sources add up to {sources_total} but total generation {reported_total} is lower",
-            zone_key,
-        )
+    # mix.add_value(
+    #     "unknown", reported_total - sources_total, correct_negative_with_zero=True
+    # )
+    # # We're using Fossil data to get timestamp in correct time zone
+    # local_date_time = datetime.strptime(
+    #     top_data["total_bio_gas"]["timestamp"], "%Y-%m-%d %H:%M:%S.%f"
+    # ).replace(tzinfo=time_zone_mapping[zone_key])
 
-    mix.add_value(
-        "unknown", reported_total - sources_total, correct_negative_with_zero=True
-    )
-    # We're using Fossil data to get timestamp in correct time zone
-    local_date_time = datetime.strptime(
-        top_data["total_bio_gas"]["timestamp"], "%Y-%m-%d %H:%M:%S.%f"
-    ).replace(tzinfo=time_zone_mapping[zone_key])
+    # production_list = ProductionBreakdownList(logger)
+    # production_list.append(
+    #     zone_key,
+    #     local_date_time,
+    #     SOURCE,
+    #     production=mix,
+    # )
 
-    production_list = ProductionBreakdownList(logger)
-    production_list.append(
-        zone_key,
-        local_date_time,
-        SOURCE,
-        production=mix,
-    )
-
-    return production_list.to_list()
+    # return production_list.to_list()
 
 
 if __name__ == "__main__":
-    print(fetch_production())
+    print(fetch_production(ZoneKey("AU-NSW")))
