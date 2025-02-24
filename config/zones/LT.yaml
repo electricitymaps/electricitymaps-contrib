@@ -97,6 +97,9 @@ capacity:
     - datetime: '2024-10-22'
       source: litgrid.eu
       value: 1878.0
+    - datetime: '2025-02-16'
+      source: litgrid.eu
+      value: 2408.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -138,9 +141,13 @@ capacity:
     - datetime: '2024-10-22'
       source: litgrid.eu
       value: 1669.0
+    - datetime: '2025-02-16'
+      source: litgrid.eu
+      value: 1832.0
 contributors:
   - corradio
   - nessie2013
+  - pnook
 country: LT
 delays:
   production: 6
@@ -483,6 +490,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  litgrid:
+    link: https://www.litgrid.eu/index.php/power-system/power-system-information/generation-capacity/546
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
