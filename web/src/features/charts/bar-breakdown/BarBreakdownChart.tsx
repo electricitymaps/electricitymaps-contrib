@@ -75,6 +75,7 @@ function BarBreakdownChart({
     estimationMethod,
     currentZoneDetail?.estimatedPercentage
   );
+  const isTSA = isTSAModel(estimationMethod);
 
   const onMouseOver = useCallback(
     (layerKey: ElectricityModeType | ZoneKey, event: React.MouseEvent) => {
@@ -129,7 +130,8 @@ function BarBreakdownChart({
           hasEstimationPill ? (
             <EstimationBadge
               text={pillText}
-              Icon={isTSAModel(estimationMethod) ? CircleDashed : TrendingUpDown}
+              Icon={isTSA ? CircleDashed : TrendingUpDown}
+              isPreliminary={isTSA}
             />
           ) : undefined
         }

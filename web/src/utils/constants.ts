@@ -273,6 +273,6 @@ export enum EstimationMethods {
   GENERAL_PURPOSE_ZONE_MODEL = 'ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL',
 }
 
-export const isTSAModel = (estimationMethod: EstimationMethods | undefined) =>
+export const isTSAModel = (estimationMethod?: EstimationMethods) =>
   estimationMethod === EstimationMethods.TSA ||
   estimationMethod === EstimationMethods.FORECASTS_HIERARCHY;

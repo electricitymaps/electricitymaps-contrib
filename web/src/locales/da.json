@@ -157,40 +157,10 @@
   "estimation-card": {
     "link": "Læs om vores estimeringsmodeller",
     "outage-details": "Se detaljer",
-    "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Data er estimeret",
-      "pill": "Estimeret",
-      "body": "Data for dette område er estimeret ved hjælp af en kombination af interne og eksterne forudsigelser for elproduktion og vejret. Formålet med dette er at udbyde en mere korrekt repræsentation, men data kan stadig godt være ukorrekt. Data vil blive opdateret så snart realtidsdata bliver tilgængeligt igen."
-    },
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Data er foreløbig",
-      "pill": "Foreløbig",
-      "body": "Dataudbyderen rapporterer ikke data for denne time. De viste værdier er estimeret på baggrund af historiske målinger og vil blive opdateret når der er tilgængelig data igen. Bemærk at estimerede værdier ikke tager højde for kortsigtede ændringer i vejret."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Data er delvist estimeret",
-      "pill": "Ukomplet",
-      "body": "Produktions data for dette område er ufuldkommen; manglende værdier er blevet udregnet vha. en estimations model."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Data er altid estimeret",
-      "pill": "Upræcis",
-      "body": "Den publicerede data for dette område indholder kun den samlede produktion. Vedvarende energikilder er estimeret vha. vejrdata, mens fossile energikilder er baseret på historisk data for hver energikilde."
-    },
     "estimated_generic_method": {
       "title": "Data er estimeret",
       "pill": "Upræcis",
       "body": "Den publiserede data for dette område er utilgængelig eller ufuldkommen. Data vist på kortet er estimeret ud fra vores bedste kunnen, men den er måske forskellig fra de reelle værdier."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Data er altid estimeret",
-      "pill": "Ikke realtid",
-      "body": "Data for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Data er altid estimeret",
-      "pill": "Ikke realtid",
-      "body": "Data for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
     },
     "threshold_filtered": {
       "title": "Manglende data",
