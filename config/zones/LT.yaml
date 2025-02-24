@@ -97,6 +97,9 @@ capacity:
     - datetime: '2024-10-22'
       source: litgrid.eu
       value: 1878.0
+    - datetime: '2025-02-16'
+      source: litgrid.eu
+      value: 2408.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -138,9 +141,13 @@ capacity:
     - datetime: '2024-10-22'
       source: litgrid.eu
       value: 1669.0
+    - datetime: '2025-02-16'
+      source: litgrid.eu
+      value: 1832.0
 contributors:
   - corradio
   - nessie2013
+  - pnook
 country: LT
 delays:
   production: 6

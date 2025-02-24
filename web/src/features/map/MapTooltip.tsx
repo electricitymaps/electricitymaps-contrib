@@ -8,10 +8,11 @@ import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
-import { TrendingUpDown } from 'lucide-react';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
+import { EstimationMethods, isTSAModel } from 'utils/constants';
 import { round } from 'utils/helpers';
 import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 
@@ -31,9 +32,7 @@ export const TooltipInner = memo(function TooltipInner({
 }) {
   const hasZoneData = Boolean(zoneData);
   zoneData ??= emptyZoneData;
-  const { e, o } = zoneData;
-
-  const estimated = typeof e === 'number' ? round(e ?? 0, 0) : e;
+  const { em: estimationMethod, ep: estimationPercentage, o } = zoneData;
 
   return (
     <div className="flex w-full flex-col gap-2 py-3 text-center">
@@ -42,7 +41,8 @@ export const TooltipInner = memo(function TooltipInner({
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge
             hasOutage={Boolean(o)}
-            estimated={estimated}
+            estimatedMethod={estimationMethod}
+            estimatedPercentage={round(estimationPercentage ?? 0, 0)}
             hasZoneData={hasZoneData}
           />
         </div>
@@ -60,11 +60,13 @@ TooltipInner.displayName = 'TooltipInner';
 
 export const DataValidityBadge = memo(function DataValidityBadge({
   hasOutage,
-  estimated,
+  estimatedMethod,
+  estimatedPercentage,
   hasZoneData,
 }: {
   hasOutage: boolean;
-  estimated?: number | boolean | null;
+  estimatedMethod?: EstimationMethods | null;
+  estimatedPercentage?: number | null;
   hasZoneData: boolean;
 }) {
   const { t } = useTranslation();
@@ -75,19 +77,27 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   if (hasOutage) {
     return <OutageBadge />;
   }
-  if (estimated === true) {
+  if (estimatedMethod) {
+    if (isTSAModel(estimatedMethod)) {
+      return (
+        <EstimationBadge
+          text={t('estimation-card.ESTIMATED_TIME_SLICER_AVERAGE.pill')}
+          Icon={CircleDashed}
+        />
+      );
+    }
     return (
       <EstimationBadge
-        text={t('estimation-badge.fully-estimated')}
+        text={t(`estimation-card.${estimatedMethod}.pill`)}
         Icon={TrendingUpDown}
       />
     );
   }
-  if (estimated && estimated > 0.5) {
+  if (estimatedPercentage && estimatedPercentage > 0.5) {
     return (
       <EstimationBadge
         text={t(`estimation-card.aggregated_estimated.pill`, {
-          percentage: estimated,
+          percentage: estimatedPercentage,
         })}
         Icon={TrendingUpDown}
       />
