@@ -3,6 +3,7 @@
 import io
 import zipfile
 from datetime import datetime, timedelta, timezone
+from enum import Enum
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -219,9 +220,14 @@ def fetch_exchange(
 BASE_OASIS_URL = "http://oasis.caiso.com/oasisapi/"
 
 
-def _generate_oasis_url(oasis_url_config, data_type) -> str:
+class OasisDatasetType(Enum):
+    FORECAST_7_DAY_AHEAD = "load_forecast_7_day_ahead"
+    WIND_SOLAR_FORECAST = "wind_solar_forecast"
+
+
+def _generate_oasis_url(oasis_url_config, dataset_type: OasisDatasetType) -> str:
     dataset_config = {
-        **oasis_url_config[data_type],
+        **oasis_url_config[dataset_type.value],
     }
     # combine kv from query and params
     config_flat = {
@@ -261,9 +267,7 @@ def fetch_generation_forecast(
 
     # Interval of time
     if target_datetime is None:
-        target_datetime = datetime.now(
-            tz=timezone.utc
-        )  # .replace(hour=0, minute=0, second=0, microsecond=0) # TODO: is it necessary to replace the time?
+        target_datetime = datetime.now(tz=timezone.utc)
     target_datetime_gmt = target_datetime
     GMT_URL_SUFFIX = "-0000"
     END_OFFSET = timedelta(days=7)
@@ -290,7 +294,9 @@ def fetch_generation_forecast(
     }
 
     # Extract data
-    target_url = _generate_oasis_url(oasis_config, "load_forecast_7_day_ahead")
+    target_url = _generate_oasis_url(
+        oasis_config, OasisDatasetType.FORECAST_7_DAY_AHEAD
+    )
     df = _get_oasis_data(session, target_url)
 
     # Transform dataframe
@@ -328,9 +334,7 @@ def fetch_wind_solar_forecasts(
 
     # Interval of time: datetime is in GMT
     if target_datetime is None:
-        target_datetime = datetime.now(
-            tz=timezone.utc
-        )  # .replace(hour=0, minute=0, second=0, microsecond=0) # TODO: is it necessary to replace the time?
+        target_datetime = datetime.now(tz=timezone.utc)
     target_datetime_gmt = target_datetime
     GMT_URL_SUFFIX = "-0000"
     END_OFFSET = timedelta(days=7)
@@ -357,7 +361,7 @@ def fetch_wind_solar_forecasts(
     }
 
     # Extract data and get the dataframe
-    target_url = _generate_oasis_url(oasis_config, "wind_solar_forecast")
+    target_url = _generate_oasis_url(oasis_config, OasisDatasetType.WIND_SOLAR_FORECAST)
     df = _get_oasis_data(session, target_url)
 
     # There are 3 trading hubs in CAISO
@@ -397,7 +401,7 @@ if __name__ == "__main__":
     # print('fetch_exchange("US-CA", "US") ->')
     # pprint(fetch_exchange("US-CA", "US"))
 
-    # pprint(fetch_production(target_datetime=datetime(2023,1,20)))s
+    # pprint(fetch_production(target_datetime=datetime(2023,1,20)))
     # pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))
 
     # print("fetch_generation_forecast() ->")
