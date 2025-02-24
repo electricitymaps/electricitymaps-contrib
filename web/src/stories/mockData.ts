@@ -122,7 +122,8 @@ export const zoneStateMock: StateZoneData = {
     fr: 0.345,
     rr: 0.655,
   },
-  e: 0,
+  ep: 0,
+  em: null,
 };
 
 export const priceData2 = {
