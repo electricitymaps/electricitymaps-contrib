@@ -497,6 +497,7 @@ parsers:
   production: US_CA.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_CA.fetch_wind_solar_forecasts
+  generationForecast: US_CA.fetch_generation_forecast
 region: Americas
 sources:
   INCER ACV:
