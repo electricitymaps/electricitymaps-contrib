@@ -83,6 +83,7 @@ export const DataValidityBadge = memo(function DataValidityBadge({
         <EstimationBadge
           text={t('estimation-card.ESTIMATED_TIME_SLICER_AVERAGE.pill')}
           Icon={CircleDashed}
+          isPreliminary={true}
         />
       );
     }
