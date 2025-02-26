@@ -206,7 +206,7 @@
       "body": "Le fournisseur de données pour cette zone n'a pas été en mesure de publier des données pendant une période prolongée. Nous sommes au courant de la situation et la zone sera mise à jour dès que les données seront à nouveau disponibles."
     },
     "outage": {
-       "title": "Problèmes en cours",
+      "title": "Problèmes en cours",
       "pill": "Indisponible"
     },
     "aggregated": {
