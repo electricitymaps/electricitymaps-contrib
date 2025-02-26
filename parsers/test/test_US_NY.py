@@ -10,7 +10,7 @@ from parsers import US_NY
 MOCK_CSV_DATA = "parsers/test/mocks/US_NY/20250219isolf.csv"
 
 
-def test_snapshot_fetch_generation_forecast(adapter, session, snapshot):
+def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
     adapter.register_uri(
         "GET",
         "http://mis.nyiso.com/public/csv/isolf/20250219isolf.csv",
