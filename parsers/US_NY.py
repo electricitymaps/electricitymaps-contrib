@@ -265,17 +265,17 @@ def fetch_consumption_forecast(
     all_consumption_events = (
         df.copy()
     )  # all events with a datetime and a generation value
-    generation_list = TotalConsumptionList(logger)
+    consumption_list = TotalConsumptionList(logger)
     for _index, event in all_consumption_events.iterrows():
         event_datetime = timestamp_converter(event["Time Stamp"])
-        generation_list.append(
+        consumption_list.append(
             zoneKey=zone_key,
             datetime=event_datetime,
             consumption=event["NYISO"],
             source=SOURCE,
             sourceType=EventSourceType.forecasted,
         )
-    return generation_list.to_list()
+    return consumption_list.to_list()
 
 
 if __name__ == "__main__":
