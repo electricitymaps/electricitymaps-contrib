@@ -9,7 +9,6 @@ from typing import Any, Literal
 from zoneinfo import ZoneInfo
 
 import demjson3 as demjson
-import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
@@ -239,38 +238,41 @@ def fetch_wind_solar_forecasts(
     )
     items_solar = resp_data_solar.get("items", [])
 
-    # Transform data structure
-    df_wind, df_solar = pd.DataFrame(items_wind), pd.DataFrame(items_solar)
-    df = pd.concat([df_wind, df_solar])
-    df = df.sort_values(["datetime_beginning_utc", "evaluated_at_utc"])
-    latest_forecasts_df = df.groupby("datetime_beginning_utc").last().reset_index()
-    latest_forecasts_df = latest_forecasts_df.drop(
-        ["evaluated_at_ept", "datetime_beginning_ept", "datetime_ending_ept"], axis=1
-    )
-
-    # Add events
-    all_production_events = (
-        latest_forecasts_df.copy()
-    )  # all events with a datetime and a production breakdown
+    # Combine wind and solar data and sort by datetime_beginning_utc
+    items = items_wind + items_solar
+    items.sort(key=lambda x: (x["datetime_beginning_utc"], x["evaluated_at_utc"]))
     production_list = ProductionBreakdownList(logger)
-    for _index, event in all_production_events.iterrows():
-        event_datetime = datetime.fromisoformat(
-            event["datetime_beginning_utc"]
-        ).replace(tzinfo=timezone.utc)
+
+    # Group by datetime_beginning_utc and get the last evaluated_at_utc entry for each group
+    for datetime_utc, group in groupby(
+        items, key=lambda x: x["datetime_beginning_utc"]
+    ):
+        group_list = list(group)
+        wind_entries = [entry for entry in group_list if "wind_forecast_mwh" in entry]
+        latest_entry_wind = max(wind_entries, key=lambda x: x["evaluated_at_utc"])
+        solar_entries = [entry for entry in group_list if "solar_forecast_mwh" in entry]
+        latest_entry_solar = max(solar_entries, key=lambda x: x["evaluated_at_utc"])
+
         production_mix = ProductionMix()
         production_mix.add_value(
-            "solar", event["solar_forecast_mwh"], correct_negative_with_zero=True
+            "solar",
+            latest_entry_solar["solar_forecast_mwh"],
+            correct_negative_with_zero=True,
         )
         production_mix.add_value(
-            "wind", event["wind_forecast_mwh"], correct_negative_with_zero=True
+            "wind",
+            latest_entry_wind["wind_forecast_mwh"],
+            correct_negative_with_zero=True,
         )
+
         production_list.append(
             zoneKey=zone_key,
-            datetime=event_datetime,
+            datetime=datetime.fromisoformat(datetime_utc).replace(tzinfo=timezone.utc),
             production=production_mix,
             source=SOURCE,
             sourceType=EventSourceType.forecasted,
         )
+
     return production_list.to_list()
 
 
