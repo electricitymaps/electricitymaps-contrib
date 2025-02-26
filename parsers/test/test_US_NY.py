@@ -18,7 +18,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
     )
 
     with freeze_time("2025-02-19 00:00:00"):
-        result = US_NY.fetch_generation_forecast(
+        result = US_NY.fetch_consumption_forecast(
             zone_key=ZoneKey("US-NY-NYIS"),
             session=session,
         )
