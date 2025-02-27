@@ -27,7 +27,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     data_wind = Path(base_path_to_mock, "seven_day_wind_power_forecast_20250225.csv")
     adapter.register_uri(
         GET,
-        re.compile(r"https://www.iso-ne.com/transform/csv/wphf\?start=\d+"),
+        re.compile(r"https://www\.iso-ne\.com/transform/csv/wphf\?start=\d+"),
         text=data_wind.read_text(),
     )
 
@@ -35,7 +35,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     data_solar = Path(base_path_to_mock, "seven_day_solar_power_forecast_20250225.csv")
     adapter.register_uri(
         GET,
-        re.compile(r"https://www.iso-ne.com/transform/csv/sphf\?start=\d+"),
+        re.compile(r"https://www\.iso-ne\.com/transform/csv/sphf\?start=\d+"),
         text=data_solar.read_text(),
     )
 
