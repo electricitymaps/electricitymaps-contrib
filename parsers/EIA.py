@@ -485,10 +485,15 @@ def create_production_storage(
         return None, storage_mix
     # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
     # Lower values are set to None as they are most likely outliers.
-    production_mix.add_value(
-        fuel_type, production_value, production_value > negative_threshold
-    )
-    return production_mix, None
+    if fuel_type == "hydro_storage":
+        storage_mix.add_value("hydro", production_value)
+    elif fuel_type == "battery_storage":
+        storage_mix.add_value("battery", production_value)
+    else:
+        production_mix.add_value(
+            fuel_type, production_value, production_value > negative_threshold
+        )
+    return production_mix, storage_mix
 
 
 @refetch_frequency(timedelta(days=1))
@@ -506,7 +511,7 @@ def fetch_production_mix(
         )
         production_breakdown = ProductionBreakdownList(logger)
         url_prefix = PRODUCTION_MIX.format(REGIONS[zone_key], code)
-        production_values = _fetch(
+        production_and_storage_values = _fetch(
             zone_key,
             url_prefix,
             session=session,
@@ -517,9 +522,9 @@ def fetch_production_mix(
         # As null values can cause problems in the estimation models if there's
         # only null values.
         # Integrate with data quality layer later.
-        production_values = [
+        production_and_storage_values = [
             datapoint
-            for datapoint in production_values
+            for datapoint in production_and_storage_values
             if datapoint["value"] is not None
         ]
         # EIA does not currently split production from the Virgil Summer C
@@ -531,9 +536,10 @@ def fetch_production_mix(
         # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
 
         if zone_key == "US-CAR-SCEG" and production_mode == "nuclear":
-            for point in production_values:
+            for point in production_and_storage_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
-        for point in production_values:
+
+        for point in production_and_storage_values:
             production_mix, storage_mix = create_production_storage(
                 production_mode, point, negative_threshold
             )
