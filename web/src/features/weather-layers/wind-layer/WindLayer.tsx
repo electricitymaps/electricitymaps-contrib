@@ -3,11 +3,22 @@ import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import useResizeObserver from 'use-resize-observer';
-import { isWindLayerEnabledAtom, windLayerLoadingAtom } from 'utils/state/atoms';
+import {
+  isWindLayerEnabledAtom,
+  windLayerLoadingAtom,
+  windOnlyModeAtom,
+} from 'utils/state/atoms';
 
 import { Windy } from './windy';
 
+// Expose windySingleton to window for SVG export
 let windySingleton: Windy | null = null;
+declare global {
+  interface Window {
+    windySingleton?: Windy;
+  }
+}
+
 const createWindy = async (
   canvas: HTMLCanvasElement,
   data: GfsForecastResponse,
@@ -15,6 +26,8 @@ const createWindy = async (
 ) => {
   if (!windySingleton) {
     windySingleton = new Windy(canvas, data, map);
+    // Expose to window for SVG export
+    window.windySingleton = windySingleton;
   }
   return windySingleton;
 };
@@ -45,8 +58,14 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
 
   const setIsLoadingWindLayer = useSetAtom(windLayerLoadingAtom);
   const isWindLayerEnabled = useAtomValue(isWindLayerEnabledAtom);
-  const { data: windData, isSuccess } = useGetWind({ enabled: isWindLayerEnabled });
-  const isVisible = isSuccess && !isMapMoving && isWindLayerEnabled;
+  const windOnlyMode = useAtomValue(windOnlyModeAtom);
+  const { data: windData, isSuccess } = useGetWind({
+    enabled: isWindLayerEnabled || windOnlyMode,
+  });
+
+  // In wind-only mode, we always show the wind layer regardless of map movement
+  const isVisible =
+    (isSuccess && !isMapMoving && isWindLayerEnabled) || (isSuccess && windOnlyMode);
 
   useEffect(() => {
     if (
@@ -54,7 +73,7 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
       !windy &&
       isVisible &&
       reference.current &&
-      isWindLayerEnabled &&
+      (isWindLayerEnabled || windOnlyMode) &&
       windData
     ) {
       createWindy(reference.current as HTMLCanvasElement, windData, map).then((w) => {
@@ -73,6 +92,7 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
     windy,
     map,
     isWindLayerEnabled,
+    windOnlyMode,
     windData,
     setIsLoadingWindLayer,
     viewport,
@@ -84,6 +104,17 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
       windy.start(bounds, width, height);
     }
   }, [viewport, windy]);
+
+  // Cleanup when component unmounts
+  useEffect(
+    () => () => {
+      if (windySingleton) {
+        windySingleton.stop();
+        window.windySingleton = undefined;
+      }
+    },
+    []
+  );
 
   return (
     <canvas

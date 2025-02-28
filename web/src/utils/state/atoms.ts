@@ -122,3 +122,6 @@ export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
 export const futurePriceCollapsedAtom = atom<boolean>(true);
 
 export const isRedirectedToLatestDatetimeAtom = atom<boolean>(false);
+
+// Wind-only mode atom to show only the wind layer with transparent background
+export const windOnlyModeAtom = atomWithStorage('windOnlyMode', false);
