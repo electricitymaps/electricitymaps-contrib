@@ -2,6 +2,7 @@ import { App } from '@capacitor/app';
 import { PluginListenerHandle } from '@capacitor/core/types/definitions';
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
+import WindOnlyModeToggle from 'features/map-controls/WindOnlyModeToggle';
 import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
 import SolarLayer from 'features/weather-layers/solar/SolarLayer';
@@ -12,6 +13,7 @@ import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { useLocation, useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
+import { ToggleOptions } from 'utils/constants';
 import {
   getCarbonIntensity,
   useNavigateWithParameters,
@@ -19,9 +21,12 @@ import {
 } from 'utils/helpers';
 import {
   isConsumptionAtom,
+  isWindLayerEnabledAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   userLocationAtom,
+  windLayerAtom,
+  windOnlyModeAtom,
 } from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
@@ -77,6 +82,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const spatialAggregate = useAtomValue(spatialAggregateAtom);
+  const windOnlyMode = useAtomValue(windOnlyModeAtom);
+  const isWindLayerEnabled = useAtomValue(isWindLayerEnabledAtom);
+  const setWindLayer = useSetAtom(windLayerAtom);
   // Calculate layer styles only when the theme changes
   // To keep the stable and prevent excessive rerendering.
   const { isLoading, isSuccess, isError, data } = useGetState();
@@ -421,6 +429,25 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     setIsMoving(false);
   }, [setIsMoving]);
 
+  // Force enable wind layer when in wind-only mode
+  useEffect(() => {
+    if (windOnlyMode && !isWindLayerEnabled) {
+      // Enable the wind layer when in wind-only mode
+      setWindLayer(ToggleOptions.ON);
+      console.log(
+        'Wind-only mode is enabled but wind layer is not. Wind layer has been enabled.'
+      );
+    }
+  }, [windOnlyMode, isWindLayerEnabled, setWindLayer]);
+
+  // Determine cursor style based on mode and hover state
+  let cursorStyle = 'grab';
+  if (windOnlyMode) {
+    cursorStyle = 'default';
+  } else if (hoveredZone) {
+    cursorStyle = 'pointer';
+  }
+
   return (
     <Map
       RTLTextPlugin={false}
@@ -430,13 +457,15 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         longitude: 6.528,
         zoom: 2.5,
       }}
-      interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
-      cursor={hoveredZone ? 'pointer' : 'grab'}
-      onClick={onClick}
+      interactiveLayerIds={
+        windOnlyMode ? [] : ['zones-clickable-layer', 'zones-hoverable-layer']
+      }
+      cursor={cursorStyle}
+      onClick={windOnlyMode ? undefined : onClick}
       onLoad={onLoad}
       onError={onError}
-      onMouseMove={onMouseMove}
-      onMouseOut={onMouseOut}
+      onMouseMove={windOnlyMode ? undefined : onMouseMove}
+      onMouseOut={windOnlyMode ? undefined : onMouseOut}
       onMoveStart={onMoveStart}
       onMoveEnd={onMoveEnd}
       dragPan={{ maxSpeed: 0 }} // Disables easing effect to improve performance on exchange layer
@@ -450,22 +479,34 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         minWidth: '100vw',
         height: '100vh',
         position: 'absolute',
+        background: windOnlyMode ? 'transparent' : undefined,
       }}
-      mapStyle={MAP_STYLE as StyleSpecification}
+      mapStyle={
+        {
+          ...MAP_STYLE,
+          // Make the background transparent when in wind-only mode
+          layers: windOnlyMode ? [] : MAP_STYLE.layers,
+        } as StyleSpecification
+      }
     >
-      <BackgroundLayer />
-      <ZonesLayer />
-      <StatesLayer />
+      {!windOnlyMode && <BackgroundLayer />}
+      {!windOnlyMode && <ZonesLayer />}
+      {!windOnlyMode && <StatesLayer />}
       <CustomLayer>
         <WindLayer />
       </CustomLayer>
-      <CustomLayer>
-        <ExchangeLayer />
-      </CustomLayer>
-      <CustomLayer>
-        <SolarLayer />
-      </CustomLayer>
-      <ZoomControls />
+      {!windOnlyMode && (
+        <>
+          <CustomLayer>
+            <ExchangeLayer />
+          </CustomLayer>
+          <CustomLayer>
+            <SolarLayer />
+          </CustomLayer>
+        </>
+      )}
+      {!windOnlyMode && <ZoomControls />}
+      <WindOnlyModeToggle />
     </Map>
   );
 }
