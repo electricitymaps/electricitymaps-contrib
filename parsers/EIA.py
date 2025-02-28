@@ -338,16 +338,32 @@ EXCHANGE_TRANSFERS = {
     "US-MIDW-MISO->US-SE-SOCO": {"US-MIDW-MISO->US-SE-AEC"},
 }
 
+# # IMPORTANT: the order of the fields must match the order of the fields in the database
+# biomass: float | None = None
+# coal: float | None = None
+# gas: float | None = None
+# geothermal: float | None = None
+# hydro: float | None = None
+# nuclear: float | None = None
+# oil: float | None = None
+# solar: float | None = None
+# unknown: float | None = None
+# wind: float | None = None
+# battery_storage: float | None = None
+# hydro_storage: float | None = None
 TYPES = {
     # 'biomass': 'BM',  # not currently supported
     "coal": "COL",
     "gas": "NG",
+    "geothermal": "GEO",
     "hydro": "WAT",
     "nuclear": "NUC",
     "oil": "OIL",
-    "unknown": "OTH",
     "solar": "SUN",
+    "unknown": "OTH",
     "wind": "WND",
+    "battery_storage": "BAT",
+    "hydro_storage": "PS",
 }
 
 BASE_URL = "https://api.eia.gov/v2/electricity/rto"
