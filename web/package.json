@@ -159,7 +159,7 @@
     "@types/topojson-server": "^3.0.4",
     "@types/topojson-specification": "^1.0.5",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "@vitest/coverage-istanbul": "2.1.6",
+    "@vitest/coverage-istanbul": "2.1.9",
     "autoprefixer": "10.4.20",
     "browserslist-to-esbuild": "^2.1.1",
     "colors": "^1.4.0",
