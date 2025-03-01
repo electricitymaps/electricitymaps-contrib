@@ -84,8 +84,8 @@ importers:
         specifier: ^3.12.0
         version: 3.12.0(react@18.3.1)
       country-flag-icons:
-        specifier: ^1.5.14
-        version: 1.5.14
+        specifier: ^1.5.18
+        version: 1.5.18
       currency-symbol-map:
         specifier: ^5.1.0
         version: 5.1.0
@@ -4876,8 +4876,8 @@ packages:
     resolution: {integrity: sha512-H65gsXo1SKjf8zmrJ67eJk8aIRKV5ff2D4uKZIBZShbhGSpEmsQOPW/SKMKYhSTrqR7ufy6RP69rPogdaPh/kA==}
     engines: {node: '>=4'}
 
-  country-flag-icons@1.5.14:
-    resolution: {integrity: sha512-GAFsVzHDu3bdAhbQ1LwBRqk/Ad8+ZzS5zU49P+lRla0KGy/V1V8ywNa1SxBOAmI/lyEOT9dfH3Q++q1lqJlvBA==}
+  country-flag-icons@1.5.18:
+    resolution: {integrity: sha512-z+Uzesi8u8IdkViqqbzzbkf3+a7WJpcET5B7sPwTg7GXqPYpVEgNlZ/FC3l8KO4mEf+mNkmzKLppKTN4PlCJEQ==}
 
   create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -14858,7 +14858,7 @@ snapshots:
       js-yaml: 3.14.1
       parse-json: 4.0.0
 
-  country-flag-icons@1.5.14: {}
+  country-flag-icons@1.5.18: {}
 
   create-require@1.1.1: {}
 
