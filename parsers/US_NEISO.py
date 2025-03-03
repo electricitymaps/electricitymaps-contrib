@@ -294,6 +294,9 @@ def fetch_wind_solar_forecasts(
                 merged_data, data, on=["Hour Ending", "Date"], how="outer"
             )
 
+    # Convert 'Hour Ending' to numeric type if it isn't already
+    merged_data["Hour Ending"] = pd.to_numeric(merged_data["Hour Ending"])
+
     # Combine Date and Hour Ending into a datetime iso column
     merged_data["datetime"] = pd.to_datetime(
         merged_data["Date"]
@@ -302,6 +305,7 @@ def fetch_wind_solar_forecasts(
         + ":00",
         format="%m/%d/%Y %H:%M",
     )
+    # Convert to ISO format string
     merged_data["datetime_iso"] = merged_data["datetime"].dt.strftime(
         "%Y-%m-%dT%H:%M:%S"
     )
