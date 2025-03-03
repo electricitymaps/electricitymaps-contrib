@@ -15,7 +15,6 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
-    TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
@@ -256,7 +255,7 @@ def _get_oasis_data(session: Session, target_url: str) -> pd.DataFrame:
 
 
 @refetch_frequency(timedelta(days=7))
-def fetch_generation_forecast(
+def fetch_consumption_forecast(
     zone_key: ZoneKey = ZoneKey("US-CAL-CISO"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -305,21 +304,21 @@ def fetch_generation_forecast(
     df = df[df[COL_TACAREA] == "CA ISO-TAC"]
 
     # Add events
-    all_generation_events = (
+    all_consumption_events = (
         df.copy()
-    )  # all events with a datetime and a generation value
-    generation_list = TotalProductionList(logger)
-    for _index, event in all_generation_events.iterrows():
+    )  # all events with a datetime and a consumption value
+    consumption_list = TotalConsumptionList(logger)
+    for _index, event in all_consumption_events.iterrows():
         event_datetime = datetime.fromisoformat(event[COL_DATETIME])
-        event_generation_value = event["MW"]
-        generation_list.append(
+        event_consumption_value = event["MW"]
+        consumption_list.append(
             zoneKey=zone_key,
             datetime=event_datetime,
-            value=event_generation_value,
+            consumption=event_consumption_value,
             source="oasis.caiso.com",
             sourceType=EventSourceType.forecasted,
         )
-    return generation_list.to_list()
+    return consumption_list.to_list()
 
 
 @refetch_frequency(timedelta(days=7))
@@ -404,8 +403,8 @@ if __name__ == "__main__":
     # pprint(fetch_production(target_datetime=datetime(2023,1,20)))
     # pprint(fetch_consumption(target_datetime=datetime(2022, 2, 22)))
 
-    # print("fetch_generation_forecast() ->")
-    pprint(fetch_generation_forecast())
+    # print("fetch_consumption_forecast() ->")
+    pprint(fetch_consumption_forecast())
 
     # print("fetch_wind_solar_forecasts() ->")
     # pprint(fetch_wind_solar_forecasts())

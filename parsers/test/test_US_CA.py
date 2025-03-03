@@ -34,7 +34,7 @@ def test_snapshot_fetch_wind_solar_forecasts(snapshot):
     snapshot.assert_match(parsed_wind_solar_forecasts)
 
 
-def test_snapshot_fetch_generation_forecast(snapshot):
+def test_snapshot_fetch_consumption_forecast(snapshot):
     def _mock_get_oasis_data(*args, **kwargs) -> pd.DataFrame:
         MOCK_ZIP_FILENAME = "parsers/test/mocks/US_CA/20250219_20250227_SLD_FCST_7DA_20250221_01_09_58_v1.zip"
 
@@ -49,7 +49,7 @@ def test_snapshot_fetch_generation_forecast(snapshot):
 
     # Mock the call to _get_oasis_data with above (with patch)
     with patch("parsers.US_CA._get_oasis_data", _mock_get_oasis_data):
-        result = US_CA.fetch_generation_forecast(
+        result = US_CA.fetch_consumption_forecast(
             zone_key=ZoneKey("US-CAL-CISO"), logger=getLogger("test")
         )
 
