@@ -176,12 +176,12 @@
     "link": "En savoir plus sur nos modèles d'estimation",
     "outage-details": "Voir les détails",
     "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Les Données sont préliminaires",
+      "title": "Les données sont préliminaires",
       "pill": "Préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmeés et sont basées sur des données préliminaires."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Les Données sont préliminaires",
+      "title": "Les données sont préliminaires",
       "pill": "Préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmeés et sont basées sur des données préliminaires."
     },
@@ -197,7 +197,7 @@
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Les données sont toujours estimées",
-      "pill": "Estimé",
+      "pill": "Estimées",
       "body": "Les données en temps réel pour cette zone ne sont pas disponibles. Les valeurs actuelles sont modélisées en utilisant une combinaison de données météorologiques en direct et de données historiques de production."
     },
     "threshold_filtered": {
