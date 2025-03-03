@@ -338,7 +338,7 @@ EXCHANGE_TRANSFERS = {
     "US-MIDW-MISO->US-SE-SOCO": {"US-MIDW-MISO->US-SE-AEC"},
 }
 
-# # IMPORTANT: the order of the fields must match the order of the fields in the database
+# Available modes
 # biomass: float | None = None
 # coal: float | None = None
 # gas: float | None = None
@@ -485,15 +485,19 @@ def create_production_storage(
         return None, storage_mix
     # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
     # Lower values are set to None as they are most likely outliers.
+
+    # have to have early returns because of downstream validation in ProductionBreakdownList
     if fuel_type == "hydro_storage":
         storage_mix.add_value("hydro", production_value)
+        return None, storage_mix
     elif fuel_type == "battery_storage":
         storage_mix.add_value("battery", production_value)
+        return None, storage_mix
     else:
         production_mix.add_value(
             fuel_type, production_value, production_value > negative_threshold
         )
-    return production_mix, storage_mix
+        return production_mix, None
 
 
 @refetch_frequency(timedelta(days=1))
