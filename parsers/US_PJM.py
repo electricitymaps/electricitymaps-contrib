@@ -240,18 +240,16 @@ def fetch_wind_solar_forecasts(
 
     # Combine wind and solar data and sort by datetime_beginning_utc
     items = items_wind + items_solar
-    items.sort(key=lambda x: (x["datetime_beginning_utc"], x["evaluated_at_utc"]))
+    items.sort(key=itemgetter("datetime_beginning_utc", "evaluated_at_utc"))
     production_list = ProductionBreakdownList(logger)
 
     # Group by datetime_beginning_utc and get the last evaluated_at_utc entry for each group
-    for datetime_utc, group in groupby(
-        items, key=lambda x: x["datetime_beginning_utc"]
-    ):
+    for datetime_utc, group in groupby(items, key=itemgetter("datetime_beginning_utc")):
         group_list = list(group)
         wind_entries = [entry for entry in group_list if "wind_forecast_mwh" in entry]
-        latest_entry_wind = max(wind_entries, key=lambda x: x["evaluated_at_utc"])
+        latest_entry_wind = max(wind_entries, key=itemgetter("evaluated_at_utc"))
         solar_entries = [entry for entry in group_list if "solar_forecast_mwh" in entry]
-        latest_entry_solar = max(solar_entries, key=lambda x: x["evaluated_at_utc"])
+        latest_entry_solar = max(solar_entries, key=itemgetter("evaluated_at_utc"))
 
         production_mix = ProductionMix()
         production_mix.add_value(
@@ -433,6 +431,6 @@ if __name__ == "__main__":
     ]:
         print(f"fetch_exchange(US-MIDA-PJM, {neighbor}) ->")
         print(fetch_exchange(ZONE_KEY, ZoneKey(neighbor)))
-"""
+    """
     print("fetch_wind_solar_forecasts() ->")
     print(fetch_wind_solar_forecasts())
