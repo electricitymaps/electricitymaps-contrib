@@ -4,13 +4,48 @@ bounding_box:
   - - 56.33463
     - -20.421464
 capacity:
-  biomass: 215
-  coal: 211
-  gas: 80
-  hydro: 138
-  oil: 221
-  solar: 189
-  wind: 15
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 170.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 210.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 230.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 290.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
@@ -213,5 +248,6 @@ fallbackZoneMixes:
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Reunion

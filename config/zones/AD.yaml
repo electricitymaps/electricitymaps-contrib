@@ -3,14 +3,11 @@ bounding_box:
     - 41.92867747000005
   - - 2.2650907800001505
     - 43.14936167400003
-capacity:
-  biomass: 5
-  gas: 1.7
-  hydro: 46
-  solar: 0.231
 contributors:
   - Manu1400
   - autipial
 country: AD
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Europe
 timezone: Europe/Andorra
