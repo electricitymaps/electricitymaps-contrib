@@ -171,24 +171,20 @@ def update_capacity_list_if_datetime_already_exists(
 def generate_zone_capacity_list(
     mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
 ) -> list[dict[str, Any]]:
-    """Generate the updated capacity config for a zone if the capacity config is a list.
-    If a capacity value already exists for the same datetime, replace it.
-    Otherwise, append the new capacity value."""
-    # Check if we already have a value for this datetime
-    if new_capacity[mode]["datetime"] in [d["datetime"] for d in capacity_config[mode]]:
-        # Replace the existing value for this datetime
-        return sorted(
-            [
-                new_capacity[mode] if item["datetime"] == new_capacity[mode]["datetime"] else item
-                for item in capacity_config[mode]
-            ],
-            key=itemgetter("datetime"),
+    """Generate the updated capacity config for a zone if the capacity config is a list"""
+    if new_capacity[mode]["value"] in [d["value"] for d in capacity_config[mode]]:
+        return update_capacity_list_if_value_already_exists(
+            mode, capacity_config, new_capacity
+        )
+    elif new_capacity[mode]["datetime"] in [
+        d["datetime"] for d in capacity_config[mode]
+    ]:
+        return update_capacity_list_if_datetime_already_exists(
+            mode, capacity_config, new_capacity
         )
     else:
-        # Append the new value
         return sorted(
-            capacity_config[mode] + [new_capacity[mode]], 
-            key=itemgetter("datetime")
+            capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
         )
 
 

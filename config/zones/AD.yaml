@@ -7,7 +7,5 @@ contributors:
   - Manu1400
   - autipial
 country: AD
-parsers:
-  productionCapacity: EMBER.fetch_production_capacity
 region: Europe
 timezone: Europe/Andorra
