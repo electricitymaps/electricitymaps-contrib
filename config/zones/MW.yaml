@@ -3,6 +3,46 @@ bounding_box:
     - -17.629872698428883
   - - 36.4049590495905
     - -8.907749731785735
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 370.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 390.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
 country: MW
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Blantyre

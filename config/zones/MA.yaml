@@ -4,16 +4,64 @@ bounding_box:
   - - -0.5319994709999492
     - 36.426519149000015
 capacity:
-  biomass: 0
-  coal: 4116
-  gas: 1944
-  geothermal: 0
-  hydro: 1306
-  hydro storage: 464
-  nuclear: 0
-  oil: 916
-  solar: 711
-  wind: 1220
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 2870.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 4260.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 870.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1310.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 730.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 770.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 850.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 930.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1030.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1020.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 1230.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 1430.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1470.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1560.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1860.0
 contributors:
   - veqtrus
 country: MA
@@ -27,6 +75,7 @@ fallbackZoneMixes:
       oil: 0.114
       solar: 0.0474
       wind: 0.1409
-parsers: {}
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Casablanca

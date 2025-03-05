@@ -4,12 +4,60 @@ bounding_box:
   - - 46.3
     - 41.6
 capacity:
-  biomass: 0
-  gas: 1832
-  hydro: 1336
-  nuclear: 440
-  solar: 306
-  wind: 3
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1790.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 2050.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1330.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 1340.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 1350.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1360.0
+  nuclear:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 410.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 450.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 240.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 400.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 contributors:
   - tmslaine
   - systemcatch
@@ -79,6 +127,7 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 4.115911610833948e-07
         wind: 1.300389465451885e-06
-parsers: {}
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Yerevan

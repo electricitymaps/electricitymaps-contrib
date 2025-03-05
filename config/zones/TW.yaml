@@ -11,6 +11,9 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 90.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -56,10 +59,6 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 2100.0
-  hydro storage:
-    - datetime: '2015-01-01'
-      source: taipower.com.tw
-      value: 2602.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -114,10 +113,6 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 12420.0
-  unknown:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 320.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data

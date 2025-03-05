@@ -3,71 +3,92 @@ bounding_box:
     - 45.8179931641
   - - 10.4920501709
     - 47.808380127
-
 capacity:
   biomass:
-    - datetime: '2023-01-01'
-      source: SFOE
-      value: 542.9
-    - datetime: '2024-01-01'
-      source: SFOE
-      value: 648.4
-  coal:
-    - datetime: '2023-01-01'
-      source: SFOE
-      value: 0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
   gas:
-    - datetime: '2023-01-01'
-      source: SFOE
-      value: 216.5
-    - datetime: '2024-01-01'
-      source: SFOE
-      value: 304.7
-  geothermal:
-    - datetime: '2023-01-01'
-      source: SFOE
-      value: 0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 230.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 230.0
   hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 14830.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 14980.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 15010.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 15030.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 15050.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 15070.0
     - datetime: '2023-01-01'
-      source: SFOE
-      value: 12885.3
-    - datetime: '2024-01-01'
-      source: SFOE
-      value: 10438.1
-  hydro storage:
-    - datetime: '2024-01-01'
-      source: entsoe
-      value: 6697
+      source: Ember, Yearly electricity data
+      value: 15280.0
   nuclear:
-    - datetime: '2023-01-01'
-      source: SFOE
-      value: 3014.6
-  oil:
-    - datetime: '2023-01-01'
-      source: SFOE
-      value: 0.4
-    - datetime: '2024-01-01'
-      source: SFOE
-      value: 0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 3330.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 2960.0
   solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1910.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 2170.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 2500.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 2970.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 3650.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 4340.0
     - datetime: '2023-01-01'
-      source: SFOE
-      value: 4736.7
-    - datetime: '2024-01-01'
-      source: SFOE
-      value: 6357.9
-  wind:
-    - datetime: '2023-01-01'
-      source: SFOE
-      value: 88.4
-    - datetime: '2024-01-01'
-      source: SFOE
-      value: 102.2
+      source: Ember, Yearly electricity data
+      value: 5840.0
   unknown:
-    - datetime: '2024-01-01'
-      source: SFOE
-      value: 15860
-
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 690.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 680.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 690.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 700.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
 contributors:
   - corradio
   - postronium
@@ -442,6 +463,7 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
+  productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 price_displayed: false
 region: Europe
