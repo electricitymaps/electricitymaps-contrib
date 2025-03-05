@@ -226,17 +226,50 @@ def generate_zone_capacity_list(
         if item["datetime"] < new_capacity[mode]["datetime"]
     ]
 
+    # Find entries with datetimes after the new entry
+    entries_after = [
+        item
+        for item in sorted_config
+        if item["datetime"] > new_capacity[mode]["datetime"]
+    ]
+
     # If this is the earliest entry, we should add it
     if not entries_before:
-        return sorted(
-            capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
-        )
+        # Check if the next entry (if any) has the same value as the new entry
+        if entries_after and entries_after[0]["value"] == new_capacity[mode]["value"]:
+            # If the next entry has the same value, it's redundant - remove it
+            return sorted(
+                [
+                    item
+                    for item in sorted_config
+                    if item["datetime"] != entries_after[0]["datetime"]
+                ]
+                + [new_capacity[mode]],
+                key=itemgetter("datetime"),
+            )
+        else:
+            return sorted(
+                capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
+            )
 
     # If the most recent entry before has a different value, we should add it
     if entries_before[-1]["value"] != new_capacity[mode]["value"]:
-        return sorted(
-            capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
-        )
+        # Check if the next entry (if any) has the same value as the new entry
+        if entries_after and entries_after[0]["value"] == new_capacity[mode]["value"]:
+            # If the next entry has the same value, it's redundant - remove it
+            return sorted(
+                [
+                    item
+                    for item in sorted_config
+                    if item["datetime"] != entries_after[0]["datetime"]
+                ]
+                + [new_capacity[mode]],
+                key=itemgetter("datetime"),
+            )
+        else:
+            return sorted(
+                capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
+            )
 
     # If the value is the same as the most recent entry before, we don't need to add it
     return capacity_config[mode]
