@@ -3,6 +3,70 @@ bounding_box:
     - 17.42291901200015
   - - -64.74461829299992
     - 19.022772528000033
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1330.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 1350.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1370.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1380.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 300.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 310.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 340.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 380.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 490.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 640.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 960.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 3470.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 3610.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 3620.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3660.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 3760.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
 contributors:
   - q--
   - systemcatch

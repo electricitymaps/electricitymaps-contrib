@@ -3,6 +3,19 @@ bounding_box:
     - -12.880108775840185
   - - 45.03064530645307
     - -10.879781875602312
+capacity:
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
 country: KM
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

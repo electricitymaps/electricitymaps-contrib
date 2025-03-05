@@ -3,6 +3,44 @@ bounding_box:
     - 28.3985
   - - 48.7948
     - 30.4747
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10220.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 11100.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 11650.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 11680.0
+  oil:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 8500.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
 contributors:
   - alixunderplatz
   - nessie2013

@@ -1,3 +1,20 @@
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
 country: LR
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

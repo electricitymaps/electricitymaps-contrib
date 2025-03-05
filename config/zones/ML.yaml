@@ -3,6 +3,47 @@ bounding_box:
     - 9.662308008919425
   - - 4.768044213572687
     - 25.495481572532512
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 320.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 460.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 460.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 470.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 480.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 490.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 510.0
 country: ML
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

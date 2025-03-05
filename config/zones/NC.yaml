@@ -1,3 +1,49 @@
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 370.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 440.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 640.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
 country: NC
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

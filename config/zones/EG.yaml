@@ -3,6 +3,84 @@ bounding_box:
     - 21.49593195465185
   - - 37.39496894968951
     - 32.15717215995355
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 33190.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 48840.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 51810.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 52560.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 53530.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 52660.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 2800.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 2830.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 760.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 1650.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 1640.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1660.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1720.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1860.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 750.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 1130.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 1380.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1640.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1890.0
 country: EG
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
