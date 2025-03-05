@@ -167,9 +167,9 @@ platform :android do
     UI.success("--- Step: manual part ---")
     UI.success("-------------------------")
     UI.important("YOU ARE ALMOST THERE! Please follow the steps below to submit the new version for review:")
-    UI.message("1. Open https://play.google.com/console/u/0/developers/7105597502658203364/app/4972478320592934095/tracks/internal-testing")
-    UI.message("2. Promote the latest version to production.")
-    UI.success("3. Remember to add release notes and save.")
+    UI.message("1. Open https://play.google.com/console/u/0/developers/7105597502658203364/app/4972478320592934095/releases/overview")
+    UI.message("2. Select the release under 'Latest releases'.")
+    UI.success("3. Add release notes and save.")
     UI.success("4. Run the 'commit' lane after both releases are done.")
   end
 end
