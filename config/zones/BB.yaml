@@ -3,6 +3,9 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
@@ -15,15 +18,51 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 70.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
   unknown:
     - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 260.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 260.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 260.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 260.0
+    - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 260.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 300.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 300.0
   wind:
     - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
 country: BB

@@ -8,8 +8,41 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
   oil:
     - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1850.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 1850.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 1850.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 1850.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1850.0
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1850.0
     - datetime: '2023-01-01'
@@ -39,6 +72,24 @@ capacity:
       value: 610.0
   wind:
     - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+    - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 160.0
 contributors:

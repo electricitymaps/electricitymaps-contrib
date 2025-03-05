@@ -8,10 +8,22 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 4700.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 4700.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 4700.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 4700.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 5320.0
     - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 5770.0
+    - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 5770.0
   hydro:
@@ -19,6 +31,21 @@ capacity:
       source: Ember, Yearly electricity data
       value: 60.0
     - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 70.0
   solar:
@@ -34,6 +61,9 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 90.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 200.0
@@ -45,6 +75,21 @@ capacity:
       source: Ember, Yearly electricity data
       value: 240.0
     - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
+    - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 250.0
 country: TN

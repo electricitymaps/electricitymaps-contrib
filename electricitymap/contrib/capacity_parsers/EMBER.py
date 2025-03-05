@@ -38,10 +38,10 @@ SPECIFIC_MODE_MAPPING = {
 
 EMBER_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["EMBER"]
 
-def get_ember_yearly_data(country_iso2:str|None, year:int=2017) -> str:
+def get_ember_yearly_data(country_iso2:ZoneKey|None, year:int=2017) -> str:
     """
     Creates a URL to fetch generation_yearly data from the API, 
-    using ISO 3 country code and a year as start date filter.
+    using ISO 3 country code and a year
     ex: 'https://ember-data-api-scg3n.ondigitalocean.app/ember/generation_yearly.json?_sort=rowid&country_code=FRA&year__gte=2017&_shape=array'
     Args:
         country_iso2 (str | None): ISO 2 country code (e.g., "FR").
@@ -52,7 +52,7 @@ def get_ember_yearly_data(country_iso2:str|None, year:int=2017) -> str:
     generation = 'generation_yearly'
     if country_iso2 is None:
         query_params = {    
-            "year__gte": year,
+            "year": year,
             "_shape": "array"
         }
     else:
@@ -62,7 +62,7 @@ def get_ember_yearly_data(country_iso2:str|None, year:int=2017) -> str:
             raise ValueError("Invalid ISO 2 country code: Use only ISO 2 country codes (e.g. FR, US, DE, etc. and not DK-DK1)")
         query_params = {
             "country_code": iso3_code,
-            "year__gte": year,
+            "year": year,
             "_shape": "array"
         }
     base_url = f"https://ember-data-api-scg3n.ondigitalocean.app/ember/{generation}.json"
@@ -103,7 +103,7 @@ def _ember_production_mode_mapper(row: pd.Series) -> str | None:
 
     return production_mode
 
-def format_ember_data(ember_df: pd.DataFrame, year: int) -> pd.DataFrame:
+def format_ember_data(ember_df: pd.DataFrame) -> pd.DataFrame:
     ember_df.query(
         'variable != "Clean" and variable != "Fossil" and variable != "Wind and solar"',
         inplace=True,
@@ -151,12 +151,11 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict[str, Any]:
         all_capacity[zone] = zone_capacity
     return all_capacity
 
-
 def fetch_production_capacity_for_all_zones(
-    target_datetime: datetime,zone_key:ZoneKey,session:Session
+    target_datetime: datetime,session:Session,zone_key:ZoneKey|None=None
 ) -> dict[str, Any]:
-    df_capacity = get_ember_yearly_data(zone_key, target_datetime.year)
-    df_capacity = format_ember_data(df_capacity, target_datetime.year)
+    df_capacity = get_ember_yearly_data(country_iso2 = zone_key, year = target_datetime.year)
+    df_capacity = format_ember_data(df_capacity)
     all_capacity = get_capacity_dict_from_df(df_capacity)
     logger.info(f"Fetched capacity data from Ember for {target_datetime.year}")
     return all_capacity
@@ -165,7 +164,7 @@ def fetch_production_capacity_for_all_zones(
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
 ) -> dict[str, Any] | None:
-    all_capacity = fetch_production_capacity_for_all_zones(target_datetime, zone_key, session)
+    all_capacity = fetch_production_capacity_for_all_zones(target_datetime = target_datetime, session = session, zone_key = zone_key)
     if zone_key in all_capacity:
         zone_capacity = all_capacity[zone_key]
         logger.info(
