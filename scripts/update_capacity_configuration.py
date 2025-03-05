@@ -162,7 +162,11 @@ def update_capacity_list_if_datetime_already_exists(
     sorted_config = sorted(capacity_config[mode], key=itemgetter("datetime"))
 
     # Find the index of the entry with the matching datetime
-    target_index = next(i for i, item in enumerate(sorted_config) if item["datetime"] == new_capacity[mode]["datetime"])
+    target_index = next(
+        i
+        for i, item in enumerate(sorted_config)
+        if item["datetime"] == new_capacity[mode]["datetime"]
+    )
 
     # Check if this is the earliest entry
     if target_index == 0:
@@ -216,7 +220,11 @@ def generate_zone_capacity_list(
     sorted_config = sorted(capacity_config[mode], key=itemgetter("datetime"))
 
     # Find entries with datetimes before the new entry
-    entries_before = [item for item in sorted_config if item["datetime"] < new_capacity[mode]["datetime"]]
+    entries_before = [
+        item
+        for item in sorted_config
+        if item["datetime"] < new_capacity[mode]["datetime"]
+    ]
 
     # If this is the earliest entry, we should add it
     if not entries_before:
@@ -352,4 +360,3 @@ def update_aggregated_capacity_config(parent_zone: ZoneKey) -> None:
         logger.warning(
             f"{parent_zone} capacity could not be updated because not all capacities are available"
         )
-
