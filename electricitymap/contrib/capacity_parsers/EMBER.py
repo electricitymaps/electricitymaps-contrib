@@ -57,7 +57,8 @@ def get_ember_yearly_data(country_iso2: ZoneKey | None, year: int = 2017) -> str
             iso3_code = pycountry.countries.get(alpha_2=country_iso2).alpha_3
         except AttributeError as err:
             raise ValueError(
-                "Invalid ISO 2 country code: Use only ISO 2 country codes (e.g. FR, US, DE, etc. and not DK-DK1)"
+                "Invalid ISO 2 country code: Use only ISO 2 country codes (e.g. FR, US, DE, etc. and not DK-DK1) - faild for country: "
+                + country_iso2
             ) from err
         query_params = {"country_code": iso3_code, "year": year, "_shape": "array"}
     base_url = (
