@@ -49,23 +49,29 @@ emissionFactors:
         value: 234.83
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 343.46
+        value: 343.54
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 472.51
+        value: 472.6
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 403.63
     hydro discharge:
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 126.48
+        value: 245.46
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 234.83
+        value: 295.08
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 343.46
+        value: 372.01
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 472.51
+        value: 489.75
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 445.96
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2020 average
@@ -128,6 +134,21 @@ fallbackZoneMixes:
         solar: 0.010407381940730554
         unknown: 0.0
         wind: 0.24087231857114963
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0045280562830267625
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.6700376563202181
+        solar: 0.1199307309665122
+        unknown: 0.0
+        wind: 0.2054531930390045
 parsers:
   production: ajenti.fetch_production
 region: Oceania

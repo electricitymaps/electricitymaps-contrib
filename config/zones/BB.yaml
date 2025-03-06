@@ -1,4 +1,31 @@
 country: BB
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 649.96
+    hydro discharge:
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 640.61
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0028357972403870034
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.9828582142194107
+        solar: 0.014305633100344143
+        unknown: 0.0
+        wind: 0.0
 parsers:
   consumption: BB.fetch_consumption
   production: BB.fetch_production

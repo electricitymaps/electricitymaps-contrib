@@ -73,6 +73,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 563.27
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 577.04
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
@@ -92,6 +95,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 563.27
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 577.04
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -184,6 +190,21 @@ fallbackZoneMixes:
         solar: 0.008366461052547531
         unknown: 0.0018877833779848713
         wind: 0.12879356403066494
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.8836829657096846
+        solar: 0.006176899034154593
+        unknown: 0.0015510181027602445
+        wind: 0.10858758715681341
 parsers:
   production: AW.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

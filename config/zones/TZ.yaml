@@ -4,5 +4,53 @@ bounding_box:
   - - 40.948204482044844
     - -0.49999995121406804
 country: TZ
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 350.48
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 350.48
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 350.48
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 350.48
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0075864057233629555
+        coal: 0.0
+        gas: 0.6937543456433861
+        geothermal: 0.0
+        hydro: 0.2930479578005183
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0024941318453953606
+        solar: 0.0031174416434825414
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.007587026071223141
+        coal: 0.0
+        gas: 0.6937547839383098
+        geothermal: 0.0
+        hydro: 0.29304672506100865
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0024937785407519878
+        solar: 0.003117324755408123
+        unknown: 0.0
+        wind: 0.0
 region: Africa
 timezone: Africa/Dar_es_Salaam

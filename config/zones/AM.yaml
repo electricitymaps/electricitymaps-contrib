@@ -55,30 +55,30 @@ fallbackZoneMixes:
         battery discharge: 0.0
         biomass: 0.0
         coal: 5.250073475843808e-07
-        gas: 0.4486470475411705
+        gas: 0.44864691967960246
         geothermal: 0.0
-        hydro: 0.33631244393803006
+        hydro: 0.33631257179959806
         hydro discharge: 0.0
         nuclear: 0.21485408635458791
-        oil: 4.6467993502431576e-05
+        oil: 4.647186809540268e-05
         solar: 1.3561075398858545e-07
-        unknown: 8.439057220709672e-05
-        wind: 5.4428344761561545e-05
+        unknown: 8.440025868952448e-05
+        wind: 5.4472902580729235e-05
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
         coal: 0.0
-        gas: 0.46389459701538915
+        gas: 0.46389453736449615
         geothermal: 0.0
-        hydro: 0.19046400663928753
+        hydro: 0.19046407822035902
         hydro discharge: 0.0
         nuclear: 0.3456206557298584
-        oil: 1.8968983945582545e-05
+        oil: 1.8951088677709353e-05
         solar: 0.0
         unknown: 4.115911610833948e-07
-        wind: 1.300389465451885e-06
+        wind: 1.2884592868697575e-06
 parsers: {}
 region: Asia
 timezone: Asia/Yerevan
