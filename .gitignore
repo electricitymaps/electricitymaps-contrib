@@ -20,6 +20,7 @@ dist
 
 # Ignore top level vscode folder as it is symlinked
 #.vscode
+.vscode/launch.json
 
 ## Pycharm IDE
 .idea

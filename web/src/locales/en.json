@@ -1784,6 +1784,10 @@
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
     },
+    "US-HI": {
+      "countryName": "USA",
+      "zoneName": "Hawaii"
+    },
     "US-HI-HA": {
       "countryName": "USA",
       "zoneName": "Hawaii"
