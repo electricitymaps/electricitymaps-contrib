@@ -854,8 +854,7 @@
       "zoneName": "Montenegro"
     },
     "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
+      "zoneName": "Saint-Martin"
     },
     "MG": {
       "zoneName": "Madagascar"
@@ -1281,6 +1280,10 @@
     "US-AK-SEAPA": {
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
+    },
+    "US-HI": {
+      "countryName": "USA",
+      "zoneName": "Hawaii"
     },
     "US-HI-HA": {
       "countryName": "USA",

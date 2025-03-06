@@ -45,9 +45,6 @@ capacity:
       value: 19500.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 20850.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
       value: 20870.0
   gas:
     - datetime: '2017-01-01'
@@ -56,9 +53,6 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 27630.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 28120.0
   geothermal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -75,9 +69,6 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 1730.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 1740.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1750.0
@@ -107,9 +98,6 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 660.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 690.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data

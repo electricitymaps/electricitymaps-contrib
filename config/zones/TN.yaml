@@ -3,6 +3,52 @@ bounding_box:
     - 29.728951492661125
   - - 12.065115651156532
     - 37.83570884113219
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 4700.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 5320.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 5770.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 510.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 240.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
 country: TN
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Tunis
