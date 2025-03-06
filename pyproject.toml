@@ -78,7 +78,7 @@ addopts = "--color=yes --durations=10"
 
 
 [build-system]
-requires = ["poetry-core>=1.0.0,<2"]
+requires = ["poetry-core>=2.0.0,<3"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
