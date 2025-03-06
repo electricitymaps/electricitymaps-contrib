@@ -745,10 +745,6 @@
     "IQ": {
       "zoneName": "伊拉克"
     },
-    "IQ-KUR": {
-      "countryName": "伊拉克",
-      "zoneName": "库尔德斯坦"
-    },
     "IR": {
       "zoneName": "伊朗"
     },
@@ -1316,38 +1312,6 @@
     "US-AK": {
       "countryName": "美国",
       "zoneName": "阿拉斯加"
-    },
-    "US-HI-HA": {
-      "countryName": "美国",
-      "zoneName": "夏威夷"
-    },
-    "US-HI-KA": {
-      "countryName": "美国",
-      "zoneName": "可爱岛"
-    },
-    "US-HI-KH": {
-      "countryName": "美国",
-      "zoneName": "卡胡拉韦岛"
-    },
-    "US-HI-LA": {
-      "countryName": "美国",
-      "zoneName": "拉奈岛"
-    },
-    "US-HI-MA": {
-      "countryName": "美国",
-      "zoneName": "毛伊岛"
-    },
-    "US-HI-MO": {
-      "countryName": "美国",
-      "zoneName": "摩洛凯岛"
-    },
-    "US-HI-NI": {
-      "countryName": "美国",
-      "zoneName": "尼豪岛"
-    },
-    "US-HI-OA": {
-      "countryName": "美国",
-      "zoneName": "瓦胡岛"
     },
     "US-CAL-BANC": {
       "countryName": "美国",

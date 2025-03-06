@@ -803,10 +803,6 @@
     "IQ": {
       "zoneName": "Iraak"
     },
-    "IQ-KUR": {
-      "countryName": "Iraak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iraan"
     },
@@ -1342,38 +1338,6 @@
     },
     "US": {
       "zoneName": "Külgnevad Ameerika Ühendriigid"
-    },
-    "US-HI-HA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Ameerika Ühendriigid",

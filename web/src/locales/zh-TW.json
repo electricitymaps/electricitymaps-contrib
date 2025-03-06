@@ -1015,10 +1015,6 @@
     "IQ": {
       "zoneName": "伊拉克"
     },
-    "IQ-KUR": {
-      "countryName": "伊拉克",
-      "zoneName": "庫德斯坦"
-    },
     "IR": {
       "zoneName": "伊朗"
     },
@@ -1587,38 +1583,6 @@
     "US-AK-SEAPA": {
       "countryName": "美國",
       "zoneName": "Southeast Alaska Power Agency"
-    },
-    "US-HI-HA": {
-      "countryName": "美國",
-      "zoneName": "夏威夷"
-    },
-    "US-HI-KA": {
-      "countryName": "美國",
-      "zoneName": "考艾島"
-    },
-    "US-HI-KH": {
-      "countryName": "美國",
-      "zoneName": "卡胡拉威島"
-    },
-    "US-HI-LA": {
-      "countryName": "美國",
-      "zoneName": "拉奈島"
-    },
-    "US-HI-MA": {
-      "countryName": "美國",
-      "zoneName": "茂宜島"
-    },
-    "US-HI-MO": {
-      "countryName": "美國",
-      "zoneName": "摩洛凱島"
-    },
-    "US-HI-NI": {
-      "countryName": "美國",
-      "zoneName": "尼豪島"
-    },
-    "US-HI-OA": {
-      "countryName": "美國",
-      "zoneName": "歐胡島"
     },
     "US-CAL-BANC": {
       "countryName": "美國",
