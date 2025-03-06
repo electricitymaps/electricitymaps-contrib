@@ -315,8 +315,8 @@ def fetch_wind_solar_forecasts(
     all_production_events = data_final.copy()
     production_list = ProductionBreakdownList(logger)
     for _index, event in all_production_events.iterrows():
-        event_datetime = datetime.fromisoformat(event["datetime_iso"]).astimezone(
-            tz=ZoneInfo("America/New_York")
+        event_datetime = datetime.fromisoformat(event["datetime_iso"]).replace(
+            tzinfo=ZoneInfo("America/New_York")
         )
         production_mix = ProductionMix()
         production_mix.add_value(
