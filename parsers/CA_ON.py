@@ -12,7 +12,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
     ProductionBreakdownList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Some notes about timestamps:
@@ -257,9 +257,141 @@ def fetch_exchange(
     return exchanges.to_list()
 
 
+def read_adequacy_report(root):
+    """Helper function for fetch_wind_solar_forecasts() that reads Adequacy report for a given xml root"""
+    NAMESPACE = "{http://www.ieso.ca/schema}"
+    ns = {"ns0": "http://www.ieso.ca/schema"}
+
+    # Dictionary to store extracted data
+    mixes: defaultdict[datetime, ProductionMix] = defaultdict(ProductionMix)
+    forecast_date = root.find(".//ns0:DeliveryDate", ns)
+
+    # Iterate through InternalResource elements
+    for resource in root.findall(".//ns0:InternalResource", ns):
+        mode = resource.findtext(NAMESPACE + "FuelType")
+        if mode == "Wind" or mode == "Solar":
+            for c in resource.findall("ns0:Forecasts", ns):
+                for value in c.findall("ns0:Forecast", ns):
+                    date_object = datetime.strptime(
+                        forecast_date.text, "%Y-%m-%d"
+                    ).replace(tzinfo=TIMEZONE)
+                    delivery_hour = value.findtext(NAMESPACE + "DeliveryHour")
+                    date_object = date_object.replace(hour=int(delivery_hour) - 1)
+
+                    # energy_mw = value.find("ns0:EnergyMW", ns)
+                    energy_mw = value.findtext(NAMESPACE + "EnergyMW")
+
+                    mixes[date_object].add_value(
+                        mode.lower(), None if energy_mw is None else float(energy_mw)
+                    )
+    return mixes
+
+
+def read_VGForecastSummary_report(root):
+    """Helper function for fetch_wind_solar_forecasts() that reads VGForecastsSummary report for a given xml root"""
+
+    ns = {"ns0": "http://www.ieso.ca/schema"}
+
+    # Dictionary to store extracted data
+    mixes: defaultdict[datetime, ProductionMix] = defaultdict(ProductionMix)
+
+    for org_data in root.findall(".//ns0:OrganizationData", ns):
+        # Market Participant and Embedded data summed together
+
+        for fuel_data in org_data.findall(".//ns0:FuelData", ns):
+            fuel_type = fuel_data.find("ns0:FuelType", ns)
+
+            for resource in fuel_data.findall("ns0:ResourceData", ns):
+                zone = resource.find("ns0:ZoneName", ns)
+
+                if zone.text == "OntarioTotal":
+                    for energy_forecast in resource.findall(
+                        ".//ns0:EnergyForecast", ns
+                    ):
+                        forecast_date = energy_forecast.find("ns0:ForecastDate", ns)
+                        date_object = datetime.strptime(
+                            forecast_date.text, "%Y-%m-%d"
+                        ).replace(tzinfo=TIMEZONE)
+                        for forecast_interval in energy_forecast.findall(
+                            ".//ns0:ForecastInterval", ns
+                        ):
+                            forecast_hour_ending = forecast_interval.find(
+                                "ns0:ForecastHour", ns
+                            )
+                            date_object = date_object.replace(
+                                hour=int(forecast_hour_ending.text) - 1
+                            )
+                            mw_output = forecast_interval.find("ns0:MWOutput", ns)
+
+                            mixes[date_object].add_value(
+                                fuel_type.text.lower(),
+                                None
+                                if mw_output.text is None
+                                else float(mw_output.text),
+                            )
+    return mixes
+
+
+ADEQUACY_URL = (
+    "https://reports-public.ieso.ca/public/Adequacy2/PUB_Adequacy2_{YYYYMMDD}.xml"
+)
+VG_FORECAST_SUMMARY = "https://reports-public.ieso.ca/public/VGForecastSummary/PUB_VGForecastSummary_{YYYYMMDD}.xml"
+
+
+def fetch_wind_solar_forecasts(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the forecasts for wind and solar (in MW) of Canada Ontario zone for 33 days ahead."""
+    session = session or Session()
+
+    if target_datetime is None:
+        target_datetime = datetime.now(TIMEZONE)
+
+    # Extract the file in adequacy folder until last date (33 days later)
+    # In reality they have forecast until 34 days, but depends at what time of the day the url is extracted, the 34th day might not be published yet
+    end_date = target_datetime + timedelta(days=33)
+
+    # Direct iteration method
+    mixes_merged = {}
+    current_date = target_datetime
+    while current_date <= end_date:
+        # First try to get the VG Forecast Summary report
+        date_, xml = _fetch_xml(logger, session, current_date, VG_FORECAST_SUMMARY)
+
+        # Check if the data is available before trying to read it
+        if xml is not None:
+            mixes = read_VGForecastSummary_report(xml)
+        else:
+            # When VG Forecast is not available, use Adequacy report instead
+            date_, xml = _fetch_xml(logger, session, current_date, ADEQUACY_URL)
+            mixes = read_adequacy_report(xml)
+
+        # Update dictionary merging the rest of the days (not overwriting keys (dates))
+        mixes_merged = {**mixes, **mixes_merged}
+        current_date += timedelta(days=1)
+
+    production_list = ProductionBreakdownList(logger)
+    for event_datetime, event_mix in mixes_merged.items():
+        event_datetime.replace(tzinfo=TIMEZONE)
+        production_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=event_datetime,
+            production=event_mix,
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+    return production_list.to_list()
+
+
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    from pprint import pprint
+
+    """
     now = datetime.now(timezone.utc)
     two_months_ago = now - timedelta(days=60)
     two_years_ago = now - timedelta(days=2 * 365)
@@ -341,3 +473,7 @@ if __name__ == "__main__":
         fetch_exchange(ZoneKey("CA-ON"), ZoneKey("CA-NS"))
     except NotImplementedError:
         print("Task failed successfully")
+    """
+
+    print("Requesting fetch_wind_solar_forecasts")
+    pprint(fetch_wind_solar_forecasts())
