@@ -11,6 +11,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
+    TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
@@ -257,6 +258,61 @@ def fetch_exchange(
     return exchanges.to_list()
 
 
+def fetch_consumption_forecast(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the demand forecast (in MW) of Canada Ontario zone for 33 days ahead hourly."""
+    session = session or Session()
+
+    if target_datetime is None:
+        target_datetime = datetime.now(TIMEZONE)
+
+    # Dictionary to store extracted data
+    all_consumption_events: defaultdict[datetime, float] = defaultdict(float)
+
+    # Extract the file in adequacy folder until last date (33 days later)
+    # In reality they have forecast until 34 days, but depends at what time of the day the url is extracted, the 34th day might not be published yet
+    end_date = target_datetime + timedelta(days=33)
+
+    # Iterate on every available date
+    current_date = target_datetime
+    while current_date <= end_date:
+        # Extract Adequacy report
+        date_, xml = _fetch_xml(logger, session, current_date, ADEQUACY_URL)
+
+        # Define the namespace (if applicable)
+        NAMESPACE = "{http://www.ieso.ca/schema}"
+        ns = {"ns0": "http://www.ieso.ca/schema"}
+
+        forecast_date = xml.find(".//ns0:DeliveryDate", ns)
+
+        for forecast_ontario_demand in xml.findall(".//ns0:ForecastOntDemand", ns):
+            for demand in forecast_ontario_demand.findall(".//ns0:Demand", ns):
+                delivery_hour = demand.findtext(NAMESPACE + "DeliveryHour")
+                date_object = datetime.strptime(forecast_date.text, "%Y-%m-%d").replace(
+                    tzinfo=TIMEZONE
+                )
+                date_object = date_object.replace(hour=int(delivery_hour) - 1)
+                energy_mw = demand.findtext(NAMESPACE + "EnergyMW")
+                all_consumption_events[date_object] = energy_mw
+
+        current_date += timedelta(days=1)  # Go to next day
+
+    consumption_list = TotalConsumptionList(logger)
+    for datetime_, consumption_value in all_consumption_events.items():
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=datetime_,
+            consumption=int(consumption_value),
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumption_list.to_list()
+
+
 def read_adequacy_report(root):
     """Helper function for fetch_wind_solar_forecasts() that reads Adequacy report for a given xml root"""
     NAMESPACE = "{http://www.ieso.ca/schema}"
@@ -475,5 +531,8 @@ if __name__ == "__main__":
         print("Task failed successfully")
     """
 
-    print("Requesting fetch_wind_solar_forecasts")
-    pprint(fetch_wind_solar_forecasts())
+    # print("Requesting fetch_wind_solar_forecasts")
+    # pprint(fetch_wind_solar_forecasts())
+
+    print("Requesting fetch_consumption_forecast")
+    pprint(fetch_consumption_forecast())
