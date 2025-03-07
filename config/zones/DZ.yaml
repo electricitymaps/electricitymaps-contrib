@@ -4,5 +4,53 @@ bounding_box:
   - - 12.468319683196853
     - 37.58240717969856
 country: DZ
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 487.25
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 487.26
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 487.25
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 487.26
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.9889616849323075
+        geothermal: 0.0
+        hydro: 0.00017536621953407952
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0035953872632283087
+        solar: 0.007103075358023904
+        unknown: 0.0
+        wind: 0.00016441212685149015
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.9889742986324795
+        geothermal: 0.0
+        hydro: 0.00017961719018977343
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0036047228087590687
+        solar: 0.0070754161021284396
+        unknown: 0.0
+        wind: 0.00016600744389401443
 region: Africa
 timezone: Africa/Algiers

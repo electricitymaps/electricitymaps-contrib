@@ -138,13 +138,13 @@ emissionFactors:
         value: 573.2289528740077
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 540.13
+        value: 540.19
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 540.13
+        value: 540.19
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 533.14
+        value: 533.15
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
         value: 544.19
@@ -153,10 +153,13 @@ emissionFactors:
         value: 550.86
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 542.42
+        value: 541.78
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 529.97
+        value: 533.04
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 533.05
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -166,13 +169,13 @@ emissionFactors:
         value: 573.2289528740077
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 540.13
+        value: 540.19
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 540.13
+        value: 540.19
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 533.14
+        value: 533.15
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
         value: 544.19
@@ -181,10 +184,13 @@ emissionFactors:
         value: 550.86
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 542.42
+        value: 541.78
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 529.97
+        value: 533.04
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 533.05
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
@@ -228,46 +234,46 @@ fallbackZoneMixes:
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.2297224747728945
-        gas: 0.703460637442064
+        coal: 0.22975052304145827
+        gas: 0.7035462674701543
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.00423152527643478
-        solar: 0.05957547207835695
-        unknown: 0.0029150241776447986
-        wind: 9.49265027597112e-05
+        oil: 0.0042319647618432816
+        solar: 0.059461080175140485
+        unknown: 0.0029153921982436075
+        wind: 9.474423272579382e-05
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.22972256558158094
-        gas: 0.7034609161532113
+        coal: 0.2297506168385724
+        gas: 0.7035465497081878
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.004231528852433173
-        solar: 0.05957509378107255
-        unknown: 0.002915029812551355
-        wind: 9.49265027597112e-05
+        oil: 0.0042319673520831574
+        solar: 0.05946070252705926
+        unknown: 0.002915394141259118
+        wind: 9.474423260282848e-05
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.2264825320322812
-        gas: 0.6935389509648741
+        coal: 0.22648331307457528
+        gas: 0.693541342803125
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.004171828936619794
-        solar: 0.07281588544478874
-        unknown: 0.0028738802414383455
-        wind: 0.00011683941867550777
+        oil: 0.0041718433057065995
+        solar: 0.07281269326902554
+        unknown: 0.0028738901599579354
+        wind: 0.00011683429655197377
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
@@ -303,31 +309,46 @@ fallbackZoneMixes:
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.23078808806727893
-        gas: 0.7067235075760993
+        coal: 0.23049115063053122
+        gas: 0.7058141923740252
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.004251098307872329
-        solar: 0.05523703627478361
-        unknown: 0.00292856022821741
-        wind: 7.165302492644688e-05
+        oil: 0.004245626539946488
+        solar: 0.05645092737869548
+        unknown: 0.0029247867935821917
+        wind: 7.322767438978705e-05
     - _source: Electricity Maps, 2023 average
       datetime: '2023-01-01'
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.22500956818472811
-        gas: 0.6890284813288783
+        coal: 0.22643389262343425
+        gas: 0.6933900115583163
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.004144710898821678
-        solar: 0.07885978495969828
-        unknown: 0.0028552075588228272
-        wind: 0.00010229740030611146
+        oil: 0.004170871051940615
+        solar: 0.07303714245296632
+        unknown: 0.002873307364706397
+        wind: 9.474423246961603e-05
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.22644109548746316
+        gas: 0.6934120940756355
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.004171004131650712
+        solar: 0.07300763261212727
+        unknown: 0.0028733995131826184
+        wind: 9.474408704417814e-05
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in IL unknown production

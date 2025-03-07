@@ -39,6 +39,9 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
         value: 564.76
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 532.19
     hydro discharge:
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
@@ -60,7 +63,10 @@ emissionFactors:
         value: 348.18
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 564.76
+        value: 342.93
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 532.19
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -168,6 +174,21 @@ fallbackZoneMixes:
         solar: 0.07987987695482408
         unknown: 0.0
         wind: 0.08073182769861344
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0863263801273544
+        coal: 0.1670242650885789
+        gas: 0.002524579671826125
+        geothermal: 0.055473024471245316
+        hydro: 0.009860607348963393
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.5665026157541078
+        solar: 0.06917119460371109
+        unknown: 0.0
+        wind: 0.04311598615929433
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
