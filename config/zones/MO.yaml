@@ -3,8 +3,19 @@ bounding_box:
     - 21.57645485902869
   - - 114.13042179357811
     - 22.71674764489182
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 270.0
 contributors:
   - VIKTORVAV99
 country: MO
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Macau

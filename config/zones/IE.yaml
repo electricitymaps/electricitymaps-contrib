@@ -26,17 +26,10 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 240.0
-  hydro storage:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 292.0
   oil:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 830.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 670.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data

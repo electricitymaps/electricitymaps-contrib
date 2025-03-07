@@ -6,47 +6,27 @@ bounding_box:
     - 26.660101630000042
 capacity:
   biomass:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 38
-    - datetime: '2022-01-01'
-      source: Climatescope
-      value: 23
-  gas:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 8560.5
     - datetime: '2017-01-01'
-      source: Climatescope
-      value: 8599
+      source: Ember, Yearly electricity data
+      value: 0.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 11320.0
     - datetime: '2018-01-01'
-      source: Climatescope
-      value: 10170
-    - datetime: '2019-01-01'
-      source: Climatescope
-      value: 10579
-    - datetime: '2020-01-01'
-      source: Climatescope
-      value: 10590
-    - datetime: '2022-01-01'
-      source: Climatescope
-      value: 10576
-    - datetime: '2023-01-01'
-      source: Climatescope
-      value: 10320
+      source: Ember, Yearly electricity data
+      value: 12580.0
   solar:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 2
-    - datetime: '2019-01-01'
-      source: Climatescope
-      value: 4
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2022-01-01'
-      source: Climatescope
-      value: 354
-    - datetime: '2022-10-01'
-      source: Climatescope
-      value: 899
+      source: Ember, Yearly electricity data
+      value: 810.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
 contributors:
   - q--
   - nessie2013
@@ -122,5 +102,6 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   consumption: GCCIA.fetch_consumption
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Qatar

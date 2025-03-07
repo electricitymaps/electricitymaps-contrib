@@ -37,6 +37,9 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 1580.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1570.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
