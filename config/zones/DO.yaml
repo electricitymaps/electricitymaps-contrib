@@ -157,7 +157,10 @@ emissionFactors:
         value: 545.14
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 579.89
+        value: 576.48
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 545.27
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
@@ -179,7 +182,10 @@ emissionFactors:
         value: 545.14
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 579.89
+        value: 576.48
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 545.27
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -276,17 +282,32 @@ fallbackZoneMixes:
       datetime: '2023-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.009579898716066793
-        coal: 0.29764555028062256
-        gas: 0.250097009734473
+        biomass: 0.009426605595307603
+        coal: 0.2993508136963388
+        gas: 0.25280795672244344
         geothermal: 0.0
-        hydro: 0.04692315450715494
+        hydro: 0.04847984247103398
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.13098950434235962
-        solar: 0.04339147955807153
-        unknown: 0.1747698109750609
-        wind: 0.046603591886190746
+        oil: 0.12462784019988545
+        solar: 0.04635123981672069
+        unknown: 0.17169783934403446
+        wind: 0.04725786215423553
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.011463440593032665
+        coal: 0.31224070634014406
+        gas: 0.3238493612383818
+        geothermal: 0.0
+        hydro: 0.05821423573662806
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.08851449447114812
+        solar: 0.06587656603563896
+        unknown: 0.09357429549804941
+        wind: 0.04626690008697701
 parsers:
   production: DO.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

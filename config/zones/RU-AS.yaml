@@ -27,6 +27,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 433.34
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 448.11
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
@@ -37,6 +40,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 433.34
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 448.11
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021
         fuel consumption: 59.6% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 40.1%
@@ -91,6 +97,21 @@ fallbackZoneMixes:
         solar: 0.00016120186972724132
         unknown: 0.6126318585565093
         wind: 0.0003501697657526562
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0003039259231162928
+        coal: 0.0065960315340739244
+        gas: 0.00402704404435321
+        geothermal: 5.347159743513013e-05
+        hydro: 0.3571421316152572
+        hydro discharge: 0.0
+        nuclear: 0.0017705220239168712
+        oil: 0.0005207337209316853
+        solar: 0.00038128775981619397
+        unknown: 0.6283766030237664
+        wind: 0.0008282519218127808
 parsers:
   production: RU.fetch_production
 region: Europe
