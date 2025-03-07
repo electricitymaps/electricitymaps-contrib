@@ -867,10 +867,6 @@
     "IQ": {
       "zoneName": "Iraq"
     },
-    "IQ-KUR": {
-      "countryName": "Iraq",
-      "zoneName": "Curdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1431,38 +1427,6 @@
     },
     "US": {
       "zoneName": "Contigui Stati Uniti d'America"
-    },
-    "US-HI-HA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Stati Uniti d'America",

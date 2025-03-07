@@ -1187,10 +1187,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1866,38 +1862,6 @@
     "US-FLA-TEC": {
       "countryName": "États-Unis",
       "zoneName": "Compagnie d'électricité de Tampa"
-    },
-    "US-HI-HA": {
-      "countryName": "États Unis",
-      "zoneName": "Hawaï"
-    },
-    "US-HI-KA": {
-      "countryName": "États Unis",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "États Unis",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "États Unis",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "États Unis",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "États Unis",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "États Unis",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "États Unis",
-      "zoneName": "Oahu"
     },
     "US-MIDA-PJM": {
       "countryName": "États-Unis",

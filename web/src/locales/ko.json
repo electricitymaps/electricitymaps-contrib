@@ -768,10 +768,6 @@
     "IQ": {
       "zoneName": "이라크"
     },
-    "IQ-KUR": {
-      "countryName": "이라크",
-      "zoneName": "쿠르디스탄"
-    },
     "IR": {
       "zoneName": "이란"
     },
@@ -1303,38 +1299,6 @@
     },
     "US": {
       "zoneName": "인접한 미국"
-    },
-    "US-HI-HA": {
-      "countryName": "미국",
-      "zoneName": "하와이섬"
-    },
-    "US-HI-KA": {
-      "countryName": "미국",
-      "zoneName": "카우아이섬"
-    },
-    "US-HI-KH": {
-      "countryName": "미국",
-      "zoneName": "카호올라웨섬"
-    },
-    "US-HI-LA": {
-      "countryName": "미국",
-      "zoneName": "라나이섬"
-    },
-    "US-HI-MA": {
-      "countryName": "미국",
-      "zoneName": "마우이섬"
-    },
-    "US-HI-MO": {
-      "countryName": "미국",
-      "zoneName": "몰로카이섬"
-    },
-    "US-HI-NI": {
-      "countryName": "미국",
-      "zoneName": "니하우섬"
-    },
-    "US-HI-OA": {
-      "countryName": "미국",
-      "zoneName": "오아후섬"
     },
     "UY": {
       "zoneName": "우루과이"

@@ -1382,10 +1382,6 @@
     "ZW": {
       "zoneName": "Simbabwe"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "JP-CB": {
       "countryName": "Japan",
       "zoneName": "Chūbu"
@@ -1512,38 +1508,6 @@
     },
     "US": {
       "zoneName": "Zusammenhängende Vereinigte Staaten"
-    },
-    "US-HI-HA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Vereinigte Staaten",

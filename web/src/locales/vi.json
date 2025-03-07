@@ -674,10 +674,6 @@
     "IQ": {
       "zoneName": "Iraq"
     },
-    "IQ-KUR": {
-      "countryName": "Iraq",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1206,38 +1202,6 @@
     },
     "UM": {
       "zoneName": "Các tiểu đảo xa của Hoa Kỳ"
-    },
-    "US-HI-HA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Oahu"
     },
     "UY": {
       "zoneName": "Uruguay"

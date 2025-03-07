@@ -850,10 +850,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1418,38 +1414,6 @@
     "US-AK": {
       "countryName": "ZDA",
       "zoneName": "Aljaska"
-    },
-    "US-HI-HA": {
-      "countryName": "ZDA",
-      "zoneName": "Havaji"
-    },
-    "US-HI-KA": {
-      "countryName": "ZDA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "ZDA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "ZDA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "ZDA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "ZDA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "ZDA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "ZDA",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "ZDA",
