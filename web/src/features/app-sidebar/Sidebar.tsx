@@ -36,14 +36,14 @@ const Sidebar = React.forwardRef<
           side === 'left'
             ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
-          'z-20 overflow-hidden  bg-white',
+          'z-20 overflow-hidden  bg-white dark:bg-gray-800',
           className
         )}
         {...props}
       >
         <div
           data-sidebar="sidebar"
-          className="bg-sidebar group-data-[variant=floating]:border-stroke flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow"
+          className="bg-sidebar flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-stroke group-data-[variant=floating]:shadow"
         >
           {children}
         </div>
@@ -154,7 +154,7 @@ const SidebarMenuButton = React.forwardRef<
       data-size={'default'}
       data-active={isActive}
       className={twMerge(
-        'peer/menu-button hover:bg-hover hover:text-strong active:bg-sunken active:text-strong data-[active=true]:bg-sunken data-[active=true]:text-strong data-[state=open]:hover:bg-hover data-[state=open]:hover:text-strong hover:bg-hover hover:text-strong flex h-8 w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-blue-500 transition-[width,height,padding] focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:font-medium group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+        'peer/menu-button hover:text-strong active:text-strong data-[active=true]:text-strong data-[state=open]:hover:bg-hover data-[state=open]:hover:text-strong hover:bg-hover hover:text-strong flex h-8 w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-blue-500 transition-[width,height,padding] hover:bg-sunken focus-visible:ring-2 active:bg-sunken disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sunken data-[active=true]:font-medium group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
         className
       )}
       {...props}

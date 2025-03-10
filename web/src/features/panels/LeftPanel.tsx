@@ -52,7 +52,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
     <div
       data-testid="left-panel"
       className={twMerge(
-        'absolute left-0 top-0 z-[21] h-full w-full border-l border-[#E6E6E6] bg-zinc-50 pt-[env(safe-area-inset-top)] shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:w-[calc(14vw_+_16rem)]',
+        'absolute left-0 top-0 z-[21] h-full w-full border-l border-stroke bg-zinc-50 pt-[env(safe-area-inset-top)] shadow-xl transition-all duration-500 dark:border-neutral-800 dark:border-stroke-dark dark:bg-gray-900 dark:[color-scheme:dark] sm:w-[calc(14vw_+_16rem)]',
         location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex',
         !isOpen && '-translate-x-full'
       )}
