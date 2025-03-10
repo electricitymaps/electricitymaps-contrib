@@ -72,13 +72,13 @@ export default function Header(): JSX.Element {
   return (
     <header
       className={twMerge(
-        'z-40 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pl-0 md:pr-4 md:pt-[2px]',
+        'z-40 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pl-0 md:pr-4 md:pt-[3px]',
         !isMobileApp && 'sm:block md:flex'
       )}
     >
       <Link href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral">
         <Logo className="h-12 w-56 fill-black dark:fill-white md:hidden" />
-        <LogoText className="hidden h-12 w-48 text-black dark:text-white md:block" />
+        <LogoText className="-ml-2 hidden h-12 w-48 text-black dark:text-white md:block" />
       </Link>
       <NavigationMenu.Root className="hidden sm:block">
         <NavigationMenu.List className="flex w-full justify-around md:space-x-2">
