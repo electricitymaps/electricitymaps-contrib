@@ -1,6 +1,7 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
-import { useAtom, useSetAtom } from 'jotai';
+import { useFeatureFlags } from 'features/feature-flags/api';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { X } from 'lucide-react';
 import {
   ChangeEvent,
@@ -11,7 +12,11 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { hasSeenSurveyCardAtom, userLocationAtom } from 'utils/state/atoms';
+import {
+  hasSeenSurveyCardAtom,
+  hasSeenUsSurveyCardAtom,
+  userLocationAtom,
+} from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
 enum FeedbackState {
@@ -20,16 +25,23 @@ enum FeedbackState {
   SUCCESS = 'success',
 }
 
+interface FeatureFlags {
+  [key: string]: boolean;
+}
 export interface SurveyResponseProps {
   feedbackScore: number;
   inputText: string;
   reference: string;
   location?: string;
+  version?: string;
+  featureFlags?: FeatureFlags;
+  preceedingInputText?: string;
 }
 interface FeedbackCardProps {
   postSurveyResponse: (props: SurveyResponseProps) => void;
   subtitle?: string;
   primaryQuestion: string;
+  preceedingQuestion?: string;
   secondaryQuestionHigh?: string;
   secondaryQuestionLow?: string;
   surveyReference?: string;
@@ -39,6 +51,7 @@ export default function FeedbackCard({
   postSurveyResponse,
   subtitle,
   primaryQuestion,
+  preceedingQuestion,
   secondaryQuestionHigh,
   secondaryQuestionLow,
   surveyReference,
@@ -46,12 +59,17 @@ export default function FeedbackCard({
   const [isClosed, setIsClosed] = useState(false);
   const [feedbackState, setFeedbackState] = useState(FeedbackState.INITIAL);
   const setHasSeenSurveyCard = useSetAtom(hasSeenSurveyCardAtom);
+
+  const setHasSeenUsSurveyCard = useSetAtom(hasSeenUsSurveyCardAtom);
   const isMobile = useIsMobile();
 
   const handleClose = () => {
     setIsClosed(true);
     if (surveyReference === 'Map Survey') {
       setHasSeenSurveyCard(true);
+    }
+    if (surveyReference === 'US Survey') {
+      setHasSeenUsSurveyCard(true);
     }
   };
   const { t } = useTranslation();
@@ -91,7 +109,7 @@ export default function FeedbackCard({
 
   return (
     <div
-      data-test-id="feedback-card"
+      data-testid="feedback-card"
       className="flex w-full flex-col gap-2 rounded-lg border border-neutral-200 bg-zinc-50 px-3 py-4 transition-all dark:border-gray-700 dark:bg-gray-900"
       ref={feedbackCardReference}
     >
@@ -102,12 +120,12 @@ export default function FeedbackCard({
           />
           <h2
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
-            data-test-id="title"
+            data-testid="title"
           >
             {isFeedbackSubmitted ? successSubtitle : title}
           </h2>
         </div>
-        <button data-test-id="close-button" onClick={handleClose}>
+        <button data-testid="close-button" onClick={handleClose}>
           <X />
         </button>
       </div>
@@ -116,11 +134,11 @@ export default function FeedbackCard({
           className={`pb-1 ${
             isFeedbackSubmitted ? 'text-sm' : 'text-xs'
           } font-medium text-neutral-400`}
-          data-test-id="subtitle"
+          data-testid="subtitle"
         >
           {isFeedbackSubmitted ? successMessage : subtitle}
         </div>
-        <FeedbackActions
+        <FeedbackFields
           feedbackState={feedbackState}
           setFeedbackState={setFeedbackState}
           postSurveyResponse={postSurveyResponse}
@@ -128,6 +146,7 @@ export default function FeedbackCard({
           primaryQuestion={primaryQuestion}
           inputQuestionHigh={secondaryQuestionHigh}
           inputQuestionLow={secondaryQuestionLow}
+          preceedingQuestion={preceedingQuestion}
         />
       </div>
     </div>
@@ -143,10 +162,12 @@ function InputField({
   inputText,
   inputQuestion,
   handleInputChange,
+  isRequired = false,
 }: {
   inputText: string;
   inputQuestion?: string;
   handleInputChange: (event: { target: { value: SetStateAction<string> } }) => void;
+  isRequired?: boolean;
 }) {
   const { t } = useTranslation();
   const inputPlaceholder = t('feedback-card.placeholder');
@@ -156,12 +177,12 @@ function InputField({
     <div>
       <div className="flex flex-wrap justify-start">
         <span className="text-sm font-normal text-black dark:text-white">
-          <span className="pr-1 font-semibold">{optional}</span>
-          <span data-test-id="input-title">{inputQuestion}</span>
+          {!isRequired && <span className="pr-1 font-semibold">{optional}</span>}
+          <span data-testid="input-title">{inputQuestion}</span>
         </span>
       </div>
       <textarea
-        data-test-id="feedback-input"
+        data-testid="feedback-input"
         value={inputText}
         onChange={(event) => {
           handleInputChange(event);
@@ -182,7 +203,7 @@ function SubmitButton({ handleSave }: { handleSave: () => void }) {
   return <Pill text={buttonText} onClick={handleSave} />;
 }
 
-function FeedbackActions({
+function FeedbackFields({
   feedbackState,
   setFeedbackState,
   postSurveyResponse,
@@ -190,6 +211,7 @@ function FeedbackActions({
   inputQuestionLow,
   primaryQuestion,
   surveyReference,
+  preceedingQuestion,
 }: {
   feedbackState: FeedbackState;
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
@@ -198,10 +220,19 @@ function FeedbackActions({
   inputQuestionHigh?: string;
   inputQuestionLow?: string;
   surveyReference?: string;
+  preceedingQuestion?: string;
 }) {
   const [inputText, setInputText] = useState('');
+  const [preceedingInputText, setPreceedingInputText] = useState('');
   const [feedbackScore, setFeedbackScore] = useState('');
-  const [userLocation] = useAtom(userLocationAtom);
+  const userLocation = useAtomValue(userLocationAtom);
+  const featureFlags = useFeatureFlags();
+
+  const handlePreceedingInputChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setPreceedingInputText(event.target.value);
+  };
 
   const handleInputChange = (event: { target: { value: SetStateAction<string> } }) => {
     setInputText(event.target.value);
@@ -214,6 +245,9 @@ function FeedbackActions({
       inputText,
       reference: surveyReference ?? 'Unknown',
       location: userLocation,
+      version: APP_VERSION,
+      featureFlags,
+      preceedingInputText,
     });
   };
 
@@ -223,12 +257,25 @@ function FeedbackActions({
 
   return (
     <div className="flex flex-col">
-      <div data-test-id="feedback-question" className="text-sm">
+      {preceedingQuestion && (
+        <div>
+          <div>
+            <InputField
+              inputText={preceedingInputText}
+              handleInputChange={handlePreceedingInputChange}
+              inputQuestion={preceedingQuestion}
+              isRequired={true}
+            />
+          </div>
+        </div>
+      )}
+      <div data-testid="feedback-question" className="text-sm">
         {primaryQuestion}
       </div>
       <ActionPills
         setFeedbackState={setFeedbackState}
         setFeedbackScore={setFeedbackScore}
+        surveyReference={surveyReference}
       />
       {feedbackState === FeedbackState.OPTIONAL && (
         <div>
@@ -252,14 +299,19 @@ function FeedbackActions({
 function ActionPills({
   setFeedbackState,
   setFeedbackScore,
+  surveyReference,
 }: {
   setFeedbackState: Dispatch<SetStateAction<FeedbackState>>;
   setFeedbackScore: Dispatch<SetStateAction<string>>;
+  surveyReference?: string;
 }) {
   const { t } = useTranslation();
-  const agreeText = t('feedback-card.agree');
+  const isMapSurvey = surveyReference === 'Map Survey';
+  const agreeText = isMapSurvey ? t('feedback-card.satisfied') : t('feedback-card.agree');
   const [pillContent] = useState(['1', '2', '3', '4', '5']);
-  const disagreeText = t('feedback-card.disagree');
+  const disagreeText = isMapSurvey
+    ? t('feedback-card.unsatisfied')
+    : t('feedback-card.disagree');
   const [currentPillNumber, setPillNumber] = useState('');
 
   const handlePillClick = (identifier: string) => {
@@ -276,13 +328,10 @@ function ActionPills({
         currentPillNumber={currentPillNumber}
       />
       <div className="flex flex-row items-center justify-between pt-1">
-        <div
-          data-test-id="disagree-text"
-          className="text-xs font-medium text-neutral-400"
-        >
+        <div data-testid="disagree-text" className="text-xs font-bold">
           {disagreeText}
         </div>
-        <div data-test-id="agree-text" className="text-xs font-medium text-neutral-400">
+        <div data-testid="agree-text" className="text-xs font-bold">
           {agreeText}
         </div>
       </div>
@@ -306,7 +355,7 @@ function PillContent({
     >
       {pillContent.map((content) => (
         <ToggleGroupPrimitive.Item
-          data-test-id={`feedback-pill-${content}`}
+          data-testid={`feedback-pill-${content}`}
           key={content}
           value={content}
           aria-label={content}

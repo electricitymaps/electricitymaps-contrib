@@ -1,20 +1,19 @@
 import useGetZone from 'api/getZone';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { ZoneDetail } from 'types';
-import { TimeAverages } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
-import { displayByEmissionsAtom, timeAverageAtom } from 'utils/state/atoms';
+import { displayByEmissionsAtom, timeRangeAtom } from 'utils/state/atoms';
 
 import { AreaGraphElement } from '../types';
 
 export function getFills(data: AreaGraphElement[]) {
-  const netExchangeMaxValue =
-    d3Max<number>(Object.values(data).map((d) => d.layerData.netExchange || 0)) ?? 0;
-  const netExchangeMinValue =
-    d3Min<number>(Object.values(data).map((d) => d.layerData.netExchange || 0)) ?? 0;
+  const netExchanges = Object.values(data).map((d) => d.layerData.netExchange);
+  const netExchangeMaxValue = d3Max<number>(netExchanges) ?? 0;
+  const netExchangeMinValue = d3Min<number>(netExchanges) ?? 0;
 
   const netExchangeColorScale = scaleLinear<string>()
     .domain([netExchangeMinValue, 0, netExchangeMaxValue])
@@ -31,31 +30,28 @@ export function getFills(data: AreaGraphElement[]) {
 
 export function useNetExchangeChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
-  const [timeAggregate] = useAtom(timeAverageAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
 
-  if (isLoading || isError) {
+  if (isLoading || isError || !zoneData) {
     return { isLoading, isError };
   }
 
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
     displayByEmissions,
-    timeAggregate
+    timeRange
   );
 
-  const chartData: AreaGraphElement[] = [];
-
-  for (const [datetimeString, zoneDetail] of Object.entries(zoneData.zoneStates)) {
-    const datetime = new Date(datetimeString);
-    chartData.push({
-      datetime,
+  const chartData = Object.entries(zoneData.zoneStates).map(
+    ([datetimeString, zoneDetail]) => ({
+      datetime: new Date(datetimeString),
       layerData: {
         netExchange: round(getNetExchange(zoneDetail, displayByEmissions) / valueFactor),
       },
       meta: zoneDetail,
-    });
-  }
+    })
+  );
 
   const { layerFill, markerFill } = getFills(chartData);
 
@@ -81,9 +77,9 @@ interface ValuesInfo {
 function getValuesInfo(
   historyData: ZoneDetail[],
   displayByEmissions: boolean,
-  timeAggregate: string
+  timeRange: string
 ): ValuesInfo {
-  const isHourly = timeAggregate === TimeAverages.HOURLY;
+  const isHourly = timeRange === TimeRange.H72;
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     Math.abs(getNetExchange(d, displayByEmissions))
   );

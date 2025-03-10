@@ -130,7 +130,6 @@ class Zone(StrictBaseModelWithAlias):
     disclaimer: str | None
     parsers: Parsers = Parsers()
     price_displayed: bool | None
-    aggregates_displayed: list[str] | None
     generation_only: bool | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
     timezone: str | None

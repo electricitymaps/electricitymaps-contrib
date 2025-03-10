@@ -1,3 +1,8 @@
-timezone: Indian/Mayotte
-region: Africa
+bounding_box:
+  - - 44.5418504185042
+    - -13.386712098707434
+  - - 45.700252002520045
+    - -12.19780916475694
 country: YT
+region: Africa
+timezone: Indian/Mayotte

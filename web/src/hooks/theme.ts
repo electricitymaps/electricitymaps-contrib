@@ -1,5 +1,5 @@
 import { scaleLinear } from 'd3-scale';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { MapTheme } from 'types';
 import { useMediaQuery } from 'utils';
@@ -13,7 +13,7 @@ import { colors } from './colors';
  * @returns boolean indicating if dark mode should be used or not
  */
 export function useDarkMode() {
-  const [selectedTheme] = useAtom(themeAtom);
+  const selectedTheme = useAtomValue(themeAtom);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const shouldUseDarkMode =
     selectedTheme === ThemeOptions.DARK ||
@@ -24,7 +24,7 @@ export function useDarkMode() {
 
 // TODO: Convert this to a Jotai atom and consider if we want to do things differently now with new setup
 export function useTheme(): MapTheme {
-  const [isColorBlindModeEnabled] = useAtom(colorblindModeAtom);
+  const isColorBlindModeEnabled = useAtomValue(colorblindModeAtom);
   const isDarkModeEnabled = useDarkMode();
 
   return useMemo(() => {

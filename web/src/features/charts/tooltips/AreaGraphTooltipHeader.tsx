@@ -1,15 +1,19 @@
 import EstimationBadge from 'components/EstimationBadge';
+import HorizontalDivider from 'components/HorizontalDivider';
+import { FormattedTime } from 'components/Time';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
+import { useAtomValue } from 'jotai';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { EstimationMethods, TimeAverages } from 'utils/constants';
-import { formatDate } from 'utils/formatting';
+import { EstimationMethods, isTSAModel, TimeRange } from 'utils/constants';
+import { endDatetimeAtom } from 'utils/state/atoms';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
 
 interface AreaGraphToolTipHeaderProps {
   squareColor: string;
   datetime: Date;
-  timeAverage: TimeAverages;
+  timeRange: TimeRange;
   title: string;
   hasEstimationPill?: boolean;
   estimatedPercentage?: number;
@@ -17,53 +21,52 @@ interface AreaGraphToolTipHeaderProps {
   estimationMethod?: EstimationMethods;
 }
 
-export default function AreaGraphToolTipHeader(props: AreaGraphToolTipHeaderProps) {
-  const {
-    squareColor,
-    datetime,
-    timeAverage,
-    title,
-    hasEstimationPill = false,
-    estimatedPercentage,
-    productionSource,
-    estimationMethod,
-  } = props;
+export default function AreaGraphToolTipHeader({
+  squareColor,
+  datetime,
+  timeRange,
+  title,
+  hasEstimationPill = false,
+  estimatedPercentage,
+  productionSource,
+  estimationMethod,
+}: AreaGraphToolTipHeaderProps) {
   const { i18n } = useTranslation();
   const pillText = useGetEstimationTranslation(
     'pill',
     estimationMethod,
     estimatedPercentage
   );
+  const endDatetime = useAtomValue(endDatetimeAtom);
+  const isTSA = isTSAModel(estimationMethod);
   return (
     <>
-      <div className="flex justify-between">
-        <div className="inline-flex items-center gap-x-1 font-bold">
-          <div
-            style={{
-              backgroundColor: squareColor,
-              height: 16,
-              width: 16,
-            }}
-            className="rounded-sm  font-bold"
-          >
-            {productionSource && (
-              <div className="flex h-4 w-4 justify-center pt-[3px]">
-                <ProductionSourceIcon source={productionSource} />
-              </div>
-            )}
-          </div>
-          <p className="px-1 text-base">{title}</p>
+      <div className="flex items-center gap-1 font-bold">
+        <div
+          style={{
+            backgroundColor: squareColor,
+          }}
+          className="flex h-4 w-4 items-center justify-center rounded-sm"
+        >
+          {productionSource && <ProductionSourceIcon source={productionSource} />}
         </div>
-        <div className="inline-flex items-center gap-x-2">
-          {hasEstimationPill && estimatedPercentage !== 0 && (
-            <EstimationBadge text={pillText} />
-          )}
-        </div>
+        <h2 className="grow px-1">{title}</h2>
+        {hasEstimationPill && (
+          <EstimationBadge
+            text={pillText}
+            Icon={isTSA ? CircleDashed : TrendingUpDown}
+            isPreliminary={isTSA}
+          />
+        )}
       </div>
-      <p className="whitespace-nowrap text-sm">
-        {formatDate(datetime, i18n.language, timeAverage)}
-      </p>
-      <hr className="my-1 mb-3 dark:border-gray-600" />
+      <FormattedTime
+        endDatetime={endDatetime}
+        datetime={datetime}
+        language={i18n.languages[0]}
+        timeRange={timeRange}
+        className="text-sm"
+      />
+      <HorizontalDivider />
     </>
   );
 }

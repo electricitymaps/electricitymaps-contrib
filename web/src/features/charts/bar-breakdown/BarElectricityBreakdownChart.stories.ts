@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { zoneDetailMock } from 'stories/mockData';
-import type { ZoneDetails } from 'types';
+import type { FuturePriceData, ZoneDetails } from 'types';
 
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
 import { ExchangeDataType, ProductionDataType } from './utils';
@@ -17,10 +17,12 @@ type Story = StoryObj<typeof BarElectricityBreakdownChart>;
 
 const data: ZoneDetails = {
   hasData: true,
+  //TODO Remove from backend, most likely unused
   stateAggregation: 'daily',
   zoneStates: {
     SOME_DATE: { ...zoneDetailMock },
   },
+  futurePrice: {} as FuturePriceData,
 };
 
 const productionData: ProductionDataType[] = [

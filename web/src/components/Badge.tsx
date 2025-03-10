@@ -1,9 +1,11 @@
+import React from 'react';
+
 export type PillType = 'default' | 'warning' | 'success';
 
 type BadgeProps = {
-  pillText: string;
+  pillText: string | JSX.Element;
   type?: PillType;
-  icon?: string;
+  icon?: React.ReactElement;
 };
 
 export default function Badge({ pillText, type, icon }: BadgeProps) {
@@ -28,9 +30,9 @@ export default function Badge({ pillText, type, icon }: BadgeProps) {
   return (
     <span
       className={`flex h-6 flex-row items-center gap-1 whitespace-nowrap rounded-full px-2 py-1 text-xs font-semibold ${classes}`}
-      data-test-id="badge"
+      data-testid="badge"
     >
-      {icon != undefined && <div className={`${icon}`} />}
+      {icon}
       {pillText}
     </span>
   );

@@ -1,3 +1,56 @@
-timezone: Africa/Accra
-region: Africa
+bounding_box:
+  - - -3.763432634326307
+    - 4.237072989174393
+  - - 1.686211862118654
+    - 11.66263490915729
 country: GH
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 324.25
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 324.25
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 324.25
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 324.25
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6261871418950762
+        geothermal: 0.0
+        hydro: 0.3536090544623948
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.013253273113866659
+        solar: 0.006950425624501335
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6261869282985468
+        geothermal: 0.0
+        hydro: 0.35360908212088166
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.013253557917185226
+        solar: 0.006950597869928555
+        unknown: 0.0
+        wind: 0.0
+region: Africa
+timezone: Africa/Accra

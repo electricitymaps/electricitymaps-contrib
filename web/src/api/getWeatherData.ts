@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { add, startOfHour, sub } from 'date-fns';
+import { addHours, startOfHour, subHours } from 'date-fns';
 import { getInterpolatedData } from 'features/weather-layers/weatherUtils';
 import type { Maybe } from 'types';
 
@@ -30,20 +30,18 @@ const GFS_STEP_HORIZON = 1; // hours
 // Data is bucketed into groups for every six hours, so we need to find the closest step in the past
 function getForecastStartTime(now: Date) {
   // Warning: solar will not be available at horizon 0 so always do at least horizon 1
-  let origin = sub(startOfHour(now), { hours: GFS_STEP_HORIZON });
+  let origin = subHours(startOfHour(now), GFS_STEP_HORIZON);
   if (origin.getUTCHours() % GFS_STEP_ORIGIN !== 0) {
     origin = getForecastStartTime(origin);
   }
   return origin;
 }
 
-function getBeforeForcastEndTime(now: Date) {
-  return add(startOfHour(now), { hours: 0 }).toISOString();
-}
+const getBeforeForcastEndTime = (now: Date) =>
+  addHours(startOfHour(now), 0).toISOString();
 
-function getAfterForecastEndTime(now: Date) {
-  return add(startOfHour(now), { hours: GFS_STEP_HORIZON }).toISOString();
-}
+const getAfterForecastEndTime = (now: Date) =>
+  addHours(startOfHour(now), GFS_STEP_HORIZON).toISOString();
 
 const targetTimeFunction = {
   before: getBeforeForcastEndTime,
@@ -59,7 +57,7 @@ export async function fetchGfsForecast(
 ): Promise<GfsForecastResponse> {
   const targetTime = targetTimeFunction[period](endTime);
 
-  const path: URL = new URL(`v8/gfs/${resource}`, getBasePath());
+  const path: URL = new URL(`v10/gfs/${resource}`, getBasePath());
   path.searchParams.append('refTime', startTime.toISOString());
   path.searchParams.append('targetTime', targetTime);
 
@@ -84,7 +82,7 @@ export async function fetchGfsForecast(
   // Retry again with a previous step date if request failed with 404
   return fetchGfsForecast(
     resource,
-    sub(startTime, { hours: GFS_STEP_ORIGIN }),
+    subHours(startTime, GFS_STEP_ORIGIN),
     endTime,
     period,
     retries + 1
@@ -98,9 +96,7 @@ async function getWeatherData(type: WeatherType) {
   const before = fetchGfsForecast(type, startTime, now, 'before');
   const after = fetchGfsForecast(type, startTime, now, 'after');
 
-  const forecasts = await Promise.all([before, after]).then((values) => {
-    return values;
-  });
+  const forecasts = await Promise.all([before, after]).then((values) => values);
   const interdata = getInterpolatedData(type, forecasts);
   return interdata;
 }
@@ -122,9 +118,7 @@ const useGetWeather = (options: UseWeatherQueryOptions) => {
   });
 };
 
-export const useGetWind = (options?: Omit<UseWeatherQueryOptions, 'type'>) => {
-  return useGetWeather({ type: 'wind', ...options });
-};
-export const useGetSolar = (options?: Omit<UseWeatherQueryOptions, 'type'>) => {
-  return useGetWeather({ type: 'solar', ...options });
-};
+export const useGetWind = (options?: Omit<UseWeatherQueryOptions, 'type'>) =>
+  useGetWeather({ type: 'wind', ...options });
+export const useGetSolar = (options?: Omit<UseWeatherQueryOptions, 'type'>) =>
+  useGetWeather({ type: 'solar', ...options });

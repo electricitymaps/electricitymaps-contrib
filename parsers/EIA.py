@@ -9,11 +9,10 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 
-import arrow
 from dateutil import parser, tz
 from requests import Session
 
@@ -339,16 +338,32 @@ EXCHANGE_TRANSFERS = {
     "US-MIDW-MISO->US-SE-SOCO": {"US-MIDW-MISO->US-SE-AEC"},
 }
 
+# Available modes
+# biomass: float | None = None
+# coal: float | None = None
+# gas: float | None = None
+# geothermal: float | None = None
+# hydro: float | None = None
+# nuclear: float | None = None
+# oil: float | None = None
+# solar: float | None = None
+# unknown: float | None = None
+# wind: float | None = None
+# battery_storage: float | None = None
+# hydro_storage: float | None = None
 TYPES = {
     # 'biomass': 'BM',  # not currently supported
     "coal": "COL",
     "gas": "NG",
+    "geothermal": "GEO",
     "hydro": "WAT",
     "nuclear": "NUC",
     "oil": "OIL",
-    "unknown": "OTH",
     "solar": "SUN",
+    "unknown": "OTH",
     "wind": "WND",
+    "battery_storage": "BAT",
+    "hydro_storage": "PS",
 }
 
 BASE_URL = "https://api.eia.gov/v2/electricity/rto"
@@ -382,7 +397,7 @@ FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-NW-PACE": ["biomass", "geothermal", "oil"],
     "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
     "US-TEN-TVA": ["biomass", "geothermal", "oil"],
-    "US-SE-SOCO": ["biomass", "geothermal", "oil"],
+    "US-SE-SOCO": ["biomass", "geothermal", "oil", "hydro"],
     "US-FLA-FPL": ["biomass", "geothermal", "oil"],
 }
 
@@ -470,10 +485,19 @@ def create_production_storage(
         return None, storage_mix
     # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
     # Lower values are set to None as they are most likely outliers.
-    production_mix.add_value(
-        fuel_type, production_value, production_value > negative_threshold
-    )
-    return production_mix, None
+
+    # have to have early returns because of downstream validation in ProductionBreakdownList
+    if fuel_type == "hydro_storage":
+        storage_mix.add_value("hydro", production_value)
+        return None, storage_mix
+    elif fuel_type == "battery_storage":
+        storage_mix.add_value("battery", production_value)
+        return None, storage_mix
+    else:
+        production_mix.add_value(
+            fuel_type, production_value, production_value > negative_threshold
+        )
+        return production_mix, None
 
 
 @refetch_frequency(timedelta(days=1))
@@ -491,7 +515,7 @@ def fetch_production_mix(
         )
         production_breakdown = ProductionBreakdownList(logger)
         url_prefix = PRODUCTION_MIX.format(REGIONS[zone_key], code)
-        production_values = _fetch(
+        production_and_storage_values = _fetch(
             zone_key,
             url_prefix,
             session=session,
@@ -502,12 +526,11 @@ def fetch_production_mix(
         # As null values can cause problems in the estimation models if there's
         # only null values.
         # Integrate with data quality layer later.
-        production_values = [
+        production_and_storage_values = [
             datapoint
-            for datapoint in production_values
+            for datapoint in production_and_storage_values
             if datapoint["value"] is not None
         ]
-
         # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
         # US-CAR-SCEG and US-CAR-SC,
@@ -517,9 +540,10 @@ def fetch_production_mix(
         # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
 
         if zone_key == "US-CAR-SCEG" and production_mode == "nuclear":
-            for point in production_values:
+            for point in production_and_storage_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
-        for point in production_values:
+
+        for point in production_and_storage_values:
             production_mix, storage_mix = create_production_storage(
                 production_mode, point, negative_threshold
             )
@@ -669,20 +693,19 @@ def _fetch(
     # get EIA API key
     API_KEY = get_token("EIA_KEY")
 
+    start, end = None, None
     if target_datetime:
-        try:
-            target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError as e:
-            raise ValueError(
-                f"target_datetime must be a valid datetime - received {target_datetime}"
-            ) from e
         utc = tz.gettz("UTC")
-        eia_ts_format = "%Y-%m-%dT%H"
         end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
-        url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
     else:
-        url = f"{url_prefix}&api_key={API_KEY}&sort[0][column]=period&sort[0][direction]=desc&length=24"
+        end = datetime.now(tz=tz.gettz("UTC")).replace(
+            minute=0, second=0, microsecond=0
+        ) + timedelta(hours=1)
+        start = end - timedelta(hours=72)
+
+    eia_ts_format = "%Y-%m-%dT%H"
+    url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
 
     s = session or Session()
     req = s.get(url)
@@ -692,9 +715,7 @@ def _fetch(
     return [
         {
             "zoneKey": zone_key,
-            "datetime": _get_utc_datetime_from_datapoint(
-                parser.parse(datapoint["period"])
-            ),
+            "datetime": _parse_hourly_interval(datapoint["period"]),
             "value": float(datapoint["value"]) if datapoint["value"] else None,
             "source": "eia.gov",
         }
@@ -702,19 +723,20 @@ def _fetch(
     ]
 
 
-def _conform_timestamp_convention(dt: datetime):
+def _parse_hourly_interval(period: str):
+    interval_end_naive = parser.parse(period)
+
+    # NB: the EIA API can respond with time intervals relative to either UTC
+    # or local-time.  We request UTC times using the 'frequency=hourly'
+    # parameter, meaning that we can attach timezone.utc without performing
+    # any timezone conversion.
+    interval_end = interval_end_naive.replace(tzinfo=timezone.utc)
+
     # The timestamp given by EIA represents the end of the time interval.
     # ElectricityMap using another convention,
     # where the timestamp represents the beginning of the interval.
     # So we need shift the datetime 1 hour back.
-    return dt - timedelta(hours=1)
-
-
-def _get_utc_datetime_from_datapoint(dt: datetime):
-    """update to beginning hour convention and timezone to utc"""
-    dt_beginning_hour = _conform_timestamp_convention(dt)
-    dt_utc = arrow.get(dt_beginning_hour).to("utc")
-    return dt_utc.datetime
+    return interval_end - timedelta(hours=1)
 
 
 if __name__ == "__main__":

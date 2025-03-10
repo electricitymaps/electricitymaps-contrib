@@ -1,0 +1,85 @@
+# serializer version: 1
+# name: test_snapshot_price_data
+  list([
+    dict({
+      'currency': 'NZD',
+      'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
+      'price': 79.8623076923077,
+      'source': 'api.em6.co.nz',
+      'zoneKey': 'NZ',
+    }),
+    dict({
+      'currency': 'NZD',
+      'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
+      'price': 79.8623076923077,
+      'source': 'api.em6.co.nz',
+      'zoneKey': 'NZ',
+    }),
+  ])
+# ---
+# name: test_snapshot_production_data
+  list([
+    dict({
+      'capacity': dict({
+        'battery storage': 35,
+        'coal': 750,
+        'gas': 1280,
+        'geothermal': 1062,
+        'hydro': 5415,
+        'nuclear': 0,
+        'oil': 156,
+        'solar': 47,
+        'unknown': 168,
+        'wind': 1259,
+      }),
+      'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'coal': 156,
+        'gas': 252,
+        'geothermal': 964,
+        'hydro': 1644,
+        'nuclear': 0,
+        'oil': 0,
+        'solar': 0,
+        'unknown': 117,
+        'wind': 814,
+      }),
+      'source': 'transpower.co.nz',
+      'storage': dict({
+        'battery': 0,
+      }),
+      'zoneKey': 'NZ',
+    }),
+    dict({
+      'capacity': dict({
+        'battery storage': 35,
+        'coal': 750,
+        'gas': 1280,
+        'geothermal': 1062,
+        'hydro': 5415,
+        'nuclear': 0,
+        'oil': 156,
+        'solar': 47,
+        'unknown': 168,
+        'wind': 1259,
+      }),
+      'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'coal': 156,
+        'gas': 252,
+        'geothermal': 964,
+        'hydro': 1644,
+        'nuclear': 0,
+        'oil': 0,
+        'solar': 0,
+        'unknown': 117,
+        'wind': 814,
+      }),
+      'source': 'transpower.co.nz',
+      'storage': dict({
+        'battery': 0,
+      }),
+      'zoneKey': 'NZ',
+    }),
+  ])
+# ---

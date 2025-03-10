@@ -263,10 +263,10 @@ def fetch_price(
 
 def __detect_datetime_from_solar_image(solar_image, logger: Logger):
     w, h = solar_image.size
-    crop_left = int(w * 0.75)
-    crop_top = int(h * 0.87)
-    crop_right = int(w * 0.93)
-    crop_bottom = int(h * 0.92)
+    crop_left = int(w * 0.64)
+    crop_top = int(h * 0.80)
+    crop_right = int(w * 0.87)
+    crop_bottom = int(h * 0.86)
     time_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
     processed_img = __preprocess_image_for_ocr(time_img)
     text = image_to_string(
@@ -289,10 +289,10 @@ def __detect_datetime_from_solar_image(solar_image, logger: Logger):
 
 def __detect_output_from_solar_image(solar_image, logger: Logger):
     w, h = solar_image.size
-    crop_left = int(w * 0.65)
-    crop_top = int(h * 0.74)
-    crop_right = int(w * 0.93)
-    crop_bottom = int(h * 0.80)
+    crop_left = int(w * 0.55)
+    crop_top = int(h * 0.70)
+    crop_right = int(w * 0.87)
+    crop_bottom = int(h * 0.75)
     output_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
     processed_img = __preprocess_image_for_ocr(output_img)
     text = image_to_string(processed_img, lang="eng", config="--psm 7")
@@ -330,13 +330,13 @@ def __preprocess_image_for_ocr(img):
     """
     # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
     inverted_img = ImageOps.invert(
-        img
+        img.convert("RGB")  # Mode P not supported yet, so we convert to RGB
     )  # assumes black background of Singapore solar output image
-    dark_text_on_light_bg = inverted_img.convert("L")
+    gray_text_on_light_bg = ImageOps.grayscale(inverted_img)
+    black_text_on_light_bg = ImageOps.autocontrast(gray_text_on_light_bg)
 
     # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#missing-borders
-    img_with_border = ImageOps.expand(dark_text_on_light_bg, border=2)
-
+    img_with_border = ImageOps.expand(black_text_on_light_bg, border=2)
     return img_with_border
 
 

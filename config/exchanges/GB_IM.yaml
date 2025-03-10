@@ -1,0 +1,10 @@
+capacity:
+  - -65
+  - 65
+lonlat:
+  - -4
+  - 53.8
+rotation: -40
+
+parsers:
+  exchange: ELEXON.fetch_exchange

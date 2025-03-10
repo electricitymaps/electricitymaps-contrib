@@ -172,6 +172,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -191,14 +194,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Newfoundland and Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canada",
@@ -370,6 +365,14 @@
     "ES-CN-FVLZ": {
       "countryName": "Spain",
       "zoneName": "Fuerteventura/Lanzarote"
+    },
+    "ES-CN-FV": {
+      "countryName": "Spain",
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spain",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spain",
@@ -851,8 +854,7 @@
       "zoneName": "Montenegro"
     },
     "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
+      "zoneName": "Saint-Martin"
     },
     "MG": {
       "zoneName": "Madagascar"
@@ -938,6 +940,9 @@
       "countryName": "Mexico",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Malaysia"
+    },
     "MY-EM": {
       "countryName": "Malaysia",
       "zoneName": "Borneo"
@@ -966,9 +971,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Netherlands"
@@ -1279,6 +1281,10 @@
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
     },
+    "US-HI": {
+      "countryName": "USA",
+      "zoneName": "Hawaii"
+    },
     "US-HI-HA": {
       "countryName": "USA",
       "zoneName": "Hawaii"
@@ -1318,8 +1324,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CAL-IID": {
       "countryName": "USA",
@@ -1424,7 +1430,7 @@
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England"
     },
     "US-NW-AVA": {
       "countryName": "USA",
@@ -1585,18 +1591,6 @@
     },
     "VN": {
       "zoneName": "Vietnam"
-    },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Central Vietnam"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Northern Vietnam"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Southern Vietnam"
     },
     "VU": {
       "zoneName": "Vanuatu"

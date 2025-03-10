@@ -6,7 +6,12 @@
     "es2021": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-prefer-function-component", "simple-import-sort", "import"],
+  "plugins": [
+    "react-prefer-function-component",
+    "simple-import-sort",
+    "import",
+    "unused-imports"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -25,6 +30,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
 
+    "arrow-body-style": "error",
     "curly": "error",
     "no-promise-executor-return": "error",
     "no-unreachable-loop": "error",
@@ -50,9 +56,16 @@
       }
     ],
     "no-void": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "warn", // TODO: Change to error when ready for production
-      { "args": "after-used", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
     ],
     "@typescript-eslint/ban-ts-comment": [
       "error",
@@ -74,6 +87,7 @@
         "devDependencies": [
           "cypress.config.ts",
           "vite.config.ts",
+          "scripts/**/*.test.ts",
           "src/testing/setupTests.ts",
           "src/testing/testUtils.tsx",
           "src/testing/mocks/**",

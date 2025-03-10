@@ -1,5 +1,4 @@
 export const localeToFacebookLocale = {
-  ar: 'ar_AR',
   cs: 'cs_CZ',
   da: 'da_DK',
   de: 'de_DE',
@@ -9,7 +8,6 @@ export const localeToFacebookLocale = {
   et: 'et_EE',
   fi: 'fi_FI',
   fr: 'fr_FR',
-  hi: 'hi_IN',
   hr: 'hr_HR',
   id: 'id_ID',
   it: 'it_IT',
@@ -28,11 +26,9 @@ export const localeToFacebookLocale = {
   sv: 'sv_SE',
   vn: 'vi_VN',
   'zh-cn': 'zh_CN',
-  'zh-hk': 'zh_HK',
   'zh-tw': 'zh_TW',
 };
 export const languageNames = {
-  ar: 'اللغة العربية الفصحى',
   cs: 'Čeština',
   da: 'Dansk',
   de: 'Deutsch',
@@ -42,7 +38,6 @@ export const languageNames = {
   et: 'Eesti',
   fi: 'Suomi',
   fr: 'Français',
-  hi: 'हिन्दी',
   hr: 'Hrvatski',
   id: 'Bahasa Indonesia',
   it: 'Italiano',
@@ -60,6 +55,5 @@ export const languageNames = {
   sv: 'Svenska',
   vi: 'Tiếng Việt',
   'zh-CN': '中文 (Mainland China)',
-  'zh-HK': '中文 (Hong Kong)',
   'zh-TW': '中文 (Taiwan)',
 };

@@ -1,0 +1,48 @@
+aggregates_displayed:
+  - none
+bounding_box:
+  - - -118.86880422899992
+    - 22.37215511800008
+  - - -108.91362465499992
+    - 33.21283640500009
+country: MX
+emissionFactors:
+  direct:
+    unknown:
+      - datetime: '2017-01-01'
+        source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
+        value: 453
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 341.3
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 341.3
+    unknown:
+      - datetime: '2017-01-01'
+        source: "Electricity Maps & Dra. Gabriela Mu\xF1oz Mel\xE9ndez"
+        value: 342
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.00043250680184585163
+        biomass: 0.0001853114848385145
+        coal: 0.00019610386524367113
+        gas: 0.006126988044698532
+        geothermal: 0.00032393116638059627
+        hydro: 0.0011129974402204494
+        hydro discharge: 8.235458490121891e-07
+        nuclear: 0.0008670511107974027
+        oil: 4.5192505614880517e-07
+        solar: 0.0028356554499964085
+        unknown: 0.9870965076517385
+        wind: 0.000821563871450251
+parsers:
+  consumption: CENACE.fetch_consumption
+region: Americas
+timezone: America/Tijuana

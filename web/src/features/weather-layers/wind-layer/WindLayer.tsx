@@ -1,6 +1,6 @@
 import { GfsForecastResponse, useGetWind } from 'api/getWeatherData';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import useResizeObserver from 'use-resize-observer';
 import { isWindLayerEnabledAtom, windLayerLoadingAtom } from 'utils/state/atoms';
@@ -20,7 +20,7 @@ const createWindy = async (
 };
 
 export default function WindLayer({ map }: { map?: maplibregl.Map }) {
-  const [isMapMoving] = useAtom(mapMovingAtom);
+  const isMapMoving = useAtomValue(mapMovingAtom);
   const [windy, setWindy] = useState<Windy | null>(null);
   const reference = useRef(null);
   const { width = 0, height = 0 } = useResizeObserver<HTMLCanvasElement>({
@@ -93,7 +93,7 @@ export default function WindLayer({ map }: { map?: maplibregl.Map }) {
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       id="wind"
-      data-test-id="wind-layer"
+      data-testid="wind-layer"
       width={width}
       height={height}
       ref={reference}

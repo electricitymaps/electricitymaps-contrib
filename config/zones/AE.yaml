@@ -29,6 +29,29 @@ capacity:
     - datetime: '2023-01-01'
       source: Climatescope
       value: 39451.8
+  nuclear:
+    - datetime: '2020-08-19'
+      source: IAEA PRIS
+      value: 1310
+    - datetime: '2021-09-14'
+      source: IAEA PRIS
+      value: 2620
+    - datetime: '2022-10-08'
+      source: IAEA PRIS
+      value: 3930
+    - datetime: '2024-03-24'
+      source: IAEA PRIS
+      value: 5240
+  oil:
+    - datetime: '2016-01-01'
+      source: Climatescope
+      value: 219.9
+    - datetime: '2017-01-01'
+      source: Climatescope
+      value: 218.6
+    - datetime: '2018-01-01'
+      source: Climatescope
+      value: 71.4
   solar:
     - datetime: '2016-01-01'
       source: Climatescope
@@ -54,31 +77,191 @@ capacity:
     - datetime: '2022-01-01'
       source: Climatescope
       value: 5414
-  nuclear:
-    - datetime: '2022-01-01'
-      source: Climatescope
-      value: 1390
-    - datetime: '2023-01-01'
-      source: Climatescope
-      value: 2780
-  oil:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 219.9
-    - datetime: '2017-01-01'
-      source: Climatescope
-      value: 218.6
-    - datetime: '2018-01-01'
-      source: Climatescope
-      value: 71.4
 contributors:
   - q--
   - florianscheidl
+  - MisterClean
+country: AE
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 14.91
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 15.95
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 17.19
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 22.65
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 21.74
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 325.52
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 381.54
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 340.3
+    hydro discharge:
+      - datetime: '2017-01-01'
+        source: Electricity Maps, 2017 average
+        value: 14.91
+      - datetime: '2018-01-01'
+        source: Electricity Maps, 2018 average
+        value: 15.95
+      - datetime: '2019-01-01'
+        source: Electricity Maps, 2019 average
+        value: 17.19
+      - datetime: '2020-01-01'
+        source: Electricity Maps, 2020 average
+        value: 22.65
+      - datetime: '2021-01-01'
+        source: Electricity Maps, 2021 average
+        value: 21.74
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 325.52
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 381.54
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 340.3
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.91193148872398
+        oil: 0.0
+        solar: 0.08806834372511946
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.8802408112760882
+        oil: 0.0
+        solar: 0.11975904640299682
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.8428767238407804
+        oil: 0.0
+        solar: 0.1571230965177479
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.6773326171573966
+        oil: 0.0
+        solar: 0.32266724667885344
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.7047717265187831
+        oil: 0.0
+        solar: 0.2952281623735283
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6456891698673624
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.23727536945180464
+        oil: 0.0
+        solar: 0.11548202997847996
+        unknown: 0.0015533738033579184
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.7661878052566268
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.1702784339815322
+        oil: 0.0
+        solar: 0.061690443983189604
+        unknown: 0.001843265887442152
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6795480056248291
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.24752923194499274
+        oil: 0.0
+        solar: 0.07128789104234305
+        unknown: 0.0016348372505816842
+        wind: 0.0
 parsers:
   consumption: GCCIA.fetch_consumption
+region: Asia
 sources:
   Climatescope:
     link: https://www.global-climatescope.org/markets/ae/
+  IAEA PRIS:
+    link: https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=AE
 timezone: Asia/Dubai
-region: Asia
-country: AE

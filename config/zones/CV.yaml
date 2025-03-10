@@ -1,3 +1,30 @@
-timezone: Atlantic/Cape_Verde
-region: Africa
+capacity:
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 170.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
 country: CV
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
+region: Africa
+timezone: Atlantic/Cape_Verde

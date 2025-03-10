@@ -2,17 +2,14 @@ import * as SliderPrimitive from '@radix-ui/react-slider';
 import { scaleLinear } from 'd3-scale';
 import { useNightTimes } from 'hooks/nightTimes';
 import { useDarkMode } from 'hooks/theme';
-import { useAtom, useAtomValue } from 'jotai';
-import trackEvent from 'utils/analytics';
-import { TimeAverages } from 'utils/constants';
-import { useGetZoneFromPath } from 'utils/helpers';
-import { isHourlyAtom, timeAverageAtom } from 'utils/state/atoms';
+import { useAtomValue } from 'jotai';
+import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
+import { ReactElement } from 'react';
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
+import { isHourlyAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
-type ThumbIconPath =
-  | 'slider-thumb.svg'
-  | 'slider-thumb-day.svg'
-  | 'slider-thumb-night.svg';
 
 export interface TimeSliderProps {
   onChange: (datetimeIndex: number) => void;
@@ -60,25 +57,24 @@ export const getTrackBackground = (
 export const getThumbIcon = (
   selectedIndex?: number,
   sets?: NightTimeSet[]
-): ThumbIconPath => {
+): ReactElement => {
+  const size = 20;
   if (selectedIndex === undefined || !sets || sets.length === 0) {
-    return 'slider-thumb.svg';
+    return <ChevronsLeftRight size={size} pointerEvents="none" />;
   }
   const isValueAtNight = sets.some(
     ([start, end]) => selectedIndex >= start && selectedIndex <= end && start !== end
   );
-  return isValueAtNight ? 'slider-thumb-night.svg' : 'slider-thumb-day.svg';
+  return isValueAtNight ? (
+    <Moon size={size} pointerEvents="none" />
+  ) : (
+    <Sun size={size} pointerEvents="none" />
+  );
 };
-
-function trackTimeSliderEvent(selectedIndex: number, timeAverage: TimeAverages) {
-  trackEvent('Time Slider Button Interaction', {
-    selectedIndex: `${timeAverage}: ${selectedIndex}`,
-  });
-}
 
 export type TimeSliderBasicProps = TimeSliderProps & {
   trackBackground: string;
-  thumbIcon: ThumbIconPath;
+  thumbIcon: ReactElement;
 };
 export function TimeSliderBasic({
   onChange,
@@ -87,7 +83,6 @@ export function TimeSliderBasic({
   trackBackground,
   thumbIcon,
 }: TimeSliderBasicProps) {
-  const [timeAverage] = useAtom(timeAverageAtom);
   return (
     <SliderPrimitive.Root
       defaultValue={[0]}
@@ -96,7 +91,6 @@ export function TimeSliderBasic({
       value={selectedIndex && selectedIndex > 0 ? [selectedIndex] : [0]}
       onValueChange={(value) => {
         onChange(value[0]);
-        trackTimeSliderEvent(value[0], timeAverage);
       }}
       aria-label="choose time"
       className="relative mb-2 flex h-5 w-full touch-none items-center hover:cursor-pointer"
@@ -108,14 +102,12 @@ export function TimeSliderBasic({
         <SliderPrimitive.Range />
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
-        data-test-id="time-slider-input"
-        className={`block h-6 w-6 rounded-full bg-white bg-center
-          bg-no-repeat shadow-3xl transition-shadow hover:ring
-          hover:ring-brand-green/10 hover:ring-opacity-75 focus:outline-none focus-visible:ring
-          focus-visible:ring-brand-green/10 focus-visible:ring-opacity-75
-          dark:bg-gray-400 hover:dark:ring-white/70 dark:focus-visible:ring-white/70`}
-        style={{ backgroundImage: `url(/images/${thumbIcon})` }}
-      ></SliderPrimitive.Thumb>
+        data-testid="time-slider-input"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white outline
+           outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 dark:bg-gray-900 dark:outline-gray-700"
+      >
+        {thumbIcon}
+      </SliderPrimitive.Thumb>
     </SliderPrimitive.Root>
   );
 }
@@ -146,7 +138,7 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 }
 
 function TimeSlider(props: TimeSliderProps) {
-  const zoneId = useGetZoneFromPath();
+  const { zoneId } = useParams<RouteParameters>();
   const isHourly = useAtomValue(isHourlyAtom);
   const showNightTime = zoneId && isHourly;
 

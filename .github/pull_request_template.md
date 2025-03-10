@@ -1,6 +1,6 @@
 ## Issue
 
-<!-- If you want to close an issue automatically when your PR is merged, write "Closes X" where X is the PR number. For example: Closes #000 -->
+<!-- If you want to close an issue automatically when your PR is merged, write "Closes X" where X is the issue number. For example: Closes #000 -->
 
 ## Description
 

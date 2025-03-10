@@ -1,3 +1,31 @@
-timezone: Africa/Freetown
-region: Africa
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
 country: SL
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
+region: Africa
+timezone: Africa/Freetown

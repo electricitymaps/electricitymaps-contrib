@@ -1,3 +1,40 @@
-timezone: America/Guyana
-region: Americas
+bounding_box:
+  - - -61.87881378813783
+    - 0.7008673089343631
+  - - -55.982764827648225
+    - 9.058064153173135
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 280.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 290.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 310.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 360.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: GY
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
+region: Americas
+timezone: America/Guyana

@@ -1,15 +1,12 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Diese App ist",
-    "opensource": "Open Source",
-    "see": "siehe",
-    "datasources": "Datenquellen",
-    "contribute": "Wirke mit, indem du <a href=\"{{link}}\" target=\"_blank\">dein Land hinzufügst</a>"
-  },
   "mobile-main-menu": {
     "map": "Karte",
     "areas": "Regionen",
     "about": "Über"
+  },
+  "app-banner": {
+    "cta": "App laden",
+    "description": "Live-Elektrizitätsdaten"
   },
   "onboarding-modal": {
     "view1": {
@@ -46,8 +43,7 @@
     "carbonintensity": "spezifische CO₂-Emissionen",
     "lowcarbon": "CO₂-arm",
     "renewable": "regenerativ",
-    "electricityproduction": "Produktion",
-    "electricityconsumption": "Verbrauch",
+    "electricityconsumption": "Elektrizität",
     "emissions": "Emissionen",
     "by-source": {
       "emissions": "CO₂-Emissionen",
@@ -60,7 +56,7 @@
     "helpfrom": "mit Unterstützung von",
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
     "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
-    "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"{{link}}\" target=\"_blank\">Datenquellen hinzufügst</a>.",
+    "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href='{{link}}' target='_blank'>Datenquellen hinzufügst</a>.",
     "disabledPriceReasons": {
       "licensing": "Aufgrund von Lizenzbedingungen sind für dieses Gebiet keine Strompreise verfügbar"
     },
@@ -68,27 +64,29 @@
     "dataIsDelayed": "Die Daten in dieser Region können bis zu {{hours}} Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
     "estimated": "Geschätzt",
     "aggregated": "Zusammengefasst",
-    "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">hier</a> lesen.",
+    "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>hier</a> lesen.",
     "estimatedTooltip": "Die Echtzeit-Daten für diese Zone sind auf Basis der Daten der Quelle und den Annahmen des Modells geschätzt.",
     "aggregatedTooltip": "Die Daten für diese Zone sind zusammengefasst, basierend auf den stündlichen Werten der historischen Daten",
-    "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"{{link}}\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
+    "helpUs": "Hilf uns Problem zu finden indem du dir die <a href='{{link}}' target='_blank'>Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
   },
-  "left-panel": {
-    "zone-list-header-title": "Klimaeinfluss der Regionen",
-    "zone-list-header-subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
+  "ranking-panel": {
+    "title": "Klimaeinfluss der Regionen",
+    "subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
     "search": "Land oder Region suchen"
   },
   "time-controller": {
     "title": {
-      "hourly": "Stündliche Daten für:",
-      "daily": "Tägliche Daten für:",
-      "monthly": "Monatliche Daten für:",
-      "yearly": "Jährliche Daten für:"
+      "72h": "Stündliche Daten für:",
+      "3mo": "Tägliche Daten für:",
+      "12mo": "Monatliche Daten für:",
+      "all_months": "Monatliche Daten für:",
+      "all_years": "Jährliche Daten für:"
     },
-    "daily": "täglich",
-    "hourly": "stündlich",
-    "monthly": "monatlich",
-    "yearly": "jährlich"
+    "3mo": "täglich",
+    "72h": "stündlich",
+    "12mo": "monatlich",
+    "all_months": "monatlich",
+    "all_years": "jährlich"
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",
@@ -97,34 +95,10 @@
   },
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Vorläufige Daten",
-      "body": "Der Datenanbieter hat für diese Stunde keine Daten zur Verfügung gestellt. Die angezeigten Werte wurden anhand historischer Werte geschätzt und werden aktualisiert, sobald gemessene Daten verfügbar sind. Geschätzte Daten können unpräzise sein, da sie in manchen Fällen Echtzeit-Wetterereignisse vernachlässigen."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Teils geschätzte Daten",
-      "pill": "Unvollständig",
-      "body": "Die Daten zur Stromerzeugung in diesem Gebiet sind unvollständig. Die fehlenden Werte wurden anhand eines statistischen Schätzmodells berechnet."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Ausschließlich geschätzte Daten",
-      "pill": "Unpräzise",
-      "body": "Die Datenquelle gibt ausschließlich die Gesamtproduktion an. Die Stromproduktion aus erneuerbaren Quellen wird anhand aktueller Wetterdaten geschätzt. Die übrige Stromproduktion wird fossilen Energieträgern zugeordnet, wobei die Verteilung auf historischen Daten basiert."
-    },
     "estimated_generic_method": {
       "title": "Daten werden geschätzt",
       "pill": "Unpräzise",
       "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Ausschließlich geschätzte Daten",
-      "pill": "Nicht in Echtzeit",
-      "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Ausschließlich geschätzte Daten",
-      "pill": "Nicht in Echtzeit",
-      "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
     },
     "threshold_filtered": {
       "title": "Fehlende Daten",
@@ -162,8 +136,9 @@
   },
   "tooltips": {
     "carbonintensity": "CO₂-Intensität",
-    "lowcarbon": "CO₂-arm",
-    "renewable": "regenerativ",
+    "zoneHeader": {
+      "lowcarbon": "Beinhaltet regenerative Energien und Kernenergie"
+    },
     "crossborderexport": "Stromexport",
     "carbonintensityexport": "CO₂-Intensität der Exporte",
     "ofinstalled": "der installierten Leistung",
@@ -180,7 +155,6 @@
     "consumption": "Verbrauch",
     "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
     "selectLanguage": "Sprache auswählen",
-    "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie",
     "dataIsDelayed": "Die Daten sind verzögert",
     "representing": "macht",
     "ofemissions": "der Emissionen aus",
@@ -198,7 +172,6 @@
     "system": "System"
   },
   "updatePrompt": {
-    "title": "Aktualisierung verfügbar",
     "description": "Eine neue Version der App ist verfügbar, jetzt aktualisieren?",
     "update": "Aktualisieren",
     "dismiss": "Schließen"
@@ -225,41 +198,41 @@
   "theMap": {
     "groupName": "Die Karte",
     "mapColors-question": "Was bedeuten die Farben auf der Karte?",
-    "mapColors-answer": "Wir färben Bereiche der Karte anhand der ausgestoßenen Treibhausgase (CO₂äq) für jede dort bereitgestellte Kilowattstunde (kWh) (<a href=\"#carbonIntensity\" class=\"entry-link\">CO₂-Intensität</a>). Grünere Farben bedeuten einen klimafreundlicheren Elektrizitätsmix.",
+    "mapColors-answer": "Wir färben Bereiche der Karte anhand der ausgestoßenen Treibhausgase (CO₂äq) für jede dort bereitgestellte Kilowattstunde (kWh) (<a href='#carbonIntensity' class='entry-link'>CO₂-Intensität</a>). Grünere Farben bedeuten einen klimafreundlicheren Elektrizitätsmix.",
     "mapArrows-question": "Was bedeuten die Pfeile zwischen den Regionen auf der Karte?",
     "mapArrows-answer": "Die Pfeile zwischen den Regionen zeigen den physischen Stromfluss (Importe und Exporte) der Elektrizität: Je schneller sie blinken, desto stärker ist der grenzüberschreitende Stromaustausch. Der Elektrizitätaustausch ist von großer Bedeutung, da beim Import von Strom bilanziell auch auch die Kohlenstoffemissionen importiert werden.",
     "mapSolarWindButtons-question": "Wofür sind die “Sonne” und “Wind”-Buttons auf der Karte da?",
     "mapSolarWindButtons-answer": "Die Knöpfe aktivieren die Anzeige der Echtzeit-Windgeschwindigkeit und Sonneneinstrahlung, womit das momentane Potenzial von Photovoltaik- und Windenergieanlagen abgeschätzt werden kann. Das tatsächliche Potenzial dieser Anlagen ist von vielen weiteren Faktoren abhängig, daher dient diese Visualisierung als ungefährer Indikator des Potenzials.",
     "mapNuclearColors-question": "Warum werden Regionen mit Kernkraftwerken auf der Karte grün dargestellt?",
-    "mapNuclearColors-answer": "Die Erzeugung von Strom mittels Kernkraft hat eine niedrige Kohlenstoffintensität (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\") Quelle</a>). Regionen mit hohem Kernstromanteil werden daher auf der Karte grüner dargestellt. Dies bedeutet aber nicht, dass es keine ökologischen Herausforderungen im Zusammenhang mit der Kernenergie gibt (wie dies auch bei anderen Formen der Energieerzeugung der Fall ist). Diese ökologischen Auswirkungen sind nicht Gegenstand dieser Karte.",
+    "mapNuclearColors-answer": "Die Erzeugung von Strom mittels Kernkraft hat eine niedrige Kohlenstoffintensität (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank') Quelle</a>). Regionen mit hohem Kernstromanteil werden daher auf der Karte grüner dargestellt. Dies bedeutet aber nicht, dass es keine ökologischen Herausforderungen im Zusammenhang mit der Kernenergie gibt (wie dies auch bei anderen Formen der Energieerzeugung der Fall ist). Diese ökologischen Auswirkungen sind nicht Gegenstand dieser Karte.",
     "mapColorBlind-question": "Ich bin farbenblind. Wie kann ich die Karte lesen?",
     "mapColorBlind-answer": "Die in der Karte angezeigte Farbskala kann geändert werden, indem man die Einstellung “Farbenblind-Modus“ aktiviert. Sie befindet sich unten links im Desktopmodus und im Tab “Über“ bei mobilen Geräten."
   },
   "mapAreas": {
     "groupName": "Regionen auf der Karte",
     "noData-question": "Warum sind die Daten für mein Gebiet nicht verfügbar?",
-    "noData-answer": " Entweder, weil die Datenquellen der Region vorübergehend nicht verfügbar sind, oder weil wir noch keine Datenquellen für das Gebiet finden konnten. Du kannst <a href=\"#contribute\" class=\"entry-link\">uns helfen, neue Datenquellen hinzuzufügen</a>.",
+    "noData-answer": " Entweder, weil die Datenquellen der Region vorübergehend nicht verfügbar sind, oder weil wir noch keine Datenquellen für das Gebiet finden konnten. Du kannst <a href='#contribute' class='entry-link'>uns helfen, neue Datenquellen hinzuzufügen</a>.",
     "whySmallAreas-question": "Warum ist die Karte in viele kleinere Regionen eingeteilt und zeigt nicht einfach nur Länderdurchschnitte an?",
     "whySmallAreas-answer": "Die dargestellten Regionen sind die kleinsten geografischen Bereiche, für die wir Datenquellen finden konnten. Durch den Zugang zu Informationen auf höchstem Granularitätsniveau können Stromverbraucher in verschiedenen Bereichen genauer über die Herkunft des von ihnen verbrauchten Stroms und die damit verbundenen Klimaauswirkungen informiert werden.",
     "divideExistingArea-question": "Können Sie meinen Bereich in kleinere Teile aufteilen?",
-    "divideExistingArea-answer": "Das ist möglich, sofern es für diese Region eigene Datenquellen gibt. Du kannst <a href=\"#contribute\" class=\"entry-link\">uns helfen, neue Datenquellen hinzuzufügen</a>.",
+    "divideExistingArea-answer": "Das ist möglich, sofern es für diese Region eigene Datenquellen gibt. Du kannst <a href='#contribute' class='entry-link'>uns helfen, neue Datenquellen hinzuzufügen</a>.",
     "seeHistoricalData-question": "Kann ich die Zeitreihe eines Bereiches sehen, die weiter als 24 Stunden zurückliegt?",
-    "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben."
+    "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>Datenbank</a> erwerben."
   },
   "methodology": {
     "groupName": "Unsere Methoden",
-    "carbonIntensity-question": "Was ist \"Kohlenstoffintensität\"?",
+    "carbonIntensity-question": "Was ist 'Kohlenstoffintensität'?",
     "carbonIntensity-answer": "Die Kohlenstoffintensität (bzw. CO₂-Intensität) ist ein Maß für die Treibhausgasemissionen im Zusammenhang mit der Erzeugung des verbrauchten Stroms (in gCO₂äq/kWh - Gramm Kohlendioxidäquivalente pro verbrauchter Kilowattstunde). Wir bewerten die Emissionen des Stromverbrauchs (nicht der Produktion), d.h. alle Treibhausgasemissionen (sowohl CO₂ als auch andere Treibhausgase wie Methan), die in die Produktion des Stroms eingeflossen sind, der in einer Region verbraucht wird, unter Berücksichtigung der CO₂-Intensität des aus anderen Gebieten importierten Stroms. Wir verwenden einen Ökobilanzansatz (Life Cycle Analysis, LCA), d.h. wir berücksichtigen die Emissionen aus dem gesamten Lebenszyklus von Kraftwerken (Bau, Brennstoffproduktion, betriebliche Emissionen und Stilllegung).",
-    "renewableLowCarbonDifference-question": "Was ist der Unterschied zwischen \"erneuerbar\" und \"kohlenstoffarm\"?",
+    "renewableLowCarbonDifference-question": "Was ist der Unterschied zwischen 'erneuerbar' und 'kohlenstoffarm'?",
     "renewableLowCarbonDifference-answer": "Erneuerbare Energieerzeugung basiert auf erneuerbaren Energiequellen wie Wind- und Wasserströmung, Sonnenschein und Geothermie. Kohlenstoffarme Energieerzeugung bedeutet, dass die Produktion mit sehr geringen Treibhausgasemissionen verbunden ist, z.B. bei der Kernkraft.",
     "importsAndExports-question": "Werden Stromimporte und -exporte berücksichtigt?",
     "importsAndExports-answer": "Ja, diese berücksichtigen wir. Importe und Exporte werden auf der Karte als kleine Pfeile zwischen verschiedenen Regionen angezeigt [Link zur Erklärung der Pfeile]. Detaillierte Informationen finden Sie in den angezeigten Grafiken, wenn Sie auf einen Bereich klicken.",
     "emissionsOfStored-question": "Was ist mit den Emissionen der Stromerzeugung, die in Batterien gespeichert oder zum Füllen von Pumpspeicher-Reservoirs verwendet wird?",
     "emissionsOfStored-answer": "Da derzeit nur ein kleiner Teil des Stroms gespeichert wird, dürften Ungenauigkeiten bei der Modellierung dieser Emissionen momentan keinen großen Unterschied zur Gesamtmenge machen. Angesichts der zunehmenden Bedeutung der Stromspeicherung hoffen wir jedoch, sie in Kürze in unserem Modell besser berücksichtigen zu können.",
     "guaranteesOfOrigin-question": "Was sind Grünstrom-Zertifikate und wie werden sie berücksichtigt?",
-    "guaranteesOfOrigin-answer": "Wenn Produzenten erneuerbarer Energie Strom produzieren, können sie Herkunftsnachweise (oder Renewable Energy Certificates) erstellen - ein Beweis dafür, dass erneuerbarer Strom produziert und in das Stromnetz eingespeist worden ist. Diese Garantien können dann verkauft werden, was anderen nicht erneuerbaren Stromerzeugern einen Weg öffnet, ihre Emissionen zu \"kompensieren\" sowie das Recht gibt zu behaupten, dass der von ihnen erzeugte Strom aus erneuerbaren Quellen stammt, unabhängig von seiner tatsächlichen, physischen Quelle. Dies ist problematisch, da es die Anreize der Verbraucher, Strom zum besten Zeitpunkt zu verbrauchen (z.B. wenn die Menge an erneuerbarem Strom im Netz am höchsten ist), zunichte macht. Diese Karte schließt daher Herkunftsnachweise aus und bietet stattdessen ein ortsbezogenes, physisches Bild des Stromnetzes, um die Verbraucher zu mehr Verantwortung zu bewegen.",
+    "guaranteesOfOrigin-answer": "Wenn Produzenten erneuerbarer Energie Strom produzieren, können sie Herkunftsnachweise (oder Renewable Energy Certificates) erstellen - ein Beweis dafür, dass erneuerbarer Strom produziert und in das Stromnetz eingespeist worden ist. Diese Garantien können dann verkauft werden, was anderen nicht erneuerbaren Stromerzeugern einen Weg öffnet, ihre Emissionen zu 'kompensieren' sowie das Recht gibt zu behaupten, dass der von ihnen erzeugte Strom aus erneuerbaren Quellen stammt, unabhängig von seiner tatsächlichen, physischen Quelle. Dies ist problematisch, da es die Anreize der Verbraucher, Strom zum besten Zeitpunkt zu verbrauchen (z.B. wenn die Menge an erneuerbarem Strom im Netz am höchsten ist), zunichte macht. Diese Karte schließt daher Herkunftsnachweise aus und bietet stattdessen ein ortsbezogenes, physisches Bild des Stromnetzes, um die Verbraucher zu mehr Verantwortung zu bewegen.",
     "otherSources-question": "Warum zeigen Sie nicht andere Emissionsquellen als die Stromerzeugung?",
-    "otherSources-answer": "Dies würde den Rahmen dieses Projekts sprengen. Allerdings arbeiten wir bei Electricity Maps aktiv an der Entwicklung von <a href=\"#whoAreYou\" class=\"entry-link\">neuen Lösungen zur Quantifizierung des Klimaeinflusses Ihrer täglichen Entscheidungen </a>.",
+    "otherSources-answer": "Dies würde den Rahmen dieses Projekts sprengen. Allerdings arbeiten wir bei Electricity Maps aktiv an der Entwicklung von <a href='#whoAreYou' class='entry-link'>neuen Lösungen zur Quantifizierung des Klimaeinflusses Ihrer täglichen Entscheidungen </a>.",
     "homeSolarPanel-question": "Was ist, wenn ich eine Photovoltaikanlage in meinem Haus installiert habe?",
     "homeSolarPanel-answer": "Wir bewerten die Kohlenstoffintensität des regionalen Stromnetzes, sodass Strom, den Sie direkt von Ihrer PV-Anlage (netzunabhängig) beziehen, nicht Teil unserer Bewertung ist. Wenn Ihre PV-Anlage jedoch Strom in Ihr lokales Stromnetz liefert, wird diese Produktion in unseren Statistiken in Regionen erfasst, in denen Schätzungen der lokalen Solarenergieproduktion öffentlich zugänglich gemacht werden (z.B. in Frankreich und Großbritannien).",
     "emissionsPerCapita-question": "Warum zeigen Sie nicht die Emissionen pro Kopf an?",
@@ -270,22 +243,22 @@
     "dataOrigins-question": "Wie erhalten Sie Ihre Daten?",
     "dataOrigins-answer": "Wir berechnen alle unsere Daten aus öffentlich zugänglichen Datenquellen, die von Stromnetzbetreibern, Behörden und anderen Institutionen veröffentlicht werden. Sie können auf eine Region klicken, um mehr über die Herkunft der Daten zu erfahren.",
     "dataDownload-question": "Kann ich Ihre Daten herunterladen?",
-    "dataDownload-answer": "Sie können einen Zugang zu allen unseren Daten über unsere <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben.",
+    "dataDownload-answer": "Sie können einen Zugang zu allen unseren Daten über unsere <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>Datenbank</a> erwerben.",
     "dataIntegration-question": "Kann ich Ihre Daten in Echtzeit in meine Anwendung oder mein Gerät integrieren?",
-    "dataIntegration-answer": "Ja! Wir bieten den Zugang zu einer kostenpflichtigen <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Echtzeit API</a> an, die auch Zukunftsprognosen beinhaltet."
+    "dataIntegration-answer": "Ja! Wir bieten den Zugang zu einer kostenpflichtigen <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>Echtzeit API</a> an, die auch Zukunftsprognosen beinhaltet."
   },
   "aboutUs": {
     "groupName": "Über uns",
     "whoAreYou-question": "Wer sind Sie?",
-    "whoAreYou-answer": "Die Electricity Maps wird entwickelt und gepflegt von <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, einem dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
+    "whoAreYou-answer": "Die Electricity Maps wird entwickelt und gepflegt von <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a>, einem dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
     "feedback-question": "Kann ich Ihnen Feedback geben?",
-    "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:app@electricitymaps.com\">senden Sie uns eine E-Mail!</a>",
+    "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>unser Feedback-Formular</a> aus oder <a href='mailto:app@electricitymaps.com'>senden Sie uns eine E-Mail!</a>",
     "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
-    "contribute-answer": "Ja, gerne! Die Electricity Maps ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">Github</a> anschließen.",
+    "contribute-answer": "Ja, gerne! Die Electricity Maps ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href='https://github.com/electricitymaps/electricitymaps-contrib' target='_blank'>Github</a> anschließen.",
     "workTogether-question": "Können wir zusammenarbeiten?",
-    "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:app@electricitymaps.com\">Schicken Sie uns eine E-Mail!</a>",
+    "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href='mailto:app@electricitymaps.com'>Schicken Sie uns eine E-Mail!</a>",
     "disclaimer-question": "Haftungsausschluss",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> veröffentlicht Daten und Bilder auf der <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. Electricity Maps übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der Electricity Maps oder der daraus abgeleiteten Informationen entstehen. Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von Electricity Maps nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Zitatrecht) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> veröffentlicht Daten und Bilder auf der <a href='https://www.electricitymaps.com/' target='_blank'>electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. Electricity Maps übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der Electricity Maps oder der daraus abgeleiteten Informationen entstehen. Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von Electricity Maps nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Zitatrecht) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
   },
   "zoneShortName": {
     "AD": {
@@ -437,6 +410,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -452,14 +428,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland and Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Neufundland"
     },
     "CA-NB": {
       "countryName": "Kanada",
@@ -612,9 +580,13 @@
       "countryName": "Spanien",
       "zoneName": "Ceuta"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spanien",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanien",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spanien",
@@ -1011,10 +983,6 @@
     "ME": {
       "zoneName": "Montenegro"
     },
-    "MF": {
-      "countryName": "Saint-Martin",
-      "zoneName": "Französ. Teil"
-    },
     "MG": {
       "zoneName": "Madagaskar"
     },
@@ -1063,6 +1031,9 @@
     "MX": {
       "zoneName": "Mexiko"
     },
+    "MY": {
+      "zoneName": "Malaysia"
+    },
     "MY-EM": {
       "countryName": "Malaysia",
       "zoneName": "Sabah und Sarawak"
@@ -1091,9 +1062,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Bergkarabach"
     },
     "NL": {
       "zoneName": "Niederlande"
@@ -1414,10 +1382,6 @@
     "ZW": {
       "zoneName": "Simbabwe"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "JP-CB": {
       "countryName": "Japan",
       "zoneName": "Chūbu"
@@ -1544,38 +1508,6 @@
     },
     "US": {
       "zoneName": "Zusammenhängende Vereinigte Staaten"
-    },
-    "US-HI-HA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Vereinigte Staaten",

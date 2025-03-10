@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Αυτό το έργο είναι",
-    "opensource": "Ανοικτού Κώδικα",
-    "see": "δείτε τις",
-    "datasources": "πηγές δεδομένων",
-    "contribute": "Συνεισφέρετε <a href=\"{{link}}\" target=\"_blank\">προσθέτοντας την περιοχή σας</a>"
-  },
   "mobile-main-menu": {
     "map": "Χάρτης",
     "areas": "Περιοχές",
@@ -36,12 +29,12 @@
     "helpfrom": "με συνεισφορά από",
     "noDataAtTimestamp": "Τα δεδομένα για την επιλεγμένη ώρα δεν είναι διαθέσιμα αυτή τη στιγμή",
     "noLiveData": "Τα ζωντανά δεδομένα για την περιοχή αυτή δεν είναι διαθέσιμα αυτή τη στιγμή",
-    "noParserInfo": "Δεν έχουμε ακόμη πληροφορίες σχετικά με αυτή την περιοχή.<br/> Θέλετε να βοηθήσετε να το διορθώσουμε; Μπορείτε να συνεισφέρετε <a href=\"{{link}}\" target=\"_blank\">προσθέτοντας δεδομένα περιοχής</a>.",
+    "noParserInfo": "Δεν έχουμε ακόμη πληροφορίες σχετικά με αυτή την περιοχή.<br/> Θέλετε να βοηθήσετε να το διορθώσουμε; Μπορείτε να συνεισφέρετε <a href='{{link}}' target='_blank'>προσθέτοντας δεδομένα περιοχής</a>.",
     "now": "Παρόν"
   },
-  "left-panel": {
-    "zone-list-header-title": "Κλιματική Επίπτωση ανά Περιοχή",
-    "zone-list-header-subtitle": "Ταξινομημένο κατά ένταση άνθρακα της καταναλωθέντας ηλεκτρικής ενέργειας (gCO₂eq/kWh)",
+  "ranking-panel": {
+    "title": "Κλιματική Επίπτωση ανά Περιοχή",
+    "subtitle": "Ταξινομημένο κατά ένταση άνθρακα της καταναλωθέντας ηλεκτρικής ενέργειας (gCO₂eq/kWh)",
     "search": "Αναζήτηση περιοχών"
   },
   "footer": {
@@ -58,8 +51,9 @@
   },
   "tooltips": {
     "carbonintensity": "Ένταση άνθρακα",
-    "lowcarbon": "Χαμηλών εκπομπών άνθρακα",
-    "renewable": "Ανανεώσιμες",
+    "zoneHeader": {
+      "lowcarbon": "Περιλαμβάνει τις ανανεώσιμες και την πυρηνική"
+    },
     "crossborderexport": "Διασυνοριακή εξαγωγή",
     "carbonintensityexport": "Ένταση άνθρακα της εξαγωγής",
     "ofinstalled": "της εγκατεστημένης ισχύς",
@@ -77,8 +71,7 @@
     "production": "παραγωγή",
     "consumption": "κατανάλωση",
     "cpinfo": "Η <b>κατανάλωση</b> λαμβάνει υπόψη τις εισαγωγές και εξαγωγές, η <b>παραγωγή</b> τις αγνοεί",
-    "selectLanguage": "Επιλογή γλώσσας",
-    "lowCarbDescription": "Περιλαμβάνει τις ανανεώσιμες και την πυρηνική"
+    "selectLanguage": "Επιλογή γλώσσας"
   },
   "misc": {
     "maintitle": "Ζωντανές εκπομπές CO₂ κατανάλωσης ηλεκτρικής ενέργειας",
@@ -99,69 +92,16 @@
   "oil": "πετρέλαιο",
   "unknown": "άγνωστη",
   "theMap": {
-    "groupName": "Ο χάρτης",
-    "mapColors-question": "What do the colors on the map mean?",
-    "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). The greener the colour, the more climate-friendly the electricity consumption.",
-    "mapArrows-question": "What do the arrows between areas on the map indicate?",
-    "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
-    "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
-    "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunshine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells is also dependent on many other factors.",
-    "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
-    "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
-    "mapColorBlind-question": "I am color blind. How can I read your map?",
-    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
+    "groupName": "Ο χάρτης"
   },
   "mapAreas": {
-    "groupName": "Περιοχές του χάρτη",
-    "noData-question": "Why is data for my area not available?",
-    "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>.",
-    "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?",
-    "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.",
-    "divideExistingArea-question": "Can you divide my area into smaller parts?",
-    "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
-    "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
-  },
-  "methodology": {
-    "groupName": "Our methods",
-    "carbonIntensity-question": "What is \"carbon intensity\"?",
-    "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
-    "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
-    "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
-    "importsAndExports-question": "Do you take into account imports and exports of electricity?",
-    "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small <a href=\"#mapArrows\" class=\"entry-link\">arrows between different areas</a>. Detailed information can be seen in the charts shown when you click on an area.",
-    "emissionsOfStored-question": "What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?",
-    "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
-    "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
-    "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
-    "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
-    "otherSources-answer": "This would be outside of the scope of this project. However, at Electricity Maps we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
-    "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
-    "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
-    "emissionsPerCapita-question": "Why don't you show emissions per capita?",
-    "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used for manufacturing physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, are driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
+    "groupName": "Περιοχές του χάρτη"
   },
   "data": {
-    "groupName": "Τα δεδομένα μας",
-    "dataOrigins-question": "How do you get your data?",
-    "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
-    "dataDownload-question": "Can I download your data?",
-    "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>.",
-    "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-    "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+    "groupName": "Τα δεδομένα μας"
   },
   "aboutUs": {
-    "groupName": "Σχετικά με εμάς",
-    "whoAreYou-question": "Who are you?",
-    "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
-    "feedback-question": "Can I give you some feedback?",
-    "feedback-answer": "Please do! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymaps.com\">send us an email!</a>",
-    "contribute-question": "Can I contribute to your project?",
-    "contribute-answer": " Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
-    "workTogether-question": "Can we work together?",
-    "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymaps.com\">Send us an email!</a>",
-    "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "groupName": "Σχετικά με εμάς"
   },
   "zoneShortName": {
     "AD": {
@@ -316,6 +256,9 @@
     },
     "BZ": {
       "zoneName": "Μπελίζ"
+    },
+    "CA": {
+      "zoneName": "Καναδάς"
     },
     "CA-AB": {
       "countryName": "Καναδάς",
@@ -500,9 +443,13 @@
       "countryName": "Ισπανία",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Ισπανία",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Ισπανία",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Ισπανία",
@@ -785,10 +732,6 @@
     "IQ": {
       "zoneName": "Ιράκ"
     },
-    "IQ-KUR": {
-      "countryName": "Ιράκ",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Ιράν"
     },
@@ -949,10 +892,6 @@
     "ME": {
       "zoneName": "Μαυροβούνιο"
     },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
-    },
     "MG": {
       "zoneName": "Μαδαγασκάρη"
     },
@@ -1033,6 +972,9 @@
       "countryName": "Μεξικό",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Μαλαισία"
+    },
     "MY-EM": {
       "countryName": "Μαλαισία",
       "zoneName": "Borneo"
@@ -1061,9 +1003,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Ολλανδία"
@@ -1324,38 +1263,6 @@
     },
     "US": {
       "zoneName": "συνεχόμενες Ηνωμένες Πολιτείες"
-    },
-    "US-HI-HA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",

@@ -1,5 +1,3 @@
-aggregates_displayed:
-  - none # We are not showing this zone due to lack of data
 bounding_box:
   - - -117.12776
     - 14.5388286402
@@ -7,32 +5,74 @@ bounding_box:
     - 32.72083
 capacity:
   biomass:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 870.0
+    - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 880.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 870.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 890.0
   coal:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 5380.0
   gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 33880.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 34990.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 38000.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 40410.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 42260.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 44590.0
+      value: 43510.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 44950.0
   hydro:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 12630.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 13080.0
+    - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 13300.0
   nuclear:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 1610.0
   solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1130.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 2580.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 4740.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 6710.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 8180.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 9360.0
@@ -40,21 +80,45 @@ capacity:
       source: Ember, Yearly electricity data
       value: 10910.0
   unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 18650.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 25140.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 25910.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 26090.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 6860.0
+      value: 26020.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 25940.0
   wind:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 7310.0
-    - datetime: '2023-01-01'
+      value: 4180.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 6540.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 7000.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 7150.0
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 7320.0
 contributors:
   - scriptator
+  - tuxity
+  - consideRatio
+country: MX
 emissionFactors:
   direct:
     unknown:
@@ -77,19 +141,8 @@ emissionFactors:
 parsers:
   production: CENACE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+region: Americas
 sources:
   IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
-subZoneNames:
-  - MX-BC
-  - MX-BCS
-  - MX-CE
-  - MX-NE
-  - MX-NO
-  - MX-NW
-  - MX-OC
-  - MX-OR
-  - MX-PN
 timezone: America/Mexico_City
-region: Americas
-country: MX

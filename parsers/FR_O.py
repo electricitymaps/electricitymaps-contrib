@@ -43,59 +43,53 @@ HISTORICAL_MAPPING = {
 
 API_PARAMETER_GROUPS = {
     "production": {
-        "biomass": [
-            "biomasse",
-            "biomasse_mw",
-            "biomasse_mwh",
-            "bioenergies",
-            "bioenergies_mw",
-            "bioenergies_mwh",
-        ],
-        "coal": [
-            "charbon",
-        ],
-        "gas": [
-            "thermique_mw",
-            "thermique_mwh",
-            "turbines_a_combustion",
-        ],
-        "geothermal": [
-            "geothermie",
-            "geothermie_mw",
-        ],
-        "hydro": [
-            "hydraulique",
-            "hydraulique_mw",
-            "hydraulique_mwh",
-            "micro_hydro",
-            "micro_hydraulique_mw",
-        ],
-        "oil": ["diesel", "moteur_diesel", "centrale_au_fioul", "moteurs_diesels"],
-        "solar": [
-            "photovoltaique",
-            "photovoltaique0",
-            "photovoltaique_mw",
-            "photovoltaique_mwh",
-            "solaire_mw",
-        ],
-        "wind": [
-            "eolien",
-            "eolien_mw",
-            "eolien_mwh",
-        ],
-        "unknown": ["bagasse_charbon_mwh", "charbon_bagasse_mw"],
+        "RE": {
+            "bioenergies": "biomass",
+            "charbon": "biomass",
+            "diesel": "biomass",
+            "eolien": "wind",
+            "hydraulique": "hydro",
+            "photovoltaique": "solar",
+            "turbines_combustion": "gas",
+        },
+        "GP": {
+            "charbon": "coal",
+            "bioenergies": "biomass",
+            "diesel": "oil",
+            "hydraulique": "hydro",
+            "photovoltaique": "solar",
+            "eolien": "wind",
+            "turbines_combustion": "gas",
+            "geothermie": "geothermal",
+        },
+        "GF": {
+            "bioenergies": "biomass",
+            "hydraulique": "hydro",
+            "moteur_diesel": "oil",
+            "photovoltaique": "solar",
+            "tac": "oil",
+        },
+        "MQ": {
+            "bioenergies": "biomass",
+            "eolien": "wind",
+            "hydraulique": "hydro",
+            "moteurs_diesels": "oil",
+            "turbines_combustion": "gas",
+        },
+        "FR-COR": {
+            "moteur_diesel": "oil",
+            "tac": "gas",
+            "hydraulique": "hydro",
+            "micro_hydro": "hydro",
+            "photovoltaique": "solar",
+            "eolien": "wind",
+            "bioenergies": "biomass",
+        },
     },
     "storage": {"battery": ["solde_stockage", "stockage"]},
     "price": {
         "price": ["cout_moyen_de_production_eur_mwh"],
     },
-}
-
-PRODUCTION_MAPPING = {
-    API_TYPE: data_type
-    for key in ["production"]
-    for data_type, groups in API_PARAMETER_GROUPS[key].items()
-    for API_TYPE in groups
 }
 
 STORAGE_MAPPING = {
@@ -118,7 +112,7 @@ IGNORED_VALUES = ["jour", "total", "statut", "date", "heure", "liaisons", "tac"]
 def generate_url(zone_key, target_datetime):
     if target_datetime:
         return "https://opendata.edf.fr/api/explore/v2.1/catalog/datasets/courbe-de-charge-de-la-production-delectricite-par-filiere/exports/json"
-    return f"{DOMAIN_MAPPING[zone_key]}/api/v2/catalog/datasets/{LIVE_DATASETS[zone_key]}/exports/json"
+    return f"{DOMAIN_MAPPING[zone_key]}/api/explore/v2.1/catalog/datasets/{LIVE_DATASETS[zone_key]}/exports/json"
 
 
 def fetch_data(
@@ -206,9 +200,9 @@ def fetch_production(
         production = ProductionMix()
         storage = StorageMix()
         for mode_key in production_object:
-            if mode_key in PRODUCTION_MAPPING:
+            if mode_key in API_PARAMETER_GROUPS["production"][zone_key]:
                 production.add_value(
-                    PRODUCTION_MAPPING[mode_key],
+                    API_PARAMETER_GROUPS["production"][zone_key][mode_key],
                     production_object[mode_key],
                     correct_negative_with_zero=True,
                 )

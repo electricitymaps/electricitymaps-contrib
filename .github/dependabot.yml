@@ -78,14 +78,18 @@ updates:
       sentry:
         patterns:
           - '@sentry/*'
+      visx:
+        patterns:
+          - '@visx/*'
 
-  # Ensure ruff is updated.
+  # Ensure ruff and tzdata is updated.
   - package-ecosystem: 'pip'
     directory: '/'
     schedule:
       interval: 'monthly'
     allow:
       - dependency-name: 'ruff'
+      - dependency-name: 'tzdata'
     reviewers:
       - 'VIKTORVAV99'
 

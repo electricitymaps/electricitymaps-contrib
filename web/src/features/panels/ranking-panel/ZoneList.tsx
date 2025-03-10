@@ -1,8 +1,8 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
+import { ChevronRight } from 'lucide-react';
 import { useRef } from 'react';
-import { HiChevronRight } from 'react-icons/hi2';
 import { GridState } from 'types';
 
 interface ZonelistProperties {
@@ -11,45 +11,33 @@ interface ZonelistProperties {
 
 export interface ZoneRowType {
   zoneId: keyof GridState;
-  ranking?: number;
+  ranking: number;
   color?: string;
   co2intensity?: number | null;
   countryName?: string;
   zoneName?: string;
+  fullZoneName?: string;
 }
 
 function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType) {
   return (
     <InternalLink
-      className="group my-1 flex h-11 w-full items-center overflow-hidden rounded bg-gray-100 pl-3 text-left transition hover:bg-gray-200 focus:border focus:border-gray-400/60 focus-visible:outline-none dark:border dark:border-gray-400/10 dark:bg-gray-800 dark:hover:bg-gray-700/70 dark:focus:border-gray-500/80"
+      className="group my-1 flex h-11 w-full items-center gap-2 rounded bg-gray-100 px-3 hover:bg-gray-200 focus:border focus:border-gray-400/60 focus-visible:outline-none dark:border dark:border-gray-400/10 dark:bg-gray-800 dark:hover:bg-gray-700/70 dark:focus:border-gray-500/80"
       key={ranking}
       to={`/zone/${zoneId}`}
-      data-test-id="zone-list-link"
+      data-testid="zone-list-link"
     >
-      <p className=" flex w-4 justify-end pr-2 text-xs">{ranking}</p>
-      <div
-        className="mr-2 h-4 w-4 min-w-[16px] rounded-sm	"
-        style={{ backgroundColor: color }}
-      ></div>
+      <span className="flex w-4 justify-end text-xs">{ranking}</span>
+      <div className="h-4 w-4 min-w-4 rounded-sm" style={{ backgroundColor: color }} />
 
       <CountryFlag size={30} zoneId={zoneId} />
-      <div className="flex grow items-center justify-between overflow-hidden">
-        <div className="flex  flex-col content-center justify-center overflow-hidden px-2 pt-1">
-          <p className="truncate font-poppins text-sm  leading-none">{countryName}</p>
-          <p
-            className={`${
-              countryName
-                ? 'truncate font-poppins text-xs text-gray-500 dark:text-gray-400'
-                : 'truncate font-poppins text-sm '
-            }`}
-          >
-            {zoneName}
-          </p>
-        </div>
-        <p className="hidden min-w-2 pr-2 group-hover:block dark:text-gray-400">
-          <HiChevronRight />
-        </p>
+      <div className="flex grow flex-col">
+        <h3 className="truncate">{countryName || zoneName}</h3>
+        {countryName && (
+          <h4 className="truncate text-gray-500 dark:text-gray-400">{zoneName}</h4>
+        )}
       </div>
+      <ChevronRight size={14} className="hidden group-hover:block dark:text-gray-400" />
     </InternalLink>
   );
 }
@@ -86,11 +74,7 @@ export function VirtualizedZoneList({ data }: ZonelistProperties) {
         >
           {items.map((virtualRow) => (
             <div key={virtualRow.key} data-index={virtualRow.index}>
-              <ZoneRow
-                key={virtualRow.index}
-                {...data[virtualRow.index]}
-                ranking={virtualRow.index + 1}
-              />
+              <ZoneRow key={virtualRow.index} {...data[virtualRow.index]} />
             </div>
           ))}
         </div>
