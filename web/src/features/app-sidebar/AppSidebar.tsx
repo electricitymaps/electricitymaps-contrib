@@ -13,7 +13,7 @@ import {
 // Sidebar width is used in various places to calculate the view widths
 export const SIDEBAR_WIDTH = '63px';
 
-const PORTAL_URL = 'https://portal-staging.electricitymaps.com/';
+const PORTAL_URL = 'https://portal.electricitymaps.com';
 
 const MENU_ITEMS = [
   {
