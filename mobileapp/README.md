@@ -4,6 +4,7 @@ This is a capacitor project that builds the mobile apps from the web directory
 
 ## Prerequisites
 
+- Setup Ruby environment: Use [`rbenv`](https://github.com/rbenv/rbenv) to manage versions, and make sure you install and set `3.1.2` as the default
 - Follow this guide: https://capacitorjs.com/docs/getting-started/environment-setup (but skip the Android SDK part)
 - `brew install gradle`
 - install Android Studio - make sure you open it and go through the install wizard in the start
