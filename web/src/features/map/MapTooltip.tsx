@@ -8,15 +8,22 @@ import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
-import { TrendingUpDown } from 'lucide-react';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
+import { EstimationMethods, isTSAModel } from 'utils/constants';
 import { round } from 'utils/helpers';
 import { selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
-export function TooltipInner({
+const emptyZoneData: StateZoneData = {
+  p: {},
+  c: {},
+};
+
+export const TooltipInner = memo(function TooltipInner({
   zoneData,
   zoneId,
 }: {
@@ -24,21 +31,8 @@ export function TooltipInner({
   zoneData?: StateZoneData;
 }) {
   const hasZoneData = Boolean(zoneData);
-  zoneData ??= {
-    p: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-    c: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-  };
-  const { e, o } = zoneData;
-
-  const estimated = typeof e === 'number' ? round(e ?? 0, 0) : e;
+  zoneData ??= emptyZoneData;
+  const { em: estimationMethod, ep: estimationPercentage, o } = zoneData;
 
   return (
     <div className="flex w-full flex-col gap-2 py-3 text-center">
@@ -46,8 +40,9 @@ export function TooltipInner({
         <div className="flex w-full flex-row justify-between">
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge
-            hasOutage={o}
-            estimated={estimated}
+            hasOutage={Boolean(o)}
+            estimatedMethod={estimationMethod}
+            estimatedPercentage={round(estimationPercentage ?? 0, 0)}
             hasZoneData={hasZoneData}
           />
         </div>
@@ -59,15 +54,19 @@ export function TooltipInner({
       <ZoneGaugesWithCO2Square zoneData={zoneData} />
     </div>
   );
-}
+});
 
-function DataValidityBadge({
+TooltipInner.displayName = 'TooltipInner';
+
+export const DataValidityBadge = memo(function DataValidityBadge({
   hasOutage,
-  estimated,
+  estimatedMethod,
+  estimatedPercentage,
   hasZoneData,
 }: {
-  hasOutage?: boolean | null;
-  estimated?: number | boolean | null;
+  hasOutage: boolean;
+  estimatedMethod?: EstimationMethods | null;
+  estimatedPercentage?: number | null;
   hasZoneData: boolean;
 }) {
   const { t } = useTranslation();
@@ -78,26 +77,37 @@ function DataValidityBadge({
   if (hasOutage) {
     return <OutageBadge />;
   }
-  if (estimated === true) {
+  if (estimatedMethod) {
+    if (isTSAModel(estimatedMethod)) {
+      return (
+        <EstimationBadge
+          text={t('estimation-card.ESTIMATED_TIME_SLICER_AVERAGE.pill')}
+          Icon={CircleDashed}
+          isPreliminary={true}
+        />
+      );
+    }
     return (
       <EstimationBadge
-        text={t('estimation-badge.fully-estimated')}
+        text={t(`estimation-card.${estimatedMethod}.pill`)}
         Icon={TrendingUpDown}
       />
     );
   }
-  if (estimated && estimated > 0.5) {
+  if (estimatedPercentage && estimatedPercentage > 0.5) {
     return (
       <EstimationBadge
         text={t(`estimation-card.aggregated_estimated.pill`, {
-          percentage: estimated,
+          percentage: estimatedPercentage,
         })}
         Icon={TrendingUpDown}
       />
     );
   }
   return null;
-}
+});
+
+DataValidityBadge.displayName = 'DataValidityBadge';
 
 export default function MapTooltip() {
   const mousePosition = useAtomValue(mousePositionAtom);
@@ -113,7 +123,7 @@ export default function MapTooltip() {
   const { zoneId } = hoveredZone;
 
   const { x, y } = mousePosition;
-  const zoneData = data?.data?.datetimes[selectedDatetimeString]?.z[zoneId];
+  const zoneData = data?.datetimes[selectedDatetimeString]?.z[zoneId];
 
   const screenWidth = window.innerWidth;
   const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);

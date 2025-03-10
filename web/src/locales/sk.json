@@ -297,6 +297,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -476,9 +479,13 @@
       "countryName": "Španielsko",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Španielsko",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Španielsko",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Španielsko",
@@ -761,10 +768,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Irán"
     },
@@ -924,10 +927,6 @@
     },
     "ME": {
       "zoneName": "Čierna Hora"
-    },
-    "MF": {
-      "countryName": "Sväty Martin",
-      "zoneName": "French"
     },
     "MG": {
       "zoneName": "Madagaskar"

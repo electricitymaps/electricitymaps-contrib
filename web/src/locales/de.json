@@ -76,15 +76,17 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Stündliche Daten für:",
-      "30d": "Tägliche Daten für:",
+      "72h": "Stündliche Daten für:",
+      "3mo": "Tägliche Daten für:",
       "12mo": "Monatliche Daten für:",
-      "all": "Jährliche Daten für:"
+      "all_months": "Monatliche Daten für:",
+      "all_years": "Jährliche Daten für:"
     },
-    "30d": "täglich",
-    "24h": "stündlich",
+    "3mo": "täglich",
+    "72h": "stündlich",
     "12mo": "monatlich",
-    "all": "jährlich"
+    "all_months": "monatlich",
+    "all_years": "jährlich"
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",
@@ -93,34 +95,10 @@
   },
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Vorläufige Daten",
-      "body": "Der Datenanbieter hat für diese Stunde keine Daten zur Verfügung gestellt. Die angezeigten Werte wurden anhand historischer Werte geschätzt und werden aktualisiert, sobald gemessene Daten verfügbar sind. Geschätzte Daten können unpräzise sein, da sie in manchen Fällen Echtzeit-Wetterereignisse vernachlässigen."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Teils geschätzte Daten",
-      "pill": "Unvollständig",
-      "body": "Die Daten zur Stromerzeugung in diesem Gebiet sind unvollständig. Die fehlenden Werte wurden anhand eines statistischen Schätzmodells berechnet."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Ausschließlich geschätzte Daten",
-      "pill": "Unpräzise",
-      "body": "Die Datenquelle gibt ausschließlich die Gesamtproduktion an. Die Stromproduktion aus erneuerbaren Quellen wird anhand aktueller Wetterdaten geschätzt. Die übrige Stromproduktion wird fossilen Energieträgern zugeordnet, wobei die Verteilung auf historischen Daten basiert."
-    },
     "estimated_generic_method": {
       "title": "Daten werden geschätzt",
       "pill": "Unpräzise",
       "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Ausschließlich geschätzte Daten",
-      "pill": "Nicht in Echtzeit",
-      "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Ausschließlich geschätzte Daten",
-      "pill": "Nicht in Echtzeit",
-      "body": "Die Daten für diese Zone werden nicht in Echtzeit veröffentlicht und geben nur die Gesamtproduktion an. Sowohl die stündliche Produktion als auch die Produktionsquellen werden auf der Grundlage historischer Daten für jede Produktionsquelle geschätzt."
     },
     "threshold_filtered": {
       "title": "Fehlende Daten",
@@ -432,6 +410,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -447,14 +428,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland and Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Neufundland"
     },
     "CA-NB": {
       "countryName": "Kanada",
@@ -607,9 +580,13 @@
       "countryName": "Spanien",
       "zoneName": "Ceuta"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spanien",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanien",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spanien",
@@ -1005,10 +982,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Saint-Martin",
-      "zoneName": "Französ. Teil"
     },
     "MG": {
       "zoneName": "Madagaskar"
@@ -1409,10 +1382,6 @@
     "ZW": {
       "zoneName": "Simbabwe"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "JP-CB": {
       "countryName": "Japan",
       "zoneName": "Chūbu"
@@ -1539,38 +1508,6 @@
     },
     "US": {
       "zoneName": "Zusammenhängende Vereinigte Staaten"
-    },
-    "US-HI-HA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Vereinigte Staaten",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Vereinigte Staaten",

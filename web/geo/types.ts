@@ -5,7 +5,6 @@ import { GEO_CONFIG } from './generateWorld';
 export type GeoConfig = typeof GEO_CONFIG;
 
 export interface ZoneConfig {
-  aggregates_displayed?: string[];
   subZoneNames?: string[];
   bounding_box?: number[][];
   contributors?: string[];
@@ -36,7 +35,6 @@ export interface OptimizedZoneConfig {
   estimation_method?: string;
   parsers: boolean;
   subZoneNames?: string[];
-  aggregates_displayed?: string[];
   generation_only?: boolean;
   timezone?: string;
 }

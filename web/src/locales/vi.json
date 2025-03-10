@@ -203,6 +203,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -382,9 +385,13 @@
       "countryName": "Tây Ban Nha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Tây Ban Nha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Tây Ban Nha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Tây Ban Nha",
@@ -667,10 +674,6 @@
     "IQ": {
       "zoneName": "Iraq"
     },
-    "IQ-KUR": {
-      "countryName": "Iraq",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -830,10 +833,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
     },
     "MG": {
       "zoneName": "Madagascar"
@@ -1203,38 +1202,6 @@
     },
     "UM": {
       "zoneName": "Các tiểu đảo xa của Hoa Kỳ"
-    },
-    "US-HI-HA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Oahu"
     },
     "UY": {
       "zoneName": "Uruguay"

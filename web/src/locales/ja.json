@@ -309,6 +309,9 @@
     "BZ": {
       "zoneName": "ベリーズ"
     },
+    "CA": {
+      "zoneName": "カナダ"
+    },
     "CA-AB": {
       "countryName": "カナダ",
       "zoneName": "アルバータ州"
@@ -488,9 +491,13 @@
       "countryName": "スペイン",
       "zoneName": "メノルカ島"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "スペイン",
-      "zoneName": "フエルテベントゥラ島/ランサローテ島"
+      "zoneName": "フエルテベントゥラ島"
+    },
+    "ES-CN-LZ": {
+      "countryName": "スペイン",
+      "zoneName": "ランサローテ島"
     },
     "ES-CN-GC": {
       "countryName": "スペイン",
@@ -765,10 +772,6 @@
     "IQ": {
       "zoneName": "イラク"
     },
-    "IQ-KUR": {
-      "countryName": "イラク",
-      "zoneName": "クルディスタン"
-    },
     "IR": {
       "zoneName": "イラン"
     },
@@ -928,10 +931,6 @@
     },
     "ME": {
       "zoneName": "モンテネグロ"
-    },
-    "MF": {
-      "countryName": "セント・マーチン",
-      "zoneName": "フランス"
     },
     "MG": {
       "zoneName": "マダガスカル"
@@ -1304,38 +1303,6 @@
     },
     "US": {
       "zoneName": "本土アメリカ合衆国"
-    },
-    "US-HI-HA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "ハワイ"
-    },
-    "US-HI-KA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "カウアイ"
-    },
-    "US-HI-KH": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "カホオラウェ"
-    },
-    "US-HI-LA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "ラナイ"
-    },
-    "US-HI-MA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "マウイ"
-    },
-    "US-HI-MO": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "モロカイ"
-    },
-    "US-HI-NI": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "ニイハウ"
-    },
-    "US-HI-OA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "オアフ"
     },
     "US-CAL-BANC": {
       "countryName": "アメリカ合衆国",

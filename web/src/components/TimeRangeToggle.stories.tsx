@@ -17,30 +17,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Hourly: Story = {
   args: {
-    timeRange: TimeRange.H24,
-  },
-};
-
-export const Hourly72: Story = {
-  args: {
     timeRange: TimeRange.H72,
   },
 };
 
 export const Daily: Story = {
   args: {
-    timeRange: TimeRange.D30,
+    timeRange: TimeRange.M3,
   },
 };
 
 export const Monthly: Story = {
   args: {
-    timeRange: TimeRange.M12,
+    timeRange: TimeRange.ALL_MONTHS,
   },
 };
 
 export const Yearly: Story = {
   args: {
-    timeRange: TimeRange.ALL,
+    timeRange: TimeRange.ALL_YEARS,
   },
 };

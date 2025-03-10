@@ -20,6 +20,9 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 239.5
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 242.5
   biomass:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -104,6 +107,9 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 1817.8
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 1951.5
   unknown:
     - datetime: '2023-10-01'
       source: EIA.gov
@@ -124,6 +130,7 @@ contributors:
   - robertahunt
   - KabelWlan
   - brandongalbraith
+  - alejandranavcas
 country: US
 delays:
   production: 5
@@ -424,7 +431,7 @@ fallbackZoneMixes:
         wind: 0.03966033748337813
 parsers:
   consumption: EIA.fetch_consumption
-  consumptionForecast: EIA.fetch_consumption_forecast
+  consumptionForecast: US_NY.fetch_consumption_forecast
   production: US_NY.fetch_production
   productionCapacity: EIA.fetch_production_capacity
 region: Americas

@@ -72,7 +72,6 @@
     "aggregatedTooltip": "Os dados para esta zona são agregados e baseados em valores históricos de hora em hora.",
     "helpUs": "Ajude-nos a identificar o problema dando uma olhada nos <a href='{{link}}' target='_blank'>registos</a> ou a contactar o fornecedor de dados.",
     "noParserInfo": "Não temos nenhuma informação sobre esta área.<br/> Gostaria de o corrigir? Pode contribuir <a href='{{link}}' target='_blank'>ao adicionar dados da área</a>.",
-    "aggregationDisabled": "Dados não estão disponíveis para o período selecionado. Experimente um periodo maior",
     "now": "Agora",
     "by-source": {
       "emissions": "Emissões de carbono",
@@ -110,39 +109,10 @@
   "estimation-card": {
     "link": "Leia sobre os nossos modelos de estimativa",
     "outage-details": "Ver detalhes",
-    "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Os dados são estimados",
-      "pill": "Estimado",
-      "body": "Os dados para esta zona são estimados usando uma combinação de previsões de produção internas e externas e médias de <i>Time Slices</i>. Isso visa fornecer uma representação mais precisa do que a média de <i>Time Slices</i> sozinha, mas os dados ainda podem estar sujeitos a imprecisões. Os dados serão atualizados assim que os dados em tempo real estiverem disponíveis."
-    },
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Os dados atuais são estimados",
-      "body": "O fornecedor de dados não está a reportar dados para esta hora. Os valores exibidos são estimados com base em medições históricas e serão substituídos por dados consolidados assim que estiverem disponíveis. Por favor, esteja ciente de que os valores estimados podem nem sempre ser precisos, uma vez que não contabilizam eventos climáticos específicos em tempo real."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Os dados são parcialmente estimados",
-      "pill": "Incompleto",
-      "body": "Dados de geração de eletricidade estão incompletos; valores em falta foram calculados usando um modelo de estimativa."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Os dados são sempre estimados",
-      "pill": "Impreciso",
-      "body": "Os dados publicados para esta zona só contêm a produção total. Fontes renováveis são estimadas usando dados meteorológicos em tempo real, enquanto as fontes fósseis são aproximados com base em dados históricos para cada fonte de produção."
-    },
     "estimated_generic_method": {
       "title": "Os dados são estimados",
       "pill": "Impreciso",
       "body": "Os dados publicados para esta zona estão indisponíveis ou incompletos. Os dados mostrados no mapa são estimados ao melhor da nossa habilidade, mas podem diferir dos valores reais."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Os dados são sempre estimados",
-      "pill": "Não em tempo real",
-      "body": "Os dados para esta zona não são publicados em tempo real e só fornecem a produção total. Tanto a produção horária quanto as fontes de produção são estimadas com base em dados históricos para cada fonte de produção."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Os dados são sempre estimados",
-      "pill": "Não em tempo real",
-      "body": "Os dados para esta zona não são publicados em tempo real e só fornecem a produção total. Tanto a produção horária quanto as fontes de produção são estimadas com base em dados históricos para cada fonte de produção."
     },
     "threshold_filtered": {
       "title": "Dados em falta",
@@ -164,10 +134,11 @@
     }
   },
   "time-controller": {
-    "30d": "diários",
-    "24h": "horários",
+    "3mo": "diários",
+    "72h": "horários",
     "12mo": "mensais",
-    "all": "anuais"
+    "all_months": "mensais",
+    "all_years": "anuais"
   },
   "ranking-panel": {
     "title": "Impacto climático",
@@ -175,7 +146,6 @@
     "search": "Pesquise por país ou área"
   },
   "left-panel": {
-    "get-data": "Veja as ofertas do nosso API comercial",
     "applied-methodologies": {
       "title": "Metodologias aplicadas",
       "estimations": "Electricity Maps - Estimativas",
@@ -184,7 +154,6 @@
     }
   },
   "header": {
-    "get-data": "Obtem os nossos dados",
     "blog": "Blog",
     "open-source": "Código aberto",
     "hiring": "Estamos a contratar!",
@@ -193,52 +162,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Intensidade de carbono horária",
-      "30d": "Intensidade de carbono diária",
+      "72h": "Intensidade de carbono horária",
+      "3mo": "Intensidade de carbono diária",
       "12mo": "Intensidade de carbono mensal",
-      "all": "Intensidade de carbono anual"
+      "all_months": "Intensidade de carbono mensal",
+      "all_years": "Intensidade de carbono anual"
     },
     "emissions": {
-      "24h": "Emissões de carbono horárias",
-      "30d": "Emissões de carbono diárias",
+      "72h": "Emissões de carbono horárias",
+      "3mo": "Emissões de carbono diárias",
       "12mo": "Emissões de carbono mensais",
-      "all": "Emissões de carbono anuais"
+      "all_months": "Emissões de carbono mensais",
+      "all_years": "Emissões de carbono anuais"
     },
     "emissionsorigin": {
-      "24h": "Origem horária das emissões de carbono",
-      "30d": "Origem diária das emissões de carbono",
+      "72h": "Origem horária das emissões de carbono",
+      "3mo": "Origem diária das emissões de carbono",
       "12mo": "Origem mensal das emissões de carbono",
-      "all": "Origem anual das emissões de carbono"
+      "all_months": "Origem mensal das emissões de carbono",
+      "all_years": "Origem anual das emissões de carbono"
     },
     "emissionsproduction": {
-      "24h": "Emissões horárias de produção",
-      "30d": "Emissões diárias de produção",
+      "72h": "Emissões horárias de produção",
+      "3mo": "Emissões diárias de produção",
       "12mo": "Emissões mensais de produção",
-      "all": "Emissões anuais de produção"
+      "all_months": "Emissões mensais de produção",
+      "all_years": "Emissões anuais de produção"
     },
     "electricityorigin": {
-      "24h": "Origem horária da eletricidade",
-      "30d": "Origem diária da eletricidade",
+      "72h": "Origem horária da eletricidade",
+      "3mo": "Origem diária da eletricidade",
       "12mo": "Origem mensal da eletricidade",
-      "all": "Origem anual da eletricidade"
+      "all_months": "Origem mensal da eletricidade",
+      "all_years": "Origem anual da eletricidade"
     },
     "electricityproduction": {
-      "24h": "Produção horária de eletricidade",
-      "30d": "Produção diária de eletricidade",
+      "72h": "Produção horária de eletricidade",
+      "3mo": "Produção diária de eletricidade",
       "12mo": "Produção mensal de eletricidade",
-      "all": "Produção anual de eletricidade"
+      "all_months": "Produção mensal de eletricidade",
+      "all_years": "Produção anual de eletricidade"
     },
     "electricityprices": {
-      "24h": "Preços horários da eletricidade",
-      "30d": "Preços diários da eletricidade",
+      "72h": "Preços horários da eletricidade",
+      "3mo": "Preços diários da eletricidade",
       "12mo": "Preços mensais da eletricidade",
-      "all": "Preços anuais da eletricidade"
+      "all_months": "Preços mensais da eletricidade",
+      "all_years": "Preços anuais da eletricidade"
     },
     "netExchange": {
-      "24h": "Troca líquida horária",
-      "30d": "Troca líquida diária",
+      "72h": "Troca líquida horária",
+      "3mo": "Troca líquida diária",
       "12mo": "Troca líquida mensal",
-      "all": "Troca líquida anual"
+      "all_months": "Troca líquida mensal",
+      "all_years": "Troca líquida anual"
     },
     "not-enough-data": "Dados insuficientes disponíveis para exibir o gráfico"
   },
@@ -571,6 +548,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canadá"
+    },
     "CA-AB": {
       "countryName": "Canadá",
       "zoneName": "Alberta"
@@ -590,14 +570,6 @@
     "CA-NL": {
       "countryName": "Canadá",
       "zoneName": "Terra Nova e Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canadá",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canadá",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canadá",
@@ -766,9 +738,13 @@
       "countryName": "Espanha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanha",
@@ -1080,10 +1056,6 @@
     "IQ": {
       "zoneName": "Iraque"
     },
-    "IQ-KUR": {
-      "countryName": "Iraque",
-      "zoneName": "Curdistão"
-    },
     "IR": {
       "zoneName": "Irã"
     },
@@ -1246,10 +1218,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "São Martinho",
-      "zoneName": "Francesa"
     },
     "MG": {
       "zoneName": "Madagáscar"
@@ -1676,38 +1644,6 @@
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
     },
-    "US-HI-HA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Havaí"
-    },
-    "US-HI-KA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Oahu"
-    },
     "US-CAL-BANC": {
       "countryName": "Estados Unidos da América",
       "displayName": "BANC",
@@ -1982,18 +1918,6 @@
     },
     "VN": {
       "zoneName": "Vietname"
-    },
-    "VN-C": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Central"
-    },
-    "VN-N": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Norte"
-    },
-    "VN-S": {
-      "countryName": "Vietname",
-      "zoneName": "Vietname Sul"
     },
     "VU": {
       "zoneName": "Vanuatu"

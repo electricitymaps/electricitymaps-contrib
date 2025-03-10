@@ -332,6 +332,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canadá"
+    },
     "CA-AB": {
       "countryName": "Canadá",
       "zoneName": "Alberta"
@@ -515,9 +518,13 @@
       "countryName": "Espanha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanha",
@@ -796,10 +803,6 @@
     "IQ": {
       "zoneName": "Iraque"
     },
-    "IQ-KUR": {
-      "countryName": "Iraque",
-      "zoneName": "Curdistão"
-    },
     "IR": {
       "zoneName": "Irã"
     },
@@ -959,10 +962,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "são Martinho",
-      "zoneName": "Francesa"
     },
     "MG": {
       "zoneName": "Madagáscar"
@@ -1338,38 +1337,6 @@
     "US": {
       "zoneName": "Estados Unidos da América Contíguos"
     },
-    "US-HI-HA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Havaí"
-    },
-    "US-HI-KA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Oahu"
-    },
     "US-CAL-BANC": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Autoridade de equilíbrio do norte da Califórnia"
@@ -1671,14 +1638,6 @@
       "countryName": "Austrália",
       "zoneName": "Ilha Rottnest"
     },
-    "CA-NL-LB": {
-      "countryName": "Canadá",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canadá",
-      "zoneName": "Newfoundland"
-    },
     "CL-CHP": {
       "countryName": "Chile",
       "zoneName": "Ilha de Páscoa"
@@ -1728,7 +1687,6 @@
   },
   "windDataError": "Dados eólicos estão indisponíveis",
   "solarDataError": "Dados solares estão indisponíveis",
-
   "button": {
     "feedback": "Compartilhar Feedback",
     "github": "Ver nosso GitHub",

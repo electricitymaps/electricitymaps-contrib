@@ -1,3 +1,33 @@
+bounding_box:
+  - - 66.85127351273513
+    - 36.19887698046574
+  - - 75.66335163351633
+    - 41.52647146733173
+capacity:
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 400.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 210.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 4980.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 5740.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 5760.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: TJ
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Dushanbe

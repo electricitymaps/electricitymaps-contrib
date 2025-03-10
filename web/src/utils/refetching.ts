@@ -1,5 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { ONE_MINUTE, QUERY_KEYS } from 'api/helpers';
+import { addHours, startOfHour } from 'date-fns';
 
 import { TimeRange } from './constants';
 import { isValidHistoricalTimeRange } from './helpers';
@@ -17,16 +18,6 @@ export function refetchDataOnHourChange(queryClient: QueryClient) {
     const currentHour = new Date().getUTCHours();
     if (startHour !== currentHour) {
       console.info(`Refetching data for new hour: ${currentHour}`);
-
-      // Invalidate hourly state query
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.STATE, { aggregate: TimeRange.H24 }],
-      });
-
-      // Invalidate hourly zone queries - this matches all zone queries
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.ZONE, { aggregate: TimeRange.H24 }],
-      });
 
       // Invalidate 72 hourly state query
       queryClient.invalidateQueries({
@@ -49,7 +40,6 @@ export function getStaleTime(timeRange: TimeRange, urlDatetime?: string) {
     return 0;
   }
   const now = new Date();
-  const nextHour = new Date(now);
-  nextHour.setHours(nextHour.getHours() + 1, 0, 0, 0);
+  const nextHour = addHours(startOfHour(now), 1);
   return nextHour.getTime() - now.getTime();
 }

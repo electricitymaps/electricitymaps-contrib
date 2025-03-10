@@ -13,21 +13,18 @@ export type Maybe<T> = T | null | undefined;
 export type ZoneKey = string;
 
 export interface GridState {
-  callerLocation?: [number, number];
-  data: {
-    _disclaimer: string;
-    createdAt: string;
-    datetimes: {
-      /** Object representing the grid state at a single point in time */
-      [datetimeKey: string]: {
-        /** Array of all exchanges */
-        e: {
-          [key: ZoneKey]: StateExchangeData;
-        };
-        /** Array of all zones */
-        z: {
-          [key: ZoneKey]: StateZoneData;
-        };
+  _disclaimer: string;
+  createdAt: string;
+  datetimes: {
+    /** Object representing the grid state at a single point in time */
+    [datetimeKey: string]: {
+      /** Array of all exchanges */
+      e: {
+        [key: ZoneKey]: StateExchangeData;
+      };
+      /** Array of all zones */
+      z: {
+        [key: ZoneKey]: StateZoneData;
       };
     };
   };
@@ -52,8 +49,10 @@ export interface StateZoneData {
     /** Renewable ratio */
     rr?: number | null;
   };
-  /** Represents if a zone is estimated or not, will be true for hourly data else number */
-  e?: boolean | number | null;
+  /** Estimation method */
+  em?: EstimationMethods | null;
+  /** Estimation percentage */
+  ep?: number | null;
   /** Represents if the zone has a outage message or not */
   o?: boolean | null;
 }
@@ -236,6 +235,7 @@ export interface FuturePriceData {
 
 // Type for the URL parameters that determine app state
 export type RouteParameters = {
+  resolution?: string;
   zoneId?: string;
   urlTimeRange?: TimeRange;
   urlDatetime?: string;

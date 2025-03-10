@@ -1,14 +1,9 @@
 import { Button } from 'components/Button';
-import {
-  NewFeaturePopover,
-  POPOVER_ID,
-} from 'components/NewFeaturePopover/NewFeaturePopover';
-import { NewFeaturePopoverContent } from 'components/NewFeaturePopover/NewFeaturePopoverContent';
 import { FormattedTime } from 'components/Time';
-import { useFeatureFlag } from 'features/feature-flags/api';
+import { addDays, subDays, subHours } from 'date-fns';
 import { useAtomValue } from 'jotai';
 import { ArrowRightToLine, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -16,29 +11,32 @@ import { RouteParameters } from 'types';
 import trackEvent from 'utils/analytics';
 import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
-import { endDatetimeAtom, isHourlyAtom, startDatetimeAtom } from 'utils/state/atoms';
+import {
+  endDatetimeAtom,
+  isHourlyAtom,
+  selectedDatetimeIndexAtom,
+  startDatetimeAtom,
+  timeRangeAtom,
+} from 'utils/state/atoms';
 
-export default function HistoricalTimeHeader() {
+function HistoricalTimeHeader() {
   const { i18n } = useTranslation();
   const startDatetime = useAtomValue(startDatetimeAtom);
   const endDatetime = useAtomValue(endDatetimeAtom);
+  const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { urlDatetime } = useParams<RouteParameters>();
   const navigate = useNavigateWithParameters();
-  const isNewFeaturePopoverEnabled = useFeatureFlag(POPOVER_ID);
 
   const isWithinHistoricalLimit = useMemo(() => {
     if (!urlDatetime) {
       return true;
     }
 
-    const targetDate = new Date(urlDatetime);
-    targetDate.setUTCHours(targetDate.getUTCDate() - 1);
+    const targetDate = subHours(new Date(urlDatetime), 1);
 
-    const maxHistoricalDate = new Date();
-    maxHistoricalDate.setUTCDate(
-      maxHistoricalDate.getUTCDate() - MAX_HISTORICAL_LOOKBACK_DAYS
-    );
+    const maxHistoricalDate = subDays(new Date(), MAX_HISTORICAL_LOOKBACK_DAYS);
 
     return targetDate >= maxHistoricalDate;
   }, [urlDatetime]);
@@ -51,12 +49,9 @@ export default function HistoricalTimeHeader() {
       direction: 'forward',
     });
 
-    const currentEndDatetime = new Date(endDatetime);
-    const nextDay = new Date(currentEndDatetime);
-    nextDay.setUTCDate(nextDay.getUTCDate() + 1);
+    const nextDay = addDays(endDatetime, 1);
 
-    const fourHoursAgo = new Date();
-    fourHoursAgo.setUTCHours(fourHoursAgo.getUTCHours() - 4);
+    const fourHoursAgo = subHours(new Date(), 4);
 
     if (nextDay >= fourHoursAgo) {
       navigate({ datetime: '' });
@@ -73,9 +68,7 @@ export default function HistoricalTimeHeader() {
       direction: 'backward',
     });
 
-    const currentEndDatetime = new Date(endDatetime);
-    const previousDay = new Date(currentEndDatetime);
-    previousDay.setUTCDate(previousDay.getUTCDate() - 1);
+    const previousDay = subDays(endDatetime, 1);
 
     navigate({ datetime: previousDay.toISOString() });
   }
@@ -91,9 +84,9 @@ export default function HistoricalTimeHeader() {
     return (
       <div className="flex min-h-6 flex-row items-center justify-center">
         <FormattedTime
-          datetime={startDatetime}
+          datetime={selectedDatetime.datetime}
           language={i18n.languages[0]}
-          endDatetime={endDatetime}
+          timeRange={timeRange}
           className="text-sm font-semibold"
         />
       </div>
@@ -119,14 +112,12 @@ export default function HistoricalTimeHeader() {
             />
           }
         />
-        {startDatetime && endDatetime && (
-          <FormattedTime
-            datetime={startDatetime}
-            language={i18n.languages[0]}
-            endDatetime={endDatetime}
-            className="text-sm font-semibold"
-          />
-        )}
+        <FormattedTime
+          datetime={selectedDatetime.datetime}
+          language={i18n.languages[0]}
+          timeRange={timeRange}
+          className="text-sm font-semibold"
+        />
         <Button
           backgroundClasses="bg-transparent"
           size="sm"
@@ -163,3 +154,5 @@ export default function HistoricalTimeHeader() {
     </div>
   );
 }
+
+export default memo(HistoricalTimeHeader);

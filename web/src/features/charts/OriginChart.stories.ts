@@ -503,7 +503,7 @@ export const IncludesStorage: Story = {
     data: includesStorageData,
     layerKeys: Object.keys(includesStorageData[0].layerData),
     layerFill,
-    selectedTimeRange: TimeRange.H24,
+    selectedTimeRange: TimeRange.H72,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),
   },

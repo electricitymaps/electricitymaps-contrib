@@ -1,3 +1,8 @@
+bounding_box:
+  - - 55.497790533287294
+    - 36.68830730933749
+  - - 73.61853118531187
+    - 46.06232808111943
 country: UZ
 region: Asia
 timezone: Asia/Samarkand

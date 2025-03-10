@@ -33,19 +33,35 @@
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",
     "dataIsDelayed": "Datele pentru această zonă sunt pot fi cu {{hours}} ore întârziere. Date în timp real sunt indisponibile.",
     "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href='{{link}}' target='_blank'>date pentru zonă</a>.",
-    "now": "Acum"
+    "now": "Acum",
+    "by-source": {
+      "emissions": "Emisii dioxid de carbon",
+      "electricity-production": "Electricitate produsă",
+      "electricity-consumption": "Electricitate consumată",
+      "total-emissions": "Emisii dioxid de carbon (total)",
+      "total-electricity-production": "Electricitate produsă (total)",
+      "total-electricity-consumption": "Electricitate consumată (total)"
+    },
+    "graph-legends": {
+      "installed-capacity": "Capacitate instalată ",
+      "exchange-capacity": "Capacitate import/export ",
+      "exported": "Exportată",
+      "imported": "Importată",
+      "stored": "Depozitată",
+      "produced": "Produsă"
+    }
   },
   "time-controller": {
     "title": {
-      "24h": "Date orare pentru:",
-      "30d": "Date zilnice pentru:",
+      "3mo": "Date zilnice pentru:",
       "12mo": "Date lunare pentru:",
-      "all": "Date anuale pentru:"
+      "all_months": "Date lunare pentru:",
+      "all_years": "Date anuale pentru:"
     },
-    "30d": "pe zi",
-    "24h": "pe oră",
+    "3mo": "pe zi",
     "12mo": "pe luna",
-    "all": "pe an"
+    "all_months": "pe luna",
+    "all_years": "pe an"
   },
   "ranking-panel": {
     "title": "Impact asupra climei în funcție de zonă",
@@ -343,6 +359,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -362,14 +381,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Newfoundland and Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canada",
@@ -538,9 +549,13 @@
       "countryName": "Spain",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spain",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spain",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spain",
@@ -823,10 +838,6 @@
     "IQ": {
       "zoneName": "Iraq"
     },
-    "IQ-KUR": {
-      "countryName": "Iraq",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -986,10 +997,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
     },
     "MG": {
       "zoneName": "Madagascar"
@@ -1369,38 +1376,6 @@
     },
     "UM": {
       "zoneName": "United States Minor Outlying Islands"
-    },
-    "US-HI-HA": {
-      "countryName": "United States of America",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "United States of America",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "United States of America",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "United States of America",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "United States of America",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "United States of America",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "United States of America",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "United States of America",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "United States of America",

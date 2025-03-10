@@ -1,6 +1,6 @@
 lonlat:
-  - -118.584465341
-  - 37.123240455
+  - -118.23
+  - 36.6
 parsers:
   exchange: EIA.fetch_exchange
-rotation: -87
+rotation: -90

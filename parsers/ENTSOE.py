@@ -92,6 +92,7 @@ ENTSOE_PARAMETER_DESC = {
     "B18": "Wind Offshore",
     "B19": "Wind Onshore",
     "B20": "Other",
+    "B25": "Energy Storage",
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
@@ -107,7 +108,7 @@ ENTSOE_PARAMETER_GROUPS = {
         "wind": ["B18", "B19"],
         "unknown": ["B20", "B13", "B15"],
     },
-    "storage": {"hydro": ["B10"]},
+    "storage": {"hydro": ["B10"], "battery": ["B25"]},
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
@@ -125,6 +126,7 @@ ENTSOE_STORAGE_PARAMETERS = list(
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
 ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "AL": "10YAL-KESH-----5",
+    "AM": "10Y1001A1001B004",
     "AT": "10YAT-APG------L",
     "AZ": "10Y1001A1001B05V",
     "BA": "10YBA-JPCC-----D",
@@ -222,7 +224,7 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: dict[str, list[str]] = {
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
     "DE->DK-DK2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK2"]],
     "DE->NO-NO2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NO-NO2"]],
-    "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
+    "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE"], ENTSOE_DOMAIN_MAPPINGS["SE"]],
     "DE->NL": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NL"]],
     "EE->RU-1": [ENTSOE_DOMAIN_MAPPINGS["EE"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "FI->RU-1": [ENTSOE_DOMAIN_MAPPINGS["FI"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
@@ -502,7 +504,12 @@ def query_consumption(
     domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
     params = {
+        # System total load - Total load', including losses without power used
+        # for energy storage, is equal to generation deducted with exports,
+        # added with imports and deducted with power used for energy storage.
         "documentType": "A65",
+        # Realised - The process for the treatment of realised data as opposed
+        # to forecast data
         "processType": "A16",
         "outBiddingZone_Domain": domain,
     }
@@ -519,8 +526,12 @@ def query_production(
     in_domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
     params = {
+        # Actual generation per type - A document providing the actual
+        # generation per generation type for a period.
         "documentType": "A75",
-        "processType": "A16",  # Realised
+        # Realised - The process for the treatment of realised data as opposed
+        # to forecast data
+        "processType": "A16",
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
@@ -539,7 +550,11 @@ def query_production_per_units(
     target_datetime: datetime | None = None,
 ) -> str | None:
     params = {
+        # Actual generation - A document providing the actual generation for a
+        # period.
         "documentType": "A73",
+        # Realised - The process for the treatment of realised data as opposed
+        # to forecast data
         "processType": "A16",
         "psrType": psr_type,
         "in_Domain": domain,
@@ -561,6 +576,8 @@ def query_exchange(
     target_datetime: datetime | None = None,
 ) -> str | None:
     params = {
+        # Aggregated energy data report - A compilation of the time series of
+        # all the meter readings or their equivalent for a given period.
         "documentType": "A11",
         "in_Domain": in_domain,
         "out_Domain": out_domain,
@@ -583,7 +600,9 @@ def query_exchange_forecast(
     """Gets exchange forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
-        "documentType": "A09",  # Finalised schedule
+        # Finalised schedule - A compilation of a set of schedules that have
+        # been finalized after a given cutoff.
+        "documentType": "A09",
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
@@ -602,6 +621,8 @@ def query_price(
     """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
 
     params = {
+        # Price Document - The document is used to provide market spot price
+        # information.
         "documentType": "A44",
         "in_Domain": domain,
         "out_Domain": domain,
@@ -622,8 +643,11 @@ def query_generation_forecast(
 
     # Note: this does not give a breakdown of the production
     params = {
-        "documentType": "A71",  # Generation Forecast
-        "processType": "A01",  # Realised
+        # Generation forecast - A document providing the generation forecast for
+        # a period.
+        "documentType": "A71",
+        # Day ahead - The information provided concerns a day ahead schedule
+        "processType": "A01",
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
@@ -641,7 +665,11 @@ def query_consumption_forecast(
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
-        "documentType": "A65",  # Load Forecast
+        # System total load - Total load', including losses without power used
+        # for energy storage, is equal to generation deducted with exports,
+        # added with imports and deducted with power used for energy storage.
+        "documentType": "A65",
+        # Day ahead - The information provided concerns a day ahead schedule
         "processType": "A01",
         "outBiddingZone_Domain": in_domain,
     }
@@ -673,7 +701,9 @@ def query_wind_solar_production_forecast(
         )
 
     params = {
-        "documentType": "A69",  # Forecast
+        # Wind and solar forecast - A document providing the forecast of wind
+        # and solar generation.
+        "documentType": "A69",
         "processType": EntsoeTypeEnum(process_type).value,
         "in_Domain": in_domain,
     }

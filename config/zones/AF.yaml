@@ -1,3 +1,43 @@
+bounding_box:
+  - - 59.98600486004861
+    - 28.886043704048674
+  - - 75.39334893348934
+    - 38.943366953841945
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 350.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 360.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 460.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 240.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: AF
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Kabul

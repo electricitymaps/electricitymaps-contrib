@@ -259,6 +259,9 @@
     "BZ": {
       "zoneName": "伯利兹"
     },
+    "CA": {
+      "zoneName": "加拿大"
+    },
     "CA-AB": {
       "zoneName": "阿尔伯塔",
       "countryName": "加拿大"
@@ -277,14 +280,6 @@
     },
     "CA-NL": {
       "zoneName": "纽芬兰与拉布拉多",
-      "countryName": "加拿大"
-    },
-    "CA-NL-LB": {
-      "zoneName": "拉布拉多",
-      "countryName": "加拿大"
-    },
-    "CA-NL-NF": {
-      "zoneName": "纽芬兰",
       "countryName": "加拿大"
     },
     "CA-NS": {
@@ -453,10 +448,6 @@
     "ES-IB-ME": {
       "countryName": "西班牙",
       "zoneName": "梅诺卡岛"
-    },
-    "ES-CN-FVLZ": {
-      "countryName": "西班牙",
-      "zoneName": "富埃特文图拉岛"
     },
     "ES-CN-GC": {
       "countryName": "西班牙",
@@ -754,10 +745,6 @@
     "IQ": {
       "zoneName": "伊拉克"
     },
-    "IQ-KUR": {
-      "countryName": "伊拉克",
-      "zoneName": "库尔德斯坦"
-    },
     "IR": {
       "zoneName": "伊朗"
     },
@@ -920,10 +907,6 @@
     },
     "ME": {
       "zoneName": "黑山共和国"
-    },
-    "MF": {
-      "countryName": "圣马丁岛",
-      "zoneName": "法属"
     },
     "MG": {
       "zoneName": "马达加斯加"
@@ -1330,38 +1313,6 @@
       "countryName": "美国",
       "zoneName": "阿拉斯加"
     },
-    "US-HI-HA": {
-      "countryName": "美国",
-      "zoneName": "夏威夷"
-    },
-    "US-HI-KA": {
-      "countryName": "美国",
-      "zoneName": "可爱岛"
-    },
-    "US-HI-KH": {
-      "countryName": "美国",
-      "zoneName": "卡胡拉韦岛"
-    },
-    "US-HI-LA": {
-      "countryName": "美国",
-      "zoneName": "拉奈岛"
-    },
-    "US-HI-MA": {
-      "countryName": "美国",
-      "zoneName": "毛伊岛"
-    },
-    "US-HI-MO": {
-      "countryName": "美国",
-      "zoneName": "摩洛凯岛"
-    },
-    "US-HI-NI": {
-      "countryName": "美国",
-      "zoneName": "尼豪岛"
-    },
-    "US-HI-OA": {
-      "countryName": "美国",
-      "zoneName": "瓦胡岛"
-    },
     "US-CAL-BANC": {
       "countryName": "美国",
       "zoneName": "北加利福尼亚电力平衡调度管理局"
@@ -1623,18 +1574,6 @@
     },
     "VN": {
       "zoneName": "越南"
-    },
-    "VN-C": {
-      "countryName": "越南",
-      "zoneName": "越南中部"
-    },
-    "VN-N": {
-      "countryName": "越南",
-      "zoneName": "越南北部"
-    },
-    "VN-S": {
-      "countryName": "越南",
-      "zoneName": "越南南部"
     },
     "VU": {
       "zoneName": "瓦努阿图"

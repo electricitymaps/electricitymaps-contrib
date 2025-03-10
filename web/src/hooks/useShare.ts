@@ -5,6 +5,7 @@ import { ShareType, trackShare } from 'utils/analytics';
 
 const trackShareClick = trackShare(ShareType.SHARE);
 const trackShareCompletion = trackShare(ShareType.COMPLETED_SHARE);
+const SHARE_ERROR_PATTERN: RegExp = /AbortError|canceled/;
 
 export function useShare() {
   const { t } = useTranslation();
@@ -33,7 +34,7 @@ export function useShare() {
         }
         return result;
       } catch (error) {
-        if (error instanceof Error && !/AbortError|canceled/.test(error.toString())) {
+        if (error instanceof Error && !SHARE_ERROR_PATTERN.test(error.toString())) {
           console.error(error);
           callback?.(t('share-button.share-error'));
         }

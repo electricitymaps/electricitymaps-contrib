@@ -1,3 +1,29 @@
+bounding_box:
+  - - 144.15484654846549
+    - 12.746291513944627
+  - - 145.45364953649536
+    - 14.139839293008166
+capacity:
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 490.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 420.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: GU
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Guam

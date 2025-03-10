@@ -84,7 +84,6 @@
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href='{{link}}' target='_blank'>körningsloggarna</a> eller kontakta dataleverantören.",
     "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href='{{link}}' target='_blank'>lägga till data för regionen</a>.",
-    "aggregationDisabled": "Data är inte tillgänglig för den valda tidsperioden på grund av saknad detaljerad uppdelning. Försök med en bredare tidsperiod.",
     "now": "Nu",
     "by-source": {
       "emissions": "Koldioxidutsläpp",
@@ -92,7 +91,7 @@
       "electricity-consumption": "Elkonsumtion",
       "total-emissions": "Totala koldioxidutsläpp",
       "total-electricity-production": "Total elproduktion",
-      "total-electricity-consumption": "Total ekonsumtion"
+      "total-electricity-consumption": "Total elkonsumtion"
     },
     "electricityconsumption": "Elektricitet",
     "emissions": "Utsläpp",
@@ -104,8 +103,7 @@
       "stored": "Lagrad",
       "produced": "Producerad"
     },
-    "emissionFactorDataSourcesTooltip": "Utsläppsfaktorer för elproduktion kan komma från flera olika källor. Detta sker eftersom flera faktorer, som anläggningsspecifika data, produktion och ibland standardkällor, beaktas i utsläppsberäkningar.",
-    "fullyDisabled": "De data som är tillgängliga för denna zon är otillräckliga och visas därför inte. Om du känner till några datakällor för detta område, vänligen <a href='{{link}}' target='_blank'>meddela oss</a>."
+    "emissionFactorDataSourcesTooltip": "Utsläppsfaktorer för elproduktion kan komma från flera olika källor. Detta sker eftersom flera faktorer, som anläggningsspecifika data, produktion och ibland standardkällor, beaktas i utsläppsberäkningar."
   },
   "feedback-card": {
     "title": "Hjälp oss bli bättre!",
@@ -136,40 +134,10 @@
   "estimation-card": {
     "link": "Läs om våra uppskattningsmodeller",
     "outage-details": "Se detaljer",
-    "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Data är uppskattad",
-      "pill": "Uppskattad",
-      "body": "Data för denna zon är uppskattad med en kombination av interna och externa produktionsprognoser och historiska genomsnitt. Detta syftar till att ge en mer exakt representation än enbart historiska genomsnitt, men data kan fortfarande vara felaktig. Data kommer att uppdateras så snart realtidsdata blir tillgänglig."
-    },
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Data är för närvarande uppskattad",
-      "body": "Dataleverantören rapporterar för närvarande inte data för denna timme. De visade värdena är uppskattade baserat på historiska mätningar och kommer att ersättas med konsoliderade data när de blir tillgängliga. Observera att uppskattade värden kanske inte alltid är korrekta eftersom de inte tar hänsyn till specifika realtidshändelser som väder.",
-      "pill": "Preliminär"
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Data är delvis uppskattad",
-      "pill": "Ofullständig",
-      "body": "Data om elproduktion för denna zon är ofullständig; saknade värden har beräknats med en uppskattningsmodell."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Data är alltid uppskattad",
-      "pill": "Opålitlig",
-      "body": "De publicerade data för denna zon tillhandahåller endast den totala produktionen. Förnybara källor uppskattas med hjälp av aktuella väderdata, medan fossila källor beräknas baserat på historiska data för varje produktionskälla."
-    },
     "estimated_generic_method": {
       "title": "Data är uppskattad",
       "pill": "Opålitlig",
       "body": "De publicerade data för denna zon är otillgängliga eller ofullständiga. Data som visas på kartan är uppskattad enligt bästa förmåga men kan skilja sig från de faktiska värdena."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Data är alltid uppskattad",
-      "pill": "Ej realtid",
-      "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Data är alltid uppskattad",
-      "pill": "Ej realtid",
-      "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
     },
     "threshold_filtered": {
       "title": "Saknar data",
@@ -192,15 +160,17 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Timvis data för:",
-      "30d": "Dagsvis data för:",
+      "72h": "Timvis data för:",
+      "3mo": "Dagsvis data för:",
       "12mo": "Månadsvis data för:",
-      "all": "Årsvis data för:"
+      "all_months": "Månadsvis data för:",
+      "all_years": "Årsvis data för:"
     },
-    "30d": "dagvis",
-    "24h": "timvis",
+    "3mo": "dagvis",
+    "72h": "timvis",
     "12mo": "månadsvis",
-    "all": "årsvis"
+    "all_months": "månadsvis",
+    "all_years": "årsvis"
   },
   "ranking-panel": {
     "title": "Klimatpåverkan per region",
@@ -208,7 +178,6 @@
     "search": "Sök efter region"
   },
   "left-panel": {
-    "get-data": "Se våra kommersiella API-erbjudanden",
     "applied-methodologies": {
       "title": "Tillämpade metoder",
       "estimations": "Electricity Maps - Uppskattningar",
@@ -217,7 +186,6 @@
     }
   },
   "header": {
-    "get-data": "Använd vår data",
     "blog": "Blogg",
     "open-source": "Öppen källkod",
     "hiring": "Vi anställer!",
@@ -226,52 +194,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Timvis koldioxidintensitet",
-      "30d": "Daglig koldioxidintensitet",
+      "72h": "Timvis koldioxidintensitet",
+      "3mo": "Daglig koldioxidintensitet",
       "12mo": "Månadsvis koldioxidintensitet",
-      "all": "Årlig koldioxidintensitet"
+      "all_months": "Månadsvis koldioxidintensitet",
+      "all_years": "Årlig koldioxidintensitet"
     },
     "emissions": {
-      "24h": "Timvisa koldioxidutsläpp",
-      "30d": "Dagliga koldioxidutsläpp",
+      "72h": "Timvisa koldioxidutsläpp",
+      "3mo": "Dagliga koldioxidutsläpp",
       "12mo": "Månadsvisa koldioxidutsläpp",
-      "all": "Årliga koldioxidutsläpp"
+      "all_months": "Månadsvisa koldioxidutsläpp",
+      "all_years": "Årliga koldioxidutsläpp"
     },
     "emissionsorigin": {
-      "24h": "Timvis ursprung av koldioxidutsläpp",
-      "30d": "Dagligt ursprung av koldioxidutsläpp",
+      "72h": "Timvis ursprung av koldioxidutsläpp",
+      "3mo": "Dagligt ursprung av koldioxidutsläpp",
       "12mo": "Månadsvis ursprung av koldioxidutsläpp",
-      "all": "Årligt ursprung av koldioxidutsläpp"
+      "all_months": "Månadsvis ursprung av koldioxidutsläpp",
+      "all_years": "Årligt ursprung av koldioxidutsläpp"
     },
     "emissionsproduction": {
-      "24h": "Timvisa produktionsutsläpp",
-      "30d": "Dagliga produktionsutsläpp",
+      "72h": "Timvisa produktionsutsläpp",
+      "3mo": "Dagliga produktionsutsläpp",
       "12mo": "Månadsvisa produktionsutsläpp",
-      "all": "Årliga produktionsutsläpp"
+      "all_months": "Månadsvisa produktionsutsläpp",
+      "all_years": "Årliga produktionsutsläpp"
     },
     "electricityorigin": {
-      "24h": "Timvis ursprung av elektricitet",
-      "30d": "Dagligt ursprung av elektricitet",
+      "72h": "Timvis ursprung av elektricitet",
+      "3mo": "Dagligt ursprung av elektricitet",
       "12mo": "Månadsvis ursprung av elektricitet",
-      "all": "Årligt ursprung av elektricitet"
+      "all_months": "Månadsvis ursprung av elektricitet",
+      "all_years": "Årligt ursprung av elektricitet"
     },
     "electricityproduction": {
-      "24h": "Timvis elproduktion",
-      "30d": "Daglig elproduktion",
+      "72h": "Timvis elproduktion",
+      "3mo": "Daglig elproduktion",
       "12mo": "Månadsvis elproduktion",
-      "all": "Årlig elproduktion"
+      "all_months": "Månadsvis elproduktion",
+      "all_years": "Årlig elproduktion"
     },
     "electricityprices": {
-      "24h": "Timvisa elpriser",
-      "30d": "Dagliga elpriser",
+      "72h": "Timvisa elpriser",
+      "3mo": "Dagliga elpriser",
       "12mo": "Månadsvisa elpriser",
-      "all": "Årliga elpriser"
+      "all_months": "Månadsvisa elpriser",
+      "all_years": "Årliga elpriser"
     },
     "netExchange": {
-      "24h": "Timvis nettohandel",
-      "30d": "Daglig nettohandel",
-      "12mo": "Månadsvis nettohandel",
-      "all": "Årlig nettohandel"
+      "72h": "Timvis nettoöverföring",
+      "3mo": "Daglig nettoöverföring",
+      "12mo": "Månadsvis nettoöverföring",
+      "all_months": "Månadsvis nettoöverföring",
+      "all_years": "Årlig nettoöverföring"
     },
     "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
   },
@@ -610,6 +586,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -629,14 +608,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland och Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Kanada",
@@ -805,9 +776,13 @@
       "countryName": "Spanien",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spanien",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanien",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spanien",
@@ -1121,10 +1096,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1287,10 +1258,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Saint-Martin",
-      "zoneName": "Franska"
     },
     "MG": {
       "zoneName": "Madagaskar"
@@ -1717,38 +1684,6 @@
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
     },
-    "US-HI-HA": {
-      "countryName": "USA",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "USA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "USA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "USA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "USA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "USA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "USA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "USA",
-      "zoneName": "Oahu"
-    },
     "US-CAL-BANC": {
       "countryName": "USA",
       "displayName": "BANC",
@@ -2023,18 +1958,6 @@
     },
     "VN": {
       "zoneName": "Vietnam"
-    },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Centrala Vietnam"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Norra Vietnam"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Södra Vietnam"
     },
     "VU": {
       "zoneName": "Vanuatu"

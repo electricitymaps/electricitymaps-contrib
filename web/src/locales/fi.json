@@ -308,6 +308,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -487,9 +490,13 @@
       "countryName": "Espanja",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanja",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanja",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanja",
@@ -772,10 +779,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -935,10 +938,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Saint-Martin",
-      "zoneName": "Ranska"
     },
     "MG": {
       "zoneName": "Madagaskar"
@@ -1308,38 +1307,6 @@
     },
     "US": {
       "zoneName": "Vierekkäiset Yhdysvallat"
-    },
-    "US-HI-HA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Havaiji"
-    },
-    "US-HI-KA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Yhdysvallat",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Yhdysvallat",

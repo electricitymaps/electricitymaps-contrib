@@ -109,34 +109,10 @@
   },
   "estimation-card": {
     "link": "Más información sobre nuestros modelos de estimación",
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Los datos son preliminares",
-      "body": "Los datos para esta hora aún no se han transmitido. Los valores mostrados son estimaciones calculadas a partir de valores históricos y se reemplazarán cuando los datos reales estén disponibles. Es posible que los valores estimados no tengan en consideración fenómenos meteorológicos en tiempo real."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Datos parcialmente estimados",
-      "pill": "Datos incompletos",
-      "body": "Los datos de generación de electricidad correspondientes a zona son incompletos.Los valores faltantes se han calculado mediante un modelo de estimación."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Los datos son siempre estimados",
-      "pill": "Datos imprecisos",
-      "body": "Los datos publicados correspondientes a  esta zona sólo proporcionan la generación total. Las fuentes renovables se estiman utilizando datos meteorológicos en tiempo real, mientras que las fuentes fósiles se deducen basándose en los datos históricos de cada fuente de producción."
-    },
     "estimated_generic_method": {
       "title": "Los datos son estimados",
       "pill": "Datos imprecisos",
       "body": "Los datos publicados para esta zona no están disponibles o están incompletos. Los datos mostrados en el mapa han sido estimados mediante nuestros modelos de estimación, pudiendo diferir de los valores reales."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Los datos son siempre estimados",
-      "pill": "Tiempo real no disponible",
-      "body": "Los datos para esta zona no están disponibles en tiempo real y sólo proporcionan la generación total. Tanto los valores horarios como el desglose por fuente de generación se estiman a partir de datos históricos."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Los datos son siempre estimados",
-      "pill": "Tiempo real no disponible",
-      "body": "Los datos para esta zona no están disponibles en tiempo real y sólo proporcionan la generación total. Tanto los valores horarios como el desglose por fuente de generación se estiman a partir de datos históricos."
     },
     "threshold_filtered": {
       "title": "Datos no disponibles",
@@ -154,15 +130,15 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Datos horarios para:",
-      "30d": "Datos diarios para:",
+      "3mo": "Datos diarios para:",
       "12mo": "Datos mensuales para:",
-      "all": "Datos anuales para:"
+      "all_months": "Datos mensuales para:",
+      "all_years": "Datos anuales para:"
     },
-    "30d": "diario",
-    "24h": "horario",
+    "3mo": "diario",
     "12mo": "mensual",
-    "all": "anual"
+    "all_months": "mensual",
+    "all_years": "anual"
   },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
@@ -491,6 +467,9 @@
     "BZ": {
       "zoneName": "Belice"
     },
+    "CA": {
+      "zoneName": "Canadá"
+    },
     "CA-AB": {
       "countryName": "Canadá",
       "zoneName": "Alberta"
@@ -678,9 +657,13 @@
       "countryName": "España",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "España",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "España",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "España",
@@ -963,10 +946,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistán"
-    },
     "IR": {
       "zoneName": "Irán"
     },
@@ -1126,10 +1105,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Isla de San Martín",
-      "zoneName": "Francia"
     },
     "MG": {
       "zoneName": "Madagascar"
@@ -1502,34 +1477,6 @@
     },
     "US": {
       "zoneName": "Estados Unidos contiguos"
-    },
-    "US-HI-KA": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Estados Unidos",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Estados Unidos",

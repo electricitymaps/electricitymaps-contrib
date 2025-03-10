@@ -100,8 +100,6 @@
     "aggregatedTooltip": "Data fra dette område er sammenlagt baseret på historiske timevise værdier.",
     "helpUs": "Hjælp os med at identificere problemet ved at kigge på <a href='{{link}}' target='_blank'>runtime logs</a> eller kontakte data udbyderen.",
     "noParserInfo": "Vi har endnu ingen information om dette område.<br/> Vil du hjælpe med at finde det? Du kan bidrage ved at <a href='{{link}}' target='_blank'>tilføje områdedata</a>.",
-    "aggregationDisabled": "Data er ikke tilgængelig for den valgte tidsperiode på grund af manglende detaljeret opdeling. Prøv en bredere tidsperiode.",
-    "fullyDisabled": "Data, vi har tilgængelige for dette område, er utilstrækkelige og vises derfor ikke. Hvis du kender til datakilder for dette område, bedes du venligst <a href='{{link}}' target='_blank'>informere os</a>.",
     "now": "Nu",
     "by-source": {
       "emissions": "CO₂-udledning",
@@ -159,40 +157,10 @@
   "estimation-card": {
     "link": "Læs om vores estimeringsmodeller",
     "outage-details": "Se detaljer",
-    "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Data er estimeret",
-      "pill": "Estimeret",
-      "body": "Data for dette område er estimeret ved hjælp af en kombination af interne og eksterne forudsigelser for elproduktion og vejret. Formålet med dette er at udbyde en mere korrekt repræsentation, men data kan stadig godt være ukorrekt. Data vil blive opdateret så snart realtidsdata bliver tilgængeligt igen."
-    },
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Data er foreløbig",
-      "pill": "Foreløbig",
-      "body": "Dataudbyderen rapporterer ikke data for denne time. De viste værdier er estimeret på baggrund af historiske målinger og vil blive opdateret når der er tilgængelig data igen. Bemærk at estimerede værdier ikke tager højde for kortsigtede ændringer i vejret."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Data er delvist estimeret",
-      "pill": "Ukomplet",
-      "body": "Produktions data for dette område er ufuldkommen; manglende værdier er blevet udregnet vha. en estimations model."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Data er altid estimeret",
-      "pill": "Upræcis",
-      "body": "Den publicerede data for dette område indholder kun den samlede produktion. Vedvarende energikilder er estimeret vha. vejrdata, mens fossile energikilder er baseret på historisk data for hver energikilde."
-    },
     "estimated_generic_method": {
       "title": "Data er estimeret",
       "pill": "Upræcis",
       "body": "Den publiserede data for dette område er utilgængelig eller ufuldkommen. Data vist på kortet er estimeret ud fra vores bedste kunnen, men den er måske forskellig fra de reelle værdier."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Data er altid estimeret",
-      "pill": "Ikke realtid",
-      "body": "Data for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Data er altid estimeret",
-      "pill": "Ikke realtid",
-      "body": "Data for dette område er ikke publiceret i realtid og indeholder kun den samlede produktion. Både timevis produktion og produktion af de enkelte energikilder er estimeret baseret på historisk data for hver energikilde."
     },
     "threshold_filtered": {
       "title": "Manglende data",
@@ -215,18 +183,19 @@
   },
   "time-controller": {
     "title": {
-      "24h": "Timevis data for:",
-      "30d": "Daglig data for:",
+      "72h": "Timevis data for:",
+      "3mo": "Daglig data for:",
       "12mo": "Månedlig data for:",
-      "all": "Årlig data for:"
+      "all_months": "Månedlig data for:",
+      "all_years": "Årlig data for:"
     },
-    "30d": "daglig",
-    "24h": "timevis",
+    "3mo": "daglig",
+    "72h": "timevis",
     "12mo": "månedlig",
-    "all": "årlig"
+    "all_months": "månedlig",
+    "all_years": "årlig"
   },
   "left-panel": {
-    "get-data": "Se vores kommercielle API tilbud",
     "applied-methodologies": {
       "title": "Anvendte metoder",
       "estimations": "Electricity Maps - Estimations",
@@ -235,7 +204,6 @@
     }
   },
   "header": {
-    "get-data": "Få adgang til data",
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Vi ansætter!",
@@ -244,52 +212,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "Timevis CO₂-intensitet",
-      "30d": "Daglig CO₂-intensitet",
+      "72h": "Timevis CO₂-intensitet",
+      "3mo": "Daglig CO₂-intensitet",
       "12mo": "Månedlig CO₂-intensitet",
-      "all": "Årlig CO₂-intensitet"
+      "all_months": "Månedlig CO₂-intensitet",
+      "all_years": "Årlig CO₂-intensitet"
     },
     "emissions": {
-      "24h": "Timevis CO₂-udledninger",
-      "30d": "Daglig CO₂-udledninger",
+      "72h": "Timevis CO₂-udledninger",
+      "3mo": "Daglig CO₂-udledninger",
       "12mo": "Månedlig CO₂-udledninger",
-      "all": "Årlig CO₂-udledninger"
+      "all_months": "Månedlig CO₂-udledninger",
+      "all_years": "Årlig CO₂-udledninger"
     },
     "emissionsorigin": {
-      "24h": "Timevis CO₂-udlednings oprindelse",
-      "30d": "Daglig CO₂-udlednings oprindelse",
+      "72h": "Timevis CO₂-udlednings oprindelse",
+      "3mo": "Daglig CO₂-udlednings oprindelse",
       "12mo": "Månedlig CO₂-udlednings oprindelse",
-      "all": "Årlig CO₂-udlednings oprindelse"
+      "all_months": "Månedlig CO₂-udlednings oprindelse",
+      "all_years": "Årlig CO₂-udlednings oprindelse"
     },
     "emissionsproduction": {
-      "24h": "Timevis elproduktions udledning",
-      "30d": "Daglig elproduktions udledning",
+      "72h": "Timevis elproduktions udledning",
+      "3mo": "Daglig elproduktions udledning",
       "12mo": "Månedlig elproduktions udledning",
-      "all": "Årlig elproduktions udledning"
+      "all_months": "Månedlig elproduktions udledning",
+      "all_years": "Årlig elproduktions udledning"
     },
     "electricityorigin": {
-      "24h": "Timevis elektricitets oprindelse",
-      "30d": "Daglig elektricitets oprindelse",
+      "72h": "Timevis elektricitets oprindelse",
+      "3mo": "Daglig elektricitets oprindelse",
       "12mo": "Månedlig elektricitets oprindelse",
-      "all": "Årlig elektricitets oprindelse"
+      "all_months": "Månedlig elektricitets oprindelse",
+      "all_years": "Årlig elektricitets oprindelse"
     },
     "electricityproduction": {
-      "24h": "Timevis elektricitets produktion",
-      "30d": "Daglig elektricitets produktion",
+      "72h": "Timevis elektricitets produktion",
+      "3mo": "Daglig elektricitets produktion",
       "12mo": "Månedlig elektricitets produktion",
-      "all": "Årlig elektricitets produktion"
+      "all_months": "Månedlig elektricitets produktion",
+      "all_years": "Årlig elektricitets produktion"
     },
     "electricityprices": {
-      "24h": "Timevise elektricitets priser",
-      "30d": "Daglige elektricitets priser",
+      "72h": "Timevise elektricitets priser",
+      "3mo": "Daglige elektricitets priser",
       "12mo": "Månedlige elektricitets priser",
-      "all": "Årlige elektricitets priser"
+      "all_months": "Månedlige elektricitets priser",
+      "all_years": "Årlige elektricitets priser"
     },
     "netExchange": {
-      "24h": "Timevis nettoudveksling",
-      "30d": "Daglig nettoudveksling",
+      "72h": "Timevis nettoudveksling",
+      "3mo": "Daglig nettoudveksling",
       "12mo": "Månedlig nettoudveksling",
-      "all": "Årlig nettoudveksling"
+      "all_months": "Månedlig nettoudveksling",
+      "all_years": "Årlig nettoudveksling"
     },
     "not-enough-data": "Ikke nok data tilgængeligt til at vise diagrammet."
   },
@@ -639,6 +615,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -658,14 +637,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Newfoundland og Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canada",
@@ -834,9 +805,13 @@
       "countryName": "Spanien",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spanien",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanien",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spanien",
@@ -1150,10 +1125,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1312,14 +1283,10 @@
       "zoneName": "Monaco"
     },
     "MD": {
-      "zoneName": "Moldavien"
+      "zoneName": "Moldova"
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
     },
     "MG": {
       "zoneName": "Madagaskar"

@@ -64,7 +64,6 @@
     "aggregatedTooltip": "該區域的的資料是由過去的每小時資料聚合而成。",
     "helpUs": "請檢視<a href='{{link}}' target='_blank'>執行環境日誌</a>並幫助我們找出問題。",
     "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href='{{link}}' target='_blank'>新增這個地區的資料</a>！",
-    "aggregationDisabled": "由於缺少詳細細分，無法取得所選時間段的資料。請嘗試選擇一個更廣泛的時間段。",
     "now": "現在"
   },
   "feedback-card": {
@@ -88,34 +87,10 @@
   },
   "estimation-card": {
     "link": "了解我們的估計模型",
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "數據為初步的值",
-      "body": "資料提供者未提供此小時的數據。目前顯示的數值是基於歷史測量值估計的，一旦實際數據可用將立即更新。\n\n請注意，估計值可能未考慮到即時的天氣事件。"
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "數據部分為估計值",
-      "pill": "不完整",
-      "body": "該區域發電數據不完整； 缺失值是使用估計模型計算的。"
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "數據始終為估計值",
-      "pill": "不精確",
-      "body": "該區域發布的數據僅提供總產量。可再生能源是使用即時天氣數據估算的，而化石能源是根據每個生產來源的歷史數據扣除的。"
-    },
     "estimated_generic_method": {
       "title": "數據為估計值",
       "pill": "不精確",
       "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "數據始終為估計值",
-      "pill": "非即時",
-      "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "數據始終為估計值",
-      "pill": "非即時",
-      "body": "該區域的數據不會即時發布，僅提供總產量。 每小時產量和生產源都是根據每個生產源的歷史數據估算的。"
     },
     "threshold_filtered": {
       "title": "缺失數據",
@@ -137,10 +112,11 @@
     }
   },
   "time-controller": {
-    "30d": "每日",
-    "24h": "每小時",
+    "3mo": "每日",
+    "72h": "每小時",
     "12mo": "每月",
-    "all": "每年"
+    "all_months": "每月",
+    "all_years": "每年"
   },
   "ranking-panel": {
     "title": "各地區對氣候的影響",
@@ -149,52 +125,60 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "每小時碳強度",
-      "30d": "每日碳強度",
+      "72h": "每小時碳強度",
+      "3mo": "每日碳強度",
       "12mo": "每月碳強度",
-      "all": "每年碳強度"
+      "all_months": "每月碳強度",
+      "all_years": "每年碳強度"
     },
     "emissions": {
-      "24h": "每小時碳排放",
-      "30d": "每日碳排放",
+      "72h": "每小時碳排放",
+      "3mo": "每日碳排放",
       "12mo": "每月碳排放",
-      "all": "每年碳排放"
+      "all_months": "每月碳排放",
+      "all_years": "每年碳排放"
     },
     "emissionsorigin": {
-      "24h": "每小時碳排放來源",
-      "30d": "每日碳排放來源",
+      "72h": "每小時碳排放來源",
+      "3mo": "每日碳排放來源",
       "12mo": "每月碳排放來源",
-      "all": "每年碳排放來源"
+      "all_months": "每月碳排放來源",
+      "all_years": "每年碳排放來源"
     },
     "emissionsproduction": {
-      "24h": "每小時生產排放",
-      "30d": "每日生產排放",
+      "72h": "每小時生產排放",
+      "3mo": "每日生產排放",
       "12mo": "每月生產排放",
-      "all": "每年生產排放"
+      "all_months": "每月生產排放",
+      "all_years": "每年生產排放"
     },
     "electricityorigin": {
-      "24h": "每小時電力來源",
-      "30d": "每日電力來源",
+      "72h": "每小時電力來源",
+      "3mo": "每日電力來源",
       "12mo": "每月電力來源",
-      "all": "每年電力來源"
+      "all_months": "每月電力來源",
+      "all_years": "每年電力來源"
     },
     "electricityproduction": {
-      "24h": "每小時電力生產",
-      "30d": "每日電力生產",
+      "72h": "每小時電力生產",
+      "3mo": "每日電力生產",
       "12mo": "每月電力生產",
-      "all": "每年電力生產"
+      "all_months": "每月電力生產",
+      "all_years": "每年電力生產"
     },
     "electricityprices": {
-      "24h": "每小時電價",
-      "30d": "每日電價",
+      "72h": "每小時電價",
+      "3mo": "每日電價",
       "12mo": "每月電價",
-      "all": "每年電價"
+      "all_months": "每月電價",
+      "all_years": "每年電價"
     },
     "netExchange": {
-      "24h": "每小時淨交換",
-      "30d": "每日淨交換",
+      "72h": "每小時淨交換",
+      "3mo": "每日淨交換",
       "12mo": "每月淨交換",
-      "all": "每年淨交換"
+      "all_months": "每月淨交換",
+      "all_years": "每年淨交換"
     },
     "not-enough-data": "沒有足夠的數據來顯示圖表"
   },
@@ -521,6 +505,9 @@
     "BZ": {
       "zoneName": "貝里斯"
     },
+    "CA": {
+      "zoneName": "加拿大"
+    },
     "CA-AB": {
       "countryName": "加拿大",
       "zoneName": "亞伯達省"
@@ -540,14 +527,6 @@
     "CA-NL": {
       "countryName": "加拿大",
       "zoneName": "紐芬蘭-拉布拉多省"
-    },
-    "CA-NL-LB": {
-      "countryName": "加拿大",
-      "zoneName": "拉布拉多"
-    },
-    "CA-NL-NF": {
-      "countryName": "加拿大",
-      "zoneName": "紐芬蘭"
     },
     "CA-NT": {
       "countryName": "加拿大",
@@ -716,9 +695,13 @@
       "countryName": "西班牙",
       "zoneName": "梅諾卡島"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "西班牙",
-      "zoneName": "富埃特文圖拉島/蘭薩羅特島"
+      "zoneName": "富埃特文圖拉島"
+    },
+    "ES-CN-LZ": {
+      "countryName": "西班牙",
+      "zoneName": "蘭薩羅特島"
     },
     "ES-CN-GC": {
       "countryName": "西班牙",
@@ -1032,10 +1015,6 @@
     "IQ": {
       "zoneName": "伊拉克"
     },
-    "IQ-KUR": {
-      "countryName": "伊拉克",
-      "zoneName": "庫德斯坦"
-    },
     "IR": {
       "zoneName": "伊朗"
     },
@@ -1198,10 +1177,6 @@
     },
     "ME": {
       "zoneName": "黑山共和國"
-    },
-    "MF": {
-      "countryName": "法屬聖馬丁",
-      "zoneName": "法國"
     },
     "MG": {
       "zoneName": "馬達加斯加"
@@ -1609,38 +1584,6 @@
       "countryName": "美國",
       "zoneName": "Southeast Alaska Power Agency"
     },
-    "US-HI-HA": {
-      "countryName": "美國",
-      "zoneName": "夏威夷"
-    },
-    "US-HI-KA": {
-      "countryName": "美國",
-      "zoneName": "考艾島"
-    },
-    "US-HI-KH": {
-      "countryName": "美國",
-      "zoneName": "卡胡拉威島"
-    },
-    "US-HI-LA": {
-      "countryName": "美國",
-      "zoneName": "拉奈島"
-    },
-    "US-HI-MA": {
-      "countryName": "美國",
-      "zoneName": "茂宜島"
-    },
-    "US-HI-MO": {
-      "countryName": "美國",
-      "zoneName": "摩洛凱島"
-    },
-    "US-HI-NI": {
-      "countryName": "美國",
-      "zoneName": "尼豪島"
-    },
-    "US-HI-OA": {
-      "countryName": "美國",
-      "zoneName": "歐胡島"
-    },
     "US-CAL-BANC": {
       "countryName": "美國",
       "zoneName": "北加州平衡管制機構"
@@ -1955,18 +1898,6 @@
     "PH-VI": {
       "countryName": "菲律賓",
       "zoneName": "維薩亞斯群島"
-    },
-    "VN-C": {
-      "countryName": "越南",
-      "zoneName": "越南中部"
-    },
-    "VN-N": {
-      "countryName": "越南",
-      "zoneName": "越南北部"
-    },
-    "VN-S": {
-      "countryName": "越南",
-      "zoneName": "越南南部"
     }
   }
 }

@@ -66,6 +66,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 83.55
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 141.74
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
@@ -88,6 +91,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 83.55
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 141.74
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -195,7 +201,20 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.08804942933376388
         wind: 0.0
-parsers:
-  production: YUKONENERGY.fetch_production
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.8258501891508444
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.17414929934515255
+        wind: 0.0
 region: Americas
 timezone: America/Whitehorse

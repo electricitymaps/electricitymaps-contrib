@@ -6,11 +6,11 @@ export const baseUrl = 'https://app.electricitymaps.com';
 
 // The order here determines the order displayed
 export enum TimeRange {
-  H24 = '24h',
   H72 = '72h',
-  D30 = '30d',
+  M3 = '3mo',
   M12 = '12mo',
-  ALL = 'all',
+  ALL_MONTHS = 'all_months',
+  ALL_YEARS = 'all_years',
 }
 
 export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
@@ -18,11 +18,10 @@ export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
 // used in TimeAxis & areWeatherLayersAllowedAtom
 // accommodates 0-based index for 72 hours
 export const HOURLY_TIME_INDEX: Partial<Record<TimeRange, number>> = {
-  [TimeRange.H24]: 24,
   [TimeRange.H72]: 71,
 };
 
-export const historicalTimeRange = [TimeRange.H24, TimeRange.H72];
+export const historicalTimeRange = [TimeRange.H72];
 
 export enum ToggleOptions {
   ON = 'on',
@@ -65,10 +64,8 @@ export enum TrackEvent {
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
   SHARE_CHART = 'Share Chart',
   FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
-  APP_LOADED = 'App Loaded',
   PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
   HEADER_LINK_CLICKED = 'HeaderLink Clicked',
-  TIME_SLIDER_BUTTON = 'Time Slider Button Interaction',
   LANGUAGE_SELECTED = 'Language Selected',
   ESTIMATION_CARD_EXPANDED = 'EstimationCard Expanded',
   CONTRIBUTE_ON_GITHUB_BUTTON_CLICKED = 'Contribute On GitHub Button Clicked',
@@ -79,7 +76,6 @@ export enum TrackEvent {
   PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
   ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
   METHODOLOGIES_AND_DATA_SOURCES_EXPANDED = 'Methodologies and Data Sources Expanded',
-  TIME_AGGREGATE_BUTTON_CLICKED = 'Time Aggregate Button Clicked',
   SOLAR_ENABLED = 'Solar Enabled',
   SOLAR_DISABLED = 'Solar Disabled',
   WIND_ENABLED = 'Wind Enabled',
@@ -142,11 +138,11 @@ export const modeOrderBarBreakdown = [
 
 // A mapping between the TimeRange enum and the corresponding Duration for the date-fns add/substract method
 export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
-  [TimeRange.D30]: 'days',
-  [TimeRange.H24]: 'hours',
   [TimeRange.H72]: 'hours',
+  [TimeRange.M3]: 'days',
   [TimeRange.M12]: 'months',
-  [TimeRange.ALL]: 'years',
+  [TimeRange.ALL_MONTHS]: 'months',
+  [TimeRange.ALL_YEARS]: 'years',
 };
 /**
  * A mapping between the source name and a link to the source.
@@ -276,3 +272,7 @@ export enum EstimationMethods {
   OUTAGE = 'outage',
   GENERAL_PURPOSE_ZONE_MODEL = 'ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL',
 }
+
+export const isTSAModel = (estimationMethod?: EstimationMethods) =>
+  estimationMethod === EstimationMethods.TSA ||
+  estimationMethod === EstimationMethods.FORECASTS_HIERARCHY;

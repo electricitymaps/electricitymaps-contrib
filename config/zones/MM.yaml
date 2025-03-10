@@ -1,3 +1,75 @@
+bounding_box:
+  - - 91.68432184321844
+    - 9.487715903298508
+  - - 101.6592115921159
+    - 29.03884266693734
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1570.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 1900.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 2280.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 2900.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3040.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 3260.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 3270.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: MM
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Yangon

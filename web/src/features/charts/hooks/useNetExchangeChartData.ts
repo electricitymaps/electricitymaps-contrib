@@ -11,10 +11,9 @@ import { displayByEmissionsAtom, timeRangeAtom } from 'utils/state/atoms';
 import { AreaGraphElement } from '../types';
 
 export function getFills(data: AreaGraphElement[]) {
-  const netExchangeMaxValue =
-    d3Max<number>(Object.values(data).map((d) => d.layerData.netExchange || 0)) ?? 0;
-  const netExchangeMinValue =
-    d3Min<number>(Object.values(data).map((d) => d.layerData.netExchange || 0)) ?? 0;
+  const netExchanges = Object.values(data).map((d) => d.layerData.netExchange);
+  const netExchangeMaxValue = d3Max<number>(netExchanges) ?? 0;
+  const netExchangeMinValue = d3Min<number>(netExchanges) ?? 0;
 
   const netExchangeColorScale = scaleLinear<string>()
     .domain([netExchangeMinValue, 0, netExchangeMaxValue])
@@ -44,18 +43,15 @@ export function useNetExchangeChartData() {
     timeRange
   );
 
-  const chartData: AreaGraphElement[] = [];
-
-  for (const [datetimeString, zoneDetail] of Object.entries(zoneData.zoneStates)) {
-    const datetime = new Date(datetimeString);
-    chartData.push({
-      datetime,
+  const chartData = Object.entries(zoneData.zoneStates).map(
+    ([datetimeString, zoneDetail]) => ({
+      datetime: new Date(datetimeString),
       layerData: {
         netExchange: round(getNetExchange(zoneDetail, displayByEmissions) / valueFactor),
       },
       meta: zoneDetail,
-    });
-  }
+    })
+  );
 
   const { layerFill, markerFill } = getFills(chartData);
 
@@ -83,7 +79,7 @@ function getValuesInfo(
   displayByEmissions: boolean,
   timeRange: string
 ): ValuesInfo {
-  const isHourly = timeRange === TimeRange.H24 || timeRange === TimeRange.H72;
+  const isHourly = timeRange === TimeRange.H72;
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     Math.abs(getNetExchange(d, displayByEmissions))
   );

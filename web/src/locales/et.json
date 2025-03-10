@@ -324,6 +324,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -339,14 +342,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland ja Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Newfoundland"
     },
     "CA-NB": {
       "countryName": "Kanada",
@@ -519,9 +514,13 @@
       "countryName": "Hispaania",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Hispaania",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Hispaania",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Hispaania",
@@ -804,10 +803,6 @@
     "IQ": {
       "zoneName": "Iraak"
     },
-    "IQ-KUR": {
-      "countryName": "Iraak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iraan"
     },
@@ -967,10 +962,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Saint-Martin",
-      "zoneName": "Prantsusmaa"
     },
     "MG": {
       "zoneName": "Madagaskar"
@@ -1347,38 +1338,6 @@
     },
     "US": {
       "zoneName": "Külgnevad Ameerika Ühendriigid"
-    },
-    "US-HI-HA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Ameerika Ühendriigid",
