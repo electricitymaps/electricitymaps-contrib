@@ -21,7 +21,7 @@ export default function Modal({
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-20 bg-black/50" />
+        <Dialog.Overlay className="fixed inset-0 z-30 bg-black/50" />
         <Dialog.Content
           // Avoid close button being auto-focused initially, as pressing space will otherwise close the modal
           onOpenAutoFocus={(event: Event) => event.preventDefault()}
