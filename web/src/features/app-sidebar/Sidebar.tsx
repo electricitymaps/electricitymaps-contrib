@@ -4,8 +4,6 @@ import { Slot } from '@radix-ui/react-slot';
 import * as React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const SIDEBAR_WIDTH_ICON = '4rem';
-
 const Sidebar = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<'div'> & {
@@ -14,11 +12,6 @@ const Sidebar = React.forwardRef<
   }
 >(({ side = 'left', variant = 'sidebar', className, children, ...props }, reference) => (
   <div
-    style={
-      {
-        '--sidebar-width-icon': SIDEBAR_WIDTH_ICON,
-      } as React.CSSProperties
-    }
     className="group/sidebar-wrapper absolute left-0 top-0 z-30 flex h-full w-4"
     {...props}
   >
@@ -43,7 +36,7 @@ const Sidebar = React.forwardRef<
           side === 'left'
             ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
-          'z-20 overflow-hidden border-none bg-white',
+          'z-20 overflow-hidden  bg-white',
           className
         )}
         {...props}

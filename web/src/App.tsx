@@ -7,7 +7,7 @@ import useGetState from 'api/getState';
 import { AppStoreBanner } from 'components/AppStoreBanner';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
-import { AppSidebar } from 'features/app-sidebar/AppSidebar';
+import { AppSidebar, SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import Header from 'features/header/Header';
@@ -82,9 +82,12 @@ export default function App(): ReactElement {
         <meta property="og:locale" content={i18n.languages[0]} />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <div className="flex h-full flex-row">
+      <div
+        className="flex h-full flex-row"
+        style={{ '--sidebar-width': SIDEBAR_WIDTH } as React.CSSProperties}
+      >
         <AppSidebar />
-        <main className="fixed flex h-full w-full flex-col md:ml-16  md:w-[calc(100%-4rem)] ">
+        <main className="fixed flex h-full w-full flex-col md:ml-[--sidebar-width]  md:w-[calc(100%-var(--sidebar-width))] ">
           <AppStoreBanner />
           <ToastProvider duration={20_000}>
             <Suspense>
