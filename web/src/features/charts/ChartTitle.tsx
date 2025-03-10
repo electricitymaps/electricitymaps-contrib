@@ -1,29 +1,48 @@
-/* eslint-disable react/jsx-no-target-blank */
-import EstimationBadge from 'components/EstimationBadge';
-import { useAtom } from 'jotai';
+import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
+import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
+import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { Charts } from 'utils/constants';
 
 type Props = {
-  translationKey: string;
-  hasLink?: boolean;
-  badgeText?: string;
+  titleText?: string;
   unit?: string;
+  badge?: React.ReactElement;
+  className?: string;
+  isEstimated?: boolean;
+  id: Charts;
 };
 
-export function ChartTitle({ translationKey, badgeText = undefined, unit }: Props) {
+export function ChartTitle({
+  titleText,
+  unit,
+  badge,
+  className,
+  isEstimated,
+  id,
+}: Props) {
+  const showMoreOptions = useShowMoreOptions();
+  const url = useGetCurrentUrl();
+  const shareUrl = id ? `${url}#${id}` : url;
   const { t } = useTranslation();
-  const [timeAverage] = useAtom(timeAverageAtom);
-  /*
-  Use local for timeAverage if exists, otherwise use local default if exists. If no translation exists, use english
-  */
+
   return (
     <div className="flex flex-col pb-0.5">
-      <div className="flex flex-row justify-between pt-4">
-        <div className="flex content-center items-center gap-1.5">
-          <h2>{t(`${translationKey}.${timeAverage}`)}</h2>
-        </div>
-        {badgeText != undefined && <EstimationBadge text={badgeText} />}
+      <div className={`flex items-center gap-1.5 pt-4 ${className}`}>
+        <h2 id={id} className="grow">
+          {titleText}
+        </h2>
+        {badge}
+        {showMoreOptions && (
+          <MoreOptionsDropdown
+            title={t(`more-options-dropdown.chart-title`)}
+            isEstimated={isEstimated}
+            id={id}
+            shareUrl={shareUrl}
+          >
+            <Ellipsis />
+          </MoreOptionsDropdown>
+        )}
       </div>
       {unit && <div className="text-sm dark:text-gray-300">{unit}</div>}
     </div>

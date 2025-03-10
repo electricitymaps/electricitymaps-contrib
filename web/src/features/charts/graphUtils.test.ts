@@ -1,5 +1,4 @@
 import { ElectricityStorageType, ZoneDetail } from 'types';
-import { Mode } from 'utils/constants';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -99,7 +98,7 @@ describe('getRatioPercent', () => {
     [5, null, '?'],
   ])('handles %s of %s', (a, b, expected) => {
     const actual = getRatioPercent(a, b);
-    expect(actual).to.deep.eq(expected);
+    expect(actual).toEqual(expected);
   });
 });
 
@@ -160,7 +159,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: undefined,
       generationTypeProduction: 41_161,
     });
-    expect(actual).to.deep.eq(41_161);
+    expect(actual).toEqual(41_161);
   });
 
   it('handles storage', () => {
@@ -170,7 +169,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: -3738.75,
       generationTypeProduction: 11_930.25,
     });
-    expect(actual).to.deep.eq(3738.75);
+    expect(actual).toEqual(3738.75);
   });
 
   it('handles missing storage', () => {
@@ -180,7 +179,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: null,
       generationTypeProduction: 999,
     });
-    expect(actual).to.deep.eq(null);
+    expect(actual).toEqual(null);
   });
 
   it('handles zero storage', () => {
@@ -190,7 +189,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: 0,
       generationTypeProduction: 999,
     });
-    expect(actual).to.deep.eq(0);
+    expect(actual).toEqual(0);
   });
 
   it('handles zero production', () => {
@@ -200,7 +199,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: undefined,
       generationTypeProduction: 0,
     });
-    expect(actual).to.deep.eq(0);
+    expect(actual).toEqual(0);
   });
 
   it('handles null production', () => {
@@ -210,7 +209,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: undefined,
       generationTypeProduction: null,
     });
-    expect(actual).to.deep.eq(null);
+    expect(actual).toEqual(null);
   });
 
   it('handles zero capacity', () => {
@@ -220,7 +219,7 @@ describe('getElectricityProductionValue', () => {
       generationTypeStorage: undefined,
       generationTypeProduction: 0,
     });
-    expect(actual).to.deep.eq(0);
+    expect(actual).toEqual(0);
   });
 });
 
@@ -237,47 +236,47 @@ describe('getTotalEmissionsAvailable and ElectricityAvailable', () => {
   } as ZoneDetail;
 
   it('handles emissions for consumption', () => {
-    const actual = getTotalEmissionsAvailable(zoneData, Mode.CONSUMPTION);
-    expect(actual).to.deep.eq(175);
+    const actual = getTotalEmissionsAvailable(zoneData, true);
+    expect(actual).toEqual(175);
   });
 
   it('handles power for consumption', () => {
-    const actual = getTotalElectricityAvailable(zoneData, Mode.CONSUMPTION);
-    expect(actual).to.deep.eq(350);
+    const actual = getTotalElectricityAvailable(zoneData, true);
+    expect(actual).toEqual(350);
   });
 
   it('handles emissions for production', () => {
-    const actual = getTotalEmissionsAvailable(zoneData, Mode.PRODUCTION);
-    expect(actual).to.deep.eq(150);
+    const actual = getTotalEmissionsAvailable(zoneData, false);
+    expect(actual).toEqual(150);
   });
 
   it('returns NaN when missing productionValue', () => {
     const actual = getTotalEmissionsAvailable(
       { ...zoneData, totalCo2Production: null } as unknown as ZoneDetail,
-      Mode.PRODUCTION
+      false
     );
-    expect(actual).to.deep.eq(Number.NaN);
+    expect(actual).toEqual(Number.NaN);
   });
 
   it('handles power for production', () => {
-    const actual = getTotalElectricityAvailable(zoneData, Mode.PRODUCTION);
-    expect(actual).to.deep.eq(250);
+    const actual = getTotalElectricityAvailable(zoneData, false);
+    expect(actual).toEqual(250);
   });
 
   it('returns 0 when productionValue is 0', () => {
     const actual = getTotalElectricityAvailable(
       { ...zoneData, totalProduction: 0, totalDischarge: 0 },
-      Mode.PRODUCTION
+      false
     );
-    expect(actual).to.deep.eq(0);
+    expect(actual).toEqual(0);
   });
 
   it('returns NaN when missing productionValue', () => {
     const actual = getTotalElectricityAvailable(
       { ...zoneData, totalProduction: null },
-      Mode.PRODUCTION
+      false
     );
-    expect(actual).to.deep.eq(Number.NaN);
+    expect(actual).toEqual(Number.NaN);
   });
 });
 
@@ -289,32 +288,32 @@ describe('extractLinkFromSource', () => {
   };
 
   it('should return mapped link if source is in sourceLinkMapping', () => {
-    expect(extractLinkFromSource('source1', sourceLinkMapping)).to.equal(
+    expect(extractLinkFromSource('source1', sourceLinkMapping)).toEqual(
       'http://mappedlink1.com'
     );
-    expect(extractLinkFromSource('source2', sourceLinkMapping)).to.equal(
+    expect(extractLinkFromSource('source2', sourceLinkMapping)).toEqual(
       'http://mappedlink2.com'
     );
   });
 
   it('should work with a real link', () => {
-    expect(extractLinkFromSource('Climatescope', sourceLinkMapping)).to.equal(
+    expect(extractLinkFromSource('Climatescope', sourceLinkMapping)).toEqual(
       'https://www.global-climatescope.org/'
     );
   });
 
   it('should return null if source does not include a dot', () => {
-    expect(extractLinkFromSource('sourceWithoutDot', sourceLinkMapping)).to.be.null;
+    expect(extractLinkFromSource('sourceWithoutDot', sourceLinkMapping)).toBeNull();
   });
 
   it('should return source if source includes http', () => {
-    expect(
-      extractLinkFromSource('http://sourceWithHttp.com', sourceLinkMapping)
-    ).to.equal('http://sourceWithHttp.com');
+    expect(extractLinkFromSource('http://sourceWithHttp.com', sourceLinkMapping)).toEqual(
+      'http://sourceWithHttp.com'
+    );
   });
 
   it('should return source with http prefix if source includes a dot but not http', () => {
-    expect(extractLinkFromSource('sourceWithDot.com', sourceLinkMapping)).to.equal(
+    expect(extractLinkFromSource('sourceWithDot.com', sourceLinkMapping)).toEqual(
       'http://sourceWithDot.com'
     );
   });

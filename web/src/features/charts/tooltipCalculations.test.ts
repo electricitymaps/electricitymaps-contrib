@@ -1,5 +1,4 @@
 import { ZoneDetail } from 'types';
-import { Mode } from 'utils/constants';
 import { expect } from 'vitest';
 
 import { getExchangeTooltipData, getProductionTooltipData } from './tooltipCalculations';
@@ -120,12 +119,7 @@ const zoneDetailsData = {
 
 describe('getProductionTooltipData', () => {
   it('returns correct data for nuclear', () => {
-    const actual = getProductionTooltipData(
-      'nuclear',
-      zoneDetailsData,
-      false,
-      Mode.CONSUMPTION
-    );
+    const actual = getProductionTooltipData('nuclear', zoneDetailsData, false, true);
 
     expect(actual).toMatchInlineSnapshot(`
       {
@@ -149,12 +143,7 @@ describe('getProductionTooltipData', () => {
   });
 
   it('returns correct data for nuclear with displayEmissions', () => {
-    const actual = getProductionTooltipData(
-      'nuclear',
-      zoneDetailsData,
-      true,
-      Mode.CONSUMPTION
-    );
+    const actual = getProductionTooltipData('nuclear', zoneDetailsData, true, true);
 
     expect(actual).toMatchInlineSnapshot(`
       {
@@ -182,7 +171,7 @@ describe('getProductionTooltipData', () => {
       'hydro storage',
       zoneDetailsData,
       false,
-      Mode.CONSUMPTION
+      true
     );
 
     expect(actual).toMatchInlineSnapshot(`
@@ -207,24 +196,14 @@ describe('getProductionTooltipData', () => {
   });
 
   it('returns 0 usage for zero production', () => {
-    const actual = getProductionTooltipData(
-      'solar',
-      zoneDetailsData,
-      false,
-      Mode.PRODUCTION
-    );
-    expect(actual.usage).to.eq(0);
-    expect(actual.emissions).to.eq(0);
+    const actual = getProductionTooltipData('solar', zoneDetailsData, false, false);
+    expect(actual.usage).toEqual(0);
+    expect(actual.emissions).toEqual(0);
   });
 
   it('returns nan usage for null production', () => {
-    const actual = getProductionTooltipData(
-      'geothermal',
-      zoneDetailsData,
-      false,
-      Mode.PRODUCTION
-    );
-    expect(actual.usage).to.be.NaN;
+    const actual = getProductionTooltipData('geothermal', zoneDetailsData, false, false);
+    expect(actual.usage).toBeNaN();
   });
 
   it('handles data with all production modes missing', () => {
@@ -238,7 +217,7 @@ describe('getProductionTooltipData', () => {
       'nuclear',
       zoneDetailsDataWithMissingProductionModes,
       false,
-      Mode.CONSUMPTION
+      true
     );
 
     expect(actual).toMatchInlineSnapshot(`
@@ -268,10 +247,10 @@ describe('getProductionTooltipData', () => {
       'nuclear',
       zoneDetailsDataWithoutCapacity,
       false,
-      Mode.PRODUCTION
+      false
     );
 
-    expect(actual.usage).to.eq(41_161);
+    expect(actual.usage).toEqual(41_161);
   });
 });
 

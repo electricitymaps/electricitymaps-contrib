@@ -5,10 +5,16 @@ from logging import Logger, getLogger
 
 from requests import Response, Session
 
-from electricitymap.contrib.lib.models.event_lists import PriceList
+from electricitymap.contrib.lib.models.event_lists import ExchangeList, PriceList
 from electricitymap.contrib.lib.types import ZoneKey
 
+from .lib.config import refetch_frequency
 from .lib.utils import get_token
+
+"""
+Parser for the Nordpool API.
+API documentation: https://data-api.nordpoolgroup.com/index.html
+"""
 
 NORDPOOL_BASE_URL = "https://data-api.nordpoolgroup.com/api/v2/"
 
@@ -30,6 +36,7 @@ SOURCE = "nordpool.com"
 
 class NORDPOOL_API_ENDPOINT(Enum):
     PRICE = "Auction/Prices/ByAreas"
+    EXCHANGE = "PowerSystem/Exchanges/ByAreas"
 
 
 class MARKET_TYPE(Enum):
@@ -43,6 +50,8 @@ class CURRENCY(Enum):
     SEK = "SEK"
     NOK = "NOK"
     GBP = "GBP"
+    PLN = "PLN"
+    RON = "RON"
 
 
 ZONE_MAPPING = {
@@ -68,6 +77,8 @@ ZONE_MAPPING = {
     "SE-SE2": "SE2",
     "SE-SE3": "SE3",
     "SE-SE4": "SE4",
+    "RU-1": "RU",
+    "RU-KGD": "LKAL",
 }
 
 INVERTED_ZONE_MAPPING = {value: key for key, value in ZONE_MAPPING.items()}
@@ -162,6 +173,7 @@ def _parse_price(response: Response, logger: Logger) -> PriceList:
     return price_list
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -193,3 +205,65 @@ def fetch_price(
     )
 
     return (price_data_target + price_data_target_day_ahead).to_list()
+
+
+def _parse_exchange(response: Response, logger: Logger, target_zone) -> ExchangeList:
+    exchange_list = ExchangeList(logger)
+    json = response.json()[0]
+    exchanges = json["exchanges"]
+    for exchange in exchanges:
+        for connection in exchange["byConnections"]:
+            if connection["area"] == ZONE_MAPPING[target_zone]:
+                exchange_list.append(
+                    zoneKey=ZoneKey(
+                        f"{INVERTED_ZONE_MAPPING[json['deliveryArea']]}->{INVERTED_ZONE_MAPPING[connection['area']]}"
+                    ),
+                    netFlow=-connection[
+                        "netPosition"
+                    ],  # Import is positive, export is negative
+                    datetime=datetime.fromisoformat(
+                        zulu_to_utc(exchange["deliveryStart"])
+                    ),
+                    source=SOURCE,
+                )
+    return exchange_list
+
+
+@refetch_frequency(timedelta(days=2))
+def fetch_exchange(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """
+    Gets exchange status between two specified zones.
+    Only supports Nordpool zones.
+    """
+    session = session or Session()
+    target_datetime = target_datetime or datetime.now()
+    params = {
+        "areas": f"{ZONE_MAPPING[zone_key1]}",
+        "date": target_datetime.date().isoformat(),
+    }
+    response_target = _query_nordpool(
+        NORDPOOL_API_ENDPOINT.EXCHANGE, params, logger, session
+    )
+    exchange_data = _parse_exchange(
+        response=response_target,
+        logger=logger,
+        target_zone=zone_key2,
+    )
+    # Request the day before as well so we get overlapping data
+    params["date"] = (target_datetime - timedelta(days=1)).date().isoformat()
+    response_target_day_before = _query_nordpool(
+        NORDPOOL_API_ENDPOINT.EXCHANGE, params, logger, session
+    )
+    exchange_data_day_before = _parse_exchange(
+        response=response_target_day_before,
+        logger=logger,
+        target_zone=zone_key2,
+    )
+    # Combines both ExchangeLists and return them as a native list.
+    return (exchange_data + exchange_data_day_before).to_list()

@@ -1,16 +1,28 @@
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { formatDate } from 'utils/formatting';
-import { selectedDatetimeIndexAtom, timeAverageAtom } from 'utils/state/atoms';
+import { ZoneKey } from 'types';
+import { selectedDatetimeIndexAtom, timeRangeAtom } from 'utils/state/atoms';
 
-export function TimeDisplay({ className }: { className?: string }) {
+import { FormattedTime } from './Time';
+
+export function TimeDisplay({
+  className,
+  zoneId,
+}: {
+  className?: string;
+  zoneId?: ZoneKey;
+}) {
   const { i18n } = useTranslation();
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
 
   return (
-    <p className={className}>
-      {formatDate(selectedDatetime.datetime, i18n.language, timeAverage)}
-    </p>
+    <FormattedTime
+      datetime={selectedDatetime.datetime}
+      language={i18n.languages[0]}
+      timeRange={timeRange}
+      className={className}
+      zoneId={zoneId}
+    />
   );
 }

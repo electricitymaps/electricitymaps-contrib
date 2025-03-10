@@ -14,6 +14,6 @@ capacity:
   wind: 0
 contributors:
   - madsnedergaard
-timezone: Pacific/Auckland
-region: Oceania
 country: NZ
+region: Oceania
+timezone: Pacific/Auckland

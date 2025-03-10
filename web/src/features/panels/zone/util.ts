@@ -1,26 +1,33 @@
 import { ZoneDetails } from 'types';
-import { TimeAverages } from 'utils/constants';
 
 import zonesConfigJSON from '../../../../config/zones.json'; // Todo: improve how to handle json configs
 import { CombinedZonesConfig } from '../../../../geo/types';
 
 const { zones, contributors } = zonesConfigJSON as unknown as CombinedZonesConfig;
 
-export const getHasSubZones = (zoneId?: string) => {
-  if (!zoneId) {
-    return null;
-  }
+export const zoneExists = (zoneId: string) => Boolean(zones[zoneId]);
 
-  const zoneConfig = zones[zoneId];
-  if (!zoneConfig || !zoneConfig.subZoneNames) {
-    return false;
-  }
-  return zoneConfig.subZoneNames.length > 0;
-};
+/**
+ * A helper function to check if a zone has any subZones
+ * Previously this used the following code,
+ * but it has since been optimized for size and speed:
+ * ```
+ * export const getHasSubZones = (zoneId?: string) => {
+ *  if (!zoneId) {
+ *    return null;
+ *  }
+ *  const zoneConfig = zones[zoneId];
+ *  if (!zoneConfig || !zoneConfig.subZoneNames) {
+ *    return false;
+ *  }
+ *  return zoneConfig.subZoneNames.length > 0;
+ *};
+ *```
+ */
+export const getHasSubZones = (zoneId?: string): boolean | null =>
+  zoneId ? Boolean(zones[zoneId]?.subZoneNames?.length) : null;
 
 export enum ZoneDataStatus {
-  AGGREGATE_DISABLED = 'aggregate_disabled',
-  FULLY_DISABLED = 'fully_disabled',
   NO_INFORMATION = 'no_information',
   NO_REAL_TIME_DATA = 'dark',
   AVAILABLE = 'available',
@@ -29,8 +36,7 @@ export enum ZoneDataStatus {
 
 export const getZoneDataStatus = (
   zoneId: string,
-  zoneDetails: ZoneDetails | undefined,
-  timeAverage: TimeAverages
+  zoneDetails: ZoneDetails | undefined
 ) => {
   // If there is no zoneDetails, we do not make any assumptions and return unknown
   if (!zoneDetails) {
@@ -48,16 +54,6 @@ export const getZoneDataStatus = (
     return ZoneDataStatus.NO_INFORMATION;
   }
 
-  if (
-    zones[zoneId].aggregates_displayed &&
-    !zones[zoneId].aggregates_displayed.includes(timeAverage)
-  ) {
-    if (zones[zoneId].aggregates_displayed[0] === 'none') {
-      return ZoneDataStatus.FULLY_DISABLED;
-    }
-    return ZoneDataStatus.AGGREGATE_DISABLED;
-  }
-
   // If there are no production parsers or no defined estimation method in the config,
   // we assume we do not have data for the zone
   if (zoneConfig.parsers === false && zoneConfig.estimation_method === undefined) {
@@ -68,10 +64,8 @@ export const getZoneDataStatus = (
   return ZoneDataStatus.NO_REAL_TIME_DATA;
 };
 
-export const getContributors = (zoneId: string) => ({
-  zoneContributorsIndexArray: zones[zoneId]?.contributors as number[],
-  contributors: contributors,
-});
+export const getContributors = (zoneId: string) =>
+  zones[zoneId]?.contributors?.map((index) => contributors[index]) ?? [];
 
 export const getDisclaimer = (zoneId: string) => zones[zoneId]?.disclaimer;
 

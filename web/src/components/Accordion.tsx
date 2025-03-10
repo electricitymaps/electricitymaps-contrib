@@ -1,11 +1,12 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { PrimitiveAtom, useAtom } from 'jotai';
-import { ChevronDown, ChevronUp, LucideIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { animated, useSpring } from '@react-spring/web';
+import { ChevronRight, LucideIcon } from 'lucide-react';
+import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import useResizeObserver from 'use-resize-observer';
+
+const AnimatedIcon = animated<LucideIcon>(ChevronRight);
 
 export default function Accordion({
-  isCollapsedDefault = true,
   onClick,
   onOpen,
   badge,
@@ -13,10 +14,15 @@ export default function Accordion({
   icon,
   children,
   title,
-  isCollapsedAtom,
+  expandedTitle,
+  collapsedIcon,
+  expandedIcon,
+  iconClassName,
+  iconSize = 24,
+  isCollapsed,
+  setState,
   isTopExpanding = false,
 }: {
-  isCollapsedDefault?: boolean;
   onClick?: () => void;
   onOpen?: () => void;
   badge?: React.ReactNode;
@@ -24,50 +30,95 @@ export default function Accordion({
   icon?: React.ReactNode;
   children?: React.ReactNode;
   title: string;
-  isCollapsedAtom?: PrimitiveAtom<boolean>;
+  expandedTitle?: string;
+  collapsedIcon?: LucideIcon;
+  expandedIcon?: LucideIcon;
+  iconClassName?: string;
+  iconSize?: number;
+  isCollapsed: boolean;
+  setState: (isCollapsed: boolean) => void;
   isTopExpanding?: boolean;
 }) {
-  const [collapsedAtom, setCollapsedAtom] = isCollapsedAtom
-    ? useAtom(isCollapsedAtom)
-    : [null, null];
-  const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
+  const { ref, height: observerHeight } = useResizeObserver<HTMLDivElement>();
+  const [renderChildren, setRenderChildren] = useState(!isCollapsed);
 
-  useEffect(() => {
-    if (collapsedAtom) {
-      setIsCollapsed(collapsedAtom);
-    }
-  }, [collapsedAtom]);
+  const [spring, api] = useSpring(
+    () => ({
+      height: isCollapsed ? 0 : observerHeight,
+      // eslint-disable-next-line unicorn/no-nested-ternary -- it interferes with prettier
+      rotate: isCollapsed ? (isTopExpanding ? -90 : 90) : isTopExpanding ? 90 : -90,
+    }),
+    [isCollapsed, isTopExpanding, observerHeight]
+  );
 
   const handleToggleCollapse = () => {
     onClick?.();
+    setRenderChildren(true);
 
-    isCollapsed && onOpen?.();
+    if (isCollapsed) {
+      onOpen?.();
 
-    setIsCollapsed((previous: boolean) => !previous);
+      api.start({
+        to: {
+          height: observerHeight,
+          rotate: isTopExpanding ? 90 : -90,
+        },
+      });
+    } else {
+      api.start({
+        to: {
+          height: 0,
+          rotate: isTopExpanding ? -90 : 90,
+        },
+        onRest: () => {
+          setRenderChildren(false);
+        },
+      });
+    }
 
-    setCollapsedAtom?.((previous: boolean) => !previous);
+    setState(!isCollapsed);
   };
 
-  const Icon: LucideIcon = isTopExpanding === isCollapsed ? ChevronUp : ChevronDown;
+  // Temporary workaround to allow for custom icons to be used (which will not be animated)
+  // We will remove this once we have a alternative solution
+  const Icon: LucideIcon =
+    (collapsedIcon && expandedIcon && isTopExpanding === isCollapsed // Only use the custom icons if they are both provided and invert them if the accordion is top expanding
+      ? collapsedIcon
+      : expandedIcon) ?? ChevronRight; // The default icon here is just to satisfy the type checker
 
   return (
-    <div className="flex flex-col gap-1.5 py-1">
+    <section className="flex flex-col overflow-hidden py-1">
       <button
-        data-test-id="collapse-button"
+        data-testid="collapse-button"
         onClick={handleToggleCollapse}
         className={twMerge('flex flex-row items-center gap-1.5', className)}
       >
         {icon}
-        <h3 className="grow text-left" data-test-id="title">
-          {title}
+        <h3 className="grow text-left" data-testid="title">
+          {(expandedTitle && !isCollapsed ? expandedTitle : title) || title}
         </h3>
         {badge}
-        <Icon
-          className="text-black dark:text-white"
-          data-test-id={isCollapsed ? 'collapse-down' : 'collapse-up'}
-        />
+        {collapsedIcon && expandedIcon ? (
+          <Icon
+            className={twMerge('text-black dark:text-white', iconClassName)}
+            data-testid={isCollapsed ? 'collapse-down' : 'collapse-up'}
+            size={iconSize}
+          />
+        ) : (
+          <AnimatedIcon
+            className={twMerge('text-black dark:text-white', iconClassName)}
+            style={{ rotate: spring.rotate.to((r) => `${r}deg`) }}
+            data-testid={isCollapsed ? 'collapse-down' : 'collapse-up'}
+            size={iconSize}
+          />
+        )}
       </button>
-      {!isCollapsed && <div>{children}</div>}
-    </div>
+      <animated.div style={{ height: spring.height }}>
+        {/* The div below is used to measure the height of the children
+         * DO NOT REMOVE IT
+         */}
+        <div ref={ref}>{renderChildren && children}</div>
+      </animated.div>
+    </section>
   );
 }

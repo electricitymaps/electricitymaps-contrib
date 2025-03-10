@@ -11,7 +11,11 @@ from typing import Any, Optional
 import pandas as pd
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
+from electricitymap.contrib.config import (
+    EXCHANGES_CONFIG,
+    RETIRED_ZONES_CONFIG,
+    ZONES_CONFIG,
+)
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.lib.types import ZoneKey
@@ -306,7 +310,7 @@ class Event(BaseModel, ABC):
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v):
-        if v not in ZONES_CONFIG:
+        if v not in ZONES_CONFIG and v not in RETIRED_ZONES_CONFIG:
             raise ValueError(f"Unknown zone: {v}")
         return v
 
@@ -353,7 +357,11 @@ class AggregatableEvent(Event):
     @staticmethod
     def _sources(df_view: pd.DataFrame) -> str:
         sources = df_view["source"].unique()
-        return ", ".join(sources)
+        flattened_sources = [
+            source.strip() for sublist in sources for source in sublist.split(",")
+        ]
+        unique_sources = sorted(set(flattened_sources))
+        return ", ".join(unique_sources)
 
     @staticmethod
     def _unique_source_type(df_view: pd.DataFrame) -> EventSourceType:
@@ -596,7 +604,7 @@ class ProductionBreakdown(AggregatableEvent):
         try:
             # Log warning if production has been corrected.
             if production is not None and production.has_corrected_negative_values:
-                logger.warning(
+                logger.debug(
                     f"Negative production values were detected: {production._corrected_negative_values}.\
                     They have been set to None."
                 )

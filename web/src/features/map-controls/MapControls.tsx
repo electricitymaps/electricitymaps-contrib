@@ -1,10 +1,11 @@
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom, useAtomValue } from 'jotai';
 import { EyeOff, Sun, Wind } from 'lucide-react';
 import { useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MoonLoader } from 'react-spinners';
 import trackEvent from 'utils/analytics';
-import { ThemeOptions, ToggleOptions } from 'utils/constants';
+import { ThemeOptions, ToggleOptions, TrackEvent } from 'utils/constants';
 import {
   areWeatherLayersAllowedAtom,
   colorblindModeAtom,
@@ -47,7 +48,7 @@ export const weatherButtonMap = {
 };
 
 function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
-  const [theme] = useAtom(themeAtom);
+  const theme = useAtomValue(themeAtom);
   const [, startTransition] = useTransition();
   const { t } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
@@ -64,10 +65,14 @@ function WeatherButton({ type }: { type: 'wind' | 'solar' }) {
 
   const onToggle = () => {
     if (isEnabled) {
-      trackEvent(`${weatherId} Disabled`);
+      trackEvent(
+        weatherId == 'Wind' ? TrackEvent.WIND_DISABLED : TrackEvent.SOLAR_DISABLED
+      );
     } else {
       setIsLoadingLayer(true);
-      trackEvent(`${weatherId} Enabled`);
+      trackEvent(
+        weatherId == 'Wind' ? TrackEvent.WIND_ENABLED : TrackEvent.SOLAR_ENABLED
+      );
     }
 
     startTransition(() => {
@@ -105,13 +110,15 @@ function DesktopMapControls() {
 
   const handleColorblindModeToggle = () => {
     setIsColorblindModeEnabled(!isColorblindModeEnabled);
-    trackEvent('Colorblind Mode Toggled');
+    trackEvent(TrackEvent.COLORBLIND_MODE_TOGGLED);
   };
 
+  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+
   return (
-    <div className="pointer-events-none absolute right-3 top-2 z-30 hidden flex-col items-end md:flex">
+    <div className="pointer-events-none absolute right-3 top-2 z-20 mt-[env(safe-area-inset-top)] hidden flex-col items-end md:flex">
       <div className="pointer-events-auto mb-16 flex flex-col items-end space-y-2">
-        <ConsumptionProductionToggle />
+        {!isConsumptionOnlyMode && <ConsumptionProductionToggle />}
         <SpatialAggregatesToggle />
       </div>
       <div className="mt-5 space-y-2">

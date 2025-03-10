@@ -3,8 +3,6 @@ from datetime import datetime, timezone
 from importlib import resources
 
 import pytest
-import requests
-import requests_mock
 from freezegun import freeze_time
 from requests_mock import ANY, GET
 
@@ -12,21 +10,10 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers.FO import fetch_production
 
 
-@pytest.fixture()
-def fixture_session_mock() -> tuple[requests.Session, requests_mock.Adapter]:
-    session = requests.Session()
-
-    adapter = requests_mock.Adapter()
-    session.mount("https://", adapter)
-
-    return session, adapter
-
-
 @freeze_time("2024-05-16 12:04:00")
 @pytest.mark.parametrize("zone", ["FO", "FO-MI", "FO-SI"])
-def test_fetch_production_live(snapshot, fixture_session_mock, zone):
+def test_fetch_production_live(adapter, session, snapshot, zone):
     """That the parser fetches expected production values."""
-    session, adapter = fixture_session_mock
 
     adapter.register_uri(
         GET,
@@ -41,33 +28,17 @@ def test_fetch_production_live(snapshot, fixture_session_mock, zone):
         ],
     )
 
-    production = fetch_production(ZoneKey(zone), session=session)
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
-    )
+    assert snapshot == fetch_production(ZoneKey(zone), session=session)
 
 
 @pytest.mark.parametrize("zone", ["FO", "FO-MI", "FO-SI"])
 @pytest.mark.parametrize("utc_offset", ["SDT", "DST"])
-def test_fetch_production_historical(snapshot, fixture_session_mock, zone, utc_offset):
+def test_fetch_production_historical(adapter, session, snapshot, zone, utc_offset):
     """That the parser fetches expected historical values.
 
     Given that API responses differ depending on whether SDT or DST apply for the target date, we also make sure
     that we handle both cases correctly.
     """
-    session, adapter = fixture_session_mock
 
     month = 2 if utc_offset == "SDT" else 7
     target_datetime = datetime(2023, month, 16, 12, tzinfo=timezone.utc)
@@ -82,21 +53,6 @@ def test_fetch_production_historical(snapshot, fixture_session_mock, zone, utc_o
         ),
     )
 
-    production = fetch_production(
+    assert snapshot == fetch_production(
         ZoneKey(zone), target_datetime=target_datetime, session=session
-    )
-
-    snapshot.assert_match(
-        [
-            {
-                "datetime": element["datetime"].isoformat(),
-                "zoneKey": element["zoneKey"],
-                "production": element["production"],
-                "storage": element["storage"],
-                "source": element["source"],
-                "sourceType": element["sourceType"].value,
-                "correctedModes": element["correctedModes"],
-            }
-            for element in production
-        ]
     )

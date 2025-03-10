@@ -36,8 +36,8 @@ const getConfig = (): CombinedZonesConfig => {
     'estimation_method',
     'parsers',
     'subZoneNames',
-    'aggregates_displayed',
     'generation_only',
+    'timezone',
   ]);
 
   const contributors = new Set<string>();
@@ -65,8 +65,12 @@ const getConfig = (): CombinedZonesConfig => {
       const index = contributorArray.indexOf(contributor);
       zoneContributorsArray.push(index);
     }
-
-    (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
+    if (!config.timezone) {
+      console.log('no timezone for', filepath);
+    }
+    if (zoneContributorsArray && zoneContributorsArray.length > 0) {
+      (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
+    }
 
     for (const point of config.bounding_box ?? []) {
       point[0] = round(point[0], 4);
@@ -93,8 +97,8 @@ const getConfig = (): CombinedZonesConfig => {
   // Upsert subzone contributors to parent zone
   for (const parentZone of hasSubZones) {
     const zoneContributors = new Set<number>(zones[parentZone].contributors);
-    for (const subZone of zones[parentZone].subZoneNames) {
-      for (const contributor of zones[subZone].contributors) {
+    for (const subZone of zones[parentZone].subZoneNames ?? []) {
+      for (const contributor of zones[subZone].contributors ?? []) {
         zoneContributors.add(contributor);
       }
     }
@@ -117,7 +121,12 @@ const mergeExchanges = (): ExchangesConfig => {
     .filter((file) => file.endsWith('.yaml'))
     .map((file) => `${basePath}/${file}`);
 
-  const UNNECESSARY_EXCHANGE_FIELDS = new Set(['comment', '_comment', 'parsers']);
+  const UNNECESSARY_EXCHANGE_FIELDS = new Set([
+    'comment',
+    '_comment',
+    'parsers',
+    'capacity',
+  ]);
 
   const exchanges = filesWithDirectory.reduce((exchanges, filepath) => {
     const exchangeConfig = yaml.load(fs.readFileSync(filepath, 'utf8')) as ExchangeConfig;

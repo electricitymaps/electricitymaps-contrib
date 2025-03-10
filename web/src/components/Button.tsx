@@ -1,7 +1,9 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type SizeOptions = 'sm' | 'md' | 'lg' | 'xl';
+type SizeOptions = 'sm' | 'md' | 'lg';
+
+type ButtonTypes = 'primary' | 'secondary' | 'tertiary' | 'link';
 
 export interface ButtonProps {
   icon?: React.ReactNode;
@@ -9,7 +11,7 @@ export interface ButtonProps {
   isDisabled?: boolean;
   size?: SizeOptions;
   shouldShrink?: boolean;
-  type?: 'primary' | 'secondary' | 'tertiary' | 'link';
+  type?: ButtonTypes;
   href?: string;
   backgroundClasses?: string;
   foregroundClasses?: string;
@@ -36,7 +38,6 @@ export function Button({
   const As = getComponentType(renderAsLink, asDiv);
   const componentType = renderAsLink ? undefined : 'button';
   const isIconOnly = !children && Boolean(icon);
-
   return (
     <div
       className={twMerge(
@@ -47,7 +48,7 @@ export function Button({
     >
       <As
         className={twMerge(
-          `flex h-full w-full flex-row items-center justify-center rounded-full text-sm font-semibold
+          `flex h-full w-full select-none flex-row items-center justify-center rounded-full text-sm font-semibold
         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:text-neutral-400
         disabled:hover:bg-inherit disabled:dark:text-gray-500 ${getSize(
           size,
@@ -64,7 +65,7 @@ export function Button({
         target="_blank"
         // Used to prevent browser translation crashes on edge, see #6809
         translate="no"
-        data-test-id={dataTestId}
+        data-testid={dataTestId}
       >
         {icon}
         {children}
@@ -84,7 +85,7 @@ function getComponentType(renderAsLink: boolean, asDiv?: boolean) {
   return 'button';
 }
 
-function getHover(type: string) {
+function getHover(type: ButtonTypes) {
   switch (type) {
     case 'primary': {
       return 'hover:bg-black/20';
@@ -95,7 +96,7 @@ function getHover(type: string) {
   }
 }
 
-function getBackground(type: string, disabled: boolean | undefined) {
+function getBackground(type: ButtonTypes, disabled: boolean | undefined) {
   switch (type) {
     case 'primary': {
       if (disabled) {
@@ -112,7 +113,7 @@ function getBackground(type: string, disabled: boolean | undefined) {
   }
 }
 
-function getForeground(type: string) {
+function getForeground(type: ButtonTypes) {
   switch (type) {
     case 'primary': {
       return 'text-white';
@@ -126,7 +127,7 @@ function getForeground(type: string) {
   }
 }
 
-function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
+function getSize(size: SizeOptions, type: ButtonTypes, isIconOnly: boolean) {
   if (isIconOnly) {
     switch (size) {
       case 'sm': {
@@ -137,9 +138,6 @@ function getSize(size: SizeOptions, type: string, isIconOnly: boolean) {
       }
       case 'lg': {
         return 'min-w-11 min-h-11';
-      }
-      case 'xl': {
-        return 'min-w-14 min-h-14';
       }
     }
   }

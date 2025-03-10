@@ -1,5 +1,3 @@
-aggregates_displayed:
-  - yearly
 bounding_box:
   - - 113.337331576
     - 21.677069403000075
@@ -11,6 +9,9 @@ capacity:
   oil: 210
 contributors:
   - nessie2013
+country: HK
+disclaimer: Real-time consumption and generation mix data is not available and is
+  fully estimated.
 emissionFactors:
   direct:
     battery discharge:
@@ -67,19 +68,28 @@ emissionFactors:
         value: 435.36
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 435.35999999999996
+        value: 435.36
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 435.36000000000007
+        value: 435.36
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 435.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 435.36000000000007
+        value: 435.36
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 435.35999999999996
+        value: 435.36
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 435.36
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 435.36
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 435.36
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -89,19 +99,28 @@ emissionFactors:
         value: 435.36
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 435.35999999999996
+        value: 435.36
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 435.36000000000007
+        value: 435.36
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 435.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 435.36000000000007
+        value: 435.36
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 435.35999999999996
+        value: 435.36
+      - datetime: '2022-01-01'
+        source: Electricity Maps, 2022 average
+        value: 435.36
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 435.36
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 435.36
 estimation_method: CONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
@@ -156,7 +175,7 @@ fallbackZoneMixes:
         battery discharge: 0.0
         biomass: 0.0
         coal: 0.23999982486226049
-        gas: 0.48000014156432674
+        gas: 0.47999998118178144
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
@@ -170,12 +189,12 @@ fallbackZoneMixes:
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.24000008346442137
-        gas: 0.4800003178980803
+        coal: 0.2400000834279275
+        gas: 0.480000150905341
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.2799997657820114
+        nuclear: 0.2799997656667316
         oil: 0.0
         solar: 0.0
         unknown: 0.0
@@ -210,8 +229,50 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-disclaimer: Real-time consumption and generation mix data is not available and is
-  fully estimated.
-timezone: Asia/Hong_Kong
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.24000026494832005
+        gas: 0.4800000374070727
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.2800002122685371
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.23999998146597376
+        gas: 0.4799998066208824
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.27999969273710634
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.24000003301249048
+        gas: 0.47999989763692297
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.28000024359358405
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
 region: Asia
-country: HK
+timezone: Asia/Hong_Kong

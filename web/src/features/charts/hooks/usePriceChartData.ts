@@ -7,10 +7,9 @@ import { convertPrice } from '../bar-breakdown/utils';
 import { AreaGraphElement } from '../types';
 
 export function getFills(data: AreaGraphElement[]) {
-  const priceMaxValue =
-    d3Max<number>(Object.values(data).map((d) => d.layerData.price || 0)) ?? 0;
-  const priceMinValue =
-    d3Min<number>(Object.values(data).map((d) => d.layerData.price || 0)) ?? 0;
+  const prices = Object.values(data).map((d) => d.layerData.price);
+  const priceMaxValue = d3Max<number>(prices) ?? 0;
+  const priceMinValue = d3Min<number>(prices) ?? 0;
 
   const priceColorScale = scaleLinear<string>()
     .domain([priceMinValue, 0, priceMaxValue])
@@ -41,20 +40,18 @@ export function usePriceChartData() {
     firstZoneState?.currency
   );
 
-  const chartData: AreaGraphElement[] = [];
-
-  for (const [datetimeString, value] of Object.entries(zoneData.zoneStates)) {
-    const datetime = new Date(datetimeString);
-    const { value: price } = convertPrice(value.price?.value, value.price?.currency);
-
-    chartData.push({
-      datetime,
+  const chartData = Object.entries(zoneData.zoneStates).map(
+    ([datetimeString, value]) => ({
+      datetime: new Date(datetimeString),
       layerData: {
-        price: price ?? Number.NaN,
+        price:
+          convertPrice(value.price?.value, value.price?.currency).value ?? Number.NaN,
       },
       meta: value,
-    });
-  }
+    })
+  );
+
+  const futurePrice = zoneData.futurePrice;
 
   const currencySymbol: string = getSymbolFromCurrency(currency?.toUpperCase());
   const valueAxisLabel = `${currencySymbol || '?'} / ${unit}`;
@@ -71,6 +68,7 @@ export function usePriceChartData() {
     valueAxisLabel,
     layerStroke: undefined,
     priceDisabledReason,
+    futurePrice,
   };
 
   return { data: result, isLoading, isError };

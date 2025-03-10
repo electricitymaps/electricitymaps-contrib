@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "See app on",
-    "opensource": "avatud lähtekoodiga",
-    "see": "vaadake",
-    "datasources": "andmeallikaid",
-    "contribute": "Aidake kaasa <a href=\"{{link}}\" target=\"_blank\">lisades enda piirkond</a>"
-  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Piirkonnad",
@@ -37,7 +30,7 @@
     "noDataAtTimestamp": "Andmed pole valitud aja jooksul ajutiselt saadaval",
     "noLiveData": "Muutuvad andmed pole selles piirkonnas ajutiselt saadaval",
     "dataIsDelayed": "Selle piirkonna andmed võivad viibida kuni {{hours}} tundi. Muutuvaid andmeid ei saa kuvada.",
-    "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href=\"{{link}}\" target=\"_blank\">lisades piirkonna andmed</a>.",
+    "noParserInfo": "Meil pole veel selle piirkonna kohta teavet.<br/> Soovite olukorda parandada? Saate anda panuse <a href='{{link}}' target='_blank'>lisades piirkonna andmed</a>.",
     "now": "Äsja"
   },
   "ranking-panel": {
@@ -59,8 +52,9 @@
   },
   "tooltips": {
     "carbonintensity": "Süsiniku intensiivsus",
-    "lowcarbon": "Vähese süsinikuga",
-    "renewable": "Taastuv",
+    "zoneHeader": {
+      "lowcarbon": "Sisaldab taastuvenergiaid ja tuumaenergiat"
+    },
     "crossborderexport": "Piiriülene eksport",
     "carbonintensityexport": "Ekspordi süsiniku intensiivsus",
     "ofinstalled": "saadaolevast võimsusest",
@@ -79,7 +73,6 @@
     "consumption": "tarbimine",
     "cpinfo": "<b>tarbimine</b> võtab arvesse impordi ja ekspordi, <b>tootmine</b> eirab neid",
     "selectLanguage": "Vali keel",
-    "lowCarbDescription": "Sisaldab taastuvenergiaid ja tuumaenergiat",
     "dataIsDelayed": "Andmed viibivad"
   },
   "misc": {
@@ -103,41 +96,41 @@
   "theMap": {
     "groupName": "Kaart",
     "mapColors-question": "Mida värvid kaardil tähistavad?",
-    "mapColors-answer": "Piirkonnad on kaardil värvitud kasvuhoonegaaside koguste järgi, mis eralduvad iga seal tarbitud elektriühiku kohta (selle <a href=\"#carbonIntensity\" class=\"entry-link\">süsiniku intensiivsus</a>). Mida rohelisem värv, seda kliimasäästlikum on elektritarbimine.",
+    "mapColors-answer": "Piirkonnad on kaardil värvitud kasvuhoonegaaside koguste järgi, mis eralduvad iga seal tarbitud elektriühiku kohta (selle <a href='#carbonIntensity' class='entry-link'>süsiniku intensiivsus</a>). Mida rohelisem värv, seda kliimasäästlikum on elektritarbimine.",
     "mapArrows-question": "Mida näitavad kaardil piirkondade vahelised nooled?",
     "mapArrows-answer": "Nooled piirkondade vahel näitavad elektri füüsilist voogu (import ja eksport) piirkondade vahel: Mida kiiremini need vilguvad, seda kiirem on voog. Elektri voog on oluline, sest kui impordite osa oma elektrist naaberpiirkondadest, imporditakse ka selle tootmisega tekkinud süsinikheitmeid.",
     "mapSolarWindButtons-question": "Mida teevad kaardil nupud “päike” ja “tuul”?",
     "mapSolarWindButtons-answer": "Need nupud lülitavad sisse reaalajas tuulekiiruse ja päiksepaiste tugevuse näitamise, andes märku erinevates piirkondades võimalikest üleminekutest päikese- ja tuulepõhistele energiaallikatele. Pange tähele, et see on vaid pealiskaudne viide, kuna tuuleturbiinide ja päikesepaneelide tegelik potentsiaal sõltub ka paljudest teistest teguritest.",
     "mapNuclearColors-question": "Miks tuumaenergiaga riigid on kaardil näidatud rohelistena?",
-    "mapNuclearColors-answer": "Tuumaenergia tootmisel on süsiniku intensiivsus väga madal (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >allikas</a>) ja seetõttu on tuumaenergiaga riigid kaardil näidatud rohelistena. See ei tähenda, et tuumaenergiaga ei kaasneks muid keskkonnaprobleeme (nagu ka teiste energiatootmisviiside puhul), kuid need väljakutsed pole seotud kasvuhoonegaaside heitkogustega ja jäävad seetõttu sellest kaardist välja.",
+    "mapNuclearColors-answer": "Tuumaenergia tootmisel on süsiniku intensiivsus väga madal (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >allikas</a>) ja seetõttu on tuumaenergiaga riigid kaardil näidatud rohelistena. See ei tähenda, et tuumaenergiaga ei kaasneks muid keskkonnaprobleeme (nagu ka teiste energiatootmisviiside puhul), kuid need väljakutsed pole seotud kasvuhoonegaaside heitkogustega ja jäävad seetõttu sellest kaardist välja.",
     "mapColorBlind-question": "Ma olen värvipime. Kuidas ma saan teie kaarti lugeda?",
     "mapColorBlind-answer": "Teil on võimalik muuta kaardi värve, lubades seade “värvipime režiim”. See asub arvutites vasakul paneeli allosas ja mobiilirakendustel teabekaardil."
   },
   "mapAreas": {
     "groupName": "Piirkonnad kaardil",
     "noData-question": "Miks pole minu piirkonna andmed saadaval?",
-    "noData-answer": " Põhjuseks võib olla, et piirkonna andmeallikad pole ajutiselt saadaval või meil pole selle piirkonna jaoks veel ühtegi andmeallikat seadistatud. Teil on võimalik <a href=\"#contribute\" class=\"entry-link\">meid aidata, lisades uued andmeallikad</a>.",
+    "noData-answer": " Põhjuseks võib olla, et piirkonna andmeallikad pole ajutiselt saadaval või meil pole selle piirkonna jaoks veel ühtegi andmeallikat seadistatud. Teil on võimalik <a href='#contribute' class='entry-link'>meid aidata, lisades uued andmeallikad</a>.",
     "whySmallAreas-question": "Miks jaotate maailma väiksemateks piirkondadeks ega näita lihtsalt riikide keskmisi?",
     "whySmallAreas-answer": "Piirkonnad on kõige väiksemad geograafilised alad, mille kohta meil on andmed. Ligipääs kõige täpsema tasemega teabele annavad eri piirkondade elektritarbijatele täpsemaid teadmisi tarbitava elektri päritolu ja sellega seotud kliimamõju kohta.",
     "divideExistingArea-question": "Kas saate jaotada minu piirkonda väiksemateks osadeks?",
-    "divideExistingArea-answer": "Muidugi, kui iga piirkonna osa kohta on olemas eraldi andmeallikad. Teil on võimalik <a href=\"#contribute\" class=\"entry-link\">meid aidata, lisades uued andmeallikaid</a>",
+    "divideExistingArea-answer": "Muidugi, kui iga piirkonna osa kohta on olemas eraldi andmeallikad. Teil on võimalik <a href='#contribute' class='entry-link'>meid aidata, lisades uued andmeallikaid</a>",
     "seeHistoricalData-question": "Kas ma saan vaadata piirkonna ajalugu kaugemale kui 24 tundi tagasi?",
-    "seeHistoricalData-answer": "Saate osta juurdepääsu kõigile meie ajaloo andmetele läbi meie <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">andmebaasi</a>."
+    "seeHistoricalData-answer": "Saate osta juurdepääsu kõigile meie ajaloo andmetele läbi meie <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>andmebaasi</a>."
   },
   "methodology": {
     "groupName": "Meie meetodid",
-    "carbonIntensity-question": "Mis on \"süsiniku intensiivsus\"?",
+    "carbonIntensity-question": "Mis on 'süsiniku intensiivsus'?",
     "carbonIntensity-answer": "Süsiniku intensiivsus on kasvuhoonegaaside heitmete mõõt, mis tuleneb teie elektritarbimisest (gCO₂eq/kWh - süsinikdioksiidi võrdsete grammide heide tarbitud elektri kilovatt-tunni kohta). <br><br>Me mõõdame heitmeid elektritarbimise pealt (mitte tootmise), mis tähendab kõiki kasvuhoonegaaside heitmed (nii CO₂ kui ka teised kasvuhoonegaasid nagu näiteks metaan), mis on kulunud piirkonnas tarbitava elektri tootmiseks, võttes arvesse ka teistest piirkondadest imporditud elektri süsiniku intensiivsust. Me kasutame olelustsüklianalüüsi (LCA) meetodit, mis tähendab, et me võtame arvesse kogu elektrijaamade elutsüklist tulenevaid heitkoguseid (ehitus, kütusetootmine, käitamise heitmed ja käitusest kõrvaldamine).",
     "renewableLowCarbonDifference-question": "Mis vahe on “taastuv” ja “vähese süsinikuga” vahel?",
     "renewableLowCarbonDifference-answer": "Taastuvenergia tootmine põhineb taastuvatel energiaallikatel nagu tuul, vesi, päike ja maasoojus. Vähese süsinikuga energiatootmine tähendab, et tootmisega kaasneb väga madal kasvuhoonegaaside heitmete eraldumine, näiteks tuumaenergia tootmisel.",
     "importsAndExports-question": "Kas te võtate arvesse ka elektri impordi ja ekspordi?",
-    "importsAndExports-answer": "Jah! Impordid ja ekspordid on kaardil nähtavad väikeste <a href=\"#mapArrows\" class=\"entry-link\">nooltena erinevate piirkondade vahel</a>. Üksikasjalik teave on nähtav diagrammist, kui klõpsate piirkonnal.",
+    "importsAndExports-answer": "Jah! Impordid ja ekspordid on kaardil nähtavad väikeste <a href='#mapArrows' class='entry-link'>nooltena erinevate piirkondade vahel</a>. Üksikasjalik teave on nähtav diagrammist, kui klõpsate piirkonnal.",
     "emissionsOfStored-question": "Kuidas on lood elektritootmisel tekkivate heitkogustega, mida hoiustatakse akumulaatorites või kasutatakse reservuaaride täitmiseks?",
     "emissionsOfStored-answer": "Kuna hetkese seisuga on ladustatud vaid väike osa elektrist, ei tohiks nende heitmete modelleerimisel esinevad ebatäpsused preagusega nii erinevad olla. Arvestades ladustamise kasvavat tähtsust, loodame seda lähiajal oma mudelis täielikumalt silmas pidada.",
     "guaranteesOfOrigin-question": "Mis asjad on rohelised sertifikaadid ja kuidas neid arvestatakse?",
     "guaranteesOfOrigin-answer": "Taastuvenergia tootjad saavad energiat tootes taotleda päritolutagatist (või taastuvenergia päritolutunnistust) - tõestus, et taastuvenergia on toodetud ja edastatud energiavõrku. Neid tagatisi saab siis müüa, andes elektri edasimüüjatele võimaluse tõestada, et nende energia tuleb taastuvatest allikatest, olenemata selle tegelikust füüsilisest allikast.<br><br> See tähendab, et elektritarbijatele võib öelda, et nende elekter tuleb päikesest ja tuulest isegi tuulevaiksel ööl. See on probleem, kuna võtab ära tarbija initsiatiivi kasutada energiat parimal ajal (näiteks, mil taastuvenergia hulk elektrivõrgus on kõige suurem). See on põhjus, miks see kaart ei näita päritolutagatisi, pakkudes tarbijate õigustamiseks vaid füüsilist asukohapõhist energiavõrgu pilti.",
     "otherSources-question": "Miks te ei näita teisi heitkoguste allikaid peale elektritootmisest pärinevate?",
-    "otherSources-answer": "See ei kuulu projekti raamesse. Kuigi electricityMap'is töötame aktiivselt <a href=\"#whoAreYou\" class=\"entry-link\">uute lahenduste väljatöötamise kallal, kuidas teie igapäevased otsused mõjutavad kliimat</a>.",
+    "otherSources-answer": "See ei kuulu projekti raamesse. Kuigi electricityMap'is töötame aktiivselt <a href='#whoAreYou' class='entry-link'>uute lahenduste väljatöötamise kallal, kuidas teie igapäevased otsused mõjutavad kliimat</a>.",
     "homeSolarPanel-question": "Mis siis, kui mul on kodus paigaldatud päikesepaneel?",
     "homeSolarPanel-answer": "Me mõõdame kohaliku elektrivõrgu süsiniku intensiivsust, seega ei arvutata sinna sisse teie endi päikesepaneeliga otse toodetud tarbitavat elektrit. Kui aga varustate enda päikesepaneeliga kohalikku elektrivõrku, on selle tootmine arvestatud meie piirkondade statistikas, kus kohaliku päikeseenergia tootmise arvestused on tehtud avalikuks (näiteks Prantsusmaa ja UK).",
     "emissionsPerCapita-question": "Miks te ei näita heitmeid elaniku kohta?",
@@ -148,22 +141,22 @@
     "dataOrigins-question": "Kuidas te oma andmed saate?",
     "dataOrigins-answer": "Me arvutame kõik oma andmed avalikult kättesaadavate andmete põhjal, mille on avaldanud elektrivõrguettevõtted, ametlikud asutused ja teised. Võite klõpsata piirkonnal, et näha andmete päritolu kohta täpsemat teavet.",
     "dataDownload-question": "Kas ma saan teie andmeid alla laadida?",
-    "dataDownload-answer": "Saate osta juurdepääsu kõigile meie andmetele läbi meie <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">andmebaasi</a>.",
+    "dataDownload-answer": "Saate osta juurdepääsu kõigile meie andmetele läbi meie <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>andmebaasi</a>.",
     "dataIntegration-question": "Kas ma saan teie andmeid reaalajas enda rakendusse või seadmesse integreerida?",
-    "dataIntegration-answer": "Jah! Me müüme juurdepääsu <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">reaalajas API-le</a>, mis sisaldab ka tulevikuprognoose."
+    "dataIntegration-answer": "Jah! Me müüme juurdepääsu <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>reaalajas API-le</a>, mis sisaldab ka tulevikuprognoose."
   },
   "aboutUs": {
     "groupName": "Meist",
     "whoAreYou-question": "Kes te olete?",
-    "whoAreYou-answer": "The Electricity Map'i töötas välja ja peab ülal <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, Taani idufirma. Meie eesmärk on aidata inimkonnal jõuda jätkusuutlikule tasemele, mõõtes ja muutes laialdaselt kättesaadavaks meie igapäevaselt tehtud otsuste mõju kliimale.",
+    "whoAreYou-answer": "The Electricity Map'i töötas välja ja peab ülal <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a>, Taani idufirma. Meie eesmärk on aidata inimkonnal jõuda jätkusuutlikule tasemele, mõõtes ja muutes laialdaselt kättesaadavaks meie igapäevaselt tehtud otsuste mõju kliimale.",
     "feedback-question": "Kas ma saan teile saata tagasisidet?",
-    "feedback-answer": "Jah, palun! Täitke <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">meie tagasiside vorm</a> või <a href=\"mailto:app@electricitymaps.com\">saatke meile e-kiri!</a>",
+    "feedback-answer": "Jah, palun! Täitke <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>meie tagasiside vorm</a> või <a href='mailto:app@electricitymaps.com'>saatke meile e-kiri!</a>",
     "contribute-question": "Kas ma saan aidata teie projektile kaasa?",
-    "contribute-answer": " Jah! The Electricity Map on avatud lähtekoodiga projekt, mille tegid võimalikuks meie vabatahtlikud panustajad. Kui soovite aidata kaardi väljatöötamisel, kas siis lisades uute piirkondadele andmeallikaid, lisades uued funktsioonid või parandades esinevad vead, siis liituge julgelt meie <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a> platvormiga.",
+    "contribute-answer": " Jah! The Electricity Map on avatud lähtekoodiga projekt, mille tegid võimalikuks meie vabatahtlikud panustajad. Kui soovite aidata kaardi väljatöötamisel, kas siis lisades uute piirkondadele andmeallikaid, lisades uued funktsioonid või parandades esinevad vead, siis liituge julgelt meie <a href='https://github.com/electricitymaps/electricitymaps-contrib' target='_blank'>github</a> platvormiga.",
     "workTogether-question": "Kas me saaksime koos töötada?",
-    "workTogether-answer": "Otsime aktiivselt uusi koostöövõimalusi. <a href=\"mailto:app@electricitymaps.com\">Saatke meile e-kiri!</a>",
+    "workTogether-answer": "Otsime aktiivselt uusi koostöövõimalusi. <a href='mailto:app@electricitymaps.com'>Saatke meile e-kiri!</a>",
     "disclaimer-question": "Vastutusest loobumine",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> avaldab andmed ja pildid <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> keskkonnas teavitustöö raames. Sellega ei kinnitata õigsust ega anda garantiid ja jäetakse õigus sisu igal ajal muuta või osasid eemaldada ilma, et peaksime teid sellest teavitama. Electricity Maps ei võta selle eest vastutust ega vastuta kahjude või kulude eest, mis võivad tekkida Electricity Maps'ist või nendest saadud teabe ebatäpsuse, puudulikkuse, enneaegsuse või aegumise tagajärjel.  Ilma ametliku eelneva kirjaliku nõusolekuta ei ole lubatud seda veebisaiti ega selle üksikuid elemente teistele veebisaitidele lisada.<br><br> Kõik omandiõigused kuuluvad õiguslikult omanikele ja selle litsentsiandjatele. Nende materjalide, eriti energiaandmete kopeerimine, levitamine ja mis tahes muu kasutamine ei ole lubatud ilma Electricity Maps'i kirjaliku loata, välja arvatud ja ainult juhul, kui imperatiivsete õigusnormide määrustes on sätestatud teisiti (näiteks õigus tsiteerida), kui ei ole konkreetsete materjalide puhul sätestatud teisiti. <br><br>Seda lahtiütlust võidakse aeg-ajalt uuendada."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> avaldab andmed ja pildid <a href='https://www.electricitymaps.com/' target='_blank'>Electricity Maps</a> keskkonnas teavitustöö raames. Sellega ei kinnitata õigsust ega anda garantiid ja jäetakse õigus sisu igal ajal muuta või osasid eemaldada ilma, et peaksime teid sellest teavitama. Electricity Maps ei võta selle eest vastutust ega vastuta kahjude või kulude eest, mis võivad tekkida Electricity Maps'ist või nendest saadud teabe ebatäpsuse, puudulikkuse, enneaegsuse või aegumise tagajärjel.  Ilma ametliku eelneva kirjaliku nõusolekuta ei ole lubatud seda veebisaiti ega selle üksikuid elemente teistele veebisaitidele lisada.<br><br> Kõik omandiõigused kuuluvad õiguslikult omanikele ja selle litsentsiandjatele. Nende materjalide, eriti energiaandmete kopeerimine, levitamine ja mis tahes muu kasutamine ei ole lubatud ilma Electricity Maps'i kirjaliku loata, välja arvatud ja ainult juhul, kui imperatiivsete õigusnormide määrustes on sätestatud teisiti (näiteks õigus tsiteerida), kui ei ole konkreetsete materjalide puhul sätestatud teisiti. <br><br>Seda lahtiütlust võidakse aeg-ajalt uuendada."
   },
   "zoneShortName": {
     "AD": {
@@ -331,6 +324,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -346,14 +342,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland ja Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Newfoundland"
     },
     "CA-NB": {
       "countryName": "Kanada",
@@ -526,9 +514,13 @@
       "countryName": "Hispaania",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Hispaania",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Hispaania",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Hispaania",
@@ -811,10 +803,6 @@
     "IQ": {
       "zoneName": "Iraak"
     },
-    "IQ-KUR": {
-      "countryName": "Iraak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iraan"
     },
@@ -975,10 +963,6 @@
     "ME": {
       "zoneName": "Montenegro"
     },
-    "MF": {
-      "countryName": "Saint-Martin",
-      "zoneName": "Prantsusmaa"
-    },
     "MG": {
       "zoneName": "Madagaskar"
     },
@@ -1059,6 +1043,9 @@
       "countryName": "Mehhiko",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Malaisia"
+    },
     "MY-EM": {
       "countryName": "Malaisia",
       "zoneName": "Borneo"
@@ -1087,9 +1074,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Mägi-Karabahh"
     },
     "NL": {
       "zoneName": "Holland"
@@ -1354,38 +1338,6 @@
     },
     "US": {
       "zoneName": "Külgnevad Ameerika Ühendriigid"
-    },
-    "US-HI-HA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Ameerika Ühendriigid",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Ameerika Ühendriigid",

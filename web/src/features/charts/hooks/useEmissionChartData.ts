@@ -1,31 +1,28 @@
 import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { useAtom } from 'jotai';
-import { productionConsumptionAtom } from 'utils/state/atoms';
+import { useAtomValue } from 'jotai';
+import { isConsumptionAtom } from 'utils/state/atoms';
 
 import { getTotalEmissionsAvailable } from '../graphUtils';
 import { AreaGraphElement } from '../types';
 
 export function useEmissionChartData() {
   const { data, isLoading, isError } = useGetZone();
-  const [mixMode] = useAtom(productionConsumptionAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
 
   if (isLoading || isError || !data) {
     return { isLoading, isError };
   }
 
   const chartData: AreaGraphElement[] = Object.entries(data.zoneStates).map(
-    ([datetimeString, value]) => {
-      const datetime = new Date(datetimeString);
-      return {
-        datetime,
-        layerData: {
-          emissions: getTotalEmissionsAvailable(value, mixMode),
-        },
-        meta: value,
-      };
-    }
+    ([datetimeString, value]) => ({
+      datetime: new Date(datetimeString),
+      layerData: {
+        emissions: getTotalEmissionsAvailable(value, isConsumption),
+      },
+      meta: value,
+    })
   );
 
   const maxEmissions =

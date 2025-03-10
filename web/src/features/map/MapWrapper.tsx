@@ -1,5 +1,5 @@
 import MapControls from 'features/map-controls/MapControls';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 
 import Map from './Map';
@@ -9,14 +9,13 @@ import MapTooltip from './MapTooltip';
 
 export default function MapWrapper() {
   const shouldShowFallback = isOldIOSVersion();
-  const [_, setIsLoadingMap] = useAtom(loadingMapAtom);
+  const setIsLoadingMap = useSetAtom(loadingMapAtom);
 
   useEffect(() => {
     if (shouldShowFallback) {
       setIsLoadingMap(false);
     }
   }, [setIsLoadingMap, shouldShowFallback]);
-
   return (
     <>
       <MapTooltip />

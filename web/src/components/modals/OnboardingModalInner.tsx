@@ -56,7 +56,7 @@ function Modal({
   return (
     <>
       <div
-        className="absolute inset-0 z-40 bg-gray-800/20"
+        className="absolute inset-0 z-50 bg-gray-800/20"
         onClick={onDismiss}
         onKeyDown={onDismiss}
         role="presentation"
@@ -64,9 +64,9 @@ function Modal({
       <div
         className="px-auto absolute top-auto z-50 mx-auto flex w-full items-center justify-center
        self-center sm:top-20 sm:min-w-[500px]"
-        data-test-id={modalName}
+        data-testid={modalName}
       >
-        <div className="z-10 flex w-full max-w-[35px] shrink flex-col justify-around px-2 sm:max-w-[60px]">
+        <div className="z-10 -mr-4 flex w-full max-w-[35px] flex-col items-start pl-1 sm:mr-0 sm:max-w-[60px] sm:items-end sm:px-2">
           {!isOnFirstView() && (
             <Button
               icon={<ChevronLeft />}
@@ -113,7 +113,7 @@ function Modal({
               </picture>
             )}
           </div>
-          <div className="flex w-auto flex-col justify-center px-4 pt-6 text-center dark:bg-gray-700">
+          <div className="flex w-auto flex-col justify-center overflow-y-scroll rounded-b-3xl px-4 pt-6 text-center dark:bg-gray-700">
             {currentView.renderContent(t)}
           </div>
         </div>
@@ -128,7 +128,7 @@ function Modal({
             />
           ))}
         </div>
-        <div className="z-10 flex w-full max-w-[35px] flex-col items-end px-2 sm:max-w-[60px]">
+        <div className="z-10 -ml-4 flex w-full max-w-[35px] flex-col items-end px-2 sm:ml-0 sm:max-w-[60px]">
           {RightButton}
         </div>
       </div>

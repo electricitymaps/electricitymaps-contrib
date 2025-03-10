@@ -1,6 +1,23 @@
 import Badge from 'components/Badge';
-import { TrendingUpDown } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
+import { memo } from 'react';
 
-export default function EstimationBadge({ text }: { text: string }) {
-  return <Badge type={'warning'} icon={<TrendingUpDown size={12} />} pillText={text} />;
+function EstimationBadge({
+  text,
+  Icon,
+  isPreliminary,
+}: {
+  text?: string;
+  Icon?: LucideIcon;
+  isPreliminary?: boolean;
+}) {
+  return text && Icon ? (
+    isPreliminary ? (
+      <Badge icon={<Icon size={12} />} pillText={text} />
+    ) : (
+      <Badge type={'warning'} icon={<Icon size={12} />} pillText={text} />
+    )
+  ) : null;
 }
+
+export default memo(EstimationBadge);

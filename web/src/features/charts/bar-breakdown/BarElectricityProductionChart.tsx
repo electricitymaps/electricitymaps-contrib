@@ -1,16 +1,16 @@
 import { ScaleLinear } from 'd3-scale';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
-import ProductionSourceLegend from '../ProductionSourceLegend';
 import { AXIS_LEGEND_PADDING } from './constants';
-import Axis from './elements/Axis';
+import Axis, { FormatTick } from './elements/Axis';
 import HorizontalBar from './elements/HorizontalBar';
-import Row from './elements/Row';
+import { ProductionSourceRow } from './elements/Row';
 import { getElectricityProductionValue, ProductionDataType } from './utils';
 
-export function BarElectricityProductionChart({
+function BarElectricityProductionChart({
   powerScale,
   height,
   formatTick,
@@ -23,7 +23,7 @@ export function BarElectricityProductionChart({
 }: {
   powerScale: ScaleLinear<number, number, never>;
   height: number;
-  formatTick: (t: number) => string | number;
+  formatTick: FormatTick;
   productionY: number;
   productionData: ProductionDataType[];
   width: number;
@@ -41,17 +41,15 @@ export function BarElectricityProductionChart({
         formatTick={formatTick}
         height={height}
         scale={powerScale}
-        axisLegendText={{
-          left: t('country-panel.graph-legends.stored'),
-          right: t('country-panel.graph-legends.produced'),
-        }}
+        axisLegendTextLeft={t('country-panel.graph-legends.stored')}
+        axisLegendTextRight={t('country-panel.graph-legends.produced')}
       />
       <g transform={`translate(0, ${productionY})`}>
         {productionData.map((d, index) => (
-          <Row
+          <ProductionSourceRow
             key={d.mode}
             index={index}
-            label={t(d.mode)}
+            productionMode={d.mode}
             width={width}
             scale={powerScale}
             value={getElectricityProductionValue(d)}
@@ -59,7 +57,6 @@ export function BarElectricityProductionChart({
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
-            <ProductionSourceLegend electricityType={d.mode} />
             <HorizontalBar
               className="text-black/10 dark:text-white/10"
               fill="currentColor"
@@ -72,9 +69,11 @@ export function BarElectricityProductionChart({
               range={[0, getElectricityProductionValue(d)]}
               scale={powerScale}
             />
-          </Row>
+          </ProductionSourceRow>
         ))}
       </g>
     </svg>
   );
 }
+
+export default memo(BarElectricityProductionChart);

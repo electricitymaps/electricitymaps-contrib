@@ -1,0 +1,59 @@
+aggregates_displayed:
+  - none
+bounding_box:
+  - - -102.67957149932522
+    - 14.046279476000095
+  - - -89.87985327199993
+    - 22.98054026911808
+country: MX
+emissionFactors:
+  direct:
+    unknown:
+      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
+          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
+          values.
+        datetime: '2020-01-01'
+        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
+          2020, IEA, Paris
+        value: 305
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 410.99
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 410.99
+    unknown:
+      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
+          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
+          values.
+        datetime: '2020-01-01'
+        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
+          2020, IEA, Paris
+        value: 411
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 1.1501898238582426e-06
+        coal: 1.9358154811463765e-05
+        gas: 5.538840970745195e-05
+        geothermal: 4.287907663343529e-07
+        hydro: 9.82564445185782e-06
+        hydro discharge: 0.0
+        nuclear: 1.1435384404197025e-05
+        oil: 3.380900830815314e-07
+        solar: 1.7848317060968248e-06
+        unknown: 0.9998643493726297
+        wind: 3.585936955072924e-05
+parsers:
+  consumption: CENACE.fetch_consumption
+region: Americas
+sources:
+  IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris:
+    link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
+timezone: America/Mexico_City

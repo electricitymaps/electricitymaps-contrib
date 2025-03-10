@@ -1,3 +1,8 @@
-timezone: Asia/Aden
-region: Asia
+bounding_box:
+  - - 42.111826118261206
+    - 11.80463900985805
+  - - 54.97034470344704
+    - 19.49495125393824
 country: YE
+region: Asia
+timezone: Asia/Aden

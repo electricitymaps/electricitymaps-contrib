@@ -1,3 +1,14 @@
-timezone: America/Miquelon
-region: Americas
+capacity:
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: PM
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
+region: Americas
+timezone: America/Miquelon

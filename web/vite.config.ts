@@ -10,7 +10,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const manualChunkMap = {
   '@sentry': 'sentry',
   '@radix-ui': 'radix',
-  recharts: 'recharts',
   'world.json': 'world',
   'usa_states.json': 'config',
   'zones.json': 'config',
@@ -27,7 +26,7 @@ const sentryPluginOptions: SentryVitePluginOptions = {
   authToken: process.env.SENTRY_AUTH_TOKEN,
 
   release: {
-    name: `app@v${process.env.npm_package_version}`,
+    name: `app@${process.env.npm_package_version}`,
   },
   bundleSizeOptimizations: {
     excludeDebugStatements: true,

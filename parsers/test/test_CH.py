@@ -1,20 +1,23 @@
-import unittest
+from datetime import datetime, timezone
 
-import arrow
+import pytest
 
 from parsers.CH import get_solar_capacity_at
 
 
-class TestCH(unittest.TestCase):
-    def test_get_solar_capacity(self):
-        assert get_solar_capacity_at(arrow.get("2018-01-02").datetime) == 2090
-        assert (
-            get_solar_capacity_at(arrow.get("2018-01-01 00:00:00+00:00").datetime)
-            == 2090
-        )
-        assert get_solar_capacity_at(arrow.get("2014-02-01").datetime) == 1393
-        assert get_solar_capacity_at(arrow.get("2022-01-01").datetime) == 3904
-
-
-if __name__ == "__main__":
-    unittest.main()
+@pytest.mark.parametrize(
+    "dt,expected",
+    [
+        ("2018-01-02", 2107.374),
+        ("2022-01-01", 4080.415),
+        ("2023-01-01", 5094.375),
+        ("2024-01-01", 5108.034),
+        # make sure past date for which we do not have historical capacity returns earliest available data
+        ("2014-02-01", 1398.217),
+        # make sure future date for which we do not have historical capacity returns latest available data
+        ("2024-02-01", 5108.034),
+    ],
+)
+def test_get_solar_capacity(dt, expected):
+    target_datetime = datetime.fromisoformat(dt).replace(tzinfo=timezone.utc)
+    assert get_solar_capacity_at(target_datetime) == expected

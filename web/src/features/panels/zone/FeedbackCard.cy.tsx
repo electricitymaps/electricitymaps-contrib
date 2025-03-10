@@ -24,39 +24,39 @@ describe('FeedbackCard', () => {
   });
 
   it('renders correctly', () => {
-    cy.get('[data-test-id=feedback-card]').should('be.visible');
-    cy.get('[data-test-id=title]').should('contain.text', 'Help us improve!');
-    cy.get('[data-test-id=subtitle]').should(
+    cy.get('[data-testid=feedback-card]').should('be.visible');
+    cy.get('[data-testid=title]').should('contain.text', 'Help us improve!');
+    cy.get('[data-testid=subtitle]').should(
       'contain.text',
       'Please rate the following statement.'
     );
-    cy.get('[data-test-id=feedback-question]').should(
+    cy.get('[data-testid=feedback-question]').should(
       'contain.text',
       'The description of the data estimation was easy to understand:'
     );
-    cy.get('[data-test-id=feedback-pill-1]').should('contain.text', '1');
-    cy.get('[data-test-id=feedback-pill-5]').should('contain.text', '5');
-    cy.get('[data-test-id=agree-text]').should('contain.text', 'Strongly agree');
-    cy.get('[data-test-id=disagree-text]').should('contain.text', 'Strongly disagree');
+    cy.get('[data-testid=feedback-pill-1]').should('contain.text', '1');
+    cy.get('[data-testid=feedback-pill-5]').should('contain.text', '5');
+    cy.get('[data-testid=agree-text]').should('contain.text', 'Strongly agree');
+    cy.get('[data-testid=disagree-text]').should('contain.text', 'Strongly disagree');
   });
 
   it('closes when the close button is clicked', () => {
-    cy.get('[data-test-id=close-button]').click();
-    cy.get('[data-test-id=feedback-card]').should('not.exist');
+    cy.get('[data-testid=close-button]').click();
+    cy.get('[data-testid=feedback-card]').should('not.exist');
   });
 
   it('changes state when pill is clicked', () => {
-    cy.get('[data-test-id=feedback-pill-4]').click();
-    cy.get('[data-test-id=input-title]').should(
+    cy.get('[data-testid=feedback-pill-4]').click();
+    cy.get('[data-testid=input-title]').should(
       'contain.text',
       'Anything we can do to improve it?'
     );
   });
 
   it('changes state when the submit button is clicked', () => {
-    cy.get('[data-test-id=feedback-pill-1]').click();
-    cy.get('[data-test-id=feedback-input]').type('Test comment');
-    cy.get('[data-test-id=pill]').click();
-    cy.get('[data-test-id=title]').should('contain.text', 'Thank you for your feedback!');
+    cy.get('[data-testid=feedback-pill-1]').click();
+    cy.get('[data-testid=feedback-input]').type('Test comment');
+    cy.get('[data-testid=pill]').click();
+    cy.get('[data-testid=title]').should('contain.text', 'Thank you for your feedback!');
   });
 });

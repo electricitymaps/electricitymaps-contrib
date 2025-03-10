@@ -19,8 +19,14 @@ const config = {
           },
         },
       },
+      spacing: {
+        15: '3.75rem',
+      },
       screens: {
         xs: '475px',
+      },
+      fontSize: {
+        xxs: '0.625rem', // 10px
       },
       animation: {
         'slide-down': 'slide-down 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
@@ -42,8 +48,11 @@ const config = {
       },
       colors: {
         'brand-green': '#135836',
+        'brand-green-dark': '#41866B',
         'brand-yellow': '#E9B73B',
         'brand-brown': '#702214',
+        'price-light': '#18214F',
+        'price-dark': '#848EC0',
         success: {
           DEFAULT: colors.emerald[800],
           dark: colors.emerald[500],
@@ -57,6 +66,7 @@ const config = {
           dark: colors.red[400],
         },
       },
+      minWidth: { 18: '4.5rem' },
     },
     fontFamily: {
       sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],

@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Dự án này là",
-    "opensource": "Dự Án Nguồn mở (Open-Source)",
-    "see": "xem",
-    "datasources": "các nguồn dữ liệu",
-    "contribute": "Tham gia bằng cách <a href=\"{{link}}\" target=\"_blank\">thêm khu vực của bạn</a>"
-  },
   "mobile-main-menu": {
     "map": "Bản đồ",
     "areas": "Khu vực",
@@ -210,6 +203,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -389,9 +385,13 @@
       "countryName": "Tây Ban Nha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Tây Ban Nha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Tây Ban Nha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Tây Ban Nha",
@@ -674,10 +674,6 @@
     "IQ": {
       "zoneName": "Iraq"
     },
-    "IQ-KUR": {
-      "countryName": "Iraq",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -838,10 +834,6 @@
     "ME": {
       "zoneName": "Montenegro"
     },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
-    },
     "MG": {
       "zoneName": "Madagascar"
     },
@@ -922,6 +914,9 @@
       "countryName": "Mexico",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Malaysia"
+    },
     "MY-EM": {
       "countryName": "Malaysia",
       "zoneName": "Borneo"
@@ -950,9 +945,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Hà Lan"
@@ -1210,38 +1202,6 @@
     },
     "UM": {
       "zoneName": "Các tiểu đảo xa của Hoa Kỳ"
-    },
-    "US-HI-HA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Oahu"
     },
     "UY": {
       "zoneName": "Uruguay"

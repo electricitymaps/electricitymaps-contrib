@@ -1,3 +1,56 @@
-timezone: Africa/Addis_Ababa
-region: Africa
+bounding_box:
+  - - 32.4889298892989
+    - 2.904734871690188
+  - - 48.47947979479795
+    - 15.379157026350086
 country: ET
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 23.72
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 23.72
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 23.72
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 23.72
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.967351083721048
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.00011531725941540038
+        solar: 0.0020188273051168775
+        unknown: 0.0
+        wind: 0.030514389273255144
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.9673517111090494
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.00011535583671568062
+        solar: 0.002018939705847075
+        unknown: 0.0
+        wind: 0.030513859522903735
+region: Africa
+timezone: Africa/Addis_Ababa

@@ -1,3 +1,56 @@
-timezone: Africa/Kampala
-region: Africa
+bounding_box:
+  - - 29.054495544955472
+    - -1.969533257365882
+  - - 35.47974979749799
+    - 4.719021003643483
 country: UG
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 58.74
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 58.74
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 58.74
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 58.74
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.08659463755380915
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.8619674957821306
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.026151723457783355
+        solar: 0.02528580375353232
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.08659508173891416
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.8619659873381036
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.026150638258165812
+        solar: 0.02528760510767805
+        unknown: 0.0
+        wind: 0.0
+region: Africa
+timezone: Africa/Kampala

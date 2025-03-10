@@ -1,3 +1,8 @@
-timezone: Africa/Harare
-region: Africa
+bounding_box:
+  - - 24.727252272522747
+    - -22.8976886065485
+  - - 33.53573035730358
+    - -15.11435597832601
 country: ZW
+region: Africa
+timezone: Africa/Harare

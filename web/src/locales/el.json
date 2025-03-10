@@ -1,11 +1,4 @@
 {
-  "panel-initial-text": {
-    "thisproject": "Αυτό το έργο είναι",
-    "opensource": "Ανοικτού Κώδικα",
-    "see": "δείτε τις",
-    "datasources": "πηγές δεδομένων",
-    "contribute": "Συνεισφέρετε <a href=\"{{link}}\" target=\"_blank\">προσθέτοντας την περιοχή σας</a>"
-  },
   "mobile-main-menu": {
     "map": "Χάρτης",
     "areas": "Περιοχές",
@@ -36,7 +29,7 @@
     "helpfrom": "με συνεισφορά από",
     "noDataAtTimestamp": "Τα δεδομένα για την επιλεγμένη ώρα δεν είναι διαθέσιμα αυτή τη στιγμή",
     "noLiveData": "Τα ζωντανά δεδομένα για την περιοχή αυτή δεν είναι διαθέσιμα αυτή τη στιγμή",
-    "noParserInfo": "Δεν έχουμε ακόμη πληροφορίες σχετικά με αυτή την περιοχή.<br/> Θέλετε να βοηθήσετε να το διορθώσουμε; Μπορείτε να συνεισφέρετε <a href=\"{{link}}\" target=\"_blank\">προσθέτοντας δεδομένα περιοχής</a>.",
+    "noParserInfo": "Δεν έχουμε ακόμη πληροφορίες σχετικά με αυτή την περιοχή.<br/> Θέλετε να βοηθήσετε να το διορθώσουμε; Μπορείτε να συνεισφέρετε <a href='{{link}}' target='_blank'>προσθέτοντας δεδομένα περιοχής</a>.",
     "now": "Παρόν"
   },
   "ranking-panel": {
@@ -58,8 +51,9 @@
   },
   "tooltips": {
     "carbonintensity": "Ένταση άνθρακα",
-    "lowcarbon": "Χαμηλών εκπομπών άνθρακα",
-    "renewable": "Ανανεώσιμες",
+    "zoneHeader": {
+      "lowcarbon": "Περιλαμβάνει τις ανανεώσιμες και την πυρηνική"
+    },
     "crossborderexport": "Διασυνοριακή εξαγωγή",
     "carbonintensityexport": "Ένταση άνθρακα της εξαγωγής",
     "ofinstalled": "της εγκατεστημένης ισχύς",
@@ -77,8 +71,7 @@
     "production": "παραγωγή",
     "consumption": "κατανάλωση",
     "cpinfo": "Η <b>κατανάλωση</b> λαμβάνει υπόψη τις εισαγωγές και εξαγωγές, η <b>παραγωγή</b> τις αγνοεί",
-    "selectLanguage": "Επιλογή γλώσσας",
-    "lowCarbDescription": "Περιλαμβάνει τις ανανεώσιμες και την πυρηνική"
+    "selectLanguage": "Επιλογή γλώσσας"
   },
   "misc": {
     "maintitle": "Ζωντανές εκπομπές CO₂ κατανάλωσης ηλεκτρικής ενέργειας",
@@ -264,6 +257,9 @@
     "BZ": {
       "zoneName": "Μπελίζ"
     },
+    "CA": {
+      "zoneName": "Καναδάς"
+    },
     "CA-AB": {
       "countryName": "Καναδάς",
       "zoneName": "Alberta"
@@ -447,9 +443,13 @@
       "countryName": "Ισπανία",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Ισπανία",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Ισπανία",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Ισπανία",
@@ -732,10 +732,6 @@
     "IQ": {
       "zoneName": "Ιράκ"
     },
-    "IQ-KUR": {
-      "countryName": "Ιράκ",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Ιράν"
     },
@@ -896,10 +892,6 @@
     "ME": {
       "zoneName": "Μαυροβούνιο"
     },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
-    },
     "MG": {
       "zoneName": "Μαδαγασκάρη"
     },
@@ -980,6 +972,9 @@
       "countryName": "Μεξικό",
       "zoneName": "Peninsula"
     },
+    "MY": {
+      "zoneName": "Μαλαισία"
+    },
     "MY-EM": {
       "countryName": "Μαλαισία",
       "zoneName": "Borneo"
@@ -1008,9 +1003,6 @@
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Ολλανδία"
@@ -1271,38 +1263,6 @@
     },
     "US": {
       "zoneName": "συνεχόμενες Ηνωμένες Πολιτείες"
-    },
-    "US-HI-HA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
