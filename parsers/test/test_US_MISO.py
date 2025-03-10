@@ -5,12 +5,18 @@
 import json
 import logging
 from datetime import datetime
+from json import loads
+from pathlib import Path
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
+from requests_mock import GET
 from testfixtures import LogCapture
 
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import US_MISO
+
+base_path_to_mock = Path("parsers/test/mocks/US_MISO")
 
 
 def test_fetch_production():
@@ -32,3 +38,27 @@ def test_fetch_production():
 
     # Make sure the unmapped Antimatter type is set to 'unknown'.
     assert production[0]["production"]["unknown"] >= 256
+
+
+def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
+    # Mock wind forecast request
+    data_wind = Path(base_path_to_mock, "DataBrokerServicesgetWindForecast.asmx.json")
+    adapter.register_uri(
+        GET,
+        "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getWindForecast&returnType=json",
+        json=loads(data_wind.read_text()),
+    )
+
+    # Mock solar forecast request
+    data_solar = Path(base_path_to_mock, "DataBrokerServicesgetSolarForecast.asmx.json")
+    adapter.register_uri(
+        GET,
+        "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getSolarForecast&returnType=json",
+        json=loads(data_solar.read_text()),
+    )
+
+    # Run function under test
+    assert snapshot == US_MISO.fetch_wind_solar_forecasts(
+        zone_key=ZoneKey("US-MIDW-MISO"),
+        session=session,
+    )

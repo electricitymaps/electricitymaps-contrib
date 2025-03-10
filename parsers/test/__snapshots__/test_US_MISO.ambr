@@ -1,0 +1,677 @@
+# serializer version: 1
+# name: test_snapshot_fetch_wind_solar_forecasts
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 0, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 17716.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 1, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 17168.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 2, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 16628.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 3, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 16249.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 4, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 16089.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 5, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 16192.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 6, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 3.0,
+        'wind': 16583.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 7, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 1042.0,
+        'wind': 17076.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 8, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 6022.0,
+        'wind': 17386.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 9, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 10313.0,
+        'wind': 17154.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 10, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11437.0,
+        'wind': 16391.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 11, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11466.0,
+        'wind': 16389.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 12, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11301.0,
+        'wind': 17767.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 13, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11206.0,
+        'wind': 19703.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 14, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11297.0,
+        'wind': 21282.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 15, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11398.0,
+        'wind': 22330.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 16, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 10642.0,
+        'wind': 22727.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 17, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 6959.0,
+        'wind': 22525.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 18, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 1583.0,
+        'wind': 22427.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 19, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 8.0,
+        'wind': 23044.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 20, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23647.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 21, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23981.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 22, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 24047.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 10, 23, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23881.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 0, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23596.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 1, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23196.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 2, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23034.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 3, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23022.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 4, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 22831.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 5, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 22327.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 6, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 3.0,
+        'wind': 21393.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 7, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 1123.0,
+        'wind': 19830.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 8, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 6119.0,
+        'wind': 17808.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 9, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 10198.0,
+        'wind': 15679.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 10, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11213.0,
+        'wind': 13413.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 11, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11234.0,
+        'wind': 11073.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 12, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11105.0,
+        'wind': 9176.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 13, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11038.0,
+        'wind': 8033.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 14, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11119.0,
+        'wind': 7338.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 15, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 11229.0,
+        'wind': 6885.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 16, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 10441.0,
+        'wind': 6934.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 17, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 6848.0,
+        'wind': 7577.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 18, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 1586.0,
+        'wind': 8756.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 19, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 9.0,
+        'wind': 11393.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 20, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 13542.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 21, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 14719.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 22, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 15219.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 23, 0, tzinfo=tzfile('/usr/share/zoneinfo/America/New_York')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 15321.0,
+      }),
+      'source': 'misoenergy.org',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-MIDW-MISO',
+    }),
+  ])
+# ---

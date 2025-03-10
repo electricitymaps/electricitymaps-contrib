@@ -32,6 +32,7 @@ mapping = {
 }
 
 wind_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getWindForecast&returnType=json"
+solar_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getSolarForecast&returnType=json"
 
 # To quote the MISO data source;
 # "The category listed as “Other” is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
@@ -111,24 +112,33 @@ def fetch_production(
     return production_breakdowns.to_list()
 
 
-def fetch_wind_forecast(
+def fetch_wind_solar_forecasts(
     zone_key: ZoneKey = ZoneKey(ZONE),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    """Requests the day ahead wind forecast (in MW) of a given zone."""
+    """Requests the day ahead wind and solar forecast (in MW) hourly data."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     s = session or Session()
-    req = s.get(wind_forecast_url)
-    raw_json = req.json()
-    raw_data = raw_json["Forecast"]
+
+    # Request wind data
+    req_wind = s.get(wind_forecast_url)
+    raw_json_wind = req_wind.json()
+    raw_data_wind = raw_json_wind["Forecast"]
+
+    # Request solar data
+    req_solar = s.get(solar_forecast_url)
+    raw_json_solar = req_solar.json()
+    raw_data_solar = raw_json_solar["Forecast"]
 
     production_breakdowns = ProductionBreakdownList(logger)
-    for item in raw_data:
+
+    """
+    for item in raw_data_wind:
         dt = parser.parse(item["DateTimeEST"]).replace(
             tzinfo=tz.gettz("America/New_York")
         )
@@ -141,12 +151,32 @@ def fetch_wind_forecast(
             zoneKey=zone_key,
             sourceType=EventSourceType.forecasted,
         )
+    """
+
+    for wind_event, solar_event in zip(raw_data_wind, raw_data_solar, strict=True):
+        # Check that we loop over same dates
+        if wind_event["DateTimeEST"] == solar_event["DateTimeEST"]:
+            dt = parser.parse(wind_event["DateTimeEST"]).replace(
+                tzinfo=tz.gettz("America/New_York")
+            )
+
+            mix = ProductionMix(
+                wind=float(wind_event["Value"]), solar=float(solar_event["Value"])
+            )
+
+            production_breakdowns.append(
+                datetime=dt,
+                production=mix,
+                source=SOURCE,
+                zoneKey=zone_key,
+                sourceType=EventSourceType.forecasted,
+            )
 
     return production_breakdowns.to_list()
 
 
 if __name__ == "__main__":
-    print("fetch_production() ->")
-    print(fetch_production())
-    print("fetch_wind_forecast() ->")
-    print(fetch_wind_forecast())
+    # print("fetch_production() ->")
+    # print(fetch_production())
+    print("fetch_wind_solar_forecasts() ->")
+    print(fetch_wind_solar_forecasts())
