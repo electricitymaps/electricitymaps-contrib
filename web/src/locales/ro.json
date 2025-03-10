@@ -32,7 +32,7 @@
     "noDataAtTimestamp": "Datele sunt indisponibile pentru perioada aleasă",
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",
     "dataIsDelayed": "Datele pentru această zonă sunt pot fi cu {{hours}} ore întârziere. Date în timp real sunt indisponibile.",
-    "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href="{{link}}" target="_blank">date pentru zonă</a>.",
+    "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href='{{link}}' target='_blank'>date pentru zonă</a>.",
     "now": "Acum",
     "by-source": {
       "emissions": "Emisii dioxid de carbon",
