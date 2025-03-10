@@ -5,6 +5,10 @@ bounding_box:
   - - 29.62654341
     - 48.2208812526
 capacity:
+  battery storage:
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 137.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -12,9 +16,15 @@ capacity:
     - datetime: '2018-01-01'
       source: entsoe.eu
       value: 116.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 115.0
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 117.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 116.0
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 118.0

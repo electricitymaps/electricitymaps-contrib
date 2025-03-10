@@ -11,6 +11,9 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 81.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 80.0
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -18,9 +21,6 @@ capacity:
     - datetime: '2019-01-01'
       source: entsoe.eu
       value: 4475.0
-    - datetime: '2023-01-01'
-      source: entsoe.eu
-      value: 4469.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -66,6 +66,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 2352.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 2349.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu

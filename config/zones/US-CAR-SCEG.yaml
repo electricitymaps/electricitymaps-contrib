@@ -5,63 +5,72 @@ bounding_box:
     - 35.2360579840001
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 4.0
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 70.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
-      value: 120.0
-    - datetime: '2024-01-01'
-      source: EIA.gov
-      value: 20.8
-    - datetime: '2024-06-01'
+      value: 229.6
+    - datetime: '2023-07-01'
       source: EIA.gov
       value: 130.4
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 1431.5
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
-      value: 3510.5
-    - datetime: '2024-06-01'
+      value: 3504.3
+    - datetime: '2023-03-01'
+      source: EIA.gov
+      value: 3440.1
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 3400.9
+    - datetime: '2024-11-01'
+      source: EIA.gov
+      value: 3466.3
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
-      source: EIA.gov
-      value: 241.8
-    - datetime: '2024-06-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 244.3
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 587.2
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 1029.6
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 17.5
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 56.7
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 978.1
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 1044.1
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 0.0
 comment: South Carolina Electric & Gas Company

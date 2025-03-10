@@ -5,76 +5,82 @@ bounding_box:
     - 41.7250704890001
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
-      value: 232.0
+      value: 2.0
+    - datetime: '2023-06-01'
+      source: EIA.gov
+      value: 227.0
+    - datetime: '2023-08-01'
+      source: EIA.gov
+      value: 232.8
     - datetime: '2024-05-01'
-      source: EIA.gov
-      value: 239.8
-    - datetime: '2024-06-01'
       source: EIA.gov
       value: 240.6
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 248.4
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 22.8
-    - datetime: '2024-07-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 10.2
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 1311.3
   gas:
-    - datetime: '2023-10-01'
-      source: EIA.gov
-      value: 6430.0
-    - datetime: '2024-01-01'
-      source: EIA.gov
-      value: 6870.0
-    - datetime: '2024-07-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 6816.8
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 6731.2
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
-      source: EIA.gov
-      value: 53.9
-    - datetime: '2024-01-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 48.9
-    - datetime: '2024-10-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 53.4
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 300.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
-      source: EIA.gov
-      value: 28.0
-    - datetime: '2024-07-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 81.2
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 1089.4
+    - datetime: '2023-02-01'
+      source: EIA.gov
+      value: 1093.9
+    - datetime: '2023-06-01'
+      source: EIA.gov
+      value: 1666.9
+    - datetime: '2023-08-01'
       source: EIA.gov
       value: 1671.4
-    - datetime: '2023-12-01'
+    - datetime: '2023-10-01'
       source: EIA.gov
-      value: 1927.4
-    - datetime: '2024-03-01'
+      value: 1676.4
+    - datetime: '2023-11-01'
+      source: EIA.gov
+      value: 1684.4
+    - datetime: '2023-12-01'
       source: EIA.gov
       value: 1941.4
     - datetime: '2024-04-01'
@@ -82,19 +88,19 @@ capacity:
       value: 1944.8
     - datetime: '2024-10-01'
       source: EIA.gov
-      value: 1956.6
+      value: 1954.6
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 2108.0
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
-      value: 4490.8
+      value: 4462.6
     - datetime: '2023-12-01'
-      source: EIA.gov
-      value: 4692.3
-    - datetime: '2024-01-01'
       source: EIA.gov
       value: 4662.6
 comment: Public Service Company Of Colorado

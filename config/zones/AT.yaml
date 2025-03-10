@@ -71,6 +71,12 @@ capacity:
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 0.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 1.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 0.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
