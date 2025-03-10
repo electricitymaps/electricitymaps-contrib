@@ -4,6 +4,7 @@
 
 import json
 import logging
+import re
 from datetime import datetime
 from json import loads
 from pathlib import Path
@@ -59,6 +60,22 @@ def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
 
     # Run function under test
     assert snapshot == US_MISO.fetch_wind_solar_forecasts(
+        zone_key=ZoneKey("US-MIDW-MISO"),
+        session=session,
+    )
+
+
+def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
+    # Mock load forecast request
+    data = Path(base_path_to_mock, "20250310_df_al.xls")
+    adapter.register_uri(
+        GET,
+        re.compile(r"https://docs\.misoenergy\.org/marketreports/\d+_df_al.xls"),
+        content=data.read_bytes(),
+    )
+
+    # Run function under test
+    assert snapshot == US_MISO.fetch_consumption_forecast(
         zone_key=ZoneKey("US-MIDW-MISO"),
         session=session,
     )

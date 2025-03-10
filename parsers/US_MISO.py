@@ -2,21 +2,27 @@
 
 """Parser for the MISO area of the United States."""
 
+import io
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
+import pandas as pd
 from dateutil import parser, tz
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
+    TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 
 SOURCE = "misoenergy.org"
 ZONE = "US-MIDW-MISO"
+TIMEZONE = ZoneInfo("America/New_York")
+
 mix_url = (
     "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType"
     "=getfuelmix&returnType=json"
@@ -112,6 +118,56 @@ def fetch_production(
     return production_breakdowns.to_list()
 
 
+def fetch_consumption_forecast(
+    zone_key: ZoneKey = ZoneKey(ZONE),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the 6 days ahead load (in MW) hourly data."""
+    session = session or Session()
+
+    # Datetime
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TIMEZONE)
+    else:
+        # assume passed in correct timezone
+        target_datetime = target_datetime.replace(tzinfo=TIMEZONE)
+
+    # Request data
+    url = f"https://docs.misoenergy.org/marketreports/{target_datetime.strftime('%Y%m%d')}_df_al.xls"
+    response = session.get(
+        url, verify=False
+    )  # use requests library with verification disabled
+    df = pd.read_excel(
+        io.BytesIO(response.content), sheet_name="Sheet1", skiprows=4, skipfooter=1
+    )
+
+    # Process dataframe
+    df = df.dropna(subset=["HourEnding"])
+    df = df.loc[df["HourEnding"] != "HourEnding"]
+    df.loc[:, "HourEnding"] = df["HourEnding"].astype(int)
+    df["Interval End"] = pd.to_datetime(df["Market Day"]) + pd.to_timedelta(
+        df["HourEnding"], unit="h"
+    )
+    df["Interval Start"] = df["Interval End"] - pd.Timedelta(hours=1)
+
+    # Record events in consumption_list
+    all_consumption_events = df.copy()
+    consumption_list = TotalConsumptionList(logger)
+    for _, event in all_consumption_events.iterrows():
+        event_datetime = event["Interval Start"].strftime("%Y-%m-%d %H:%M:%S")
+        event_datetime = datetime.fromisoformat(event_datetime).replace(tzinfo=TIMEZONE)
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=event_datetime,
+            consumption=float(event["MISO MTLF (MWh)"]),
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumption_list.to_list()
+
+
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey = ZoneKey(ZONE),
     session: Session | None = None,
@@ -137,36 +193,22 @@ def fetch_wind_solar_forecasts(
 
     production_breakdowns = ProductionBreakdownList(logger)
 
-    """
-    for item in raw_data_wind:
-        dt = parser.parse(item["DateTimeEST"]).replace(
-            tzinfo=tz.gettz("America/New_York")
-        )
-        mix = ProductionMix(wind=float(item["Value"]))
-
-        production_breakdowns.append(
-            datetime=dt,
-            production=mix,
-            source=SOURCE,
-            zoneKey=zone_key,
-            sourceType=EventSourceType.forecasted,
-        )
-    """
-
     for wind_event, solar_event in zip(raw_data_wind, raw_data_solar, strict=True):
         # Check that we loop over same dates
         if wind_event["DateTimeEST"] == solar_event["DateTimeEST"]:
-            dt = parser.parse(wind_event["DateTimeEST"]).replace(
-                tzinfo=tz.gettz("America/New_York")
-            )
+            dt = parser.parse(wind_event["DateTimeEST"]).replace(tzinfo=TIMEZONE)
 
-            mix = ProductionMix(
-                wind=float(wind_event["Value"]), solar=float(solar_event["Value"])
+            production_mix = ProductionMix()
+            production_mix.add_value(
+                "wind", float(wind_event["Value"]), correct_negative_with_zero=True
+            )
+            production_mix.add_value(
+                "solar", float(solar_event["Value"]), correct_negative_with_zero=True
             )
 
             production_breakdowns.append(
                 datetime=dt,
-                production=mix,
+                production=production_mix,
                 source=SOURCE,
                 zoneKey=zone_key,
                 sourceType=EventSourceType.forecasted,
@@ -178,5 +220,8 @@ def fetch_wind_solar_forecasts(
 if __name__ == "__main__":
     # print("fetch_production() ->")
     # print(fetch_production())
-    print("fetch_wind_solar_forecasts() ->")
-    print(fetch_wind_solar_forecasts())
+
+    print(fetch_consumption_forecast())
+
+    # print("fetch_wind_solar_forecasts() ->")
+    # print(fetch_wind_solar_forecasts())
