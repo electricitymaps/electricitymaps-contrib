@@ -5,7 +5,16 @@ bounding_box:
     - 35.5013030000001
 capacity:
   battery storage:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 2.2
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 42.2
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 82.2
+    - datetime: '2022-09-01'
       source: EIA.gov
       value: 81.2
     - datetime: '2023-07-01'
@@ -18,6 +27,12 @@ capacity:
       source: EIA.gov
       value: 148.7
   biomass:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1917.5
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 1898.8
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 1898.9
@@ -31,10 +46,28 @@ capacity:
       source: EIA.gov
       value: 1882.7
   coal:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 15029.7
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 14138.7
+    - datetime: '2022-09-01'
       source: EIA.gov
       value: 12234.7
   gas:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 35949.5
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 36921.9
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 37167.0
+    - datetime: '2022-09-01'
+      source: EIA.gov
+      value: 37168.0
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 37573.0
@@ -54,19 +87,22 @@ capacity:
       source: EIA.gov
       value: 36372.2
   geothermal:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 3309.4
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 3317.6
   hydro storage:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 1306.6
   nuclear:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 6054.4
     - datetime: '2023-07-01'
@@ -76,6 +112,15 @@ capacity:
       source: EIA.gov
       value: 8282.4
   oil:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1188.9
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 2069.7
+    - datetime: '2022-09-01'
+      source: EIA.gov
+      value: 2001.3
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 1387.9
@@ -83,6 +128,30 @@ capacity:
       source: EIA.gov
       value: 1346.1
   solar:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 2639.2
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 2767.2
+    - datetime: '2021-11-01'
+      source: EIA.gov
+      value: 2770.1
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 3657.1
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 3674.9
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 3870.4
+    - datetime: '2022-11-01'
+      source: EIA.gov
+      value: 3876.0
+    - datetime: '2022-12-01'
+      source: EIA.gov
+      value: 4220.0
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 4221.8
@@ -141,11 +210,14 @@ capacity:
       source: EIA.gov
       value: 5470.0
   unknown:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 45.0
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
 comment: Southern Company Services, Inc. - Trans

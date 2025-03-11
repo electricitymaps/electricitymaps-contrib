@@ -5,54 +5,60 @@ bounding_box:
     - 48.277929
 capacity:
   battery storage:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 4.6
   coal:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 5.0
+    - datetime: '2022-09-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2023-11-01'
       source: EIA.gov
       value: 3.0
   geothermal:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 2005.1
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 1816.7
   hydro storage:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   unknown:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
 comment: Seattle City Light

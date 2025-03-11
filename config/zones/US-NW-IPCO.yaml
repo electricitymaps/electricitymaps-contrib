@@ -5,11 +5,14 @@ bounding_box:
     - 47.1707900000001
 capacity:
   battery storage:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 22.2
+    - datetime: '2022-09-01'
       source: EIA.gov
       value: 19.0
     - datetime: '2023-06-01'
@@ -19,18 +22,36 @@ capacity:
       source: EIA.gov
       value: 23.5
   coal:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 6.2
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 0.0
   gas:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 774.4
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 776.6
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 779.1
   geothermal:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 33.0
   hydro:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1855.1
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 1857.4
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 1827.8
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 1811.4
@@ -38,19 +59,22 @@ capacity:
       source: EIA.gov
       value: 1830.0
   hydro storage:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 318.3
+    - datetime: '2022-12-01'
       source: EIA.gov
       value: 438.3
     - datetime: '2023-06-01'
@@ -63,11 +87,14 @@ capacity:
       source: EIA.gov
       value: 581.3
   unknown:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 15.9
   wind:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 716.8
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 714.7
 comment: Idaho Power Company

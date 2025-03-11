@@ -5,6 +5,30 @@ bounding_box:
     - 43.00836
 capacity:
   battery storage:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 252.9
+    - datetime: '2021-02-01'
+      source: EIA.gov
+      value: 248.9
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 249.7
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 247.7
+    - datetime: '2021-05-01'
+      source: EIA.gov
+      value: 257.7
+    - datetime: '2021-08-01'
+      source: EIA.gov
+      value: 263.9
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 265.1
+    - datetime: '2022-11-01'
+      source: EIA.gov
+      value: 277.1
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 317.1
@@ -33,6 +57,45 @@ capacity:
       source: EIA.gov
       value: 429.8
   biomass:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 2225.5
+    - datetime: '2021-02-01'
+      source: EIA.gov
+      value: 2224.7
+    - datetime: '2021-06-01'
+      source: EIA.gov
+      value: 2224.9
+    - datetime: '2021-07-01'
+      source: EIA.gov
+      value: 2222.5
+    - datetime: '2021-09-01'
+      source: EIA.gov
+      value: 2219.0
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 2215.8
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 2216.1
+    - datetime: '2022-02-01'
+      source: EIA.gov
+      value: 2214.5
+    - datetime: '2022-03-01'
+      source: EIA.gov
+      value: 2198.3
+    - datetime: '2022-05-01'
+      source: EIA.gov
+      value: 2196.9
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 2197.9
+    - datetime: '2022-07-01'
+      source: EIA.gov
+      value: 2193.1
+    - datetime: '2022-12-01'
+      source: EIA.gov
+      value: 2167.5
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 2144.9
@@ -55,6 +118,24 @@ capacity:
       source: EIA.gov
       value: 2025.3
   coal:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 53128.2
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 52869.9
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 51233.0
+    - datetime: '2022-03-01'
+      source: EIA.gov
+      value: 49916.0
+    - datetime: '2022-05-01'
+      source: EIA.gov
+      value: 48248.1
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 45431.0
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 44179.0
@@ -77,6 +158,54 @@ capacity:
       source: EIA.gov
       value: 39191.1
   gas:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 95496.7
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 95407.2
+    - datetime: '2021-05-01'
+      source: EIA.gov
+      value: 95293.6
+    - datetime: '2021-06-01'
+      source: EIA.gov
+      value: 95299.2
+    - datetime: '2021-07-01'
+      source: EIA.gov
+      value: 96133.1
+    - datetime: '2021-08-01'
+      source: EIA.gov
+      value: 96738.3
+    - datetime: '2021-09-01'
+      source: EIA.gov
+      value: 96686.1
+    - datetime: '2021-10-01'
+      source: EIA.gov
+      value: 97977.8
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 97989.1
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 99361.2
+    - datetime: '2022-03-01'
+      source: EIA.gov
+      value: 99427.0
+    - datetime: '2022-05-01'
+      source: EIA.gov
+      value: 100423.4
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 100307.5
+    - datetime: '2022-07-01'
+      source: EIA.gov
+      value: 101481.9
+    - datetime: '2022-09-01'
+      source: EIA.gov
+      value: 101483.0
+    - datetime: '2022-10-01'
+      source: EIA.gov
+      value: 101481.9
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 103273.9
@@ -126,25 +255,64 @@ capacity:
       source: EIA.gov
       value: 104177.2
   geothermal:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 3297.1
+    - datetime: '2021-09-01'
+      source: EIA.gov
+      value: 3299.6
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 3287.8
+    - datetime: '2022-05-01'
       source: EIA.gov
       value: 3290.3
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 3287.5
   hydro storage:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 5046.1
   nuclear:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 34466.6
   oil:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 5882.4
+    - datetime: '2021-06-01'
+      source: EIA.gov
+      value: 5883.4
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 6229.6
+    - datetime: '2022-03-01'
+      source: EIA.gov
+      value: 6231.1
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 6079.0
+    - datetime: '2022-05-01'
+      source: EIA.gov
+      value: 6081.5
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 5937.5
+    - datetime: '2022-09-01'
+      source: EIA.gov
+      value: 5901.5
+    - datetime: '2022-10-01'
+      source: EIA.gov
+      value: 5855.5
+    - datetime: '2022-12-01'
+      source: EIA.gov
+      value: 5863.6
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 5325.6
@@ -170,6 +338,78 @@ capacity:
       source: EIA.gov
       value: 5195.6
   solar:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 4682.0
+    - datetime: '2021-02-01'
+      source: EIA.gov
+      value: 4835.0
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 4941.0
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 4954.3
+    - datetime: '2021-05-01'
+      source: EIA.gov
+      value: 5034.8
+    - datetime: '2021-06-01'
+      source: EIA.gov
+      value: 5174.5
+    - datetime: '2021-07-01'
+      source: EIA.gov
+      value: 5537.3
+    - datetime: '2021-08-01'
+      source: EIA.gov
+      value: 5834.9
+    - datetime: '2021-09-01'
+      source: EIA.gov
+      value: 5843.9
+    - datetime: '2021-10-01'
+      source: EIA.gov
+      value: 5987.7
+    - datetime: '2021-11-01'
+      source: EIA.gov
+      value: 6103.2
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 6453.5
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 6618.0
+    - datetime: '2022-02-01'
+      source: EIA.gov
+      value: 6620.0
+    - datetime: '2022-03-01'
+      source: EIA.gov
+      value: 6636.7
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 6649.1
+    - datetime: '2022-05-01'
+      source: EIA.gov
+      value: 6832.2
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 6870.5
+    - datetime: '2022-07-01'
+      source: EIA.gov
+      value: 6893.6
+    - datetime: '2022-08-01'
+      source: EIA.gov
+      value: 6897.6
+    - datetime: '2022-09-01'
+      source: EIA.gov
+      value: 6962.5
+    - datetime: '2022-10-01'
+      source: EIA.gov
+      value: 7070.4
+    - datetime: '2022-11-01'
+      source: EIA.gov
+      value: 7159.7
+    - datetime: '2022-12-01'
+      source: EIA.gov
+      value: 7411.6
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 7578.2
@@ -243,10 +483,25 @@ capacity:
       source: EIA.gov
       value: 14659.9
   unknown:
-    - datetime: '2023-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 107.2
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 11.2
   wind:
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 10207.4
+    - datetime: '2021-05-01'
+      source: EIA.gov
+      value: 10457.2
+    - datetime: '2021-06-01'
+      source: EIA.gov
+      value: 10657.2
+    - datetime: '2022-02-01'
+      source: EIA.gov
+      value: 10772.2
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 10677.2
