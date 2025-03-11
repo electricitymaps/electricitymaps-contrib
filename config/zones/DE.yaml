@@ -8,39 +8,123 @@ bounding_box:
     - 55.1537662685
 capacity:
   battery storage:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
       source: Fraunhofer ISE
-      value: 7875.0
+      value: 456.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 729.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 1017.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 1569.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 2415.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 4379.0
+      value: 4132.0
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 8232.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 12340.0
+    - datetime: '2025-01-01'
+      source: Fraunhofer ISE
+      value: 12852.0
   biomass:
-    - datetime: '2023-01-01'
+    - datetime: '2017-01-01'
       source: Fraunhofer ISE
-      value: 9030.0
+      value: 7566.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 7993.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 8337.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 8851.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 8971.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 8911.0
+      value: 9027.0
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 9066.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 9168.0
+    - datetime: '2025-01-01'
+      source: Fraunhofer ISE
+      value: 9174.0
   coal:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 44901.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 44719.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 43573.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 44599.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 38917.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 37246.0
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 37028.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 31193.0
     - datetime: '2024-11-11'
       source: Fraunhofer ISE
       value: 32600.0
-    - datetime: '2023-01-01'
+    - datetime: '2025-01-01'
       source: Fraunhofer ISE
-      value: 37489.0
+      value: 31193.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 29762.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 30130.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 30072.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 32536.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 32128.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 37679.0
-  gas:
+      value: 35112.0
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 36639.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 36664.0
     - datetime: '2024-11-11'
       source: Fraunhofer ISE
       value: 36300.0
-    - datetime: '2023-01-01'
+    - datetime: '2025-01-01'
       source: Fraunhofer ISE
-      value: 34799.0
-    - datetime: '2022-01-01'
-      source: Fraunhofer ISE
-      value: 34250.0
+      value: 36664.0
   geothermal:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -50,47 +134,146 @@ capacity:
       source: Fraunhofer ISE
       value: 6186.0
   hydro storage:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 9488.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 9814.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 9688.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 9770.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 9699.0
-  nuclear:
-    - datetime: '2023-04-15'
+      value: 9970.0
+    - datetime: '2024-01-01'
       source: Fraunhofer ISE
-      value: 0.0
+      value: 9870.0
+  nuclear:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 10800.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 9516.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 8114.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
       value: 4056.0
-  oil:
-    - datetime: '2023-01-01'
+    - datetime: '2023-04-15'
       source: Fraunhofer ISE
-      value: 4682.0
+      value: 0.0
+  oil:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 4416.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 4375.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 4857.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 5094.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 4689.0
+      value: 5102.0
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 5037.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 4442.0
   solar:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 42293.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 45207.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 48864.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 54449.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 60162.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 67720.0
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 83052.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 99787.0
     - datetime: '2024-11-11'
       source: Fraunhofer ISE
       value: 94300.0
+    - datetime: '2025-01-01'
+      source: Fraunhofer ISE
+      value: 100910.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 3261.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 3304.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 3322.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 2974.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 2914.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 3200.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 3171.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 55580.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 58721.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 60742.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 62114.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 63745.0
+    - datetime: '2022-01-01'
+      source: Fraunhofer ISE
+      value: 66192.0
     - datetime: '2023-01-01'
       source: Fraunhofer ISE
-      value: 81824.0
-    - datetime: '2022-01-01'
+      value: 69449.0
+    - datetime: '2024-01-01'
       source: Fraunhofer ISE
-      value: 67563.0
-  unknown:
-    - datetime: '2022-01-01'
-      source: Fraunhofer ISE
-      value: 2766.0
-  wind:
+      value: 72786.0
     - datetime: '2024-11-11'
       source: Fraunhofer ISE
       value: 71700.0
-    - datetime: '2023-01-01'
+    - datetime: '2025-01-01'
       source: Fraunhofer ISE
-      value: 69485.0
-    - datetime: '2022-01-01'
-      source: Fraunhofer ISE
-      value: 66189.0
+      value: 72979.0
 contributors:
   - corradio
   - bohne13

@@ -82,6 +82,9 @@ capacity:
     - datetime: '2019-01-01'
       source: entsoe.eu
       value: 283.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 281.0
   oil:
     - datetime: '2017-01-01'
       source: entsoe.eu
