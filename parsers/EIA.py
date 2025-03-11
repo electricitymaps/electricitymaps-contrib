@@ -609,6 +609,7 @@ def fetch_production_mix(
     all_production_breakdowns = list(
         filter(lambda x: len(x.events) > 0, all_production_breakdowns)
     )
+
     if len(all_production_breakdowns) == 0:
         logger.warning(f"No production mix data found for {zone_key}")
         return ProductionBreakdownList(logger).to_list()
