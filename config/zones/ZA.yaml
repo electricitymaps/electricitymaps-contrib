@@ -58,7 +58,7 @@ contributors:
   - IV1T3
 country: ZA
 delays:
-  production: 74
+  production: 96 # 4 days - as of 11/03/2025, on 10/03/2025, delay was above 4 days for the first time, so do not set it higher
 emissionFactors:
   direct:
     battery discharge:
