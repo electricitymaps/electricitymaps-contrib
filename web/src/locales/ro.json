@@ -33,7 +33,23 @@
     "noLiveData": "Datele în timp real sunt momentan indisponibile pentru această zonă",
     "dataIsDelayed": "Datele pentru această zonă sunt pot fi cu {{hours}} ore întârziere. Date în timp real sunt indisponibile.",
     "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href='{{link}}' target='_blank'>date pentru zonă</a>.",
-    "now": "Acum"
+    "now": "Acum",
+    "by-source": {
+      "emissions": "Emisii dioxid de carbon",
+      "electricity-production": "Electricitate produsă",
+      "electricity-consumption": "Electricitate consumată",
+      "total-emissions": "Emisii dioxid de carbon (total)",
+      "total-electricity-production": "Electricitate produsă (total)",
+      "total-electricity-consumption": "Electricitate consumată (total)"
+    },
+    "graph-legends": {
+      "installed-capacity": "Capacitate instalată ",
+      "exchange-capacity": "Capacitate import/export ",
+      "exported": "Exportată",
+      "imported": "Importată",
+      "stored": "Depozitată",
+      "produced": "Produsă"
+    }
   },
   "time-controller": {
     "title": {
