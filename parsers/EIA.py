@@ -548,11 +548,18 @@ def fetch_production_mix(
         # we set unknown to 0.0 and keep geothermal as is
         # see GMM-555 for details
         if zone_key == "US-CAL-IID" and production_mode == "unknown":
-            first_appearance = datetime(year=2025, month=1, day=1, hour=8, tzinfo=timezone.utc)
-            last_apperance = datetime(year=2025, month=2, day=12, hour=7, tzinfo=timezone.utc)
+            first_appearance = datetime(
+                year=2025, month=1, day=1, hour=8, tzinfo=timezone.utc
+            )
+            last_apperance = datetime(
+                year=2025, month=2, day=12, hour=7, tzinfo=timezone.utc
+            )
             for event in production_and_storage_values:
-                if event['datetime'] >= first_appearance and event['datetime'] <= last_apperance:
-                    event['value'] = 0.0
+                if (
+                    event["datetime"] >= first_appearance
+                    and event["datetime"] <= last_apperance
+                ):
+                    event["value"] = 0.0
 
         for point in production_and_storage_values:
             production_mix, storage_mix = create_production_storage(
