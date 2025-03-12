@@ -3,6 +3,25 @@ bounding_box:
     - 8.892385444787848
   - - 2.888623886238889
     - 15.569491043133539
+capacity:
+  biomass:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 2.0
+  hydro:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 164.0
+  oil:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1132.0
+  solar:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 186.0
 country: BF
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Ouagadougou
