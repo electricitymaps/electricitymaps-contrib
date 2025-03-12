@@ -14,25 +14,25 @@ logger = getLogger(__name__)
 IRENA_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["IRENA"]
 SOURCE = "IRENA.org"
 IRENA_JSON_TO_MODE_MAPPING = {
-    0: "solar",
-    1: "solar",
-    2: "wind",
-    3: "wind",
-    4: "hydro",
-    5: "hydro",
-    6: "hydro storage",
-    7: "unknown",
-    8: "biomass",
-    9: "biomass",
-    10: "biomass",
-    11: "biomass",
-    12: "geothermal",
-    13: "coal",
-    14: "oil",
-    15: "gas",
-    16: "unknown",
-    17: "nuclear",
-    18: "unknown",
+    1: "solar",  # Total Renewable
+    2: "solar",  # Solar thermal energy
+    3: "wind",  # Onshore wind energy
+    4: "wind",  # Offshore wind energy
+    5: "hydro",  # Renewable hydropower
+    6: "hydro",  # Mixed Hydro Plants
+    7: "marine",  # Marine energy
+    8: "biomass",  # Solid biofuels
+    9: "biomass",  # Renewable municipal waste
+    10: "biomass",  # Liquid biofuels
+    11: "biomass",  # Biogas
+    12: "geothermal",  # Geothermal energy
+    14: "hydro_storage",  # Pumped storage
+    15: "coal",  # Coal and peat
+    16: "oil",  # Oil
+    17: "gas",  # Natural gas
+    18: "unknown",  # Fossil fuels n.e.s.
+    19: "nuclear",  # Nuclear
+    20: "unknown",  # Other non-renewable energy
 }
 
 SPECIFIC_MODE_MAPPING = {
@@ -46,12 +46,8 @@ def get_data_from_url(target_datetime: datetime, session: Session) -> list:
     )
     url_year = datetime.now().year
     filename_combinations = [
-        f"ELECCAP_{url_year}_cycle2.px",
-        f"ELECCAP_{url_year}_cycle1.px",
-        f"ELECCAP_{url_year}.px",
-        f"ELECCAP_{url_year-1}_cycle2.px",
-        f"ELECCAP_{url_year-1}_cycle1.px",
-        f"ELECCAP_{url_year-1}.px",
+        f"Country_ELECSTAT_{url_year}_H2.px",
+        f"Country_ELECSTAT_{url_year-1}_H2.px",
     ]
     json_query = {
         "query": [
@@ -96,8 +92,12 @@ def get_capacity_data_for_all_zones(
             zone = pycountry.countries.get(alpha_3=item["key"][0]).alpha_2
         else:
             pass
+        if int(item["key"][1]) not in IRENA_JSON_TO_MODE_MAPPING:
+            continue
         mode: str = IRENA_JSON_TO_MODE_MAPPING[int(item["key"][1])]
-        value: float = round(float(item["values"][0]), 0)
+        value: float = round(
+            float(item["values"][0] if item["values"][0] != "-" else 0), 0
+        )
         datetime_value: datetime = datetime.strptime(item["key"][-1], "%y")
 
         if zone not in capacity_dict:

@@ -79,7 +79,8 @@ def update_zone_capacity_config(zone_key: ZoneKey, data: dict) -> None:
     """Update the capacity config for a zone"""
     if zone_key not in ZONES_CONFIG:
         raise ValueError(f"Zone {zone_key} does not exist in the zones config")
-
+    # Remove data points with 0 value
+    data = {mode: value for mode, value in data.items() if value["value"] != 0}
     _new_zone_config = deepcopy(ZONES_CONFIG[zone_key])
     if "capacity" in _new_zone_config:
         capacity = _new_zone_config["capacity"]
