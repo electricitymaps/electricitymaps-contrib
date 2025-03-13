@@ -15,8 +15,8 @@ IRENA_ZONES = CAPACITY_PARSER_SOURCE_TO_ZONES["IRENA"]
 SOURCE = "IRENA.org"
 IRENA_JSON_TO_MODE_MAPPING = {
     0: "unknown",  # Total Renewable -> Do not consider
-    1: "solar",  # Solar photovoltaic	
-    2: "solar",  # Solar thermal energy	
+    1: "solar",  # Solar photovoltaic
+    2: "solar",  # Solar thermal energy
     3: "wind",  # Onshore wind energy
     4: "wind",  # Offshore wind energy
     5: "hydro",  # Renewable hydropower
@@ -37,7 +37,10 @@ IRENA_JSON_TO_MODE_MAPPING = {
     20: "unknown",  # Other non-renewable energy
 }
 
-def get_data_from_url(target_datetime: datetime, session: Session, zone_key_3_letters: str|None=None) -> list:
+
+def get_data_from_url(
+    target_datetime: datetime, session: Session, zone_key_3_letters: str | None = None
+) -> list:
     base_url = (
         "https://pxweb.irena.org:443/api/v1/en/IRENASTAT/Power Capacity and Generation/"
     )
@@ -47,27 +50,27 @@ def get_data_from_url(target_datetime: datetime, session: Session, zone_key_3_le
         f"Country_ELECSTAT_{url_year-1}_H2.px",
     ]
     query_list = [
-            {
-                "code": "Year",
-                "selection": {
-                    "filter": "item",
-                    "values": [target_datetime.strftime("%y")],
-                }
+        {
+            "code": "Year",
+            "selection": {
+                "filter": "item",
+                "values": [target_datetime.strftime("%y")],
             },
-            {
-                "code": "Data Type",
-                "selection": {
-                    "filter": "item",
-                    "values": [
+        },
+        {
+            "code": "Data Type",
+            "selection": {
+                "filter": "item",
+                "values": [
                     "1"  # 1 = Capacity (MW) # 0 = Generation (GWh)
-                    ]
-                }
+                ],
             },
-            {
-                "code": "Technology",
-                "selection": { # We are not selecting 0 and 13 because they are total renewable and total non-renewable (see mapping above)
-                    "filter": "item",
-                    "values": [
+        },
+        {
+            "code": "Technology",
+            "selection": {  # We are not selecting 0 and 13 because they are total renewable and total non-renewable (see mapping above)
+                "filter": "item",
+                "values": [
                     "1",
                     "2",
                     "3",
@@ -86,31 +89,30 @@ def get_data_from_url(target_datetime: datetime, session: Session, zone_key_3_le
                     "17",
                     "18",
                     "19",
-                    "20"
-                    ]
-                }
-                },
-            {
+                    "20",
+                ],
+            },
+        },
+        {
             "code": "Grid connection",
             "selection": {
-                    "filter": "item",
-                    "values": [
-                    "0" # 0 = Total # 1 = on grid (connected to the main power lines) # 2 = off grid (completely independent of the main power lines)
-                    ]
-                }
-            },
-            ]
-    if zone_key_3_letters is not None:
-        query_list.append({
-            "code": "Country/area",
-            "selection": {
                 "filter": "item",
-                "values": [zone_key_3_letters]
+                "values": [
+                    "0"  # 0 = Total # 1 = on grid (connected to the main power lines) # 2 = off grid (completely independent of the main power lines)
+                ],
+            },
+        },
+    ]
+    if zone_key_3_letters is not None:
+        query_list.append(
+            {
+                "code": "Country/area",
+                "selection": {"filter": "item", "values": [zone_key_3_letters]},
             }
-        })
+        )
     json_query = {
         "query": query_list,
-            "response": {"format": "json"},
+        "response": {"format": "json"},
     }
     data = None
     for filename in filename_combinations:
@@ -128,7 +130,7 @@ def get_data_from_url(target_datetime: datetime, session: Session, zone_key_3_le
 
 
 def get_capacity_data_for_zones(
-    target_datetime: datetime, session: Session, zone_key: ZoneKey|None=None
+    target_datetime: datetime, session: Session, zone_key: ZoneKey | None = None
 ) -> dict:
     """
     Get capacity data for a specific zone or all zones. The unit is the MW
@@ -141,7 +143,9 @@ def get_capacity_data_for_zones(
         if pycountry.countries.get(alpha_2=zone_key) is not None:
             zone_key_3_letters = pycountry.countries.get(alpha_2=zone_key).alpha_3
         else:
-            raise ValueError(f"Impossible to find the pycountry.countries 3 letters for {zone_key}")
+            raise ValueError(
+                f"Impossible to find the pycountry.countries 3 letters for {zone_key}"
+            )
         data = get_data_from_url(target_datetime, session, zone_key_3_letters)
     capacity_dict = {}
     for item in data:
@@ -159,7 +163,7 @@ def get_capacity_data_for_zones(
             zone_dict = {
                 mode: {
                     "datetime": datetime_value.strftime("%Y-%m-%d"),
-                    "value": round(value,2),
+                    "value": round(value, 2),
                     "source": SOURCE,
                 }
             }
@@ -168,14 +172,16 @@ def get_capacity_data_for_zones(
             if mode in capacity_dict[zone]:
                 zone_dict = capacity_dict[zone][mode]
                 capacity_dict[zone][mode]["value"] += value
-                capacity_dict[zone][mode]["value"] = round(capacity_dict[zone][mode]["value"], 2)
+                capacity_dict[zone][mode]["value"] = round(
+                    capacity_dict[zone][mode]["value"], 2
+                )
             else:
                 capacity_dict[zone] = {
                     **capacity_dict[zone],
                     **{
                         mode: {
                             "datetime": datetime_value.strftime("%Y-%m-%d"),
-                            "value": round(value,2),
+                            "value": round(value, 2),
                             "source": SOURCE,
                         }
                     },

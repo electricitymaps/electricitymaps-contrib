@@ -176,7 +176,7 @@ def fetch_production_capacity_for_all_zones(
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
 ) -> dict[str, Any] | None:
-    """ Get capacity data for a specific zone. The unit is the MW"""
+    """Get capacity data for a specific zone. The unit is the MW"""
     all_capacity = fetch_production_capacity_for_all_zones(
         target_datetime=target_datetime, session=session, zone_key=zone_key
     )

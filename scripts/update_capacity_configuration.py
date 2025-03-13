@@ -111,7 +111,9 @@ def generate_zone_capacity_config(
     updated_capacity_config = deepcopy(capacity_config)
     for mode in existing_capacity_modes:
         if isinstance(capacity_config[mode], float | int):
-            if data[mode]["value"] == 0: # Remove data points with 0 value if the existing capacity is a single value
+            if (
+                data[mode]["value"] == 0
+            ):  # Remove data points with 0 value if the existing capacity is a single value
                 continue
             updated_capacity_config[mode] = [data[mode]]
         elif isinstance(capacity_config[mode], list):
@@ -121,7 +123,7 @@ def generate_zone_capacity_config(
         else:
             raise ValueError(f"Invalid capacity config type for {mode}")
 
-    new_modes = [m for m in data if m not in capacity_config and data[m]["value"]>0]
+    new_modes = [m for m in data if m not in capacity_config and data[m]["value"] > 0]
     for mode in new_modes:
         updated_capacity_config[mode] = [data[mode]]
     return updated_capacity_config
