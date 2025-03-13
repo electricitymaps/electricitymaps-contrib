@@ -121,7 +121,7 @@ function DesktopMapControls() {
         {!isConsumptionOnlyMode && <ConsumptionProductionToggle />}
         <SpatialAggregatesToggle />
       </div>
-      <div className="mt-5 space-y-2">
+      <div className="pointer-events-auto mt-2.5 flex flex-col gap-2 pt-2.5">
         <LanguageSelector />
         <MapButton
           icon={

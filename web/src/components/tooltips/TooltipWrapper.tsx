@@ -1,4 +1,5 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
+import GlassContainer from 'components/GlassContainer';
 import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useIsMobile } from 'utils/styling';
@@ -51,16 +52,20 @@ export default function TooltipWrapper({
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className={twMerge(
-              'relative h-auto max-w-[164px] rounded border bg-zinc-50 p-4 text-center text-sm shadow-md dark:border-0 dark:bg-gray-800',
-              tooltipClassName
-            )}
+            className="z-50"
             sideOffset={sideOffset ?? 3}
             side={side ?? 'left'}
             onClick={handleContentClick}
             onPointerDownOutside={handleContentPointerDownOutside}
           >
-            {tooltipContent}
+            <GlassContainer
+              className={twMerge(
+                'relative h-auto max-w-[164px] rounded-2xl px-3 py-1.5 text-center text-sm',
+                tooltipClassName
+              )}
+            >
+              {tooltipContent}
+            </GlassContainer>
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>
