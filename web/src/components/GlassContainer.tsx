@@ -25,7 +25,7 @@ export default function GlassContainer({
   return (
     <div
       className={twMerge(
-        `absolute z-30 w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white/80 dark:border-neutral-700/60 dark:bg-neutral-900/80`,
+        `absolute z-30 w-full overflow-hidden border border-neutral-200 bg-white dark:border-neutral-700/60 dark:bg-neutral-900 sm:rounded-2xl sm:bg-white/80 sm:dark:bg-neutral-900/80`,
         className
       )}
       {...props}
