@@ -1,3 +1,4 @@
+import GlassContainer from 'components/GlassContainer';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtomValue } from 'jotai';
@@ -42,9 +43,9 @@ function BottomSheetWrappedTimeController() {
 
 function FloatingTimeController() {
   return (
-    <div className="absolute bottom-3 left-3 z-30 w-[calc(14vw_+_16rem)] rounded-xl bg-white px-4 py-3 shadow-xl drop-shadow-2xl dark:bg-gray-800 min-[780px]:w-[calc((14vw_+_16rem)_-_30px)] xl:px-5">
+    <GlassContainer className="bottom-3 left-3 px-4 py-3">
       <TimeController />
-    </div>
+    </GlassContainer>
   );
 }
 
