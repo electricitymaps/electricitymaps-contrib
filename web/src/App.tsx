@@ -10,7 +10,6 @@ import { OnboardingModal } from 'components/modals/OnboardingModal';
 import { AppSidebar, SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import Header from 'features/header/Header';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
 import DateRedirectToast from 'features/time/DateRedirectToast';
 import { useDarkMode } from 'hooks/theme';
@@ -87,12 +86,9 @@ export default function App(): ReactElement {
         style={{ '--sidebar-width': SIDEBAR_WIDTH } as React.CSSProperties}
       >
         <AppSidebar />
-        <main className="fixed flex h-full w-full flex-col md:ml-[--sidebar-width]  md:w-[calc(100%-var(--sidebar-width))] ">
+        <main className="fixed flex h-full w-full flex-col md:ml-[--sidebar-width] md:w-[calc(100%-var(--sidebar-width))]">
           <AppStoreBanner />
           <ToastProvider duration={20_000}>
-            <Suspense>
-              <Header />
-            </Suspense>
             <div className="relative flex flex-auto items-stretch">
               <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
                 <Suspense>
