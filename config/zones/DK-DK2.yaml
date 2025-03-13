@@ -119,6 +119,9 @@ capacity:
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 25.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 24.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu

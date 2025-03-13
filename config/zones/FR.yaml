@@ -55,6 +55,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 1816.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1812.0
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1813.0

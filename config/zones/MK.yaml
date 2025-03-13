@@ -31,6 +31,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 22.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 67.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu

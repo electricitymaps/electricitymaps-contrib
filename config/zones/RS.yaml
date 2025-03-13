@@ -88,7 +88,7 @@ capacity:
       value: 2537.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 3153.0
+      value: 2539.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -96,9 +96,9 @@ capacity:
     - datetime: '2019-01-01'
       source: entsoe.eu
       value: 639.0
-    - datetime: '2025-01-01'
+    - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 28.0
+      value: 642.0
   solar:
     - datetime: '2017-01-01'
       source: entsoe.eu
