@@ -27,6 +27,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 647.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 681.0
     - datetime: '2024-03-01'
       source: ren.pt
       value: 700.0
@@ -56,6 +59,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 4520.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 4585.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 4433.0
@@ -113,6 +119,9 @@ capacity:
     - datetime: '2024-03-01'
       source: ren.pt
       value: 3585.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 3707.0
   nuclear:
     - datetime: '2017-01-01'
       source: entsoe.eu

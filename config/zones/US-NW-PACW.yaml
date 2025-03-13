@@ -5,63 +5,90 @@ bounding_box:
     - 47.5893300000001
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 118.7
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 115.5
-    - datetime: '2024-01-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 118.7
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 626.0
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1060.8
+    - datetime: '2023-05-01'
       source: EIA.gov
       value: 1033.8
-    - datetime: '2024-04-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 897.1
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 297.4
+    - datetime: '2021-02-01'
+      source: EIA.gov
+      value: 337.4
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 407.4
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 408.4
-    - datetime: '2024-03-01'
+    - datetime: '2023-12-01'
       source: EIA.gov
       value: 463.4
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 466.2
+    - datetime: '2024-09-01'
+      source: EIA.gov
+      value: 468.5
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 470.9
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 480.5
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 481.9
+    - datetime: '2022-11-01'
       source: EIA.gov
       value: 489.9
 comment: Pacificorp - West

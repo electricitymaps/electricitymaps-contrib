@@ -5,54 +5,93 @@ bounding_box:
     - 46.4057731890001
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 292.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 14.7
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 15.9
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 2115.3
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 606.0
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 624.0
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 125.4
+    - datetime: '2021-02-01'
+      source: EIA.gov
+      value: 128.4
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 132.7
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 135.2
+    - datetime: '2021-10-01'
+      source: EIA.gov
+      value: 137.4
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 147.4
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 149.9
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 151.8
+    - datetime: '2022-12-01'
       source: EIA.gov
       value: 165.0
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 170.9
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 173.5
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 189.7
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 716.5
 comment: Portland General Electric Company

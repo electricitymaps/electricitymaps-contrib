@@ -61,6 +61,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 1609.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1588.0
   solar:
     - datetime: '2019-01-01'
       source: entsoe.eu
@@ -80,6 +83,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 303.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 450.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
