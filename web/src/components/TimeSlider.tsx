@@ -18,10 +18,10 @@ export interface TimeSliderProps {
 }
 
 export enum COLORS {
-  LIGHT_DAY = 'rgb(243,244,246)', // bg-gray-100
+  LIGHT_DAY = 'rgb(245, 245, 245)', // bg-neutral-100
   LIGHT_NIGHT = 'rgb(209,213,219)', // bg-gray-300
-  DARK_DAY = 'rgb(75,85,99)', // bg-gray-600
-  DARK_NIGHT = 'rgb(55,65,81)', // bg-gray-700
+  DARK_DAY = 'rgb(82, 82, 82,.8)', // bg-neutral-600
+  DARK_NIGHT = 'rgb(38, 38, 38,.8)', // bg-neutral-800
 }
 
 export const getTrackBackground = (
@@ -104,7 +104,7 @@ export function TimeSliderBasic({
       <SliderPrimitive.Thumb
         data-testid="time-slider-input"
         className="flex h-7 w-7 items-center justify-center rounded-full bg-white outline
-           outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 dark:bg-gray-900 dark:outline-gray-700"
+           outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 dark:bg-neutral-900 dark:outline-neutral-700"
       >
         {thumbIcon}
       </SliderPrimitive.Thumb>
