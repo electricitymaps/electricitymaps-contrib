@@ -40,7 +40,7 @@ function TimeRangeToggle({ timeRange, onToggleGroupClick }: TimeRangeToggleProps
   return (
     <ToggleGroupRoot
       className={
-        'mt-1 flex h-11 min-w-fit grow items-center justify-between gap-1 rounded-full bg-gray-300/50 p-1 dark:bg-gray-700/50'
+        'mt-1 flex h-11 min-w-fit grow items-center justify-between gap-1 rounded-full bg-neutral-400/20 p-1 dark:bg-neutral-700/60'
       }
       type="multiple"
       aria-label="Toggle between time averages"
@@ -58,7 +58,7 @@ function TimeRangeToggle({ timeRange, onToggleGroupClick }: TimeRangeToggleProps
           h-full grow basis-0 select-none rounded-full text-xs font-semibold capitalize
             ${
               timeRange === value
-                ? 'bg-white/80 text-brand-green outline outline-1 outline-neutral-200 dark:bg-gray-600/80 dark:text-white dark:outline-gray-400/10'
+                ? 'bg-white/80 text-brand-green outline outline-1 outline-neutral-200 dark:bg-white/20 dark:text-white dark:outline-neutral-400/10'
                 : ''
             }
             focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-brand-green dark:focus-visible:outline-brand-green-dark`}

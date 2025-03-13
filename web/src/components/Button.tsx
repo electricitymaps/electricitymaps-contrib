@@ -50,7 +50,7 @@ export function Button({
         className={twMerge(
           `flex h-full w-full select-none flex-row items-center justify-center rounded-full text-sm font-semibold
         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green disabled:text-neutral-400
-        disabled:hover:bg-inherit disabled:dark:text-gray-500 ${getSize(
+        disabled:hover:bg-inherit disabled:dark:text-neutral-500 ${getSize(
           size,
           type,
           isIconOnly
@@ -100,12 +100,12 @@ function getBackground(type: ButtonTypes, disabled: boolean | undefined) {
   switch (type) {
     case 'primary': {
       if (disabled) {
-        return 'bg-zinc-50 dark:bg-gray-800 outline outline-1 outline-neutral-200 dark:outline-gray-700';
+        return 'bg-zinc-50 dark:bg-neutral-800 outline outline-1 outline-neutral-200 dark:outline-neutral-700';
       }
       return 'bg-brand-green';
     }
     case 'secondary': {
-      return 'outline outline-1 dark:outline-gray-700 outline-neutral-200 bg-white dark:bg-gray-900';
+      return 'outline outline-1 dark:outline-neutral-700 outline-neutral-200 bg-white dark:bg-neutral-900';
     }
     default: {
       return 'bg-inherit';

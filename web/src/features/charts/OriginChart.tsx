@@ -132,7 +132,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
       </div>
       {isConsumptionAndAggregatedResolution && (
         <div
-          className="prose my-1 rounded bg-gray-200 p-2 text-xs leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
+          className="prose my-1 rounded bg-neutral-200 p-2 text-xs leading-snug dark:bg-neutral-800 dark:text-white dark:prose-a:text-white"
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}

@@ -26,7 +26,7 @@ function Axis({
   const [rangeStart, rangeEnd] = scale.range();
   return (
     <Group
-      className="text-gray-500/30"
+      className="text-neutral-500/30"
       fill="none"
       fontSize="10"
       fontFamily="sans-serif"

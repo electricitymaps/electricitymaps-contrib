@@ -1,4 +1,4 @@
-import { LogoIcon } from 'features/header/Logo';
+import { LogoIcon } from 'components/Logo';
 import { BookOpenIcon, CodeXmlIcon, FileSpreadsheetIcon, MapIcon } from 'lucide-react';
 
 import { MenuItem } from './MenuItem';

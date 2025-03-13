@@ -35,7 +35,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
   return (
     <div
       data-testid="carbon-chart-tooltip"
-      className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]"
+      className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]"
     >
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}

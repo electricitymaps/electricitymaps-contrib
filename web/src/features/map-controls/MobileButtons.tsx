@@ -15,7 +15,7 @@ export default function MobileButtons() {
         size="md"
         type="secondary"
         aria-label="open info modal"
-        backgroundClasses="bg-white/80 backdrop-blur dark:bg-gray-800/80 pointer-events-auto"
+        backgroundClasses="bg-white/80 backdrop-blur dark:bg-neutral-800/80 pointer-events-auto"
         onClick={handleOpenInfoModal}
         icon={<Info size={20} />}
       />
@@ -24,7 +24,7 @@ export default function MobileButtons() {
         type="secondary"
         aria-label="open settings modal"
         onClick={handleOpenSettingsModal}
-        backgroundClasses="bg-white/80 backdrop-blur dark:bg-gray-800/80 pointer-events-auto"
+        backgroundClasses="bg-white/80 backdrop-blur dark:bg-neutral-800/80 pointer-events-auto"
         icon={<Settings size={20} />}
         data-testid="settings-button-mobile"
       />

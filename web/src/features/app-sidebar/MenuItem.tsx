@@ -25,7 +25,7 @@ export function MenuItem({
       tooltipContent={<p>{label}</p>}
       side="right"
       sideOffset={4}
-      tooltipClassName=" bg-white z-50 py-1.5 px-3  dark:border-gray-700 dark:border"
+      tooltipClassName="rounded"
     >
       <SidebarMenuItem className="flex flex-col">
         <SidebarMenuButton

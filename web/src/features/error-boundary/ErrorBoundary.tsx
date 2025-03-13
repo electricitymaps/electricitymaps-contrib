@@ -18,14 +18,14 @@ export default function ErrorComponent({ error }: Props) {
         <a href="https://github.com/electricityMaps/electricitymaps-contrib">on Github</a>{' '}
         so we can fix this!
       </p>
-      <pre className="rounded-lg bg-gray-300 p-2 text-xs dark:bg-black">
+      <pre className="rounded-lg bg-neutral-300 p-2 text-xs dark:bg-black">
         Error message: {error instanceof Error ? error.toString() : JSON.stringify(error)}
         <br />
         Url: {url}
       </pre>
       <a
         href="/map"
-        className="mt-4 cursor-pointer rounded-lg border border-gray-200 bg-gray-100 p-2 text-base text-black"
+        className="mt-4 cursor-pointer rounded-lg border border-neutral-200 bg-neutral-100 p-2 text-base text-black"
       >
         Back to map
       </a>

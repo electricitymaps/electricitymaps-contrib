@@ -24,7 +24,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
     Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeRange={timeRange}

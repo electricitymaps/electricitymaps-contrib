@@ -22,7 +22,7 @@ export interface ZoneRowType {
 function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType) {
   return (
     <InternalLink
-      className="group my-1 flex h-11 w-full items-center gap-2 rounded bg-gray-100 px-3 hover:bg-gray-200 focus:border focus:border-gray-400/60 focus-visible:outline-none dark:border dark:border-gray-400/10 dark:bg-gray-800 dark:hover:bg-gray-700/70 dark:focus:border-gray-500/80"
+      className="group my-1 flex h-11 w-full items-center gap-2 rounded bg-neutral-100 px-3 hover:bg-neutral-200 focus:border focus:border-neutral-400/60 focus-visible:outline-none dark:border dark:border-neutral-400/10 dark:bg-neutral-800 dark:hover:bg-neutral-700/70 dark:focus:border-neutral-500/80"
       key={ranking}
       to={`/zone/${zoneId}`}
       data-testid="zone-list-link"
@@ -34,10 +34,13 @@ function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType)
       <div className="flex grow flex-col">
         <h3 className="truncate">{countryName || zoneName}</h3>
         {countryName && (
-          <h4 className="truncate text-gray-500 dark:text-gray-400">{zoneName}</h4>
+          <h4 className="truncate text-neutral-500 dark:text-neutral-400">{zoneName}</h4>
         )}
       </div>
-      <ChevronRight size={14} className="hidden group-hover:block dark:text-gray-400" />
+      <ChevronRight
+        size={14}
+        className="hidden group-hover:block dark:text-neutral-400"
+      />
     </InternalLink>
   );
 }

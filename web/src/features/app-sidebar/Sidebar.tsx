@@ -36,7 +36,7 @@ const Sidebar = React.forwardRef<
           side === 'left'
             ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
-          'z-20 overflow-hidden  bg-white dark:bg-gray-800',
+          'z-20 overflow-hidden  bg-white dark:bg-neutral-900',
           className
         )}
         {...props}

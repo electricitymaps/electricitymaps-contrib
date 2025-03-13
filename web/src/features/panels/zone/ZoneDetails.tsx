@@ -132,7 +132,7 @@ export default function ZoneDetails(): JSX.Element {
       <div
         id="panel-scroller"
         className={twMerge(
-          'mb-3 h-full scroll-pt-5 overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-64',
+          'mb-3 h-full overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-24',
           isIosCapacitor ? 'pb-72' : 'pb-48'
         )}
       >

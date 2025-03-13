@@ -265,7 +265,7 @@ function TimeDisclaimer() {
     <Disclaimer
       Icon={<Clock3 size={16} />}
       text={`${t('country-panel.price-chart.time-disclaimer')} ${date.at(-1)?.value}.`}
-      className="flex flex-row pb-3 text-neutral-600 dark:text-gray-300"
+      className="flex flex-row pb-3 text-neutral-600 dark:text-neutral-300"
       testId="time-disclaimer"
     />
   );

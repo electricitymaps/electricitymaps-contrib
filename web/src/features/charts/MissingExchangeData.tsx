@@ -41,7 +41,7 @@ export function MissingExchangeDataDisclaimer() {
   if (isWithinPrevious48Hours && isMissingSignificantExchangeData) {
     return (
       <p
-        className="prose my-1 rounded bg-gray-200 p-2 text-xs leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
+        className="prose my-1 rounded bg-neutral-200 p-2 text-xs leading-snug dark:bg-neutral-800 dark:text-white dark:prose-a:text-white"
         style={{ width: `calc(100% - ${MARGIN}px)` }}
       >
         {t('country-history.exchange-delay')}

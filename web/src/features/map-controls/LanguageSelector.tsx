@@ -52,9 +52,9 @@ export function LanguageSelector({ isMobile }: { isMobile?: boolean }) {
           key={key}
           onKeyDown={() => handleLanguageSelect(key)}
           onClick={() => handleLanguageSelect(key)}
-          className={`w-full cursor-pointer px-2 py-1 text-start text-sm transition hover:bg-gray-200 dark:hover:bg-gray-700 ${
+          className={`w-full cursor-pointer px-2 py-1 text-start text-sm transition hover:bg-neutral-200 dark:hover:bg-neutral-700 ${
             languageNames[key] === selectedLanguage &&
-            'bg-gray-100 font-bold dark:bg-gray-700'
+            'bg-neutral-100 font-bold dark:bg-neutral-700'
           }`}
         >
           {languageNames[key]}

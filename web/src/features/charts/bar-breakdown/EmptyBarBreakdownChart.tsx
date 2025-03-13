@@ -45,7 +45,7 @@ function EmptyBarBreakdownChart({
     <>
       <div style={{ width, height, position: 'absolute' }}>
         {overLayText && (
-          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-sm dark:bg-gray-900">
+          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-neutral-200 p-2 text-center text-sm shadow-sm dark:bg-neutral-900">
             {overLayText}
           </div>
         )}

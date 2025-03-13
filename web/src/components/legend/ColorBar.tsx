@@ -48,7 +48,7 @@ function HorizontalColorbar({
         {spreadOverDomain(linearScale, ticksCount).map((t) => (
           <div
             key={t}
-            className="text-xs font-medium text-neutral-600 dark:text-gray-300"
+            className="text-xs font-medium text-neutral-600 dark:text-neutral-300"
           >
             {Math.round(t)}
           </div>

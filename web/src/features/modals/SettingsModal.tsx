@@ -72,11 +72,13 @@ export function SettingsModalContent() {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center space-y-2">
-      <div className="rounded-full bg-gray-500">
-        {!isConsumptionOnlyMode && <ConsumptionProductionToggle />}
+      <div className="rounded-full bg-neutral-500">
+        {!isConsumptionOnlyMode && (
+          <ConsumptionProductionToggle transparentBackground={false} />
+        )}
       </div>
-      <div className="rounded-full bg-gray-500">
-        <SpatialAggregatesToggle />
+      <div className="rounded-full bg-neutral-500">
+        <SpatialAggregatesToggle transparentBackground={false} />
       </div>
       <LanguageSelector isMobile />
       <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />

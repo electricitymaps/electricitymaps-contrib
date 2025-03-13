@@ -36,12 +36,12 @@ export default function ProductionSourceLegendList({
             type="tertiary"
             size="sm"
             foregroundClasses={twMerge(
-              'text-xs font-normal text-neutral-600 dark:text-gray-300',
+              'text-xs font-normal text-neutral-600 dark:text-neutral-300',
               isSourceSelected && 'text-neutral-800 dark:text-white'
             )}
             backgroundClasses={twMerge(
               isSourceSelected &&
-                'outline outline-1 outline-neutral-200 bg-neutral-400/10 dark:bg-gray-600/80 dark:outline-gray-400/50'
+                'outline outline-1 outline-neutral-200 bg-neutral-400/10 dark:bg-neutral-600/80 dark:outline-neutral-400/50'
             )}
             onClick={onClick}
             icon={<ProductionSourceLegend key={index} electricityType={source} />}
