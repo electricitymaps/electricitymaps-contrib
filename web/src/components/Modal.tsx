@@ -28,7 +28,7 @@ export default function Modal({
           // Avoid close button being auto-focused initially, as pressing space will otherwise close the modal
           onOpenAutoFocus={(event: Event) => event.preventDefault()}
           data-testid={testId}
-          className={`fixed left-1/2 top-1/2 z-40 max-h-full w-[98vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-2xl shadow-md sm:w-[90vw] ${
+          className={`fixed left-1/2 top-1/2 z-40 max-h-full w-[98vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white/80 shadow-md dark:bg-neutral-900/80 sm:w-[90vw] ${
             fullWidth ? 'p-0' : 'p-4'
           }`}
         >
