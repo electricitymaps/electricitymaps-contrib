@@ -20,7 +20,7 @@ export default function GlassContainer({
   className?: string;
   backdropClassName?: string;
   children: React.ReactNode;
-  [key: string]: any;
+  [key: string]: React.HTMLAttributes<HTMLDivElement>;
 }): JSX.Element {
   return (
     <div
