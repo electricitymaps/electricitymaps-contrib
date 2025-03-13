@@ -24,6 +24,8 @@
     @apply text-gray-900 dark:text-gray-200;
     /* Disables mobile touch specific blue user select effect */
     -webkit-tap-highlight-color: transparent;
+    /* Disables overscroll behavior (e.g. the "bounce" effect when scorlling past content on MacOS and iOS) */
+    overscroll-behavior: none;
   }
   h1 {
     @apply text-xl;
