@@ -154,7 +154,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict[str, Any]:
         for _i, data in df_zone.iterrows():
             mode_capacity = {}
             mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
-            mode_capacity["value"] = round(float(data["capacity_mw"]), 0)
+            mode_capacity["value"] = round(float(data["capacity_mw"]), 2)
             mode_capacity["source"] = SOURCE
             zone_capacity[data["mode"]] = mode_capacity
         all_capacity[zone] = zone_capacity
@@ -176,6 +176,7 @@ def fetch_production_capacity_for_all_zones(
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
 ) -> dict[str, Any] | None:
+    """Get capacity data for a specific zone. The unit is the MW"""
     all_capacity = fetch_production_capacity_for_all_zones(
         target_datetime=target_datetime, session=session, zone_key=zone_key
     )
