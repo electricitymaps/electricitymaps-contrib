@@ -18,14 +18,6 @@ capacity:
     - datetime: '2023-01-01'
       source: IRENA.org
       value: 43599.0
-  gas:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  geothermal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   hydro:
     - datetime: '2020-01-01'
       source: IRENA.org
@@ -71,10 +63,6 @@ capacity:
     - datetime: '2023-01-01'
       source: IRENA.org
       value: 6164.23
-  unknown:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   wind:
     - datetime: '2020-01-01'
       source: IRENA.org

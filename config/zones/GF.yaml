@@ -8,30 +8,10 @@ capacity:
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 5.08
-  coal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  gas:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  geothermal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   hydro:
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 120.18
-  hydro storage:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  nuclear:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   oil:
     - datetime: '2020-01-01'
       source: IRENA.org
@@ -46,14 +26,6 @@ capacity:
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 55.27
-  unknown:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  wind:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99

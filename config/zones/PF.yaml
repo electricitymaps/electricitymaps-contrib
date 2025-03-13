@@ -4,22 +4,6 @@ bounding_box:
   - - -134.44298255099994
     - -7.450127862999921
 capacity:
-  biomass:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  coal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  gas:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  geothermal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   hydro:
     - datetime: '2020-01-01'
       source: IRENA.org
@@ -27,14 +11,6 @@ capacity:
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 49.2
-  hydro storage:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  nuclear:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   oil:
     - datetime: '2020-01-01'
       source: IRENA.org
@@ -55,10 +31,6 @@ capacity:
     - datetime: '2023-01-01'
       source: IRENA.org
       value: 52.87
-  unknown:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   wind:
     - datetime: '2020-01-01'
       source: IRENA.org
