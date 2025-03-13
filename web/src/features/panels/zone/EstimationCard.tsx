@@ -145,8 +145,8 @@ function BaseCard({
       className={`w-full rounded-lg px-3 py-1.5 ${
         estimationMethod == 'outage'
           ? 'bg-warning/20 dark:bg-warning-dark/20'
-          : 'bg-neutral-100 dark:bg-gray-800'
-      } mb-4 border border-neutral-200 transition-all dark:border-gray-700`}
+          : 'bg-neutral-100/60 dark:bg-neutral-800/60'
+      } mb-4 border border-neutral-200 transition-all dark:border-neutral-700`}
     >
       <Accordion
         onClick={() => trackToggle()}

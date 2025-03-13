@@ -36,7 +36,7 @@ export default function Modal({
             </Dialog.Title>
           )}
           <Dialog.Close
-            className="absolute right-2 top-2 rounded-full bg-gray-100 p-1.5 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-700"
+            className="absolute right-2 top-2 rounded-full bg-neutral-200 p-1.5 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700"
             aria-label="Close"
             data-testid="close-modal-button"
           >

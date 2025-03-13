@@ -35,7 +35,7 @@ const BackgroundArc = memo(function BackgroundArc({ radius }: { radius: number }
       innerRadius={radius * 0.8}
       startAngle={PIE_START_ANGLE}
       endAngle={PIE_END_ANGLE}
-      className="fill-gray-200/60 dark:fill-gray-600/50"
+      className="fill-neutral-600/15 dark:fill-neutral-600/50"
       cornerRadius={radius}
     />
   );
