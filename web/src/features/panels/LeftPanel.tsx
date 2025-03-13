@@ -1,5 +1,6 @@
 import Logo from 'features/header/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
+import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { useAtom } from 'jotai';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -57,9 +58,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
         !isOpen && '-translate-x-full'
       )}
     >
-      {isMobile && <MobileHeader />}
-      <section className="h-full w-full">{children}</section>
-      <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
+      <TimeControllerWrapper />
     </div>
   );
 }

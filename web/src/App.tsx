@@ -27,7 +27,6 @@ const MapOverlays = lazy(() => import('components/MapOverlays'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
-const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
 
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
@@ -113,9 +112,6 @@ export default function App(): ReactElement {
                 </Suspense>
                 <Suspense>
                   <MapWrapper />
-                </Suspense>
-                <Suspense>
-                  <TimeControllerWrapper />
                 </Suspense>
                 <Suspense>
                   <MapOverlays />
