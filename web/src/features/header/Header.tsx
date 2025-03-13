@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge';
 import trackEvent from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
 
-import Logo from './Logo';
+import Logo, { LogoText } from './Logo';
 
 interface MenuLinkProps {
   href?: string;
@@ -72,12 +72,13 @@ export default function Header(): JSX.Element {
   return (
     <header
       className={twMerge(
-        'z-40 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pr-4',
+        'z-40 hidden w-full items-center justify-between bg-white px-4 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-800 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] md:pl-0 md:pr-4 md:pt-[3px]',
         !isMobileApp && 'sm:block md:flex'
       )}
     >
       <Link href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral">
-        <Logo className="h-12 w-56 fill-black dark:fill-white" />
+        <Logo className="h-12 w-56 fill-black dark:fill-white md:hidden" />
+        <LogoText className="-ml-2 hidden h-12 w-48 text-black dark:text-white md:block" />
       </Link>
       <NavigationMenu.Root className="hidden sm:block">
         <NavigationMenu.List className="flex w-full justify-around md:space-x-2">
@@ -115,7 +116,7 @@ export default function Header(): JSX.Element {
           <Button
             onClick={handleClick}
             backgroundClasses="my-2.5"
-            foregroundClasses="text-base lg:text-[1rem] py-1 px-6"
+            foregroundClasses="text-sm leading-4 lg:leading-5 lg:text-[1rem] px-2 py-0 lg:py-1 lg:px-6"
             href="https://electricitymaps.com/get-our-data?utm_source=app.electricitymaps.com&utm_medium=referral"
           >
             {t('button.api')}
