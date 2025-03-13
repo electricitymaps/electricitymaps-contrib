@@ -21,9 +21,12 @@ capacity:
       source: IRENA.org
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2020-01-01'
       source: IRENA.org
-      value: 48.0
+      value: 48.65
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 49.2
   hydro storage:
     - datetime: '2021-01-01'
       source: IRENA.org
@@ -33,21 +36,33 @@ capacity:
       source: IRENA.org
       value: 0.0
   oil:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 210.38
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 216.0
+      value: 216.38
   solar:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 44.61
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 45.0
+      value: 45.68
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 52.12
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 52.87
   unknown:
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2020-01-01'
       source: IRENA.org
-      value: 0.0
+      value: 0.25
 contributors:
   - autipial
 country: PF

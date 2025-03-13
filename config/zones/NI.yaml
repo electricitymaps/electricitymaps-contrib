@@ -5,9 +5,9 @@ bounding_box:
     - 15.0162671981
 capacity:
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2020-01-01'
       source: IRENA.org
-      value: 220.0
+      value: 220.11
   coal:
     - datetime: '2021-01-01'
       source: IRENA.org
@@ -17,19 +17,25 @@ capacity:
       source: IRENA.org
       value: 0.0
   geothermal:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 153.24
     - datetime: '2022-01-01'
       source: IRENA.org
-      value: 165.0
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 153.0
+      value: 165.44
   hydro:
-    - datetime: '2022-01-01'
+    - datetime: '2020-01-01'
       source: IRENA.org
-      value: 159.0
+      value: 157.17
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 158.0
+      value: 158.38
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 158.57
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 160.05
   hydro storage:
     - datetime: '2021-01-01'
       source: IRENA.org
@@ -39,24 +45,36 @@ capacity:
       source: IRENA.org
       value: 0.0
   oil:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 888.56
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 883.13
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 883.22
+  solar:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 16.36
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 16.29
     - datetime: '2022-01-01'
       source: IRENA.org
-      value: 883.0
-    - datetime: '2021-01-01'
+      value: 17.39
+    - datetime: '2023-01-01'
       source: IRENA.org
-      value: 884.0
-  solar:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 16.0
+      value: 18.49
   unknown:
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2020-01-01'
       source: IRENA.org
-      value: 186.0
+      value: 186.2
 contributors:
   - corradio
   - systemcatch
