@@ -49,7 +49,12 @@ function CarbonIntensitySquare({
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
+      <TooltipWrapper
+        tooltipContent={tooltipContent}
+        tooltipClassName="max-w-[200px]"
+        side="bottom"
+        sideOffset={8}
+      >
         <div className="relative flex flex-col items-center">
           <div className="size-20 p-1">
             <animated.div
