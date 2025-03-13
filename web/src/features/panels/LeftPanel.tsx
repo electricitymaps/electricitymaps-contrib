@@ -1,41 +1,14 @@
-import Logo from 'features/header/Logo';
+import GlassContainer from 'components/GlassContainer';
+import Logo from 'components/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
-import { useAtom } from 'jotai';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { useIsMobile } from 'utils/styling';
 
-import { leftPanelOpenAtom } from './panelAtoms';
-
-type CollapseButtonProps = {
-  isCollapsed: boolean;
-  onCollapse: () => void;
-};
-
-function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
-  const { t } = useTranslation();
-  return (
-    <button
-      data-testid="left-panel-collapse-button"
-      className={
-        'absolute left-full top-2 z-[21] mt-[env(safe-area-inset-top)] h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
-      }
-      onClick={onCollapse}
-      aria-label={
-        isCollapsed ? t('aria.label.showSidePanel') : t('aria.label.hideSidePanel')
-      }
-    >
-      {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
-    </button>
-  );
-}
-
 function MobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between pl-1 dark:bg-gray-900">
+    <div className="flex w-full items-center justify-between pl-1 dark:bg-neutral-900">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
       <MobileButtons />
     </div>
@@ -43,21 +16,21 @@ function MobileHeader() {
 }
 
 function OuterPanel({ children }: { children: React.ReactNode }) {
-  const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
   const location = useLocation();
   const isMobile = useIsMobile();
-
-  const onCollapse = () => setOpen(!isOpen);
 
   return (
     <div
       data-testid="left-panel"
       className={twMerge(
-        'absolute left-0 top-0 z-[21] h-full w-full border-l border-stroke bg-zinc-50 pt-[env(safe-area-inset-top)] shadow-xl transition-all duration-500 dark:border-neutral-800 dark:border-stroke-dark dark:bg-gray-900 dark:[color-scheme:dark] sm:w-[calc(14vw_+_16rem)]',
-        location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex',
-        !isOpen && '-translate-x-full'
+        'absolute inset-0 z-10 hidden sm:w-[calc(14vw_+_16rem)]',
+        location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex'
       )}
     >
+      <GlassContainer className="z-[21] pt-[env(safe-area-inset-top)]  transition-all duration-500 sm:inset-3 sm:bottom-48 sm:h-auto">
+        {isMobile && <MobileHeader />}
+        <section className="h-full w-full">{children}</section>
+      </GlassContainer>
       <TimeControllerWrapper />
     </div>
   );
