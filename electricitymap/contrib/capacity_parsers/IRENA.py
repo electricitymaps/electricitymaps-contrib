@@ -21,14 +21,14 @@ IRENA_JSON_TO_MODE_MAPPING = {
     4: "wind",  # Offshore wind energy
     5: "hydro",  # Renewable hydropower
     6: "hydro",  # Mixed Hydro Plants
-    7: "marine",  # Marine energy
+    7: "unknown",  # Marine energy -> Not mapped currently
     8: "biomass",  # Solid biofuels
     9: "biomass",  # Renewable municipal waste
     10: "biomass",  # Liquid biofuels
     11: "biomass",  # Biogas
     12: "geothermal",  # Geothermal energy
     13: "unknown",  # Total Non-Renewable -> Do not consider
-    14: "hydro_storage",  # Pumped storage
+    14: "hydro storage",  # Pumped storage
     15: "coal",  # Coal and peat
     16: "oil",  # Oil
     17: "gas",  # Natural gas

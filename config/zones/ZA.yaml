@@ -26,10 +26,6 @@ capacity:
       source: IRENA.org
       value: 751.65
   hydro storage:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 2732.0
-  hydro_storage:
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 2732.0

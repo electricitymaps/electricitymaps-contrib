@@ -54,20 +54,9 @@ capacity:
       source: IRENA.org
       value: 1805.0
   hydro storage:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 4700.0
-  hydro_storage:
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 4700.0
-  marine:
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 256.0
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 255.58
   nuclear:
     - datetime: '2020-01-01'
       source: IRENA.org
@@ -104,16 +93,16 @@ capacity:
   unknown:
     - datetime: '2020-01-01'
       source: IRENA.org
-      value: 865.0
+      value: 1121.0
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 1031.5
+      value: 1287.5
     - datetime: '2022-01-01'
       source: IRENA.org
-      value: 1173.5
+      value: 1429.5
     - datetime: '2023-01-01'
       source: IRENA.org
-      value: 1174.5
+      value: 1430.08
   wind:
     - datetime: '2020-01-01'
       source: IRENA.org
