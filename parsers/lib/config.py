@@ -2,12 +2,60 @@ import functools
 import os
 from copy import deepcopy
 from datetime import timedelta
+from enum import Enum
 from inspect import signature
 from logging import getLogger
 
 import requests
 from requests import Session
 from requests.adapters import HTTPAdapter, Retry
+
+
+# TODO: Switch this to StringEnum when we migrate to Python 3.11
+class BaseModeEnum(str, Enum):
+    """Base class for Mode enums."""
+
+    def __str__(self) -> str:
+        return self.value
+
+    @classmethod
+    def values(cls) -> list[str]:
+        """Return a list of all enum string values."""
+        return [mode.value for mode in cls]
+
+    @classmethod
+    def names(cls) -> list[str]:
+        """Return a list of all enum names."""
+        return [mode.name for mode in cls]
+
+    @classmethod
+    def items(cls) -> list[tuple[str, str]]:
+        """Return a list of (name, value) tuples."""
+        return [(mode.name, mode.value) for mode in cls]
+
+
+class ProductionModes(BaseModeEnum):
+    """Energy production modes/sources used throughout the parsers."""
+
+    # TODO: When we migrate to StringEnum, we should use the `auto()` method
+    BIOMASS = "biomass"
+    COAL = "coal"
+    GAS = "gas"
+    GEOTHERMAL = "geothermal"
+    HYDRO = "hydro"
+    NUCLEAR = "nuclear"
+    OIL = "oil"
+    SOLAR = "solar"
+    WIND = "wind"
+    UNKNOWN = "unknown"
+
+
+class StorageModes(BaseModeEnum):
+    """Energy storage modes/sources used throughout the parsers."""
+
+    # TODO: When we migrate to StringEnum, we should use the `auto()` method
+    BATTERY = "battery"
+    HYDRO = "hydro"
 
 
 def refetch_frequency(frequency: timedelta):
