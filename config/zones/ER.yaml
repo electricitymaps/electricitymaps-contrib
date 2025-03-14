@@ -1,3 +1,27 @@
+capacity:
+  oil:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 206.0
+  solar:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 25.92
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 25.91
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 25.13
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 24.79
+  wind:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 0.83
 country: ER
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Asmara

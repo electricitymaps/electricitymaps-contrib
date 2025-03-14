@@ -89,7 +89,7 @@ def update_zone_capacity_config(zone_key: ZoneKey, data: dict) -> None:
         else:
             capacity = generate_zone_capacity_config(capacity, data)
     else:
-        capacity = {key: [value] for key, value in data.items()}
+        capacity = {key: [value] for key, value in data.items() if value["value"] > 0}
 
     _new_zone_config["capacity"] = capacity
 

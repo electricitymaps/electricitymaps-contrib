@@ -3,6 +3,49 @@ bounding_box:
     - 2.904734871690188
   - - 48.47947979479795
     - 15.379157026350086
+capacity:
+  biomass:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 290.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 335.0
+  geothermal:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 7.3
+  hydro:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 3817.28
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 4071.28
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 4821.28
+  oil:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 104.0
+  solar:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 12.35
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 20.18
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 21.18
+  wind:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 324.01
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 404.01
 country: ET
 emissionFactors:
   lifecycle:
@@ -52,5 +95,7 @@ fallbackZoneMixes:
         solar: 0.002018939705847075
         unknown: 0.0
         wind: 0.030513859522903735
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Addis_Ababa
