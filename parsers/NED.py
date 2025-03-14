@@ -13,7 +13,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import ProductionModes, refetch_frequency
 
 from .ENTSOE import ENTSOE_DOMAIN_MAPPINGS
 from .ENTSOE import parse_production as ENTSOE_parse_production
@@ -24,17 +24,17 @@ from .lib.utils import get_token
 URL = "https://api.ned.nl/v1/utilizations"
 
 TYPE_MAPPING = {
-    1: "wind",
-    51: "wind",
-    2: "solar",
-    10: "unknown",
-    26: "unknown",
-    18: "gas",
-    35: "gas",
-    19: "coal",
-    20: "nuclear",
-    21: "biomass",
-    25: "biomass",
+    1: ProductionModes.WIND,
+    51: ProductionModes.WIND,
+    2: ProductionModes.SOLAR,
+    10: ProductionModes.UNKNOWN,
+    26: ProductionModes.UNKNOWN,
+    18: ProductionModes.GAS,
+    35: ProductionModes.GAS,
+    19: ProductionModes.COAL,
+    20: ProductionModes.NUCLEAR,
+    21: ProductionModes.BIOMASS,
+    25: ProductionModes.BIOMASS,
 }
 
 

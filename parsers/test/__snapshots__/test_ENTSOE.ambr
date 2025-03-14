@@ -8373,7 +8373,7 @@
   list([
     dict({
       'correctedModes': list([
-        'gas',
+        <ProductionModes.GAS: 'gas'>,
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 9, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
@@ -8390,7 +8390,7 @@
     }),
     dict({
       'correctedModes': list([
-        'gas',
+        <ProductionModes.GAS: 'gas'>,
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 10, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
@@ -9111,7 +9111,7 @@
     }),
     dict({
       'correctedModes': list([
-        'gas',
+        <ProductionModes.GAS: 'gas'>,
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 7, 0, tzinfo=datetime.timezone.utc),
       'production': dict({

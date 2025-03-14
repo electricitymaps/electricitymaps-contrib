@@ -1,4 +1,3 @@
-import math
 import os
 
 TOKEN_WIKI_URL = (
@@ -20,9 +19,3 @@ def get_token(token):
             "tokens."
         )
     return os.environ[token]
-
-
-def nan_to_zero(v):
-    if math.isnan(v):
-        return 0
-    return v

@@ -41,7 +41,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import ProductionModes, StorageModes, refetch_frequency
 
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
@@ -56,16 +56,20 @@ DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
 DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
 
 
-class EntsoeTypeEnum(Enum):
+# TODO: Switch this to a string enum when we migrate to Python 3.11
+class EntsoeTypeEnum(str, Enum):
     DAY_AHEAD = "A01"
     TOTAL = "A05"
     INTRADAY = "A40"
     CURRENT = "A18"
 
+    def __str__(self) -> str:
+        return self.value
+
 
 # The order of the forecast types is important for the parser to use the most recent data
 # This ensures that the order is consistent across all runs even if the enum is changed
-ORDERED_FORECAST_TYPES = [
+ORDERED_FORECAST_TYPES: list[EntsoeTypeEnum] = [
     EntsoeTypeEnum.DAY_AHEAD,
     EntsoeTypeEnum.INTRADAY,
     EntsoeTypeEnum.CURRENT,
@@ -97,18 +101,18 @@ ENTSOE_PARAMETER_DESC = {
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
     "production": {
-        "biomass": ["B01", "B17"],
-        "coal": ["B02", "B05", "B07", "B08"],
-        "gas": ["B03", "B04"],
-        "geothermal": ["B09"],
-        "hydro": ["B11", "B12"],
-        "nuclear": ["B14"],
-        "oil": ["B06"],
-        "solar": ["B16"],
-        "wind": ["B18", "B19"],
-        "unknown": ["B20", "B13", "B15"],
+        ProductionModes.BIOMASS: ["B01", "B17"],
+        ProductionModes.COAL: ["B02", "B05", "B07", "B08"],
+        ProductionModes.GAS: ["B03", "B04"],
+        ProductionModes.GEOTHERMAL: ["B09"],
+        ProductionModes.HYDRO: ["B11", "B12"],
+        ProductionModes.NUCLEAR: ["B14"],
+        ProductionModes.OIL: ["B06"],
+        ProductionModes.SOLAR: ["B16"],
+        ProductionModes.WIND: ["B18", "B19"],
+        ProductionModes.UNKNOWN: ["B20", "B13", "B15"],
     },
-    "storage": {"hydro": ["B10"], "battery": ["B25"]},
+    "storage": {StorageModes.HYDRO: ["B10"], StorageModes.BATTERY: ["B25"]},
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
@@ -704,7 +708,7 @@ def query_wind_solar_production_forecast(
         # Wind and solar forecast - A document providing the forecast of wind
         # and solar generation.
         "documentType": "A69",
-        "processType": EntsoeTypeEnum(process_type).value,
+        "processType": EntsoeTypeEnum(process_type),
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
@@ -1015,7 +1019,7 @@ def parse_exchange_forecast(
         marketAgreementType = timeseries.find("contract_marketagreement.type").contents[
             0
         ]
-        if marketAgreementType and marketAgreementType != market_type.value:
+        if marketAgreementType and marketAgreementType != market_type:
             continue
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(timeseries.find_all("start")[0].contents[0])
