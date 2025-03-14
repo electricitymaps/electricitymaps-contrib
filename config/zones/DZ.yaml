@@ -3,6 +3,48 @@ bounding_box:
     - 18.482071508441607
   - - 12.468319683196853
     - 37.58240717969856
+capacity:
+  gas:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 22460.6
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 23201.6
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 23657.6
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 24457.6
+  hydro:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 228.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 208.6
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 128.9
+  oil:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1462.9
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1561.9
+  solar:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 366.1
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 450.8
+  wind:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 10.0
 country: DZ
 emissionFactors:
   lifecycle:
@@ -52,5 +94,7 @@ fallbackZoneMixes:
         solar: 0.0070754161021284396
         unknown: 0.0
         wind: 0.00016600744389401443
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Algiers
