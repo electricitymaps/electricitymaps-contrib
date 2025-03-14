@@ -52,6 +52,7 @@ test:
 # we can split into two later if required
 test-all:
   BUILD +build
+  BUILD +test
   BUILD ./config+test
   # BUILD ./web+build # TODO: This currently fails for unknown reasons, disabling for now
   BUILD ./web+test
