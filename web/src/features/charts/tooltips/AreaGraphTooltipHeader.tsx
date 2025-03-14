@@ -5,7 +5,7 @@ import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { EstimationMethods, TimeRange } from 'utils/constants';
+import { EstimationMethods, isTSAModel, TimeRange } from 'utils/constants';
 import { endDatetimeAtom } from 'utils/state/atoms';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
@@ -38,6 +38,7 @@ export default function AreaGraphToolTipHeader({
     estimatedPercentage
   );
   const endDatetime = useAtomValue(endDatetimeAtom);
+  const isTSA = isTSAModel(estimationMethod);
   return (
     <>
       <div className="flex items-center gap-1 font-bold">
@@ -53,9 +54,8 @@ export default function AreaGraphToolTipHeader({
         {hasEstimationPill && (
           <EstimationBadge
             text={pillText}
-            Icon={
-              estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
-            }
+            Icon={isTSA ? CircleDashed : TrendingUpDown}
+            isPreliminary={isTSA}
           />
         )}
       </div>

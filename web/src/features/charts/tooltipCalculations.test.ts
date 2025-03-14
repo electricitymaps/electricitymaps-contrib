@@ -197,13 +197,13 @@ describe('getProductionTooltipData', () => {
 
   it('returns 0 usage for zero production', () => {
     const actual = getProductionTooltipData('solar', zoneDetailsData, false, false);
-    expect(actual.usage).to.eq(0);
-    expect(actual.emissions).to.eq(0);
+    expect(actual.usage).toEqual(0);
+    expect(actual.emissions).toEqual(0);
   });
 
   it('returns nan usage for null production', () => {
     const actual = getProductionTooltipData('geothermal', zoneDetailsData, false, false);
-    expect(actual.usage).to.be.NaN;
+    expect(actual.usage).toBeNaN();
   });
 
   it('handles data with all production modes missing', () => {
@@ -250,7 +250,7 @@ describe('getProductionTooltipData', () => {
       false
     );
 
-    expect(actual.usage).to.eq(41_161);
+    expect(actual.usage).toEqual(41_161);
   });
 });
 

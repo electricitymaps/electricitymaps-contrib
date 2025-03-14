@@ -79,7 +79,6 @@ def update_zone_capacity_config(zone_key: ZoneKey, data: dict) -> None:
     """Update the capacity config for a zone"""
     if zone_key not in ZONES_CONFIG:
         raise ValueError(f"Zone {zone_key} does not exist in the zones config")
-
     _new_zone_config = deepcopy(ZONES_CONFIG[zone_key])
     if "capacity" in _new_zone_config:
         capacity = _new_zone_config["capacity"]
@@ -112,13 +111,19 @@ def generate_zone_capacity_config(
     updated_capacity_config = deepcopy(capacity_config)
     for mode in existing_capacity_modes:
         if isinstance(capacity_config[mode], float | int):
+            if (
+                data[mode]["value"] == 0
+            ):  # Remove data points with 0 value if the existing capacity is a single value
+                continue
             updated_capacity_config[mode] = [data[mode]]
         elif isinstance(capacity_config[mode], list):
             updated_capacity_config[mode] = generate_zone_capacity_list(
                 mode, capacity_config, data
             )
+        else:
+            raise ValueError(f"Invalid capacity config type for {mode}")
 
-    new_modes = [m for m in data if m not in capacity_config]
+    new_modes = [m for m in data if m not in capacity_config and data[m]["value"] > 0]
     for mode in new_modes:
         updated_capacity_config[mode] = [data[mode]]
     return updated_capacity_config
@@ -154,7 +159,44 @@ def update_capacity_list_if_value_already_exists(
 def update_capacity_list_if_datetime_already_exists(
     mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
 ) -> list[dict[str, Any]]:
-    """Updates the capacity config for a zone if the capacity config is a list and the datetime already exists and the value is different."""
+    """Updates the capacity config for a zone if the capacity config is a list and the datetime already exists.
+    If the new value is the same as the most recent previous entry, removes the redundant entry."""
+    # Sort the existing capacity config by datetime
+    sorted_config = sorted(capacity_config[mode], key=itemgetter("datetime"))
+
+    # Find the index of the entry with the matching datetime
+    target_index = next(
+        i
+        for i, item in enumerate(sorted_config)
+        if item["datetime"] == new_capacity[mode]["datetime"]
+    )
+
+    # Check if this is the earliest entry
+    if target_index == 0:
+        # If it's the earliest entry, just update it
+        return sorted(
+            [
+                new_capacity[mode]
+                if item["datetime"] == new_capacity[mode]["datetime"]
+                else item
+                for item in capacity_config[mode]
+            ],
+            key=itemgetter("datetime"),
+        )
+
+    # Check if the new value is the same as the most recent previous entry
+    if new_capacity[mode]["value"] == sorted_config[target_index - 1]["value"]:
+        # If it's the same, remove this entry as it's redundant
+        return sorted(
+            [
+                item
+                for item in capacity_config[mode]
+                if item["datetime"] != new_capacity[mode]["datetime"]
+            ],
+            key=itemgetter("datetime"),
+        )
+
+    # Otherwise, update the entry with the new value
     return sorted(
         [
             new_capacity[mode]
@@ -169,21 +211,71 @@ def update_capacity_list_if_datetime_already_exists(
 def generate_zone_capacity_list(
     mode: str, capacity_config: dict[str, Any], new_capacity: dict[str, Any]
 ) -> list[dict[str, Any]]:
-    """Generate the updated capacity config for a zone if the capacity config is a list"""
-    if new_capacity[mode]["value"] in [d["value"] for d in capacity_config[mode]]:
-        return update_capacity_list_if_value_already_exists(
-            mode, capacity_config, new_capacity
-        )
-    elif new_capacity[mode]["datetime"] in [
-        d["datetime"] for d in capacity_config[mode]
-    ]:
+    """Generate the updated capacity config for a zone if the capacity config is a list.
+    Optimizes storage by not adding redundant entries with the same value as the most recent previous entry."""
+    # First check if the datetime already exists
+    if new_capacity[mode]["datetime"] in [d["datetime"] for d in capacity_config[mode]]:
         return update_capacity_list_if_datetime_already_exists(
             mode, capacity_config, new_capacity
         )
-    else:
-        return sorted(
-            capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
-        )
+    # If the datetime doesn't exist, we need to add the new capacity
+    # Sort the existing capacity config by datetime to check chronological order
+    sorted_config = sorted(capacity_config[mode], key=itemgetter("datetime"))
+
+    # Find entries with datetimes before the new entry
+    entries_before = [
+        item
+        for item in sorted_config
+        if item["datetime"] < new_capacity[mode]["datetime"]
+    ]
+
+    # Find entries with datetimes after the new entry
+    entries_after = [
+        item
+        for item in sorted_config
+        if item["datetime"] > new_capacity[mode]["datetime"]
+    ]
+
+    # If this is the earliest entry, we should add it
+    if not entries_before:
+        # Check if the next entry (if any) has the same value as the new entry
+        if entries_after and entries_after[0]["value"] == new_capacity[mode]["value"]:
+            # If the next entry has the same value, it's redundant - remove it
+            return sorted(
+                [
+                    item
+                    for item in sorted_config
+                    if item["datetime"] != entries_after[0]["datetime"]
+                ]
+                + [new_capacity[mode]],
+                key=itemgetter("datetime"),
+            )
+        else:
+            return sorted(
+                capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
+            )
+
+    # If the most recent entry before has a different value, we should add it
+    if entries_before[-1]["value"] != new_capacity[mode]["value"]:
+        # Check if the next entry (if any) has the same value as the new entry
+        if entries_after and entries_after[0]["value"] == new_capacity[mode]["value"]:
+            # If the next entry has the same value, it's redundant - remove it
+            return sorted(
+                [
+                    item
+                    for item in sorted_config
+                    if item["datetime"] != entries_after[0]["datetime"]
+                ]
+                + [new_capacity[mode]],
+                key=itemgetter("datetime"),
+            )
+        else:
+            return sorted(
+                capacity_config[mode] + [new_capacity[mode]], key=itemgetter("datetime")
+            )
+
+    # If the value is the same as the most recent entry before, we don't need to add it
+    return capacity_config[mode]
 
 
 def check_capacity_config_type(capacity_config: list, config_type: type) -> bool:

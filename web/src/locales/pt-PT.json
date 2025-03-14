@@ -72,7 +72,6 @@
     "aggregatedTooltip": "Os dados para esta zona são agregados e baseados em valores históricos de hora em hora.",
     "helpUs": "Ajude-nos a identificar o problema dando uma olhada nos <a href='{{link}}' target='_blank'>registos</a> ou a contactar o fornecedor de dados.",
     "noParserInfo": "Não temos nenhuma informação sobre esta área.<br/> Gostaria de o corrigir? Pode contribuir <a href='{{link}}' target='_blank'>ao adicionar dados da área</a>.",
-    "aggregationDisabled": "Dados não estão disponíveis para o período selecionado. Experimente um periodo maior",
     "now": "Agora",
     "by-source": {
       "emissions": "Emissões de carbono",
@@ -110,39 +109,10 @@
   "estimation-card": {
     "link": "Leia sobre os nossos modelos de estimativa",
     "outage-details": "Ver detalhes",
-    "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Os dados são estimados",
-      "pill": "Estimado",
-      "body": "Os dados para esta zona são estimados usando uma combinação de previsões de produção internas e externas e médias de <i>Time Slices</i>. Isso visa fornecer uma representação mais precisa do que a média de <i>Time Slices</i> sozinha, mas os dados ainda podem estar sujeitos a imprecisões. Os dados serão atualizados assim que os dados em tempo real estiverem disponíveis."
-    },
-    "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Os dados atuais são estimados",
-      "body": "O fornecedor de dados não está a reportar dados para esta hora. Os valores exibidos são estimados com base em medições históricas e serão substituídos por dados consolidados assim que estiverem disponíveis. Por favor, esteja ciente de que os valores estimados podem nem sempre ser precisos, uma vez que não contabilizam eventos climáticos específicos em tempo real."
-    },
-    "ESTIMATED_MODE_BREAKDOWN": {
-      "title": "Os dados são parcialmente estimados",
-      "pill": "Incompleto",
-      "body": "Dados de geração de eletricidade estão incompletos; valores em falta foram calculados usando um modelo de estimativa."
-    },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
-      "title": "Os dados são sempre estimados",
-      "pill": "Impreciso",
-      "body": "Os dados publicados para esta zona só contêm a produção total. Fontes renováveis são estimadas usando dados meteorológicos em tempo real, enquanto as fontes fósseis são aproximados com base em dados históricos para cada fonte de produção."
-    },
     "estimated_generic_method": {
       "title": "Os dados são estimados",
       "pill": "Impreciso",
       "body": "Os dados publicados para esta zona estão indisponíveis ou incompletos. Os dados mostrados no mapa são estimados ao melhor da nossa habilidade, mas podem diferir dos valores reais."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Os dados são sempre estimados",
-      "pill": "Não em tempo real",
-      "body": "Os dados para esta zona não são publicados em tempo real e só fornecem a produção total. Tanto a produção horária quanto as fontes de produção são estimadas com base em dados históricos para cada fonte de produção."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Os dados são sempre estimados",
-      "pill": "Não em tempo real",
-      "body": "Os dados para esta zona não são publicados em tempo real e só fornecem a produção total. Tanto a produção horária quanto as fontes de produção são estimadas com base em dados históricos para cada fonte de produção."
     },
     "threshold_filtered": {
       "title": "Dados em falta",
@@ -578,6 +548,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canadá"
+    },
     "CA-AB": {
       "countryName": "Canadá",
       "zoneName": "Alberta"
@@ -765,9 +738,13 @@
       "countryName": "Espanha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanha",
@@ -1079,10 +1056,6 @@
     "IQ": {
       "zoneName": "Iraque"
     },
-    "IQ-KUR": {
-      "countryName": "Iraque",
-      "zoneName": "Curdistão"
-    },
     "IR": {
       "zoneName": "Irã"
     },
@@ -1245,10 +1218,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "São Martinho",
-      "zoneName": "Francesa"
     },
     "MG": {
       "zoneName": "Madagáscar"
@@ -1674,38 +1643,6 @@
     "US-AK-SEAPA": {
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
-    },
-    "US-HI-HA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Havaí"
-    },
-    "US-HI-KA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Estados Unidos da América",

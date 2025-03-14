@@ -45,6 +45,7 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
         <ZoneHeaderTitle zoneId={zoneId} zoneNameFull={zoneNameFull} />
         <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
+
       {isShareButtonEnabled &&
         isConsumption &&
         (showMoreOptions ? (

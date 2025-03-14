@@ -4,50 +4,37 @@ bounding_box:
   - - -134.44298255099994
     - -7.450127862999921
 capacity:
-  biomass:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  coal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  gas:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  geothermal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2020-01-01'
       source: IRENA.org
-      value: 48.0
-  hydro storage:
-    - datetime: '2021-01-01'
+      value: 48.65
+    - datetime: '2022-01-01'
       source: IRENA.org
-      value: 0.0
-  nuclear:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+      value: 49.2
   oil:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 210.38
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 216.0
+      value: 216.38
   solar:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 44.61
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 45.0
-  unknown:
-    - datetime: '2021-01-01'
+      value: 45.68
+    - datetime: '2022-01-01'
       source: IRENA.org
-      value: 0.0
+      value: 52.12
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 52.87
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2020-01-01'
       source: IRENA.org
-      value: 0.0
+      value: 0.25
 contributors:
   - autipial
 country: PF
@@ -72,6 +59,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 420.63
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 367.53
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
@@ -82,6 +72,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 420.63
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 367.53
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -127,6 +120,21 @@ fallbackZoneMixes:
         nuclear: 0.0
         oil: 0.6308824117719226
         solar: 0.0819242574881353
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.3581810505035641
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.5455574648757916
+        solar: 0.09626067428950572
         unknown: 0.0
         wind: 0.0
 parsers:

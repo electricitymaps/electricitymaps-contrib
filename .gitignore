@@ -17,9 +17,11 @@ web/config
 Thumbs.db
 mobileapp/*.zip
 dist
+parsers/.venv
 
 # Ignore top level vscode folder as it is symlinked
 #.vscode
+.vscode/launch.json
 
 ## Pycharm IDE
 .idea

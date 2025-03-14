@@ -172,6 +172,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -362,6 +365,14 @@
     "ES-CN-FVLZ": {
       "countryName": "Spain",
       "zoneName": "Fuerteventura/Lanzarote"
+    },
+    "ES-CN-FV": {
+      "countryName": "Spain",
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spain",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spain",
@@ -843,8 +854,7 @@
       "zoneName": "Montenegro"
     },
     "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
+      "zoneName": "Saint-Martin"
     },
     "MG": {
       "zoneName": "Madagascar"
@@ -1270,6 +1280,10 @@
     "US-AK-SEAPA": {
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
+    },
+    "US-HI": {
+      "countryName": "USA",
+      "zoneName": "Hawaii"
     },
     "US-HI-HA": {
       "countryName": "USA",

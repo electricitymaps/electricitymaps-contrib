@@ -380,6 +380,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -567,9 +570,13 @@
       "countryName": "Spagna",
       "zoneName": "Minorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spagna",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spagna",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spagna",
@@ -860,10 +867,6 @@
     "IQ": {
       "zoneName": "Iraq"
     },
-    "IQ-KUR": {
-      "countryName": "Iraq",
-      "zoneName": "Curdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1023,10 +1026,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "San Martino",
-      "zoneName": "Francese"
     },
     "MG": {
       "zoneName": "Madagascar"
@@ -1428,38 +1427,6 @@
     },
     "US": {
       "zoneName": "Contigui Stati Uniti d'America"
-    },
-    "US-HI-HA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Stati Uniti d'America",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Stati Uniti d'America",

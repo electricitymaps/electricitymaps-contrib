@@ -54,10 +54,13 @@ emissionFactors:
     battery discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 445.26
+        value: 625.53
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 522.43
+        value: 396.93
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 421.44
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -90,10 +93,13 @@ emissionFactors:
     hydro discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 445.26
+        value: 625.53
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 522.43
+        value: 396.93
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 421.44
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -123,13 +129,13 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.16629657000647302
+        hydro: 0.132198084846763
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.37425561773806565
-        solar: 0.0029396081032061127
+        oil: 0.5297837798007383
+        solar: 0.0045826520006905765
         unknown: 0.0
-        wind: 0.4564911544252566
+        wind: 0.3334277688972878
     - _source: Electricity Maps, 2023 average
       datetime: '2023-01-01'
       value:
@@ -145,6 +151,21 @@ fallbackZoneMixes:
         solar: 0.005933823038562434
         unknown: 0.0
         wind: 0.43524042559796317
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.050524812072244754
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.46860447661480964
+        solar: 0.004961919576653245
+        unknown: 0.0
+        wind: 0.475904117942365
 parsers:
   production: FO.fetch_production
 region: Europe

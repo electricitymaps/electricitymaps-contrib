@@ -1,8 +1,37 @@
 bounding_box:
-  - - 177.133330
+  - - 177.13333
     - -19.62909541607167
   - - 179.9
     - -15.649580957852429
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 170.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
 country: FJ
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Fiji

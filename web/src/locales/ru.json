@@ -230,6 +230,9 @@
     "BZ": {
       "zoneName": "Белиз"
     },
+    "CA": {
+      "zoneName": "Канада"
+    },
     "CA-AB": {
       "countryName": "Канада",
       "zoneName": "Альберта"
@@ -389,9 +392,13 @@
     "ES": {
       "zoneName": "Испания"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Испания",
-      "zoneName": "Фуэртевентура / Лансароте"
+      "zoneName": "Фуэртевентура"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Испания",
+      "zoneName": "Лансароте"
     },
     "ES-CN-GC": {
       "countryName": "Испания",
@@ -752,10 +759,6 @@
     },
     "ME": {
       "zoneName": "Черногория"
-    },
-    "MF": {
-      "countryName": "Святой Мартин",
-      "zoneName": "Франция"
     },
     "MG": {
       "zoneName": "Мадагаскар"
@@ -1166,10 +1169,6 @@
       "countryName": "Индия",
       "zoneName": "Тамил Наду"
     },
-    "IQ-KUR": {
-      "countryName": "Ирак",
-      "zoneName": "Курдистан"
-    },
     "IT-CNO": {
       "countryName": "Италия",
       "zoneName": "Северный центр"
@@ -1285,38 +1284,6 @@
     "NO-NO5": {
       "countryName": "Норвегия",
       "zoneName": "Западная Норвегия"
-    },
-    "US-HI-HA": {
-      "countryName": "США",
-      "zoneName": "Гаваи"
-    },
-    "US-HI-KA": {
-      "countryName": "США",
-      "zoneName": "Кауаи"
-    },
-    "US-HI-KH": {
-      "countryName": "США",
-      "zoneName": "Кахулаве"
-    },
-    "US-HI-LA": {
-      "countryName": "США",
-      "zoneName": "Ланаи"
-    },
-    "US-HI-MA": {
-      "countryName": "США",
-      "zoneName": "Мауи"
-    },
-    "US-HI-MO": {
-      "countryName": "США",
-      "zoneName": "Молокаи"
-    },
-    "US-HI-NI": {
-      "countryName": "США",
-      "zoneName": "Ниихау"
-    },
-    "US-HI-OA": {
-      "countryName": "США",
-      "zoneName": "Оаху"
     }
   },
   "mobile-main-menu": {

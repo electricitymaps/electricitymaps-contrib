@@ -257,6 +257,9 @@
     "BZ": {
       "zoneName": "Μπελίζ"
     },
+    "CA": {
+      "zoneName": "Καναδάς"
+    },
     "CA-AB": {
       "countryName": "Καναδάς",
       "zoneName": "Alberta"
@@ -440,9 +443,13 @@
       "countryName": "Ισπανία",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Ισπανία",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Ισπανία",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Ισπανία",
@@ -725,10 +732,6 @@
     "IQ": {
       "zoneName": "Ιράκ"
     },
-    "IQ-KUR": {
-      "countryName": "Ιράκ",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Ιράν"
     },
@@ -888,10 +891,6 @@
     },
     "ME": {
       "zoneName": "Μαυροβούνιο"
-    },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
     },
     "MG": {
       "zoneName": "Μαδαγασκάρη"
@@ -1264,38 +1263,6 @@
     },
     "US": {
       "zoneName": "συνεχόμενες Ηνωμένες Πολιτείες"
-    },
-    "US-HI-HA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",

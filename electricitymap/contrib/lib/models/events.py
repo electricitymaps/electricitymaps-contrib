@@ -11,7 +11,11 @@ from typing import Any, Optional
 import pandas as pd
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
+from electricitymap.contrib.config import (
+    EXCHANGES_CONFIG,
+    RETIRED_ZONES_CONFIG,
+    ZONES_CONFIG,
+)
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.lib.types import ZoneKey
@@ -306,7 +310,7 @@ class Event(BaseModel, ABC):
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v):
-        if v not in ZONES_CONFIG:
+        if v not in ZONES_CONFIG and v not in RETIRED_ZONES_CONFIG:
             raise ValueError(f"Unknown zone: {v}")
         return v
 

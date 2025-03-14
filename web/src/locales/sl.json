@@ -363,6 +363,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Kanada"
+    },
     "CA-AB": {
       "countryName": "Kanada",
       "zoneName": "Alberta"
@@ -550,9 +553,13 @@
       "countryName": "Španija",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Španija",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Španija",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Španija",
@@ -843,10 +850,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1006,10 +1009,6 @@
     },
     "ME": {
       "zoneName": "Črna Gora"
-    },
-    "MF": {
-      "countryName": "Sveti Martin",
-      "zoneName": "Francoski del"
     },
     "MG": {
       "zoneName": "Madagaskar"
@@ -1415,38 +1414,6 @@
     "US-AK": {
       "countryName": "ZDA",
       "zoneName": "Aljaska"
-    },
-    "US-HI-HA": {
-      "countryName": "ZDA",
-      "zoneName": "Havaji"
-    },
-    "US-HI-KA": {
-      "countryName": "ZDA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "ZDA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "ZDA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "ZDA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "ZDA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "ZDA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "ZDA",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "ZDA",

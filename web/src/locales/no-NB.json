@@ -36,7 +36,6 @@
   "country-panel": {
     "aggregated": "aggregert",
     "aggregatedTooltip": "Data for denne sonen er aggregert fra historiske verdier for hver time",
-    "aggregationDisabled": "Data er ikke tilgjengelig for det valgte tidsrom på grunn av manglende detaljnivå på tidsserie. Velg en lengre tidsperiode.",
     "by-source": {
       "electricity-consumption": "Elektrisitetsforbruk",
       "electricity-production": "Elektrisitetsproduksjon",
@@ -409,6 +408,9 @@
     "BZ": {
       "zoneName": "Belize"
     },
+    "CA": {
+      "zoneName": "Canada"
+    },
     "CA-AB": {
       "countryName": "Canada",
       "zoneName": "Alberta"
@@ -580,9 +582,13 @@
       "countryName": "Spania",
       "zoneName": "Ceuta"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spania",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spania",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spania",
@@ -912,10 +918,6 @@
     "IQ": {
       "zoneName": "Irak"
     },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
-    },
     "IR": {
       "zoneName": "Iran"
     },
@@ -1078,10 +1080,6 @@
     },
     "ME": {
       "zoneName": "Montenegro"
-    },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
     },
     "MG": {
       "zoneName": "Madagaskar"
@@ -1591,38 +1589,6 @@
     "US-FLA-TEC": {
       "countryName": "USA",
       "zoneName": "Tampa Electric Company"
-    },
-    "US-HI-HA": {
-      "countryName": "USA",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "USA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "USA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "USA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "USA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "USA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "USA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "USA",
-      "zoneName": "Oahu"
     },
     "US-MIDA-PJM": {
       "countryName": "USA",

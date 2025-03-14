@@ -1,21 +1,15 @@
 import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
-import Badge, { PillType } from 'components/Badge';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtom, useAtomValue } from 'jotai';
-import {
-  ChartNoAxesColumn,
-  CircleDashed,
-  TrendingUpDown,
-  TriangleAlert,
-} from 'lucide-react';
+import { ChartNoAxesColumn, CircleDashed, TrendingUpDown } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
-import { EstimationMethods, TrackEvent } from 'utils/constants';
+import { EstimationMethods, isTSAModel, TrackEvent } from 'utils/constants';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -53,7 +47,7 @@ export default function EstimationCard({
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
-  const isTSAModel = estimationMethod === EstimationMethods.TSA;
+  const isTSA = isTSAModel(estimationMethod);
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
     hasEstimationFeedbackBeenSeenAtom
   );
@@ -86,12 +80,12 @@ export default function EstimationCard({
     case 'estimated': {
       return (
         <div>
-          {isTSAModel ? (
+          {isTSA ? (
             <EstimatedTSACard />
           ) : (
             <EstimatedCard estimationMethod={estimationMethod} />
           )}
-          {isFeedbackCardVisible && isTSAModel && (
+          {isFeedbackCardVisible && isTSA && (
             <FeedbackCard
               surveyReference={estimationMethod}
               postSurveyResponse={postSurveyResponse}
@@ -112,9 +106,7 @@ function BaseCard({
   estimatedPercentage,
   zoneMessage,
   icon,
-  iconPill,
   showMethodologyLink,
-  pillType,
   textColorTitle,
   cardType,
 }: {
@@ -122,9 +114,7 @@ function BaseCard({
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
   icon: React.ReactElement;
-  iconPill?: React.ReactElement;
   showMethodologyLink: boolean;
-  pillType?: PillType;
   textColorTitle: string;
   cardType: string;
 }) {
@@ -143,18 +133,11 @@ function BaseCard({
   const { t } = useTranslation();
 
   const title = useGetEstimationTranslation('title', estimationMethod);
-  const pillText = useGetEstimationTranslation(
-    'pill',
-    estimationMethod,
-    estimatedPercentage
-  );
+
   const bodyText = useGetEstimationTranslation(
     'body',
     estimationMethod,
     estimatedPercentage
-  );
-  const showBadge = Boolean(
-    estimationMethod == 'aggregated' ? estimatedPercentage : pillType
   );
 
   return (
@@ -167,9 +150,6 @@ function BaseCard({
     >
       <Accordion
         onClick={() => trackToggle()}
-        badge={
-          showBadge && <Badge type={pillType} icon={iconPill} pillText={pillText}></Badge>
-        }
         className={textColorTitle}
         icon={icon}
         title={title}
@@ -225,9 +205,7 @@ function OutageCard({
       estimationMethod={EstimationMethods.OUTAGE}
       zoneMessage={zoneMessageText}
       icon={<TrendingUpDown size={16} />}
-      iconPill={<TriangleAlert size={16} />}
       showMethodologyLink={false}
-      pillType="warning"
       textColorTitle="text-warning dark:text-warning-dark"
       cardType="outage-card"
     />
@@ -241,9 +219,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
       estimatedPercentage={estimatedPercentage}
       zoneMessage={undefined}
       icon={<ChartNoAxesColumn size={16} />}
-      iconPill={undefined}
       showMethodologyLink={false}
-      pillType={'warning'}
       textColorTitle="text-black dark:text-white"
       cardType="aggregated-card"
     />
@@ -260,10 +236,12 @@ function EstimatedCard({
       estimationMethod={estimationMethod}
       zoneMessage={undefined}
       icon={<TrendingUpDown size={16} />}
-      iconPill={undefined}
       showMethodologyLink={true}
-      pillType="default"
-      textColorTitle="text-warning dark:text-warning-dark"
+      textColorTitle={
+        estimationMethod === EstimationMethods.FORECASTS_HIERARCHY
+          ? 'text-black dark:text-white'
+          : 'text-warning dark:text-warning-dark'
+      }
       cardType="estimated-card"
     />
   );
@@ -275,10 +253,8 @@ function EstimatedTSACard() {
       estimationMethod={EstimationMethods.TSA}
       zoneMessage={undefined}
       icon={<CircleDashed size={16} />}
-      iconPill={undefined}
       showMethodologyLink={true}
-      pillType={undefined}
-      textColorTitle="text-warning dark:text-warning-dark"
+      textColorTitle="text-black dark:text-white"
       cardType="estimated-card"
     />
   );

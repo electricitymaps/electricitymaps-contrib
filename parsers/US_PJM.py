@@ -1,56 +1,64 @@
-#!/usr/bin/env python3
-
-"""Parser for the PJM area of the United States."""
+"""Parser for the PJM area of the United States (US-MIDA-PJM)."""
 
 import re
-from datetime import datetime, time, timedelta
+from datetime import datetime, time, timedelta, timezone
+from itertools import groupby
 from logging import Logger, getLogger
+from operator import itemgetter
+from typing import Any, Literal
 from zoneinfo import ZoneInfo
 
 import demjson3 as demjson
-import pandas as pd
 from bs4 import BeautifulSoup
-from dateutil import parser
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    PriceList,
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
+PARSER = "US_PJM.py"
 TIMEZONE = ZoneInfo("America/New_York")
-# Used for consumption forecast data.
-API_ENDPOINT = "https://api.pjm.com/api/v1/"
+ZONE_KEY = ZoneKey("US-MIDA-PJM")
+# Used for production and consumption forecast data (https://dataminer2.pjm.com/list)
+DATA_MINER_API_ENDPOINT = "https://api.pjm.com/api/v1/"
+
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 DATA_PATH = "api/v1"
 
-# Used for both production and price data.
-url = "http://www.pjm.com/markets-and-operations.aspx"
+# Used for price data.
+PRICE_API_ENDPOINT = "http://www.pjm.com/markets-and-operations.aspx"
+CURRENCY = "USD"
 
-mapping = {
-    "Coal": "coal",
-    "Gas": "gas",
-    "Hydro": "hydro",
-    "Multiple Fuels": "unknown",
-    "Nuclear": "nuclear",
-    "Oil": "oil",
-    "Other": "unknown",
-    "Other Renewables": "unknown",
-    "Solar": "solar",
-    "Wind": "wind",
-}
+SOURCE = "pjm.com"
 
-exchange_mapping = {
-    "nyiso": "NYIS|NYIS",
-    "neptune": "NEPTUNE|SAYR",
-    "linden": "LINDENVFT|LINDEN",
-    "hudson": "HUDSONTP|HTP",
-    "miso": "miso",
-    "ohio valley": "DEOK|OVEC",
-    "louisville": "SOUTHIMP|LGEE",
-    "tennessee valley": "SOUTHIMP|TVA",
-    "cpl west": "SOUTHIMP|CPLW",
-    "duke": "SOUTHIMP|DUKE",
-    "cpl east": "SOUTHIMP|CPLE",
+ZONE_TO_PJM_INTERFACES = {
+    ZoneKey("US-MIDW-MISO"): ["MISO"],  # "MISO LMP"
+    # ?: ["DEOK|OVEC"],  # Ohio Valley Electric Corporation (OVEC)
+    ZoneKey("US-MIDW-LGEE"): [
+        "SOUTH|LGEE"
+    ],  # Louisville Gas and Electric Company (LGEE)
+    ZoneKey("US-TEN-TVA"): ["SOUTH|TVA"],  # Tennessee Valley Authority (TVA)
+    ZoneKey("US-CAR-CPLW"): ["SOUTH|CPLW"],  # CPL Retail Energy West (CPLW)
+    ZoneKey("US-CAR-DUK"): ["SOUTH|DUKE"],  # Duke Energy
+    ZoneKey("US-CAR-CPLE"): ["SOUTH|CPLE"],  # CPL Retail Energy East (CPLE)
+    ZoneKey("US-NY-NYIS"): [
+        "NEPTUNE|SAYR",  # NYISO (Neptune)
+        "LINDENVFT|LINDEN",  # NYISO (Linden)
+        "HUDSONTP|HTP",  # NYISO (Hudson)
+        "NYIS|NYIS",  # "NYISO LMP"
+    ],
 }
 
 FUEL_MAPPING = {
@@ -68,24 +76,30 @@ FUEL_MAPPING = {
 }
 
 
-def get_api_subscription_key(session: Session) -> str:
-    pjm_settings: Response = session.get(
-        "https://dataminer2.pjm.com/config/settings.json"
-    )
-    if pjm_settings.status_code == 200:
-        return pjm_settings.json()["subscriptionKey"]
-    raise ParserException(
-        parser="US_PJM.py",
-        message="Could not get API key",
-    )
+def _get_api_subscription_key(session: Session) -> str:
+    response = session.get("https://dataminer2.pjm.com/config/settings.json")
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Could not get API key: {response.status_code}: {response.text}",
+        )
+    return response.json()["subscriptionKey"]
 
 
-def fetch_api_data(kind: str, params: dict, session: Session) -> dict:
+def _fetch_api_data(
+    kind: Literal[
+        "load_frcstd_7_day",
+        "gen_by_fuel",
+        "hourly_solar_power_forecast",
+        "hourly_wind_power_forecast",
+    ],
+    params: dict,
+    session: Session,
+) -> dict:
     headers = {
-        "Ocp-Apim-Subscription-Key": get_api_subscription_key(session=session),
+        "Ocp-Apim-Subscription-Key": _get_api_subscription_key(session=session),
         "Accept-Encoding": "identity",
     }
-
     url = f"{US_PROXY}/{DATA_PATH}/{kind}"
     resp: Response = session.get(
         url=url, params={"host": "https://api.pjm.com", **params}, headers=headers
@@ -95,116 +109,225 @@ def fetch_api_data(kind: str, params: dict, session: Session) -> dict:
         return data
     else:
         raise ParserException(
-            parser="US_PJM.py",
-            message=f"{kind} data is not available in the API",
+            PARSER,
+            f"{kind} data is not available in the API: {resp.status_code}: {resp.text}",
         )
+
+
+def fetch_consumption_forecast_7_days(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Gets consumption forecast for specified zone."""
+
+    if target_datetime is not None:
+        raise ParserException(
+            PARSER, "This parser is not yet able to parse historical data", zone_key
+        )
+
+    session = session or Session()
+    # startRow must be set if forecast_area is set. RTO_COMBINED is area for whole PJM zone.
+    params = {"download": True, "startRow": 1, "forecast_area": "RTO_COMBINED"}
+    data = _fetch_api_data(kind="load_frcstd_7_day", params=params, session=session)
+
+    consumption_list = TotalConsumptionList(logger)
+    for elem in data:
+        utc_datetime = elem["forecast_datetime_beginning_utc"]
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=datetime.fromisoformat(utc_datetime).replace(tzinfo=timezone.utc),
+            source=SOURCE,
+            consumption=elem["forecast_load_mw"],
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumption_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str = "US-PJM",
+    zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list:
-    """uses PJM API to get generation by fuel. we assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)"""
-    if target_datetime is None:
-        target_datetime = datetime.now(TIMEZONE).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-    else:
-        target_datetime = target_datetime.astimezone(TIMEZONE)
+) -> list[dict]:
+    """Uses PJM API to get generation by fuel.
 
-    if not session:
-        session = Session()
+    We assume that storage is battery storage (see https://learn.pjm.com/energy-innovations/energy-storage)
+    """
+    target_datetime = (
+        datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
+
+    session = session or Session()
 
     params = {
         "startRow": 1,
         "rowCount": 500,
-        "fields": "datetime_beginning_ept,fuel_type,mw",
-        "datetime_beginning_ept": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
+        "fields": "datetime_beginning_utc,fuel_type,mw",
+        "datetime_beginning_utc": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
     }
-    resp_data = fetch_api_data(kind="gen_by_fuel", params=params, session=session)
-    data = pd.DataFrame(resp_data.get("items", []))
-    if not data.empty:
-        data["datetime_beginning_ept"] = pd.to_datetime(data["datetime_beginning_ept"])
-        data = data.set_index("datetime_beginning_ept")
-        data["fuel_type"] = data["fuel_type"].map(FUEL_MAPPING)
+    resp_data = _fetch_api_data(kind="gen_by_fuel", params=params, session=session)
 
-        all_data_points = []
-        for dt in data.index.unique():
-            production = {}
-            storage = {}
-            data_dt = data.loc[data.index == dt]
-            for i in range(len(data_dt)):
-                row = data_dt.iloc[i]
-                if row["fuel_type"] == "battery":
-                    storage["battery"] = row.get("mw")
-                else:
-                    mode = row["fuel_type"]
-                    production[mode] = row.get("mw")
-            data_point = {
-                "zoneKey": zone_key,
-                "datetime": dt.to_pydatetime().replace(tzinfo=TIMEZONE),
-                "production": production,
-                "storage": storage,
-                "source": "pjm.com",
-            }
-            all_data_points += [data_point]
-        return all_data_points
-    else:
+    items = resp_data.get("items", [])
+
+    if items == []:
         raise ParserException(
-            parser="US_PJM.py",
+            parser=PARSER,
             message=f"{target_datetime}: Production data is not available in the API",
+            zone_key=zone_key,
         )
 
+    production_breakdown_list = ProductionBreakdownList(logger)
+    for key, group in groupby(items, itemgetter("datetime_beginning_utc")):
+        dt = datetime.fromisoformat(key).replace(tzinfo=timezone.utc)
+        production = ProductionMix()
+        storage = StorageMix()
+        for data in group:
+            mode = FUEL_MAPPING[data["fuel_type"]]
+            value = data["mw"]
+            if mode == "battery":
+                storage.add_value(mode, -value)
+            else:
+                production.add_value(mode, value)
+        production_breakdown_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            production=production,
+            storage=storage,
+            source=SOURCE,
+        )
 
-def get_miso_exchange(session: Session) -> tuple:
-    """
-    Current exchange status between PJM and MISO.
-    :return: tuple containing flow and timestamp.
-    """
+    return production_breakdown_list.to_list()
 
-    map_url = "http://pjm.com/markets-and-operations/interregional-map.aspx"
 
-    res: Response = session.get(map_url)
-    soup = BeautifulSoup(res.text, "html.parser")
+def fetch_wind_solar_forecasts(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Uses PJM API to request the wind and solar forecast (in MW) for a given date in hourly intervals."""
 
-    find_div = soup.find("div", {"id": "body_0_flow1", "class": "flow"})
+    session = session or Session()
 
-    miso_flow = find_div.text
-    miso_flow_no_ws = "".join(miso_flow.split())
-    miso_actual = miso_flow_no_ws.split("/")[0].replace(",", "")
-    direction_tag = find_div.find("img")
-    left_or_right = direction_tag["src"]
+    # Datetime
+    target_datetime = (
+        datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
 
-    # The flow direction is determined by img arrows.
-    if left_or_right == "/assets/images/mapImages/black-L.png":
-        # left set negative
-        flow = -1 * float(miso_actual)
-    elif left_or_right == "/assets/images/mapImages/black-R.png":
-        # right set positive
-        flow = float(miso_actual)
+    # Config for url
+    params = {
+        "startRow": 1,
+        "rowCount": 10000,
+        "datetime_beginning_utc": target_datetime.strftime("%Y-%m-%dT%H:00:00.0000000"),
+    }
+
+    resp_data_wind = _fetch_api_data(
+        kind="hourly_wind_power_forecast", params=params, session=session
+    )
+    items_wind = resp_data_wind.get("items", [])
+
+    resp_data_solar = _fetch_api_data(
+        kind="hourly_solar_power_forecast", params=params, session=session
+    )
+    items_solar = resp_data_solar.get("items", [])
+
+    # Combine wind and solar data and sort by datetime_beginning_utc
+    items = items_wind + items_solar
+    items.sort(key=itemgetter("datetime_beginning_utc", "evaluated_at_utc"))
+    production_list = ProductionBreakdownList(logger)
+
+    # Group by datetime_beginning_utc and get the last evaluated_at_utc entry for each group
+    for datetime_utc, group in groupby(items, key=itemgetter("datetime_beginning_utc")):
+        group_list = list(group)
+        wind_entries = [entry for entry in group_list if "wind_forecast_mwh" in entry]
+        latest_entry_wind = max(wind_entries, key=itemgetter("evaluated_at_utc"))
+        solar_entries = [entry for entry in group_list if "solar_forecast_mwh" in entry]
+        latest_entry_solar = max(solar_entries, key=itemgetter("evaluated_at_utc"))
+
+        production_mix = ProductionMix()
+        production_mix.add_value(
+            "solar",
+            latest_entry_solar["solar_forecast_mwh"],
+            correct_negative_with_zero=True,
+        )
+        production_mix.add_value(
+            "wind",
+            latest_entry_wind["wind_forecast_mwh"],
+            correct_negative_with_zero=True,
+        )
+
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=datetime.fromisoformat(datetime_utc).replace(tzinfo=timezone.utc),
+            production=production_mix,
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+
+    return production_list.to_list()
+
+
+def fetch_price(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Requests the last known power price of a given country."""
+
+    if target_datetime is not None:
+        raise ParserException(
+            PARSER, "This parser is not yet able to parse historical data", zone_key
+        )
+
+    session = session or Session()
+    now = datetime.now(TIMEZONE)
+    response = session.get(PRICE_API_ENDPOINT)
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching production error code: {response.status_code}: {response.text}",
+            zone_key,
+        )
+
+    soup = BeautifulSoup(response.text, "html.parser")
+    price_tag = soup.find("span", class_="rtolmpico")
+    price_data = price_tag.find_next("h2")
+    price_string = price_data.text.split("$")[1]
+    price = float(price_string)
+
+    price_list = PriceList(logger)
+    price_list.append(
+        zoneKey=zone_key,
+        datetime=now.replace(microsecond=0),  # truncate to seconds,
+        source=SOURCE,
+        price=price,
+        currency=CURRENCY,
+    )
+    return price_list.to_list()
+
+
+def _get_interface_data(
+    interface: str, session: Session
+) -> list[tuple[datetime, float]]:
+    """Fetches 5min data for any PJM interface in the current day."""
+
+    # For some reason the US-MIDW-MISO data is on a chart at a different url
+    if interface == "MISO":
+        url = "https://www.pjm.com/Charts/MISO.aspx"
     else:
-        raise ValueError("US-MISO->US-PJM flow direction cannot be determined.")
+        url = f"http://www.pjm.com/Charts/InterfaceChartDM2.aspx?open={interface}"
 
-    find_timestamp = soup.find("div", {"id": "body_0_divTimeStamp"})
-    dt = parser.parse(find_timestamp.text, tzinfos={"EDT": -4 * 3600, "EST": -5 * 3600})
+    response = session.get(url)
 
-    return flow, dt
-
-
-def get_exchange_data(interface, session: Session) -> list:
-    """
-    This function can fetch 5min data for any PJM interface in the current day.
-    Extracts load and timestamp data from html source then joins them together.
-    """
-    base_url = "http://www.pjm.com/Charts/InterfaceChart.aspx?open="
-    url = base_url + exchange_mapping[interface]
-
-    res: Response = session.get(url)
-    soup = BeautifulSoup(res.text, "html.parser")
-
+    soup = BeautifulSoup(response.text, "html.parser")
     scripts = soup.find(
         "script",
         {
@@ -212,163 +335,102 @@ def get_exchange_data(interface, session: Session) -> list:
             "src": "/assets/js/Highcharts/HighCharts/highcharts.js",
         },
     )
-
     exchange_script = scripts.find_next_sibling("script")
 
-    load_pattern = r"var load = (\[(.*)\])"
-    load = re.search(load_pattern, str(exchange_script)).group(1)
-    load_vals = demjson.decode(load)[0]
-
-    # Occasionally load_vals contains a null at the end of the list which must be caught.
-    actual_load = [float(val) for val in load_vals if val is not None]
-
+    # x-axis (time)
     time_pattern = r"var timeArray = (\[(.*)\])"
     time_array = re.search(time_pattern, str(exchange_script)).group(1)
     time_vals = demjson.decode(time_array)
 
-    flows = zip(actual_load, time_vals, strict=True)
-
-    date = datetime.combine(datetime.now(TIMEZONE), time())  # truncate to day
+    # y-axis [right] (actual & scheduled load)
+    load_pattern = r"var load = (\[(.*)\])"
+    load = re.search(load_pattern, str(exchange_script)).group(1)
+    load_actual = demjson.decode(load)[0]
 
     converted_flows = []
-    for flow in flows:
-        time_of_the_day = datetime.strptime(
-            flow[1],
-            "%I:%M %p",  # make sure to use %I and not %H for %p to take effect
-        ).replace(tzinfo=TIMEZONE)
-        dt = date.replace(hour=time_of_the_day.hour, minute=time_of_the_day.minute)
-        converted_flow = (flow[0], dt)
-        converted_flows.append(converted_flow)
+    today = datetime.combine(datetime.now(TIMEZONE), time(), tzinfo=TIMEZONE)
+    for t, flow in zip(time_vals, load_actual, strict=True):
+        # some tail values might be null
+        if flow is None:
+            continue
+
+        # make sure to use %I and not %H for %p to take effect
+        time_of_the_day = datetime.strptime(t, "%I:%M %p").replace(tzinfo=TIMEZONE)
+        dt = today.replace(hour=time_of_the_day.hour, minute=time_of_the_day.minute)
+
+        converted_flows.append((dt, float(flow)))
 
     return converted_flows
 
 
-def combine_NY_exchanges(session: Session) -> list:
-    """
-    Combination function for the 4 New York interfaces.
-    Timestamps are checked to ensure correct combination.
-    """
-
-    nyiso = get_exchange_data("nyiso", session)
-    neptune = get_exchange_data("neptune", session)
-    linden = get_exchange_data("linden", session)
-    hudson = get_exchange_data("hudson", session)
-
-    combined_flows = zip(nyiso, neptune, linden, hudson, strict=True)
-
-    flows = []
-    for datapoint in combined_flows:
-        total = sum([n[0] for n in datapoint])
-        stamps = [n[1] for n in datapoint]
-
-        # Data quality check to make sure timestamps all match.
-        if len(set(stamps)) == 1:
-            dt = stamps[0]
-        else:
-            # Drop bad datapoint and move to next.
-            continue
-
-        flows.append((total, dt))
-
-    return flows
-
-
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict] | dict:
+) -> list[dict]:
     """Requests the last known power exchange (in MW) between two zones."""
+
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+
     if target_datetime is not None:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+        raise ParserException(
+            PARSER,
+            "This parser is not yet able to parse historical data",
+            sorted_zone_keys,
+        )
 
     if not session:
         session = Session()
 
     # PJM reports exports as negative.
-    sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
+    direction = -1 if sorted_zone_keys.startswith(ZONE_KEY) else 1
 
-    if sortedcodes == "US-NY->US-PJM":
-        flows = combine_NY_exchanges(session)
-    elif sortedcodes == "US-MIDA-PJM->US-NY-NYIS":
-        flows = combine_NY_exchanges(session)
-        flows = [(-total, dt) for total, dt in flows]
-    elif sortedcodes == "US-MISO->US-PJM":
-        flow = get_miso_exchange(session)
-        exchange = {
-            "sortedZoneKeys": sortedcodes,
-            "datetime": flow[1],
-            "netFlow": flow[0],
-            "source": "pjm.com",
-        }
-        return exchange
-    elif sortedcodes == "US-MIDA-PJM->US-MIDW-MISO":
-        flow = get_miso_exchange(session)
-        exchange = {
-            "sortedZoneKeys": sortedcodes,
-            "datetime": flow[1],
-            "netFlow": -flow[0],
-            "source": "pjm.com",
-        }
-        return exchange
-    else:
-        raise NotImplementedError("This exchange pair is not implemented")
+    neighbour = zone_key2 if zone_key1 == ZONE_KEY else zone_key1
+    interfaces = ZONE_TO_PJM_INTERFACES[neighbour]
 
-    exchanges = []
-    for flow in flows:
-        exchange = {
-            "sortedZoneKeys": sortedcodes,
-            "datetime": flow[1],
-            "netFlow": flow[0],
-            "source": "pjm.com",
-        }
-        exchanges.append(exchange)
+    # get flow data from each interface with neighbour and merge
+    session = session or Session()
+    ungrouped_exchange_lists = []
+    for interface in interfaces:
+        exchange_list = ExchangeList(logger)
 
-    return exchanges
+        interface_data = _get_interface_data(interface, session=session)
+        for dt, net_flow in interface_data:
+            exchange_list.append(
+                zoneKey=sorted_zone_keys,
+                datetime=dt,
+                source=SOURCE,
+                netFlow=direction * net_flow,
+            )
 
+        ungrouped_exchange_lists.append(exchange_list)
 
-def fetch_price(
-    zone_key: str = "US-PJM",
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    """Requests the last known power price of a given country."""
-    if target_datetime is not None:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    if not session:
-        session = Session()
-
-    res: Response = session.get(url)
-    soup = BeautifulSoup(res.text, "html.parser")
-
-    price_tag = soup.find("span", class_="rtolmpico")
-    price_data = price_tag.find_next("h2")
-    price_string = price_data.text.split("$")[1]
-    price = float(price_string)
-
-    dt = datetime.now(TIMEZONE).replace(microsecond=0)  # truncate to seconds
-
-    data = {
-        "zoneKey": zone_key,
-        "currency": "USD",
-        "datetime": dt,
-        "price": price,
-        "source": "pjm.com",
-    }
-
-    return data
+    return ExchangeList.merge_exchanges(ungrouped_exchange_lists, logger).to_list()
 
 
 if __name__ == "__main__":
-    print("fetch_production() ->")
-    print(fetch_production())
-    print("fetch_exchange(US-NY, US-PJM) ->")
-    print(fetch_exchange("US-NY", "US-PJM"))
-    print("fetch_exchange(US-MISO, US-PJM)")
-    print(fetch_exchange("US-MISO", "US-PJM"))
-    print("fetch_price() ->")
-    print(fetch_price())
+    # print("fetch_consumption_forecast_7_days() ->")
+    # print(fetch_consumption_forecast_7_days())
+
+    # print("fetch_production() ->")
+    # print(fetch_production())
+
+    # print("fetch_price() ->")
+    # print(fetch_price())
+    """
+    for neighbor in [
+        "US-CAR-DUK",
+        "US-CAR-CPLE",
+        "US-CAR-CPLW",
+        "US-MIDW-LGEE",
+        "US-MIDW-MISO",
+        "US-NY-NYIS",
+        "US-TEN-TVA",
+    ]:
+        print(f"fetch_exchange(US-MIDA-PJM, {neighbor}) ->")
+        print(fetch_exchange(ZONE_KEY, ZoneKey(neighbor)))
+    """
+    print("fetch_wind_solar_forecasts() ->")
+    print(fetch_wind_solar_forecasts())
