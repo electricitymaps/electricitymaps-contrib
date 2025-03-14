@@ -454,6 +454,7 @@ contributors:
   - robertahunt
   - KabelWlan
   - silkeholmebonnen
+  - alejandranavcas
 country: US
 emissionFactors:
   direct:
@@ -759,9 +760,10 @@ fallbackZoneMixes:
         wind: 0.24233286045039404
 parsers:
   consumption: US_ERCOT.fetch_consumption
-  consumptionForecast: EIA.fetch_consumption_forecast
+  consumptionForecast: US_ERCOT.fetch_consumption_forecast
   production: US_ERCOT.fetch_production
   productionCapacity: EIA.fetch_production_capacity
+  productionPerModeForecast: US_ERCOT.fetch_wind_solar_forecasts
 region: Americas
 sources:
   INCER ACV:
