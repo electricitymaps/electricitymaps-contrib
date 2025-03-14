@@ -36,6 +36,7 @@ prepare:
   RUN pip install "poetry==2.*"
   RUN apt-get update && apt-get install -y python3-opencv tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng libgl1
   RUN poetry config virtualenvs.create false
+  COPY poetry.lock .
   RUN poetry install --compile -E parsers
 
 build:
@@ -52,6 +53,7 @@ test:
 # we can split into two later if required
 test-all:
   BUILD +build
+  BUILD +test
   BUILD ./config+test
   # BUILD ./web+build # TODO: This currently fails for unknown reasons, disabling for now
   BUILD ./web+test
