@@ -190,8 +190,8 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
       '@nabla/vite-plugin-eslint':
-        specifier: 1.6.0
-        version: 1.6.0(eslint@8.57.0)(vite@6.0.11(@types/node@20.17.22)(jiti@1.21.6)(less@4.2.0)(terser@5.39.0)(yaml@2.7.0))
+        specifier: 2.0.4
+        version: 2.0.4(eslint@8.57.0)(vite@6.0.11(@types/node@20.17.22)(jiti@1.21.6)(less@4.2.0)(terser@5.39.0)(yaml@2.7.0))
       '@sentry/vite-plugin':
         specifier: ^2.23.0
         version: 2.23.0
@@ -2123,11 +2123,11 @@ packages:
     resolution: {integrity: sha512-SvE+tSpcX884RJrPCskXxoS965Ky/pYABDEhWW6oeSRhpUDLrS5nTvT5n1LLSDVDYvty4imVmXsy+3/ROVuknA==}
     engines: {node: '>=18'}
 
-  '@nabla/vite-plugin-eslint@1.6.0':
-    resolution: {integrity: sha512-vxEOV4QtiFNiu9o2jg91sWl1X7dHSosvVYZrYwaDAgDlgTfzmwxca3Nafyq9n42WX45l1l/6HshMMGShsW6Mkg==}
+  '@nabla/vite-plugin-eslint@2.0.4':
+    resolution: {integrity: sha512-hXLv7XPZLKP54AHLI6JzlCRYptf34rBmT1FyRBi++iN5ucjO7CEf5etV3DfQ2rfTpgMbY+3hoCAfwilA6lyWdw==}
     peerDependencies:
-      eslint: '*'
-      vite: ^2 || ^3 || ^4 || ^5
+      eslint: ^8.45 || ^9
+      vite: ^4 || ^5
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -4003,9 +4003,6 @@ packages:
 
   '@types/estree@0.0.39':
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
-
-  '@types/estree@1.0.5':
-    resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -11206,12 +11203,15 @@ snapshots:
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
 
-  '@nabla/vite-plugin-eslint@1.6.0(eslint@8.57.0)(vite@6.0.11(@types/node@20.17.22)(jiti@1.21.6)(less@4.2.0)(terser@5.39.0)(yaml@2.7.0))':
+  '@nabla/vite-plugin-eslint@2.0.4(eslint@8.57.0)(vite@6.0.11(@types/node@20.17.22)(jiti@1.21.6)(less@4.2.0)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
       '@types/eslint': 8.56.6
       chalk: 4.1.2
+      debug: 4.4.0(supports-color@8.1.1)
       eslint: 8.57.0
       vite: 6.0.11(@types/node@20.17.22)(jiti@1.21.6)(less@4.2.0)(terser@5.39.0)(yaml@2.7.0)
+    transitivePeerDependencies:
+      - supports-color
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -13861,12 +13861,10 @@ snapshots:
 
   '@types/eslint@8.56.6':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       '@types/json-schema': 7.0.15
 
   '@types/estree@0.0.39': {}
-
-  '@types/estree@1.0.5': {}
 
   '@types/estree@1.0.6': {}
 
