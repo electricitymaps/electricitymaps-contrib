@@ -178,12 +178,12 @@
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Les données sont préliminaires",
       "pill": "Préliminaires",
-      "body": "Les données pour cette heure n'ont pas encore été confirmeés et sont basées sur des données préliminaires."
+      "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Les données sont préliminaires",
       "pill": "Préliminaires",
-      "body": "Les données pour cette heure n'ont pas encore été confirmeés et sont basées sur des données préliminaires."
+      "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Les données sont partiellement estimées",
@@ -255,7 +255,8 @@
       "carbonintensity": "Electricity Maps - Intensité carbone",
       "estimations": "Electricity Maps - Estimations",
       "flowtracing": "Electricity Maps - Traçage des flux",
-      "title": "Méthodologies utilisées"
+      "title": "Méthodologies utilisées",
+      "historicalAggregations": "Electricity Maps - Agrégations historiques"
     },
     "methodologies-and-data-sources": {
       "title": "Méthodologies et sources des données"
