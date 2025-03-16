@@ -14,18 +14,12 @@ describe('Map', () => {
     // eslint-disable-next-line cypress/require-data-selectors
     cy.get('.maplibregl-map').should('be.visible');
 
-    // Close the info according on the ranking panel
-    cy.get('[data-testid=collapse-button]').click();
-
     cy.get('[data-testid=zone-search-bar]').type('Denmark');
     cy.get('[data-index="0"] > .group').click();
     // Check that the page title contains the zone name
     cy.title().should('contain', 'Bornholm');
 
     cy.get('[data-testid=left-panel-back-button]').click();
-
-    // closes left panel
-    cy.get('[data-testid=left-panel-collapse-button]').click();
 
     // tests toggle
     cy.get('[data-testid=toggle-button-production-toggle]').click();
