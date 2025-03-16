@@ -1,14 +1,18 @@
 import functools
 import os
+from collections.abc import ItemsView, KeysView, ValuesView
 from copy import deepcopy
 from datetime import timedelta
 from enum import Enum
 from inspect import signature
 from logging import getLogger
+from typing import TypeVar
 
 import requests
 from requests import Session
 from requests.adapters import HTTPAdapter, Retry
+
+ModeEnumType = TypeVar("ModeEnumType", bound="BaseModeEnum")
 
 
 # TODO: Switch this to StringEnum when we migrate to Python 3.11
@@ -19,19 +23,19 @@ class BaseModeEnum(str, Enum):
         return self.value
 
     @classmethod
-    def values(cls) -> list[str]:
-        """Return a list of all enum string values."""
-        return [mode.value for mode in cls]
+    def values(cls: type[ModeEnumType]) -> ValuesView[ModeEnumType]:
+        """Return a Values View of all enum members."""
+        return cls.__members__.values()
 
     @classmethod
-    def names(cls) -> list[str]:
-        """Return a list of all enum names."""
-        return [mode.name for mode in cls]
+    def names(cls) -> KeysView[str]:
+        """Return a Keys View of all enum names."""
+        return cls.__members__.keys()
 
     @classmethod
-    def items(cls) -> list[tuple[str, str]]:
-        """Return a list of (name, value) tuples."""
-        return [(mode.name, mode.value) for mode in cls]
+    def items(cls: type[ModeEnumType]) -> ItemsView[str, ModeEnumType]:
+        """Return an Items View of (name, member) tuples."""
+        return cls.__members__.items()
 
 
 class ProductionModes(BaseModeEnum):
