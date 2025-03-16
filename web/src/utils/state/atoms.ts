@@ -114,11 +114,6 @@ export const hasSeenSurveyCardAtom = atomWithStorage('hasSeenSurveyCard', false)
 
 export const hasSeenUsSurveyCardAtom = atomWithStorage('hasSeenUsSurveyCard', false);
 
-export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
-  'rankingPanelAccordionCollapsed',
-  false
-);
-
 export const futurePriceCollapsedAtom = atom<boolean>(true);
 
 export const isRedirectedToLatestDatetimeAtom = atom<boolean>(false);
