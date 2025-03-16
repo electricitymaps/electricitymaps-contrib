@@ -77,7 +77,7 @@ window.addEventListener('vite:preloadError', async (event: VitePreloadErrorEvent
   window.location.reload();
 });
 
-const RankingPanel = lazy(() => import('features/panels/ranking-panel/RankingPanel'));
+const SearchPanel = lazy(() => import('features/panels/search-panel/SearchPanel'));
 const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
 
 /**
@@ -233,7 +233,7 @@ const router = createBrowserRouter([
         path: '/map/:urlTimeRange?/:resolution?/:urlDatetime?',
         element: (
           <TimeRangeAndResolutionGuardWrapper>
-            <RankingPanel />
+            <SearchPanel />
           </TimeRangeAndResolutionGuardWrapper>
         ),
       },
