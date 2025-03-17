@@ -710,7 +710,7 @@ class ProductionBreakdown(AggregatableEvent):
             "sourceType": self.sourceType,
             "correctedModes": []
             if self.production is None
-            else list(self.production._corrected_negative_values),
+            else list(map(str, self.production._corrected_negative_values)),
         }
 
 
