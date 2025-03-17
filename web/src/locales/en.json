@@ -64,8 +64,8 @@
   },
   "onboarding-modal": {
     "view1": {
-      "header": "Welcome to Electricity Maps",
-      "text": "Here you can explore the climate impact of electricity for many countries globally. <br/><br/>Let us guide you through our map in a few simple steps!"
+      "header": "Welcome to the Electricity Maps App",
+      "text": "Here you can explore the climate impact of electricity for across the world. <br/><br/>Let us guide you through the map in a few simple steps!"
     },
     "view2": {
       "header": "See how much CO2 is emitted to produce your electricity, in real-time",

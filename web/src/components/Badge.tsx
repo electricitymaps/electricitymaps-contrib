@@ -23,7 +23,7 @@ export default function Badge({ pillText, type, icon }: BadgeProps) {
       break;
     }
     default: {
-      classes = 'bg-neutral-200 dark:bg-gray-700 text-black dark:text-white';
+      classes = 'bg-neutral-200 dark:bg-neutral-700 text-black dark:text-white';
     }
   }
 

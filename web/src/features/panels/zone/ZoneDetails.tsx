@@ -127,13 +127,13 @@ export default function ZoneDetails(): JSX.Element {
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
-    <>
+    <div className="flex h-full flex-col">
       <ZoneHeader zoneId={zoneId} isEstimated={cardType === 'estimated'} />
       <div
         id="panel-scroller"
         className={twMerge(
-          'mb-3 h-full scroll-pt-5 overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-64',
-          isIosCapacitor ? 'pb-72' : 'pb-48'
+          'flex-1 overflow-y-scroll px-3 pt-2.5 sm:pb-24',
+          isIosCapacitor ? 'pb-72' : 'pb-24'
         )}
       >
         {cardType != 'none' && zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
@@ -148,7 +148,7 @@ export default function ZoneDetails(): JSX.Element {
         {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}
         {zoneDetailsContent}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -28,18 +28,18 @@ export default function ExchangeTooltip({
   const divClass = `${isMobile ? 'flex-col' : 'flex'} items-center pb-2`;
   return (
     <div className="text-start text-base font-medium" data-testid="exchange-tooltip">
-      {t('tooltips.crossborderexport')}:
+      {t('tooltips.crossborderexport')}:{' '}
+      <b className="font-bold">
+        {isMobile ? '' : ':'}{' '}
+        {isHourly
+          ? formatPower({ value: roundedNetFlow })
+          : formatEnergy({ value: roundedNetFlow })}
+      </b>
       <div>
         <div className={divClass}>
           <ZoneName zone={zoneFrom} textStyle="max-w-[165px]" />
           {isMobile ? <p className="ml-0.5">↓</p> : <p className="mx-2">→</p>}{' '}
           <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
-          <b className="font-bold">
-            {isMobile ? '' : ':'}{' '}
-            {isHourly
-              ? formatPower({ value: roundedNetFlow })
-              : formatEnergy({ value: roundedNetFlow })}
-          </b>
         </div>
       </div>
       {t('tooltips.carbonintensityexport')}:
@@ -49,7 +49,7 @@ export default function ExchangeTooltip({
             <CarbonIntensityDisplay withSquare co2Intensity={co2intensity} />
           </div>
         ) : (
-          <p className="text-gray-400">{t('tooltips.temporarilyUnavailable')}</p>
+          <p className="text-neutral-400">{t('tooltips.temporarilyUnavailable')}</p>
         )}
       </div>
     </div>
