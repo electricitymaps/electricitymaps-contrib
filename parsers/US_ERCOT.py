@@ -5,6 +5,7 @@ import json
 import time
 import zipfile
 from datetime import datetime, timedelta, timezone
+from enum import Enum
 from io import BytesIO
 from logging import Logger, getLogger
 from typing import Any
@@ -73,14 +74,15 @@ EXCHANGE_MAPPING = {"US-CENT-SWPP": ["dcE", "dcN"], "MX-NE": ["dcL"], "MX-NO": [
 
 
 # Report type IDs
-# Wind production forecast: https://www.ercot.com/mp/data-products/data-product-details?id=NP4-732-CD
-WIND_POWER_PRODUCTION_HOURLY_AVERAGED_ACTUAL_AND_FORECASTED_VALUES_RTID = 13028
+class ReportTypeID(Enum):
+    # Wind production actual and forecast: https://www.ercot.com/mp/data-products/data-product-details?id=NP4-732-CD
+    WIND_POWER_PRODUCTION_REPORTID = 13028
 
-# Solar production forecast: https://www.ercot.com/mp/data-products/data-product-details?id=np4-737-cd
-SOLAR_POWER_PRODUCTION_HOURLY_AVERAGED_ACTUAL_AND_FORECASTED_VALUES_RTID = 13483
+    # Solar production forecast: https://www.ercot.com/mp/data-products/data-product-details?id=np4-737-cd
+    SOLAR_POWER_PRODUCTION_REPORTID = 13483
 
-# Load forecast: https://www.ercot.com/mp/data-products/data-product-details?id=np3-560-cd
-LOAD_FORECAST_BY_FORECAST_ZONE = 12311
+    # Load forecast: https://www.ercot.com/mp/data-products/data-product-details?id=np3-560-cd
+    LOAD_FORECAST_REPORTID = 12311
 
 
 def get_data(url: str, session: Session | None = None):
@@ -394,25 +396,48 @@ def fetch_exchange(
     return exchanges
 
 
-def _get_dataframe_from_url(url, session):
+def _get_publish_date(doc):
+    return datetime.fromisoformat(doc["Document"]["PublishDate"])
+
+
+def _find_document_by_publish_date(documents, target_date):
+    """
+    Find the latest document published on a specific date (ignoring time) or the latest document if no date is provided.
+
+    Args:
+        documents: List of document dictionaries
+        target_date: A datetime object representing the date to search for (ignores time), or None to find the latest document
+
+    Returns:
+        The best matching document (or None if no match is found)
+    """
+    if target_date is None:
+        # If no target_date is provided, return the latest document
+        matching_docs = [
+            doc for doc in documents if doc["Document"]["FriendlyName"][-3:] == "csv"
+        ]
+        return max(matching_docs, key=_get_publish_date, default=None)
+
+    # If target_date is provided, find documents matching the specific date
+    matching_docs = [
+        doc
+        for doc in documents
+        if doc["Document"]["FriendlyName"][-3:] == "csv"
+        and datetime.fromisoformat(doc["Document"]["PublishDate"]).date()
+        == target_date.date()
+    ]
+
+    return max(matching_docs, key=_get_publish_date, default=None)
+
+
+def _get_dataframe_from_url(url, session, target_date):
     response = session.get(url)
     docs = response.json()["ListDocsByRptTypeRes"]["DocumentList"]
 
-    # Initialize variables to track the latest PublishDate and corresponding DocID
-    latest_publish_date = None
-    latest_doc_id = None
+    doc = _find_document_by_publish_date(docs, target_date)
+    doc_id = doc["Document"]["DocID"]
 
-    # Iterate through the list of documents
-    for item in docs:
-        publish_date_str = item["Document"]["PublishDate"]
-        publish_date = datetime.fromisoformat(publish_date_str)
-
-        # Compare with the current latest_publish_date
-        if latest_publish_date is None or publish_date > latest_publish_date:
-            latest_publish_date = publish_date
-            latest_doc_id = item["Document"]["DocID"]
-
-    doc_url = f"{US_PROXY}/misdownload/servlets/mirDownload?doclookupId={latest_doc_id}&{HOST_PARAMETER}"
+    doc_url = f"{US_PROXY}/misdownload/servlets/mirDownload?doclookupId={doc_id}&{HOST_PARAMETER}"
     resp: Response = session.get(doc_url)  # verify=False
 
     # Open the ZIP file
@@ -431,11 +456,12 @@ def fetch_consumption_forecast(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    """Requests load forecast data in MW. target_datetime not implemented (takes the latest report)"""
+    """Requests load forecast data in MW. target_datetime only date (takes the latest report on that date).
+    If target_datetime is None, it takes the latest report created"""
     session = session or Session()
 
-    url = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={LOAD_FORECAST_BY_FORECAST_ZONE}&_{int(time.time())}&{HOST_PARAMETER}"
-    df = _get_dataframe_from_url(url, session)
+    url = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={ReportTypeID.LOAD_FORECAST_REPORTID.value}&_{int(time.time())}&{HOST_PARAMETER}"
+    df = _get_dataframe_from_url(url, session, target_datetime)
 
     # Transfrom Hour column
     df["HourStarting"] = df["HourEnding"].str.split(":", expand=True)[0].astype(int) - 1
@@ -466,16 +492,17 @@ def fetch_wind_solar_forecasts(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    """Requests wind and solar power data in MW. target_datetime not implemented (takes the latest report)"""
+    """Requests wind and solar power data in MW. target_datetime only date (takes the latest report on that date).
+    If target_datetime is None, it takes the latest report created"""
     session = session or Session()
 
     # Request wind power data
-    url_wind = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={WIND_POWER_PRODUCTION_HOURLY_AVERAGED_ACTUAL_AND_FORECASTED_VALUES_RTID}&_{int(time.time())}&{HOST_PARAMETER}"
-    df_wind = _get_dataframe_from_url(url_wind, session)
+    url_wind = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={ReportTypeID.WIND_POWER_PRODUCTION_REPORTID.value}&_{int(time.time())}&{HOST_PARAMETER}"
+    df_wind = _get_dataframe_from_url(url_wind, session, target_datetime)
 
     # Request solar power data
-    url_solar = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={SOLAR_POWER_PRODUCTION_HOURLY_AVERAGED_ACTUAL_AND_FORECASTED_VALUES_RTID}&_{int(time.time())}&{HOST_PARAMETER}"
-    df_solar = _get_dataframe_from_url(url_solar, session)
+    url_solar = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={ReportTypeID.SOLAR_POWER_PRODUCTION_REPORTID.value}&_{int(time.time())}&{HOST_PARAMETER}"
+    df_solar = _get_dataframe_from_url(url_solar, session, target_datetime)
 
     # Transfrom Hour column
     df_wind["HOUR_STARTING"] = df_wind["HOUR_ENDING"] - 1
@@ -525,7 +552,8 @@ if __name__ == "__main__":
     # pprint(fetch_consumption())
 
     # print("fetch_consumption_forecast() -->")
-    # pprint(fetch_consumption_forecast())
+    # pprint(fetch_consumption_forecast(target_datetime=datetime(2025,3,14)))
+    pprint(fetch_consumption_forecast())
 
     # print("fetch_wind_solar_forecasts() -->")
-    pprint(fetch_wind_solar_forecasts())
+    # pprint(fetch_wind_solar_forecasts())

@@ -5,15 +5,15 @@ from pathlib import Path
 from requests_mock import GET
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers import US_ERCOT
+from parsers.US_ERCOT import (
+    ReportTypeID,
+    fetch_consumption_forecast,
+    fetch_wind_solar_forecasts,
+)
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "host=https://www.ercot.com"
 BASE_PATH_TO_MOCK = Path("parsers/test/mocks/US_ERCOT")
-
-LOAD_FORECAST_BY_FORECAST_ZONE = 12311
-WIND_POWER_PRODUCTION_HOURLY_AVERAGED_ACTUAL_AND_FORECASTED_VALUES_RTID = 13028
-SOLAR_POWER_PRODUCTION_HOURLY_AVERAGED_ACTUAL_AND_FORECASTED_VALUES_RTID = 13483
 
 
 def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
@@ -22,7 +22,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         re.compile(
-            rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={LOAD_FORECAST_BY_FORECAST_ZONE}&_\d+\&{HOST_PARAMETER}"
+            rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={ReportTypeID.LOAD_FORECAST_REPORTID.value}&_\d+\&{HOST_PARAMETER}"
         ),
         json=loads(data.read_text()),
     )
@@ -41,7 +41,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
     )
 
     # Run function under test
-    assert snapshot == US_ERCOT.fetch_consumption_forecast(
+    assert snapshot == fetch_consumption_forecast(
         zone_key=ZoneKey("US-TEX-ERCO"),
         session=session,
     )
@@ -56,7 +56,7 @@ def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         re.compile(
-            rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={WIND_POWER_PRODUCTION_HOURLY_AVERAGED_ACTUAL_AND_FORECASTED_VALUES_RTID}&_\d+\&{HOST_PARAMETER}"
+            rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={ReportTypeID.WIND_POWER_PRODUCTION_REPORTID.value}&_\d+\&{HOST_PARAMETER}"
         ),
         json=loads(data_wind.read_text()),
     )
@@ -69,7 +69,7 @@ def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         re.compile(
-            rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={SOLAR_POWER_PRODUCTION_HOURLY_AVERAGED_ACTUAL_AND_FORECASTED_VALUES_RTID}&_\d+\&{HOST_PARAMETER}"
+            rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={ReportTypeID.SOLAR_POWER_PRODUCTION_REPORTID.value}&_\d+\&{HOST_PARAMETER}"
         ),
         json=loads(data_solar.read_text()),
     )
@@ -105,7 +105,7 @@ def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
     )
 
     # Run function under test
-    assert snapshot == US_ERCOT.fetch_wind_solar_forecasts(
+    assert snapshot == fetch_wind_solar_forecasts(
         zone_key=ZoneKey("US-TEX-ERCO"),
         session=session,
     )
