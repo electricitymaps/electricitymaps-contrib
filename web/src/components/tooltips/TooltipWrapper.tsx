@@ -1,7 +1,5 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
-import GlassContainer from 'components/GlassContainer';
 import { ReactElement, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
 import { useIsMobile } from 'utils/styling';
 
 interface TooltipWrapperProperties {
@@ -9,7 +7,6 @@ interface TooltipWrapperProperties {
   children: ReactElement;
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
-  tooltipClassName?: string;
 }
 
 const noop = () => undefined;
@@ -19,7 +16,6 @@ export default function TooltipWrapper({
   children,
   side,
   sideOffset,
-  tooltipClassName,
 }: TooltipWrapperProperties): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -58,14 +54,7 @@ export default function TooltipWrapper({
             onClick={handleContentClick}
             onPointerDownOutside={handleContentPointerDownOutside}
           >
-            <GlassContainer
-              className={twMerge(
-                'relative h-auto max-w-[164px] rounded-2xl px-3 py-1.5 text-center text-sm',
-                tooltipClassName
-              )}
-            >
-              {tooltipContent}
-            </GlassContainer>
+            {tooltipContent}
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>
