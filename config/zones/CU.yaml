@@ -1,3 +1,34 @@
+capacity:
+  biomass:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 439.65
+  gas:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 580.0
+  hydro:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 66.6
+  oil:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 4813.8
+  solar:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 267.4
+  unknown:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 90.0
+  wind:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 16.0
 country: CU
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: America/Havana
