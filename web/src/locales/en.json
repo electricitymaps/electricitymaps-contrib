@@ -11,8 +11,8 @@
   "ranking-panel": {
     "title": "Electricity Grid Carbon Emissions",
     "subtitle": "See where your electricity comes from<br/> and how much CO2 was emitted to produce it",
-    "search": "Search areas (ranked by carbon intensity)",
-    "no-results": "No results found for this search 🌍"
+    "search": "Search areas",
+    "no-results": "Nothing found, try searching for something else"
   },
   "button": {
     "bluesky-share": "Check real-time global electricity emissions data: {{baseUrl}}",
