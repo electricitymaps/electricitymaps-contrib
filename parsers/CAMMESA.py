@@ -53,6 +53,7 @@ EXCHANGE_NAME_DIRECTION_MAPPING = {
 
 SOURCE = "cammesaweb.cammesa.com"
 
+SPLIT_UNKNOWN_PRODUCTION = {"oil": 0.175, "gas": 0.825} #source: EIA 2022
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("AR"),
@@ -130,6 +131,8 @@ def non_renewables_production_mix(
     production_list = api_cammesa_response.json()
     conventional_production = ProductionBreakdownList(logger)
     for production_info in production_list:
+        production_info['gas'] = production_info['termico'] * SPLIT_UNKNOWN_PRODUCTION['gas'] # use the split from EIA 2022 to split the termico production into gas and oil
+        production_info['oil'] = production_info['termico'] * SPLIT_UNKNOWN_PRODUCTION['oil'] # use the split from EIA 2022 to split the termico production into gas and oil
         conventional_production.append(
             zoneKey=zone_key,
             datetime=datetime.strptime(
@@ -141,7 +144,9 @@ def non_renewables_production_mix(
                 # As of 2022 thermal energy is mostly natural gas but
                 # the data is not split. We put it into unknown for now.
                 # More info: see page 21 in https://microfe.cammesa.com/static-content/CammesaWeb/download-manager-files/Sintesis%20Mensual/Informe%20Mensual_2021-12.pdf
-                unknown=production_info["termico"],
+                # unknown=production_info["termico"],
+                gas=production_info["gas"],
+                oil=production_info["oil"],
             ),
             source=SOURCE,
         )
