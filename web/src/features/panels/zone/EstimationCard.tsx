@@ -1,3 +1,4 @@
+import useGetState from 'api/getState';
 import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
 import { useFeatureFlag } from 'features/feature-flags/api';
@@ -13,6 +14,8 @@ import { EstimationMethods, isTSAModel, TrackEvent } from 'utils/constants';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
+  isHourlyAtom,
+  selectedDatetimeStringAtom,
 } from 'utils/state/atoms';
 
 import { showEstimationFeedbackCard } from './util';
@@ -32,22 +35,49 @@ function postSurveyResponse({
   });
 }
 
-export default function EstimationCard({
-  cardType,
+function getCardType({
   estimationMethod,
+  zoneMessage,
+  isHourly,
+}: {
+  estimationMethod?: EstimationMethods;
+  zoneMessage?: ZoneMessage;
+  isHourly: boolean;
+}): 'estimated' | 'aggregated' | 'outage' | 'none' {
+  if (
+    (zoneMessage !== undefined &&
+      zoneMessage?.message !== undefined &&
+      zoneMessage?.issue !== undefined) ||
+    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
+  ) {
+    return 'outage';
+  }
+  if (!isHourly) {
+    return 'aggregated';
+  }
+  if (estimationMethod) {
+    return 'estimated';
+  }
+  return 'none';
+}
+
+export default function EstimationCard({
+  zoneKey,
   estimatedPercentage,
   zoneMessage,
 }: {
-  cardType: string;
-  estimationMethod?: EstimationMethods;
+  zoneKey: string;
   estimatedPercentage?: number;
   zoneMessage?: ZoneMessage;
 }) {
   const { t } = useTranslation();
+  const { data } = useGetState();
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
-  const isTSA = isTSAModel(estimationMethod);
+
   const [hasFeedbackCardBeenSeen, setHasFeedbackCardBeenSeen] = useAtom(
     hasEstimationFeedbackBeenSeenAtom
   );
@@ -69,6 +99,27 @@ export default function EstimationCard({
     hasFeedbackCardBeenSeen,
     setHasFeedbackCardBeenSeen,
   ]);
+
+  if (!data || !selectedDatetimeString || !zoneKey) {
+    return null;
+  }
+  const selectedData = data?.datetimes[selectedDatetimeString]?.z[zoneKey];
+
+  const estimationMethod = selectedData?.em;
+
+  if (!estimationMethod) {
+    return null;
+  }
+  const isTSA = isTSAModel(estimationMethod);
+  const cardType = getCardType({
+    estimationMethod,
+    zoneMessage,
+    isHourly,
+  });
+
+  if (cardType === 'none') {
+    return null;
+  }
 
   switch (cardType) {
     case 'outage': {
