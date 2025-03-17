@@ -1,3 +1,31 @@
+capacity:
+  gas:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 156.0
+  hydro:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 127.14
+  oil:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 117.97
+  solar:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 0.34
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 0.33
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 0.19
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 0.01
 country: GQ
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Malabo
