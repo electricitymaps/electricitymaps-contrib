@@ -5,6 +5,7 @@ from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
+import pandas as pd
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -53,10 +54,18 @@ EXCHANGE_NAME_DIRECTION_MAPPING = {
 
 SOURCE = "cammesaweb.cammesa.com"
 
-SPLIT_UNKNOWN_PRODUCTION = {
-    "oil": 0.175,
-    "gas": 0.825,
+SPLIT_UNKNOWN_PRODUCTION = {  # To be updated with the latest data when available
+    2017: {"oil": 0.12, "gas": 0.85, "coal": 0.03},
+    2018: {"oil": 0.07, "gas": 0.90, "coal": 0.03},
+    2019: {"oil": 0.04, "gas": 0.95, "coal": 0.01},
+    2020: {"oil": 0.075, "gas": 0.90, "coal": 0.025},
+    2021: {"oil": 0.12, "gas": 0.85, "coal": 0.03},
+    2022: {"oil": 0.17, "gas": 0.80, "coal": 0.03},
 }  # source: EIA 2022 (https://www.iea.org/data-and-statistics/data-tools/energy-statistics-data-browser?country=ARGENTINA&fuel=Energy%20supply&indicator=ElecGenByFuel)
+df_split_unknown_production = pd.DataFrame(SPLIT_UNKNOWN_PRODUCTION).T
+df_split_unknown_production = df_split_unknown_production.reindex(
+    range(2017, datetime.now().year + 1), method="ffill"
+)
 
 
 def fetch_production(
@@ -135,17 +144,21 @@ def non_renewables_production_mix(
     production_list = api_cammesa_response.json()
     conventional_production = ProductionBreakdownList(logger)
     for production_info in production_list:
-        production_info["gas"] = (
-            production_info["termico"] * SPLIT_UNKNOWN_PRODUCTION["gas"]
-        )  # use the split from EIA 2022 to split the termico production into gas and oil
-        production_info["oil"] = (
-            production_info["termico"] * SPLIT_UNKNOWN_PRODUCTION["oil"]
-        )  # use the split from EIA 2022 to split the termico production into gas and oil
+        # Convert fecha string to datetime and extract the year
+        production_datetime = datetime.strptime(
+            production_info["fecha"], "%Y-%m-%dT%H:%M:%S.%f%z"
+        )
+        production_year = production_datetime.year
+
+        # use the split from EIA 2022 to split the termico production into gas and oil
+        for mode in ["gas", "oil", "coal"]:
+            production_info[mode] = (
+                production_info["termico"]
+                * df_split_unknown_production.loc[production_year][mode]
+            )  # use the split from EIA 2022 to split the termico production into gas and oil
         conventional_production.append(
             zoneKey=zone_key,
-            datetime=datetime.strptime(
-                production_info["fecha"], "%Y-%m-%dT%H:%M:%S.%f%z"
-            ),
+            datetime=production_datetime,
             production=ProductionMix(
                 hydro=production_info["hidraulico"],
                 nuclear=production_info["nuclear"],
@@ -155,6 +168,7 @@ def non_renewables_production_mix(
                 # unknown=production_info["termico"],
                 gas=production_info["gas"],
                 oil=production_info["oil"],
+                coal=production_info["coal"],
             ),
             source=SOURCE,
         )
