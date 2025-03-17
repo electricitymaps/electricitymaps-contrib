@@ -53,7 +53,7 @@ EXCHANGE_NAME_DIRECTION_MAPPING = {
 
 SOURCE = "cammesaweb.cammesa.com"
 
-SPLIT_UNKNOWN_PRODUCTION = {"oil": 0.175, "gas": 0.825}  # source: EIA 2022
+SPLIT_UNKNOWN_PRODUCTION = {"oil": 0.175, "gas": 0.825}  # source: EIA 2022 (https://www.iea.org/data-and-statistics/data-tools/energy-statistics-data-browser?country=ARGENTINA&fuel=Energy%20supply&indicator=ElecGenByFuel)
 
 
 def fetch_production(
