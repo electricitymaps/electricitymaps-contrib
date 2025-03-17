@@ -1,4 +1,5 @@
 import { CountryFlag } from 'components/Flag';
+import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { Info } from 'lucide-react';
 import { memo } from 'react';
@@ -30,9 +31,12 @@ function ZoneHeaderTitle({
         className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
       />
       <TooltipWrapper
-        tooltipContent={showTooltip ? zoneNameFull : undefined}
+        tooltipContent={
+          showTooltip ? (
+            <LabelTooltip className="max-w-[400px]">{zoneNameFull}</LabelTooltip>
+          ) : undefined
+        }
         side="bottom"
-        tooltipClassName="max-w-[400px]"
       >
         <h1 className="truncate" data-testid="zone-name">
           {zoneName}
@@ -44,7 +48,10 @@ function ZoneHeaderTitle({
         </div>
       )}
       {disclaimer && (
-        <TooltipWrapper side="bottom" tooltipContent={disclaimer}>
+        <TooltipWrapper
+          side="bottom"
+          tooltipContent={<LabelTooltip>{disclaimer}</LabelTooltip>}
+        >
           <Info className="text-neutral-500" />
         </TooltipWrapper>
       )}

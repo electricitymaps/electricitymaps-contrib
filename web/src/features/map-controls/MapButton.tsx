@@ -1,5 +1,6 @@
 import * as Toggle from '@radix-ui/react-toggle';
 import { GlassBackdrop } from 'components/GlassContainer';
+import LabelTooltip from 'components/tooltips/LabelTooltip';
 import { twMerge } from 'tailwind-merge';
 
 import TooltipWrapper from '../../components/tooltips/TooltipWrapper';
@@ -25,10 +26,7 @@ export default function MapButton({
 }: MapButtonProperties) {
   const Component = asToggle ? Toggle.Root : 'div';
   return (
-    <TooltipWrapper
-      tooltipContent={tooltipText}
-      tooltipClassName="relative py-1.5 px-3 rounded"
-    >
+    <TooltipWrapper tooltipContent={<LabelTooltip>{tooltipText}</LabelTooltip>}>
       <Component
         onClick={onClick}
         className={twMerge(
