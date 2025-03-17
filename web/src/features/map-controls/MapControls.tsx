@@ -20,15 +20,12 @@ import { useIsMobile } from 'utils/styling';
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
 import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
-import MobileButtons from './MobileButtons';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
 import ThemeSelector from './ThemeSelector';
 
 function MobileMapControls() {
   return (
-    <div className="pointer-events-none absolute right-0 mt-[env(safe-area-inset-top)]">
-      <MobileButtons />
-    </div>
+    <div className="pointer-events-none absolute right-0 mt-[env(safe-area-inset-top)]"></div>
   );
 }
 
