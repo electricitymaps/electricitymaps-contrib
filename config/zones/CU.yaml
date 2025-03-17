@@ -15,10 +15,16 @@ capacity:
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 4813.8
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 5226.4
   solar:
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 267.4
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 279.9
   unknown:
     - datetime: '2022-01-01'
       source: IRENA.org

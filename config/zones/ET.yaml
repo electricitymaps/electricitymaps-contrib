@@ -11,6 +11,9 @@ capacity:
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 335.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 310.0
   geothermal:
     - datetime: '2019-01-01'
       source: IRENA.org
@@ -25,10 +28,16 @@ capacity:
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 4821.28
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 4882.58
   oil:
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 104.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 99.14
   solar:
     - datetime: '2019-01-01'
       source: IRENA.org
@@ -46,6 +55,9 @@ capacity:
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 404.01
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 324.01
 country: ET
 emissionFactors:
   lifecycle:

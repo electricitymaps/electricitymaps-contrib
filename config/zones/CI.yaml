@@ -35,6 +35,9 @@ capacity:
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 9.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 46.5
 country: CI
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
