@@ -5,20 +5,32 @@ bounding_box:
     - -7.450127862999921
 capacity:
   hydro:
-    - datetime: '2020-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 47.63
+    - datetime: '2019-01-01'
       source: IRENA.org
       value: 48.65
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 49.2
   oil:
-    - datetime: '2020-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 210.38
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 216.38
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 34.8
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 38.1
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 41.1
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 44.61
@@ -32,7 +44,7 @@ capacity:
       source: IRENA.org
       value: 52.87
   wind:
-    - datetime: '2020-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 0.25
 contributors:

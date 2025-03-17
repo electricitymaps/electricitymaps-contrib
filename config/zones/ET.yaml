@@ -5,18 +5,24 @@ bounding_box:
     - 15.379157026350086
 capacity:
   biomass:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 205.0
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 290.0
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 335.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 310.0
   geothermal:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 7.3
   hydro:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 3817.28
     - datetime: '2020-01-01'
@@ -25,12 +31,27 @@ capacity:
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 4821.28
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 4882.58
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 99.2
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 87.0
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 104.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 99.14
   solar:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 12.49
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 12.35
     - datetime: '2020-01-01'
@@ -40,12 +61,15 @@ capacity:
       source: IRENA.org
       value: 21.18
   wind:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 324.01
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 404.01
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 324.01
 country: ET
 emissionFactors:
   lifecycle:

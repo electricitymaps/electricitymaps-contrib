@@ -1,9 +1,18 @@
 capacity:
   oil:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 205.0
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 206.0
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 23.35
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 25.86
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 25.92
@@ -17,7 +26,7 @@ capacity:
       source: IRENA.org
       value: 24.79
   wind:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 0.83
 country: ER
