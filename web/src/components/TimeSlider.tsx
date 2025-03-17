@@ -104,7 +104,7 @@ export function TimeSliderBasic({
       <SliderPrimitive.Thumb
         data-testid="time-slider-input"
         className="flex h-7 w-7 items-center justify-center rounded-full bg-white outline
-           outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 dark:bg-neutral-900 dark:outline-neutral-700"
+           outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 focus-visible:outline-brand-green dark:bg-neutral-900 dark:outline-neutral-700 dark:focus-visible:outline-brand-green"
       >
         {thumbIcon}
       </SliderPrimitive.Thumb>
