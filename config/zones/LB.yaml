@@ -3,6 +3,47 @@ bounding_box:
     - 32.586823910078905
   - - 37.103366033660365
     - 35.14956636366941
+capacity:
+  biomass:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 7.0
+  hydro:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 282.0
+  oil:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 3401.12
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 2931.12
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 2781.12
+  solar:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 76.08
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 89.84
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 189.84
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 874.89
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1004.89
+  wind:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 3.0
 country: LB
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Beirut
