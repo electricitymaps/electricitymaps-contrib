@@ -1,30 +1,96 @@
 capacity:
   biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 442.36
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 464.36
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 370.26
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 476.36
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 481.81
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 439.65
   gas:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 580.0
   hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 65.9
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 64.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 65.9
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 66.5
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 66.6
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 5213.8
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 5325.12
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 5245.7
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 5229.4
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 5311.9
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 4813.8
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 5226.4
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 70.02
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 124.29
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 150.65
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 213.17
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 246.2
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 267.4
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 279.9
   unknown:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 90.0
   wind:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 15.55
+    - datetime: '2019-01-01'
       source: IRENA.org
       value: 16.0
 country: CU
