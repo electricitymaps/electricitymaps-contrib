@@ -30,14 +30,11 @@ function SearchBar({
   const [inputValue, setInputValue] = useState(value);
   const debouncedValue = useDebounce(inputValue, 100);
 
-  const onHandleInput = useCallback(
-    (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
-      // Only update the input value, the search will be triggered by the debounced effect
-      const newValue = inputEvent.target.value;
-      setInputValue(newValue);
-    },
-    [searchHandler]
-  );
+  const onHandleInput = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
+    // Only update the input value, the search will be triggered by the debounced effect
+    const newValue = inputEvent.target.value;
+    setInputValue(newValue);
+  }, []);
 
   useEffect(() => {
     if (searchHandler) {
@@ -47,19 +44,10 @@ function SearchBar({
     }
   }, [debouncedValue, searchHandler]);
 
-  const handleClear = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      event.stopPropagation();
-      setInputValue('');
-      // TODO: Uncomment this to bypass the debounce
-      // if (searchHandler) {
-      //   searchHandler({
-      //     target: { value: '' },
-      //   } as React.ChangeEvent<HTMLInputElement>);
-      // }
-    },
-    [searchHandler]
-  );
+  const handleClear = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setInputValue('');
+  }, []);
 
   const handleContainerClick = useCallback(() => {
     inputReference?.current?.focus();
