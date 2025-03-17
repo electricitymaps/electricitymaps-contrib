@@ -72,7 +72,8 @@
   "ranking-panel": {
     "title": "Klimaeinfluss der Regionen",
     "subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
-    "search": "Land oder Region suchen"
+    "search": "Land oder Region suchen",
+    "no-results": "Nichts gefunden. Versuche es mit etwas anderem zu suchen."
   },
   "time-controller": {
     "title": {
