@@ -3,6 +3,81 @@ bounding_box:
     - -5.178020968858455
   - - 42.38461884618849
     - 5.530444969930855
+capacity:
+  biomass:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 87.7
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 98.7
+  geothermal:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 683.8
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 863.1
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 949.1
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 984.1
+  hydro:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 851.71
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 853.77
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 857.87
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 858.33
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 859.13
+  oil:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 807.02
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 749.32
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 750.42
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 681.9
+  solar:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 125.86
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 145.73
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 216.07
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 317.81
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 357.81
+  wind:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 336.1
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 436.1
 country: KE
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Nairobi
