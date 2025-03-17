@@ -132,7 +132,7 @@ export default function ZoneDetails(): JSX.Element {
           id="panel-scroller"
           className={twMerge(
             // TODO: Can we set the height here without using calc and specific zone-header value?
-            'h-full flex-1 overflow-y-scroll px-3 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-0',
+            'h-full flex-1 overflow-y-scroll px-3 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4',
             isIosCapacitor ? 'pb-72' : 'pb-32'
           )}
         >
