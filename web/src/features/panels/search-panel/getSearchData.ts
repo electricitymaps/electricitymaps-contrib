@@ -5,7 +5,6 @@ import { ZoneRowType } from './ZoneList';
 
 export const getAllZones = () => {
   // Get all zone data directly from translations
-  // TODO: Get rid of zones not available on the map!
   const zoneData = t('zoneShortName', { returnObjects: true }) as Record<
     string,
     ZoneRowType
