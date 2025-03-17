@@ -9,6 +9,7 @@ import { captureException } from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import App from 'App';
+import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { zoneExists } from 'features/panels/zone/util';
 import { lazy, StrictMode, Suspense } from 'react';
@@ -242,7 +243,13 @@ const router = createBrowserRouter([
         element: (
           <ValidZoneIdGuardWrapper>
             <TimeRangeAndResolutionGuardWrapper>
-              <Suspense fallback={<LoadingSpinner />}>
+              <Suspense
+                fallback={
+                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-48 sm:h-auto">
+                    <LoadingSpinner />
+                  </GlassContainer>
+                }
+              >
                 <ZoneDetails />
               </Suspense>
             </TimeRangeAndResolutionGuardWrapper>
