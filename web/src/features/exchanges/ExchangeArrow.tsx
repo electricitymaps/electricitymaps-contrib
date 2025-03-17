@@ -114,9 +114,9 @@ function ExchangeArrow({
   const scaledZoom = 100 * baseZoom;
 
   // Setting the top position from the arrow tooltip preventing overflowing to top.
-  let tooltipClassName = 'max-h-[256px] max-w-[512px] md:flex rounded-2xl';
+  let tooltipClassName = 'max-h-[256px] max-w-[512px] md:flex';
   if (!isMobile) {
-    tooltipClassName += y - 76 < headerHeight ? ' top-[76px]' : ' top-[-76px]';
+    tooltipClassName += y - 140 < headerHeight ? ' top-[76px]' : ' top-[-76px]';
   }
 
   if (
@@ -140,10 +140,16 @@ function ExchangeArrow({
 
   return (
     <TooltipWrapper
-      tooltipClassName={tooltipClassName}
-      tooltipContent={<ExchangeTooltip exchangeData={data} isMobile={isMobile} />}
+      tooltipContent={
+        <ExchangeTooltip
+          exchangeData={data}
+          isMobile={isMobile}
+          className={tooltipClassName}
+        />
+      }
       side={isMobile ? 'top' : 'right'}
-      sideOffset={10}
+      sideOffset={isMobile ? 10 : 0}
+      tooltipId={`exchange-${key}`}
     >
       <picture
         style={{

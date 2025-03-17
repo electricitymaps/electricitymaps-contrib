@@ -1,5 +1,7 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
+import { useAtom } from 'jotai';
 import { ReactElement, useState } from 'react';
+import { openTooltipIdAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
 interface TooltipWrapperProperties {
@@ -7,6 +9,7 @@ interface TooltipWrapperProperties {
   children: ReactElement;
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
+  tooltipId?: string;
 }
 
 const noop = () => undefined;
@@ -16,17 +19,41 @@ export default function TooltipWrapper({
   children,
   side,
   sideOffset,
+  tooltipId,
 }: TooltipWrapperProperties): ReactElement {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openTooltipId, setOpenTooltipId] = useAtom(openTooltipIdAtom);
+  const [localIsOpen, setLocalIsOpen] = useState(false);
   const isMobile = useIsMobile();
   if (!tooltipContent) {
     return children;
   }
 
   // Helpers
-  const openTooltip = () => setIsOpen(true);
-  const closeTooltip = () => setIsOpen(false);
-  const toggleTooltip = () => setIsOpen(!isOpen);
+  const openTooltip = () => {
+    if (tooltipId) {
+      setOpenTooltipId(tooltipId);
+    } else {
+      setLocalIsOpen(true);
+    }
+  };
+  const closeTooltip = () => {
+    if (tooltipId) {
+      setOpenTooltipId(null);
+    } else {
+      setLocalIsOpen(false);
+    }
+  };
+  const toggleTooltip = () => {
+    if (tooltipId) {
+      if (openTooltipId === tooltipId) {
+        closeTooltip();
+      } else {
+        openTooltip();
+      }
+    } else {
+      setLocalIsOpen(!localIsOpen);
+    }
+  };
 
   // Declare the event handlers outside of the JSX to avoid re-creating them on every render.
   const handleMouseEnter = isMobile ? noop : openTooltip;
@@ -34,6 +61,8 @@ export default function TooltipWrapper({
   const handleClick = isMobile ? toggleTooltip : noop;
   const handleContentClick = isMobile ? closeTooltip : noop;
   const handleContentPointerDownOutside = isMobile ? closeTooltip : noop;
+
+  const isOpen = tooltipId ? openTooltipId === tooltipId : localIsOpen;
 
   return (
     <Tooltip.Provider disableHoverableContent>
