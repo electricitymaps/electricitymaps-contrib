@@ -1,9 +1,15 @@
 capacity:
   biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2.16
     - datetime: '2018-01-01'
       source: IRENA.org
       value: 2.96
   hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2439.8
     - datetime: '2018-01-01'
       source: IRENA.org
       value: 2597.8
@@ -17,6 +23,9 @@ capacity:
       source: IRENA.org
       value: 3172.45
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 29.0
     - datetime: '2018-01-01'
       source: IRENA.org
       value: 31.84
@@ -24,6 +33,9 @@ capacity:
       source: IRENA.org
       value: 75.57
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 5.67
     - datetime: '2018-01-01'
       source: IRENA.org
       value: 8.33

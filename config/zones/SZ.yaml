@@ -3,6 +3,35 @@ bounding_box:
     - -27.81720455535446
   - - 32.636354193686614
     - -25.21775636673113
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 106.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 62.2
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 9.9
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.13
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 0.14
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 0.18
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 10.18
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 10.16
 country: SZ
 emissionFactors:
   lifecycle:
@@ -52,5 +81,7 @@ fallbackZoneMixes:
         solar: 0.03922910747008666
         unknown: 0.0
         wind: 0.0
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Mbabane

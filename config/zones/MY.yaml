@@ -1,3 +1,86 @@
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 800.04
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 809.99
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 882.81
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 890.64
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 904.35
+  coal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 10546.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 13170.0
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 13839.95
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 15279.95
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 16121.95
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6145.33
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 6165.33
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 6185.36
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 6197.36
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 6214.86
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 370.3
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1313.72
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 393.96
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 545.26
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 893.76
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1482.95
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 1787.1
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1933.25
+  unknown:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 974.92
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 31.5
 country: MY
 disclaimer: This zone is partially using fully estimated data from MY-EM
 emissionFactors:
@@ -175,6 +258,8 @@ fallbackZoneMixes:
         solar: 0.02105938582460856
         unknown: 0.006868112880627442
         wind: 0.0
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 subZoneNames:
   - MY-WM
