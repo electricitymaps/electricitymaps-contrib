@@ -125,7 +125,7 @@ export default function ZoneDetails(): JSX.Element {
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
-    <GlassContainer className="pointer-events-auto z-[21] flex h-full flex-col border-0 pb-2 pt-10 transition-all duration-500 sm:inset-3 sm:bottom-48 sm:h-auto sm:border">
+    <GlassContainer className="pointer-events-auto z-[21] flex h-full flex-col border-0 pb-2 pt-10 transition-all duration-500 sm:inset-3 sm:bottom-48 sm:h-auto sm:border sm:pt-0">
       <section className="h-full w-full">
         <ZoneHeader zoneId={zoneId} isEstimated={false} />
         <div
