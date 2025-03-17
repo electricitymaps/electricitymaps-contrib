@@ -1,16 +1,28 @@
 capacity:
   hydro:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 56.29
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 77.89
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 77.99
   oil:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 400.22
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 400.37
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2.77
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 3.01
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 3.06
@@ -24,7 +36,10 @@ capacity:
       source: IRENA.org
       value: 3.89
   wind:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.0
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 0.02
 country: HT

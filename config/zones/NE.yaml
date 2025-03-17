@@ -1,13 +1,16 @@
 capacity:
   coal:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 37.6
   gas:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 21.0
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 278.0
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 294.0
@@ -15,6 +18,12 @@ capacity:
       source: IRENA.org
       value: 390.0
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6.85
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 13.97
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 14.1

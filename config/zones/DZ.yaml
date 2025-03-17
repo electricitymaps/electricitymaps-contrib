@@ -5,6 +5,12 @@ bounding_box:
     - 37.58240717969856
 capacity:
   gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 18510.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 20121.0
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 22460.6
@@ -21,7 +27,7 @@ capacity:
       source: IRENA.org
       value: 25657.6
   hydro:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 228.0
     - datetime: '2020-01-01'
@@ -31,21 +37,30 @@ capacity:
       source: IRENA.org
       value: 128.9
   oil:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1485.9
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 1462.9
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 1561.9
   solar:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 354.1
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 366.1
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 450.8
   wind:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 10.2
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 10.0
 country: DZ

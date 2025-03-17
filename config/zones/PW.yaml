@@ -1,5 +1,11 @@
 capacity:
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 32.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 31.36
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 29.48
@@ -7,6 +13,12 @@ capacity:
       source: IRENA.org
       value: 30.14
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2.1
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2.5
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 2.62

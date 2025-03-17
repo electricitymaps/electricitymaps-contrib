@@ -5,10 +5,22 @@ bounding_box:
     - -21.626451924999927
 capacity:
   biomass:
-    - datetime: '2020-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 259.69
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 264.69
   coal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 38548.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 40180.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 40170.0
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 42457.0
@@ -19,18 +31,18 @@ capacity:
       source: IRENA.org
       value: 43599.0
   hydro:
-    - datetime: '2020-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 747.65
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 751.65
   hydro storage:
-    - datetime: '2020-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 2732.0
   nuclear:
-    - datetime: '2020-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 1940.0
     - datetime: '2021-01-01'
@@ -43,10 +55,28 @@ capacity:
       source: IRENA.org
       value: 1934.0
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 3684.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 3431.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 3439.0
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 3445.4
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 3451.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 4805.06
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 4908.14
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 5994.49
@@ -60,6 +90,9 @@ capacity:
       source: IRENA.org
       value: 6164.23
   wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2094.0
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 2516.0

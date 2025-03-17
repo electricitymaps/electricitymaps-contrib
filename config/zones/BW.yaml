@@ -5,14 +5,17 @@ bounding_box:
     - -17.288170801589715
 capacity:
   coal:
-    - datetime: '2018-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 757.0
   oil:
-    - datetime: '2018-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 160.0
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 3.42
     - datetime: '2018-01-01'
       source: IRENA.org
       value: 3.72

@@ -1,17 +1,29 @@
 capacity:
   gas:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 154.2
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 156.0
   hydro:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 125.6
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 127.14
   oil:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 116.0
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 117.97
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.35
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 0.34

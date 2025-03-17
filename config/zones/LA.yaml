@@ -1,13 +1,22 @@
 capacity:
   biomass:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 39.7
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 123.08
   coal:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 1653.0
   hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 5102.19
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 5380.19
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 6223.99
@@ -24,11 +33,14 @@ capacity:
       source: IRENA.org
       value: 9756.33
   oil:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 0.02
   solar:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 8.37
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 34.29
     - datetime: '2020-01-01'

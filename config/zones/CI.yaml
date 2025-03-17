@@ -5,17 +5,20 @@ bounding_box:
     - 11.220430313773178
 capacity:
   gas:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 809.0
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 990.0
   hydro:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 879.0
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 516.14
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 546.14
@@ -23,6 +26,12 @@ capacity:
       source: IRENA.org
       value: 586.14
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1.01
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2.1
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 4.21
