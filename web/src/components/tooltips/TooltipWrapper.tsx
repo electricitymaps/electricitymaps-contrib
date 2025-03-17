@@ -1,6 +1,6 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { useAtom } from 'jotai';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import { openTooltipIdAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
@@ -12,55 +12,69 @@ interface TooltipWrapperProperties {
   tooltipId?: string;
 }
 
-const noop = () => undefined;
-
 export default function TooltipWrapper({
   tooltipContent,
   children,
-  side,
-  sideOffset,
+  side = 'left',
+  sideOffset = 3,
   tooltipId,
 }: TooltipWrapperProperties): ReactElement {
   const [openTooltipId, setOpenTooltipId] = useAtom(openTooltipIdAtom);
   const [localIsOpen, setLocalIsOpen] = useState(false);
   const isMobile = useIsMobile();
-  if (!tooltipContent) {
-    return children;
-  }
 
-  // Helpers
-  const openTooltip = () => {
+  const openTooltip = useCallback(() => {
     if (tooltipId) {
       setOpenTooltipId(tooltipId);
     } else {
       setLocalIsOpen(true);
     }
-  };
-  const closeTooltip = () => {
+  }, [tooltipId, setOpenTooltipId]);
+
+  const closeTooltip = useCallback(() => {
     if (tooltipId) {
       setOpenTooltipId(null);
     } else {
       setLocalIsOpen(false);
     }
-  };
-  const toggleTooltip = () => {
-    if (tooltipId) {
-      if (openTooltipId === tooltipId) {
-        closeTooltip();
-      } else {
-        openTooltip();
-      }
-    } else {
-      setLocalIsOpen(!localIsOpen);
-    }
-  };
+  }, [tooltipId, setOpenTooltipId]);
 
-  // Declare the event handlers outside of the JSX to avoid re-creating them on every render.
-  const handleMouseEnter = isMobile ? noop : openTooltip;
-  const handleMouseLeave = isMobile ? noop : closeTooltip;
-  const handleClick = isMobile ? toggleTooltip : noop;
-  const handleContentClick = isMobile ? closeTooltip : noop;
-  const handleContentPointerDownOutside = isMobile ? closeTooltip : noop;
+  const toggleTooltip = useCallback(() => {
+    if (tooltipId) {
+      setOpenTooltipId(openTooltipId === tooltipId ? null : tooltipId);
+    } else {
+      setLocalIsOpen((previous) => !previous);
+    }
+  }, [tooltipId, openTooltipId, setOpenTooltipId]);
+
+  const handleMouseEnter = useCallback(
+    () => !isMobile && openTooltip(),
+    [isMobile, openTooltip]
+  );
+
+  const handleMouseLeave = useCallback(
+    () => !isMobile && closeTooltip(),
+    [isMobile, closeTooltip]
+  );
+
+  const handleClick = useCallback(
+    () => isMobile && toggleTooltip(),
+    [isMobile, toggleTooltip]
+  );
+
+  const handleContentClick = useCallback(
+    () => isMobile && closeTooltip(),
+    [isMobile, closeTooltip]
+  );
+
+  const handleContentPointerDownOutside = useCallback(
+    () => isMobile && closeTooltip(),
+    [isMobile, closeTooltip]
+  );
+
+  if (!tooltipContent) {
+    return children;
+  }
 
   const isOpen = tooltipId ? openTooltipId === tooltipId : localIsOpen;
 
@@ -78,8 +92,8 @@ export default function TooltipWrapper({
         <Tooltip.Portal>
           <Tooltip.Content
             className="z-50"
-            sideOffset={sideOffset ?? 3}
-            side={side ?? 'left'}
+            sideOffset={sideOffset}
+            side={side}
             onClick={handleContentClick}
             onPointerDownOutside={handleContentPointerDownOutside}
           >
