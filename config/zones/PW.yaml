@@ -1,3 +1,38 @@
+capacity:
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 32.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 31.36
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 29.48
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 30.14
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2.1
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2.5
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 2.62
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 2.92
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 4.34
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 19.62
 country: PW
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Palau

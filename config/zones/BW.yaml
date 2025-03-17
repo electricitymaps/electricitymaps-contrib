@@ -3,6 +3,31 @@ bounding_box:
     - -27.391288702037656
   - - 29.849293492934947
     - -17.288170801589715
+capacity:
+  coal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 757.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 160.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 3.42
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 3.72
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 5.92
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 6.3
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 6.29
 country: BW
 emissionFactors:
   lifecycle:
@@ -52,5 +77,7 @@ fallbackZoneMixes:
         solar: 0.002355337032443158
         unknown: 0.0
         wind: 0.0
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Gaborone

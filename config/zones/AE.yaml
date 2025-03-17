@@ -4,79 +4,113 @@ bounding_box:
   - - 56.88363691500007
     - 26.574791972000085
 capacity:
-  gas:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 26394
+  biomass:
     - datetime: '2017-01-01'
-      source: Climatescope
-      value: 26569
-    - datetime: '2018-01-01'
-      source: Climatescope
-      value: 28280
-    - datetime: '2019-01-01'
-      source: Climatescope
-      value: 25980
-    - datetime: '2020-01-01'
-      source: Climatescope
-      value: 29059
-    - datetime: '2021-01-01'
-      source: Climatescope
-      value: 33493.8
+      source: IRENA.org
+      value: 1.0
     - datetime: '2022-01-01'
-      source: Climatescope
-      value: 39976.8
+      source: IRENA.org
+      value: 16.9
     - datetime: '2023-01-01'
-      source: Climatescope
-      value: 39451.8
-  nuclear:
-    - datetime: '2020-08-19'
-      source: IAEA PRIS
-      value: 1310
-    - datetime: '2021-09-14'
-      source: IAEA PRIS
-      value: 2620
-    - datetime: '2022-10-08'
-      source: IAEA PRIS
-      value: 3930
-    - datetime: '2024-03-24'
-      source: IAEA PRIS
-      value: 5240
-  oil:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 219.9
-    - datetime: '2017-01-01'
-      source: Climatescope
-      value: 218.6
-    - datetime: '2018-01-01'
-      source: Climatescope
-      value: 71.4
-  solar:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 1
-    - datetime: '2017-01-01'
-      source: Climatescope
-      value: 24
-    - datetime: '2018-01-01'
-      source: Climatescope
-      value: 239
-    - datetime: '2019-01-01'
-      source: Climatescope
-      value: 513
+      source: IRENA.org
+      value: 28.7
+  coal:
     - datetime: '2020-01-01'
-      source: Climatescope
-      value: 2092
+      source: IRENA.org
+      value: 600.0
     - datetime: '2021-01-01'
-      source: Climatescope
-      value: 2459
+      source: IRENA.org
+      value: 0.0
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 30567.77
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 31058.54
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 31287.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 30846.4
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 31681.0
     - datetime: '2022-01-01'
-      source: Climatescope
-      value: 3309
+      source: IRENA.org
+      value: 32392.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 33512.0
+  nuclear:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1390.0
     - datetime: '2022-01-01'
-      source: Climatescope
-      value: 5414
+      source: IRENA.org
+      value: 2780.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 4170.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 32.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 11.08
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 9.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 9.6
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 35.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 34.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 0.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 353.47
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 599.89
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1935.23
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 2332.6
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 3002.38
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 3596.2
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 5907.44
+  unknown:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 7.5
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 15.0
+  wind:
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 0.02
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 99.1
 contributors:
   - q--
   - florianscheidl
@@ -258,6 +292,7 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   consumption: GCCIA.fetch_consumption
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 sources:
   Climatescope:
