@@ -5,22 +5,28 @@ bounding_box:
     - -9.975337525172648
 capacity:
   biomass:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 72.95
   gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 347.84
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 453.84
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 453.64
   hydro:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 2193.03
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 2193.63
   oil:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 206.6
     - datetime: '2022-01-01'
@@ -30,6 +36,12 @@ capacity:
       source: IRENA.org
       value: 207.6
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2.65
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2.85
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 43.32

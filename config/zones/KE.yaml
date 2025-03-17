@@ -5,14 +5,20 @@ bounding_box:
     - 5.530444969930855
 capacity:
   biomass:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 85.2
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 87.7
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 98.7
   geothermal:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 672.9
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 683.8
     - datetime: '2020-01-01'
@@ -25,6 +31,12 @@ capacity:
       source: IRENA.org
       value: 984.1
   hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 841.47
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 845.48
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 851.71
@@ -41,6 +53,12 @@ capacity:
       source: IRENA.org
       value: 859.13
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 802.52
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 806.72
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 807.02
@@ -54,6 +72,12 @@ capacity:
       source: IRENA.org
       value: 681.9
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 45.19
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 105.45
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 125.86
@@ -70,7 +94,10 @@ capacity:
       source: IRENA.org
       value: 357.81
   wind:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 26.21
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 336.1
     - datetime: '2021-01-01'

@@ -5,6 +5,15 @@ bounding_box:
     - 7.592635332223807
 capacity:
   biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 26.11
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 27.1
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 40.1
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 45.1
@@ -12,10 +21,19 @@ capacity:
       source: IRENA.org
       value: 45.11
   coal:
-    - datetime: '2020-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 900.0
   hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1745.28
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 1796.83
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1813.45
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 1797.45
@@ -29,6 +47,15 @@ capacity:
       source: IRENA.org
       value: 1843.15
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1164.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 1137.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1282.0
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 1268.0
@@ -39,6 +66,15 @@ capacity:
       source: IRENA.org
       value: 924.0
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 146.48
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 220.52
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 341.93
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 427.96
@@ -52,10 +88,19 @@ capacity:
       source: IRENA.org
       value: 958.78
   unknown:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 10.0
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 15.0
   wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 131.45
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 128.45
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 179.0

@@ -5,11 +5,17 @@ bounding_box:
     - 12.889546858796207
 capacity:
   oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 165.0
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 204.2
   solar:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 11.13
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 11.93
     - datetime: '2020-01-01'
@@ -19,7 +25,7 @@ capacity:
       source: IRENA.org
       value: 13.36
   wind:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 46.5
 contributors:

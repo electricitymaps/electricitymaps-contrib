@@ -5,25 +5,34 @@ bounding_box:
     - -19.493469447178505
 capacity:
   biomass:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 90.65
   coal:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 182.8
   hydro:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 61.14
     - datetime: '2020-01-01'
       source: IRENA.org
       value: 61.2
   oil:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 529.0
+    - datetime: '2018-01-01'
       source: IRENA.org
       value: 457.2
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 32.76
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 74.55
     - datetime: '2019-01-01'
       source: IRENA.org
       value: 99.36
@@ -37,7 +46,7 @@ capacity:
       source: IRENA.org
       value: 107.65
   wind:
-    - datetime: '2019-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 10.63
 country: MU
