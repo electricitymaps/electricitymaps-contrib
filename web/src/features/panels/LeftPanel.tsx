@@ -27,9 +27,9 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
         location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex'
       )}
     >
-      <GlassContainer className="z-[21] pt-[env(safe-area-inset-top)]  transition-all duration-500 sm:inset-3 sm:bottom-48 sm:h-auto">
+      <GlassContainer className="z-[21] flex h-full flex-col pt-[env(safe-area-inset-top)] transition-all duration-500 sm:inset-3 sm:bottom-48 sm:h-auto">
         {isMobile && <MobileHeader />}
-        <section className="h-full w-full">{children}</section>
+        <section className="flex flex-1 flex-col overflow-hidden">{children}</section>
       </GlassContainer>
       <TimeControllerWrapper />
     </div>
