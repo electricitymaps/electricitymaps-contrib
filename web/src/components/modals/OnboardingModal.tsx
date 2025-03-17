@@ -193,7 +193,7 @@ function OnboardingModalContent({
         {!isOnFirstView && (
           <Button
             icon={<ChevronLeft />}
-            backgroundClasses="outline-2"
+            backgroundClasses="outline-2 sm:outline-0"
             onClick={onBack}
             type="secondary"
             dataTestId="back-button"
@@ -203,7 +203,9 @@ function OnboardingModalContent({
       <div className="absolute right-1 top-1/2 -translate-y-1/2 sm:-right-16">
         <Button
           icon={isOnLastView ? <Check /> : <ChevronRight />}
-          backgroundClasses={`outline-2 ${isOnLastView && 'dark:bg-brand-green-dark'}`}
+          backgroundClasses={`outline-2 sm:outline-0 ${
+            isOnLastView && 'dark:bg-brand-green-dark'
+          }`}
           onClick={onForward}
           type={isOnLastView ? 'primary' : 'secondary'}
           dataTestId={isOnLastView ? 'close-modal' : 'next-button'}

@@ -99,19 +99,31 @@
 button.maplibregl-ctrl-zoom-in.maplibregl-ctrl-zoom-in {
   width: 33px;
   height: 32px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: 1px solid theme(colors.neutral.200) !important;
+}
+button.maplibregl-ctrl-zoom-in.maplibregl-ctrl-zoom-in:focus {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 button.maplibregl-ctrl-zoom-out.maplibregl-ctrl-zoom-out {
   width: 33px;
   height: 32px;
-  border-color: lightgray;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border: 1px solid theme(colors.neutral.200) !important;
+  border-top: none !important;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+button.maplibregl-ctrl-zoom-out.maplibregl-ctrl-zoom-out:focus {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .maplibregl-ctrl.maplibregl-ctrl-group.maplibregl-ctrl.maplibregl-ctrl-group {
   background: transparent;
+  box-shadow: none !important;
+
   @apply backdrop-blur-sm;
 }
 .maplibregl-ctrl.maplibregl-ctrl-group.maplibregl-ctrl.maplibregl-ctrl-group button {
@@ -121,13 +133,11 @@ button.maplibregl-ctrl-zoom-out.maplibregl-ctrl-zoom-out {
   button:not(:disabled):hover {
   @apply bg-white;
 }
-.dark button.maplibregl-ctrl-zoom-out.maplibregl-ctrl-zoom-out {
-  border-color: theme(colors.neutral.600);
-}
 .dark
   .maplibregl-ctrl.maplibregl-ctrl-group.maplibregl-ctrl.maplibregl-ctrl-group
   button {
   @apply bg-neutral-900/80;
+  border: 1px solid rgb(64, 64, 64, 0.6) !important; /* dark: border-neutral-700/60; */
 }
 
 .dark

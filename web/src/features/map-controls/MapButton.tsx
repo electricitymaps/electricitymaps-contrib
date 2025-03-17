@@ -32,7 +32,7 @@ export default function MapButton({
       <Component
         onClick={onClick}
         className={twMerge(
-          `relative flex h-8 w-8 items-center justify-center overflow-hidden rounded bg-white/80 text-left transition hover:bg-white dark:border-neutral-700/60 dark:bg-neutral-900/80 dark:hover:bg-neutral-800`,
+          `relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-neutral-200 bg-white/80 text-left transition hover:bg-white focus-visible:border-none focus-visible:outline-brand-green dark:border-neutral-700/60 dark:bg-neutral-900/80 dark:hover:bg-neutral-800`,
           className,
           asToggle && 'pointer-events-auto'
         )}
