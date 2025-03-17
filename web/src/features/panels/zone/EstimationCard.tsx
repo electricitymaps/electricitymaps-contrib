@@ -239,7 +239,7 @@ function BaseCard({
   );
 }
 
-function OutageCard({
+export function OutageCard({
   zoneMessage,
   estimationMethod,
 }: {
@@ -263,7 +263,11 @@ function OutageCard({
   );
 }
 
-function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number }) {
+export function AggregatedCard({
+  estimatedPercentage,
+}: {
+  estimatedPercentage?: number;
+}) {
   return (
     <BaseCard
       estimationMethod={EstimationMethods.AGGREGATED}
@@ -277,7 +281,7 @@ function AggregatedCard({ estimatedPercentage }: { estimatedPercentage?: number 
   );
 }
 
-function EstimatedCard({
+export function EstimatedCard({
   estimationMethod,
 }: {
   estimationMethod: EstimationMethods | undefined;
@@ -298,7 +302,7 @@ function EstimatedCard({
   );
 }
 
-function EstimatedTSACard() {
+export function EstimatedTSACard() {
   return (
     <BaseCard
       estimationMethod={EstimationMethods.TSA}
