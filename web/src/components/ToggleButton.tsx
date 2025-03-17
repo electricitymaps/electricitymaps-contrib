@@ -50,7 +50,8 @@ function ToggleButton({
   return (
     <div
       className={twMerge(
-        'relative z-10 flex min-w-fit items-center gap-1 overflow-hidden rounded-full bg-white/80 p-1 shadow dark:bg-neutral-900/80'
+        'relative z-10 flex min-w-fit items-center gap-1 overflow-hidden rounded-full border border-neutral-200 bg-neutral-100 p-1 dark:border-neutral-700/60 dark:bg-neutral-900/80',
+        !transparentBackground && 'bg-neutral-200/80'
       )}
     >
       {transparentBackground && <GlassBackdrop />}
@@ -70,7 +71,7 @@ function ToggleButton({
             className={twMerge(
               'inline-flex h-7 w-full items-center whitespace-nowrap rounded-full bg-neutral-100/0 px-3 text-xs dark:border dark:border-neutral-400/0 dark:bg-transparent',
               value === selectedOption
-                ? ' bg-white font-bold text-brand-green shadow transition duration-500 ease-in-out dark:border dark:border-neutral-400/10 dark:bg-white/20'
+                ? 'bg-white font-bold text-brand-green shadow-2xl transition duration-500 ease-in-out dark:border dark:border-neutral-400/10 dark:bg-white/20'
                 : ''
             )}
           >
