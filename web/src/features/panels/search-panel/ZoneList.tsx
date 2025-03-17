@@ -15,6 +15,7 @@ export interface ZoneRowType {
   fullZoneName?: string;
   displayName?: string;
   seoZoneName?: string;
+  englishZoneName?: string;
 }
 
 function ZoneRow({ zoneId, countryName, zoneName }: ZoneRowType) {

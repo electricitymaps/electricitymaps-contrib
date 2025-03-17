@@ -12,12 +12,12 @@ import SearchBar from './SearchBar';
 import { VirtualizedZoneList } from './ZoneList';
 
 export default function SearchPanel(): ReactElement {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const canonicalUrl = useGetCanonicalUrl();
 
   // Memoize the zone data to prevent unnecessary recalculations
-  const zoneData = useMemo(() => getAllZones(), []);
+  const zoneData = useMemo(() => getAllZones(i18n.language), [i18n.language]);
 
   const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
