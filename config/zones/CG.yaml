@@ -3,6 +3,37 @@ bounding_box:
     - -5.520049765935497
   - - 19.124786247862488
     - 4.2081244322773586
+capacity:
+  gas:
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 364.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 534.0
+  hydro:
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 213.9
+  oil:
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 62.66
+  solar:
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 0.06
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 0.52
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 0.56
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 0.64
 country: CG
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Brazzaville
