@@ -40,6 +40,7 @@ export const getFilteredList = (
   // Filter zones based on search term
   const filtered = Object.entries(zoneData).filter(([zoneKey, zone]) => {
     const searchLower = searchTerm.toLowerCase();
+    // TODO: If adding fuzzy search, we might need to change the zoneKey to be part of the same object instead
     return (
       zoneKey.toString().toLowerCase().includes(searchLower) ||
       zone.zoneName?.toLowerCase().includes(searchLower) ||
