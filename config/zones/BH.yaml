@@ -4,8 +4,52 @@ bounding_box:
   - - 51.14565981318161
     - 26.742580471000053
 capacity:
-  solar: 11
-  wind: 1
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6821.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 8613.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 9618.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 9735.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 150.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 6.31
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 9.7
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 10.1
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 21.34
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 45.59
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 56.62
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.68
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 2.68
 contributors:
   - q--
   - nessie2013
@@ -81,5 +125,6 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   consumption: GCCIA.fetch_consumption
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Bahrain
