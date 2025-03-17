@@ -1,6 +1,6 @@
 import GlassContainer from 'components/GlassContainer';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
-import { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useCallback, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
@@ -16,6 +16,9 @@ export default function SearchPanel(): ReactElement {
   const [searchTerm, setSearchTerm] = useState('');
   const canonicalUrl = useGetCanonicalUrl();
 
+  // Memoize the zone data to prevent unnecessary recalculations
+  const zoneData = useMemo(() => getAllZones(), []);
+
   const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
 
@@ -25,8 +28,11 @@ export default function SearchPanel(): ReactElement {
     }
   }, []);
 
-  const zoneData = getAllZones();
-  const filteredList = getFilteredList(searchTerm, zoneData);
+  // Memoize the filtered list to prevent unnecessary recalculations
+  const filteredList = useMemo(
+    () => getFilteredList(searchTerm, zoneData),
+    [searchTerm, zoneData]
+  );
 
   return (
     <GlassContainer
