@@ -9,37 +9,6 @@ import {
   OutageCard,
 } from './EstimationCard';
 
-describe('EstimatedCard with FeedbackCard', () => {
-  beforeEach(() => {
-    cy.mount(
-      <I18nextProvider i18n={i18n}>
-        <EstimatedCard estimationMethod={EstimationMethods.CONSTRUCT_BREAKDOWN} />
-      </I18nextProvider>
-    );
-  });
-
-  // TODO(Viktor): Move this to E2E tests, AVO-240
-  it.skip('feedback card should only be visible when collapse button has been clicked', () => {
-    cy.intercept('/feature-flags', {
-      body: { 'feedback-estimation-labels': true },
-    });
-    cy.get('[data-testid=feedback-card]').should('not.exist');
-    cy.get('[data-testid=collapse-button]').click();
-    cy.get('[data-testid=feedback-card]').should('exist');
-    cy.get('[data-testid=collapse-button]').click();
-    cy.get('[data-testid=feedback-card]').should('exist');
-  });
-
-  it.skip('feedback card should only be visible if feature-flag is enabled', () => {
-    cy.intercept('/feature-flags', {
-      body: { 'feedback-estimation-labels': false },
-    });
-    cy.get('[data-testid=feedback-card]').should('not.exist');
-    cy.get('[data-testid=collapse-button]').click();
-    cy.get('[data-testid=feedback-card]').should('exist');
-  });
-});
-
 describe('EstimatedTSACard', () => {
   beforeEach(() => {
     cy.mount(
