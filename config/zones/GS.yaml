@@ -1,3 +1,21 @@
+capacity:
+  hydro:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 0.18
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 0.19
+  oil:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 0.13
+  wind:
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 0.01
 country: GS
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: Atlantic/South_Georgia
