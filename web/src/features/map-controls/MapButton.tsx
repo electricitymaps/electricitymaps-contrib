@@ -1,4 +1,6 @@
 import * as Toggle from '@radix-ui/react-toggle';
+import { GlassBackdrop } from 'components/GlassContainer';
+import LabelTooltip from 'components/tooltips/LabelTooltip';
 import { twMerge } from 'tailwind-merge';
 
 import TooltipWrapper from '../../components/tooltips/TooltipWrapper';
@@ -24,11 +26,11 @@ export default function MapButton({
 }: MapButtonProperties) {
   const Component = asToggle ? Toggle.Root : 'div';
   return (
-    <TooltipWrapper tooltipContent={tooltipText}>
+    <TooltipWrapper tooltipContent={<LabelTooltip>{tooltipText}</LabelTooltip>}>
       <Component
         onClick={onClick}
         className={twMerge(
-          `flex h-8 w-8 items-center justify-center rounded bg-white/80 text-left shadow-lg backdrop-blur-sm transition hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-900/90`,
+          `relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-neutral-200 bg-white/80 text-left transition hover:bg-white focus-visible:border-none focus-visible:outline-brand-green dark:border-neutral-700/60 dark:bg-neutral-900/80 dark:hover:bg-neutral-800`,
           className,
           asToggle && 'pointer-events-auto'
         )}
@@ -36,6 +38,7 @@ export default function MapButton({
         data-testid={dataTestId}
         role="button"
       >
+        <GlassBackdrop className="backdrop-blur-sm" />
         <div>{icon}</div>
       </Component>
     </TooltipWrapper>

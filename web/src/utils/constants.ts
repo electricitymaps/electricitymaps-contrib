@@ -66,6 +66,7 @@ export enum TrackEvent {
   FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
   PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
   HEADER_LINK_CLICKED = 'HeaderLink Clicked',
+  SIDEBAR_LINK_CLICKED = 'SidebarLink Clicked',
   LANGUAGE_SELECTED = 'Language Selected',
   ESTIMATION_CARD_EXPANDED = 'EstimationCard Expanded',
   CONTRIBUTE_ON_GITHUB_BUTTON_CLICKED = 'Contribute On GitHub Button Clicked',

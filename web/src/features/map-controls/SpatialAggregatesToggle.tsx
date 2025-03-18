@@ -18,7 +18,11 @@ const options = [
   },
 ];
 
-function SpatialAggregatesToggle(): ReactElement {
+function SpatialAggregatesToggle({
+  transparentBackground = true,
+}: {
+  transparentBackground?: boolean;
+}): ReactElement {
   const [currentMode, setCurrentMode] = useAtom(spatialAggregateAtom);
   const onSetCurrentMode = useCallback(
     (option: string) => {
@@ -46,7 +50,7 @@ function SpatialAggregatesToggle(): ReactElement {
         currentMode === SpatialAggregate.ZONE ? options[1].value : options[0].value
       }
       onToggle={onSetCurrentMode}
-      transparentBackground
+      transparentBackground={transparentBackground}
     />
   );
 }
