@@ -100,7 +100,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
+  production: 48
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available. This zone includes all wind related electricity production
   from the generation-only balancing authority Avangrid Renewables, LLC. Read more

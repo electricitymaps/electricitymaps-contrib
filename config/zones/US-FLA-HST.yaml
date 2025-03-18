@@ -67,7 +67,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 35
+  production: 48
 emissionFactors:
   direct: {}
   lifecycle:
