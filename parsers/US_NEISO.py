@@ -16,6 +16,7 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
+    TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
@@ -231,6 +232,46 @@ def fetch_exchange(
     return exchanges.to_list()
 
 
+def fetch_consumption_forecast(
+    zone_key: ZoneKey = US_NEISO_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests load forecast in MW for 1 day ahead (hourly)"""
+    session = session or Session()
+
+    target_datetime = (
+        datetime.now(timezone.utc)
+        if target_datetime is None
+        else target_datetime.astimezone(timezone.utc)
+    )
+    postdata = {
+        "_nstmp_startDate": target_datetime.strftime("%m/%d/%Y"),
+        "_nstmp_endDate": (target_datetime + pd.Timedelta(days=1)).strftime("%m/%d/%Y"),
+        "_nstmp_requestType": "systemload",
+    }
+
+    # Request data
+    raw_data = get_json_data(target_datetime=None, params=postdata)
+
+    all_consumption_events = raw_data["forecast"]
+
+    consumption_list = TotalConsumptionList(logger)
+    for event in all_consumption_events:
+        event_datetime = datetime.fromisoformat(event["BeginDate"]).replace(
+            tzinfo=ZoneInfo("America/New_York")
+        )
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=event_datetime,
+            consumption=event["Mw"],
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumption_list.to_list()
+
+
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey = US_NEISO_KEY,
     session: Session | None = None,
@@ -386,5 +427,7 @@ if __name__ == "__main__":
     )
     """
 
-    print("fetch_wind_solar_forecasts()")
-    pprint(fetch_wind_solar_forecasts())
+    # print("fetch_wind_solar_forecasts()")
+    # pprint(fetch_wind_solar_forecasts())
+
+    pprint(fetch_consumption_forecast())
