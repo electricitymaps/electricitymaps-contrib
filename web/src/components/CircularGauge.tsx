@@ -5,6 +5,7 @@ import { Text } from '@visx/text';
 import { memo } from 'react';
 
 import InfoIconWithPadding from './InfoIconWithPadding';
+import LabelTooltip from './tooltips/LabelTooltip';
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
 const FULL_CIRCLE = 360;
@@ -80,7 +81,11 @@ function CircularGauge({ ratio, name, testId, tooltipContent }: CircularGaugePro
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
+      <TooltipWrapper
+        tooltipContent={<LabelTooltip>{tooltipContent}</LabelTooltip>}
+        side="bottom"
+        sideOffset={8}
+      >
         <div data-testid={testId} className="relative flex flex-col items-center">
           <svg height={height} width={width}>
             <Group top={centerY} left={centerX} height={height} width={width}>

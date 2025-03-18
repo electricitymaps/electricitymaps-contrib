@@ -1,3 +1,4 @@
+import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import type { LucideIcon } from 'lucide-react';
 import trackEvent from 'utils/analytics';
@@ -22,10 +23,9 @@ export function MenuItem({
 
   return (
     <TooltipWrapper
-      tooltipContent={<p>{label}</p>}
+      tooltipContent={<LabelTooltip>{label}</LabelTooltip>}
       side="right"
       sideOffset={4}
-      tooltipClassName="rounded"
     >
       <SidebarMenuItem className="flex flex-col">
         <SidebarMenuButton

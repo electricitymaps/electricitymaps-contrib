@@ -1,14 +1,22 @@
 import { LogoIcon } from 'components/Logo';
-import { BookOpenIcon, CodeXmlIcon, FileSpreadsheetIcon, MapIcon } from 'lucide-react';
+import {
+  BookOpenIcon,
+  CodeXmlIcon,
+  FileSpreadsheetIcon,
+  HelpCircleIcon,
+  MapIcon,
+} from 'lucide-react';
 
 import { MenuItem } from './MenuItem';
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
 } from './Sidebar';
+import { SupportButton } from './SupportButton';
 
 // Sidebar width is used in various places to calculate the view widths
 export const SIDEBAR_WIDTH = '63px';
@@ -62,11 +70,9 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      {/* <SidebarFooter>
-          <div className="flex items-center justify-between gap-4 overflow-hidden transition-all duration-200 group-data-[collapsible=icon]:mb-6 group-data-[collapsible=icon]:items-start">
-            <SupportButton label="Support" Icon={HelpCircleIcon} />
-          </div>
-        </SidebarFooter> */}
+      <SidebarFooter>
+        <SupportButton label="FAQ & Support" Icon={HelpCircleIcon} />
+      </SidebarFooter>
     </Sidebar>
   );
 }
