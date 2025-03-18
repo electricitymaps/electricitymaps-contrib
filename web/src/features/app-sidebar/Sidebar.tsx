@@ -60,7 +60,7 @@ const SidebarHeader = React.forwardRef<
   <div
     ref={reference}
     data-sidebar="header"
-    className={twMerge('flex flex-col gap-2 px-2 py-[1.15rem]', className)}
+    className={twMerge('flex flex-col gap-2 px-2 pb-[0.90rem] pt-[1.15rem]', className)}
     {...props}
   />
 ));
@@ -84,7 +84,7 @@ const SidebarContent = React.forwardRef<HTMLDivElement, React.ComponentProps<'di
       ref={reference}
       data-sidebar="content"
       className={twMerge(
-        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto pt-1 group-data-[collapsible=icon]:overflow-hidden',
 
         className
       )}
@@ -154,7 +154,7 @@ const SidebarMenuButton = React.forwardRef<
       data-size={'default'}
       data-active={isActive}
       className={twMerge(
-        'peer/menu-button hover:text-strong active:text-strong data-[active=true]:text-strong data-[state=open]:hover:bg-hover data-[state=open]:hover:text-strong hover:bg-hover hover:text-strong flex h-8 w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-blue-500 transition-[width,height,padding] hover:bg-sunken focus-visible:ring-2 active:bg-sunken disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sunken data-[active=true]:font-medium group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+        'peer/menu-button hover:text-strong active:text-strong data-[active=true]:text-strong data-[state=open]:hover:bg-hover data-[state=open]:hover:text-strong hover:bg-hover hover:text-strong flex h-8 w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-brand-green transition-[width,height,padding] hover:bg-sunken focus-visible:ring-2 active:bg-sunken disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sunken data-[active=true]:font-medium group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
         className
       )}
       {...props}

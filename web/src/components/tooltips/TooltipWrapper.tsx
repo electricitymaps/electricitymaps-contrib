@@ -1,7 +1,7 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
-import GlassContainer from 'components/GlassContainer';
-import { ReactElement, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { useAtom } from 'jotai';
+import { ReactElement, useCallback, useState } from 'react';
+import { openTooltipIdAtom } from 'utils/state/atoms';
 import { useIsMobile } from 'utils/styling';
 
 interface TooltipWrapperProperties {
@@ -9,35 +9,67 @@ interface TooltipWrapperProperties {
   children: ReactElement;
   side?: 'top' | 'bottom' | 'left' | 'right';
   sideOffset?: number;
-  tooltipClassName?: string;
+  tooltipId?: string;
 }
-
-const noop = () => undefined;
 
 export default function TooltipWrapper({
   tooltipContent,
   children,
-  side,
-  sideOffset,
-  tooltipClassName,
+  side = 'left',
+  sideOffset = 3,
+  tooltipId,
 }: TooltipWrapperProperties): ReactElement {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openTooltipId, setOpenTooltipId] = useAtom(openTooltipIdAtom);
+  const [localIsOpen, setLocalIsOpen] = useState(false);
   const isMobile = useIsMobile();
+
+  const openTooltip = useCallback(() => {
+    if (tooltipId) {
+      setOpenTooltipId(tooltipId);
+    } else {
+      setLocalIsOpen(true);
+    }
+  }, [tooltipId, setOpenTooltipId]);
+
+  const closeTooltip = useCallback(() => {
+    if (tooltipId) {
+      setOpenTooltipId(null);
+    } else {
+      setLocalIsOpen(false);
+    }
+  }, [tooltipId, setOpenTooltipId]);
+
+  const toggleTooltip = useCallback(() => {
+    if (tooltipId) {
+      setOpenTooltipId(openTooltipId === tooltipId ? null : tooltipId);
+    } else {
+      setLocalIsOpen((previous) => !previous);
+    }
+  }, [tooltipId, openTooltipId, setOpenTooltipId]);
+
+  // Simple event handlers using memoized functions
+  const handleMouseEnter = useCallback(
+    () => !isMobile && openTooltip(),
+    [isMobile, openTooltip]
+  );
+  const handleMouseLeave = useCallback(
+    () => !isMobile && closeTooltip(),
+    [isMobile, closeTooltip]
+  );
+  const handleClick = useCallback(
+    () => isMobile && toggleTooltip(),
+    [isMobile, toggleTooltip]
+  );
+  const handleContentClick = useCallback(
+    () => isMobile && closeTooltip(),
+    [isMobile, closeTooltip]
+  );
+
   if (!tooltipContent) {
     return children;
   }
 
-  // Helpers
-  const openTooltip = () => setIsOpen(true);
-  const closeTooltip = () => setIsOpen(false);
-  const toggleTooltip = () => setIsOpen(!isOpen);
-
-  // Declare the event handlers outside of the JSX to avoid re-creating them on every render.
-  const handleMouseEnter = isMobile ? noop : openTooltip;
-  const handleMouseLeave = isMobile ? noop : closeTooltip;
-  const handleClick = isMobile ? toggleTooltip : noop;
-  const handleContentClick = isMobile ? closeTooltip : noop;
-  const handleContentPointerDownOutside = isMobile ? closeTooltip : noop;
+  const isOpen = tooltipId ? openTooltipId === tooltipId : localIsOpen;
 
   return (
     <Tooltip.Provider disableHoverableContent>
@@ -53,19 +85,12 @@ export default function TooltipWrapper({
         <Tooltip.Portal>
           <Tooltip.Content
             className="z-50"
-            sideOffset={sideOffset ?? 3}
-            side={side ?? 'left'}
+            sideOffset={sideOffset}
+            side={side}
             onClick={handleContentClick}
-            onPointerDownOutside={handleContentPointerDownOutside}
+            onPointerDownOutside={handleContentClick}
           >
-            <GlassContainer
-              className={twMerge(
-                'relative h-auto max-w-[164px] rounded-2xl px-3 py-1.5 text-center text-sm',
-                tooltipClassName
-              )}
-            >
-              {tooltipContent}
-            </GlassContainer>
+            {tooltipContent}
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>

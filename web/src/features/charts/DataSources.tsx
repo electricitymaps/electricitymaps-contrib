@@ -1,6 +1,7 @@
 import * as Portal from '@radix-ui/react-portal';
 import { Button } from 'components/Button';
 import Link from 'components/Link';
+import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { TFunction } from 'i18next';
 import { Info, X } from 'lucide-react';
@@ -45,13 +46,10 @@ export function DataSources({
               isMobile ? (
                 <EmissionFactorTooltip t={t} />
               ) : (
-                t('country-panel.emissionFactorDataSourcesTooltip')
+                <LabelTooltip className="max-w-[400px] text-start">
+                  {t('country-panel.emissionFactorDataSourcesTooltip')}
+                </LabelTooltip>
               )
-            }
-            tooltipClassName={
-              isMobile
-                ? 'absolute h-full max-w-full rounded-none border-0 bg-red-500 p-0 text-left text-lg shadow-none dark:border-white dark:bg-neutral-900'
-                : 'min-w-64 text-left'
             }
             side="bottom"
           >
