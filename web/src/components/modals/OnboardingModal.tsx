@@ -252,8 +252,22 @@ export function OnboardingModal() {
     }
   };
 
+  const handleOpenStateChange = useCallback(
+    (isOpen: boolean) => {
+      if (!isOpen) {
+        handleDismiss();
+        setIsOpen(false);
+      }
+    },
+    [handleDismiss]
+  );
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen} testId="onboarding" fullWidth>
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={handleOpenStateChange}
+      testId="onboarding"
+      fullWidth
+    >
       <OnboardingModalContent
         currentView={currentView}
         isOnFirstView={isOnFirstView}

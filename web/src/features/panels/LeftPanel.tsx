@@ -1,38 +1,36 @@
-import GlassContainer from 'components/GlassContainer';
 import Logo from 'components/Logo';
 import MobileButtons from 'features/map-controls/MobileButtons';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { Outlet, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { useIsMobile } from 'utils/styling';
 
-function MobileHeader() {
+function MapMobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between pl-1 dark:bg-neutral-900">
-      <Logo className="h-10 w-44 fill-black dark:fill-white" />
+    <div className="flex w-full items-center justify-between bg-gradient-to-b to-transparent px-2 pb-4 dark:from-black/60">
+      <Logo className="h-10 w-44  fill-black dark:fill-white" />
       <MobileButtons />
     </div>
   );
 }
-
 function OuterPanel({ children }: { children: React.ReactNode }) {
   const location = useLocation();
-  const isMobile = useIsMobile();
 
   return (
-    <div
-      data-testid="left-panel"
-      className={twMerge(
-        'absolute inset-0 z-10 hidden sm:w-[calc(14vw_+_16rem)]',
-        location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex'
-      )}
-    >
-      <GlassContainer className="z-[21] flex h-full flex-col pt-[env(safe-area-inset-top)] transition-all duration-500 sm:inset-3 sm:bottom-48 sm:h-auto">
-        {isMobile && <MobileHeader />}
-        <section className="flex flex-1 flex-col overflow-hidden">{children}</section>
-      </GlassContainer>
-      <TimeControllerWrapper />
-    </div>
+    <>
+      <div className={`absolute left-0 right-0 top-0 z-20 sm:hidden`}>
+        <MapMobileHeader />
+      </div>
+      <div
+        data-testid="left-panel"
+        className={twMerge(
+          'pointer-events-none absolute inset-0 z-10  sm:w-[calc(14vw_+_16rem)]',
+          location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex'
+        )}
+      >
+        {children}
+        <TimeControllerWrapper />
+      </div>
+    </>
   );
 }
 

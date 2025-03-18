@@ -137,8 +137,7 @@ button.maplibregl-ctrl-zoom-out.maplibregl-ctrl-zoom-out:focus {
   .maplibregl-ctrl.maplibregl-ctrl-group.maplibregl-ctrl.maplibregl-ctrl-group
   button {
   @apply bg-neutral-900/80;
-  border: 1px solid rgb(64, 64, 64, 0.6) !important;
-  dark: border-neutral-700/60;
+  border: 1px solid rgb(64, 64, 64, 0.6) !important; /* dark: border-neutral-700/60; */
 }
 
 .dark

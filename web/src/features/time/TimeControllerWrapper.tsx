@@ -43,7 +43,7 @@ function BottomSheetWrappedTimeController() {
 
 function FloatingTimeController() {
   return (
-    <GlassContainer className="bottom-3 left-3 px-4 py-3">
+    <GlassContainer className="pointer-events-auto bottom-3 left-3 px-4 py-3">
       <TimeController />
     </GlassContainer>
   );
