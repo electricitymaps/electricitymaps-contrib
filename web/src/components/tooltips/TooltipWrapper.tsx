@@ -48,11 +48,22 @@ export default function TooltipWrapper({
   }, [tooltipId, openTooltipId, setOpenTooltipId]);
 
   // Simple event handlers using memoized functions
-  const handleMouseEnter = () => !isMobile && openTooltip();
-  const handleMouseLeave = () => !isMobile && closeTooltip();
-  const handleClick = () => isMobile && toggleTooltip();
-  const handleContentClick = () => isMobile && closeTooltip();
-  const handleContentPointerDownOutside = () => isMobile && closeTooltip();
+  const handleMouseEnter = useCallback(
+    () => !isMobile && openTooltip(),
+    [isMobile, openTooltip]
+  );
+  const handleMouseLeave = useCallback(
+    () => !isMobile && closeTooltip(),
+    [isMobile, closeTooltip]
+  );
+  const handleClick = useCallback(
+    () => isMobile && toggleTooltip(),
+    [isMobile, toggleTooltip]
+  );
+  const handleContentClick = useCallback(
+    () => isMobile && closeTooltip(),
+    [isMobile, closeTooltip]
+  );
 
   if (!tooltipContent) {
     return children;
@@ -77,7 +88,7 @@ export default function TooltipWrapper({
             sideOffset={sideOffset}
             side={side}
             onClick={handleContentClick}
-            onPointerDownOutside={handleContentPointerDownOutside}
+            onPointerDownOutside={handleContentClick}
           >
             {tooltipContent}
           </Tooltip.Content>
