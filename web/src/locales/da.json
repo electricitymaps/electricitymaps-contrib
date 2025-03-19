@@ -102,11 +102,7 @@
     "now": "Nu",
     "by-source": {
       "emissions": "CO₂-udledning",
-      "electricity-production": "Elproduktion",
-      "electricity-consumption": "Elforbrug",
-      "total-emissions": "Samlede CO₂-udledninger",
-      "total-electricity-production": "Samlet elproduktion",
-      "total-electricity-consumption": "Samlet elforbrug"
+      "total-emissions": "Samlede CO₂-udledninger"
     },
     "graph-legends": {
       "installed-capacity": "Installeret kapacitet",
