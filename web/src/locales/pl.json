@@ -774,109 +774,9 @@
       "countryName": "Indie",
       "zoneName": "Andamany i Nikobary"
     },
-    "IN-AP": {
-      "countryName": "Indie",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "Indie",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Indie",
-      "zoneName": "Asam"
-    },
-    "IN-BR": {
-      "countryName": "Indie",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Indie",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Indie",
-      "zoneName": "Delhi"
-    },
-    "IN-GA": {
-      "countryName": "Indie",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Indie",
-      "zoneName": "Gudźarat"
-    },
     "IN-HP": {
       "countryName": "Indie",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "Indie",
-      "zoneName": "Hariana"
-    },
-    "IN-JH": {
-      "countryName": "Indie",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Indie",
-      "zoneName": "Dżammu i Kaszmir"
-    },
-    "IN-KA": {
-      "countryName": "Indie",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "Indie",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "Indie",
-      "zoneName": "Maharasztra"
-    },
-    "IN-ML": {
-      "countryName": "Indie",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Indie",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Indie",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Indie",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Indie",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Indie",
-      "zoneName": "Orisa"
-    },
-    "IN-PB": {
-      "countryName": "Indie",
-      "zoneName": "Pendżab"
-    },
-    "IN-PY": {
-      "countryName": "Indie",
-      "zoneName": "Puducherry"
-    },
-    "IN-RJ": {
-      "countryName": "Indie",
-      "zoneName": "Radżastan"
-    },
-    "IN-SK": {
-      "countryName": "Indie",
-      "zoneName": "Sikkim"
-    },
-    "IN-TR": {
-      "countryName": "Indie",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Indie",
@@ -885,10 +785,6 @@
     "IN-UT": {
       "countryName": "Indie",
       "zoneName": "Uttarakhand"
-    },
-    "IN-WB": {
-      "countryName": "Indie",
-      "zoneName": "Bengal Zachodni"
     },
     "IO": {
       "zoneName": "Brytyjskie Terytorium Oceanu Indyjskiego"
@@ -987,9 +883,6 @@
     "KH": {
       "zoneName": "Kambodża"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Komory"
     },
@@ -1032,9 +925,6 @@
     "MG": {
       "zoneName": "Madagaskar"
     },
-    "MH": {
-      "zoneName": "Wyspy Marshalla"
-    },
     "MK": {
       "zoneName": "Macedonia Północna"
     },
@@ -1043,9 +933,6 @@
     },
     "MO": {
       "zoneName": "Makau"
-    },
-    "MP": {
-      "zoneName": "Martynika"
     },
     "MR": {
       "zoneName": "Mauretania"
@@ -1107,9 +994,6 @@
     },
     "NC": {
       "zoneName": "Nowa Kaledonia"
-    },
-    "NF": {
-      "zoneName": "Wyspa Norfolk"
     },
     "NI": {
       "zoneName": "Nikaragua"
@@ -1313,20 +1197,11 @@
     "AG": {
       "zoneName": "Antigua i Barbuda"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AM": {
       "zoneName": "Armenia"
     },
     "AO": {
       "zoneName": "Angola"
-    },
-    "AQ": {
-      "zoneName": "Antarktyka"
-    },
-    "AS": {
-      "zoneName": "Samoa Amerykańskie"
     },
     "AU-TAS-KI": {
       "countryName": "Tasmania",
@@ -1353,17 +1228,11 @@
     "BN": {
       "zoneName": "Brunei"
     },
-    "BQ": {
-      "zoneName": "Holandia Karaibska"
-    },
     "BS": {
       "zoneName": "Bahamy"
     },
     "BT": {
       "zoneName": "Bhutan"
-    },
-    "BV": {
-      "zoneName": "Wyspa Bouveta"
     },
     "BW": {
       "zoneName": "Botswana"
@@ -1390,12 +1259,6 @@
       "countryName": "Australia",
       "zoneName": "Rottnest Island"
     },
-    "CC": {
-      "zoneName": "Wyspy Kokosowe"
-    },
-    "CK": {
-      "zoneName": "Wyspy Cooka"
-    },
     "CL-CHP": {
       "countryName": "Chile",
       "zoneName": "Easter Island"
@@ -1414,9 +1277,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Wyspa Bożego Narodzenia"
     },
     "CY": {
       "zoneName": "Cypr"
@@ -1467,9 +1327,6 @@
     "GB-ZET": {
       "countryName": "Wielka Brytania",
       "zoneName": "Shetland Islands"
-    },
-    "GD": {
-      "zoneName": "Grenada"
     },
     "GG": {
       "zoneName": "Guernsey"
@@ -1527,23 +1384,8 @@
       "countryName": "Indie",
       "zoneName": "Zachodnie Indie"
     },
-    "IN-DN": {
-      "countryName": "Indie",
-      "zoneName": "Dadra and Nagar Haveli"
-    },
-    "IN-TN": {
-      "countryName": "Indie",
-      "zoneName": "Tamil Nadu"
-    },
-    "IQ-KUR": {
-      "countryName": "Iraq",
-      "zoneName": "Kurdystan"
-    },
     "IR": {
       "zoneName": "Iran"
-    },
-    "KN": {
-      "zoneName": "Saint Kitts i Nevis"
     },
     "KY": {
       "zoneName": "Cayman Islands"
@@ -1568,10 +1410,6 @@
     },
     "MC": {
       "zoneName": "Monako"
-    },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
     },
     "ML": {
       "zoneName": "Mali"
@@ -1607,12 +1445,6 @@
     "NP": {
       "zoneName": "Nepal"
     },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
-    },
     "OM": {
       "zoneName": "Oman"
     },
@@ -1633,9 +1465,6 @@
     },
     "PK": {
       "zoneName": "Pakistan"
-    },
-    "PN": {
-      "zoneName": "Pitcairn"
     },
     "PR": {
       "zoneName": "Portoryko"
@@ -1674,14 +1503,8 @@
       "countryName": "Szwecja",
       "zoneName": "Południowa Szwecja"
     },
-    "SH": {
-      "zoneName": "Wyspa Świętej Heleny, Wyspa Wniebowstąpienia i Tristan da Cunha"
-    },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1689,15 +1512,8 @@
     "SO": {
       "zoneName": "Somalia"
     },
-    "SX": {
-      "countryName": "Sint Maarten",
-      "zoneName": "Dutch"
-    },
     "SY": {
       "zoneName": "Syria"
-    },
-    "TC": {
-      "zoneName": "Turks i Caicos"
     },
     "TF": {
       "zoneName": "Francuskie Terytoria Południowe"
@@ -1705,17 +1521,11 @@
     "TG": {
       "zoneName": "Togo"
     },
-    "TK": {
-      "zoneName": "Tokelau"
-    },
     "TM": {
       "zoneName": "Turkmenistan"
     },
     "TO": {
       "zoneName": "Tonga"
-    },
-    "TV": {
-      "zoneName": "Tuvalu"
     },
     "TZ": {
       "zoneName": "Tanzania"
@@ -1727,9 +1537,6 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "United States Minor Outlying Islands"
-    },
     "US": {
       "zoneName": "Contiguous United States"
     },
@@ -1740,38 +1547,6 @@
     "US-AK-SEAPA": {
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
-    },
-    "US-HI-HA": {
-      "countryName": "USA",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "USA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "USA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "USA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "USA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "USA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "USA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "USA",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "USA",
@@ -1912,10 +1687,6 @@
       "countryName": "USA",
       "zoneName": "Gridforce Energy Management"
     },
-    "US-NW-GWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Power Watch"
-    },
     "US-NW-IPCO": {
       "countryName": "USA",
       "zoneName": "Idaho Power Company"
@@ -1967,10 +1738,6 @@
       "displayName": "WAPA Upper Great Plains",
       "zoneName": "Western Area Power Administration - Upper Great Plains West"
     },
-    "US-NW-WWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Wind Watch"
-    },
     "US-NY-NYIS": {
       "countryName": "USA",
       "zoneName": "New York ISO"
@@ -1990,10 +1757,6 @@
     "US-SW-EPE": {
       "countryName": "USA",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "USA",
-      "zoneName": "Griffith Energy"
     },
     "US-SW-PNM": {
       "countryName": "USA",
@@ -2025,15 +1788,8 @@
     "UZ": {
       "zoneName": "Uzbekistan"
     },
-    "VA": {
-      "zoneName": "Watykan"
-    },
     "VC": {
       "zoneName": "Saint Vincent i Grenadyna"
-    },
-    "VG": {
-      "countryName": "Virgin Islands",
-      "zoneName": "Wyspy Dziewicze"
     },
     "VI": {
       "countryName": "USA",
@@ -2041,9 +1797,6 @@
     },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis i Futuna"
     },
     "WS": {
       "zoneName": "Samoa"

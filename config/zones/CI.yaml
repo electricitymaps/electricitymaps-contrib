@@ -3,6 +3,52 @@ bounding_box:
     - 3.8535427899415637
   - - -2.007425074250705
     - 11.220430313773178
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 809.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 990.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 879.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 516.14
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 546.14
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 586.14
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1.01
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2.1
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 4.21
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 6.4
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 7.75
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 9.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 46.5
 country: CI
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Abidjan

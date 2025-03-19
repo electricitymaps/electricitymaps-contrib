@@ -9,6 +9,7 @@ fastlane/screenshots
 fastlane/metadata
 fastlane/test_output
 fastlane/fastlane-key.json
+gc_keys.json
 
 # ios build files
 Electricity Maps.ipa

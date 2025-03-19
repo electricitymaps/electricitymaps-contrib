@@ -91,7 +91,7 @@ export function MoreOptionsDropdown({
         <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
         <DropdownMenu.Content
           className={twMerge(
-            'border-gray z-30 my-3 w-64 min-w-60 rounded-2xl border bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
+            'z-30 my-3 w-64 min-w-60 rounded-2xl border border-neutral-200 bg-white shadow-md dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300',
             hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
           )}
         >
@@ -117,18 +117,18 @@ export function MoreOptionsDropdown({
                 </div>
                 <ExternalLink
                   size={DEFAULT_ICON_SIZE}
-                  className="text-gray-500 opacity-80"
+                  className="text-neutral-500 opacity-80"
                 />
               </button>
             </DropdownMenu.Label>
-            <DropdownMenu.Separator className="my-1 h-px bg-neutral-200 dark:bg-gray-700" />
+            <DropdownMenu.Separator className="my-1 h-px bg-neutral-200 dark:bg-neutral-700" />
             <DropdownMenu.Group className="flex cursor-pointer flex-col px-2">
               <DropdownMenu.Item className={dropdownItemStyle}>
                 <div className="flex flex-col">
                   <div className="align-items flex justify-between">
                     <h2 className="self-start text-sm">{dropdownTitle}</h2>
                   </div>
-                  <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-gray-300" />
+                  <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300" />
                 </div>
               </DropdownMenu.Item>
               <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>

@@ -62,9 +62,6 @@
     "AG": {
       "zoneName": "Antigua và Barbuda"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AL": {
       "zoneName": "Albania"
     },
@@ -73,12 +70,6 @@
     },
     "AO": {
       "zoneName": "Angola"
-    },
-    "AQ": {
-      "zoneName": "Bắc Cực"
-    },
-    "AS": {
-      "zoneName": "American Samoa"
     },
     "AT": {
       "zoneName": "Áo"
@@ -163,9 +154,6 @@
     "BO": {
       "zoneName": "Bolivia"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Sint Eustatius và Saba"
-    },
     "BR": {
       "zoneName": "Brazil"
     },
@@ -190,9 +178,6 @@
     },
     "BT": {
       "zoneName": "Bhutan"
-    },
-    "BV": {
-      "zoneName": "Đảo Bouvet"
     },
     "BW": {
       "zoneName": "Botswana"
@@ -258,9 +243,6 @@
       "countryName": "Canada",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Quần đảo Cocos"
-    },
     "CD": {
       "zoneName": "Cộng hòa Dân chủ Congo"
     },
@@ -275,9 +257,6 @@
     },
     "CI": {
       "zoneName": "Bờ Biển Ngà"
-    },
-    "CK": {
-      "zoneName": "Quần đảo Cook"
     },
     "CL-SEM": {
       "countryName": "Chile",
@@ -307,9 +286,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Đảo Giáng Sinh"
     },
     "CY": {
       "zoneName": "Cyprus"
@@ -459,9 +435,6 @@
       "countryName": "Great Britain",
       "zoneName": "Quần đảo Shetland"
     },
-    "GD": {
-      "zoneName": "Grenada"
-    },
     "GE": {
       "zoneName": "Georgia"
     },
@@ -544,117 +517,9 @@
       "countryName": "Ấn Độ",
       "zoneName": "Andaman và Quần đảo Nicobar"
     },
-    "IN-AP": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Dadra và Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Gujarat"
-    },
     "IN-HP": {
       "countryName": "Ấn Độ",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Jammu và Kashmir"
-    },
-    "IN-KA": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Orissa"
-    },
-    "IN-PB": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Sikkim"
-    },
-    "IN-TN": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Ấn Độ",
@@ -664,19 +529,11 @@
       "countryName": "Ấn Độ",
       "zoneName": "Uttarakhand"
     },
-    "IN-WB": {
-      "countryName": "Ấn Độ",
-      "zoneName": "Tây Bengal"
-    },
     "IO": {
       "zoneName": "Lãnh thổ Ấn Độ Dương thuộc Anh"
     },
     "IQ": {
       "zoneName": "Iraq"
-    },
-    "IQ-KUR": {
-      "countryName": "Iraq",
-      "zoneName": "Kurdistan"
     },
     "IR": {
       "zoneName": "Iran"
@@ -769,14 +626,8 @@
     "KH": {
       "zoneName": "Cam-pu-chia"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Comoros"
-    },
-    "KN": {
-      "zoneName": "Saint Kitts và Nevis"
     },
     "KP": {
       "zoneName": "Bắc Triều Tiên"
@@ -838,15 +689,8 @@
     "ME": {
       "zoneName": "Montenegro"
     },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
-    },
     "MG": {
       "zoneName": "Madagascar"
-    },
-    "MH": {
-      "zoneName": "Quần đảo Marshall"
     },
     "MK": {
       "zoneName": "Bắc Macedonia"
@@ -862,9 +706,6 @@
     },
     "MO": {
       "zoneName": "Macao"
-    },
-    "MP": {
-      "zoneName": "Quần đảo Bắc Mariana"
     },
     "MQ": {
       "zoneName": "Martinique"
@@ -945,9 +786,6 @@
     "NE": {
       "zoneName": "Niger"
     },
-    "NF": {
-      "zoneName": "Đảo Norfolk"
-    },
     "NG": {
       "zoneName": "Nigeria"
     },
@@ -979,12 +817,6 @@
     },
     "NP": {
       "zoneName": "Nepal"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "New Zealand"
@@ -1023,9 +855,6 @@
     },
     "PM": {
       "zoneName": "Saint Pierre và Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairn"
     },
     "PR": {
       "zoneName": "Puerto Rico"
@@ -1104,9 +933,6 @@
     "SG": {
       "zoneName": "Singapore"
     },
-    "SH": {
-      "zoneName": "Saint Helena, Ascension và Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Slovenia"
     },
@@ -1118,9 +944,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1140,18 +963,11 @@
     "SV": {
       "zoneName": "El Salvador"
     },
-    "SX": {
-      "countryName": "Sint Maarten",
-      "zoneName": "Dutch"
-    },
     "SY": {
       "zoneName": "Syria"
     },
     "SZ": {
       "zoneName": "Swaziland"
-    },
-    "TC": {
-      "zoneName": "Quần đảo Turks và Caicos"
     },
     "TD": {
       "zoneName": "Chad"
@@ -1167,9 +983,6 @@
     },
     "TJ": {
       "zoneName": "Tajikistan"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Timor-Leste"
@@ -1189,9 +1002,6 @@
     "TT": {
       "zoneName": "Trinidad và Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Đài Loan"
     },
@@ -1208,59 +1018,17 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "Các tiểu đảo xa của Hoa Kỳ"
-    },
-    "US-HI-HA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Hoa Kỳ",
-      "zoneName": "Oahu"
-    },
     "UY": {
       "zoneName": "Uruguay"
     },
     "UZ": {
       "zoneName": "Uzbekistan"
     },
-    "VA": {
-      "zoneName": "Vatican City"
-    },
     "VC": {
       "zoneName": "Saint Vincent and the Grenadines"
     },
     "VE": {
       "zoneName": "Venezuela"
-    },
-    "VG": {
-      "countryName": "Virgin Islands",
-      "zoneName": "Virgin Islands"
     },
     "VI": {
       "countryName": "Hoa Kỳ",
@@ -1271,9 +1039,6 @@
     },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis and Futuna"
     },
     "WS": {
       "zoneName": "Samoa"

@@ -4,79 +4,113 @@ bounding_box:
   - - 56.88363691500007
     - 26.574791972000085
 capacity:
-  gas:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 26394
+  biomass:
     - datetime: '2017-01-01'
-      source: Climatescope
-      value: 26569
-    - datetime: '2018-01-01'
-      source: Climatescope
-      value: 28280
-    - datetime: '2019-01-01'
-      source: Climatescope
-      value: 25980
-    - datetime: '2020-01-01'
-      source: Climatescope
-      value: 29059
-    - datetime: '2021-01-01'
-      source: Climatescope
-      value: 33493.8
+      source: IRENA.org
+      value: 1.0
     - datetime: '2022-01-01'
-      source: Climatescope
-      value: 39976.8
+      source: IRENA.org
+      value: 16.9
     - datetime: '2023-01-01'
-      source: Climatescope
-      value: 39451.8
-  nuclear:
-    - datetime: '2020-08-19'
-      source: IAEA PRIS
-      value: 1310
-    - datetime: '2021-09-14'
-      source: IAEA PRIS
-      value: 2620
-    - datetime: '2022-10-08'
-      source: IAEA PRIS
-      value: 3930
-    - datetime: '2024-03-24'
-      source: IAEA PRIS
-      value: 5240
-  oil:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 219.9
-    - datetime: '2017-01-01'
-      source: Climatescope
-      value: 218.6
-    - datetime: '2018-01-01'
-      source: Climatescope
-      value: 71.4
-  solar:
-    - datetime: '2016-01-01'
-      source: Climatescope
-      value: 1
-    - datetime: '2017-01-01'
-      source: Climatescope
-      value: 24
-    - datetime: '2018-01-01'
-      source: Climatescope
-      value: 239
-    - datetime: '2019-01-01'
-      source: Climatescope
-      value: 513
+      source: IRENA.org
+      value: 28.7
+  coal:
     - datetime: '2020-01-01'
-      source: Climatescope
-      value: 2092
+      source: IRENA.org
+      value: 600.0
     - datetime: '2021-01-01'
-      source: Climatescope
-      value: 2459
+      source: IRENA.org
+      value: 0.0
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 30567.77
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 31058.54
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 31287.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 30846.4
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 31681.0
     - datetime: '2022-01-01'
-      source: Climatescope
-      value: 3309
+      source: IRENA.org
+      value: 32392.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 33512.0
+  nuclear:
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1390.0
     - datetime: '2022-01-01'
-      source: Climatescope
-      value: 5414
+      source: IRENA.org
+      value: 2780.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 4170.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 32.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 11.08
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 9.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 9.6
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 35.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 34.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 0.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 353.47
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 599.89
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1935.23
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 2332.6
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 3002.38
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 3596.2
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 5907.44
+  unknown:
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 7.5
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 15.0
+  wind:
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 0.02
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 99.1
 contributors:
   - q--
   - florianscheidl
@@ -87,47 +121,53 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 14.75
+        value: 14.91
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 15.75
+        value: 15.95
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 16.93
+        value: 17.19
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 22.23
+        value: 22.65
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 23.18
+        value: 21.74
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 378.76
+        value: 325.52
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 405.38
+        value: 381.54
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 340.3
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 14.75
+        value: 14.91
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 15.75
+        value: 15.95
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 16.93
+        value: 17.19
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 22.23
+        value: 22.65
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 23.18
+        value: 21.74
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 378.76
+        value: 325.52
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 405.38
+        value: 381.54
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 340.3
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -140,9 +180,9 @@ fallbackZoneMixes:
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.9165772938962896
+        nuclear: 0.91193148872398
         oil: 0.0
-        solar: 0.08342250113831973
+        solar: 0.08806834372511946
         unknown: 0.0
         wind: 0.0
     - _source: Electricity Maps, 2018 average
@@ -155,9 +195,9 @@ fallbackZoneMixes:
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.8863500292177069
+        nuclear: 0.8802408112760882
         oil: 0.0
-        solar: 0.11364977696142337
+        solar: 0.11975904640299682
         unknown: 0.0
         wind: 0.0
     - _source: Electricity Maps, 2019 average
@@ -170,9 +210,9 @@ fallbackZoneMixes:
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.8505684350838207
+        nuclear: 0.8428767238407804
         oil: 0.0
-        solar: 0.1494313519881746
+        solar: 0.1571230965177479
         unknown: 0.0
         wind: 0.0
     - _source: Electricity Maps, 2020 average
@@ -185,9 +225,9 @@ fallbackZoneMixes:
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.6901492026034546
+        nuclear: 0.6773326171573966
         oil: 0.0
-        solar: 0.30985062714236705
+        solar: 0.32266724667885344
         unknown: 0.0
         wind: 0.0
     - _source: Electricity Maps, 2021 average
@@ -200,9 +240,9 @@ fallbackZoneMixes:
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.661075717739947
+        nuclear: 0.7047717265187831
         oil: 0.0
-        solar: 0.3389241285429934
+        solar: 0.2952281623735283
         unknown: 0.0
         wind: 0.0
     - _source: Electricity Maps, 2022 average
@@ -211,14 +251,14 @@ fallbackZoneMixes:
         battery discharge: 0.0
         biomass: 0.0
         coal: 0.0
-        gas: 0.7562092605001034
+        gas: 0.6456891698673624
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.11953953089562969
+        nuclear: 0.23727536945180464
         oil: 0.0
-        solar: 0.12243188555451628
-        unknown: 0.001819264618995967
+        solar: 0.11548202997847996
+        unknown: 0.0015533738033579184
         wind: 0.0
     - _source: Electricity Maps, 2023 average
       datetime: '2023-01-01'
@@ -226,17 +266,33 @@ fallbackZoneMixes:
         battery discharge: 0.0
         biomass: 0.0
         coal: 0.0
-        gas: 0.8158952402448857
+        gas: 0.7661878052566268
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
-        nuclear: 0.12045141132235843
+        nuclear: 0.1702784339815322
         oil: 0.0
-        solar: 0.061690443986865844
-        unknown: 0.001962850634693522
+        solar: 0.061690443983189604
+        unknown: 0.001843265887442152
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6795480056248291
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.24752923194499274
+        oil: 0.0
+        solar: 0.07128789104234305
+        unknown: 0.0016348372505816842
         wind: 0.0
 parsers:
   consumption: GCCIA.fetch_consumption
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 sources:
   Climatescope:

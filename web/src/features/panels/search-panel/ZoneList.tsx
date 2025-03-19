@@ -1,7 +1,6 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
-import { ChevronRight } from 'lucide-react';
 import { useRef } from 'react';
 import { GridState } from 'types';
 
@@ -11,33 +10,36 @@ interface ZonelistProperties {
 
 export interface ZoneRowType {
   zoneId: keyof GridState;
-  ranking: number;
-  color?: string;
-  co2intensity?: number | null;
   countryName?: string;
   zoneName?: string;
   fullZoneName?: string;
+  displayName?: string;
+  seoZoneName?: string;
+  englishZoneName?: string;
 }
 
-function ZoneRow({ zoneId, color, ranking, countryName, zoneName }: ZoneRowType) {
+function ZoneRow({ zoneId, countryName, zoneName }: ZoneRowType) {
   return (
     <InternalLink
-      className="group my-1 flex h-11 w-full items-center gap-2 rounded bg-gray-100 px-3 hover:bg-gray-200 focus:border focus:border-gray-400/60 focus-visible:outline-none dark:border dark:border-gray-400/10 dark:bg-gray-800 dark:hover:bg-gray-700/70 dark:focus:border-gray-500/80"
-      key={ranking}
+      className="group flex h-11 w-full items-center gap-2 p-4 hover:bg-neutral-200/50 focus:outline-0 focus-visible:border-l-4 focus-visible:border-brand-green focus-visible:bg-brand-green/10 focus-visible:outline-0  dark:hover:bg-neutral-700/50 dark:focus-visible:bg-brand-green/10"
+      key={zoneId}
       to={`/zone/${zoneId}`}
       data-testid="zone-list-link"
     >
-      <span className="flex w-4 justify-end text-xs">{ranking}</span>
-      <div className="h-4 w-4 min-w-4 rounded-sm" style={{ backgroundColor: color }} />
+      <CountryFlag
+        zoneId={zoneId}
+        size={18}
+        className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+      />
 
-      <CountryFlag size={30} zoneId={zoneId} />
-      <div className="flex grow flex-col">
-        <h3 className="truncate">{countryName || zoneName}</h3>
+      <div className="flex min-w-0 grow flex-row items-center justify-between">
+        <h3 className="min-w-0 truncate">{zoneName}</h3>
         {countryName && (
-          <h4 className="truncate text-gray-500 dark:text-gray-400">{zoneName}</h4>
+          <span className="ml-2 shrink-0 truncate text-xs font-normal text-neutral-400 dark:text-neutral-400">
+            {countryName}
+          </span>
         )}
       </div>
-      <ChevronRight size={14} className="hidden group-hover:block dark:text-gray-400" />
     </InternalLink>
   );
 }
@@ -48,15 +50,17 @@ export function VirtualizedZoneList({ data }: ZonelistProperties) {
   const rowVirtualizer = useVirtualizer({
     count: data.length,
     getScrollElement: () => parentReference.current,
-    estimateSize: () => 48,
+    estimateSize: () => 44,
     overscan: 5,
   });
 
   const items = rowVirtualizer.getVirtualItems();
 
   return (
-    <div ref={parentReference} className="h-full w-full overflow-y-auto">
+    // This should show exactly 6 and a half rows
+    <div ref={parentReference} className="h-full max-h-72 w-full overflow-y-auto">
       <div
+        className="transition-all"
         style={{
           height: rowVirtualizer.getTotalSize(),
           width: '100%',

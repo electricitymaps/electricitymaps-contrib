@@ -5,12 +5,24 @@ bounding_box:
     - 34.54817
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
-      value: 493.0
+      value: 20.0
+    - datetime: '2021-09-01'
+      source: EIA.gov
+      value: 45.0
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 35.0
+    - datetime: '2023-07-01'
+      source: EIA.gov
+      value: 295.0
+    - datetime: '2023-09-01'
+      source: EIA.gov
+      value: 483.0
     - datetime: '2024-05-01'
       source: EIA.gov
-      value: 743.0
+      value: 733.0
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 1033.0
@@ -18,65 +30,80 @@ capacity:
       source: EIA.gov
       value: 1123.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 821.8
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 8157.6
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 7474.8
+    - datetime: '2022-08-01'
+      source: EIA.gov
+      value: 7573.8
+    - datetime: '2022-09-01'
       source: EIA.gov
       value: 7672.8
-    - datetime: '2024-07-01'
+    - datetime: '2024-06-01'
       source: EIA.gov
       value: 7772.6
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 89.3
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 154.1
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 4209.6
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 163.2
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 359.8
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 459.8
+    - datetime: '2022-12-01'
       source: EIA.gov
       value: 559.8
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 562.9
     - datetime: '2023-12-01'
       source: EIA.gov
-      value: 819.8
-    - datetime: '2024-01-01'
-      source: EIA.gov
-      value: 941.8
-    - datetime: '2024-05-01'
-      source: EIA.gov
-      value: 1171.8
+      value: 1174.9
     - datetime: '2024-06-01'
       source: EIA.gov
-      value: 1474.7
-    - datetime: '2024-10-01'
-      source: EIA.gov
       value: 1474.9
+    - datetime: '2024-11-01'
+      source: EIA.gov
+      value: 1674.9
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 63.0
     - datetime: '2024-07-01'
@@ -91,7 +118,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
+  production: 48
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available. This zone includes all electricity production from
   the generation-only balancing authorities Arlington Valley, LLC - AVBA and New Harquahala

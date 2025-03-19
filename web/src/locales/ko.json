@@ -164,9 +164,6 @@
     "AG": {
       "zoneName": "앤티가 바부다"
     },
-    "AI": {
-      "zoneName": "앙귈라"
-    },
     "AL": {
       "zoneName": "알바니아"
     },
@@ -175,12 +172,6 @@
     },
     "AO": {
       "zoneName": "앙골라"
-    },
-    "AQ": {
-      "zoneName": "남극 대륙"
-    },
-    "AS": {
-      "zoneName": "미국령 사모아"
     },
     "AT": {
       "zoneName": "오스트리아"
@@ -265,9 +256,6 @@
     "BO": {
       "zoneName": "볼리비아"
     },
-    "BQ": {
-      "zoneName": "보네르섬, 신트외스타티위스섬, 사바섬 제도"
-    },
     "BR": {
       "zoneName": "브라질"
     },
@@ -292,9 +280,6 @@
     },
     "BT": {
       "zoneName": "부탄"
-    },
-    "BV": {
-      "zoneName": "부베섬"
     },
     "BW": {
       "zoneName": "보츠와나"
@@ -360,9 +345,6 @@
       "countryName": "캐나다",
       "zoneName": "유콘 준주"
     },
-    "CC": {
-      "zoneName": "코코스 제도"
-    },
     "CD": {
       "zoneName": "콩고민주공화국"
     },
@@ -377,9 +359,6 @@
     },
     "CI": {
       "zoneName": "코트디부아르"
-    },
-    "CK": {
-      "zoneName": "쿡 제도"
     },
     "CL-SEM": {
       "countryName": "칠레",
@@ -409,9 +388,6 @@
     },
     "CW": {
       "zoneName": "퀴라소"
-    },
-    "CX": {
-      "zoneName": "크리스마스섬"
     },
     "CY": {
       "zoneName": "키프로스"
@@ -553,9 +529,6 @@
       "countryName": "영국",
       "zoneName": "셰틀랜드 제도"
     },
-    "GD": {
-      "zoneName": "그레나다"
-    },
     "GE": {
       "zoneName": "그루지야"
     },
@@ -638,117 +611,9 @@
       "countryName": "인도",
       "zoneName": "안다만 니코바르 제도"
     },
-    "IN-AP": {
-      "countryName": "인도",
-      "zoneName": "안드라프라데시 주"
-    },
-    "IN-AR": {
-      "countryName": "인도",
-      "zoneName": "아루나찰프라데시 주"
-    },
-    "IN-AS": {
-      "countryName": "인도",
-      "zoneName": "아삼 주"
-    },
-    "IN-BR": {
-      "countryName": "인도",
-      "zoneName": "비하르 주"
-    },
-    "IN-CT": {
-      "countryName": "인도",
-      "zoneName": "차티스가르 주"
-    },
-    "IN-DL": {
-      "countryName": "인도",
-      "zoneName": "델리"
-    },
-    "IN-DN": {
-      "countryName": "인도",
-      "zoneName": "다드라 나가르하벨리"
-    },
-    "IN-GA": {
-      "countryName": "인도",
-      "zoneName": "고아"
-    },
-    "IN-GJ": {
-      "countryName": "인도",
-      "zoneName": "구자라트 주"
-    },
     "IN-HP": {
       "countryName": "인도",
       "zoneName": "히마찰프라데시 주"
-    },
-    "IN-HR": {
-      "countryName": "인도",
-      "zoneName": "하리아나 주"
-    },
-    "IN-JH": {
-      "countryName": "인도",
-      "zoneName": "자르칸드 주"
-    },
-    "IN-JK": {
-      "countryName": "인도",
-      "zoneName": "잠무카슈미르 주"
-    },
-    "IN-KA": {
-      "countryName": "인도",
-      "zoneName": "카르나타카 주"
-    },
-    "IN-KL": {
-      "countryName": "인도",
-      "zoneName": "케랄라 주"
-    },
-    "IN-MH": {
-      "countryName": "인도",
-      "zoneName": "마하라슈트라 주"
-    },
-    "IN-ML": {
-      "countryName": "인도",
-      "zoneName": "메갈라야 주"
-    },
-    "IN-MN": {
-      "countryName": "인도",
-      "zoneName": "마니푸르 주"
-    },
-    "IN-MP": {
-      "countryName": "인도",
-      "zoneName": "마디아프라데시 주"
-    },
-    "IN-MZ": {
-      "countryName": "인도",
-      "zoneName": "미조람 주"
-    },
-    "IN-NL": {
-      "countryName": "인도",
-      "zoneName": "나갈랜드 주"
-    },
-    "IN-OR": {
-      "countryName": "인도",
-      "zoneName": "오디샤 주"
-    },
-    "IN-PB": {
-      "countryName": "인도",
-      "zoneName": "펀자브 주"
-    },
-    "IN-PY": {
-      "countryName": "인도",
-      "zoneName": "퐁디셰리"
-    },
-    "IN-RJ": {
-      "countryName": "인도",
-      "zoneName": "라자스탄 주"
-    },
-    "IN-SK": {
-      "countryName": "인도",
-      "zoneName": "시킴 주"
-    },
-    "IN-TN": {
-      "countryName": "인도",
-      "zoneName": "타밀나두 주"
-    },
-    "IN-TR": {
-      "countryName": "인도",
-      "zoneName": "트리푸라 주"
     },
     "IN-UP": {
       "countryName": "인도",
@@ -758,19 +623,11 @@
       "countryName": "인도",
       "zoneName": "우타라칸드 주"
     },
-    "IN-WB": {
-      "countryName": "인도",
-      "zoneName": "서벵골 주"
-    },
     "IO": {
       "zoneName": "영국령 인도양 지역"
     },
     "IQ": {
       "zoneName": "이라크"
-    },
-    "IQ-KUR": {
-      "countryName": "이라크",
-      "zoneName": "쿠르디스탄"
     },
     "IR": {
       "zoneName": "이란"
@@ -863,14 +720,8 @@
     "KH": {
       "zoneName": "캄보디아"
     },
-    "KI": {
-      "zoneName": "키리바시"
-    },
     "KM": {
       "zoneName": "코모로"
-    },
-    "KN": {
-      "zoneName": "세인트키츠 네비스"
     },
     "KP": {
       "zoneName": "북한"
@@ -932,15 +783,8 @@
     "ME": {
       "zoneName": "몬테네그로"
     },
-    "MF": {
-      "countryName": "세인트마틴섬",
-      "zoneName": "프랑스령"
-    },
     "MG": {
       "zoneName": "마다가스카르"
-    },
-    "MH": {
-      "zoneName": "마셜 제도"
     },
     "MK": {
       "zoneName": "북마케도니아"
@@ -956,9 +800,6 @@
     },
     "MO": {
       "zoneName": "마카오"
-    },
-    "MP": {
-      "zoneName": "북마리아나 제도"
     },
     "MQ": {
       "zoneName": "마르티니크"
@@ -1039,9 +880,6 @@
     "NE": {
       "zoneName": "니제르"
     },
-    "NF": {
-      "zoneName": "노퍽섬"
-    },
     "NG": {
       "zoneName": "나이지리아"
     },
@@ -1073,12 +911,6 @@
     },
     "NP": {
       "zoneName": "네팔"
-    },
-    "NR": {
-      "zoneName": "나우루"
-    },
-    "NU": {
-      "zoneName": "니우에"
     },
     "NZ": {
       "zoneName": "뉴질랜드"
@@ -1117,9 +949,6 @@
     },
     "PM": {
       "zoneName": "생피에르 미클롱"
-    },
-    "PN": {
-      "zoneName": "핏케언 제도"
     },
     "PR": {
       "zoneName": "푸에르토리코"
@@ -1198,9 +1027,6 @@
     "SG": {
       "zoneName": "싱가포르"
     },
-    "SH": {
-      "zoneName": "세인트헬레나 어센션 트리스탄다쿠냐"
-    },
     "SI": {
       "zoneName": "슬로베니아"
     },
@@ -1212,9 +1038,6 @@
     },
     "SL": {
       "zoneName": "시에라리온"
-    },
-    "SM": {
-      "zoneName": "산마리노"
     },
     "SN": {
       "zoneName": "세네갈"
@@ -1234,18 +1057,11 @@
     "SV": {
       "zoneName": "엘살바도르"
     },
-    "SX": {
-      "countryName": "신트마르턴",
-      "zoneName": "네덜란드령"
-    },
     "SY": {
       "zoneName": "시리아"
     },
     "SZ": {
       "zoneName": "스와질란드"
-    },
-    "TC": {
-      "zoneName": "터크스케이커스 제도"
     },
     "TD": {
       "zoneName": "차드"
@@ -1261,9 +1077,6 @@
     },
     "TJ": {
       "zoneName": "타지키스탄"
-    },
-    "TK": {
-      "zoneName": "토켈라우"
     },
     "TL": {
       "zoneName": "동티모르"
@@ -1283,9 +1096,6 @@
     "TT": {
       "zoneName": "트리니다드토바고"
     },
-    "TV": {
-      "zoneName": "투발루"
-    },
     "TW": {
       "zoneName": "대만"
     },
@@ -1302,43 +1112,8 @@
     "UG": {
       "zoneName": "우간다"
     },
-    "UM": {
-      "zoneName": "미국령 군소 제도"
-    },
     "US": {
       "zoneName": "인접한 미국"
-    },
-    "US-HI-HA": {
-      "countryName": "미국",
-      "zoneName": "하와이섬"
-    },
-    "US-HI-KA": {
-      "countryName": "미국",
-      "zoneName": "카우아이섬"
-    },
-    "US-HI-KH": {
-      "countryName": "미국",
-      "zoneName": "카호올라웨섬"
-    },
-    "US-HI-LA": {
-      "countryName": "미국",
-      "zoneName": "라나이섬"
-    },
-    "US-HI-MA": {
-      "countryName": "미국",
-      "zoneName": "마우이섬"
-    },
-    "US-HI-MO": {
-      "countryName": "미국",
-      "zoneName": "몰로카이섬"
-    },
-    "US-HI-NI": {
-      "countryName": "미국",
-      "zoneName": "니하우섬"
-    },
-    "US-HI-OA": {
-      "countryName": "미국",
-      "zoneName": "오아후섬"
     },
     "UY": {
       "zoneName": "우루과이"
@@ -1346,18 +1121,11 @@
     "UZ": {
       "zoneName": "우즈베키스탄"
     },
-    "VA": {
-      "zoneName": "바티칸 시국"
-    },
     "VC": {
       "zoneName": "세인트빈센트 그레나딘"
     },
     "VE": {
       "zoneName": "베네수엘라"
-    },
-    "VG": {
-      "countryName": "버진 제도",
-      "zoneName": "버진 제도"
     },
     "VI": {
       "countryName": "미국",
@@ -1368,9 +1136,6 @@
     },
     "VU": {
       "zoneName": "바누아투"
-    },
-    "WF": {
-      "zoneName": "월리스푸투나 제도"
     },
     "WS": {
       "zoneName": "사모아"

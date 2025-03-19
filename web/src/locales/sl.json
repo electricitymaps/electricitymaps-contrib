@@ -213,9 +213,6 @@
     "AG": {
       "zoneName": "Antigua in Barbuda"
     },
-    "AI": {
-      "zoneName": "Angvila"
-    },
     "AL": {
       "zoneName": "Albanija"
     },
@@ -225,14 +222,8 @@
     "AO": {
       "zoneName": "Angola"
     },
-    "AQ": {
-      "zoneName": "Antarktika"
-    },
     "AR": {
       "zoneName": "Argentina"
-    },
-    "AS": {
-      "zoneName": "Ameriška Samoa"
     },
     "AT": {
       "zoneName": "Avstrija"
@@ -326,9 +317,6 @@
     "BO": {
       "zoneName": "Bolivija"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Sint Eustatius in Saba"
-    },
     "BR-CS": {
       "countryName": "Brazilija",
       "zoneName": "Centralna Brazilija"
@@ -350,9 +338,6 @@
     },
     "BT": {
       "zoneName": "Butan"
-    },
-    "BV": {
-      "zoneName": "Bouvet Otok"
     },
     "BW": {
       "zoneName": "Botsvana"
@@ -418,9 +403,6 @@
       "countryName": "Kanada",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Kokosovi otoki"
-    },
     "CD": {
       "zoneName": "Demokratična republika Kongo"
     },
@@ -435,9 +417,6 @@
     },
     "CI": {
       "zoneName": "Slonokoščena obala"
-    },
-    "CK": {
-      "zoneName": "Cookovi otoki"
     },
     "CL-CHP": {
       "countryName": "Čile",
@@ -475,9 +454,6 @@
     },
     "CW": {
       "zoneName": "Curacao"
-    },
-    "CX": {
-      "zoneName": "Božični otoki"
     },
     "CY": {
       "zoneName": "Ciper"
@@ -635,9 +611,6 @@
       "countryName": "Velika Britanija",
       "zoneName": "Šetlandski otoki"
     },
-    "GD": {
-      "zoneName": "Grenada"
-    },
     "GE": {
       "zoneName": "Georgia"
     },
@@ -720,117 +693,9 @@
       "countryName": "Indija",
       "zoneName": "Andaman in Nicobar otoki"
     },
-    "IN-AP": {
-      "countryName": "Indija",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "Indija",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Indija",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "Indija",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Indija",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Indija",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "Indija",
-      "zoneName": "Dadra and Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "Indija",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Indija",
-      "zoneName": "Gujarat"
-    },
     "IN-HP": {
       "countryName": "Indija",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "Indija",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "Indija",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Indija",
-      "zoneName": "Jammu and Kashmir"
-    },
-    "IN-KA": {
-      "countryName": "Indija",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "Indija",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "Indija",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "Indija",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Indija",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Indija",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Indija",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Indija",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Indija",
-      "zoneName": "Orissa"
-    },
-    "IN-PB": {
-      "countryName": "Indija",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "Indija",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "Indija",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "Indija",
-      "zoneName": "Sikkim"
-    },
-    "IN-TN": {
-      "countryName": "Indija",
-      "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "Indija",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Indija",
@@ -840,19 +705,11 @@
       "countryName": "Indija",
       "zoneName": "Uttarakhand"
     },
-    "IN-WB": {
-      "countryName": "Indija",
-      "zoneName": "Zahodni Bengal"
-    },
     "IO": {
       "zoneName": "Britansko ozemlje Indijskega oceana"
     },
     "IQ": {
       "zoneName": "Irak"
-    },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
     },
     "IR": {
       "zoneName": "Iran"
@@ -945,14 +802,8 @@
     "KH": {
       "zoneName": "Kambodža"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Komori"
-    },
-    "KN": {
-      "zoneName": "Sveti Kitts in Nevis"
     },
     "KP": {
       "zoneName": "Severna Koreja"
@@ -1014,15 +865,8 @@
     "ME": {
       "zoneName": "Črna Gora"
     },
-    "MF": {
-      "countryName": "Sveti Martin",
-      "zoneName": "Francoski del"
-    },
     "MG": {
       "zoneName": "Madagaskar"
-    },
-    "MH": {
-      "zoneName": "Marshallovi otoki"
     },
     "MK": {
       "zoneName": "Severna Makedonija"
@@ -1038,9 +882,6 @@
     },
     "MO": {
       "zoneName": "Makav"
-    },
-    "MP": {
-      "zoneName": "Severni Marijanski otoki"
     },
     "MQ": {
       "zoneName": "Martinik"
@@ -1121,9 +962,6 @@
     "NE": {
       "zoneName": "Nigerija"
     },
-    "NF": {
-      "zoneName": "Otok Norfolk"
-    },
     "NG": {
       "zoneName": "Nigerija"
     },
@@ -1158,12 +996,6 @@
     },
     "NP": {
       "zoneName": "Nepal"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "Nova Zelandija"
@@ -1206,9 +1038,6 @@
     },
     "PM": {
       "zoneName": "Sveti Pierre in Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairnovi Otoki"
     },
     "PR": {
       "zoneName": "Portoriko"
@@ -1309,9 +1138,6 @@
     "SG": {
       "zoneName": "Singapur"
     },
-    "SH": {
-      "zoneName": "Sveta Helena, Vnebohod in Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Slovenija"
     },
@@ -1323,9 +1149,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1345,18 +1168,11 @@
     "SV": {
       "zoneName": "Salvador"
     },
-    "SX": {
-      "countryName": "Sveti Martin",
-      "zoneName": "Nizozemska"
-    },
     "SY": {
       "zoneName": "Sirija"
     },
     "SZ": {
       "zoneName": "Svazi"
-    },
-    "TC": {
-      "zoneName": "Otoki Turks in Caicos"
     },
     "TD": {
       "zoneName": "Čad"
@@ -1372,9 +1188,6 @@
     },
     "TJ": {
       "zoneName": "Tadžikistan"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Timor-Leste"
@@ -1394,9 +1207,6 @@
     "TT": {
       "zoneName": "Trinidad in Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Tajvan"
     },
@@ -1413,47 +1223,12 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "Manjši oddaljeni otoki Združenih Držav"
-    },
     "US": {
       "zoneName": "Celinske Združene Države"
     },
     "US-AK": {
       "countryName": "ZDA",
       "zoneName": "Aljaska"
-    },
-    "US-HI-HA": {
-      "countryName": "ZDA",
-      "zoneName": "Havaji"
-    },
-    "US-HI-KA": {
-      "countryName": "ZDA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "ZDA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "ZDA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "ZDA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "ZDA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "ZDA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "ZDA",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "ZDA",
@@ -1587,10 +1362,6 @@
       "countryName": "ZDA",
       "zoneName": "Gridforce Energy Management, Llc"
     },
-    "US-NW-GWA": {
-      "countryName": "ZDA",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
-    },
     "US-NW-IPCO": {
       "countryName": "ZDA",
       "zoneName": "Idaho Power Company"
@@ -1639,10 +1410,6 @@
       "countryName": "ZDA",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": {
-      "countryName": "ZDA",
-      "zoneName": "Naturener Wind Watch, Llc"
-    },
     "US-NY-NYIS": {
       "countryName": "ZDA",
       "zoneName": "New York Independent System Operator"
@@ -1662,10 +1429,6 @@
     "US-SW-EPE": {
       "countryName": "ZDA",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "ZDA",
-      "zoneName": "Griffith Energy, LLC"
     },
     "US-SW-PNM": {
       "countryName": "ZDA",
@@ -1697,18 +1460,11 @@
     "UZ": {
       "zoneName": "Uzbekistan"
     },
-    "VA": {
-      "zoneName": "Vatikan"
-    },
     "VC": {
       "zoneName": "Sveti Vincent in Grenadini"
     },
     "VE": {
       "zoneName": "Venezuela"
-    },
-    "VG": {
-      "countryName": "Deviški Otoki",
-      "zoneName": "Deviški Otoki"
     },
     "VI": {
       "countryName": "ZDA",
@@ -1719,9 +1475,6 @@
     },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis in Futuna"
     },
     "WS": {
       "zoneName": "Samoa"

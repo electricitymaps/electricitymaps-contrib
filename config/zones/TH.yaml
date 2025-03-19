@@ -81,10 +81,6 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 3190.0
-  unknown:
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 190.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -116,6 +112,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 409.08
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 409.05
     hydro discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
@@ -123,6 +122,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
         value: 409.08
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 409.05
     unknown:
       - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
           SPP, and VSPP
@@ -271,15 +273,30 @@ fallbackZoneMixes:
       value:
         battery discharge: 0.0
         biomass: 0.0
-        coal: 0.0001893533763363284
-        gas: 0.00011455928721752805
+        coal: 0.00018602577310054943
+        gas: 0.00011413283154735553
         geothermal: 0.0
-        hydro: 1.2849657433516598e-05
+        hydro: 1.2664593581843584e-05
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 2.4125436520767794e-07
-        solar: 4.266456578706064e-06
-        unknown: 0.9996787250198512
+        oil: 2.0313229294225035e-07
+        solar: 4.161377939220945e-06
+        unknown: 0.9996828060905045
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0001241579477810437
+        gas: 8.42965397887372e-05
+        geothermal: 0.0
+        hydro: 1.3041621780993996e-05
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 1.4245980224075304e-07
+        solar: 5.013384228280907e-06
+        unknown: 0.9997733243942888
         wind: 0.0
 isLowCarbon:
   unknown:

@@ -1,0 +1,19 @@
+# serializer version: 1
+# name: test_ProductionModes_enum_items
+  dict_items([('BIOMASS', <ProductionModes.BIOMASS: 'biomass'>), ('COAL', <ProductionModes.COAL: 'coal'>), ('GAS', <ProductionModes.GAS: 'gas'>), ('GEOTHERMAL', <ProductionModes.GEOTHERMAL: 'geothermal'>), ('HYDRO', <ProductionModes.HYDRO: 'hydro'>), ('NUCLEAR', <ProductionModes.NUCLEAR: 'nuclear'>), ('OIL', <ProductionModes.OIL: 'oil'>), ('SOLAR', <ProductionModes.SOLAR: 'solar'>), ('WIND', <ProductionModes.WIND: 'wind'>), ('UNKNOWN', <ProductionModes.UNKNOWN: 'unknown'>)])
+# ---
+# name: test_ProductionModes_enum_names
+  dict_keys(['BIOMASS', 'COAL', 'GAS', 'GEOTHERMAL', 'HYDRO', 'NUCLEAR', 'OIL', 'SOLAR', 'WIND', 'UNKNOWN'])
+# ---
+# name: test_ProductionModes_enum_values
+  dict_values([<ProductionModes.BIOMASS: 'biomass'>, <ProductionModes.COAL: 'coal'>, <ProductionModes.GAS: 'gas'>, <ProductionModes.GEOTHERMAL: 'geothermal'>, <ProductionModes.HYDRO: 'hydro'>, <ProductionModes.NUCLEAR: 'nuclear'>, <ProductionModes.OIL: 'oil'>, <ProductionModes.SOLAR: 'solar'>, <ProductionModes.WIND: 'wind'>, <ProductionModes.UNKNOWN: 'unknown'>])
+# ---
+# name: test_StorageModes_enum_items
+  dict_items([('BATTERY', <StorageModes.BATTERY: 'battery'>), ('HYDRO', <StorageModes.HYDRO: 'hydro'>)])
+# ---
+# name: test_StorageModes_enum_names
+  dict_keys(['BATTERY', 'HYDRO'])
+# ---
+# name: test_StorageModes_enum_values
+  dict_values([<StorageModes.BATTERY: 'battery'>, <StorageModes.HYDRO: 'hydro'>])
+# ---

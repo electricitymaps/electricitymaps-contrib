@@ -104,13 +104,11 @@ emissionFactors:
       value: 230
     coal:
       - datetime: '2021-01-01'
-        source: >-
-          EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
           hotspots of coal power generation."
         value: 1050.5643503
       - datetime: '2022-01-01'
-        source: >-
-          EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
+        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
           hotspots of coal power generation."
         value: 1235.586989
     gas:
@@ -175,8 +173,7 @@ emissionFactors:
       value: 25.6
     wind:
       datetime: '2021-01-01'
-      source: >-
-        UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
+      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
 parsers:

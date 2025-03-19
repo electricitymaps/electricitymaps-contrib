@@ -110,7 +110,7 @@ export default function FeedbackCard({
   return (
     <div
       data-testid="feedback-card"
-      className="flex w-full flex-col gap-2 rounded-lg border border-neutral-200 bg-zinc-50 px-3 py-4 transition-all dark:border-gray-700 dark:bg-gray-900"
+      className="flex w-full flex-col gap-2 rounded-lg border border-neutral-200 bg-zinc-50 px-3 py-4 transition-all dark:border-neutral-700 dark:bg-neutral-900"
       ref={feedbackCardReference}
     >
       <div className="flex flex-row  justify-between">
@@ -190,7 +190,7 @@ function InputField({
         }}
         rows={1}
         placeholder={inputPlaceholder}
-        className="my-2 w-full resize-none rounded border border-neutral-200 bg-transparent text-base focus:border-brand-green focus:ring-0 dark:border-gray-700"
+        className="my-2 w-full resize-none rounded border border-neutral-200 bg-transparent text-base focus:border-brand-green focus:ring-0 dark:border-neutral-700"
       />
     </div>
   );
@@ -279,7 +279,7 @@ function FeedbackFields({
       />
       {feedbackState === FeedbackState.OPTIONAL && (
         <div>
-          <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-gray-700" />
+          <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-neutral-700" />
           <div>
             <InputField
               inputText={inputText}
@@ -361,16 +361,16 @@ function PillContent({
           aria-label={content}
           onClick={() => handlePillClick(content)}
           className={`
-          inline-flex h-9 w-full select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-gray-700 dark:text-white
+          inline-flex h-9 w-full select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-neutral-700 dark:text-white
             ${
               currentPillNumber == content
                 ? 'bg-black dark:bg-white'
-                : 'hover:bg-neutral-200 dark:hover:bg-gray-700'
+                : 'hover:bg-neutral-200 dark:hover:bg-neutral-700'
             }`}
         >
           <div
             className={`text-sm font-semibold ${
-              currentPillNumber == content ? ' text-zinc-50 dark:text-gray-900' : ''
+              currentPillNumber == content ? ' text-zinc-50 dark:text-neutral-900' : ''
             }`}
           >
             {content}

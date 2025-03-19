@@ -24,7 +24,7 @@ export function CountryFlag({
   const countryName = getCountryName(zoneId);
 
   if (!FlagIcon) {
-    return <span className="h-[12px] w-[18px] bg-gray-400 text-[14px]"></span>;
+    return <span className="h-[12px] w-[18px] bg-neutral-400 text-[14px]"></span>;
   }
   return (
     <FlagIcon

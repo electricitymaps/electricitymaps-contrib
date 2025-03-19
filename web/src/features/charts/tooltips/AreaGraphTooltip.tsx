@@ -56,7 +56,7 @@ export default function AreaGraphTooltip({
         {children({ zoneDetail, selectedLayerKey })}
         <button
           onClick={closeTooltip}
-          className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden"
+          className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-neutral-800 sm:hidden"
         >
           <X />
         </button>
