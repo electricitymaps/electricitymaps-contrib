@@ -81,7 +81,7 @@
     },
     "view5": {
       "header": "Switch between electricity and emissions views",
-      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen production or consumption mode."
+      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen flow-traced or non-flow-traced data."
     },
     "view6": {
       "header": "Explore the past",
@@ -296,18 +296,18 @@
       "all_years": "Yearly production emissions"
     },
     "electricityorigin": {
-      "72h": "Hourly electricity origin",
-      "3mo": "Daily electricity origin",
-      "12mo": "Monthly electricity origin",
-      "all_months": "Monthly electricity origin",
-      "all_years": "Yearly electricity origin"
+      "72h": "Hourly electricity mix",
+      "3mo": "Daily electricity mix",
+      "12mo": "Monthly electricity mix",
+      "all_months": "Monthly electricity mix",
+      "all_years": "Yearly electricity mix"
     },
     "electricityproduction": {
-      "72h": "Hourly electricity production",
-      "3mo": "Daily electricity production",
-      "12mo": "Monthly electricity production",
-      "all_months": "Monthly electricity production",
-      "all_years": "Yearly electricity production"
+      "72h": "Hourly electricity mix",
+      "3mo": "Daily electricity mix",
+      "12mo": "Monthly electricity mix",
+      "all_months": "Monthly electricity mix",
+      "all_years": "Yearly electricity mix"
     },
     "electricityprices": {
       "72h": "Hourly electricity prices",
