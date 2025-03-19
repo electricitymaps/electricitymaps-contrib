@@ -90,7 +90,6 @@
       "licensing": "Ceny energii elektrycznej są niedostępne dla tego obszaru ze względu na warunki licencji"
     },
     "emissionFactorDataSourcesTooltip": "Czynniki emisji związane z produkcją energii elektrycznej mogą pochodzić z wielu źródeł. Dzieje się tak, ponieważ w obliczeniach emisji uwzględnia się kilka czynników, takich jak dane specyficzne dla elektrowni, generacja oraz źródła zapasowe.",
-    "disabledBreakdownChartReason": "Wyłączone dla widoku zużycia. Proszę przełączyć na widok produkcji, aby zobaczyć wykres pochodzenia.",
     "dataIsDelayed": "Dane dla tego regionu mogą być opóźnione o maksymalnie {{hours}} godzin. Nie można wyświetlić danych na żywo.",
     "estimated": "szacowane",
     "aggregated": "zagregowane",
