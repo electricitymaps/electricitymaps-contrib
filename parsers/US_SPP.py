@@ -431,7 +431,7 @@ def fetch_exchange(
 
 
 @refetch_frequency(timedelta(minutes=5))
-def fetch_realtime_price(
+def fetch_realtime_local_marginal_price(
     zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -442,8 +442,7 @@ def fetch_realtime_price(
     if target_datetime.tzinfo is None:
         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
-    closest_5_minutes_datetime = get_closest_5_minutes_datetime(target_datetime)
-    url = f"{REALTIME_PRICE_URL}&path=/{closest_5_minutes_datetime.strftime('%Y')}/{closest_5_minutes_datetime.strftime('%m')}/By_Interval/{closest_5_minutes_datetime.strftime('%d')}/RTBM-LMP-SL-{closest_5_minutes_datetime.strftime('%Y%m%d%H%M')}.csv"
+    url = get_realtime_url(target_datetime)
     raw_data = get_data(url, session)
 
     spp_data = raw_data[raw_data["Settlement Location"] == "SPPNORTH_HUB"]
@@ -464,7 +463,7 @@ def fetch_realtime_price(
 
 
 @refetch_frequency(timedelta(days=1))
-def fetch_dayahead_price(
+def fetch_dayahead_local_marginal_price(
     zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -473,7 +472,7 @@ def fetch_dayahead_price(
     if target_datetime is None:
         target_datetime = datetime.now(tz=timezone.utc)
 
-    url = f"{DAYAHEAD_PRICE_URL}&path=/{target_datetime.strftime('%Y')}/{target_datetime.strftime('%m')}/By_Day/DA-LMP-SL-{target_datetime.strftime('%Y%m%d')}0100.csv"
+    url = get_dayahead_url(target_datetime)
     raw_data = get_data(url, session)
     # filter by column "Settlement Location" so it only includes SPPNORTH_HUB
     spp_data = raw_data[raw_data["Settlement Location"] == "SPPNORTH_HUB"]
@@ -499,6 +498,23 @@ def get_closest_5_minutes_datetime(datetime: datetime) -> datetime:
         minute=round(cdt_datetime.minute / 5) * 5, second=0, microsecond=0
     )
     return rounded_cdt
+
+
+def get_realtime_url(datetime: datetime) -> str:
+    closest_5_minutes_datetime = get_closest_5_minutes_datetime(datetime)
+    year = closest_5_minutes_datetime.strftime("%Y")
+    month = closest_5_minutes_datetime.strftime("%m")
+    day = closest_5_minutes_datetime.strftime("%d")
+    hour = closest_5_minutes_datetime.strftime("%H")
+    minute = closest_5_minutes_datetime.strftime("%M")
+    return f"{REALTIME_PRICE_URL}&path=/{year}/{month}/By_Interval/{day}/RTBM-LMP-SL-{year}{month}{day}{hour}{minute}.csv"
+
+
+def get_dayahead_url(datetime: datetime) -> str:
+    year = datetime.strftime("%Y")
+    month = datetime.strftime("%m")
+    day = datetime.strftime("%d")
+    return f"{DAYAHEAD_PRICE_URL}&path=/{year}/{month}/By_Day/DA-LMP-SL-{year}{month}{day}0100.csv"
 
 
 if __name__ == "__main__":
