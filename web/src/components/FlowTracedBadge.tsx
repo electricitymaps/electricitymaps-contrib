@@ -1,17 +1,15 @@
 import { ChevronsUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import LabelTooltip from './tooltips/LabelTooltip';
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
 export default function FlowTracedBadge(): JSX.Element {
+  const { t } = useTranslation();
   return (
     <TooltipWrapper
       side="bottom"
-      tooltipContent={
-        <LabelTooltip>
-          Flow-traced data accounts for physical electricity flows
-        </LabelTooltip>
-      }
+      tooltipContent={<LabelTooltip>{t('tooltips.flowTraced')}</LabelTooltip>}
     >
       <div className="inline-flex h-6 min-w-[112px] items-center rounded-full bg-brand-green/10 px-2 py-1">
         <div className="flex flex-col">

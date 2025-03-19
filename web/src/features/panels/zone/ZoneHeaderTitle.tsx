@@ -46,7 +46,7 @@ function ZoneHeaderTitle({
           side="bottom"
           tooltipContent={<LabelTooltip>{disclaimer}</LabelTooltip>}
         >
-          <Info className="min-h-6 min-w-6 text-neutral-500" />
+          <Info size={20} className="min-h-5 min-w-5 text-neutral-500" />
         </TooltipWrapper>
       )}
     </div>
