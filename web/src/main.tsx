@@ -9,6 +9,7 @@ import { captureException } from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import App from 'App';
+import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { zoneExists } from 'features/panels/zone/util';
 import { lazy, StrictMode, Suspense } from 'react';
@@ -77,7 +78,7 @@ window.addEventListener('vite:preloadError', async (event: VitePreloadErrorEvent
   window.location.reload();
 });
 
-const RankingPanel = lazy(() => import('features/panels/ranking-panel/RankingPanel'));
+const SearchPanel = lazy(() => import('features/panels/search-panel/SearchPanel'));
 const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
 
 /**
@@ -233,7 +234,7 @@ const router = createBrowserRouter([
         path: '/map/:urlTimeRange?/:resolution?/:urlDatetime?',
         element: (
           <TimeRangeAndResolutionGuardWrapper>
-            <RankingPanel />
+            <SearchPanel />
           </TimeRangeAndResolutionGuardWrapper>
         ),
       },
@@ -242,7 +243,13 @@ const router = createBrowserRouter([
         element: (
           <ValidZoneIdGuardWrapper>
             <TimeRangeAndResolutionGuardWrapper>
-              <Suspense fallback={<LoadingSpinner />}>
+              <Suspense
+                fallback={
+                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-48 sm:h-auto">
+                    <LoadingSpinner />
+                  </GlassContainer>
+                }
+              >
                 <ZoneDetails />
               </Suspense>
             </TimeRangeAndResolutionGuardWrapper>

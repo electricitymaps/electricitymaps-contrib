@@ -168,9 +168,6 @@
     "AG": {
       "zoneName": "アンティグア・バーブーダ"
     },
-    "AI": {
-      "zoneName": "アンギラ"
-    },
     "AL": {
       "zoneName": "アルバニア"
     },
@@ -179,12 +176,6 @@
     },
     "AO": {
       "zoneName": "アンゴラ"
-    },
-    "AQ": {
-      "zoneName": "南極大陸"
-    },
-    "AS": {
-      "zoneName": "アメリカ領サモア"
     },
     "AT": {
       "zoneName": "オーストリア"
@@ -269,9 +260,6 @@
     "BO": {
       "zoneName": "ボリビア"
     },
-    "BQ": {
-      "zoneName": "ボネール、シント・ユースタティウスおよびサバ"
-    },
     "BR": {
       "zoneName": "ブラジル"
     },
@@ -296,9 +284,6 @@
     },
     "BT": {
       "zoneName": "ブータン"
-    },
-    "BV": {
-      "zoneName": "ブーベ島"
     },
     "BW": {
       "zoneName": "ボツワナ"
@@ -364,9 +349,6 @@
       "countryName": "カナダ",
       "zoneName": "ユーコン"
     },
-    "CC": {
-      "zoneName": "ココス諸島"
-    },
     "CD": {
       "zoneName": "コンゴ民主共和国"
     },
@@ -381,9 +363,6 @@
     },
     "CI": {
       "zoneName": "コートジボワール"
-    },
-    "CK": {
-      "zoneName": "クック諸島"
     },
     "CL-SEA": {
       "countryName": "チリ",
@@ -417,9 +396,6 @@
     },
     "CW": {
       "zoneName": "キュラソー"
-    },
-    "CX": {
-      "zoneName": "クリスマス島"
     },
     "CY": {
       "zoneName": "キプロス"
@@ -561,9 +537,6 @@
       "countryName": "イギリス",
       "zoneName": "シェットランド諸島"
     },
-    "GD": {
-      "zoneName": "グレナダ"
-    },
     "GE": {
       "zoneName": "ジョージア州"
     },
@@ -646,113 +619,9 @@
       "countryName": "インド",
       "zoneName": "アンダマンとニコバル諸島"
     },
-    "IN-AP": {
-      "countryName": "インド",
-      "zoneName": "アンドラ・プラデシュ"
-    },
-    "IN-AR": {
-      "countryName": "インド",
-      "zoneName": "アルナチャルプラデーシュ州"
-    },
-    "IN-AS": {
-      "countryName": "インド",
-      "zoneName": "アッサム"
-    },
-    "IN-BR": {
-      "countryName": "インド",
-      "zoneName": "ビハール"
-    },
-    "IN-CT": {
-      "countryName": "インド",
-      "zoneName": "チャッティースガル"
-    },
-    "IN-DL": {
-      "countryName": "インド",
-      "zoneName": "デリー"
-    },
-    "IN-DN": {
-      "countryName": "インド",
-      "zoneName": "ダードラーおよびナガル・ハヴェーリー"
-    },
-    "IN-GA": {
-      "countryName": "インド",
-      "zoneName": "ゴア"
-    },
-    "IN-GJ": {
-      "countryName": "インド",
-      "zoneName": "グジャラート州"
-    },
     "IN-HP": {
       "countryName": "インド",
       "zoneName": "ヒマーチャルプラデーシュ州"
-    },
-    "IN-HR": {
-      "countryName": "インド",
-      "zoneName": "ハリヤーナ"
-    },
-    "IN-JH": {
-      "countryName": "インド",
-      "zoneName": "ジャールカンド州"
-    },
-    "IN-JK": {
-      "countryName": "インド",
-      "zoneName": "ジャムとカシミール"
-    },
-    "IN-KA": {
-      "countryName": "インド",
-      "zoneName": "カルナタカ"
-    },
-    "IN-KL": {
-      "countryName": "インド",
-      "zoneName": "ケララ州"
-    },
-    "IN-MH": {
-      "countryName": "インド",
-      "zoneName": "マハラシュトラ"
-    },
-    "IN-ML": {
-      "countryName": "インド",
-      "zoneName": "メガラヤ"
-    },
-    "IN-MN": {
-      "countryName": "インド",
-      "zoneName": "マニプール"
-    },
-    "IN-MP": {
-      "countryName": "インド",
-      "zoneName": "マディヤ・プラデシュ"
-    },
-    "IN-MZ": {
-      "countryName": "インド",
-      "zoneName": "ミゾラム"
-    },
-    "IN-NL": {
-      "countryName": "インド",
-      "zoneName": "ナガランド"
-    },
-    "IN-OR": {
-      "countryName": "インド",
-      "zoneName": "オリッサ州"
-    },
-    "IN-PB": {
-      "countryName": "インド",
-      "zoneName": "パンジャーブ"
-    },
-    "IN-PY": {
-      "countryName": "インド",
-      "zoneName": "ポンディシェリ"
-    },
-    "IN-RJ": {
-      "countryName": "インド",
-      "zoneName": "ラージャスターン"
-    },
-    "IN-SK": {
-      "countryName": "インド",
-      "zoneName": "シッキム"
-    },
-    "IN-TR": {
-      "countryName": "インド",
-      "zoneName": "トリプラ"
     },
     "IN-UP": {
       "countryName": "インド",
@@ -761,10 +630,6 @@
     "IN-UT": {
       "countryName": "インド",
       "zoneName": "ウッタラーカンド州"
-    },
-    "IN-WB": {
-      "countryName": "インド",
-      "zoneName": "西ベンガル州"
     },
     "IO": {
       "zoneName": "イギリス領インド洋地域"
@@ -863,14 +728,8 @@
     "KH": {
       "zoneName": "カンボジア"
     },
-    "KI": {
-      "zoneName": "キリバス"
-    },
     "KM": {
       "zoneName": "コモロ"
-    },
-    "KN": {
-      "zoneName": "セントクリストファー・ネービス"
     },
     "KP": {
       "zoneName": "北朝鮮"
@@ -935,9 +794,6 @@
     "MG": {
       "zoneName": "マダガスカル"
     },
-    "MH": {
-      "zoneName": "マーシャル諸島"
-    },
     "MK": {
       "zoneName": "北マケドニア"
     },
@@ -952,9 +808,6 @@
     },
     "MO": {
       "zoneName": "マカオ"
-    },
-    "MP": {
-      "zoneName": "北マリアナ諸島"
     },
     "MQ": {
       "zoneName": "マルティニーク"
@@ -1035,9 +888,6 @@
     "NE": {
       "zoneName": "ニジェール"
     },
-    "NF": {
-      "zoneName": "ノーフォーク島"
-    },
     "NG": {
       "zoneName": "ナイジェリア"
     },
@@ -1069,12 +919,6 @@
     },
     "NP": {
       "zoneName": "ネパール"
-    },
-    "NR": {
-      "zoneName": "ナウル"
-    },
-    "NU": {
-      "zoneName": "ニウエ"
     },
     "NZ": {
       "zoneName": "ニュージーランド"
@@ -1113,9 +957,6 @@
     },
     "PM": {
       "zoneName": "サン・ピエール及びミクロン"
-    },
-    "PN": {
-      "zoneName": "ピトケアン"
     },
     "PR": {
       "zoneName": "プエルトリコ"
@@ -1194,9 +1035,6 @@
     "SG": {
       "zoneName": "シンガポール"
     },
-    "SH": {
-      "zoneName": "セントヘレナ・アセンションおよびトリスタンダクーニャ"
-    },
     "SI": {
       "zoneName": "スロベニア"
     },
@@ -1208,9 +1046,6 @@
     },
     "SL": {
       "zoneName": "シエラレオネ"
-    },
-    "SM": {
-      "zoneName": "サンマリノ"
     },
     "SN": {
       "zoneName": "セネガル"
@@ -1230,18 +1065,11 @@
     "SV": {
       "zoneName": "エルサルバドル"
     },
-    "SX": {
-      "countryName": "シント・マールテン",
-      "zoneName": "オランダ領"
-    },
     "SY": {
       "zoneName": "シリア"
     },
     "SZ": {
       "zoneName": "エスワティニ"
-    },
-    "TC": {
-      "zoneName": "タークス・カイコス諸島"
     },
     "TD": {
       "zoneName": "チャド"
@@ -1257,9 +1085,6 @@
     },
     "TJ": {
       "zoneName": "タジキスタン"
-    },
-    "TK": {
-      "zoneName": "トケラウ"
     },
     "TL": {
       "zoneName": "東ティモール"
@@ -1279,9 +1104,6 @@
     "TT": {
       "zoneName": "トリニダード・ドバゴ"
     },
-    "TV": {
-      "zoneName": "ツバル"
-    },
     "TW": {
       "zoneName": "台湾"
     },
@@ -1297,9 +1119,6 @@
     },
     "UG": {
       "zoneName": "ウガンダ"
-    },
-    "UM": {
-      "zoneName": "アメリカ合衆国領有小離島"
     },
     "US": {
       "zoneName": "本土アメリカ合衆国"
@@ -1436,10 +1255,6 @@
       "countryName": "アメリカ合衆国",
       "zoneName": "Gridforce Energy Management, Llc"
     },
-    "US-NW-GWA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
-    },
     "US-NW-IPCO": {
       "countryName": "アメリカ合衆国",
       "zoneName": "Idaho Power Company"
@@ -1488,10 +1303,6 @@
       "countryName": "アメリカ合衆国",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "Naturener Wind Watch, Llc"
-    },
     "US-NY-NYIS": {
       "countryName": "アメリカ合衆国",
       "zoneName": "New York Independent System Operator"
@@ -1511,10 +1322,6 @@
     "US-SW-EPE": {
       "countryName": "アメリカ合衆国",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "アメリカ合衆国",
-      "zoneName": "Griffith Energy, LLC"
     },
     "US-SW-PNM": {
       "countryName": "アメリカ合衆国",
@@ -1546,18 +1353,11 @@
     "UZ": {
       "zoneName": "ウズベキスタン"
     },
-    "VA": {
-      "zoneName": "バチカン市国"
-    },
     "VC": {
       "zoneName": "セントビンセント及びグレナディーン諸島"
     },
     "VE": {
       "zoneName": "ベネズエラ"
-    },
-    "VG": {
-      "countryName": "ヴァージン諸島",
-      "zoneName": "ヴァージン諸島"
     },
     "VI": {
       "countryName": "アメリカ合衆国",
@@ -1568,9 +1368,6 @@
     },
     "VU": {
       "zoneName": "バヌアツ"
-    },
-    "WF": {
-      "zoneName": "ウォリス・フツナ"
     },
     "WS": {
       "zoneName": "サモア"

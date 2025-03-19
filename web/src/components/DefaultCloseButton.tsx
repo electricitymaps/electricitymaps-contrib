@@ -21,7 +21,7 @@ export function DefaultCloseButton({
       className={twMerge(
         'pointer-events-auto flex items-center justify-center self-center',
         color === 'gray'
-          ? 'text-neutral-400 dark:text-gray-300'
+          ? 'text-neutral-400 dark:text-neutral-300'
           : 'text-black dark:text-white'
       )}
     >

@@ -23,7 +23,7 @@ export default function MapOptionSelector({
       <Trigger
         className={twMerge(
           isOpen ? 'pointer-events-none' : 'pointer-events-auto',
-          isMobile && 'rounded-full transition duration-200 focus-visible:outline-none '
+          isMobile && 'rounded-full transition duration-200 focus-visible:outline-none'
         )}
         data-testid={testId}
         onClick={toggleTooltip}
@@ -32,14 +32,14 @@ export default function MapOptionSelector({
         {trigger}
       </Trigger>
       <Content
-        className="pointer-events-auto z-50 max-h-[190px] w-[120px] overflow-auto rounded bg-white dark:bg-gray-800"
+        className="pointer-events-auto z-50 max-h-[190px] w-[330px] overflow-auto rounded bg-white dark:bg-neutral-800 sm:w-[120px]"
         sideOffset={isMobile ? -10 : 5}
         side={isMobile ? 'bottom' : 'left'}
         onClick={toggleTooltip}
         onPointerDownOutside={toggleTooltip}
       >
         {children}
-        <Arrow className="fill-white dark:fill-gray-900" />
+        <Arrow className=" fill-white dark:fill-neutral-800" />
       </Content>
     </Root>
   );
