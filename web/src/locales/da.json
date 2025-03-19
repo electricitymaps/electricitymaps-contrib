@@ -90,7 +90,6 @@
       "licensing": "Elpriser er utilgængelige for dette område på grund af licensbetingelser"
     },
     "emissionFactorDataSourcesTooltip": "CO₂-udledningsfaktorerne for elproduktionen kan stamme fra flere forskellige kilder. Dette sker, fordi flere faktorer, såsom maskin-specifikke data, generation og nogen gange også reservekilder, er inkluderet i udledningsberegningerne.",
-    "disabledBreakdownChartReason": "Deaktiveret i forbrugs-tilstand. Skift til produktions-tilstand for at se diagrammet",
     "dataIsDelayed": "Data for dette område kan være op til {{hours}} timer forsinket. Reeltidsdata kan ikke vises.",
     "estimated": "estimeret",
     "aggregated": "aggregeret",

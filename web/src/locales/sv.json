@@ -74,7 +74,6 @@
     "disabledPriceReasons": {
       "licensing": "Elpriser är ej tillgängliga för detta område på grund av licensvillkor"
     },
-    "disabledBreakdownChartReason": "Inaktiverad för konsumtionsvyn. Växla till produktionsvyn för att aktivera ursprungsdiagrammet.",
     "dataIsDelayed": "Data för denna region kan vara upp till {{hours}} timmar fördröjd. Aktuell data kan inte visas.",
     "estimated": "uppskattad",
     "aggregated": "aggregerad",
