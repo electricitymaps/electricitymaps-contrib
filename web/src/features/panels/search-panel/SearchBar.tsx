@@ -38,16 +38,11 @@ function SearchBar({
   const debouncedValue = useDebounce(inputValue, 100);
   const navigate = useNavigate();
 
-  const onHandleInput = useCallback(
-    (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
-      // Only update the input value, the search will be triggered by the debounced effect
-      const newValue = inputEvent.target.value;
-      setInputValue(newValue);
-      // Reset selection when input changes
-      onSelectedIndexChange(-1);
-    },
-    [onSelectedIndexChange]
-  );
+  const onHandleInput = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
+    // Only update the input value, the search will be triggered by the debounced effect
+    const newValue = inputEvent.target.value;
+    setInputValue(newValue);
+  }, []);
 
   useEffect(() => {
     if (searchHandler) {
@@ -57,14 +52,10 @@ function SearchBar({
     }
   }, [debouncedValue, searchHandler]);
 
-  const handleClear = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      event.stopPropagation();
-      setInputValue('');
-      onSelectedIndexChange(-1);
-    },
-    [onSelectedIndexChange]
-  );
+  const handleClear = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setInputValue('');
+  }, []);
 
   const handleContainerClick = useCallback(() => {
     inputReference?.current?.focus();
@@ -89,12 +80,14 @@ function SearchBar({
         }
         case 'Enter': {
           event.preventDefault();
-          // Find the selected zone link and navigate to it
-          const selectedLink = document.querySelector(
-            `[data-index="${selectedIndex}"] a[data-testid="zone-list-link"]`
-          ) as HTMLAnchorElement;
-          if (selectedLink) {
-            navigate(selectedLink.pathname);
+          if (selectedIndex >= 0 && totalResults > 0) {
+            // Find the selected zone link and navigate to it
+            const selectedLink = document.querySelector(
+              `[data-index="${selectedIndex}"] a[data-testid="zone-list-link"]`
+            ) as HTMLAnchorElement;
+            if (selectedLink) {
+              navigate(selectedLink.pathname);
+            }
           }
           break;
         }

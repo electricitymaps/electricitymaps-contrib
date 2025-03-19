@@ -1,6 +1,6 @@
 import GlassContainer from 'components/GlassContainer';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
-import { ReactElement, useCallback, useMemo, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
@@ -34,6 +34,11 @@ export default function SearchPanel(): ReactElement {
     () => getFilteredList(searchTerm, zoneData),
     [searchTerm, zoneData]
   );
+
+  // Update selected index when filtered list changes
+  useEffect(() => {
+    setSelectedIndex(filteredList.length > 0 ? 0 : -1);
+  }, [filteredList]);
 
   return (
     <GlassContainer
