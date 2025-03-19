@@ -7,9 +7,9 @@ import useGetState from 'api/getState';
 import { AppStoreBanner } from 'components/AppStoreBanner';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
+import { AppSidebar, SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import Header from 'features/header/Header';
 import UpdatePrompt from 'features/service-worker/UpdatePrompt';
 import DateRedirectToast from 'features/time/DateRedirectToast';
 import { useDarkMode } from 'hooks/theme';
@@ -27,7 +27,6 @@ const MapOverlays = lazy(() => import('components/MapOverlays'));
 const FAQModal = lazy(() => import('features/modals/FAQModal'));
 const InfoModal = lazy(() => import('features/modals/InfoModal'));
 const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
-const TimeControllerWrapper = lazy(() => import('features/time/TimeControllerWrapper'));
 
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
@@ -81,47 +80,47 @@ export default function App(): ReactElement {
         <meta property="og:locale" content={i18n.languages[0]} />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-      <main className="fixed flex h-full w-full flex-col">
-        <AppStoreBanner />
-        <ToastProvider duration={20_000}>
-          <Suspense>
-            <Header />
-          </Suspense>
-          <div className="relative flex flex-auto items-stretch">
-            <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
-              <Suspense>
-                <UpdatePrompt />
-              </Suspense>
-              <Suspense>
-                <DateRedirectToast />
-              </Suspense>
-              <Suspense>
-                <LoadingOverlay />
-              </Suspense>
-              <Suspense>
-                <OnboardingModal />
-              </Suspense>
-              <Suspense>
-                <FAQModal />
-                <InfoModal />
-                <SettingsModal />
-              </Suspense>
-              <Suspense>
-                <LeftPanel />
-              </Suspense>
-              <Suspense>
-                <MapWrapper />
-              </Suspense>
-              <Suspense>
-                <TimeControllerWrapper />
-              </Suspense>
-              <Suspense>
-                <MapOverlays />
-              </Suspense>
-            </Sentry.ErrorBoundary>
-          </div>
-        </ToastProvider>
-      </main>
+      <div
+        className="flex h-full flex-row"
+        style={{ '--sidebar-width': SIDEBAR_WIDTH } as React.CSSProperties}
+      >
+        <AppSidebar />
+        <main className="fixed flex h-full w-full flex-col md:ml-[--sidebar-width] md:w-[calc(100%-var(--sidebar-width))]">
+          <AppStoreBanner />
+          <ToastProvider duration={20_000}>
+            <div className="relative flex flex-auto items-stretch">
+              <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
+                <Suspense>
+                  <UpdatePrompt />
+                </Suspense>
+                <Suspense>
+                  <DateRedirectToast />
+                </Suspense>
+                <Suspense>
+                  <LoadingOverlay />
+                </Suspense>
+                <Suspense>
+                  <OnboardingModal />
+                </Suspense>
+                <Suspense>
+                  <FAQModal />
+                  <InfoModal />
+                  <SettingsModal />
+                </Suspense>
+                <Suspense>
+                  <LeftPanel />
+                </Suspense>
+                <Suspense>
+                  <MapWrapper />
+                </Suspense>
+                <Suspense>
+                  <MapOverlays />
+                </Suspense>
+              </Sentry.ErrorBoundary>
+            </div>
+          </ToastProvider>
+        </main>
+      </div>
     </Suspense>
   );
 }

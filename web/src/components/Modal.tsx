@@ -1,6 +1,8 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 
+import { GlassBackdrop } from './GlassContainer';
+
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -21,22 +23,23 @@ export default function Modal({
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-20 bg-black/50" />
+        <Dialog.Overlay className="fixed inset-0 z-30 bg-black/50" />
         <Dialog.Content
           // Avoid close button being auto-focused initially, as pressing space will otherwise close the modal
           onOpenAutoFocus={(event: Event) => event.preventDefault()}
           data-testid={testId}
-          className={`fixed left-1/2 top-1/2 z-40 max-h-full w-[98vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white/90 shadow-md backdrop-blur-sm dark:bg-gray-800/90 sm:w-[90vw] ${
+          className={`fixed left-1/2 top-1/2 z-40 max-h-full w-[98vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white/80 shadow-md dark:bg-neutral-900/80 sm:w-[90vw] ${
             fullWidth ? 'p-0' : 'p-4'
           }`}
         >
+          <GlassBackdrop className=" overflow-hidden rounded-2xl" />
           {title && (
             <Dialog.Title className="text-center font-poppins text-base sm:text-lg">
               {title}
             </Dialog.Title>
           )}
           <Dialog.Close
-            className="absolute right-2 top-2 rounded-full bg-gray-100 p-1.5 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-700"
+            className="absolute right-2 top-2 z-10 rounded-full bg-neutral-200 p-1.5 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700"
             aria-label="Close"
             data-testid="close-modal-button"
           >

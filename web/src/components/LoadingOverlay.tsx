@@ -37,7 +37,7 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
     (styles, isVisible) =>
       isVisible && (
         <animated.div
-          className="fixed z-50 h-full w-full bg-gray-100 dark:bg-gray-900"
+          className="fixed z-50 h-full w-full bg-neutral-100 dark:bg-neutral-950"
           style={styles}
           data-testid="loading-overlay"
         >

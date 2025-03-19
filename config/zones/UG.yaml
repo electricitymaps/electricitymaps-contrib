@@ -3,6 +3,62 @@ bounding_box:
     - -1.969533257365882
   - - 35.47974979749799
     - 4.719021003643483
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 76.4
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 96.2
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 706.91
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 744.15
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1004.41
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1010.91
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1032.71
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 137.08
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 102.68
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 101.08
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 44.16
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 67.39
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 77.68
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 88.43
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 90.47
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 94.63
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 94.79
 country: UG
 emissionFactors:
   lifecycle:
@@ -52,5 +108,7 @@ fallbackZoneMixes:
         solar: 0.02528760510767805
         unknown: 0.0
         wind: 0.0
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Kampala

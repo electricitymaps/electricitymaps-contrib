@@ -48,6 +48,7 @@ function EmissionToggle(): ReactElement {
             : LeftPanelToggleOptions.ELECTRICITY
         }
         onToggle={onSetCurrentMode}
+        transparentBackground={false}
       />
     </div>
   );

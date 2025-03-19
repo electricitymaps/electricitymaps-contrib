@@ -116,9 +116,6 @@
     "AG": {
       "zoneName": "Antigua and Barbuda"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AL": {
       "zoneName": "Αλβανία"
     },
@@ -127,12 +124,6 @@
     },
     "AO": {
       "zoneName": "Angola"
-    },
-    "AQ": {
-      "zoneName": "Ανταρκτική"
-    },
-    "AS": {
-      "zoneName": "American Samoa"
     },
     "AT": {
       "zoneName": "Αυστρία"
@@ -217,9 +208,6 @@
     "BO": {
       "zoneName": "Bolivia"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Sint Eustatius and Saba"
-    },
     "BR": {
       "zoneName": "Βραζιλία"
     },
@@ -244,9 +232,6 @@
     },
     "BT": {
       "zoneName": "Bhutan"
-    },
-    "BV": {
-      "zoneName": "Bouvet Island"
     },
     "BW": {
       "zoneName": "Μποτσουάνα"
@@ -312,9 +297,6 @@
       "countryName": "Καναδάς",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Cocos Islands"
-    },
     "CD": {
       "zoneName": "Democratic Republic of the Congo"
     },
@@ -329,9 +311,6 @@
     },
     "CI": {
       "zoneName": "Ακτή Ελεφαντοστού"
-    },
-    "CK": {
-      "zoneName": "Cook Islands"
     },
     "CL-SEA": {
       "countryName": "Χιλή",
@@ -365,9 +344,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Christmas Island"
     },
     "CY": {
       "zoneName": "Κύπρος"
@@ -517,9 +493,6 @@
       "countryName": "Μεγάλη Βρετανία",
       "zoneName": "Shetland Islands"
     },
-    "GD": {
-      "zoneName": "Grenada"
-    },
     "GE": {
       "zoneName": "Γεωργία"
     },
@@ -602,117 +575,9 @@
       "countryName": "Ινδία",
       "zoneName": "Andaman and Nicobar Islands"
     },
-    "IN-AP": {
-      "countryName": "Ινδία",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "Ινδία",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Ινδία",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "Ινδία",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Ινδία",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Ινδία",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "Ινδία",
-      "zoneName": "Dadra and Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "Ινδία",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Ινδία",
-      "zoneName": "Gujarat"
-    },
     "IN-HP": {
       "countryName": "Ινδία",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "Ινδία",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "Ινδία",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Ινδία",
-      "zoneName": "Jammu and Kashmir"
-    },
-    "IN-KA": {
-      "countryName": "Ινδία",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "Ινδία",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "Ινδία",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "Ινδία",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Ινδία",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Ινδία",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Ινδία",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Ινδία",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Ινδία",
-      "zoneName": "Orissa"
-    },
-    "IN-PB": {
-      "countryName": "Ινδία",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "Ινδία",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "Ινδία",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "Ινδία",
-      "zoneName": "Sikkim"
-    },
-    "IN-TN": {
-      "countryName": "Ινδία",
-      "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "Ινδία",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Ινδία",
@@ -721,10 +586,6 @@
     "IN-UT": {
       "countryName": "Ινδία",
       "zoneName": "Uttarakhand"
-    },
-    "IN-WB": {
-      "countryName": "Ινδία",
-      "zoneName": "West Bengal"
     },
     "IO": {
       "zoneName": "British Indian Ocean Territory"
@@ -823,14 +684,8 @@
     "KH": {
       "zoneName": "Cambodia"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Comoros"
-    },
-    "KN": {
-      "zoneName": "Saint Kitts and Nevis"
     },
     "KP": {
       "zoneName": "Βόρεια Κορέα"
@@ -895,9 +750,6 @@
     "MG": {
       "zoneName": "Μαδαγασκάρη"
     },
-    "MH": {
-      "zoneName": "Marshall Islands"
-    },
     "MK": {
       "zoneName": "Βόρεια Μακεδονία"
     },
@@ -912,9 +764,6 @@
     },
     "MO": {
       "zoneName": "Μακάο"
-    },
-    "MP": {
-      "zoneName": "Northern Mariana Islands"
     },
     "MQ": {
       "zoneName": "Martinique"
@@ -995,9 +844,6 @@
     "NE": {
       "zoneName": "Niger"
     },
-    "NF": {
-      "zoneName": "Norfolk Island"
-    },
     "NG": {
       "zoneName": "Νιγηρία"
     },
@@ -1029,12 +875,6 @@
     },
     "NP": {
       "zoneName": "Νεπάλ"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ-NZA": {
       "countryName": "Νέα Ζηλανδία",
@@ -1073,9 +913,6 @@
     },
     "PM": {
       "zoneName": "Saint Pierre and Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairn"
     },
     "PR": {
       "zoneName": "Πουέρτο Ρίκο"
@@ -1154,9 +991,6 @@
     "SG": {
       "zoneName": "Σιγκαπούρη"
     },
-    "SH": {
-      "zoneName": "Saint Helena, Ascension and Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Σλοβενία"
     },
@@ -1168,9 +1002,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1190,18 +1021,11 @@
     "SV": {
       "zoneName": "El Salvador"
     },
-    "SX": {
-      "countryName": "Sint Maarten",
-      "zoneName": "Dutch"
-    },
     "SY": {
       "zoneName": "Συρία"
     },
     "SZ": {
       "zoneName": "Swaziland"
-    },
-    "TC": {
-      "zoneName": "Turks and Caicos Islands"
     },
     "TD": {
       "zoneName": "Chad"
@@ -1217,9 +1041,6 @@
     },
     "TJ": {
       "zoneName": "Tajikistan"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Timor-Leste"
@@ -1239,9 +1060,6 @@
     "TT": {
       "zoneName": "Trinidad and Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Ταϊβάν"
     },
@@ -1257,9 +1075,6 @@
     },
     "UG": {
       "zoneName": "Ουγκάντα"
-    },
-    "UM": {
-      "zoneName": "United States Minor Outlying Islands"
     },
     "US": {
       "zoneName": "συνεχόμενες Ηνωμένες Πολιτείες"
@@ -1396,10 +1211,6 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Gridforce Energy Management, Llc"
     },
-    "US-NW-GWA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
-    },
     "US-NW-IPCO": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Idaho Power Company"
@@ -1448,10 +1259,6 @@
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Naturener Wind Watch, Llc"
-    },
     "US-NY-NYIS": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "New York Independent System Operator"
@@ -1471,10 +1278,6 @@
     "US-SW-EPE": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-      "zoneName": "Griffith Energy, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
@@ -1506,18 +1309,11 @@
     "UZ": {
       "zoneName": "Ουζμπεκιστάν"
     },
-    "VA": {
-      "zoneName": "Βατικανό"
-    },
     "VC": {
       "zoneName": "Saint Vincent and the Grenadines"
     },
     "VE": {
       "zoneName": "Βενεζουέλα"
-    },
-    "VG": {
-      "countryName": "Virgin Islands",
-      "zoneName": "Virgin Islands"
     },
     "VI": {
       "countryName": "Ηνωμένες Πολιτείες Αμερικής",
@@ -1528,9 +1324,6 @@
     },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis and Futuna"
     },
     "WS": {
       "zoneName": "Σαμόα"

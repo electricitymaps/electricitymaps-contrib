@@ -3,6 +3,39 @@ bounding_box:
     - 18.995830245473655
   - - 25.651651516515187
     - 33.68127537705416
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6271.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 6506.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 3967.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 4240.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 4540.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 4725.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 5.11
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 6.33
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 8.33
 country: LY
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Tripoli

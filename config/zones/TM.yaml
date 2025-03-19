@@ -3,6 +3,32 @@ bounding_box:
     - 34.647583189538906
   - - 67.14566645666457
     - 43.28097902053864
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 5432.4
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 7006.4
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 6511.2
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 6943.2
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 7000.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1.2
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 2.2
 country: TM
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Ashgabat
