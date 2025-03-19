@@ -215,13 +215,13 @@ export const getText = (
   const translations = {
     hourly: {
       emissions: t('country-panel.by-source.emissions'),
-      production: t('country-panel.by-source.electricity-production'),
-      consumption: t('country-panel.by-source.electricity-consumption'),
+      production: t('country-panel.by-source.electricity-mix'),
+      consumption: t('country-panel.by-source.electricity-mix'),
     },
     default: {
       emissions: t('country-panel.by-source.total-emissions'),
-      production: t('country-panel.by-source.total-electricity-production'),
-      consumption: t('country-panel.by-source.total-electricity-consumption'),
+      production: t('country-panel.by-source.total-electricity-mix'),
+      consumption: t('country-panel.by-source.total-electricity-mix'),
     },
   };
   const period = timePeriod === TimeRange.H72 ? 'hourly' : 'default';
