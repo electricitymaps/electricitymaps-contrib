@@ -18,6 +18,7 @@ import {
 import { useIsMobile } from 'utils/styling';
 
 import ConsumptionProductionToggle from './ConsumptionProductionToggle';
+import FlowTracedToggle from './FlowTracedToggle';
 import { LanguageSelector } from './LanguageSelector';
 import MapButton from './MapButton';
 import SpatialAggregatesToggle from './SpatialAggregatesToggle';
@@ -119,6 +120,7 @@ function DesktopMapControls() {
         <SpatialAggregatesToggle />
       </div>
       <div className="pointer-events-auto mt-2.5 flex flex-col gap-2 pt-2.5">
+        <FlowTracedToggle />
         <LanguageSelector />
         <MapButton
           icon={

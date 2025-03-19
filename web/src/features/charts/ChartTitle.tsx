@@ -1,4 +1,5 @@
-import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
+import { MoreOptionsDropdown } from 'components/MoreOptionsDropdown';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
 import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +22,7 @@ export function ChartTitle({
   isEstimated,
   id,
 }: Props) {
-  const showMoreOptions = useShowMoreOptions();
+  const showMoreOptions = useFeatureFlag('more-options-dropdown');
   const url = useGetCurrentUrl();
   const shareUrl = id ? `${url}#${id}` : url;
   const { t } = useTranslation();
