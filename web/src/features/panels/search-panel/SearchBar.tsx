@@ -1,5 +1,6 @@
 import { Search, X } from 'lucide-react';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
@@ -21,20 +22,32 @@ function SearchBar({
   placeholder,
   searchHandler,
   value,
+  selectedIndex,
+  onSelectedIndexChange,
+  totalResults,
 }: {
   placeholder?: string;
   searchHandler?: (inputEvent: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  selectedIndex: number;
+  onSelectedIndexChange: (index: number) => void;
+  totalResults: number;
 }) {
   const inputReference = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState(value);
   const debouncedValue = useDebounce(inputValue, 100);
+  const navigate = useNavigate();
 
-  const onHandleInput = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
-    // Only update the input value, the search will be triggered by the debounced effect
-    const newValue = inputEvent.target.value;
-    setInputValue(newValue);
-  }, []);
+  const onHandleInput = useCallback(
+    (inputEvent: React.ChangeEvent<HTMLInputElement>) => {
+      // Only update the input value, the search will be triggered by the debounced effect
+      const newValue = inputEvent.target.value;
+      setInputValue(newValue);
+      // Reset selection when input changes
+      onSelectedIndexChange(-1);
+    },
+    [onSelectedIndexChange]
+  );
 
   useEffect(() => {
     if (searchHandler) {
@@ -44,14 +57,56 @@ function SearchBar({
     }
   }, [debouncedValue, searchHandler]);
 
-  const handleClear = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    setInputValue('');
-  }, []);
+  const handleClear = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      setInputValue('');
+      onSelectedIndexChange(-1);
+    },
+    [onSelectedIndexChange]
+  );
 
   const handleContainerClick = useCallback(() => {
     inputReference?.current?.focus();
   }, [inputReference]);
+
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      switch (event.key) {
+        case 'ArrowDown': {
+          event.preventDefault();
+          onSelectedIndexChange(
+            selectedIndex >= totalResults - 1 ? 0 : selectedIndex + 1
+          );
+          break;
+        }
+        case 'ArrowUp': {
+          event.preventDefault();
+          onSelectedIndexChange(
+            selectedIndex <= 0 ? totalResults - 1 : selectedIndex - 1
+          );
+          break;
+        }
+        case 'Enter': {
+          event.preventDefault();
+          // Find the selected zone link and navigate to it
+          const selectedLink = document.querySelector(
+            `[data-index="${selectedIndex}"] a[data-testid="zone-list-link"]`
+          ) as HTMLAnchorElement;
+          if (selectedLink) {
+            navigate(selectedLink.pathname);
+          }
+          break;
+        }
+        default: {
+          if (event.key === 'Enter') {
+            handleContainerClick();
+          }
+        }
+      }
+    },
+    [selectedIndex, totalResults, onSelectedIndexChange, navigate, handleContainerClick]
+  );
 
   return (
     <div
@@ -59,11 +114,7 @@ function SearchBar({
       onClick={handleContainerClick}
       role="button"
       tabIndex={-1}
-      onKeyDown={(event) => {
-        if (event.key === 'Enter') {
-          handleContainerClick();
-        }
-      }}
+      onKeyDown={handleKeyDown}
     >
       <Search className="size-6 text-neutral-500 dark:text-neutral-400" />
       <input
@@ -73,6 +124,7 @@ function SearchBar({
         placeholder={placeholder}
         onChange={onHandleInput}
         value={inputValue}
+        onKeyDown={handleKeyDown}
       />
       <div
         className={`transition-all duration-200 ${

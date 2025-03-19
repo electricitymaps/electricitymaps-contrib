@@ -66,6 +66,28 @@ export default function App(): ReactElement {
     }
   }, []);
 
+  // Handle global keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Check if the key pressed is '/' and not inside an input field or textarea
+      if (
+        event.key === '/' &&
+        !['INPUT', 'TEXTAREA'].includes((event.target as HTMLElement).tagName)
+      ) {
+        event.preventDefault();
+        const searchInput = document.querySelector(
+          'input[data-testid="zone-search-bar"]'
+        );
+        if (searchInput instanceof HTMLElement) {
+          searchInput.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <Suspense fallback={<div />}>
       <Helmet
