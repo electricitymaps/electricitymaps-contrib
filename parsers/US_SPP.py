@@ -430,7 +430,7 @@ def fetch_exchange(
     return exchanges
 
 
-@refetch_frequency(timedelta(minutes=5))
+@refetch_frequency(timedelta(minutes=30))
 def fetch_realtime_local_marginal_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -442,21 +442,25 @@ def fetch_realtime_local_marginal_price(
     if target_datetime.tzinfo is None:
         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
-    url = get_realtime_url(target_datetime)
-    raw_data = get_data(url, session)
-
-    spp_data = raw_data[raw_data["Settlement Location"] == "SPPNORTH_HUB"]
     prices = PriceList(logger)
-    for _, row in spp_data.iterrows():
-        prices.append(
-            zoneKey=zone_key,
-            datetime=datetime.strptime(
-                row["GMTIntervalEnd"], "%m/%d/%Y %H:%M:%S"
-            ).replace(tzinfo=timezone.utc),
-            price=row["LMP"],
-            currency="USD",
-            source=SOURCE,
-        )
+
+    # Get data for target datetime and previous 30 minutes in 5 min intervals
+    for minutes in range(0, 35, 5):
+        check_datetime = target_datetime - timedelta(minutes=minutes)
+        url = get_realtime_url(check_datetime)
+        raw_data = get_data(url, session)
+
+        spp_data = raw_data[raw_data["Settlement Location"] == "SPPNORTH_HUB"]
+        for _, row in spp_data.iterrows():
+            prices.append(
+                zoneKey=zone_key,
+                datetime=datetime.strptime(
+                    row["GMTIntervalEnd"], "%m/%d/%Y %H:%M:%S"
+                ).replace(tzinfo=timezone.utc),
+                price=row["LMP"],
+                currency="USD",
+                source=SOURCE,
+            )
 
     price_list = prices.to_list()
     return price_list
