@@ -65,6 +65,14 @@ const config = {
           DEFAULT: colors.red[700],
           dark: colors.red[400],
         },
+        sunken: {
+          DEFAULT: colors.neutral[100],
+          dark: colors.neutral[800],
+        },
+        stroke: {
+          DEFAULT: colors.neutral[200],
+          dark: colors.neutral[800],
+        },
       },
       minWidth: { 18: '4.5rem' },
     },

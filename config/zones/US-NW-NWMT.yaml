@@ -97,7 +97,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 33
+  production: 48
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available. This zone includes all electricity production from
   the generation-only balancing authorities NaturEner Power Watch, LLC and NaturEner

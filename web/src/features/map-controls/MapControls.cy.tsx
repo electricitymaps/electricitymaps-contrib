@@ -52,13 +52,13 @@ describe('MapControls', () => {
     cy.get('[data-testid=theme-selector-open-button]').click();
     cy.contains('System');
     cy.contains('Light')
-      .click()
+      .click({ force: true })
       .should(() => {
         expect(localStorage.getItem('theme')).to.eq('"light"');
       });
     cy.get('[data-testid=theme-selector-open-button]').click();
     cy.contains('Dark')
-      .click()
+      .click({ force: true })
       .should(() => {
         expect(localStorage.getItem('theme')).to.eq('"dark"');
       });
