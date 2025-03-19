@@ -102,11 +102,7 @@
     "now": "Obecnie",
     "by-source": {
       "emissions": "Emisje dwutlenku węgla",
-      "electricity-production": "Produkcja energii elektrycznej",
-      "electricity-consumption": "Zużycie energii elektrycznej",
-      "total-emissions": "Całkowite emisje dwutlenku węgla",
-      "total-electricity-production": "Całkowita produkcja energii elektrycznej",
-      "total-electricity-consumption": "Całkowite zużycie energii elektrycznej"
+      "total-emissions": "Całkowite emisje dwutlenku węgla"
     },
     "graph-legends": {
       "installed-capacity": "Zainstalowana moc",

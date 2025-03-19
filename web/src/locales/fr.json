@@ -120,11 +120,7 @@
     "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
-      "electricity-production": "Production d'électricité",
-      "electricity-consumption": "Consommation d'électricité",
-      "total-emissions": "Émissions totales de carbone",
-      "total-electricity-production": "Production totale d'électricité",
-      "total-electricity-consumption": "Consommation totale d'électricité"
+      "total-emissions": "Émissions totales de carbone"
     },
     "graph-legends": {
       "installed-capacity": "Capacité installée ",

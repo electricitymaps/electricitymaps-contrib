@@ -36,11 +36,7 @@
     "now": "Acum",
     "by-source": {
       "emissions": "Emisii dioxid de carbon",
-      "electricity-production": "Electricitate produsă",
-      "electricity-consumption": "Electricitate consumată",
-      "total-emissions": "Emisii dioxid de carbon (total)",
-      "total-electricity-production": "Electricitate produsă (total)",
-      "total-electricity-consumption": "Electricitate consumată (total)"
+      "total-emissions": "Emisii dioxid de carbon (total)"
     },
     "graph-legends": {
       "installed-capacity": "Capacitate instalată ",
