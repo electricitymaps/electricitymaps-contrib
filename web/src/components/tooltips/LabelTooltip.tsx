@@ -11,7 +11,7 @@ export default function LabelTooltip({
   return (
     <GlassContainer
       className={twMerge(
-        'relative h-auto max-w-[164px] rounded px-3 py-1.5 text-center text-sm sm:rounded sm:bg-white',
+        'relative h-auto max-w-[172px] rounded px-3 py-1.5 text-center text-sm sm:rounded sm:bg-white',
         className
       )}
     >

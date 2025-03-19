@@ -1,13 +1,14 @@
 import { CountryFlag } from 'components/Flag';
+import FlowTracedBadge from 'components/FlowTracedBadge';
 import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { Info } from 'lucide-react';
 import { memo } from 'react';
-import { getCountryName, getZoneName } from 'translation/translation';
+import { getZoneName } from 'translation/translation';
 
 import { getDisclaimer } from './util';
 
-const MAX_TITLE_LENGTH = 19;
+const MAX_TITLE_LENGTH = 10;
 
 function ZoneHeaderTitle({
   zoneId,
@@ -18,10 +19,7 @@ function ZoneHeaderTitle({
 }) {
   const zoneName = getZoneName(zoneId);
   const showTooltip = zoneName !== zoneNameFull || zoneName.length >= MAX_TITLE_LENGTH;
-  const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
-  const showCountryPill =
-    zoneId.includes('-') && !zoneName.toLowerCase().includes(countryName.toLowerCase());
 
   return (
     <div className="flex w-full items-center gap-2 pr-2 md:pr-4">
@@ -42,17 +40,13 @@ function ZoneHeaderTitle({
           {zoneName}
         </h1>
       </TooltipWrapper>
-      {showCountryPill && (
-        <div className="flex w-auto items-center rounded-full bg-neutral-200 px-2 py-0.5 text-sm dark:bg-neutral-800/80">
-          <p className="w-full truncate">{countryName ?? zoneId}</p>
-        </div>
-      )}
+      <FlowTracedBadge />
       {disclaimer && (
         <TooltipWrapper
           side="bottom"
           tooltipContent={<LabelTooltip>{disclaimer}</LabelTooltip>}
         >
-          <Info className="text-neutral-500" />
+          <Info className="min-h-6 min-w-6 text-neutral-500" />
         </TooltipWrapper>
       )}
     </div>
