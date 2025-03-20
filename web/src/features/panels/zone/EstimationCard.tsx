@@ -193,7 +193,7 @@ function BaseCard({
 
   return (
     <div
-      className={`w-full rounded-lg px-3 py-1.5 ${
+      className={`w-full rounded-2xl px-3 py-1.5 ${
         estimationMethod == 'outage'
           ? 'bg-warning/20 dark:bg-warning-dark/20'
           : 'bg-neutral-100/60 dark:bg-neutral-800/60'
@@ -292,11 +292,7 @@ export function EstimatedCard({
       zoneMessage={undefined}
       icon={<TrendingUpDown size={16} />}
       showMethodologyLink={true}
-      textColorTitle={
-        estimationMethod === EstimationMethods.FORECASTS_HIERARCHY
-          ? 'text-black dark:text-white'
-          : 'text-warning dark:text-warning-dark'
-      }
+      textColorTitle={'text-black dark:text-white'}
       cardType="estimated-card"
     />
   );
