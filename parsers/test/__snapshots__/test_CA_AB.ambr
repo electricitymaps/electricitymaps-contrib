@@ -4,20 +4,6 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': datetime.datetime(2025, 3, 18, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
-      'production': dict({
-        'solar': 0.0,
-        'wind': 2075.84,
-      }),
-      'source': 'ets.aeso.ca',
-      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
-      'storage': dict({
-      }),
-      'zoneKey': 'CA-AB',
-    }),
-    dict({
-      'correctedModes': list([
-      ]),
       'datetime': datetime.datetime(2025, 3, 18, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
@@ -651,7 +637,7 @@
       'datetime': datetime.datetime(2025, 3, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2760.59,
+        'wind': 2992.05,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -678,8 +664,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 0.24,
-        'wind': 2525.64,
+        'solar': 0.0,
+        'wind': 2610.73,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -692,8 +678,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 0.0,
-        'wind': 2650.25,
+        'solar': 0.32,
+        'wind': 2638.55,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -707,7 +693,7 @@
       'datetime': datetime.datetime(2025, 3, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2698.28,
+        'wind': 2760.07,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -720,8 +706,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 26.72,
-        'wind': 2727.24,
+        'solar': 26.65,
+        'wind': 2783.92,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -734,8 +720,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 270.86,
-        'wind': 2697.29,
+        'solar': 269.73,
+        'wind': 2744.91,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -748,8 +734,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 682.04,
-        'wind': 2619.41,
+        'solar': 680.21,
+        'wind': 2656.87,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -762,8 +748,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 961.61,
-        'wind': 2581.71,
+        'solar': 955.7,
+        'wind': 2594.02,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -776,8 +762,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1022.07,
-        'wind': 2655.47,
+        'solar': 1003.79,
+        'wind': 2650.65,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -790,8 +776,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1037.72,
-        'wind': 2732.35,
+        'solar': 992.08,
+        'wind': 2722.7,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -804,8 +790,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1041.45,
-        'wind': 2769.11,
+        'solar': 959.54,
+        'wind': 2756.53,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -818,8 +804,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1007.31,
-        'wind': 2824.49,
+        'solar': 961.53,
+        'wind': 2808.15,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -832,8 +818,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 955.62,
-        'wind': 2841.2,
+        'solar': 963.03,
+        'wind': 2828.04,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -846,8 +832,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 793.55,
-        'wind': 2728.52,
+        'solar': 885.75,
+        'wind': 2746.25,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -860,8 +846,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 573.29,
-        'wind': 2545.87,
+        'solar': 624.23,
+        'wind': 2565.37,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -874,8 +860,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 248.39,
-        'wind': 2336.72,
+        'solar': 258.9,
+        'wind': 2337.68,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -888,8 +874,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 26.89,
-        'wind': 2196.89,
+        'solar': 27.56,
+        'wind': 2188.52,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -903,7 +889,7 @@
       'datetime': datetime.datetime(2025, 3, 20, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2127.59,
+        'wind': 2149.01,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -917,7 +903,7 @@
       'datetime': datetime.datetime(2025, 3, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2085.43,
+        'wind': 2139.54,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -931,7 +917,7 @@
       'datetime': datetime.datetime(2025, 3, 20, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2138.91,
+        'wind': 2179.01,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -945,7 +931,7 @@
       'datetime': datetime.datetime(2025, 3, 20, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2296.83,
+        'wind': 2308.71,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -959,7 +945,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2501.88,
+        'wind': 2506.9,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -973,7 +959,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2623.14,
+        'wind': 2633.71,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -987,7 +973,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2664.52,
+        'wind': 2683.69,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1001,7 +987,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2609.34,
+        'wind': 2629.04,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1015,7 +1001,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2454.05,
+        'wind': 2476.52,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1029,7 +1015,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2306.57,
+        'wind': 2329.82,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1043,7 +1029,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2229.69,
+        'wind': 2255.06,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1056,8 +1042,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 39.76,
-        'wind': 2247.47,
+        'solar': 39.48,
+        'wind': 2309.04,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1070,8 +1056,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 385.04,
-        'wind': 2325.91,
+        'solar': 384.97,
+        'wind': 2435.48,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1084,8 +1070,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 957.74,
-        'wind': 2402.4,
+        'solar': 937.41,
+        'wind': 2506.22,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1098,8 +1084,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1198.69,
-        'wind': 2520.28,
+        'solar': 1104.85,
+        'wind': 2556.28,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1112,8 +1098,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1275.6,
-        'wind': 2769.0,
+        'solar': 1198.78,
+        'wind': 2770.88,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1126,8 +1112,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1377.96,
-        'wind': 3026.26,
+        'solar': 1311.39,
+        'wind': 3018.67,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1140,8 +1126,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1397.03,
-        'wind': 3159.56,
+        'solar': 1347.54,
+        'wind': 3140.29,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1154,8 +1140,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1349.97,
-        'wind': 3224.79,
+        'solar': 1300.19,
+        'wind': 3241.97,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1168,8 +1154,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1241.67,
-        'wind': 3263.18,
+        'solar': 1195.95,
+        'wind': 3285.29,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1182,8 +1168,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1113.24,
-        'wind': 3163.95,
+        'solar': 1041.27,
+        'wind': 3207.37,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1196,8 +1182,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 807.78,
-        'wind': 3002.09,
+        'solar': 735.61,
+        'wind': 3130.25,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1210,8 +1196,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 338.54,
-        'wind': 2924.69,
+        'solar': 300.56,
+        'wind': 3053.56,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1224,8 +1210,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 37.67,
-        'wind': 2905.45,
+        'solar': 33.73,
+        'wind': 2902.21,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1239,7 +1225,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2882.94,
+        'wind': 2806.87,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1253,7 +1239,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2905.29,
+        'wind': 2642.23,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1267,7 +1253,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2888.12,
+        'wind': 2451.2,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1281,7 +1267,7 @@
       'datetime': datetime.datetime(2025, 3, 21, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2774.21,
+        'wind': 2423.05,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1295,7 +1281,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2757.69,
+        'wind': 2530.37,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1309,7 +1295,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2693.8,
+        'wind': 2513.42,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1323,7 +1309,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2501.02,
+        'wind': 2372.88,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1337,7 +1323,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2337.3,
+        'wind': 2284.44,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1351,7 +1337,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2289.05,
+        'wind': 2251.9,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1365,7 +1351,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2289.41,
+        'wind': 2218.78,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1379,7 +1365,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2314.28,
+        'wind': 2220.37,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1392,8 +1378,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 35.84,
-        'wind': 2359.24,
+        'solar': 36.91,
+        'wind': 2276.85,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1406,8 +1392,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 336.2,
-        'wind': 2388.96,
+        'solar': 343.79,
+        'wind': 2321.23,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1420,8 +1406,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 883.09,
-        'wind': 2263.51,
+        'solar': 913.72,
+        'wind': 2178.79,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1434,8 +1420,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1176.49,
-        'wind': 2232.78,
+        'solar': 1223.2,
+        'wind': 2118.48,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1448,8 +1434,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1271.94,
-        'wind': 2456.57,
+        'solar': 1325.27,
+        'wind': 2347.34,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1462,8 +1448,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1283.86,
-        'wind': 2661.78,
+        'solar': 1347.89,
+        'wind': 2582.99,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1476,8 +1462,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1289.17,
-        'wind': 2787.19,
+        'solar': 1351.08,
+        'wind': 2741.27,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1490,8 +1476,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1283.37,
-        'wind': 2863.95,
+        'solar': 1325.11,
+        'wind': 2839.97,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1504,8 +1490,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1224.96,
-        'wind': 2832.66,
+        'solar': 1253.58,
+        'wind': 2831.27,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1518,8 +1504,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1118.23,
-        'wind': 2663.64,
+        'solar': 1124.21,
+        'wind': 2675.81,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1532,8 +1518,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 844.65,
-        'wind': 2308.15,
+        'solar': 824.01,
+        'wind': 2328.84,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1546,8 +1532,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 381.27,
-        'wind': 1846.8,
+        'solar': 374.94,
+        'wind': 1870.89,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1560,8 +1546,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 44.23,
-        'wind': 1466.25,
+        'solar': 44.24,
+        'wind': 1512.92,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1575,7 +1561,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 1286.42,
+        'wind': 1352.61,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1589,7 +1575,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 1350.13,
+        'wind': 1412.13,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1603,7 +1589,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 1552.23,
+        'wind': 1602.71,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1617,7 +1603,7 @@
       'datetime': datetime.datetime(2025, 3, 22, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 1856.1,
+        'wind': 1828.69,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1631,7 +1617,7 @@
       'datetime': datetime.datetime(2025, 3, 23, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2172.01,
+        'wind': 2079.23,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1645,7 +1631,7 @@
       'datetime': datetime.datetime(2025, 3, 23, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2331.96,
+        'wind': 2270.62,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1659,7 +1645,7 @@
       'datetime': datetime.datetime(2025, 3, 23, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2443.43,
+        'wind': 2427.28,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1673,7 +1659,7 @@
       'datetime': datetime.datetime(2025, 3, 23, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2537.34,
+        'wind': 2536.3,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1687,7 +1673,7 @@
       'datetime': datetime.datetime(2025, 3, 23, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2538.76,
+        'wind': 2521.41,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1701,7 +1687,7 @@
       'datetime': datetime.datetime(2025, 3, 23, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2474.68,
+        'wind': 2437.38,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1715,7 +1701,7 @@
       'datetime': datetime.datetime(2025, 3, 23, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
         'solar': 0.0,
-        'wind': 2331.5,
+        'wind': 2316.63,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1728,8 +1714,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 40.94,
-        'wind': 2171.29,
+        'solar': 41.32,
+        'wind': 2170.34,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1742,8 +1728,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 343.79,
-        'wind': 2046.98,
+        'solar': 339.32,
+        'wind': 2044.37,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1756,8 +1742,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 761.01,
-        'wind': 1915.01,
+        'solar': 804.71,
+        'wind': 1896.16,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1770,8 +1756,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1095.24,
-        'wind': 1836.61,
+        'solar': 1117.85,
+        'wind': 1803.37,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1784,8 +1770,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1225.34,
-        'wind': 1865.58,
+        'solar': 1233.78,
+        'wind': 1846.93,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1798,8 +1784,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1244.38,
-        'wind': 1980.43,
+        'solar': 1246.23,
+        'wind': 1979.12,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -1812,8 +1798,8 @@
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
       'production': dict({
-        'solar': 1218.48,
-        'wind': 2171.58,
+        'solar': 1218.57,
+        'wind': 2171.56,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
@@ -3018,6 +3004,20 @@
       'production': dict({
         'solar': 0.0,
         'wind': 2080.44,
+      }),
+      'source': 'ets.aeso.ca',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'CA-AB',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 27, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2125.5,
       }),
       'source': 'ets.aeso.ca',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
