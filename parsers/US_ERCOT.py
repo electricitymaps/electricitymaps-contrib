@@ -2,21 +2,29 @@
 
 import gzip
 import json
+import time
 import zipfile
 from datetime import datetime, timedelta, timezone
+from enum import Enum
 from io import BytesIO
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
 from requests import Response, Session
 
+# import time
 import parsers.EIA as EIA
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.validation import validate_exchange
@@ -63,6 +71,18 @@ GENERATION_MAPPING = {
     "Gas-CC": "gas",
 }
 EXCHANGE_MAPPING = {"US-CENT-SWPP": ["dcE", "dcN"], "MX-NE": ["dcL"], "MX-NO": ["dcR"]}
+
+
+# Report type IDs
+class ReportTypeID(Enum):
+    # Wind production actual and forecast: https://www.ercot.com/mp/data-products/data-product-details?id=NP4-732-CD
+    WIND_POWER_PRODUCTION_REPORTID = 13028
+
+    # Solar production forecast: https://www.ercot.com/mp/data-products/data-product-details?id=np4-737-cd
+    SOLAR_POWER_PRODUCTION_REPORTID = 13483
+
+    # Load forecast: https://www.ercot.com/mp/data-products/data-product-details?id=np3-560-cd
+    LOAD_FORECAST_REPORTID = 12311
 
 
 def get_data(url: str, session: Session | None = None):
@@ -374,3 +394,166 @@ def fetch_exchange(
             zone_key1, zone_key2, session, target_datetime, logger
         )
     return exchanges
+
+
+def _get_publish_date(doc):
+    return datetime.fromisoformat(doc["Document"]["PublishDate"])
+
+
+def _find_document_by_publish_date(documents, target_date):
+    """
+    Find the latest document published on a specific date (ignoring time) or the latest document if no date is provided.
+
+    Args:
+        documents: List of document dictionaries
+        target_date: A datetime object representing the date to search for (ignores time), or None to find the latest document
+
+    Returns:
+        The best matching document (or None if no match is found)
+    """
+    if target_date is None:
+        # If no target_date is provided, return the latest document
+        matching_docs = [
+            doc for doc in documents if doc["Document"]["FriendlyName"][-3:] == "csv"
+        ]
+        return max(matching_docs, key=_get_publish_date, default=None)
+
+    # If target_date is provided, find documents matching the specific date
+    matching_docs = [
+        doc
+        for doc in documents
+        if doc["Document"]["FriendlyName"][-3:] == "csv"
+        and datetime.fromisoformat(doc["Document"]["PublishDate"]).date()
+        == target_date.date()
+    ]
+
+    return max(matching_docs, key=_get_publish_date, default=None)
+
+
+def _get_dataframe_from_url(url, session, target_date):
+    response = session.get(url)
+    docs = response.json()["ListDocsByRptTypeRes"]["DocumentList"]
+
+    doc = _find_document_by_publish_date(docs, target_date)
+    doc_id = doc["Document"]["DocID"]
+
+    doc_url = f"{US_PROXY}/misdownload/servlets/mirDownload?doclookupId={doc_id}&{HOST_PARAMETER}"
+    resp: Response = session.get(doc_url)  # verify=False
+
+    # Open the ZIP file
+    with zipfile.ZipFile(BytesIO(resp.content)) as z:
+        # Extract the first file in the ZIP (assuming it contains a CSV)
+        csv_filename = z.namelist()[0]
+        with z.open(csv_filename) as f:
+            df = pd.read_csv(f)
+
+    return df
+
+
+def fetch_consumption_forecast(
+    zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests load forecast data in MW. target_datetime only date (takes the latest report on that date).
+    If target_datetime is None, it takes the latest report created"""
+    session = session or Session()
+
+    url = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={ReportTypeID.LOAD_FORECAST_REPORTID.value}&_{int(time.time())}&{HOST_PARAMETER}"
+    df = _get_dataframe_from_url(url, session, target_datetime)
+
+    # Transfrom Hour column
+    df["HourStarting"] = df["HourEnding"].str.split(":", expand=True)[0].astype(int) - 1
+    df["HourStarting"] = df["HourStarting"].astype(str) + ":00"
+
+    all_consumption_events = (
+        df.copy()
+    )  # all events with a datetime and a consumption value
+    consumption_list = TotalConsumptionList(logger)
+    for _, row in all_consumption_events.iterrows():
+        date_, time_ = row.DeliveryDate, row.HourStarting
+        datetime_object = datetime.strptime(
+            date_ + "T" + time_, "%m/%d/%YT%H:%M"
+        ).replace(tzinfo=TX_TZ)
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=datetime_object,
+            consumption=row.SystemTotal,
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumption_list.to_list()
+
+
+def fetch_wind_solar_forecasts(
+    zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests wind and solar power data in MW. target_datetime only date (takes the latest report on that date).
+    If target_datetime is None, it takes the latest report created"""
+    session = session or Session()
+
+    # Request wind power data
+    url_wind = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={ReportTypeID.WIND_POWER_PRODUCTION_REPORTID.value}&_{int(time.time())}&{HOST_PARAMETER}"
+    df_wind = _get_dataframe_from_url(url_wind, session, target_datetime)
+
+    # Request solar power data
+    url_solar = f"{US_PROXY}/misapp/servlets/IceDocListJsonWS?reportTypeId={ReportTypeID.SOLAR_POWER_PRODUCTION_REPORTID.value}&_{int(time.time())}&{HOST_PARAMETER}"
+    df_solar = _get_dataframe_from_url(url_solar, session, target_datetime)
+
+    # Transfrom Hour column
+    df_wind["HOUR_STARTING"] = df_wind["HOUR_ENDING"] - 1
+    df_wind["HOUR_STARTING"] = df_wind["HOUR_STARTING"].astype(str) + ":00"
+    df_solar["HOUR_STARTING"] = df_solar["HOUR_ENDING"] - 1
+    df_solar["HOUR_STARTING"] = df_solar["HOUR_STARTING"].astype(str) + ":00"
+
+    # Merge wind and solar into one dataframe
+    merged_df = pd.merge(
+        df_wind, df_solar, on=["DELIVERY_DATE", "HOUR_STARTING"], how="outer"
+    )
+
+    all_production_events = (
+        merged_df.copy()
+    )  # all events with a datetime and a production breakdown
+    production_list = ProductionBreakdownList(logger)
+    for _, event in all_production_events.iterrows():
+        date_, time_ = event.DELIVERY_DATE, event.HOUR_STARTING
+        datetime_object = datetime.strptime(
+            date_ + "T" + time_, "%m/%d/%YT%H:%M"
+        ).replace(tzinfo=TX_TZ)
+
+        production_mix = ProductionMix()
+        production_mix.add_value(
+            "solar", event["STPPF_SYSTEM_WIDE"], correct_negative_with_zero=True
+        )
+        production_mix.add_value(
+            "wind", event["STWPF_SYSTEM_WIDE"], correct_negative_with_zero=True
+        )
+
+        production_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=datetime_object,
+            production=production_mix,
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+    return production_list.to_list()
+
+
+if __name__ == "__main__":
+    "Main method, not used by Electricity Map backend, but handy for testing"
+
+    from pprint import pprint
+
+    # print("fetch_consumption() ->")
+    # pprint(fetch_consumption())
+
+    # print("fetch_consumption_forecast() -->")
+    # pprint(fetch_consumption_forecast(target_datetime=datetime(2025,3,14)))
+    pprint(fetch_consumption_forecast())
+
+    # print("fetch_wind_solar_forecasts() -->")
+    # pprint(fetch_wind_solar_forecasts())

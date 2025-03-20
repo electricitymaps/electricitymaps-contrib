@@ -1,5 +1,7 @@
 """Parser for the PJM area of the United States (US-MIDA-PJM)."""
 
+import gzip
+import json
 import re
 from datetime import datetime, time, timedelta, timezone
 from itertools import groupby
@@ -104,8 +106,12 @@ def _fetch_api_data(
     resp: Response = session.get(
         url=url, params={"host": "https://api.pjm.com", **params}, headers=headers
     )
-    if resp.status_code == 200:
+    if (resp.status_code == 200) and (kind != "load_frcstd_7_day"):
         data = resp.json()
+        return data
+    elif (resp.status_code == 200) and (kind == "load_frcstd_7_day"):
+        decompressed_data = gzip.decompress(resp.content)
+        data = json.loads(decompressed_data)
         return data
     else:
         raise ParserException(
@@ -114,13 +120,13 @@ def _fetch_api_data(
         )
 
 
-def fetch_consumption_forecast_7_days(
+def fetch_consumption_forecast(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[dict]:
-    """Gets consumption forecast for specified zone."""
+) -> list[dict[str, Any]]:
+    """Gets consumption forecast 7 days ahead for PJM zone. Hourly data in MW."""
 
     if target_datetime is not None:
         raise ParserException(
@@ -411,8 +417,8 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
-    # print("fetch_consumption_forecast_7_days() ->")
-    # print(fetch_consumption_forecast_7_days())
+    print("fetch_consumption_forecast() ->")
+    print(fetch_consumption_forecast())
 
     # print("fetch_production() ->")
     # print(fetch_production())
@@ -432,5 +438,5 @@ if __name__ == "__main__":
         print(f"fetch_exchange(US-MIDA-PJM, {neighbor}) ->")
         print(fetch_exchange(ZONE_KEY, ZoneKey(neighbor)))
     """
-    print("fetch_wind_solar_forecasts() ->")
-    print(fetch_wind_solar_forecasts())
+    # print("fetch_wind_solar_forecasts() ->")
+    # print(fetch_wind_solar_forecasts())
