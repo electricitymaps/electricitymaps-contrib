@@ -246,6 +246,7 @@ def fetch_consumption_forecast(
         if target_datetime is None
         else target_datetime.astimezone(timezone.utc)
     )
+    target_datetime = target_datetime.astimezone(tz=ZoneInfo("America/New_York"))
     postdata = {
         "_nstmp_startDate": target_datetime.strftime("%m/%d/%Y"),
         "_nstmp_endDate": (target_datetime + pd.Timedelta(days=1)).strftime("%m/%d/%Y"),
