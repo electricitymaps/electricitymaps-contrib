@@ -852,7 +852,7 @@ class LMP(Price):
         currency: str,
         node: str,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["LMP"]:
+    ) -> "LMP | None":
         try:
             return LMP(
                 zoneKey=zoneKey,
