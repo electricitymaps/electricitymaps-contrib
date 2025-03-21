@@ -502,9 +502,8 @@ def fetch_dayahead_local_marginal_price(
 
 def get_closest_5_minutes_datetime(target_datetime: datetime) -> datetime:
     cdt_datetime = target_datetime.astimezone(tz=ZoneInfo("America/Chicago"))
-    rounded_cdt = cdt_datetime.replace(
-        minute=round(cdt_datetime.minute / 5) * 5, second=0, microsecond=0
-    )
+    minute = (cdt_datetime.minute // 5) * 5
+    rounded_cdt = cdt_datetime.replace(minute=minute, second=0, microsecond=0)
     return rounded_cdt
 
 
@@ -515,6 +514,15 @@ def get_realtime_url(target_datetime: datetime) -> str:
     day = closest_5_minutes_datetime.strftime("%d")
     hour = closest_5_minutes_datetime.strftime("%H")
     minute = closest_5_minutes_datetime.strftime("%M")
+    # SPP puts the first 5 minutes of the day (00:00) in the previous day's directory
+    if minute == "00" and hour == "00":
+        one_day_before = closest_5_minutes_datetime - timedelta(days=1)
+        one_day_before_days = one_day_before.strftime("%d")
+        one_day_before_month = one_day_before.strftime("%m")
+        one_day_before_year = one_day_before.strftime("%Y")
+
+        return f"{REALTIME_PRICE_URL}&path=/{one_day_before_year}/{one_day_before_month}/By_Interval/{one_day_before_days}/RTBM-LMP-SL-{year}{month}{day}{hour}{minute}.csv"
+
     return f"{REALTIME_PRICE_URL}&path=/{year}/{month}/By_Interval/{day}/RTBM-LMP-SL-{year}{month}{day}{hour}{minute}.csv"
 
 
