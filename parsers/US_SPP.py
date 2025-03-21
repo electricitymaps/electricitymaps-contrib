@@ -422,16 +422,20 @@ def fetch_exchange(
 
 if __name__ == "__main__":
     print("fetch_production() -> ")
-    print(fetch_production(zone_key=ZoneKey("US-SW-AZPS")))
+    print(fetch_production(zone_key=ZoneKey("US-CENT-SWPP")))
+
     print("fetch_exchange() -> ")
     print(fetch_exchange("US-CENT-SWPP", "US-MIDW-MISO"))
+
     print("fetch_load_forecast() -> ")
     print(
-        fetch_load_forecast(zone_key=ZoneKey("US-SW-AZPS"), target_datetime="20190125")
+        fetch_load_forecast(
+            zone_key=ZoneKey("US-CENT-SWPP"), target_datetime="20190125"
+        )
     )
     print("fetch_wind_solar_forecasts() -> ")
     print(
         fetch_wind_solar_forecasts(
-            zone_key=ZoneKey("US-SW-AZPS"), target_datetime="20221118"
+            zone_key=ZoneKey("US-CENT-SWPP"), target_datetime="20221118"
         )
     )

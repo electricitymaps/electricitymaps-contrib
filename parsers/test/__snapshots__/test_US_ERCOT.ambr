@@ -1,0 +1,4377 @@
+# serializer version: 1
+# name: test_snapshot_fetch_consumption_forecast
+  list([
+    dict({
+      'consumption': 43797.769897,
+      'datetime': datetime.datetime(2025, 3, 13, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43078.020325,
+      'datetime': datetime.datetime(2025, 3, 13, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41536.005066,
+      'datetime': datetime.datetime(2025, 3, 13, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41782.957092,
+      'datetime': datetime.datetime(2025, 3, 13, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41419.426758,
+      'datetime': datetime.datetime(2025, 3, 13, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41306.431946,
+      'datetime': datetime.datetime(2025, 3, 13, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43397.499817,
+      'datetime': datetime.datetime(2025, 3, 13, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44732.969971,
+      'datetime': datetime.datetime(2025, 3, 13, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46003.690552,
+      'datetime': datetime.datetime(2025, 3, 13, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46700.22998,
+      'datetime': datetime.datetime(2025, 3, 13, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 48775.109863,
+      'datetime': datetime.datetime(2025, 3, 13, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 50751.0,
+      'datetime': datetime.datetime(2025, 3, 13, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 52053.860107,
+      'datetime': datetime.datetime(2025, 3, 13, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 53909.940063,
+      'datetime': datetime.datetime(2025, 3, 13, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 56259.529785,
+      'datetime': datetime.datetime(2025, 3, 13, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 58365.090576,
+      'datetime': datetime.datetime(2025, 3, 13, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 59874.159546,
+      'datetime': datetime.datetime(2025, 3, 13, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 60126.679565,
+      'datetime': datetime.datetime(2025, 3, 13, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 59017.970581,
+      'datetime': datetime.datetime(2025, 3, 13, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 57414.519531,
+      'datetime': datetime.datetime(2025, 3, 13, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 56714.720703,
+      'datetime': datetime.datetime(2025, 3, 13, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 54896.500854,
+      'datetime': datetime.datetime(2025, 3, 13, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51855.660156,
+      'datetime': datetime.datetime(2025, 3, 13, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 48408.3302,
+      'datetime': datetime.datetime(2025, 3, 13, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45529.040161,
+      'datetime': datetime.datetime(2025, 3, 14, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43619.379028,
+      'datetime': datetime.datetime(2025, 3, 14, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 42114.130371,
+      'datetime': datetime.datetime(2025, 3, 14, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41492.039795,
+      'datetime': datetime.datetime(2025, 3, 14, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41453.910034,
+      'datetime': datetime.datetime(2025, 3, 14, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 42715.399902,
+      'datetime': datetime.datetime(2025, 3, 14, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45052.910156,
+      'datetime': datetime.datetime(2025, 3, 14, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46693.439941,
+      'datetime': datetime.datetime(2025, 3, 14, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47822.429443,
+      'datetime': datetime.datetime(2025, 3, 14, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 49450.939697,
+      'datetime': datetime.datetime(2025, 3, 14, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 50745.329712,
+      'datetime': datetime.datetime(2025, 3, 14, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51552.21936,
+      'datetime': datetime.datetime(2025, 3, 14, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 52654.610107,
+      'datetime': datetime.datetime(2025, 3, 14, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 53836.199585,
+      'datetime': datetime.datetime(2025, 3, 14, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 55012.249878,
+      'datetime': datetime.datetime(2025, 3, 14, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 55877.539429,
+      'datetime': datetime.datetime(2025, 3, 14, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 56460.110352,
+      'datetime': datetime.datetime(2025, 3, 14, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 56196.920654,
+      'datetime': datetime.datetime(2025, 3, 14, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 54509.409668,
+      'datetime': datetime.datetime(2025, 3, 14, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 52802.960205,
+      'datetime': datetime.datetime(2025, 3, 14, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 52486.120728,
+      'datetime': datetime.datetime(2025, 3, 14, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51112.018921,
+      'datetime': datetime.datetime(2025, 3, 14, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 48881.359741,
+      'datetime': datetime.datetime(2025, 3, 14, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46342.360352,
+      'datetime': datetime.datetime(2025, 3, 14, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43576.549194,
+      'datetime': datetime.datetime(2025, 3, 15, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41657.369629,
+      'datetime': datetime.datetime(2025, 3, 15, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 40337.172852,
+      'datetime': datetime.datetime(2025, 3, 15, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39659.717712,
+      'datetime': datetime.datetime(2025, 3, 15, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39474.52594,
+      'datetime': datetime.datetime(2025, 3, 15, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39983.667969,
+      'datetime': datetime.datetime(2025, 3, 15, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41051.110046,
+      'datetime': datetime.datetime(2025, 3, 15, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 42593.570313,
+      'datetime': datetime.datetime(2025, 3, 15, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44407.399902,
+      'datetime': datetime.datetime(2025, 3, 15, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45788.77063,
+      'datetime': datetime.datetime(2025, 3, 15, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46467.950073,
+      'datetime': datetime.datetime(2025, 3, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46626.390137,
+      'datetime': datetime.datetime(2025, 3, 15, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46745.85022,
+      'datetime': datetime.datetime(2025, 3, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46736.380127,
+      'datetime': datetime.datetime(2025, 3, 15, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46828.229492,
+      'datetime': datetime.datetime(2025, 3, 15, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47413.059937,
+      'datetime': datetime.datetime(2025, 3, 15, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47819.370605,
+      'datetime': datetime.datetime(2025, 3, 15, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47859.070435,
+      'datetime': datetime.datetime(2025, 3, 15, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47372.159546,
+      'datetime': datetime.datetime(2025, 3, 15, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46935.379761,
+      'datetime': datetime.datetime(2025, 3, 15, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47146.34082,
+      'datetime': datetime.datetime(2025, 3, 15, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46324.268921,
+      'datetime': datetime.datetime(2025, 3, 15, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44708.949829,
+      'datetime': datetime.datetime(2025, 3, 15, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 42627.579834,
+      'datetime': datetime.datetime(2025, 3, 15, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41005.164673,
+      'datetime': datetime.datetime(2025, 3, 16, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39739.371643,
+      'datetime': datetime.datetime(2025, 3, 16, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 38991.09082,
+      'datetime': datetime.datetime(2025, 3, 16, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 38575.927856,
+      'datetime': datetime.datetime(2025, 3, 16, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 38399.958679,
+      'datetime': datetime.datetime(2025, 3, 16, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 38842.580383,
+      'datetime': datetime.datetime(2025, 3, 16, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39717.749878,
+      'datetime': datetime.datetime(2025, 3, 16, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41085.969727,
+      'datetime': datetime.datetime(2025, 3, 16, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 42819.07019,
+      'datetime': datetime.datetime(2025, 3, 16, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43960.48999,
+      'datetime': datetime.datetime(2025, 3, 16, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43904.760132,
+      'datetime': datetime.datetime(2025, 3, 16, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43444.950073,
+      'datetime': datetime.datetime(2025, 3, 16, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43176.881958,
+      'datetime': datetime.datetime(2025, 3, 16, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43391.800659,
+      'datetime': datetime.datetime(2025, 3, 16, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43817.619812,
+      'datetime': datetime.datetime(2025, 3, 16, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44444.679687,
+      'datetime': datetime.datetime(2025, 3, 16, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45176.530151,
+      'datetime': datetime.datetime(2025, 3, 16, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45855.619873,
+      'datetime': datetime.datetime(2025, 3, 16, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45960.23999,
+      'datetime': datetime.datetime(2025, 3, 16, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45822.669678,
+      'datetime': datetime.datetime(2025, 3, 16, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46514.729858,
+      'datetime': datetime.datetime(2025, 3, 16, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45853.290405,
+      'datetime': datetime.datetime(2025, 3, 16, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44280.629883,
+      'datetime': datetime.datetime(2025, 3, 16, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 42330.400513,
+      'datetime': datetime.datetime(2025, 3, 16, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 40868.850098,
+      'datetime': datetime.datetime(2025, 3, 17, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39720.090576,
+      'datetime': datetime.datetime(2025, 3, 17, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39123.119995,
+      'datetime': datetime.datetime(2025, 3, 17, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 38870.920532,
+      'datetime': datetime.datetime(2025, 3, 17, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39404.589844,
+      'datetime': datetime.datetime(2025, 3, 17, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41001.189697,
+      'datetime': datetime.datetime(2025, 3, 17, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43762.279541,
+      'datetime': datetime.datetime(2025, 3, 17, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45434.519775,
+      'datetime': datetime.datetime(2025, 3, 17, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46324.688843,
+      'datetime': datetime.datetime(2025, 3, 17, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47218.480103,
+      'datetime': datetime.datetime(2025, 3, 17, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47344.430298,
+      'datetime': datetime.datetime(2025, 3, 17, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47474.310547,
+      'datetime': datetime.datetime(2025, 3, 17, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47727.790161,
+      'datetime': datetime.datetime(2025, 3, 17, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 48579.60022,
+      'datetime': datetime.datetime(2025, 3, 17, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 49491.540283,
+      'datetime': datetime.datetime(2025, 3, 17, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 50555.639893,
+      'datetime': datetime.datetime(2025, 3, 17, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51553.990356,
+      'datetime': datetime.datetime(2025, 3, 17, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 52045.73999,
+      'datetime': datetime.datetime(2025, 3, 17, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51613.859619,
+      'datetime': datetime.datetime(2025, 3, 17, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 50978.780151,
+      'datetime': datetime.datetime(2025, 3, 17, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51011.269653,
+      'datetime': datetime.datetime(2025, 3, 17, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 49789.570435,
+      'datetime': datetime.datetime(2025, 3, 17, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47380.990601,
+      'datetime': datetime.datetime(2025, 3, 17, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44657.460327,
+      'datetime': datetime.datetime(2025, 3, 17, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 42308.26001,
+      'datetime': datetime.datetime(2025, 3, 18, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 40727.990845,
+      'datetime': datetime.datetime(2025, 3, 18, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39659.779907,
+      'datetime': datetime.datetime(2025, 3, 18, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39277.610352,
+      'datetime': datetime.datetime(2025, 3, 18, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39555.21936,
+      'datetime': datetime.datetime(2025, 3, 18, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 40872.849609,
+      'datetime': datetime.datetime(2025, 3, 18, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43332.680176,
+      'datetime': datetime.datetime(2025, 3, 18, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44794.00061,
+      'datetime': datetime.datetime(2025, 3, 18, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45620.700073,
+      'datetime': datetime.datetime(2025, 3, 18, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46620.319702,
+      'datetime': datetime.datetime(2025, 3, 18, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46923.680298,
+      'datetime': datetime.datetime(2025, 3, 18, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47172.989746,
+      'datetime': datetime.datetime(2025, 3, 18, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47743.179443,
+      'datetime': datetime.datetime(2025, 3, 18, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 48737.799683,
+      'datetime': datetime.datetime(2025, 3, 18, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 49941.021118,
+      'datetime': datetime.datetime(2025, 3, 18, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51438.069336,
+      'datetime': datetime.datetime(2025, 3, 18, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 52963.49939,
+      'datetime': datetime.datetime(2025, 3, 18, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 53863.180664,
+      'datetime': datetime.datetime(2025, 3, 18, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 53678.300171,
+      'datetime': datetime.datetime(2025, 3, 18, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 53095.550049,
+      'datetime': datetime.datetime(2025, 3, 18, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 52981.009888,
+      'datetime': datetime.datetime(2025, 3, 18, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51834.540161,
+      'datetime': datetime.datetime(2025, 3, 18, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 49424.839966,
+      'datetime': datetime.datetime(2025, 3, 18, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46853.450073,
+      'datetime': datetime.datetime(2025, 3, 18, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44497.549683,
+      'datetime': datetime.datetime(2025, 3, 19, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 42663.118896,
+      'datetime': datetime.datetime(2025, 3, 19, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41333.079468,
+      'datetime': datetime.datetime(2025, 3, 19, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 40697.700317,
+      'datetime': datetime.datetime(2025, 3, 19, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 40728.569946,
+      'datetime': datetime.datetime(2025, 3, 19, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41974.678955,
+      'datetime': datetime.datetime(2025, 3, 19, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44435.250732,
+      'datetime': datetime.datetime(2025, 3, 19, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45947.130249,
+      'datetime': datetime.datetime(2025, 3, 19, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47009.779175,
+      'datetime': datetime.datetime(2025, 3, 19, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 48650.660034,
+      'datetime': datetime.datetime(2025, 3, 19, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 49777.180298,
+      'datetime': datetime.datetime(2025, 3, 19, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 50712.920044,
+      'datetime': datetime.datetime(2025, 3, 19, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51808.040771,
+      'datetime': datetime.datetime(2025, 3, 19, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 53076.219971,
+      'datetime': datetime.datetime(2025, 3, 19, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 53906.790161,
+      'datetime': datetime.datetime(2025, 3, 19, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 54358.829956,
+      'datetime': datetime.datetime(2025, 3, 19, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 54453.860107,
+      'datetime': datetime.datetime(2025, 3, 19, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 53813.710205,
+      'datetime': datetime.datetime(2025, 3, 19, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 52405.990601,
+      'datetime': datetime.datetime(2025, 3, 19, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 51128.740356,
+      'datetime': datetime.datetime(2025, 3, 19, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 50945.189819,
+      'datetime': datetime.datetime(2025, 3, 19, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 49590.790405,
+      'datetime': datetime.datetime(2025, 3, 19, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46948.939087,
+      'datetime': datetime.datetime(2025, 3, 19, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44024.869507,
+      'datetime': datetime.datetime(2025, 3, 19, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41400.489502,
+      'datetime': datetime.datetime(2025, 3, 20, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39836.110474,
+      'datetime': datetime.datetime(2025, 3, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 38700.709717,
+      'datetime': datetime.datetime(2025, 3, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 38553.670532,
+      'datetime': datetime.datetime(2025, 3, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 39175.759766,
+      'datetime': datetime.datetime(2025, 3, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41121.019897,
+      'datetime': datetime.datetime(2025, 3, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44467.6698,
+      'datetime': datetime.datetime(2025, 3, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46457.599854,
+      'datetime': datetime.datetime(2025, 3, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46995.650269,
+      'datetime': datetime.datetime(2025, 3, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 47251.470337,
+      'datetime': datetime.datetime(2025, 3, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 46594.049316,
+      'datetime': datetime.datetime(2025, 3, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45512.65979,
+      'datetime': datetime.datetime(2025, 3, 20, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44563.079956,
+      'datetime': datetime.datetime(2025, 3, 20, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44087.339844,
+      'datetime': datetime.datetime(2025, 3, 20, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43661.440674,
+      'datetime': datetime.datetime(2025, 3, 20, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43713.420288,
+      'datetime': datetime.datetime(2025, 3, 20, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44337.730225,
+      'datetime': datetime.datetime(2025, 3, 20, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44987.580566,
+      'datetime': datetime.datetime(2025, 3, 20, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45073.339966,
+      'datetime': datetime.datetime(2025, 3, 20, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45016.650269,
+      'datetime': datetime.datetime(2025, 3, 20, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 45713.98999,
+      'datetime': datetime.datetime(2025, 3, 20, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 44914.061035,
+      'datetime': datetime.datetime(2025, 3, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 43456.259033,
+      'datetime': datetime.datetime(2025, 3, 20, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'consumption': 41722.789917,
+      'datetime': datetime.datetime(2025, 3, 20, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_wind_solar_forecasts
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24108.1,
+        'wind': 17404.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24563.7,
+        'wind': 17472.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24462.6,
+        'wind': 17674.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23835.0,
+        'wind': 18664.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21910.4,
+        'wind': 19375.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 12186.0,
+        'wind': 20588.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1557.0,
+        'wind': 19435.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 19946.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23805.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 26736.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 11, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28962.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29939.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29482.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29125.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28312.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 27579.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 26225.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 25400.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 59.8,
+        'wind': 23867.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 4192.8,
+        'wind': 22160.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 14689.5,
+        'wind': 18751.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 19139.0,
+        'wind': 16309.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 19303.8,
+        'wind': 16013.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21844.1,
+        'wind': 18754.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22095.9,
+        'wind': 21669.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21043.9,
+        'wind': 24391.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 20919.3,
+        'wind': 24926.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 19945.7,
+        'wind': 26390.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 16420.1,
+        'wind': 25428.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 8206.3,
+        'wind': 24580.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1185.3,
+        'wind': 23252.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 22204.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23480.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 24359.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 12, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23488.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 22505.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 20849.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 19698.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 19496.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 17818.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 15082.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 13861.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 202.9,
+        'wind': 12934.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 7633.0,
+        'wind': 11826.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 18251.2,
+        'wind': 7297.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23234.9,
+        'wind': 3201.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23758.7,
+        'wind': 2871.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23387.7,
+        'wind': 4123.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23670.1,
+        'wind': 7733.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23137.8,
+        'wind': 11372.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 20485.7,
+        'wind': 14756.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 19022.2,
+        'wind': 17578.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 17999.7,
+        'wind': 19183.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 9795.3,
+        'wind': 19684.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1209.1,
+        'wind': 19875.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 20963.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 22520.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 24535.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 13, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 26759.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28615.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28515.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28915.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28980.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28707.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28028.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 27405.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 63.8,
+        'wind': 26880.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 3438.3,
+        'wind': 26313.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 13646.9,
+        'wind': 24760.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 18535.6,
+        'wind': 21738.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21061.8,
+        'wind': 20406.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22600.1,
+        'wind': 19996.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24275.7,
+        'wind': 20106.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24533.6,
+        'wind': 20679.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24300.5,
+        'wind': 21694.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23928.9,
+        'wind': 22644.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22008.7,
+        'wind': 23889.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 12692.1,
+        'wind': 25042.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1060.6,
+        'wind': 26068.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 26829.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 27253.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 27359.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 14, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 27349.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 27153.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 26135.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 26403.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 24551.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 23245.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 22647.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 22413.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 103.1,
+        'wind': 22537.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 4281.4,
+        'wind': 22465.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 15499.1,
+        'wind': 21967.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21673.1,
+        'wind': 22657.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23750.2,
+        'wind': 23529.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24405.9,
+        'wind': 23013.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24148.0,
+        'wind': 22438.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24250.3,
+        'wind': 22652.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23752.4,
+        'wind': 23278.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21878.2,
+        'wind': 23560.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 19608.5,
+        'wind': 22959.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 11252.2,
+        'wind': 21510.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1233.7,
+        'wind': 18786.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.1,
+        'wind': 15366.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 12752.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 11072.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 15, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 9913.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 8919.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 8191.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 7991.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 8401.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 8823.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 9015.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 9147.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 210.6,
+        'wind': 9176.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 6521.2,
+        'wind': 9053.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 20117.0,
+        'wind': 8256.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24391.1,
+        'wind': 7762.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25765.1,
+        'wind': 8166.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 26119.4,
+        'wind': 7901.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25585.7,
+        'wind': 7636.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25744.0,
+        'wind': 7665.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25623.8,
+        'wind': 7722.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25281.7,
+        'wind': 7089.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24050.1,
+        'wind': 5806.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 14782.4,
+        'wind': 4963.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1404.6,
+        'wind': 5532.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.1,
+        'wind': 6365.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 7414.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 9502.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 16, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 12568.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 15461.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 17477.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 18703.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 19910.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 20758.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 21207.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 21640.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 116.1,
+        'wind': 21605.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 7257.4,
+        'wind': 20953.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21501.8,
+        'wind': 20382.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25232.2,
+        'wind': 20949.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25524.9,
+        'wind': 22340.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25193.3,
+        'wind': 24148.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24117.3,
+        'wind': 25644.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23648.5,
+        'wind': 26637.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23178.4,
+        'wind': 27601.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22406.7,
+        'wind': 28237.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 20538.8,
+        'wind': 28539.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 11928.1,
+        'wind': 28693.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1500.4,
+        'wind': 28893.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29205.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29545.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29850.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 17, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30073.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30262.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30276.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30131.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29983.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29772.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29482.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29190.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 205.1,
+        'wind': 28852.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 5666.3,
+        'wind': 28610.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 16085.7,
+        'wind': 28368.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21613.0,
+        'wind': 28231.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23041.1,
+        'wind': 28220.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23669.9,
+        'wind': 28216.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23565.8,
+        'wind': 28475.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23775.4,
+        'wind': 29035.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23437.4,
+        'wind': 29601.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22638.5,
+        'wind': 29948.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 20661.0,
+        'wind': 30028.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 12280.2,
+        'wind': 30271.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1467.5,
+        'wind': 30297.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.4,
+        'wind': 30281.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30283.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30299.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 18, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30346.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30400.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 30204.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29705.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 29210.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 28614.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 27888.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 27154.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 199.2,
+        'wind': 26435.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 5619.1,
+        'wind': 26182.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 16556.5,
+        'wind': 25942.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 20258.1,
+        'wind': 25590.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22161.4,
+        'wind': 25071.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23007.1,
+        'wind': 24410.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22984.9,
+        'wind': 24000.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 23059.5,
+        'wind': 23732.9,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22502.4,
+        'wind': 23587.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 21510.9,
+        'wind': 23328.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 19975.2,
+        'wind': 23088.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 12915.5,
+        'wind': 22954.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 1760.1,
+        'wind': 22381.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.4,
+        'wind': 21413.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 20520.7,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 19576.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 19, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 18629.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 17595.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 16727.4,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 16067.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 15408.2,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 14679.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 13894.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 13128.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 350.7,
+        'wind': 12397.8,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 7472.6,
+        'wind': 11659.0,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 19544.4,
+        'wind': 10924.3,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 22947.7,
+        'wind': 10350.5,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 24366.9,
+        'wind': 9954.1,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 3, 20, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='US/Central')),
+      'production': dict({
+        'solar': 25051.6,
+        'wind': 9615.6,
+      }),
+      'source': 'ercot.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-TEX-ERCO',
+    }),
+  ])
+# ---
