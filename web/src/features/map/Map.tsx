@@ -28,6 +28,7 @@ import {
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import BackgroundLayer from './map-layers/BackgroundLayer';
 import StatesLayer from './map-layers/StatesLayer';
+import WindAssetsLayer from './map-layers/WindAssetsLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
@@ -174,6 +175,16 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     map?.touchZoomRotate.disableRotation();
     map?.touchPitch.disable();
+
+    map.loadImage('/icons/turbines.png', (error, image) => {
+      if (error) {
+        throw error;
+      }
+      if (image) {
+        map.addImage('wind-asset-icon', image);
+        // Add your layer code here
+      }
+    });
 
     if (!isSourceLoaded || isLoadingMap) {
       return;
@@ -457,6 +468,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       <BackgroundLayer />
       <ZonesLayer />
       <StatesLayer />
+      <WindAssetsLayer />
       <CustomLayer>
         <WindLayer />
       </CustomLayer>
