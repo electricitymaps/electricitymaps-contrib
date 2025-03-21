@@ -496,16 +496,16 @@ def fetch_dayahead_local_marginal_price(
     return price_list
 
 
-def get_closest_5_minutes_datetime(datetime: datetime) -> datetime:
-    cdt_datetime = datetime.astimezone(tz=ZoneInfo("America/Chicago"))
+def get_closest_5_minutes_datetime(target_datetime: datetime) -> datetime:
+    cdt_datetime = target_datetime.astimezone(tz=ZoneInfo("America/Chicago"))
     rounded_cdt = cdt_datetime.replace(
         minute=round(cdt_datetime.minute / 5) * 5, second=0, microsecond=0
     )
     return rounded_cdt
 
 
-def get_realtime_url(datetime: datetime) -> str:
-    closest_5_minutes_datetime = get_closest_5_minutes_datetime(datetime)
+def get_realtime_url(target_datetime: datetime) -> str:
+    closest_5_minutes_datetime = get_closest_5_minutes_datetime(target_datetime)
     year = closest_5_minutes_datetime.strftime("%Y")
     month = closest_5_minutes_datetime.strftime("%m")
     day = closest_5_minutes_datetime.strftime("%d")
@@ -514,10 +514,10 @@ def get_realtime_url(datetime: datetime) -> str:
     return f"{REALTIME_PRICE_URL}&path=/{year}/{month}/By_Interval/{day}/RTBM-LMP-SL-{year}{month}{day}{hour}{minute}.csv"
 
 
-def get_dayahead_url(datetime: datetime) -> str:
-    year = datetime.strftime("%Y")
-    month = datetime.strftime("%m")
-    day = datetime.strftime("%d")
+def get_dayahead_url(target_datetime: datetime) -> str:
+    year = target_datetime.strftime("%Y")
+    month = target_datetime.strftime("%m")
+    day = target_datetime.strftime("%d")
     return f"{DAYAHEAD_PRICE_URL}&path=/{year}/{month}/By_Day/DA-LMP-SL-{year}{month}{day}0100.csv"
 
 
