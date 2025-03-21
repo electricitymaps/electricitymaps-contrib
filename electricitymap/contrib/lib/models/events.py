@@ -844,9 +844,11 @@ class LMP(Price):
 
     @validator("node")
     def _validate_node(cls, v: str) -> str:
-        """Node cannot be empty string"""
-        if v == "":
-            raise ValueError(f"Node cannot be an empty string: {v}")
+        clean_value = v.strip()
+        if not clean_value:
+            raise ValueError(f"Node cannot be an invalid string: {v}")
+        if clean_value != v:
+            raise ValueError(f"Node should not contain leading or trailing spaces: {v}")
         return v
 
     @staticmethod

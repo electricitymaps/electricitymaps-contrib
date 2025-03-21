@@ -326,8 +326,22 @@ def test_create_lmp():
     assert lmp.node == "SPPNORTH_HUB"
 
 
-def test_invalid_lmp_raises():
-    # This should raise a ValueError because the price is None.
+@pytest.mark.parametrize(
+    "node",
+    [
+        "",  # Empty string
+        None,  # None value
+        " ",  # Space only
+        "\t",  # Tab only
+        "\n",  # Newline only
+        "   ",  # Multiple spaces
+        " \t\n ",  # Mixed whitespace
+        "\tSPPNORTH_HUB",  # Leading whitespace
+        "SPPNORTH_HUB\t",  # Trailing whitespace
+    ],
+)
+def test_invalid_lmp_node_raises(node):
+    # This should raise a ValueError because the node is a empty string.
     with pytest.raises(ValueError):
         LMP(
             zoneKey=ZoneKey("US-CENT-SWPP"),
@@ -335,7 +349,7 @@ def test_invalid_lmp_raises():
             price=1,
             source="trust.me",
             currency="USD",
-            node="",
+            node=node,
         )
 
 
