@@ -10,6 +10,7 @@ import pytest
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
+    LMP,
     EventSourceType,
     Exchange,
     Price,
@@ -306,6 +307,36 @@ def test_prices_can_be_in_future():
         source="trust.me",
         currency="EUR",
     )
+
+
+def test_create_lmp():
+    lmp = LMP(
+        zoneKey=ZoneKey("US-CENT-SWPP"),
+        datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        price=1,
+        source="trust.me",
+        currency="USD",
+        node="SPPNORTH_HUB",
+    )
+    assert lmp.zoneKey == ZoneKey("US-CENT-SWPP")
+    assert lmp.datetime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert lmp.price == 1
+    assert lmp.source == "trust.me"
+    assert lmp.currency == "USD"
+    assert lmp.node == "SPPNORTH_HUB"
+
+
+def test_invalid_lmp_raises():
+    # This should raise a ValueError because the price is None.
+    with pytest.raises(ValueError):
+        LMP(
+            zoneKey=ZoneKey("US-CENT-SWPP"),
+            datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="USD",
+            node="",
+        )
 
 
 def test_create_production_breakdown():

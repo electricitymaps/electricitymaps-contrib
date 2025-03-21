@@ -7,6 +7,7 @@ import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    LMPList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
@@ -257,6 +258,19 @@ def test_append_to_price_list_logs_error():
             currency="EURO",
         )
         mock_error.assert_called_once()
+
+
+def test_lmp_list():
+    lmp_list = LMPList(logging.Logger("test"))
+    lmp_list.append(
+        zoneKey=ZoneKey("US-CENT-SWPP"),
+        datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        price=1,
+        source="trust.me",
+        currency="USD",
+        node="SPPNORTH_HUB",
+    )
+    assert len(lmp_list.events) == 1
 
 
 def test_production_list():
