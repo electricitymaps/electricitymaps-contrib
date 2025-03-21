@@ -119,8 +119,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available. This zone includes all electricity production from
+disclaimer: This zone includes all electricity production from
   the generation-only balancing authorities Arlington Valley, LLC - AVBA and New Harquahala
   Generating Company, LLC - HGBA. Read more on the wiki page.
 emissionFactors:
