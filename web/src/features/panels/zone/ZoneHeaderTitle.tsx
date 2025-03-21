@@ -1,5 +1,4 @@
 import { CountryFlag } from 'components/Flag';
-import FlowTracedBadge from 'components/FlowTracedBadge';
 import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { Info } from 'lucide-react';
@@ -40,7 +39,6 @@ function ZoneHeaderTitle({
           {zoneName}
         </h1>
       </TooltipWrapper>
-      <FlowTracedBadge />
       {disclaimer && (
         <TooltipWrapper
           side="bottom"

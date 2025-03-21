@@ -81,7 +81,7 @@
     },
     "view5": {
       "header": "Switch between electricity and emissions views",
-      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen flow-traced or non-flow-traced data."
+      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen flow-traced or production data."
     },
     "view6": {
       "header": "Explore the past",
