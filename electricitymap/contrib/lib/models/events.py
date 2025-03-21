@@ -842,6 +842,13 @@ class Price(Event):
 class LMP(Price):
     node: str
 
+    @validator("node")
+    def _validate_node(cls, v: str) -> str:
+        """Node cannot be empty string"""
+        if v == "":
+            raise ValueError(f"Node cannot be an empty string: {v}")
+        return v
+
     @staticmethod
     def create(
         logger: Logger,
