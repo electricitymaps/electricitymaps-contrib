@@ -10,6 +10,7 @@ import pandas as pd
 from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.events import (
+    LMP,
     Event,
     EventSourceType,
     Exchange,
@@ -489,6 +490,29 @@ class PriceList(EventList):
     ):
         event = Price.create(
             self.logger, zoneKey, datetime, source, price, currency, sourceType
+        )
+        if event:
+            self.events.append(event)
+
+
+class LMPList(EventList):
+    events: list[LMP]
+
+    def __getitem__(self, datetime) -> LMP:
+        return next(event for event in self.events if event.datetime == datetime)
+
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        price: float | None,
+        currency: str,
+        node: str,
+        sourceType: EventSourceType = EventSourceType.measured,
+    ):
+        event = LMP.create(
+            self.logger, zoneKey, datetime, source, price, currency, node, sourceType
         )
         if event:
             self.events.append(event)
