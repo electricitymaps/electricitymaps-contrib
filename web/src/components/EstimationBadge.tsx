@@ -15,7 +15,7 @@ function EstimationBadge({
     isPreliminary ? (
       <Badge icon={<Icon size={12} />} pillText={text} />
     ) : (
-      <Badge type={'warning'} icon={<Icon size={12} />} pillText={text} />
+      <Badge icon={<Icon size={12} />} pillText={text} />
     )
   ) : null;
 }

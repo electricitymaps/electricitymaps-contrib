@@ -67,6 +67,7 @@ export default function ZoneDetails(): JSX.Element {
     () => Object.keys(data?.zoneStates || {})?.map((key) => new Date(key)),
     [data]
   );
+  const zoneMessage = data?.zoneMessage;
 
   // We isolate the component which is independant of `selectedData`
   // in order to avoid re-rendering it needlessly
@@ -80,6 +81,13 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
+            <EstimationCard
+              zoneKey={zoneId}
+              zoneMessage={zoneMessage}
+              estimatedPercentage={roundedEstimatedPercentage}
+            />
+          )}
           <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
@@ -99,14 +107,16 @@ export default function ZoneDetails(): JSX.Element {
         </ZoneDetailsContent>
       ),
     [
+      zoneId,
+      zoneDataStatus,
       isLoading,
       isError,
-      zoneDataStatus,
       hasEstimationPill,
+      zoneMessage,
+      roundedEstimatedPercentage,
       datetimes,
       timeRange,
       displayByEmissions,
-      zoneId,
       t,
     ]
   );
@@ -121,7 +131,6 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const zoneMessage = data?.zoneMessage;
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
@@ -136,13 +145,6 @@ export default function ZoneDetails(): JSX.Element {
             isIosCapacitor ? 'pb-72' : 'pb-32'
           )}
         >
-          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
-            <EstimationCard
-              zoneKey={zoneId}
-              zoneMessage={zoneMessage}
-              estimatedPercentage={roundedEstimatedPercentage}
-            />
-          )}
           <ZoneHeaderGauges zoneKey={zoneId} />
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <DisplayByEmissionToggle />
