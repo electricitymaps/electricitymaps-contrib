@@ -185,7 +185,8 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all gas related electricity production
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available. This zone includes all gas related electricity production
   from the generation-only balancing authority Avangrid Renewables, LLC. Read more
   on the zone definition wiki page.
 emissionFactors:

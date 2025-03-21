@@ -173,6 +173,8 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
+disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
+  exchanges are not available.
 emissionFactors:
   direct:
     battery discharge:
