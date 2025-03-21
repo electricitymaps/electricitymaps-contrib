@@ -13,10 +13,17 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
+import pandas as pd
+
 # Third-party library imports
 from requests import Session
 
-from electricitymap.contrib.lib.models.event_lists import ExchangeList, PriceList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Local library imports
@@ -156,8 +163,53 @@ def get_csd_report_timestamp(report):
     ).replace(tzinfo=TIMEZONE)
 
 
+def fetch_wind_solar_forecasts(
+    zone_key: ZoneKey = DEFAULT_ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests wind and solar production forecasts in hourly data (in MW) for 7 days ahead."""
+    session = session or Session()
+
+    # Requests
+    # Wind 7 days
+    url_wind = "http://ets.aeso.ca/Market/Reports/Manual/Operations/prodweb_reports/wind_solar_forecast/wind_rpt_longterm.csv"
+    csv_wind = pd.read_csv(url_wind)
+
+    # Solar 7 days
+    url_solar = "http://ets.aeso.ca/Market/Reports/Manual/Operations/prodweb_reports/wind_solar_forecast/solar_rpt_longterm.csv"
+    csv_solar = pd.read_csv(url_solar)
+
+    all_production_events = csv_wind.merge(
+        csv_solar, on="Forecast Transaction Date", suffixes=("_wind", "_solar")
+    )
+
+    production_list = ProductionBreakdownList(logger)
+    for _, event in all_production_events.iterrows():
+        event_datetime = event["Forecast Transaction Date"]
+        event_datetime = datetime.fromisoformat(event_datetime).replace(tzinfo=TIMEZONE)
+        production_mix = ProductionMix()
+        production_mix.add_value(
+            "solar", event["Most Likely_solar"], correct_negative_with_zero=True
+        )
+        production_mix.add_value(
+            "wind", event["Most Likely_wind"], correct_negative_with_zero=True
+        )
+
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=event_datetime,
+            production=production_mix,
+            source=URL.netloc,
+            sourceType=EventSourceType.forecasted,
+        )
+    return production_list.to_list()
+
+
 if __name__ == "__main__":
-    # Never used by the electricityMap backend, but handy for testing.
+    """Main method, never used by the electricityMap backend, but handy for testing."""
+    """
     print("fetch_production() ->")
     print(fetch_production())
     print("fetch_price() ->")
@@ -169,4 +221,6 @@ if __name__ == "__main__":
     print(f"fetch_exchange({DEFAULT_ZONE_KEY}, US-MT) ->")
     print(fetch_exchange(DEFAULT_ZONE_KEY, "US-MT"))
     print(f"fetch_exchange({DEFAULT_ZONE_KEY}, US-NW-NWMT) ->")
-    print(fetch_exchange(DEFAULT_ZONE_KEY, "US-NW-NWMT"))
+    print(fetch_exchange(DEFAULT_ZONE_KEY, "US-NW-NWMT"))"
+    """
+    print(fetch_wind_solar_forecasts())

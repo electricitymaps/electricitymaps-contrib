@@ -11,6 +11,7 @@ capacity:
   oil: 0
 contributors:
   - mlucchini
+  - alejandranavcas
 country: CA
 delays:
   production: 5
@@ -228,5 +229,6 @@ fallbackZoneMixes:
 parsers:
   price: CA_AB.fetch_price
   production: CA_AB.fetch_production
+  productionPerModeForecast: CA_AB.fetch_wind_solar_forecasts
 region: Americas
 timezone: America/Edmonton
