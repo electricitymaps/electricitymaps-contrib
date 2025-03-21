@@ -1,4 +1,4 @@
-import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
+import { MoreOptionsDropdown } from 'components/MoreOptionsDropdown';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
@@ -30,7 +30,7 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
   const isConsumption = useAtomValue(isConsumptionAtom);
 
   const shareUrl = useGetCurrentUrl();
-  const showMoreOptions = useShowMoreOptions();
+  const showMoreOptions = useFeatureFlag('more-options-dropdown');
   const { t } = useTranslation();
 
   return (
@@ -47,7 +47,6 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
       </div>
 
       {isShareButtonEnabled &&
-        isConsumption &&
         (showMoreOptions ? (
           <MoreOptionsDropdown
             id="zone"

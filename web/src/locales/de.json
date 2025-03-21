@@ -47,11 +47,7 @@
     "emissions": "Emissionen",
     "by-source": {
       "emissions": "CO₂-Emissionen",
-      "electricity-production": "Stromerzeugung",
-      "electricity-consumption": "Stromverbrauch",
-      "total-emissions": "Gesamte CO₂-Emissionen",
-      "total-electricity-production": "Gesamte Stromerzeugung",
-      "total-electricity-consumption": "Gesamter Stromverbrauch"
+      "total-emissions": "Gesamte CO₂-Emissionen"
     },
     "helpfrom": "mit Unterstützung von",
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",

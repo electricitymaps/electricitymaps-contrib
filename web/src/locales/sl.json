@@ -41,11 +41,7 @@
     "renewable": "obnovljiva",
     "by-source": {
       "emissions": "Izpusti ogljika",
-      "electricity-production": "Proizvodnja električne energije",
-      "electricity-consumption": "Poraba električne energije",
-      "total-emissions": "Skupni izpusti ogljika",
-      "total-electricity-production": "Skupna proizvodnja električne energije",
-      "total-electricity-consumption": "Skupna poraba električne energije"
+      "total-emissions": "Skupni izpusti ogljika"
     },
     "helpfrom": "s pomočjo od",
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",

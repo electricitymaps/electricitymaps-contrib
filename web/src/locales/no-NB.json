@@ -37,11 +37,7 @@
     "aggregated": "aggregert",
     "aggregatedTooltip": "Data for denne sonen er aggregert fra historiske verdier for hver time",
     "by-source": {
-      "electricity-consumption": "Elektrisitetsforbruk",
-      "electricity-production": "Elektrisitetsproduksjon",
       "emissions": "Karbonutslipp",
-      "total-electricity-consumption": "Samlet elektrisitetsforbruk",
-      "total-electricity-production": "Samlet elektrisitetsproduksjon",
       "total-emissions": "Samlet karbonutslipp"
     },
     "carbonintensity": "CO₂-intensitet",
