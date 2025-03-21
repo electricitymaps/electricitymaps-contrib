@@ -184,12 +184,12 @@
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data is preliminary",
       "pill": "Preliminary",
-      "body": "The data for this hour has not yet been reported. Our models fill gaps that data providers can't, providing a complete, granular dataset in real time."
+      "body": "The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data is preliminary",
       "pill": "Preliminary",
-      "body": "The data for this hour has not yet been reported. Our models fill gaps that data providers can't, providing a complete, granular dataset in real time."
+      "body": "The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data is partially estimated",

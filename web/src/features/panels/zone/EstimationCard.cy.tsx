@@ -22,7 +22,7 @@ describe('EstimatedTSACard', () => {
     cy.get('[data-testid=title]').contains('Data is preliminary');
     cy.get('[data-testid="collapse-button"]').click();
     cy.get('[data-testid="body-text"]').contains(
-      "The data for this hour has not yet been reported. Our models fill gaps that data providers can't, providing a complete, granular dataset in real time."
+      'The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time.'
     );
   });
 
