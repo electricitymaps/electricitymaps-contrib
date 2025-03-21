@@ -44,6 +44,7 @@ if (isProduction) {
       scope.setTag('browser.locale', window.navigator.language); // Set the language tag for Sentry to correlate errors with the user's language
       return scope;
     },
+    ignoreErrors: [/plausible\.local\.js/],
   });
 }
 
