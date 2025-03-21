@@ -64,7 +64,7 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 249.3
-    - datetime: '2024-10-01'
+    - datetime: '2024-09-01'
       source: EIA.gov
       value: 349.3
 comment: Avista Corporation
@@ -76,7 +76,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
+  production: 48
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:

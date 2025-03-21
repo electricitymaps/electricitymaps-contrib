@@ -45,6 +45,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 4006.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 4012.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -81,6 +84,18 @@ capacity:
     - datetime: '2018-01-01'
       source: entsoe.eu
       value: 38.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 37.0
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 38.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 37.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 38.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -92,6 +107,9 @@ capacity:
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 485.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 486.0
   oil:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -131,6 +149,9 @@ capacity:
     - datetime: '2018-01-01'
       source: entsoe.eu
       value: 0.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 1.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu

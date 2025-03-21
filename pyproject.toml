@@ -73,7 +73,12 @@ click = "^8.0.0"
 
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "parsers/test", "electricitymap/contrib/lib/tests"]
+testpaths = [
+    "tests",
+    "parsers/test",
+    "parsers/lib/tests",
+    "electricitymap/contrib/lib/tests",
+]
 addopts = "--color=yes --durations=10"
 
 
@@ -131,7 +136,7 @@ select = [
     "B",
     "A",
     "C4",
-    "SIM"
+    "SIM",
 ]
 ignore = [
     "B008", # This flags every parser we have, let's ignore it for now

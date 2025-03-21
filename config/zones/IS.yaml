@@ -4,50 +4,72 @@ bounding_box:
   - - -13.609732225
     - 66.5267923041
 capacity:
-  biomass:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  coal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  gas:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
   geothermal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 709.96
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 755.56
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 756.16
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 756.0
+      value: 756.21
   hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1994.75
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2098.72
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 2104.46
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 2114.42
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 2114.0
-  hydro storage:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  nuclear:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+      value: 2114.48
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 126.0
+      value: 0.0
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 4.33
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 5.28
+    - datetime: '2019-01-01'
       source: IRENA.org
       value: 7.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 7.04
   unknown:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 116.28
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 0.0
+      value: 126.28
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 2.0
+      value: 2.43
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2.4
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1.8
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1.91
 contributors:
   - corradio
   - SNPerkin

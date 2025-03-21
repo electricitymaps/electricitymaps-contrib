@@ -5,60 +5,99 @@ bounding_box:
     - 28.9295718550001
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 12.6
-    - datetime: '2024-10-01'
-      source: EIA.gov
-      value: 27.6
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 69.1
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1124.4
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 678.9
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 486.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
-      value: 6220.0
-    - datetime: '2024-05-01'
+      value: 5535.7
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 6331.3
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 6665.5
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 6770.4
+    - datetime: '2023-04-01'
       source: EIA.gov
       value: 6324.9
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 133.4
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 661.6
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 736.1
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 781.9
+    - datetime: '2022-03-01'
+      source: EIA.gov
+      value: 782.9
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 912.0
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 913.0
+    - datetime: '2022-12-01'
       source: EIA.gov
       value: 1029.4
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 1258.9
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 1356.4
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 325.3
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
 comment: Tampa Electric Company
@@ -71,7 +110,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 35
+  production: 48
 disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
   exchanges are not available.
 emissionFactors:

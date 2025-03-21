@@ -67,7 +67,7 @@ capacity:
       value: 3161.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 3166.0
+      value: 3172.0
   geothermal:
     - datetime: '2019-01-01'
       source: entsoe.eu
@@ -141,7 +141,7 @@ capacity:
       value: 3964.8
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 7473.0
+      value: 7826.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -166,7 +166,7 @@ capacity:
       value: 106.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 126.0
+      value: 140.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -180,6 +180,9 @@ capacity:
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 323.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 325.0
 contributors:
   - corradio
   - nessie2013
