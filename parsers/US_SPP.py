@@ -15,7 +15,6 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     LMPList,
-    PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
