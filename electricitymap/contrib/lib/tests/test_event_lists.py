@@ -272,6 +272,7 @@ def test_lmp_list():
     )
     assert len(lmp_list.events) == 1
 
+
 def test_append_to_lmp_list_logs_error():
     lmp_list = LMPList(logging.Logger("test"))
     with patch.object(lmp_list.logger, "error") as mock_error:
@@ -281,7 +282,7 @@ def test_append_to_lmp_list_logs_error():
             price=1,
             source="trust.me",
             currency="EUR",
-            node=""
+            node="",
         )
         mock_error.assert_called_once()
 
