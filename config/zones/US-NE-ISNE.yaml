@@ -743,7 +743,7 @@ fallbackZoneMixes:
         wind: 0.035357632711841926
 parsers:
   consumption: EIA.fetch_consumption
-  consumptionForecast: EIA.fetch_consumption_forecast
+  consumptionForecast: US_NEISO.fetch_consumption_forecast
   production: US_NEISO.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_NEISO.fetch_wind_solar_forecasts
