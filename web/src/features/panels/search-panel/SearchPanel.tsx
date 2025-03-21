@@ -1,6 +1,6 @@
 import GlassContainer from 'components/GlassContainer';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
-import { ReactElement, useCallback, useMemo, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
@@ -14,6 +14,7 @@ import { VirtualizedZoneList } from './ZoneList';
 export default function SearchPanel(): ReactElement {
   const { t, i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const canonicalUrl = useGetCanonicalUrl();
 
   // Memoize the zone data to prevent unnecessary recalculations
@@ -34,6 +35,11 @@ export default function SearchPanel(): ReactElement {
     [searchTerm, zoneData]
   );
 
+  // Update selected index when filtered list changes
+  useEffect(() => {
+    setSelectedIndex(filteredList.length > 0 ? 0 : -1);
+  }, [filteredList]);
+
   return (
     <GlassContainer
       className={twMerge(
@@ -51,6 +57,9 @@ export default function SearchPanel(): ReactElement {
           placeholder={t('ranking-panel.search')}
           searchHandler={inputHandler}
           value={searchTerm}
+          selectedIndex={selectedIndex}
+          onSelectedIndexChange={setSelectedIndex}
+          totalResults={filteredList.length}
         />
 
         <div
@@ -60,7 +69,7 @@ export default function SearchPanel(): ReactElement {
           )}
         >
           {searchTerm && filteredList.length === 0 && <NoResults />}
-          <VirtualizedZoneList data={filteredList} />
+          <VirtualizedZoneList data={filteredList} selectedIndex={selectedIndex} />
         </div>
       </div>
     </GlassContainer>
