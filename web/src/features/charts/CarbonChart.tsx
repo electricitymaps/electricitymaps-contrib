@@ -1,12 +1,13 @@
-import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, noop } from './graphUtils';
+import EstimationLegend from './elements/EstimationLegend';
+import { noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import { RoundedCard } from './RoundedCard';
@@ -22,6 +23,11 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
 
+  // Call hooks before any conditional returns
+  const estimationMethod = data?.chartData?.find((d) => d.meta?.estimationMethod)?.meta
+    ?.estimationMethod;
+  const estimationText = useGetEstimationTranslation('pill', estimationMethod);
+
   if (isLoading || isError || !data) {
     return null;
   }
@@ -30,8 +36,8 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-  const badge = <EstimationBadge text={text} Icon={icon} />;
+  const badge = estimationText ? <EstimationLegend text={estimationText} /> : undefined;
+  const isEstimated = Boolean(estimationMethod);
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -47,7 +53,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
         titleText={t(`country-history.carbonintensity.${timeRange}`)}
         badge={badge}
         unit={'gCO₂eq / kWh'}
-        isEstimated={Boolean(text)}
+        isEstimated={isEstimated}
         id={Charts.CARBON_CHART}
       />
       <AreaGraph
@@ -61,6 +67,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
         datetimes={datetimes}
         selectedTimeRange={timeRange}
         tooltip={CarbonChartTooltip}
+        showEstimationOverlays={true}
       />
       <div className="pb-1 pt-2">
         <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />

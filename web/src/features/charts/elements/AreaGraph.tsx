@@ -112,6 +112,7 @@ interface AreagraphProps {
   formatTick?: (t: number) => string | number;
   isDataInteractive?: boolean;
   selectedData?: SelectedData;
+  showEstimationOverlays?: boolean;
 }
 
 interface TooltipData {
@@ -137,7 +138,9 @@ function AreaGraph({
   formatTick = String,
   isDataInteractive = false,
   selectedData,
+  showEstimationOverlays = false,
 }: AreagraphProps) {
+  console.log('data', data);
   const reference = useRef(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<HTMLDivElement>({ ref: reference });
@@ -283,6 +286,7 @@ function AreaGraph({
           mouseOutHandler={mouseOutHandler}
           isMobile={isMobile}
           svgNode={reference.current}
+          showEstimationOverlays={showEstimationOverlays}
         />
         <TimeAxis
           isLoading={false}
