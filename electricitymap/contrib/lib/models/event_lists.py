@@ -26,7 +26,6 @@ CAPACITY_STRICT_THRESHOLD = 0
 CAPACITY_LOOSE_THRESHOLD = 0.02
 
 EventType = TypeVar("EventType", bound="Event")
-EventListType = TypeVar("EventListType", bound="EventList")
 
 
 class EventList(ABC, Generic[EventType]):
