@@ -8,7 +8,7 @@ from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
-REFETCH_FREQUENCY = timedelta(days=21)
+REFETCH_FREQUENCY = timedelta(days=7)
 
 
 ZONE_KEY_TO_REGION = {
@@ -98,7 +98,7 @@ def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
     capacities = {
         obj["id"].split(".")[-2].upper(): obj.get("x_capacity_at_present")
         for obj in filtered_datasets
-        if obj["region"] == region
+        if obj["region"].upper() == region.upper()
     }
     return pd.Series(capacities)
 
@@ -147,20 +147,18 @@ def filter_production_objs(
 def generate_url(
     zone_key: str, is_flow, target_datetime: datetime | None, logger: Logger
 ) -> str:
-    if target_datetime:
-        network = ZONE_KEY_TO_NETWORK[zone_key]
-        # We will fetch since the beginning of the current month
-        month = target_datetime.strftime("%Y-%m-%d")
-        if is_flow:
-            url = (
-                f"http://api.opennem.org.au/stats/flow/network/{network}?month={month}"
-            )
-        else:
-            region = ZONE_KEY_TO_REGION.get(zone_key)
-            url = f"http://api.opennem.org.au/stats/power/network/fueltech/{network}/{region}?month={month}"
-    else:
-        # Contains flows and production combined
-        url = "https://data.opennem.org.au/v3/clients/em/latest.json"
+    # Only 7d or 30d data is available
+    duration = (
+        "7d"
+        if not target_datetime
+        or (datetime.now() - target_datetime.replace(tzinfo=None)) < timedelta(days=7)
+        else "30d"
+    )
+    network = ZONE_KEY_TO_NETWORK[zone_key]
+    region = ZONE_KEY_TO_REGION.get(zone_key)
+    # Western Australia have no region in url
+    region = "" if region == "WEM" else f"/{region}"
+    url = f"https://data.openelectricity.org.au/v4/stats/au/{network}{region}/power/{duration}.json"
 
     return url
 
@@ -230,11 +228,15 @@ def _fetch_main_df(
         filter_data_type = ds["type"] == data_type
         filter_region = False
         if zone_key:
-            filter_region |= ds.get("region") == region
+            filter_region |= (
+                "region" in ds and ds.get("region").upper() == region.upper()
+            )
         if sorted_zone_keys:
             filter_region |= (
-                ds.get("id").split(".")[-2]
-                == EXCHANGE_MAPPING_DICTIONARY["->".join(sorted_zone_keys)]["region_id"]
+                ds.get("id").split(".")[-2].upper()
+                == EXCHANGE_MAPPING_DICTIONARY["->".join(sorted_zone_keys)][
+                    "region_id"
+                ].upper()
             )
         return filter_data_type and filter_region
 

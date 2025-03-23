@@ -1,9 +1,19 @@
+import json
 from datetime import datetime, timedelta, timezone
+from importlib import resources
 
 import numpy as np
 import pandas as pd
+import pytest
+from requests_mock import ANY
 
-from parsers.OPENNEM import filter_production_objs, process_solar_rooftop, sum_vector
+from parsers.OPENNEM import (
+    fetch_price,
+    fetch_production,
+    filter_production_objs,
+    process_solar_rooftop,
+    sum_vector,
+)
 
 
 def test_process_solar_rooftop():
@@ -90,3 +100,28 @@ def test_filter_production_objs():
     filtered_objs = filter_production_objs(objs)
     # 2nd entry should be filtered out because solar is None
     assert len(filtered_objs) == 1
+
+
+@pytest.fixture(autouse=True)
+def mock_response(adapter):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.OPENNEM")
+            .joinpath("OPENNEM.json")
+            .read_text()
+        ),
+    )
+
+
+def test_production(adapter, session, snapshot):
+    assert snapshot == fetch_production(
+        "AU-VIC", session, datetime.fromisoformat("2025-03-23")
+    )
+
+
+def test_price(adapter, session, snapshot):
+    assert snapshot == fetch_price(
+        "AU-VIC", session, datetime.fromisoformat("2025-03-23")
+    )
