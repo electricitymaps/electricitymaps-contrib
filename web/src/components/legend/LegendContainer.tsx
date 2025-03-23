@@ -1,3 +1,4 @@
+import GlassContainer from 'components/GlassContainer';
 import { useAtomValue } from 'jotai';
 import { memo, type ReactElement } from 'react';
 import { isSolarLayerEnabledAtom, isWindLayerEnabledAtom } from 'utils/state/atoms';
@@ -11,11 +12,11 @@ function LegendContainer(): ReactElement {
   const isWindLayerEnabled = useAtomValue(isWindLayerEnabledAtom);
 
   return (
-    <div className="flex min-w-64 max-w-min flex-col gap-2 rounded-2xl border border-neutral-200/80 bg-white/80 p-2 backdrop-blur dark:border-gray-700/80 dark:bg-gray-800/80">
+    <GlassContainer className="pointer-events-auto relative  min-w-64 max-w-min flex-col gap-2  p-2">
       {isSolarLayerEnabled && <SolarLegend />}
       {isWindLayerEnabled && <WindLegend />}
       <Co2Legend />
-    </div>
+    </GlassContainer>
   );
 }
 

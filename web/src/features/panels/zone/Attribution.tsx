@@ -8,7 +8,7 @@ export default function Attribution({ zoneId }: { zoneId: string }) {
 
   return (
     <div className="flex flex-col gap-3 pt-1.5">
-      {contributors && (
+      {contributors.length > 0 && (
         <div className="flex flex-row justify-between">
           <div className="text-sm font-semibold">{t('country-panel.helpfrom')}</div>
           <ContributorList contributors={contributors} />

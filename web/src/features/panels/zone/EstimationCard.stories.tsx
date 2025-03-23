@@ -1,10 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'translation/i18n';
 import { EstimationMethods } from 'utils/constants';
 
-import EstimationCard from './EstimationCard';
+import EstimationCard, {
+  AggregatedCard,
+  EstimatedCard,
+  EstimatedTSACard,
+  OutageCard,
+} from './EstimationCard';
 
 const meta: Meta<typeof EstimationCard> = {
   title: 'EstimationCard',
@@ -13,40 +17,55 @@ const meta: Meta<typeof EstimationCard> = {
 
 export default meta;
 type Story = StoryObj<typeof EstimationCard>;
+
 const instance: { message: string; issue: string } = {
   message: 'Some outage message.',
   issue: '5613',
 };
-const queryClient = new QueryClient();
 
-export const All: Story = {
+export const OutageCardStory: Story = {
   render: () => (
-    <div className="space-y-2">
-      <I18nextProvider i18n={i18n}>
-        <QueryClientProvider client={queryClient}>
-          <EstimationCard cardType="outage" zoneMessage={instance} />
-          <EstimationCard
-            cardType="outage"
-            zoneMessage={instance}
-            estimationMethod={EstimationMethods.THRESHOLD_FILTERED}
-          />
-          <EstimationCard cardType="estimated" zoneMessage={instance} />
+    <I18nextProvider i18n={i18n}>
+      <div className="space-y-2">
+        <OutageCard zoneMessage={instance} estimationMethod={EstimationMethods.OUTAGE} />
+        <OutageCard
+          zoneMessage={{ message: 'Different outage message', issue: '1234' }}
+          estimationMethod={EstimationMethods.THRESHOLD_FILTERED}
+        />
+      </div>
+    </I18nextProvider>
+  ),
+};
 
-          <EstimationCard
-            cardType="estimated"
-            zoneMessage={instance}
-            estimationMethod={EstimationMethods.MODE_BREAKDOWN}
-          />
+export const AggregatedCardStory: Story = {
+  render: () => (
+    <I18nextProvider i18n={i18n}>
+      <div className="space-y-2">
+        <AggregatedCard estimatedPercentage={20} />
+        <AggregatedCard estimatedPercentage={50} />
+        <AggregatedCard estimatedPercentage={80} />
+      </div>
+    </I18nextProvider>
+  ),
+};
 
-          <EstimationCard
-            cardType="aggregated"
-            zoneMessage={instance}
-            estimatedPercentage={20}
-          />
+export const EstimatedCardStory: Story = {
+  render: () => (
+    <I18nextProvider i18n={i18n}>
+      <div className="space-y-2">
+        <EstimatedCard estimationMethod={EstimationMethods.FORECASTS_HIERARCHY} />
+        <EstimatedCard estimationMethod={EstimationMethods.THRESHOLD_FILTERED} />
+      </div>
+    </I18nextProvider>
+  ),
+};
 
-          <EstimationCard cardType="aggregated" zoneMessage={instance} />
-        </QueryClientProvider>
-      </I18nextProvider>
-    </div>
+export const EstimatedTSACardStory: Story = {
+  render: () => (
+    <I18nextProvider i18n={i18n}>
+      <div className="space-y-2">
+        <EstimatedTSACard />
+      </div>
+    </I18nextProvider>
   ),
 };
