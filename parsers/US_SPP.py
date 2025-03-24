@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 from dateutil import parser
@@ -13,6 +14,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    LocationalMarginalPriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
@@ -29,6 +31,14 @@ US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "host=https://marketplace.spp.org"
 
 HISTORIC_GENERATION_BASE_URL = f"{US_PROXY}/file-browser-api/download/generation-mix-historical?{HOST_PARAMETER}&path="
+
+SPP_PORTAL = "host=https://portal.spp.org"
+DAYAHEAD_PRICE_URL = (
+    f"{US_PROXY}/file-browser-api/download/da-lmp-by-location?{SPP_PORTAL}"
+)
+REALTIME_PRICE_URL = (
+    f"{US_PROXY}/file-browser-api/download/rtbm-lmp-by-location?{SPP_PORTAL}"
+)
 
 GENERATION_URL = f"{US_PROXY}/chart-api/gen-mix/asFile?{HOST_PARAMETER}"
 
@@ -418,6 +428,109 @@ def fetch_exchange(
             zone_key1, zone_key2, session, target_datetime, logger
         )
     return exchanges
+
+
+@refetch_frequency(timedelta(minutes=30))
+def fetch_realtime_locational_marginal_price(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=timezone.utc)
+    if target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+
+    prices = LocationalMarginalPriceList(logger)
+    node = "SPPNORTH_HUB"
+
+    # Get data for target datetime and previous 30 minutes in 5 min intervals
+    for minutes in range(0, 35, 5):
+        check_datetime = target_datetime - timedelta(minutes=minutes)
+        url = get_realtime_url(check_datetime)
+        raw_data = get_data(url, session)
+
+        spp_data = raw_data[raw_data["Settlement Location"] == node]
+        for _, row in spp_data.iterrows():
+            prices.append(
+                zoneKey=zone_key,
+                datetime=datetime.strptime(
+                    row["GMTIntervalEnd"], "%m/%d/%Y %H:%M:%S"
+                ).replace(tzinfo=timezone.utc),
+                price=row["LMP"],
+                currency="USD",
+                node=node,
+                source=SOURCE,
+            )
+
+    price_list = prices.to_list()
+    return price_list
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_dayahead_locational_marginal_price(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=timezone.utc)
+
+    url = get_dayahead_url(target_datetime)
+    raw_data = get_data(url, session)
+    node = "SPPNORTH_HUB"
+    # filter by column "Settlement Location" so it only includes SPPNORTH_HUB
+    spp_data = raw_data[raw_data["Settlement Location"] == node]
+    prices = LocationalMarginalPriceList(logger)
+    for _, row in spp_data.iterrows():
+        prices.append(
+            zoneKey=zone_key,
+            datetime=datetime.strptime(
+                row["GMTIntervalEnd"], "%m/%d/%Y %H:%M:%S"
+            ).replace(tzinfo=timezone.utc),
+            price=row["LMP"],
+            currency="USD",
+            node=node,
+            source=SOURCE,
+        )
+
+    price_list = prices.to_list()
+    return price_list
+
+
+def get_closest_5_minutes_datetime(target_datetime: datetime) -> datetime:
+    cdt_datetime = target_datetime.astimezone(tz=ZoneInfo("America/Chicago"))
+    minute = (cdt_datetime.minute // 5) * 5
+    rounded_cdt = cdt_datetime.replace(minute=minute, second=0, microsecond=0)
+    return rounded_cdt
+
+
+def get_realtime_url(target_datetime: datetime) -> str:
+    closest_5_minutes_datetime = get_closest_5_minutes_datetime(target_datetime)
+    year = closest_5_minutes_datetime.strftime("%Y")
+    month = closest_5_minutes_datetime.strftime("%m")
+    day = closest_5_minutes_datetime.strftime("%d")
+    hour = closest_5_minutes_datetime.strftime("%H")
+    minute = closest_5_minutes_datetime.strftime("%M")
+    # SPP puts the first 5 minutes of the day (00:00) in the previous day's directory
+    if minute == "00" and hour == "00":
+        one_day_before = closest_5_minutes_datetime - timedelta(days=1)
+        one_day_before_days = one_day_before.strftime("%d")
+        one_day_before_month = one_day_before.strftime("%m")
+        one_day_before_year = one_day_before.strftime("%Y")
+
+        return f"{REALTIME_PRICE_URL}&path=/{one_day_before_year}/{one_day_before_month}/By_Interval/{one_day_before_days}/RTBM-LMP-SL-{year}{month}{day}{hour}{minute}.csv"
+
+    return f"{REALTIME_PRICE_URL}&path=/{year}/{month}/By_Interval/{day}/RTBM-LMP-SL-{year}{month}{day}{hour}{minute}.csv"
+
+
+def get_dayahead_url(target_datetime: datetime) -> str:
+    year = target_datetime.strftime("%Y")
+    month = target_datetime.strftime("%m")
+    day = target_datetime.strftime("%d")
+    return f"{DAYAHEAD_PRICE_URL}&path=/{year}/{month}/By_Day/DA-LMP-SL-{year}{month}{day}0100.csv"
 
 
 if __name__ == "__main__":
