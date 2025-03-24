@@ -2,13 +2,17 @@
 /* eslint-disable react/jsx-handler-names */
 import { area, curveStepAfter } from 'd3-shape';
 import { useDarkMode } from 'hooks/theme';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
 import { detectHoveredDatapointIndex, getNextDatetime, noop } from '../graphUtils';
 import { SelectedData } from '../OriginChart';
 import { AreaGraphElement } from '../types';
+
+// Function to check if a data point has estimation method
+const hasEstimationMethod = (d: { data: AreaGraphElement }) =>
+  d.data.meta && d.data.meta.estimationMethod;
 
 interface AreaGraphLayersProps {
   layers: any[];
@@ -22,6 +26,7 @@ interface AreaGraphLayersProps {
   hoveredLayerIndex?: number | null;
   isDataInteractive?: boolean;
   selectedData?: SelectedData;
+  showEstimationOverlays?: boolean;
 }
 
 function AreaGraphLayers({
@@ -36,13 +41,50 @@ function AreaGraphLayers({
   hoveredLayerIndex,
   isDataInteractive,
   selectedData,
+  showEstimationOverlays = false,
 }: AreaGraphLayersProps) {
   const isDarkModeEnabled = useDarkMode();
   const [x1, x2] = timeScale.range();
   const [y2, y1] = valueScale.range();
+
+  // Process data points to extract unique timestamps with estimation methods
+  const uniqueEstimationOverlays = useMemo(() => {
+    // If not showing overlays, return empty array to prevent unnecessary processing
+    if (!showEstimationOverlays) {
+      return [];
+    }
+
+    // Create a set of unique timestamps that have estimation methods
+    const uniqueTimestamps = new Set<string>();
+    const overlayData: Array<{ datetime: Date; nextDatetime: Date }> = [];
+
+    // Check all layers and data points to find unique timestamps
+    for (const layer of layers) {
+      for (const d of layer.datapoints) {
+        if (hasEstimationMethod(d)) {
+          const timestamp = d.data.datetime.toISOString();
+          if (!uniqueTimestamps.has(timestamp)) {
+            uniqueTimestamps.add(timestamp);
+            const next = getNextDatetime(datetimes, d.data.datetime);
+            // Only add if we have a valid next datetime
+            if (next) {
+              overlayData.push({
+                datetime: d.data.datetime,
+                nextDatetime: next,
+              });
+            }
+          }
+        }
+      }
+    }
+
+    return overlayData;
+  }, [layers, datetimes, showEstimationOverlays]);
+
   if (x1 >= x2 || y1 >= y2) {
     return null;
   }
+
   const hasHoveredLayer = hoveredLayerIndex !== null;
   const shouldHideEmptyData = isDataInteractive && layers.length > 1;
 
@@ -89,6 +131,30 @@ function AreaGraphLayers({
 
   return (
     <g>
+      {/* Render estimation method overlays as a separate group outside of layers mapping */}
+      {showEstimationOverlays && uniqueEstimationOverlays.length > 0 && (
+        <g className="estimation-overlays">
+          {uniqueEstimationOverlays.map((d, index) => {
+            const x = timeScale(d.datetime);
+            const nextX = timeScale(d.nextDatetime);
+            const width = nextX - x;
+
+            return (
+              <rect
+                key={`estimation-overlay-${index}`}
+                x={x}
+                y={y1}
+                width={width}
+                height={y2 - y1}
+                fill="rgba(82, 82, 82)"
+                opacity={0.1}
+                pointerEvents="none"
+              />
+            );
+          })}
+        </g>
+      )}
+
       {layers.map((layer, ind) => {
         const isGradient = modeColor[layer.key as ElectricityModeType] ? false : true;
         const gradientId = `areagraph-gradient-${layer.key}`;
@@ -142,6 +208,7 @@ function AreaGraphLayers({
 
         return (
           <React.Fragment key={layer.key}>
+            {/* Render the regular path */}
             <path
               className={shouldLayerBeSaturated ? 'opacity-100' : 'opacity-30'}
               style={{ cursor: 'pointer' }}

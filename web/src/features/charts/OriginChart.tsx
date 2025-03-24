@@ -1,5 +1,5 @@
-import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
+import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtomValue } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +10,8 @@ import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
+import EstimationLegend from './elements/EstimationLegend';
+import { getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
 import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -72,6 +73,11 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
   const isHourly = useAtomValue(isHourlyAtom);
   const selectedData = useSelectedData(displayByEmissions);
 
+  // Call hooks before any conditional returns
+  const estimationMethod = data?.chartData?.find((d) => d.meta?.estimationMethod)?.meta
+    ?.estimationMethod;
+  const estimationText = useGetEstimationTranslation('pill', estimationMethod);
+
   if (!data) {
     return null;
   }
@@ -90,9 +96,8 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-
-  const badge = <EstimationBadge text={text} Icon={icon} />;
+  const badge = estimationText ? <EstimationLegend text={estimationText} /> : undefined;
+  const isEstimated = Boolean(estimationMethod);
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -108,7 +113,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
       <ChartTitle
         titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeRange}`)}
         badge={badge}
-        isEstimated={Boolean(text)}
+        isEstimated={isEstimated}
         unit={valueAxisLabel}
         id={Charts.ORIGIN_CHART}
       />
@@ -127,6 +132,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
           selectedTimeRange={timeRange}
           tooltip={BreakdownChartTooltip}
           tooltipSize={displayByEmissions ? 'small' : 'large'}
+          showEstimationOverlays={true}
           {...(displayByEmissions && { formatTick: formatAxisTick })}
         />
       </div>
