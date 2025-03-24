@@ -2,7 +2,7 @@ import { LogoIcon } from 'components/Logo';
 import {
   BookOpenIcon,
   CodeXmlIcon,
-  FileSpreadsheetIcon,
+  FileDownIcon,
   HelpCircleIcon,
   MapIcon,
 } from 'lucide-react';
@@ -33,7 +33,7 @@ const MENU_ITEMS = [
   {
     label: 'Datasets',
     to: `${PORTAL_URL}/datasets`,
-    icon: FileSpreadsheetIcon,
+    icon: FileDownIcon,
   },
   {
     label: 'API',
