@@ -181,17 +181,17 @@
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data is preliminary",
       "pill": "Preliminary",
-      "body": "The data for this hour has not been reported yet and is based on preliminary data."
+      "body": "The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data is preliminary",
       "pill": "Preliminary",
-      "body": "The data for this hour has not been reported yet and is based on preliminary data."
+      "body": "The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data is partially estimated",
       "pill": "Partially estimated",
-      "body": "The reported data for this zone is incomplete; estimation models are used to estimate missing production modes."
+      "body": "The reported data for this zone is incomplete; our models fill in missing production modes and electricity flows to provide a complete view of the flow-traced electricity mix."
     },
     "estimated_generic_method": {
       "title": "Data is estimated",
@@ -201,7 +201,7 @@
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Data is always estimated",
       "pill": "Estimated",
-      "body": "Real-time source data for this zone is not available. Current values are modelled using a combination of live weather data and historical production data."
+      "body": "Real-time source data for this zone is not available. The data is modeled using a combination of live weather data and historical production patterns to generate an accurate flow-traced electricity mix."
     },
     "threshold_filtered": {
       "title": "Missing data",
