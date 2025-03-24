@@ -837,3 +837,58 @@ class Price(Event):
             "source": self.source,
             "sourceType": self.sourceType,
         }
+
+
+class LocationalMarginalPrice(Price):
+    node: str
+
+    @validator("node")
+    def _validate_node(cls, v: str) -> str:
+        clean_value = v.strip()
+        if not clean_value:
+            raise ValueError(f"Node cannot be an invalid string: {v}")
+        if clean_value != v:
+            raise ValueError(f"Node should not contain leading or trailing spaces: {v}")
+        return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        price: float | None,
+        currency: str,
+        node: str,
+        sourceType: EventSourceType = EventSourceType.measured,
+    ) -> "LocationalMarginalPrice | None":
+        try:
+            return LocationalMarginalPrice(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=source,
+                price=price,
+                currency=currency,
+                node=node,
+                sourceType=sourceType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating Locational Marginal Price Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "Locational Marginal Price",
+                },
+            )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "currency": self.currency,
+            "price": self.price,
+            "node": self.node,
+            "source": self.source,
+            "sourceType": self.sourceType,
+        }
