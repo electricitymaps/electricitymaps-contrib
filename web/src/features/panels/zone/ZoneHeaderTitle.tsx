@@ -7,7 +7,7 @@ import { getZoneName } from 'translation/translation';
 
 import { getDisclaimer } from './util';
 
-const MAX_TITLE_LENGTH = 10;
+const MAX_TITLE_LENGTH = 19;
 
 function ZoneHeaderTitle({
   zoneId,
