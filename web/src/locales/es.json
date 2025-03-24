@@ -82,11 +82,7 @@
     "emissions": "Emisiones de CO₂",
     "by-source": {
       "emissions": "Emisiones de CO₂",
-      "electricity-production": "Generación de electricidad",
-      "electricity-consumption": "Consumo de electricidad",
-      "total-emissions": "Emisiones totales de CO₂",
-      "total-electricity-production": "Generación total de electricidad",
-      "total-electricity-consumption": "Consumo total de electricidad"
+      "total-emissions": "Emisiones totales de CO₂"
     },
     "helpfrom": "con la ayuda de",
     "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
