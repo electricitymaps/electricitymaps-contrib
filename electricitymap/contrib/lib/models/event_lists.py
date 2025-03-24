@@ -470,12 +470,7 @@ class PriceList(EventList[Price]):
             self.events.append(event)
 
 
-class LocationalMarginalPriceList(EventList):
-    events: list[LocationalMarginalPrice]
-
-    def __getitem__(self, datetime) -> LocationalMarginalPrice:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
     def append(
         self,
         zoneKey: ZoneKey,
