@@ -629,8 +629,8 @@ parsers:
   production: US_SPP.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_SPP.fetch_wind_solar_forecasts
-  dayaheadLMP: US_SPP.fetch_dayahead_local_marginal_price
-  realtimeLMP: US_SPP.fetch_realtime_local_marginal_price
+  dayaheadLMP: US_SPP.fetch_dayahead_locational_marginal_price
+  realtimeLMP: US_SPP.fetch_realtime_locational_marginal_price
 region: Americas
 sources:
   INCER ACV:

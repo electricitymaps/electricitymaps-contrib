@@ -10,9 +10,9 @@ import pytest
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.events import (
-    LMP,
     EventSourceType,
     Exchange,
+    LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -310,7 +310,7 @@ def test_prices_can_be_in_future():
 
 
 def test_create_lmp():
-    lmp = LMP(
+    lmp = LocationalMarginalPrice(
         zoneKey=ZoneKey("US-CENT-SWPP"),
         datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
         price=1,
@@ -343,7 +343,7 @@ def test_create_lmp():
 def test_invalid_lmp_node_raises(node):
     # This should raise a ValueError because the node is a empty string.
     with pytest.raises(ValueError):
-        LMP(
+        LocationalMarginalPrice(
             zoneKey=ZoneKey("US-CENT-SWPP"),
             datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
             price=1,

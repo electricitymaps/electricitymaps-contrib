@@ -839,7 +839,7 @@ class Price(Event):
         }
 
 
-class LMP(Price):
+class LocationalMarginalPrice(Price):
     node: str
 
     @validator("node")
@@ -861,9 +861,9 @@ class LMP(Price):
         currency: str,
         node: str,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> "LMP | None":
+    ) -> "LocationalMarginalPrice | None":
         try:
-            return LMP(
+            return LocationalMarginalPrice(
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
@@ -874,11 +874,11 @@ class LMP(Price):
             )
         except ValidationError as e:
             logger.error(
-                f"Error(s) creating LMP Event {datetime}: {e}",
+                f"Error(s) creating Locational Marginal Price Event {datetime}: {e}",
                 extra={
                     "zoneKey": zoneKey,
                     "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                    "kind": "LMP",
+                    "kind": "Locational Marginal Price",
                 },
             )
 

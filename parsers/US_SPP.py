@@ -14,7 +14,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
-    LMPList,
+    LocationalMarginalPriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
@@ -431,7 +431,7 @@ def fetch_exchange(
 
 
 @refetch_frequency(timedelta(minutes=30))
-def fetch_realtime_local_marginal_price(
+def fetch_realtime_locational_marginal_price(
     zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -442,7 +442,7 @@ def fetch_realtime_local_marginal_price(
     if target_datetime.tzinfo is None:
         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
-    prices = LMPList(logger)
+    prices = LocationalMarginalPriceList(logger)
     node = "SPPNORTH_HUB"
 
     # Get data for target datetime and previous 30 minutes in 5 min intervals
@@ -469,7 +469,7 @@ def fetch_realtime_local_marginal_price(
 
 
 @refetch_frequency(timedelta(days=1))
-def fetch_dayahead_local_marginal_price(
+def fetch_dayahead_locational_marginal_price(
     zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -483,7 +483,7 @@ def fetch_dayahead_local_marginal_price(
     node = "SPPNORTH_HUB"
     # filter by column "Settlement Location" so it only includes SPPNORTH_HUB
     spp_data = raw_data[raw_data["Settlement Location"] == node]
-    prices = LMPList(logger)
+    prices = LocationalMarginalPriceList(logger)
     for _, row in spp_data.iterrows():
         prices.append(
             zoneKey=zone_key,

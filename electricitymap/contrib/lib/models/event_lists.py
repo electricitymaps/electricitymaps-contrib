@@ -10,10 +10,10 @@ import pandas as pd
 from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.events import (
-    LMP,
     Event,
     EventSourceType,
     Exchange,
+    LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -495,10 +495,10 @@ class PriceList(EventList):
             self.events.append(event)
 
 
-class LMPList(EventList):
-    events: list[LMP]
+class LocationalMarginalPriceList(EventList):
+    events: list[LocationalMarginalPrice]
 
-    def __getitem__(self, datetime) -> LMP:
+    def __getitem__(self, datetime) -> LocationalMarginalPrice:
         return next(event for event in self.events if event.datetime == datetime)
 
     def append(
@@ -511,7 +511,7 @@ class LMPList(EventList):
         node: str,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
-        event = LMP.create(
+        event = LocationalMarginalPrice.create(
             self.logger, zoneKey, datetime, source, price, currency, node, sourceType
         )
         if event:
