@@ -3,7 +3,7 @@ from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
 from operator import itemgetter
-from typing import Any
+from typing import Any, Generic, TypeVar
 
 import pandas as pd
 
@@ -26,15 +26,17 @@ from electricitymap.contrib.lib.types import ZoneKey
 CAPACITY_STRICT_THRESHOLD = 0
 CAPACITY_LOOSE_THRESHOLD = 0.02
 
+EventType = TypeVar("EventType", bound="Event")
 
-class EventList(ABC):
+
+class EventList(ABC, Generic[EventType]):
     """
     A wrapper around Events lists.
     Events are indexed by datetimes.
     """
 
     logger: Logger
-    events: list[Event]
+    events: list[EventType]
 
     def __init__(self, logger: Logger):
         self.events = []
@@ -46,7 +48,7 @@ class EventList(ABC):
     def __contains__(self, datetime) -> bool:
         return any(event.datetime == datetime for event in self.events)
 
-    def __setitem__(self, datetime, event: Event):
+    def __setitem__(self, datetime, event: EventType):
         self.events[self.events.index(self[datetime])] = event
 
     def __add__(self, other: "EventList") -> "EventList":
@@ -54,10 +56,8 @@ class EventList(ABC):
         new_list.events = self.events + other.events
         return new_list
 
-    # Abstract method to be implemented by subclasses so that the typing is correct.
-    @abstractmethod
-    def __getitem__(self, datetime) -> Event:
-        pass
+    def __getitem__(self, datetime) -> EventType:
+        return next(event for event in self.events if event.datetime == datetime)
 
     @abstractmethod
     def append(self, **kwargs):
@@ -88,7 +88,7 @@ class EventList(ABC):
         ).set_index("datetime")
 
 
-class AggregatableEventList(EventList, ABC):
+class AggregatableEventList(EventList[EventType], ABC, Generic[EventType]):
     """An abstract class to supercharge event lists with aggregation capabilities."""
 
     @classmethod
@@ -160,12 +160,7 @@ class AggregatableEventList(EventList, ABC):
         return source_types[0]
 
 
-class ExchangeList(AggregatableEventList):
-    events: list[Exchange]
-
-    def __getitem__(self, datetime) -> Exchange:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class ExchangeList(AggregatableEventList[Exchange]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -240,12 +235,7 @@ class ExchangeList(AggregatableEventList):
         return exchanges
 
 
-class ProductionBreakdownList(AggregatableEventList):
-    events: list[ProductionBreakdown]
-
-    def __getitem__(self, datetime) -> ProductionBreakdown:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -431,12 +421,7 @@ class ProductionBreakdownList(AggregatableEventList):
         return events
 
 
-class TotalProductionList(EventList):
-    events: list[TotalProduction]
-
-    def __getitem__(self, datetime) -> TotalProduction:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class TotalProductionList(EventList[TotalProduction]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -452,12 +437,7 @@ class TotalProductionList(EventList):
             self.events.append(event)
 
 
-class TotalConsumptionList(EventList):
-    events: list[TotalConsumption]
-
-    def __getitem__(self, datetime) -> TotalConsumption:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class TotalConsumptionList(EventList[TotalConsumption]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -473,12 +453,7 @@ class TotalConsumptionList(EventList):
             self.events.append(event)
 
 
-class PriceList(EventList):
-    events: list[Price]
-
-    def __getitem__(self, datetime) -> Price:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class PriceList(EventList[Price]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -495,12 +470,7 @@ class PriceList(EventList):
             self.events.append(event)
 
 
-class LocationalMarginalPriceList(EventList):
-    events: list[LocationalMarginalPrice]
-
-    def __getitem__(self, datetime) -> LocationalMarginalPrice:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
     def append(
         self,
         zoneKey: ZoneKey,
