@@ -98,8 +98,8 @@ class Parsers(ParsersBaseModel):
     consumptionForecast: str | None
     generationForecast: str | None
     productionPerModeForecast: str | None
-    dayaheadLMP: str | None
-    realtimeLMP: str | None
+    dayaheadLocationalMarginalPrice: str | None
+    realtimeLocationalMarginalPrice: str | None
     price: str | None
     production: str | None
     productionPerUnit: str | None

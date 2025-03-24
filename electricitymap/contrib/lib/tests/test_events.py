@@ -309,7 +309,7 @@ def test_prices_can_be_in_future():
     )
 
 
-def test_create_lmp():
+def test_create_locational_marginal_price():
     lmp = LocationalMarginalPrice(
         zoneKey=ZoneKey("US-CENT-SWPP"),
         datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
@@ -340,7 +340,7 @@ def test_create_lmp():
         "SPPNORTH_HUB\t",  # Trailing whitespace
     ],
 )
-def test_invalid_lmp_node_raises(node):
+def test_invalid_locational_marginal_price_node_raises(node):
     # This should raise a ValueError because the node is a empty string.
     with pytest.raises(ValueError):
         LocationalMarginalPrice(
