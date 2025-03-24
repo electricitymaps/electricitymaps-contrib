@@ -120,6 +120,7 @@
     "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
+      "electricity-mix": "Mix électrique",
       "total-emissions": "Émissions totales de carbone"
     },
     "graph-legends": {
