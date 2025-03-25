@@ -33,7 +33,7 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
     for key in keys_dict[kind]:
         if key not in datapoint:
             raise ValidationError(
-                f"{zone_key} - data point does not have the required keys:  { [key for key in keys_dict[kind] if key not in datapoint]} is missing"
+                f"{zone_key} - data point does not have the required keys:  {[key for key in keys_dict[kind] if key not in datapoint]} is missing"
             )
 
 
@@ -162,7 +162,7 @@ def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
     if obj.get("storage"):
         if not isinstance(obj["storage"], dict):
             raise ValidationError(
-                "storage value must be a dict, was " "{}".format(obj["storage"])
+                "storage value must be a dict, was {}".format(obj["storage"])
             )
         not_allowed_keys = set(obj["storage"]) - {"battery", "hydro"}
         if not_allowed_keys:

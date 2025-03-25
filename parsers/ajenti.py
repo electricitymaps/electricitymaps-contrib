@@ -86,9 +86,7 @@ def parse_payload(logger: Logger, payload) -> dict:
         "unknown": 0,
     }
     if "technologies" not in payload:
-        raise KeyError(
-            f"No 'technologies' in payload\n" f"serie : {json.dumps(payload)}"
-        )
+        raise KeyError(f"No 'technologies' in payload\nserie : {json.dumps(payload)}")
     else:
         logger.debug(f"serie : {json.dumps(payload)}")
     for technology in payload["technologies"]:
