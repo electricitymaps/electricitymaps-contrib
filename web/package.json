@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.234.0",
+  "version": "1.235.0",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "repository": {
     "type": "git",
@@ -198,7 +198,7 @@
     "ts-node": "^10.9.2",
     "typescript": "5.5.4",
     "typescript-eslint": "^7.5.0",
-    "vite": "6.0.11",
+    "vite": "6.2.3",
     "vite-plugin-pwa": "0.21.1",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "2.1.9",

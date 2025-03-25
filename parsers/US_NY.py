@@ -119,8 +119,7 @@ def fetch_production(
 
     if (datetime.now(tz=TIMEZONE) - target_datetime).days > 9:
         raise NotImplementedError(
-            "you can get data older than 9 days at the "
-            "url http://mis.nyiso.com/public/"
+            "you can get data older than 9 days at the url http://mis.nyiso.com/public/"
         )
 
     ny_date = target_datetime.strftime("%Y%m%d")
@@ -252,8 +251,7 @@ def fetch_consumption_forecast(
         datetime.now(tz=TIMEZONE) - target_datetime
     ).days > 9:  # TODO: If datetime is previous to 9 days, it need to be implemented
         raise NotImplementedError(
-            "you can get data older than 9 days at the "
-            "url http://mis.nyiso.com/public/"
+            "you can get data older than 9 days at the url http://mis.nyiso.com/public/"
         )
     ny_date = target_datetime.strftime("%Y%m%d")
 
