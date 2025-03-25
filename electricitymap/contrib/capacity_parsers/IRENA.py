@@ -47,7 +47,7 @@ def get_data_from_url(
     url_year = datetime.now().year
     filename_combinations = [
         f"Country_ELECSTAT_{url_year}_H2.px",
-        f"Country_ELECSTAT_{url_year-1}_H2.px",
+        f"Country_ELECSTAT_{url_year - 1}_H2.px",
     ]
     query_list = [
         {

@@ -158,7 +158,7 @@ class ParserInterfaceTestcase(unittest.TestCase):
 
     def test_unused_files(self):
         parser_files_used = {
-            f'{f.function_name.rsplit(".", 1)[0]}.py'
+            f"{f.function_name.rsplit('.', 1)[0]}.py"
             for f in self.zone_parser_functions
         }
 
