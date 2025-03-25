@@ -1970,4 +1970,4 @@ scripts = ["xmltodict"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">= 3.10, < 3.11"
-content-hash = "8da48c69584d194c980f3344b769229a1e31dd96316b646fecc50f73ec206ee0"
+content-hash = "1b412018c912dabb9833cea880bc6d073cc1b1f3d78d6dbce6f545c1e2d94ed4"
