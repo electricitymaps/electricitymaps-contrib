@@ -69,12 +69,12 @@ def fetch_production(
         if objData["name"].str.contains("Biofuel").any():
             objData.loc[objData["name"].str.contains("Biofuel"), "fueltype"] = "Biofuel"
 
-    assert (
-        not objData.capacity.isna().all()
-    ), "capacity data is entirely NaN - input column order may have changed"
-    assert (
-        not objData.output.isna().all()
-    ), "output data is entirely NaN - input column order may have changed"
+    assert not objData.capacity.isna().all(), (
+        "capacity data is entirely NaN - input column order may have changed"
+    )
+    assert not objData.output.isna().all(), (
+        "output data is entirely NaN - input column order may have changed"
+    )
 
     objData.drop(
         columns=["additional_1", "name", "additional_2", "percentage", "additional_3"],

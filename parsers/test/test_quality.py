@@ -90,9 +90,9 @@ def test_validate_production_missing_types():
 
 
 def test_validate_production_missing_types_allowed():
-    assert not validate_production(
-        p7, ZoneKey("CH")
-    ), "CH, NO, AU-TAS, US-NEISO don't require Coal/Oil/Unknown!"
+    assert not validate_production(p7, ZoneKey("CH")), (
+        "CH, NO, AU-TAS, US-NEISO don't require Coal/Oil/Unknown!"
+    )
 
 
 def test_validate_production_negative_production():

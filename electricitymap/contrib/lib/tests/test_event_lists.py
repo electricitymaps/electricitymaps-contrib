@@ -51,17 +51,18 @@ def test_append_to_list_logs_error():
 
 
 def test_merge_exchanges():
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
     exchange_list_1 = ExchangeList(logging.Logger("test"))
     exchange_list_1.append(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=dt,
         netFlow=1,
         source="trust.me",
     )
     exchange_list_2 = ExchangeList(logging.Logger("test"))
     exchange_list_2.append(
         zoneKey=ZoneKey("AT->DE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        datetime=dt,
         netFlow=2,
         source="trust.me",
     )
@@ -69,8 +70,8 @@ def test_merge_exchanges():
         [exchange_list_1, exchange_list_2], logging.Logger("test")
     )
     assert len(exchanges) == 1
-    assert exchanges.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-    assert exchanges.events[0].netFlow == 3
+    assert exchanges[dt].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert exchanges[dt].netFlow == 3
 
 
 def test_merge_exchanges_with_none():
@@ -863,9 +864,7 @@ def test_update_production_with_different_source():
     assert updated_list.events[0].production is not None
     assert updated_list.events[0].production.wind == 20
     assert updated_list.events[0].production.coal == 20
-    assert updated_list.events[0].source == ", ".join(
-        set("trust.me, trust.me.too".split(", "))
-    )
+    assert updated_list.events[0].source == ", ".join({"trust.me", "trust.me.too"})
 
 
 def test_update_production_with_different_sourceType():

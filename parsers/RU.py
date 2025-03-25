@@ -154,7 +154,7 @@ def fetch_production_1st_synchronous_zone(
                 )
 
         # Date
-        hour = "%02d" % (int(datapoint["INTERVAL"]))
+        hour = f"{int(datapoint['INTERVAL']):02d}"
         row["datetime"] = datetime.strptime(f"{date} {hour}", "%Y.%m.%d %H").replace(
             tzinfo=TIMEZONE
         )
