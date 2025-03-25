@@ -78,6 +78,8 @@ emissionFactors:
       value: 12.62
 region: Europe
 sources:
+  Production:
+    link: https://www.eem.pt/pt/conteudo/sustentabilidade/rotulagem-de-energia-eletrica/evolucao-mensal-do-mix-da-oferta-e-das-emissoes-de-co2/
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
