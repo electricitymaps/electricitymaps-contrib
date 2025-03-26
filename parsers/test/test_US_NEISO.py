@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-from requests_mock import GET
+from requests_mock import GET, POST
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.US_NEISO import fetch_consumption_forecast, fetch_wind_solar_forecasts
@@ -13,10 +13,8 @@ def test_fetch_consumption_forecast(adapter, session, snapshot):
     # Mock url request
     data = Path(base_path_to_mock, "day_ahead_load_forecast_20250317.xml")
     adapter.register_uri(
-        GET,
-        re.compile(
-            r"https://www\.iso-ne\.com/ws/wsclient\?_nstmp_startDate=\d+%2F\d+%2F\d+&_nstmp_endDate=\d+%2F\d+%2F\d+&_nstmp_requestType=systemload"
-        ),
+        POST,
+        "https://www.iso-ne.com/ws/wsclient",
         text=data.read_text(),
     )
 

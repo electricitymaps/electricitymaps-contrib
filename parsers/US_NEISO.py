@@ -254,7 +254,7 @@ def fetch_consumption_forecast(
     }
 
     # Request data
-    raw_data = get_json_data(target_datetime=None, params=postdata)
+    raw_data = get_json_data(target_datetime=None, params=postdata, session=session)
 
     all_consumption_events = raw_data["forecast"]
 
