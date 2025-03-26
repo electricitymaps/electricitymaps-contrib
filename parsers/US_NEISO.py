@@ -206,9 +206,11 @@ def fetch_exchange(
 
     postdata["_nstmp_requestType"] = "externalflow"
 
-    exchanges = ExchangeList(logger)
+    unmerged_exchanges: list[ExchangeList] = []
     exchange_data = get_json_data(target_datetime, postdata, session)
-    for _, exchange_values in exchange_data.items():
+    for exchange_values in exchange_data.values():
+        # Creates a exchange list for each exchange
+        exchanges = ExchangeList(logger)
         for datapoint in exchange_values:
             time_string = datapoint.pop("BeginDate", None)
             if time_string:
@@ -225,11 +227,11 @@ def fetch_exchange(
                 netFlow=datapoint["Actual"] * multiplier,
                 source=SOURCE,
             )
+        # Append the exchange list to the unmerged list
+        unmerged_exchanges.append(exchanges)
 
-    # This will merge exchanges with the same datetime
-    exchanges = ExchangeList.merge_exchanges([exchanges], logger)
-
-    return exchanges.to_list()
+    # Merge all exchanges into one
+    return ExchangeList.merge_exchanges(unmerged_exchanges, logger).to_list()
 
 
 def fetch_consumption_forecast(
