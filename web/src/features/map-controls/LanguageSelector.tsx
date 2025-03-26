@@ -7,11 +7,9 @@ import { TrackEvent } from 'utils/constants';
 type LanguageNamesKey = keyof typeof languageNames;
 
 export function LanguageSelector({
-  isInSettings,
   parentRef,
   onClose,
 }: {
-  isInSettings?: boolean;
   parentRef?: React.RefObject<HTMLElement>;
   onClose?: () => void;
 }) {
@@ -26,7 +24,7 @@ export function LanguageSelector({
 
   // Calculate position based on parent element
   useEffect(() => {
-    if (isInSettings && parentRef?.current) {
+    if (parentRef?.current) {
       const rect = parentRef.current.getBoundingClientRect();
       setPosition({
         top: rect.bottom + window.scrollY,
@@ -34,14 +32,10 @@ export function LanguageSelector({
         width: rect.width,
       });
     }
-  }, [isInSettings, parentRef]);
+  }, [parentRef]);
 
   // Handle click outside to close
   useEffect(() => {
-    if (!isInSettings) {
-      return;
-    }
-
     function handleClickOutside(event: MouseEvent) {
       if (
         dropdownReference.current &&
@@ -57,15 +51,13 @@ export function LanguageSelector({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isInSettings, onClose, parentRef]);
+  }, [onClose, parentRef]);
 
   const handleLanguageSelect = (languageKey: LanguageNamesKey) => {
     i18n.changeLanguage(languageKey);
     setSelectedLanguage(languageNames[languageKey]);
     trackEvent(TrackEvent.LANGUAGE_SELECTED, { language: languageNames[languageKey] });
-    if (isInSettings) {
-      onClose?.();
-    }
+    onClose?.();
   };
 
   return (

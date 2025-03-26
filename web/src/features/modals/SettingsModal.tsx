@@ -1,5 +1,7 @@
+import Accordion from 'components/Accordion';
 import GlassContainer from 'components/GlassContainer';
 import HorizontalDivider from 'components/HorizontalDivider';
+import Link from 'components/Link';
 import SwitchToggle from 'components/ToggleSwitch';
 import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
@@ -158,13 +160,54 @@ function LanguageSelectorToggle() {
           {selectedLanguage}
         </span>
       </button>
-      {isOpen && (
-        <LanguageSelector
-          isInSettings
-          parentRef={buttonReference}
-          onClose={handleClose}
-        />
-      )}
+      {isOpen && <LanguageSelector parentRef={buttonReference} onClose={handleClose} />}
+    </div>
+  );
+}
+
+function AboutElectricityMaps() {
+  const { t } = useTranslation();
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const appVersion = APP_VERSION; // This could be imported from a version file or environment variable
+
+  return (
+    <div className="w-full p-2">
+      <Accordion
+        title={
+          <p className="text-secondary dark:text-secondary-dark">{t('info.title')}</p>
+        }
+        isCollapsed={isCollapsed}
+        setState={setIsCollapsed}
+      >
+        <div className="mt-2 text-xs text-secondary dark:text-secondary-dark">
+          <p className="mb-4">
+            <Link href="https://electricitymaps.com">Electricity Maps</Link> offers an API
+            that delivers real-time and predictive electricity grid signals.
+          </p>
+
+          <div className="mb-2 flex items-center">
+            <Link isExternal href="https://electricitymaps.com/learn-more">
+              Learn more
+            </Link>
+          </div>
+
+          <div className="mb-2 flex items-center">
+            <Link isExternal href="https://electricitymaps.com/privacy-policy">
+              Privacy Policy
+            </Link>
+          </div>
+
+          <div className="mb-4 flex items-center">
+            <Link isExternal href="https://electricitymaps.com/legal-notice">
+              Legal Notice
+            </Link>
+          </div>
+
+          <p className="pb-1 text-xs text-secondary dark:text-secondary-dark">
+            App version: {appVersion}
+          </p>
+        </div>
+      </Accordion>
     </div>
   );
 }
@@ -172,7 +215,7 @@ function LanguageSelectorToggle() {
 export function SettingsModalContent() {
   const { t } = useTranslation();
   return (
-    <div className="p-2">
+    <div className="max-h-[80vh] overflow-y-auto p-2">
       <div className="flex w-full flex-col ">
         <SpatialAggregatesToggle />
         <p className="p-2 text-xs text-secondary dark:text-secondary-dark">
@@ -187,6 +230,8 @@ export function SettingsModalContent() {
       <ThemeToggleGroup />
       <HorizontalDivider />
       <ColorblindModeToggle />
+      <HorizontalDivider />
+      <AboutElectricityMaps />
     </div>
   );
 }
@@ -230,7 +275,7 @@ export default function SettingsModal() {
   }
 
   return (
-    <div className="absolute right-72 top-3 z-30 mr-14 mt-[env(safe-area-inset-top)]">
+    <div className="absolute right-72 top-3 z-30 mr-14 mt-[env(safe-area-inset-top)] max-h-screen">
       <GlassContainer
         ref={modalReference}
         className="w-72 overflow-hidden rounded-xl shadow-lg"

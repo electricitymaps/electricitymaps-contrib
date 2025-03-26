@@ -21,7 +21,6 @@ it('mounts and selects a language', () => {
         </button>
         {isOpen && (
           <LanguageSelector
-            isInSettings={true}
             parentRef={buttonReference}
             onClose={() => setIsOpen(false)}
           />
