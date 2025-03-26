@@ -6,6 +6,7 @@
 
 # Standard library imports
 import csv
+import io
 import re
 import urllib.parse
 from datetime import datetime, timedelta
@@ -163,6 +164,12 @@ def get_csd_report_timestamp(report):
     ).replace(tzinfo=TIMEZONE)
 
 
+def _get_wind_solar_data(session: Session, url: str) -> pd.DataFrame:
+    response = session.get(url)
+    csv = pd.read_csv(io.StringIO(response.text))
+    return csv
+
+
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey = DEFAULT_ZONE_KEY,
     session: Session | None = None,
@@ -175,11 +182,11 @@ def fetch_wind_solar_forecasts(
     # Requests
     # Wind 7 days
     url_wind = "http://ets.aeso.ca/Market/Reports/Manual/Operations/prodweb_reports/wind_solar_forecast/wind_rpt_longterm.csv"
-    csv_wind = pd.read_csv(url_wind)
+    csv_wind = _get_wind_solar_data(session, url_wind)
 
     # Solar 7 days
     url_solar = "http://ets.aeso.ca/Market/Reports/Manual/Operations/prodweb_reports/wind_solar_forecast/solar_rpt_longterm.csv"
-    csv_solar = pd.read_csv(url_solar)
+    csv_solar = _get_wind_solar_data(session, url_solar)
 
     all_production_events = csv_wind.merge(
         csv_solar, on="Forecast Transaction Date", suffixes=("_wind", "_solar")

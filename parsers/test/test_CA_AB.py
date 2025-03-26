@@ -25,8 +25,10 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
         text=data_solar.read_text(),
     )
 
-    # Run function under test
-    assert snapshot == fetch_wind_solar_forecasts(
+    forecasts = fetch_wind_solar_forecasts(
         zone_key=ZoneKey("CA-AB"),
         session=session,
     )
+
+    # Run function under test
+    assert snapshot == forecasts
