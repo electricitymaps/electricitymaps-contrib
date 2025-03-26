@@ -12,19 +12,18 @@ function Link({
 }) {
   if (isExternal) {
     return (
-      <div className="flex items-center">
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener"
-          className="text-sm font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500"
-        >
-          {children}
-        </a>
-        <ExternalLink size={14} className="ml-1 text-emerald-800 dark:text-emerald-500" />
-      </div>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener"
+        className="flex w-full items-center justify-between text-sm font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500"
+      >
+        <span>{children}</span>
+        <ExternalLink size={14} />
+      </a>
     );
   }
+
   return (
     <a
       href={href}

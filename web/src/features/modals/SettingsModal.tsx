@@ -142,7 +142,7 @@ function LanguageSelectorToggle() {
   const handleClose = () => setIsOpen(false);
 
   return (
-    <div className="w-full p-2">
+    <div className="w-full px-2 pt-2">
       <button
         ref={buttonReference}
         className="flex w-full items-center justify-between"
@@ -171,7 +171,7 @@ function AboutElectricityMaps() {
   const appVersion = APP_VERSION; // This could be imported from a version file or environment variable
 
   return (
-    <div className="w-full p-2">
+    <div className="w-full px-2 pt-2">
       <Accordion
         title={
           <p className="text-secondary dark:text-secondary-dark">{t('info.title')}</p>
@@ -185,25 +185,19 @@ function AboutElectricityMaps() {
             that delivers real-time and predictive electricity grid signals.
           </p>
 
-          <div className="mb-2 flex items-center">
-            <Link isExternal href="https://electricitymaps.com/learn-more">
-              Learn more
-            </Link>
-          </div>
-
-          <div className="mb-2 flex items-center">
+          <div className="mb-2">
             <Link isExternal href="https://electricitymaps.com/privacy-policy">
               Privacy Policy
             </Link>
           </div>
 
-          <div className="mb-4 flex items-center">
+          <div className="mb-4">
             <Link isExternal href="https://electricitymaps.com/legal-notice">
               Legal Notice
             </Link>
           </div>
 
-          <p className="pb-1 text-xs text-secondary dark:text-secondary-dark">
+          <p className="pb-2 text-xs text-secondary dark:text-secondary-dark">
             App version: {appVersion}
           </p>
         </div>
