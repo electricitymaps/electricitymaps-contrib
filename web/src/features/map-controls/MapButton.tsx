@@ -1,10 +1,13 @@
 import * as Toggle from '@radix-ui/react-toggle';
 import { GlassBackdrop } from 'components/GlassContainer';
 import LabelTooltip from 'components/tooltips/LabelTooltip';
+import { MutableRefObject } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useIsMobile } from 'utils/styling';
 
-import TooltipWrapper from '../../components/tooltips/TooltipWrapper';
+import TooltipWrapper, {
+  TooltipWrapperReference,
+} from '../../components/tooltips/TooltipWrapper';
 
 interface MapButtonProperties {
   onClick?: (event: React.MouseEvent) => void;
@@ -15,6 +18,7 @@ interface MapButtonProperties {
   asToggle?: boolean;
   ariaLabel?: string;
   isMobile?: boolean;
+  tooltipRef?: MutableRefObject<TooltipWrapperReference | null>;
 }
 
 export default function MapButton({
@@ -25,6 +29,7 @@ export default function MapButton({
   onClick,
   asToggle,
   ariaLabel,
+  tooltipRef,
 }: MapButtonProperties) {
   const Component = asToggle ? Toggle.Root : 'div';
   const isMobile = useIsMobile();
@@ -49,7 +54,10 @@ export default function MapButton({
   }
 
   return (
-    <TooltipWrapper tooltipContent={<LabelTooltip>{tooltipText}</LabelTooltip>}>
+    <TooltipWrapper
+      tooltipContent={<LabelTooltip>{tooltipText}</LabelTooltip>}
+      ref={tooltipRef}
+    >
       <Component
         onClick={onClick}
         className={twMerge(

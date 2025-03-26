@@ -4,9 +4,10 @@ import {
 } from 'features/modals/modalAtoms';
 import { useSetAtom } from 'jotai';
 import { LayersIcon, SettingsIcon } from 'lucide-react';
-import { ReactElement } from 'react';
+import { ReactElement, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { TooltipWrapperReference } from '../../components/tooltips/TooltipWrapper';
 import MapButton from './MapButton';
 
 export default function MapButtons(): ReactElement {
@@ -14,13 +15,25 @@ export default function MapButtons(): ReactElement {
   const setIsSettingsModalOpen = useSetAtom(isSettingsModalOpenAtom);
   const setIsLayersModalOpen = useSetAtom(isLayersModalOpenAtom);
 
+  // Refs for tooltip wrappers to be able to close them programmatically
+  const settingsTooltipReference = useRef<TooltipWrapperReference | null>(null);
+  const layersTooltipReference = useRef<TooltipWrapperReference | null>(null);
+
   const handleToggleSettingsModal = (event: React.MouseEvent) => {
     event.stopPropagation();
+    // Close the tooltip if it's open
+    if (settingsTooltipReference.current) {
+      settingsTooltipReference.current.close();
+    }
     setIsSettingsModalOpen();
   };
 
   const handleToggleLayersModal = (event: React.MouseEvent) => {
     event.stopPropagation();
+    // Close the tooltip if it's open
+    if (layersTooltipReference.current) {
+      layersTooltipReference.current.close();
+    }
     setIsLayersModalOpen();
   };
 
@@ -33,6 +46,7 @@ export default function MapButtons(): ReactElement {
           onClick={handleToggleSettingsModal}
           dataTestId="settings-button"
           ariaLabel={t('aria.label.settings')}
+          tooltipRef={settingsTooltipReference}
         />
         <MapButton
           icon={<LayersIcon size={20} />}
@@ -40,6 +54,7 @@ export default function MapButtons(): ReactElement {
           onClick={handleToggleLayersModal}
           dataTestId="layers-button"
           ariaLabel={t('aria.label.layers')}
+          tooltipRef={layersTooltipReference}
         />
       </div>
     </div>
