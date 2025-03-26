@@ -25,7 +25,7 @@ export default function MapButtons(): ReactElement {
   };
 
   return (
-    <div className="pointer-events-none absolute right-3 top-2 z-20 mt-[env(safe-area-inset-top)] flex flex-col items-end">
+    <div className="pointer-events-none absolute right-3 top-3 z-20 mt-[env(safe-area-inset-top)] flex flex-col items-end">
       <div className="pointer-events-auto flex flex-col gap-2">
         <MapButton
           icon={<SettingsIcon size={20} />}

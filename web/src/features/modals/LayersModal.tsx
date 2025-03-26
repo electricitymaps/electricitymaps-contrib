@@ -115,7 +115,7 @@ export default function LayersModal() {
   }
 
   return (
-    <div className="absolute right-72 top-2 z-30 mr-14 mt-[env(safe-area-inset-top)]">
+    <div className="absolute right-72 top-3 z-30 mr-14 mt-[env(safe-area-inset-top)]">
       <GlassContainer
         ref={modalReference}
         className="w-72 overflow-hidden rounded-xl shadow-lg"
