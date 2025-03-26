@@ -49,6 +49,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
         unit={'gCO₂eq / kWh'}
         isEstimated={Boolean(text)}
         id={Charts.CARBON_CHART}
+        className="mb-0.5"
       />
       <AreaGraph
         testId="details-carbon-graph"

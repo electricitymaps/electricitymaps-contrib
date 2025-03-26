@@ -1,6 +1,8 @@
 import * as Portal from '@radix-ui/react-portal';
 import EstimationBadge from 'components/EstimationBadge';
+import { TimeDisplay } from 'components/TimeDisplay';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import { ZoneHeaderGauges } from 'features/panels/zone/ZoneHeaderGauges';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { TFunction } from 'i18next';
@@ -45,7 +47,6 @@ function BarBreakdownChart({
     isLoading,
     height,
   } = useBarBreakdownChartData();
-
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
@@ -125,7 +126,9 @@ function BarBreakdownChart({
     <RoundedCard ref={ref}>
       <ChartTitle
         titleText={titleText}
-        unit={graphUnit}
+        subtitle={
+          <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300" />
+        }
         badge={
           hasEstimationPill ? (
             <EstimationBadge
@@ -137,6 +140,10 @@ function BarBreakdownChart({
         }
         id={Charts.BAR_BREAKDOWN_CHART}
       />
+      {/* TODO(cady): check if zoneKey === zoneId */}
+      <div className="my-4">
+        <ZoneHeaderGauges zoneKey={currentZoneDetail.zoneKey} />
+      </div>
       {!displayByEmissions && isHourly && (
         <CapacityLegend
           text={t('country-panel.graph-legends.installed-capacity')}

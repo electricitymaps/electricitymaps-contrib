@@ -12,6 +12,7 @@ type Props = {
   className?: string;
   isEstimated?: boolean;
   id: Charts;
+  subtitle?: React.ReactElement;
 };
 
 export function ChartTitle({
@@ -21,6 +22,7 @@ export function ChartTitle({
   className,
   isEstimated,
   id,
+  subtitle,
 }: Props) {
   const showMoreOptions = useFeatureFlag('more-options-dropdown');
   const url = useGetCurrentUrl();
@@ -45,7 +47,14 @@ export function ChartTitle({
           </MoreOptionsDropdown>
         )}
       </div>
-      {unit && <div className="text-sm dark:text-neutral-300">{unit}</div>}
+      <div className="flex flex-row items-center justify-between">
+        {subtitle}
+        {unit && (
+          <div className="ml-auto text-xs text-neutral-400 dark:text-neutral-300">
+            {unit}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
