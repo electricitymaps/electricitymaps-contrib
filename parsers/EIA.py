@@ -384,7 +384,7 @@ PRODUCTION_MIX = (
     f"{BASE_URL}/fuel-type-data/data/"
     "?data[]=value&facets[respondent][]={}&facets[fueltype][]={}&frequency=hourly"
 )
-EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourly"
+EXCHANGE = f"{BASE_URL}/interchange-data/data/?data[]=value{{}}&frequency=hourly"
 
 FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-TEX-ERCO": ["biomass", "geothermal", "oil"],

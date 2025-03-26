@@ -74,7 +74,6 @@
     "disabledPriceReasons": {
       "licensing": "Elpriser är ej tillgängliga för detta område på grund av licensvillkor"
     },
-    "disabledBreakdownChartReason": "Inaktiverad för konsumtionsvyn. Växla till produktionsvyn för att aktivera ursprungsdiagrammet.",
     "dataIsDelayed": "Data för denna region kan vara upp till {{hours}} timmar fördröjd. Aktuell data kan inte visas.",
     "estimated": "uppskattad",
     "aggregated": "aggregerad",
@@ -87,11 +86,7 @@
     "now": "Nu",
     "by-source": {
       "emissions": "Koldioxidutsläpp",
-      "electricity-production": "Elproduktion",
-      "electricity-consumption": "Elkonsumtion",
-      "total-emissions": "Totala koldioxidutsläpp",
-      "total-electricity-production": "Total elproduktion",
-      "total-electricity-consumption": "Total elkonsumtion"
+      "total-emissions": "Totala koldioxidutsläpp"
     },
     "electricityconsumption": "Elektricitet",
     "emissions": "Utsläpp",
