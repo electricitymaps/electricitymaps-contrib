@@ -6,7 +6,10 @@
     "share-app": "Share the app:"
   },
   "settings-modal": {
-    "title": "Settings"
+    "title": "Settings",
+    "flows": "Electricity flows",
+    "flow-tracing-enabled": "Disable flow-tracing to exclude physical electricity interconnectors between regions.",
+    "flow-tracing-disabled": "Enable flow-tracing to include physical electricity interconnectors between regions."
   },
   "ranking-panel": {
     "title": "Electricity Grid Carbon Emissions",
@@ -335,7 +338,7 @@
   "legends": {
     "windpotential": "Wind power potential",
     "solarpotential": "Solar power potential",
-    "colorblindmode": "color blind mode",
+    "colorblindmode": "Color blind mode",
     "carbonintensity": "Carbon intensity"
   },
   "tooltips": {
@@ -354,6 +357,8 @@
     "withcarbonintensity": "with a carbon intensity of",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
+    "settings": "Settings",
+    "layers": "Map layers",
     "showWindLayer": "Show wind layer",
     "hideWindLayer": "Hide wind layer",
     "showSolarLayer": "Show solar layer",
@@ -384,7 +389,11 @@
       "solarLayer": "Solar layer",
       "changeTheme": "Change theme",
       "hideSidePanel": "Hide side panel",
-      "showSidePanel": "Show side panel"
+      "showSidePanel": "Show side panel",
+      "settings": "Settings",
+      "layers": "Map layers",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out"
     }
   },
   "aggregateButtons": {

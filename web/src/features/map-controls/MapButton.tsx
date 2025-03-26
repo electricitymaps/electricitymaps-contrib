@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge';
 import TooltipWrapper from '../../components/tooltips/TooltipWrapper';
 
 interface MapButtonProperties {
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent) => void;
   icon: JSX.Element;
   tooltipText?: string;
   className?: string;

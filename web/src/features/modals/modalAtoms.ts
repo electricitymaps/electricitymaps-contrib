@@ -6,10 +6,22 @@ const activeModalAtom = atom<ModalType>(null);
 
 export const isSettingsModalOpenAtom = atom(
   (get) => get(activeModalAtom) === 'settings',
-  (_, set) => set(activeModalAtom, 'settings')
+  (get, set, value?: boolean) => {
+    if (value === false) {
+      set(activeModalAtom, null);
+    } else {
+      set(activeModalAtom, get(activeModalAtom) === 'settings' ? null : 'settings');
+    }
+  }
 );
 
 export const isLayersModalOpenAtom = atom(
   (get) => get(activeModalAtom) === 'layers',
-  (_, set) => set(activeModalAtom, 'layers')
+  (get, set, value?: boolean) => {
+    if (value === false) {
+      set(activeModalAtom, null);
+    } else {
+      set(activeModalAtom, get(activeModalAtom) === 'layers' ? null : 'layers');
+    }
+  }
 );

@@ -1,108 +1,242 @@
-import { Button } from 'components/Button';
-import Modal from 'components/Modal';
-import { useFeatureFlag } from 'features/feature-flags/api';
-import ConsumptionProductionToggle from 'features/map-controls/ConsumptionProductionToggle';
+import GlassContainer from 'components/GlassContainer';
+import HorizontalDivider from 'components/HorizontalDivider';
+import SwitchToggle from 'components/ToggleSwitch';
 import { LanguageSelector } from 'features/map-controls/LanguageSelector';
-import { weatherButtonMap } from 'features/map-controls/MapControls';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
-import ThemeSelector from 'features/map-controls/ThemeSelector';
-import { useAtom, useAtomValue } from 'jotai';
-import { EyeOff } from 'lucide-react';
+import { useAtom } from 'jotai';
+import { LaptopMinimal, Moon, Sun } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MoonLoader } from 'react-spinners';
-import { ToggleOptions } from 'utils/constants';
-import { areWeatherLayersAllowedAtom, colorblindModeAtom } from 'utils/state/atoms';
+import { languageNames } from 'translation/locales';
+import { Mode, ThemeOptions } from 'utils/constants';
+import {
+  colorblindModeAtom,
+  productionConsumptionAtom,
+  themeAtom,
+} from 'utils/state/atoms';
 
 import { isSettingsModalOpenAtom } from './modalAtoms';
 
-function WeatherToggleButton({
-  allowed,
-  type,
-}: {
-  allowed: boolean;
-  type: 'wind' | 'solar';
-}) {
+function ElectricityFlowsToggle() {
   const { t } = useTranslation();
-  const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
-  const [isLoadingLayer, setIsLoadingLayer] = useAtom(weatherButtonMap[type].loadingAtom);
-  const isEnabled = enabled === ToggleOptions.ON;
-  const Icon = weatherButtonMap[type].icon;
-  const typeAsTitlecase = type.charAt(0).toUpperCase() + type.slice(1);
+  const [mode, setMode] = useAtom(productionConsumptionAtom);
 
-  const onToggle = () => {
-    if (!isEnabled) {
-      setIsLoadingLayer(true);
-    }
-    setEnabled(isEnabled ? ToggleOptions.OFF : ToggleOptions.ON);
+  const onToggle = (isEnabled: boolean) => {
+    setMode(isEnabled ? Mode.CONSUMPTION : Mode.PRODUCTION);
   };
 
   return (
-    <>
-      {!allowed && <p className="text-sm italic text-red-400">{t(`${type}DataError`)}</p>}
-
-      <Button
-        onClick={isLoadingLayer ? () => {} : onToggle}
-        size="lg"
-        type={isEnabled ? 'primary' : 'secondary'}
-        isDisabled={!allowed}
-        backgroundClasses="w-[330px] h-[45px]"
-        icon={
-          isLoadingLayer ? (
-            <MoonLoader size={14} color="white" className="mr-1" />
-          ) : (
-            <Icon size={weatherButtonMap[type].iconSize} />
-          )
-        }
-      >
+    <div className="flex w-full flex-col space-y-1 p-2">
+      <div className="flex items-center justify-between">
+        <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
+          {t('settings-modal.flows')}
+        </span>
+        <SwitchToggle
+          isEnabled={mode === Mode.CONSUMPTION}
+          onChange={onToggle}
+          ariaLabel={t('settings-modal.flows')}
+        />
+      </div>
+      <span className="text-xs text-secondary dark:text-secondary-dark">
         {t(
-          isEnabled
-            ? `tooltips.hide${typeAsTitlecase}Layer`
-            : `tooltips.show${typeAsTitlecase}Layer`
+          mode === Mode.CONSUMPTION
+            ? 'settings-modal.flow-tracing-enabled'
+            : 'settings-modal.flow-tracing-disabled'
         )}
-      </Button>
-    </>
+      </span>
+    </div>
+  );
+}
+
+function ThemeToggle({
+  theme,
+  icon,
+  selectedTheme,
+  setSelectedTheme,
+}: {
+  theme: ThemeOptions;
+  icon: React.ReactNode;
+  selectedTheme: ThemeOptions;
+  setSelectedTheme: (theme: ThemeOptions) => void;
+}) {
+  return (
+    <button
+      onClick={() => setSelectedTheme(theme)}
+      className={`relative flex items-center justify-center p-2.5 ${
+        selectedTheme === theme ? 'rounded-2xl bg-neutral-200 dark:bg-neutral-700' : ''
+      }`}
+    >
+      {icon}
+    </button>
+  );
+}
+
+function ThemeToggleGroup() {
+  const { t } = useTranslation();
+  const [selectedTheme, setSelectedTheme] = useAtom(themeAtom);
+  const ICON_SIZE = 20;
+
+  return (
+    <div className="flex w-full items-center justify-between p-2">
+      <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
+        {t('tooltips.changeTheme')}
+      </span>
+      <div className="flex space-x-1">
+        <ThemeToggle
+          theme={ThemeOptions.LIGHT}
+          icon={<Sun size={ICON_SIZE} />}
+          selectedTheme={selectedTheme}
+          setSelectedTheme={setSelectedTheme}
+        />
+        <ThemeToggle
+          theme={ThemeOptions.DARK}
+          icon={<Moon size={ICON_SIZE} />}
+          selectedTheme={selectedTheme}
+          setSelectedTheme={setSelectedTheme}
+        />
+        <ThemeToggle
+          theme={ThemeOptions.SYSTEM}
+          icon={<LaptopMinimal size={ICON_SIZE} />}
+          selectedTheme={selectedTheme}
+          setSelectedTheme={setSelectedTheme}
+        />
+      </div>
+    </div>
+  );
+}
+
+function ColorblindModeToggle() {
+  const { t } = useTranslation();
+  const [isEnabled, setIsEnabled] = useAtom(colorblindModeAtom);
+
+  const onToggle = (newValue: boolean) => {
+    setIsEnabled(newValue);
+  };
+
+  return (
+    <div className="flex w-full items-center justify-between p-2">
+      <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
+        {t('legends.colorblindmode')}
+      </span>
+      <SwitchToggle
+        isEnabled={isEnabled}
+        onChange={onToggle}
+        ariaLabel={t('legends.colorblindmode')}
+      />
+    </div>
+  );
+}
+
+function LanguageSelectorToggle() {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const currentLanguageKey = i18n.language as keyof typeof languageNames;
+  const selectedLanguage = languageNames[currentLanguageKey] ?? 'English';
+
+  const [isOpen, setIsOpen] = useState(false);
+  const buttonReference = useRef<HTMLButtonElement>(null);
+
+  const handleToggle = () => setIsOpen(!isOpen);
+  const handleClose = () => setIsOpen(false);
+
+  return (
+    <div className="w-full p-2">
+      <button
+        ref={buttonReference}
+        className="flex w-full items-center justify-between"
+        onClick={handleToggle}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            handleToggle();
+          }
+        }}
+      >
+        <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
+          {t('Language')}
+        </span>
+        <span className="text-sm text-secondary dark:text-secondary-dark">
+          {selectedLanguage}
+        </span>
+      </button>
+      {isOpen && (
+        <LanguageSelector
+          isInSettings
+          parentRef={buttonReference}
+          onClose={handleClose}
+        />
+      )}
+    </div>
   );
 }
 
 export function SettingsModalContent() {
-  const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
-  const [isColorblindModeEnabled, setIsColorblindModeEnabled] =
-    useAtom(colorblindModeAtom);
-  const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col items-center space-y-2">
-      <div className="rounded-full bg-neutral-500">
-        {!isConsumptionOnlyMode && (
-          <ConsumptionProductionToggle transparentBackground={false} />
-        )}
+    <div className="p-2">
+      <div className="flex w-full flex-col ">
+        <SpatialAggregatesToggle />
+        <p className="p-2 text-xs text-secondary dark:text-secondary-dark">
+          {t('tooltips.aggregateInfo')}
+        </p>
       </div>
-      <div className="rounded-full bg-neutral-500">
-        <SpatialAggregatesToggle transparentBackground={false} />
-      </div>
-      <LanguageSelector isMobile />
-      <WeatherToggleButton allowed={areWeatherLayersAllowed} type="wind" />
-      <WeatherToggleButton allowed={areWeatherLayersAllowed} type="solar" />
-      <Button
-        size="lg"
-        type={isColorblindModeEnabled ? 'primary' : 'secondary'}
-        backgroundClasses="w-[330px] h-[45px]"
-        onClick={() => setIsColorblindModeEnabled(!isColorblindModeEnabled)}
-        icon={<EyeOff size={20} />}
-      >
-        {t('legends.colorblindmode')}
-      </Button>
-      <ThemeSelector isMobile />
+      <HorizontalDivider />
+      <ElectricityFlowsToggle />
+      <HorizontalDivider />
+      <LanguageSelectorToggle />
+      <HorizontalDivider />
+      <ThemeToggleGroup />
+      <HorizontalDivider />
+      <ColorblindModeToggle />
     </div>
   );
 }
 
 export default function SettingsModal() {
-  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useAtom(isSettingsModalOpenAtom);
+  const modalReference = useRef<HTMLDivElement>(null);
+
+  // Handle click outside to close modal
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      // Check if the event target is the settings button
+      const isSettingsButton = (event.target as Element)?.closest(
+        '[data-testid="settings-button"]'
+      );
+      // Don't close if clicking the settings button
+      if (isSettingsButton) {
+        return;
+      }
+      // Check if the click target is a node and the modal ref exists
+      if (
+        modalReference.current &&
+        event.target instanceof Node && // Type guard for safety
+        !modalReference.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside, true);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, [isOpen, setIsOpen]);
+
+  if (!isOpen) {
+    return null;
+  }
+
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={t('settings-modal.title')}>
-      <SettingsModalContent />
-    </Modal>
+    <div className="absolute right-72 top-2 z-30 mr-14 mt-[env(safe-area-inset-top)]">
+      <GlassContainer
+        ref={modalReference}
+        className="w-72 overflow-hidden rounded-xl shadow-lg"
+      >
+        <SettingsModalContent />
+      </GlassContainer>
+    </div>
   );
 }
