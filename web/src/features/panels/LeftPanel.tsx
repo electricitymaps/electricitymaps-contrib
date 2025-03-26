@@ -1,5 +1,4 @@
 import Logo from 'components/Logo';
-import MobileButtons from 'features/map-controls/MobileButtons';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { Outlet, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -8,7 +7,6 @@ function MapMobileHeader() {
   return (
     <div className="flex w-full items-center justify-between bg-gradient-to-b to-transparent px-2 pb-4 dark:from-black/60">
       <Logo className="h-10 w-44  fill-black dark:fill-white" />
-      <MobileButtons />
     </div>
   );
 }

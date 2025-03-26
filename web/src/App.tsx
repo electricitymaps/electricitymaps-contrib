@@ -24,9 +24,6 @@ import { productionConsumptionAtom } from 'utils/state/atoms';
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const MapOverlays = lazy(() => import('components/MapOverlays'));
-const FAQModal = lazy(() => import('features/modals/FAQModal'));
-const InfoModal = lazy(() => import('features/modals/InfoModal'));
-const SettingsModal = lazy(() => import('features/modals/SettingsModal'));
 
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
@@ -102,11 +99,7 @@ export default function App(): ReactElement {
                 <Suspense>
                   <OnboardingModal />
                 </Suspense>
-                <Suspense>
-                  <FAQModal />
-                  <InfoModal />
-                  <SettingsModal />
-                </Suspense>
+
                 <Suspense>
                   <LeftPanel />
                 </Suspense>
