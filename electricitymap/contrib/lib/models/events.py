@@ -328,7 +328,7 @@ class Event(BaseModel, ABC):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted point: {v}"
             )
-        return v
+        return v.replace(second=0, microsecond=0)
 
     @staticmethod
     @abstractmethod
