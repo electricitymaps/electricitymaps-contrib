@@ -5,7 +5,7 @@
       'correctedModes': list([
         'unknown',
       ]),
-      'datetime': datetime.datetime(2023, 9, 12, 3, 45, 2, tzinfo=zoneinfo.ZoneInfo(key='America/Aruba')),
+      'datetime': datetime.datetime(2023, 9, 12, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='America/Aruba')),
       'production': dict({
         'biomass': 0.0,
         'oil': 108.567078,
