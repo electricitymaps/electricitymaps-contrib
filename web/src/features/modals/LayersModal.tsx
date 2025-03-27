@@ -3,6 +3,7 @@ import SwitchToggle from 'components/ToggleSwitch';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom, useAtomValue } from 'jotai';
+import { XIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MoonLoader } from 'react-spinners';
@@ -80,6 +81,7 @@ export function LayersModalContent() {
 export default function LayersModal() {
   const [isOpen, setIsOpen] = useAtom(isLayersModalOpenAtom);
   const modalReference = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   // Handle click outside to close modal
   useEffect(() => {
@@ -117,13 +119,23 @@ export default function LayersModal() {
   }
 
   return (
-    <div className="absolute right-72 top-3 z-30 mr-14 mt-[env(safe-area-inset-top)]">
-      <GlassContainer
-        ref={modalReference}
-        className="w-72 overflow-hidden rounded-xl shadow-lg"
-      >
-        <LayersModalContent />
-      </GlassContainer>
-    </div>
+    <>
+      <div className="absolute inset-x-0 top-3 z-30 mx-auto mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
+        <GlassContainer
+          ref={modalReference}
+          className="w-full max-w-xs rounded-xl shadow-lg md:w-72"
+        >
+          <LayersModalContent />
+        </GlassContainer>
+      </div>
+
+      <div className="absolute inset-x-0 top-36 z-50 mx-auto flex justify-center md:hidden">
+        <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full ">
+          <button aria-label={t('misc.dismiss')} onClick={() => setIsOpen(false)}>
+            <XIcon size={20} />
+          </button>
+        </GlassContainer>
+      </div>
+    </>
   );
 }

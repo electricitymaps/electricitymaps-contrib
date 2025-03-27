@@ -6,7 +6,7 @@ import SwitchToggle from 'components/ToggleSwitch';
 import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import { useAtom } from 'jotai';
-import { LaptopMinimal, Moon, Sun } from 'lucide-react';
+import { LaptopMinimalIcon, MoonIcon, SunIcon, XIcon } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
@@ -86,19 +86,19 @@ function ThemeToggleGroup() {
       <div className="flex space-x-1">
         <ThemeToggle
           theme={ThemeOptions.LIGHT}
-          icon={<Sun size={ICON_SIZE} />}
+          icon={<SunIcon size={ICON_SIZE} />}
           selectedTheme={selectedTheme}
           setSelectedTheme={setSelectedTheme}
         />
         <ThemeToggle
           theme={ThemeOptions.DARK}
-          icon={<Moon size={ICON_SIZE} />}
+          icon={<MoonIcon size={ICON_SIZE} />}
           selectedTheme={selectedTheme}
           setSelectedTheme={setSelectedTheme}
         />
         <ThemeToggle
           theme={ThemeOptions.SYSTEM}
-          icon={<LaptopMinimal size={ICON_SIZE} />}
+          icon={<LaptopMinimalIcon size={ICON_SIZE} />}
           selectedTheme={selectedTheme}
           setSelectedTheme={setSelectedTheme}
         />
@@ -211,8 +211,8 @@ function AboutElectricityMaps() {
 export function SettingsModalContent() {
   const { t } = useTranslation();
   return (
-    <div className="max-h-[80vh] overflow-y-auto p-2">
-      <div className="flex w-full flex-col ">
+    <div className="max-h-[80vh] overflow-y-auto px-3 py-4">
+      <div className="flex w-full flex-col">
         <SpatialAggregatesToggle />
         <p className="p-2 text-xs text-secondary dark:text-secondary-dark">
           {t('tooltips.aggregateInfo')}
@@ -234,6 +234,39 @@ export function SettingsModalContent() {
 export default function SettingsModal() {
   const [isOpen, setIsOpen] = useAtom(isSettingsModalOpenAtom);
   const modalReference = useRef<HTMLDivElement>(null);
+  const [modalHeight, setModalHeight] = useState(428);
+  const { t } = useTranslation();
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const modalElement = modalReference.current;
+    if (!modalElement) {
+      return;
+    }
+
+    const updateModalHeight = () => {
+      if (modalElement) {
+        const height = modalElement.getBoundingClientRect().height;
+        setModalHeight(height + 23); // 3px top offset + 40px for safe spacing
+      }
+    };
+
+    // Initial height calculation
+    updateModalHeight();
+
+    // Update height on resize
+    const resizeObserver = new ResizeObserver(updateModalHeight);
+    resizeObserver.observe(modalElement);
+
+    return () => {
+      if (modalElement) {
+        resizeObserver.unobserve(modalElement);
+      }
+    };
+  }, [isOpen]);
 
   // Handle click outside to close modal
   useEffect(() => {
@@ -271,13 +304,27 @@ export default function SettingsModal() {
   }
 
   return (
-    <div className="absolute right-72 top-3 z-30 mr-14 mt-[env(safe-area-inset-top)] max-h-screen">
-      <GlassContainer
-        ref={modalReference}
-        className="w-72 overflow-hidden rounded-xl shadow-lg"
+    <>
+      <div className="absolute inset-x-0 top-3 z-30 mx-auto mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
+        <GlassContainer
+          ref={modalReference}
+          className="w-full max-w-xs rounded-xl shadow-lg md:w-72"
+        >
+          <SettingsModalContent />
+        </GlassContainer>
+      </div>
+
+      {/* Mobile Close Button */}
+      <div
+        className="absolute inset-x-0 z-50 mx-auto flex justify-center md:hidden"
+        style={{ top: `${modalHeight}px` }}
       >
-        <SettingsModalContent />
-      </GlassContainer>
-    </div>
+        <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full ">
+          <button aria-label={t('misc.dismiss')} onClick={handleClose} className="">
+            <XIcon size={20} />
+          </button>
+        </GlassContainer>
+      </div>
+    </>
   );
 }
