@@ -3,7 +3,8 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
 import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Charts } from 'utils/constants';
+import { Charts, TimeRange } from 'utils/constants';
+import { getDateRange } from 'utils/formatting';
 
 type Props = {
   titleText?: string;
@@ -30,7 +31,7 @@ export function ChartTitle({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col pb-0.5">
+    <div className="flex flex-col pb-4">
       <div className={`flex items-center gap-1.5 pt-4 ${className}`}>
         <h2 id={id} className="grow">
           {titleText}
@@ -54,5 +55,19 @@ export function ChartTitle({
         )}
       </div>
     </div>
+  );
+}
+
+interface ChartSubtitleProps {
+  datetimes: Date[];
+  timeRange: TimeRange;
+}
+
+export function ChartSubtitle({ datetimes, timeRange }: ChartSubtitleProps) {
+  const { i18n } = useTranslation();
+  return (
+    <p className="text-xs text-neutral-600 dark:text-neutral-300">
+      {getDateRange(i18n.language, datetimes, timeRange)}
+    </p>
   );
 }

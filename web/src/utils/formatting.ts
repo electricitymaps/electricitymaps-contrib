@@ -299,4 +299,67 @@ function formatDataSources(dataSources: string[], language: string) {
       );
 }
 
-export { formatDataSources, formatDate, formatDateTick, scalePower };
+/**
+ * @param {string} language - ISO 639-1 language code (`en`) or ISO 639-1 language code + ISO 3166-1 alpha-2 country code (`en-GB`).
+ * @param {Date[]} datetimes - array of datetimes.
+ * @param {TimeRange} timeRange - TimeRange
+ * @returns {string} formatted string of datetime range
+ */
+function getDateRange(lang: string, datetimes: Date[], timeRange: TimeRange): string {
+  const first = datetimes[0];
+  const last = datetimes.at(-1);
+
+  if (!isValidDate(first) || !isValidDate(last) || !timeRange) {
+    return '';
+  }
+
+  switch (timeRange) {
+    case TimeRange.H72:
+    case TimeRange.M3: {
+      const diffYears = new Date(first).getFullYear() !== new Date(last).getFullYear();
+
+      const start = new Intl.DateTimeFormat(lang, {
+        day: 'numeric',
+        month: 'short',
+        ...(diffYears ? { year: 'numeric' } : {}),
+      }).format(first);
+
+      const end = new Intl.DateTimeFormat(lang, {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      }).format(last);
+
+      return `${start} - ${end}`;
+    }
+
+    case TimeRange.M12:
+    case TimeRange.ALL_MONTHS: {
+      const formatOptions: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'short',
+      };
+
+      const start = new Intl.DateTimeFormat(lang, formatOptions).format(first);
+      const end = new Intl.DateTimeFormat(lang, formatOptions).format(last);
+
+      return `${start} - ${end}`;
+    }
+    case TimeRange.ALL_YEARS: {
+      const formatOptions: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+      };
+
+      const start = new Intl.DateTimeFormat(lang, formatOptions).format(first);
+      const end = new Intl.DateTimeFormat(lang, formatOptions).format(last);
+
+      return `${start} - ${end}`;
+    }
+    default: {
+      console.error(`${timeRange} is not implemented`);
+      return '';
+    }
+  }
+}
+
+export { formatDataSources, formatDate, formatDateTick, getDateRange, scalePower };

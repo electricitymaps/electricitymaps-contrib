@@ -140,7 +140,7 @@ function BarBreakdownChart({
         }
         id={Charts.BAR_BREAKDOWN_CHART}
       />
-      <div className="my-4">
+      <div className="mb-4">
         <ZoneHeaderGauges zoneKey={currentZoneDetail.zoneKey} />
       </div>
       {!displayByEmissions && isHourly && (
