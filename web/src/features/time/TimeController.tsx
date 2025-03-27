@@ -43,7 +43,7 @@ export default function TimeController({ className }: { className?: string }) {
   // as this means we either have no data or only have latest hour loaded yet
   const isLoading = dataLoading || Object.keys(data?.datetimes ?? {}).length === 1;
 
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const timeRange = useAtomValue(timeRangeAtom);
 
   // TODO: Figure out whether we want to work with datetimes as strings
