@@ -27,7 +27,7 @@ export interface TimeRangeSelectorProps {
 
 function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorProps) {
   const { t } = useTranslation();
-  const { isOpen, onDismiss, onToggleDropdown } = useDropdownCtl();
+  const { isOpen, onToggleDropdown } = useDropdownCtl();
   const historicalLinkingEnabled = useFeatureFlag('historical-linking');
 
   const options = useMemo(
@@ -56,7 +56,6 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
           <DropdownMenu.Item
             key={`group-item-${value}-${label}`}
             data-testid={dataTestId}
-            value={value}
             aria-label={label}
             onClick={() => onToggleGroupClick(value)}
             className={`h-full grow basis-0 select-none rounded-xl p-2 text-xs font-semibold capitalize hover:bg-neutral-100 focus-visible:outline-none`}
