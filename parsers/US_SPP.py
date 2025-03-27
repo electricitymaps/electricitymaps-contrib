@@ -455,7 +455,7 @@ def fetch_realtime_locational_marginal_price(
         url = get_realtime_url(check_datetime)
         raw_data = get_data(url, session)
         if raw_data.empty:
-            print(f"Empty response for {check_datetime}")
+            logger.warning(f"Empty response for {check_datetime}")
             continue
 
         spp_data = raw_data[raw_data["Settlement Location"] == node]
@@ -488,7 +488,7 @@ def fetch_dayahead_locational_marginal_price(
     url = get_dayahead_url(target_datetime)
     raw_data = get_data(url, session)
     if raw_data.empty:
-        print(f"Empty response for {target_datetime}")
+        logger.warning(f"Empty response for {target_datetime}")
         return []
     node = "SPPNORTH_HUB"
     # filter by column "Settlement Location" so it only includes SPPNORTH_HUB
