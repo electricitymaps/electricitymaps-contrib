@@ -149,7 +149,7 @@ function LanguageSelectorToggle() {
   );
 
   return (
-    <div className="w-full px-2 pt-2">
+    <div className="w-full p-2">
       <button
         ref={buttonReference}
         className="flex w-full items-center justify-between"
@@ -222,7 +222,6 @@ export function SettingsModalContent() {
       <ElectricityFlowsToggle />
       <HorizontalDivider />
       <LanguageSelectorToggle />
-      <HorizontalDivider />
       <ThemeToggleGroup />
       <HorizontalDivider />
       <ColorblindModeToggle />
