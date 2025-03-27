@@ -6,9 +6,7 @@ import { BottomSheet } from 'react-spring-bottom-sheet';
 import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
-import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeController from './TimeController';
-import TimeHeader from './TimeHeader';
 
 function BottomSheetWrappedTimeController() {
   const isLoadingMap = useAtomValue(loadingMapAtom);
@@ -16,6 +14,8 @@ function BottomSheetWrappedTimeController() {
   const safeAreaBottomString = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--sab');
+
+  // TODO: handle historical linking feat
   const historicalLinkingEnabled = useFeatureFlag('historical-linking');
 
   const safeAreaBottom = safeAreaBottomString
@@ -34,7 +34,6 @@ function BottomSheetWrappedTimeController() {
       open={!isLoadingMap}
       snapPoints={() => snapPoints}
       blocking={false}
-      header={historicalLinkingEnabled ? <HistoricalTimeHeader /> : <TimeHeader />}
     >
       <TimeController className="p-2 min-[370px]:px-4" />
     </BottomSheet>

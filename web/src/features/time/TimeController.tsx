@@ -1,9 +1,11 @@
 import useGetState from 'api/getState';
-import TimeRangeToggle from 'components/TimeRangeToggle';
+import { FormattedTime } from 'components/Time';
+import TimeRangeSelector from 'components/TimeRangeSelector';
 import TimeSlider from 'components/TimeSlider';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
@@ -15,13 +17,12 @@ import {
   isRedirectedToLatestDatetimeAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
+  timeRangeAtom,
   useTimeRangeSync,
 } from 'utils/state/atoms';
 import { useIsBiggerThanMobile } from 'utils/styling';
 
-import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeAxis from './TimeAxis';
-import TimeHeader from './TimeHeader';
 
 export default function TimeController({ className }: { className?: string }) {
   const isHourly = useAtomValue(isHourlyAtom);
@@ -41,6 +42,9 @@ export default function TimeController({ className }: { className?: string }) {
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
   const isLoading = dataLoading || Object.keys(data?.datetimes ?? {}).length === 1;
+
+  const { t, i18n } = useTranslation();
+  const timeRange = useAtomValue(timeRangeAtom);
 
   // TODO: Figure out whether we want to work with datetimes as strings
   // or as Date objects. In this case datetimes are easier to work with
@@ -117,13 +121,21 @@ export default function TimeController({ className }: { className?: string }) {
   );
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
-      {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
-      {isBiggerThanMobile && historicalLinkingEnabled && <HistoricalTimeHeader />}
-      <div className="flex items-center gap-2">
-        <TimeRangeToggle
+      <div className="flex flex-row items-center justify-between gap-2">
+        <FormattedTime
+          datetime={selectedDatetime.datetime}
+          language={i18n.languages[0]}
+          timeRange={timeRange}
+          className="text-primary text-sm"
+        />
+        <TimeRangeSelector
           timeRange={selectedTimeRange || TimeRange.H72}
           onToggleGroupClick={onToggleGroupClick}
         />
+        {/* <TimeRangeToggle
+          timeRange={selectedTimeRange || TimeRange.H72}
+          onToggleGroupClick={onToggleGroupClick}
+        /> */}
       </div>
 
       <div>

@@ -231,16 +231,16 @@
       "all_months": "Monthly data for:",
       "all_years": "Yearly data for:"
     },
-    "72h": "72h",
-    "3mo": "3mo",
-    "12mo": "12mo",
-    "all_months": "All",
+    "72h": "72 hours",
+    "3mo": "3 months",
+    "12mo": "12 months",
+    "all_months": "All months",
     "all_years": "All years",
     "historical-linking": {
-      "72h": "72h",
-      "3mo": "3mo",
-      "12mo": "12mo",
-      "all_months": "All",
+      "72h": "72 hours",
+      "3mo": "3 months",
+      "12mo": "12 months",
+      "all_months": "All months",
       "all_years": "All years"
     },
     "date-unavailable": {
