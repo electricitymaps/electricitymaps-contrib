@@ -1,10 +1,15 @@
 import re
 from pathlib import Path
 
-from requests_mock import GET, POST
+import pytest
+from requests_mock import ANY, GET, POST
 
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.US_NEISO import fetch_consumption_forecast, fetch_wind_solar_forecasts
+from parsers.US_NEISO import (
+    fetch_consumption_forecast,
+    fetch_exchange,
+    fetch_wind_solar_forecasts,
+)
 
 base_path_to_mock = Path("parsers/test/mocks/US_NEISO")
 
@@ -58,5 +63,29 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     # Run function under test
     assert snapshot == fetch_wind_solar_forecasts(
         zone_key=ZoneKey("US-NE-ISNE"),
+        session=session,
+    )
+
+
+@pytest.mark.parametrize(
+    ("zone_key1, zone_key2"),
+    [
+        (ZoneKey("CA-NB"), ZoneKey("US-NE-ISNE")),
+        (ZoneKey("CA-QC"), ZoneKey("US-NE-ISNE")),
+        (ZoneKey("US-NE-ISNE"), ZoneKey("US-NY-NYIS")),
+    ],
+)
+def test_fetch_exchange(adapter, session, snapshot, zone_key1, zone_key2):
+    data = Path(base_path_to_mock, f"exchange_{zone_key1}_{zone_key2}.json")
+    adapter.register_uri(
+        POST,
+        ANY,
+        text=data.read_text(),
+    )
+
+    # Run function under test
+    assert snapshot == fetch_exchange(
+        zone_key1=zone_key1,
+        zone_key2=zone_key2,
         session=session,
     )
