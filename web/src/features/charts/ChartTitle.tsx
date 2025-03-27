@@ -31,7 +31,7 @@ export function ChartTitle({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col pb-4">
+    <div className="flex flex-col pb-2">
       <div className={`flex items-center gap-1.5 pt-4 ${className}`}>
         <h2 id={id} className="grow">
           {titleText}

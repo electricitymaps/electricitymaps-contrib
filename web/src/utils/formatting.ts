@@ -309,7 +309,8 @@ function getDateRange(lang: string, datetimes: Date[], timeRange: TimeRange): st
   const first = datetimes[0];
   const last = datetimes.at(-1);
 
-  if (!isValidDate(first) || !isValidDate(last) || !timeRange) {
+  if (!first || !last || !isValidDate(first) || !isValidDate(last) || !timeRange) {
+    console.error(`Invalid datetime: ${first}, ${last}, ${timeRange}`);
     return '';
   }
 
