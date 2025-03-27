@@ -357,7 +357,6 @@
     "withcarbonintensity": "with a carbon intensity of",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
-    "settings": "Settings",
     "layers": "Map layers",
     "showWindLayer": "Show wind layer",
     "hideWindLayer": "Hide wind layer",
@@ -390,7 +389,6 @@
       "changeTheme": "Change theme",
       "hideSidePanel": "Hide side panel",
       "showSidePanel": "Show side panel",
-      "settings": "Settings",
       "layers": "Map layers",
       "zoomIn": "Zoom in",
       "zoomOut": "Zoom out"

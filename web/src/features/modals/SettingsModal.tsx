@@ -7,7 +7,7 @@ import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import { useAtom } from 'jotai';
 import { LaptopMinimal, Moon, Sun } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
 import { Mode, ThemeOptions } from 'utils/constants';
@@ -130,16 +130,23 @@ function ColorblindModeToggle() {
 }
 
 function LanguageSelectorToggle() {
-  const { t } = useTranslation();
-  const { i18n } = useTranslation();
-  const currentLanguageKey = i18n.language as keyof typeof languageNames;
+  const { t, i18n } = useTranslation();
+  const currentLanguageKey = i18n.languages[0] as keyof typeof languageNames;
   const selectedLanguage = languageNames[currentLanguageKey] ?? 'English';
 
   const [isOpen, setIsOpen] = useState(false);
   const buttonReference = useRef<HTMLButtonElement>(null);
 
-  const handleToggle = () => setIsOpen(!isOpen);
-  const handleClose = () => setIsOpen(false);
+  const handleToggle = useCallback(() => setIsOpen(!isOpen), [isOpen]);
+  const handleClose = useCallback(() => setIsOpen(false), []);
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        handleToggle();
+      }
+    },
+    [handleToggle]
+  );
 
   return (
     <div className="w-full px-2 pt-2">
@@ -147,11 +154,7 @@ function LanguageSelectorToggle() {
         ref={buttonReference}
         className="flex w-full items-center justify-between"
         onClick={handleToggle}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            handleToggle();
-          }
-        }}
+        onKeyDown={handleKeyDown}
       >
         <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
           {t('Language')}
@@ -168,7 +171,6 @@ function LanguageSelectorToggle() {
 function AboutElectricityMaps() {
   const { t } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const appVersion = APP_VERSION; // This could be imported from a version file or environment variable
 
   return (
     <div className="w-full px-2 pt-2">
@@ -198,7 +200,7 @@ function AboutElectricityMaps() {
           </div>
 
           <p className="pb-2 text-xs text-secondary dark:text-secondary-dark">
-            App version: {appVersion}
+            App version: {APP_VERSION}
           </p>
         </div>
       </Accordion>
@@ -245,14 +247,15 @@ export default function SettingsModal() {
       if (isSettingsButton) {
         return;
       }
-      // Check if the click target is a node and the modal ref exists
+
+      // Check if the click is inside the modal
       if (
         modalReference.current &&
-        event.target instanceof Node && // Type guard for safety
-        !modalReference.current.contains(event.target)
+        modalReference.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        return;
       }
+      setIsOpen(false);
     }
 
     if (isOpen) {

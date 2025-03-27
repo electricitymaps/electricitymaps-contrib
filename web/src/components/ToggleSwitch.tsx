@@ -21,7 +21,6 @@ function ToggleSwitch({
   const handleToggle = useCallback(() => {
     onChange(!isEnabled);
   }, [isEnabled, onChange]);
-  4;
   return (
     <button
       onClick={handleToggle}

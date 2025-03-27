@@ -94,12 +94,14 @@ export default function LayersModal() {
         return;
       }
 
+      // Check if the click is inside the modal
       if (
         modalReference.current &&
-        !modalReference.current.contains(event.target as Node)
+        modalReference.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        return;
       }
+      setIsOpen(false);
     }
 
     if (isOpen) {
