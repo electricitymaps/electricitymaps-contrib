@@ -140,7 +140,6 @@ function BarBreakdownChart({
         }
         id={Charts.BAR_BREAKDOWN_CHART}
       />
-      {/* TODO(cady): check if zoneKey === zoneId */}
       <div className="my-4">
         <ZoneHeaderGauges zoneKey={currentZoneDetail.zoneKey} />
       </div>

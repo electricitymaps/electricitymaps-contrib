@@ -50,9 +50,7 @@ export function ChartTitle({
       <div className="flex flex-row items-center justify-between">
         {subtitle}
         {unit && (
-          <div className="ml-auto text-xs text-neutral-400 dark:text-neutral-300">
-            {unit}
-          </div>
+          <div className="ml-auto text-xs text-[#8b8b8b] dark:text-[#848484]">{unit}</div>
         )}
       </div>
     </div>
