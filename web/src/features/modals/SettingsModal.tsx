@@ -272,7 +272,6 @@ export default function SettingsModal() {
   const [isOpen, setIsOpen] = useAtom(isSettingsModalOpenAtom);
   const modalReference = useRef<HTMLDivElement>(null);
   const [modalHeight, setModalHeight] = useState(428);
-  const { t } = useTranslation();
 
   const handleClose = () => {
     setIsOpen(false);

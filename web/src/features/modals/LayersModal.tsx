@@ -93,7 +93,6 @@ function MobileDismissButton({ onClick }: { onClick: () => void }) {
 
 export default function LayersModal() {
   const [isOpen, setIsOpen] = useAtom(isLayersModalOpenAtom);
-  const { t } = useTranslation();
 
   if (!isOpen) {
     return null;
