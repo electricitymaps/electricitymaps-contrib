@@ -19,7 +19,7 @@ const options = [
 ];
 
 function SpatialAggregatesToggle({
-  transparentBackground = true,
+  transparentBackground = false,
 }: {
   transparentBackground?: boolean;
 }): ReactElement {
@@ -45,7 +45,6 @@ function SpatialAggregatesToggle({
   return (
     <ToggleButton
       options={options}
-      tooltipKey="tooltips.aggregateInfo"
       selectedOption={
         currentMode === SpatialAggregate.ZONE ? options[1].value : options[0].value
       }
