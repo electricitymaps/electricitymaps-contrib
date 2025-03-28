@@ -1,10 +1,10 @@
+import * as Dialog from '@radix-ui/react-dialog';
 import GlassContainer from 'components/GlassContainer';
 import SwitchToggle from 'components/ToggleSwitch';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
 import { useDarkMode } from 'hooks/theme';
 import { useAtom, useAtomValue } from 'jotai';
 import { XIcon } from 'lucide-react';
-import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MoonLoader } from 'react-spinners';
 import { ToggleOptions } from 'utils/constants';
@@ -78,64 +78,55 @@ export function LayersModalContent() {
   );
 }
 
+function MobileDismissButton({ onClick }: { onClick: () => void }) {
+  const { t } = useTranslation();
+  return (
+    <div className="absolute inset-x-0 top-36 mx-auto flex justify-center md:hidden">
+      <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full ">
+        <button aria-label={t('misc.dismiss')} onClick={onClick}>
+          <XIcon size={20} />
+        </button>
+      </GlassContainer>
+    </div>
+  );
+}
+
 export default function LayersModal() {
   const [isOpen, setIsOpen] = useAtom(isLayersModalOpenAtom);
-  const modalReference = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
-
-  // Handle click outside to close modal
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      // Check if the event target is a button with layers-button data-testid
-      const isLayersButton = (event.target as Element)?.closest(
-        '[data-testid="layers-button"]'
-      );
-
-      // Don't close if clicking the layers button - let the toggle handler manage it
-      if (isLayersButton) {
-        return;
-      }
-
-      // Check if the click is inside the modal
-      if (
-        modalReference.current &&
-        modalReference.current.contains(event.target as Node)
-      ) {
-        return;
-      }
-      setIsOpen(false);
-    }
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside, true);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside, true);
-    };
-  }, [isOpen, setIsOpen]);
 
   if (!isOpen) {
     return null;
   }
 
-  return (
-    <>
-      <div className="absolute inset-x-0 top-3 z-30 mx-auto mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
-        <GlassContainer
-          ref={modalReference}
-          className="w-full max-w-xs rounded-xl shadow-lg md:w-72"
-        >
-          <LayersModalContent />
-        </GlassContainer>
-      </div>
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
-      <div className="absolute inset-x-0 top-36 z-50 mx-auto flex justify-center md:hidden">
-        <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full ">
-          <button aria-label={t('misc.dismiss')} onClick={() => setIsOpen(false)}>
-            <XIcon size={20} />
-          </button>
-        </GlassContainer>
-      </div>
-    </>
+  return (
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50 md:bg-transparent" />
+        <Dialog.Content
+          onOpenAutoFocus={(event: Event) => event.preventDefault()}
+          className="pointer-events-auto fixed inset-0 z-[51] overflow-auto"
+          onClick={(event_) => {
+            if (event_.target === event_.currentTarget) {
+              handleClose();
+            }
+          }}
+        >
+          <div className="pointer-events-auto absolute inset-x-0 top-3 mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
+            <GlassContainer className="w-full max-w-xs rounded-xl shadow-lg md:w-72">
+              <LayersModalContent />
+            </GlassContainer>
+          </div>
+
+          <div className="pointer-events-auto">
+            <MobileDismissButton onClick={handleClose} />
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }

@@ -1,3 +1,4 @@
+import * as Dialog from '@radix-ui/react-dialog';
 import Accordion from 'components/Accordion';
 import GlassContainer from 'components/GlassContainer';
 import HorizontalDivider from 'components/HorizontalDivider';
@@ -231,6 +232,28 @@ export function SettingsModalContent() {
   );
 }
 
+function MobileDismissButton({
+  onClick,
+  style,
+}: {
+  onClick: () => void;
+  style?: React.CSSProperties;
+}) {
+  const { t } = useTranslation();
+  return (
+    <div
+      className="absolute inset-x-0 mx-auto flex justify-center md:hidden"
+      style={style}
+    >
+      <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full ">
+        <button aria-label={t('misc.dismiss')} onClick={onClick}>
+          <XIcon size={20} />
+        </button>
+      </GlassContainer>
+    </div>
+  );
+}
+
 export default function SettingsModal() {
   const [isOpen, setIsOpen] = useAtom(isSettingsModalOpenAtom);
   const modalReference = useRef<HTMLDivElement>(null);
@@ -242,6 +265,10 @@ export default function SettingsModal() {
   };
 
   useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
     const modalElement = modalReference.current;
     if (!modalElement) {
       return;
@@ -250,7 +277,7 @@ export default function SettingsModal() {
     const updateModalHeight = () => {
       if (modalElement) {
         const height = modalElement.getBoundingClientRect().height;
-        setModalHeight(height + 23); // 3px top offset + 40px for safe spacing
+        setModalHeight(height + 23); // 3px top offset + 20px for safe spacing
       }
     };
 
@@ -261,70 +288,62 @@ export default function SettingsModal() {
     const resizeObserver = new ResizeObserver(updateModalHeight);
     resizeObserver.observe(modalElement);
 
+    // Detect content changes that might affect height but not trigger resize events
+    const mutationObserver = new MutationObserver(updateModalHeight);
+    mutationObserver.observe(modalElement, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true,
+    });
+
     return () => {
       if (modalElement) {
         resizeObserver.unobserve(modalElement);
+        mutationObserver.disconnect();
       }
     };
   }, [isOpen]);
 
-  // Handle click outside to close modal
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      // Check if the event target is the settings button
-      const isSettingsButton = (event.target as Element)?.closest(
-        '[data-testid="settings-button"]'
-      );
-      // Don't close if clicking the settings button
-      if (isSettingsButton) {
-        return;
-      }
-
-      // Check if the click is inside the modal
-      if (
-        modalReference.current &&
-        modalReference.current.contains(event.target as Node)
-      ) {
-        return;
-      }
-      setIsOpen(false);
-    }
-
-    if (isOpen) {
-      document.addEventListener('click', handleClickOutside, true);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true);
-    };
-  }, [isOpen, setIsOpen]);
-
+  // Skip if modal isn't open
   if (!isOpen) {
     return null;
   }
 
   return (
-    <>
-      <div className="absolute inset-x-0 top-3 z-30 mx-auto mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
-        <GlassContainer
-          ref={modalReference}
-          className="w-full max-w-xs rounded-xl shadow-lg md:w-72"
-        >
-          <SettingsModalContent />
-        </GlassContainer>
-      </div>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog.Portal>
+        {/* Semi-transparent overlay */}
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50 md:bg-transparent" />
 
-      {/* Mobile Close Button */}
-      <div
-        className="absolute inset-x-0 z-50 mx-auto flex justify-center md:hidden"
-        style={{ top: `${modalHeight}px` }}
-      >
-        <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full ">
-          <button aria-label={t('misc.dismiss')} onClick={handleClose} className="">
-            <XIcon size={20} />
-          </button>
-        </GlassContainer>
-      </div>
-    </>
+        {/* Modal content */}
+        <Dialog.Content
+          onOpenAutoFocus={(event: Event) => event.preventDefault()}
+          className="pointer-events-auto fixed inset-0 z-[51] overflow-auto"
+          onClick={(event_) => {
+            // Close when clicking directly on the content area (not its children)
+            if (event_.target === event_.currentTarget) {
+              handleClose();
+            }
+          }}
+        >
+          <div className="pointer-events-auto absolute inset-x-0 top-3 mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
+            <GlassContainer
+              ref={modalReference}
+              className="w-full max-w-xs rounded-xl shadow-lg md:w-72"
+            >
+              <SettingsModalContent />
+            </GlassContainer>
+          </div>
+
+          <div className="pointer-events-auto">
+            <MobileDismissButton
+              onClick={handleClose}
+              style={{ top: `${modalHeight}px` }}
+            />
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
