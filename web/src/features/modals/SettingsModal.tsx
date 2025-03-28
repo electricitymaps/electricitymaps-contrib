@@ -7,7 +7,13 @@ import SwitchToggle from 'components/ToggleSwitch';
 import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
 import { useAtom } from 'jotai';
-import { LaptopMinimalIcon, MoonIcon, SunIcon, XIcon } from 'lucide-react';
+import {
+  LaptopMinimalIcon,
+  MoonIcon,
+  SmartphoneIcon,
+  SunIcon,
+  XIcon,
+} from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
@@ -17,6 +23,7 @@ import {
   productionConsumptionAtom,
   themeAtom,
 } from 'utils/state/atoms';
+import { useIsMobile } from 'utils/styling';
 
 import { isSettingsModalOpenAtom } from './modalAtoms';
 
@@ -78,6 +85,7 @@ function ThemeToggleGroup() {
   const { t } = useTranslation();
   const [selectedTheme, setSelectedTheme] = useAtom(themeAtom);
   const ICON_SIZE = 20;
+  const isMobile = useIsMobile();
 
   return (
     <div className="flex w-full items-center justify-between p-2">
@@ -99,7 +107,13 @@ function ThemeToggleGroup() {
         />
         <ThemeToggle
           theme={ThemeOptions.SYSTEM}
-          icon={<LaptopMinimalIcon size={ICON_SIZE} />}
+          icon={
+            isMobile ? (
+              <SmartphoneIcon size={ICON_SIZE} />
+            ) : (
+              <LaptopMinimalIcon size={ICON_SIZE} />
+            )
+          }
           selectedTheme={selectedTheme}
           setSelectedTheme={setSelectedTheme}
         />
@@ -190,18 +204,18 @@ function AboutElectricityMaps() {
 
           <div className="mb-2">
             <Link isExternal href="https://electricitymaps.com/privacy-policy">
-              Privacy Policy
+              {t('button.privacy-policy')}
             </Link>
           </div>
 
           <div className="mb-4">
             <Link isExternal href="https://electricitymaps.com/legal-notice">
-              Legal Notice
+              {t('button.legal-notice')}
             </Link>
           </div>
 
           <p className="pb-2 text-xs text-secondary dark:text-secondary-dark">
-            App version: {APP_VERSION}
+            {t('info.version', { version: APP_VERSION })}
           </p>
         </div>
       </Accordion>
