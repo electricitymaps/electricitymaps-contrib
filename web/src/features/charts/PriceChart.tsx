@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 
-import { ChartTitle } from './ChartTitle';
+import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import { DisabledMessage } from './DisabledMessage';
 import AreaGraph from './elements/AreaGraph';
 import { FuturePrice } from './FuturePrice';
@@ -65,6 +65,7 @@ function PriceChart({ datetimes, timeRange }: PriceChartProps) {
         titleText={t(`country-history.electricityprices.${timeRange}`)}
         unit={valueAxisLabel}
         id={Charts.PRICE_CHART}
+        subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">
         {isPriceDisabled && (

@@ -52,7 +52,7 @@ export const TooltipInner = memo(function TooltipInner({
           className="self-start text-sm text-neutral-600 dark:text-neutral-400"
         />
       </div>
-      <ZoneGaugesWithCO2Square zoneData={zoneData} />
+      <ZoneGaugesWithCO2Square zoneData={zoneData} classNames="justify-evenly" />
     </div>
   );
 });

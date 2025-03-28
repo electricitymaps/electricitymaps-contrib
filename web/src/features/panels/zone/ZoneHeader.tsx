@@ -1,5 +1,4 @@
 import { MoreOptionsDropdown } from 'components/MoreOptionsDropdown';
-import { TimeDisplay } from 'components/TimeDisplay';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
@@ -43,7 +42,6 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
 
       <div className="w-full overflow-hidden">
         <ZoneHeaderTitle zoneId={zoneId} zoneNameFull={zoneNameFull} />
-        <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
 
       {isShareButtonEnabled &&
