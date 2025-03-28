@@ -70,7 +70,7 @@ contributors:
   - corradio
 country: AU
 delays:
-  production: 5
+  production: 96
 emissionFactors:
   direct:
     battery discharge:

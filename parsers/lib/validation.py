@@ -234,7 +234,7 @@ def validate(datapoint: dict, logger: Logger | None, **kwargs) -> dict[str, Any]
         )
         if total < floor:
             logger.warning(
-                "{} reported total of {}MW does not meet {}MW floor" " value".format(
+                "{} reported total of {}MW does not meet {}MW floor value".format(
                     datapoint["zoneKey"], total, floor
                 ),
                 extra={"key": datapoint["zoneKey"]},

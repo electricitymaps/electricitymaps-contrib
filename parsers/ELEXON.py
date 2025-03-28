@@ -478,6 +478,4 @@ def validate_bmrs_data(data: ProductionBreakdownList):
     available_production_modes = []
     for event in data.to_list():
         available_production_modes += [*event["production"].keys()]
-    if "gas" not in set(available_production_modes):
-        return False
-    return True
+    return "gas" in set(available_production_modes)
