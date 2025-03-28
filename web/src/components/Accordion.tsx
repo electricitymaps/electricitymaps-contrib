@@ -29,7 +29,7 @@ export default function Accordion({
   className?: string;
   icon?: React.ReactNode;
   children?: React.ReactNode;
-  title: string;
+  title: string | React.ReactNode;
   expandedTitle?: string;
   collapsedIcon?: LucideIcon;
   expandedIcon?: LucideIcon;
