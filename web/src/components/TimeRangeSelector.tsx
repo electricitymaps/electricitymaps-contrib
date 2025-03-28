@@ -38,10 +38,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
     [historicalLinkingEnabled, t]
   );
 
-  const selectedLabel =
-    timeRange.length > 3
-      ? options.find((opt) => opt.value === timeRange)!.label.slice(0, 5)
-      : timeRange;
+  const selectedLabel = options.find((opt) => opt.value === timeRange)!.label;
 
   return (
     <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen} modal={false}>
