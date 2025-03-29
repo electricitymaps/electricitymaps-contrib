@@ -6,65 +6,113 @@ bounding_box:
     - 61.0795442346
 capacity:
   biomass:
-    - datetime: '2023-12-01'
-      source: bmreports.com
-      value: 4438
-    - datetime: '2022-12-01'
+    - datetime: '2022-01-01'
       source: bmreports.com
       value: 4572
+    - datetime: '2023-01-01'
+      source: bmreports.com
+      value: 4438
+    - datetime: '2024-01-01'
+      source: bmreports.com
+      value: 3535
+    - datetime: '2025-01-01'
+      source: bmreports.com
+      value: 4332
   coal:
-    - datetime: '2022-12-01'
+    - datetime: '2022-01-01'
       source: bmreports.com
       value: 1491
-  gas:
-    - datetime: '2023-12-01'
+    - datetime: '2024-01-01'
       source: bmreports.com
-      value: 37047
-    - datetime: '2022-12-01'
+      value: 1988
+    - datetime: '2025-01-01'
+      source: bmreports.com
+      value: 0
+  gas:
+    - datetime: '2022-01-01'
       source: bmreports.com
       value: 38985
-  hydro:
-    - datetime: '2023-12-01'
+    - datetime: '2023-01-01'
       source: bmreports.com
-      value: 2063
-    - datetime: '2022-12-01'
+      value: 37047
+    - datetime: '2024-01-01'
+      source: bmreports.com
+      value: 32631
+    - datetime: '2025-01-01'
+      source: bmreports.com
+      value: 40470
+  hydro:
+    - datetime: '2022-01-01'
       source: bmreports.com
       value: 4190
-  hydro storage:
-    - datetime: '2023-12-01'
+    - datetime: '2023-01-01'
       source: bmreports.com
-      value: 5603
-    - datetime: '2022-12-01'
+      value: 2063
+    - datetime: '2024-01-01'
+      source: bmreports.com
+      value: 1386
+    - datetime: '2025-01-01'
+      source: bmreports.com
+      value: 1687
+  hydro storage:
+    - datetime: '2022-01-01'
       source: bmreports.com
       value: 1928
+    - datetime: '2023-01-01'
+      source: bmreports.com
+      value: 5603
+    - datetime: '2024-01-01'
+      source: bmreports.com
+      value: 5891
+    - datetime: '2025-01-01'
+      source: bmreports.com
+      value: 11080
   nuclear:
-    - datetime: '2023-12-01'
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 7833
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 5883
+    - datetime: '2024-01-01'
       source: bmreports.com
-      value: 4950
-    - datetime: '2022-12-01'
-      source: bmreports.com
-      value: 9256
+      value: 6075
   solar:
-    - datetime: '2023-12-01'
-      source: bmreports.com
-      value: 14518
-    - datetime: '2022-12-01'
+    - datetime: '2022-01-01'
       source: bmreports.com
       value: 13324
-  unknown:
-    - datetime: '2023-12-01'
+    - datetime: '2023-01-01'
       source: bmreports.com
-      value: 4775
-    - datetime: '2022-12-01'
+      value: 14518
+    - datetime: '2024-01-01'
+      source: bmreports.com
+      value: 15896
+  unknown:
+    - datetime: '2022-01-01'
       source: bmreports.com
       value: 4906
-  wind:
-    - datetime: '2023-12-01'
+    - datetime: '2023-01-01'
       source: bmreports.com
-      value: 26945
-    - datetime: '2022-12-01'
+      value: 4775
+    - datetime: '2024-01-01'
+      source: bmreports.com
+      value: 745
+    - datetime: '2025-01-01'
+      source: bmreports.com
+      value: 6238
+  wind:
+    - datetime: '2022-01-01'
       source: bmreports.com
       value: 27330
+    - datetime: '2023-01-01'
+      source: bmreports.com
+      value: 26945
+    - datetime: '2024-01-01'
+      source: bmreports.com
+      value: 28535
+    - datetime: '2025-01-01'
+      source: bmreports.com
+      value: 32844
 contributors:
   - corradio
   - lorrieq

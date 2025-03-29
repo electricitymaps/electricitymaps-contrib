@@ -28,11 +28,7 @@
     "renewable": "Renovável",
     "by-source": {
       "emissions": "Emissões de carbono",
-      "electricity-production": "Produção de eletricidade",
-      "electricity-consumption": "Consumo de eletricidade",
-      "total-emissions": "Emissões totais de carbono",
-      "total-electricity-production": "Produção total de eletricidade",
-      "total-electricity-consumption": "Consumo total de eletricidade"
+      "total-emissions": "Emissões totais de carbono"
     },
     "helpfrom": "com ajuda de",
     "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",

@@ -108,7 +108,6 @@
       "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
     },
     "emissionFactorDataSourcesTooltip": "Les facteurs d'émission pour la production d'électricité peuvent provenir de plusieurs sources. Cela se produit lorsque plusieurs facteurs, tels que les données spécifiques à une centrale, la production et parfois les sources de secours, sont pris en compte dans les calculs des émissions.",
-    "disabledBreakdownChartReason": "Désactivé pour la vue consommation. Merci de changer la vue en production pour activer le graphique d'origine de l'électricité.",
     "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
     "estimated": "estimé",
     "aggregated": "agrégé",
@@ -121,11 +120,8 @@
     "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
-      "electricity-production": "Production d'électricité",
-      "electricity-consumption": "Consommation d'électricité",
-      "total-emissions": "Émissions totales de carbone",
-      "total-electricity-production": "Production totale d'électricité",
-      "total-electricity-consumption": "Consommation totale d'électricité"
+      "electricity-mix": "Mix électrique",
+      "total-emissions": "Émissions totales de carbone"
     },
     "graph-legends": {
       "installed-capacity": "Capacité installée ",
