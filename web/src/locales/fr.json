@@ -24,7 +24,9 @@
     "docs": "Documentation de l'API "
   },
   "settings-modal": {
-    "title": "Paramètres"
+    "title": "Paramètres",
+    "flows": "Flux de l'électricité",
+    "flow-tracing": "Le traçage de flux montre comment l'électricité se déplace physiquement à travers les interconnecteurs qui relient différentes zones"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -349,10 +351,12 @@
     "ofinstalled": "de la capacité installée",
     "utilizing": "utilisant",
     "withcarbonintensity": "avec une intensité carbone de",
+    "layers": "Calques de la carte",
     "showWindLayer": "Voir le calque de vent",
     "hideWindLayer": "Masquer le calque de vent",
     "showSolarLayer": "Voir le calque d’ensoleillement",
     "hideSolarLayer": "Masquer le calque d’ensoleillement",
+    "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
     "changeTheme": "Changer de thème",
     "noParserInfo": "Pas de données disponibles",
     "temporaryDataOutage": "Données temporairement indisponibles",
@@ -366,7 +370,7 @@
     "ofemissions": "des émissions",
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
-    "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
+    
     "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
     "netExchange": "Échange net",
     "price": "Prix",
@@ -381,7 +385,10 @@
       "solarLayer": "Calque d'ensoleillement",
       "changeTheme": "Changer le thème",
       "hideSidePanel": "Masquer le panneau latéral",
-      "showSidePanel": "Afficher le panneau latéral"
+      "showSidePanel": "Afficher le panneau latéral",
+      "layers": "Calques de la carte",
+      "zoomIn": "Zoommer",
+      "zoomOut": "Dézoomer"
     }
   },
   "aggregateButtons": {
