@@ -23,6 +23,21 @@
         ],
         "type": "Polygon"
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Example Wind Installation -- Point",
+        "capacity_mw": 1,
+        "comission_start_date": "2017-05-24T00:00:00Z",
+        "comission_end_date": "2024-05-27T00:00:00Z",
+        "capacity_update_date": "2025-03-01T00:00:00Z",
+        "source": "Electricity Maps"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [125.6, 10.1]
+      }
     }
   ]
 }
