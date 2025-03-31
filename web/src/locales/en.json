@@ -8,8 +8,7 @@
   "settings-modal": {
     "title": "Settings",
     "flows": "Electricity flows",
-    "flow-tracing-enabled": "Disable flow-tracing to exclude physical electricity interconnectors between regions.",
-    "flow-tracing-disabled": "Enable flow-tracing to include physical electricity interconnectors between regions."
+    "flow-tracing": "Flow-tracing tracks how electricity physically moves through interconnectors that link different zones"
   },
   "ranking-panel": {
     "title": "Electricity Grid Carbon Emissions",
