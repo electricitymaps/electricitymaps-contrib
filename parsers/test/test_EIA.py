@@ -78,7 +78,7 @@ def test_fetch_production_mix(adapter, session):
                 "solar": 1,
                 "geothermal": 1,
             },
-            "storage": {"hydro": 1, "battery": 1},
+            "storage": {"hydro": -1, "battery": -1},
         },
         {
             "zoneKey": "US-NW-PGE",
@@ -94,7 +94,7 @@ def test_fetch_production_mix(adapter, session):
                 "solar": 2,
                 "geothermal": 2,
             },
-            "storage": {"hydro": 2, "battery": 2},
+            "storage": {"hydro": -2, "battery": -2},
         },
     ]
     _check_production_matches(data_list, expected)
@@ -646,7 +646,7 @@ def test_fetch_production_mix_discards_null(adapter, session):
                 "solar": 400,
                 "geothermal": 400,
             },
-            "storage": {"hydro": 400, "battery": 400},
+            "storage": {"hydro": -400, "battery": -400},
         },
     ]
     assert (
@@ -810,7 +810,7 @@ def test_fetch_returns_storage(adapter, session):
                 "solar": 1,
                 "geothermal": 1,
             },
-            "storage": {"battery": 1, "hydro": 1},
+            "storage": {"battery": -1, "hydro": -1},
         },
     ]
     _check_production_matches(data_list, expected)
