@@ -48,11 +48,7 @@ function ElectricityFlowsToggle() {
         />
       </div>
       <span className="text-xs text-secondary dark:text-secondary-dark">
-        {t(
-          mode === Mode.CONSUMPTION
-            ? 'settings-modal.flow-tracing-enabled'
-            : 'settings-modal.flow-tracing-disabled'
-        )}
+        {t('settings-modal.flow-tracing')}
       </span>
     </div>
   );
@@ -259,7 +255,7 @@ function MobileDismissButton({
       className="absolute inset-x-0 mx-auto flex justify-center md:hidden"
       style={style}
     >
-      <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full ">
+      <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full">
         <button aria-label={t('misc.dismiss')} onClick={onClick}>
           <XIcon size={20} />
         </button>
