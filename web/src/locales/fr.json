@@ -1000,17 +1000,9 @@
     "IN": {
       "zoneName": "Inde"
     },
-    "IN-AN": {
-      "countryName": "Inde",
-      "zoneName": "Andaman and Nicobar Islands"
-    },
     "IN-EA": {
       "countryName": "Inde",
       "zoneName": "Est"
-    },
-    "IN-HP": {
-      "countryName": "Inde",
-      "zoneName": "Himachal Pradesh"
     },
     "IN-NE": {
       "countryName": "Inde",
@@ -1023,14 +1015,6 @@
     "IN-SO": {
       "countryName": "Inde",
       "zoneName": "Sud"
-    },
-    "IN-UP": {
-      "countryName": "Inde",
-      "zoneName": "Uttar Pradesh"
-    },
-    "IN-UT": {
-      "countryName": "Inde",
-      "zoneName": "Uttarakhand"
     },
     "IN-WE": {
       "countryName": "Inde",

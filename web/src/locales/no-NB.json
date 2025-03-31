@@ -733,17 +733,9 @@
     "IN": {
       "zoneName": "Fastlands-India"
     },
-    "IN-AN": {
-      "countryName": "India",
-      "zoneName": "Andamanene og Nikobarene"
-    },
     "IN-EA": {
       "countryName": "India",
       "zoneName": "Øst-India"
-    },
-    "IN-HP": {
-      "countryName": "India",
-      "zoneName": "Himachal Pradesh"
     },
     "IN-NE": {
       "countryName": "India",
@@ -756,14 +748,6 @@
     "IN-SO": {
       "countryName": "India",
       "zoneName": "Sør-India"
-    },
-    "IN-UP": {
-      "countryName": "India",
-      "zoneName": "Uttar Pradesh"
-    },
-    "IN-UT": {
-      "countryName": "India",
-      "zoneName": "Uttarakhand"
     },
     "IN-WE": {
       "countryName": "India",
