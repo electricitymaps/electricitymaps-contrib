@@ -308,7 +308,7 @@ function formatDataSources(dataSources: string[], language: string) {
 function getDateRange(lang: string, datetimes: Date[], timeRange: TimeRange): string {
   const first = datetimes[0];
   const last = datetimes.at(-1);
-
+  console.log(first, last, timeRange);
   if (!first || !last || !isValidDate(first) || !isValidDate(last) || !timeRange) {
     console.error(`Invalid datetime: ${first}, ${last}, ${timeRange}`);
     return '';

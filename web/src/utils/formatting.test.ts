@@ -8,6 +8,7 @@ import {
   formatDateTick,
   formatEnergy,
   formatPower,
+  getDateRange,
   getDateTimeFormatOptions,
   scalePower,
 } from './formatting';
@@ -643,4 +644,107 @@ describe('formatDataSources', () => {
       )
     );
   });
+});
+
+describe('getDateRange', () => {
+  it('handles invalid date', () => {
+    const actual = getDateRange(
+      'en',
+      [new Date('invalid-date'), new Date('invalid-date')],
+      TimeRange.H72
+    );
+    const expected = '';
+    expect(actual).toEqual(expected);
+  });
+
+  it('handles a date that is not a Date object', () => {
+    const actual = getDateRange('en', ['not-a-date' as unknown as Date], TimeRange.H72);
+    const expected = '';
+    expect(actual).toEqual(expected);
+  });
+
+  it.each(['en', 'de', 'fr'])('handles 72h data for %s', (language) => {
+    const actual = getDateRange(
+      language,
+      [
+        new Date('Sat Mar 29 2025 15:00:00 GMT+0100 (Central European Standard Time)'),
+        new Date('Tue Apr 01 2025 15:00:00 GMT+0200 (Central European Summer Time)'),
+      ],
+      TimeRange.H72
+    );
+    expect(actual).toMatchSnapshot();
+  });
+
+  it.each(['en', 'de', 'fr'])('handles 90 day data for %s', (language) => {
+    const actual = getDateRange(
+      language,
+      [
+        new Date('Thu Jan 02 2025 01:00:00 GMT+0100 (Central European Standard Time)'),
+        new Date('Mon Mar 31 2025 02:00:00 GMT+0200 (Central European Summer Time)'),
+      ],
+      TimeRange.M3
+    );
+    expect(actual).toMatchSnapshot();
+  });
+
+  it.each(['en', 'de', 'fr'])('handles 12 monthly data for %s', (language) => {
+    const actual = getDateRange(
+      language,
+      [
+        new Date('Mon Apr 01 2024 02:00:00 GMT+0200 (Central European Summer Time)'),
+        new Date('Sat Mar 01 2025 01:00:00 GMT+0100 (Central European Standard Time)'),
+      ],
+      TimeRange.M12
+    );
+    expect(actual).toMatchSnapshot();
+  });
+
+  it.each(['en', 'de', 'fr'])('handles all month data for %s', (language) => {
+    const actual = getDateRange(
+      language,
+      [
+        new Date('Sun Jan 01 2017 01:00:00 GMT+0100 (Central European Standard Time)'),
+        new Date('Sat Mar 01 2025 01:00:00 GMT+0100 (Central European Standard Time)'),
+      ],
+      TimeRange.ALL_MONTHS
+    );
+
+    expect(actual).toMatchSnapshot();
+  });
+
+  it.each(['en', 'de', 'fr'])('handles all year data for %s', (language) => {
+    const actual = getDateRange(
+      language,
+      [
+        new Date('Sun Jan 01 2017 01:00:00 GMT+0100 (Central European Standard Time)'),
+        new Date('Sat Mar 01 2025 01:00:00 GMT+0100 (Central European Standard Time)'),
+      ],
+      TimeRange.ALL_YEARS
+    );
+
+    expect(actual).toMatchSnapshot();
+  });
+
+  // it('logs an error on unknown data', () => {
+  //   // Spy on console.error to check if it is called
+  //   const consoleErrorSpy = vi.spyOn(console, 'error');
+
+  //   const actual = getDateRange(
+  //     'en',
+  //     [
+  //       new Date('Sat Mar 29 2025 15:00:00 GMT+0100 (Central European Standard Time)'),
+  //       new Date('Tue Apr 01 2025 15:00:00 GMT+0200 (Central European Summer Time)'),
+  //     ],
+  //     'ThisAggregateDoesNotExist' as TimeRange
+  //   );
+
+  //   const expected = '1/1/2021';
+  //   expect(actual).toEqual(expected);
+  //   expect(consoleErrorSpy).toHaveBeenCalledWith(
+  //     'ThisAggregateDoesNotExist is not implemented'
+  //   );
+
+  //   // Restore the spy
+  //   consoleErrorSpy.mockRestore();
+  // });
 });
