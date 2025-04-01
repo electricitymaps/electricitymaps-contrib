@@ -675,6 +675,21 @@ describe('getDateRange', () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it.each(['en', 'de', 'fr'])(
+    'handles the end of the year for 72h data for %s',
+    (language) => {
+      const actual = getDateRange(
+        language,
+        [
+          new Date('Dec 30 2024 15:00:00 GMT+0100 (Central European Standard Time)'),
+          new Date('Jan 02 2025 15:00:00 GMT+0200 (Central European Summer Time)'),
+        ],
+        TimeRange.H72
+      );
+      expect(actual).toMatchSnapshot();
+    }
+  );
+
   it.each(['en', 'de', 'fr'])('handles 90 day data for %s', (language) => {
     const actual = getDateRange(
       language,
@@ -686,6 +701,21 @@ describe('getDateRange', () => {
     );
     expect(actual).toMatchSnapshot();
   });
+
+  it.each(['en', 'de', 'fr'])(
+    'it handles the end of the year for 90 day data for %s',
+    (language) => {
+      const actual = getDateRange(
+        language,
+        [
+          new Date('Dec 01 2024 01:00:00 GMT+0100 (Central European Standard Time)'),
+          new Date('Mar 01 2025 02:00:00 GMT+0200 (Central European Summer Time)'),
+        ],
+        TimeRange.M3
+      );
+      expect(actual).toMatchSnapshot();
+    }
+  );
 
   it.each(['en', 'de', 'fr'])('handles 12 monthly data for %s', (language) => {
     const actual = getDateRange(
@@ -717,7 +747,7 @@ describe('getDateRange', () => {
       language,
       [
         new Date('Sun Jan 01 2017 01:00:00 GMT+0100 (Central European Standard Time)'),
-        new Date('Sat Mar 01 2025 01:00:00 GMT+0100 (Central European Standard Time)'),
+        new Date('Mon Jan 01 2024 01:00:00 GMT+0100 (Central European Standard Time)'),
       ],
       TimeRange.ALL_YEARS
     );
@@ -725,26 +755,26 @@ describe('getDateRange', () => {
     expect(actual).toMatchSnapshot();
   });
 
-  // it('logs an error on unknown data', () => {
-  //   // Spy on console.error to check if it is called
-  //   const consoleErrorSpy = vi.spyOn(console, 'error');
+  it('logs an error on unknown data', () => {
+    // Spy on console.error to check if it is called
+    const consoleErrorSpy = vi.spyOn(console, 'error');
 
-  //   const actual = getDateRange(
-  //     'en',
-  //     [
-  //       new Date('Sat Mar 29 2025 15:00:00 GMT+0100 (Central European Standard Time)'),
-  //       new Date('Tue Apr 01 2025 15:00:00 GMT+0200 (Central European Summer Time)'),
-  //     ],
-  //     'ThisAggregateDoesNotExist' as TimeRange
-  //   );
+    const actual = getDateRange(
+      'en',
+      [
+        new Date('Sat Mar 29 2025 15:00:00 GMT+0100 (Central European Standard Time)'),
+        new Date('Tue Apr 01 2025 15:00:00 GMT+0200 (Central European Summer Time)'),
+      ],
+      'ThisAggregateDoesNotExist' as TimeRange
+    );
 
-  //   const expected = '1/1/2021';
-  //   expect(actual).toEqual(expected);
-  //   expect(consoleErrorSpy).toHaveBeenCalledWith(
-  //     'ThisAggregateDoesNotExist is not implemented'
-  //   );
+    const expected = '';
+    expect(actual).toEqual(expected);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'ThisAggregateDoesNotExist is not implemented'
+    );
 
-  //   // Restore the spy
-  //   consoleErrorSpy.mockRestore();
-  // });
+    // Restore the spy
+    consoleErrorSpy.mockRestore();
+  });
 });
