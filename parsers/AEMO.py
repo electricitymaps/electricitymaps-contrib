@@ -14,15 +14,7 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
 from electricitymap.contrib.lib.models.events import EventSourceType
 
-TIMEZONE = ZoneInfo("?")  # TODO change this
-# See at:
-"""
-from zoneinfo import available_timezones
-all_timezones = sorted(available_timezones())
-all_timezones[350]
-"""
-
-# TODO, what about the other zone in Australia?
+SOURCE = "aemo.com.au"
 
 ZONE_KEY_TO_REGION = {
     "AU-NSW": "NSW1",
@@ -30,8 +22,19 @@ ZONE_KEY_TO_REGION = {
     "AU-SA": "SA1",
     "AU-TAS": "TAS1",
     "AU-VIC": "VIC1",
-    "AU-WA": "WEM",
+    "AU-WA": "WEM",  # This zone is not implemented yet
 }
+
+ZONE_KEY_TO_TIMEZONE = {
+    "AU-NSW": ZoneInfo("Australia/Sydney"),
+    "AU-QLD": ZoneInfo("Australia/Brisbane"),
+    "AU-SA": ZoneInfo("Australia/Adelaide"),
+    "AU-TAS": ZoneInfo("Australia/Hobart"),
+    "AU-VIC": ZoneInfo("Australia/Melbourne"),
+    "AU-WA": ZoneInfo("Australia/Perth"),  # This zone is not implemented yet
+}
+
+# TODO, what about the other zone in Australia (AU-WA)? Check remaining zone
 
 
 def find_document(session, target_datetime):
@@ -74,11 +77,12 @@ def fetch_consumption_forecast(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    """Only for NSW1, QND1, SA1, TAS1, VIC1 zones"""
+    """Consumption forecast in MW every half an hour for 10 days ahead.
+    Only for NSW1, QND1, SA1, TAS1, VIC1 zones."""
     session = session or Session()
 
     if target_datetime is None:
-        target_datetime = datetime.now()  # tz=timezone.utc
+        target_datetime = datetime.now(tz=ZONE_KEY_TO_TIMEZONE[zone_key])
 
     df = find_document(session, target_datetime)
 
@@ -95,16 +99,15 @@ def fetch_consumption_forecast(
     for _, event in all_consumption_events.iterrows():
         datetime_object = datetime.strptime(
             event["INTERVAL_DATETIME"], "%Y/%m/%d %H:%M:%S"
-        )  # .replace(tzinfo=TX_TZ)
-        print(datetime_object)
+        ).replace(tzinfo=ZONE_KEY_TO_TIMEZONE[zone_key])
 
         consumption_list.append(
             zoneKey=zone_key,
             datetime=datetime_object,
             consumption=float(
                 event["OPERATIONAL_DEMAND_POE50"]
-            ),  # TODO transform to float
-            source="mysource.com",  # TODO change this
+            ),  # 50% probability of exceedance operational demand forecast value
+            source=SOURCE,
             sourceType=EventSourceType.forecasted,
         )
     return consumption_list.to_list()
@@ -113,4 +116,11 @@ def fetch_consumption_forecast(
 if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
 
+    print(fetch_consumption_forecast("AU-NSW"))
+    print(fetch_consumption_forecast("AU-QLD"))
+    print(fetch_consumption_forecast("AU-SA"))
+    print(fetch_consumption_forecast("AU-TAS"))
     print(fetch_consumption_forecast("AU-VIC"))
+    print(
+        fetch_consumption_forecast("AU-WA")
+    )  # Not implemented yet. It returns an empty list
