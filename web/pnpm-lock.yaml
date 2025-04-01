@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@capacitor/app':
         specifier: ^6.0.2
-        version: 6.0.2(@capacitor/core@6.2.0)
+        version: 6.0.2(@capacitor/core@6.2.1)
       '@capacitor/core':
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.2.1
+        version: 6.2.1
       '@capacitor/share':
         specifier: ^6.0.3
-        version: 6.0.3(@capacitor/core@6.2.0)
+        version: 6.0.3(@capacitor/core@6.2.1)
       '@radix-ui/react-accordion':
         specifier: ^1.2.3
         version: 1.2.3(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1478,8 +1478,8 @@ packages:
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
-  '@capacitor/core@6.2.0':
-    resolution: {integrity: sha512-B9IlJtDpUqhhYb+T8+cp2Db/3RETX36STgjeU2kQZBs/SLAcFiMama227o+msRjLeo3DO+7HJjWVA1+XlyyPEg==}
+  '@capacitor/core@6.2.1':
+    resolution: {integrity: sha512-urZwxa7hVE/BnA18oCFAdizXPse6fCKanQyEqpmz6cBJ2vObwMpyJDG5jBeoSsgocS9+Ax+9vb4ducWJn0y2qQ==}
 
   '@capacitor/share@6.0.3':
     resolution: {integrity: sha512-BkNM73Ix+yxQ7fkni8CrrGcp1kSl7u+YNoPLwWKQ1MuQ5Uav0d+CT8M67ie+3dc4jASmegnzlC6tkTmFcPTLeA==}
@@ -10500,17 +10500,17 @@ snapshots:
       '@types/tough-cookie': 4.0.5
       tough-cookie: 4.1.4
 
-  '@capacitor/app@6.0.2(@capacitor/core@6.2.0)':
+  '@capacitor/app@6.0.2(@capacitor/core@6.2.1)':
     dependencies:
-      '@capacitor/core': 6.2.0
+      '@capacitor/core': 6.2.1
 
-  '@capacitor/core@6.2.0':
+  '@capacitor/core@6.2.1':
     dependencies:
       tslib: 2.8.1
 
-  '@capacitor/share@6.0.3(@capacitor/core@6.2.0)':
+  '@capacitor/share@6.0.3(@capacitor/core@6.2.1)':
     dependencies:
-      '@capacitor/core': 6.2.0
+      '@capacitor/core': 6.2.1
 
   '@colors/colors@1.5.0':
     optional: true
