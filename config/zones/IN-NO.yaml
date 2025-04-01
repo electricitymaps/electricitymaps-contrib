@@ -46,7 +46,7 @@ contributors:
   - mathilde-daugy
 country: IN
 delays:
-  production: 75
+  production: 120
 emissionFactors:
   direct:
     unknown:
