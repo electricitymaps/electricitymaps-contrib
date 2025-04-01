@@ -48,44 +48,44 @@ exports[`formatDate > handles yearly data for it 1`] = `"2021"`;
 
 exports[`formatDate > handles yearly data for sv 1`] = `"2021"`;
 
-exports[`getDateRange > handles 12 monthly data for de 1`] = `"Apr. 2024 - März 2025"`;
+exports[`getDateRange > handles 12 monthly data for de 1`] = `"Apr. 2024 – März 2025"`;
 
-exports[`getDateRange > handles 12 monthly data for en 1`] = `"Apr 2024 - Mar 2025"`;
+exports[`getDateRange > handles 12 monthly data for en 1`] = `"Apr 2024 – Mar 2025"`;
 
-exports[`getDateRange > handles 12 monthly data for fr 1`] = `"avr. 2024 - mars 2025"`;
+exports[`getDateRange > handles 12 monthly data for fr 1`] = `"avr. 2024 – mars 2025"`;
 
-exports[`getDateRange > handles 72h data for de 1`] = `"29. März - 1. Apr. 2025"`;
+exports[`getDateRange > handles 72h data for de 1`] = `"29. März – 1. Apr. 2025"`;
 
-exports[`getDateRange > handles 72h data for en 1`] = `"Mar 29 - Apr 1, 2025"`;
+exports[`getDateRange > handles 72h data for en 1`] = `"Mar 29 – Apr 1, 2025"`;
 
-exports[`getDateRange > handles 72h data for fr 1`] = `"29 mars - 1 avr. 2025"`;
+exports[`getDateRange > handles 72h data for fr 1`] = `"29 mars – 1 avr. 2025"`;
 
-exports[`getDateRange > handles 90 day data for de 1`] = `"2. Jan. - 31. März 2025"`;
+exports[`getDateRange > handles 90 day data for de 1`] = `"2. Jan. – 31. März 2025"`;
 
-exports[`getDateRange > handles 90 day data for en 1`] = `"Jan 2 - Mar 31, 2025"`;
+exports[`getDateRange > handles 90 day data for en 1`] = `"Jan 2 – Mar 31, 2025"`;
 
-exports[`getDateRange > handles 90 day data for fr 1`] = `"2 janv. - 31 mars 2025"`;
+exports[`getDateRange > handles 90 day data for fr 1`] = `"2 janv. – 31 mars 2025"`;
 
-exports[`getDateRange > handles all month data for de 1`] = `"Jan. 2017 - März 2025"`;
+exports[`getDateRange > handles all month data for de 1`] = `"Jan. 2017 – März 2025"`;
 
-exports[`getDateRange > handles all month data for en 1`] = `"Jan 2017 - Mar 2025"`;
+exports[`getDateRange > handles all month data for en 1`] = `"Jan 2017 – Mar 2025"`;
 
-exports[`getDateRange > handles all month data for fr 1`] = `"janv. 2017 - mars 2025"`;
+exports[`getDateRange > handles all month data for fr 1`] = `"janv. 2017 – mars 2025"`;
 
-exports[`getDateRange > handles all year data for de 1`] = `"2017 - 2024"`;
+exports[`getDateRange > handles all year data for de 1`] = `"2017–2024"`;
 
-exports[`getDateRange > handles all year data for en 1`] = `"2017 - 2024"`;
+exports[`getDateRange > handles all year data for en 1`] = `"2017 – 2024"`;
 
-exports[`getDateRange > handles all year data for fr 1`] = `"2017 - 2024"`;
+exports[`getDateRange > handles all year data for fr 1`] = `"2017–2024"`;
 
-exports[`getDateRange > handles the end of the year for 72h data for de 1`] = `"30. Dez. 2024 - 2. Jan. 2025"`;
+exports[`getDateRange > handles the end of the year for 72h data for de 1`] = `"30. Dez. 2024 – 2. Jan. 2025"`;
 
-exports[`getDateRange > handles the end of the year for 72h data for en 1`] = `"Dec 30, 2024 - Jan 2, 2025"`;
+exports[`getDateRange > handles the end of the year for 72h data for en 1`] = `"Dec 30, 2024 – Jan 2, 2025"`;
 
-exports[`getDateRange > handles the end of the year for 72h data for fr 1`] = `"30 déc. 2024 - 2 janv. 2025"`;
+exports[`getDateRange > handles the end of the year for 72h data for fr 1`] = `"30 déc. 2024 – 2 janv. 2025"`;
 
-exports[`getDateRange > it handles the end of the year for 90 day data for de 1`] = `"1. Dez. 2024 - 1. März 2025"`;
+exports[`getDateRange > it handles the end of the year for 90 day data for de 1`] = `"1. Dez. 2024 – 1. März 2025"`;
 
-exports[`getDateRange > it handles the end of the year for 90 day data for en 1`] = `"Dec 1, 2024 - Mar 1, 2025"`;
+exports[`getDateRange > it handles the end of the year for 90 day data for en 1`] = `"Dec 1, 2024 – Mar 1, 2025"`;
 
-exports[`getDateRange > it handles the end of the year for 90 day data for fr 1`] = `"1 déc. 2024 - 1 mars 2025"`;
+exports[`getDateRange > it handles the end of the year for 90 day data for fr 1`] = `"1 déc. 2024 – 1 mars 2025"`;

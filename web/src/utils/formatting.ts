@@ -317,45 +317,27 @@ function getDateRange(lang: string, datetimes: Date[], timeRange: TimeRange): st
   switch (timeRange) {
     case TimeRange.H72:
     case TimeRange.M3: {
-      const diffYears = new Date(first).getFullYear() !== new Date(last).getFullYear();
-
-      const start = new Intl.DateTimeFormat(lang, {
-        day: 'numeric',
-        month: 'short',
-        ...(diffYears ? { year: 'numeric' } : {}),
-      }).format(first);
-
-      const end = new Intl.DateTimeFormat(lang, {
-        day: 'numeric',
-        month: 'short',
+      return new Intl.DateTimeFormat(lang, {
         year: 'numeric',
-      }).format(last);
-
-      return `${start} - ${end}`;
+        month: 'short',
+        day: 'numeric',
+      }).formatRange(first, last);
     }
 
     case TimeRange.M12:
     case TimeRange.ALL_MONTHS: {
-      const formatOptions: Intl.DateTimeFormatOptions = {
+      return new Intl.DateTimeFormat(lang, {
         year: 'numeric',
         month: 'short',
-      };
-
-      const start = new Intl.DateTimeFormat(lang, formatOptions).format(first);
-      const end = new Intl.DateTimeFormat(lang, formatOptions).format(last);
-
-      return `${start} - ${end}`;
+      }).formatRange(first, last);
     }
+
     case TimeRange.ALL_YEARS: {
-      const formatOptions: Intl.DateTimeFormatOptions = {
+      return new Intl.DateTimeFormat(lang, {
         year: 'numeric',
-      };
-
-      const start = new Intl.DateTimeFormat(lang, formatOptions).format(first);
-      const end = new Intl.DateTimeFormat(lang, formatOptions).format(last);
-
-      return `${start} - ${end}`;
+      }).formatRange(first, last);
     }
+
     default: {
       console.error(`${timeRange} is not implemented`);
       return '';
