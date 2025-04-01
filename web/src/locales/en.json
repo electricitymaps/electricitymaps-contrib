@@ -236,13 +236,8 @@
     "12mo": "12 months",
     "all_months": "All months",
     "all_years": "All years",
-    "historical-linking": {
-      "72h": "72 hours",
-      "3mo": "90 days",
-      "12mo": "12 months",
-      "all_months": "All months",
-      "all_years": "All years"
-    },
+    "navigate": "Navigate",
+    "live": "Live",
     "date-unavailable": {
       "title": "Date unavailable",
       "description": "Redirecting to live data"

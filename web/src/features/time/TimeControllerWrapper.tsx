@@ -1,12 +1,26 @@
 import GlassContainer from 'components/GlassContainer';
-import { useFeatureFlag } from 'features/feature-flags/api';
+import { useDropdownCtl } from 'components/MoreOptionsDropdown';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtomValue } from 'jotai';
 import { BottomSheet } from 'react-spring-bottom-sheet';
-import { hasOnboardingBeenSeenAtom } from 'utils/state/atoms';
+import { hasOnboardingBeenSeenAtom, isHourlyAtom } from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
+import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeController from './TimeController';
+
+// TODO(cady): clean up duplication
+function useHistoricalTimeHeader(): {
+  shouldShowHistoricalNavigator: boolean;
+  onToggleDropdown: () => void;
+  onDismiss: () => void;
+} {
+  const isHourly = useAtomValue(isHourlyAtom);
+  const { isOpen, onToggleDropdown, onDismiss } = useDropdownCtl();
+  const shouldShowHistoricalNavigator = isHourly && isOpen;
+
+  return { shouldShowHistoricalNavigator, onToggleDropdown, onDismiss };
+}
 
 function BottomSheetWrappedTimeController() {
   const isLoadingMap = useAtomValue(loadingMapAtom);
@@ -14,14 +28,13 @@ function BottomSheetWrappedTimeController() {
   const safeAreaBottomString = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--sab');
-
-  // TODO: handle historical linking feat
-  const historicalLinkingEnabled = useFeatureFlag('historical-linking');
+  const { shouldShowHistoricalNavigator, onToggleDropdown, onDismiss } =
+    useHistoricalTimeHeader();
 
   const safeAreaBottom = safeAreaBottomString
     ? Number.parseInt(safeAreaBottomString.replace('px', ''))
     : 0;
-  const SNAP_POINTS = [60 + safeAreaBottom, 170 + safeAreaBottom];
+  const SNAP_POINTS = [60 + safeAreaBottom, 125 + safeAreaBottom];
 
   // Don't show the time controller until the onboarding has been seen
   // But it still has to be rendered to avoid re-querying data and showing loading
@@ -35,15 +48,28 @@ function BottomSheetWrappedTimeController() {
       snapPoints={() => snapPoints}
       blocking={false}
     >
-      <TimeController className="p-2 min-[370px]:px-4" />
+      {shouldShowHistoricalNavigator && (
+        <div className="absolute z-[20] w-full -translate-y-14">
+          <HistoricalTimeHeader onClose={onDismiss} floating />
+        </div>
+      )}
+      <TimeController className="p-0.5 min-[370px]:px-4" onToggle={onToggleDropdown} />
     </BottomSheet>
   );
 }
 
 function FloatingTimeController() {
+  const { shouldShowHistoricalNavigator, onToggleDropdown, onDismiss } =
+    useHistoricalTimeHeader();
+
   return (
-    <GlassContainer className="pointer-events-auto bottom-3 left-3 px-4 py-3">
-      <TimeController />
+    <GlassContainer className="pointer-events-auto absolute bottom-3 left-3 flex w-full flex-col px-4 py-3">
+      {shouldShowHistoricalNavigator && (
+        <div className="border-1 z-[22] mb-1 border-b border-neutral-200 pb-2 dark:border-neutral-700">
+          <HistoricalTimeHeader onClose={onDismiss} />
+        </div>
+      )}
+      <TimeController onToggle={onToggleDropdown} />
     </GlassContainer>
   );
 }

@@ -84,7 +84,9 @@
     "72h": "stündlich",
     "12mo": "monatlich",
     "all_months": "monatlich",
-    "all_years": "jährlich"
+    "all_years": "jährlich",
+    "navigate": "Navigieren",
+    "live": "Live"
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",

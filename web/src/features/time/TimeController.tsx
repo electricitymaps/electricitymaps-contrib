@@ -1,8 +1,8 @@
 import useGetState from 'api/getState';
+import { Button } from 'components/Button';
 import { FormattedTime } from 'components/Time';
 import TimeRangeSelector from 'components/TimeRangeSelector';
 import TimeSlider from 'components/TimeSlider';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,22 +20,25 @@ import {
   timeRangeAtom,
   useTimeRangeSync,
 } from 'utils/state/atoms';
-import { useIsBiggerThanMobile } from 'utils/styling';
 
 import TimeAxis from './TimeAxis';
 
-export default function TimeController({ className }: { className?: string }) {
+export default function TimeController({
+  className,
+  onToggle,
+}: {
+  className?: string;
+  onToggle: () => void;
+}) {
   const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
-  const isBiggerThanMobile = useIsBiggerThanMobile();
   const { zoneId } = useParams<RouteParameters>();
   const [selectedTimeRange, setTimeRange] = useTimeRangeSync();
   const setEndDatetime = useSetAtom(endDatetimeAtom);
   const setStartDatetime = useSetAtom(startDatetimeAtom);
   const { urlDatetime } = useParams();
-  const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const zoneTimezone = getZoneTimezone(zoneId);
   const navigate = useNavigateWithParameters();
   const setIsRedirectedToLatestDatetime = useSetAtom(isRedirectedToLatestDatetimeAtom);
@@ -119,23 +122,40 @@ export default function TimeController({ className }: { className?: string }) {
     },
     [setSelectedDatetime, datetimes, numberOfEntries, setTimeRange]
   );
+
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       <div className="flex flex-row items-center justify-between gap-2">
-        <FormattedTime
-          datetime={selectedDatetime.datetime}
-          language={i18n.languages[0]}
-          timeRange={timeRange}
-          className="text-primary text-sm"
-        />
+        <div className="flex items-center gap-1">
+          {isHourly ? (
+            <Button
+              type="link"
+              size="sm"
+              onClick={onToggle}
+              foregroundClasses="px-2"
+              backgroundClasses="outline outline-1 outline-neutral-200 dark:outline-neutral-700"
+              shouldShrink
+            >
+              <FormattedTime
+                datetime={selectedDatetime.datetime}
+                language={i18n.languages[0]}
+                timeRange={timeRange}
+                className="text-sm"
+              />
+            </Button>
+          ) : (
+            <FormattedTime
+              datetime={selectedDatetime.datetime}
+              language={i18n.languages[0]}
+              timeRange={timeRange}
+              className="text-sm font-semibold"
+            />
+          )}
+        </div>
         <TimeRangeSelector
           timeRange={selectedTimeRange || TimeRange.H72}
           onToggleGroupClick={onToggleGroupClick}
         />
-        {/* <TimeRangeToggle
-          timeRange={selectedTimeRange || TimeRange.H72}
-          onToggleGroupClick={onToggleGroupClick}
-        /> */}
       </div>
 
       <div>
