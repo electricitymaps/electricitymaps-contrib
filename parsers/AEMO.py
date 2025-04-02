@@ -53,7 +53,7 @@ def find_document(session, target_datetime):
     matching_links = soup.find_all(
         "a",
         href=re.compile(
-            rf"PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_{target_date_str}\d+_{target_date_str}\d+\.zip"
+            rf"PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_{target_date_str}\d+_\d+\.zip"
         ),
     )
 
