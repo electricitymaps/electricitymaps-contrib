@@ -75,7 +75,6 @@ const renderTick = (
   );
 };
 
-// TODO(cady): Live w/ Radio icon
 const renderTickValue = (
   v: Date,
   index: number,
@@ -93,7 +92,6 @@ const renderTickValue = (
 
   return shouldDisplayLive ? (
     <g>
-      {/* <Radio className="ml-0" color="#DE3054" height="16" r="2" fill="#DE3054" /> */}
       <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold" textAnchor="middle">
         Live
       </text>

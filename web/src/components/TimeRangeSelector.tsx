@@ -18,7 +18,6 @@ export interface TimeRangeSelectorProps {
   onToggleGroupClick: (newTimeRange: TimeRange) => void;
 }
 
-// TODO(cady): should we make this a generic selector and merely pass in options?
 function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorProps) {
   const { t } = useTranslation();
   const { isOpen, onToggleDropdown } = useDropdownCtl();

@@ -9,7 +9,6 @@ import { useBreakpoint } from 'utils/styling';
 import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeController from './TimeController';
 
-// TODO(cady): clean up duplication
 function useHistoricalTimeHeader(): {
   shouldShowHistoricalNavigator: boolean;
   onToggleDropdown: () => void;
