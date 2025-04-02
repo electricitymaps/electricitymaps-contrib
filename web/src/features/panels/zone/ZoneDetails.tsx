@@ -28,7 +28,6 @@ import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import ZoneHeader from './ZoneHeader';
-import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -145,7 +144,6 @@ export default function ZoneDetails(): JSX.Element {
             isIosCapacitor ? 'pb-72' : 'pb-32'
           )}
         >
-          <ZoneHeaderGauges zoneKey={zoneId} />
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <DisplayByEmissionToggle />
           )}
