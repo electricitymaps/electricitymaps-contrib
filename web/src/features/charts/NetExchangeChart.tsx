@@ -4,7 +4,7 @@ import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
 
-import { ChartTitle } from './ChartTitle';
+import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
@@ -49,6 +49,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
         titleText={t(`country-history.netExchange.${timeRange}`)}
         unit={valueAxisLabel}
         id={Charts.NET_EXCHANGE_CHART}
+        subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">
         <AreaGraph
