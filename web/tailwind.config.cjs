@@ -53,6 +53,10 @@ const config = {
         'brand-brown': '#702214',
         'price-light': '#18214F',
         'price-dark': '#848EC0',
+        secondary: {
+          DEFAULT: colors.neutral[600],
+          dark: colors.gray[300],
+        },
         success: {
           DEFAULT: colors.emerald[800],
           dark: colors.emerald[500],

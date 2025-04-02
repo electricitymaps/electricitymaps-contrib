@@ -4,7 +4,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': FakeDatetime(2021, 12, 30, 9, 58, 37, tzinfo=zoneinfo.ZoneInfo(key='America/Panama')),
+      'datetime': FakeDatetime(2021, 12, 30, 9, 58, tzinfo=zoneinfo.ZoneInfo(key='America/Panama')),
       'production': dict({
         'biomass': 2.75,
         'coal': 149.6,

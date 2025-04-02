@@ -98,6 +98,10 @@ def get_data(url, session: Session | None = None):
 
     s = session or Session()
     req = s.get(url)
+
+    if req.text == "":
+        return pd.DataFrame()
+
     df = pd.read_csv(StringIO(req.text))
 
     return df
@@ -450,6 +454,9 @@ def fetch_realtime_locational_marginal_price(
         check_datetime = target_datetime - timedelta(minutes=minutes)
         url = get_realtime_url(check_datetime)
         raw_data = get_data(url, session)
+        if raw_data.empty:
+            logger.warning(f"Empty response for {check_datetime}")
+            continue
 
         spp_data = raw_data[raw_data["Settlement Location"] == node]
         for _, row in spp_data.iterrows():
@@ -480,6 +487,9 @@ def fetch_dayahead_locational_marginal_price(
 
     url = get_dayahead_url(target_datetime)
     raw_data = get_data(url, session)
+    if raw_data.empty:
+        logger.warning(f"Empty response for {target_datetime}")
+        return []
     node = "SPPNORTH_HUB"
     # filter by column "Settlement Location" so it only includes SPPNORTH_HUB
     spp_data = raw_data[raw_data["Settlement Location"] == node]
