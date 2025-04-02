@@ -13,6 +13,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
 from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.types import ZoneKey
 
 SOURCE = "aemo.com.au"
 
@@ -72,7 +73,7 @@ def find_document(session, target_datetime):
 
 
 def fetch_consumption_forecast(
-    zone_key: str,  # "AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA"
+    zone_key: ZoneKey,  # "AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA"
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
