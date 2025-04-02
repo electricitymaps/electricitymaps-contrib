@@ -231,18 +231,13 @@
       "all_months": "Månadsvis data för:",
       "all_years": "Årsvis data för:"
     },
-    "72h": "72h",
-    "3mo": "3må",
-    "12mo": "12må",
-    "all_months": "Alla",
+    "72h": "72 timmar",
+    "3mo": "90 dagar",
+    "12mo": "12 månader",
+    "all_months": "Alla månader",
     "all_years": "Alla år",
-    "historical-linking": {
-      "72h": "72h",
-      "3mo": "3må",
-      "12mo": "12må",
-      "all_months": "Alla",
-      "all_years": "Alla år"
-    },
+    "navigate": "Navigera",
+    "live": "Realtid",
     "date-unavailable": {
       "title": "Datum ej tillgängligt",
       "description": "Omdirigerar till realtidsdata"
