@@ -67,7 +67,7 @@ export function ChartSubtitle({ datetimes, timeRange }: ChartSubtitleProps) {
   const { i18n } = useTranslation();
   return (
     <p className="text-xs text-neutral-600 dark:text-neutral-300">
-      {getDateRange(i18n.language, datetimes, timeRange)}
+      {getDateRange(i18n.languages[0], datetimes, timeRange)}
     </p>
   );
 }
