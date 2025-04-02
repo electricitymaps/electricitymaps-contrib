@@ -49,7 +49,7 @@ function BottomSheetWrappedTimeController() {
       blocking={false}
     >
       {shouldShowHistoricalNavigator && (
-        <div className="absolute z-[20] w-full -translate-y-14">
+        <div className="absolute z-[20] w-full -translate-y-14 px-2">
           <HistoricalTimeHeader onClose={onDismiss} floating />
         </div>
       )}
@@ -65,7 +65,7 @@ function FloatingTimeController() {
   return (
     <GlassContainer className="pointer-events-auto absolute bottom-3 left-3 flex w-full flex-col px-4 py-3">
       {shouldShowHistoricalNavigator && (
-        <div className="border-1 z-[22] mb-1 border-b border-neutral-200 pb-2 dark:border-neutral-700">
+        <div className="border-1 z-[22] mb-1 border-b border-neutral-200 px-0.5 pb-2 dark:border-neutral-700">
           <HistoricalTimeHeader onClose={onDismiss} />
         </div>
       )}
