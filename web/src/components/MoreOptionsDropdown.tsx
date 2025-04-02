@@ -1,7 +1,5 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
-import { useAtomValue } from 'jotai';
 import { ExternalLink, FileDownIcon, Link } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +14,6 @@ import {
   DEFAULT_TOAST_DURATION,
 } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
-import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 
 import { MemoizedShareIcon } from './ShareIcon';
 import { TimeDisplay } from './TimeDisplay';
@@ -91,7 +88,7 @@ export function MoreOptionsDropdown({
         <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
         <DropdownMenu.Content
           className={twMerge(
-            'border-gray z-30 my-3 w-64 min-w-60 rounded-2xl border bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
+            'z-30 my-3 w-64 min-w-60 rounded-2xl border border-neutral-200 bg-white shadow-md dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300',
             hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
           )}
         >
@@ -117,18 +114,18 @@ export function MoreOptionsDropdown({
                 </div>
                 <ExternalLink
                   size={DEFAULT_ICON_SIZE}
-                  className="text-gray-500 opacity-80"
+                  className="text-neutral-500 opacity-80"
                 />
               </button>
             </DropdownMenu.Label>
-            <DropdownMenu.Separator className="my-1 h-px bg-neutral-200 dark:bg-gray-700" />
+            <DropdownMenu.Separator className="my-1 h-px bg-neutral-200 dark:bg-neutral-700" />
             <DropdownMenu.Group className="flex cursor-pointer flex-col px-2">
               <DropdownMenu.Item className={dropdownItemStyle}>
                 <div className="flex flex-col">
                   <div className="align-items flex justify-between">
                     <h2 className="self-start text-sm">{dropdownTitle}</h2>
                   </div>
-                  <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-gray-300" />
+                  <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300" />
                 </div>
               </DropdownMenu.Item>
               <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
@@ -214,7 +211,7 @@ export function MoreOptionsDropdown({
   );
 }
 
-const useDropdownCtl = () => {
+export const useDropdownCtl = () => {
   const [isOpen, setIsOpen] = useState(false);
   const methods = useMemo(
     () => ({
@@ -226,11 +223,3 @@ const useDropdownCtl = () => {
 
   return { isOpen, ...methods };
 };
-
-export function useShowMoreOptions() {
-  const isMoreOptionsEnabled = useFeatureFlag('more-options-dropdown');
-  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const isConsumption = useAtomValue(isConsumptionAtom);
-
-  return isMoreOptionsEnabled && !displayByEmissions && isConsumption;
-}

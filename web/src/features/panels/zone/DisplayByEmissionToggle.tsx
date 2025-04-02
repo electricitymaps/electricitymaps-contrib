@@ -39,7 +39,7 @@ function EmissionToggle(): ReactElement {
   );
 
   return (
-    <div className="my-4">
+    <div className="mb-4">
       <ToggleButton
         options={options}
         selectedOption={
@@ -48,6 +48,7 @@ function EmissionToggle(): ReactElement {
             : LeftPanelToggleOptions.ELECTRICITY
         }
         onToggle={onSetCurrentMode}
+        transparentBackground={false}
       />
     </div>
   );

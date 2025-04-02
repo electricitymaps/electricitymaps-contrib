@@ -5,69 +5,66 @@ bounding_box:
     - 49.502493024
 capacity:
   battery storage:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
+    - datetime: '2021-01-01'
+      source: EIA.gov
       value: 2.0
   biomass:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
-      value: 0.0
-    - datetime: '2024-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 37.9
   coal:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
-      value: 370.0
-    - datetime: '2024-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
-      value: 1905.0
-    - datetime: '2024-01-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 1696.0
   geothermal:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
+    - datetime: '2021-01-01'
+      source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
-      value: 966.0
-    - datetime: '2024-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 347.8
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 340.5
   hydro storage:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
+    - datetime: '2021-01-01'
+      source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
+    - datetime: '2021-01-01'
+      source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
+    - datetime: '2021-01-01'
+      source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
+    - datetime: '2021-01-01'
+      source: EIA.gov
       value: 0.5
-    - datetime: '2024-01-01'
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 5.5
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 10.5
+    - datetime: '2022-11-01'
       source: EIA.gov
       value: 15.5
   unknown:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
+    - datetime: '2021-01-01'
+      source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-01-01'
-      source: PSE 2023 IRP
-      value: 773.0
-    - datetime: '2024-01-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 502.9
+    - datetime: '2022-11-01'
       source: EIA.gov
       value: 868.4
 comment: Puget Sound Energy
@@ -80,9 +77,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 33
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:

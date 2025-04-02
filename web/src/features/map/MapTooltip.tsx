@@ -1,6 +1,7 @@
 import * as Portal from '@radix-ui/react-portal';
 import useGetState from 'api/getState';
 import EstimationBadge from 'components/EstimationBadge';
+import GlassContainer from 'components/GlassContainer';
 import NoDataBadge from 'components/NoDataBadge';
 import OutageBadge from 'components/OutageBadge';
 import { TimeDisplay } from 'components/TimeDisplay';
@@ -48,10 +49,10 @@ export const TooltipInner = memo(function TooltipInner({
         </div>
         <TimeDisplay
           zoneId={zoneId}
-          className="self-start text-neutral-600 dark:text-neutral-400"
+          className="self-start text-sm text-neutral-600 dark:text-neutral-400"
         />
       </div>
-      <ZoneGaugesWithCO2Square zoneData={zoneData} />
+      <ZoneGaugesWithCO2Square zoneData={zoneData} classNames="justify-evenly" />
     </div>
   );
 });
@@ -130,12 +131,12 @@ export default function MapTooltip() {
 
   return (
     <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
-      <div
-        className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900 "
+      <GlassContainer
+        className="pointer-events-none relative w-[361px]"
         style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
       >
         <TooltipInner zoneData={zoneData} zoneId={zoneId} />
-      </div>
+      </GlassContainer>
     </Portal.Root>
   );
 }

@@ -5,76 +5,192 @@ bounding_box:
     - 38.61
 capacity:
   biomass:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 3072.0
+      value: 2348.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2386.5
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 3214.5
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 3628.0
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 2730.0
+      value: 2730.5
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 2745.5
   coal:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 43687.0
+      value: 38691.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 40347.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 38745.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 39329.0
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 42897.0
-  gas:
+      value: 40802.0
     - datetime: '2022-01-01'
       source: IRENA.org
-      value: 42514.0
+      value: 41952.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 42992.0
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 41664.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 42551.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 42702.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 42965.0
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 42996.0
-  geothermal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  hydro:
     - datetime: '2022-01-01'
       source: IRENA.org
-      value: 1812.0
+      value: 41996.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 43985.83
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1794.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 1798.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1809.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1807.0
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 1841.0
+      value: 1821.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1813.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1805.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
       value: 4700.0
   nuclear:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 22529.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 21850.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 23250.0
     - datetime: '2022-01-01'
       source: IRENA.org
       value: 24650.0
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 23250.0
   oil:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 2053.0
+      value: 3444.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 3297.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 3378.0
     - datetime: '2021-01-01'
       source: IRENA.org
       value: 3292.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 3142.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 3079.14
   solar:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 24078.0
+      value: 5633.2
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 7701.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 10847.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 14756.0
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 21264.0
+      value: 17905.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 20525.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 23493.09
   unknown:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 1243.0
+      value: 736.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 888.5
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 941.5
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1121.0
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 1288.0
+      value: 1287.5
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1429.5
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1430.08
   wind:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 1908.0
+      value: 1143.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 1303.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1494.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1645.0
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 1724.0
+      value: 1709.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1946.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 2204.86
 contributors:
   - systemcatch
   - alixunderplatz

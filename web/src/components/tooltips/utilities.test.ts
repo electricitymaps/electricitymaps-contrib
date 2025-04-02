@@ -5,27 +5,27 @@ import { getOffsetTooltipPosition, getSafeTooltipPosition } from './utilities';
 describe('getSafeTooltipPosition', () => {
   it('should position the tooltip correctly when it fits within the screen width', () => {
     const result = getSafeTooltipPosition(100, 100, 500, 50, 50);
-    expect(result).toEqual({ x: 110, y: 90 });
+    expect(result).toEqual({ x: 173, y: 34 });
   });
 
   it('should flip the tooltip position when it exceeds the screen width', () => {
     const result = getSafeTooltipPosition(480, 100, 500, 50, 50);
-    expect(result).toEqual({ x: 430, y: 90 });
+    expect(result).toEqual({ x: 483, y: 34 });
   });
 
   it('should position the tooltip correctly when it fits within the screen height', () => {
     const result = getSafeTooltipPosition(100, 100, 500, 50, 50);
-    expect(result).toEqual({ x: 110, y: 90 });
+    expect(result).toEqual({ x: 173, y: 34 });
   });
 
   it('should adjust the tooltip position when it exceeds the screen height', () => {
     const result = getSafeTooltipPosition(100, 30, 500, 50, 50);
-    expect(result).toEqual({ x: 110, y: 20 });
+    expect(result).toEqual({ x: 173, y: 30 });
   });
 
   it('should flip the tooltip position when it exceeds the screen height', () => {
     const result = getSafeTooltipPosition(100, 50, 500, 50, 100);
-    expect(result).toEqual({ x: 110, y: 50 });
+    expect(result).toEqual({ x: 173, y: 50 });
   });
 });
 

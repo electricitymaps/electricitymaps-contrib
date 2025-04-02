@@ -5,72 +5,90 @@ bounding_box:
     - 49.50244
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1.0
+    - datetime: '2021-10-01'
+      source: EIA.gov
+      value: 2.0
+    - datetime: '2022-03-01'
       source: EIA.gov
       value: 32.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
-      value: 303.4
-    - datetime: '2024-01-01'
+      value: 308.2
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 303.2
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 289.2
+    - datetime: '2022-07-01'
+      source: EIA.gov
+      value: 301.8
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 292.0
+    - datetime: '2023-10-01'
       source: EIA.gov
       value: 293.6
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 729.9
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 2271.7
-    - datetime: '2024-01-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 2167.0
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 18.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 19010.3
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 19577.9
-    - datetime: '2023-12-01'
-      source: EIA.gov
-      value: 19737.6
-    - datetime: '2024-03-01'
-      source: EIA.gov
-      value: 19752.0
-    - datetime: '2024-06-01'
-      source: EIA.gov
-      value: 19732.0
-    - datetime: '2024-07-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 19732.4
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 314.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 1200.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 87.9
+    - datetime: '2022-03-01'
       source: EIA.gov
       value: 137.9
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 140.8
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 223.7
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 3617.1
 comment: Bonneville Power Administration
@@ -82,9 +100,8 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available. This zone includes all wind related electricity production
+  production: 48
+disclaimer: This zone includes all wind related electricity production
   from the generation-only balancing authority Avangrid Renewables, LLC. Read more
   on the zone definition wiki page.
 emissionFactors:

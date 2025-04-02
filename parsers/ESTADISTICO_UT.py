@@ -95,7 +95,7 @@ def _fetch_data(session: Session, target_datetime: datetime | None = None) -> di
     content_data = json.loads(content_json)
     if content_data.get("error"):
         raise ParserException(
-            parser="SV", message=f'Error response returned: {content_data["error"]}'
+            parser="SV", message=f"Error response returned: {content_data['error']}"
         )
     data_resp = json.loads(content_data["result"])
 

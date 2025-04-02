@@ -5,75 +5,114 @@ bounding_box:
     - 31.33017
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 24.0
+    - datetime: '2021-11-01'
+      source: EIA.gov
+      value: 433.0
+    - datetime: '2021-12-01'
       source: EIA.gov
       value: 493.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 620.8
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 617.6
-    - datetime: '2024-04-01'
+    - datetime: '2023-02-01'
       source: EIA.gov
       value: 540.6
-    - datetime: '2024-10-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 543.8
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 23743.6
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 24018.1
+    - datetime: '2022-05-01'
       source: EIA.gov
       value: 25465.8
-    - datetime: '2024-10-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 28207.1
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 43.5
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 3797.2
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 274.5
-    - datetime: '2024-10-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
       value: 316.3
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
-      value: 4584.8
+      value: 2275.3
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 2573.3
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 2647.8
+    - datetime: '2021-05-01'
+      source: EIA.gov
+      value: 2871.3
+    - datetime: '2021-06-01'
+      source: EIA.gov
+      value: 2945.8
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 3392.8
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 4137.4
+    - datetime: '2023-02-01'
+      source: EIA.gov
+      value: 4360.9
+    - datetime: '2023-04-01'
+      source: EIA.gov
+      value: 4584.4
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 5478.8
+      value: 5701.9
     - datetime: '2024-03-01'
       source: EIA.gov
-      value: 6223.8
-    - datetime: '2024-05-01'
-      source: EIA.gov
-      value: 6223.4
-    - datetime: '2024-10-01'
-      source: EIA.gov
       value: 6446.9
+    - datetime: '2024-11-01'
+      source: EIA.gov
+      value: 7042.9
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 7192.3
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
 comment: Florida Power & Light Company
@@ -85,9 +124,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 35
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:

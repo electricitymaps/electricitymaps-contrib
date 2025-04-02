@@ -5,69 +5,111 @@ bounding_box:
     - 37.963081
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 23.5
+    - datetime: '2024-11-01'
+      source: EIA.gov
+      value: 173.5
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 33.0
+    - datetime: '2022-07-01'
       source: EIA.gov
       value: 34.1
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 1640.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 4854.6
-    - datetime: '2024-01-01'
+    - datetime: '2022-01-01'
       source: EIA.gov
-      value: 4634.1
-    - datetime: '2024-02-01'
+      value: 4832.5
+    - datetime: '2023-01-01'
       source: EIA.gov
-      value: 4631.7
-    - datetime: '2024-07-01'
+      value: 4814.5
+    - datetime: '2023-04-01'
       source: EIA.gov
-      value: 4597.2
-    - datetime: '2024-10-01'
+      value: 4739.1
+    - datetime: '2023-05-01'
+      source: EIA.gov
+      value: 4594.0
+    - datetime: '2023-09-01'
       source: EIA.gov
       value: 4591.6
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 296.0
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 270.0
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1626.0
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 1084.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 987.0
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 988.8
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 991.4
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 989.3
+    - datetime: '2022-02-01'
+      source: EIA.gov
+      value: 991.7
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 992.5
+    - datetime: '2022-07-01'
+      source: EIA.gov
+      value: 994.0
+    - datetime: '2023-02-01'
       source: EIA.gov
       value: 999.1
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 1000.9
-    - datetime: '2024-10-01'
+    - datetime: '2024-01-01'
       source: EIA.gov
-      value: 1002.7
+      value: 1002.6
+    - datetime: '2024-02-01'
+      source: EIA.gov
+      value: 1004.4
+    - datetime: '2024-11-01'
+      source: EIA.gov
+      value: 1204.4
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 31.9
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 440.5
 comment: Los Angeles Department Of Water And Power
@@ -79,9 +121,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:

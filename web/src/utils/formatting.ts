@@ -299,4 +299,50 @@ function formatDataSources(dataSources: string[], language: string) {
       );
 }
 
-export { formatDataSources, formatDate, formatDateTick, scalePower };
+/**
+ * @param {string} language - ISO 639-1 language code (`en`) or ISO 639-1 language code + ISO 3166-1 alpha-2 country code (`en-GB`).
+ * @param {Date[]} datetimes - array of datetimes.
+ * @param {TimeRange} timeRange - TimeRange
+ * @returns {string} formatted string of datetime range
+ */
+function getDateRange(lang: string, datetimes: Date[], timeRange: TimeRange): string {
+  const first = datetimes[0];
+  const last = datetimes.at(-1);
+
+  if (!first || !last || !isValidDate(first) || !isValidDate(last) || !timeRange) {
+    console.error(`Invalid datetime: ${first}, ${last}, ${timeRange}`);
+    return '';
+  }
+
+  switch (timeRange) {
+    case TimeRange.H72:
+    case TimeRange.M3: {
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }).formatRange(first, last);
+    }
+
+    case TimeRange.M12:
+    case TimeRange.ALL_MONTHS: {
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        month: 'short',
+      }).formatRange(first, last);
+    }
+
+    case TimeRange.ALL_YEARS: {
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+      }).formatRange(first, last);
+    }
+
+    default: {
+      console.error(`${timeRange} is not implemented`);
+      return '';
+    }
+  }
+}
+
+export { formatDataSources, formatDate, formatDateTick, getDateRange, scalePower };
