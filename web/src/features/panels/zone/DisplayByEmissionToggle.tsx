@@ -39,7 +39,7 @@ function EmissionToggle(): ReactElement {
   );
 
   return (
-    <div className="mb-4 mt-2">
+    <div className="mb-4">
       <ToggleButton
         options={options}
         selectedOption={
