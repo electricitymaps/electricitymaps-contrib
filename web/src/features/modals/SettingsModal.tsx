@@ -52,8 +52,8 @@ function ElectricityFlowsToggle() {
           className="text-xs"
           href="https://www.electricitymaps.com/blog/flow-tracing"
         >
-          Flow-tracing{' '}
-        </Link>
+          Flow-tracing
+        </Link>{' '}
         tracks how electricity physically moves through interconnectors that link
         different zones
       </span>
