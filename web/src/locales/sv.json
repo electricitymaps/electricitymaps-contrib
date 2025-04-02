@@ -7,8 +7,7 @@
   },
   "settings-modal": {
     "title": "Inställningar",
-    "flows": "Elflöden",
-    "flow-tracing": "Flödesanalys spårar hur el fysiskt rör sig genom sammankopplingar som länkar olika zoner"
+    "flows": "Elflöden"
   },
   "ranking-panel": {
     "title": "Koldioxidutsläpp från elnätet",
@@ -428,14 +427,14 @@
   "coal": "kol",
   "oil": "olja",
   "unknown": "okänd",
-  "electricityStoredUsing": "lagras med hjälp av",
-  "emissionsStoredUsing": "lagras med hjälp av",
-  "electricityExportedTo": "exporteras till",
-  "emissionsExportedTo": "exporteras till",
-  "electricityImportedFrom": "importeras från",
-  "emissionsImportedFrom": "importeras från",
-  "electricityAvailableIn": "av tillgänglig elektricitet i",
-  "emissionsAvailableIn": "av utsläpp från tillgänglig elektricitet i",
+  "electricityStoredUsing": "är lagrad med hjälp av",
+  "emissionsStoredUsing": "är lagrad med hjälp av",
+  "electricityExportedTo": "är exporterat till",
+  "emissionsExportedTo": "är exporterat till",
+  "electricityImportedFrom": "är importerat från",
+  "emissionsImportedFrom": "är importerat från",
+  "electricityAvailableIn": "av elektricitet tillgängligt i",
+  "emissionsAvailableIn": "av utsläpp från elektricitet tillgängligt i",
   "comesFrom": "kommer från",
   "ofCO2eq": "av CO₂eq",
   "theMap": {
@@ -1895,14 +1894,5 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
-  },
-  "electricityStoredUsing": "är lagrad med hjälp av",
-  "emissionsStoredUsing": "är lagrad med hjälp av",
-  "electricityExportedTo": "är exporterat till",
-  "emissionsExportedTo": "är exporterat till",
-  "electricityImportedFrom": "är importerat från",
-  "emissionsImportedFrom": "är importerat från",
-  "electricityAvailableIn": "av elektricitet tillgängligt i",
-  "emissionsAvailableIn": "av utsläpp från elektricitet tillgängligt i",
-  "comesFrom": "kommer från"
+  }
 }
