@@ -153,20 +153,6 @@
       "body": "Data består av en aggregering av timvisa värden. {{percentage}}% av produktionsvärdena är uppskattade."
     }
   },
-  "time-controller": {
-    "title": {
-      "72h": "Timvis data för:",
-      "3mo": "Dagsvis data för:",
-      "12mo": "Månadsvis data för:",
-      "all_months": "Månadsvis data för:",
-      "all_years": "Årsvis data för:"
-    },
-    "3mo": "dagvis",
-    "72h": "timvis",
-    "12mo": "månadsvis",
-    "all_months": "månadsvis",
-    "all_years": "årsvis"
-  },
   "ranking-panel": {
     "title": "Klimatpåverkan per region",
     "subtitle": "Rankad efter kolintensitet från elproduktion (gCO₂eq/kWh)",
