@@ -25,8 +25,7 @@
   },
   "settings-modal": {
     "title": "Paramètres",
-    "flows": "Flux de l'électricité",
-    "flow-tracing": "Le traçage de flux montre comment l'électricité se déplace physiquement à travers les interconnecteurs qui relient différentes zones"
+    "flows": "Flux de l'électricité"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -218,8 +217,11 @@
     }
   },
   "time-controller": {
-    "navigate": "Naviguer",
-    "live": "En direct",
+    "72h": "72h",
+    "3mo": "3mo",
+    "12mo": "12mo",
+    "all_months": "Tout",
+    "all_years": "Toutes les années",
     "date-unavailable": {
       "title": "Date indisponible",
       "description": "Redirection vers les données en temps réel"
