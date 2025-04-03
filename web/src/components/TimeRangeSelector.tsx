@@ -39,7 +39,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
       </DropdownMenu.Trigger>
       <DropdownMenu.Content
         sideOffset={4}
-        className="border-1 border-1 z-50 w-33 rounded-xl border border-neutral-200 bg-white p-1 dark:border-neutral-700 dark:bg-neutral-900"
+        className="border-1 border-1 z-50 w-28 rounded-xl border border-neutral-200 bg-white p-1  dark:border-neutral-700 dark:bg-neutral-900"
       >
         {options.map(({ value, label, dataTestId }) => (
           <DropdownMenu.Item
