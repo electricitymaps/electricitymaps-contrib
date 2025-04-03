@@ -5,6 +5,7 @@ import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
 import { AppStoreBanner } from 'components/AppStoreBanner';
+import GtmPageTracker from 'components/GtmPageTracker';
 import LoadingOverlay from 'components/LoadingOverlay';
 import { OnboardingModal } from 'components/modals/OnboardingModal';
 import { AppSidebar, SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
@@ -122,6 +123,8 @@ export default function App(): ReactElement {
 
   return (
     <Suspense fallback={<div />}>
+      <GtmPageTracker />
+
       <Helmet
         htmlAttributes={{
           lang: i18n.languages[0],
