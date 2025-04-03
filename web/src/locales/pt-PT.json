@@ -128,13 +128,6 @@
       "body": "Os dados consistem numa agregação de valores horários. {{percentage}}% dos valores de produção são estimados."
     }
   },
-  "time-controller": {
-    "3mo": "diários",
-    "72h": "horários",
-    "12mo": "mensais",
-    "all_months": "mensais",
-    "all_years": "anuais"
-  },
   "ranking-panel": {
     "title": "Impacto climático",
     "subtitle": "Áreas ordenadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",

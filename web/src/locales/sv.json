@@ -1,3 +1,4 @@
+
 {
   "info": {
     "title": "Om Electricity Maps",
@@ -224,13 +225,6 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "72 timmars data för:",
-      "3mo": "Dagsvis data för:",
-      "12mo": "Månadsvis data för:",
-      "all_months": "Månadsvis data för:",
-      "all_years": "Årsvis data för:"
-    },
     "72h": "72 timmar",
     "3mo": "90 dagar",
     "12mo": "12 månader",

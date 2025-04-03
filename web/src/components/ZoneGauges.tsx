@@ -11,11 +11,13 @@ import CircularGauge from './CircularGauge';
 interface ZoneGaugesWithCO2SquareProps {
   zoneData: StateZoneData;
   withTooltips?: boolean;
+  classNames?: string;
 }
 
 function ZoneGaugesWithCO2Square({
   zoneData,
   withTooltips = false,
+  classNames,
 }: ZoneGaugesWithCO2SquareProps) {
   const { t } = useTranslation();
   const isConsumption = useAtomValue(isConsumptionAtom);
@@ -23,7 +25,7 @@ function ZoneGaugesWithCO2Square({
   const renewable = getRenewableRatio(zoneData, isConsumption);
   const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
   return (
-    <div className="flex w-full flex-row justify-evenly">
+    <div className={`flex w-full flex-row ${classNames}`}>
       <CarbonIntensitySquare
         data-testid="co2-square-value"
         intensity={intensity}

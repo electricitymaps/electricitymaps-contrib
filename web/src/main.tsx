@@ -252,7 +252,7 @@ const router = createBrowserRouter([
             <TimeRangeAndResolutionGuardWrapper>
               <Suspense
                 fallback={
-                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-48 sm:h-auto">
+                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-36 sm:h-auto">
                     <LoadingSpinner />
                   </GlassContainer>
                 }
