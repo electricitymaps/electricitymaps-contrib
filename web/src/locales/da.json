@@ -186,9 +186,11 @@
     },
     "3mo": "daglig",
     "72h": "timevis",
-    "12mo": "månedlig",
+    "12mo": "12 månedlig",
     "all_months": "månedlig",
-    "all_years": "årlig"
+    "all_years": "årlig",
+    "navigate": "Navigere",
+    "live": "Live"
   },
   "left-panel": {
     "applied-methodologies": {
