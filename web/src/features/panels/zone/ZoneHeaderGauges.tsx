@@ -11,5 +11,11 @@ export function ZoneHeaderGauges({ zoneKey }: { zoneKey?: string }) {
   }
   const selectedData = data.datetimes[selectedDatetimeString]?.z[zoneKey];
 
-  return <ZoneGaugesWithCO2Square zoneData={selectedData} withTooltips />;
+  return (
+    <ZoneGaugesWithCO2Square
+      zoneData={selectedData}
+      classNames="justify-between"
+      withTooltips
+    />
+  );
 }

@@ -44,7 +44,7 @@ contributors:
   - gopikrishna1793
 country: IN
 delays:
-  production: 75
+  production: 120
 emissionFactors:
   direct:
     battery discharge:
