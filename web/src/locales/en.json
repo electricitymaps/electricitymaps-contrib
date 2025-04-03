@@ -224,13 +224,6 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "72 hour data for:",
-      "3mo": "Daily data for:",
-      "12mo": "Monthly data for:",
-      "all_months": "Monthly data for:",
-      "all_years": "Yearly data for:"
-    },
     "72h": "72 hours",
     "3mo": "90 days",
     "12mo": "12 months",
