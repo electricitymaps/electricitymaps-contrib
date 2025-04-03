@@ -32,7 +32,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
   return (
     <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen} modal={false}>
       <DropdownMenu.Trigger>
-        <div className="flex w-32 flex-row items-center justify-between rounded-xl bg-white p-1 pl-2 text-sm font-semibold capitalize outline outline-1 outline-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:outline-neutral-700 dark:hover:bg-neutral-800">
+        <div className="flex w-32 flex-row items-center justify-between rounded-xl bg-white p-1 pl-2 text-sm font-semibold capitalize-first-letter outline outline-1 outline-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:outline-neutral-700 dark:hover:bg-neutral-800">
           {selectedLabel}
           <ChevronsUpDown height="14px" />
         </div>
@@ -47,7 +47,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
             data-testid={dataTestId}
             aria-label={label}
             onClick={() => onToggleGroupClick(value)}
-            className={`h-full grow basis-0 select-none rounded-xl p-2 text-xs font-semibold capitalize hover:bg-neutral-100 focus-visible:outline-none dark:hover:bg-neutral-800 `}
+            className={`h-full grow basis-0 select-none rounded-xl p-2 text-xs font-semibold capitalize-first-letter hover:bg-neutral-100 focus-visible:outline-none dark:hover:bg-neutral-800 `}
           >
             {label}
           </DropdownMenu.Item>
