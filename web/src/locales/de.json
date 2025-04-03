@@ -73,18 +73,6 @@
     "no-results": "Nichts gefunden. Versuche es mit etwas anderem zu suchen."
   },
   "time-controller": {
-    "title": {
-      "72h": "Stündliche Daten für:",
-      "3mo": "Tägliche Daten für:",
-      "12mo": "Monatliche Daten für:",
-      "all_months": "Monatliche Daten für:",
-      "all_years": "Jährliche Daten für:"
-    },
-    "3mo": "täglich",
-    "72h": "stündlich",
-    "12mo": "monatlich",
-    "all_months": "monatlich",
-    "all_years": "jährlich",
     "navigate": "Navigieren",
     "live": "Live"
   },
