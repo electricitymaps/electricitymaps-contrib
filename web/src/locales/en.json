@@ -7,8 +7,7 @@
   },
   "settings-modal": {
     "title": "Settings",
-    "flows": "Electricity flows",
-    "flow-tracing": "Flow-tracing tracks how electricity physically moves through interconnectors that link different zones"
+    "flows": "Electricity flows"
   },
   "ranking-panel": {
     "title": "Electricity Grid Carbon Emissions",
@@ -225,25 +224,13 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "72 hour data for:",
-      "3mo": "Daily data for:",
-      "12mo": "Monthly data for:",
-      "all_months": "Monthly data for:",
-      "all_years": "Yearly data for:"
-    },
-    "72h": "72h",
-    "3mo": "3mo",
-    "12mo": "12mo",
-    "all_months": "All",
+    "72h": "72 hours",
+    "3mo": "90 days",
+    "12mo": "12 months",
+    "all_months": "All months",
     "all_years": "All years",
-    "historical-linking": {
-      "72h": "72h",
-      "3mo": "3mo",
-      "12mo": "12mo",
-      "all_months": "All",
-      "all_years": "All years"
-    },
+    "navigate": "Navigate",
+    "live": "Live",
     "date-unavailable": {
       "title": "Date unavailable",
       "description": "Redirecting to live data"

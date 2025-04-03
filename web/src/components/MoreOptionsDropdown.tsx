@@ -211,7 +211,7 @@ export function MoreOptionsDropdown({
   );
 }
 
-const useDropdownCtl = () => {
+export const useDropdownCtl = () => {
   const [isOpen, setIsOpen] = useState(false);
   const methods = useMemo(
     () => ({

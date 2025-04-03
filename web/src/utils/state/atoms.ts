@@ -88,10 +88,7 @@ export const displayByEmissionsAtom = atom<boolean>(false);
 
 export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 
-export const hasOnboardingBeenSeenAtom = atomWithStorage(
-  'onboardingSeen',
-  localStorage.getItem('onboardingSeen') ?? false
-);
+export const hasOnboardingBeenSeenAtom = atomWithStorage('onboardingSeen', true);
 
 export const hasEstimationFeedbackBeenSeenAtom = atomWithStorage(
   'estimationFeedbackSeen',

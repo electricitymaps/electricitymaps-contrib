@@ -73,9 +73,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     )
 
     # Mock wind forecast request
-    data_wind = Path(
-        base_path_to_mock, "pjm_wind_forecast_2025-02-24T00:00:00.0000000.json"
-    )
+    data_wind = Path(base_path_to_mock, "pjm_wind_forecast_2025-02-24.json")
     adapter.register_uri(
         GET,
         re.compile(
@@ -85,9 +83,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     )
 
     # Mock solar forecast request
-    data_solar = Path(
-        base_path_to_mock, "pjm_solar_forecast_2025-02-24T00:00:00.0000000.json"
-    )
+    data_solar = Path(base_path_to_mock, "pjm_solar_forecast_2025-02-24.json")
     adapter.register_uri(
         GET,
         re.compile(

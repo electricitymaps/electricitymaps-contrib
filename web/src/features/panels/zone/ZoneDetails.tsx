@@ -28,7 +28,6 @@ import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import ZoneHeader from './ZoneHeader';
-import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -134,7 +133,7 @@ export default function ZoneDetails(): JSX.Element {
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
-    <GlassContainer className="pointer-events-auto z-[21] flex h-full flex-col border-0 pb-2 pt-10 transition-all duration-500 sm:inset-3 sm:bottom-48 sm:h-auto sm:border sm:pt-0">
+    <GlassContainer className="pointer-events-auto z-[21] flex h-full flex-col border-0 pt-10 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0">
       <section className="h-full w-full">
         <ZoneHeader zoneId={zoneId} isEstimated={false} />
         <div
@@ -145,7 +144,6 @@ export default function ZoneDetails(): JSX.Element {
             isIosCapacitor ? 'pb-72' : 'pb-32'
           )}
         >
-          <ZoneHeaderGauges zoneKey={zoneId} />
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <DisplayByEmissionToggle />
           )}

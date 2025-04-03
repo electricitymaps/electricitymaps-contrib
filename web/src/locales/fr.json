@@ -216,25 +216,8 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "Données des 3 derniers jours pour :",
-      "3mo": "Données quotidiennes pour :",
-      "12mo": "Données mensuelles pour :",
-      "all_months": "Données mensuelles pour :",
-      "all_years": "Données annuelles pour :"
-    },
-    "72h": "72h",
-    "3mo": "3mo",
-    "12mo": "12mo",
-    "all_months": "Tout",
-    "all_years": "Toutes les années",
-    "historical-linking": {
-      "3mo": "30j",
-      "72h": "72h",
-      "12mo": "12mo",
-      "all_months": "Tout",
-      "all_years": "Toutes les années"
-    },
+    "navigate": "Naviguer",
+    "live": "En direct",
     "date-unavailable": {
       "title": "Date indisponible",
       "description": "Redirection vers les données en temps réel"
