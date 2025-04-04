@@ -176,20 +176,6 @@
       "body": "Dane składają się z agregacji wartości godzinowych. {{percentage}}% wartości produkcji jest szacowanych."
     }
   },
-  "time-controller": {
-    "title": {
-      "72h": "Dane godzinowe dla:",
-      "3mo": "Dane dzienne dla:",
-      "12mo": "Dane miesięczne dla:",
-      "all_months": "Dane miesięczne dla:",
-      "all_years": "Dane roczne dla:"
-    },
-    "3mo": "dzienne",
-    "72h": "godzinowe",
-    "12mo": "miesięczne",
-    "all_months": "miesięczne",
-    "all_years": "roczne"
-  },
   "left-panel": {
     "applied-methodologies": {
       "title": "Zastosowane metody",

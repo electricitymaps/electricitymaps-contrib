@@ -40,7 +40,7 @@ contributors:
   - unitrium
 country: IN
 delays:
-  production: 75
+  production: 120
 emissionFactors:
   lifecycle:
     battery discharge:
