@@ -3,6 +3,110 @@ bounding_box:
     - -27.35642468684171
   - - 41.34420844208444
     - -9.975337525172648
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 72.95
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 347.84
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 453.84
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 453.64
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2193.03
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 2193.63
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 206.6
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 221.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 207.6
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2.65
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2.85
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 43.32
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 45.44
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 45.96
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 87.53
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 102.53
 country: MZ
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 102.37
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 102.9
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 102.37
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 102.9
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.006391846142397455
+        coal: 0.0
+        gas: 0.1565248293372076
+        geothermal: 0.0
+        hydro: 0.8270095032266226
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.006442975204848462
+        solar: 0.003630665070320534
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.006503774148449837
+        coal: 0.0
+        gas: 0.1575577949534047
+        geothermal: 0.0
+        hydro: 0.8259654510216987
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.006499783922426881
+        solar: 0.003473283673712482
+        unknown: 0.0
+        wind: 0.0
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Maputo

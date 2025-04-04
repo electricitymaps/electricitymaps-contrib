@@ -158,19 +158,6 @@
     "exchange": "Uitwisselingsgegevens",
     "emission": "Emissiefactorgegevens"
   },
-  "time-controller": {
-    "title": {
-      "3mo": "Dagelijkse gegevens voor:",
-      "12mo": "Maandelijkse gegevens voor:",
-      "all_months": "Maandelijkse gegevens voor:",
-      "all_years": "Jaarlijkse gegevens voor:"
-    },
-    "3mo": "dagelijks",
-    "72h": "per uur",
-    "12mo": "maandelijks",
-    "all_months": "maandelijks",
-    "all_years": "jaarlijks"
-  },
   "left-panel": {
     "applied-methodologies": {
       "title": "Toegepaste methodologieën",

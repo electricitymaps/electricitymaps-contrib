@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 
-import { ChartTitle } from './ChartTitle';
+import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
@@ -38,6 +38,7 @@ function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
         badge={badge}
         unit={'CO₂eq'}
         id={Charts.EMISSION_CHART}
+        subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <AreaGraph
         testId="history-emissions-graph"

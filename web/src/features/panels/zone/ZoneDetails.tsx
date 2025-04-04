@@ -1,6 +1,7 @@
 import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
 import ApiButton from 'components/buttons/ApiButton';
+import GlassContainer from 'components/GlassContainer';
 import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
@@ -9,12 +10,11 @@ import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { RouteParameters, ZoneMessage } from 'types';
-import { Charts, EstimationMethods, SpatialAggregate } from 'utils/constants';
+import { RouteParameters } from 'types';
+import { Charts, SpatialAggregate } from 'utils/constants';
 import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
-  isHourlyAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeRangeAtom,
@@ -28,7 +28,6 @@ import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import ZoneHeader from './ZoneHeader';
-import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -37,11 +36,10 @@ export default function ZoneDetails(): JSX.Element {
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const { data, isError, isLoading } = useGetZone();
-  const isHourly = useAtomValue(isHourlyAtom);
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
-  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data, timeRange);
+  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
@@ -52,7 +50,7 @@ export default function ZoneDetails(): JSX.Element {
     if (hasSubZones === null) {
       return;
     }
-    // When first hitting the map (or opening a zone from the ranking panel),
+    // When first hitting the map (or opening a zone from the search panel),
     // set the correct matching view mode (zone or country).
     if (hasSubZones && !isSubZone) {
       setViewMode(SpatialAggregate.COUNTRY);
@@ -68,6 +66,7 @@ export default function ZoneDetails(): JSX.Element {
     () => Object.keys(data?.zoneStates || {})?.map((key) => new Date(key)),
     [data]
   );
+  const zoneMessage = data?.zoneMessage;
 
   // We isolate the component which is independant of `selectedData`
   // in order to avoid re-rendering it needlessly
@@ -81,6 +80,13 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
+            <EstimationCard
+              zoneKey={zoneId}
+              zoneMessage={zoneMessage}
+              estimatedPercentage={roundedEstimatedPercentage}
+            />
+          )}
           <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
@@ -100,14 +106,16 @@ export default function ZoneDetails(): JSX.Element {
         </ZoneDetailsContent>
       ),
     [
+      zoneId,
+      zoneDataStatus,
       isLoading,
       isError,
-      zoneDataStatus,
       hasEstimationPill,
+      zoneMessage,
+      roundedEstimatedPercentage,
       datetimes,
       timeRange,
       displayByEmissions,
-      zoneId,
       t,
     ]
   );
@@ -122,65 +130,28 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const zoneMessage = data?.zoneMessage;
-  const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
-    <>
-      <ZoneHeader zoneId={zoneId} isEstimated={cardType === 'estimated'} />
-      <div
-        id="panel-scroller"
-        className={twMerge(
-          'mb-3 h-full scroll-pt-5 overflow-y-scroll px-3 pt-2.5 sm:h-full sm:pb-64',
-          isIosCapacitor ? 'pb-72' : 'pb-48'
-        )}
-      >
-        {cardType != 'none' &&
-          zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
-          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
-            <EstimationCard
-              cardType={cardType}
-              estimationMethod={estimationMethod}
-              zoneMessage={zoneMessage}
-              estimatedPercentage={roundedEstimatedPercentage}
-            />
+    <GlassContainer className="pointer-events-auto z-[21] flex h-full flex-col border-0 pt-10 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0">
+      <section className="h-full w-full">
+        <ZoneHeader zoneId={zoneId} isEstimated={false} />
+        <div
+          id="panel-scroller"
+          className={twMerge(
+            // TODO: Can we set the height here without using calc and specific zone-header value?
+            'h-full flex-1 overflow-y-scroll px-3 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4',
+            isIosCapacitor ? 'pb-72' : 'pb-32'
           )}
-        <ZoneHeaderGauges zoneKey={zoneId} />
-        {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
-          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
+        >
+          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <DisplayByEmissionToggle />
           )}
-        {zoneDetailsContent}
-      </div>
-    </>
+          {zoneDetailsContent}
+        </div>
+      </section>
+    </GlassContainer>
   );
-}
-
-function getCardType({
-  estimationMethod,
-  zoneMessage,
-  isHourly,
-}: {
-  estimationMethod?: EstimationMethods;
-  zoneMessage?: ZoneMessage;
-  isHourly: boolean;
-}): 'estimated' | 'aggregated' | 'outage' | 'none' {
-  if (
-    (zoneMessage !== undefined &&
-      zoneMessage?.message !== undefined &&
-      zoneMessage?.issue !== undefined) ||
-    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
-  ) {
-    return 'outage';
-  }
-  if (!isHourly) {
-    return 'aggregated';
-  }
-  if (estimationMethod) {
-    return 'estimated';
-  }
-  return 'none';
 }
 
 function ZoneDetailsContent({
@@ -195,7 +166,11 @@ function ZoneDetailsContent({
   zoneDataStatus: ZoneDataStatus;
 }): JSX.Element {
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <div className="relative mt-[10vh]">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (isError) {
@@ -209,14 +184,8 @@ function ZoneDetailsContent({
     );
   }
 
-  if (
-    [
-      ZoneDataStatus.NO_INFORMATION,
-      ZoneDataStatus.AGGREGATE_DISABLED,
-      ZoneDataStatus.FULLY_DISABLED,
-    ].includes(zoneDataStatus)
-  ) {
-    return <NoInformationMessage status={zoneDataStatus} />;
+  if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION) {
+    return <NoInformationMessage />;
   }
 
   return children as JSX.Element;

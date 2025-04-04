@@ -18,7 +18,11 @@ const options = [
   },
 ];
 
-function ConsumptionProductionToggle(): ReactElement {
+function ConsumptionProductionToggle({
+  transparentBackground = true,
+}: {
+  transparentBackground?: boolean;
+}): ReactElement {
   const [currentMode, setCurrentMode] = useAtom(productionConsumptionAtom);
   const onSetCurrentMode = useCallback(
     (option: string) => {
@@ -41,7 +45,7 @@ function ConsumptionProductionToggle(): ReactElement {
       tooltipKey="tooltips.cpinfo"
       selectedOption={currentMode}
       onToggle={onSetCurrentMode}
-      transparentBackground
+      transparentBackground={transparentBackground}
     />
   );
 }

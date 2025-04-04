@@ -15,8 +15,7 @@ from parsers.lib.exceptions import ParserException
 
 TIMEZONE = ZoneInfo("America/Regina")
 PRODUCTION_URL = (
-    "https://www.saskpower.com/ignitionapi/PowerUseDashboard"
-    "/GetPowerUseDashboardData"
+    "https://www.saskpower.com/ignitionapi/PowerUseDashboard/GetPowerUseDashboardData"
 )
 CONSUMPTION_URL = "https://www.saskpower.com/ignitionapi/Content/GetNetLoad"
 PRODUCTION_MAPPING = {

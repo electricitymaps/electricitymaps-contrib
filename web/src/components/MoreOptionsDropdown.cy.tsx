@@ -65,7 +65,7 @@ describe('MoreOptionsDropdown', () => {
     );
     cy.get('button').click();
     cy.contains('Share').should('be.visible');
-    cy.get('[data-testid=dismiss-btn]').click();
+    cy.get('body').click(0, 0);
     cy.contains('Share').should('not.exist');
   });
 

@@ -76,8 +76,9 @@ def test_fetch_production_mix(adapter, session):
                 "oil": 1,
                 "unknown": 1,
                 "solar": 1,
+                "geothermal": 1,
             },
-            "storage": {},
+            "storage": {"hydro": -1, "battery": -1},
         },
         {
             "zoneKey": "US-NW-PGE",
@@ -91,8 +92,9 @@ def test_fetch_production_mix(adapter, session):
                 "oil": 2,
                 "unknown": 2,
                 "solar": 2,
+                "geothermal": 2,
             },
-            "storage": {},
+            "storage": {"hydro": -2, "battery": -2},
         },
     ]
     _check_production_matches(data_list, expected)
@@ -642,8 +644,9 @@ def test_fetch_production_mix_discards_null(adapter, session):
                 "oil": 400,
                 "unknown": 400,
                 "solar": 400,
+                "geothermal": 400,
             },
-            "storage": {},
+            "storage": {"hydro": -400, "battery": -400},
         },
     ]
     assert (
@@ -778,3 +781,36 @@ def test_texas_loses_one_mode(adapter, session):
     )
     data = EIA.fetch_production_mix(ZoneKey("US-TEX-ERCO"), session)
     assert len(data) == 0
+
+
+def test_fetch_returns_storage(adapter, session):
+    adapter.register_uri(
+        GET,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.EIA")
+            .joinpath("US_CAL_IID-battery_storage.json")
+            .read_text()
+        ),
+    )
+
+    data_list = EIA.fetch_production_mix(ZoneKey("US-CAL-IID"), session)
+    expected = [
+        {
+            "zoneKey": "US-CAL-IID",
+            "source": "eia.gov",
+            "production": {
+                "gas": 1,
+                "coal": 1,
+                "wind": 1,
+                "hydro": 1,
+                "nuclear": 1,
+                "oil": 1,
+                "unknown": 1,
+                "solar": 1,
+                "geothermal": 1,
+            },
+            "storage": {"battery": -1, "hydro": -1},
+        },
+    ]
+    _check_production_matches(data_list, expected)

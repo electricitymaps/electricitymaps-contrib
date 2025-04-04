@@ -19,8 +19,9 @@ from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     ProductionBreakdownList,
+    TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from parsers.lib.config import refetch_frequency
 
 # Dual Fuel systems can run either Natural Gas or Oil, they represent
@@ -118,8 +119,7 @@ def fetch_production(
 
     if (datetime.now(tz=TIMEZONE) - target_datetime).days > 9:
         raise NotImplementedError(
-            "you can get data older than 9 days at the "
-            "url http://mis.nyiso.com/public/"
+            "you can get data older than 9 days at the url http://mis.nyiso.com/public/"
         )
 
     ny_date = target_datetime.strftime("%Y%m%d")
@@ -231,11 +231,57 @@ def fetch_exchange(
     return exchange_5min.to_list()
 
 
+def fetch_consumption_forecast(
+    zone_key: ZoneKey = ZoneKey(ZONE),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the load forecast (in MW) for a given date in hourly intervals."""
+    session = session or Session()
+
+    # Datetime
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TIMEZONE)
+    else:
+        # assume passed in correct timezone
+        target_datetime = target_datetime.replace(tzinfo=TIMEZONE)
+
+    if (
+        datetime.now(tz=TIMEZONE) - target_datetime
+    ).days > 9:  # TODO: If datetime is previous to 9 days, it need to be implemented
+        raise NotImplementedError(
+            "you can get data older than 9 days at the url http://mis.nyiso.com/public/"
+        )
+    ny_date = target_datetime.strftime("%Y%m%d")
+
+    # Request to the url
+    target_url = f"http://mis.nyiso.com/public/csv/isolf/{ny_date}isolf.csv"
+    df = pd.read_csv(target_url)
+
+    # Add events consumption_list
+    all_consumption_events = (
+        df.copy()
+    )  # all events with a datetime and a generation value
+    consumption_list = TotalConsumptionList(logger)
+    for _index, event in all_consumption_events.iterrows():
+        event_datetime = timestamp_converter(event["Time Stamp"])
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=event_datetime,
+            consumption=event["NYISO"],
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumption_list.to_list()
+
+
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     from pprint import pprint
 
+    """
     print("fetch_production() ->")
     pprint(fetch_production())
 
@@ -262,3 +308,7 @@ if __name__ == "__main__":
         'fetch_exchange("US-NY", "CA-QC", target_datetime=datetime(2007, 3, 13, 12)))'
     )
     pprint(fetch_exchange("US-NY", "CA-QC", target_datetime=datetime(2007, 3, 13, 12)))
+    """
+
+    print("fetch_consumption_forecast() ->")
+    pprint(fetch_consumption_forecast())

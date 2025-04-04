@@ -1,6 +1,8 @@
 import * as Portal from '@radix-ui/react-portal';
 import EstimationBadge from 'components/EstimationBadge';
+import { TimeDisplay } from 'components/TimeDisplay';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import { ZoneHeaderGauges } from 'features/panels/zone/ZoneHeaderGauges';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useHeaderHeight } from 'hooks/headerHeight';
 import { TFunction } from 'i18next';
@@ -10,7 +12,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { Charts, EstimationMethods, TimeRange } from 'utils/constants';
+import { Charts, isTSAModel, TimeRange } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
@@ -45,7 +47,6 @@ function BarBreakdownChart({
     isLoading,
     height,
   } = useBarBreakdownChartData();
-
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
@@ -75,6 +76,7 @@ function BarBreakdownChart({
     estimationMethod,
     currentZoneDetail?.estimatedPercentage
   );
+  const isTSA = isTSAModel(estimationMethod);
 
   const onMouseOver = useCallback(
     (layerKey: ElectricityModeType | ZoneKey, event: React.MouseEvent) => {
@@ -124,19 +126,23 @@ function BarBreakdownChart({
     <RoundedCard ref={ref}>
       <ChartTitle
         titleText={titleText}
-        unit={graphUnit}
+        subtitle={
+          <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300" />
+        }
         badge={
           hasEstimationPill ? (
             <EstimationBadge
               text={pillText}
-              Icon={
-                estimationMethod === EstimationMethods.TSA ? CircleDashed : TrendingUpDown
-              }
+              Icon={isTSA ? CircleDashed : TrendingUpDown}
+              isPreliminary={isTSA}
             />
           ) : undefined
         }
         id={Charts.BAR_BREAKDOWN_CHART}
       />
+      <div className="mb-4">
+        <ZoneHeaderGauges zoneKey={currentZoneDetail.zoneKey} />
+      </div>
       {!displayByEmissions && isHourly && (
         <CapacityLegend
           text={t('country-panel.graph-legends.installed-capacity')}
@@ -159,7 +165,7 @@ function BarBreakdownChart({
             />
             <button
               onClick={() => setTooltipData(null)}
-              className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden"
+              className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-neutral-800 sm:hidden"
             >
               <X />
             </button>
@@ -215,13 +221,13 @@ export const getText = (
   const translations = {
     hourly: {
       emissions: t('country-panel.by-source.emissions'),
-      production: t('country-panel.by-source.electricity-production'),
-      consumption: t('country-panel.by-source.electricity-consumption'),
+      production: t('country-panel.by-source.electricity-mix'),
+      consumption: t('country-panel.by-source.electricity-mix'),
     },
     default: {
       emissions: t('country-panel.by-source.total-emissions'),
-      production: t('country-panel.by-source.total-electricity-production'),
-      consumption: t('country-panel.by-source.total-electricity-consumption'),
+      production: t('country-panel.by-source.total-electricity-mix'),
+      consumption: t('country-panel.by-source.total-electricity-mix'),
     },
   };
   const period = timePeriod === TimeRange.H72 ? 'hourly' : 'default';

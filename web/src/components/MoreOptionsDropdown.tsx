@@ -1,11 +1,10 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
-import { useAtomValue } from 'jotai';
-import { Link } from 'lucide-react';
+import { ExternalLink, FileDownIcon, Link } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
+import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { getTrackByShareType, ShareType } from 'utils/analytics';
 import {
@@ -15,9 +14,7 @@ import {
   DEFAULT_TOAST_DURATION,
 } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
-import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 
-import { DefaultCloseButton } from './DefaultCloseButton';
 import { MemoizedShareIcon } from './ShareIcon';
 import { TimeDisplay } from './TimeDisplay';
 import { Toast, useToastReference } from './Toast';
@@ -42,11 +39,13 @@ export function MoreOptionsDropdown({
   title,
   id,
 }: MoreOptionsDropdownProps) {
+  const { zoneId } = useParams();
   const { t } = useTranslation();
   const [toastMessage, setToastMessage] = useState('');
   const { isOpen, onDismiss, onToggleDropdown } = useDropdownCtl();
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
+  const downloadUrl = `https://portal.electricitymaps.com/datasets/${zoneId}?utm_source=app&utm_medium=download_button&utm_campaign=csv_download`;
 
   const summary = t('more-options-dropdown.summary');
 
@@ -89,25 +88,46 @@ export function MoreOptionsDropdown({
         <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
         <DropdownMenu.Content
           className={twMerge(
-            'border-gray z-30 my-2 min-w-60 rounded-2xl border border-solid bg-white shadow-md dark:border-b dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
+            'z-30 my-3 w-64 min-w-60 rounded-2xl border border-neutral-200 bg-white shadow-md dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300',
             hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
           )}
         >
           {isEstimated && (
             <div className="w-full rounded-t-2xl bg-warning/10 p-3 text-xs font-semibold text-warning dark:bg-warning-dark/10 dark:text-warning-dark">
-              <p className="text-xs">{t('more-options-dropdown.preliminary-data')}</p>
+              <p>{t('more-options-dropdown.preliminary-data')}</p>
             </div>
           )}
-          <div className="px-3 pb-2 pt-3">
-            <DropdownMenu.Label className="flex flex-col">
-              <div className="align-items flex justify-between">
-                <h2 className="self-start text-sm">{dropdownTitle}</h2>
-                <DefaultCloseButton onClose={onDismiss} />
-              </div>
-              <TimeDisplay className="whitespace-nowrap text-xs font-normal text-neutral-600 dark:text-gray-300" />
+          <div className="px-2 py-2">
+            <DropdownMenu.Label className=" flex justify-between">
+              <button
+                className="flex w-full justify-between p-2"
+                onClick={() => window.open(downloadUrl, '_blank')}
+                onKeyDown={(event) =>
+                  event.key === 'Enter' && window.open(downloadUrl, '_blank')
+                }
+              >
+                <div className="my-auto flex items-center">
+                  <FileDownIcon size={DEFAULT_ICON_SIZE} />
+                  <div className="ml-2 text-sm font-semibold">
+                    {t('more-options-dropdown.download')}
+                  </div>
+                </div>
+                <ExternalLink
+                  size={DEFAULT_ICON_SIZE}
+                  className="text-neutral-500 opacity-80"
+                />
+              </button>
             </DropdownMenu.Label>
-            <DropdownMenu.Separator className="mb-1 mt-3 h-px bg-neutral-200 dark:bg-gray-700" />
-            <DropdownMenu.Group className="flex cursor-pointer flex-col">
+            <DropdownMenu.Separator className="my-1 h-px bg-neutral-200 dark:bg-neutral-700" />
+            <DropdownMenu.Group className="flex cursor-pointer flex-col px-2">
+              <DropdownMenu.Item className={dropdownItemStyle}>
+                <div className="flex flex-col">
+                  <div className="align-items flex justify-between">
+                    <h2 className="self-start text-sm">{dropdownTitle}</h2>
+                  </div>
+                  <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300" />
+                </div>
+              </DropdownMenu.Item>
               <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
                 <Link size={DEFAULT_ICON_SIZE} />
                 <p className={dropdownContentStyle}>{copyLinkText}</p>
@@ -191,7 +211,7 @@ export function MoreOptionsDropdown({
   );
 }
 
-const useDropdownCtl = () => {
+export const useDropdownCtl = () => {
   const [isOpen, setIsOpen] = useState(false);
   const methods = useMemo(
     () => ({
@@ -203,11 +223,3 @@ const useDropdownCtl = () => {
 
   return { isOpen, ...methods };
 };
-
-export function useShowMoreOptions() {
-  const isMoreOptionsEnabled = useFeatureFlag('more-options-dropdown');
-  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const isConsumption = useAtomValue(isConsumptionAtom);
-
-  return isMoreOptionsEnabled && !displayByEmissions && isConsumption;
-}

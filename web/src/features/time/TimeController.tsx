@@ -1,14 +1,15 @@
 import useGetState from 'api/getState';
-import TimeRangeToggle from 'components/TimeRangeToggle';
+import { Button } from 'components/Button';
+import { FormattedTime } from 'components/Time';
+import TimeRangeSelector from 'components/TimeRangeSelector';
 import TimeSlider from 'components/TimeSlider';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import trackEvent from 'utils/analytics';
-import { TimeRange, TrackEvent } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
@@ -16,32 +17,37 @@ import {
   isRedirectedToLatestDatetimeAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
+  timeRangeAtom,
   useTimeRangeSync,
 } from 'utils/state/atoms';
-import { useIsBiggerThanMobile } from 'utils/styling';
 
-import HistoricalTimeHeader from './HistoricalTimeHeader';
 import TimeAxis from './TimeAxis';
-import TimeHeader from './TimeHeader';
 
-export default function TimeController({ className }: { className?: string }) {
+export default function TimeController({
+  className,
+  onToggle,
+}: {
+  className?: string;
+  onToggle: () => void;
+}) {
   const isHourly = useAtomValue(isHourlyAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
-  const isBiggerThanMobile = useIsBiggerThanMobile();
   const { zoneId } = useParams<RouteParameters>();
   const [selectedTimeRange, setTimeRange] = useTimeRangeSync();
   const setEndDatetime = useSetAtom(endDatetimeAtom);
   const setStartDatetime = useSetAtom(startDatetimeAtom);
   const { urlDatetime } = useParams();
-  const historicalLinkingEnabled = useFeatureFlag('historical-linking');
   const zoneTimezone = getZoneTimezone(zoneId);
   const navigate = useNavigateWithParameters();
   const setIsRedirectedToLatestDatetime = useSetAtom(isRedirectedToLatestDatetimeAtom);
   // Show a loading state if isLoading is true or if there is only one datetime,
   // as this means we either have no data or only have latest hour loaded yet
   const isLoading = dataLoading || Object.keys(data?.datetimes ?? {}).length === 1;
+
+  const { i18n } = useTranslation();
+  const timeRange = useAtomValue(timeRangeAtom);
 
   // TODO: Figure out whether we want to work with datetimes as strings
   // or as Date objects. In this case datetimes are easier to work with
@@ -111,18 +117,42 @@ export default function TimeController({ className }: { className?: string }) {
             index: numberOfEntries,
           });
           setTimeRange(timeRange);
-          trackEvent(TrackEvent.TIME_AGGREGATE_BUTTON_CLICKED, { timeRange });
         }
       }
     },
     [setSelectedDatetime, datetimes, numberOfEntries, setTimeRange]
   );
+
   return (
     <div className={twMerge(className, 'flex flex-col gap-3')}>
-      {isBiggerThanMobile && !historicalLinkingEnabled && <TimeHeader />}
-      {isBiggerThanMobile && historicalLinkingEnabled && <HistoricalTimeHeader />}
-      <div className="flex items-center gap-2">
-        <TimeRangeToggle
+      <div className="flex flex-row items-center justify-between gap-2">
+        <div className="flex items-center gap-1">
+          {isHourly ? (
+            <Button
+              type="link"
+              size="sm"
+              onClick={onToggle}
+              foregroundClasses="px-2"
+              backgroundClasses="outline outline-1 outline-neutral-200 dark:outline-neutral-700"
+              shouldShrink
+            >
+              <FormattedTime
+                datetime={selectedDatetime.datetime}
+                language={i18n.languages[0]}
+                timeRange={timeRange}
+                className="text-sm"
+              />
+            </Button>
+          ) : (
+            <FormattedTime
+              datetime={selectedDatetime.datetime}
+              language={i18n.languages[0]}
+              timeRange={timeRange}
+              className="text-sm font-semibold"
+            />
+          )}
+        </div>
+        <TimeRangeSelector
           timeRange={selectedTimeRange || TimeRange.H72}
           onToggleGroupClick={onToggleGroupClick}
         />

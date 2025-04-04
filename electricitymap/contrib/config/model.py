@@ -98,6 +98,8 @@ class Parsers(ParsersBaseModel):
     consumptionForecast: str | None
     generationForecast: str | None
     productionPerModeForecast: str | None
+    dayaheadLocationalMarginalPrice: str | None
+    realtimeLocationalMarginalPrice: str | None
     price: str | None
     production: str | None
     productionPerUnit: str | None
@@ -130,7 +132,6 @@ class Zone(StrictBaseModelWithAlias):
     disclaimer: str | None
     parsers: Parsers = Parsers()
     price_displayed: bool | None
-    aggregates_displayed: list[str] | None
     generation_only: bool | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
     timezone: str | None

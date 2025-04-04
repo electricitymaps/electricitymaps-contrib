@@ -118,9 +118,6 @@
     "AG": {
       "zoneName": "安提瓜和巴布达"
     },
-    "AI": {
-      "zoneName": "安圭拉"
-    },
     "AL": {
       "zoneName": "阿尔巴尼亚"
     },
@@ -129,9 +126,6 @@
     },
     "AO": {
       "zoneName": "安哥拉"
-    },
-    "AQ": {
-      "zoneName": "南极洲"
     },
     "AR": {
       "zoneName": "美属萨摩亚阿根廷"
@@ -219,9 +213,6 @@
     "BO": {
       "zoneName": "玻利维亚"
     },
-    "BQ": {
-      "zoneName": "博内尔，圣尤斯特歇斯和沙巴"
-    },
     "BR": {
       "zoneName": "巴西"
     },
@@ -246,9 +237,6 @@
     },
     "BT": {
       "zoneName": "不丹"
-    },
-    "BV": {
-      "zoneName": "布韦岛"
     },
     "BW": {
       "zoneName": "博茨瓦纳"
@@ -314,9 +302,6 @@
       "zoneName": "育空地区",
       "countryName": "加拿大"
     },
-    "CC": {
-      "zoneName": "科科斯群岛"
-    },
     "CD": {
       "zoneName": "刚果民主共和国"
     },
@@ -331,9 +316,6 @@
     },
     "CI": {
       "zoneName": "科特迪瓦"
-    },
-    "CK": {
-      "zoneName": "库克群岛"
     },
     "CL-CHP": {
       "countryName": "智利",
@@ -371,9 +353,6 @@
     },
     "CW": {
       "zoneName": "库拉索"
-    },
-    "CX": {
-      "zoneName": "圣诞岛"
     },
     "CY": {
       "zoneName": "塞浦路斯"
@@ -449,10 +428,6 @@
       "countryName": "西班牙",
       "zoneName": "梅诺卡岛"
     },
-    "ES-CN-FVLZ": {
-      "countryName": "西班牙",
-      "zoneName": "富埃特文图拉岛"
-    },
     "ES-CN-GC": {
       "countryName": "西班牙",
       "zoneName": "大加那利岛"
@@ -510,9 +485,6 @@
     },
     "GB-NIR": {
       "zoneName": "北爱尔兰"
-    },
-    "GD": {
-      "zoneName": "格林纳达"
     },
     "GE": {
       "zoneName": "格鲁吉亚"
@@ -619,117 +591,9 @@
       "countryName": "印度",
       "zoneName": "安达曼-尼科巴群岛"
     },
-    "IN-AP": {
-      "countryName": "印度",
-      "zoneName": "安得拉邦"
-    },
-    "IN-AR": {
-      "countryName": "印度",
-      "zoneName": "阿鲁纳恰尔邦"
-    },
-    "IN-AS": {
-      "countryName": "印度",
-      "zoneName": "阿萨姆邦"
-    },
-    "IN-BR": {
-      "countryName": "印度",
-      "zoneName": "比哈尔邦"
-    },
-    "IN-CT": {
-      "countryName": "印度",
-      "zoneName": "恰蒂斯加尔邦"
-    },
-    "IN-DL": {
-      "countryName": "印度",
-      "zoneName": "德里"
-    },
-    "IN-DN": {
-      "countryName": "印度",
-      "zoneName": "达德拉-纳加尔哈维利"
-    },
-    "IN-GA": {
-      "countryName": "印度",
-      "zoneName": "果阿邦"
-    },
-    "IN-GJ": {
-      "countryName": "印度",
-      "zoneName": "古吉拉特邦"
-    },
     "IN-HP": {
       "countryName": "印度",
       "zoneName": "喜马偕尔邦"
-    },
-    "IN-HR": {
-      "countryName": "印度",
-      "zoneName": "哈里亚纳邦"
-    },
-    "IN-JH": {
-      "countryName": "印度",
-      "zoneName": "贾坎德邦"
-    },
-    "IN-JK": {
-      "countryName": "印度",
-      "zoneName": "查谟和克什米尔"
-    },
-    "IN-KA": {
-      "countryName": "印度",
-      "zoneName": "卡纳塔克邦"
-    },
-    "IN-KL": {
-      "countryName": "印度",
-      "zoneName": "喀拉拉邦"
-    },
-    "IN-MH": {
-      "countryName": "印度",
-      "zoneName": "马哈拉施特拉邦"
-    },
-    "IN-ML": {
-      "countryName": "印度",
-      "zoneName": "梅加拉亚邦"
-    },
-    "IN-MN": {
-      "countryName": "印度",
-      "zoneName": "曼尼普尔土邦"
-    },
-    "IN-MP": {
-      "countryName": "印度",
-      "zoneName": "中央邦"
-    },
-    "IN-MZ": {
-      "countryName": "印度",
-      "zoneName": "米佐拉姆邦"
-    },
-    "IN-NL": {
-      "countryName": "印度",
-      "zoneName": "那加兰邦"
-    },
-    "IN-OR": {
-      "countryName": "印度",
-      "zoneName": "奥里萨邦"
-    },
-    "IN-PB": {
-      "countryName": "印度",
-      "zoneName": "旁遮普邦"
-    },
-    "IN-PY": {
-      "countryName": "印度",
-      "zoneName": "本地治里"
-    },
-    "IN-RJ": {
-      "countryName": "印度",
-      "zoneName": "拉贾斯坦邦"
-    },
-    "IN-SK": {
-      "countryName": "印度",
-      "zoneName": "锡金邦"
-    },
-    "IN-TN": {
-      "countryName": "印度",
-      "zoneName": "泰米尔纳德邦"
-    },
-    "IN-TR": {
-      "countryName": "印度",
-      "zoneName": "特里普拉邦"
     },
     "IN-UP": {
       "countryName": "印度",
@@ -739,19 +603,11 @@
       "countryName": "印度",
       "zoneName": "北阿坎德邦"
     },
-    "IN-WB": {
-      "countryName": "印度",
-      "zoneName": "西孟加拉邦"
-    },
     "IO": {
       "zoneName": "英属印度洋领地"
     },
     "IQ": {
       "zoneName": "伊拉克"
-    },
-    "IQ-KUR": {
-      "countryName": "伊拉克",
-      "zoneName": "库尔德斯坦"
     },
     "IR": {
       "zoneName": "伊朗"
@@ -847,14 +703,8 @@
     "KH": {
       "zoneName": "柬埔寨"
     },
-    "KI": {
-      "zoneName": "基里巴斯"
-    },
     "KM": {
       "zoneName": "科摩罗"
-    },
-    "KN": {
-      "zoneName": "圣基茨和尼维斯"
     },
     "KP": {
       "zoneName": "朝鲜"
@@ -916,15 +766,8 @@
     "ME": {
       "zoneName": "黑山共和国"
     },
-    "MF": {
-      "countryName": "圣马丁岛",
-      "zoneName": "法属"
-    },
     "MG": {
       "zoneName": "马达加斯加"
-    },
-    "MH": {
-      "zoneName": "马绍尔群岛"
     },
     "MK": {
       "zoneName": "北马其顿"
@@ -940,9 +783,6 @@
     },
     "MO": {
       "zoneName": "澳门"
-    },
-    "MP": {
-      "zoneName": "北马里亚纳群岛"
     },
     "MQ": {
       "zoneName": "马提尼克"
@@ -1023,9 +863,6 @@
     "NE": {
       "zoneName": "尼日尔"
     },
-    "NF": {
-      "zoneName": "诺福克岛"
-    },
     "NG": {
       "zoneName": "尼日利亚"
     },
@@ -1060,12 +897,6 @@
     },
     "NP": {
       "zoneName": "尼泊尔"
-    },
-    "NR": {
-      "zoneName": "瑙鲁"
-    },
-    "NU": {
-      "zoneName": "纽埃"
     },
     "NZ": {
       "zoneName": "新西兰"
@@ -1108,9 +939,6 @@
     },
     "PM": {
       "zoneName": "圣皮埃尔和密克隆"
-    },
-    "PN": {
-      "zoneName": "皮特凯恩群岛"
     },
     "PR": {
       "zoneName": "波多黎各"
@@ -1211,9 +1039,6 @@
     "SG": {
       "zoneName": "新加坡"
     },
-    "SH": {
-      "zoneName": "圣海伦娜、阿森松和崔斯坦达库尼亚"
-    },
     "SI": {
       "zoneName": "斯洛文尼亚"
     },
@@ -1225,9 +1050,6 @@
     },
     "SL": {
       "zoneName": "塞拉利昂"
-    },
-    "SM": {
-      "zoneName": "圣马力诺"
     },
     "SN": {
       "zoneName": "塞内加尔"
@@ -1247,18 +1069,11 @@
     "SV": {
       "zoneName": "萨尔瓦多"
     },
-    "SX": {
-      "countryName": "圣马丁岛",
-      "zoneName": "荷属"
-    },
     "SY": {
       "zoneName": "叙利亚"
     },
     "SZ": {
       "zoneName": "斯威士兰"
-    },
-    "TC": {
-      "zoneName": "特克斯和凯科斯群岛"
     },
     "TD": {
       "zoneName": "乍得"
@@ -1274,9 +1089,6 @@
     },
     "TJ": {
       "zoneName": "塔吉克斯坦"
-    },
-    "TK": {
-      "zoneName": "托克劳"
     },
     "TL": {
       "zoneName": "东帝汶"
@@ -1296,9 +1108,6 @@
     "TT": {
       "zoneName": "特立尼达和多巴哥"
     },
-    "TV": {
-      "zoneName": "图瓦卢"
-    },
     "TW": {
       "zoneName": "台湾"
     },
@@ -1315,47 +1124,12 @@
     "UG": {
       "zoneName": "乌干达"
     },
-    "UM": {
-      "zoneName": "美国本土外小岛屿"
-    },
     "US": {
       "zoneName": "美国"
     },
     "US-AK": {
       "countryName": "美国",
       "zoneName": "阿拉斯加"
-    },
-    "US-HI-HA": {
-      "countryName": "美国",
-      "zoneName": "夏威夷"
-    },
-    "US-HI-KA": {
-      "countryName": "美国",
-      "zoneName": "可爱岛"
-    },
-    "US-HI-KH": {
-      "countryName": "美国",
-      "zoneName": "卡胡拉韦岛"
-    },
-    "US-HI-LA": {
-      "countryName": "美国",
-      "zoneName": "拉奈岛"
-    },
-    "US-HI-MA": {
-      "countryName": "美国",
-      "zoneName": "毛伊岛"
-    },
-    "US-HI-MO": {
-      "countryName": "美国",
-      "zoneName": "摩洛凯岛"
-    },
-    "US-HI-NI": {
-      "countryName": "美国",
-      "zoneName": "尼豪岛"
-    },
-    "US-HI-OA": {
-      "countryName": "美国",
-      "zoneName": "瓦胡岛"
     },
     "US-CAL-BANC": {
       "countryName": "美国",
@@ -1489,10 +1263,6 @@
       "countryName": "美国",
       "zoneName": "Gridforce能源管理有限公司"
     },
-    "US-NW-GWA": {
-      "countryName": "美国",
-      "zoneName": "Naturener能源观察有限公司"
-    },
     "US-NW-IPCO": {
       "countryName": "美国",
       "zoneName": "爱达荷能源公司"
@@ -1541,10 +1311,6 @@
       "countryName": "美国",
       "zoneName": "西部能源管理UGP西部"
     },
-    "US-NW-WWA": {
-      "countryName": "美国",
-      "zoneName": "Naturener风能观察有限公司"
-    },
     "US-NY-NYIS": {
       "countryName": "美国",
       "zoneName": "纽约独立系统运营"
@@ -1564,10 +1330,6 @@
     "US-SW-EPE": {
       "countryName": "美国",
       "zoneName": "埃尔帕索电力公司"
-    },
-    "US-SW-GRIF": {
-      "countryName": "美国",
-      "zoneName": "Griffith能源有限责任公司"
     },
     "US-SW-PNM": {
       "countryName": "美国",
@@ -1599,18 +1361,11 @@
     "UZ": {
       "zoneName": "乌兹别克"
     },
-    "VA": {
-      "zoneName": "梵蒂冈城"
-    },
     "VC": {
       "zoneName": "圣文森特和格林纳丁斯"
     },
     "VE": {
       "zoneName": "委内瑞拉"
-    },
-    "VG": {
-      "countryName": "维尔京群岛",
-      "zoneName": "维尔京群岛"
     },
     "VI": {
       "countryName": "美国",
@@ -1621,9 +1376,6 @@
     },
     "VU": {
       "zoneName": "瓦努阿图"
-    },
-    "WF": {
-      "zoneName": "瓦利斯和富图纳"
     },
     "WS": {
       "zoneName": "萨摩亚"

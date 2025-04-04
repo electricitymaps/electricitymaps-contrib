@@ -28,7 +28,7 @@ export const colors: Colors = {
   },
   dark: {
     co2Scale: defaultCo2Scale,
-    oceanColor: '#343D4C',
+    oceanColor: '#262626',
     strokeWidth: 0.15,
     strokeColor: '#6D6D6D',
     stateBorderColor: '#d1d5db',

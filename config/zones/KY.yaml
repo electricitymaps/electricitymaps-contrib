@@ -3,8 +3,26 @@ bounding_box:
     - 18.761071915595686
   - - -79.22230689375876
     - 20.255142692881883
+capacity:
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 170.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 contributors:
   - VIKTORVAV99
 country: KY
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Cayman

@@ -5,78 +5,141 @@ bounding_box:
     - 38.30081076184365
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
-      value: 186.8
+      value: 1.8
+    - datetime: '2022-11-01'
+      source: EIA.gov
+      value: 13.8
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 14.3
+    - datetime: '2023-07-01'
+      source: EIA.gov
+      value: 188.0
     - datetime: '2024-04-01'
       source: EIA.gov
-      value: 236.8
-    - datetime: '2024-06-01'
-      source: EIA.gov
       value: 238.0
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 338.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 14.6
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 16.8
+    - datetime: '2022-11-01'
       source: EIA.gov
       value: 4.4
-    - datetime: '2024-01-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 3.3
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
-      value: 516.3
-    - datetime: '2023-12-01'
+      value: 924.0
+    - datetime: '2022-06-01'
+      source: EIA.gov
+      value: 555.0
+    - datetime: '2022-09-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1584.9
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 1732.7
-    - datetime: '2024-01-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 1733.8
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 19.2
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 150.0
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
-      value: 596.3
+      value: 369.5
+    - datetime: '2022-02-01'
+      source: EIA.gov
+      value: 372.0
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 422.0
+    - datetime: '2022-05-01'
+      source: EIA.gov
+      value: 471.5
+    - datetime: '2022-11-01'
+      source: EIA.gov
+      value: 486.5
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 436.5
+    - datetime: '2023-04-01'
+      source: EIA.gov
+      value: 486.5
+    - datetime: '2023-07-01'
+      source: EIA.gov
+      value: 544.0
+    - datetime: '2023-08-01'
+      source: EIA.gov
+      value: 594.0
     - datetime: '2024-01-01'
       source: EIA.gov
-      value: 896.3
+      value: 894.0
     - datetime: '2024-04-01'
-      source: EIA.gov
-      value: 1086.3
-    - datetime: '2024-05-01'
       source: EIA.gov
       value: 1084.0
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 1284.0
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 1584.0
+    - datetime: '2024-11-01'
+      source: EIA.gov
+      value: 2084.0
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 1.1
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 1065.8
+    - datetime: '2021-02-01'
+      source: EIA.gov
+      value: 1230.8
+    - datetime: '2021-06-01'
+      source: EIA.gov
+      value: 1372.0
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 2424.0
+    - datetime: '2022-02-01'
       source: EIA.gov
       value: 2569.0
 comment: Public Service Company Of New Mexico
@@ -89,9 +152,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 33
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:

@@ -62,7 +62,10 @@ emissionFactors:
         value: 510.7
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 530.73
+        value: 530.74
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 485.48
     hydro discharge:
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
@@ -87,7 +90,10 @@ emissionFactors:
         value: 510.7
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 530.73
+        value: 488.39
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 464.25
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -198,18 +204,33 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2023 average
       datetime: '2023-01-01'
       value:
-        battery discharge: 0.0012788434448107702
-        biomass: 0.1452013811667352
-        coal: 0.1950172127004735
-        gas: 0.037919935739658496
+        battery discharge: 0.0012798024908306364
+        biomass: 0.14521826951218264
+        coal: 0.19498700882417805
+        gas: 0.038066401186034673
         geothermal: 0.0
-        hydro: 0.13459064087391157
+        hydro: 0.13453840041601056
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.4148914146640558
-        solar: 0.06466948067853857
+        oil: 0.414856209979389
+        solar: 0.064625175344868
         unknown: 0.0
-        wind: 0.00643095894162656
+        wind: 0.006428662904947167
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.001062669516077509
+        biomass: 0.19260900530792546
+        coal: 0.2083215249355114
+        gas: 0.046419555318433746
+        geothermal: 0.0
+        hydro: 0.13704939087690707
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.33769285053114045
+        solar: 0.0663331354651612
+        unknown: 0.0
+        wind: 0.010511245973335337
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production

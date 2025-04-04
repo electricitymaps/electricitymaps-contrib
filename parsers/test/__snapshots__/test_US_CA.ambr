@@ -1,0 +1,3705 @@
+# serializer version: 1
+# name: test_snapshot_fetch_consumption_forecast
+  list([
+    dict({
+      'consumption': 21213.16,
+      'datetime': datetime.datetime(2025, 2, 19, 8, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20663.34,
+      'datetime': datetime.datetime(2025, 2, 19, 9, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20138.61,
+      'datetime': datetime.datetime(2025, 2, 19, 10, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20079.09,
+      'datetime': datetime.datetime(2025, 2, 19, 11, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20556.03,
+      'datetime': datetime.datetime(2025, 2, 19, 12, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21961.85,
+      'datetime': datetime.datetime(2025, 2, 19, 13, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23967.14,
+      'datetime': datetime.datetime(2025, 2, 19, 14, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24693.13,
+      'datetime': datetime.datetime(2025, 2, 19, 15, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23366.31,
+      'datetime': datetime.datetime(2025, 2, 19, 16, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21464.76,
+      'datetime': datetime.datetime(2025, 2, 19, 17, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19656.13,
+      'datetime': datetime.datetime(2025, 2, 19, 18, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18540.3,
+      'datetime': datetime.datetime(2025, 2, 19, 19, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18150.62,
+      'datetime': datetime.datetime(2025, 2, 19, 20, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18428.91,
+      'datetime': datetime.datetime(2025, 2, 19, 21, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19257.95,
+      'datetime': datetime.datetime(2025, 2, 19, 22, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20632.21,
+      'datetime': datetime.datetime(2025, 2, 19, 23, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22549.41,
+      'datetime': datetime.datetime(2025, 2, 20, 0, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24906.53,
+      'datetime': datetime.datetime(2025, 2, 20, 1, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 26191.41,
+      'datetime': datetime.datetime(2025, 2, 20, 2, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25852.37,
+      'datetime': datetime.datetime(2025, 2, 20, 3, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25262.46,
+      'datetime': datetime.datetime(2025, 2, 20, 4, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24510.65,
+      'datetime': datetime.datetime(2025, 2, 20, 5, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23123.04,
+      'datetime': datetime.datetime(2025, 2, 20, 6, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21708.38,
+      'datetime': datetime.datetime(2025, 2, 20, 7, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21382.89,
+      'datetime': datetime.datetime(2025, 2, 20, 8, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20731.98,
+      'datetime': datetime.datetime(2025, 2, 20, 9, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20174.13,
+      'datetime': datetime.datetime(2025, 2, 20, 10, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20025.92,
+      'datetime': datetime.datetime(2025, 2, 20, 11, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20526.13,
+      'datetime': datetime.datetime(2025, 2, 20, 12, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22041.72,
+      'datetime': datetime.datetime(2025, 2, 20, 13, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24076.63,
+      'datetime': datetime.datetime(2025, 2, 20, 14, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24981.01,
+      'datetime': datetime.datetime(2025, 2, 20, 15, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23771.25,
+      'datetime': datetime.datetime(2025, 2, 20, 16, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21942.57,
+      'datetime': datetime.datetime(2025, 2, 20, 17, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20112.77,
+      'datetime': datetime.datetime(2025, 2, 20, 18, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18919.5,
+      'datetime': datetime.datetime(2025, 2, 20, 19, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18460.87,
+      'datetime': datetime.datetime(2025, 2, 20, 20, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18624.22,
+      'datetime': datetime.datetime(2025, 2, 20, 21, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19541.83,
+      'datetime': datetime.datetime(2025, 2, 20, 22, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21101.48,
+      'datetime': datetime.datetime(2025, 2, 20, 23, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23045.71,
+      'datetime': datetime.datetime(2025, 2, 21, 0, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25347.4,
+      'datetime': datetime.datetime(2025, 2, 21, 1, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 26557.09,
+      'datetime': datetime.datetime(2025, 2, 21, 2, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 26171.69,
+      'datetime': datetime.datetime(2025, 2, 21, 3, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25587.89,
+      'datetime': datetime.datetime(2025, 2, 21, 4, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24827.2,
+      'datetime': datetime.datetime(2025, 2, 21, 5, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23461.32,
+      'datetime': datetime.datetime(2025, 2, 21, 6, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22060.18,
+      'datetime': datetime.datetime(2025, 2, 21, 7, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21374.2,
+      'datetime': datetime.datetime(2025, 2, 21, 8, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20742.17,
+      'datetime': datetime.datetime(2025, 2, 21, 9, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20188.27,
+      'datetime': datetime.datetime(2025, 2, 21, 10, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20038.82,
+      'datetime': datetime.datetime(2025, 2, 21, 11, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20621.26,
+      'datetime': datetime.datetime(2025, 2, 21, 12, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21926.21,
+      'datetime': datetime.datetime(2025, 2, 21, 13, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23895.14,
+      'datetime': datetime.datetime(2025, 2, 21, 14, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24664.26,
+      'datetime': datetime.datetime(2025, 2, 21, 15, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23564.4,
+      'datetime': datetime.datetime(2025, 2, 21, 16, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21612.77,
+      'datetime': datetime.datetime(2025, 2, 21, 17, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19842.83,
+      'datetime': datetime.datetime(2025, 2, 21, 18, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18684.28,
+      'datetime': datetime.datetime(2025, 2, 21, 19, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18206.24,
+      'datetime': datetime.datetime(2025, 2, 21, 20, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18310.7,
+      'datetime': datetime.datetime(2025, 2, 21, 21, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19074.62,
+      'datetime': datetime.datetime(2025, 2, 21, 22, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20664.06,
+      'datetime': datetime.datetime(2025, 2, 21, 23, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22668.84,
+      'datetime': datetime.datetime(2025, 2, 22, 0, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24923.98,
+      'datetime': datetime.datetime(2025, 2, 22, 1, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25845.56,
+      'datetime': datetime.datetime(2025, 2, 22, 2, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25401.27,
+      'datetime': datetime.datetime(2025, 2, 22, 3, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24801.28,
+      'datetime': datetime.datetime(2025, 2, 22, 4, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24175.14,
+      'datetime': datetime.datetime(2025, 2, 22, 5, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23022.49,
+      'datetime': datetime.datetime(2025, 2, 22, 6, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21885.44,
+      'datetime': datetime.datetime(2025, 2, 22, 7, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21073.54,
+      'datetime': datetime.datetime(2025, 2, 22, 8, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20367.53,
+      'datetime': datetime.datetime(2025, 2, 22, 9, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19715.29,
+      'datetime': datetime.datetime(2025, 2, 22, 10, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19405.35,
+      'datetime': datetime.datetime(2025, 2, 22, 11, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19522.0,
+      'datetime': datetime.datetime(2025, 2, 22, 12, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20093.54,
+      'datetime': datetime.datetime(2025, 2, 22, 13, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20895.47,
+      'datetime': datetime.datetime(2025, 2, 22, 14, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20849.71,
+      'datetime': datetime.datetime(2025, 2, 22, 15, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19777.45,
+      'datetime': datetime.datetime(2025, 2, 22, 16, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 17866.79,
+      'datetime': datetime.datetime(2025, 2, 22, 17, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 16293.64,
+      'datetime': datetime.datetime(2025, 2, 22, 18, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 15226.74,
+      'datetime': datetime.datetime(2025, 2, 22, 19, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 14818.93,
+      'datetime': datetime.datetime(2025, 2, 22, 20, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 15000.6,
+      'datetime': datetime.datetime(2025, 2, 22, 21, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 15990.15,
+      'datetime': datetime.datetime(2025, 2, 22, 22, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 17749.57,
+      'datetime': datetime.datetime(2025, 2, 22, 23, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20174.77,
+      'datetime': datetime.datetime(2025, 2, 23, 0, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22820.9,
+      'datetime': datetime.datetime(2025, 2, 23, 1, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24078.8,
+      'datetime': datetime.datetime(2025, 2, 23, 2, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23794.44,
+      'datetime': datetime.datetime(2025, 2, 23, 3, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23309.35,
+      'datetime': datetime.datetime(2025, 2, 23, 4, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22769.59,
+      'datetime': datetime.datetime(2025, 2, 23, 5, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21834.38,
+      'datetime': datetime.datetime(2025, 2, 23, 6, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20810.69,
+      'datetime': datetime.datetime(2025, 2, 23, 7, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20334.89,
+      'datetime': datetime.datetime(2025, 2, 23, 8, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19714.32,
+      'datetime': datetime.datetime(2025, 2, 23, 9, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19098.89,
+      'datetime': datetime.datetime(2025, 2, 23, 10, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18787.73,
+      'datetime': datetime.datetime(2025, 2, 23, 11, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18816.98,
+      'datetime': datetime.datetime(2025, 2, 23, 12, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19191.84,
+      'datetime': datetime.datetime(2025, 2, 23, 13, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19775.2,
+      'datetime': datetime.datetime(2025, 2, 23, 14, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19443.53,
+      'datetime': datetime.datetime(2025, 2, 23, 15, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 17953.72,
+      'datetime': datetime.datetime(2025, 2, 23, 16, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 16057.35,
+      'datetime': datetime.datetime(2025, 2, 23, 17, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 14606.97,
+      'datetime': datetime.datetime(2025, 2, 23, 18, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 13775.34,
+      'datetime': datetime.datetime(2025, 2, 23, 19, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 13665.41,
+      'datetime': datetime.datetime(2025, 2, 23, 20, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 14031.37,
+      'datetime': datetime.datetime(2025, 2, 23, 21, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 15132.83,
+      'datetime': datetime.datetime(2025, 2, 23, 22, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 17062.52,
+      'datetime': datetime.datetime(2025, 2, 23, 23, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19902.16,
+      'datetime': datetime.datetime(2025, 2, 24, 0, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22495.53,
+      'datetime': datetime.datetime(2025, 2, 24, 1, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24066.14,
+      'datetime': datetime.datetime(2025, 2, 24, 2, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23812.41,
+      'datetime': datetime.datetime(2025, 2, 24, 3, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23300.29,
+      'datetime': datetime.datetime(2025, 2, 24, 4, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22613.76,
+      'datetime': datetime.datetime(2025, 2, 24, 5, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21412.12,
+      'datetime': datetime.datetime(2025, 2, 24, 6, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20285.8,
+      'datetime': datetime.datetime(2025, 2, 24, 7, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19746.28,
+      'datetime': datetime.datetime(2025, 2, 24, 8, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19124.88,
+      'datetime': datetime.datetime(2025, 2, 24, 9, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18650.86,
+      'datetime': datetime.datetime(2025, 2, 24, 10, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18558.46,
+      'datetime': datetime.datetime(2025, 2, 24, 11, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19059.28,
+      'datetime': datetime.datetime(2025, 2, 24, 12, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20428.72,
+      'datetime': datetime.datetime(2025, 2, 24, 13, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22322.32,
+      'datetime': datetime.datetime(2025, 2, 24, 14, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23345.28,
+      'datetime': datetime.datetime(2025, 2, 24, 15, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22289.73,
+      'datetime': datetime.datetime(2025, 2, 24, 16, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20660.81,
+      'datetime': datetime.datetime(2025, 2, 24, 17, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19319.09,
+      'datetime': datetime.datetime(2025, 2, 24, 18, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18544.9,
+      'datetime': datetime.datetime(2025, 2, 24, 19, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18301.22,
+      'datetime': datetime.datetime(2025, 2, 24, 20, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18699.81,
+      'datetime': datetime.datetime(2025, 2, 24, 21, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19636.67,
+      'datetime': datetime.datetime(2025, 2, 24, 22, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21348.69,
+      'datetime': datetime.datetime(2025, 2, 24, 23, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23504.7,
+      'datetime': datetime.datetime(2025, 2, 25, 0, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25775.43,
+      'datetime': datetime.datetime(2025, 2, 25, 1, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 26854.75,
+      'datetime': datetime.datetime(2025, 2, 25, 2, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 26230.64,
+      'datetime': datetime.datetime(2025, 2, 25, 3, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25419.54,
+      'datetime': datetime.datetime(2025, 2, 25, 4, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24476.64,
+      'datetime': datetime.datetime(2025, 2, 25, 5, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22928.22,
+      'datetime': datetime.datetime(2025, 2, 25, 6, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21482.71,
+      'datetime': datetime.datetime(2025, 2, 25, 7, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20876.39,
+      'datetime': datetime.datetime(2025, 2, 25, 8, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20377.57,
+      'datetime': datetime.datetime(2025, 2, 25, 9, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19801.02,
+      'datetime': datetime.datetime(2025, 2, 25, 10, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19571.6,
+      'datetime': datetime.datetime(2025, 2, 25, 11, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19961.2,
+      'datetime': datetime.datetime(2025, 2, 25, 12, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21112.13,
+      'datetime': datetime.datetime(2025, 2, 25, 13, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22702.79,
+      'datetime': datetime.datetime(2025, 2, 25, 14, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23309.95,
+      'datetime': datetime.datetime(2025, 2, 25, 15, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22566.16,
+      'datetime': datetime.datetime(2025, 2, 25, 16, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21157.91,
+      'datetime': datetime.datetime(2025, 2, 25, 17, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19749.62,
+      'datetime': datetime.datetime(2025, 2, 25, 18, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18885.25,
+      'datetime': datetime.datetime(2025, 2, 25, 19, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18592.16,
+      'datetime': datetime.datetime(2025, 2, 25, 20, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18774.9,
+      'datetime': datetime.datetime(2025, 2, 25, 21, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19564.52,
+      'datetime': datetime.datetime(2025, 2, 25, 22, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21340.85,
+      'datetime': datetime.datetime(2025, 2, 25, 23, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23559.35,
+      'datetime': datetime.datetime(2025, 2, 26, 0, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25908.95,
+      'datetime': datetime.datetime(2025, 2, 26, 1, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 27085.62,
+      'datetime': datetime.datetime(2025, 2, 26, 2, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 26513.45,
+      'datetime': datetime.datetime(2025, 2, 26, 3, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25725.82,
+      'datetime': datetime.datetime(2025, 2, 26, 4, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24759.64,
+      'datetime': datetime.datetime(2025, 2, 26, 5, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23277.29,
+      'datetime': datetime.datetime(2025, 2, 26, 6, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21807.51,
+      'datetime': datetime.datetime(2025, 2, 26, 7, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21157.86,
+      'datetime': datetime.datetime(2025, 2, 26, 8, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20378.64,
+      'datetime': datetime.datetime(2025, 2, 26, 9, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19694.86,
+      'datetime': datetime.datetime(2025, 2, 26, 10, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19288.13,
+      'datetime': datetime.datetime(2025, 2, 26, 11, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19727.61,
+      'datetime': datetime.datetime(2025, 2, 26, 12, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21006.95,
+      'datetime': datetime.datetime(2025, 2, 26, 13, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22888.88,
+      'datetime': datetime.datetime(2025, 2, 26, 14, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23393.9,
+      'datetime': datetime.datetime(2025, 2, 26, 15, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 22083.35,
+      'datetime': datetime.datetime(2025, 2, 26, 16, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 20518.1,
+      'datetime': datetime.datetime(2025, 2, 26, 17, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19140.9,
+      'datetime': datetime.datetime(2025, 2, 26, 18, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18390.88,
+      'datetime': datetime.datetime(2025, 2, 26, 19, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18276.37,
+      'datetime': datetime.datetime(2025, 2, 26, 20, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 18668.42,
+      'datetime': datetime.datetime(2025, 2, 26, 21, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 19691.99,
+      'datetime': datetime.datetime(2025, 2, 26, 22, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21643.39,
+      'datetime': datetime.datetime(2025, 2, 26, 23, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23948.52,
+      'datetime': datetime.datetime(2025, 2, 27, 0, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 26125.08,
+      'datetime': datetime.datetime(2025, 2, 27, 1, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 27079.34,
+      'datetime': datetime.datetime(2025, 2, 27, 2, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 26352.94,
+      'datetime': datetime.datetime(2025, 2, 27, 3, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 25576.0,
+      'datetime': datetime.datetime(2025, 2, 27, 4, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 24800.72,
+      'datetime': datetime.datetime(2025, 2, 27, 5, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 23287.91,
+      'datetime': datetime.datetime(2025, 2, 27, 6, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'consumption': 21901.0,
+      'datetime': datetime.datetime(2025, 2, 27, 7, 0, tzinfo=datetime.timezone.utc),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-CAL-CISO',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_wind_solar_forecasts
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1441.49,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1511.57,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1597.35,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1661.9,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1698.41,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1759.98,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 176.29,
+        'wind': 1805.18,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3587.88,
+        'wind': 1823.96,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 9548.31,
+        'wind': 1856.04,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12510.99,
+        'wind': 1941.97,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13077.41,
+        'wind': 2070.87,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13176.7,
+        'wind': 2226.03,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13021.82,
+        'wind': 2392.23,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12739.9,
+        'wind': 2497.63,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12055.46,
+        'wind': 2512.61,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 4, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 9058.1,
+        'wind': 2417.22,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3352.77,
+        'wind': 2279.12,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 139.82,
+        'wind': 2186.31,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2137.07,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2172.01,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2272.45,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2365.42,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2391.46,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2348.55,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2282.19,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2016.47,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1769.79,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1557.87,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1370.14,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1256.38,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 250.5,
+        'wind': 1212.42,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3329.73,
+        'wind': 1176.35,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 8457.56,
+        'wind': 1140.48,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 11312.82,
+        'wind': 1141.03,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12326.96,
+        'wind': 1152.42,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12897.99,
+        'wind': 1187.54,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13239.03,
+        'wind': 1265.07,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13495.39,
+        'wind': 1332.4,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13478.47,
+        'wind': 1350.91,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 5, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 10984.17,
+        'wind': 1324.47,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 4575.01,
+        'wind': 1272.57,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 323.68,
+        'wind': 1207.01,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1138.57,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1059.24,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 992.6,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 961.93,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 920.79,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 872.13,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 912.0,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 960.23,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1011.53,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1049.57,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1051.39,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1026.2,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 270.44,
+        'wind': 1047.76,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3658.64,
+        'wind': 1133.33,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 9196.12,
+        'wind': 1256.3,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 11864.97,
+        'wind': 1388.49,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12272.21,
+        'wind': 1535.81,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12210.42,
+        'wind': 1704.51,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 11951.22,
+        'wind': 1858.77,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 11560.7,
+        'wind': 1971.76,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 10828.85,
+        'wind': 2057.23,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 6, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 8148.44,
+        'wind': 2063.23,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3065.89,
+        'wind': 2023.43,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 135.02,
+        'wind': 2013.51,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1990.0,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1951.41,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1952.21,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1968.45,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1959.09,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1978.39,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1985.16,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1799.53,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1614.06,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1468.88,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1336.87,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1259.27,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 192.79,
+        'wind': 1245.53,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3223.06,
+        'wind': 1280.01,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 8484.11,
+        'wind': 1408.27,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 11466.11,
+        'wind': 1619.73,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12374.91,
+        'wind': 1889.97,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12600.19,
+        'wind': 2153.83,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12465.04,
+        'wind': 2416.71,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12022.63,
+        'wind': 2677.01,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 11086.98,
+        'wind': 2872.58,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 7, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 8363.76,
+        'wind': 2992.15,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3390.19,
+        'wind': 3114.2,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 255.59,
+        'wind': 3211.0,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3237.27,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3271.86,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3321.28,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3344.3,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3315.9,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3283.19,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3188.98,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3113.94,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3002.26,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2869.48,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2757.56,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2645.24,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 219.7,
+        'wind': 2509.77,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 4084.05,
+        'wind': 2380.91,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 10775.51,
+        'wind': 2227.4,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14151.67,
+        'wind': 2093.44,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14821.76,
+        'wind': 2053.03,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14891.45,
+        'wind': 2132.88,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14773.4,
+        'wind': 2349.5,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14591.23,
+        'wind': 2592.38,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14026.0,
+        'wind': 2752.43,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 8, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 11148.07,
+        'wind': 2841.66,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 4813.87,
+        'wind': 2844.74,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 453.04,
+        'wind': 2801.72,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2755.03,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2672.92,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2486.79,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2211.93,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1890.3,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1519.28,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1001.12,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 725.33,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 541.33,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 457.79,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 421.17,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 398.96,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 192.75,
+        'wind': 368.51,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3807.61,
+        'wind': 342.97,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 10127.12,
+        'wind': 315.87,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13370.71,
+        'wind': 314.34,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14044.48,
+        'wind': 360.11,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14085.54,
+        'wind': 396.91,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13915.28,
+        'wind': 385.65,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13581.42,
+        'wind': 354.21,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12749.85,
+        'wind': 327.31,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 9, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 9921.97,
+        'wind': 300.01,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 4316.28,
+        'wind': 275.9,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 443.97,
+        'wind': 284.4,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 319.79,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 371.53,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 438.86,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 511.36,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 591.81,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 672.48,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 742.27,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 871.01,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 998.42,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1097.05,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1136.26,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1077.99,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 332.87,
+        'wind': 963.83,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 4820.38,
+        'wind': 832.83,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 11902.0,
+        'wind': 707.31,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 15023.44,
+        'wind': 623.77,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 15483.63,
+        'wind': 627.52,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 15499.21,
+        'wind': 759.96,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 15477.63,
+        'wind': 969.88,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 15502.2,
+        'wind': 1241.26,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 15319.94,
+        'wind': 1585.51,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 10, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12784.98,
+        'wind': 1939.56,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 11, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 5877.83,
+        'wind': 2257.58,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 11, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 635.05,
+        'wind': 2588.07,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 11, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2823.56,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 11, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2908.95,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 11, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2915.41,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 11, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2905.07,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 11, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2954.77,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 11, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 3073.82,
+      }),
+      'source': 'oasis.caiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAL-CISO',
+    }),
+  ])
+# ---

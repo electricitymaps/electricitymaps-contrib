@@ -2,29 +2,14 @@ import json
 from datetime import datetime
 from importlib import resources
 
-import pytest
-import requests
-import requests_mock
 from freezegun import freeze_time
 from requests_mock import ANY, GET
 
 from parsers.GT import fetch_consumption, fetch_production
 
 
-@pytest.fixture()
-def fixture_session_mock() -> tuple[requests.Session, requests_mock.Adapter]:
-    session = requests.Session()
-
-    adapter = requests_mock.Adapter()
-    session.mount("https://", adapter)
-
-    return session, adapter
-
-
 @freeze_time("2024-04-10 12:28:00")
-def test_fetch_production_live(snapshot, fixture_session_mock):
-    session, adapter = fixture_session_mock
-
+def test_fetch_production_live(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -43,9 +28,7 @@ def test_fetch_production_live(snapshot, fixture_session_mock):
     assert snapshot == fetch_production(session=session)
 
 
-def test_fetch_production_historical(snapshot, fixture_session_mock):
-    session, adapter = fixture_session_mock
-
+def test_fetch_production_historical(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -69,9 +52,7 @@ def test_fetch_production_historical(snapshot, fixture_session_mock):
 
 
 @freeze_time("2024-04-10 12:28:00")
-def test_fetch_consumption_live(snapshot, fixture_session_mock):
-    session, adapter = fixture_session_mock
-
+def test_fetch_consumption_live(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -90,9 +71,7 @@ def test_fetch_consumption_live(snapshot, fixture_session_mock):
     assert snapshot == fetch_consumption(session=session)
 
 
-def test_fetch_consumption_historical(snapshot, fixture_session_mock):
-    session, adapter = fixture_session_mock
-
+def test_fetch_consumption_historical(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,

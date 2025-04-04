@@ -64,9 +64,9 @@ export enum TrackEvent {
   SHARE_BUTTON_CLICKED = 'Share Button Clicked',
   SHARE_CHART = 'Share Chart',
   FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
-  APP_LOADED = 'App Loaded',
   PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
   HEADER_LINK_CLICKED = 'HeaderLink Clicked',
+  SIDEBAR_LINK_CLICKED = 'SidebarLink Clicked',
   LANGUAGE_SELECTED = 'Language Selected',
   ESTIMATION_CARD_EXPANDED = 'EstimationCard Expanded',
   CONTRIBUTE_ON_GITHUB_BUTTON_CLICKED = 'Contribute On GitHub Button Clicked',
@@ -77,7 +77,6 @@ export enum TrackEvent {
   PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
   ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
   METHODOLOGIES_AND_DATA_SOURCES_EXPANDED = 'Methodologies and Data Sources Expanded',
-  TIME_AGGREGATE_BUTTON_CLICKED = 'Time Aggregate Button Clicked',
   SOLAR_ENABLED = 'Solar Enabled',
   SOLAR_DISABLED = 'Solar Disabled',
   WIND_ENABLED = 'Wind Enabled',
@@ -274,3 +273,7 @@ export enum EstimationMethods {
   OUTAGE = 'outage',
   GENERAL_PURPOSE_ZONE_MODEL = 'ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL',
 }
+
+export const isTSAModel = (estimationMethod?: EstimationMethods) =>
+  estimationMethod === EstimationMethods.TSA ||
+  estimationMethod === EstimationMethods.FORECASTS_HIERARCHY;

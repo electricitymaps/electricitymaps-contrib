@@ -169,9 +169,6 @@
     "AG": {
       "zoneName": "Antigua a Barbuda"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AL": {
       "zoneName": "Albánie"
     },
@@ -180,12 +177,6 @@
     },
     "AO": {
       "zoneName": "Angola"
-    },
-    "AQ": {
-      "zoneName": "Antarktida"
-    },
-    "AS": {
-      "zoneName": "Americká Samoa"
     },
     "AT": {
       "zoneName": "Rakousko"
@@ -266,9 +257,6 @@
     "BO": {
       "zoneName": "Bolívie"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Svatý Eustach a Saba"
-    },
     "BR": {
       "zoneName": "Brazílie"
     },
@@ -293,9 +281,6 @@
     },
     "BT": {
       "zoneName": "Bhútán"
-    },
-    "BV": {
-      "zoneName": "Bouvetův ostrov"
     },
     "BW": {
       "zoneName": "Botswana"
@@ -361,9 +346,6 @@
       "countryName": "Kanada",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Kokosové ostrovy"
-    },
     "CD": {
       "zoneName": "Demokratická republika Kongo"
     },
@@ -378,9 +360,6 @@
     },
     "CI": {
       "zoneName": "Pobřeží Slonoviny"
-    },
-    "CK": {
-      "zoneName": "Cookovy ostrovy"
     },
     "CL-SEM": {
       "countryName": "Chile",
@@ -410,9 +389,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Vánoční ostrov"
     },
     "CY": {
       "zoneName": "Kypr"
@@ -488,9 +464,13 @@
       "countryName": "Španělsko",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Španělsko",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Španělsko",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Španělsko",
@@ -557,9 +537,6 @@
     "GB-ZET": {
       "countryName": "Velká Británie",
       "zoneName": "Shetlandy"
-    },
-    "GD": {
-      "zoneName": "Grenada"
     },
     "GE": {
       "zoneName": "Gruzie"
@@ -643,117 +620,9 @@
       "countryName": "Indie",
       "zoneName": "Andmany a Nikobary"
     },
-    "IN-AP": {
-      "countryName": "Indie",
-      "zoneName": "Andhrapradáš"
-    },
-    "IN-AR": {
-      "countryName": "Indie",
-      "zoneName": "Arunáčalpraéš"
-    },
-    "IN-AS": {
-      "countryName": "Indie",
-      "zoneName": "Ásam"
-    },
-    "IN-BR": {
-      "countryName": "Indie",
-      "zoneName": "Bihár"
-    },
-    "IN-CT": {
-      "countryName": "Indie",
-      "zoneName": "Čhattásgarh"
-    },
-    "IN-DL": {
-      "countryName": "Indie",
-      "zoneName": "Dillí"
-    },
-    "IN-DN": {
-      "countryName": "Indie",
-      "zoneName": "Dádra a Nagar Havelí"
-    },
-    "IN-GA": {
-      "countryName": "Indie",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Indie",
-      "zoneName": "Gudžarát"
-    },
     "IN-HP": {
       "countryName": "Indie",
       "zoneName": "Himáčalpradéš"
-    },
-    "IN-HR": {
-      "countryName": "Indie",
-      "zoneName": "Harijána"
-    },
-    "IN-JH": {
-      "countryName": "Indie",
-      "zoneName": "Džhárkhand"
-    },
-    "IN-JK": {
-      "countryName": "Indie",
-      "zoneName": "Džammú a Kašmír"
-    },
-    "IN-KA": {
-      "countryName": "Indie",
-      "zoneName": "Karnátaka"
-    },
-    "IN-KL": {
-      "countryName": "Indie",
-      "zoneName": "Kérala"
-    },
-    "IN-MH": {
-      "countryName": "Indie",
-      "zoneName": "Maháraštra"
-    },
-    "IN-ML": {
-      "countryName": "Indie",
-      "zoneName": "Meghálaj"
-    },
-    "IN-MN": {
-      "countryName": "Indie",
-      "zoneName": "Manípur"
-    },
-    "IN-MP": {
-      "countryName": "Indie",
-      "zoneName": "Madhjapradéš"
-    },
-    "IN-MZ": {
-      "countryName": "Indie",
-      "zoneName": "Mizorám"
-    },
-    "IN-NL": {
-      "countryName": "Indie",
-      "zoneName": "Nágsko"
-    },
-    "IN-OR": {
-      "countryName": "Indie",
-      "zoneName": "Urísa"
-    },
-    "IN-PB": {
-      "countryName": "Indie",
-      "zoneName": "Pandžáb"
-    },
-    "IN-PY": {
-      "countryName": "Indie",
-      "zoneName": "Puttučéri"
-    },
-    "IN-RJ": {
-      "countryName": "Indie",
-      "zoneName": "Radžastan"
-    },
-    "IN-SK": {
-      "countryName": "Indie",
-      "zoneName": "Sikkim"
-    },
-    "IN-TN": {
-      "countryName": "Indie",
-      "zoneName": "Tamilnádu"
-    },
-    "IN-TR": {
-      "countryName": "Indie",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Indie",
@@ -763,19 +632,11 @@
       "countryName": "Indie",
       "zoneName": "Uttarákhand"
     },
-    "IN-WB": {
-      "countryName": "Indie",
-      "zoneName": "Západné Bengálsko"
-    },
     "IO": {
       "zoneName": "Britské indickooceánské území"
     },
     "IQ": {
       "zoneName": "Irák"
-    },
-    "IQ-KUR": {
-      "countryName": "Irák",
-      "zoneName": "Kurdistán"
     },
     "IR": {
       "zoneName": "Írán"
@@ -868,14 +729,8 @@
     "KH": {
       "zoneName": "Kambodža"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Komory"
-    },
-    "KN": {
-      "zoneName": "Svatý Kryštof a Nevis"
     },
     "KP": {
       "zoneName": "Severní Korea"
@@ -937,15 +792,8 @@
     "ME": {
       "zoneName": "Černá Hora "
     },
-    "MF": {
-      "countryName": "Svatý Martin",
-      "zoneName": "francouzská část"
-    },
     "MG": {
       "zoneName": "Madagaskar"
-    },
-    "MH": {
-      "zoneName": "Marshallovy ostrovy"
     },
     "MK": {
       "zoneName": "Severní Makedonie"
@@ -961,9 +809,6 @@
     },
     "MO": {
       "zoneName": "Macao"
-    },
-    "MP": {
-      "zoneName": "Severní Mariany"
     },
     "MQ": {
       "zoneName": "Martinik"
@@ -1044,9 +889,6 @@
     "NE": {
       "zoneName": "Niger"
     },
-    "NF": {
-      "zoneName": "Norfolk"
-    },
     "NG": {
       "zoneName": "Nigérie"
     },
@@ -1078,12 +920,6 @@
     },
     "NP": {
       "zoneName": "Nepál"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "Novy Zéland"
@@ -1122,9 +958,6 @@
     },
     "PM": {
       "zoneName": "Saint Pierre a Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairnovy ostrovy"
     },
     "PR": {
       "zoneName": "Portoriko"
@@ -1203,9 +1036,6 @@
     "SG": {
       "zoneName": "Singapur"
     },
-    "SH": {
-      "zoneName": "Svatá Helena, Ascension a Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Slovinsko"
     },
@@ -1217,9 +1047,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1239,18 +1066,11 @@
     "SV": {
       "zoneName": "Salvador"
     },
-    "SX": {
-      "countryName": "Svatý Martin",
-      "zoneName": "nizozemská část"
-    },
     "SY": {
       "zoneName": "Sýrie"
     },
     "SZ": {
       "zoneName": "Svazijsko"
-    },
-    "TC": {
-      "zoneName": "Turks a Caicos"
     },
     "TD": {
       "zoneName": "Čad"
@@ -1266,9 +1086,6 @@
     },
     "TJ": {
       "zoneName": "Tadžikistán"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Východní Timor"
@@ -1288,9 +1105,6 @@
     "TT": {
       "zoneName": "Trinidad a Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Tchaj-wan"
     },
@@ -1307,27 +1121,17 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "Menší odlehlé ostrovy USA "
-    },
     "UY": {
       "zoneName": "Uruguay"
     },
     "UZ": {
       "zoneName": "Uzbekistán"
     },
-    "VA": {
-      "zoneName": "Vatikán"
-    },
     "VC": {
       "zoneName": "Svatý Vincenc a Grenadiny"
     },
     "VE": {
       "zoneName": "Venezuela"
-    },
-    "VG": {
-      "countryName": "Britské Panenské ostrovy",
-      "zoneName": "Britské Panenské ostrovy"
     },
     "VI": {
       "countryName": "Spojené státy americké",
@@ -1338,9 +1142,6 @@
     },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis a Futuna"
     },
     "WS": {
       "zoneName": "Samoa"
