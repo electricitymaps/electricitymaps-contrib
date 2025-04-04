@@ -1,6 +1,7 @@
 """Tests for AEMO.py"""
 
 import re
+from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -36,6 +37,10 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
         BASE_PATH_TO_MOCK,
         "PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_202504011800_20250401173353.zip",
     )
+
+    print("Mock file path:", data_zip_file.resolve())
+    assert data_zip_file.exists(), "Mock zip file does not exist!"
+
     with open(data_zip_file, "rb") as zip_file:
         zip_content = zip_file.read()
     adapter.register_uri(
@@ -48,4 +53,5 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
     assert snapshot == fetch_consumption_forecast(
         zone_key=zone_key,
         session=session,
+        target_datetime=datetime(2025, 4, 1, 18, 0),  # Mock file has this datetime
     )
