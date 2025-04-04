@@ -4,7 +4,7 @@
     dict({
       'correctedModes': list([
       ]),
-      'datetime': datetime.datetime(2023, 12, 19, 15, 53, 23, 729935, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Reykjavik')),
+      'datetime': datetime.datetime(2023, 12, 19, 15, 53, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Reykjavik')),
       'production': dict({
         'geothermal': 653.1291,
         'hydro': 1588.2567,

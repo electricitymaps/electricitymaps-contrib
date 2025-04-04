@@ -6,7 +6,8 @@
     "share-app": "Share the app:"
   },
   "settings-modal": {
-    "title": "Settings"
+    "title": "Settings",
+    "flows": "Electricity flows"
   },
   "ranking-panel": {
     "title": "Electricity Grid Carbon Emissions",
@@ -223,25 +224,13 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "72 hour data for:",
-      "3mo": "Daily data for:",
-      "12mo": "Monthly data for:",
-      "all_months": "Monthly data for:",
-      "all_years": "Yearly data for:"
-    },
-    "72h": "72h",
-    "3mo": "3mo",
-    "12mo": "12mo",
-    "all_months": "All",
+    "72h": "72 hours",
+    "3mo": "90 days",
+    "12mo": "12 months",
+    "all_months": "All months",
     "all_years": "All years",
-    "historical-linking": {
-      "72h": "72h",
-      "3mo": "3mo",
-      "12mo": "12mo",
-      "all_months": "All",
-      "all_years": "All years"
-    },
+    "navigate": "Navigate",
+    "live": "Live",
     "date-unavailable": {
       "title": "Date unavailable",
       "description": "Redirecting to live data"
@@ -335,7 +324,7 @@
   "legends": {
     "windpotential": "Wind power potential",
     "solarpotential": "Solar power potential",
-    "colorblindmode": "color blind mode",
+    "colorblindmode": "Color blind mode",
     "carbonintensity": "Carbon intensity"
   },
   "tooltips": {
@@ -354,6 +343,7 @@
     "withcarbonintensity": "with a carbon intensity of",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
+    "layers": "Map layers",
     "showWindLayer": "Show wind layer",
     "hideWindLayer": "Hide wind layer",
     "showSolarLayer": "Show solar layer",
@@ -384,7 +374,10 @@
       "solarLayer": "Solar layer",
       "changeTheme": "Change theme",
       "hideSidePanel": "Hide side panel",
-      "showSidePanel": "Show side panel"
+      "showSidePanel": "Show side panel",
+      "layers": "Map layers",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out"
     }
   },
   "aggregateButtons": {

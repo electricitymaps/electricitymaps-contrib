@@ -111,13 +111,6 @@
       "body": "數據由每小時值聚合組成。 {{percentage}}% 的生產值為估計值。"
     }
   },
-  "time-controller": {
-    "3mo": "每日",
-    "72h": "每小時",
-    "12mo": "每月",
-    "all_months": "每月",
-    "all_years": "每年"
-  },
   "ranking-panel": {
     "title": "各地區對氣候的影響",
     "subtitle": "依據耗電量的碳強度（單位：gCO₂eq/kWh）排名",

@@ -59,7 +59,7 @@ contributors:
   - nessie2013
 country: BA
 delays:
-  production: 6
+  production: 72
 emissionFactors:
   direct:
     battery discharge:

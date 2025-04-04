@@ -98,6 +98,10 @@ def get_data(url, session: Session | None = None):
 
     s = session or Session()
     req = s.get(url)
+
+    if req.text == "":
+        return pd.DataFrame()
+
     df = pd.read_csv(StringIO(req.text))
 
     return df
@@ -443,21 +447,23 @@ def fetch_realtime_locational_marginal_price(
         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
     prices = LocationalMarginalPriceList(logger)
-    node = "SPPNORTH_HUB"
-
     # Get data for target datetime and previous 30 minutes in 5 min intervals
     for minutes in range(0, 35, 5):
         check_datetime = target_datetime - timedelta(minutes=minutes)
         url = get_realtime_url(check_datetime)
         raw_data = get_data(url, session)
+        if raw_data.empty:
+            logger.warning(f"Empty response for {check_datetime}")
+            continue
 
-        spp_data = raw_data[raw_data["Settlement Location"] == node]
-        for _, row in spp_data.iterrows():
+        grouped = raw_data.groupby(["Pnode", "GMTIntervalEnd"]).first()
+
+        for (node, interval_end), row in grouped.iterrows():
             prices.append(
                 zoneKey=zone_key,
-                datetime=datetime.strptime(
-                    row["GMTIntervalEnd"], "%m/%d/%Y %H:%M:%S"
-                ).replace(tzinfo=timezone.utc),
+                datetime=datetime.strptime(interval_end, "%m/%d/%Y %H:%M:%S").replace(
+                    tzinfo=timezone.utc
+                ),
                 price=row["LMP"],
                 currency="USD",
                 node=node,
@@ -480,16 +486,18 @@ def fetch_dayahead_locational_marginal_price(
 
     url = get_dayahead_url(target_datetime)
     raw_data = get_data(url, session)
-    node = "SPPNORTH_HUB"
+    if raw_data.empty:
+        logger.warning(f"Empty response for {target_datetime}")
+        return []
     # filter by column "Settlement Location" so it only includes SPPNORTH_HUB
-    spp_data = raw_data[raw_data["Settlement Location"] == node]
+    grouped = raw_data.groupby(["Pnode", "GMTIntervalEnd"]).first()
     prices = LocationalMarginalPriceList(logger)
-    for _, row in spp_data.iterrows():
+    for (node, interval_end), row in grouped.iterrows():
         prices.append(
             zoneKey=zone_key,
-            datetime=datetime.strptime(
-                row["GMTIntervalEnd"], "%m/%d/%Y %H:%M:%S"
-            ).replace(tzinfo=timezone.utc),
+            datetime=datetime.strptime(interval_end, "%m/%d/%Y %H:%M:%S").replace(
+                tzinfo=timezone.utc
+            ),
             price=row["LMP"],
             currency="USD",
             node=node,

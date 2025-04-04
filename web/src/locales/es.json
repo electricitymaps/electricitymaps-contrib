@@ -124,18 +124,6 @@
       "body": "Los datos mostrados son el resultado de la agregación de valores horarios."
     }
   },
-  "time-controller": {
-    "title": {
-      "3mo": "Datos diarios para:",
-      "12mo": "Datos mensuales para:",
-      "all_months": "Datos mensuales para:",
-      "all_years": "Datos anuales para:"
-    },
-    "3mo": "diario",
-    "12mo": "mensual",
-    "all_months": "mensual",
-    "all_years": "anual"
-  },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
     "faq-text": "¿Alguna duda? Consulta nuestras",

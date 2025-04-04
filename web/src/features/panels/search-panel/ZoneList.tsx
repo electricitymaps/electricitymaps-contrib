@@ -1,11 +1,12 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { GridState } from 'types';
 
 interface ZonelistProperties {
   data: ZoneRowType[];
+  selectedIndex: number;
 }
 
 export interface ZoneRowType {
@@ -18,10 +19,17 @@ export interface ZoneRowType {
   englishZoneName?: string;
 }
 
-function ZoneRow({ zoneId, countryName, zoneName }: ZoneRowType) {
+function ZoneRow({
+  zoneId,
+  countryName,
+  zoneName,
+  isSelected,
+}: ZoneRowType & { isSelected: boolean }) {
   return (
     <InternalLink
-      className="group flex h-11 w-full items-center gap-2 p-4 hover:bg-neutral-200/50 focus:outline-0 focus-visible:border-l-4 focus-visible:border-brand-green focus-visible:bg-brand-green/10 focus-visible:outline-0  dark:hover:bg-neutral-700/50 dark:focus-visible:bg-brand-green/10"
+      className={`group flex h-11 w-full items-center gap-2 p-4 hover:bg-neutral-200/50 focus:outline-0 focus-visible:border-l-4 focus-visible:border-brand-green focus-visible:bg-brand-green/10 focus-visible:outline-0 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-brand-green/10 ${
+        isSelected ? 'bg-neutral-200/50 dark:bg-neutral-700/50' : ''
+      }`}
       key={zoneId}
       to={`/zone/${zoneId}`}
       data-testid="zone-list-link"
@@ -44,7 +52,7 @@ function ZoneRow({ zoneId, countryName, zoneName }: ZoneRowType) {
   );
 }
 
-export function VirtualizedZoneList({ data }: ZonelistProperties) {
+export function VirtualizedZoneList({ data, selectedIndex }: ZonelistProperties) {
   const parentReference = useRef<HTMLDivElement>(null);
 
   const rowVirtualizer = useVirtualizer({
@@ -55,6 +63,13 @@ export function VirtualizedZoneList({ data }: ZonelistProperties) {
   });
 
   const items = rowVirtualizer.getVirtualItems();
+
+  // Use useEffect to handle scrolling when selection changes
+  useEffect(() => {
+    if (selectedIndex >= 0 && data.length > 0) {
+      rowVirtualizer.scrollToIndex(selectedIndex, { align: 'auto' });
+    }
+  }, [selectedIndex, data.length, rowVirtualizer]);
 
   return (
     // This should show exactly 6 and a half rows
@@ -78,7 +93,11 @@ export function VirtualizedZoneList({ data }: ZonelistProperties) {
         >
           {items.map((virtualRow) => (
             <div key={virtualRow.key} data-index={virtualRow.index}>
-              <ZoneRow key={virtualRow.index} {...data[virtualRow.index]} />
+              <ZoneRow
+                key={virtualRow.index}
+                {...data[virtualRow.index]}
+                isSelected={virtualRow.index === selectedIndex}
+              />
             </div>
           ))}
         </div>

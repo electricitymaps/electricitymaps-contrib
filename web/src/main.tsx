@@ -44,7 +44,13 @@ if (isProduction) {
       scope.setTag('browser.locale', window.navigator.language); // Set the language tag for Sentry to correlate errors with the user's language
       return scope;
     },
-    ignoreErrors: [/plausible\.local\.js/],
+    beforeSend(event) {
+      // Ignore all plausible-related errors
+      if (JSON.stringify(event).toLowerCase().includes('plausible')) {
+        return null;
+      }
+      return event;
+    },
   });
 }
 
@@ -246,7 +252,7 @@ const router = createBrowserRouter([
             <TimeRangeAndResolutionGuardWrapper>
               <Suspense
                 fallback={
-                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-48 sm:h-auto">
+                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-36 sm:h-auto">
                     <LoadingSpinner />
                   </GlassContainer>
                 }
