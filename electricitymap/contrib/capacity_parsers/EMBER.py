@@ -109,6 +109,10 @@ def _ember_production_mode_mapper(row: pd.Series) -> str | None:
 
 
 def format_ember_data(ember_df: pd.DataFrame) -> pd.DataFrame:
+    if ember_df.empty:
+        logger.warning("Empty Ember data received")
+        return ember_df
+    logger.info("Formatting Ember data")
     ember_df.query(
         'variable != "Clean" and variable != "Fossil" and variable != "Wind and solar"',
         inplace=True,
