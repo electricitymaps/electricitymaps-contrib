@@ -1,3 +1,4 @@
+import { Group } from '@visx/group';
 import { ScaleLinear } from 'd3-scale';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -44,15 +45,15 @@ function BarElectricityProductionChart({
         axisLegendTextLeft={t('country-panel.graph-legends.stored')}
         axisLegendTextRight={t('country-panel.graph-legends.produced')}
       />
-      <g transform={`translate(0, ${productionY})`}>
+      <Group top={productionY}>
         {productionData.map((d, index) => (
           <ProductionSourceRow
             key={d.mode}
             index={index}
             productionMode={d.mode}
             width={width}
-            scale={powerScale}
             value={getElectricityProductionValue(d)}
+            capacity={d.capacity}
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
@@ -71,7 +72,7 @@ function BarElectricityProductionChart({
             />
           </ProductionSourceRow>
         ))}
-      </g>
+      </Group>
     </svg>
   );
 }

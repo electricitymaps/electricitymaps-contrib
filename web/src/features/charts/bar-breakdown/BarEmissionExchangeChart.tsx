@@ -1,3 +1,4 @@
+import { Group } from '@visx/group';
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
@@ -44,14 +45,14 @@ export default function BarEmissionExchangeChart({
           axisLegendTextLeft={t('country-panel.graph-legends.exported')}
           axisLegendTextRight={t('country-panel.graph-legends.imported')}
         />
-        <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
+        <Group top={EXCHANGE_PADDING}>
           {exchangeData.map((d, index) => (
             <ExchangeRow
               key={d.zoneKey}
               index={index}
               zoneKey={d.zoneKey}
               width={width}
-              scale={co2Scale}
+              capacity={d.exchangeCapacityRange}
               value={d.exchange}
               onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}
@@ -65,7 +66,7 @@ export default function BarEmissionExchangeChart({
               />
             </ExchangeRow>
           ))}
-        </g>
+        </Group>
       </svg>
     </div>
   );
