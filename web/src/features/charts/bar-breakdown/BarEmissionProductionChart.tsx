@@ -42,8 +42,8 @@ export function BarEmissionProductionChart({
             index={index}
             productionMode={d.mode}
             width={width}
+            scale={co2Scale}
             value={Math.abs(d.gCo2eq)}
-            capacity={d.capacity}
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}

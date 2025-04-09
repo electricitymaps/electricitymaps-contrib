@@ -52,8 +52,8 @@ function BarElectricityProductionChart({
             index={index}
             productionMode={d.mode}
             width={width}
+            scale={powerScale}
             value={getElectricityProductionValue(d)}
-            capacity={d.capacity}
             onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}

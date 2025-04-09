@@ -64,8 +64,8 @@ function EmptyBarBreakdownChart({
               index={index}
               productionMode={mode}
               width={width}
+              scale={co2Scale}
               value={0}
-              capacity={0}
               isMobile={isMobile}
             >
               <HorizontalBar

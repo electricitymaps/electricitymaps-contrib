@@ -52,7 +52,7 @@ export default function BarEmissionExchangeChart({
               index={index}
               zoneKey={d.zoneKey}
               width={width}
-              capacity={d.exchangeCapacityRange}
+              scale={co2Scale}
               value={d.exchange}
               onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}

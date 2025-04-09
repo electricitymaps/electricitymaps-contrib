@@ -1,8 +1,9 @@
 import { Group } from '@visx/group';
 import { CountryFlag } from 'components/Flag';
+import { ScaleLinear } from 'd3-scale';
 import { noop } from 'features/charts/graphUtils';
 import ProductionSourceLegend from 'features/charts/ProductionSourceLegend';
-import { InfoIcon, LucideIcon, TriangleAlertIcon } from 'lucide-react';
+import { CircleHelp } from 'lucide-react';
 import { memo, MouseEventHandler, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
@@ -10,8 +11,8 @@ import type { ElectricityModeType, Maybe } from 'types';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 import {
-  EXCHANGE_PADDING,
   ICON_PLUS_PADDING,
+  LABEL_MAX_WIDTH,
   PADDING_Y,
   ROW_HEIGHT,
   TEXT_ADJUST_Y,
@@ -21,7 +22,7 @@ type BaseProps = {
   children: React.ReactNode;
   index: number;
   isMobile: boolean;
-  capacity: Maybe<number> | number[];
+  scale: ScaleLinear<number, number, never>;
   value: Maybe<number>;
   onMouseOver?: MouseEventHandler<SVGRectElement>;
   onMouseOut?: () => void;
@@ -39,31 +40,6 @@ const TextElement = memo(function TextElement({ text }: { text: string }) {
       {text}
     </text>
   );
-});
-
-// Generic fallback icon component
-const FallbackIcon = memo(function FallbackIcon({
-  width,
-  IconComponent,
-}: {
-  width: number;
-  IconComponent: LucideIcon;
-}) {
-  return (
-    <IconComponent
-      className="pointer-events-none fill-white text-neutral-300 dark:fill-neutral-800 dark:text-neutral-500"
-      x={width - EXCHANGE_PADDING - DEFAULT_ICON_SIZE}
-      size={DEFAULT_ICON_SIZE}
-    />
-  );
-});
-
-const FallbackWarning = memo(function FallbackWarning({ width }: { width: number }) {
-  return <FallbackIcon width={width} IconComponent={TriangleAlertIcon} />;
-});
-
-const FallbackInfo = memo(function FallbackInfo({ width }: { width: number }) {
-  return <FallbackIcon width={width} IconComponent={InfoIcon} />;
 });
 
 const RowBackground = memo(function RowBackground({
@@ -108,17 +84,13 @@ function BaseRow({
   onMouseOver,
   onMouseOut,
   value,
-  capacity,
+  scale,
   index,
 }: BaseProps) {
   // Don't render if the width is not positive
   if (width <= 0) {
     return null;
   }
-  // Make sure the capacity is a number
-  capacity = Array.isArray(capacity)
-    ? Math.abs(capacity[0]) + Math.abs(capacity[1])
-    : capacity;
   return (
     <Group top={index * (ROW_HEIGHT + PADDING_Y)}>
       {/* Row background */}
@@ -132,13 +104,14 @@ function BaseRow({
       {/* Row content */}
       {children}
 
-      {/* Warning icon if the value is not defined but the capacity is, info if both are undefined */}
-      {!Number.isFinite(value) &&
-        (Number.isFinite(capacity) ? (
-          <FallbackWarning width={width} />
-        ) : (
-          <FallbackInfo width={width} />
-        ))}
+      {/* Question mark if the value is not defined */}
+      {!Number.isFinite(value) && (
+        <CircleHelp
+          className="pointer-events-none  text-neutral-300  dark:text-neutral-500"
+          x={LABEL_MAX_WIDTH + 4 + scale(0)}
+          size={DEFAULT_ICON_SIZE}
+        />
+      )}
     </Group>
   );
 }
@@ -150,8 +123,8 @@ export function ProductionSourceRow({
   index,
   isMobile,
   productionMode,
+  scale,
   value,
-  capacity,
   onMouseOver,
   onMouseOut,
   width,
@@ -161,8 +134,8 @@ export function ProductionSourceRow({
     <BaseRow
       index={index}
       isMobile={isMobile}
+      scale={scale}
       value={value}
-      capacity={capacity}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       width={width}
@@ -185,8 +158,8 @@ export function ExchangeRow({
   index,
   isMobile,
   zoneKey,
+  scale,
   value,
-  capacity,
   onMouseOver,
   onMouseOut,
   width,
@@ -196,8 +169,8 @@ export function ExchangeRow({
     <BaseRow
       index={index}
       isMobile={isMobile}
+      scale={scale}
       value={value}
-      capacity={capacity}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       width={width}

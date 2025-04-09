@@ -63,8 +63,8 @@ export default function BarElectricityExchangeChart({
               index={index}
               zoneKey={d.zoneKey}
               width={width}
+              scale={powerScale}
               value={d.exchange}
-              capacity={d.exchangeCapacityRange}
               onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={false}
