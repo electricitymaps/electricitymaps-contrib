@@ -1,5 +1,6 @@
 import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
+import Intercom from '@intercom/messenger-js-sdk';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
@@ -49,9 +50,18 @@ export default function App(): ReactElement {
   const canonicalUrl = useGetCanonicalUrl();
   const setConsumptionAtom = useSetAtom(productionConsumptionAtom);
   const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+  const isIntercomEnabled = useFeatureFlag('intercom-messenger');
   const location = useLocation();
   const navigate = useNavigateWithParameters();
   const setIsMapMoving = useSetAtom(mapMovingAtom);
+
+  useEffect(() => {
+    if (isIntercomEnabled) {
+      Intercom({
+        app_id: 'trqbz4yj',
+      });
+    }
+  }, [isIntercomEnabled]);
 
   useEffect(() => {
     if (isConsumptionOnlyMode) {

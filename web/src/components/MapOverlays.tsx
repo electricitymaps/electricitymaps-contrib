@@ -2,6 +2,7 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtomValue } from 'jotai';
 import { lazy, Suspense } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 import {
   hasSeenSurveyCardAtom,
   hasSeenUsSurveyCardAtom,
@@ -33,9 +34,14 @@ export default function MapOverlays() {
   const FeatureFlagsManager = showManager
     ? lazy(() => import('features/feature-flags/FeatureFlagsManager'))
     : () => undefined;
-
+  const isIntercomEnabled = useFeatureFlag('intercom-messenger');
   return (
-    <div className="pointer-events-none fixed top-12 z-10 m-3 flex flex-col items-end space-y-3 sm:bottom-0 sm:right-0 sm:top-auto ">
+    <div
+      className={twMerge(
+        'pointer-events-none fixed top-12 z-10 m-3 flex flex-col items-end space-y-3 sm:bottom-0 sm:right-0 sm:top-auto',
+        isIntercomEnabled ? 'pr-20' : ''
+      )}
+    >
       {isBiggerThanMobile && (
         <>
           {showManager && (
