@@ -1,6 +1,6 @@
 import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
-import Intercom from '@intercom/messenger-js-sdk';
+import Intercom, { shutdown } from '@intercom/messenger-js-sdk';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
@@ -60,6 +60,8 @@ export default function App(): ReactElement {
       Intercom({
         app_id: 'trqbz4yj',
       });
+    } else {
+      shutdown();
     }
   }, [isIntercomEnabled]);
 
