@@ -197,3 +197,12 @@ noscript img {
     opacity: 0.3;
   }
 }
+
+.intercom-lightweight-app-launcher {
+  display: none !important;
+}
+
+/* Hide intercom launcher unless it's active */
+.intercom-launcher:not(.intercom-launcher-active) {
+  display: none !important;
+}
