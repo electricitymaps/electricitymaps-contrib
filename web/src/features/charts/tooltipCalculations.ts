@@ -12,12 +12,28 @@ import {
   getTotalEmissionsAvailable,
 } from './graphUtils';
 
+export type ProductionTooltipData = {
+  co2Intensity: number;
+  co2IntensitySource: string;
+  displayByEmissions: boolean;
+  totalElectricity: number;
+  totalEmissions: number;
+  emissions: number;
+  usage: number;
+  zoneKey: string;
+  isExport: boolean;
+  production: number | null | undefined;
+  capacity: number | null | undefined;
+  storage: number | null | undefined;
+  capacitySource: string[] | null | undefined;
+};
+
 export function getProductionTooltipData(
   selectedLayerKey: ElectricityModeType,
   zoneDetail: ZoneDetail,
   displayByEmissions: boolean,
   isConsumption: boolean
-) {
+): ProductionTooltipData {
   const co2Intensity = getProductionCo2Intensity(selectedLayerKey, zoneDetail);
   const isStorage = selectedLayerKey.includes('storage');
 
@@ -41,8 +57,8 @@ export function getProductionTooltipData(
   } = zoneDetail;
 
   const co2IntensitySource = isStorage
-    ? (dischargeCo2IntensitySources || {})[storageKey]
-    : (productionCo2IntensitySources || {})[generationType];
+    ? dischargeCo2IntensitySources?.[storageKey]
+    : productionCo2IntensitySources?.[generationType];
 
   const generationTypeCapacity = capacity ? capacity[selectedLayerKey] : undefined;
   const generationTypeProduction = production[generationType];
@@ -87,26 +103,54 @@ export function getProductionTooltipData(
   };
 }
 
+export type ExchangeTooltipData = {
+  co2Intensity?: number;
+  displayByEmissions: boolean;
+  totalElectricity: number;
+  totalEmissions: number;
+  emissions: number;
+  usage: number | null;
+  zoneKey: string;
+  isExport: boolean;
+  capacity: number | undefined;
+};
+
 export function getExchangeTooltipData(
   exchangeKey: string,
   zoneDetail: ZoneDetail,
   displayByEmissions: boolean
-) {
+): ExchangeTooltipData {
   const { zoneKey, exchangeCo2Intensities, exchangeCapacities } = zoneDetail;
 
   const co2Intensity = exchangeCo2Intensities?.[exchangeKey];
   const exchangeCapacityRange = exchangeCapacities?.[exchangeKey];
+  const totalElectricity = getTotalElectricityAvailable(zoneDetail, true);
+  const totalEmissions = getTotalEmissionsAvailable(zoneDetail, true);
+
   const exchange = zoneDetail?.exchange?.[exchangeKey];
+  if (exchange == null || co2Intensity == null) {
+    return {
+      co2Intensity: undefined,
+      displayByEmissions,
+      totalElectricity,
+      totalEmissions,
+      emissions: Number.NaN,
+      usage: Number.NaN,
+      zoneKey,
+      isExport: false,
+      capacity: undefined,
+    };
+  }
 
   const isExport = exchange < 0;
 
-  const usage = Math.abs(displayByEmissions ? exchange * co2Intensity * 1000 : exchange);
-  const totalElectricity = getTotalElectricityAvailable(zoneDetail, true);
+  const emissions = Math.abs(exchange * co2Intensity * 1000);
+
+  const usage = displayByEmissions ? emissions : exchange;
+
   const totalCapacity = exchangeCapacityRange
     ? Math.abs(exchangeCapacityRange[isExport ? 0 : 1])
     : undefined;
-  const emissions = Math.abs(exchange * co2Intensity * 1000);
-  const totalEmissions = getTotalEmissionsAvailable(zoneDetail, true);
 
   return {
     co2Intensity,

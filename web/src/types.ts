@@ -104,7 +104,7 @@ export type ElectricityStorageKeyType = 'battery' | 'hydro';
 
 export type ElectricityModeType = GenerationType | ElectricityStorageType;
 
-export type Exchange = { [key: string]: number };
+export type Exchange = { [key: string]: number | null };
 
 export interface ZoneDetail extends ZoneOverview {
   _isFinestGranularity: boolean;

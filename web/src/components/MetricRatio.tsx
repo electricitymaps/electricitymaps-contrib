@@ -1,7 +1,7 @@
 import { FormatParameters } from 'utils/formatting';
 
 interface MetricRatioProps {
-  value: number;
+  value: number | null | undefined;
   total: number | null | undefined;
   format: (parameters: FormatParameters) => string | number;
   label?: string;
@@ -16,7 +16,7 @@ export function MetricRatio({
   useTotalUnit,
 }: MetricRatioProps) {
   let formattedValue: string | number = '?';
-  if (Number.isFinite(value)) {
+  if (value != null && Number.isFinite(value)) {
     formattedValue = useTotalUnit ? format({ value, total }) : format({ value });
   }
 
