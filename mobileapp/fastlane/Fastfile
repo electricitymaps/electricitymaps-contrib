@@ -10,7 +10,7 @@ android_dir = File.expand_path("../android")
 
 private_lane :build_web_app do
   ensure_env_vars(
-  env_vars: ['SENTRY_AUTH_TOKEN', 'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9']
+  env_vars: ['SENTRY_AUTH_TOKEN', 'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9', 'TEAM_ID']
 )
   # Build the web app if we have both environment variables set
   sh("pnpm", "run", "build-web")
@@ -64,7 +64,8 @@ platform :ios do
     build_web_app
     match(type: "appstore")
     build_app(
-      workspace: File.join(ios_dir, "App/App.xcworkspace")
+      workspace: File.join(ios_dir, "App/App.xcworkspace"),
+      export_options:{ installerSigningCertificate: "Apple Distribution: Electricity Maps ApS #{TEAM_ID}" }
     )
     upload_to_testflight
     reset_git_repo(

@@ -81,6 +81,7 @@ See [fastlane/README.md](./fastlane/README.md) for more information.
    - Add your own Apple ID
    - Open https://appleid.apple.com/account/manage and create an App-Specific Password to be used for the FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD environment variable
    - Ask internally for the team ids
+4. Run `fastlane match appstore` to create or install the certificate and provisioning profile
 
 ### Making a beta build
 
