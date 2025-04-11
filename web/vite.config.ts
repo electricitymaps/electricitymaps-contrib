@@ -198,8 +198,10 @@ export default defineConfig(({ mode }) => ({
       : [
           eslintPlugin(),
           VitePWA({
-            registerType: 'prompt',
+            registerType: 'autoUpdate',
             workbox: {
+              skipWaiting: true,
+              clientsClaim: true,
               maximumFileSizeToCacheInBytes: 3_500_000,
               runtimeCaching: [
                 {
