@@ -1,11 +1,18 @@
 from datetime import datetime, timezone
+from json import loads
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import pytest
 import requests
-from requests_mock import ANY, Adapter
+from requests_mock import ANY, GET, Adapter
 
-from parsers.NTESMO import fetch_consumption, fetch_price, fetch_production
+from parsers.NTESMO import (
+    fetch_consumption,
+    fetch_consumption_forecast,
+    fetch_price,
+    fetch_production,
+)
 
 australia = ZoneInfo("Australia/Darwin")
 
@@ -134,3 +141,33 @@ def test_fetch_consumption(fixture_session_mock):
     assert data_list[-1]["datetime"] == datetime(
         year=2022, month=12, day=2, hour=4, minute=00, tzinfo=australia
     )
+
+
+BASE_PATH_TO_MOCK = Path("parsers/test/mocks/NTESMO")
+
+
+def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
+    # Define mock URLs
+    base_url = (
+        "https://ntesmo.com.au/data/data-dashboard/2024-enhancements/demand-forecast"
+    )
+    endpoints = [
+        f"{base_url}/darwin-katherine/dk-7-days-forecast",
+        f"{base_url}/alice-springs/as-7-days-forecast",
+        f"{base_url}/tennant-creek/tc-7-days-forecast",
+    ]
+
+    # Register mock responses
+    for endpoint in endpoints:
+        # For each url there is a mock file. Map each endpoint to its mock file
+        mock_file_name = endpoint.split("/")[-1] + ".json"
+        mock_data = Path(BASE_PATH_TO_MOCK, mock_file_name)
+
+        # Mock request
+        adapter.register_uri(GET, endpoint, json=loads(mock_data.read_text()))
+
+    # Call the function under test
+    result = fetch_consumption_forecast(zone_key="AU-NT", session=session)
+
+    # Compare to snapshot
+    assert snapshot == result
