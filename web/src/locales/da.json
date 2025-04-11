@@ -90,7 +90,6 @@
       "licensing": "Elpriser er utilgængelige for dette område på grund af licensbetingelser"
     },
     "emissionFactorDataSourcesTooltip": "CO₂-udledningsfaktorerne for elproduktionen kan stamme fra flere forskellige kilder. Dette sker, fordi flere faktorer, såsom maskin-specifikke data, generation og nogen gange også reservekilder, er inkluderet i udledningsberegningerne.",
-    "disabledBreakdownChartReason": "Deaktiveret i forbrugs-tilstand. Skift til produktions-tilstand for at se diagrammet",
     "dataIsDelayed": "Data for dette område kan være op til {{hours}} timer forsinket. Reeltidsdata kan ikke vises.",
     "estimated": "estimeret",
     "aggregated": "aggregeret",
@@ -103,11 +102,7 @@
     "now": "Nu",
     "by-source": {
       "emissions": "CO₂-udledning",
-      "electricity-production": "Elproduktion",
-      "electricity-consumption": "Elforbrug",
-      "total-emissions": "Samlede CO₂-udledninger",
-      "total-electricity-production": "Samlet elproduktion",
-      "total-electricity-consumption": "Samlet elforbrug"
+      "total-emissions": "Samlede CO₂-udledninger"
     },
     "graph-legends": {
       "installed-capacity": "Installeret kapacitet",
@@ -182,18 +177,8 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "Timevis data for:",
-      "3mo": "Daglig data for:",
-      "12mo": "Månedlig data for:",
-      "all_months": "Månedlig data for:",
-      "all_years": "Årlig data for:"
-    },
-    "3mo": "daglig",
-    "72h": "timevis",
-    "12mo": "månedlig",
-    "all_months": "månedlig",
-    "all_years": "årlig"
+    "navigate": "Navigere",
+    "live": "Live"
   },
   "left-panel": {
     "applied-methodologies": {

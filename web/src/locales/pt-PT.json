@@ -62,7 +62,6 @@
     "disabledPriceReasons": {
       "licensing": "Preços de energia não estão disponíveis para esta área devido a restrições de licenciamento"
     },
-    "disabledBreakdownChartReason": "Desativado para a visualização de consumo. Por favor, mude para a visualização de produção para ativar o gráfico de origem",
     "dataIsDelayed": "Dados para esta região podem estar atrasados até {{hours}} horas. Dados em tempo real estão indisponíveis.",
     "estimated": "estimado",
     "aggregated": "agregado",
@@ -75,11 +74,7 @@
     "now": "Agora",
     "by-source": {
       "emissions": "Emissões de carbono",
-      "electricity-production": "Produção de eletricidade",
-      "electricity-consumption": "Consumo de eletricidade",
-      "total-emissions": "Emissões totais de carbono",
-      "total-electricity-production": "Produção total de eletricidade",
-      "total-electricity-consumption": "Consumo total de eletricidade"
+      "total-emissions": "Emissões totais de carbono"
     }
   },
   "feedback-card": {
@@ -132,13 +127,6 @@
       "pill": " {{percentage}}% estimados",
       "body": "Os dados consistem numa agregação de valores horários. {{percentage}}% dos valores de produção são estimados."
     }
-  },
-  "time-controller": {
-    "3mo": "diários",
-    "72h": "horários",
-    "12mo": "mensais",
-    "all_months": "mensais",
-    "all_years": "anuais"
   },
   "ranking-panel": {
     "title": "Impacto climático",

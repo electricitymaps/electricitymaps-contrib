@@ -82,11 +82,7 @@
     "emissions": "Emisiones de CO₂",
     "by-source": {
       "emissions": "Emisiones de CO₂",
-      "electricity-production": "Generación de electricidad",
-      "electricity-consumption": "Consumo de electricidad",
-      "total-emissions": "Emisiones totales de CO₂",
-      "total-electricity-production": "Generación total de electricidad",
-      "total-electricity-consumption": "Consumo total de electricidad"
+      "total-emissions": "Emisiones totales de CO₂"
     },
     "helpfrom": "con la ayuda de",
     "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
@@ -127,18 +123,6 @@
       "title": "Datos agregados",
       "body": "Los datos mostrados son el resultado de la agregación de valores horarios."
     }
-  },
-  "time-controller": {
-    "title": {
-      "3mo": "Datos diarios para:",
-      "12mo": "Datos mensuales para:",
-      "all_months": "Datos mensuales para:",
-      "all_years": "Datos anuales para:"
-    },
-    "3mo": "diario",
-    "12mo": "mensual",
-    "all_months": "mensual",
-    "all_years": "anual"
   },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",

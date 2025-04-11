@@ -1,7 +1,5 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
-import { useAtomValue } from 'jotai';
 import { ExternalLink, FileDownIcon, Link } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +14,6 @@ import {
   DEFAULT_TOAST_DURATION,
 } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
-import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 
 import { MemoizedShareIcon } from './ShareIcon';
 import { TimeDisplay } from './TimeDisplay';
@@ -214,7 +211,7 @@ export function MoreOptionsDropdown({
   );
 }
 
-const useDropdownCtl = () => {
+export const useDropdownCtl = () => {
   const [isOpen, setIsOpen] = useState(false);
   const methods = useMemo(
     () => ({
@@ -226,11 +223,3 @@ const useDropdownCtl = () => {
 
   return { isOpen, ...methods };
 };
-
-export function useShowMoreOptions() {
-  const isMoreOptionsEnabled = useFeatureFlag('more-options-dropdown');
-  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const isConsumption = useAtomValue(isConsumptionAtom);
-
-  return isMoreOptionsEnabled && !displayByEmissions && isConsumption;
-}

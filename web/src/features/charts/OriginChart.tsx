@@ -8,7 +8,7 @@ import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
-import { ChartTitle } from './ChartTitle';
+import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
@@ -111,6 +111,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
         isEstimated={Boolean(text)}
         unit={valueAxisLabel}
         id={Charts.ORIGIN_CHART}
+        subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative ">
         <AreaGraph

@@ -40,11 +40,7 @@
     "emissions": "Emissioni",
     "by-source": {
       "emissions": "Emissioni di carbonio",
-      "electricity-production": "Produzione di elettricità",
-      "electricity-consumption": "Consumo di elettricità",
-      "total-emissions": "Emissioni totali di carbonio",
-      "total-electricity-production": "Produzione totale di elettricità",
-      "total-electricity-consumption": "Consumo totale di elettricità"
+      "total-emissions": "Emissioni totali di carbonio"
     },
     "helpfrom": "con l'aiuto di",
     "noDataAtTimestamp": "Dati temporaneamente non disponibili per l'ora selezionata",
@@ -59,18 +55,6 @@
     "helpUs": "Aiutaci ad identificare il problema dando un'occhiata ai <a href='{{link}}' target='_blank'>log di esecuzione</a> o contatta il fornitore dei dati.",
     "noParserInfo": "Non abbiamo ancora informazioni per quest'area.<br/> Vuoi aiutarci a sistemare questo problema? Puoi contribuire <a href='{{link}}' target='_blank'>aggiungendo i dati dell'area</a>.",
     "now": "Ora"
-  },
-  "time-controller": {
-    "title": {
-      "3mo": "Dati giornalieri per:",
-      "12mo": "Dati mensili per:",
-      "all_months": "Dati mensili per:",
-      "all_years": "Dati annuali per:"
-    },
-    "3mo": "giornaliero",
-    "12mo": "mensile",
-    "all_months": "mensile",
-    "all_years": "annuale"
   },
   "ranking-panel": {
     "title": "Impatto climatico per area",

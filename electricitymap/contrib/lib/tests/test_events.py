@@ -12,6 +12,7 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MO
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
+    LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -306,6 +307,50 @@ def test_prices_can_be_in_future():
         source="trust.me",
         currency="EUR",
     )
+
+
+def test_create_locational_marginal_price():
+    lmp = LocationalMarginalPrice(
+        zoneKey=ZoneKey("US-CENT-SWPP"),
+        datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        price=1,
+        source="trust.me",
+        currency="USD",
+        node="SPPNORTH_HUB",
+    )
+    assert lmp.zoneKey == ZoneKey("US-CENT-SWPP")
+    assert lmp.datetime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert lmp.price == 1
+    assert lmp.source == "trust.me"
+    assert lmp.currency == "USD"
+    assert lmp.node == "SPPNORTH_HUB"
+
+
+@pytest.mark.parametrize(
+    "node",
+    [
+        "",  # Empty string
+        None,  # None value
+        " ",  # Space only
+        "\t",  # Tab only
+        "\n",  # Newline only
+        "   ",  # Multiple spaces
+        " \t\n ",  # Mixed whitespace
+        "\tSPPNORTH_HUB",  # Leading whitespace
+        "SPPNORTH_HUB\t",  # Trailing whitespace
+    ],
+)
+def test_invalid_locational_marginal_price_node_raises(node):
+    # This should raise a ValueError because the node is a empty string.
+    with pytest.raises(ValueError):
+        LocationalMarginalPrice(
+            zoneKey=ZoneKey("US-CENT-SWPP"),
+            datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            price=1,
+            source="trust.me",
+            currency="USD",
+            node=node,
+        )
 
 
 def test_create_production_breakdown():

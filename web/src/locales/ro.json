@@ -36,11 +36,7 @@
     "now": "Acum",
     "by-source": {
       "emissions": "Emisii dioxid de carbon",
-      "electricity-production": "Electricitate produsă",
-      "electricity-consumption": "Electricitate consumată",
-      "total-emissions": "Emisii dioxid de carbon (total)",
-      "total-electricity-production": "Electricitate produsă (total)",
-      "total-electricity-consumption": "Electricitate consumată (total)"
+      "total-emissions": "Emisii dioxid de carbon (total)"
     },
     "graph-legends": {
       "installed-capacity": "Capacitate instalată ",
@@ -50,18 +46,6 @@
       "stored": "Depozitată",
       "produced": "Produsă"
     }
-  },
-  "time-controller": {
-    "title": {
-      "3mo": "Date zilnice pentru:",
-      "12mo": "Date lunare pentru:",
-      "all_months": "Date lunare pentru:",
-      "all_years": "Date anuale pentru:"
-    },
-    "3mo": "pe zi",
-    "12mo": "pe luna",
-    "all_months": "pe luna",
-    "all_years": "pe an"
   },
   "ranking-panel": {
     "title": "Impact asupra climei în funcție de zonă",

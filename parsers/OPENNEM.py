@@ -120,12 +120,10 @@ def filter_production_objs(
     objs: list[dict], logger: Logger = getLogger(__name__)
 ) -> list[dict]:
     def filter_solar_production(obj: dict) -> bool:
-        if (
+        return bool(
             "solar" in obj.get("production", {})
             and obj["production"]["solar"] is not None
-        ):
-            return True
-        return False
+        )
 
     all_filters = [filter_solar_production]
 
