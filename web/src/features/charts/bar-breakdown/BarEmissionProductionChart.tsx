@@ -1,3 +1,4 @@
+import { Group } from '@visx/group';
 import { ScaleLinear } from 'd3-scale';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
@@ -34,7 +35,7 @@ export function BarEmissionProductionChart({
   return (
     <svg className="w-full overflow-visible" height={height}>
       <Axis formatTick={formatTick} height={height} scale={co2Scale} />
-      <g transform={`translate(0, ${productionY})`}>
+      <Group top={productionY}>
         {productionData.map((d, index) => (
           <ProductionSourceRow
             key={d.mode}
@@ -55,7 +56,7 @@ export function BarEmissionProductionChart({
             />
           </ProductionSourceRow>
         ))}
-      </g>
+      </Group>
     </svg>
   );
 }

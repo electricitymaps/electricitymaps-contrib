@@ -1,11 +1,14 @@
 import { Group } from '@visx/group';
 import { CountryFlag } from 'components/Flag';
 import { ScaleLinear } from 'd3-scale';
+import { noop } from 'features/charts/graphUtils';
 import ProductionSourceLegend from 'features/charts/ProductionSourceLegend';
-import { memo, MouseEventHandler } from 'react';
+import { CircleHelp } from 'lucide-react';
+import { memo, MouseEventHandler, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import type { ElectricityModeType, Maybe } from 'types';
+import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 import {
   ICON_PLUS_PADDING,
@@ -39,23 +42,6 @@ const TextElement = memo(function TextElement({ text }: { text: string }) {
   );
 });
 
-const FallbackQuestionMark = memo(function FallbackQuestionMark({
-  scale,
-}: {
-  scale: ScaleLinear<number, number, never>;
-}) {
-  return (
-    <text
-      transform={`translate(3, ${TEXT_ADJUST_Y})`}
-      className="pointer-events-none text-xs"
-      fill="darkgray"
-      x={LABEL_MAX_WIDTH + scale(0)}
-    >
-      ?
-    </text>
-  );
-});
-
 const RowBackground = memo(function RowBackground({
   width,
   isMobile,
@@ -67,15 +53,24 @@ const RowBackground = memo(function RowBackground({
   onMouseOver?: MouseEventHandler<SVGRectElement>;
   onMouseOut?: () => void;
 }) {
+  // Use memoization to avoid unnecessary re-renders
+  const onClickHandler = useMemo(
+    () => (isMobile ? onMouseOver : noop),
+    [isMobile, onMouseOver]
+  );
+  const onMouseOverHandler = useMemo(
+    () => (isMobile ? noop : onMouseOver),
+    [isMobile, onMouseOver]
+  );
   return (
     <rect
       fill="transparent"
       width={width}
       height={ROW_HEIGHT + PADDING_Y}
       /* Support only click events in mobile mode, otherwise react to mouse hovers */
-      onClick={isMobile ? onMouseOver : () => {}}
-      onMouseOver={isMobile ? () => {} : onMouseOver}
-      onMouseMove={isMobile ? () => {} : onMouseOver}
+      onClick={onClickHandler}
+      onMouseOver={onMouseOverHandler}
+      onMouseMove={onMouseOverHandler}
       onMouseOut={onMouseOut}
       onBlur={onMouseOut}
     />
@@ -110,7 +105,13 @@ function BaseRow({
       {children}
 
       {/* Question mark if the value is not defined */}
-      {!Number.isFinite(value) && <FallbackQuestionMark scale={scale} />}
+      {!Number.isFinite(value) && (
+        <CircleHelp
+          className="pointer-events-none  text-neutral-300  dark:text-neutral-500"
+          x={LABEL_MAX_WIDTH + 4 + scale(0)}
+          size={DEFAULT_ICON_SIZE}
+        />
+      )}
     </Group>
   );
 }

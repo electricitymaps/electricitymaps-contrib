@@ -1,3 +1,4 @@
+import { Group } from '@visx/group';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { ScaleLinear } from 'd3-scale';
 import { useTranslation } from 'react-i18next';
@@ -55,7 +56,7 @@ export default function BarElectricityExchangeChart({
           axisLegendTextLeft={t('country-panel.graph-legends.exported')}
           axisLegendTextRight={t('country-panel.graph-legends.imported')}
         />
-        <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
+        <Group top={EXCHANGE_PADDING}>
           {exchangeData.map((d, index) => (
             <ExchangeRow
               key={d.zoneKey}
@@ -82,7 +83,7 @@ export default function BarElectricityExchangeChart({
               />
             </ExchangeRow>
           ))}
-        </g>
+        </Group>
       </svg>
       <div className="pb-2 pt-6">
         <div className="mb-1 text-xs font-medium text-neutral-600 dark:text-neutral-300">
