@@ -79,7 +79,8 @@ def dataset_to_df(dataset):
         interval += "in"
 
     index = pd.date_range(start=dt_start, end=dt_end, freq=interval)
-    assert len(index) == len(series["data"])
+    # In some situation, some data points missing, the first dates are the ones to keep
+    index = index[: len(series["data"])]
     df = pd.DataFrame(index=index, data=series["data"], columns=[name])
 
     return df
@@ -224,7 +225,6 @@ def _fetch_main_df(
 
     def filter_dataset(ds: dict) -> bool:
         filter_data_type = ds["type"] == data_type
-        filter_power_code = ds["type"] == "power" and "fuel_tech" in ds
         filter_region = False
         if zone_key:
             filter_region |= (
@@ -237,7 +237,7 @@ def _fetch_main_df(
                     "region_id"
                 ].upper()
             )
-        return filter_data_type and filter_power_code and filter_region
+        return filter_data_type and filter_region
 
     filtered_datasets = [ds for ds in datasets if filter_dataset(ds)]
     logger.debug("Concatenating datasets..")
