@@ -286,12 +286,6 @@ def parse_eso_production(
                 storage_value = get_event_value(event, production_mode)
                 if storage_value:
                     storage_mix.add_value("hydro", event.get(production_mode))
-                    production_breakdown.append(
-                        zoneKey=ZoneKey("GB"),
-                        storage=storage_mix,
-                        source=ESO_SOURCE,
-                        datetime=event_datetime,
-                    )
             else:
                 production_value = get_event_value(event, production_mode)
                 if production_value:
@@ -300,12 +294,13 @@ def parse_eso_production(
                         event.get(production_mode),
                         correct_negative_with_zero=True,
                     )
-                    production_breakdown.append(
-                        zoneKey=ZoneKey("GB"),
-                        production=production_mix,
-                        source=ESO_SOURCE,
-                        datetime=event_datetime,
-                    )
+        production_breakdown.append(
+            zoneKey=ZoneKey("GB"),
+            production=production_mix,
+            storage=storage_mix,
+            source=ESO_SOURCE,
+            datetime=event_datetime,
+        )
 
         all_production_breakdowns.append(production_breakdown)
     events = ProductionBreakdownList.merge_production_breakdowns(
@@ -478,6 +473,4 @@ def validate_bmrs_data(data: ProductionBreakdownList):
     available_production_modes = []
     for event in data.to_list():
         available_production_modes += [*event["production"].keys()]
-    if "gas" not in set(available_production_modes):
-        return False
-    return True
+    return "gas" in set(available_production_modes)

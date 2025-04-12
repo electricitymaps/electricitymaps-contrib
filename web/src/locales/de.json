@@ -47,11 +47,8 @@
     "emissions": "Emissionen",
     "by-source": {
       "emissions": "CO₂-Emissionen",
-      "electricity-production": "Stromerzeugung",
-      "electricity-consumption": "Stromverbrauch",
-      "total-emissions": "Gesamte CO₂-Emissionen",
-      "total-electricity-production": "Gesamte Stromerzeugung",
-      "total-electricity-consumption": "Gesamter Stromverbrauch"
+      "electricity-mix": "Strommix",
+      "total-emissions": "Gesamte CO₂-Emissionen"
     },
     "helpfrom": "mit Unterstützung von",
     "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
@@ -76,18 +73,8 @@
     "no-results": "Nichts gefunden. Versuche es mit etwas anderem zu suchen."
   },
   "time-controller": {
-    "title": {
-      "72h": "Stündliche Daten für:",
-      "3mo": "Tägliche Daten für:",
-      "12mo": "Monatliche Daten für:",
-      "all_months": "Monatliche Daten für:",
-      "all_years": "Jährliche Daten für:"
-    },
-    "3mo": "täglich",
-    "72h": "stündlich",
-    "12mo": "monatlich",
-    "all_months": "monatlich",
-    "all_years": "jährlich"
+    "navigate": "Navigieren",
+    "live": "Live"
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",

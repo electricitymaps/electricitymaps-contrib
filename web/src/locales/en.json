@@ -6,7 +6,8 @@
     "share-app": "Share the app:"
   },
   "settings-modal": {
-    "title": "Settings"
+    "title": "Settings",
+    "flows": "Electricity flows"
   },
   "ranking-panel": {
     "title": "Electricity Grid Carbon Emissions",
@@ -81,7 +82,7 @@
     },
     "view5": {
       "header": "Switch between electricity and emissions views",
-      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen production or consumption mode."
+      "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen flow-traced or production data."
     },
     "view6": {
       "header": "Explore the past",
@@ -96,7 +97,7 @@
     "title": "Data sources",
     "capacity": "Installed capacity data",
     "power": "Power generation data",
-    "exchange": "Exchange data",
+    "exchange": "Flow data",
     "emission": "Emission factor data"
   },
   "country-panel": {
@@ -114,12 +115,11 @@
       "licensing": "Electricity prices are unavailable for this area due to licensing terms"
     },
     "emissionFactorDataSourcesTooltip": "Electricity production emission factors can originate from multiple sources. This happens as several factors, like plant-specific data, generation and sometimes fallback sources, are considered in emission calculations.",
-    "disabledBreakdownChartReason": "Disabled for the consumption view. Please switch to the production view to enable the origin chart",
     "dataIsDelayed": "Data for this region can be up to {{hours}} hours delayed. Live data cannot be displayed.",
     "estimated": "estimated",
     "aggregated": "aggregated",
     "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>here</a>.",
-    "exchangesAreMissing": "This chart does not include exchange data. Exchanges are visible in hourly views. Read more about our historical aggregations <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>here</a>.",
+    "exchangesAreMissing": "This chart does not include flow data. Flows are visible in hourly views. Read more about our historical aggregations <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>here</a>.",
     "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href='{{link}}' target='_blank'>runtime logs</a> or contact the data provider.",
@@ -127,15 +127,13 @@
     "now": "Now",
     "by-source": {
       "emissions": "Carbon emissions",
-      "electricity-production": "Electricity production",
-      "electricity-consumption": "Electricity consumption",
-      "total-emissions": "Total carbon emissions",
-      "total-electricity-production": "Total electricity production",
-      "total-electricity-consumption": "Total electricity consumption"
+      "electricity-mix": "Electricity mix",
+      "total-electricity-mix": "Total electricity mix",
+      "total-emissions": "Total carbon emissions"
     },
     "graph-legends": {
       "installed-capacity": "Installed capacity ",
-      "exchange-capacity": "Available exchange capacity ",
+      "exchange-capacity": "Electricity flow capacity ",
       "exported": "Exported",
       "imported": "Imported",
       "stored": "Stored",
@@ -184,17 +182,17 @@
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data is preliminary",
       "pill": "Preliminary",
-      "body": "The data for this hour has not been reported yet and is based on preliminary data."
+      "body": "The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data is preliminary",
       "pill": "Preliminary",
-      "body": "The data for this hour has not been reported yet and is based on preliminary data."
+      "body": "The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data is partially estimated",
       "pill": "Partially estimated",
-      "body": "The reported data for this zone is incomplete; estimation models are used to estimate missing production modes."
+      "body": "The reported data for this zone is incomplete; our models fill in missing production modes and electricity flows to provide a complete view of the flow-traced electricity mix."
     },
     "estimated_generic_method": {
       "title": "Data is estimated",
@@ -204,7 +202,7 @@
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Data is always estimated",
       "pill": "Estimated",
-      "body": "Real-time source data for this zone is not available. Current values are modelled using a combination of live weather data and historical production data."
+      "body": "Real-time source data for this zone is not available. The data is modeled using a combination of live weather data and historical production patterns to generate an accurate flow-traced electricity mix."
     },
     "threshold_filtered": {
       "title": "Missing data",
@@ -226,25 +224,13 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "72 hour data for:",
-      "3mo": "Daily data for:",
-      "12mo": "Monthly data for:",
-      "all_months": "Monthly data for:",
-      "all_years": "Yearly data for:"
-    },
-    "72h": "72h",
-    "3mo": "3mo",
-    "12mo": "12mo",
-    "all_months": "All",
+    "72h": "72 hours",
+    "3mo": "90 days",
+    "12mo": "12 months",
+    "all_months": "All months",
     "all_years": "All years",
-    "historical-linking": {
-      "72h": "72h",
-      "3mo": "3mo",
-      "12mo": "12mo",
-      "all_months": "All",
-      "all_years": "All years"
-    },
+    "navigate": "Navigate",
+    "live": "Live",
     "date-unavailable": {
       "title": "Date unavailable",
       "description": "Redirecting to live data"
@@ -299,18 +285,18 @@
       "all_years": "Yearly production emissions"
     },
     "electricityorigin": {
-      "72h": "Hourly electricity origin",
-      "3mo": "Daily electricity origin",
-      "12mo": "Monthly electricity origin",
-      "all_months": "Monthly electricity origin",
-      "all_years": "Yearly electricity origin"
+      "72h": "Hourly electricity mix",
+      "3mo": "Daily electricity mix",
+      "12mo": "Monthly electricity mix",
+      "all_months": "Monthly electricity mix",
+      "all_years": "Yearly electricity mix"
     },
     "electricityproduction": {
-      "72h": "Hourly electricity production",
-      "3mo": "Daily electricity production",
-      "12mo": "Monthly electricity production",
-      "all_months": "Monthly electricity production",
-      "all_years": "Yearly electricity production"
+      "72h": "Hourly electricity mix",
+      "3mo": "Daily electricity mix",
+      "12mo": "Monthly electricity mix",
+      "all_months": "Monthly electricity mix",
+      "all_years": "Yearly electricity mix"
     },
     "electricityprices": {
       "72h": "Hourly electricity prices",
@@ -320,14 +306,14 @@
       "all_years": "Yearly electricity prices"
     },
     "netExchange": {
-      "72h": "Hourly net exchange",
-      "3mo": "Daily net exchange",
-      "12mo": "Monthly net exchange",
-      "all_months": "Monthly net exchange",
-      "all_years": "Yearly net exchange"
+      "72h": "Hourly electricity flow",
+      "3mo": "Daily electricity flow",
+      "12mo": "Monthly electricity flow",
+      "all_months": "Monthly electricity flow",
+      "all_years": "Yearly electricity flow"
     },
     "not-enough-data": "Not enough data available to display chart",
-    "exchange-delay": "Exchange data may be delayed by up to 48h."
+    "exchange-delay": "Flow data may be delayed by up to 48h."
   },
   "footer": {
     "foundbugs": "Found bugs or have ideas? Report them",
@@ -338,7 +324,7 @@
   "legends": {
     "windpotential": "Wind power potential",
     "solarpotential": "Solar power potential",
-    "colorblindmode": "color blind mode",
+    "colorblindmode": "Color blind mode",
     "carbonintensity": "Carbon intensity"
   },
   "tooltips": {
@@ -357,6 +343,7 @@
     "withcarbonintensity": "with a carbon intensity of",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
+    "layers": "Map layers",
     "showWindLayer": "Show wind layer",
     "hideWindLayer": "Hide wind layer",
     "showSolarLayer": "Show solar layer",
@@ -368,14 +355,16 @@
     "temporarilyUnavailable": "Temporarily unavailable",
     "production": "production",
     "consumption": "consumption",
-    "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
+    "cpinfo": "<b>Flow-traced</b> takes imports and exports into account, <b>production</b> ignores them",
     "aggregateInfo": "Toggle between a granular zone view and an aggregated country view",
     "selectLanguage": "Select language",
     "dataIsDelayed": "Data is delayed",
     "price": "Price",
-    "netExchange": "Net exchange",
+    "netExchange": "Electricity flow",
     "importing": "Importing",
-    "exporting": "Exporting"
+    "exporting": "Exporting",
+    "flowTraced": "Flow-traced data accounts for physical electricity flow",
+    "nonFlowTraced": "Non flow-traced data does not take imports and exports into account"
   },
   "aria": {
     "label": {
@@ -385,7 +374,10 @@
       "solarLayer": "Solar layer",
       "changeTheme": "Change theme",
       "hideSidePanel": "Hide side panel",
-      "showSidePanel": "Show side panel"
+      "showSidePanel": "Show side panel",
+      "layers": "Map layers",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out"
     }
   },
   "aggregateButtons": {

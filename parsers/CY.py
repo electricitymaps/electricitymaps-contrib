@@ -93,9 +93,9 @@ class CyprusParser:
             url = HISTORICAL_SOURCE.format(url_date)
 
         res = self.session.get(url)
-        assert (
-            res.status_code == 200
-        ), f"CY parser: GET {url} returned {res.status_code}"
+        assert res.status_code == 200, (
+            f"CY parser: GET {url} returned {res.status_code}"
+        )
 
         html = BeautifulSoup(res.text, "lxml")
 

@@ -159,7 +159,7 @@ body,
 }
 
 [data-rsbs-header] {
-  padding-top: 20px !important;
+  padding-top: 25px !important;
   padding-bottom: 0 !important;
 }
 
@@ -196,4 +196,13 @@ noscript img {
   50% {
     opacity: 0.3;
   }
+}
+
+.intercom-lightweight-app-launcher {
+  display: none !important;
+}
+
+/* Hide intercom launcher unless it's active */
+.intercom-launcher:not(.intercom-launcher-active) {
+  display: none !important;
 }

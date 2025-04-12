@@ -90,7 +90,6 @@
       "licensing": "Ceny energii elektrycznej są niedostępne dla tego obszaru ze względu na warunki licencji"
     },
     "emissionFactorDataSourcesTooltip": "Czynniki emisji związane z produkcją energii elektrycznej mogą pochodzić z wielu źródeł. Dzieje się tak, ponieważ w obliczeniach emisji uwzględnia się kilka czynników, takich jak dane specyficzne dla elektrowni, generacja oraz źródła zapasowe.",
-    "disabledBreakdownChartReason": "Wyłączone dla widoku zużycia. Proszę przełączyć na widok produkcji, aby zobaczyć wykres pochodzenia.",
     "dataIsDelayed": "Dane dla tego regionu mogą być opóźnione o maksymalnie {{hours}} godzin. Nie można wyświetlić danych na żywo.",
     "estimated": "szacowane",
     "aggregated": "zagregowane",
@@ -103,11 +102,7 @@
     "now": "Obecnie",
     "by-source": {
       "emissions": "Emisje dwutlenku węgla",
-      "electricity-production": "Produkcja energii elektrycznej",
-      "electricity-consumption": "Zużycie energii elektrycznej",
-      "total-emissions": "Całkowite emisje dwutlenku węgla",
-      "total-electricity-production": "Całkowita produkcja energii elektrycznej",
-      "total-electricity-consumption": "Całkowite zużycie energii elektrycznej"
+      "total-emissions": "Całkowite emisje dwutlenku węgla"
     },
     "graph-legends": {
       "installed-capacity": "Zainstalowana moc",
@@ -180,20 +175,6 @@
       "pill": "{{percentage}}% szacowane",
       "body": "Dane składają się z agregacji wartości godzinowych. {{percentage}}% wartości produkcji jest szacowanych."
     }
-  },
-  "time-controller": {
-    "title": {
-      "72h": "Dane godzinowe dla:",
-      "3mo": "Dane dzienne dla:",
-      "12mo": "Dane miesięczne dla:",
-      "all_months": "Dane miesięczne dla:",
-      "all_years": "Dane roczne dla:"
-    },
-    "3mo": "dzienne",
-    "72h": "godzinowe",
-    "12mo": "miesięczne",
-    "all_months": "miesięczne",
-    "all_years": "roczne"
   },
   "left-panel": {
     "applied-methodologies": {

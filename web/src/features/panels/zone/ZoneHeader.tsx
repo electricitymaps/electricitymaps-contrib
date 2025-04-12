@@ -1,5 +1,4 @@
-import { MoreOptionsDropdown, useShowMoreOptions } from 'components/MoreOptionsDropdown';
-import { TimeDisplay } from 'components/TimeDisplay';
+import { MoreOptionsDropdown } from 'components/MoreOptionsDropdown';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { useGetCurrentUrl } from 'hooks/useGetCurrentUrl';
@@ -30,7 +29,7 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
   const isConsumption = useAtomValue(isConsumptionAtom);
 
   const shareUrl = useGetCurrentUrl();
-  const showMoreOptions = useShowMoreOptions();
+  const showMoreOptions = useFeatureFlag('more-options-dropdown');
   const { t } = useTranslation();
 
   return (
@@ -43,11 +42,9 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
 
       <div className="w-full overflow-hidden">
         <ZoneHeaderTitle zoneId={zoneId} zoneNameFull={zoneNameFull} />
-        <TimeDisplay className="whitespace-nowrap text-sm" />
       </div>
 
       {isShareButtonEnabled &&
-        isConsumption &&
         (showMoreOptions ? (
           <MoreOptionsDropdown
             id="zone"

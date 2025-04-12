@@ -384,7 +384,7 @@ PRODUCTION_MIX = (
     f"{BASE_URL}/fuel-type-data/data/"
     "?data[]=value&facets[respondent][]={}&facets[fueltype][]={}&frequency=hourly"
 )
-EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourly"
+EXCHANGE = f"{BASE_URL}/interchange-data/data/?data[]=value{{}}&frequency=hourly"
 
 FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
@@ -488,10 +488,10 @@ def create_production_storage(
 
     # have to have early returns because of downstream validation in ProductionBreakdownList
     if fuel_type == "hydro_storage":
-        storage_mix.add_value("hydro", production_value)
+        storage_mix.add_value("hydro", -production_value)
         return None, storage_mix
     elif fuel_type == "battery_storage":
-        storage_mix.add_value("battery", production_value)
+        storage_mix.add_value("battery", -production_value)
         return None, storage_mix
     else:
         production_mix.add_value(

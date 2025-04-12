@@ -3,20 +3,20 @@
     "title": "A propos d'Electricity Maps",
     "text": "est une plateforme API fournissant des signaux prédictifs et en temps réel sur l'électricité permettant à tout appareil de réduire ses coûts et ses émissions en l'informant du meilleur moment pour consommer de l'électricité.",
     "version": "Version de l'application: {{version}}",
-    "share-app": "Partagez l'application:"
+    "share-app": "Partager l'application:"
   },
   "button": {
     "bluesky-share": "Visualisez en temps réel les données mondiales sur les émissions d’électricité : {{baseUrl}}",
-    "reddit": "Rejoignez r/electricitymaps",
-    "reddit-share": "Partagez sur Reddit",
-    "github": "Contribuez sur GitHub",
-    "twitter": "Suivez nous sur X (Twitter)",
-    "twitter-share": "Partagez sur X (Twitter)",
-    "linkedin": "Suivez nous sur LinkedIn",
-    "linkedin-share": "Partagez sur LinkedIn",
-    "facebook": "Suivez nous sur Facebook",
-    "facebook-share": "Partagez sur Facebook",
-    "feedback": "Partagez vos commentaires",
+    "reddit": "Rejoindre r/electricitymaps",
+    "reddit-share": "Partager sur Reddit",
+    "github": "Contribuer sur GitHub",
+    "twitter": "Nous suivre sur X (Twitter)",
+    "twitter-share": "Partager sur X (Twitter)",
+    "linkedin": "Nous suivre sur LinkedIn",
+    "linkedin-share": "Partager sur LinkedIn",
+    "facebook": "Nous suivre sur Facebook",
+    "facebook-share": "Partager sur Facebook",
+    "feedback": "Partager vos commentaires",
     "faq": "FAQ",
     "privacy-policy": "Politique de confidentialité",
     "legal-notice": "Informations légales",
@@ -24,7 +24,8 @@
     "docs": "Documentation de l'API "
   },
   "settings-modal": {
-    "title": "Paramètres"
+    "title": "Paramètres",
+    "flows": "Flux de l'électricité"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -108,7 +109,6 @@
       "licensing": "Pour des raisons de licence, les prix de l'électricité ne sont pas disponibles pour cette zone"
     },
     "emissionFactorDataSourcesTooltip": "Les facteurs d'émission pour la production d'électricité peuvent provenir de plusieurs sources. Cela se produit lorsque plusieurs facteurs, tels que les données spécifiques à une centrale, la production et parfois les sources de secours, sont pris en compte dans les calculs des émissions.",
-    "disabledBreakdownChartReason": "Désactivé pour la vue consommation. Merci de changer la vue en production pour activer le graphique d'origine de l'électricité.",
     "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
     "estimated": "estimé",
     "aggregated": "agrégé",
@@ -121,11 +121,8 @@
     "now": "Maintenant",
     "by-source": {
       "emissions": "Émissions carbone",
-      "electricity-production": "Production d'électricité",
-      "electricity-consumption": "Consommation d'électricité",
-      "total-emissions": "Émissions totales de carbone",
-      "total-electricity-production": "Production totale d'électricité",
-      "total-electricity-consumption": "Consommation totale d'électricité"
+      "electricity-mix": "Mix électrique",
+      "total-emissions": "Émissions totales de carbone"
     },
     "graph-legends": {
       "installed-capacity": "Capacité installée ",
@@ -220,25 +217,11 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "Données des 3 derniers jours pour :",
-      "3mo": "Données quotidiennes pour :",
-      "12mo": "Données mensuelles pour :",
-      "all_months": "Données mensuelles pour :",
-      "all_years": "Données annuelles pour :"
-    },
     "72h": "72h",
     "3mo": "3mo",
     "12mo": "12mo",
     "all_months": "Tout",
     "all_years": "Toutes les années",
-    "historical-linking": {
-      "3mo": "30j",
-      "72h": "72h",
-      "12mo": "12mo",
-      "all_months": "Tout",
-      "all_years": "Toutes les années"
-    },
     "date-unavailable": {
       "title": "Date indisponible",
       "description": "Redirection vers les données en temps réel"
@@ -353,10 +336,12 @@
     "ofinstalled": "de la capacité installée",
     "utilizing": "utilisant",
     "withcarbonintensity": "avec une intensité carbone de",
+    "layers": "Calques de la carte",
     "showWindLayer": "Voir le calque de vent",
     "hideWindLayer": "Masquer le calque de vent",
     "showSolarLayer": "Voir le calque d’ensoleillement",
     "hideSolarLayer": "Masquer le calque d’ensoleillement",
+    "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
     "changeTheme": "Changer de thème",
     "noParserInfo": "Pas de données disponibles",
     "temporaryDataOutage": "Données temporairement indisponibles",
@@ -370,7 +355,6 @@
     "ofemissions": "des émissions",
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
-    "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
     "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
     "netExchange": "Échange net",
     "price": "Prix",
@@ -385,7 +369,10 @@
       "solarLayer": "Calque d'ensoleillement",
       "changeTheme": "Changer le thème",
       "hideSidePanel": "Masquer le panneau latéral",
-      "showSidePanel": "Afficher le panneau latéral"
+      "showSidePanel": "Afficher le panneau latéral",
+      "layers": "Calques de la carte",
+      "zoomIn": "Zoommer",
+      "zoomOut": "Dézoomer"
     }
   },
   "aggregateButtons": {
@@ -1189,7 +1176,7 @@
       "zoneName": "Lettonie"
     },
     "LY": {
-      "zoneName": "Libya"
+      "zoneName": "Libye"
     },
     "MA": {
       "zoneName": "Maroc"
