@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "Zdroj",
-    "carbonintensity": "Uhlíková intenzita",
     "lowcarbon": "Nízké emise",
     "renewable": "Obnovitelné",
     "helpfrom": "s pomocí od",
@@ -46,11 +45,9 @@
   "legends": {
     "windpotential": "Potenciál větrné energie",
     "solarpotential": "Potenciál solární energie",
-    "colorblindmode": "Mód pro barvoslepé",
-    "carbonintensity": "Uhlíková intenzita"
+    "colorblindmode": "Mód pro barvoslepé"
   },
   "tooltips": {
-    "carbonintensity": "Uhlíková intenzita",
     "crossborderexport": "Zahraniční export",
     "carbonintensityexport": "Uhlíková intenzita exportu",
     "ofinstalled": "instalované kapacity",
@@ -70,13 +67,11 @@
   },
   "updatePrompt": {
     "description": "Je dostupná nová verze aplikace, aktualizovat nyní?",
-    "update": "Aktualizovat",
-    "dismiss": "Zavřít"
+    "update": "Aktualizovat"
   },
   "misc": {
     "maintitle": "Emise CO₂ ze spotřeby elektřiny v reálném čase",
     "faq": "Často kladené otázky",
-    "dismiss": "Zavřít",
     "reload": "Znovu načíst"
   },
   "wind": "větrná",
@@ -1168,5 +1163,9 @@
       "countryName": "Tasmánie",
       "zoneName": "King Island"
     }
+  },
+  "shared": {
+    "carbonintensity": "Uhlíková intenzita",
+    "dismiss": "Zavřít"
   }
 }

@@ -21,7 +21,6 @@
     "facebook": "Følg os på Facebook",
     "facebook-share": "Del på Facebook",
     "feedback": "Del feedback",
-    "faq": "FAQ",
     "privacy-policy": "Privatlivspolitik",
     "legal-notice": "Vilkår"
   },
@@ -78,7 +77,6 @@
   },
   "country-panel": {
     "source": "kilde",
-    "carbonintensity": "CO₂-intensitet",
     "lowcarbon": "Lav CO₂",
     "renewable": "Vedvarende",
     "electricityconsumption": "Elektricitet",
@@ -192,8 +190,7 @@
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Vi ansætter!",
-    "methodology": "Metoder",
-    "faq": "FAQ"
+    "methodology": "Metoder"
   },
   "country-history": {
     "carbonintensity": {
@@ -263,11 +260,9 @@
   "legends": {
     "windpotential": "Vindpotentiale",
     "solarpotential": "Solpotentiale",
-    "colorblindmode": "farveblindhedstilstand",
-    "carbonintensity": "CO₂-intensitet"
+    "colorblindmode": "farveblindhedstilstand"
   },
   "tooltips": {
-    "carbonintensity": "CO₂-intensitet",
     "zoneHeader": {
       "lowcarbon": "Inkluderer vedvarende og atomkraft",
       "renewable": "Inkluderer sol, vind, hydro, biomasse og geotermi",
@@ -323,15 +318,11 @@
     "system": "System"
   },
   "updatePrompt": {
-    "description": "En ny version er tilgængelig",
-    "update": "Genindlæs",
-    "dismiss": "Afvis"
+    "description": "En ny version er tilgængelig"
   },
   "misc": {
     "maintitle": "Realtids-CO₂-udledning fra elforbruget",
     "faq": "Ofte spurgte spørgsmål",
-    "dismiss": "Afvis",
-    "reload": "Genindlæs",
     "slow-loading-text": "Loader stadig, hvis det fortsætter så prøv at genindlæs..."
   },
   "wind": "Vind",
@@ -1521,5 +1512,11 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "faq": "FAQ",
+    "carbonintensity": "CO₂-intensitet",
+    "update": "Genindlæs",
+    "dismiss": "Afvis"
   }
 }
