@@ -226,6 +226,7 @@ def _fetch_main_df(
 
     def filter_dataset(ds: dict) -> bool:
         filter_data_type = ds["type"] == data_type
+        filter_power_code = ds["type"] == "power" and "fuel_tech" in ds
         filter_region = False
         if zone_key:
             filter_region |= (
@@ -238,7 +239,7 @@ def _fetch_main_df(
                     "region_id"
                 ].upper()
             )
-        return filter_data_type and filter_region
+        return filter_data_type and filter_power_code and filter_region
 
     filtered_datasets = [ds for ds in datasets if filter_dataset(ds)]
     logger.debug("Concatenating datasets..")
