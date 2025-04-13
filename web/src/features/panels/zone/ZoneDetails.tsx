@@ -132,16 +132,21 @@ export default function ZoneDetails(): JSX.Element {
 
   const isIosCapacitor =
     Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
+
   return (
-    <GlassContainer className="pointer-events-auto z-[21] flex h-full flex-col border-0 pt-10 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0">
+    <GlassContainer
+      className={twMerge(
+        'pointer-events-auto z-[21] flex h-full flex-col border-0 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0',
+        isIosCapacitor ? 'pt-24' : 'pt-10' // accommodates logo on mobile
+      )}
+    >
       <section className="h-full w-full">
         <ZoneHeader zoneId={zoneId} isEstimated={false} />
         <div
           id="panel-scroller"
           className={twMerge(
             // TODO: Can we set the height here without using calc and specific zone-header value?
-            'h-full flex-1 overflow-y-scroll px-3 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4',
-            isIosCapacitor ? 'pb-72' : 'pb-32'
+            'h-full flex-1 overflow-y-scroll px-3 pb-32 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4'
           )}
         >
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
