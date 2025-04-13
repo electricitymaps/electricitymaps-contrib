@@ -9,7 +9,6 @@
     "lowcarbon": "Lage-uitstoot",
     "renewable": "Hernieuwbaar",
     "electricityconsumption": "Elektriciteit",
-    "carbonintensity": "Koolstofintensiteit",
     "helpfrom": "met de hulp van",
     "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
     "noLiveData": "Live data is tijdelijk niet beschikbaar voor dit gebied",
@@ -28,11 +27,9 @@
   "legends": {
     "windpotential": "potentieel aan windenergie",
     "solarpotential": "potentieel aan zonne-energie",
-    "colorblindmode": "Modus voor kleurenblinden",
-    "carbonintensity": "Koolstofintensiteit"
+    "colorblindmode": "Modus voor kleurenblinden"
   },
   "tooltips": {
-    "carbonintensity": "Koolstofintensiteit",
     "crossborderexport": "uitvoer over de landsgrenzen",
     "carbonintensityexport": "Koolstofintensiteit van uitvoer",
     "ofinstalled": "van de geïnstalleerde capaciteit",
@@ -68,15 +65,10 @@
     "exporting": "Exporteren"
   },
   "updatePrompt": {
-    "description": "Er is een nieuwe versie van de app beschikbaar, nu updaten?",
-    "update": "Bijwerken",
-    "dismiss": "Negeren"
+    "description": "Er is een nieuwe versie van de app beschikbaar, nu updaten?"
   },
   "misc": {
-    "maintitle": "Live CO₂ uitstoot van het elektriciteitsverbruik",
-    "faq": "Veelgestelde vragen",
-    "dismiss": "Negeer",
-    "reload": "Opnieuw laden"
+    "maintitle": "Live CO₂ uitstoot van het elektriciteitsverbruik"
   },
   "wind": "wind",
   "solar": "zon",
@@ -108,7 +100,6 @@
     "facebook": "Volg ons op Facebook",
     "facebook-share": "Deel op Facebook",
     "feedback": "Deel feedback",
-    "faq": "FAQ",
     "privacy-policy": "Privacybeleid",
     "legal-notice": "Juridische kennisgeving"
   },
@@ -170,8 +161,7 @@
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "We werven aan!",
-    "methodology": "Methodologie",
-    "faq": "FAQ"
+    "methodology": "Methodologie"
   },
   "country-history": {
     "carbonintensity": {
@@ -586,5 +576,12 @@
       "displayName": "ERCOT",
       "zoneName": "Electric Reliability Council of Texas"
     }
+  },
+  "shared": {
+    "faq": "FAQ",
+    "carbonintensity": "Koolstofintensiteit",
+    "reload": "Opnieuw laden",
+    "dismiss": "Negeer",
+    "update": "Bijwerken"
   }
 }

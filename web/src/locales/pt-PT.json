@@ -53,7 +53,6 @@
   },
   "country-panel": {
     "source": "Fonte",
-    "carbonintensity": "Intensidade de emissão de carbono",
     "lowcarbon": "Baixo carbono",
     "renewable": "Renovável",
     "helpfrom": "com ajuda de",
@@ -63,7 +62,6 @@
       "licensing": "Preços de energia não estão disponíveis para esta área devido a restrições de licenciamento"
     },
     "dataIsDelayed": "Dados para esta região podem estar atrasados até {{hours}} horas. Dados em tempo real estão indisponíveis.",
-    "estimated": "estimado",
     "aggregated": "agregado",
     "dataIsEstimated": "Parte dos dados desta região são estimados. Leia mais sobre nossa metodologia de estimativas <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>aqui</a>.",
     "exchangesAreMissing": "Trocas são consideradas para os cálculos mas não estão a ser mostradas. Leia mais sobre as nossas agregações históricas <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>aqui</a>.",
@@ -98,7 +96,6 @@
   },
   "estimation-badge": {
     "partially-estimated": "Parcialmente estimado",
-    "fully-estimated": "Estimado",
     "outage": "Indisponível"
   },
   "estimation-card": {
@@ -145,8 +142,7 @@
     "blog": "Blog",
     "open-source": "Código aberto",
     "hiring": "Estamos a contratar!",
-    "methodology": "Metodologia",
-    "faq": "Perguntas frequentes"
+    "methodology": "Metodologia"
   },
   "country-history": {
     "carbonintensity": {
@@ -210,17 +206,14 @@
   "footer": {
     "foundbugs": "Encontrou erros ou tem alguma sugestão? Contacte-nos",
     "faq-text": "Algo não está claro? Aceda ás nossas",
-    "faq": "questões frequentes.",
     "here": "aqui"
   },
   "legends": {
     "windpotential": "Potencial da força do vento",
     "solarpotential": "Potencial solar",
-    "colorblindmode": "Modo para daltónicos",
-    "carbonintensity": "Intensidade de carbono"
+    "colorblindmode": "Modo para daltónicos"
   },
   "tooltips": {
-    "carbonintensity": "Intensidade de emissões de CO₂",
     "zoneHeader": {
       "lowcarbon": "Inclui renováveis e nucleares"
     },
@@ -274,9 +267,6 @@
   },
   "misc": {
     "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
-    "faq": "Questões frequentes",
-    "dismiss": "Descartar",
-    "reload": "Recarregar",
     "slow-loading-text": "Ainda a carregar, se continuar, experimente recarregar a página..."
   },
   "wind": "eólica",
@@ -1730,5 +1720,13 @@
     "ZW": {
       "zoneName": "Zimbábue"
     }
+  },
+  "shared": {
+    "faq": "Perguntas frequentes",
+    "carbonintensity": "Intensidade de emissão de carbono",
+    "estimated": "estimado",
+    "fully-estimated": "Estimado",
+    "reload": "Recarregar",
+    "dismiss": "Descartar"
   }
 }

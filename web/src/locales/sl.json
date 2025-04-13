@@ -36,7 +36,6 @@
   },
   "country-panel": {
     "source": "Vir",
-    "carbonintensity": "Intenzivnost ogljika",
     "lowcarbon": "nizkoogljična",
     "renewable": "obnovljiva",
     "by-source": {
@@ -47,7 +46,6 @@
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
     "noLiveData": "Podatki v živo za to območje začasno niso na voljo",
     "dataIsDelayed": "Podatki za to regijo lahko zamujajo do {{hours}} ur. Podatkov v živo ni mogoče prikazati.",
-    "estimated": "ocenjeno",
     "aggregated": "zbrano",
     "dataIsEstimated": "Nekateri podatki za to regijo so ocenjeni. Preberite več o naši metodologiji ocenjevanja <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target= '_blank'>tukaj</a>.",
     "exchangesAreMissing": "Izmenjave so upoštevane v izračunih, vendar trenutno niso prikazane. Preberite več o naših zgodovinskih združevanjih <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>tukaj</a>..",
@@ -65,17 +63,14 @@
   "footer": {
     "foundbugs": "Ste našli hrošča, ali imate idejo? Pišite nam.",
     "faq-text": "Nejasnosti? Oglejte si naša",
-    "faq": "pogosto postavljena vprašanja",
     "here": "tukaj"
   },
   "legends": {
     "windpotential": "Potencial vetrne energije",
     "solarpotential": "Potencial sončne energije",
-    "colorblindmode": "Barvno slep način",
-    "carbonintensity": "Intenzivnost ogljika"
+    "colorblindmode": "Barvno slep način"
   },
   "tooltips": {
-    "carbonintensity": "Intenzivnost ogljika",
     "zoneHeader": {
       "lowcarbon": "Vključuje obnovljive vire in jedrsko energijo"
     },
@@ -108,15 +103,10 @@
     "zone": "območje"
   },
   "updatePrompt": {
-    "description": "Na voljo je nova različica aplikacije, želite zdaj posodobiti?",
-    "update": "Posodobi",
-    "dismiss": "Zavrni"
+    "description": "Na voljo je nova različica aplikacije, želite zdaj posodobiti?"
   },
   "misc": {
-    "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije",
-    "faq": "Pogosto postavljena vprašanja",
-    "dismiss": "Opusti",
-    "reload": "Znova naloži"
+    "maintitle": "Trenutne 24/7 emisije CO₂ porabe električne energije"
   },
   "wind": "veter",
   "windDataError": "Podatki o vetrni energiji trenutno niso na voljo",
@@ -1496,5 +1486,13 @@
     "ZW": {
       "zoneName": "Zimbabve"
     }
+  },
+  "shared": {
+    "carbonintensity": "Intenzivnost ogljika",
+    "estimated": "ocenjeno",
+    "faq": "pogosto postavljena vprašanja",
+    "reload": "Znova naloži",
+    "dismiss": "Opusti",
+    "update": "Posodobi"
   }
 }

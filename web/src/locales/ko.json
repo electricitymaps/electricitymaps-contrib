@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "발생원",
-    "carbonintensity": "탄소 밀집도",
     "lowcarbon": "낮은 탄소밀집도",
     "renewable": "재생 가능한",
     "helpfrom": "의 도움으로",
@@ -40,17 +39,14 @@
   "footer": {
     "foundbugs": "버그가 발견되었거나 의견이 있으신가요? 알려주세요",
     "faq-text": "명확하지 않은 점이 있나요? 이 곳을 확인해주세요",
-    "faq": "자주 묻는 질문",
     "here": "이 곳"
   },
   "legends": {
     "windpotential": "풍력 포텐셜",
     "solarpotential": "태양광 포텐셜",
-    "colorblindmode": "색맹 모드",
-    "carbonintensity": "탄소집약도"
+    "colorblindmode": "색맹 모드"
   },
   "tooltips": {
-    "carbonintensity": "탄소집약도",
     "crossborderexport": "국경을 넘는 수출",
     "carbonintensityexport": "수출 탄소집약도",
     "ofinstalled": "설비 용량의",
@@ -69,10 +65,7 @@
     "selectLanguage": "언어를 선택하세요"
   },
   "misc": {
-    "maintitle": "전력 소비로 인한 실시간 CO₂ 배출",
-    "faq": "자주 묻는 질문",
-    "dismiss": "닫기",
-    "reload": "다시 로드"
+    "maintitle": "전력 소비로 인한 실시간 CO₂ 배출"
   },
   "wind": "바람",
   "solar": "태양",
@@ -1158,5 +1151,11 @@
     "ZW": {
       "zoneName": "짐바브웨"
     }
+  },
+  "shared": {
+    "carbonintensity": "탄소 밀집도",
+    "faq": "자주 묻는 질문",
+    "reload": "다시 로드",
+    "dismiss": "닫기"
   }
 }

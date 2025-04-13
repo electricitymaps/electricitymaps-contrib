@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "Fonte",
-    "carbonintensity": "Intensidade de emissão de carbono",
     "lowcarbon": "Baixo carbono",
     "renewable": "Renovável",
     "by-source": {
@@ -36,7 +35,6 @@
     "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href='{{link}}' target='_blank'>adicionando dados da área</a>.",
     "now": "Agora",
     "dataIsDelayed": "Dados para essa região podem estar até {{hours}} horas atrasados. Dados em tempo real estão indisponíveis.",
-    "estimated": "estimado",
     "aggregated": "agregado",
     "dataIsEstimated": "Parte dos dados dessa região são estimados. Leia mais sobre nossa metodologia de estimativas <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>aqui</a>.",
     "exchangesAreMissing": "Trocas são consideradas para os cálculos mas não estão sendo mostradas. Leia mais sobre nossas agregações históricas <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>aqui</a>.",
@@ -52,17 +50,14 @@
   "footer": {
     "foundbugs": "Encontrou erros ou tem alguma sugestão? Contate-nos",
     "faq-text": "Algo não está claro? Acesse nossas",
-    "faq": "questões frequentes.",
     "here": "aqui"
   },
   "legends": {
     "windpotential": "Potencial da força do vento",
     "solarpotential": "Potencial solar",
-    "colorblindmode": "Modo para daltônicos",
-    "carbonintensity": "Intensidade de carbono"
+    "colorblindmode": "Modo para daltônicos"
   },
   "tooltips": {
-    "carbonintensity": "Intensidade de emissões de CO₂",
     "zoneHeader": {
       "lowcarbon": "Inclui renováveis e nucleares"
     },
@@ -91,10 +86,7 @@
     "aggregateInfo": "Países são agregados quando a capacidade anual da zona é maior que 90% da capacidade total"
   },
   "misc": {
-    "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
-    "faq": "Questões frequentes",
-    "dismiss": "Descartar",
-    "reload": "Recarregar"
+    "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real"
   },
   "wind": "eólica",
   "solar": "solar",
@@ -1489,5 +1481,12 @@
   "aggregateButtons": {
     "country": "País",
     "zone": "zona"
+  },
+  "shared": {
+    "carbonintensity": "Intensidade de emissão de carbono",
+    "estimated": "estimado",
+    "faq": "questões frequentes.",
+    "reload": "Recarregar",
+    "dismiss": "Descartar"
   }
 }

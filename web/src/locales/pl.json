@@ -21,7 +21,6 @@
     "facebook": "Śledź nas na Facebook",
     "facebook-share": "Udostępnij na Facebook",
     "feedback": "Podziel się opinią",
-    "faq": "FAQ",
     "privacy-policy": "Polityka prywatności",
     "legal-notice": "Informacja prawna"
   },
@@ -78,7 +77,6 @@
   },
   "country-panel": {
     "source": "Źródło",
-    "carbonintensity": "Emisja CO₂",
     "lowcarbon": "Niskoemisyjne",
     "renewable": "Odnawialne",
     "electricityconsumption": "Elektryczność",
@@ -91,7 +89,6 @@
     },
     "emissionFactorDataSourcesTooltip": "Czynniki emisji związane z produkcją energii elektrycznej mogą pochodzić z wielu źródeł. Dzieje się tak, ponieważ w obliczeniach emisji uwzględnia się kilka czynników, takich jak dane specyficzne dla elektrowni, generacja oraz źródła zapasowe.",
     "dataIsDelayed": "Dane dla tego regionu mogą być opóźnione o maksymalnie {{hours}} godzin. Nie można wyświetlić danych na żywo.",
-    "estimated": "szacowane",
     "aggregated": "zagregowane",
     "dataIsEstimated": "Niektóre dane dla tego obszaru zostały oszacowane. Przeczytaj więcej o naszej metodologii szacowania <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>tutaj</a>.",
     "exchangesAreMissing": "Wymiany są uwzględniane w obliczeniach, ale obecnie nie są wyświetlane. Więcej informacji na temat naszych historycznych agregacji można znaleźć <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>tutaj</a>.",
@@ -146,7 +143,6 @@
   },
   "estimation-badge": {
     "partially-estimated": "Częściowo oszacowane",
-    "fully-estimated": "Oczacowane",
     "outage": "Niedostępne"
   },
   "estimation-card": {
@@ -188,8 +184,7 @@
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Rekrutujemy!",
-    "methodology": "Metodologia",
-    "faq": "FAQ"
+    "methodology": "Metodologia"
   },
   "country-history": {
     "carbonintensity": {
@@ -253,17 +248,14 @@
   "footer": {
     "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
     "here": "tutaj",
-    "faq-text": "Coś jest niejasne? Sprawdź nasze",
-    "faq": "najczęściej zadawane pytania."
+    "faq-text": "Coś jest niejasne? Sprawdź nasze"
   },
   "legends": {
     "windpotential": "Potencjał wiatrowy",
     "solarpotential": "Potencjał słoneczny",
-    "colorblindmode": "tryb dla daltonistów",
-    "carbonintensity": "Emisja CO₂"
+    "colorblindmode": "tryb dla daltonistów"
   },
   "tooltips": {
-    "carbonintensity": "Emisja CO₂",
     "zoneHeader": {
       "lowcarbon": "Obejmuje wszystkie źródła odnawialne i energię jądrową",
       "renewable": "Obejmuje energię słoneczną, wiatrową, wodną, biomasę i geotermalną",
@@ -319,15 +311,10 @@
     "system": "Systemowy"
   },
   "updatePrompt": {
-    "description": "Dostępna jest nowa wersja aplikacji, zaktualizować teraz?",
-    "update": "Aktualizuj",
-    "dismiss": "Odrzuć"
+    "description": "Dostępna jest nowa wersja aplikacji, zaktualizować teraz?"
   },
   "misc": {
     "maintitle": "Emisja CO₂ konsumpcji energii elektrycznej w czasie rzeczywistym",
-    "faq": "Najczęściej Zadawane Pytania",
-    "dismiss": "Ignoruj",
-    "reload": "Odśwież",
     "slow-loading-text": "Ładowanie wciąż trwa, jeśli to się nie zmieni, spróbuj ponownie załadować stronę..."
   },
   "wind": "wiatrowa",
@@ -1791,5 +1778,14 @@
     "YT": {
       "zoneName": "Majotta"
     }
+  },
+  "shared": {
+    "faq": "FAQ",
+    "carbonintensity": "Emisja CO₂",
+    "estimated": "szacowane",
+    "fully-estimated": "Oczacowane",
+    "reload": "Odśwież",
+    "dismiss": "Ignoruj",
+    "update": "Aktualizuj"
   }
 }

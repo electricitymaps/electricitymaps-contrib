@@ -23,7 +23,6 @@
     "facebook": "Síguenos en Facebook",
     "facebook-share": "Compartir en Facebook",
     "feedback": "Comparte tus comentarios",
-    "faq": "Preguntas frecuentes",
     "privacy-policy": "Política de privacidad",
     "legal-notice": "Aviso legal"
   },
@@ -75,7 +74,6 @@
   },
   "country-panel": {
     "source": "fuente",
-    "carbonintensity": "Intensidad de carbono",
     "lowcarbon": "Baja en emisiones",
     "renewable": "Renovables",
     "electricityconsumption": "Electricidad",
@@ -88,7 +86,6 @@
     "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
     "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta zona",
     "dataIsDelayed": "Los datos para esta región pueden tener hasta {{hours}} horas de retraso. Los datos en tiempo real no pueden ser mostrados.",
-    "estimated": "estimados",
     "aggregated": "agregados",
     "dataIsEstimated": "Algunos de los datos de esta región son estimados. Lee más sobre la metodología de estimación <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>aquí</a>.",
     "exchangesAreMissing": "Los intercambios son considerados en los cálculos pero no son mostrados actualmente. Lee más acerca de nuestros agregados históricos <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>aquí</a>.",
@@ -100,7 +97,6 @@
   },
   "estimation-badge": {
     "partially-estimated": "Parcialmente estimado",
-    "fully-estimated": "Estimado",
     "outage": "No disponible"
   },
   "estimation-card": {
@@ -127,17 +123,14 @@
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
     "faq-text": "¿Alguna duda? Consulta nuestras",
-    "faq": "preguntas frecuentes.",
     "here": "aquí"
   },
   "legends": {
     "windpotential": "Potencial de la fuerza del viento",
     "solarpotential": "Potencial solar",
-    "colorblindmode": "Modo para daltónicos",
-    "carbonintensity": "Intensidad de carbono"
+    "colorblindmode": "Modo para daltónicos"
   },
   "tooltips": {
-    "carbonintensity": "Intensidad de carbono",
     "zoneHeader": {
       "lowcarbon": "Incluye renovables y nuclear",
       "renewable": "Incluye solar, eólica, hidroeléctrica, biomasa y geotermia",
@@ -193,15 +186,10 @@
     "system": "Sistema"
   },
   "updatePrompt": {
-    "description": "Una nueva versión de la aplicación está disponible, ¿actualizar ahora?",
-    "update": "Actualizar",
-    "dismiss": "Descartar"
+    "description": "Una nueva versión de la aplicación está disponible, ¿actualizar ahora?"
   },
   "misc": {
     "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
-    "faq": "Preguntas frecuentes",
-    "dismiss": "Descartar",
-    "reload": "Recargar",
     "slow-loading-text": "Sigue cargando, si esta situación continúa trata de recargar..."
   },
   "wind": "energía eólica",
@@ -1544,5 +1532,14 @@
     "ZW": {
       "zoneName": "Zimbabue"
     }
+  },
+  "shared": {
+    "faq": "Preguntas frecuentes",
+    "carbonintensity": "Intensidad de carbono",
+    "estimated": "estimados",
+    "fully-estimated": "Estimado",
+    "reload": "Recargar",
+    "dismiss": "Descartar",
+    "update": "Actualizar"
   }
 }

@@ -17,7 +17,6 @@
     "facebook": "Nous suivre sur Facebook",
     "facebook-share": "Partager sur Facebook",
     "feedback": "Partager vos commentaires",
-    "faq": "FAQ",
     "privacy-policy": "Politique de confidentialité",
     "legal-notice": "Informations légales",
     "api": "Accéder à l'API",
@@ -97,7 +96,6 @@
   "country-panel": {
     "forecastCta": "Vous recherchez les données prévisionnelles ?",
     "source": "Source",
-    "carbonintensity": "Intensité carbone",
     "lowcarbon": "Bas carbone",
     "renewable": "Renouvelable",
     "electricityconsumption": "Électricité",
@@ -110,7 +108,6 @@
     },
     "emissionFactorDataSourcesTooltip": "Les facteurs d'émission pour la production d'électricité peuvent provenir de plusieurs sources. Cela se produit lorsque plusieurs facteurs, tels que les données spécifiques à une centrale, la production et parfois les sources de secours, sont pris en compte dans les calculs des émissions.",
     "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à {{hours}} heures de retard. Les données temps-réel ne peuvent pas être affichées.",
-    "estimated": "estimé",
     "aggregated": "agrégé",
     "dataIsEstimated": "Certaines données de cette région sont estimées. En savoir plus sur notre méthodologie d'estimation <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>ici</a>.",
     "exchangesAreMissing": "Les échanges sont pris en compte dans les calculs mais ne sont pas indiqués actuellement. En savoir plus sur notre agrégation historique  <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>ici</a>.",
@@ -166,7 +163,6 @@
   },
   "estimation-badge": {
     "partially-estimated": "Partiellement estimées",
-    "fully-estimated": "Estimées",
     "outage": "Indisponibles"
   },
   "estimation-card": {
@@ -249,8 +245,7 @@
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Nous recrutons !",
-    "methodology": "Méthodologie",
-    "faq": "FAQ"
+    "methodology": "Méthodologie"
   },
   "country-history": {
     "carbonintensity": {
@@ -315,17 +310,14 @@
   "footer": {
     "foundbugs": "Un bug ? Une idée ? Cliquez",
     "here": "ici",
-    "faq-text": "Tout n’est pas clair ? Passez voir notre",
-    "faq": "foire aux questions."
+    "faq-text": "Tout n’est pas clair ? Passez voir notre"
   },
   "legends": {
     "windpotential": "Potentiel éolien",
     "solarpotential": "Potentiel solaire",
-    "colorblindmode": "Mode daltonien",
-    "carbonintensity": "Intensité carbone"
+    "colorblindmode": "Mode daltonien"
   },
   "tooltips": {
-    "carbonintensity": "Intensité carbone",
     "zoneHeader": {
       "lowcarbon": "Inclut les énergies renouvelables et le nucléaire",
       "renewable": "Inclut le solaire, l'éolien, l'hydroélectricité, la biomasse et la géothermie",
@@ -385,15 +377,10 @@
     "system": "Système"
   },
   "updatePrompt": {
-    "description": "Une nouvelle version de l'application est disponible, mettre à jour maintenant ?",
-    "update": "Mettre à jour",
-    "dismiss": "Ignorer"
+    "description": "Une nouvelle version de l'application est disponible, mettre à jour maintenant ?"
   },
   "misc": {
     "maintitle": "Émissions CO₂ de la consommation électrique en temps réel",
-    "faq": "Foire Aux Questions",
-    "dismiss": "Ignorer",
-    "reload": "Recharger",
     "slow-loading-text": "Chargement encore en cours, si il persiste essayez de recharger..."
   },
   "wind": "éolien",
@@ -1845,5 +1832,14 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "faq": "FAQ",
+    "carbonintensity": "Intensité carbone",
+    "estimated": "estimé",
+    "fully-estimated": "Estimées",
+    "reload": "Recharger",
+    "dismiss": "Ignorer",
+    "update": "Mettre à jour"
   }
 }

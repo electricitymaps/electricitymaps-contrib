@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "Allikas",
-    "carbonintensity": "Süsiniku intensiivsus",
     "lowcarbon": "Vähese süsinikuga",
     "renewable": "Taastuv",
     "helpfrom": "koos aitajatega",
@@ -41,17 +40,14 @@
   "footer": {
     "foundbugs": "Leidsite vea või teil on idee? Andke nendest teada",
     "faq-text": "Miskit on ebaselge? Vaadake üle",
-    "faq": "korduma kippuvad küsimused.",
     "here": "siin"
   },
   "legends": {
     "windpotential": "Tuuleenergia potentsiaal",
     "solarpotential": "Päikeseenergia potentsiaal",
-    "colorblindmode": "värvipime režiim",
-    "carbonintensity": "Süsiniku intensiivsus"
+    "colorblindmode": "värvipime režiim"
   },
   "tooltips": {
-    "carbonintensity": "Süsiniku intensiivsus",
     "zoneHeader": {
       "lowcarbon": "Sisaldab taastuvenergiaid ja tuumaenergiat"
     },
@@ -76,10 +72,7 @@
     "dataIsDelayed": "Andmed viibivad"
   },
   "misc": {
-    "maintitle": "Reaalajas elektritarbimise CO₂ heitmed",
-    "faq": "Korduma kippuvad küsimused",
-    "dismiss": "Sule",
-    "reload": "Laadi uuesti"
+    "maintitle": "Reaalajas elektritarbimise CO₂ heitmed"
   },
   "wind": "tuul",
   "solar": "päike",
@@ -1424,5 +1417,11 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "carbonintensity": "Süsiniku intensiivsus",
+    "faq": "korduma kippuvad küsimused.",
+    "reload": "Laadi uuesti",
+    "dismiss": "Sule"
   }
 }

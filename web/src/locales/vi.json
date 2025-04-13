@@ -14,7 +14,6 @@
   },
   "country-panel": {
     "source": "Nguồn",
-    "carbonintensity": "Mật độ Cacbon",
     "lowcarbon": "Mật độ Cacbon thấp",
     "renewable": "Năng lượng tái tạo",
     "noDataAtTimestamp": "Dữ liệu đang tạm thời chưa có trong khoảng thời gian được chọn",
@@ -25,11 +24,6 @@
   },
   "legends": {
     "colorblindmode": "chế độ mù màu"
-  },
-  "misc": {
-    "faq": "Các câu hỏi thường gặp",
-    "dismiss": "Bỏ",
-    "reload": "Tải lại"
   },
   "theMap": {
     "groupName": "Bản đồ",
@@ -1061,5 +1055,11 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "carbonintensity": "Mật độ Cacbon",
+    "faq": "Các câu hỏi thường gặp",
+    "reload": "Tải lại",
+    "dismiss": "Bỏ"
   }
 }

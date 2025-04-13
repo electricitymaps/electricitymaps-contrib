@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "izvor",
-    "carbonintensity": "Faktor emisije",
     "lowcarbon": "Niske emisije",
     "renewable": "Obnovljivi",
     "helpfrom": "uz pomoć",
@@ -40,17 +39,14 @@
   "footer": {
     "foundbugs": "Pronašao si grešku ili imaš ideje? Prijavi ih",
     "faq-text": "Nešto ti je nejasno? Provjeri naša",
-    "faq": "često postavljana pitanja.",
     "here": "ovdje"
   },
   "legends": {
     "windpotential": "Potencijal energije vjetra",
     "solarpotential": "Potencijal solarne energije",
-    "colorblindmode": "prikaz za daltoniste",
-    "carbonintensity": "Faktor emisije"
+    "colorblindmode": "prikaz za daltoniste"
   },
   "tooltips": {
-    "carbonintensity": "Faktor emisije",
     "crossborderexport": "Međugranični izvoz",
     "carbonintensityexport": "Faktor emisije izvoza",
     "ofinstalled": "instaliranog kapaciteta",
@@ -69,10 +65,7 @@
     "selectLanguage": "Odaberi jezik"
   },
   "misc": {
-    "maintitle": "Emisije CO₂ upotrijebljene struje uživo",
-    "faq": "Često postavljana pitanja",
-    "dismiss": "Odbaci",
-    "reload": "Ponovno učitaj"
+    "maintitle": "Emisije CO₂ upotrijebljene struje uživo"
   },
   "wind": "vjetar",
   "solar": "solarna",
@@ -1165,5 +1158,11 @@
     "ZW": {
       "zoneName": "Zimbabve"
     }
+  },
+  "shared": {
+    "carbonintensity": "Faktor emisije",
+    "faq": "često postavljana pitanja.",
+    "reload": "Ponovno učitaj",
+    "dismiss": "Odbaci"
   }
 }
