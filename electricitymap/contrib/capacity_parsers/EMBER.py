@@ -18,7 +18,7 @@ SOURCE = "Ember, Yearly electricity data"
 SPECIFIC_MODE_MAPPING = {
     "AR": {"other fossil": "unknown"},
     "BD": {"other fossil": "oil"},
-    "BO": {"other fossil": "unknown"},
+    "BO": {"other fossil": "unknown", "gas": "unknown"},
     "CO": {"other fossil": "oil"},
     "CR": {"other fossil": "oil", "other renewables": "geothermal"},
     "CY": {"other fossil": "oil"},
@@ -90,13 +90,13 @@ def _ember_production_mode_mapper(row: pd.Series) -> str | None:
 
     if isinstance(row[category_col], str):
         mode = row[category_col].lower()
-        if mode in ENERGIES:
-            production_mode = mode
-        elif (
+        if (
             row["zone_key"] in SPECIFIC_MODE_MAPPING
             and mode in SPECIFIC_MODE_MAPPING[row["zone_key"]]
         ):
             production_mode = SPECIFIC_MODE_MAPPING[row["zone_key"]][mode]
+        elif mode in ENERGIES:
+            production_mode = mode
         elif mode in ember_mapper:
             production_mode = ember_mapper[mode]
         else:
