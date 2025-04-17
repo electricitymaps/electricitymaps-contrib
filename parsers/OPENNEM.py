@@ -86,14 +86,6 @@ def dataset_to_df(dataset):
     return df
 
 
-def process_solar_rooftop(df: pd.DataFrame) -> pd.DataFrame:
-    if "SOLAR_ROOFTOP" in df:
-        # at present, solar rooftop data comes in each 30 mins.
-        # Resample data to not require interpolation
-        return df.resample("30T").mean()
-    return df
-
-
 def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
     # Parse capacity data
     capacities = {
@@ -186,7 +178,7 @@ def fetch_main_power_df(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> tuple[pd.DataFrame, list]:
-    df, filtered_datasets = _fetch_main_df(
+    return _fetch_main_df(
         "power",
         zone_key=zone_key,
         sorted_zone_keys=sorted_zone_keys,
@@ -194,9 +186,6 @@ def fetch_main_power_df(
         target_datetime=target_datetime,
         logger=logger,
     )
-    # Solar rooftop is a special case
-    df = process_solar_rooftop(df)
-    return df, filtered_datasets
 
 
 def _fetch_main_df(
