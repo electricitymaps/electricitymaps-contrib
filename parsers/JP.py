@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
+from io import BytesIO, StringIO
 from logging import Logger, getLogger
+from typing import Any
+from zipfile import ZipFile
 from zoneinfo import ZoneInfo
 
 import pandas as pd
 from requests import Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.lib.models.event_lists import (
+    # TotalConsumptionList, # for later for forecast consumption
+    TotalProductionList,
+)
+from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers import occtonet
 from parsers.lib.config import refetch_frequency
 
@@ -352,9 +361,178 @@ def parse_dt(row):
     return datetime.strptime(datetime_string, format_string).replace(tzinfo=ZONE_INFO)
 
 
+SOURCES_FORECAST_DATA = {
+    "JP-HKD": "denkiyoho.hepco.co.jp",
+    "JP-TH": "setsuden.nw.tohoku-epco.co.jp",
+    "JP-TK": "www.tepco.co.jp/forecast",
+    "JP-CB": "powergrid.chuden.co.jp",
+    "JP-HR": "www.rikuden.co.jp/nw/denki-yoho",
+    "JP-KN": "www.kansai-td.co.jp",
+    "JP-SK": "www.yonden.co.jp",
+    "JP-CG": "www.energia.co.jp",
+    "JP-KY": "www.kyuden.co.jp",
+    "JP-ON": "www.okiden.co.jp/denki2/",
+}
+
+
+def fetch_generation_forecast(
+    zone_key: ZoneKey = ZoneKey("JP-HKD"),  # Just as default
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Gets generation forecast for every half hour for the specified Japan zones in MW."""
+
+    # Session
+    session = session or Session()
+
+    # Date
+
+    # Currently past dates not implemented for areas with no date in their demand csv files
+    if target_datetime is None:
+        target_datetime = datetime.now(ZONE_INFO)
+    else:
+        target_datetime = target_datetime.astimezone(ZONE_INFO)
+
+    datestamp = target_datetime.astimezone(ZONE_INFO).strftime("%Y%m%d")
+    print(datestamp)
+
+    if datestamp < datetime.now(ZONE_INFO).strftime("%Y%m%d"):
+        raise NotImplementedError("Past dates not implemented for selected region")
+
+    # Forecasts ahead of current date are not available for JP-KY
+    if datestamp > datetime.now(ZONE_INFO).strftime("%Y%m%d") and zone_key == "JP-KY":
+        raise NotImplementedError(
+            "Future dates (local time) not implemented for selected region"
+        )
+
+    # Forecasts ahead of tomorrow's date are not available
+    if datestamp > (datetime.now(ZONE_INFO) + timedelta(days=1)).strftime("%Y%m%d"):
+        raise NotImplementedError(
+            "Dates after tomorrow (local time) not implemented for selected region"
+        )
+
+    # Urls for some Japan zones based on datestamp
+    forecast_url = {
+        "JP-HKD": f"http://denkiyoho.hepco.co.jp/area/data/{datestamp}_hokkaido_yosoku.csv",
+        "JP-HR": f"https://www.rikuden.co.jp/nw/denki-yoho/csv/yosoku_05_{datestamp}.csv",
+        "JP-KN": f"https://www.kansai-td.co.jp/interchange/denkiyoho/imbalance/{datestamp}_yosoku.csv",
+        "JP-CG": f"https://www.energia.co.jp/nw/jukyuu/sys/{datestamp[:6]}_jyukyu2_chugoku.zip",
+        "JP-KY": rf"https://www.kyuden.co.jp/td_power_usages/csv/kouhyo/imbalance/21110_TSO9_0_{datestamp}.csv?a={datestamp}\d{6}",
+        "JP-ON": f"http://www.okiden.co.jp/denki2/dem_pg/csv/jukyu_yosoku_{datestamp}.csv",
+    }
+
+    # For zones with different URLs for today vs tomorrow
+    if datestamp == datetime.now(ZONE_INFO).strftime("%Y%m%d"):
+        forecast_url["JP-TH"] = (
+            f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/area_tso_yosoku_{datestamp}.csv"
+        )
+        forecast_url["JP-TK"] = (
+            "https://www4.tepco.co.jp/forecast/html/images/AREA_YOSOKU.csv"
+        )
+        forecast_url["JP-CB"] = (
+            "https://powergrid.chuden.co.jp/denki_yoho_content_data/keito_yosoku_cepco003.csv"
+        )
+        forecast_url["JP-SK"] = (
+            "https://www.yonden.co.jp/nw/denkiyoho/supply_demand/csv/yosoku_today.csv"
+        )
+    # TODO: what time the new doc is created for next day?
+    elif datestamp == (datetime.now(ZONE_INFO) + timedelta(days=1)).strftime("%Y%m%d"):
+        forecast_url["JP-TH"] = (
+            "https://setsuden.nw.tohoku-epco.co.jp/common/demand/area_tso_yosoku_y.csv"
+        )
+        forecast_url["JP-TK"] = (
+            "https://www4.tepco.co.jp/forecast/html/images/AREA_ONCE_YOSOKU.csv"
+        )
+        forecast_url["JP-SK"] = (
+            "https://www.yonden.co.jp/nw/denkiyoho/supply_demand/csv/yosoku_tomorrow.csv"
+        )
+        if zone_key == "JP-CB":  # Raise exception for JP-CB
+            raise ValueError(
+                f"Forecast data for tomorrow not available for zone: {zone_key}"
+            )
+
+    # Skip non-tabular data at the start of source files
+    startrow = 1 if zone_key == "JP-HR" else 3 if zone_key == "JP-KN" else 2
+
+    # Get response from correspondent url
+    response = session.get(forecast_url[zone_key])
+
+    # Parse the different formats
+    if zone_key == "JP-CG":
+        with ZipFile(BytesIO(response.content)) as z:
+            target_file = f"{datestamp}_yosoku_chugoku.csv"
+            if target_file in z.namelist():
+                with z.open(target_file) as f:
+                    df = pd.read_csv(f, encoding="shift_jis", skiprows=startrow)
+            else:
+                print(f"File '{target_file}' not found in the zip archive.")
+                print(f"Available files: {z.namelist()}")
+    else:
+        content = response.content.decode("shift_jis")
+        df = pd.read_csv(StringIO(content), skiprows=startrow)
+
+    # Extract the correspondant information from the files for each zone
+    if zone_key == "JP-HKD" or zone_key == "JP-HR":
+        df = df[["日付", "時間帯_自", "エリア総発電量(kWh)"]]
+    elif zone_key == "JP-KN" or zone_key == "JP-KY":
+        if zone_key == "JP-KY":
+            df = df.drop(index=0)
+        df = df[["日付", "時間帯＿自", "エリア総発電量"]]
+    elif zone_key == "JP-CG" or zone_key == "JP-CB" or zone_key == "JP-SK":
+        df = df[["日付", "時間帯_自", "エリア総発電量"]]
+    elif zone_key == "JP-ON" or zone_key == "JP-TH":
+        df = df[["DATE", "時間帯_自", "エリア総発電量(kWh)"]]
+    elif zone_key == "JP-TK":
+        df = df[["日付(yyyymmdd)", "時間帯_自(HH:MI)", "エリア総発電量[30分kWh]"]]
+
+    df.columns = ["Date", "Time", "generation fcst"]
+
+    # Transform to MW: the data is given every half hour
+    df["generation fcst"] = df["generation fcst"].astype(float) * 2 / 1000
+
+    all_generation_events = df  # all events with a datetime and a generation value
+    generation_list = TotalProductionList(logger)
+    for _, event in all_generation_events.iterrows():
+        if (
+            zone_key == "JP-HR"
+            or zone_key == "JP-ON"
+            or zone_key == "JP-TH"
+            or zone_key == "JP-CB"
+        ):
+            datetime_string = str(event["Date"]) + str(event["Time"])
+            event["datetime"] = datetime.strptime(
+                datetime_string, "%Y/%m/%d%H:%M"
+            ).replace(tzinfo=ZONE_INFO)
+        elif zone_key == "JP-TK":
+            time_int = int(event["Time"])
+            time_str_padded = (
+                f"{time_int:04d}" if time_int >= 100 else f"00{time_int:02d}"
+            )
+            time_obj = datetime.strptime(time_str_padded, "%H%M").time()
+            date_obj = datetime.strptime(str(int(event["Date"])), "%Y%m%d").date()
+            event["datetime"] = datetime.combine(date_obj, time_obj).replace(
+                tzinfo=ZONE_INFO
+            )
+        else:
+            datetime_string = str(event["Date"]) + str(event["Time"])
+            event["datetime"] = datetime.strptime(
+                datetime_string, "%Y%m%d%H:%M"
+            ).replace(tzinfo=ZONE_INFO)
+        generation_list.append(
+            zoneKey=zone_key,
+            datetime=event["datetime"],
+            value=event["generation fcst"],
+            source=SOURCES_FORECAST_DATA[zone_key],
+            sourceType=EventSourceType.forecasted,
+        )
+    return generation_list.to_list()
+
+
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    """
     print("fetch_production() ->")
     print(fetch_production())
     print("fetch_price() ->")
@@ -375,3 +553,10 @@ if __name__ == "__main__":
     print(fetch_consumption_forecast("JP-KY"))
     print("fetch_consumption_forecast(JP-ON) ->")
     print(fetch_consumption_forecast("JP-ON"))
+    """
+
+    print(
+        fetch_generation_forecast(
+            zone_key="JP-TH", target_datetime=datetime(2025, 4, 17)
+        )
+    )
