@@ -33,7 +33,6 @@
   },
   "country-panel": {
     "source": "Fonte",
-    "carbonintensity": "Intensità di carbonio",
     "lowcarbon": "Basse emissioni",
     "renewable": "Rinnovabile",
     "electricityconsumption": "Elettricità",
@@ -46,7 +45,6 @@
     "noDataAtTimestamp": "Dati temporaneamente non disponibili per l'ora selezionata",
     "noLiveData": "Dati in tempo reale temporaneamente non disponibili per quest'area",
     "dataIsDelayed": "I dati per questa regione possono essere in ritardo di {{hours}} ore. I dati in tempo reale non possono essere mostrati.",
-    "estimated": "stimato",
     "aggregated": "aggregato",
     "dataIsEstimated": "Alcuni dei dati per questa regione sono stimati. Leggi di più sul nostro metodo di stima <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>qui</a>.",
     "exchangesAreMissing": "Gli scambi sono considerati nei calcoli, ma non sono mostrati attualmente. Leggi altro sulle nostre aggregazioni storiche <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'> qui</a>.",
@@ -64,17 +62,14 @@
   "footer": {
     "foundbugs": "Hai delle idee o hai trovato dei problemi? Scrivici",
     "faq-text": "Qualcosa non è chiaro? Dai un'occhiata alle nostre",
-    "faq": "faq",
     "here": "qui"
   },
   "legends": {
     "windpotential": "Potenziale eolico",
     "solarpotential": "Potenziale fotovoltaico",
-    "colorblindmode": "Modalità per daltonici",
-    "carbonintensity": "Intensità di carbonio"
+    "colorblindmode": "Modalità per daltonici"
   },
   "tooltips": {
-    "carbonintensity": "Intensità di carbonio",
     "zoneHeader": {
       "lowcarbon": "Include rinnovabili e nucleare"
     },
@@ -108,15 +103,10 @@
     "zone": "zona"
   },
   "updatePrompt": {
-    "description": "Una nuova versione dell'app è disponibile, aggiornare ora?",
-    "update": "Aggiorna",
-    "dismiss": "Ignora"
+    "description": "Una nuova versione dell'app è disponibile, aggiornare ora?"
   },
   "misc": {
-    "maintitle": "Emissioni di CO₂ in tempo reale del consumo elettrico",
-    "faq": "Domande poste frequentemente",
-    "dismiss": "Ignora",
-    "reload": "Ricarica"
+    "maintitle": "Emissioni di CO₂ in tempo reale del consumo elettrico"
   },
   "wind": "Eolico",
   "windDataError": "Dati sull'eolico attualmente non disponibili",
@@ -1497,5 +1487,13 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "carbonintensity": "Intensità di carbonio",
+    "estimated": "stimato",
+    "faq": "faq",
+    "reload": "Ricarica",
+    "dismiss": "Ignora",
+    "update": "Aggiorna"
   }
 }

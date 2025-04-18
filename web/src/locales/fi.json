@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "Lähde",
-    "carbonintensity": "Hiili-intensiteetti",
     "lowcarbon": "Vähähiilinen",
     "renewable": "Uusiutuva",
     "helpfrom": "heidän avustuksella",
@@ -40,17 +39,14 @@
   "footer": {
     "foundbugs": "Löysitkö vikoja tai onko ideoita? Kerro niistä",
     "faq-text": "Jotain epäselvää? Lue",
-    "faq": "usein kysytyt kysymykset.",
     "here": "täällä"
   },
   "legends": {
     "windpotential": "Tuulivoimapotentiaali",
     "solarpotential": "Aurinkovoimapotentiaali",
-    "colorblindmode": "värisokeamoodi",
-    "carbonintensity": "Hiili-intensiteetti"
+    "colorblindmode": "värisokeamoodi"
   },
   "tooltips": {
-    "carbonintensity": "Hiili-intensiteetti",
     "zoneHeader": {
       "lowcarbon": "Sisältää uusiutuvat energialähteet ja ydinvoiman"
     },
@@ -72,10 +68,7 @@
     "selectLanguage": "Valitse kieli"
   },
   "misc": {
-    "maintitle": "Sähkönkulutuksen reaaliaikiaset hiilidioksidipäästöt",
-    "faq": "Usein Kysytyt Kysymykset",
-    "dismiss": "Ohita",
-    "reload": "Lataa uudelleen"
+    "maintitle": "Sähkönkulutuksen reaaliaikiaset hiilidioksidipäästöt"
   },
   "wind": "tuuli",
   "solar": "aurinko",
@@ -1390,5 +1383,11 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "carbonintensity": "Hiili-intensiteetti",
+    "faq": "usein kysytyt kysymykset.",
+    "reload": "Lataa uudelleen",
+    "dismiss": "Ohita"
   }
 }

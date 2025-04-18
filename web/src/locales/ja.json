@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "ソース",
-    "carbonintensity": "炭素強度",
     "lowcarbon": "低炭素エネルギー",
     "renewable": "再生可能エネルギー",
     "helpfrom": "次の方の協力のおかげで",
@@ -41,17 +40,14 @@
   "footer": {
     "foundbugs": "バグの発見? ご報告ください",
     "faq-text": "不明な点がありますか? ",
-    "faq": "よくある質問をチェックしてみてください",
     "here": "(こちらに)"
   },
   "legends": {
     "windpotential": "風力可能量",
     "solarpotential": "太陽光可能量",
-    "colorblindmode": "代替配色モード",
-    "carbonintensity": "二酸化炭素量"
+    "colorblindmode": "代替配色モード"
   },
   "tooltips": {
-    "carbonintensity": "炭素強度",
     "zoneHeader": {
       "lowcarbon": "再生可能エネルギーと原子力を含む"
     },
@@ -74,9 +70,7 @@
     "dataIsDelayed": "データが遅延しています"
   },
   "misc": {
-    "maintitle": "電力消費による二酸化炭素排出のライブ地図",
-    "faq": "よくある質問",
-    "dismiss": "閉じる"
+    "maintitle": "電力消費による二酸化炭素排出のライブ地図"
   },
   "wind": "風力",
   "solar": "太陽光",
@@ -1393,5 +1387,10 @@
     "ZW": {
       "zoneName": "ジンバブエ"
     }
+  },
+  "shared": {
+    "carbonintensity": "炭素強度",
+    "faq": "よくある質問をチェックしてみてください",
+    "dismiss": "閉じる"
   }
 }

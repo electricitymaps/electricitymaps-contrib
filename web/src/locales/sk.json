@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "Zdroj",
-    "carbonintensity": "Intenzita uhlíka",
     "lowcarbon": "Nízke emisie",
     "renewable": "Obnoviteľné",
     "helpfrom": "s pomocou od",
@@ -40,17 +39,14 @@
   "footer": {
     "foundbugs": "Našli ste nedostatky alebo máte nápad? Povedzte nám o nich",
     "faq-text": "Je vám niečo nejasné? Navštívte ",
-    "faq": "Často kladené otázky.",
     "here": "tu"
   },
   "legends": {
     "windpotential": "Potenciál veternej energie",
     "solarpotential": "Potenciál solárnej energie",
-    "colorblindmode": "Mód pre farboslepych",
-    "carbonintensity": "Intezita uhlíka"
+    "colorblindmode": "Mód pre farboslepych"
   },
   "tooltips": {
-    "carbonintensity": "Intenzita uhlíka",
     "crossborderexport": "Cezhraničný export",
     "carbonintensityexport": "Uhlíková intenzita exportu",
     "ofinstalled": "nainštalovanej kapacity",
@@ -65,10 +61,7 @@
     "temporaryDataOutage": "Dáta momentálne nedostupné"
   },
   "misc": {
-    "maintitle": "CO₂ emisie elektrickej spotreby v aktuálnom čase",
-    "faq": "Často kladené otázky",
-    "dismiss": "Zrušiť",
-    "reload": "Znova načítať"
+    "maintitle": "CO₂ emisie elektrickej spotreby v aktuálnom čase"
   },
   "wind": "veterná en.",
   "solar": "solárna en.",
@@ -1155,5 +1148,11 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "carbonintensity": "Intenzita uhlíka",
+    "faq": "Často kladené otázky.",
+    "reload": "Znova načítať",
+    "dismiss": "Zrušiť"
   }
 }

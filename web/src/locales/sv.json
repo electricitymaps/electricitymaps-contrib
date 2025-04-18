@@ -27,7 +27,6 @@
     "facebook": "Följ oss på Facebook",
     "facebook-share": "Dela på Facebook",
     "feedback": "Lämna synpunkter",
-    "faq": "Vanliga frågor",
     "privacy-policy": "Integritetspolicy",
     "legal-notice": "Juridisk information",
     "api": "Åtkomst till API",
@@ -103,7 +102,6 @@
   "country-panel": {
     "forecastCta": "Letar du efter prognosdata?",
     "source": "Källa",
-    "carbonintensity": "Kolintensitet",
     "lowcarbon": "Fossilfritt",
     "renewable": "Förnybart",
     "electricityconsumption": "Elektricitet",
@@ -116,7 +114,6 @@
     },
     "emissionFactorDataSourcesTooltip": "Emissionsfaktorer för elproduktion kan härröra från flera källor. Detta händer eftersom flera faktorer, som anläggningsspecifika data, generering och ibland reservkällor, beaktas i utsläppsberäkningar.",
     "dataIsDelayed": "Data för denna region kan vara upp till {{hours}} timmar fördröjd. Aktuell data kan inte visas.",
-    "estimated": "uppskattad",
     "aggregated": "aggregerad",
     "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>här</a>.",
     "exchangesAreMissing": "Detta diagram innehåller inte flödesdata. Flöden visas i timvis vy. Läs mer om våra historiska sammanställningar <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>här</a>.",
@@ -173,7 +170,6 @@
   },
   "estimation-badge": {
     "partially-estimated": "Delvis uppskattad",
-    "fully-estimated": "Uppskattad",
     "outage": "Otillgänglig"
   },
   "estimation-card": {
@@ -252,8 +248,7 @@
     "blog": "Blogg",
     "open-source": "Gemenskap",
     "hiring": "Vi anställer!",
-    "methodology": "Metodologi",
-    "faq": "Vanliga frågor"
+    "methodology": "Metodologi"
   },
   "country-history": {
     "carbonintensity": {
@@ -318,17 +313,14 @@
   "footer": {
     "foundbugs": "Hittat buggar eller har idéer? Rapportera dem",
     "faq-text": "Någonting oklart? Kolla in våra",
-    "faq": "vanliga frågor.",
     "here": "här"
   },
   "legends": {
     "windpotential": "Potential för vindkraft",
     "solarpotential": "Potential för solkraft",
-    "colorblindmode": "Anpassning för färgblinda",
-    "carbonintensity": "Kolintensitet"
+    "colorblindmode": "Anpassning för färgblinda"
   },
   "tooltips": {
-    "carbonintensity": "Kolintensitet",
     "zoneHeader": {
       "lowcarbon": "Inkluderar förnybart och kärnkraft",
       "renewable": "Inkluderar sol, vind, vatten, biomassa och geotermisk energ",
@@ -390,15 +382,10 @@
     "system": "System"
   },
   "updatePrompt": {
-    "description": "En ny version är tillgänglig",
-    "update": "Ladda om",
-    "dismiss": "Avvisa"
+    "description": "En ny version är tillgänglig"
   },
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
-    "faq": "Vanliga frågor",
-    "dismiss": "Stäng",
-    "reload": "Ladda om",
     "slow-loading-text": "Laddar fortfarande, om detta fortsätter försök att ladda om..."
   },
   "wind": "vind",
@@ -1882,5 +1869,14 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "faq": "Vanliga frågor",
+    "carbonintensity": "Kolintensitet",
+    "estimated": "uppskattad",
+    "fully-estimated": "Uppskattad",
+    "reload": "Ladda om",
+    "dismiss": "Stäng",
+    "update": "Ladda om"
   }
 }

@@ -40,13 +40,11 @@
       "emissions": "Karbonutslipp",
       "total-emissions": "Samlet karbonutslipp"
     },
-    "carbonintensity": "CO₂-intensitet",
     "dataIsDelayed": "Data fra denne regionen kan være {{hours}} timer forsinka. Sanntidsdata kan derfor ikke vises.",
     "dataIsEstimated": "Enkelte data i regionen er estimert. Les om <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>våre estimeringsmetoder</a>.",
     "disabledPriceReasons": {
       "licensing": "Elektrisitetspriser er utilgjengelige for dette området på grunn av rettighetsbegrensninger"
     },
-    "estimated": "anslag",
     "estimatedTooltip": "Sanntidsdata for denne sonen er estimert fra kilden basert på antagelser i modellen.",
     "exchangesAreMissing": "Utveksling er tatt hensyn til i kalkulasjonene en vises for tiden ikke. Les mer om våre historiske aggregeringer <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>her</a>.",
     "helpfrom": "med hjelp fra",
@@ -69,7 +67,6 @@
     "groupName": "Våre data"
   },
   "footer": {
-    "faq": "ofte stilte spørsmål",
     "faq-text": "Er som er vanskelig å forstå? Se de",
     "foundbugs": "Funnet feil eller har du forbedringsforslag? Tips oss",
     "here": "her"
@@ -91,7 +88,6 @@
     "title": "Hver regions klimapåvirkning"
   },
   "legends": {
-    "carbonintensity": "CO₂-intensitet",
     "colorblindmode": "For fargeblinde",
     "solarpotential": "Solpotensial",
     "windpotential": "Vindpotensial"
@@ -129,10 +125,7 @@
     "renewableLowCarbonDifference-question": "Hva er forskjellen mellom “fornybar” og “lav-karbon”?"
   },
   "misc": {
-    "faq": "Ofte stilte spørsmål",
-    "maintitle": "Sanntids CO₂-utslipp fra strømforbruket",
-    "dismiss": "Avbryt",
-    "reload": "Last på nytt"
+    "maintitle": "Sanntids CO₂-utslipp fra strømforbruket"
   },
   "mobile-main-menu": {
     "about": "Om kartet",
@@ -197,7 +190,6 @@
   },
   "tooltips": {
     "aggregateInfo": "Bytt mellom sone og aggregert visning av land",
-    "carbonintensity": "CO₂-intensitet",
     "carbonintensityexport": "CO₂-intensitet av eksport",
     "changeTheme": "Skru på nattmodus",
     "consumption": "forbruk",
@@ -1583,5 +1575,12 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "carbonintensity": "CO₂-intensitet",
+    "estimated": "anslag",
+    "faq": "ofte stilte spørsmål",
+    "reload": "Last på nytt",
+    "dismiss": "Avbryt"
   }
 }

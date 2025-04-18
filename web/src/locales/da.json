@@ -21,7 +21,6 @@
     "facebook": "Følg os på Facebook",
     "facebook-share": "Del på Facebook",
     "feedback": "Del feedback",
-    "faq": "FAQ",
     "privacy-policy": "Privatlivspolitik",
     "legal-notice": "Vilkår"
   },
@@ -78,7 +77,6 @@
   },
   "country-panel": {
     "source": "kilde",
-    "carbonintensity": "CO₂-intensitet",
     "lowcarbon": "Lav CO₂",
     "renewable": "Vedvarende",
     "electricityconsumption": "Elektricitet",
@@ -91,7 +89,6 @@
     },
     "emissionFactorDataSourcesTooltip": "CO₂-udledningsfaktorerne for elproduktionen kan stamme fra flere forskellige kilder. Dette sker, fordi flere faktorer, såsom maskin-specifikke data, generation og nogen gange også reservekilder, er inkluderet i udledningsberegningerne.",
     "dataIsDelayed": "Data for dette område kan være op til {{hours}} timer forsinket. Reeltidsdata kan ikke vises.",
-    "estimated": "estimeret",
     "aggregated": "aggregeret",
     "dataIsEstimated": "Noget af data fra dette område er estimeret. Læs mere om hvordan vi estimerer data <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>her</a>.",
     "exchangesAreMissing": "Der er taget højde for electricitetsudveksling i udregningerne, men de er midlertidigt ikke vist. Læs mere om vores historiske aggregationer <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>her</a>.",
@@ -146,7 +143,6 @@
   },
   "estimation-badge": {
     "partially-estimated": "Delvist estimeret",
-    "fully-estimated": "Estimeret",
     "outage": "Utilgængelig"
   },
   "estimation-card": {
@@ -192,8 +188,7 @@
     "blog": "Blog",
     "open-source": "Open Source",
     "hiring": "Vi ansætter!",
-    "methodology": "Metoder",
-    "faq": "FAQ"
+    "methodology": "Metoder"
   },
   "country-history": {
     "carbonintensity": {
@@ -257,17 +252,14 @@
   "footer": {
     "foundbugs": "Har du fundet fejl eller har du ideer? Skriv",
     "here": "her",
-    "faq-text": "Er der noget du ikke forstår? Se de",
-    "faq": "ofte spurgte spørgsmål"
+    "faq-text": "Er der noget du ikke forstår? Se de"
   },
   "legends": {
     "windpotential": "Vindpotentiale",
     "solarpotential": "Solpotentiale",
-    "colorblindmode": "farveblindhedstilstand",
-    "carbonintensity": "CO₂-intensitet"
+    "colorblindmode": "farveblindhedstilstand"
   },
   "tooltips": {
-    "carbonintensity": "CO₂-intensitet",
     "zoneHeader": {
       "lowcarbon": "Inkluderer vedvarende og atomkraft",
       "renewable": "Inkluderer sol, vind, hydro, biomasse og geotermi",
@@ -323,15 +315,10 @@
     "system": "System"
   },
   "updatePrompt": {
-    "description": "En ny version er tilgængelig",
-    "update": "Genindlæs",
-    "dismiss": "Afvis"
+    "description": "En ny version er tilgængelig"
   },
   "misc": {
     "maintitle": "Realtids-CO₂-udledning fra elforbruget",
-    "faq": "Ofte spurgte spørgsmål",
-    "dismiss": "Afvis",
-    "reload": "Genindlæs",
     "slow-loading-text": "Loader stadig, hvis det fortsætter så prøv at genindlæs..."
   },
   "wind": "Vind",
@@ -1521,5 +1508,14 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "faq": "FAQ",
+    "carbonintensity": "CO₂-intensitet",
+    "estimated": "estimeret",
+    "fully-estimated": "Estimeret",
+    "reload": "Genindlæs",
+    "dismiss": "Afvis",
+    "update": "Genindlæs"
   }
 }

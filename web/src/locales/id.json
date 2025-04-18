@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "Sumber",
-    "carbonintensity": "Intensitas Karbon",
     "lowcarbon": "Karbon-rendah",
     "renewable": "Terbarukan",
     "helpfrom": "dengan bantuan dari",
@@ -40,17 +39,14 @@
   "footer": {
     "foundbugs": "Menemukan kesalahan dan ide baru? Laporkan pada Kami",
     "faq-text": "Apakah masih ada pertanyaan? Lihat",
-    "faq": "pertanyaan yang sering ditanyakan.",
     "here": "di sini"
   },
   "legends": {
     "windpotential": "Potensi kekuatan angin",
     "solarpotential": "Potensi kekuatan matahari",
-    "colorblindmode": "mode buta warna",
-    "carbonintensity": "Intensitas Karbon"
+    "colorblindmode": "mode buta warna"
   },
   "tooltips": {
-    "carbonintensity": "Intensitas Karbon",
     "crossborderexport": "Ekspor lintas batas",
     "carbonintensityexport": "Intensitas Karbon yang dikeluarkan",
     "ofinstalled": "dalam kapasitas yang dipasang",
@@ -69,10 +65,7 @@
     "selectLanguage": "Pilih bahasa"
   },
   "misc": {
-    "maintitle": "Emisi CO₂ langsung dari pemakaian energi listrik",
-    "faq": "Pertanyaan yang Sering Diajukan",
-    "dismiss": "Tutup",
-    "reload": "Muat Ulang"
+    "maintitle": "Emisi CO₂ langsung dari pemakaian energi listrik"
   },
   "wind": "angin",
   "solar": "Tenaga matahari",
@@ -1166,5 +1159,11 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "carbonintensity": "Intensitas Karbon",
+    "faq": "pertanyaan yang sering ditanyakan.",
+    "reload": "Muat Ulang",
+    "dismiss": "Tutup"
   }
 }

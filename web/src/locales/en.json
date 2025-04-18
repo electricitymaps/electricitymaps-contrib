@@ -27,7 +27,6 @@
     "facebook": "Follow us on Facebook",
     "facebook-share": "Share on Facebook",
     "feedback": "Share feedback",
-    "faq": "FAQ",
     "privacy-policy": "Privacy Policy",
     "legal-notice": "Legal Notice",
     "api": "Access the API",
@@ -103,7 +102,6 @@
   "country-panel": {
     "forecastCta": "Looking for forecast data?",
     "source": "Source",
-    "carbonintensity": "Carbon Intensity",
     "lowcarbon": "Low-carbon",
     "renewable": "Renewable",
     "electricityconsumption": "Electricity",
@@ -116,7 +114,6 @@
     },
     "emissionFactorDataSourcesTooltip": "Electricity production emission factors can originate from multiple sources. This happens as several factors, like plant-specific data, generation and sometimes fallback sources, are considered in emission calculations.",
     "dataIsDelayed": "Data for this region can be up to {{hours}} hours delayed. Live data cannot be displayed.",
-    "estimated": "estimated",
     "aggregated": "aggregated",
     "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>here</a>.",
     "exchangesAreMissing": "This chart does not include flow data. Flows are visible in hourly views. Read more about our historical aggregations <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>here</a>.",
@@ -173,7 +170,6 @@
   },
   "estimation-badge": {
     "partially-estimated": "Partially estimated",
-    "fully-estimated": "Estimated",
     "outage": "Unavailable"
   },
   "estimation-card": {
@@ -252,8 +248,7 @@
     "blog": "Blog",
     "open-source": "Community",
     "hiring": "We're hiring!",
-    "methodology": "Methodology",
-    "faq": "FAQ"
+    "methodology": "Methodology"
   },
   "country-history": {
     "carbonintensity": {
@@ -318,17 +313,14 @@
   "footer": {
     "foundbugs": "Found bugs or have ideas? Report them",
     "faq-text": "Anything unclear? Check out our",
-    "faq": "frequently asked questions.",
     "here": "here"
   },
   "legends": {
     "windpotential": "Wind power potential",
     "solarpotential": "Solar power potential",
-    "colorblindmode": "Color blind mode",
-    "carbonintensity": "Carbon intensity"
+    "colorblindmode": "Color blind mode"
   },
   "tooltips": {
-    "carbonintensity": "Carbon intensity",
     "zoneHeader": {
       "lowcarbon": "Includes all renewables and nuclear",
       "renewable": "Includes solar, wind, hydro, biomass and geothermal",
@@ -390,15 +382,10 @@
     "system": "System"
   },
   "updatePrompt": {
-    "description": "A new version is available",
-    "update": "Reload",
-    "dismiss": "Dismiss"
+    "description": "A new version is available"
   },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
-    "faq": "Frequently Asked Questions",
-    "dismiss": "Dismiss",
-    "reload": "Reload",
     "slow-loading-text": "Still loading, if this continues try reloading..."
   },
   "wind": "wind",
@@ -1882,5 +1869,14 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "faq": "frequently asked questions.",
+    "carbonintensity": "Carbon Intensity",
+    "estimated": "estimated",
+    "fully-estimated": "estimated",
+    "update": "Reload",
+    "reload": "Reload",
+    "dismiss": "Dismiss"
   }
 }

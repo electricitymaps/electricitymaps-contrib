@@ -11,7 +11,6 @@
   },
   "country-panel": {
     "source": "来源",
-    "carbonintensity": "碳强度",
     "helpfrom": "得力于",
     "lowcarbon": "低碳能源",
     "renewable": "可再生能源",
@@ -21,7 +20,6 @@
       "licensing": "由于许可条款的限制，我们无法提供该地区的电价"
     },
     "dataIsDelayed": "该地区的数据有至多{{hours}}小时的延迟。实时数据无法被显示。",
-    "estimated": "估算",
     "aggregated": "汇总",
     "dataIsEstimated": "该地区的部分数据为估算数值。了解我们的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>估算方法</a>。",
     "exchangesAreMissing": "能源交换在数据计算的考量范围内，但目前无法显示。了解我们的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>历史汇总</a>。",
@@ -34,17 +32,14 @@
   "footer": {
     "foundbugs": "发现错误或有其他想法？请回报",
     "here": "这里",
-    "faq-text": "有任请查阅我们的",
-    "faq": "常见问题"
+    "faq-text": "有任请查阅我们的"
   },
   "legends": {
     "windpotential": "风力发电潜力",
     "solarpotential": "太阳能发电潜力",
-    "colorblindmode": "色盲模式",
-    "carbonintensity": "碳强度"
+    "colorblindmode": "色盲模式"
   },
   "tooltips": {
-    "carbonintensity": "碳强度",
     "crossborderexport": "跨境出口",
     "carbonintensityexport": "出口碳强度",
     "ofinstalled": "的装载容量",
@@ -65,10 +60,7 @@
     "selectLanguage": "语言"
   },
   "misc": {
-    "maintitle": "生活用电二氧化碳排放量",
-    "faq": "常见问题",
-    "dismiss": "取消",
-    "reload": "重新加载"
+    "maintitle": "生活用电二氧化碳排放量"
   },
   "wind": "风力",
   "solar": "太阳能",
@@ -1428,5 +1420,12 @@
     "subtitle": "按消费电力的碳强度排名gCO₂eq/kWh）",
     "search": "搜索地区"
   },
-  "battery storage": "电池储能"
+  "battery storage": "电池储能",
+  "shared": {
+    "carbonintensity": "碳强度",
+    "estimated": "估算",
+    "faq": "常见问题",
+    "reload": "重新加载",
+    "dismiss": "取消"
+  }
 }

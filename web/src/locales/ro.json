@@ -23,7 +23,6 @@
   },
   "country-panel": {
     "source": "Sursă",
-    "carbonintensity": "Concentrația de dioxid de carbon",
     "lowcarbon": "Carbon redus",
     "renewable": "Energie regenerabilă",
     "electricityconsumption": "Electricitate",
@@ -55,17 +54,14 @@
   "footer": {
     "foundbugs": "Ați găsit defecte sau aveți sugestii? Reportați-le",
     "faq-text": "Neclarități? Verificați",
-    "faq": "întrebări frecvente.",
     "here": "aici"
   },
   "legends": {
     "windpotential": "Potențialul energiei eoliene",
     "solarpotential": "Potențialul energiei solare",
-    "colorblindmode": "mod daltonism",
-    "carbonintensity": "Concentrația de dioxid de carbon"
+    "colorblindmode": "mod daltonism"
   },
   "tooltips": {
-    "carbonintensity": "Concentrația de dioxid de carbon",
     "zoneHeader": {
       "lowcarbon": "Include energie regenerabilă și nucleară"
     },
@@ -92,10 +88,7 @@
     "dataIsDelayed": "Datele sunt întârziate"
   },
   "misc": {
-    "maintitle": "Emisii de CO₂ a electricității consumate în timp real",
-    "faq": "Întrebări frecvente",
-    "dismiss": "închidere",
-    "reload": "Reîncărcați"
+    "maintitle": "Emisii de CO₂ a electricității consumate în timp real"
   },
   "wind": "vânt",
   "windDataError": "Date despre energie eoliană sunt momentan indisponibile",
@@ -1446,5 +1439,11 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
+  },
+  "shared": {
+    "carbonintensity": "Concentrația de dioxid de carbon",
+    "faq": "întrebări frecvente.",
+    "reload": "Reîncărcați",
+    "dismiss": "închidere"
   }
 }

@@ -40,7 +40,6 @@
   },
   "country-panel": {
     "source": "Quelle",
-    "carbonintensity": "spezifische CO₂-Emissionen",
     "lowcarbon": "CO₂-arm",
     "renewable": "regenerativ",
     "electricityconsumption": "Elektrizität",
@@ -59,7 +58,6 @@
     },
     "now": "Jetzt",
     "dataIsDelayed": "Die Daten in dieser Region können bis zu {{hours}} Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
-    "estimated": "Geschätzt",
     "aggregated": "Zusammengefasst",
     "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>hier</a> lesen.",
     "estimatedTooltip": "Die Echtzeit-Daten für diese Zone sind auf Basis der Daten der Quelle und den Annahmen des Modells geschätzt.",
@@ -78,7 +76,6 @@
   },
   "estimation-badge": {
     "partially-estimated": "Teilweise geschätzt",
-    "fully-estimated": "Geschätzt",
     "outage": "Nicht verfügbar"
   },
   "estimation-card": {
@@ -113,17 +110,14 @@
   "footer": {
     "foundbugs": "Hast du Bugs gefunden? Hast du Ideen zur Verbesserung der Karte?",
     "faq-text": "Irgendetwas unklar? Schau in unsere",
-    "faq": "häufig gestellte Fragen.",
     "here": "Teile sie uns hier mit"
   },
   "legends": {
     "windpotential": "Windpotenzial",
     "solarpotential": "Solarpotenzial",
-    "colorblindmode": "Farbenblind-Modus",
-    "carbonintensity": "CO₂-Intensität"
+    "colorblindmode": "Farbenblind-Modus"
   },
   "tooltips": {
-    "carbonintensity": "CO₂-Intensität",
     "zoneHeader": {
       "lowcarbon": "Beinhaltet regenerative Energien und Kernenergie"
     },
@@ -160,15 +154,10 @@
     "system": "System"
   },
   "updatePrompt": {
-    "description": "Eine neue Version der App ist verfügbar, jetzt aktualisieren?",
-    "update": "Aktualisieren",
-    "dismiss": "Schließen"
+    "description": "Eine neue Version der App ist verfügbar, jetzt aktualisieren?"
   },
   "misc": {
-    "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
-    "faq": "Häufig gestellte Fragen",
-    "dismiss": "Schließen",
-    "reload": "Neu laden"
+    "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit"
   },
   "wind": "Windenergie",
   "solar": "Solarenergie",
@@ -1555,5 +1544,14 @@
     }
   },
   "windDataError": "Winddaten aktuell nicht verfügbar",
-  "solarDataError": "Solardaten aktuell nicht verfügbar"
+  "solarDataError": "Solardaten aktuell nicht verfügbar",
+  "shared": {
+    "carbonintensity": "spezifische CO₂-Emissionen",
+    "estimated": "Geschätzt",
+    "fully-estimated": "Geschätzt",
+    "faq": "häufig gestellte Fragen.",
+    "reload": "Neu laden",
+    "dismiss": "Schließen",
+    "update": "Aktualisieren"
+  }
 }
