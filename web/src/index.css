@@ -52,6 +52,13 @@
     @apply font-inter;
   }
 }
+
+@utility capitalize-first-letter {
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
 *::-webkit-scrollbar {
   /*remove scrollbar track chrome*/
   background-color: transparent;
