@@ -299,7 +299,7 @@ fallbackZoneMixes:
         wind: 0.2039048715577342
 parsers:
   price: OPENNEM.fetch_price
-  production: OPENNEM.fetch_production
+  production: OPENELECTRICITY.fetch_production
   productionCapacity: OPENNEM.fetch_production_capacity
   consumptionForecast: AEMO.fetch_consumption_forecast
 region: Oceania
