@@ -1,4 +1,3 @@
-from collections.abc import Mapping
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 
@@ -84,16 +83,6 @@ def dataset_to_df(dataset):
     df = pd.DataFrame(index=index, data=series["data"], columns=[name])
 
     return df
-
-
-def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
-    # Parse capacity data
-    capacities = {
-        obj["id"].split(".")[-2].upper(): obj.get("x_capacity_at_present")
-        for obj in filtered_datasets
-        if obj["region"].upper() == region.upper()
-    }
-    return pd.Series(capacities)
 
 
 def sum_vector(pd_series, keys, ignore_nans=False):
@@ -256,8 +245,6 @@ def fetch_production(
         target_datetime=target_datetime,
         logger=logger,
     )
-    region = ZONE_KEY_TO_REGION.get(zone_key)
-    capacities = get_capacities(filtered_datasets, region) if region else pd.Series()
 
     # Drop interconnectors
     df = df.drop([x for x in df.columns if "->" in x], axis=1)
@@ -289,21 +276,6 @@ def fetch_production(
                 "battery": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["battery"]),
                 # opennem reports pumping as positive, we here should report as positive
                 "hydro": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["hydro"]),
-            },
-            "capacity": {
-                "coal": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["coal"]),
-                "gas": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["gas"]),
-                "oil": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["oil"]),
-                "hydro": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["hydro"]),
-                "wind": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["wind"]),
-                "biomass": sum_vector(
-                    capacities, OPENNEM_PRODUCTION_CATEGORIES["biomass"]
-                ),
-                "solar": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["solar"]),
-                "hydro storage": capacities.get(OPENNEM_STORAGE_CATEGORIES["hydro"][0]),
-                "battery storage": capacities.get(
-                    OPENNEM_STORAGE_CATEGORIES["battery"][0]
-                ),
             },
             "source": SOURCE,
             "zoneKey": zone_key,
