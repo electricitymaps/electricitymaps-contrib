@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 
 function MapMobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between bg-gradient-to-b to-transparent px-2 pb-4 dark:from-black/60">
+    <div className="flex w-full items-center justify-between bg-gradient-to-b to-transparent px-2 pb-4 pt-safe dark:from-black/60">
       <Logo className="h-10 w-44  fill-black dark:fill-white" />
     </div>
   );
