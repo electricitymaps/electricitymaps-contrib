@@ -25,14 +25,12 @@ function SpatialAggregatesToggle({
 }): ReactElement {
   const [currentMode, setCurrentMode] = useAtom(spatialAggregateAtom);
   const onSetCurrentMode = useCallback(
-    (option: string) => {
-      if (
-        (option === currentMode)
-      ) {
+    (option: SpatialAggregate) => {
+      if (option === currentMode) {
         return;
       }
       trackEvent(TrackEvent.SPATIAL_AGGREGATE_CLICKED, { spatialAggregate: option });
-      setCurrentMode(option as SpatialAggregate);
+      setCurrentMode(option);
     },
     [currentMode, setCurrentMode]
   );
