@@ -32,9 +32,7 @@ function ConsumptionProductionToggle({
       trackEvent(TrackEvent.PRODUCTION_CONSUMPTION_CLICKED, {
         productionConsumption: option,
       });
-      setCurrentMode(
-        currentMode === Mode.PRODUCTION ? Mode.CONSUMPTION : Mode.PRODUCTION
-      );
+      setCurrentMode(option as Mode);
     },
     [currentMode, setCurrentMode]
   );

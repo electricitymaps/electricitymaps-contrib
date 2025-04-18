@@ -27,17 +27,12 @@ function SpatialAggregatesToggle({
   const onSetCurrentMode = useCallback(
     (option: string) => {
       if (
-        (option === SpatialAggregate.ZONE && currentMode === SpatialAggregate.ZONE) ||
-        (option === SpatialAggregate.COUNTRY && currentMode === SpatialAggregate.COUNTRY)
+        (option === currentMode)
       ) {
         return;
       }
       trackEvent(TrackEvent.SPATIAL_AGGREGATE_CLICKED, { spatialAggregate: option });
-      setCurrentMode(
-        currentMode === SpatialAggregate.COUNTRY
-          ? SpatialAggregate.ZONE
-          : SpatialAggregate.COUNTRY
-      );
+      setCurrentMode(option as SpatialAggregate);
     },
     [currentMode, setCurrentMode]
   );
@@ -45,9 +40,7 @@ function SpatialAggregatesToggle({
   return (
     <ToggleButton
       options={options}
-      selectedOption={
-        currentMode === SpatialAggregate.ZONE ? options[1].value : options[0].value
-      }
+      selectedOption={currentMode}
       onToggle={onSetCurrentMode}
       transparentBackground={transparentBackground}
     />

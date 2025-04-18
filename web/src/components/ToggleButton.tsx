@@ -61,12 +61,12 @@ function ToggleButton({
         type="single"
         aria-label="Toggle between modes"
         value={selectedOption}
+        onValueChange={onToggle}
       >
         {options.map(({ value, translationKey, dataTestId }, key) => (
           <ToggleGroupItem
             key={`group-item-${key}`}
             value={value}
-            onClick={() => onToggle(value)}
             data-testid={`toggle-button-${dataTestId ?? value}`}
             className={twMerge(
               'inline-flex h-7 w-full items-center whitespace-nowrap rounded-full bg-neutral-100/0 px-3 text-xs dark:border dark:border-neutral-400/0 dark:bg-transparent',
