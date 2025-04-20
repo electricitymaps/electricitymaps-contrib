@@ -7,6 +7,7 @@ import pandas as pd
 
 # The request library is used to fetch content through HTTP
 import requests
+from bs4 import BeautifulSoup
 from requests import Session
 from requests.auth import AuthBase
 
@@ -65,36 +66,44 @@ def fetch_operational_data(
     header = None
     table = None
 
-    if target_datetime is None:
-        data = session.get(base_url + "/barbados/uploads", params=params).json()
-        header, table = parse_operational_data(data)
-    elif target_datetime > datetime(year=2023, month=2, day=27):
-        expected_date = target_datetime.astimezone(
-            ZoneInfo("America/Barbados")
-        ).strftime("%Y-%m-%d")
-
-        for i in range(10):
-            url_date = (
-                (target_datetime + timedelta(days=i))
-                .astimezone(ZoneInfo("America/Barbados"))
-                .strftime("%Y-%m-%d")
-            )
-            params["created_at[$lt]"] = url_date
+    try:
+        if target_datetime is None:
             data = session.get(base_url + "/barbados/uploads", params=params).json()
             header, table = parse_operational_data(data)
-            if table[0][0][:10] == expected_date:
-                break
-            if table[0][0][:10] > expected_date:
-                raise ParserException("BB.py", "Date not found", zone_key)
-    else:
-        raise ParserException(
-            "BB.py",
-            "This parser is not yet able to parse dates before 2023-02-27",
-            zone_key,
-        )
+        elif target_datetime > datetime(year=2023, month=2, day=27):
+            expected_date = target_datetime.astimezone(
+                ZoneInfo("America/Barbados")
+            ).strftime("%Y-%m-%d")
 
-    if table is None or header is None:
-        raise ParserException("BB.py", "No data found", zone_key)
+            for i in range(10):
+                url_date = (
+                    (target_datetime + timedelta(days=i))
+                    .astimezone(ZoneInfo("America/Barbados"))
+                    .strftime("%Y-%m-%d")
+                )
+                params["created_at[$lt]"] = url_date
+                data = session.get(base_url + "/barbados/uploads", params=params).json()
+                header, table = parse_operational_data(data)
+                if table[0][0][:10] == expected_date:
+                    break
+                if table[0][0][:10] > expected_date:
+                    raise ParserException("BB.py", "Date not found", zone_key)
+        else:
+            raise ParserException(
+                "BB.py",
+                "This parser is not yet able to parse dates before 2023-02-27",
+                zone_key,
+            )
+
+        if table is None or header is None:
+            raise ParserException("BB.py", "No data found", zone_key)
+
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Network error while fetching data: {e}")
+        raise ParserException("BB.py", "Network error", zone_key)
+    except KeyError as e:
+        logger.error(f"Unexpected data format: {e}")
+        raise ParserException("BB.py", "Unexpected data format", zone_key)
 
     operational_data = pd.DataFrame(
         table,
@@ -110,8 +119,34 @@ def fetch_operational_data(
         "24 hr Curtailment",
     ]
     for columm in columns:
-        operational_data[columm] = pd.to_numeric(operational_data[columm])
+        operational_data[columm] = pd.to_numeric(
+            operational_data[columm], errors="coerce"
+        )
     return operational_data
+
+
+def scrape_energy_data():
+    url = "https://energy.gov.bb/our-publications/data/#1634482551526-232db690-5c39"
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        raise Exception(
+            f"Failed to fetch data from {url}, status code: {response.status_code}"
+        )
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    # Example: Extracting data from graphs or tables
+    # This part will depend on the structure of the webpage
+    data = []
+    for graph in soup.find_all("div", class_="graph-container"):
+        title = graph.find("h3").text if graph.find("h3") else "Unknown Title"
+        data_points = [
+            point.text for point in graph.find_all("span", class_="data-point")
+        ]
+        data.append({"title": title, "data_points": data_points})
+
+    return data
 
 
 @refetch_frequency(timedelta(days=1))
@@ -178,3 +213,9 @@ if __name__ == "__main__":
     fetch_production(ZoneKey("BB"), target_datetime=datetime(2024, 2, 2))
     print("fetch_consumption(XX) ->")
     print(fetch_consumption(ZoneKey("BB")))
+
+    try:
+        energy_data = scrape_energy_data()
+        print("Scraped Energy Data:", energy_data)
+    except Exception as e:
+        print("Error while scraping energy data:", e)
