@@ -7,38 +7,42 @@ class TestFilterExchanges(unittest.TestCase):
     def test_filter_exchanges_with_aggregated_france(self):
         # Mock exchanges data
         exchanges = {
-            'FR': {"netFlow": 100, "co2intensity": 50},
-            'DE': {"netFlow": 200, "co2intensity": 30},
+            "FR": {"netFlow": 100, "co2intensity": 50},
+            "DE": {"netFlow": 200, "co2intensity": 30},
         }
 
         exclusionArrayZones = []
         exclusionArrayCountries = []
 
         # Call the filterExchanges function
-        resultZones, resultCountries = filterExchanges(exchanges, exclusionArrayZones, exclusionArrayCountries)
+        resultZones, resultCountries = filterExchanges(
+            exchanges, exclusionArrayZones, exclusionArrayCountries
+        )
 
         # Assert that the aggregated France data is included in the country view
-        self.assertIn('FR', resultCountries)
-        self.assertEqual(resultCountries['FR']['netFlow'], 100)
-        self.assertEqual(resultCountries['FR']['co2intensity'], 50)
+        self.assertIn("FR", resultCountries)
+        self.assertEqual(resultCountries["FR"]["netFlow"], 100)
+        self.assertEqual(resultCountries["FR"]["co2intensity"], 50)
 
     def test_filter_exchanges_exclusion(self):
         # Mock exchanges data
         exchanges = {
-            'FR': {"netFlow": 100, "co2intensity": 50},
-            'DE': {"netFlow": 200, "co2intensity": 30},
+            "FR": {"netFlow": 100, "co2intensity": 50},
+            "DE": {"netFlow": 200, "co2intensity": 30},
         }
 
-        exclusionArrayZones = ['DE']
+        exclusionArrayZones = ["DE"]
         exclusionArrayCountries = []
 
         # Call the filterExchanges function
-        resultZones, resultCountries = filterExchanges(exchanges, exclusionArrayZones, exclusionArrayCountries)
+        resultZones, resultCountries = filterExchanges(
+            exchanges, exclusionArrayZones, exclusionArrayCountries
+        )
 
         # Assert that 'DE' is excluded from the zone view
-        self.assertNotIn('DE', resultZones)
-        self.assertIn('FR', resultZones)
+        self.assertNotIn("DE", resultZones)
+        self.assertIn("FR", resultZones)
 
-if __name__ == '__main__':
-    unittest.main()if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
