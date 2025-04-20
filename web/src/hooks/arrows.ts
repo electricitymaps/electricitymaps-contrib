@@ -50,9 +50,15 @@ export function filterExchanges(
   const exclusionSetCountries = new Set(exclusionArrayCountries);
   const resultZones: Record<string, StateExchangeData> = {};
   const resultCountries: Record<string, StateExchangeData> = {};
-  // Loop through the exchanges and assign them to the correct result object
+
+  // Add logic to handle aggregated France data
+  const aggregatedFranceKey = 'FR'; // Key for aggregated France data
+
   for (const [key, value] of Object.entries(exchanges)) {
-    if (exclusionSetCountries.has(key)) {
+    if (key === aggregatedFranceKey) {
+      // Ensure aggregated France data is included in country view
+      resultCountries[key] = value;
+    } else if (exclusionSetCountries.has(key)) {
       resultZones[key] = value;
     } else if (exclusionSetZones.has(key)) {
       resultCountries[key] = value;
@@ -92,6 +98,11 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
       exchangesToExcludeZoneView,
       exchangesToExcludeCountryView
     );
+
+    // Ensure aggregated France data is included in the country view
+    if (viewMode === SpatialAggregate.COUNTRY && exchanges['FR']) {
+      countryViewExchanges['FR'] = exchanges['FR'];
+    }
 
     return viewMode === SpatialAggregate.COUNTRY
       ? countryViewExchanges

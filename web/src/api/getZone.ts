@@ -21,6 +21,18 @@ import {
   TIME_RANGE_TO_BACKEND_PATH,
 } from './helpers';
 
+const getAggregatedFranceData = async (): Promise<any> => {
+  const response = await fetch('/api/aggregate-france', {
+    method: 'GET',
+  });
+
+  if (response.ok) {
+    return response.json();
+  }
+
+  throw new Error('Failed to fetch aggregated France data');
+};
+
 const getZone = async (
   timeRange: TimeRange,
   zoneId: string,
@@ -28,6 +40,11 @@ const getZone = async (
   targetDatetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
+
+  if (zoneId === 'FR') {
+    // Fetch aggregated France data if the zone is France
+    return getAggregatedFranceData();
+  }
 
   const shouldQueryHistorical =
     targetDatetime &&

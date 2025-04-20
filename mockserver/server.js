@@ -1,4 +1,5 @@
 const express = require('express');
+const { exec } = require('child_process');
 const app = express();
 const cors = require('cors');
 const fs = require('fs');
@@ -42,6 +43,26 @@ app.get('/v8/gfs/solar', (req, res, next) => {
     jsonData.data[0].header.refTime = targetTime;
 
     res.json(jsonData);
+  });
+});
+
+// API endpoint to run the aggregate_france_territories.py script
+app.get('/api/aggregate-france', (req, res) => {
+  const scriptPath = `${__dirname}/../scripts/aggregate_france_territories.py`;
+
+  exec(`python3 ${scriptPath}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing script: ${error.message}`);
+      return res.status(500).json({ error: 'Failed to run the script' });
+    }
+
+    if (stderr) {
+      console.error(`Script stderr: ${stderr}`);
+      return res.status(500).json({ error: 'Script encountered an error' });
+    }
+
+    console.log(`Script output: ${stdout}`);
+    res.json({ message: 'Script executed successfully', output: stdout });
   });
 });
 
