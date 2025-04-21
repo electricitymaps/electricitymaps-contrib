@@ -22,7 +22,10 @@ function EmissionToggle(): ReactElement {
   // TODO: perhaps togglebutton should accept boolean values
 
   const onSetCurrentMode = useCallback(
-    (option: string) => {
+    (option: LeftPanelToggleOptions | "") => {
+      if (option === "") {
+        return;
+      }
       trackEvent(
         displayByEmissions
           ? TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED

@@ -25,8 +25,8 @@ function ConsumptionProductionToggle({
 }): ReactElement {
   const [currentMode, setCurrentMode] = useAtom(productionConsumptionAtom);
   const onSetCurrentMode = useCallback(
-    (option: Mode) => {
-      if (option === currentMode) {
+    (option: Mode | "") => {
+      if (option === "") {
         return;
       }
       trackEvent(TrackEvent.PRODUCTION_CONSUMPTION_CLICKED, {

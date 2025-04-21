@@ -24,7 +24,8 @@ export type ToggleButtonOptions<T extends string> = Array<{
 interface ToggleButtonProperties<T extends string> {
   options: ToggleButtonOptions<T>;
   selectedOption: T;
-  onToggle: (option: T) => void;
+  // radix gives back an empty string if a new value is not selected
+  onToggle: (option: T | "") => void;
   tooltipKey?: string;
   transparentBackground?: boolean;
 }
