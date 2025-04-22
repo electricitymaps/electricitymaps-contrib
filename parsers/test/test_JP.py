@@ -1,9 +1,11 @@
 """Test for JP parsers"""
 
 import re
+from datetime import datetime
 from pathlib import Path
 
 import pytest
+from freezegun import freeze_time
 from requests_mock import GET
 
 from parsers.JP import fetch_generation_forecast
@@ -17,16 +19,16 @@ from parsers.JP import fetch_generation_forecast
         "JP-HKD",
         "JP-HR",
         "JP-KN",
-        # "JP-KY",
+        "JP-KY",
         "JP-ON",
         "JP-SK",
         "JP-TH",
         "JP-TK",
     ],
 )
+@freeze_time("2025-04-16")  # because the mocks are all around this date
 def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key):
-    test_datestamp_today = "20250416"
-    # test_datestamp_tomorrow = "20250417"
+    datestamp_today = datetime.now().strftime("%Y%m%d")
     BASE_PATH_TO_MOCK = Path("parsers/test/mocks/" + zone_key)
 
     forecast_url = {
@@ -34,7 +36,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
         "JP-HR": r"https://www\.rikuden\.co\.jp/nw/denki-yoho/csv/yosoku_05_\d{8}\.csv",
         "JP-KN": r"https://www\.kansai-td\.co\.jp/interchange/denkiyoho/imbalance/\d{8}_yosoku\.csv",
         "JP-CG": r"https://www\.energia\.co\.jp/nw/jukyuu/sys/\d{6}_jyukyu2_chugoku\.zip",
-        # "JP-KY": r"https://www\.kyuden\.co\.jp/td_power_usages/csv/kouhyo/imbalance/21110_TSO9_0_\d{8}\.csv\?a=\d{14}",  # TODO why this
+        "JP-KY": r"https://www\.kyuden\.co\.jp/td_power_usages/csv/kouhyo/imbalance/21110_TSO9_0_\d{8}\.csv\?a=\d{8}%5Cd6",
         "JP-ON": r"http://www\.okiden\.co\.jp/denki2/dem_pg/csv/jukyu_yosoku_\d{8}\.csv",
     }
 
@@ -43,7 +45,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
         # Register today's URL
         today_url = None
         if zone_key == "JP-TH":
-            today_url = f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/area_tso_yosoku_{test_datestamp_today}.csv"
+            today_url = f"https://setsuden.nw.tohoku-epco.co.jp/common/demand/area_tso_yosoku_{datestamp_today}.csv"
             data_path = Path(BASE_PATH_TO_MOCK, "area_tso_yosoku_20250416.csv")
         elif zone_key == "JP-TK":
             today_url = "https://www4.tepco.co.jp/forecast/html/images/AREA_YOSOKU.csv"
@@ -128,4 +130,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
     assert snapshot == fetch_generation_forecast(
         zone_key=zone_key,
         session=session,
+        target_datetime=datetime(
+            2025, 4, 16, 12, 0
+        ),  # the mock files were extracted this date
     )

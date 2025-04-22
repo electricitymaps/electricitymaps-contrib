@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from datetime import datetime, timedelta
+from datetime import date, datetime, time, timedelta
 from io import BytesIO, StringIO
 from logging import Logger, getLogger
 from typing import Any
@@ -387,7 +387,6 @@ def fetch_generation_forecast(
     session = session or Session()
 
     # Date
-
     # Currently past dates not implemented for areas with no date in their demand csv files
     if target_datetime is None:
         target_datetime = datetime.now(ZONE_INFO)
@@ -395,7 +394,6 @@ def fetch_generation_forecast(
         target_datetime = target_datetime.astimezone(ZONE_INFO)
 
     datestamp = target_datetime.astimezone(ZONE_INFO).strftime("%Y%m%d")
-    print(datestamp)
 
     if datestamp < datetime.now(ZONE_INFO).strftime("%Y%m%d"):
         raise NotImplementedError("Past dates not implemented for selected region")
@@ -459,6 +457,7 @@ def fetch_generation_forecast(
     response = session.get(forecast_url[zone_key])
 
     # Parse the different formats
+    df = pd.DataFrame()
     if zone_key == "JP-CG":
         with ZipFile(BytesIO(response.content)) as z:
             target_file = f"{datestamp}_yosoku_chugoku.csv"
@@ -466,11 +465,16 @@ def fetch_generation_forecast(
                 with z.open(target_file) as f:
                     df = pd.read_csv(f, encoding="shift_jis", skiprows=startrow)
             else:
-                print(f"File '{target_file}' not found in the zip archive.")
-                print(f"Available files: {z.namelist()}")
+                logger.error(f"File '{target_file}' not found in the zip archive.")
+                logger.debug(f"Available files: {z.namelist()}")
     else:
         content = response.content.decode("shift_jis")
         df = pd.read_csv(StringIO(content), skiprows=startrow)
+
+    # Check if df is still empty after the above operations
+    if df.empty:
+        logger.error(f"Failed to load forecast data for {zone_key}")
+        raise ValueError(f"Could not obtain forecast data for zone: {zone_key}")
 
     # Extract the correspondant information from the files for each zone
     if zone_key == "JP-HKD" or zone_key == "JP-HR":
@@ -486,43 +490,56 @@ def fetch_generation_forecast(
     elif zone_key == "JP-TK":
         df = df[["日付(yyyymmdd)", "時間帯_自(HH:MI)", "エリア総発電量[30分kWh]"]]
 
-    df.columns = ["Date", "Time", "generation fcst"]
+    df.columns = ["Date", "Time", "generation_fcst"]
 
     # Transform to MW: the data is given every half hour
-    df["generation fcst"] = df["generation fcst"].astype(float) * 2 / 1000
+    df["generation_fcst"] = df["generation_fcst"].astype(float) * 2 / 1000
 
     all_generation_events = df  # all events with a datetime and a generation value
     generation_list = TotalProductionList(logger)
-    for _, event in all_generation_events.iterrows():
+
+    for row in all_generation_events.itertuples():
         if (
             zone_key == "JP-HR"
             or zone_key == "JP-ON"
             or zone_key == "JP-TH"
             or zone_key == "JP-CB"
         ):
-            datetime_string = str(event["Date"]) + str(event["Time"])
-            event["datetime"] = datetime.strptime(
-                datetime_string, "%Y/%m/%d%H:%M"
-            ).replace(tzinfo=ZONE_INFO)
-        elif zone_key == "JP-TK":
-            time_int = int(event["Time"])
-            time_str_padded = (
-                f"{time_int:04d}" if time_int >= 100 else f"00{time_int:02d}"
+            year, month, day = map(int, row.Date.split("/"))
+            hour, minute = map(int, row.Time.split(":"))
+            event_datetime = datetime(year, month, day, hour, minute).replace(
+                tzinfo=ZONE_INFO
             )
-            time_obj = datetime.strptime(time_str_padded, "%H%M").time()
-            date_obj = datetime.strptime(str(int(event["Date"])), "%Y%m%d").date()
-            event["datetime"] = datetime.combine(date_obj, time_obj).replace(
+
+        elif zone_key == "JP-TK":
+            time_str_padded = (
+                f"{row.Time:04d}" if row.Time >= 100 else f"00{row.Time:02d}"
+            )
+            time_obj = time(
+                hour=int(time_str_padded[:2]), minute=int(time_str_padded[2:])
+            )
+            date_obj = date(
+                year=row.Date // 10000,
+                month=(row.Date % 10000) // 100,
+                day=row.Date % 100,
+            )
+            event_datetime = datetime.combine(date_obj, time_obj).replace(
                 tzinfo=ZONE_INFO
             )
         else:
-            datetime_string = str(event["Date"]) + str(event["Time"])
-            event["datetime"] = datetime.strptime(
-                datetime_string, "%Y%m%d%H:%M"
-            ).replace(tzinfo=ZONE_INFO)
+            date_int = int(row.Date)
+            year = date_int // 10000
+            month = (date_int % 10000) // 100
+            day = date_int % 100
+            hour, minute = map(int, row.Time.split(":"))
+            event_datetime = datetime(year, month, day, hour, minute).replace(
+                tzinfo=ZONE_INFO
+            )
+
         generation_list.append(
             zoneKey=zone_key,
-            datetime=event["datetime"],
-            value=event["generation fcst"],
+            datetime=event_datetime,
+            value=row.generation_fcst,
             source=SOURCES_FORECAST_DATA[zone_key],
             sourceType=EventSourceType.forecasted,
         )
@@ -557,6 +574,6 @@ if __name__ == "__main__":
 
     print(
         fetch_generation_forecast(
-            zone_key="JP-TH", target_datetime=datetime(2025, 4, 17)
+            zone_key="JP-KY", target_datetime=datetime(2025, 4, 22)
         )
     )
