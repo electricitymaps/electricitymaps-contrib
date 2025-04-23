@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from datetime import date, datetime, time, timedelta
+from datetime import datetime, timedelta
 from io import BytesIO, StringIO
 from logging import Logger, getLogger
 from typing import Any
@@ -505,36 +505,23 @@ def fetch_generation_forecast(
             or zone_key == "JP-TH"
             or zone_key == "JP-CB"
         ):
-            year, month, day = map(int, row.Date.split("/"))
-            hour, minute = map(int, row.Time.split(":"))
-            event_datetime = datetime(year, month, day, hour, minute).replace(
-                tzinfo=ZONE_INFO
-            )
-
+            event_datetime = datetime.strptime(
+                f"{row.Date} {row.Time}", "%Y/%m/%d %H:%M"
+            ).replace(tzinfo=ZONE_INFO)
         elif zone_key == "JP-TK":
-            time_str_padded = (
-                f"{row.Time:04d}" if row.Time >= 100 else f"00{row.Time:02d}"
-            )
-            time_obj = time(
-                hour=int(time_str_padded[:2]), minute=int(time_str_padded[2:])
-            )
-            date_obj = date(
-                year=row.Date // 10000,
-                month=(row.Date % 10000) // 100,
-                day=row.Date % 100,
-            )
-            event_datetime = datetime.combine(date_obj, time_obj).replace(
-                tzinfo=ZONE_INFO
-            )
+            # Format as string in the format "YYYYMMDD HHMM" and parse
+            event_datetime = datetime.strptime(
+                f"{row.Date:08d} {row.Time:04d}", "%Y%m%d %H%M"
+            ).replace(tzinfo=ZONE_INFO)
+        elif zone_key == "JP-KY":
+            event_datetime = datetime.strptime(
+                f"{row.Date} {row.Time}", "%Y%m%d %H:%M"
+            ).replace(tzinfo=ZONE_INFO)
         else:
-            date_int = int(row.Date)
-            year = date_int // 10000
-            month = (date_int % 10000) // 100
-            day = date_int % 100
-            hour, minute = map(int, row.Time.split(":"))
-            event_datetime = datetime(year, month, day, hour, minute).replace(
-                tzinfo=ZONE_INFO
-            )
+            # Use strptime to directly parse the date integer and time string
+            event_datetime = datetime.strptime(
+                f"{row.Date:08d} {row.Time}", "%Y%m%d %H:%M"
+            ).replace(tzinfo=ZONE_INFO)
 
         generation_list.append(
             zoneKey=zone_key,
@@ -574,6 +561,6 @@ if __name__ == "__main__":
 
     print(
         fetch_generation_forecast(
-            zone_key="JP-KY", target_datetime=datetime(2025, 4, 22)
+            zone_key="JP-KY", target_datetime=datetime(2025, 4, 23)
         )
     )
