@@ -1,1 +1,1887 @@
-{}
+{
+    "info": {
+      "title": "Electricity Maps Hakkında",
+      "text": "herhangi bir cihazın elektrik tüketmesi için en uygun zaman hakkında bilgi vererek maliyetlerini ve salınımlarını azaltmasına olanak tanıyan gerçek zamanlı ve öngörülü elektrik verileri sağlayan bir API platformudur.",
+      "version": "Versiyon: {{version}}",
+      "share-app": "Uygulamayı paylaş:"
+    },
+    "settings-modal": {
+      "title": "Ayarlar",
+      "flows": "Elektrik akışları"
+    },
+    "ranking-panel": {
+      "title": "Elektrik Şebekesi Karbon Salınımları",
+      "subtitle": "Elektriğinizin nereden geldiğini görün<br/> ve bunu üretmek için ne kadar CO2 salındığını",
+      "search": "Bölgeleri ara",
+      "no-results": "Hiçbir şey bulunamadı. Başka bir şey aramayı deneyin."
+    },
+    "button": {
+      "bluesky-share": "Gerçek zamanlı küresel elektrik salınım verilerini görüntüleyin: {{baseUrl}}",
+      "reddit": "r/electricitymaps'e katılın",
+      "reddit-share": "Reddit'te paylaşın",
+      "github": "GitHub'da katkıda bulunun",
+      "twitter": "X (Twitter) üzerinden bizi takip edin",
+      "twitter-share": "X (Twitter) üzerinde paylaşın",
+      "linkedin": "LinkedIn'de takip edin",
+      "linkedin-share": "LinkedIn'de paylaşın",
+      "facebook": "Facebook'ta bizi takip edin",
+      "facebook-share": "Facebook'ta paylaşın",
+      "feedback": "Geri bildirimde bulun",
+      "faq": "SSS",
+      "privacy-policy": "Gizlilik Politikası",
+      "legal-notice": "Yasap Uyarı",
+      "api": "API'ye erişim",
+      "docs": "API dokümantasyonu"
+    },
+    "mobile-main-menu": {
+      "map": "Electricity Maps",
+      "areas": "Bölgeler",
+      "about": "Hakkında"
+    },
+    "app-banner": {
+      "cta": "Uygulamayı edinin",
+      "description": "Canlı elektrik verileri"
+    },
+    "share-button": {
+      "clipboard": "URL panoya kopyalandı!",
+      "clipboard-error": "URL panoya kopyalanırken bir hata oluştu",
+      "share-error": "URL paylaşılırken bir hata oluştu"
+    },
+    "more-options-dropdown": {
+      "title": "Paylaş",
+      "download": "CSV'yi indir",
+      "chart-title": "Grafiği paylaş",
+      "zone-title": "Bölgeyi paylaş",
+      "mobile-share-via": "Şununla paylaş",
+      "copy-link": "Bağlantıyı kopyala",
+      "copy-chart-link": "Grafik bağlantısını kopyala",
+      "copy-zone-link": "Bölge baplantısını kopyala",
+      "preliminary-data": "Ön veriler zamanla değişebilir.",
+      "summary": "Electricity Maps uygulamasıyla gerçek zamanlı elektrik verilerini keşfedin!"
+    },
+    "new-feature-popover": {
+      "title": "Yeni özellik: 72 saatlik görünüm",
+      "content": "Yeni 72 saatlik pencere ile canlı ve geçmiş verilerdeki eğilimleri keşfedin."
+    },
+    "onboarding-modal": {
+      "view1": {
+        "header": "Welcome to the Electricity Maps App",
+        "text": "Here you can explore the climate impact of electricity for across the world. <br/><br/>Let us guide you through the map in a few simple steps!"
+      },
+      "view2": {
+        "header": "See how much CO2 is emitted to produce your electricity, in real-time",
+        "text": "We color areas around the world by the carbon intensity of consumed electricity (includes all greenhouse gases). The greener the color, the more climate-friendly the electricity."
+      },
+      "view3": {
+        "header": "Know where your electricity comes from",
+        "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
+      },
+      "view4": {
+        "header": "Switch between different views",
+        "text": "Toggle between Electricity Production and Consumption, as well as Country or Zone views and discover real-time insights into global energy dynamics and make informed choices for a sustainable future."
+      },
+      "view5": {
+        "header": "Switch between electricity and emissions views",
+        "text": "Toggle to alternate between charts that display a zone's electricity information or carbon emissions. The values shown represent the total for the selected period, and the information aligns with the chosen flow-traced or production data."
+      },
+      "view6": {
+        "header": "Explore the past",
+        "text": "In the bottom left, you can view both real-time and past emission and electricity data all around the world. Change the aggregated data using the toggles or browse through the timeline to see the changes over time."
+      },
+      "view7": {
+        "header": "Real-time wind and solar conditions",
+        "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
+      }
+    },
+    "data-sources": {
+      "title": "Veri kaynakları",
+      "capacity": "Kurulu kapasite verileri",
+      "power": "Elektrik üretim verileri",
+      "exchange": "Akış verileri",
+      "emission": "Salınım faktörü verileri"
+    },
+    "country-panel": {
+      "forecastCta": "Looking for forecast data?",
+      "source": "Kaynak",
+      "carbonintensity": "Karbon Yoğunluğu",
+      "lowcarbon": "Düşük Karbonlu",
+      "renewable": "Yenilenebilir",
+      "electricityconsumption": "Elektrik",
+      "emissions": "Salınımlar",
+      "helpfrom": "Yardımlarıyla:",
+      "noDataAtTimestamp": "Veriler seçilen süre için geçici olarak kullanılamıyor",
+      "noLiveData": "Bu bölge için canlı veriler geçici olarak kullanılamıyor",
+      "disabledPriceReasons": {
+        "licensing": "Lisans koşulları nedeniyle bu bölge için elektrik fiyatları mevcut değildir"
+      },
+      "emissionFactorDataSourcesTooltip": "Electricity production emission factors can originate from multiple sources. This happens as several factors, like plant-specific data, generation and sometimes fallback sources, are considered in emission calculations.",
+      "dataIsDelayed": "Data for this region can be up to {{hours}} hours delayed. Live data cannot be displayed.",
+      "estimated": "estimated",
+      "aggregated": "aggregated",
+      "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>here</a>.",
+      "exchangesAreMissing": "This chart does not include flow data. Flows are visible in hourly views. Read more about our historical aggregations <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>here</a>.",
+      "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
+      "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
+      "helpUs": "Help us identify the problem by taking a look at the <a href='{{link}}' target='_blank'>runtime logs</a> or contact the data provider.",
+      "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href='{{link}}' target='_blank'>adding area data</a>.",
+      "now": "Şu anda",
+      "by-source": {
+        "emissions": "Karbon salınımları",
+        "electricity-mix": "Elektrik dağılımı",
+        "total-electricity-mix": "Toplam elektrik dağılımı",
+        "total-emissions": "Total karbon salınımları"
+      },
+      "graph-legends": {
+        "installed-capacity": "Kurulu kapasite ",
+        "exchange-capacity": "Elektrik akış kapasitesi ",
+        "exported": "İhraç edilen",
+        "imported": "İthal edilen",
+        "stored": "Depolanan",
+        "produced": "Üretilen"
+      },
+      "price-chart": {
+        "see": "Gelecek fiyatları göster",
+        "hide": "Gelecek fiyatları gizle",
+        "today": "Bugün",
+        "tomorrow": "Yarın",
+        "price-disclaimer": "Tüm fiyatlar MWh başına, vergiler ve şebeke ücretleri hariçtir.",
+        "time-disclaimer": "Gösterilen tüm zamanlar şu cinsdedir",
+        "at": "At",
+        "now": "Şu anda"
+      }
+    },
+    "feedback-card": {
+      "title": "Geliştirmemize yardımcı olun!",
+      "success-message": "Yanıtınız, uygulamamızın kalitesini anlamamıza ve geliştirmemize yardımcı olur.",
+      "success-subtitle": "Geri bildiriminiz için teşekkür ederiz!",
+      "estimations": {
+        "subtitle": "Lütfen aşağıdaki ifadeyi değerlendiriniz.",
+        "secondary-question": "Bunu geliştirmek için yapabileceğimiz bir şey var mı?",
+        "primary-question": "Veri tahminine ilişkin açıklamanın anlaşılması kolaydı:"
+      },
+      "primary-question": "Electricity Maps uygulamasından genel memnuniyetinizi nasıl değerlendirirsiniz?",
+      "secondary-question-low": "Neyi daha iyi yapabiliriz?",
+      "secondary-question-high": "Bundan sonra ne gibi geliştirmeler görmek istersiniz?",
+      "optional": "İsteğe bağlı:",
+      "input-question": "Görmek istediğiniz özellikleri bizimle paylaşın?",
+      "agree": "Kesinlikle katılıyorum",
+      "disagree": "Kesinlikle katılmıyorum",
+      "satisfied": "Çok memnunum",
+      "unsatisfied": "Hiç memnun değilim",
+      "placeholder": "Let us know in a few words...",
+      "submit": "Gönder"
+    },
+    "estimation-badge": {
+      "partially-estimated": "Kısmen tahmini",
+      "fully-estimated": "Tahmini",
+      "outage": "Kullanılamıyor"
+    },
+    "estimation-card": {
+      "link": "Tahmin modellerimiz hakkında bilgi edinin",
+      "outage-details": "Detayları görün",
+      "ESTIMATED_FORECASTS_HIERARCHY": {
+        "title": "Veriler ön bilgilerdir",
+        "pill": "Ön bilgi",
+        "body": "Bu saate ilişkin veriler henüz raporlanmamıştır. Modellerimiz bu boşlukları doldurarak gerçek zamanlı eksiksiz ve ayrıntılı bir veri seti sağlamaktadır."
+      },
+      "ESTIMATED_TIME_SLICER_AVERAGE": {
+        "title": "Veriler ön bilgilerdir",
+        "pill": "Ön bilgi",
+        "body": "Bu saate ilişkin veriler henüz raporlanmamıştır. Modellerimiz bu boşlukları doldurarak gerçek zamanlı eksiksiz ve ayrıntılı bir veri seti sağlamaktadır."
+      },
+      "ESTIMATED_MODE_BREAKDOWN": {
+        "title": "Verilen kısmen tahminidir",
+        "pill": "Kısmen tahmini",
+        "body": "Bu bölge için rapor edilen veriler eksiktir; modellerimiz eksik üretim şekillerini ve elektrik akışlarını tamamlayarak akışı izlemeli elektrik dağılımının eksiksiz bir görünümünü sağlamaktadır."
+      },
+      "estimated_generic_method": {
+        "title": "Veriler tahminidir",
+        "pill": "Kesin olmayan",
+        "body": "Bu bölge için yayınlanmış veriler mevcut değil veya eksik. Haritada gösterilen veriler en iyi şekilde tahmin edilmiştir, ancak gerçek değerlerden farklı olabilir."
+      },
+      "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
+        "title": "Veri tamamen tahminidir",
+        "pill": "Tahmini",
+        "body": "Bu bölge için gerçek zamanlı kaynak verileri mevcut değildir. Veriler, doğru bir akış izlemeli elektrik dağılımı oluşturmak için canlı hava durumu verileri ve geçmiş üretim modellerinin bir kombinasyonu kullanılarak modellenmiştir."
+      },
+      "threshold_filtered": {
+        "title": "Eksik veri",
+        "pill": "Veri kesintisi",
+        "body": "Bu bölgenin veri sağlayıcısı uzun bir süredir veri göndermemektedir. Sorunu takip ediyoruz ve veriler kalite kriterimizi karşılar karşılamaz bölgeyi güncelleyeceğiz."
+      },
+      "outage": {
+        "title": "Devam eden sorunlar",
+        "pill": "Kullanılamıyor"
+      },
+      "aggregated": {
+        "title": "Veriler birleştirilmiştir",
+        "body": "Veriler saatlik değerlerin birleştirilmesinden oluşur."
+      },
+      "aggregated_estimated": {
+        "title": "Data is aggregated",
+        "pill": " {{percentage}}% estimated",
+        "body": "The data consists of an aggregation of hourly values. {{percentage}}% of the production values are estimated."
+      }
+    },
+    "time-controller": {
+      "72h": "72 saat",
+      "3mo": "90 gün",
+      "12mo": "12 ay",
+      "all_months": "Tüm aylar",
+      "all_years": "Tüm yıllar",
+      "navigate": "Gezin",
+      "live": "Canlı",
+      "date-unavailable": {
+        "title": "Veri mevcut değil",
+        "description": "Canlı verilere yönlendiriliyor"
+      }
+    },
+    "left-panel": {
+      "applied-methodologies": {
+        "title": "Uygulanan yöntemler",
+        "estimations": "Electricity Maps - Tahminler",
+        "flowtracing": "Electricity Maps - Akış izleme",
+        "carbonintensity": "Electricity Maps - Karbon yoğunluğu",
+        "historicalAggregations": "Electricity Maps - Tarihsel toplamalar"
+      },
+      "methodologies-and-data-sources": {
+        "title": "Yöntemler ve veri kaynakları"
+      }
+    },
+    "header": {
+      "blog": "Blog",
+      "open-source": "Topluluk",
+      "hiring": "İşe alım yapıyoruz!",
+      "methodology": "Yöntembilimi",
+      "faq": "SSS"
+    },
+    "country-history": {
+      "carbonintensity": {
+        "72h": "Saatlik karbon yoğunluğu",
+        "3mo": "Günlük karbon yoğunluğu",
+        "12mo": "Aylık karbon yoğunluğu",
+        "all_months": "Aylık karbon yoğunluğu",
+        "all_years": "Yıllık karbon yoğunluğu"
+      },
+      "emissions": {
+        "72h": "Saatlik karbon salınımları",
+        "3mo": "Günlük karbon salınımları",
+        "12mo": "Aylık karbon salınımları",
+        "all_months": "Aylık karbon salınımları",
+        "all_years": "Yıllık karbon salınımları"
+      },
+      "emissionsorigin": {
+        "72h": "Saatlik karbon salınımı kaynağı",
+        "3mo": "Günlük karbon salınımı kaynağı",
+        "12mo": "Aylık karbon salınımı kaynağı",
+        "all_months": "Aylık karbon salınımı kaynağı",
+        "all_years": "Yıllık karbon salınımı kaynağı"
+      },
+      "emissionsproduction": {
+        "72h": "Saatlik üretim salınımları",
+        "3mo": "Günlük üretim salınımları",
+        "12mo": "Aylık üretim salınımları",
+        "all_months": "Aylık üretim salınımları",
+        "all_years": "Yıllık üretim salınımları"
+      },
+      "electricityorigin": {
+        "72h": "Saatlik elektrik dağılımı",
+        "3mo": "Günlük elektrik dağılımı",
+        "12mo": "Aylık elektrik dağılımı",
+        "all_months": "Aylık elektrik dağılımı",
+        "all_years": "Yıllık elektrik dağılımı"
+      },
+      "electricityproduction": {
+        "72h": "Saatlik elektrik dağılımı",
+        "3mo": "Günlük elektrik dağılımı",
+        "12mo": "Aylık elektrik dağılımı",
+        "all_months": "Aylık elektrik dağılımı",
+        "all_years": "Yıllık elektrik dağılımı"
+      },
+      "electricityprices": {
+        "72h": "Saatlik elektrik fiyatları",
+        "3mo": "Günlük elektrik fiyatları",
+        "12mo": "Aylık elektrik fiyatları",
+        "all_months": "Aylık elektrik fiyatları",
+        "all_years": "Yıllık elektrik fiyatları"
+      },
+      "netExchange": {
+        "72h": "Saatlik elektrik akışı",
+        "3mo": "Günlük elektrik akışı",
+        "12mo": "Aylık elektrik akışı",
+        "all_months": "Aylık elektrik akışı",
+        "all_years": "Yıllık elektrik akışı"
+      },
+      "not-enough-data": "Grafiği göstermek için yeterli veri mevcut değil",
+      "exchange-delay": "Akış verileri 48 saate kadar gecikebilir."
+    },
+    "footer": {
+      "foundbugs": "Hata mı buldunuz veya fikirleriniz mi var? Bildirin",
+      "faq-text": "Anlaşılmayan bir şey mi var? Şuraya göz atın",
+      "faq": "sıkça sorulan sorular.",
+      "here": "burada"
+    },
+    "legends": {
+      "windpotential": "Rüzgar enerjisi potansiyeli",
+      "solarpotential": "Güneş enerjisi potansiyeli",
+      "colorblindmode": "Renk körü modu",
+      "carbonintensity": "Karbon yoğunluğu"
+    },
+    "tooltips": {
+      "carbonintensity": "Karbon yoğunluğu",
+      "zoneHeader": {
+        "lowcarbon": "Tüm yenilenebilir enerji kaynaklarını ve nükleeri içerir",
+        "renewable": "Güneş, rüzgar, hidro, biyokütle ve jeotermal içerir",
+        "carbonIntensity": "Elektrik üretiminden kaynaklanan sera gazı salımlarını ölçen kilovat-saat başına gram CO2 karşılığı (gCO2eq/kWh)"
+      },
+      "crossborderexport": "Sınır ötesi ihracat",
+      "carbonintensityexport": "İhracatın karbon yoğunluğu",
+      "ofinstalled": "kurulu kapasitenin",
+      "utilizing": "kullanıyor",
+      "representing": "temsil ediyor",
+      "ofemissions": "salınımların",
+      "withcarbonintensity": "şu kadar karbon yoğunluğuyla",
+      "zoomIn": "Yakınlaştır",
+      "zoomOut": "Uzaklaştır",
+      "layers": "Harita katmanları",
+      "showWindLayer": "Rüzgar katmanını göster",
+      "hideWindLayer": "Rüzgar katmanını gizle",
+      "showSolarLayer": "Güneş katmanını göster",
+      "hideSolarLayer": "Güneş katmanını gizle",
+      "weatherDisabled": "Hava durumu verileri şu anda kullanılamıyor",
+      "changeTheme": "Temayı değiştir",
+      "noParserInfo": "Mevcut veri yok",
+      "temporaryDataOutage": "Canlı veriler geçici olarak kullanılamıyor",
+      "temporarilyUnavailable": "Geçici olarak kullanılamıyor",
+      "production": "üretim",
+      "consumption": "tüketim",
+      "cpinfo": "<b>Flow-traced</b> takes imports and exports into account, <b>production</b> ignores them",
+      "aggregateInfo": "Toggle between a granular zone view and an aggregated country view",
+      "selectLanguage": "Dil seçin",
+      "dataIsDelayed": "Veriler gecikmeli",
+      "price": "Fiyat",
+      "netExchange": "elektrik akışı",
+      "importing": "İçe Aktarıyor",
+      "exporting": "Dışa Aktarıyor",
+      "flowTraced": "Akış takipli veriler fiziksel elektrik akışını hesaba katar",
+      "nonFlowTraced": "Akış takipli olmayan veriler ithalat ve ihracatı hesaba katmaz"
+    },
+    "aria": {
+      "label": {
+        "selectLanguage": "Dil seçin",
+        "colorBlindMode": "Renk körlüğü modu",
+        "windLayer": "Rüzgar katmanı",
+        "solarLayer": "Güneş katmanı",
+        "changeTheme": "Change theme",
+        "hideSidePanel": "Yan paneli gizle",
+        "showSidePanel": "Yan paneli göster",
+        "layers": "Harita katmanları",
+        "zoomIn": "Yakınlaştır",
+        "zoomOut": "Uzaklaştır"
+      }
+    },
+    "aggregateButtons": {
+      "country": "ülke",
+      "zone": "alan"
+    },
+    "themeOptions": {
+      "dark": "Koyu",
+      "light": "Açık",
+      "system": "Sistem"
+    },
+    "updatePrompt": {
+      "description": "Yeni bir sürüm mevcut",
+      "update": "Güncelle",
+      "dismiss": "Reddet"
+    },
+    "misc": {
+      "maintitle": "7/24 canlı elektrik tüketiminden kaynaklanan CO₂ salınımları",
+      "faq": "Sıkça Sorulan Sorular",
+      "dismiss": "Kapat",
+      "reload": "Yeniden Yükle",
+      "slow-loading-text": "Hala yükleniyor, eğer devam ederse yeniden yüklemeyi deneyin..."
+    },
+    "wind": "rüzgar",
+    "windDataError": "Rüzgar verileri şu anda mevcut değil",
+    "solar": "güneş",
+    "solarDataError": "Güneş verileri şu anda mevcut değil",
+    "hydro": "hidro",
+    "hydro storage": "hidro depolama",
+    "battery storage": "batarya depolama",
+    "biomass": "biyokütle",
+    "nuclear": "nükleer",
+    "geothermal": "jeotermal",
+    "gas": "gaz",
+    "coal": "komür",
+    "oil": "oil",
+    "unknown": "bilinmeyen",
+    "electricityStoredUsing": "kullanılarak depolanıyor",
+    "emissionsStoredUsing": "kullanılarak depolanıyor",
+    "electricityExportedTo": "şuna ihraç ediliyor",
+    "emissionsExportedTo": "şuna ihraç ediliyor",
+    "electricityImportedFrom": "şundan ithal ediliyor",
+    "emissionsImportedFrom": "şundan ithal ediliyor",
+    "electricityAvailableIn": "kadar elektrik şunda mevcut",
+    "emissionsAvailableIn": "kadar elektrikten kaynaklanan salınım şunda mecvut",
+    "comesFrom": "şundan geliyor",
+    "ofCO2eq": "CO₂eq",
+    "theMap": {
+      "groupName": "The map",
+      "mapColors-question": "What do the colors on the map mean?",
+      "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its carbon intensity). The greener the colour, the more climate-friendly the electricity consumption.",
+      "mapArrows-question": "What do the arrows between areas on the map indicate?",
+      "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
+      "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
+      "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunshine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells is also dependent on many other factors.",
+      "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
+      "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated with nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
+      "mapColorBlind-question": "I am color blind. How can I read your map?",
+      "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on right side of the app on desktop and in the settings panel on the mobile app."
+    },
+    "mapAreas": {
+      "groupName": "Areas in the map",
+      "noData-question": "Why is data for my area not available?",
+      "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources'>help us find new data sources</a>.",
+      "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?",
+      "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.",
+      "divideExistingArea-question": "Can you divide my area into smaller parts?",
+      "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href='#contribute' class='entry-link'>help us with adding new data sources</a>",
+      "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
+      "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>database</a>."
+    },
+    "methodology": {
+      "groupName": "Our methods",
+      "carbonIntensity-question": "'Karbon yoğunluğu' nedir?",
+      "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
+      "methodology-question": "How did you calculate the numbers?",
+      "methodology-answer": "We have detailed our full methodology on <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a>, with additional documentation in <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>our GitHub Wiki</a>.",
+      "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
+      "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>details on the Wiki</a>.",
+      "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
+      "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
+      "importsAndExports-question": "Do you take into account imports and exports of electricity?",
+      "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small arrows between different areas when <strong>consumption</strong> mode is selected. Detailed information can be seen in the charts shown when you click on an area.",
+      "emissionsOfStored-question": "What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?",
+      "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
+      "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
+      "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
+      "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
+      "otherSources-answer": "We only focus on electricity production for now, as this is <a href='https://ourworldindata.org/emissions-by-sector#energy-electricity-heat-and-transport-73-2' target='_blank'>the largest source of emissions</a> and the one that can be most easily decarbonized.",
+      "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
+      "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
+      "emissionsPerCapita-question": "Why don't you show emissions per capita?",
+      "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used for manufacturing physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, are driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
+    },
+    "data": {
+      "groupName": "Our data",
+      "dataOrigins-question": "How do you get your data?",
+      "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
+      "dataDownload-question": "Can I download your data?",
+      "dataDownload-answer": "We publish data for the past years for free at our <a href='https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>Data Portal</a>. For more recent and real-time data you can use <a href='https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral'>our API</a>, which is free for non-commercial use and available for purchase for commercial use.",
+      "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
+      "dataIntegration-answer": "Yes! We provide a free API for non-commercial uses, and sell access to a <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>real-time API</a> for commercial use, which includes forecasts and more."
+    },
+    "aboutUs": {
+      "groupName": "About us",
+      "whoAreYou-question": "Who are you?",
+      "whoAreYou-answer": "The app is developed and maintained by <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a>, a Danish startup company. Our mission is to organise the world's electricity data to drive the transition towards a truly decarbonised electricity system.",
+      "feedback-question": "Can I give you some feedback?",
+      "feedback-answer": "We would love that! Please fill out <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>our feedback form</a>.",
+      "contribute-question": "Can I contribute to your project?",
+      "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href='https://github.com/electricityMaps/electricitymaps-contrib/' target='_blank'>GitHub</a>.",
+      "workTogether-question": "Can we work together?",
+      "workTogether-answer": "We are always looking for new opportunities to collaborate. <a href='mailto:app@electricitymaps.com'>Send us an email!</a>",
+      "disclaimer-question": "Disclaimer",
+      "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publishes data and images on the <a href='https://app.electricitymaps.com/' target='_blank'>Electricity Maps App</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps App, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    },
+    "zoneShortName": {
+      "AD": {
+        "zoneName": "Andorra"
+      },
+      "AE": {
+        "zoneName": "Birleşik Arap Emirlikleri"
+      },
+      "AF": {
+        "zoneName": "Afganistan"
+      },
+      "AG": {
+        "zoneName": "Antigua ve Barbuda"
+      },
+      "AL": {
+        "zoneName": "Arnavutluk"
+      },
+      "AM": {
+        "zoneName": "Ermenistan"
+      },
+      "AO": {
+        "zoneName": "Angola"
+      },
+      "AR": {
+        "zoneName": "Arjantin"
+      },
+      "AT": {
+        "zoneName": "Avusturya"
+      },
+      "AU": {
+        "zoneName": "Avustralya"
+      },
+      "AU-LH": {
+        "countryName": "Avustralya",
+        "zoneName": "Lord Howe Adası"
+      },
+      "AU-NSW": {
+        "countryName": "Avustralya",
+        "zoneName": "Yeni Güney Galler"
+      },
+      "AU-NT": {
+        "countryName": "Avustralya",
+        "zoneName": "Kuzey Toprakları"
+      },
+      "AU-QLD": {
+        "countryName": "Avustralya",
+        "zoneName": "Queensland"
+      },
+      "AU-SA": {
+        "countryName": "Avustralya",
+        "zoneName": "Güney Avustralya"
+      },
+      "AU-TAS": {
+        "countryName": "Avustralya",
+        "zoneName": "Tasmanya"
+      },
+      "AU-TAS-CBI": {
+        "countryName": "Avustralya",
+        "zoneName": "Cape Barren Adası"
+      },
+      "AU-TAS-KI": {
+        "countryName": "Avustralya",
+        "zoneName": "Kral Adası"
+      },
+      "AU-TAS-FI": {
+        "countryName": "Avustralya",
+        "zoneName": "Flinders Adası"
+      },
+      "AU-VIC": {
+        "countryName": "Avustralya",
+        "zoneName": "Victoria"
+      },
+      "AU-WA": {
+        "countryName": "Avustralya",
+        "zoneName": "Batı Avustralya"
+      },
+      "AU-WA-RI": {
+        "countryName": "Avustralya",
+        "zoneName": "Rottnest Adası"
+      },
+      "AW": {
+        "zoneName": "Aruba"
+      },
+      "AX": {
+        "zoneName": "Åland Adaları"
+      },
+      "AZ": {
+        "zoneName": "Azerbaycan"
+      },
+      "BA": {
+        "zoneName": "Bosna-Hersek"
+      },
+      "BB": {
+        "zoneName": "Barbados"
+      },
+      "BD": {
+        "zoneName": "Bangladeş"
+      },
+      "BE": {
+        "zoneName": "Belçika"
+      },
+      "BF": {
+        "zoneName": "Burkina Faso"
+      },
+      "BG": {
+        "zoneName": "Bulgaristan"
+      },
+      "BH": {
+        "zoneName": "Bahreyn"
+      },
+      "BI": {
+        "zoneName": "Burundi"
+      },
+      "BJ": {
+        "zoneName": "Benin"
+      },
+      "BM": {
+        "zoneName": "Bermuda"
+      },
+      "BN": {
+        "zoneName": "Brunei"
+      },
+      "BO": {
+        "zoneName": "Bolivya"
+      },
+      "BR": {
+        "zoneName": "Brezilya"
+      },
+      "BR-CS": {
+        "countryName": "Brezilya",
+        "zoneName": "Merkezi Brezilya"
+      },
+      "BR-N": {
+        "countryName": "Brezilya",
+        "zoneName": "Kuzey Brezilya"
+      },
+      "BR-NE": {
+        "countryName": "Brezilya",
+        "zoneName": "Kuzeydoğu Brezilya"
+      },
+      "BR-S": {
+        "countryName": "Brezilya",
+        "zoneName": "Güney Brezilya"
+      },
+      "BS": {
+        "zoneName": "Bahamalar"
+      },
+      "BT": {
+        "zoneName": "Bhutan"
+      },
+      "BW": {
+        "zoneName": "Botsvana"
+      },
+      "BY": {
+        "zoneName": "Belarus"
+      },
+      "BZ": {
+        "zoneName": "Belize"
+      },
+      "CA": {
+        "zoneName": "Kanada"
+      },
+      "CA-AB": {
+        "countryName": "Kanada",
+        "zoneName": "Alberta"
+      },
+      "CA-BC": {
+        "countryName": "Kanada",
+        "zoneName": "Britanya Kolumbiyası"
+      },
+      "CA-MB": {
+        "countryName": "Kanada",
+        "zoneName": "Manitoba"
+      },
+      "CA-NB": {
+        "countryName": "Kanada",
+        "zoneName": "New Brunswick"
+      },
+      "CA-NL": {
+        "countryName": "Kanada",
+        "zoneName": "Newfoundland ve Labrador"
+      },
+      "CA-NS": {
+        "countryName": "Kanada",
+        "zoneName": "Yeni İskoçya"
+      },
+      "CA-NT": {
+        "countryName": "Kanada",
+        "zoneName": "Kuzeybatı Toprakları"
+      },
+      "CA-NU": {
+        "countryName": "Kanada",
+        "zoneName": "Nunavut"
+      },
+      "CA-ON": {
+        "countryName": "Kanada",
+        "zoneName": "Ontario"
+      },
+      "CA-PE": {
+        "countryName": "Kanada",
+        "zoneName": "Prens Edward Adası"
+      },
+      "CA-QC": {
+        "countryName": "Kanada",
+        "zoneName": "Québec"
+      },
+      "CA-SK": {
+        "countryName": "Kanada",
+        "zoneName": "Saskatchewan"
+      },
+      "CA-YT": {
+        "countryName": "Kanada",
+        "zoneName": "Yukon"
+      },
+      "CD": {
+        "zoneName": "Kongo Demokratik Cumhuriyeti"
+      },
+      "CF": {
+        "zoneName": "Orta Afrika Cumhuriyeti"
+      },
+      "CG": {
+        "zoneName": "Kongo"
+      },
+      "CH": {
+        "zoneName": "İsviçre"
+      },
+      "CI": {
+        "zoneName": "Fildişi Sahili"
+      },
+      "CL-CHP": {
+        "countryName": "Şili",
+        "zoneName": "Paskalya Adası"
+      },
+      "CL-SEA": {
+        "countryName": "Şili",
+        "zoneName": "Sistema Eléctrico de Aysén"
+      },
+      "CL-SEM": {
+        "countryName": "Şili",
+        "zoneName": "Sistema Eléctrico de Magallanes"
+      },
+      "CL-SEN": {
+        "countryName": "Şili",
+        "zoneName": "Sistema Eléctrico Nacional"
+      },
+      "CM": {
+        "zoneName": "Kamerun"
+      },
+      "CN": {
+        "zoneName": "Çin"
+      },
+      "CO": {
+        "zoneName": "Kolombiya"
+      },
+      "CR": {
+        "zoneName": "Kosta Rika"
+      },
+      "CU": {
+        "zoneName": "Küba"
+      },
+      "CV": {
+        "zoneName": "Yeşil Burun Adaları"
+      },
+      "CW": {
+        "zoneName": "Curaçao"
+      },
+      "CY": {
+        "zoneName": "Kıbrıs"
+      },
+      "CZ": {
+        "zoneName": "Çekya"
+      },
+      "DE": {
+        "zoneName": "Almanya"
+      },
+      "DJ": {
+        "zoneName": "Cibuti"
+      },
+      "DK": {
+        "zoneName": "Danimarka"
+      },
+      "DK-DK1": {
+        "countryName": "Danimarka",
+        "zoneName": "Batı Danimarka"
+      },
+      "DK-DK2": {
+        "countryName": "Danimarka",
+        "zoneName": "Doğu Danimarka"
+      },
+      "DK-BHM": {
+        "countryName": "Danimarka",
+        "zoneName": "Bornholm"
+      },
+      "DM": {
+        "zoneName": "Dominika"
+      },
+      "DO": {
+        "zoneName": "Dominik Cumhuriyeti"
+      },
+      "DZ": {
+        "zoneName": "Cezayir"
+      },
+      "EC": {
+        "zoneName": "Ekvador"
+      },
+      "EE": {
+        "zoneName": "Estonya"
+      },
+      "EG": {
+        "zoneName": "Mısır"
+      },
+      "EH": {
+        "zoneName": "Batı Sahra"
+      },
+      "ER": {
+        "zoneName": "Eritre"
+      },
+      "ES": {
+        "zoneName": "İspanya"
+      },
+      "ES-CE": {
+        "countryName": "İspanya",
+        "zoneName": "Sebte"
+      },
+      "ES-IB-FO": {
+        "countryName": "İspanya",
+        "zoneName": "Formentera"
+      },
+      "ES-IB-IZ": {
+        "countryName": "İspanya",
+        "zoneName": "Ibiza"
+      },
+      "ES-IB-MA": {
+        "countryName": "İspanya",
+        "zoneName": "Mallorca"
+      },
+      "ES-IB-ME": {
+        "countryName": "İspanya",
+        "zoneName": "Minorka"
+      },
+      "ES-CN-FV": {
+        "countryName": "İspanya",
+        "zoneName": "Fuerteventura"
+      },
+      "ES-CN-LZ": {
+        "countryName": "İspanya",
+        "zoneName": "Lanzarote"
+      },
+      "ES-CN-GC": {
+        "countryName": "İspanya",
+        "zoneName": "Gran Canaria"
+      },
+      "ES-CN-HI": {
+        "countryName": "İspanya",
+        "zoneName": "El Hierro"
+      },
+      "ES-CN-IG": {
+        "countryName": "İspanya",
+        "zoneName": "Isla de la Gomera"
+      },
+      "ES-CN-LP": {
+        "countryName": "İspanya",
+        "zoneName": "La Palma"
+      },
+      "ES-CN-TE": {
+        "countryName": "İspanya",
+        "zoneName": "Tenerife"
+      },
+      "ES-ML": {
+        "countryName": "İspanya",
+        "zoneName": "Melilla"
+      },
+      "ET": {
+        "zoneName": "Etiyopya"
+      },
+      "FI": {
+        "zoneName": "Finlandiya"
+      },
+      "FJ": {
+        "zoneName": "Fiji"
+      },
+      "FK": {
+        "zoneName": "Falkland Adaları"
+      },
+      "FM": {
+        "zoneName": "Mikronezya"
+      },
+      "FO": {
+        "zoneName": "Faroe Adaları"
+      },
+      "FO-MI": {
+        "countryName": "Faroe Adaları",
+        "zoneName": "Ana Adalar"
+      },
+      "FO-SI": {
+        "countryName": "Faroe Adaları",
+        "zoneName": "Güney Ada"
+      },
+      "FR": {
+        "zoneName": "Fransa"
+      },
+      "FR-COR": {
+        "countryName": "Fransa",
+        "zoneName": "Korsika"
+      },
+      "GA": {
+        "zoneName": "Gabon"
+      },
+      "GB": {
+        "zoneName": "Büyük Britanya"
+      },
+      "GB-NIR": {
+        "zoneName": "Kuzey İrlanda"
+      },
+      "GB-ORK": {
+        "countryName": "Büyük Britanya",
+        "zoneName": "Orkney Adaları"
+      },
+      "GB-ZET": {
+        "countryName": "Büyük Britanya",
+        "zoneName": "Shetland Adaları"
+      },
+      "GE": {
+        "zoneName": "Gürcistan"
+      },
+      "GF": {
+        "zoneName": "Fransız Guyanası"
+      },
+      "GG": {
+        "zoneName": "Guernsey"
+      },
+      "GH": {
+        "zoneName": "Gana"
+      },
+      "GI": {
+        "zoneName": "Cebelitarık"
+      },
+      "GL": {
+        "zoneName": "Grönland"
+      },
+      "GM": {
+        "zoneName": "Gambiya"
+      },
+      "GN": {
+        "zoneName": "Gine"
+      },
+      "GP": {
+        "zoneName": "Guadeloupe"
+      },
+      "GQ": {
+        "zoneName": "Ekvator Ginesi"
+      },
+      "GR": {
+        "zoneName": "Yunanistan"
+      },
+      "GS": {
+        "zoneName": "Güney Georgia ve Güney Sandwich Adaları"
+      },
+      "GT": {
+        "zoneName": "Guatemala"
+      },
+      "GU": {
+        "zoneName": "Guam"
+      },
+      "GW": {
+        "zoneName": "Gine-Bissau"
+      },
+      "GY": {
+        "zoneName": "Guyana"
+      },
+      "HK": {
+        "zoneName": "Hong Kong"
+      },
+      "HM": {
+        "zoneName": "Heard Adası ve McDonald Adaları"
+      },
+      "HN": {
+        "zoneName": "Honduras"
+      },
+      "HR": {
+        "zoneName": "Hırvatistan"
+      },
+      "HT": {
+        "zoneName": "Haiti"
+      },
+      "HU": {
+        "zoneName": "Macaristan"
+      },
+      "ID": {
+        "zoneName": "Endonezya"
+      },
+      "IE": {
+        "zoneName": "İrlanda"
+      },
+      "IL": {
+        "zoneName": "İsrail"
+      },
+      "IM": {
+        "zoneName": "Man Adası"
+      },
+      "IN": {
+        "zoneName": "Hindistan Anakarası"
+      },
+      "IN-EA": {
+        "countryName": "Hindistan",
+        "zoneName": "Doğu Hindistan"
+      },
+      "IN-NE": {
+        "countryName": "Hindistan",
+        "zoneName": "Kuzeydoğu Hindistan"
+      },
+      "IN-NO": {
+        "countryName": "Hindistan",
+        "zoneName": "Kuzey Hindistan"
+      },
+      "IN-SO": {
+        "countryName": "Hindistan",
+        "zoneName": "Güney Hindistan"
+      },
+      "IN-WE": {
+        "countryName": "Hindistan",
+        "zoneName": "Batı Hindistan"
+      },
+      "IN-AN": {
+        "countryName": "Hindistan",
+        "zoneName": "Andaman ve Nicobar Adaları"
+      },
+      "IN-HP": {
+        "countryName": "Hindistan",
+        "zoneName": "Himachal Pradesh"
+      },
+      "IN-UP": {
+        "countryName": "Hindistan",
+        "zoneName": "Uttar Pradesh"
+      },
+      "IN-UT": {
+        "countryName": "Hindistan",
+        "zoneName": "Uttarakhand"
+      },
+      "IO": {
+        "zoneName": "Britanya Hint Okyanusu Toprakları"
+      },
+      "IQ": {
+        "zoneName": "Irak"
+      },
+      "IR": {
+        "zoneName": "İran"
+      },
+      "IS": {
+        "zoneName": "İzlanda"
+      },
+      "IT": {
+        "zoneName": "İtalya"
+      },
+      "IT-CNO": {
+        "countryName": "İtalya",
+        "zoneName": "Merkez Kuzey İtalya"
+      },
+      "IT-CSO": {
+        "countryName": "İtalya",
+        "zoneName": "Merkez Güney İtalya"
+      },
+      "IT-NO": {
+        "countryName": "İtalya",
+        "zoneName": "Kuzey İtalya"
+      },
+      "IT-SAR": {
+        "countryName": "İtalya",
+        "zoneName": "Sardinya"
+      },
+      "IT-SIC": {
+        "countryName": "İtalya",
+        "zoneName": "Sicilya"
+      },
+      "IT-SO": {
+        "countryName": "İtalya",
+        "zoneName": "South İtalya"
+      },
+      "JE": {
+        "zoneName": "Jersey"
+      },
+      "JM": {
+        "zoneName": "Jamaika"
+      },
+      "JO": {
+        "zoneName": "Ürdün"
+      },
+      "JP": {
+        "zoneName": "Japonya"
+      },
+      "JP-CB": {
+        "countryName": "Japonya",
+        "zoneName": "Chūbu"
+      },
+      "JP-CG": {
+        "countryName": "Japonya",
+        "zoneName": "Chūgoku"
+      },
+      "JP-HKD": {
+        "countryName": "Japonya",
+        "zoneName": "Hokkaidō"
+      },
+      "JP-HR": {
+        "countryName": "Japonya",
+        "zoneName": "Hokuriku"
+      },
+      "JP-KN": {
+        "countryName": "Japonya",
+        "zoneName": "Kansai"
+      },
+      "JP-KY": {
+        "countryName": "Japonya",
+        "zoneName": "Kyūshū"
+      },
+      "JP-ON": {
+        "countryName": "Japonya",
+        "zoneName": "Okinawa"
+      },
+      "JP-SK": {
+        "countryName": "Japonya",
+        "zoneName": "Shikoku"
+      },
+      "JP-TH": {
+        "countryName": "Japonya",
+        "zoneName": "Tōhoku"
+      },
+      "JP-TK": {
+        "countryName": "Japonya",
+        "zoneName": "Tōkyō"
+      },
+      "KE": {
+        "zoneName": "Kenya"
+      },
+      "KG": {
+        "zoneName": "Kırgızistan"
+      },
+      "KH": {
+        "zoneName": "Kamboçya"
+      },
+      "KM": {
+        "zoneName": "Komorlar"
+      },
+      "KP": {
+        "zoneName": "Kuzey Kore"
+      },
+      "KR": {
+        "zoneName": "Güney Kore"
+      },
+      "KW": {
+        "zoneName": "Kuveyt"
+      },
+      "KY": {
+        "zoneName": "Cayman Adaları"
+      },
+      "KZ": {
+        "zoneName": "Kazakistan"
+      },
+      "LA": {
+        "zoneName": "Laos"
+      },
+      "LB": {
+        "zoneName": "Lübnan"
+      },
+      "LC": {
+        "zoneName": "Saint Lucia"
+      },
+      "LI": {
+        "zoneName": "Lihtenştayn"
+      },
+      "LK": {
+        "zoneName": "Sri Lanka"
+      },
+      "LR": {
+        "zoneName": "Liberya"
+      },
+      "LS": {
+        "zoneName": "Lesotho"
+      },
+      "LT": {
+        "zoneName": "Litvanya"
+      },
+      "LU": {
+        "zoneName": "Lüksemburg"
+      },
+      "LV": {
+        "zoneName": "Letonya"
+      },
+      "LY": {
+        "zoneName": "Libya"
+      },
+      "MA": {
+        "zoneName": "Fas"
+      },
+      "MC": {
+        "zoneName": "Monako"
+      },
+      "MD": {
+        "zoneName": "Moldova"
+      },
+      "ME": {
+        "zoneName": "Karadağ"
+      },
+      "MG": {
+        "zoneName": "Madagaskar"
+      },
+      "MK": {
+        "zoneName": "Kuzey Makedonya"
+      },
+      "ML": {
+        "zoneName": "Mali"
+      },
+      "MM": {
+        "zoneName": "Myanmar"
+      },
+      "MN": {
+        "zoneName": "Moğolistan"
+      },
+      "MO": {
+        "zoneName": "Makao"
+      },
+      "MQ": {
+        "zoneName": "Martinik"
+      },
+      "MR": {
+        "zoneName": "Moritanya"
+      },
+      "MS": {
+        "zoneName": "Montserrat"
+      },
+      "MT": {
+        "zoneName": "Malta"
+      },
+      "MU": {
+        "zoneName": "Mauritius"
+      },
+      "MV": {
+        "zoneName": "Maldivler"
+      },
+      "MW": {
+        "zoneName": "Malavi"
+      },
+      "MX": {
+        "zoneName": "Meksika"
+      },
+      "MX-BC": {
+        "countryName": "Meksika",
+        "zoneName": "Baja California"
+      },
+      "MX-BCS": {
+        "countryName": "Meksika",
+        "zoneName": "Baja California Sur"
+      },
+      "MX-CE": {
+        "countryName": "Meksika",
+        "zoneName": "Merkezi"
+      },
+      "MX-NE": {
+        "countryName": "Meksika",
+        "zoneName": "Kuzey Doğu"
+      },
+      "MX-NO": {
+        "countryName": "Meksika",
+        "zoneName": "Kuzey"
+      },
+      "MX-NW": {
+        "countryName": "Meksika",
+        "zoneName": "Kuzey Batı"
+      },
+      "MX-OC": {
+        "countryName": "Meksika",
+        "zoneName": "Occidental"
+      },
+      "MX-OR": {
+        "countryName": "Meksika",
+        "zoneName": "Oryantal"
+      },
+      "MX-PN": {
+        "countryName": "Meksika",
+        "zoneName": "Yarımada"
+      },
+      "MY": {
+        "zoneName": "Malezya"
+      },
+      "MY-EM": {
+        "countryName": "Malezya",
+        "zoneName": "Borneo"
+      },
+      "MY-WM": {
+        "countryName": "Malezya",
+        "zoneName": "Yarımada"
+      },
+      "MZ": {
+        "zoneName": "Mozambik"
+      },
+      "NA": {
+        "zoneName": "Namibya"
+      },
+      "NC": {
+        "zoneName": "Yeni Kaledonya"
+      },
+      "NE": {
+        "zoneName": "Nijer"
+      },
+      "NG": {
+        "zoneName": "Nijerya"
+      },
+      "NI": {
+        "zoneName": "Nikaragua"
+      },
+      "NL": {
+        "zoneName": "Hollanda"
+      },
+      "NO": {
+        "zoneName": "Norveç"
+      },
+      "NO-NO1": {
+        "countryName": "Norveç",
+        "zoneName": "Güneydoğu Norveç"
+      },
+      "NO-NO2": {
+        "countryName": "Norveç",
+        "zoneName": "Güneybatı Norveç"
+      },
+      "NO-NO3": {
+        "countryName": "Norveç",
+        "zoneName": "Orta Norveç"
+      },
+      "NO-NO4": {
+        "countryName": "Norveç",
+        "zoneName": "Kuzey Norveç"
+      },
+      "NO-NO5": {
+        "countryName": "Norveç",
+        "zoneName": "Batı Norveç"
+      },
+      "NP": {
+        "zoneName": "Nepal"
+      },
+      "NZ": {
+        "zoneName": "Yeni Zelanda"
+      },
+      "NZ-NZA": {
+        "countryName": "Yeni Zelanda",
+        "zoneName": "Auckland Adaları"
+      },
+      "NZ-NZC": {
+        "countryName": "Yeni Zelanda",
+        "zoneName": "Chatham Adaları"
+      },
+      "NZ-NZST": {
+        "countryName": "Yeni Zelanda",
+        "zoneName": "Stewart Adaları"
+      },
+      "OM": {
+        "zoneName": "Umman"
+      },
+      "PA": {
+        "zoneName": "Panama"
+      },
+      "PE": {
+        "zoneName": "Peru"
+      },
+      "PF": {
+        "zoneName": "Fransız Polinezyası"
+      },
+      "PG": {
+        "zoneName": "Papua Yeni Gine"
+      },
+      "PH": {
+        "zoneName": "Filipinler"
+      },
+      "PH-LU": {
+        "countryName": "Filipinler",
+        "zoneName": "Luzon"
+      },
+      "PH-MI": {
+        "countryName": "Filipinler",
+        "zoneName": "Mindanao"
+      },
+      "PH-VI": {
+        "countryName": "Filipinler",
+        "zoneName": "Visayas"
+      },
+      "PK": {
+        "zoneName": "Pakistan"
+      },
+      "PL": {
+        "zoneName": "Polonya"
+      },
+      "PM": {
+        "zoneName": "Saint Pierre ve Miquelon"
+      },
+      "PR": {
+        "zoneName": "Porto Riko"
+      },
+      "PS": {
+        "zoneName": "Filistin Devleti"
+      },
+      "PT": {
+        "zoneName": "Portekiz"
+      },
+      "PT-AC": {
+        "countryName": "Portekiz",
+        "zoneName": "Azorlar"
+      },
+      "PT-MA": {
+        "countryName": "Portekiz",
+        "zoneName": "Madeira"
+      },
+      "PW": {
+        "zoneName": "Palau"
+      },
+      "PY": {
+        "zoneName": "Paraguay"
+      },
+      "QA": {
+        "zoneName": "Katar"
+      },
+      "RE": {
+        "zoneName": "Réunion"
+      },
+      "RO": {
+        "zoneName": "Romanya"
+      },
+      "RS": {
+        "zoneName": "Sırbistan"
+      },
+      "RU": {
+        "zoneName": "Rusya"
+      },
+      "RU-1": {
+        "countryName": "Rusya",
+        "zoneName": "Avrupa-Ural"
+      },
+      "RU-2": {
+        "countryName": "Rusya",
+        "zoneName": "Sibirya"
+      },
+      "RU-AS": {
+        "countryName": "Rusya",
+        "zoneName": "Doğu"
+      },
+      "RU-EU": {
+        "countryName": "Rusya",
+        "zoneName": "Arktik"
+      },
+      "RU-FE": {
+        "countryName": "Rusya",
+        "zoneName": "Uzak Doğu"
+      },
+      "RU-KGD": {
+        "countryName": "Rusya",
+        "zoneName": "Kaliningrad"
+      },
+      "RW": {
+        "zoneName": "Ruanda"
+      },
+      "SA": {
+        "zoneName": "Suudi Arabistan"
+      },
+      "SB": {
+        "zoneName": "Solomon Adaları"
+      },
+      "SC": {
+        "zoneName": "Seyşeller"
+      },
+      "SD": {
+        "zoneName": "Sudan"
+      },
+      "SE": {
+        "zoneName": "İsveç"
+      },
+      "SE-SE1": {
+        "countryName": "İsveç",
+        "zoneName": "Kuzey İsveç"
+      },
+      "SE-SE2": {
+        "countryName": "İsveç",
+        "zoneName": "Kuzey Merkezi İsveç"
+      },
+      "SE-SE3": {
+        "countryName": "İsveç",
+        "zoneName": "Güney Merkezi İsveç"
+      },
+      "SE-SE4": {
+        "countryName": "İsveç",
+        "zoneName": "Güney İsveç"
+      },
+      "SG": {
+        "zoneName": "Singapur"
+      },
+      "SI": {
+        "zoneName": "Slovenya"
+      },
+      "SJ": {
+        "zoneName": "Svalbard ve Jan Mayen"
+      },
+      "SK": {
+        "zoneName": "Slovakya"
+      },
+      "SL": {
+        "zoneName": "Sierra Leone"
+      },
+      "SN": {
+        "zoneName": "Senegal"
+      },
+      "SO": {
+        "zoneName": "Somali"
+      },
+      "SR": {
+        "zoneName": "Surinam"
+      },
+      "SS": {
+        "zoneName": "Güney Sudan"
+      },
+      "ST": {
+        "zoneName": "São Tomé ve Príncipe"
+      },
+      "SV": {
+        "zoneName": "El Salvador"
+      },
+      "SY": {
+        "zoneName": "Suriye"
+      },
+      "SZ": {
+        "zoneName": "Esvatini"
+      },
+      "TD": {
+        "zoneName": "Çad"
+      },
+      "TF": {
+        "zoneName": "Fransız Güney Toprakları"
+      },
+      "TG": {
+        "zoneName": "Togo"
+      },
+      "TH": {
+        "zoneName": "Tayland"
+      },
+      "TJ": {
+        "zoneName": "Tacikistan"
+      },
+      "TL": {
+        "zoneName": "Doğu Timor"
+      },
+      "TM": {
+        "zoneName": "Türkmenistan"
+      },
+      "TN": {
+        "zoneName": "Tunus"
+      },
+      "TO": {
+        "zoneName": "Tonga"
+      },
+      "TR": {
+        "zoneName": "Türkiye"
+      },
+      "TT": {
+        "zoneName": "Trinidad ve Tobago"
+      },
+      "TW": {
+        "zoneName": "Tayvan"
+      },
+      "TZ": {
+        "zoneName": "Tanzanya"
+      },
+      "UA": {
+        "zoneName": "Ukrayna"
+      },
+      "UA-CR": {
+        "countryName": "Ukrayna",
+        "zoneName": "Kırım"
+      },
+      "UG": {
+        "zoneName": "Uganda"
+      },
+      "US": {
+        "zoneName": "Bitişik Birleşik Devletler",
+        "seoZoneName": "Amerika Birleşik Devletleri - A.B.D."
+      },
+      "US-AK": {
+        "countryName": "ABD",
+        "zoneName": "Alaska"
+      },
+      "US-AK-SEAPA": {
+        "countryName": "ABD",
+        "zoneName": "Southeast Alaska Power Agency"
+      },
+      "US-HI": {
+        "countryName": "ABD",
+        "zoneName": "Hawaii"
+      },
+      "US-CAL-BANC": {
+        "countryName": "ABD",
+        "displayName": "BANC",
+        "zoneName": "Balancing Authority of Northern California",
+        "seoZoneName": "Balancing Authority of Northern California - BANC"
+      },
+      "US-CAL-CISO": {
+        "countryName": "ABD",
+        "displayName": "California ISO",
+        "zoneName": "CAISO",
+        "seoZoneName": "California ISO - CAISO "
+      },
+      "US-CAL-IID": {
+        "countryName": "ABD",
+        "zoneName": "Imperial Irrigation District",
+        "seoZoneName": "Imperial Irrigation District - California"
+      },
+      "US-CAL-LDWP": {
+        "countryName": "ABD",
+        "zoneName": "Los Angeles Department of Water and Power"
+      },
+      "US-CAL-TIDC": {
+        "countryName": "ABD",
+        "zoneName": "Turlock Irrigation District"
+      },
+      "US-CAR-CPLE": {
+        "countryName": "ABD",
+        "zoneName": "Duke Energy Progress East",
+        "seoZoneName": "Duke Energy Progress East - North Carolina"
+      },
+      "US-CAR-CPLW": {
+        "countryName": "ABD",
+        "zoneName": "Duke Energy Progress West",
+        "seoZoneName": "Duke Energy Progress West - North Carolina"
+      },
+      "US-CAR-DUK": {
+        "countryName": "ABD",
+        "zoneName": "Duke Energy Carolinas",
+        "seoZoneName": "Duke Energy Carolinas - North and South Carolina"
+      },
+      "US-CAR-SC": {
+        "countryName": "ABD",
+        "zoneName": "South Carolina Public Service Authority"
+      },
+      "US-CAR-SCEG": {
+        "countryName": "ABD",
+        "zoneName": "South Carolina Electric & Gas Company"
+      },
+      "US-CAR-YAD": {
+        "countryName": "ABD",
+        "displayName": "Alcoa Power Generating",
+        "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+      },
+      "US-CENT-SPA": {
+        "countryName": "ABD",
+        "zoneName": "Southwestern Power Administration"
+      },
+      "US-CENT-SWPP": {
+        "countryName": "ABD",
+        "displayName": "SPP",
+        "zoneName": "Southwest Power Pool",
+        "seoZoneName": "Southwest Power Pool - SPP"
+      },
+      "US-FLA-FMPP": {
+        "countryName": "ABD",
+        "zoneName": "Florida Municipal Power Pool"
+      },
+      "US-FLA-FPC": {
+        "countryName": "ABD",
+        "zoneName": "Duke Energy Florida"
+      },
+      "US-FLA-FPL": {
+        "countryName": "ABD",
+        "zoneName": "Florida Power and Light Company"
+      },
+      "US-FLA-GVL": {
+        "countryName": "ABD",
+        "zoneName": "Gainesville Regional Utilities"
+      },
+      "US-FLA-HST": {
+        "countryName": "ABD",
+        "zoneName": "City of Homestead"
+      },
+      "US-FLA-JEA": {
+        "countryName": "ABD",
+        "zoneName": "Jacksonville Electric Authority"
+      },
+      "US-FLA-SEC": {
+        "countryName": "ABD",
+        "zoneName": "Seminole Electric Cooperative"
+      },
+      "US-FLA-TAL": {
+        "countryName": "ABD",
+        "zoneName": "City of Tallahassee"
+      },
+      "US-FLA-TEC": {
+        "countryName": "ABD",
+        "zoneName": "Tampa Electric Company"
+      },
+      "US-MIDA-PJM": {
+        "countryName": "ABD",
+        "displayName": "PJM",
+        "zoneName": "PJM Interconnection",
+        "seoZoneName": "PJM Interconnection - Mid-Atlantic US"
+      },
+      "US-MIDW-AECI": {
+        "countryName": "ABD",
+        "zoneName": "Associated Electric Cooperative"
+      },
+      "US-MIDW-LGEE": {
+        "countryName": "ABD",
+        "displayName": "Louisville Gas And Electric Company",
+        "zoneName": "Louisville Gas and Electric Company and Kentucky Utilities"
+      },
+      "US-MIDW-MISO": {
+        "countryName": "ABD",
+        "displayName": "MISO",
+        "zoneName": "Midcontinent ISO",
+        "seoZoneName": "Midcontinent ISO - MISO"
+      },
+      "US-NE-ISNE": {
+        "countryName": "ABD",
+        "zoneName": "ISO New England",
+        "seoZoneName": "ISO New England - ISO-NE"
+      },
+      "US-NW-AVA": {
+        "countryName": "ABD",
+        "zoneName": "Avista Corporation"
+      },
+      "US-NW-BPAT": {
+        "countryName": "ABD",
+        "zoneName": "Bonneville Power Administration"
+      },
+      "US-NW-CHPD": {
+        "countryName": "ABD",
+        "zoneName": "Chelan County"
+      },
+      "US-NW-DOPD": {
+        "countryName": "ABD",
+        "zoneName": "Douglas County"
+      },
+      "US-NW-GCPD": {
+        "countryName": "ABD",
+        "zoneName": "Grant County"
+      },
+      "US-NW-GRID": {
+        "countryName": "ABD",
+        "zoneName": "Gridforce Energy Management"
+      },
+      "US-NW-IPCO": {
+        "countryName": "ABD",
+        "zoneName": "Idaho Power Company"
+      },
+      "US-NW-NEVP": {
+        "countryName": "ABD",
+        "zoneName": "Nevada Power Company"
+      },
+      "US-NW-NWMT": {
+        "countryName": "ABD",
+        "zoneName": "Northwestern Energy"
+      },
+      "US-NW-PACE": {
+        "countryName": "ABD",
+        "zoneName": "Pacificorp East"
+      },
+      "US-NW-PACW": {
+        "countryName": "ABD",
+        "zoneName": "Pacificorp West"
+      },
+      "US-NW-PGE": {
+        "countryName": "ABD",
+        "zoneName": "Portland General Electric Company"
+      },
+      "US-NW-PSCO": {
+        "countryName": "ABD",
+        "displayName": "PSCo",
+        "zoneName": "Public Service Company of Colorado",
+        "seoZoneName": "Public Service Company of Colorado - PSCo"
+      },
+      "US-NW-PSEI": {
+        "countryName": "ABD",
+        "zoneName": "Puget Sound Energy"
+      },
+      "US-NW-SCL": {
+        "countryName": "ABD",
+        "zoneName": "Seattle City Light"
+      },
+      "US-NW-TPWR": {
+        "countryName": "ABD",
+        "zoneName": "City of Tacoma"
+      },
+      "US-NW-WACM": {
+        "countryName": "ABD",
+        "displayName": "WAPA Rocky Mountains",
+        "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+      },
+      "US-NW-WAUW": {
+        "countryName": "ABD",
+        "displayName": "WAPA Upper Great Plains",
+        "zoneName": "Western Area Power Administration - Upper Great Plains West"
+      },
+      "US-NY-NYIS": {
+        "countryName": "ABD",
+        "zoneName": "New York ISO",
+        "seoZoneName": "New York ISO - NYISO"
+      },
+      "US-SE-SEPA": {
+        "countryName": "ABD",
+        "zoneName": "Southeastern Power Administration"
+      },
+      "US-SE-SOCO": {
+        "countryName": "ABD",
+        "zoneName": "Southern Company Services"
+      },
+      "US-SW-AZPS": {
+        "countryName": "ABD",
+        "zoneName": "Arizona Public Service Company"
+      },
+      "US-SW-EPE": {
+        "countryName": "ABD",
+        "zoneName": "El Paso Electric Company"
+      },
+      "US-SW-PNM": {
+        "countryName": "ABD",
+        "zoneName": "Public Service Company of New Mexico"
+      },
+      "US-SW-SRP": {
+        "countryName": "ABD",
+        "zoneName": "Salt River Project"
+      },
+      "US-SW-TEPC": {
+        "countryName": "ABD",
+        "zoneName": "Tucson Electric Power Company"
+      },
+      "US-SW-WALC": {
+        "countryName": "ABD",
+        "displayName": "WAPA Desert Southwest",
+        "zoneName": "Western Area Power Administration - Desert Southwest Region"
+      },
+      "US-TEN-TVA": {
+        "countryName": "ABD",
+        "displayName": "TVA",
+        "zoneName": "Tennessee Valley Authority",
+        "seoZoneName": "Tennessee Valley Authority - TVA"
+      },
+      "US-TEX-ERCO": {
+        "countryName": "ABD",
+        "displayName": "ERCOT",
+        "zoneName": "Electric Reliability Council of Texas",
+        "seoZoneName": "Electric Reliability Council of Texas - ERCOT"
+      },
+      "UY": {
+        "zoneName": "Uruguay"
+      },
+      "UZ": {
+        "zoneName": "Özbekistan"
+      },
+      "VC": {
+        "zoneName": "Saint Vincent ve Grenadinler"
+      },
+      "VE": {
+        "zoneName": "Venezuela"
+      },
+      "VI": {
+        "countryName": "ABD",
+        "zoneName": "Virjin Adaları"
+      },
+      "VN": {
+        "zoneName": "Vietnam"
+      },
+      "VU": {
+        "zoneName": "Vanuatu"
+      },
+      "WS": {
+        "zoneName": "Samoa"
+      },
+      "XK": {
+        "zoneName": "Kosova"
+      },
+      "XX": {
+        "zoneName": "Kuzey Kıbrıs"
+      },
+      "YE": {
+        "zoneName": "Yemen"
+      },
+      "YT": {
+        "zoneName": "Mayotte"
+      },
+      "ZA": {
+        "zoneName": "Güney Afrika"
+      },
+      "ZM": {
+        "zoneName": "Zambiya"
+      },
+      "ZW": {
+        "zoneName": "Zimbabve"
+      }
+    }
+  }
+  
