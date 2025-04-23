@@ -4,6 +4,7 @@ import Intercom, { shutdown } from '@intercom/messenger-js-sdk';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
+import { captureException } from '@sentry/react';
 import useGetState from 'api/getState';
 import { AppStoreBanner } from 'components/AppStoreBanner';
 import GtmPageTracker from 'components/GtmPageTracker';
@@ -114,6 +115,54 @@ export default function App(): ReactElement {
       }
     }
   }, [location.pathname, navigate, setIsMapMoving]);
+
+  // --- BEGIN SERVICE WORKER CLEANUP ---
+  // Attempt to unregister any existing service workers on load.
+  // This helps users stuck on older versions with different SW update mechanisms.
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((registrations) => {
+          if (registrations.length > 0) {
+            console.log(
+              'Found existing service worker registrations. Attempting to unregister...'
+            );
+            const unregisterPromises = registrations.map((registration) =>
+              registration.unregister().then((success) => {
+                console.log(
+                  `Unregistering service worker for scope ${registration.scope}: ${
+                    success ? 'Success' : 'Failed'
+                  }`
+                );
+                return success;
+              })
+            );
+            return Promise.all(unregisterPromises);
+          } else {
+            console.log('No existing service worker registrations found.');
+          }
+        })
+        .then((results) => {
+          if (results && results.some(Boolean)) {
+            console.log(
+              'Successfully unregistered old service workers. Reloading to apply changes cleanly.'
+            );
+            // Force a reload to ensure the browser starts fresh without the old SW interfering.
+            window.location.reload();
+          } else if (results) {
+            console.log(
+              'Failed to unregister all old service workers or none needed unregistering.'
+            );
+          }
+        })
+        .catch((error) => {
+          console.error('Error during service worker cleanup:', error);
+          captureException(error, { tags: { type: 'service_worker_cleanup_error' } });
+        });
+    }
+  }, []); // Empty dependency array ensures this runs only once on mount
+  // --- END SERVICE WORKER CLEANUP ---
 
   // Handle global keyboard shortcut for search
   useEffect(() => {
