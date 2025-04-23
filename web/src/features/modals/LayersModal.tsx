@@ -38,7 +38,7 @@ function WeatherToggleSwitch({
       <div className="flex items-center">
         <Icon size={20} className="mr-2 text-secondary dark:text-secondary-dark" />
         <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
-          {t(`${typeAsTitlecase} layer`)}
+          {t(`aria.label.${type}Layer`)}
         </span>
       </div>
 
