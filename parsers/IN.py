@@ -7,7 +7,6 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
