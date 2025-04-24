@@ -7,7 +7,6 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
@@ -22,6 +21,7 @@ from parsers.lib.exceptions import ParserException
 
 IN_TZ = ZoneInfo("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
+# 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
 CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
@@ -49,11 +49,11 @@ NPP_REGION_MAPPING = {
 }
 
 CEA_REGION_MAPPING = {
-    "उत्तरी क्षेत्र / Northern Region": "IN-NO",
-    "पश्चिमी क्षेत्र / Western Region": "IN-WE",
-    "दक्षिणी क्षेत्र / Southern Region": "IN-SO",
-    "पूर्वी क्षेत्र/ Eastern Region": "IN-EA",
-    "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
+    "northern region": "IN-NO",
+    "western region": "IN-WE",
+    "southern region": "IN-SO",
+    "eastern region": "IN-EA",
+    "north-eastern region": "IN-NE",
 }
 
 DEMAND_URL_VIDYUTPRAVAH = "{proxy}/state-data/{state}?host=https://vidyutpravah.in"
@@ -354,7 +354,7 @@ def format_ren_production_data(
     url: str, zone_key: str, target_datetime: datetime
 ) -> dict[str, Any]:
     """Formats daily renewable production data for each zone"""
-    df_ren = pd.read_excel(url, engine="openpyxl", header=5, skipfooter=2)
+    df_ren = pd.read_excel(url, engine="openpyxl", header=5)
     df_ren = df_ren.dropna(axis=0, how="all")
 
     # They changed format of the data from 2024/07/01
@@ -368,6 +368,7 @@ def format_ren_production_data(
             }
         )
     else:
+        # columns 4-7 are cumulative values for the month
         df_ren = df_ren.rename(
             columns={
                 df_ren.columns[0]: "region",
@@ -377,22 +378,29 @@ def format_ren_production_data(
             }
         )
 
-    df_ren.loc[:, "zone_key"] = (
-        df_ren["region"].apply(lambda x: x if "Region" in x else np.nan).backfill()
+    is_region = df_ren["region"].str.contains("Region")
+    # values should be "{Indian name}/{English name}"
+    df_ren["zone_key"] = (
+        df_ren["region"]
+        .loc[is_region]
+        .str.split("/")
+        .str[1]
+        .str.lower()
+        .map(CEA_REGION_MAPPING)
     )
 
-    df_ren["zone_key"] = df_ren["zone_key"].str.strip()
-    df_ren["zone_key"] = df_ren["zone_key"].map(CEA_REGION_MAPPING)
-
     zone_data = df_ren.loc[
-        (df_ren.zone_key == zone_key) & (~df_ren.region.str.contains("Region"))
-    ][["wind", "solar", "unknown"]].sum()
+        (df_ren["zone_key"] == zone_key), ["wind", "solar", "unknown"]
+    ]
+    if zone_data.shape != (1, 3):
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: {zone_key} renewable production data is not available",
+        )
+    zone_data = (zone_data / CONVERSION_GWH_MW).round(3)
+    zone_data = zone_data.iloc[0, :].to_dict()
 
-    renewable_production = {
-        key: round(zone_data.get(key) / CONVERSION_GWH_MW, 3) for key in zone_data.index
-    }
-
-    return renewable_production
+    return zone_data
 
 
 def fetch_cea_production(
