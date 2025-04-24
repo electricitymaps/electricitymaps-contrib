@@ -19,6 +19,7 @@ contributors:
   - lorrieq
   - wobniarin
   - PPsyrius
+  - alejandranavcas
 country: JP
 delays:
   production: 5
@@ -227,6 +228,7 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP_SK.fetch_production
+  generationForecast: JP.fetch_generation_forecast
 region: Asia
 sources:
   Enerdata 2022 Japanese National Average:

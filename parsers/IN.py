@@ -304,6 +304,10 @@ def fetch_npp_production(
 
     if r.status_code == 200:
         df_npp = pd.read_excel(r.content, header=3)
+        # Since 15/04/2025, a footer was added to the excel file.
+        # It modifies the structure of its columns. By removing the footer and then removing the empty columns, we can have a consistent structure.
+        df_npp = df_npp[df_npp[df_npp.columns[0]].notnull()]
+        df_npp = df_npp.dropna(axis="columns", how="all")
         df_npp = df_npp.rename(
             columns={
                 df_npp.columns[0]: "power_station",

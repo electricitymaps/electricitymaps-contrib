@@ -5,7 +5,7 @@ import trackEvent from 'utils/analytics';
 import { LeftPanelToggleOptions, TrackEvent } from 'utils/constants';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
 
-const options: ToggleButtonOptions = [
+const options: ToggleButtonOptions<LeftPanelToggleOptions> = [
   {
     value: LeftPanelToggleOptions.ELECTRICITY,
     translationKey: 'country-panel.electricityconsumption',
@@ -22,7 +22,10 @@ function EmissionToggle(): ReactElement {
   // TODO: perhaps togglebutton should accept boolean values
 
   const onSetCurrentMode = useCallback(
-    (option: string) => {
+    (option: LeftPanelToggleOptions | '') => {
+      if (option === '') {
+        return;
+      }
       trackEvent(
         displayByEmissions
           ? TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED
