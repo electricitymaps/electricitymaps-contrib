@@ -13,8 +13,12 @@ export const LoadingSpinnerIcon = memo(function LoadingSpinnerIcon({
         viewBox="0 0 71 75" // Adjusted viewBox to match the new logo
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        // Add a class for the animation
-        className="animate-loading-icon-spinner-animation"
+        // Apply animation directly via inline style, similar to original approach
+        style={{
+          animation: `loading-icon-spinner-animation 1.5s linear 0s infinite`,
+          // Set initial opacity to prevent potential flicker before animation starts
+          opacity: 1,
+        }}
       >
         {/* Inserted LogoIcon path */}
         <path

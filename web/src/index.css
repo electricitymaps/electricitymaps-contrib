@@ -188,6 +188,17 @@ noscript img {
   max-width: 300px;
 }
 
+/* Restore original simple opacity animation */
+@keyframes loading-icon-spinner-animation {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
 .intercom-lightweight-app-launcher {
   display: none !important;
 }
@@ -195,24 +206,4 @@ noscript img {
 /* Hide intercom launcher unless it's active */
 .intercom-launcher:not(.intercom-launcher-active) {
   display: none !important;
-}
-
-@keyframes loading-icon-spinner-animation {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    /* Make the pulse slightly more pronounced */
-    transform: scale(0.9);
-    opacity: 0.6;
-  }
-}
-
-.animate-loading-icon-spinner-animation {
-  /* Shorten duration for a slightly quicker feel */
-  animation: loading-icon-spinner-animation 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  /* Ensure scaling originates from the center */
-  transform-origin: center;
 }
