@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 import re
+import io
 from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
 # The request library is used to fetch content through HTTP
 from bs4 import BeautifulSoup
+import pandas as pd
 from requests import Session, get
 
 from parsers import occtonet
@@ -43,41 +45,30 @@ def fetch_production(
     }
 
     # url for consumption and solar
-    url = "https://www.kyuden.co.jp/td_power_usages/pc.html"
-    r = get(url)
-    r.encoding = "utf-8"
-    html = r.text
-    soup = BeautifulSoup(html, "lxml")
+    url = f"https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{datetime.now(tz=TIMEZONE).strftime('%Y%m%d')}.csv"
+    response = get(url)
+    content = response.text
 
-    # get date
-    date_div = soup.find("div", class_="puChangeGraph")
-    date_str = re.findall(r"(?<=chart/chart)[\d]+(?=.gif)", str(date_div))[0]
+    # Filter out the irrelevant data
+    start_idx = content.rfind("DATE,TIME")
+    if start_idx == -1:
+        logger.error("Could not find time series data section in solar and consumption CSV")
+        return []
+    time_series_section = content[start_idx:]
+    df = pd.read_csv(io.StringIO(time_series_section))
 
-    # get hours and minutes
-    time_str = soup.find("p", class_="puProgressNow__time").get_text()
-    hours = int(re.findall(r"[\d]+(?=時)", time_str)[0])
-    minutes = int(re.findall(r"(?<=時)[\d]+(?=分)", time_str)[0])
+    # Translate column names to english
+    df.columns = ['DATE', 'TIME', 'consumption', 'solar']
 
-    # parse datetime
-    dt = datetime.strptime(date_str, "%Y%m%d").replace(
-        hour=hours, minute=minutes, tzinfo=TIMEZONE
-    )
+    last_complete_row = df.dropna().iloc[-1]
+
+    dt = datetime.strptime(f"{last_complete_row['DATE']} {last_complete_row['TIME']}", "%Y/%m/%d %H:%M")
+    dt = dt.replace(tzinfo=TIMEZONE)
     data["datetime"] = dt
 
-    # consumption
-    consumption = soup.find("p", class_="puProgressNow__useAmount").get_text()
-    consumption = re.findall(
-        r"(?<=使用量\xa0)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?(?=万kW／)",
-        consumption,
-    )
-    consumption = consumption[0].replace(",", "")
-    # convert from 万kW to MW (note: '万' is the unit of 10K)
-    consumption = float(consumption) * 10
-
-    # solar
-    solar = soup.find("td", class_="puProgressSun__num").get_text()
-    # convert from 万kW to MW
-    solar = float(solar) * 10
+    # Get values in MW - convert from 10000 kW to MW
+    consumption = last_complete_row['consumption'].astype(float) * 10
+    solar = last_complete_row['solar'].astype(float) * 10
 
     # add two nuclear power plants at Sendai and Genkai
     sendai_url = (
