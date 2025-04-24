@@ -19,6 +19,7 @@ contributors:
   - lorrieq
   - pierresegonne
   - wobniarin
+  - alejandranavcas
 country: JP
 delays:
   production: 5
@@ -211,6 +212,7 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
+  generationForecast: JP.fetch_generation_forecast
 region: Asia
 sources:
   Chubu Electric Power 2022:
