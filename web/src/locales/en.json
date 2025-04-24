@@ -38,6 +38,13 @@
     "areas": "Areas",
     "about": "About"
   },
+  "sidebar-menu": {
+    "map": "Map",
+    "datasets": "Datasets",
+    "api": "API",
+    "api-docs": "API Docs",
+    "helpMenu": "Help and Support Menu"
+  },
   "app-banner": {
     "cta": "Get the app",
     "description": "Live electricity data"
@@ -431,12 +438,12 @@
     "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its carbon intensity). The greener the colour, the more climate-friendly the electricity consumption.",
     "mapArrows-question": "What do the arrows between areas on the map indicate?",
     "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
-    "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
+    "mapSolarWindButtons-question": "What do 'sun' and 'wind' buttons on the map do?",
     "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunshine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells is also dependent on many other factors.",
     "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
     "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated with nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
     "mapColorBlind-question": "I am color blind. How can I read your map?",
-    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on right side of the app on desktop and in the settings panel on the mobile app."
+    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the 'color blind mode' setting. It is located on right side of the app on desktop and in the settings panel on the mobile app."
   },
   "mapAreas": {
     "groupName": "Areas in the map",
@@ -457,7 +464,7 @@
     "methodology-answer": "We have detailed our full methodology on <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a>, with additional documentation in <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>our GitHub Wiki</a>.",
     "regionalEmissionFactors-question": "Why are the emission factors changing for different areas?",
     "regionalEmissionFactors-answer": "For some zones, we are able to source more precise emission factors than the global average used as a fallback. For example, for the US and the EU direct power plant emissions are publicly available. We then match these emissions with power plant generation data and compute per power plant emission factors, which is aggregated at a zone level. See <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>details on the Wiki</a>.",
-    "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
+    "renewableLowCarbonDifference-question": "What is the difference between 'renewable' and 'low-carbon'?",
     "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
     "importsAndExports-question": "Do you take into account imports and exports of electricity?",
     "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small arrows between different areas when <strong>consumption</strong> mode is selected. Detailed information can be seen in the charts shown when you click on an area.",
@@ -465,7 +472,7 @@
     "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
     "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
     "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
-    "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
+    "otherSources-question": "Why don't you show other sources of emissions than electricity production?",
     "otherSources-answer": "We only focus on electricity production for now, as this is <a href='https://ourworldindata.org/emissions-by-sector#energy-electricity-heat-and-transport-73-2' target='_blank'>the largest source of emissions</a> and the one that can be most easily decarbonized.",
     "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
     "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",

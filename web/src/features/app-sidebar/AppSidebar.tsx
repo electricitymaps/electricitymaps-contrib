@@ -13,6 +13,7 @@ import {
   MapIcon,
 } from 'lucide-react';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { MenuItem } from './MenuItem';
 import {
@@ -31,34 +32,35 @@ export const SIDEBAR_WIDTH = '63px';
 
 const PORTAL_URL = 'https://portal.electricitymaps.com';
 
-const MENU_ITEMS = [
-  {
-    to: '/',
-    label: 'Map',
-    icon: MapIcon,
-    isActive: true,
-  },
-  {
-    label: 'Datasets',
-    to: `${PORTAL_URL}/datasets`,
-    icon: FileDownIcon,
-  },
-  {
-    label: 'API',
-    to: `${PORTAL_URL}`,
-    icon: CodeXmlIcon,
-  },
-  {
-    label: 'API Docs',
-    to: `${PORTAL_URL}/docs`,
-    icon: BookOpenIcon,
-  },
-];
-
 export function AppSidebar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tooltipReference = useRef<TooltipWrapperReference>(null);
   const isIntercomEnabled = useFeatureFlag('intercom-messenger');
+  const { t } = useTranslation();
+
+  const MENU_ITEMS = [
+    {
+      to: '/',
+      label: t('sidebar-menu.map'),
+      icon: MapIcon,
+      isActive: true,
+    },
+    {
+      label: t('sidebar-menu.datasets'),
+      to: `${PORTAL_URL}/datasets`,
+      icon: FileDownIcon,
+    },
+    {
+      label: t('sidebar-menu.api'),
+      to: `${PORTAL_URL}`,
+      icon: CodeXmlIcon,
+    },
+    {
+      label: t('sidebar-menu.api-docs'),
+      to: `${PORTAL_URL}/docs`,
+      icon: BookOpenIcon,
+    },
+  ];
 
   const handleOpenChange = (open: boolean) => {
     setIsMenuOpen(open);
@@ -93,7 +95,9 @@ export function AppSidebar() {
         <TooltipWrapper
           ref={tooltipReference}
           tooltipContent={
-            isMenuOpen ? undefined : <LabelTooltip>Help & Support</LabelTooltip>
+            isMenuOpen ? undefined : (
+              <LabelTooltip>{t('sidebar-menu.helpMenu')}</LabelTooltip>
+            )
           }
           side="right"
           sideOffset={4}
@@ -103,7 +107,7 @@ export function AppSidebar() {
               <DropdownMenu.Trigger asChild>
                 <SidebarMenuButton
                   className="p-2 text-neutral-600 transition-all duration-200 hover:bg-[#126945]/10 hover:text-[#126945] data-[active=true]:bg-[#126945]/10 data-[active=true]:font-semibold data-[active=true]:text-[#126945] group-data-[collapsible=icon]:!p-1.5 dark:text-neutral-200 dark:hover:bg-[#4DC18C]/20 dark:hover:text-[#4DC18C] dark:data-[active=true]:bg-[#4DC18C]/20 dark:data-[active=true]:text-[#4DC18C] group-data-[collapsible=icon]:[&>svg]:size-5"
-                  aria-label="Help and Support Menu"
+                  aria-label={t('sidebar-menu.helpMenu')}
                 >
                   <HelpCircleIcon />
                 </SidebarMenuButton>
@@ -123,7 +127,7 @@ export function AppSidebar() {
                       rel="noopener noreferrer"
                       className="flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 outline-none hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
                     >
-                      FAQ & Support
+                      {t('button.faq')}
                     </a>
                   </DropdownMenu.Item>
                   {isIntercomEnabled && (
@@ -137,7 +141,7 @@ export function AppSidebar() {
                       }}
                       className="flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 outline-none hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
                     >
-                      Chat With Us
+                      {t('misc.chat-with-us')}
                     </DropdownMenu.Item>
                   )}
                 </DropdownMenu.Content>

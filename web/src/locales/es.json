@@ -32,6 +32,13 @@
     "areas": "Zonas",
     "about": "Info"
   },
+  "sidebar-menu": {
+    "map": "Mapa",
+    "datasets": "Datos",
+    "api": "API",
+    "api-docs": "Documentación API",
+    "helpMenu": "Menu de ayuda"
+  },
   "app-banner": {
     "cta": "Obtén la aplicación",
     "description": "Datos de electricidad en tiempo real"
