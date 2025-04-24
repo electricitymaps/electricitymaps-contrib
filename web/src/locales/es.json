@@ -25,7 +25,10 @@
     "feedback": "Comparte tus comentarios",
     "faq": "Preguntas frecuentes",
     "privacy-policy": "Política de privacidad",
-    "legal-notice": "Aviso legal"
+    "legal-notice": "Aviso legal",
+    "api": "Acceder a la API",
+    "docs": "Documentación API",
+    "chat-with-us": "Chatea con nosotros"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",

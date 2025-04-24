@@ -141,7 +141,7 @@ export function AppSidebar() {
                       }}
                       className="flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 outline-none hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
                     >
-                      {t('misc.chat-with-us')}
+                      {t('button.chat-with-us')}
                     </DropdownMenu.Item>
                   )}
                 </DropdownMenu.Content>
