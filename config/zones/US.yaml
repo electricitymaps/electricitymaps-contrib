@@ -460,6 +460,8 @@ sources:
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 subZoneNames:
+  - US-AK-SEAPA
+  - US-AK
   - US-CAL-BANC
   - US-CAL-CISO
   - US-CAL-IID
@@ -482,6 +484,7 @@ subZoneNames:
   - US-FLA-SEC
   - US-FLA-TAL
   - US-FLA-TEC
+  - US-HI
   - US-MIDA-PJM
   - US-MIDW-AECI
   - US-MIDW-LGEE
