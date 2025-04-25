@@ -133,7 +133,7 @@ export default function TimeController({
               size="sm"
               onClick={onToggle}
               foregroundClasses="px-2"
-              backgroundClasses="outline outline-1 outline-neutral-200 dark:outline-neutral-700"
+              backgroundClasses="outline outline-1 outline-neutral-200 bg-white dark:bg-neutral-900 dark:outline-neutral-700"
               shouldShrink
             >
               <FormattedTime

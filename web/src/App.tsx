@@ -1,5 +1,6 @@
 import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
+import Intercom, { shutdown } from '@intercom/messenger-js-sdk';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
@@ -12,7 +13,6 @@ import { AppSidebar, SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import UpdatePrompt from 'features/service-worker/UpdatePrompt';
 import DateRedirectToast from 'features/time/DateRedirectToast';
 import { useDarkMode } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
@@ -49,9 +49,20 @@ export default function App(): ReactElement {
   const canonicalUrl = useGetCanonicalUrl();
   const setConsumptionAtom = useSetAtom(productionConsumptionAtom);
   const isConsumptionOnlyMode = useFeatureFlag('consumption-only');
+  const isIntercomEnabled = useFeatureFlag('intercom-messenger');
   const location = useLocation();
   const navigate = useNavigateWithParameters();
   const setIsMapMoving = useSetAtom(mapMovingAtom);
+
+  useEffect(() => {
+    if (isIntercomEnabled) {
+      Intercom({
+        app_id: 'trqbz4yj',
+      });
+    } else {
+      shutdown();
+    }
+  }, [isIntercomEnabled]);
 
   useEffect(() => {
     if (isConsumptionOnlyMode) {
@@ -146,10 +157,20 @@ export default function App(): ReactElement {
           <AppStoreBanner />
           <ToastProvider duration={20_000}>
             <div className="relative flex flex-auto items-stretch">
-              <Sentry.ErrorBoundary fallback={ErrorComponent} showDialog>
-                <Suspense>
-                  <UpdatePrompt />
-                </Suspense>
+              <Sentry.ErrorBoundary
+                fallback={ErrorComponent}
+                showDialog
+                onError={(error) => {
+                  // Check if the error is the dynamic import fetch error after a PWA update
+                  if (
+                    error instanceof TypeError &&
+                    error.message.includes('Failed to fetch dynamically imported module')
+                  ) {
+                    // Force a reload to ensure the browser fetches the latest assets from the SW
+                    window.location.reload();
+                  }
+                }}
+              >
                 <Suspense>
                   <DateRedirectToast />
                 </Suspense>

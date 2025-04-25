@@ -16,6 +16,7 @@ capacity:
 contributors:
   - tmslaine
   - lorrieq
+  - alejandranavcas
 country: JP
 delays:
   production: 5
@@ -270,5 +271,6 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
+  generationForecast: JP.fetch_generation_forecast
 region: Asia
 timezone: Asia/Tokyo
