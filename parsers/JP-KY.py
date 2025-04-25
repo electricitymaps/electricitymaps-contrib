@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-import re
 import io
+import re
 from datetime import datetime
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-# The request library is used to fetch content through HTTP
-from bs4 import BeautifulSoup
 import pandas as pd
+
+# The request library is used to fetch content through HTTP
 from requests import Session, get
 
 from parsers import occtonet
@@ -52,23 +52,27 @@ def fetch_production(
     # Filter out the irrelevant data
     start_idx = content.rfind("DATE,TIME")
     if start_idx == -1:
-        logger.error("Could not find time series data section in solar and consumption CSV")
+        logger.error(
+            "Could not find time series data section in solar and consumption CSV"
+        )
         return []
     time_series_section = content[start_idx:]
     df = pd.read_csv(io.StringIO(time_series_section))
 
     # Translate column names to english
-    df.columns = ['DATE', 'TIME', 'consumption', 'solar']
+    df.columns = ["DATE", "TIME", "consumption", "solar"]
 
     last_complete_row = df.dropna().iloc[-1]
 
-    dt = datetime.strptime(f"{last_complete_row['DATE']} {last_complete_row['TIME']}", "%Y/%m/%d %H:%M")
+    dt = datetime.strptime(
+        f"{last_complete_row['DATE']} {last_complete_row['TIME']}", "%Y/%m/%d %H:%M"
+    )
     dt = dt.replace(tzinfo=TIMEZONE)
     data["datetime"] = dt
 
     # Get values in MW - convert from 10000 kW to MW
-    consumption = last_complete_row['consumption'].astype(float) * 10
-    solar = last_complete_row['solar'].astype(float) * 10
+    consumption = last_complete_row["consumption"].astype(float) * 10
+    solar = last_complete_row["solar"].astype(float) * 10
 
     # add two nuclear power plants at Sendai and Genkai
     sendai_url = (
