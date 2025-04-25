@@ -1,3 +1,5 @@
+/// <reference types="vite-plugin-pwa/client" />
+
 // Init CSS
 import 'maplibre-gl/dist/maplibre-gl.css';
 import 'react-spring-bottom-sheet/dist/style.css';
@@ -31,6 +33,7 @@ import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
+import { registerSW } from 'virtual:pwa-register';
 
 const isProduction = import.meta.env.PROD;
 if (isProduction) {
@@ -274,6 +277,25 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+// Service Worker update handling
+const updateSW = registerSW({
+  onNeedRefresh() {
+    console.log('PWA: New content available, refreshing...');
+    updateSW(true); // Attempt to skip waiting
+  },
+  onOfflineReady() {
+    console.log('PWA: App ready to work offline.');
+  },
+});
+
+// ADDED: Listen for controller change to reload page when new SW activates
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    console.log('PWA: Controller changed, reloading page...');
+    window.location.reload();
+  });
+}
 
 const container = document.querySelector('#root');
 if (container) {
