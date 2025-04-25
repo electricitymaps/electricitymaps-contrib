@@ -32,7 +32,6 @@ const getState = async (
   const path: URL = new URL(
     `v10/state/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}${getParameters(
       shouldQueryHistorical,
-      is1HourAppDelay,
       targetDatetime
     )}`,
     getBasePath()
@@ -75,3 +74,4 @@ const useGetState = (): UseQueryResult<GridState> => {
 };
 
 export default useGetState;
+
