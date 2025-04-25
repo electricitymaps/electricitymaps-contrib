@@ -96,7 +96,7 @@ def fetch_production(
 def renewables_production_mix(
     zone_key: ZoneKey, session: Session, logger: Logger
 ) -> ProductionBreakdownList:
-    """Retrieves production mix for renewables using CAMMESA's API"""
+    """Retrieves production mix for renewables using CAMMESA's API with enhanced error handling."""
 
     today = (
         datetime.now()
@@ -104,28 +104,39 @@ def renewables_production_mix(
         .strftime("%d-%m-%Y")
     )
     params = {"desde": today, "hasta": today}
-    renewables_response = session.get(CAMMESA_RENEWABLES_ENDPOINT, params=params)
-    assert renewables_response.status_code == 200, (
-        "Exception when fetching production for "
-        f"{zone_key}: error when calling url={CAMMESA_RENEWABLES_ENDPOINT} with payload={params}"
-    )
+    
+    try:
+        renewables_response = session.get(CAMMESA_RENEWABLES_ENDPOINT, params=params, timeout=10)
+        renewables_response.raise_for_status()
+        production_list = renewables_response.json()
+    except Exception as e:
+        logger.error(f"[AR Renewables] Failed fetching or decoding renewables data: {e}")
+        raise ParserException(parser="AR.py", message=f"Renewables API error: {str(e)}", zone_key=zone_key)
 
-    production_list = renewables_response.json()
+    if not isinstance(production_list, list) or not production_list:
+        logger.error(f"[AR Renewables] Empty or invalid renewables production list: {production_list}")
+        raise ParserException(parser="AR.py", message="Empty or invalid renewables production data", zone_key=zone_key)
+
+    logger.info(f"[AR Renewables] Successfully retrieved {len(production_list)} production records.")
+
     renewables_production = ProductionBreakdownList(logger)
     for production_info in production_list:
-        renewables_production.append(
-            zoneKey=zone_key,
-            datetime=datetime.strptime(
-                production_info["momento"], "%Y-%m-%dT%H:%M:%S.%f%z"
-            ),
-            production=ProductionMix(
-                biomass=production_info["biocombustible"],
-                hydro=production_info["hidraulica"],
-                solar=production_info["fotovoltaica"],
-                wind=production_info["eolica"],
-            ),
-            source=SOURCE,
-        )
+        try:
+            renewables_production.append(
+                zoneKey=zone_key,
+                datetime=datetime.strptime(
+                    production_info["momento"], "%Y-%m-%dT%H:%M:%S.%f%z"
+                ),
+                production=ProductionMix(
+                    biomass=production_info.get("biocombustible", 0.0),
+                    hydro=production_info.get("hidraulica", 0.0),
+                    solar=production_info.get("fotovoltaica", 0.0),
+                    wind=production_info.get("eolica", 0.0),
+                ),
+                source=SOURCE,
+            )
+        except KeyError as e:
+            logger.warning(f"[AR Renewables] Missing expected field {e} in production info: {production_info}")
 
     return renewables_production
 
@@ -133,45 +144,52 @@ def renewables_production_mix(
 def non_renewables_production_mix(
     zone_key: ZoneKey, session: Session, logger: Logger
 ) -> ProductionBreakdownList:
-    """Retrieves production mix for non renewables using CAMMESA's API"""
+    """Retrieves production mix for non renewables using CAMMESA's API with enhanced error handling."""
 
     params = {"id_region": 1002}
-    api_cammesa_response = session.get(CAMMESA_DEMANDA_ENDPOINT, params=params)
-    assert api_cammesa_response.status_code == 200, (
-        "Exception when fetching production for "
-        f"{zone_key}: error when calling url={CAMMESA_DEMANDA_ENDPOINT} with payload={params}"
-    )
-    production_list = api_cammesa_response.json()
+    
+    try:
+        api_cammesa_response = session.get(CAMMESA_DEMANDA_ENDPOINT, params=params, timeout=10)
+        api_cammesa_response.raise_for_status()
+        production_list = api_cammesa_response.json()
+    except Exception as e:
+        logger.error(f"[AR Non-Renewables] Failed fetching or decoding non-renewables data: {e}")
+        raise ParserException(parser="AR.py", message=f"Non-renewables API error: {str(e)}", zone_key=zone_key)
+
+    if not isinstance(production_list, list) or not production_list:
+        logger.error(f"[AR Non-Renewables] Empty or invalid non-renewables production list: {production_list}")
+        raise ParserException(parser="AR.py", message="Empty or invalid non-renewables production data", zone_key=zone_key)
+
+    logger.info(f"[AR Non-Renewables] Successfully retrieved {len(production_list)} production records.")
+
     conventional_production = ProductionBreakdownList(logger)
     for production_info in production_list:
-        # Convert fecha string to datetime and extract the year
-        production_datetime = datetime.strptime(
-            production_info["fecha"], "%Y-%m-%dT%H:%M:%S.%f%z"
-        )
-        production_year = production_datetime.year
+        try:
+            production_datetime = datetime.strptime(
+                production_info["fecha"], "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
+            production_year = production_datetime.year
 
-        # use the split from EIA 2022 to split the termico production into gas and oil
-        for mode in ["gas", "oil", "coal"]:
-            production_info[mode] = (
-                production_info["termico"]
-                * df_split_unknown_production.loc[production_year][mode]
-            )  # use the split from EIA 2022 to split the termico production into gas and oil
-        conventional_production.append(
-            zoneKey=zone_key,
-            datetime=production_datetime,
-            production=ProductionMix(
-                hydro=production_info["hidraulico"],
-                nuclear=production_info["nuclear"],
-                # As of 2022 thermal energy is mostly natural gas but
-                # the data is not split. We put it into unknown for now.
-                # More info: see page 21 in https://microfe.cammesa.com/static-content/CammesaWeb/download-manager-files/Sintesis%20Mensual/Informe%20Mensual_2021-12.pdf
-                # unknown=production_info["termico"],
-                gas=production_info["gas"],
-                oil=production_info["oil"],
-                coal=production_info["coal"],
-            ),
-            source=SOURCE,
-        )
+            for mode in ["gas", "oil", "coal"]:
+                production_info[mode] = (
+                    production_info["termico"]
+                    * df_split_unknown_production.loc[production_year][mode]
+                )
+
+            conventional_production.append(
+                zoneKey=zone_key,
+                datetime=production_datetime,
+                production=ProductionMix(
+                    hydro=production_info.get("hidraulico", 0.0),
+                    nuclear=production_info.get("nuclear", 0.0),
+                    gas=production_info.get("gas", 0.0),
+                    oil=production_info.get("oil", 0.0),
+                    coal=production_info.get("coal", 0.0),
+                ),
+                source=SOURCE,
+            )
+        except KeyError as e:
+            logger.warning(f"[AR Non-Renewables] Missing expected field {e} in production info: {production_info}")
 
     return conventional_production
 
