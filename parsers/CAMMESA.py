@@ -104,20 +104,34 @@ def renewables_production_mix(
         .strftime("%d-%m-%Y")
     )
     params = {"desde": today, "hasta": today}
-    
+
     try:
-        renewables_response = session.get(CAMMESA_RENEWABLES_ENDPOINT, params=params, timeout=10)
+        renewables_response = session.get(
+            CAMMESA_RENEWABLES_ENDPOINT, params=params, timeout=10
+        )
         renewables_response.raise_for_status()
         production_list = renewables_response.json()
     except Exception as e:
-        logger.error(f"[AR Renewables] Failed fetching or decoding renewables data: {e}")
-        raise ParserException(parser="AR.py", message=f"Renewables API error: {str(e)}", zone_key=zone_key)
+        logger.error(
+            f"[AR Renewables] Failed fetching or decoding renewables data: {e}"
+        )
+        raise ParserException(
+            parser="AR.py", message=f"Renewables API error: {str(e)}", zone_key=zone_key
+        )
 
     if not isinstance(production_list, list) or not production_list:
-        logger.error(f"[AR Renewables] Empty or invalid renewables production list: {production_list}")
-        raise ParserException(parser="AR.py", message="Empty or invalid renewables production data", zone_key=zone_key)
+        logger.error(
+            f"[AR Renewables] Empty or invalid renewables production list: {production_list}"
+        )
+        raise ParserException(
+            parser="AR.py",
+            message="Empty or invalid renewables production data",
+            zone_key=zone_key,
+        )
 
-    logger.info(f"[AR Renewables] Successfully retrieved {len(production_list)} production records.")
+    logger.info(
+        f"[AR Renewables] Successfully retrieved {len(production_list)} production records."
+    )
 
     renewables_production = ProductionBreakdownList(logger)
     for production_info in production_list:
@@ -136,7 +150,9 @@ def renewables_production_mix(
                 source=SOURCE,
             )
         except KeyError as e:
-            logger.warning(f"[AR Renewables] Missing expected field {e} in production info: {production_info}")
+            logger.warning(
+                f"[AR Renewables] Missing expected field {e} in production info: {production_info}"
+            )
 
     return renewables_production
 
@@ -147,20 +163,36 @@ def non_renewables_production_mix(
     """Retrieves production mix for non renewables using CAMMESA's API with enhanced error handling."""
 
     params = {"id_region": 1002}
-    
+
     try:
-        api_cammesa_response = session.get(CAMMESA_DEMANDA_ENDPOINT, params=params, timeout=10)
+        api_cammesa_response = session.get(
+            CAMMESA_DEMANDA_ENDPOINT, params=params, timeout=10
+        )
         api_cammesa_response.raise_for_status()
         production_list = api_cammesa_response.json()
     except Exception as e:
-        logger.error(f"[AR Non-Renewables] Failed fetching or decoding non-renewables data: {e}")
-        raise ParserException(parser="AR.py", message=f"Non-renewables API error: {str(e)}", zone_key=zone_key)
+        logger.error(
+            f"[AR Non-Renewables] Failed fetching or decoding non-renewables data: {e}"
+        )
+        raise ParserException(
+            parser="AR.py",
+            message=f"Non-renewables API error: {str(e)}",
+            zone_key=zone_key,
+        )
 
     if not isinstance(production_list, list) or not production_list:
-        logger.error(f"[AR Non-Renewables] Empty or invalid non-renewables production list: {production_list}")
-        raise ParserException(parser="AR.py", message="Empty or invalid non-renewables production data", zone_key=zone_key)
+        logger.error(
+            f"[AR Non-Renewables] Empty or invalid non-renewables production list: {production_list}"
+        )
+        raise ParserException(
+            parser="AR.py",
+            message="Empty or invalid non-renewables production data",
+            zone_key=zone_key,
+        )
 
-    logger.info(f"[AR Non-Renewables] Successfully retrieved {len(production_list)} production records.")
+    logger.info(
+        f"[AR Non-Renewables] Successfully retrieved {len(production_list)} production records."
+    )
 
     conventional_production = ProductionBreakdownList(logger)
     for production_info in production_list:
@@ -189,7 +221,9 @@ def non_renewables_production_mix(
                 source=SOURCE,
             )
         except KeyError as e:
-            logger.warning(f"[AR Non-Renewables] Missing expected field {e} in production info: {production_info}")
+            logger.warning(
+                f"[AR Non-Renewables] Missing expected field {e} in production info: {production_info}"
+            )
 
     return conventional_production
 
