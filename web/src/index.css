@@ -188,6 +188,7 @@ noscript img {
   max-width: 300px;
 }
 
+/* Restore original simple opacity animation */
 @keyframes loading-icon-spinner-animation {
   0%,
   100% {
