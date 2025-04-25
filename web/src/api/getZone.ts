@@ -1,11 +1,8 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
-import invariant from 'tiny-invariant';
-import type { ZoneDetails } from 'types';
-import { RouteParameters } from 'types';
+import type { GridState, RouteParameters } from 'types';
 import { TimeRange } from 'utils/constants';
 import { isValidHistoricalTimeRange } from 'utils/helpers';
 import { getStaleTime } from 'utils/refetching';
@@ -21,73 +18,56 @@ import {
   TIME_RANGE_TO_BACKEND_PATH,
 } from './helpers';
 
-const getZone = async (
+const getState = async (
   timeRange: TimeRange,
-  zoneId: string,
-  is1HourAppDelay: boolean,
   targetDatetime?: string
-): Promise<ZoneDetails> => {
-  invariant(zoneId, 'Zone ID is required');
-
+): Promise<GridState> => {
   const shouldQueryHistorical =
     targetDatetime &&
     isValidDate(targetDatetime) &&
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v10/details/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}/${zoneId}${getParameters(
+    `v10/state/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}${getParameters(
       shouldQueryHistorical,
-      is1HourAppDelay,
       targetDatetime
     )}`,
     getBasePath()
   );
-  if (!targetDatetime) {
-    path.searchParams.append('cacheKey', cacheBuster());
-  }
+
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
   };
 
-  const response = await fetch(path, requestOptions);
-
-  if (response.ok) {
-    const data = (await response.json()) as ZoneDetails;
-    if (!data.zoneStates) {
-      throw new Error('No data returned from API');
-    }
-    return data;
+  if (!targetDatetime) {
+    path.searchParams.append('cacheKey', cacheBuster());
   }
 
-  throw new Error(await response.text());
+  const response = await fetch(path, requestOptions);
+  if (!response.ok) {
+    throw new Error(await response.text());
+  }
+
+  return (await response.json()) as GridState;
 };
 
-const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const { zoneId, urlDatetime } = useParams<RouteParameters>();
+const useGetState = (): UseQueryResult<GridState> => {
+  const { urlDatetime } = useParams<RouteParameters>();
   const timeRange = useAtomValue(timeRangeAtom);
 
-  const is1HourAppDelay = useFeatureFlag('1-hour-app-delay');
-
-  return useQuery<ZoneDetails>({
+  return useQuery<GridState>({
     queryKey: [
-      QUERY_KEYS.ZONE,
+      QUERY_KEYS.STATE,
       {
-        zone: zoneId,
         aggregate: timeRange,
         targetDatetime: urlDatetime,
-        is1HourAppDelay,
       },
     ],
-    queryFn: async () => {
-      if (!zoneId) {
-        throw new Error('Zone ID is required');
-      }
-      return getZone(timeRange, zoneId, is1HourAppDelay, urlDatetime);
-    },
+    queryFn: () => getState(timeRange, urlDatetime),
     staleTime: getStaleTime(timeRange, urlDatetime),
     refetchOnWindowFocus: true,
   });
 };
 
-export default useGetZone;
+export default useGetState;
