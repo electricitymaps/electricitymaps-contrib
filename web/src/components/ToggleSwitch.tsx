@@ -15,8 +15,8 @@ function ToggleSwitch({
   onChange,
   ariaLabel,
   className,
-  activeColor = 'bg-neutral-500 dark:bg-neutral-300',
-  inactiveColor = 'bg-neutral-300 dark:bg-neutral-500',
+  activeColor = 'bg-brand-green dark:bg-brand-green-dark',
+  inactiveColor = 'bg-neutral-300 dark:bg-neutral-600',
 }: ToggleSwitchProps): JSX.Element {
   const handleToggle = useCallback(() => {
     onChange(!isEnabled);
@@ -37,7 +37,7 @@ function ToggleSwitch({
       <span
         className={`${
           isEnabled ? 'translate-x-[18px]' : 'translate-x-[2px]'
-        } inline-block h-4 w-4 transform rounded-full bg-white transition-transform dark:bg-neutral-900`}
+        } inline-block h-4 w-4 transform rounded-full bg-white transition-transform `}
       />
     </button>
   );
