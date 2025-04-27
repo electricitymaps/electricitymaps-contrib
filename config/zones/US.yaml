@@ -460,8 +460,8 @@ sources:
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 subZoneNames:
-  - US-AK-SEAPA
   - US-AK
+  - US-AK-SEAPA
   - US-CAL-BANC
   - US-CAL-CISO
   - US-CAL-IID
