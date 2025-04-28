@@ -12,11 +12,13 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+import requests
 from requests import Response, Session
 
 # import time
 import parsers.EIA as EIA
 from electricitymap.contrib.lib.models.event_lists import (
+    LocationalMarginalPriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
@@ -27,6 +29,7 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
+from parsers.lib.utils import get_token
 from parsers.lib.validation import validate_exchange
 
 SOURCE = "ercot.com"
@@ -45,6 +48,9 @@ RT_PRICES_URL = (
     f"{US_PROXY}/api/1/services/read/dashboards/systemWidePrices.json?{HOST_PARAMETER}"
 )
 RT_STORAGE_URL = f"{US_PROXY}/api/1/services/read/dashboards/energy-storage-resources.json?{HOST_PARAMETER}"
+AUTH_URL_ERCOT = "https://ercotb2c.b2clogin.com/ercotb2c.onmicrosoft.com/B2C_1_PUBAPI-ROPC-FLOW/oauth2/v2.0/token"
+DAYAHEAD_LMP_URL = f"{US_PROXY}/api/public-reports/np4-190-cd/dam_stlmnt_pnt_prices"
+
 
 # These links are found at https://www.ercot.com/gridinfo/generation, and should be updated as new data is released
 HISTORICAL_GENERATION_URL = {
@@ -85,12 +91,17 @@ class ReportTypeID(Enum):
     LOAD_FORECAST_REPORTID = 12311
 
 
-def get_data(url: str, session: Session | None = None):
+def get_data(
+    url: str,
+    session: Session | None = None,
+    headers: dict | None = None,
+    params: dict | None = None,
+):
     """requests ERCOT url and return json"""
     if not session:
         session = Session()
 
-    resp: Response = session.get(url, verify=False)
+    resp: Response = session.get(url, verify=False, headers=headers, params=params)
     response_text = gzip.decompress(resp.content).decode("utf-8")
     data_json = json.loads(response_text)
     return data_json
@@ -541,6 +552,69 @@ def fetch_wind_solar_forecasts(
             sourceType=EventSourceType.forecasted,
         )
     return production_list.to_list()
+
+
+def fetch_dayahead_locational_marginal_price(
+    zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TX_TZ)
+
+    ERCOT_API_PASSWORD = get_token("ERCOT_API_PASSWORD")
+    ERCOT_API_USERNAME = get_token("ERCOT_API_USERNAME")
+    ERCOT_API_SUBSCRIPTION_KEY = get_token("ERCOT_API_SUBSCRIPTION_KEY")
+
+    if (
+        not ERCOT_API_PASSWORD
+        or not ERCOT_API_USERNAME
+        or not ERCOT_API_SUBSCRIPTION_KEY
+    ):
+        raise ValueError(
+            "ERCOT_API_PASSWORD, ERCOT_API_USERNAME, and ERCOT_API_SUBSCRIPTION_KEY must be set"
+        )
+
+    auth_url = f"{AUTH_URL_ERCOT}?username={ERCOT_API_USERNAME}&password={ERCOT_API_PASSWORD}&grant_type=password&scope=openid+fec253ea-0d06-4272-a5e6-b478baeecd70+offline_access&client_id=fec253ea-0d06-4272-a5e6-b478baeecd70&response_type=id_token"
+
+    auth_response = requests.post(auth_url)
+    id_token = auth_response.json().get("id_token")
+
+    params = {
+        "host": "https://api.ercot.com",
+        "deliveryDateFrom": target_datetime.strftime("%Y-%m-%d"),
+        "deliveryDateTo": target_datetime.strftime("%Y-%m-%d"),
+    }
+    headers = {
+        "Authorization": f"Bearer {id_token}",
+        "Ocp-Apim-Subscription-Key": ERCOT_API_SUBSCRIPTION_KEY,
+    }
+    response = get_data(DAYAHEAD_LMP_URL, headers=headers, params=params)
+
+    params["size"] = response["_meta"]["totalRecords"]
+
+    response = get_data(DAYAHEAD_LMP_URL, headers=headers, params=params)
+
+    prices = LocationalMarginalPriceList(logger)
+    for row in response["data"]:
+        if row[1] == "24:00":
+            date = datetime.strptime(f"{row[0]} 00:00", "%Y-%m-%d %H:%M").replace(
+                tzinfo=TX_TZ
+            ) + timedelta(days=1)
+        else:
+            date = datetime.strptime(f"{row[0]} {row[1]}", "%Y-%m-%d %H:%M").replace(
+                tzinfo=TX_TZ
+            )
+        prices.append(
+            zoneKey=zone_key,
+            datetime=date,
+            price=row[3],
+            currency="USD",
+            node=row[2],
+            source=SOURCE,
+        )
+    return prices.to_list()
 
 
 if __name__ == "__main__":

@@ -764,6 +764,7 @@ parsers:
   production: US_ERCOT.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_ERCOT.fetch_wind_solar_forecasts
+  dayaheadLocationalMarginalPrice: US_ERCOT.fetch_dayahead_locational_marginal_price
 region: Americas
 sources:
   INCER ACV:
