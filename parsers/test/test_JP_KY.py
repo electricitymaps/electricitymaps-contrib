@@ -218,3 +218,29 @@ def test_fetch_production_with_distant_exchange_data(
     ):
         result = JP_KY.fetch_production()
         assert result == []
+
+
+def test_snapshot_fetch_production(
+    snapshot,
+    mock_csv_response_at_day,
+    mock_nuclear_responses,
+    mock_exchange_data_day,
+):
+    """Test successful data retrieval and processing."""
+    with (
+        patch(
+            "parsers.JP_KY.get",
+            side_effect=[
+                mock_csv_response_at_day,
+                mock_nuclear_responses[0],
+                mock_nuclear_responses[1],
+            ],
+        ),
+        patch(
+            "parsers.JP_KY.occtonet.fetch_exchange",
+            return_value=mock_exchange_data_day,
+        ),
+    ):
+        result = JP_KY.fetch_production()
+
+        assert snapshot == result
