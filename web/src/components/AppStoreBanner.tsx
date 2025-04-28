@@ -1,4 +1,3 @@
-import { EmapsIcon } from 'icons/emapsIcon';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useState } from 'react';
@@ -13,6 +12,7 @@ import {
 } from '../features/weather-layers/wind-layer/util';
 import { Button } from './Button';
 import { DefaultCloseButton, DefaultCloseButtonProps } from './DefaultCloseButton';
+import { LogoIcon } from './Logo';
 
 export const appStoreDismissedAtom = atomWithStorage(
   'isAppBannerDismissed',
@@ -50,7 +50,7 @@ export function AppStoreBanner({
         <CloseButton onClose={onDismissClick} />
         <div className="flex flex-grow gap-2">
           <div className="items-center justify-center self-center rounded-md border border-neutral-200 bg-white dark:text-black">
-            <EmapsIcon size={40} />
+            <LogoIcon className="size-10" />
           </div>
           <div className="content-center text-neutral-600 dark:text-neutral-300">
             <h3>Electricity Maps</h3>

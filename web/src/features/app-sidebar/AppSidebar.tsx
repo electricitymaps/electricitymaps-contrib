@@ -71,7 +71,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader>
         <div>
-          <LogoIcon className="ml-2 size-8 text-black dark:text-white" />
+          <LogoIcon className="ml-4 size-4 text-black dark:text-white" />
         </div>
       </SidebarHeader>
       <SidebarContent>

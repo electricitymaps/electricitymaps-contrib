@@ -1,4 +1,3 @@
-from collections.abc import Mapping
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 
@@ -86,24 +85,6 @@ def dataset_to_df(dataset):
     return df
 
 
-def process_solar_rooftop(df: pd.DataFrame) -> pd.DataFrame:
-    if "SOLAR_ROOFTOP" in df:
-        # at present, solar rooftop data comes in each 30 mins.
-        # Resample data to not require interpolation
-        return df.resample("30T").mean()
-    return df
-
-
-def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
-    # Parse capacity data
-    capacities = {
-        obj["id"].split(".")[-2].upper(): obj.get("x_capacity_at_present")
-        for obj in filtered_datasets
-        if obj["region"].upper() == region.upper()
-    }
-    return pd.Series(capacities)
-
-
 def sum_vector(pd_series, keys, ignore_nans=False):
     # Only consider keys that are in the pd_series
     filtered_keys = pd_series.index.intersection(keys)
@@ -186,7 +167,7 @@ def fetch_main_power_df(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> tuple[pd.DataFrame, list]:
-    df, filtered_datasets = _fetch_main_df(
+    return _fetch_main_df(
         "power",
         zone_key=zone_key,
         sorted_zone_keys=sorted_zone_keys,
@@ -194,9 +175,6 @@ def fetch_main_power_df(
         target_datetime=target_datetime,
         logger=logger,
     )
-    # Solar rooftop is a special case
-    df = process_solar_rooftop(df)
-    return df, filtered_datasets
 
 
 def _fetch_main_df(
@@ -267,8 +245,6 @@ def fetch_production(
         target_datetime=target_datetime,
         logger=logger,
     )
-    region = ZONE_KEY_TO_REGION.get(zone_key)
-    capacities = get_capacities(filtered_datasets, region) if region else pd.Series()
 
     # Drop interconnectors
     df = df.drop([x for x in df.columns if "->" in x], axis=1)
@@ -300,21 +276,6 @@ def fetch_production(
                 "battery": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["battery"]),
                 # opennem reports pumping as positive, we here should report as positive
                 "hydro": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["hydro"]),
-            },
-            "capacity": {
-                "coal": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["coal"]),
-                "gas": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["gas"]),
-                "oil": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["oil"]),
-                "hydro": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["hydro"]),
-                "wind": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["wind"]),
-                "biomass": sum_vector(
-                    capacities, OPENNEM_PRODUCTION_CATEGORIES["biomass"]
-                ),
-                "solar": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["solar"]),
-                "hydro storage": capacities.get(OPENNEM_STORAGE_CATEGORIES["hydro"][0]),
-                "battery storage": capacities.get(
-                    OPENNEM_STORAGE_CATEGORIES["battery"][0]
-                ),
             },
             "source": SOURCE,
             "zoneKey": zone_key,
