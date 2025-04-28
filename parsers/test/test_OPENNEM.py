@@ -1,42 +1,18 @@
+import json
 from datetime import datetime, timedelta, timezone
+from importlib import resources
 
 import numpy as np
 import pandas as pd
+import pytest
+from requests_mock import ANY
 
-from parsers.OPENNEM import filter_production_objs, process_solar_rooftop, sum_vector
-
-
-def test_process_solar_rooftop():
-    idx = pd.date_range(
-        start="2021-01-01 00:00:00+00:00",
-        end="2021-01-01 01:00:00+00:00",
-        freq="5T",
-        inclusive="left",
-    )
-    df = pd.DataFrame(index=idx)
-    rdn_any_column = np.random.rand(len(idx)).astype(float)
-    df.loc[:, "any_column"] = rdn_any_column
-    # No solar rooftop, nothing
-    processed_df = process_solar_rooftop(df)
-    pd.testing.assert_frame_equal(processed_df, df)
-
-    # Solar rooftop, resampling
-    df.loc[:, "SOLAR_ROOFTOP"] = np.nan
-    df.loc[:, "SOLAR_ROOFTOP"].iloc[0] = 84.0
-    processed_df = process_solar_rooftop(df)
-    assert processed_df.index.equals(
-        pd.date_range(
-            start="2021-01-01 00:00:00+00:00",
-            end="2021-01-01 01:00:00+00:00",
-            freq="30T",
-            inclusive="left",
-        )
-    )
-    assert processed_df.loc[:, "SOLAR_ROOFTOP"].iloc[0] == 84.0
-    assert np.isnan(processed_df.loc[:, "SOLAR_ROOFTOP"].iloc[1])
-    assert round(processed_df.loc[:, "any_column"].iloc[0], 6) == round(
-        rdn_any_column[:6].mean(), 6
-    )
+from parsers.OPENNEM import (
+    fetch_price,
+    fetch_production,
+    filter_production_objs,
+    sum_vector,
+)
 
 
 def test_sum_vector():
@@ -90,3 +66,28 @@ def test_filter_production_objs():
     filtered_objs = filter_production_objs(objs)
     # 2nd entry should be filtered out because solar is None
     assert len(filtered_objs) == 1
+
+
+@pytest.fixture(autouse=True)
+def mock_response(adapter):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.OPENNEM")
+            .joinpath("OPENNEM.json")
+            .read_text()
+        ),
+    )
+
+
+def test_production(adapter, session, snapshot):
+    assert snapshot == fetch_production(
+        "AU-VIC", session, datetime.fromisoformat("2025-03-23")
+    )
+
+
+def test_price(adapter, session, snapshot):
+    assert snapshot == fetch_price(
+        "AU-VIC", session, datetime.fromisoformat("2025-03-23")
+    )
