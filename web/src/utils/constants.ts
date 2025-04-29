@@ -56,6 +56,7 @@ export enum Charts {
   CARBON_CHART = 'carbon_chart',
   EMISSION_CHART = 'emission_chart',
   NET_EXCHANGE_CHART = 'net_exchange_chart',
+  LOAD_CHART = 'load_chart',
 }
 
 export enum TrackEvent {

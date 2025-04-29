@@ -312,6 +312,13 @@
       "all_months": "Monthly electricity flow",
       "all_years": "Yearly electricity flow"
     },
+    "electricityLoad": {
+      "72h": "Hourly electricity load",
+      "3mo": "Daily electricity load",
+      "12mo": "Monthly electricity load",
+      "all_months": "Monthly electricity load",
+      "all_years": "Yearly electricity load"
+    },
     "not-enough-data": "Not enough data available to display chart",
     "exchange-delay": "Flow data may be delayed by up to 48h."
   },
