@@ -90,7 +90,6 @@ def _fetch_xml(
 
     session = session or Session()
     url = url_template.format(YYYYMMDD=date_.strftime("%Y%m%d"))
-    print(url)
     response = session.get(url)
 
     if not response.ok:
@@ -579,5 +578,5 @@ if __name__ == "__main__":
     # print("Requesting fetch_wind_solar_forecasts")
     # pprint(fetch_wind_solar_forecasts())
 
-    # print("Requesting fetch_consumption_forecast")
-    # pprint(fetch_consumption_forecast())
+    print("Requesting fetch_consumption_forecast")
+    pprint(fetch_consumption_forecast())
