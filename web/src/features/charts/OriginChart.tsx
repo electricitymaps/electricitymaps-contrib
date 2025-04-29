@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
+import { round } from 'utils/helpers';
 import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
@@ -103,6 +104,17 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
     );
   }
 
+  const estimated = chartData.map((d) => {
+    const zoneDetail = d.meta;
+    // Note: the following 3 lines have been copy/pasted from BreakdownChartTooltip.tsx
+    const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
+    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+    const hasEstimationPill =
+      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
+
+    return hasEstimationPill;
+  });
+
   return (
     <RoundedCard>
       <ChartTitle
@@ -125,6 +137,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
           markerHideHandler={noop}
           height="10em"
           datetimes={datetimes}
+          estimated={estimated}
           selectedTimeRange={timeRange}
           tooltip={BreakdownChartTooltip}
           tooltipSize={displayByEmissions ? 'small' : 'large'}
