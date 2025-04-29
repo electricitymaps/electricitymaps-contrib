@@ -61,7 +61,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
           markerFill={markerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          height="10em"
+          height="6em"
           datetimes={datetimes}
           selectedTimeRange={timeRange}
           tooltip={NetExchangeChartTooltip}
