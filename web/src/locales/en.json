@@ -368,6 +368,7 @@
     "dataIsDelayed": "Data is delayed",
     "price": "Price",
     "netExchange": "Electricity flow",
+    "load": "Electricity load",
     "importing": "Importing",
     "exporting": "Exporting",
     "flowTraced": "Flow-traced data accounts for physical electricity flow",
