@@ -50,12 +50,18 @@ export enum LeftPanelToggleOptions {
 }
 
 export enum Charts {
-  PRICE_CHART = 'price_chart',
-  ORIGIN_CHART = 'origin_chart',
-  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
-  CARBON_CHART = 'carbon_chart',
-  EMISSION_CHART = 'emission_chart',
-  NET_EXCHANGE_CHART = 'net_exchange_chart',
+  MAP = 'map',
+  REGION_OVERVIEW = 'region-overview',
+  COUNTRY_HISTORY = 'country-history',
+  CARBON_CHART = 'carbon-chart',
+  EMISSION_CHART = 'emission-chart',
+  ORIGIN_CHART = 'origin-chart',
+  PRICE_CHART = 'price-chart',
+  NET_EXCHANGE_CHART = 'net-exchange-chart',
+  LOAD_CHART = 'load-chart',
+  BAR_BREAKDOWN_CHART = 'bar-breakdown-chart',
+  TIME_CONTROLLER = 'time-controller',
+  SETTINGS_MODAL = 'settings-modal',
 }
 
 export enum TrackEvent {
