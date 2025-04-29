@@ -9,12 +9,12 @@ import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import { RoundedCard } from './RoundedCard';
 import LoadChartTooltip from './tooltips/LoadChartTooltip';
 
-interface PriceChartProps {
+interface LoadChartProps {
   datetimes: Date[];
   timeRange: TimeRange;
 }
 
-function LoadChart({ datetimes, timeRange }: PriceChartProps) {
+function LoadChart({ datetimes, timeRange }: LoadChartProps) {
   const { data, isLoading, isError } = useLoadChartData();
   const { t } = useTranslation();
 

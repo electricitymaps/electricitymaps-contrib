@@ -22,7 +22,7 @@ export default function LoadChartTooltip({ zoneDetail }: InnerAreaGraphTooltipPr
   const totalConsumption = zoneDetail.totalConsumption;
   const { formattingFactor, unit: powerUnit } = scalePower(totalConsumption, isHourly);
 
-  const unit = displayByEmissions ? t('ofCO2eq') : powerUnit;
+  const unit = powerUnit;
   const value = round(totalConsumption / formattingFactor);
 
   return (
