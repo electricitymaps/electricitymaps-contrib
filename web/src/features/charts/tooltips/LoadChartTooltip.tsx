@@ -2,14 +2,13 @@ import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { scalePower } from 'utils/formatting';
 import { round } from 'utils/helpers';
-import { displayByEmissionsAtom, isHourlyAtom, timeRangeAtom } from 'utils/state/atoms';
+import { isHourlyAtom, timeRangeAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function LoadChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const timeRange = useAtomValue(timeRangeAtom);
-  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { t } = useTranslation();
 
