@@ -12,6 +12,7 @@ import App from 'App';
 import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { zoneExists } from 'features/panels/zone/util';
+import { PostHogProvider } from 'posthog-js/react';
 import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
@@ -33,6 +34,7 @@ import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
 const isProduction = import.meta.env.PROD;
+
 if (isProduction) {
   Sentry.init({
     dsn: Capacitor.isNativePlatform()
@@ -53,6 +55,10 @@ if (isProduction) {
     },
   });
 }
+
+const options = {
+  api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+};
 
 window.addEventListener('vite:preloadError', async (event: VitePreloadErrorEvent) => {
   event.preventDefault();
@@ -281,11 +287,16 @@ if (container) {
   root.render(
     <StrictMode>
       <I18nextProvider i18n={i18n}>
-        <HelmetProvider>
-          <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-          </QueryClientProvider>
-        </HelmetProvider>
+        <PostHogProvider
+          apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
+          options={options}
+        >
+          <HelmetProvider>
+            <QueryClientProvider client={queryClient}>
+              <RouterProvider router={router} />
+            </QueryClientProvider>
+          </HelmetProvider>
+        </PostHogProvider>
       </I18nextProvider>
     </StrictMode>
   );
