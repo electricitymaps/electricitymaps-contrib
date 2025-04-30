@@ -17,7 +17,8 @@ import {
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
-import { Mode, ThemeOptions } from 'utils/constants';
+import { trackEventPH } from 'utils/analytics';
+import { Mode, PHTrackEvent, ThemeOptions } from 'utils/constants';
 import {
   colorblindModeAtom,
   productionConsumptionAtom,
@@ -32,6 +33,9 @@ function ElectricityFlowsToggle() {
   const [mode, setMode] = useAtom(productionConsumptionAtom);
 
   const onToggle = (isEnabled: boolean) => {
+    trackEventPH(PHTrackEvent.MAP_FLOWTRACING_TOGGLED, {
+      type: isEnabled ? 'toggled_on' : 'toggled_off',
+    });
     setMode(isEnabled ? Mode.CONSUMPTION : Mode.PRODUCTION);
   };
 

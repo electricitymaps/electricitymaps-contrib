@@ -11,6 +11,7 @@ import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import App from 'App';
 import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
+import PostHogPageView from 'components/PageView';
 import { zoneExists } from 'features/panels/zone/util';
 import { PostHogProvider } from 'posthog-js/react';
 import { lazy, StrictMode, Suspense } from 'react';
@@ -57,7 +58,9 @@ if (isProduction) {
 }
 
 const options = {
-  api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+  api_host: 'https://eu.i.posthog.com',
+  ui_host: 'https://eu.i.posthog.com',
+  capture_pageview: false,
 };
 
 window.addEventListener('vite:preloadError', async (event: VitePreloadErrorEvent) => {
@@ -247,7 +250,10 @@ const router = createBrowserRouter([
         path: '/map/:urlTimeRange?/:resolution?/:urlDatetime?',
         element: (
           <TimeRangeAndResolutionGuardWrapper>
-            <SearchPanel />
+            <>
+              <SearchPanel />
+              <PostHogPageView />
+            </>
           </TimeRangeAndResolutionGuardWrapper>
         ),
       },
@@ -264,6 +270,7 @@ const router = createBrowserRouter([
                 }
               >
                 <ZoneDetails />
+                <PostHogPageView />
               </Suspense>
             </TimeRangeAndResolutionGuardWrapper>
           </ValidZoneIdGuardWrapper>
@@ -274,6 +281,7 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingSpinner />}>
             <ZoneDetails />
+            <PostHogPageView />
           </Suspense>
         ),
       },
@@ -282,13 +290,14 @@ const router = createBrowserRouter([
 ]);
 
 const container = document.querySelector('#root');
+
 if (container) {
   const root = createRoot(container);
   root.render(
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <PostHogProvider
-          apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
+          apiKey={import.meta.env.API_PORTAL_POSTHOG_KEY}
           options={options}
         >
           <HelmetProvider>

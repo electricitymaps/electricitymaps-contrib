@@ -1,6 +1,11 @@
 import { useTranslation } from 'react-i18next';
+import { trackEventPH } from 'utils/analytics';
+import { PHTrackEvent } from 'utils/constants';
 
 import { getContributors } from './util';
+
+const trackContributorClick = () =>
+  trackEventPH(PHTrackEvent.MAP_CONTRIBUTOR_AVATAR_PRESSED);
 
 export default function Attribution({ zoneId }: { zoneId: string }) {
   const { t } = useTranslation();
@@ -27,6 +32,7 @@ function ContributorList({ contributors }: { contributors: string[] }) {
           href={`https://github.com/${contributor}`}
           rel="noopener noreferrer"
           target="_blank"
+          onClick={trackContributorClick}
         >
           <img
             src={`https://avatars.githubusercontent.com/${contributor}?s=20`} // loads the avatar image at a default size of 20px

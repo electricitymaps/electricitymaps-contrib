@@ -59,6 +59,20 @@ export enum Charts {
   LOAD_CHART = 'load_chart',
 }
 
+export enum PHTrackEvent {
+  MAP_ZONE_SEARCHED = 'map_zone_searched',
+  MAP_FLOWTRACING_TOGGLED = 'map_flowTracing_toggled',
+  MAP_CSV_LINK_PRESSED = 'map_csv_link_pressed',
+  MAP_CTA_PRESSED = 'map_cta_pressed',
+  MAP_METHODOLOGY_LINK_VISITED = 'map_methodology_link_visited',
+  MAP_CONTRIBUTOR_AVATAR_PRESSED = 'map_contributor_avatar_pressed',
+  MAP_SOCIAL_SHARE_PRESSED = 'map_social_share_pressed',
+  MAP_NAVIGATION_USED = 'map_navigation_used',
+  MAP_SUPPORT_INITIATED = 'map_support_initiated',
+  MAP_ZONEMODE_TOGGLED = 'map_zonemode_toggled',
+  MAP_CHART_SHARED = 'map_chart_shared',
+}
+
 export enum TrackEvent {
   APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
   APP_BANNER_DISMISSED = 'App Banner Dismissed',

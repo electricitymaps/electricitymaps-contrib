@@ -1,4 +1,5 @@
-import { Charts, TrackEvent } from 'utils/constants';
+import posthog from 'posthog-js';
+import { Charts, PHTrackEvent, TrackEvent } from 'utils/constants';
 
 type PlausibleEventProps = { readonly [propName: string]: string | number | boolean };
 type PlausibleArguments = [string, { props: PlausibleEventProps }];
@@ -13,6 +14,18 @@ declare global {
   interface Window {
     plausible?: typeof plausible | undefined;
   }
+}
+
+export function trackEventPH(
+  eventName: PHTrackEvent,
+  additionalProps: PlausibleEventProps = {}
+): void {
+  if (import.meta.env.DEV) {
+    // console.log("not sending event to posthog because we're not in production");
+    // return;
+  }
+  console.log(eventName, additionalProps);
+  posthog?.capture(eventName, additionalProps);
 }
 
 export default function trackEvent(
@@ -37,15 +50,22 @@ export enum ShareType {
   COMPLETED_SHARE = 'completed_share',
 }
 
-export const trackShare = (shareType: ShareType) => () => {
-  trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType });
+export const trackShare =
+  (shareType: ShareType, additionalProps = {}) =>
+  () => {
+    trackEventPH(PHTrackEvent.MAP_SOCIAL_SHARE_PRESSED, { social: shareType });
+    trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType, ...additionalProps });
+  };
+
+export const trackShareChart = (social: ShareType, chartId: Charts) => () => {
+  posthog.capture(PHTrackEvent.MAP_CHART_SHARED, { social, chart_name: chartId });
 };
 
-export const trackShareChart = (shareType: ShareType, chartId: Charts) => () =>
-  trackEvent(TrackEvent.SHARE_CHART, {
-    shareType,
-    chartId,
-  });
+// export const trackShareChart = (shareType: ShareType, chartId: Charts) => () =>
+//   trackEvent(TrackEvent.SHARE_CHART, {
+//     shareType,
+//     chartId,
+//   });
 
 interface TrackChartSharesByShareType {
   [chartId: string]: {
