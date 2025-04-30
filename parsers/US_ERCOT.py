@@ -50,7 +50,7 @@ RT_PRICES_URL = (
 RT_STORAGE_URL = f"{US_PROXY}/api/1/services/read/dashboards/energy-storage-resources.json?{HOST_PARAMETER}"
 AUTH_URL_ERCOT = "https://ercotb2c.b2clogin.com/ercotb2c.onmicrosoft.com/B2C_1_PUBAPI-ROPC-FLOW/oauth2/v2.0/token"
 DAYAHEAD_LMP_URL = f"{US_PROXY}/api/public-reports/np4-190-cd/dam_stlmnt_pnt_prices"
-
+REALTIME_LMP_URL = f"{US_PROXY}/api/public-reports/np6-788-cd/lmp_node_zone_hub"
 
 # These links are found at https://www.ercot.com/gridinfo/generation, and should be updated as new data is released
 HISTORICAL_GENERATION_URL = {
@@ -563,23 +563,12 @@ def fetch_dayahead_locational_marginal_price(
     if target_datetime is None:
         target_datetime = datetime.now(tz=TX_TZ)
 
-    ERCOT_API_PASSWORD = get_token("ERCOT_API_PASSWORD")
-    ERCOT_API_USERNAME = get_token("ERCOT_API_USERNAME")
     ERCOT_API_SUBSCRIPTION_KEY = get_token("ERCOT_API_SUBSCRIPTION_KEY")
 
-    if (
-        not ERCOT_API_PASSWORD
-        or not ERCOT_API_USERNAME
-        or not ERCOT_API_SUBSCRIPTION_KEY
-    ):
-        raise ValueError(
-            "ERCOT_API_PASSWORD, ERCOT_API_USERNAME, and ERCOT_API_SUBSCRIPTION_KEY must be set"
-        )
+    if not ERCOT_API_SUBSCRIPTION_KEY:
+        raise ValueError("ERCOT_API_SUBSCRIPTION_KEY must be set")
 
-    auth_url = f"{AUTH_URL_ERCOT}?username={ERCOT_API_USERNAME}&password={ERCOT_API_PASSWORD}&grant_type=password&scope=openid+fec253ea-0d06-4272-a5e6-b478baeecd70+offline_access&client_id=fec253ea-0d06-4272-a5e6-b478baeecd70&response_type=id_token"
-
-    auth_response = requests.post(auth_url)
-    id_token = auth_response.json().get("id_token")
+    id_token = get_id_token()
 
     params = {
         "host": "https://api.ercot.com",
@@ -615,6 +604,67 @@ def fetch_dayahead_locational_marginal_price(
             source=SOURCE,
         )
     return prices.to_list()
+
+
+def fetch_realtime_locational_marginal_price(
+    zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TX_TZ)
+
+    ERCOT_API_SUBSCRIPTION_KEY = get_token("ERCOT_API_SUBSCRIPTION_KEY")
+
+    if not ERCOT_API_SUBSCRIPTION_KEY:
+        raise ValueError("ERCOT_API_SUBSCRIPTION_KEY must be set")
+
+    id_token = get_id_token()
+
+    start_datetime = target_datetime - timedelta(minutes=40)
+    end_datetime = target_datetime + timedelta(minutes=10)
+
+    params = {
+        "host": "https://api.ercot.com",
+        "SCEDTimestampTo": end_datetime.strftime("%Y-%m-%dT%H:%M:%S"),
+        "SCEDTimestampFrom": start_datetime.strftime("%Y-%m-%dT%H:%M:%S"),
+    }
+    headers = {
+        "Authorization": f"Bearer {id_token}",
+        "Ocp-Apim-Subscription-Key": ERCOT_API_SUBSCRIPTION_KEY,
+    }
+    response = get_data(REALTIME_LMP_URL, headers=headers, params=params)
+
+    params["size"] = response["_meta"]["totalRecords"]
+
+    response = get_data(REALTIME_LMP_URL, headers=headers, params=params)
+
+    prices = LocationalMarginalPriceList(logger)
+    for row in response["data"]:
+        date = datetime.strptime(row[0], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=TX_TZ)
+        prices.append(
+            zoneKey=zone_key,
+            datetime=date,
+            price=row[3],
+            currency="USD",
+            node=row[2],
+            source=SOURCE,
+        )
+    return prices.to_list()
+
+
+def get_id_token():
+    ERCOT_API_PASSWORD = get_token("ERCOT_API_PASSWORD")
+    ERCOT_API_USERNAME = get_token("ERCOT_API_USERNAME")
+
+    if not ERCOT_API_PASSWORD or not ERCOT_API_USERNAME:
+        raise ValueError("ERCOT_API_PASSWORD and ERCOT_API_USERNAME must be set")
+
+    auth_url = f"{AUTH_URL_ERCOT}?username={ERCOT_API_USERNAME}&password={ERCOT_API_PASSWORD}&grant_type=password&scope=openid+fec253ea-0d06-4272-a5e6-b478baeecd70+offline_access&client_id=fec253ea-0d06-4272-a5e6-b478baeecd70&response_type=id_token"
+
+    auth_response = requests.post(auth_url)
+    return auth_response.json().get("id_token")
 
 
 if __name__ == "__main__":
