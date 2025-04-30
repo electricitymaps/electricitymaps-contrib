@@ -419,7 +419,7 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         "expected_range": (5000, 35000),
     },
     "PT": {
-        "expected_range": (600, 20000),
+        "expected_range": (0, 20000),
     },
     "RO": {
         "expected_range": (2000, 25000),
