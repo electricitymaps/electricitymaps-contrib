@@ -288,7 +288,7 @@ fallbackZoneMixes:
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
-  production: JP-KY.fetch_production
+  production: JP_KY.fetch_production
   generationForecast: JP.fetch_generation_forecast
 region: Asia
 timezone: Asia/Tokyo

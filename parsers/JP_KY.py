@@ -106,6 +106,7 @@ def fetch_production(
     )
     # take the nearest exchange
     exchange = nearest_exchanges[0]
+
     # check that consumption and exchange timestamps are within a 15 minute window
     if abs(dt - exchange["datetime"]).seconds <= 900:
         generation = consumption - exchange["netFlow"]
