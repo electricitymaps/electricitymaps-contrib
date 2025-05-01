@@ -1,0 +1,33 @@
+from enum import Enum
+
+class ParserDataType(Enum):
+
+    CONSUMPTION = "consumption"
+    CONSUMPTION_FORECAST = "consumptionForecast"
+    DAYAHEAD_LOCATIONAL_MARGINAL_PRICE = "dayaheadLocationalMarginalPrice"
+    EXCHANGE_FORECAST = "exchangeForecast"
+    EXCHANGE = "exchange"
+    GENERATION_FORECAST = "generationForecast"
+    PRICE = "price"
+    PRODUCTION = "production"
+    PRODUCTION_PER_MODE_FORECAST = "productionPerModeForecast"
+    REALTIME_LOCATIONAL_MARGINAL_PRICE = "realtimeLocationalMarginalPrice"
+    # TODO: Deprecate as I don't think it's used anywhere
+    PRODUCTION_PER_UNIT = "productionPerUnit"
+    # TODO: Double check if we should keep them here?
+    PRODUCTION_CAPACITY = "productionCapacity"
+
+
+    def __str__(self) -> str:
+        return self.value
+
+    @classmethod
+    def from_str(cls, value: str) -> "ParserDataType":
+        return cls[value]
+
+ALL_DATA_TYPES = [dt.value for dt in ParserDataType]
+EXCHANGE_DATA_TYPES = [ParserDataType.EXCHANGE, ParserDataType.EXCHANGE_FORECAST]
+LMP_DATA_TYPES = [
+    ParserDataType.REALTIME_LOCATIONAL_MARGINAL_PRICE,
+    ParserDataType.DAYAHEAD_LOCATIONAL_MARGINAL_PRICE,
+]
