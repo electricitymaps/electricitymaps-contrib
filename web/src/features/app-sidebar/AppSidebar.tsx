@@ -13,8 +13,8 @@ import {
   MapIcon,
 } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { trackEventPH } from 'utils/analytics';
-import { PHTrackEvent } from 'utils/constants';
+import { trackEvent } from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 
 import { MenuItem } from './MenuItem';
 import {
@@ -34,7 +34,7 @@ export const SIDEBAR_WIDTH = '63px';
 const PORTAL_URL = 'https://portal.electricitymaps.com';
 
 const trackFaqClick = () =>
-  trackEventPH(PHTrackEvent.MAP_SUPPORT_INITIATED, {
+  trackEvent(TrackEvent.MAP_SUPPORT_INITIATED, {
     type: 'faq',
   });
 
@@ -136,7 +136,7 @@ export function AppSidebar() {
                   {isIntercomEnabled && (
                     <DropdownMenu.Item
                       onSelect={() => {
-                        trackEventPH(PHTrackEvent.MAP_SUPPORT_INITIATED, {
+                        trackEvent(TrackEvent.MAP_SUPPORT_INITIATED, {
                           type: 'chat',
                         });
                         if (window.Intercom) {

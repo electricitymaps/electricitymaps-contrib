@@ -2,8 +2,6 @@ import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import trackEvent from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
 
 import {
   isAndroid,
@@ -18,9 +16,6 @@ export const appStoreDismissedAtom = atomWithStorage(
   'isAppBannerDismissed',
   Boolean(localStorage.getItem('isAppBannerDismissed')) ?? false
 );
-
-export const trackCTAClick = () => trackEvent(TrackEvent.APP_BANNER_CTA_CLICKED);
-export const trackDismissClick = () => trackEvent(TrackEvent.APP_BANNER_DISMISSED);
 
 export enum AppStoreURLs {
   APPLE = 'https://apps.apple.com/us/app/electricity-maps/id1224594248',
@@ -37,8 +32,8 @@ export function AppStoreBanner({
   const { appStoreUrl, closeBanner } = useAppStoreBannerState();
   const { t } = useTranslation();
 
-  const onCTAClick = () => closeBanner(trackCTAClick);
-  const onDismissClick = () => closeBanner(trackDismissClick);
+  const onCTAClick = () => closeBanner();
+  const onDismissClick = () => closeBanner();
 
   return (
     appStoreUrl && (

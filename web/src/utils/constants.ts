@@ -59,7 +59,7 @@ export enum Charts {
   LOAD_CHART = 'load_chart',
 }
 
-export enum PHTrackEvent {
+export enum TrackEvent {
   MAP_ZONE_SEARCHED = 'map_zone_searched',
   MAP_FLOWTRACING_TOGGLED = 'map_flowTracing_toggled',
   MAP_CSV_LINK_PRESSED = 'map_csv_link_pressed',
@@ -71,32 +71,6 @@ export enum PHTrackEvent {
   MAP_SUPPORT_INITIATED = 'map_support_initiated',
   MAP_ZONEMODE_TOGGLED = 'map_zonemode_toggled',
   MAP_CHART_SHARED = 'map_chart_shared',
-}
-
-export enum TrackEvent {
-  APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
-  APP_BANNER_DISMISSED = 'App Banner Dismissed',
-  SHARE_BUTTON_CLICKED = 'Share Button Clicked',
-  SHARE_CHART = 'Share Chart',
-  FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
-  PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
-  HEADER_LINK_CLICKED = 'HeaderLink Clicked',
-  SIDEBAR_LINK_CLICKED = 'SidebarLink Clicked',
-  LANGUAGE_SELECTED = 'Language Selected',
-  ESTIMATION_CARD_EXPANDED = 'EstimationCard Expanded',
-  CONTRIBUTE_ON_GITHUB_BUTTON_CLICKED = 'Contribute On GitHub Button Clicked',
-  COLORBLIND_MODE_TOGGLED = 'Colorblind Mode Toggled',
-  SPATIAL_AGGREGATE_CLICKED = 'Spatial Aggregate Clicked',
-  THEME_SELECTED = 'Theme Selected',
-  PANEL_PRODUCTION_BUTTON_CLICKED = 'PanelProductionButton Clicked',
-  PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
-  ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
-  METHODOLOGIES_AND_DATA_SOURCES_EXPANDED = 'Methodologies and Data Sources Expanded',
-  SOLAR_ENABLED = 'Solar Enabled',
-  SOLAR_DISABLED = 'Solar Disabled',
-  WIND_ENABLED = 'Wind Enabled',
-  WIND_DISABLED = 'Wind Disabled',
-  HISTORICAL_NAVIGATION = 'Historical Navigation',
 }
 
 // color of different production modes are based on various industry standards

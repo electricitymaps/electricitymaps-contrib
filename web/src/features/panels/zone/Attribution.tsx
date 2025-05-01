@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { trackEventPH } from 'utils/analytics';
-import { PHTrackEvent } from 'utils/constants';
+import { trackEvent } from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 
 import { getContributors } from './util';
 
-const trackContributorClick = () =>
-  trackEventPH(PHTrackEvent.MAP_CONTRIBUTOR_AVATAR_PRESSED);
+const trackContributorClick = () => trackEvent(TrackEvent.MAP_CONTRIBUTOR_AVATAR_PRESSED);
 
 export default function Attribution({ zoneId }: { zoneId: string }) {
   const { t } = useTranslation();

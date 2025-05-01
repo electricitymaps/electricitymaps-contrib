@@ -1,8 +1,8 @@
 import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import type { LucideIcon } from 'lucide-react';
-import trackEvent, { trackEventPH } from 'utils/analytics';
-import { PHTrackEvent, TrackEvent } from 'utils/constants';
+import { trackEvent } from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 
 import { SidebarMenuButton, SidebarMenuItem } from './Sidebar';
 
@@ -18,8 +18,7 @@ export function MenuItem({
   isActive?: boolean;
 }) {
   const handleClick = () => {
-    trackEventPH(PHTrackEvent.MAP_NAVIGATION_USED, { link: label });
-    trackEvent(TrackEvent.SIDEBAR_LINK_CLICKED, { linkId: label });
+    trackEvent(TrackEvent.MAP_NAVIGATION_USED, { link: label });
   };
 
   return (

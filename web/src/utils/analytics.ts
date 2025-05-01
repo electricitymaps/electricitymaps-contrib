@@ -1,23 +1,8 @@
 import posthog from 'posthog-js';
-import { Charts, PHTrackEvent, TrackEvent } from 'utils/constants';
+import { Charts, TrackEvent } from 'utils/constants';
 
-type PlausibleEventProps = { readonly [propName: string]: string | number | boolean };
-type PlausibleArguments = [string, { props: PlausibleEventProps }];
-
-// TODO: Consider moving this to its own global file
-declare global {
-  const plausible: {
-    (...arguments_: PlausibleArguments): void; // Renamed 'arguments' to 'arguments_' to avoid conflict with the reserved keyword 'arguments'
-    q?: PlausibleArguments[];
-  };
-
-  interface Window {
-    plausible?: typeof plausible | undefined;
-  }
-}
-
-export function trackEventPH(
-  eventName: PHTrackEvent,
+export function trackEvent(
+  eventName: TrackEvent,
   additionalProps: PlausibleEventProps = {}
 ): void {
   if (import.meta.env.DEV) {
@@ -26,17 +11,6 @@ export function trackEventPH(
   }
   console.log(eventName, additionalProps);
   posthog?.capture(eventName, additionalProps);
-}
-
-export default function trackEvent(
-  eventId: TrackEvent,
-  additionalProps: PlausibleEventProps = {}
-): void {
-  if (import.meta.env.DEV) {
-    console.log("not sending event to plausible because we're not in production");
-    return;
-  }
-  window.plausible?.(eventId, { props: additionalProps });
 }
 
 export enum ShareType {
@@ -53,19 +27,12 @@ export enum ShareType {
 export const trackShare =
   (shareType: ShareType, additionalProps = {}) =>
   () => {
-    trackEventPH(PHTrackEvent.MAP_SOCIAL_SHARE_PRESSED, { social: shareType });
-    trackEvent(TrackEvent.SHARE_BUTTON_CLICKED, { shareType, ...additionalProps });
+    trackEvent(TrackEvent.MAP_SOCIAL_SHARE_PRESSED, { social: shareType });
   };
 
 export const trackShareChart = (social: ShareType, chartId: Charts) => () => {
-  posthog.capture(PHTrackEvent.MAP_CHART_SHARED, { social, chart_name: chartId });
+  posthog.capture(TrackEvent.MAP_CHART_SHARED, { social, chart_name: chartId });
 };
-
-// export const trackShareChart = (shareType: ShareType, chartId: Charts) => () =>
-//   trackEvent(TrackEvent.SHARE_CHART, {
-//     shareType,
-//     chartId,
-//   });
 
 interface TrackChartSharesByShareType {
   [chartId: string]: {

@@ -6,18 +6,13 @@ import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import {
-  getTrackByShareType,
-  ShareType,
-  trackEventPH,
-  trackShare,
-} from 'utils/analytics';
+import { getTrackByShareType, ShareType, trackEvent, trackShare } from 'utils/analytics';
 import {
   baseUrl,
   Charts,
   DEFAULT_ICON_SIZE,
   DEFAULT_TOAST_DURATION,
-  PHTrackEvent,
+  TrackEvent,
 } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
 
@@ -110,7 +105,7 @@ export function MoreOptionsDropdown({
                 className="flex w-full justify-between p-2"
                 onClick={() => {
                   window.open(downloadUrl, '_blank');
-                  trackEventPH(PHTrackEvent.MAP_CSV_LINK_PRESSED);
+                  trackEvent(TrackEvent.MAP_CSV_LINK_PRESSED);
                 }}
                 onKeyDown={(event) =>
                   event.key === 'Enter' && window.open(downloadUrl, '_blank')

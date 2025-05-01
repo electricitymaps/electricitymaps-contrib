@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
-import trackEvent from 'utils/analytics';
+import { trackEvent } from 'utils/analytics';
 import { EstimationMethods, isTSAModel, TrackEvent } from 'utils/constants';
 import {
   feedbackCardCollapsedNumberAtom,
@@ -176,9 +176,6 @@ function BaseCard({
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
   const trackToggle = () => {
-    if (isCollapsed) {
-      trackEvent(TrackEvent.ESTIMATION_CARD_EXPANDED, { cardType: cardType });
-    }
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
   };
   const { t } = useTranslation();
@@ -225,8 +222,8 @@ function BaseCard({
               data-testid="methodology-link"
               className={`text-sm font-semibold text-black underline dark:text-white`}
               onClick={() => {
-                trackEvent(TrackEvent.ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED, {
-                  cardType: cardType,
+                trackEvent(TrackEvent.MAP_METHODOLOGY_LINK_VISITED, {
+                  link: 'missing-data',
                 });
               }}
             >

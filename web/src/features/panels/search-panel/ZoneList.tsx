@@ -3,8 +3,8 @@ import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
 import { useEffect, useRef } from 'react';
 import { GridState } from 'types';
-import { trackEventPH } from 'utils/analytics';
-import { PHTrackEvent } from 'utils/constants';
+import { trackEvent } from 'utils/analytics';
+import { TrackEvent } from 'utils/constants';
 
 interface ZonelistProperties {
   data: ZoneRowType[];
@@ -27,8 +27,7 @@ function ZoneRow({
   zoneName,
   isSelected,
 }: ZoneRowType & { isSelected: boolean }) {
-  const trackSearch = () =>
-    trackEventPH(PHTrackEvent.MAP_ZONE_SEARCHED, { zone: zoneId });
+  const trackSearch = () => trackEvent(TrackEvent.MAP_ZONE_SEARCHED, { zone: zoneId });
 
   return (
     <InternalLink
