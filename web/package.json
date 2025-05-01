@@ -160,7 +160,7 @@
     "@types/topojson-client": "^3.1.5",
     "@types/topojson-server": "^3.0.4",
     "@types/topojson-specification": "^1.0.5",
-    "@vitejs/plugin-react-swc": "^3.7.0",
+    "@vitejs/plugin-react-swc": "^3.9.0",
     "@vitest/coverage-istanbul": "2.1.9",
     "autoprefixer": "10.4.21",
     "browserslist-to-esbuild": "^2.1.1",
