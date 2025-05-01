@@ -14,6 +14,7 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
     LocationalMarginalPrice,
+    Node,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -470,19 +471,32 @@ class PriceList(EventList[Price]):
             self.events.append(event)
 
 
+class NodeList(EventList[Node]):
+    def append(
+        self,
+        node: str,
+    ):
+        event = Node.create(self.logger, node)
+        if event:
+            self.events.append(event)
+
+    def to_list(self) -> list[dict[str, Any]]:
+        return sorted(
+            [event.to_dict() for event in self.events], key=itemgetter("node")
+        )
+
+
 class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float | None,
-        currency: str,
-        node: str,
+        nodes: NodeList,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = LocationalMarginalPrice.create(
-            self.logger, zoneKey, datetime, source, price, currency, node, sourceType
+            self.logger, zoneKey, datetime, source, nodes, sourceType
         )
         if event:
             self.events.append(event)

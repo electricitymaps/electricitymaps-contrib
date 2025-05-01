@@ -17,6 +17,7 @@ from electricitymap.contrib.config import (
     ZONES_CONFIG,
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
+from electricitymap.contrib.lib.models.event_lists import NodeList
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import ProductionModes, StorageModes
 
@@ -839,17 +840,31 @@ class Price(Event):
         }
 
 
-class LocationalMarginalPrice(Price):
-    node: str
+class Node(Event):
+    """
+    An event class representing the price of a node.
+    """
 
-    @validator("node")
-    def _validate_node(cls, v: str) -> str:
-        clean_value = v.strip()
-        if not clean_value:
-            raise ValueError(f"Node cannot be an invalid string: {v}")
-        if clean_value != v:
-            raise ValueError(f"Node should not contain leading or trailing spaces: {v}")
+    node: str
+    price: float | None
+    currency: str
+
+    @validator("currency")
+    def _validate_currency(cls, v: str) -> str:
+        if v not in VALID_CURRENCIES:
+            raise ValueError(f"Unknown currency: {v}")
         return v
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "currency": self.currency,
+            "price": self.price,
+            "node": self.node,
+        }
+
+
+class LocationalMarginalPrice(Event):
+    nodes: NodeList
 
     @staticmethod
     def create(
@@ -857,9 +872,7 @@ class LocationalMarginalPrice(Price):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float | None,
-        currency: str,
-        node: str,
+        nodes: NodeList,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> "LocationalMarginalPrice | None":
         try:
@@ -867,9 +880,7 @@ class LocationalMarginalPrice(Price):
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
-                price=price,
-                currency=currency,
-                node=node,
+                nodes=nodes,
                 sourceType=sourceType,
             )
         except ValidationError as e:
@@ -886,9 +897,7 @@ class LocationalMarginalPrice(Price):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "currency": self.currency,
-            "price": self.price,
-            "node": self.node,
+            "nodes": self.nodes.to_list(),
             "source": self.source,
             "sourceType": self.sourceType,
         }
