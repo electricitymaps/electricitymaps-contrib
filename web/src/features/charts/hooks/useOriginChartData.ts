@@ -35,8 +35,8 @@ export const getLayerFill =
       return () => modeColor[key as ElectricityModeType];
     }
     // Otherwise it's an exchange, set the horizontal gradient by using a different fill for each datapoint.
-    return (d: { data: AreaGraphElement }) =>
-      co2ColorScale(d.data.meta.exchangeCo2Intensities?.[key]);
+    return ({ data }: { data: AreaGraphElement }) =>
+      co2ColorScale(data.meta.exchangeCo2Intensities?.[key] ?? 0);
   };
 
 export default function useOriginChartData() {
@@ -69,9 +69,10 @@ export default function useOriginChartData() {
 
   for (const [datetimeString, value] of Object.entries(zoneData.zoneStates)) {
     const datetime = new Date(datetimeString);
+    const zoneValue = value as ZoneDetail;
     const entry: AreaGraphElement = {
       datetime,
-      meta: value,
+      meta: zoneValue,
       layerData: {},
     };
 
@@ -82,22 +83,23 @@ export default function useOriginChartData() {
       entry.layerData[mode] = isStorage
         ? getStorageValue(
             mode as ElectricityStorageType,
-            value,
+            zoneValue,
             valueFactor,
             displayByEmissions
           )
-        : getGenerationValue(mode, value, valueFactor, displayByEmissions);
+        : getGenerationValue(mode, zoneValue, valueFactor, displayByEmissions);
     }
 
     if (isConsumption) {
       // Add exchanges
-      for (const [key, exchangeValue] of Object.entries(value.exchange)) {
+      for (const [key, rawExchangeValue] of Object.entries(zoneValue.exchange)) {
+        const exchangeValue = rawExchangeValue ?? 0;
         // in GW or MW
         entry.layerData[key] = exchangeValue / valueFactor;
         if (displayByEmissions) {
           // in gCO₂eq/hour
           entry.layerData[key] =
-            value.exchangeCo2Intensities?.[key] * Math.max(0, exchangeValue);
+            (zoneValue?.exchangeCo2Intensities?.[key] ?? 0) * Math.max(0, exchangeValue);
         }
       }
     }

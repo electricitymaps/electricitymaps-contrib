@@ -1,9 +1,12 @@
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { CountryFlag } from 'components/Flag';
+import GlassContainer from 'components/GlassContainer';
 import { MetricRatio } from 'components/MetricRatio';
 import { useCo2ColorScale } from 'hooks/theme';
 import { TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
+import { InfoIcon } from 'lucide-react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
 import { ElectricityModeType, Maybe } from 'types';
@@ -131,7 +134,7 @@ export function BreakdownChartTooltipContent({
     ? getZoneName(selectedLayerKey)
     : t(selectedLayerKey).charAt(0).toUpperCase() + t(selectedLayerKey).slice(1);
   return (
-    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
+    <GlassContainer className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
         squareColor={
           isExchange
@@ -228,41 +231,46 @@ export function BreakdownChartTooltipContent({
           </div>
         </>
       )}
-    </div>
+    </GlassContainer>
   );
 }
 
-export function BreakdownChartTooltipContentNoData({
-  datetime,
-  isExchange,
-  selectedLayerKey,
-  timeRange,
-}: {
-  datetime: Date;
-  isExchange: boolean;
-  selectedLayerKey: LayerKey;
-  timeRange: TimeRange;
-  capacity?: number | null;
-}) {
-  const { t } = useTranslation();
-  const co2ColorScale = useCo2ColorScale();
-  const title = isExchange
-    ? getZoneName(selectedLayerKey)
-    : t(selectedLayerKey).charAt(0).toUpperCase() + t(selectedLayerKey).slice(1);
-  return (
-    <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
-      <AreaGraphToolTipHeader
-        squareColor={
-          isExchange
-            ? co2ColorScale(Number.NaN)
-            : modeColor[selectedLayerKey as ElectricityModeType]
-        }
-        datetime={datetime}
-        timeRange={timeRange}
-        title={title}
-        productionSource={isExchange ? undefined : selectedLayerKey}
-      />
-      <div>{t('tooltips.nodata')}</div>
-    </div>
-  );
-}
+export const BreakdownChartTooltipContentNoData = memo(
+  function BreakdownChartTooltipContentNoData({
+    datetime,
+    isExchange,
+    selectedLayerKey,
+    timeRange,
+  }: {
+    datetime: Date;
+    isExchange: boolean;
+    selectedLayerKey: LayerKey;
+    timeRange: TimeRange;
+    capacity?: number | null;
+  }) {
+    const { t } = useTranslation();
+    const co2ColorScale = useCo2ColorScale();
+    const title = isExchange
+      ? getZoneName(selectedLayerKey)
+      : t(selectedLayerKey).charAt(0).toUpperCase() + t(selectedLayerKey).slice(1);
+    return (
+      <GlassContainer className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
+        <AreaGraphToolTipHeader
+          squareColor={
+            isExchange
+              ? co2ColorScale(Number.NaN)
+              : modeColor[selectedLayerKey as ElectricityModeType]
+          }
+          datetime={datetime}
+          timeRange={timeRange}
+          title={title}
+          productionSource={isExchange ? undefined : selectedLayerKey}
+        />
+        <div className="row flex items-center gap-1 rounded-lg bg-elevation p-2 dark:bg-elevation-dark">
+          <InfoIcon size={16} />
+          {t(isExchange ? 'tooltips.noDataExchange' : 'tooltips.noDataProduction')}
+        </div>
+      </GlassContainer>
+    );
+  }
+);

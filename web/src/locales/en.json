@@ -372,7 +372,9 @@
     "importing": "Importing",
     "exporting": "Exporting",
     "flowTraced": "Flow-traced data accounts for physical electricity flow",
-    "nonFlowTraced": "Non flow-traced data does not take imports and exports into account"
+    "nonFlowTraced": "Non flow-traced data does not take imports and exports into account",
+    "noDataProduction": "Data is not reported for this technology",
+    "noDataExchange": "Data is not reported for this electricity flow"
   },
   "aria": {
     "label": {

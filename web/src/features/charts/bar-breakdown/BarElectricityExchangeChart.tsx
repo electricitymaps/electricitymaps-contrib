@@ -77,7 +77,7 @@ export default function BarElectricityExchangeChart({
               />
               <HorizontalBar
                 className="exchange"
-                fill={co2ColorScale(d.gCo2eqPerkWh)}
+                fill={co2ColorScale(d.gCo2eqPerkWh ?? Number.NaN)}
                 range={[0, d.exchange]}
                 scale={powerScale}
               />
