@@ -1,10 +1,10 @@
 import Accordion from 'components/Accordion';
 import Link from 'components/Link';
+import { LogoIcon } from 'components/Logo';
 import { DataSources } from 'features/charts/DataSources';
 import useZoneDataSources from 'features/charts/hooks/useZoneDataSources';
 import { RoundedCard } from 'features/charts/RoundedCard';
 import { t } from 'i18next';
-import { EmapsIcon } from 'icons/emapsIcon';
 import { Factory, UtilityPole, Zap } from 'lucide-react';
 import { memo, useState } from 'react';
 import trackEvent from 'utils/analytics';
@@ -30,7 +30,7 @@ function MethodologyCard() {
       >
         <div className="flex flex-col gap-2 py-1">
           <div className="flex items-center gap-1 py-2">
-            <EmapsIcon styling="dark:text-white" />
+            <LogoIcon className="size-4 dark:text-white" />
             <p className="font-semibold">{t('left-panel.applied-methodologies.title')}</p>
           </div>
           <div className="flex flex-col gap-2 pl-5">

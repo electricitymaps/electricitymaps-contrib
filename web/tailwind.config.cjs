@@ -22,6 +22,9 @@ const config = {
       spacing: {
         15: '3.75rem',
       },
+      padding: {
+        safe: 'env(safe-area-inset-top)',
+      },
       screens: {
         xs: '475px',
       },

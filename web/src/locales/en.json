@@ -312,6 +312,13 @@
       "all_months": "Monthly electricity flow",
       "all_years": "Yearly electricity flow"
     },
+    "electricityLoad": {
+      "72h": "Hourly electricity load",
+      "3mo": "Daily electricity load",
+      "12mo": "Monthly electricity load",
+      "all_months": "Monthly electricity load",
+      "all_years": "Yearly electricity load"
+    },
     "not-enough-data": "Not enough data available to display chart",
     "exchange-delay": "Flow data may be delayed by up to 48h."
   },
@@ -361,6 +368,7 @@
     "dataIsDelayed": "Data is delayed",
     "price": "Price",
     "netExchange": "Electricity flow",
+    "load": "Electricity load",
     "importing": "Importing",
     "exporting": "Exporting",
     "flowTraced": "Flow-traced data accounts for physical electricity flow",
@@ -1570,7 +1578,7 @@
       "zoneName": "Uganda"
     },
     "US": {
-      "zoneName": "Contiguous United States",
+      "zoneName": "United States",
       "seoZoneName": "United States of America - U.S."
     },
     "US-AK": {
