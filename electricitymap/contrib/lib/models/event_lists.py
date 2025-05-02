@@ -471,12 +471,18 @@ class PriceList(EventList[Price]):
             self.events.append(event)
 
 
-class NodeList(EventList[Node]):
+class NodeList:
+    def __init__(self, logger: Logger):
+        self.logger = logger
+        self.events = []
+
     def append(
         self,
-        node: str,
+        node: Node,
+        price: float | None,
+        currency: str,
     ):
-        event = Node.create(self.logger, node)
+        event = Node.create(self.logger, node, price, currency)
         if event:
             self.events.append(event)
 

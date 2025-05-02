@@ -17,7 +17,6 @@ from electricitymap.contrib.config import (
     ZONES_CONFIG,
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
-from electricitymap.contrib.lib.models.event_lists import NodeList
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import ProductionModes, StorageModes
 
@@ -840,7 +839,7 @@ class Price(Event):
         }
 
 
-class Node(Event):
+class Node(BaseModel, ABC):
     """
     An event class representing the price of a node.
     """
@@ -855,6 +854,27 @@ class Node(Event):
             raise ValueError(f"Unknown currency: {v}")
         return v
 
+    @staticmethod
+    def create(
+        logger: Logger,
+        node: str,
+        price: float | None,
+        currency: str,
+    ) -> "Node | None":
+        try:
+            return Node(
+                node=node,
+                price=price,
+                currency=currency,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating node Event: {e}",
+                extra={
+                    "node": node,
+                },
+            )
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "currency": self.currency,
@@ -864,7 +884,7 @@ class Node(Event):
 
 
 class LocationalMarginalPrice(Event):
-    nodes: NodeList
+    nodes: "NodeList"
 
     @staticmethod
     def create(
@@ -872,7 +892,7 @@ class LocationalMarginalPrice(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        nodes: NodeList,
+        nodes: "NodeList",
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> "LocationalMarginalPrice | None":
         try:
