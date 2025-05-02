@@ -289,10 +289,7 @@ if (container) {
   root.render(
     <StrictMode>
       <I18nextProvider i18n={i18n}>
-        <PostHogProvider
-          apiKey={import.meta.env.API_PORTAL_POSTHOG_KEY}
-          options={options}
-        >
+        <PostHogProvider apiKey={import.meta.env.VITE_POSTHOG_KEY} options={options}>
           <HelmetProvider>
             <QueryClientProvider client={queryClient}>
               <RouterProvider router={router} />

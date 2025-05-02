@@ -36,7 +36,7 @@ build:
   FROM +prepare
   RUN pnpm run create-generated-files
   RUN pnpm version minor
-  RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9=ELECTRICITYMAPS_APP_PUBLIC_TOKEN_V9 --secret API_PORTAL_POSTHOG_KEY pnpm run build
+  RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9=ELECTRICITYMAPS_APP_PUBLIC_TOKEN_V9 --secret VITE_POSTHOG_KEY=API_PORTAL_POSTHOG_KEY pnpm run build
 
   # Local outputs for debugging
   SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
@@ -49,7 +49,7 @@ deploy-staging:
   FROM +prepare
   COPY +build/dist ./dist
   RUN npm install -g wrangler
-  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID --secret API_PORTAL_POSTHOG_KEY wrangler pages deploy ./dist --project-name electricitymaps-staging --branch main
+  RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID wrangler pages deploy ./dist --project-name electricitymaps-staging --branch main
 
 
 deploy:
