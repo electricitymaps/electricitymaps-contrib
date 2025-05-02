@@ -18,7 +18,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
 import { trackEvent } from 'utils/analytics';
-import { Mode, ThemeOptions,TrackEvent } from 'utils/constants';
+import { Mode, ThemeOptions, TrackEvent } from 'utils/constants';
 import {
   colorblindModeAtom,
   productionConsumptionAtom,

@@ -2,7 +2,7 @@ import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import { memo, type ReactElement, useCallback } from 'react';
 import { trackEvent } from 'utils/analytics';
-import { SpatialAggregate,TrackEvent } from 'utils/constants';
+import { SpatialAggregate, TrackEvent } from 'utils/constants';
 import { spatialAggregateAtom } from 'utils/state/atoms';
 
 const options = [
