@@ -15,6 +15,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    NodeList,
     ProductionMix,
     StorageMix,
 )
@@ -262,28 +263,39 @@ def test_append_to_price_list_logs_error():
 
 
 def test_locational_marginal_price_list():
-    lmp_list = LocationalMarginalPriceList(logging.Logger("test"))
+    logger = logging.Logger("test")
+    node_list = NodeList(logger)
+    lmp_list = LocationalMarginalPriceList(logger)
+    node_list.append(
+        node="SPPNORTH_HUB",
+        price=1,
+        currency="USD",
+    )
     lmp_list.append(
         zoneKey=ZoneKey("US-CENT-SWPP"),
         datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
-        price=1,
+        nodes=node_list,
         source="trust.me",
-        currency="USD",
-        node="SPPNORTH_HUB",
     )
     assert len(lmp_list.events) == 1
+    assert len(lmp_list.events[0].nodes) == 1
 
 
 def test_append_to_locational_marginal_price_list_logs_error():
-    lmp_list = LocationalMarginalPriceList(logging.Logger("test"))
+    logger = logging.Logger("test")
+    node_list = NodeList(logger)
+    lmp_list = LocationalMarginalPriceList(logger)
     with patch.object(lmp_list.logger, "error") as mock_error:
+        node_list.append(
+            node="",
+            price=1,
+            currency="USD",
+        )
         lmp_list.append(
             zoneKey=ZoneKey("US-CENT-SWPP"),
             datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
-            price=1,
+            nodes=node_list,
             source="trust.me",
-            currency="EUR",
-            node="",
         )
         mock_error.assert_called_once()
 

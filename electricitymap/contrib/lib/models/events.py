@@ -6,6 +6,7 @@ from collections.abc import Set
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
+from operator import itemgetter
 from typing import Any
 
 import pandas as pd
@@ -882,9 +883,39 @@ class Node(BaseModel, ABC):
             "node": self.node,
         }
 
+class NodeList:
+    """
+    A collection of Node objects.
+    """
+
+    def __init__(self, logger: Logger):
+        self.logger = logger
+        self.events = []
+
+    def append(
+        self,
+        node: str,
+        price: float | None,
+        currency: str,
+    ):
+        event = Node.create(self.logger, node, price, currency)
+        if event:
+            self.events.append(event)
+
+    def to_list(self) -> list[dict[str, Any]]:
+        return sorted(
+            [event.to_dict() for event in self.events], key=itemgetter("node")
+        )
+
+    def __len__(self):
+        return len(self.events)
+
 
 class LocationalMarginalPrice(Event):
-    nodes: "NodeList"
+    nodes: NodeList
+
+    class Config:
+        arbitrary_types_allowed = True
 
     @staticmethod
     def create(
@@ -892,7 +923,7 @@ class LocationalMarginalPrice(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        nodes: "NodeList",
+        nodes: NodeList,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> "LocationalMarginalPrice | None":
         try:
@@ -921,3 +952,4 @@ class LocationalMarginalPrice(Event):
             "source": self.source,
             "sourceType": self.sourceType,
         }
+
