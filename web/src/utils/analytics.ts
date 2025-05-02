@@ -1,15 +1,16 @@
+import { Capacitor } from '@capacitor/core';
 import posthog from 'posthog-js';
 import { Charts, TrackEvent } from 'utils/constants';
 
-export function trackEvent(
-  eventName: TrackEvent,
-  additionalProps: PlausibleEventProps = {}
-): void {
+export function trackEvent(eventName: TrackEvent, additionalProps = {}): void {
   if (import.meta.env.DEV) {
-    // console.log("not sending event to posthog because we're not in production");
-    // return;
+    console.log("not sending event to posthog because we're not in production");
+    return;
   }
-  console.log(eventName, additionalProps);
+  if (Capacitor.isNativePlatform()) {
+    console.log('not sending event to posthog in native apps');
+    return;
+  }
   posthog?.capture(eventName, additionalProps);
 }
 
