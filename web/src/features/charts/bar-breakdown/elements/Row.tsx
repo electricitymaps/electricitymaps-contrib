@@ -24,7 +24,7 @@ type BaseProps = {
   isMobile: boolean;
   scale: ScaleLinear<number, number, never>;
   value: Maybe<number>;
-  onMouseOver?: MouseEventHandler<SVGRectElement>;
+  onMouseOver?: MouseEventHandler<SVGElement>;
   onMouseOut?: () => void;
   width: number;
 };
@@ -50,7 +50,7 @@ const RowBackground = memo(function RowBackground({
 }: {
   width: number;
   isMobile: boolean;
-  onMouseOver?: MouseEventHandler<SVGRectElement>;
+  onMouseOver?: MouseEventHandler<SVGElement>;
   onMouseOut?: () => void;
 }) {
   // Use memoization to avoid unnecessary re-renders

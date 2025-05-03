@@ -1,6 +1,7 @@
 import { Group } from '@visx/group';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { ScaleLinear } from 'd3-scale';
+import { MouseEvent, MouseEventHandler, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
 import { CarbonUnits } from 'utils/units';
@@ -31,12 +32,17 @@ export default function BarElectricityExchangeChart({
   graphUnit: string | undefined;
   formatTick: FormatTick;
   onExchangeRowMouseOut: () => void;
-  onExchangeRowMouseOver: (
-    rowKey: ZoneKey,
-    event: React.MouseEvent<SVGPathElement, MouseEvent>
-  ) => void;
+  onExchangeRowMouseOver: (rowKey: ZoneKey, event: React.MouseEvent<SVGElement>) => void;
 }) {
   const { t } = useTranslation();
+
+  const handleExchangeRowMouseOver = useCallback(
+    (zoneKey: ZoneKey): MouseEventHandler<SVGElement> =>
+      (event) => {
+        onExchangeRowMouseOver(zoneKey, event);
+      },
+    [onExchangeRowMouseOver]
+  );
 
   if (!exchangeData || exchangeData.length === 0) {
     return null;
@@ -65,7 +71,7 @@ export default function BarElectricityExchangeChart({
               width={width}
               scale={powerScale}
               value={d.exchange}
-              onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
+              onMouseOver={handleExchangeRowMouseOver(d.zoneKey)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={false}
             >
