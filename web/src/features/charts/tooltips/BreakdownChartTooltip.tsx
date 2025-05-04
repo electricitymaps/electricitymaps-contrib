@@ -1,5 +1,10 @@
+import GlassContainer from 'components/GlassContainer';
+import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
+import { useTranslation } from 'react-i18next';
+import { getZoneName } from 'translation/translation';
 import { ElectricityModeType } from 'types';
+import { modeColor } from 'utils/constants';
 import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
@@ -15,6 +20,7 @@ import {
   ProductionTooltipData,
 } from '../tooltipCalculations';
 import { InnerAreaGraphTooltipProps } from '../types';
+import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 import {
   BreakdownChartTooltipContent,
   BreakdownChartTooltipContentNoData,
@@ -34,6 +40,8 @@ export default function BreakdownChartTooltip({
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const timeRange = useAtomValue(timeRangeAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
+  const co2ColorScale = useCo2ColorScale();
+  const { t } = useTranslation();
 
   if (!zoneDetail || !selectedLayerKey) {
     return null;
@@ -41,6 +49,10 @@ export default function BreakdownChartTooltip({
 
   // If layer key is not a generation type, it is an exchange
   const isExchange = !getGenerationTypeKey(selectedLayerKey);
+
+  const title = isExchange
+    ? getZoneName(selectedLayerKey)
+    : t(selectedLayerKey).charAt(0).toUpperCase() + t(selectedLayerKey).slice(1);
 
   const contentData = isExchange
     ? getExchangeTooltipData(selectedLayerKey, zoneDetail, displayByEmissions)
@@ -62,23 +74,32 @@ export default function BreakdownChartTooltip({
     ? contentData.usage
     : contentData.production;
 
-  return Number.isFinite(shownValue) ? (
-    <BreakdownChartTooltipContent
-      {...contentData}
-      datetime={date}
-      isExchange={isExchange}
-      selectedLayerKey={selectedLayerKey}
-      timeRange={timeRange}
-      hasEstimationPill={hasEstimationPill}
-      estimatedPercentage={roundedEstimatedPercentage}
-      estimationMethod={estimationMethod}
-    />
-  ) : (
-    <BreakdownChartTooltipContentNoData
-      datetime={date}
-      isExchange={isExchange}
-      selectedLayerKey={selectedLayerKey}
-      timeRange={timeRange}
-    />
+  const isValidValue = Number.isFinite(shownValue);
+  return (
+    <GlassContainer className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
+      <AreaGraphToolTipHeader
+        squareColor={
+          isExchange
+            ? co2ColorScale(contentData.co2Intensity ?? Number.NaN)
+            : modeColor[selectedLayerKey as ElectricityModeType]
+        }
+        datetime={date}
+        timeRange={timeRange}
+        title={title}
+        hasEstimationPill={!isValidValue || isExchange ? false : hasEstimationPill}
+        estimatedPercentage={estimatedPercentage}
+        productionSource={isExchange ? undefined : selectedLayerKey}
+        estimationMethod={estimationMethod}
+      />
+      {isValidValue ? (
+        <BreakdownChartTooltipContent
+          {...contentData}
+          isExchange={isExchange}
+          selectedLayerKey={selectedLayerKey}
+        />
+      ) : (
+        <BreakdownChartTooltipContentNoData isExchange={isExchange} />
+      )}
+    </GlassContainer>
   );
 }

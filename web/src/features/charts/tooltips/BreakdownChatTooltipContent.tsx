@@ -1,22 +1,18 @@
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { CountryFlag } from 'components/Flag';
-import GlassContainer from 'components/GlassContainer';
 import { MetricRatio } from 'components/MetricRatio';
-import { useCo2ColorScale } from 'hooks/theme';
 import { TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
 import { InfoIcon } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getZoneName } from 'translation/translation';
-import { ElectricityModeType, Maybe } from 'types';
-import { EstimationMethods, modeColor, TimeRange } from 'utils/constants';
+import { Maybe } from 'types';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
 import { isHourlyAtom } from 'utils/state/atoms';
 
 import { getRatioPercent } from '../graphUtils';
 import { LayerKey } from '../types';
-import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 function Headline({
   isExchange,
@@ -80,13 +76,11 @@ function getDataActionKey(
 }
 
 interface BreakdownChartTooltipContentProperties {
-  datetime: Date;
   usage: number | null;
   capacity: number | null | undefined;
   totalElectricity: number;
   totalEmissions: number;
   co2Intensity?: number;
-  timeRange: TimeRange;
   displayByEmissions: boolean;
   emissions: number;
   zoneKey: string;
@@ -96,18 +90,13 @@ interface BreakdownChartTooltipContentProperties {
   co2IntensitySource?: string;
   storage?: Maybe<number>;
   production?: Maybe<number>;
-  hasEstimationPill?: boolean;
-  estimatedPercentage?: number;
   capacitySource?: string[] | null;
-  estimationMethod?: EstimationMethods;
 }
 
 export function BreakdownChartTooltipContent({
-  datetime,
   usage,
   totalElectricity,
   displayByEmissions,
-  timeRange,
   capacity,
   emissions,
   isExport,
@@ -117,38 +106,18 @@ export function BreakdownChartTooltipContent({
   zoneKey,
   isExchange,
   selectedLayerKey,
-  hasEstimationPill,
-  estimatedPercentage,
   capacitySource,
-  estimationMethod,
 }: BreakdownChartTooltipContentProperties) {
   const { t } = useTranslation();
-  const co2ColorScale = useCo2ColorScale();
+
   const isHourly = useAtomValue(isHourlyAtom);
   // Dynamically generate the translated headline HTML based on the exchange or generation type
   const percentageUsage = displayByEmissions
     ? getRatioPercent(emissions, totalEmissions)
     : getRatioPercent(usage, totalElectricity);
 
-  const title = isExchange
-    ? getZoneName(selectedLayerKey)
-    : t(selectedLayerKey).charAt(0).toUpperCase() + t(selectedLayerKey).slice(1);
   return (
-    <GlassContainer className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
-      <AreaGraphToolTipHeader
-        squareColor={
-          isExchange
-            ? co2ColorScale(co2Intensity ?? Number.NaN)
-            : modeColor[selectedLayerKey as ElectricityModeType]
-        }
-        datetime={datetime}
-        timeRange={timeRange}
-        title={title}
-        hasEstimationPill={isExchange ? false : hasEstimationPill}
-        estimatedPercentage={estimatedPercentage}
-        productionSource={isExchange ? undefined : selectedLayerKey}
-        estimationMethod={estimationMethod}
-      />
+    <>
       <Headline
         isExchange={isExchange}
         displayByEmissions={displayByEmissions}
@@ -231,46 +200,19 @@ export function BreakdownChartTooltipContent({
           </div>
         </>
       )}
-    </GlassContainer>
+    </>
   );
 }
 
 export const BreakdownChartTooltipContentNoData = memo(
-  function BreakdownChartTooltipContentNoData({
-    datetime,
-    isExchange,
-    selectedLayerKey,
-    timeRange,
-  }: {
-    datetime: Date;
-    isExchange: boolean;
-    selectedLayerKey: LayerKey;
-    timeRange: TimeRange;
-    capacity?: number | null;
-  }) {
+  function BreakdownChartTooltipContentNoData({ isExchange }: { isExchange: boolean }) {
     const { t } = useTranslation();
-    const co2ColorScale = useCo2ColorScale();
-    const title = isExchange
-      ? getZoneName(selectedLayerKey)
-      : t(selectedLayerKey).charAt(0).toUpperCase() + t(selectedLayerKey).slice(1);
+
     return (
-      <GlassContainer className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
-        <AreaGraphToolTipHeader
-          squareColor={
-            isExchange
-              ? co2ColorScale(Number.NaN)
-              : modeColor[selectedLayerKey as ElectricityModeType]
-          }
-          datetime={datetime}
-          timeRange={timeRange}
-          title={title}
-          productionSource={isExchange ? undefined : selectedLayerKey}
-        />
-        <div className="row flex items-center gap-1 rounded-lg bg-elevation p-2 dark:bg-elevation-dark">
-          <InfoIcon size={16} />
-          {t(isExchange ? 'tooltips.noDataExchange' : 'tooltips.noDataProduction')}
-        </div>
-      </GlassContainer>
+      <div className="row flex items-center gap-1 rounded-lg bg-elevation p-2 dark:bg-elevation-dark">
+        <InfoIcon size={16} />
+        {t(isExchange ? 'tooltips.noDataExchange' : 'tooltips.noDataProduction')}
+      </div>
     );
   }
 );
