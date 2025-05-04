@@ -116,7 +116,7 @@ export default function FeedbackCard({
       <div className="flex flex-row  justify-between">
         <div className="flex flex-initial flex-row gap-2">
           <div
-            className={`min-h-[16px] min-w-[16px] bg-[url('/images/electricitymaps-icon.svg')] bg-contain bg-center bg-no-repeat dark:invert`}
+            className={`min-h-[16px] min-w-[16px] bg-[url('/images/electricity-maps-logo.svg')] bg-contain bg-center bg-no-repeat dark:invert`}
           />
           <h2
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
