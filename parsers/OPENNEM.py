@@ -1,4 +1,3 @@
-from collections.abc import Mapping
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 
@@ -8,7 +7,7 @@ from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
-REFETCH_FREQUENCY = timedelta(days=21)
+REFETCH_FREQUENCY = timedelta(days=7)
 
 
 ZONE_KEY_TO_REGION = {
@@ -79,28 +78,11 @@ def dataset_to_df(dataset):
         interval += "in"
 
     index = pd.date_range(start=dt_start, end=dt_end, freq=interval)
-    assert len(index) == len(series["data"])
+    # In some situation, some data points missing, the first dates are the ones to keep
+    index = index[: len(series["data"])]
     df = pd.DataFrame(index=index, data=series["data"], columns=[name])
 
     return df
-
-
-def process_solar_rooftop(df: pd.DataFrame) -> pd.DataFrame:
-    if "SOLAR_ROOFTOP" in df:
-        # at present, solar rooftop data comes in each 30 mins.
-        # Resample data to not require interpolation
-        return df.resample("30T").mean()
-    return df
-
-
-def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
-    # Parse capacity data
-    capacities = {
-        obj["id"].split(".")[-2].upper(): obj.get("x_capacity_at_present")
-        for obj in filtered_datasets
-        if obj["region"] == region
-    }
-    return pd.Series(capacities)
 
 
 def sum_vector(pd_series, keys, ignore_nans=False):
@@ -145,20 +127,18 @@ def filter_production_objs(
 def generate_url(
     zone_key: str, is_flow, target_datetime: datetime | None, logger: Logger
 ) -> str:
-    if target_datetime:
-        network = ZONE_KEY_TO_NETWORK[zone_key]
-        # We will fetch since the beginning of the current month
-        month = target_datetime.strftime("%Y-%m-%d")
-        if is_flow:
-            url = (
-                f"http://api.opennem.org.au/stats/flow/network/{network}?month={month}"
-            )
-        else:
-            region = ZONE_KEY_TO_REGION.get(zone_key)
-            url = f"http://api.opennem.org.au/stats/power/network/fueltech/{network}/{region}?month={month}"
-    else:
-        # Contains flows and production combined
-        url = "https://data.opennem.org.au/v3/clients/em/latest.json"
+    # Only 7d or 30d data is available
+    duration = (
+        "7d"
+        if not target_datetime
+        or (datetime.now() - target_datetime.replace(tzinfo=None)) < timedelta(days=7)
+        else "30d"
+    )
+    network = ZONE_KEY_TO_NETWORK[zone_key]
+    region = ZONE_KEY_TO_REGION.get(zone_key)
+    # Western Australia have no region in url
+    region = "" if region == "WEM" else f"/{region}"
+    url = f"https://data.openelectricity.org.au/v4/stats/au/{network}{region}/power/{duration}.json"
 
     return url
 
@@ -187,7 +167,7 @@ def fetch_main_power_df(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> tuple[pd.DataFrame, list]:
-    df, filtered_datasets = _fetch_main_df(
+    return _fetch_main_df(
         "power",
         zone_key=zone_key,
         sorted_zone_keys=sorted_zone_keys,
@@ -195,9 +175,6 @@ def fetch_main_power_df(
         target_datetime=target_datetime,
         logger=logger,
     )
-    # Solar rooftop is a special case
-    df = process_solar_rooftop(df)
-    return df, filtered_datasets
 
 
 def _fetch_main_df(
@@ -228,11 +205,15 @@ def _fetch_main_df(
         filter_data_type = ds["type"] == data_type
         filter_region = False
         if zone_key:
-            filter_region |= ds.get("region") == region
+            filter_region |= (
+                "region" in ds and ds.get("region").upper() == region.upper()
+            )
         if sorted_zone_keys:
             filter_region |= (
-                ds.get("id").split(".")[-2]
-                == EXCHANGE_MAPPING_DICTIONARY["->".join(sorted_zone_keys)]["region_id"]
+                ds.get("id").split(".")[-2].upper()
+                == EXCHANGE_MAPPING_DICTIONARY["->".join(sorted_zone_keys)][
+                    "region_id"
+                ].upper()
             )
         return filter_data_type and filter_region
 
@@ -264,8 +245,6 @@ def fetch_production(
         target_datetime=target_datetime,
         logger=logger,
     )
-    region = ZONE_KEY_TO_REGION.get(zone_key)
-    capacities = get_capacities(filtered_datasets, region) if region else pd.Series()
 
     # Drop interconnectors
     df = df.drop([x for x in df.columns if "->" in x], axis=1)
@@ -297,21 +276,6 @@ def fetch_production(
                 "battery": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["battery"]),
                 # opennem reports pumping as positive, we here should report as positive
                 "hydro": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["hydro"]),
-            },
-            "capacity": {
-                "coal": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["coal"]),
-                "gas": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["gas"]),
-                "oil": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["oil"]),
-                "hydro": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["hydro"]),
-                "wind": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["wind"]),
-                "biomass": sum_vector(
-                    capacities, OPENNEM_PRODUCTION_CATEGORIES["biomass"]
-                ),
-                "solar": sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES["solar"]),
-                "hydro storage": capacities.get(OPENNEM_STORAGE_CATEGORIES["hydro"][0]),
-                "battery storage": capacities.get(
-                    OPENNEM_STORAGE_CATEGORIES["battery"][0]
-                ),
             },
             "source": SOURCE,
             "zoneKey": zone_key,
