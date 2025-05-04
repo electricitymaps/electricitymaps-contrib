@@ -1,5 +1,6 @@
 import CarbonChart from 'features/charts/CarbonChart';
 import EmissionChart from 'features/charts/EmissionChart';
+import LoadChart from 'features/charts/LoadChart';
 import NetExchangeChart from 'features/charts/NetExchangeChart';
 import OriginChart from 'features/charts/OriginChart';
 import PriceChart from 'features/charts/PriceChart';
@@ -28,6 +29,7 @@ export default function AreaGraphContainer({
       />
       <NetExchangeChart datetimes={datetimes} timeRange={timeRange} />
       <PriceChart datetimes={datetimes} timeRange={timeRange} />
+      <LoadChart datetimes={datetimes} timeRange={timeRange} />
     </div>
   );
 }

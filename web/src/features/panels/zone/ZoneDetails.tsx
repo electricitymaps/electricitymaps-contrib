@@ -1,4 +1,3 @@
-import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
 import ApiButton from 'components/buttons/ApiButton';
 import GlassContainer from 'components/GlassContainer';
@@ -130,14 +129,11 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const isIosCapacitor =
-    Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
-
   return (
     <GlassContainer
       className={twMerge(
         'pointer-events-auto z-[21] flex h-full flex-col border-0 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0',
-        isIosCapacitor ? 'pt-24' : 'pt-10' // accommodates logo on mobile
+        'pt-[max(2.5rem,env(safe-area-inset-top))] sm:pt-0' // use safe-area, keep sm:pt-0
       )}
     >
       <section className="h-full w-full">
