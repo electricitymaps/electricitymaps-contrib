@@ -1,4 +1,4 @@
-VERSION --use-visited-upfront-hash-collection 0.7
+VERSION 0.8
 FROM node:20
 WORKDIR /contrib/web
 
