@@ -50,9 +50,6 @@ capacity:
     - datetime: '2022-10-10'
       source: reunion.edf.fr
       value: 15.0
-    - datetime: '2025-04-12'
-      source: reunion.edf.fr
-      value: 15.0
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
