@@ -14,6 +14,7 @@ import {
   SunIcon,
   XIcon,
 } from 'lucide-react';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
@@ -31,9 +32,10 @@ import { isSettingsModalOpenAtom } from './modalAtoms';
 function ElectricityFlowsToggle() {
   const { t } = useTranslation();
   const [mode, setMode] = useAtom(productionConsumptionAtom);
+  const posthog = usePostHog();
 
   const onToggle = (isEnabled: boolean) => {
-    trackEvent(TrackEvent.MAP_FLOWTRACING_TOGGLED, {
+    trackEvent(posthog, TrackEvent.MAP_FLOWTRACING_TOGGLED, {
       toggle_state: isEnabled ? 'flowtracing_on' : 'flowtracing_off',
     });
     setMode(isEnabled ? Mode.CONSUMPTION : Mode.PRODUCTION);

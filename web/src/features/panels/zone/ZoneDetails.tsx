@@ -5,6 +5,7 @@ import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useAtomValue, useSetAtom } from 'jotai';
+import { usePostHog } from 'posthog-js/react';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
@@ -29,10 +30,6 @@ import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import ZoneHeader from './ZoneHeader';
 
-const trackCtaMiddle = () => trackEvent(TrackEvent.MAP_CTA_PRESSED, { type: 'middle' });
-const trackCtaForecast = () =>
-  trackEvent(TrackEvent.MAP_CTA_PRESSED, { type: 'forecast' });
-
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
   const timeRange = useAtomValue(timeRangeAtom);
@@ -49,6 +46,12 @@ export default function ZoneDetails(): JSX.Element {
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
   const hasEstimationPill =
     Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
+
+  const posthog = usePostHog();
+  const trackCtaMiddle = () =>
+    trackEvent(posthog, TrackEvent.MAP_CTA_PRESSED, { type: 'middle' });
+  const trackCtaForecast = () =>
+    trackEvent(posthog, TrackEvent.MAP_CTA_PRESSED, { type: 'forecast' });
 
   useEffect(() => {
     if (hasSubZones === null) {

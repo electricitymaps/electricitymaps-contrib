@@ -1,10 +1,9 @@
+import { usePostHog } from 'posthog-js/react';
 import { useTranslation } from 'react-i18next';
 import { trackEvent } from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
 
 import { getContributors } from './util';
-
-const trackContributorClick = () => trackEvent(TrackEvent.MAP_CONTRIBUTOR_AVATAR_PRESSED);
 
 export default function Attribution({ zoneId }: { zoneId: string }) {
   const { t } = useTranslation();
@@ -23,6 +22,7 @@ export default function Attribution({ zoneId }: { zoneId: string }) {
 }
 
 function ContributorList({ contributors }: { contributors: string[] }) {
+  const posthog = usePostHog();
   return (
     <div className="flex flex-wrap gap-1">
       {contributors.map((contributor) => (
@@ -31,7 +31,7 @@ function ContributorList({ contributors }: { contributors: string[] }) {
           href={`https://github.com/${contributor}`}
           rel="noopener noreferrer"
           target="_blank"
-          onClick={trackContributorClick}
+          onClick={() => trackEvent(posthog, TrackEvent.MAP_CONTRIBUTOR_AVATAR_PRESSED)}
         >
           <img
             src={`https://avatars.githubusercontent.com/${contributor}?s=20`} // loads the avatar image at a default size of 20px

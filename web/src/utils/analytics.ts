@@ -1,17 +1,26 @@
 import { Capacitor } from '@capacitor/core';
-import posthog from 'posthog-js';
+import { PostHog } from 'posthog-js';
 import { Charts, TrackEvent } from 'utils/constants';
 
-export function trackEvent(eventName: TrackEvent, additionalProps = {}): void {
+export function trackEvent(
+  posthog: PostHog,
+  eventName: TrackEvent,
+  additionalProps = {}
+): void {
   if (import.meta.env.DEV) {
     console.log("not sending event to posthog because we're not in production");
     return;
   }
+
+  // if user did not accept cookies, then posthog was not initialized and we don't want to send events
+  if (!posthog || !posthog.capture) {
+    return;
+  }
+
   if (Capacitor.isNativePlatform()) {
     // not sending event to posthog from native apps
     return;
   }
-
   posthog?.capture(eventName, additionalProps);
 }
 
@@ -24,17 +33,24 @@ export enum ShareType {
   X = 'x',
 }
 
-export const trackShare = (shareType: ShareType) => (zone: string) => {
-  trackEvent(TrackEvent.MAP_SOCIAL_SHARE_PRESSED, { social: shareType, zone });
+// TODO: clean up track share logic
+
+export const trackShare = (shareType: ShareType) => (posthog: PostHog, zone: string) => {
+  trackEvent(posthog, TrackEvent.MAP_SOCIAL_SHARE_PRESSED, { social: shareType, zone });
 };
 
-export const trackShareChart = (social: ShareType, chartId: Charts) => (zone: string) => {
-  trackEvent(TrackEvent.MAP_CHART_SHARED, { social, chart_name: chartId, zone });
-};
+export const trackShareChart =
+  (social: ShareType, chartId: Charts) => (posthog: PostHog, zone: string) => {
+    trackEvent(posthog, TrackEvent.MAP_CHART_SHARED, {
+      social,
+      chart_name: chartId,
+      zone,
+    });
+  };
 
 interface TrackChartSharesByShareType {
   [chartId: string]: {
-    [shareType: string]: (zone: string) => void;
+    [shareType: string]: (posthog: PostHog, zone: string) => void;
   };
 }
 
@@ -52,7 +68,7 @@ const trackChartShareByType: TrackChartSharesByShareType = Object.fromEntries(
 
 const trackByShareType: {
   [id: string]: {
-    [shareType: string]: (zone: string) => void;
+    [shareType: string]: (posthog: PostHog, zone: string) => void;
   };
 } = {
   ...trackChartShareByType,

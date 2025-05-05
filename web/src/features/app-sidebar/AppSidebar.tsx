@@ -12,6 +12,7 @@ import {
   HelpCircleIcon,
   MapIcon,
 } from 'lucide-react';
+import { usePostHog } from 'posthog-js/react';
 import { useRef, useState } from 'react';
 import { trackEvent } from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
@@ -32,11 +33,6 @@ import {
 export const SIDEBAR_WIDTH = '63px';
 
 const PORTAL_URL = 'https://portal.electricitymaps.com';
-
-const trackFaqClick = () =>
-  trackEvent(TrackEvent.MAP_SUPPORT_INITIATED, {
-    type: 'faq',
-  });
 
 const MENU_ITEMS = [
   {
@@ -66,6 +62,7 @@ export function AppSidebar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tooltipReference = useRef<TooltipWrapperReference>(null);
   const isIntercomEnabled = useFeatureFlag('intercom-messenger');
+  const posthog = usePostHog();
 
   const handleOpenChange = (open: boolean) => {
     setIsMenuOpen(open);
@@ -123,7 +120,14 @@ export function AppSidebar() {
                   side="right"
                   align="end"
                 >
-                  <DropdownMenu.Item asChild onSelect={trackFaqClick}>
+                  <DropdownMenu.Item
+                    asChild
+                    onSelect={() =>
+                      trackEvent(posthog, TrackEvent.MAP_SUPPORT_INITIATED, {
+                        type: 'faq',
+                      })
+                    }
+                  >
                     <a
                       href="https://help.electricitymaps.com/"
                       target="_blank"
@@ -136,7 +140,7 @@ export function AppSidebar() {
                   {isIntercomEnabled && (
                     <DropdownMenu.Item
                       onSelect={() => {
-                        trackEvent(TrackEvent.MAP_SUPPORT_INITIATED, {
+                        trackEvent(posthog, TrackEvent.MAP_SUPPORT_INITIATED, {
                           type: 'chat',
                         });
                         if (window.Intercom) {

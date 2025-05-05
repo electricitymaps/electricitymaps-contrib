@@ -5,6 +5,7 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtom, useAtomValue } from 'jotai';
 import { ChartNoAxesColumn, CircleDashed, TrendingUpDown } from 'lucide-react';
+import { usePostHog } from 'posthog-js/react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
@@ -174,7 +175,7 @@ function BaseCard({
   );
   const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
-
+  const posthog = usePostHog();
   const trackToggle = () => {
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
   };
@@ -222,7 +223,7 @@ function BaseCard({
               data-testid="methodology-link"
               className={`text-sm font-semibold text-black underline dark:text-white`}
               onClick={() => {
-                trackEvent(TrackEvent.MAP_METHODOLOGY_LINK_VISITED, {
+                trackEvent(posthog, TrackEvent.MAP_METHODOLOGY_LINK_VISITED, {
                   link: 'missing-data',
                 });
               }}

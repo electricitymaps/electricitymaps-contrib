@@ -6,6 +6,7 @@ import useZoneDataSources from 'features/charts/hooks/useZoneDataSources';
 import { RoundedCard } from 'features/charts/RoundedCard';
 import { t } from 'i18next';
 import { Factory, UtilityPole, Zap } from 'lucide-react';
+import { usePostHog } from 'posthog-js/react';
 import { memo, useState } from 'react';
 import { trackEvent } from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
@@ -14,37 +15,28 @@ const methodologyAndDataSources = {
   missingData: {
     href: 'https://www.electricitymaps.com/methodology#missing-data',
     text: t('left-panel.applied-methodologies.estimations'),
-    trackingLink: () =>
-      trackEvent(TrackEvent.MAP_METHODOLOGY_LINK_VISITED, { link: 'missing-data' }),
+    link: 'missing-data',
   },
   dataCollectionAndProcessing: {
     href: 'https://www.electricitymaps.com/methodology#data-collection-and-processing',
     text: t('left-panel.applied-methodologies.flowtracing'),
-    trackingLink: () =>
-      trackEvent(TrackEvent.MAP_METHODOLOGY_LINK_VISITED, {
-        link: 'data-collection-and-processing-data',
-      }),
+    link: 'data-collection-and-processing-data',
   },
   carbonIntensityAndEmissionFactors: {
     href: 'https://www.electricitymaps.com/methodology#carbon-intensity-and-emission-factors',
     text: t('left-panel.applied-methodologies.carbonintensity'),
-    trackingLink: () =>
-      trackEvent(TrackEvent.MAP_METHODOLOGY_LINK_VISITED, {
-        link: 'carbon-intensity-and-emission-factors',
-      }),
+    link: 'carbon-intensity-and-emission-factors',
   },
   historicalAggregates: {
     href: 'https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates',
     text: t('left-panel.applied-methodologies.historicalAggregations'),
-    trackingLink: () =>
-      trackEvent(TrackEvent.MAP_METHODOLOGY_LINK_VISITED, {
-        link: 'historical-aggregates',
-      }),
+    link: 'historical-aggregates',
   },
 };
 
 function MethodologyCard() {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const posthog = usePostHog();
   const {
     capacitySources,
     emissionFactorSources,
@@ -67,8 +59,14 @@ function MethodologyCard() {
           </div>
           <div className="flex flex-col gap-2 pl-5">
             {Object.entries(methodologyAndDataSources).map(
-              ([key, { href, text, trackingLink }]) => (
-                <Link key={key} href={href} onClick={trackingLink}>
+              ([key, { href, text, link }]) => (
+                <Link
+                  key={key}
+                  href={href}
+                  onClick={() =>
+                    trackEvent(posthog, TrackEvent.MAP_METHODOLOGY_LINK_VISITED, { link })
+                  }
+                >
                   {text}
                 </Link>
               )

@@ -50,12 +50,6 @@ if (isProduction) {
   });
 }
 
-const options = {
-  api_host: 'https://yo.electricitymaps.com',
-  ui_host: 'https://eu.i.posthog.com',
-  capture_pageview: false,
-};
-
 window.addEventListener('vite:preloadError', async (event: VitePreloadErrorEvent) => {
   event.preventDefault();
 
@@ -286,16 +280,17 @@ const container = document.querySelector('#root');
 
 if (container) {
   const root = createRoot(container);
+
   root.render(
     <StrictMode>
       <I18nextProvider i18n={i18n}>
-        <PostHogProvider apiKey={import.meta.env.VITE_POSTHOG_KEY} options={options}>
-          <HelmetProvider>
+        <HelmetProvider>
+          <PostHogProvider client={window?.posthog}>
             <QueryClientProvider client={queryClient}>
               <RouterProvider router={router} />
             </QueryClientProvider>
-          </HelmetProvider>
-        </PostHogProvider>
+          </PostHogProvider>
+        </HelmetProvider>
       </I18nextProvider>
     </StrictMode>
   );

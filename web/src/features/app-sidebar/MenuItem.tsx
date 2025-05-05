@@ -1,6 +1,7 @@
 import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import type { LucideIcon } from 'lucide-react';
+import { usePostHog } from 'posthog-js/react';
 import { trackEvent } from 'utils/analytics';
 import { TrackEvent } from 'utils/constants';
 
@@ -17,8 +18,9 @@ export function MenuItem({
   label: string;
   isActive?: boolean;
 }) {
+  const posthog = usePostHog();
   const handleClick = () => {
-    trackEvent(TrackEvent.MAP_NAVIGATION_USED, { link: label });
+    trackEvent(posthog, TrackEvent.MAP_NAVIGATION_USED, { link: label });
   };
 
   return (
