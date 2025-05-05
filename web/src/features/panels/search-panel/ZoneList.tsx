@@ -3,8 +3,6 @@ import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
 import { useEffect, useRef } from 'react';
 import { GridState } from 'types';
-import { trackEvent } from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
 
 interface ZonelistProperties {
   data: ZoneRowType[];
@@ -27,11 +25,8 @@ function ZoneRow({
   zoneName,
   isSelected,
 }: ZoneRowType & { isSelected: boolean }) {
-  const trackSearch = () => trackEvent(TrackEvent.MAP_ZONE_SEARCHED, { zone: zoneId });
-
   return (
     <InternalLink
-      onClick={trackSearch}
       className={`group flex h-11 w-full items-center gap-2 p-4 hover:bg-neutral-200/50 focus:outline-0 focus-visible:border-l-4 focus-visible:border-brand-green focus-visible:bg-brand-green/10 focus-visible:outline-0 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-brand-green/10 ${
         isSelected ? 'bg-neutral-200/50 dark:bg-neutral-700/50' : ''
       }`}

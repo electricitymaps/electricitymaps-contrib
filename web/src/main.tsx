@@ -51,7 +51,7 @@ if (isProduction) {
 }
 
 const options = {
-  api_host: 'https://eu.i.posthog.com',
+  api_host: 'https://yo.electricitymaps.com',
   ui_host: 'https://eu.i.posthog.com',
   capture_pageview: false,
 };

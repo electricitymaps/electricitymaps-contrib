@@ -37,7 +37,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
     return (
       <NotEnoughDataMessage
         title="country-history.carbonintensity"
-        id={Charts.CARBON_CHART}
+        id={Charts.CARBON_INTENSITY_CHART}
       />
     );
   }
@@ -48,7 +48,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
         badge={badge}
         unit={'gCO₂eq / kWh'}
         isEstimated={Boolean(text)}
-        id={Charts.CARBON_CHART}
+        id={Charts.CARBON_INTENSITY_CHART}
         className="mb-0.5"
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />

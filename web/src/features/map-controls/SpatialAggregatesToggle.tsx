@@ -24,12 +24,15 @@ function SpatialAggregatesToggle({
   transparentBackground?: boolean;
 }): ReactElement {
   const [currentMode, setCurrentMode] = useAtom(spatialAggregateAtom);
+
   const onSetCurrentMode = useCallback(
     (option: SpatialAggregate | '') => {
       if (option === '') {
         return;
       }
-      trackEvent(TrackEvent.MAP_ZONEMODE_TOGGLED, { type: option });
+      trackEvent(TrackEvent.MAP_ZONEMODE_TOGGLED, {
+        type: option,
+      });
       setCurrentMode(option);
     },
     [setCurrentMode]

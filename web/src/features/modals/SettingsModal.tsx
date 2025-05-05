@@ -34,7 +34,7 @@ function ElectricityFlowsToggle() {
 
   const onToggle = (isEnabled: boolean) => {
     trackEvent(TrackEvent.MAP_FLOWTRACING_TOGGLED, {
-      type: isEnabled ? 'toggled_on' : 'toggled_off',
+      toggle_state: isEnabled ? 'flowtracing_on' : 'flowtracing_off',
     });
     setMode(isEnabled ? Mode.CONSUMPTION : Mode.PRODUCTION);
   };

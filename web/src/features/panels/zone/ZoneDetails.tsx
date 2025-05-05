@@ -10,7 +10,8 @@ import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import { Charts, SpatialAggregate } from 'utils/constants';
+import { trackEvent } from 'utils/analytics';
+import { Charts, SpatialAggregate, TrackEvent } from 'utils/constants';
 import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
@@ -27,6 +28,10 @@ import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import ZoneHeader from './ZoneHeader';
+
+const trackCtaMiddle = () => trackEvent(TrackEvent.MAP_CTA_PRESSED, { type: 'middle' });
+const trackCtaForecast = () =>
+  trackEvent(TrackEvent.MAP_CTA_PRESSED, { type: 'forecast' });
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -86,7 +91,11 @@ export default function ZoneDetails(): JSX.Element {
               estimatedPercentage={roundedEstimatedPercentage}
             />
           )}
-          <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
+          <ApiButton
+            backgroundClasses="mt-3 mb-1"
+            type="primary"
+            onClick={trackCtaMiddle}
+          />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -99,7 +108,7 @@ export default function ZoneDetails(): JSX.Element {
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
             <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
-            <ApiButton size="sm" />
+            <ApiButton size="sm" onClick={trackCtaForecast} />
           </div>
           <Attribution zoneId={zoneId} />
         </ZoneDetailsContent>

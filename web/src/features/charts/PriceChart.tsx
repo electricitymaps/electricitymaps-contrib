@@ -53,7 +53,7 @@ function PriceChart({ datetimes, timeRange }: PriceChartProps) {
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
-        id={Charts.PRICE_CHART}
+        id={Charts.ELECTRICITY_PRICE_CHART}
         title="country-history.electricityprices"
       />
     );
@@ -64,7 +64,7 @@ function PriceChart({ datetimes, timeRange }: PriceChartProps) {
       <ChartTitle
         titleText={t(`country-history.electricityprices.${timeRange}`)}
         unit={valueAxisLabel}
-        id={Charts.PRICE_CHART}
+        id={Charts.ELECTRICITY_PRICE_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">

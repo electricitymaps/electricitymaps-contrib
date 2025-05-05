@@ -49,28 +49,28 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+// TODO: rename chart components and files to match
 export enum Charts {
-  PRICE_CHART = 'price_chart',
-  ORIGIN_CHART = 'origin_chart',
-  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
-  CARBON_CHART = 'carbon_chart',
+  CARBON_INTENSITY_CHART = 'carbon_intensity_chart',
   EMISSION_CHART = 'emission_chart',
-  NET_EXCHANGE_CHART = 'net_exchange_chart',
-  LOAD_CHART = 'load_chart',
+  ELECTRTICITY_FLOW_CHART = 'electricity_flow_chart',
+  ELECTRICITY_LOAD_CHART = 'electricity_load_chart',
+  ELECTRICITY_MIX_CHART = 'electricity_mix_chart',
+  ELECTRICITY_MIX_OVERVIEW_CHART = 'electricity_mix_overview_chart',
+  ELECTRICITY_PRICE_CHART = 'electricity_price_chart',
 }
 
 export enum TrackEvent {
-  MAP_ZONE_SEARCHED = 'map_zone_searched',
-  MAP_FLOWTRACING_TOGGLED = 'map_flowTracing_toggled',
+  MAP_CHART_SHARED = 'map_chart_shared',
+  MAP_CONTRIBUTOR_AVATAR_PRESSED = 'map_contributor_avatar_pressed',
   MAP_CSV_LINK_PRESSED = 'map_csv_link_pressed',
   MAP_CTA_PRESSED = 'map_cta_pressed',
+  MAP_FLOWTRACING_TOGGLED = 'map_flowTracing_toggled',
   MAP_METHODOLOGY_LINK_VISITED = 'map_methodology_link_visited',
-  MAP_CONTRIBUTOR_AVATAR_PRESSED = 'map_contributor_avatar_pressed',
-  MAP_SOCIAL_SHARE_PRESSED = 'map_social_share_pressed',
   MAP_NAVIGATION_USED = 'map_navigation_used',
+  MAP_SOCIAL_SHARE_PRESSED = 'map_social_share_pressed',
   MAP_SUPPORT_INITIATED = 'map_support_initiated',
   MAP_ZONEMODE_TOGGLED = 'map_zonemode_toggled',
-  MAP_CHART_SHARED = 'map_chart_shared',
 }
 
 // color of different production modes are based on various industry standards

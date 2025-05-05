@@ -8,36 +8,33 @@ export function trackEvent(eventName: TrackEvent, additionalProps = {}): void {
     return;
   }
   if (Capacitor.isNativePlatform()) {
-    console.log('not sending event to posthog in native apps');
+    // not sending event to posthog from native apps
     return;
   }
+
   posthog?.capture(eventName, additionalProps);
 }
 
 export enum ShareType {
+  DIRECT_LINK = 'direct_link',
   FACEBOOK = 'facebook',
   LINKEDIN = 'linkedin',
-  TWITTER = 'twitter',
-  BLUESKY = 'bluesky',
   REDDIT = 'reddit',
-  COPY = 'copy',
   SHARE = 'share',
-  COMPLETED_SHARE = 'completed_share',
+  X = 'x',
 }
 
-export const trackShare =
-  (shareType: ShareType, additionalProps = {}) =>
-  () => {
-    trackEvent(TrackEvent.MAP_SOCIAL_SHARE_PRESSED, { social: shareType });
-  };
+export const trackShare = (shareType: ShareType) => (zone: string) => {
+  trackEvent(TrackEvent.MAP_SOCIAL_SHARE_PRESSED, { social: shareType, zone });
+};
 
-export const trackShareChart = (social: ShareType, chartId: Charts) => () => {
-  posthog.capture(TrackEvent.MAP_CHART_SHARED, { social, chart_name: chartId });
+export const trackShareChart = (social: ShareType, chartId: Charts) => (zone: string) => {
+  trackEvent(TrackEvent.MAP_CHART_SHARED, { social, chart_name: chartId, zone });
 };
 
 interface TrackChartSharesByShareType {
   [chartId: string]: {
-    [shareType: string]: () => void;
+    [shareType: string]: (zone: string) => void;
   };
 }
 
@@ -55,7 +52,7 @@ const trackChartShareByType: TrackChartSharesByShareType = Object.fromEntries(
 
 const trackByShareType: {
   [id: string]: {
-    [shareType: string]: () => void;
+    [shareType: string]: (zone: string) => void;
   };
 } = {
   ...trackChartShareByType,
