@@ -32,6 +32,19 @@ test:
   # TODO: Enable Cypress tests later
   # RUN pnpm run cy:test-all
 
+build-staging:
+  FROM +prepare
+  RUN pnpm run create-generated-files
+  RUN pnpm version minor
+  RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9=ELECTRICITYMAPS_APP_PUBLIC_TOKEN_V9 --secret VITE_POSTHOG_KEY=API_PORTAL_POSTHOG_KEY_STAGING pnpm run build
+
+  # Local outputs for debugging
+  SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
+  SAVE ARTIFACT ./config/usa_states.json AS LOCAL ./config/usa_states.json
+  SAVE ARTIFACT ./config/excluded_aggregated_exchanges.json AS LOCAL ./config/excluded_aggregated_exchanges.json
+  # NOTE: We could consider dropping source maps from dist since it has already been uploaded to Sentry at this point
+  SAVE ARTIFACT ./dist AS LOCAL ./dist
+
 build:
   FROM +prepare
   RUN pnpm run create-generated-files
@@ -47,10 +60,9 @@ build:
 
 deploy-staging:
   FROM +prepare
-  COPY +build/dist ./dist
+  COPY +build-staging/dist ./dist
   RUN npm install -g wrangler
   RUN --push --secret CLOUDFLARE_API_TOKEN --secret CLOUDFLARE_ACCOUNT_ID wrangler pages deploy ./dist --project-name electricitymaps-staging --branch main
-
 
 deploy:
   FROM +prepare
