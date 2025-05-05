@@ -11,7 +11,6 @@ import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import App from 'App';
 import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
-import PostHogPageView from 'components/PageView';
 import { zoneExists } from 'features/panels/zone/util';
 import { PostHogProvider } from 'posthog-js/react';
 import { lazy, StrictMode, Suspense } from 'react';
@@ -237,10 +236,7 @@ const router = createBrowserRouter([
         path: '/map/:urlTimeRange?/:resolution?/:urlDatetime?',
         element: (
           <TimeRangeAndResolutionGuardWrapper>
-            <>
-              <SearchPanel />
-              <PostHogPageView />
-            </>
+            <SearchPanel />
           </TimeRangeAndResolutionGuardWrapper>
         ),
       },
@@ -257,7 +253,6 @@ const router = createBrowserRouter([
                 }
               >
                 <ZoneDetails />
-                <PostHogPageView />
               </Suspense>
             </TimeRangeAndResolutionGuardWrapper>
           </ValidZoneIdGuardWrapper>
@@ -268,7 +263,6 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingSpinner />}>
             <ZoneDetails />
-            <PostHogPageView />
           </Suspense>
         ),
       },
@@ -285,7 +279,7 @@ if (container) {
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
-          <PostHogProvider client={window?.posthog}>
+          <PostHogProvider client={(window as any)?.posthog}>
             <QueryClientProvider client={queryClient}>
               <RouterProvider router={router} />
             </QueryClientProvider>
