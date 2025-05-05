@@ -12,7 +12,7 @@ import App from 'App';
 import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { zoneExists } from 'features/panels/zone/util';
-import { PostHogProvider } from 'posthog-js/react';
+import { PostHog, PostHogProvider } from 'posthog-js/react';
 import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
@@ -32,6 +32,12 @@ import { createConsoleGreeting } from 'utils/createConsoleGreeting';
 import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
+
+declare global {
+  interface Window {
+    posthog?: PostHog;
+  }
+}
 
 const isProduction = import.meta.env.PROD;
 
@@ -279,13 +285,21 @@ if (container) {
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
-          <PostHogProvider client={(window as any)?.posthog}>
+          <PostHogWrapper>
             <QueryClientProvider client={queryClient}>
               <RouterProvider router={router} />
             </QueryClientProvider>
-          </PostHogProvider>
+          </PostHogWrapper>
         </HelmetProvider>
       </I18nextProvider>
     </StrictMode>
   );
+}
+
+function PostHogWrapper({ children }: { children: JSX.Element }) {
+  const posthog = window?.posthog;
+  if (!posthog) {
+    return children;
+  }
+  return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 }
