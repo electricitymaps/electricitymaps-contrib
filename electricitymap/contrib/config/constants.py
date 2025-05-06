@@ -3,7 +3,6 @@
 EXCHANGE_FILENAME_ZONE_SEPARATOR = "_"
 
 
-
 WEATHER_GFS_KEYS = ["wind", "solar", "temperature", "dewpoint", "precipitation"]
 WEATHER_DATABASE_KEYS = [
     "wind_x",
