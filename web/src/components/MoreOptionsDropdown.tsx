@@ -51,7 +51,7 @@ export function MoreOptionsDropdown({
   const downloadUrl = `https://portal.electricitymaps.com/datasets/${zoneId}?utm_source=app&utm_medium=download_button&utm_campaign=csv_download`;
 
   const summary = t('more-options-dropdown.summary');
-  const zone = zoneId ?? 'other';
+  const zone = zoneId ?? 'map';
 
   const handleTrackShares = getTrackByShareType(id);
 
