@@ -333,6 +333,13 @@ region: Europe
 sources:
   IEA 2015:
     link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
+subZoneNames:
+  - RU-1
+  - RU-2
+  - RU-AS
+  - RU-EU
+  - RU-FE
+  - RU-KGD
 bypassedSubZones:
   - RU-1
   - RU-2
