@@ -1134,57 +1134,6 @@ def fetch_production(
     return [x for x in aggregated_zone_data if validate_production(x, logger)]
 
 
-@refetch_frequency(timedelta(days=1))
-def fetch_production_per_units(
-    zone_key: str,
-    session: Session = Session(),
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """Returns all production units and production values."""
-
-    # If no target_datetime is specified, or the target datetime is less
-    # than 5 days ago we set the target_datetime to 5 days ago.
-    if target_datetime is None or target_datetime > datetime.now(
-        tz=timezone.utc
-    ) - timedelta(days=5):
-        logger.info(
-            "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
-        )
-        target_datetime = datetime.now(tz=timezone.utc) - timedelta(days=5)
-
-    domain = ENTSOE_EIC_MAPPING[zone_key]
-    data = []
-    # Iterate over all psr types
-    for k in ENTSOE_PARAMETER_DESC:
-        try:
-            raw_production_per_units = query_production_per_units(
-                k, domain, session, target_datetime
-            )
-            if raw_production_per_units is not None:
-                values = parse_production_per_units(raw_production_per_units) or []
-                for v in values:
-                    if not v:
-                        continue
-                    v["source"] = "entsoe.eu"
-                    if v["unitName"] not in ENTSOE_UNITS_TO_ZONE:
-                        logger.warning(
-                            f"Unknown unit {v['unitName']} with id {v['unitKey']}"
-                        )
-                    else:
-                        v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
-                        if v["zoneKey"] == zone_key:
-                            data.append(v)
-        except Exception as e:
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"Failed to fetch data for {k} in {zone_key}",
-                zone_key=zone_key,
-            ) from e
-
-    return data
-
-
 def get_raw_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
