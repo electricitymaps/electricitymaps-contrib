@@ -7,7 +7,7 @@ import { RoundedCard } from 'features/charts/RoundedCard';
 import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { t } from 'i18next';
 import { Factory, UtilityPole, Zap } from 'lucide-react';
-import { memo, useMemo, useState } from 'react';
+import { memo, useState } from 'react';
 
 function MethodologyCard() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -26,37 +26,6 @@ function MethodologyCard() {
     emissionFactorSourcesToProductionSources,
   } = useZoneDataSources();
 
-  const methodologyAndDataSources = useMemo(
-    () => ({
-      missingData: {
-        href: 'https://www.electricitymaps.com/methodology#missing-data',
-        text: 'left-panel.applied-methodologies.estimations',
-        onClick: () => trackMethodology('missing-data'),
-      },
-      dataCollectionAndProcessing: {
-        href: 'https://www.electricitymaps.com/methodology#data-collection-and-processing',
-        text: 'left-panel.applied-methodologies.flowtracing',
-        onClick: trackDataCollectionMethodology,
-      },
-      carbonIntensityAndEmissionFactors: {
-        href: 'https://www.electricitymaps.com/methodology#carbon-intensity-and-emission-factors',
-        text: 'left-panel.applied-methodologies.carbonintensity',
-        onClick: trackCarbonIntensityMethodology,
-      },
-      historicalAggregates: {
-        href: 'https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates',
-        text: 'left-panel.applied-methodologies.historicalAggregations',
-        onClick: trackHistoricalAggregatesMethodology,
-      },
-    }),
-    [
-      trackMissingDataMethodology,
-      trackCarbonIntensityMethodology,
-      trackDataCollectionMethodology,
-      trackHistoricalAggregatesMethodology,
-    ]
-  );
-
   return (
     <RoundedCard>
       <Accordion
@@ -71,13 +40,30 @@ function MethodologyCard() {
             <p className="font-semibold">{t('left-panel.applied-methodologies.title')}</p>
           </div>
           <div className="flex flex-col gap-2 pl-5">
-            {Object.entries(methodologyAndDataSources).map(
-              ([key, { href, text, onClick }]) => (
-                <Link key={key} href={href} onClick={onClick}>
-                  {t(text)}
-                </Link>
-              )
-            )}
+            <Link
+              href="https://www.electricitymaps.com/methodology#missing-data"
+              onClick={trackMissingDataMethodology}
+            >
+              {t('left-panel.applied-methodologies.estimations')}
+            </Link>
+            <Link
+              href="https://www.electricitymaps.com/methodology#data-collection-and-processing"
+              onClick={trackDataCollectionMethodology}
+            >
+              {t('left-panel.applied-methodologies.flowtracing')}
+            </Link>
+            <Link
+              href="https://www.electricitymaps.com/methodology#carbon-intensity-and-emission-factors"
+              onClick={trackCarbonIntensityMethodology}
+            >
+              {t('left-panel.applied-methodologies.carbonintensity')}
+            </Link>
+            <Link
+              href="https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates"
+              onClick={trackHistoricalAggregatesMethodology}
+            >
+              {t('left-panel.applied-methodologies.historicalAggregations')}
+            </Link>
           </div>
 
           <DataSources
