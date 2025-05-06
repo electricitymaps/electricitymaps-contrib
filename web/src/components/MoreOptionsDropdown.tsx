@@ -1,19 +1,17 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useShare } from 'hooks/useShare';
+import { useEvents, useSocialShareEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { ExternalLink, FileDownIcon, Link } from 'lucide-react';
-import { usePostHog } from 'posthog-js/react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { getTrackByShareType, ShareType, trackEvent } from 'utils/analytics';
 import {
   baseUrl,
   Charts,
   DEFAULT_ICON_SIZE,
   DEFAULT_TOAST_DURATION,
-  TrackEvent,
 } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
 
@@ -46,14 +44,21 @@ export function MoreOptionsDropdown({
   const [toastMessage, setToastMessage] = useState('');
   const { isOpen, onToggleDropdown } = useDropdownCtl();
   const reference = useToastReference();
-  const posthog = usePostHog();
   const { copyToClipboard, share } = useShare();
+
+  const trackEvent = useTrackEvent();
+  const { trackCsvLink } = useEvents(trackEvent);
+  const {
+    trackSocialShareDirectLink,
+    trackSocialShareFacebook,
+    trackSocialShareLinkedIn,
+    trackSocialShareReddit,
+    trackSocialShareX,
+  } = useSocialShareEvents(trackEvent, id === 'zone' ? undefined : id);
+
   const downloadUrl = `https://portal.electricitymaps.com/datasets/${zoneId}?utm_source=app&utm_medium=download_button&utm_campaign=csv_download`;
 
   const summary = t('more-options-dropdown.summary');
-  const zone = zoneId ?? 'map';
-
-  const handleTrackShares = getTrackByShareType(id);
 
   const { onShare, copyShareUrl } = useMemo(() => {
     const toastMessageCallback = (message: string) => {
@@ -64,7 +69,7 @@ export function MoreOptionsDropdown({
     return {
       copyShareUrl: () => {
         copyToClipboard(shareUrl, toastMessageCallback);
-        handleTrackShares[ShareType.DIRECT_LINK](posthog, zone);
+        trackSocialShareDirectLink();
       },
       onShare: () => {
         share(
@@ -75,19 +80,9 @@ export function MoreOptionsDropdown({
           },
           toastMessageCallback
         );
-        handleTrackShares[ShareType.SHARE](posthog, zone);
       },
     };
-  }, [
-    reference,
-    shareUrl,
-    summary,
-    share,
-    copyToClipboard,
-    handleTrackShares,
-    zone,
-    posthog,
-  ]);
+  }, [reference, shareUrl, summary, share, copyToClipboard, trackSocialShareDirectLink]);
 
   const dropdownTitle = title || t('more-options-dropdown.title');
 
@@ -116,13 +111,14 @@ export function MoreOptionsDropdown({
                 className="flex w-full justify-between p-2"
                 onClick={() => {
                   window.open(downloadUrl, '_blank');
-                  trackEvent(posthog, TrackEvent.MAP_CSV_LINK_PRESSED, {
-                    zone,
-                  });
+                  trackCsvLink();
                 }}
-                onKeyDown={(event) =>
-                  event.key === 'Enter' && window.open(downloadUrl, '_blank')
-                }
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    window.open(downloadUrl, '_blank');
+                    trackCsvLink();
+                  }
+                }}
               >
                 <div className="my-auto flex items-center">
                   <FileDownIcon size={DEFAULT_ICON_SIZE} />
@@ -164,7 +160,7 @@ export function MoreOptionsDropdown({
                     data-testid="twitter-chart-share"
                     target="_blank"
                     rel="noopener"
-                    onClick={() => handleTrackShares[ShareType.X](posthog, zone)}
+                    onClick={trackSocialShareX}
                     href={`https://twitter.com/intent/tweet?&url=${shareUrl}&text=${encodeURI(
                       summary
                     )}&hashtags=electricitymaps`}
@@ -178,7 +174,7 @@ export function MoreOptionsDropdown({
                     data-testid="facebook-chart-share"
                     target="_blank"
                     rel="noopener"
-                    onClick={() => handleTrackShares[ShareType.FACEBOOK](posthog, zone)}
+                    onClick={trackSocialShareFacebook}
                     href={`https://facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodeURI(
                       summary
                     )}`}
@@ -193,7 +189,7 @@ export function MoreOptionsDropdown({
                     href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`}
                     target="_blank"
                     rel="noopener"
-                    onClick={() => handleTrackShares[ShareType.LINKEDIN](posthog, zone)}
+                    onClick={trackSocialShareLinkedIn}
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaLinkedin size={DEFAULT_ICON_SIZE} />
@@ -205,7 +201,7 @@ export function MoreOptionsDropdown({
                     href={`https://www.reddit.com/web/submit?url=${shareUrl}`}
                     target="_blank"
                     rel="noopener"
-                    onClick={() => handleTrackShares[ShareType.REDDIT](posthog, zone)}
+                    onClick={trackSocialShareReddit}
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaReddit size={DEFAULT_ICON_SIZE} />

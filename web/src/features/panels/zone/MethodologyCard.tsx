@@ -4,45 +4,58 @@ import { LogoIcon } from 'components/Logo';
 import { DataSources } from 'features/charts/DataSources';
 import useZoneDataSources from 'features/charts/hooks/useZoneDataSources';
 import { RoundedCard } from 'features/charts/RoundedCard';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { t } from 'i18next';
 import { Factory, UtilityPole, Zap } from 'lucide-react';
-import { usePostHog } from 'posthog-js/react';
-import { memo, useState } from 'react';
-import { trackEvent } from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
-
-const methodologyAndDataSources = {
-  missingData: {
-    href: 'https://www.electricitymaps.com/methodology#missing-data',
-    text: t('left-panel.applied-methodologies.estimations'),
-    link: 'missing-data',
-  },
-  dataCollectionAndProcessing: {
-    href: 'https://www.electricitymaps.com/methodology#data-collection-and-processing',
-    text: t('left-panel.applied-methodologies.flowtracing'),
-    link: 'data-collection-and-processing-data',
-  },
-  carbonIntensityAndEmissionFactors: {
-    href: 'https://www.electricitymaps.com/methodology#carbon-intensity-and-emission-factors',
-    text: t('left-panel.applied-methodologies.carbonintensity'),
-    link: 'carbon-intensity-and-emission-factors',
-  },
-  historicalAggregates: {
-    href: 'https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates',
-    text: t('left-panel.applied-methodologies.historicalAggregations'),
-    link: 'historical-aggregates',
-  },
-};
+import { memo, useMemo, useState } from 'react';
 
 function MethodologyCard() {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const posthog = usePostHog();
+  const trackEvent = useTrackEvent();
+  const {
+    trackMissingDataMethodology,
+    trackCarbonIntensityMethodology,
+    trackDataCollectionMethodology,
+    trackHistoricalAggregatesMethodology,
+  } = useEvents(trackEvent);
+
   const {
     capacitySources,
     emissionFactorSources,
     powerGenerationSources,
     emissionFactorSourcesToProductionSources,
   } = useZoneDataSources();
+
+  const methodologyAndDataSources = useMemo(
+    () => ({
+      missingData: {
+        href: 'https://www.electricitymaps.com/methodology#missing-data',
+        text: 'left-panel.applied-methodologies.estimations',
+        onClick: () => trackMethodology('missing-data'),
+      },
+      dataCollectionAndProcessing: {
+        href: 'https://www.electricitymaps.com/methodology#data-collection-and-processing',
+        text: 'left-panel.applied-methodologies.flowtracing',
+        onClick: trackDataCollectionMethodology,
+      },
+      carbonIntensityAndEmissionFactors: {
+        href: 'https://www.electricitymaps.com/methodology#carbon-intensity-and-emission-factors',
+        text: 'left-panel.applied-methodologies.carbonintensity',
+        onClick: trackCarbonIntensityMethodology,
+      },
+      historicalAggregates: {
+        href: 'https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates',
+        text: 'left-panel.applied-methodologies.historicalAggregations',
+        onClick: trackHistoricalAggregatesMethodology,
+      },
+    }),
+    [
+      trackMissingDataMethodology,
+      trackCarbonIntensityMethodology,
+      trackDataCollectionMethodology,
+      trackHistoricalAggregatesMethodology,
+    ]
+  );
 
   return (
     <RoundedCard>
@@ -59,15 +72,9 @@ function MethodologyCard() {
           </div>
           <div className="flex flex-col gap-2 pl-5">
             {Object.entries(methodologyAndDataSources).map(
-              ([key, { href, text, link }]) => (
-                <Link
-                  key={key}
-                  href={href}
-                  onClick={() =>
-                    trackEvent(posthog, TrackEvent.MAP_METHODOLOGY_LINK_VISITED, { link })
-                  }
-                >
-                  {text}
+              ([key, { href, text, onClick }]) => (
+                <Link key={key} href={href} onClick={onClick}>
+                  {t(text)}
                 </Link>
               )
             )}

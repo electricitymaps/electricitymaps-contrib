@@ -5,6 +5,7 @@ import TooltipWrapper, {
   type TooltipWrapperReference,
 } from 'components/tooltips/TooltipWrapper';
 import { useFeatureFlag } from 'features/feature-flags/api';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import {
   BookOpenIcon,
   CodeXmlIcon,
@@ -12,10 +13,7 @@ import {
   HelpCircleIcon,
   MapIcon,
 } from 'lucide-react';
-import { usePostHog } from 'posthog-js/react';
 import { useRef, useState } from 'react';
-import { trackEvent } from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
 
 import { MenuItem } from './MenuItem';
 import {
@@ -62,7 +60,8 @@ export function AppSidebar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tooltipReference = useRef<TooltipWrapperReference>(null);
   const isIntercomEnabled = useFeatureFlag('intercom-messenger');
-  const posthog = usePostHog();
+  const trackEvent = useTrackEvent();
+  const { trackSupportChat, trackSupportFaq } = useEvents(trackEvent);
 
   const handleOpenChange = (open: boolean) => {
     setIsMenuOpen(open);
@@ -120,14 +119,7 @@ export function AppSidebar() {
                   side="right"
                   align="end"
                 >
-                  <DropdownMenu.Item
-                    asChild
-                    onSelect={() =>
-                      trackEvent(posthog, TrackEvent.MAP_SUPPORT_INITIATED, {
-                        type: 'faq',
-                      })
-                    }
-                  >
+                  <DropdownMenu.Item asChild onSelect={trackSupportFaq}>
                     <a
                       href="https://help.electricitymaps.com/"
                       target="_blank"
@@ -140,9 +132,7 @@ export function AppSidebar() {
                   {isIntercomEnabled && (
                     <DropdownMenu.Item
                       onSelect={() => {
-                        trackEvent(posthog, TrackEvent.MAP_SUPPORT_INITIATED, {
-                          type: 'chat',
-                        });
+                        trackSupportChat();
                         if (window.Intercom) {
                           window.Intercom('show');
                         } else {

@@ -37,7 +37,7 @@ export function useTrackEvent() {
   const posthog = usePostHog();
 
   return useCallback(
-    (event: TrackEvent, properties?: Record<string, string>) => {
+    (event: TrackEvents, properties?: Record<string, string>) => {
       if (import.meta.env.DEV) {
         console.log("not sending event to posthog because we're not in production");
         return;
@@ -62,7 +62,8 @@ export function useEvents(trackEvent: TrackEventFunction) {
   const { zoneId } = useParams<RouteParameters>();
   const zone = zoneId ?? 'map';
 
-  return useMemo(() => ({
+  return useMemo(
+    () => ({
       // Other Links
       trackCsvLink: () => {
         trackEvent(TrackEvents.MAP_CSV_LINK_PRESSED, {
@@ -85,6 +86,7 @@ export function useEvents(trackEvent: TrackEventFunction) {
       },
 
       // Methodology links
+
       trackMissingDataMethodology: () =>
         trackEvent(TrackEvents.MAP_METHODOLOGY_LINK_VISITED, {
           link: 'missing-data',
@@ -121,7 +123,9 @@ export function useEvents(trackEvent: TrackEventFunction) {
 
       trackContributorAvatar: () =>
         trackEvent(TrackEvents.MAP_CONTRIBUTOR_AVATAR_PRESSED),
-    }), [trackEvent, zone]);
+    }),
+    [trackEvent, zone]
+  );
 }
 
 export function useNavigationEvent(trackEvent: TrackEventFunction, link: string) {

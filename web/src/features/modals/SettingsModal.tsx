@@ -6,6 +6,7 @@ import Link from 'components/Link';
 import SwitchToggle from 'components/ToggleSwitch';
 import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtom } from 'jotai';
 import {
   LaptopMinimalIcon,
@@ -14,12 +15,10 @@ import {
   SunIcon,
   XIcon,
 } from 'lucide-react';
-import { usePostHog } from 'posthog-js/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
-import { trackEvent } from 'utils/analytics';
-import { Mode, ThemeOptions, TrackEvent } from 'utils/constants';
+import { Mode, ThemeOptions } from 'utils/constants';
 import {
   colorblindModeAtom,
   productionConsumptionAtom,
@@ -32,12 +31,11 @@ import { isSettingsModalOpenAtom } from './modalAtoms';
 function ElectricityFlowsToggle() {
   const { t } = useTranslation();
   const [mode, setMode] = useAtom(productionConsumptionAtom);
-  const posthog = usePostHog();
+  const trackEvent = useTrackEvent();
+  const { trackFlowTracing } = useEvents(trackEvent);
 
   const onToggle = (isEnabled: boolean) => {
-    trackEvent(posthog, TrackEvent.MAP_FLOWTRACING_TOGGLED, {
-      toggle_state: isEnabled ? 'flowtracing_on' : 'flowtracing_off',
-    });
+    isEnabled ? trackFlowTracing('flowtracing_on') : trackFlowTracing('flowtracing_off');
     setMode(isEnabled ? Mode.CONSUMPTION : Mode.PRODUCTION);
   };
 

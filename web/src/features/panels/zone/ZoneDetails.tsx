@@ -4,15 +4,14 @@ import GlassContainer from 'components/GlassContainer';
 import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { usePostHog } from 'posthog-js/react';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import { trackEvent } from 'utils/analytics';
-import { Charts, SpatialAggregate, TrackEvent } from 'utils/constants';
+import { Charts, SpatialAggregate } from 'utils/constants';
 import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
@@ -47,11 +46,8 @@ export default function ZoneDetails(): JSX.Element {
   const hasEstimationPill =
     Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
 
-  const posthog = usePostHog();
-  const trackCtaMiddle = () =>
-    trackEvent(posthog, TrackEvent.MAP_CTA_PRESSED, { type: 'middle' });
-  const trackCtaForecast = () =>
-    trackEvent(posthog, TrackEvent.MAP_CTA_PRESSED, { type: 'forecast' });
+  const trackEvent = useTrackEvent();
+  const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -128,6 +124,8 @@ export default function ZoneDetails(): JSX.Element {
       timeRange,
       displayByEmissions,
       t,
+      trackCtaForecast,
+      trackCtaMiddle,
     ]
   );
 

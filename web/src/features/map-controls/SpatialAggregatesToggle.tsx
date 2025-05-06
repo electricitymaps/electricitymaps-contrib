@@ -1,9 +1,8 @@
 import ToggleButton from 'components/ToggleButton';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtom } from 'jotai';
-import { usePostHog } from 'posthog-js/react';
 import { memo, type ReactElement, useCallback } from 'react';
-import { trackEvent } from 'utils/analytics';
-import { SpatialAggregate, TrackEvent } from 'utils/constants';
+import { SpatialAggregate } from 'utils/constants';
 import { spatialAggregateAtom } from 'utils/state/atoms';
 
 const options = [
@@ -25,18 +24,18 @@ function SpatialAggregatesToggle({
   transparentBackground?: boolean;
 }): ReactElement {
   const [currentMode, setCurrentMode] = useAtom(spatialAggregateAtom);
-  const posthog = usePostHog();
+  const trackEvent = useTrackEvent();
+  const { trackZoneMode } = useEvents(trackEvent);
+
   const onSetCurrentMode = useCallback(
     (option: SpatialAggregate | '') => {
       if (option === '') {
         return;
       }
-      trackEvent(posthog, TrackEvent.MAP_ZONEMODE_TOGGLED, {
-        type: option,
-      });
+      trackZoneMode(option);
       setCurrentMode(option);
     },
-    [setCurrentMode]
+    [setCurrentMode, trackZoneMode]
   );
 
   return (
