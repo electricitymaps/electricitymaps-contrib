@@ -3,6 +3,7 @@ import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtom, useAtomValue } from 'jotai';
 import { ChartNoAxesColumn, CircleDashed, TrendingUpDown } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
@@ -174,6 +175,9 @@ function BaseCard({
   const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
 
+  const trackEvent = useTrackEvent();
+  const { trackMissingDataMethodology } = useEvents(trackEvent);
+
   const trackToggle = () => {
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
   };
@@ -220,11 +224,7 @@ function BaseCard({
               rel="noreferrer"
               data-testid="methodology-link"
               className={`text-sm font-semibold text-black underline dark:text-white`}
-              onClick={() => {
-                trackEvent(posthog, TrackEvent.MAP_METHODOLOGY_LINK_VISITED, {
-                  link: 'missing-data',
-                });
-              }}
+              onClick={trackMissingDataMethodology}
             >
               {t(`estimation-card.link`)}
             </a>
