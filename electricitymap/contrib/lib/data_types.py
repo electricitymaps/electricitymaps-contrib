@@ -12,8 +12,6 @@ class ParserDataType(Enum):
     PRODUCTION = "production"
     PRODUCTION_PER_MODE_FORECAST = "productionPerModeForecast"
     REALTIME_LOCATIONAL_MARGINAL_PRICE = "realtimeLocationalMarginalPrice"
-    # TODO: Deprecate
-    PRODUCTION_PER_UNIT = "productionPerUnit"
     # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
 
