@@ -60,19 +60,6 @@ export enum Charts {
   ELECTRICITY_PRICE_CHART = 'electricity_price_chart',
 }
 
-export enum TrackEvent {
-  MAP_CHART_SHARED = 'map_chart_shared',
-  MAP_CONTRIBUTOR_AVATAR_PRESSED = 'map_contributor_avatar_pressed',
-  MAP_CSV_LINK_PRESSED = 'map_csv_link_pressed',
-  MAP_CTA_PRESSED = 'map_cta_pressed',
-  MAP_FLOWTRACING_TOGGLED = 'map_flowTracing_toggled',
-  MAP_METHODOLOGY_LINK_VISITED = 'map_methodology_link_visited',
-  MAP_NAVIGATION_USED = 'map_navigation_used',
-  MAP_SOCIAL_SHARE_PRESSED = 'map_social_share_pressed',
-  MAP_SUPPORT_INITIATED = 'map_support_initiated',
-  MAP_ZONEMODE_TOGGLED = 'map_zonemode_toggled',
-}
-
 // color of different production modes are based on various industry standards
 export const modeColor: { [mode in ElectricityModeType]: string } = {
   solar: '#FFC700',
