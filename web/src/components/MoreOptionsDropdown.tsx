@@ -2,7 +2,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useShare } from 'hooks/useShare';
 import { useEvents, useSocialShareEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { ExternalLink, FileDownIcon, Link } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { useParams } from 'react-router-dom';
@@ -46,6 +46,8 @@ export function MoreOptionsDropdown({
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
 
+  const downloadUrl = `https://portal.electricitymaps.com/datasets/${zoneId}?utm_source=app&utm_medium=download_button&utm_campaign=csv_download`;
+
   const trackEvent = useTrackEvent();
   const { trackCsvLink } = useEvents(trackEvent);
   const {
@@ -56,7 +58,20 @@ export function MoreOptionsDropdown({
     trackSocialShareX,
   } = useSocialShareEvents(trackEvent, id === 'zone' ? undefined : id);
 
-  const downloadUrl = `https://portal.electricitymaps.com/datasets/${zoneId}?utm_source=app&utm_medium=download_button&utm_campaign=csv_download`;
+  const handleCsvDownloadClick = useCallback(() => {
+    window.open(downloadUrl, '_blank');
+    trackCsvLink();
+  }, [downloadUrl, trackCsvLink]);
+
+  const handleCsvDownloadKeyDown = useCallback(
+    (event) => {
+      if (event.key === 'Enter') {
+        window.open(downloadUrl, '_blank');
+        trackCsvLink();
+      }
+    },
+    [downloadUrl, trackCsvLink]
+  );
 
   const summary = t('more-options-dropdown.summary');
 
@@ -109,16 +124,8 @@ export function MoreOptionsDropdown({
             <DropdownMenu.Label className=" flex justify-between">
               <button
                 className="flex w-full justify-between p-2"
-                onClick={() => {
-                  window.open(downloadUrl, '_blank');
-                  trackCsvLink();
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter') {
-                    window.open(downloadUrl, '_blank');
-                    trackCsvLink();
-                  }
-                }}
+                onClick={handleCsvDownloadClick}
+                onKeyDown={handleCsvDownloadKeyDown}
               >
                 <div className="my-auto flex items-center">
                   <FileDownIcon size={DEFAULT_ICON_SIZE} />

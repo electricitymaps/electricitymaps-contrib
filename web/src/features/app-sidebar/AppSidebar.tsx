@@ -70,6 +70,15 @@ export function AppSidebar() {
     }
   };
 
+  const handleChat = () => {
+    trackSupportChat();
+    if (window.Intercom) {
+      window.Intercom('show');
+    } else {
+      console.warn('Intercom not available');
+    }
+  };
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -131,14 +140,7 @@ export function AppSidebar() {
                   </DropdownMenu.Item>
                   {isIntercomEnabled && (
                     <DropdownMenu.Item
-                      onSelect={() => {
-                        trackSupportChat();
-                        if (window.Intercom) {
-                          window.Intercom('show');
-                        } else {
-                          console.warn('Intercom not available');
-                        }
-                      }}
+                      onSelect={handleChat}
                       className="flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 outline-none hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
                     >
                       Chat With Us
