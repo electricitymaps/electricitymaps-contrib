@@ -1,6 +1,12 @@
 import unittest
 
-from electricitymap.contrib.config.model import CO2EQ_CONFIG_MODEL, CONFIG_MODEL
+from electricitymap.contrib.config.model import (
+    CO2EQ_CONFIG_MODEL,
+    CONFIG_MODEL,
+    ExchangeParsers,
+    Parsers,
+)
+from electricitymap.contrib.lib.data_types import ParserDataType
 
 
 class ConfigModelTestcase(unittest.TestCase):
@@ -50,6 +56,24 @@ class ConfigModelTestcase(unittest.TestCase):
                             )
                             assert zone_sources is not None  # pyright type-narrowing
                             self.assertIn(source, zone_sources, f"zone: {zone_key}")
+
+    def test_parser_model_contains_all_parser_data_types(self):
+        dummy_parser_model = Parsers()
+        # Check 1:1 match between ParserDataType enum and Parsers model, except for exchange parsers, as they're defined in a different model
+        all_parser_data_types = {
+            dt.value for dt in ParserDataType if "exchange" not in dt.value
+        }
+        all_parser_model_fields = set(dummy_parser_model.__fields__.keys())
+        self.assertEqual(all_parser_data_types, all_parser_model_fields)
+
+    def test_exchange_parsers_model_contains_all_parser_data_types(self):
+        dummy_exchange_parsers_model = ExchangeParsers()
+        # Check 1:1 match between ParserDataType enum and ExchangeParsers model
+        all_parser_data_types = {
+            dt.value for dt in ParserDataType if "exchange" in dt.value
+        }
+        all_parser_model_fields = set(dummy_exchange_parsers_model.__fields__.keys())
+        self.assertEqual(all_parser_data_types, all_parser_model_fields)
 
 
 if __name__ == "__main__":
