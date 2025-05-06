@@ -18,7 +18,6 @@ export interface ZoneConfig {
     price?: string;
     production?: string;
     productionPerModeForecast?: string;
-    productionPerUnit?: string;
   };
   [key: string]:
     | undefined
