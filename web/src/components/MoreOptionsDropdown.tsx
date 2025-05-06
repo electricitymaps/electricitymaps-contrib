@@ -64,7 +64,7 @@ export function MoreOptionsDropdown({
   }, [downloadUrl, trackCsvLink]);
 
   const handleCsvDownloadKeyDown = useCallback(
-    (event) => {
+    (event: React.KeyboardEvent<HTMLButtonElement>) => {
       if (event.key === 'Enter') {
         window.open(downloadUrl, '_blank');
         trackCsvLink();
