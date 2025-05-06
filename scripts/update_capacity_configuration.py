@@ -10,8 +10,9 @@ from requests import Session
 from electricitymap.contrib.config import CONFIG_DIR, ZONE_PARENT
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.config.reading import read_zones_config
+from electricitymap.contrib.lib.data_types import ParserDataType
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.lib.parsers import PARSER_KEY_TO_DICT
+from parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
 from scripts.utils import write_zone_config
 
 logger = getLogger(__name__)
@@ -20,7 +21,7 @@ ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 CAPACITY_MODES = PRODUCTION_MODES + [f"{mode} storage" for mode in STORAGE_MODES]
 
 
-CAPACITY_PARSERS = PARSER_KEY_TO_DICT["productionCapacity"]
+CAPACITY_PARSERS = PARSER_DATA_TYPE_TO_DICT[ParserDataType.PRODUCTION_CAPACITY]
 
 # Get productionCapacity source to zones mapping
 CAPACITY_PARSER_SOURCE_TO_ZONES = {}
