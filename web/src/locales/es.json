@@ -25,12 +25,22 @@
     "feedback": "Comparte tus comentarios",
     "faq": "Preguntas frecuentes",
     "privacy-policy": "Política de privacidad",
-    "legal-notice": "Aviso legal"
+    "legal-notice": "Aviso legal",
+    "api": "Acceder a la API",
+    "docs": "Documentación API",
+    "chat-with-us": "Chatea con nosotros"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Zonas",
     "about": "Info"
+  },
+  "sidebar-menu": {
+    "map": "Mapa",
+    "datasets": "Datos",
+    "api": "API",
+    "api-docs": "Documentación API",
+    "helpMenu": "Menu de ayuda"
   },
   "app-banner": {
     "cta": "Obtén la aplicación",
