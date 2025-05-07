@@ -14,7 +14,6 @@ interface AreaGraphTooltipProperties {
   position?: { x: number; y: number } | undefined;
   tooltipSize?: 'small' | 'large';
   isBiggerThanMobile: boolean;
-  headerHeight: number;
   closeTooltip: () => void;
 }
 
@@ -25,7 +24,6 @@ export default function AreaGraphTooltip({
   position,
   tooltipSize,
   isBiggerThanMobile,
-  headerHeight,
   closeTooltip,
 }: AreaGraphTooltipProperties): ReactElement | null {
   if (selectedLayerKey === undefined || zoneDetail === undefined) {
@@ -46,10 +44,7 @@ export default function AreaGraphTooltip({
       <div
         style={{
           left: tooltipWithDataPositon.x,
-          top:
-            tooltipWithDataPositon.y <= headerHeight
-              ? headerHeight
-              : tooltipWithDataPositon.y,
+          top: tooltipWithDataPositon.y,
         }}
         className="relative flex flex-col items-center gap-y-1 p-2 pt-14 sm:block sm:p-0"
       >
