@@ -97,7 +97,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
-        id={Charts.ORIGIN_CHART}
+        id={Charts.ELECTRICITY_MIX_CHART}
         title={`country-history.${titleDisplayMode}${titleMixMode}`}
       />
     );
@@ -110,7 +110,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
         badge={badge}
         isEstimated={Boolean(text)}
         unit={valueAxisLabel}
-        id={Charts.ORIGIN_CHART}
+        id={Charts.ELECTRICITY_MIX_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative ">

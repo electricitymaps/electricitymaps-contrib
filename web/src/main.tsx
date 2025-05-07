@@ -12,6 +12,7 @@ import App from 'App';
 import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { zoneExists } from 'features/panels/zone/util';
+import { PostHog, PostHogProvider } from 'posthog-js/react';
 import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
@@ -32,7 +33,14 @@ import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
+declare global {
+  interface Window {
+    posthog?: PostHog;
+  }
+}
+
 const isProduction = import.meta.env.PROD;
+
 if (isProduction) {
   Sentry.init({
     dsn: Capacitor.isNativePlatform()
@@ -276,17 +284,29 @@ const router = createBrowserRouter([
 ]);
 
 const container = document.querySelector('#root');
+
 if (container) {
   const root = createRoot(container);
+
   root.render(
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
-          <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-          </QueryClientProvider>
+          <PostHogWrapper>
+            <QueryClientProvider client={queryClient}>
+              <RouterProvider router={router} />
+            </QueryClientProvider>
+          </PostHogWrapper>
         </HelmetProvider>
       </I18nextProvider>
     </StrictMode>
   );
+}
+
+function PostHogWrapper({ children }: { children: JSX.Element }) {
+  const posthog = window?.posthog;
+  if (!posthog) {
+    return children;
+  }
+  return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 }

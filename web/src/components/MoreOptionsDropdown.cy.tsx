@@ -38,7 +38,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="https://app.electricitymaps.com"
           isEstimated={false}
-          id={Charts.ORIGIN_CHART}
+          id={Charts.ELECTRICITY_MIX_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -57,7 +57,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="https://app.electricitymaps.com"
           isEstimated={false}
-          id={Charts.ORIGIN_CHART}
+          id={Charts.ELECTRICITY_MIX_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -76,7 +76,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={true}
           shareUrl="https://app.electricitymaps.com"
           isEstimated={false}
-          id={Charts.ORIGIN_CHART}
+          id={Charts.ELECTRICITY_MIX_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -96,7 +96,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="https://app.electricitymaps.com"
           isEstimated={false}
-          id={Charts.ORIGIN_CHART}
+          id={Charts.ELECTRICITY_MIX_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -146,7 +146,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="https://app.electricitymaps.com"
           isEstimated={true}
-          id={Charts.ORIGIN_CHART}
+          id={Charts.ELECTRICITY_MIX_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -163,7 +163,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="https://app.electricitymaps.com"
           isEstimated={true}
-          id={Charts.ORIGIN_CHART}
+          id={Charts.ELECTRICITY_MIX_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
@@ -183,7 +183,7 @@ describe('MoreOptionsDropdown', () => {
           hasMobileUserAgent={false}
           shareUrl="https://app.electricitymaps.com"
           isEstimated={true}
-          id={Charts.ORIGIN_CHART}
+          id={Charts.ELECTRICITY_MIX_CHART}
         >
           <Ellipsis />
         </MoreOptionsDropdown>
