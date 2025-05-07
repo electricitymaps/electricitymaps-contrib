@@ -6,5 +6,7 @@
 # === Preconnect to external servers ===
   Link:  <https://app-backend.electricitymaps.com>; rel=preconnect
   Link:  <https://o192958.ingest.sentry.io>; rel=preconnect
+  Link: <https://plausible.io>; rel=preconnect
+  Link: <https://yo.electricitymaps.com>; rel=preconnect
 # === Disallow iframes from external domains
   Content-Security-Policy: frame-ancestors 'self' https://*.electricitymaps.com;

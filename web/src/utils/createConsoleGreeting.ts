@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    plausible?: unknown;
+  }
+}
+
 // Send a greeting message to the console for curious people
 export function createConsoleGreeting() {
   console.info(
@@ -16,5 +22,6 @@ https://github.com/electricityMaps/electricitymaps-contrib
   console.groupCollapsed(`Environment Details (${import.meta.env.MODE})`);
   console.log('App Version:', APP_VERSION);
   console.log('User Agent:', navigator.userAgent);
+  console.log('Plausible enabled:', Boolean(window.plausible));
   console.groupEnd();
 }

@@ -52,6 +52,13 @@ if (isProduction) {
       scope.setTag('browser.locale', window.navigator.language); // Set the language tag for Sentry to correlate errors with the user's language
       return scope;
     },
+    beforeSend(event) {
+      // Ignore all plausible-related errors
+      if (JSON.stringify(event).toLowerCase().includes('plausible')) {
+        return null;
+      }
+      return event;
+    },
   });
 }
 
