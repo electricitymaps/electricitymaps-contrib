@@ -127,7 +127,6 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
           datetimes={datetimes}
           selectedTimeRange={timeRange}
           tooltip={BreakdownChartTooltip}
-          tooltipSize={displayByEmissions ? 'small' : 'large'}
           {...(displayByEmissions && { formatTick: formatAxisTick })}
         />
       </div>

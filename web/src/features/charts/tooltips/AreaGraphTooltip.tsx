@@ -12,7 +12,6 @@ interface AreaGraphTooltipProperties {
   zoneDetail?: ZoneDetail;
   dataPoint?: AreaGraphElement;
   position?: { x: number; y: number } | undefined;
-  tooltipSize?: 'small' | 'large';
   isBiggerThanMobile: boolean;
   closeTooltip: () => void;
 }
@@ -22,7 +21,6 @@ export default function AreaGraphTooltip({
   zoneDetail,
   selectedLayerKey,
   position,
-  tooltipSize,
   isBiggerThanMobile,
   closeTooltip,
 }: AreaGraphTooltipProperties): ReactElement | null {
@@ -35,7 +33,6 @@ export default function AreaGraphTooltip({
   const tooltipWithDataPositon = getOffsetTooltipPosition({
     mousePositionX: position?.x || 0,
     mousePositionY: position?.y || 0,
-    tooltipHeight: tooltipSize === 'large' ? 360 : 160,
     isBiggerThanMobile,
   });
 
