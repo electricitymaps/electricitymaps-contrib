@@ -18,13 +18,10 @@ interface BarBreakdownEmissionsChartProps {
   isMobile: boolean;
   onProductionRowMouseOver: (
     rowKey: ElectricityModeType,
-    event: React.MouseEvent<SVGPathElement, MouseEvent>
+    event: React.MouseEvent<SVGElement>
   ) => void;
   onProductionRowMouseOut: () => void;
-  onExchangeRowMouseOver: (
-    rowKey: ZoneKey,
-    event: React.MouseEvent<SVGPathElement, MouseEvent>
-  ) => void;
+  onExchangeRowMouseOver: (rowKey: ZoneKey, event: React.MouseEvent<SVGElement>) => void;
   onExchangeRowMouseOut: () => void;
 }
 

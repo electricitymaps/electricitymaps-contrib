@@ -1,5 +1,6 @@
+import { Group } from '@visx/group';
 import { ScaleLinear } from 'd3-scale';
-import { memo } from 'react';
+import { memo, MouseEventHandler, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
@@ -29,12 +30,21 @@ function BarElectricityProductionChart({
   width: number;
   onProductionRowMouseOver: (
     rowKey: ElectricityModeType,
-    event: React.MouseEvent<SVGPathElement, MouseEvent>
+    event: React.MouseEvent<SVGElement>
   ) => void;
   onProductionRowMouseOut: () => void;
   isMobile: boolean;
 }) {
   const { t } = useTranslation();
+
+  const handleProductionRowMouseOver = useCallback(
+    (mode: ElectricityModeType): MouseEventHandler<SVGElement> =>
+      (event) => {
+        onProductionRowMouseOver(mode, event);
+      },
+    [onProductionRowMouseOver]
+  );
+
   return (
     <svg className="w-full overflow-visible" height={height + AXIS_LEGEND_PADDING}>
       <Axis
@@ -44,7 +54,7 @@ function BarElectricityProductionChart({
         axisLegendTextLeft={t('country-panel.graph-legends.stored')}
         axisLegendTextRight={t('country-panel.graph-legends.produced')}
       />
-      <g transform={`translate(0, ${productionY})`}>
+      <Group top={productionY}>
         {productionData.map((d, index) => (
           <ProductionSourceRow
             key={d.mode}
@@ -53,7 +63,7 @@ function BarElectricityProductionChart({
             width={width}
             scale={powerScale}
             value={getElectricityProductionValue(d)}
-            onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
+            onMouseOver={handleProductionRowMouseOver(d.mode)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
@@ -71,7 +81,7 @@ function BarElectricityProductionChart({
             />
           </ProductionSourceRow>
         ))}
-      </g>
+      </Group>
     </svg>
   );
 }

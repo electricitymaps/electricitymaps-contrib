@@ -1,4 +1,6 @@
+import { Group } from '@visx/group';
 import { ScaleLinear } from 'd3-scale';
+import { MouseEventHandler, useCallback } from 'react';
 import { ElectricityModeType } from 'types';
 import { modeColor } from 'utils/constants';
 
@@ -27,14 +29,21 @@ export function BarEmissionProductionChart({
   onProductionRowMouseOut: () => void;
   onProductionRowMouseOver: (
     rowKey: ElectricityModeType,
-    event: React.MouseEvent<SVGPathElement, MouseEvent>
+    event: React.MouseEvent<SVGElement, MouseEvent>
   ) => void;
   isMobile: boolean;
 }) {
+  const handleProductionRowMouseOver = useCallback(
+    (mode: ElectricityModeType): MouseEventHandler<SVGElement> =>
+      (event) => {
+        onProductionRowMouseOver(mode, event);
+      },
+    [onProductionRowMouseOver]
+  );
   return (
     <svg className="w-full overflow-visible" height={height}>
       <Axis formatTick={formatTick} height={height} scale={co2Scale} />
-      <g transform={`translate(0, ${productionY})`}>
+      <Group top={productionY}>
         {productionData.map((d, index) => (
           <ProductionSourceRow
             key={d.mode}
@@ -43,7 +52,7 @@ export function BarEmissionProductionChart({
             width={width}
             scale={co2Scale}
             value={Math.abs(d.gCo2eq)}
-            onMouseOver={(event) => onProductionRowMouseOver(d.mode, event)}
+            onMouseOver={handleProductionRowMouseOver(d.mode)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
           >
@@ -55,7 +64,7 @@ export function BarEmissionProductionChart({
             />
           </ProductionSourceRow>
         ))}
-      </g>
+      </Group>
     </svg>
   );
 }
