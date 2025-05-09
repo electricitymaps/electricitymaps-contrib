@@ -8,15 +8,12 @@ from io import BytesIO
 from logging import Logger, getLogger
 from operator import itemgetter
 from typing import Any
-from urllib.error import HTTPError
 from zipfile import ZipFile
 from zoneinfo import ZoneInfo
 
 import pandas as pd
-
-# Pumped storage is present but is not split into a separate category.
 from requests import Session
-from requests.exceptions import HTTPError as RequestsHTTPError
+from requests.exceptions import HTTPError
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
@@ -26,6 +23,8 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from parsers.lib.config import refetch_frequency
+
+# Pumped storage is present but is not split into a separate category.
 
 # Dual Fuel systems can run either Natural Gas or Oil, they represent
 # significantly more capacity in NY State than plants that can only
@@ -54,6 +53,8 @@ def read_csv_data(session: Session, url: str) -> pd.DataFrame:
     """Gets csv data from a url and returns a dataframe."""
 
     response = session.get(url)
+    response.raise_for_status()
+
     csv_data = pd.read_csv(BytesIO(response.content))
 
     return csv_data
@@ -151,7 +152,7 @@ def fetch_production(
         )
         try:
             raw_data = read_zip_data(session, mix_zip_url, mix_csv)
-        except (RequestsHTTPError, KeyError):
+        except (HTTPError, KeyError):
             # this can happen when target_datetime has no data available
             return []
 
@@ -286,7 +287,7 @@ def fetch_consumption_forecast(
         )
         try:
             df = read_zip_data(session, target_zip_url, target_csv)
-        except (RequestsHTTPError, KeyError):
+        except (HTTPError, KeyError):
             # this can happen when target_datetime has no data available
             return []
 
