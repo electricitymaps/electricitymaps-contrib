@@ -49,6 +49,9 @@ capacity:
     - datetime: '2023-09-01'
       source: EIA.gov
       value: 666.1
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 698.1
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -98,9 +101,9 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all electricity production from
-  the generation-only balancing authorities NaturEner Power Watch, LLC and NaturEner
-  Wind Watch, LLC. Read more on the wiki page.
+disclaimer: This zone includes all electricity production from the generation-only
+  balancing authorities NaturEner Power Watch, LLC and NaturEner Wind Watch, LLC.
+  Read more on the wiki page.
 emissionFactors:
   direct:
     battery discharge:
