@@ -6,6 +6,7 @@ import Link from 'components/Link';
 import SwitchToggle from 'components/ToggleSwitch';
 import { LanguageSelector } from 'features/map-controls/LanguageSelector';
 import SpatialAggregatesToggle from 'features/map-controls/SpatialAggregatesToggle';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtom } from 'jotai';
 import {
   LaptopMinimalIcon,
@@ -30,8 +31,11 @@ import { isSettingsModalOpenAtom } from './modalAtoms';
 function ElectricityFlowsToggle() {
   const { t } = useTranslation();
   const [mode, setMode] = useAtom(productionConsumptionAtom);
+  const trackEvent = useTrackEvent();
+  const { trackFlowTracing } = useEvents(trackEvent);
 
   const onToggle = (isEnabled: boolean) => {
+    isEnabled ? trackFlowTracing('flowtracing_on') : trackFlowTracing('flowtracing_off');
     setMode(isEnabled ? Mode.CONSUMPTION : Mode.PRODUCTION);
   };
 

@@ -6,8 +6,7 @@ import { ChevronsDownUpIcon, ChevronsUpDownIcon, Clock3, Info } from 'lucide-rea
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FuturePriceData } from 'types';
-import trackEvent from 'utils/analytics';
-import { TimeRange, TrackEvent } from 'utils/constants';
+import { TimeRange } from 'utils/constants';
 import { getDateTimeFormatOptions } from 'utils/formatting';
 import { futurePriceCollapsedAtom } from 'utils/state/atoms';
 
@@ -68,7 +67,6 @@ export const FuturePrice = memo(function FuturePrice({
         iconClassName="text-success dark:text-success-dark"
         iconSize={20}
         setState={setIsCollapsed}
-        onOpen={() => trackEvent(TrackEvent.FUTURE_PRICE_EXPANDED)}
       >
         <div data-testid="future-price">
           <PriceDisclaimer />

@@ -122,6 +122,7 @@
     "by-source": {
       "emissions": "Émissions carbone",
       "electricity-mix": "Mix électrique",
+      "total-electricity-mix": "Mix électrique global",
       "total-emissions": "Émissions totales de carbone"
     },
     "graph-legends": {
@@ -218,10 +219,12 @@
   },
   "time-controller": {
     "72h": "72h",
-    "3mo": "3mo",
-    "12mo": "12mo",
-    "all_months": "Tout",
+    "3mo": "90 jours",
+    "12mo": "12 mois",
+    "all_months": "Tout les mois",
     "all_years": "Toutes les années",
+    "navigate": "Naviguer",
+    "live": "Live",
     "date-unavailable": {
       "title": "Date indisponible",
       "description": "Redirection vers les données en temps réel"
@@ -359,7 +362,9 @@
     "netExchange": "Échange net",
     "price": "Prix",
     "importing": "Important",
-    "exporting": "Exportant"
+    "exporting": "Exportant",
+    "flowTraced": "Les données de flux représentent le flux physique d'électricité",
+    "nonFlowTraced": "Les données hors flux ne prennent pas en compte les importations et les exportations"
   },
   "aria": {
     "label": {
@@ -1565,7 +1570,8 @@
       "zoneName": "Ouganda"
     },
     "US": {
-      "zoneName": "États-Unis"
+      "zoneName": "États-Unis",
+      "seoZoneName": "États-Unis d'Amérique - U.S."
     },
     "US-AK": {
       "countryName": "États-Unis",
@@ -1575,17 +1581,26 @@
       "countryName": "États-Unis",
       "zoneName": "Autorité électrique d'Alaska du Sud"
     },
+    "US-HI": {
+      "countryName": "États-Unis",
+      "zoneName": "Hawaii"
+    },
     "US-CAL-BANC": {
       "countryName": "États-Unis",
-      "zoneName": "Autorité d'équilibrage de la Californie du Nord"
+      "displayName": "BANC",
+      "zoneName": "Autorité d'équilibrage de la Californie du Nord",
+      "seoZoneName": "Autorité d'équilibrage de la Californie du Nord - BANC"
     },
     "US-CAL-CISO": {
       "countryName": "États-Unis",
-      "zoneName": "Opérateur de réseau indépendant de Californie"
+      "displayName": "Californie ISO",
+      "zoneName": "Opérateur de réseau indépendant de Californie",
+      "seoZoneName": "Opérateur de réseau indépendant de Californie - CAISO "
     },
     "US-CAL-IID": {
       "countryName": "États-Unis",
-      "zoneName": "District d'irrigation impérial"
+      "zoneName": "District d'irrigation impérial",
+      "seoZoneName": "District d'irrigation impérial - Californie"
     },
     "US-CAL-LDWP": {
       "countryName": "États-Unis",
@@ -1597,15 +1612,18 @@
     },
     "US-CAR-CPLE": {
       "countryName": "États-Unis",
-      "zoneName": "Duke Energy Progress East"
+      "zoneName": "Duke Energy Progress East",
+      "seoZoneName": "Duke Energy Progress East - North Carolina"
     },
     "US-CAR-CPLW": {
       "countryName": "États-Unis",
-      "zoneName": "Duke Energy Progress West"
+      "zoneName": "Duke Energy Progress West",
+      "seoZoneName": "Duke Energy Progress West - North Carolina"
     },
     "US-CAR-DUK": {
       "countryName": "États-Unis",
-      "zoneName": "Duke Energy Carolinas"
+      "zoneName": "Duke Energy Carolinas",
+      "seoZoneName": "Duke Energy Carolinas - North and South Carolina"
     },
     "US-CAR-SC": {
       "countryName": "États-Unis",
@@ -1617,6 +1635,7 @@
     },
     "US-CAR-YAD": {
       "countryName": "États-Unis",
+      "displayName": "Génération d'énergie Alcoa",
       "zoneName": "Génération d'énergie Alcoa, Inc. Division de Yadkin"
     },
     "US-CENT-SPA": {
@@ -1625,7 +1644,9 @@
     },
     "US-CENT-SWPP": {
       "countryName": "États-Unis",
-      "zoneName": "Pool énergétique du sud-ouest"
+      "displayName": "SPP",
+      "zoneName": "Pool énergétique du sud-ouest",
+      "seoZoneName": "Pool énergétique du sud-ouest - SPP"
     },
     "US-FLA-FMPP": {
       "countryName": "États-Unis",
@@ -1665,7 +1686,9 @@
     },
     "US-MIDA-PJM": {
       "countryName": "États-Unis",
-      "zoneName": "PJM Interconnection, Llc"
+      "displayName": "PJM",
+      "zoneName": "PJM Interconnection, Llc",
+      "seoZoneName": "PJM Interconnection - Mid-Atlantic US"
     },
     "US-MIDW-AECI": {
       "countryName": "États-Unis",
@@ -1673,15 +1696,19 @@
     },
     "US-MIDW-LGEE": {
       "countryName": "États-Unis",
+      "displayName": "Compagnie de gaz et d'électricité de Louisville",
       "zoneName": "Compagnie de gaz et d'électricité de Louisville et services publics du Kentucky"
     },
     "US-MIDW-MISO": {
       "countryName": "États-Unis",
-      "zoneName": "Midcontinent Independent Transmission System Operator, Inc."
+      "displayName": "MISO",
+      "zoneName": "Midcontinent Independent Transmission System Operator, Inc.",
+      "seoZoneName": "Midcontinent ISO - MISO"
     },
     "US-NE-ISNE": {
       "countryName": "États-Unis",
-      "zoneName": "Iso Nouvelle-Angleterre Inc."
+      "zoneName": "Iso Nouvelle-Angleterre Inc.",
+      "seoZoneName": "Iso Nouvelle-Angleterre - ISO-NE"
     },
     "US-NW-AVA": {
       "countryName": "États-Unis",
@@ -1733,7 +1760,9 @@
     },
     "US-NW-PSCO": {
       "countryName": "États-Unis",
-      "zoneName": "Société de service public du Colorado"
+      "displayName": "PSCo",
+      "zoneName": "Société de service public du Colorado",
+      "seoZoneName": "Société de service public du Colorado - PSCo"
     },
     "US-NW-PSEI": {
       "countryName": "États-Unis",
@@ -1749,15 +1778,18 @@
     },
     "US-NW-WACM": {
       "countryName": "États-Unis",
+      "displayName": "WAPA Rocky Mountains",
       "zoneName": "Western Area Power Administration - Région des Rocheuses"
     },
     "US-NW-WAUW": {
       "countryName": "États-Unis",
+      "displayName": "WAPA Upper Great Plains",
       "zoneName": "Administration de l'électricité de la région de l'Ouest UGP Ouest"
     },
     "US-NY-NYIS": {
       "countryName": "États-Unis",
-      "zoneName": "Exploitant de réseau indépendant de New York"
+      "zoneName": "Exploitant de réseau indépendant de New York",
+      "seoZoneName": "New York ISO - NYISO"
     },
     "US-SE-SEPA": {
       "countryName": "États-Unis",
@@ -1789,15 +1821,20 @@
     },
     "US-SW-WALC": {
       "countryName": "États-Unis",
+      "displayName": "WAPA Desert Southwest",
       "zoneName": "Western Area Power Administration - Région du sud-ouest désertique"
     },
     "US-TEN-TVA": {
       "countryName": "États-Unis",
-      "zoneName": "Autorité de la vallée du Tennessee"
+      "displayName": "TVA",
+      "zoneName": "Autorité de la vallée du Tennessee",
+      "seoZoneName": "Autorité de la vallée du Tennessee - TVA"
     },
     "US-TEX-ERCO": {
       "countryName": "États-Unis",
-      "zoneName": "Conseil de fiabilité électrique du Texas, Inc."
+      "displayName": "ERCOT",
+      "zoneName": "Conseil de fiabilité électrique du Texas, Inc.",
+      "seoZoneName": "Conseil de fiabilité électrique du Texas - ERCOT"
     },
     "UY": {
       "zoneName": "Uruguay"

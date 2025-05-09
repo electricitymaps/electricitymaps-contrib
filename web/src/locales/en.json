@@ -306,11 +306,11 @@
       "all_years": "Yearly electricity prices"
     },
     "netExchange": {
-      "72h": "Hourly electricity flow",
-      "3mo": "Daily electricity flow",
-      "12mo": "Monthly electricity flow",
-      "all_months": "Monthly electricity flow",
-      "all_years": "Yearly electricity flow"
+      "72h": "Hourly electricity net flow",
+      "3mo": "Daily electricity net flow",
+      "12mo": "Monthly electricity net flow",
+      "all_months": "Monthly electricity net flow",
+      "all_years": "Yearly electricity net flow"
     },
     "electricityLoad": {
       "72h": "Hourly electricity load",

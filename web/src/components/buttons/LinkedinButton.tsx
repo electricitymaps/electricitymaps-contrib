@@ -1,7 +1,6 @@
 import { Button, ButtonProps } from 'components/Button';
 import { useTranslation } from 'react-i18next';
 import { FaLinkedin } from 'react-icons/fa6';
-import { ShareType, trackShare } from 'utils/analytics';
 import { baseUrl, DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface LinkedinButtonProps
@@ -13,8 +12,6 @@ interface LinkedinButtonProps
   isIconOnly?: boolean;
   isShareLink?: boolean;
 }
-
-const trackLinkedinShare = trackShare(ShareType.LINKEDIN);
 
 export function LinkedinButton({
   isIconOnly,
@@ -33,7 +30,6 @@ export function LinkedinButton({
           ? `https://www.linkedin.com/shareArticle?mini=true&url=${baseUrl}`
           : 'https://www.linkedin.com/company/electricitymaps/'
       }
-      onClick={isShareLink ? trackLinkedinShare : undefined}
       icon={<FaLinkedin size={iconSize} />}
       {...restProps}
     >

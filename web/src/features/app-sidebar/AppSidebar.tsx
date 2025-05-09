@@ -5,6 +5,7 @@ import TooltipWrapper, {
   type TooltipWrapperReference,
 } from 'components/tooltips/TooltipWrapper';
 import { useFeatureFlag } from 'features/feature-flags/api';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import {
   BookOpenIcon,
   CodeXmlIcon,
@@ -59,11 +60,22 @@ export function AppSidebar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tooltipReference = useRef<TooltipWrapperReference>(null);
   const isIntercomEnabled = useFeatureFlag('intercom-messenger');
+  const trackEvent = useTrackEvent();
+  const { trackSupportChat, trackSupportFaq } = useEvents(trackEvent);
 
   const handleOpenChange = (open: boolean) => {
     setIsMenuOpen(open);
     if (open) {
       tooltipReference.current?.close();
+    }
+  };
+
+  const handleChat = () => {
+    trackSupportChat();
+    if (window.Intercom) {
+      window.Intercom('show');
+    } else {
+      console.warn('Intercom not available');
     }
   };
 
@@ -116,7 +128,7 @@ export function AppSidebar() {
                   side="right"
                   align="end"
                 >
-                  <DropdownMenu.Item asChild>
+                  <DropdownMenu.Item asChild onSelect={trackSupportFaq}>
                     <a
                       href="https://help.electricitymaps.com/"
                       target="_blank"
@@ -128,13 +140,7 @@ export function AppSidebar() {
                   </DropdownMenu.Item>
                   {isIntercomEnabled && (
                     <DropdownMenu.Item
-                      onSelect={() => {
-                        if (window.Intercom) {
-                          window.Intercom('show');
-                        } else {
-                          console.warn('Intercom not available');
-                        }
-                      }}
+                      onSelect={handleChat}
                       className="flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 outline-none hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
                     >
                       Chat With Us
