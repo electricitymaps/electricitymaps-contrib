@@ -241,14 +241,14 @@
       "all_years": "Roční produkce emisí"
     },
     "electricityorigin": {
-      "72h": "Hodinnový energetický mix",
+      "72h": "Hodinový energetický mix",
       "3mo": "Denní energetický mix",
       "12mo": "Měsíční energetický mix",
       "all_months": "Měsíční energetický mix",
       "all_years": "Roční energetický mix"
     },
     "electricityproduction": {
-      "72h": "Hodinnový energetický mix",
+      "72h": "Hodinový energetický mix",
       "3mo": "Denní energetický mix",
       "12mo": "Měsíční energetický mix",
       "all_months": "Měsíční energetický mix",
@@ -262,11 +262,18 @@
       "all_years": "Roční ceny elektřiny"
     },
     "netExchange": {
-      "72h": "Hodinový tok",
-      "3mo": "Denní tok",
-      "12mo": "Měsíční tok",
-      "all_months": "Měsíční tok",
-      "all_years": "Roční tok"
+      "72h": "Hodinový přeshraniční tok",
+      "3mo": "Denní přeshraniční tok",
+      "12mo": "Měsíční přeshraniční tok",
+      "all_months": "Měsíční přeshraniční tok",
+      "all_years": "Roční přeshraniční tok"
+    },
+    "electricityLoad": {
+      "72h": "Hodinové zatížení sítě",
+      "3mo": "Denní zatížení sítě",
+      "12mo": "Měsíční zatížení sítě",
+      "all_months": "Měsíční zatížení sítě",
+      "all_years": "Roční zatížení sítě"
     },
     "not-enough-data": "Pro zobrazení tohoto grafu není k dispozici dostatek dat",
     "exchange-delay": "Data o přeshraničním toku mohou být zpožděna až o 48 hodin."
@@ -312,7 +319,9 @@
     "crossborderexport": "Přeshraniční export",
     "carbonintensityexport": "Uhlíková intenzita exportu",
     "ofinstalled": "instalované kapacity",
-    "utilizing": "využití",
+    "utilizing": "využívajíce",
+    "representing": "představující",
+    "ofemissions": "emisí",
     "withcarbonintensity": "s uhlíkovou intenzitou",
     "zoomIn": "Zvětšit",
     "zoomOut": "Zmenšit",
@@ -334,6 +343,7 @@
     "dataIsDelayed": "Data jsou zpožděná",
     "price": "Cena",
     "netExchange": "Přeshraniční tok",
+    "load": "Zatížení sítě",
     "importing": "Dovoz",
     "exporting": "Vývoz",
     "flowTraced": "Data berou v potaz přeshraniční toky elektřiny.",
